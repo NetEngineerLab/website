@@ -56,7 +56,7 @@ for(const required of [
   ".node-version",".nvmrc","VERSION",".gitignore",".gitattributes",".github/workflows/production-quality-gate.yml",".github/workflows/production-online-monitor.yml",
   "website/_headers","website/_redirects","website/robots.txt","website/sitemap.xml","website/data/site-config.json",
   "website/assets/images/og-netengineerlab.png","website/.well-known/security.txt",
-  "scripts/production-acceptance.js","scripts/production-online-check.js","scripts/remote-acceptance.js","scripts/release-manifest.js",
+  "scripts/production-acceptance.js","scripts/production-online-check.js","scripts/production-online-revalidation-test.js","scripts/remote-acceptance.js","scripts/release-manifest.js",
   "docs/PRODUCTION_ONLINE_MONITORING_GUIDE.md","docs/V1.7.4_CHANGELOG.md"
 ]){
   if(!fs.existsSync(path.join(root,required)))errors.push(`missing launch file: ${required}`);

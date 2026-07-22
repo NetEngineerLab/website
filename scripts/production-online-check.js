@@ -85,6 +85,11 @@ function probePath(pathname,attempt){
   return`${url.pathname}${url.search}`;
 }
 function headerIncludes(response,name,value){return(response.headers.get(name)||"").toLowerCase().includes(value.toLowerCase())}
+function hasServiceWorkerRevalidation(cacheControl="",etag=""){
+  const cacheRevalidates=/\b(?:no-cache|no-store)\b|max-age\s*=\s*0\b/i.test(cacheControl);
+  const validEtag=/^(?:W\/)?"[^"\r\n]*"$/i.test(etag.trim());
+  return cacheRevalidates||validEtag;
+}
 function countMatches(text,pattern){return(text.match(pattern)||[]).length}
 function hasCanonical(html,url){
   return[...html.matchAll(/<link\b[^>]*>/gi)].some(match=>{
@@ -216,14 +221,21 @@ async function readinessCheck(attempt){
     try{
       const result=await requestProbe(`/${rel}`);
       const local=fs.readFileSync(path.join(websiteRoot,rel));
-      return{rel,status:result.response.status,expected:fullHash(local),actual:fullHash(Buffer.from(result.text)),cache:result.response.headers.get("cache-control")||""};
+      return{
+        rel,
+        status:result.response.status,
+        expected:fullHash(local),
+        actual:fullHash(Buffer.from(result.text)),
+        cacheControl:result.response.headers.get("cache-control")||"",
+        etag:result.response.headers.get("etag")||""
+      };
     }catch(error){return{rel,error}}
   });
   for(const item of serviceWorkers){
     if(item.error)errors.push(`${item.rel}: ${item.error.message||String(item.error)}`);
     else{
       if(item.status!==200||item.actual!==item.expected)errors.push(`${item.rel}: waiting for checked-out Service Worker`);
-      if(!/no-cache|max-age=0/i.test(item.cache))errors.push(`${item.rel}: waiting for revalidation header`);
+      if(!hasServiceWorkerRevalidation(item.cacheControl,item.etag))errors.push(`${item.rel}: waiting for Cache-Control or ETag revalidation header`);
     }
   }
 
@@ -337,7 +349,7 @@ async function runFullCheck(readiness,readyAttempt){
     if(item.error)serviceWorkerErrors.push(`${item.rel}: ${item.error.message||String(item.error)}`);
     else{
       if(item.status!==200||item.actual!==item.expected)serviceWorkerErrors.push(`${item.rel}: deployed file differs from checked-out build`);
-      if(!/no-cache|max-age=0/i.test(item.cache))serviceWorkerErrors.push(`${item.rel}: revalidation header missing`);
+      if(!hasServiceWorkerRevalidation(item.cacheControl,item.etag))serviceWorkerErrors.push(`${item.rel}: Cache-Control or ETag revalidation header missing`);
     }
   }
   errors.push(...serviceWorkerErrors);
@@ -404,7 +416,7 @@ function writeReport(report){
   }
 }
 
-(async()=>{
+async function main(){
   let readiness;
   let readyAttempt=0;
   for(let attempt=1;attempt<=attempts;attempt++){
@@ -432,8 +444,12 @@ function writeReport(report){
   const report=await runFullCheck(readiness,readyAttempt);
   writeReport(report);
   if(report.status!=="PASS")process.exit(1);
-})().catch(error=>{
+}
+
+if(require.main===module)main().catch(error=>{
   const report={version,base,generatedAt:new Date().toISOString(),readyAttempt:0,configuredAttempts:attempts,durationMs:Date.now()-startedAt,checks:[],errors:[error.stack||error.message||String(error)],warnings:[],status:"FAIL"};
   writeReport(report);
   process.exit(1);
 });
+
+module.exports={hasServiceWorkerRevalidation};

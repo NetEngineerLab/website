@@ -246,7 +246,7 @@ async function httpAudit(sitemapUrls){
   record("active tool count",Array.isArray(tools)&&tools.filter(item=>item.status==="active").length===12,String(Array.isArray(tools)?tools.filter(item=>item.status==="active").length:0));
   record("no planned tool placeholders",Array.isArray(tools)&&tools.every(item=>item.status==="active"));
 
-  for(const rel of [".node-version",".nvmrc",".gitignore",".gitattributes","VERSION",".github/workflows/production-quality-gate.yml",".github/workflows/production-online-monitor.yml","scripts/production-online-check.js","website/_headers","website/_redirects","website/robots.txt","website/sitemap.xml","website/.well-known/security.txt"]){
+  for(const rel of [".node-version",".nvmrc",".gitignore",".gitattributes","VERSION",".github/workflows/production-quality-gate.yml",".github/workflows/production-online-monitor.yml","scripts/production-online-check.js","scripts/production-online-revalidation-test.js","website/_headers","website/_redirects","website/robots.txt","website/sitemap.xml","website/.well-known/security.txt"]){
     record(`required file ${rel}`,exists(rel));
   }
   record("Node version pin",read(path.join(root,".node-version")).trim()==="22.16.0",read(path.join(root,".node-version")).trim());
