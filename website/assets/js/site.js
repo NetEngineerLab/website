@@ -98,9 +98,9 @@
  document.documentElement.dataset.nelI18nVersion=config.version||"";
 
  }
- if(document.readyState==="loading"){
-  document.addEventListener("DOMContentLoaded",init,{once:true});
- }else{
+ if(document.readyState==="complete"){
   init();
+ }else{
+  window.addEventListener("load",init,{once:true});
  }
 })();
