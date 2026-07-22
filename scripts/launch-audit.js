@@ -78,7 +78,7 @@ for(const route of ["/about/","/contact/","/privacy/","/terms/","/zh/about/","/z
 }
 const headers=read(path.join(site,"_headers"));
 if(!headers.includes("https://:project.pages.dev/*")||!headers.includes("https://:version.:project.pages.dev/*"))errors.push("pages.dev noindex rules missing");
-if(!headers.includes("/tools/*/sw.js")||!/max-age=0/.test(headers))errors.push("service-worker cache revalidation rule missing");
+if(!/\/tools\/(?:\*|:tool)\/sw\.js/.test(headers)||!/max-age=0/.test(headers))errors.push("service-worker cache revalidation rule missing");
 
 const report={
   version:expectedVersion,

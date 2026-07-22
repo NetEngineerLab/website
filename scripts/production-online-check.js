@@ -35,6 +35,9 @@ const homeReadinessAssets=[
 ];
 const expectedCategoryCounts={optical:2,pon:2,maintenance:2,network:4,power:1,wireless:1};
 const expectedHashes=new Map(managedAssets.map(rel=>[rel,contentHash(path.join(websiteRoot,rel))]));
+const expectedTools=JSON.parse(fs.readFileSync(path.join(websiteRoot,"data/tools-catalog.json"),"utf8")).filter(tool=>tool.status==="active");
+const expectedToolIds=expectedTools.map(tool=>tool.id);
+const deploymentMarker=fullHash(Buffer.from([version,...expectedHashes.values()].join(":"))).slice(0,12);
 
 function contentHash(file){return crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex").slice(0,12)}
 function fullHash(value){return crypto.createHash("sha256").update(value).digest("hex")}
@@ -76,6 +79,11 @@ async function requestAbsolute(url,{method="GET",redirect="manual"}={}){
   return{response,text:method==="HEAD"?"":await response.text(),url};
 }
 function requestPath(pathname,options){return requestAbsolute(new URL(pathname,`${base}/`).href,options)}
+function probePath(pathname,attempt){
+  const url=new URL(pathname,`${base}/`);
+  url.searchParams.set("nel-monitor",`${deploymentMarker}-${attempt}`);
+  return`${url.pathname}${url.search}`;
+}
 function headerIncludes(response,name,value){return(response.headers.get(name)||"").toLowerCase().includes(value.toLowerCase())}
 function countMatches(text,pattern){return(text.match(pattern)||[]).length}
 function hasCanonical(html,url){
@@ -150,20 +158,76 @@ function parseCatalog(source){
   return JSON.parse(match[1]);
 }
 
-async function readinessCheck(){
+async function readinessCheck(attempt){
   const errors=[];
   let home;
-  let tools;
-  try{[home,tools]=await Promise.all([requestPath("/"),requestPath("/tools/zh/")])}
+  let toolsDirectory;
+  const requestProbe=pathname=>requestPath(probePath(pathname,attempt));
+  try{[home,toolsDirectory]=await Promise.all([requestProbe("/"),requestProbe("/tools/zh/")])}
   catch(error){return{ready:false,errors:[error.message||String(error)]}}
   if(home.response.status!==200)errors.push(`/: HTTP ${home.response.status}`);
-  if(tools.response.status!==200)errors.push(`/tools/zh/: HTTP ${tools.response.status}`);
+  if(toolsDirectory.response.status!==200)errors.push(`/tools/zh/: HTTP ${toolsDirectory.response.status}`);
   if(home.response.status===200)errors.push(...requiredAssetsMatch(home.text,`${base}/`,homeReadinessAssets));
-  if(tools.response.status===200){
-    errors.push(...requiredAssetsMatch(tools.text,`${base}/tools/zh/`,["data/tools-catalog.js","assets/js/site.js"]));
-    if(!assetOrderOk(tools.text,`${base}/tools/zh/`))errors.push("/tools/zh/: tools catalog is not before site runtime");
+  if(toolsDirectory.response.status===200){
+    errors.push(...requiredAssetsMatch(toolsDirectory.text,`${base}/tools/zh/`,["data/tools-catalog.js","assets/js/site.js"]));
+    if(!assetOrderOk(toolsDirectory.text,`${base}/tools/zh/`))errors.push("/tools/zh/: tools catalog is not before site runtime");
   }
-  return{ready:errors.length===0,errors,home,tools};
+  if(errors.length)return{ready:false,errors,home,toolsDirectory};
+
+  let sitemapResponse;
+  try{sitemapResponse=await requestProbe("/sitemap.xml")}
+  catch(error){return{ready:false,errors:[error.message||String(error)],home,toolsDirectory}}
+  if(sitemapResponse.response.status!==200)errors.push(`/sitemap.xml: HTTP ${sitemapResponse.response.status}`);
+  const sitemapUrls=[...sitemapResponse.text.matchAll(/<loc>(.*?)<\/loc>/g)].map(match=>match[1]);
+  if(sitemapUrls.length!==36)errors.push(`/sitemap.xml: expected 36 URLs, got ${sitemapUrls.length}`);
+
+  const pageResults=await mapLimit(sitemapUrls,8,async canonical=>{
+    const pathname=new URL(canonical).pathname;
+    try{return{canonical,pathname,...await requestProbe(pathname)}}
+    catch(error){return{canonical,pathname,error}}
+  });
+  for(const result of pageResults){
+    if(result.error){errors.push(`${result.pathname}: ${result.error.message||String(result.error)}`);continue}
+    if(result.response.status!==200){errors.push(`${result.pathname}: HTTP ${result.response.status}`);continue}
+    errors.push(...checkPageAssetVersions(result.text,`${base}${result.pathname}`).errors);
+  }
+
+  const remoteAssets=await mapLimit(managedAssets,6,async rel=>{
+    const expected=expectedHashes.get(rel);
+    try{
+      const result=await requestProbe(`/${rel}?v=${expected}`);
+      return{rel,expected,status:result.response.status,actual:fullHash(Buffer.from(result.text)).slice(0,12),text:result.text};
+    }catch(error){return{rel,expected,error}}
+  });
+  for(const item of remoteAssets){
+    if(item.error)errors.push(`${item.rel}: ${item.error.message||String(item.error)}`);
+    else if(item.status!==200||item.actual!==item.expected)errors.push(`${item.rel}: HTTP ${item.status}, hash ${item.actual}, waiting for ${item.expected}`);
+  }
+
+  const catalogAsset=remoteAssets.find(item=>item.rel==="data/tools-catalog.js");
+  let tools=[];
+  if(catalogAsset&&!catalogAsset.error&&catalogAsset.status===200){
+    try{tools=parseCatalog(catalogAsset.text)}catch(error){errors.push(error.message||String(error))}
+  }
+  if(JSON.stringify(tools.map(tool=>tool.id))!==JSON.stringify(expectedToolIds))errors.push(`tools catalog: waiting for ${expectedToolIds.length} checked-out tools`);
+
+  const serviceWorkers=await mapLimit(expectedTools,6,async tool=>{
+    const rel=`tools/${tool.id}/sw.js`;
+    try{
+      const result=await requestProbe(`/${rel}`);
+      const local=fs.readFileSync(path.join(websiteRoot,rel));
+      return{rel,status:result.response.status,expected:fullHash(local),actual:fullHash(Buffer.from(result.text)),cache:result.response.headers.get("cache-control")||""};
+    }catch(error){return{rel,error}}
+  });
+  for(const item of serviceWorkers){
+    if(item.error)errors.push(`${item.rel}: ${item.error.message||String(item.error)}`);
+    else{
+      if(item.status!==200||item.actual!==item.expected)errors.push(`${item.rel}: waiting for checked-out Service Worker`);
+      if(!/no-cache|max-age=0/i.test(item.cache))errors.push(`${item.rel}: waiting for revalidation header`);
+    }
+  }
+
+  return{ready:errors.length===0,errors,home,toolsDirectory,sitemapResponse,sitemapUrls,pageResults,remoteAssets,tools,serviceWorkers};
 }
 
 function createCheckContext(){
@@ -205,18 +269,14 @@ async function runFullCheck(readiness,readyAttempt){
   record("robots HTTP 200",robots.response.status===200,String(robots.response.status));
   record("robots Sitemap",robots.text.includes(`Sitemap: ${expectedOrigin}/sitemap.xml`));
 
-  const sitemapResponse=await requestPath("/sitemap.xml");
+  const sitemapResponse=readiness.sitemapResponse;
   record("sitemap HTTP 200",sitemapResponse.response.status===200,String(sitemapResponse.response.status));
-  const sitemapUrls=[...sitemapResponse.text.matchAll(/<loc>(.*?)<\/loc>/g)].map(match=>match[1]);
+  const sitemapUrls=readiness.sitemapUrls;
   record("sitemap URL count",sitemapUrls.length===36,String(sitemapUrls.length));
   record("sitemap URLs unique",new Set(sitemapUrls).size===sitemapUrls.length);
   record("sitemap production origin",sitemapUrls.every(url=>url.startsWith(`${expectedOrigin}/`)));
 
-  const pageResults=await mapLimit(sitemapUrls,8,async canonical=>{
-    const pathname=new URL(canonical).pathname;
-    try{return{canonical,pathname,...await requestPath(pathname)}}
-    catch(error){return{canonical,pathname,error}}
-  });
+  const pageResults=readiness.pageResults;
   let pagesOk=0;
   let versionedReferences=0;
   let toolPages=0;
@@ -251,11 +311,9 @@ async function runFullCheck(readiness,readyAttempt){
   record("tools catalog before site runtime",orderErrors.length===0,"4 directory/home pages");
   record("tool pages expose working controls",toolPages===24&&toolPagesWithControls===toolPages,`${toolPagesWithControls}/${toolPages}`);
 
-  const catalogPath=`/data/tools-catalog.js?v=${expectedHashes.get("data/tools-catalog.js")}`;
-  const catalogResponse=await requestPath(catalogPath);
-  record("tools catalog HTTP 200",catalogResponse.response.status===200,String(catalogResponse.response.status));
-  let tools=[];
-  try{tools=parseCatalog(catalogResponse.text)}catch(error){errors.push(error.message||String(error))}
+  const catalogAsset=readiness.remoteAssets.find(item=>item.rel==="data/tools-catalog.js");
+  record("tools catalog HTTP 200",catalogAsset.status===200,String(catalogAsset.status));
+  const tools=readiness.tools;
   record("active tools online",tools.length===12&&tools.every(tool=>tool.status==="active"),String(tools.length));
   record("tool IDs unique",new Set(tools.map(tool=>tool.id)).size===tools.length);
   const actualCounts=tools.reduce((counts,tool)=>{counts[tool.category]=(counts[tool.category]||0)+1;return counts},{});
@@ -264,13 +322,7 @@ async function runFullCheck(readiness,readyAttempt){
   const catalogRoutesOk=tools.every(tool=>sitemapPaths.has(`/tools/${tool.id}/`)&&sitemapPaths.has(`/tools/${tool.id}/zh/`));
   record("catalog tool routes in Sitemap",catalogRoutesOk,`${tools.length*2} routes`);
 
-  const remoteAssets=await mapLimit(managedAssets,6,async rel=>{
-    const expected=expectedHashes.get(rel);
-    try{
-      const result=await requestPath(`/${rel}?v=${expected}`);
-      return{rel,expected,status:result.response.status,actual:fullHash(Buffer.from(result.text)).slice(0,12)};
-    }catch(error){return{rel,expected,error}}
-  });
+  const remoteAssets=readiness.remoteAssets;
   const remoteAssetErrors=[];
   for(const item of remoteAssets){
     if(item.error)remoteAssetErrors.push(`${item.rel}: ${item.error.message||String(item.error)}`);
@@ -279,14 +331,7 @@ async function runFullCheck(readiness,readyAttempt){
   errors.push(...remoteAssetErrors);
   record("versioned assets match checked-out files",remoteAssetErrors.length===0,`${remoteAssets.length} assets`);
 
-  const serviceWorkers=await mapLimit(tools,6,async tool=>{
-    const rel=`tools/${tool.id}/sw.js`;
-    try{
-      const result=await requestPath(`/${rel}`);
-      const local=fs.readFileSync(path.join(websiteRoot,rel));
-      return{rel,status:result.response.status,expected:fullHash(local),actual:fullHash(Buffer.from(result.text)),cache:result.response.headers.get("cache-control")||""};
-    }catch(error){return{rel,error}}
-  });
+  const serviceWorkers=readiness.serviceWorkers;
   const serviceWorkerErrors=[];
   for(const item of serviceWorkers){
     if(item.error)serviceWorkerErrors.push(`${item.rel}: ${item.error.message||String(item.error)}`);
@@ -363,7 +408,7 @@ function writeReport(report){
   let readiness;
   let readyAttempt=0;
   for(let attempt=1;attempt<=attempts;attempt++){
-    readiness=await readinessCheck();
+    readiness=await readinessCheck(attempt);
     if(readiness.ready){readyAttempt=attempt;console.log(`Deployment ready on attempt ${attempt}/${attempts}.`);break}
     console.warn(`Deployment not ready on attempt ${attempt}/${attempts}: ${readiness.errors.slice(0,4).join("; ")}`);
     if(attempt<attempts)await sleep(intervalMs);

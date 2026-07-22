@@ -282,7 +282,7 @@ async function httpAudit(sitemapUrls){
   const headers=read(path.join(site,"_headers"));
   record("pages.dev production noindex",headers.includes("https://:project.pages.dev/*")&&headers.includes("X-Robots-Tag: noindex"));
   record("pages.dev branch noindex",headers.includes("https://:version.:project.pages.dev/*"));
-  record("service-worker revalidation header",headers.includes("/tools/*/sw.js")&&/Cache-Control:\s*(?:no-cache|public, max-age=0)/i.test(headers));
+  record("service-worker revalidation header",/\/tools\/(?:\*|:tool)\/sw\.js/.test(headers)&&/Cache-Control:\s*(?:no-cache|public, max-age=0)/i.test(headers));
 
   const linkSummary=linkAudit();
   record("local link and anchor audit",!errors.some(item=>/missing local target|missing anchor|placeholder href|duplicate HTML id|empty href\/src|link escapes/.test(item)),`${linkSummary.htmlPages} pages, ${linkSummary.linkCount} links`);
