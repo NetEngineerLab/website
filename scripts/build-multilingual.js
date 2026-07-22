@@ -3,6 +3,7 @@
 
 const fs=require("fs");
 const path=require("path");
+const crypto=require("crypto");
 
 const packageRoot=path.resolve(__dirname,"..");
 const siteRoot=path.join(packageRoot,"website");
@@ -16,6 +17,16 @@ const folderMap=new Map(localeConfig.locales.filter(item=>item.folder).map(item=
 const localeMap=new Map(localeConfig.locales.map(item=>[item.id,item]));
 const activeLocales=localeConfig.locales.filter(item=>item.status==="active");
 const rootDirectoryRoutes=new Set(["about/","contact/","privacy/","terms/"]);
+const sharedRuntimeAssets=[
+ {sitePath:"data/locales.js",cachePath:"../../data/locales.js"},
+ {sitePath:"data/site-config.js",cachePath:"../../data/site-config.js"},
+ {sitePath:"assets/css/locale-menu.css",cachePath:"../../assets/css/locale-menu.css"},
+ {sitePath:"assets/js/analytics.js",cachePath:"../../assets/js/analytics.js"},
+ {sitePath:"assets/js/adsense.js",cachePath:"../../assets/js/adsense.js"},
+ {sitePath:"assets/js/site.js",cachePath:"../../assets/js/site.js"},
+ {sitePath:"assets/js/tool-integration.js",cachePath:"../../assets/js/tool-integration.js"}
+];
+const assetVersionCache=new Map();
 function isRootDirectoryRoute(route){return rootDirectoryRoutes.has(route)}
 
 function posix(value){return value.split(path.sep).join("/")}
@@ -94,6 +105,26 @@ function relativeUrl(fromUrl,toUrl){
 function relativeFile(fromRel,targetRel){
  let rel=path.posix.relative(path.posix.dirname(fromRel),targetRel);
  return rel||path.posix.basename(targetRel);
+}
+function assetVersion(targetRel){
+ const clean=String(targetRel||"").split(/[?#]/)[0].replace(/^\/+/,"");
+ if(assetVersionCache.has(clean))return assetVersionCache.get(clean);
+ const file=path.join(siteRoot,...clean.split("/"));
+ if(!fs.existsSync(file))throw new Error(`Versioned asset is missing: ${clean}`);
+ const version=crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex").slice(0,12);
+ assetVersionCache.set(clean,version);
+ return version;
+}
+function versionedRelativeFile(currentRel,targetRel){
+ return `${relativeFile(currentRel,targetRel)}?v=${assetVersion(targetRel)}`;
+}
+function versionExistingAsset(html,targetRel){
+ const escaped=targetRel.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+ const pattern=new RegExp(`((?:src|href)\\s*=\\s*["'][^"']*${escaped})(?:\\?[^"']*)?(["'])`,"gi");
+ return html.replace(pattern,`$1?v=${assetVersion(targetRel)}$2`);
+}
+function sharedRuntimeVersion(){
+ return crypto.createHash("sha256").update(sharedRuntimeAssets.map(item=>assetVersion(item.sitePath)).join(":"),"utf8").digest("hex").slice(0,12);
 }
 function removeHeadLinks(html){
  return html.replace(/<link\b[^>]*>/gi,tag=>{
@@ -206,7 +237,7 @@ function rewriteInternalAnchors(html,currentRel,currentInfo,groups){
  });
 }
 function ensureAsset(html,currentRel,targetRel,type){
- const href=relativeFile(currentRel,targetRel);
+ const href=versionedRelativeFile(currentRel,targetRel);
  if(type==="css"){
   html=html.replace(/<link\b[^>]*href\s*=\s*["'][^"']*locale-menu\.css[^"']*["'][^>]*>\s*/gi,"");
   return html.replace(/<\/head>/i,`<link rel="stylesheet" href="${href}">\n</head>`);
@@ -276,8 +307,9 @@ function generateManifests(groups){
     assets=assets.filter(item=>!folders.some(folder=>item===`./${folder}/index.html`)&&!/^\.\/manifest-[^/]+\.webmanifest$/.test(item));
     if(!assets.includes("./index.html"))assets.unshift("./index.html");
     if(!assets.includes("./manifest.webmanifest"))assets.push("./manifest.webmanifest");
-    for(const sharedAsset of ["../../data/locales.js","../../data/site-config.js","../../assets/css/locale-menu.css","../../assets/js/analytics.js","../../assets/js/adsense.js","../../assets/js/site.js","../../assets/js/tool-integration.js"]){
-     if(!assets.includes(sharedAsset))assets.push(sharedAsset);
+    assets=assets.filter(item=>!sharedRuntimeAssets.some(asset=>item.split("?")[0]===asset.cachePath));
+    for(const sharedAsset of sharedRuntimeAssets){
+     assets.push(`${sharedAsset.cachePath}?v=${assetVersion(sharedAsset.sitePath)}`);
     }
     for(const locale of activeLocales.filter(item=>item.id!==defaultLocale.id)){
      if(groups.get(`tools/${tool.id}/`)?.has(locale.id)){
@@ -285,7 +317,7 @@ function generateManifests(groups){
      }
     }
     assets=[...new Set(assets)];
-    const replacement=`const C="nel-${tool.id}-locale-v${localeConfig.version}",A=${JSON.stringify(assets)};`;
+    const replacement=`const C="nel-${tool.id}-locale-v${localeConfig.version}-${sharedRuntimeVersion()}",A=${JSON.stringify(assets)};`;
     sw=sw.replace(head,replacement);
     fs.writeFileSync(swPath,sw,"utf8");
    }
@@ -348,7 +380,9 @@ function build(){
   html=ensureAsset(html,record.rel,"data/site-config.js","js");
   html=ensureAsset(html,record.rel,"assets/js/analytics.js","js");
   html=ensureAsset(html,record.rel,"assets/js/adsense.js","js");
+  if(record.info.kind==="home"||record.info.kind==="toolsDirectory")html=ensureAsset(html,record.rel,"data/tools-catalog.js","js");
   html=ensureAsset(html,record.rel,"assets/js/site.js","js");
+  html=versionExistingAsset(html,"assets/js/tool-integration.js");
   html=updateManifestLink(html,record.rel,record.info);
   html=html.replace(/<head>([\s\S]*?)<\/head>/i,(whole,body)=>`<head>${body.replace(/(?:\r?\n[ \t]*){3,}/g,"\n\n")}</head>`);
   fs.writeFileSync(record.file,html,"utf8");

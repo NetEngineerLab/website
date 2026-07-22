@@ -3,6 +3,7 @@
 
 const fs=require("fs");
 const path=require("path");
+const crypto=require("crypto");
 const {spawn,spawnSync}=require("child_process");
 
 const root=path.resolve(__dirname,"..");
@@ -10,6 +11,16 @@ const site=path.join(root,"website");
 const docs=path.join(root,"docs");
 const expectedVersion="1.7.3";
 const expectedOrigin="https://netengineerlab.com";
+const sharedRuntimeAssets=[
+  {sitePath:"data/locales.js",cachePath:"../../data/locales.js"},
+  {sitePath:"data/site-config.js",cachePath:"../../data/site-config.js"},
+  {sitePath:"assets/css/locale-menu.css",cachePath:"../../assets/css/locale-menu.css"},
+  {sitePath:"assets/js/analytics.js",cachePath:"../../assets/js/analytics.js"},
+  {sitePath:"assets/js/adsense.js",cachePath:"../../assets/js/adsense.js"},
+  {sitePath:"assets/js/site.js",cachePath:"../../assets/js/site.js"},
+  {sitePath:"assets/js/tool-integration.js",cachePath:"../../assets/js/tool-integration.js"}
+];
+const managedHtmlAssets=[...sharedRuntimeAssets.map(item=>item.sitePath),"data/tools-catalog.js"];
 const errors=[];
 const warnings=[];
 const checks=[];
@@ -83,6 +94,49 @@ function linkAudit(){
 }
 function validateJsonFile(rel){
   try{return JSON.parse(read(path.join(root,rel)))}catch(error){errors.push(`${rel}: invalid JSON ${error.message}`);return{}}
+}
+function assetDigest(file){
+  return crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex").slice(0,12);
+}
+function auditVersionedAssets(){
+  const issues=[];
+  let references=0;
+  const htmlFiles=walk(site).filter(file=>file.endsWith(".html")&&!file.endsWith("offline.html"));
+  for(const file of htmlFiles){
+    const html=read(file);
+    const rel=path.relative(site,file).split(path.sep).join("/");
+    for(const match of html.matchAll(/\b(?:href|src)\s*=\s*["']([^"']+)["']/gi)){
+      const raw=match[1];
+      const clean=raw.split(/[?#]/)[0].replace(/\\/g,"/");
+      if(!managedHtmlAssets.some(asset=>clean.endsWith(asset)))continue;
+      references++;
+      const version=raw.match(/[?&]v=([a-f0-9]{12})(?:[&#]|$)/i)?.[1]?.toLowerCase();
+      if(!version){issues.push(`${rel}: missing content hash for ${raw}`);continue}
+      const target=resolveSiteTarget(file,raw);
+      if(!target||!fs.existsSync(target)){issues.push(`${rel}: versioned asset target missing ${raw}`);continue}
+      const expected=assetDigest(target);
+      if(version!==expected)issues.push(`${rel}: stale content hash for ${raw}; expected ${expected}`);
+    }
+  }
+  const catalogOrder=["index.html","zh/index.html","tools/index.html","tools/zh/index.html"].every(rel=>{
+    const html=read(path.join(site,rel));
+    const catalog=html.indexOf("tools-catalog.js?v=");
+    const runtime=html.indexOf("assets/js/site.js?v=");
+    return catalog>=0&&runtime>=0&&catalog<runtime;
+  });
+  const sharedVersion=crypto.createHash("sha256").update(sharedRuntimeAssets.map(item=>assetDigest(path.join(site,...item.sitePath.split("/")))).join(":"),"utf8").digest("hex").slice(0,12);
+  const serviceWorkers=walk(path.join(site,"tools")).filter(file=>file.endsWith(`${path.sep}sw.js`));
+  const serviceWorkerIssues=[];
+  for(const file of serviceWorkers){
+    const text=read(file);
+    const rel=path.relative(site,file).split(path.sep).join("/");
+    for(const asset of sharedRuntimeAssets){
+      const expected=`${asset.cachePath}?v=${assetDigest(path.join(site,...asset.sitePath.split("/")))}`;
+      if(!text.includes(expected))serviceWorkerIssues.push(`${rel}: missing ${expected}`);
+    }
+    if(!text.includes(`-${sharedVersion}\",A=`))serviceWorkerIssues.push(`${rel}: cache name does not include ${sharedVersion}`);
+  }
+  return{references,issues,catalogOrder,serviceWorkers:serviceWorkers.length,serviceWorkerIssues};
 }
 function runEngineTests(){
   const tests={
@@ -211,6 +265,11 @@ async function httpAudit(sitemapUrls){
     if(/http:\/\/(?:localhost|127\.0\.0\.1)/i.test(text))forbidden.push(path.relative(site,file));
   }
   record("no local development URLs in website",forbidden.length===0,forbidden.join(", "));
+
+  const assetAudit=auditVersionedAssets();
+  record("content-hashed shared asset URLs",assetAudit.issues.length===0,assetAudit.issues.length?assetAudit.issues.slice(0,5).join("; "):`${assetAudit.references} references`);
+  record("tools catalog loads before site runtime",assetAudit.catalogOrder);
+  record("service-worker content-hash cache",assetAudit.serviceWorkerIssues.length===0,assetAudit.serviceWorkerIssues.length?assetAudit.serviceWorkerIssues.slice(0,5).join("; "):`${assetAudit.serviceWorkers} service workers`);
 
   const sitemap=read(path.join(site,"sitemap.xml"));
   const sitemapUrls=[...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match=>match[1]);
