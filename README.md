@@ -1,6 +1,6 @@
-# NetEngineerLab V1.7.3 正式上线验收版
+# NetEngineerLab V1.7.4 生产环境自动巡检版
 
-这是首批12个通信与网络工程工具的生产发布包，基于V1.7.2显示修正版升级。
+这是首批12个通信与网络工程工具的生产发布包，在V1.7.3正式上线版基础上增加持续在线监控。
 
 ## 当前状态
 
@@ -12,7 +12,20 @@
 - AdSense：默认关闭
 - Cloudflare Pages输出目录：`website`
 
-## V1.7.3新增
+## V1.7.4新增
+
+- GitHub推送后等待Cloudflare Pages新部署生效
+- 使用本地内容哈希识别线上是否仍为旧版本
+- 每天08:15（北京时间）自动巡检正式网站
+- 主域名和`www`域名可用性检查
+- 36个Sitemap网址在线状态与Canonical检查
+- 12个工具、分类数量及24个中英文工具页面检查
+- 工具目录脚本加载顺序检查
+- 版本化JavaScript和CSS文件内容一致性检查
+- 12个Service Worker内容及缓存响应头检查
+- GitHub Actions检查摘要、失败状态和报告下载
+
+## V1.7.3基础能力
 
 - 本地生产环境HTTP验收
 - 36个正式网址逐一访问检查
@@ -45,6 +58,7 @@ D:\NetEngineerLab\scripts\
 D:\NetEngineerLab\docs\
 D:\NetEngineerLab\package.json
 D:\NetEngineerLab\.github\workflows\production-quality-gate.yml
+D:\NetEngineerLab\.github\workflows\production-online-monitor.yml
 ```
 
 不要解压成：
@@ -95,11 +109,34 @@ npm run accept:remote -- --base=https://netengineerlab.com
 docs/REMOTE_ACCEPTANCE_REPORT.json
 ```
 
+## 生产环境自动巡检
+
+手动运行一次完整在线检查：
+
+```text
+npm run check:online -- --base=https://netengineerlab.com
+```
+
+等待Cloudflare新部署生效并自动重试：
+
+```text
+npm run check:online -- --attempts=24 --interval-ms=15000
+```
+
+巡检结果生成在：
+
+```text
+docs/PRODUCTION_ONLINE_REPORT.json
+```
+
 ## 重要报告
 
 - `docs/LAUNCH_AUDIT_REPORT.json`
 - `docs/PRODUCTION_ACCEPTANCE_REPORT.json`
 - `docs/RELEASE_MANIFEST.json`
+- `docs/PRODUCTION_ONLINE_REPORT.json`
+- `docs/V1.7.4_CHANGELOG.md`
+- `docs/PRODUCTION_ONLINE_MONITORING_GUIDE.md`
 - `docs/V1.7.3_FULL_AUDIT.md`
 - `docs/PRODUCTION_ACCEPTANCE_GUIDE.md`
 - `docs/CLOUDFLARE_PAGES_DEPLOYMENT.md`

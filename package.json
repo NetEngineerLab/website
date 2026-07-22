@@ -1,8 +1,8 @@
 {
   "name": "netengineerlab-production-launch-acceptance",
   "private": true,
-  "version": "1.7.3",
-  "description": "Production launch acceptance framework for the twelve-tool NetEngineerLab website.",
+  "version": "1.7.4",
+  "description": "Production launch and continuous online monitoring framework for the twelve-tool NetEngineerLab website.",
   "scripts": {
     "build:i18n": "npm run build:config && node scripts/build-multilingual.js",
     "validate:i18n": "node scripts/validate-multilingual.js",
@@ -14,6 +14,7 @@
     "build:config": "node scripts/build-site-config.js",
     "accept:production": "node scripts/production-acceptance.js",
     "accept:remote": "node scripts/remote-acceptance.js",
+    "check:online": "node scripts/production-online-check.js",
     "release:manifest": "node scripts/release-manifest.js",
     "verify": "npm run prepare:launch"
   },

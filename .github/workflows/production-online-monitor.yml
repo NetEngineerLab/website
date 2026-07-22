@@ -1,0 +1,43 @@
+name: Production Online Monitor
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # 00:15 UTC = 08:15 China Standard Time
+    - cron: "15 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: netengineerlab-production-online-monitor
+  cancel-in-progress: false
+
+jobs:
+  monitor-production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Use pinned Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+
+      - name: Build and run local quality gate
+        run: npm run prepare:launch
+
+      - name: Wait for Cloudflare and check production
+        run: npm run check:online -- --attempts=24 --interval-ms=15000 --timeout-ms=12000
+
+      - name: Upload production monitor report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: netengineerlab-production-online-report
+          path: docs/PRODUCTION_ONLINE_REPORT.json
+          if-no-files-found: warn

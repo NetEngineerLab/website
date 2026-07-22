@@ -3,7 +3,7 @@
 ## 基本信息
 
 ```text
-版本：V1.7.3
+版本：V1.7.4
 部署日期：
 Git提交：
 Cloudflare部署编号：
@@ -17,6 +17,7 @@ Cloudflare部署编号：
 本地prepare:launch：PASS / FAIL
 GitHub Quality Gate：PASS / FAIL
 Cloudflare构建：PASS / FAIL
+Production Online Monitor：PASS / FAIL
 远程accept:remote：PASS / FAIL
 ```
 
