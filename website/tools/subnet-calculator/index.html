@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr" data-nel-locale="en" data-nel-route="tools/subnet-calculator/"><head>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="./" name="app-base"/>
+<title>IP Subnet Calculator | NetEngineerLab</title><meta content="Professional IPv4, IPv6, CIDR and VLSM calculator for network ranges, masks, wildcard masks, host capacity and subnet planning." name="description"/><meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
+<meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="IP Subnet Calculator | NetEngineerLab" property="og:title"/><meta content="Professional IPv4, IPv6, CIDR and VLSM calculator for network ranges, masks, wildcard masks, host capacity and subnet planning." property="og:description"/><meta content="https://netengineerlab.com/tools/subnet-calculator/" property="og:url"/><meta content="https://netengineerlab.com/tools/subnet-calculator/images/og-ip-subnet-calculator.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
+<link href="images/icons/apple-touch-icon.png" rel="apple-touch-icon"/><link href="images/logo.svg" rel="icon" type="image/svg+xml"/><link href="css/style.css" rel="stylesheet"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"IP Subnet Calculator","url":"https://netengineerlab.com/tools/subnet-calculator/","description":"Professional IPv4, IPv6, CIDR and VLSM calculator for network ranges, masks, wildcard masks, host capacity and subnet planning.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Network Engineering Calculator","operatingSystem":"Any","softwareVersion":"1.0.0","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"IP Subnet Calculator","item":"https://netengineerlab.com/tools/subnet-calculator/"}]}</script><meta content="NetEngineerLab" name="author"/>
+
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.7.3">
+<meta name="nel-locale" content="en">
+<meta name="nel-route" content="tools/subnet-calculator/">
+<meta name="nel-available-locales" content="en,zh">
+<link rel="canonical" href="https://netengineerlab.com/tools/subnet-calculator/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/subnet-calculator/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/subnet-calculator/zh/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/subnet-calculator/">
+<link rel="stylesheet" href="../../assets/css/locale-menu.css">
+<script defer src="../../data/locales.js"></script>
+<script defer src="../../data/site-config.js"></script>
+<script defer src="../../assets/js/analytics.js"></script>
+<script defer src="../../assets/js/adsense.js"></script>
+<script defer src="../../assets/js/site.js"></script>
+<link rel="manifest" href="manifest.webmanifest">
+</head><body>
+<a class="skip" href="#calculator">Skip to calculator</a><noscript><div class="noscript">JavaScript is required.</div></noscript>
+<header class="site-header"><a class="brand" href="../../"><img alt="NetEngineerLab" height="52" src="images/logo.svg" width="52"/><span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span></a>
+<nav aria-label="Primary navigation" class="nav"><a href="../../">Home</a><a href="../">Tools</a><a href="#methodology">Methodology</a><a href="#history">History</a></nav>
+<div class="actions"><!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END --><a class="cta" href="#calculator">Start calculating</a></div></header>
+<nav aria-label="Breadcrumb" class="breadcrumbs"><a href="../../">Home</a><span>›</span><a href="../">Tools</a><span>›</span><span>IP Subnet Calculator</span></nav>
+<section class="hero"><div class="hero-inner"><div><p class="eyebrow">IP ADDRESS PLANNING TOOL</p><h1>IP Subnet Calculator</h1><p>Calculate IPv4 and IPv6 prefixes, visualize network and host bits, and build a VLSM allocation plan for multiple departments or services.</p></div><div class="hero-tags"><span>IPv4 / IPv6</span><span>CIDR</span><span>VLSM</span><span>Binary View</span></div></div></section>
+<div class="mode-tabs"><button class="active" data-mode="ipv4">IPv4 subnet</button><button data-mode="ipv6">IPv6 prefix</button><button data-mode="vlsm">VLSM planner</button></div>
+<main class="workspace" id="calculator">
+<section class="input-panel card">
+<div class="section-title"><span class="section-icon">IP</span><div><h2>Address and planning input</h2><p>Choose IPv4, IPv6 or VLSM mode. Results update automatically.</p></div></div>
+<div class="notice">All VLSM reserves and prefix inputs are editable. Review the result against your routing and security design.</div>
+<div id="ipv4Panel">
+<div class="form-grid">
+<div class="field full"><label for="ipv4Address">IP address</label><div class="input-wrap no-unit"><input id="ipv4Address" inputmode="decimal" value="192.168.10.130"/></div></div>
+<div class="field"><label for="ipv4PrefixMode">Prefix input mode</label><div class="input-wrap no-unit"><select id="ipv4PrefixMode"><option value="cidr">CIDR prefix</option><option value="mask">Subnet mask</option></select></div></div>
+<div class="field" id="prefixField"><label for="ipv4Prefix">CIDR prefix</label><div class="input-wrap"><input id="ipv4Prefix" max="32" min="0" step="1" type="number" value="24"/><span>/0–32</span></div></div>
+<div class="field" hidden="" id="maskField"><label for="ipv4Mask">Subnet mask</label><div class="input-wrap no-unit"><input id="ipv4Mask" value="255.255.255.0"/></div></div>
+</div><p class="validation" id="ipv4Validation"></p>
+</div>
+<div hidden="" id="ipv6Panel">
+<div class="form-grid">
+<div class="field full"><label for="ipv6Address">IP address</label><div class="input-wrap no-unit"><input id="ipv6Address" value="2001:db8:1234:5678::1"/></div></div>
+<div class="field"><label for="ipv6Prefix">CIDR prefix</label><div class="input-wrap"><input id="ipv6Prefix" max="128" min="0" step="1" type="number" value="64"/><span>/0–128</span></div></div>
+<div class="field"><label for="ipv6BasePrefix">Base allocation prefix</label><div class="input-wrap"><input id="ipv6BasePrefix" max="128" min="0" step="1" type="number" value="48"/><span>/0–128</span></div></div>
+</div><p class="validation" id="ipv6Validation"></p>
+</div>
+<div hidden="" id="vlsmPanel">
+<div class="form-grid">
+<div class="field"><label for="vlsmBaseAddress">Base network</label><div class="input-wrap no-unit"><input id="vlsmBaseAddress" value="10.10.0.0"/></div></div>
+<div class="field"><label for="vlsmBasePrefix">CIDR prefix</label><div class="input-wrap"><input id="vlsmBasePrefix" max="32" min="0" step="1" type="number" value="20"/><span>/0–32</span></div></div>
+</div><p class="validation" id="vlsmValidation"></p>
+<div class="vlsm-editor"><div class="editor-head"><h3>VLSM planner</h3><div class="editor-buttons"><button id="addVlsmBtn" type="button">＋ Add subnet</button><button id="sampleVlsmBtn" type="button">▣ Load sample</button></div></div>
+<div class="table-scroll"><table class="data-table"><thead><tr><th>#</th><th>Subnet name</th><th>Required hosts</th><th>Reserved</th><th></th></tr></thead><tbody id="vlsmInputBody"></tbody></table></div></div>
+</div>
+<div class="input-actions"><button class="primary" id="calculateBtn" type="button">▣ Calculate</button><button class="secondary" id="resetBtn" type="button">↻ Reset</button></div>
+</section>
+<section aria-live="polite" class="result-panel card">
+<div class="section-title"><span class="section-icon">CIDR</span><div><h2>Subnet calculation result</h2><p>Network range, capacity, binary view and allocation details.</p></div></div>
+<div id="ipv4Result">
+<div class="result-hero"><small>CIDR</small><strong id="ipv4Cidr">192.168.10.0/24</strong></div>
+<div class="metric-grid">
+<article class="metric"><small>Network address</small><strong id="ipv4Network"></strong></article>
+<article class="metric"><small>Broadcast address</small><strong id="ipv4Broadcast"></strong></article>
+<article class="metric"><small>First usable host</small><strong id="ipv4First"></strong></article>
+<article class="metric"><small>Last usable host</small><strong id="ipv4Last"></strong></article>
+<article class="metric"><small>Subnet mask</small><strong id="ipv4MaskResult"></strong></article>
+<article class="metric"><small>Wildcard mask</small><strong id="ipv4Wildcard"></strong></article>
+<article class="metric"><small>Total addresses</small><strong id="ipv4Total"></strong></article>
+<article class="metric"><small>Usable hosts</small><strong id="ipv4Usable"></strong></article>
+<article class="metric"><small>Address scope</small><strong id="ipv4Scope"></strong></article>
+<article class="metric"><small>Previous subnet</small><strong id="ipv4Previous"></strong></article>
+<article class="metric"><small>Next subnet</small><strong id="ipv4Next"></strong></article>
+<article class="metric"><small>Reverse DNS zone</small><strong id="ipv4Reverse"></strong></article>
+</div>
+<div class="bitbar" id="ipv4BitBar"></div>
+<div class="binary-grid">
+<article class="binary-card"><small>IP binary</small><code id="ipv4BinaryIp"></code></article>
+<article class="binary-card"><small>Mask binary</small><code id="ipv4BinaryMask"></code></article>
+<article class="binary-card"><small>Network binary</small><code id="ipv4BinaryNetwork"></code></article>
+<article class="binary-card"><small>Broadcast binary</small><code id="ipv4BinaryBroadcast"></code></article>
+</div>
+</div>
+<div hidden="" id="ipv6Result">
+<div class="result-hero"><small>IPv6 CIDR</small><strong id="ipv6Cidr"></strong></div>
+<div class="metric-grid">
+<article class="metric"><small>Network prefix</small><strong id="ipv6Network"></strong></article>
+<article class="metric"><small>Last address</small><strong id="ipv6Last"></strong></article>
+<article class="metric"><small>Total addresses</small><strong id="ipv6Total"></strong></article>
+<article class="metric"><small>Subnets from parent</small><strong id="ipv6SubnetCount"></strong></article>
+<article class="metric"><small>Host / interface bits</small><strong id="ipv6HostBits"></strong></article>
+<article class="metric"><small>Address scope</small><strong id="ipv6Scope"></strong></article>
+</div><div class="bitbar" id="ipv6BitBar"></div>
+</div>
+<div hidden="" id="vlsmResult">
+<div class="vlsm-summary">
+<article class="metric"><small>Base CIDR</small><strong id="vlsmBaseCidr"></strong></article>
+<article class="metric"><small>Used addresses</small><strong id="vlsmUsed"></strong></article>
+<article class="metric"><small>Remaining addresses</small><strong id="vlsmRemaining"></strong></article>
+<article class="metric"><small>Utilization</small><strong id="vlsmUtilization"></strong></article>
+</div><div class="vlsm-progress"><span id="vlsmBar"></span></div>
+<div class="table-scroll"><table class="data-table allocation-table"><thead><tr><th>#</th><th>Name</th><th>Hosts</th><th>Reserve</th><th>CIDR</th><th>First host</th><th>Last host</th><th>Broadcast</th><th>Usable</th></tr></thead><tbody id="vlsmAllocationBody"></tbody></table></div>
+</div>
+<div class="result-actions"><button id="copyBtn" type="button">▣ Copy result</button><button id="saveBtn" type="button">＋ Save record</button><button id="csvBtn" type="button">⇩ Export CSV</button><button id="printBtn" type="button">⌑ Print / PDF</button></div>
+</section>
+</main>
+<aside aria-label="Advertisement" class="ad-slot" data-ad-key="afterCalculator" hidden=""><div class="ad-label">ADVERTISEMENT</div><div class="ad-body"></div></aside>
+<section class="content-section" id="methodology"><p class="eyebrow">METHODOLOGY</p><h2>Methodology</h2><div class="method-grid"><article><h3>CIDR calculation</h3><p>The prefix length creates a contiguous subnet mask. Network and broadcast addresses are derived with bitwise AND and wildcard operations.</p></article><article><h3>/31 and /32</h3><p>A /31 is treated as a two-address point-to-point subnet, while a /32 represents one host route.</p></article><article><h3>VLSM allocation</h3><p>Requirements are sorted from largest to smallest and aligned to the next valid network boundary before allocation.</p></article><article><h3>IPv6 prefixes</h3><p>IPv6 results use 128-bit integer arithmetic and show the network, last address, host bits and subnet count from the parent prefix.</p></article></div>
+<div class="sources"><strong>Primary references:</strong>
+<a href="https://www.rfc-editor.org/rfc/rfc1918" rel="noopener">RFC 1918</a> ·
+<a href="https://www.rfc-editor.org/rfc/rfc3021" rel="noopener">RFC 3021</a> ·
+<a href="https://www.rfc-editor.org/rfc/rfc4632" rel="noopener">RFC 4632</a> ·
+<a href="https://www.rfc-editor.org/rfc/rfc4291" rel="noopener">RFC 4291</a> ·
+<a href="https://www.rfc-editor.org/rfc/rfc4193" rel="noopener">RFC 4193</a>
+</div></section>
+<section class="content-section" id="faq"><p class="eyebrow">FAQ</p><h2>Frequently asked questions</h2><div class="faq-grid"><details><summary>How many usable hosts are in a /24?</summary><p>A /24 has 256 total addresses and normally 254 usable host addresses.</p></details><details><summary>Why does /31 show two usable addresses?</summary><p>RFC 3021 permits both addresses on a point-to-point link, eliminating network and broadcast reservations.</p></details><details><summary>What is a wildcard mask?</summary><p>It is the bitwise inverse of the subnet mask and is commonly used in ACLs and routing configuration.</p></details><details><summary>Does VLSM reserve gateway addresses automatically?</summary><p>Each row has an editable reserve field. Use it for gateways, redundancy addresses, infrastructure or growth.</p></details><details><summary>Can IPv6 addresses be counted exactly?</summary><p>Yes. The calculator uses BigInt arithmetic and displays the full decimal address count.</p></details><details><summary>Should a large broadcast domain be used just because it fits?</summary><p>No. Consider failure domains, broadcast traffic, security zones, routing summarization and operational boundaries.</p></details></div></section>
+<section class="content-section" id="history"><div class="history-head"><div><p class="eyebrow">PROJECT RECORDS</p><h2>History</h2></div><button class="text-button" id="clearHistoryBtn">Clear history</button></div><div class="history-list" id="historyList"></div></section>
+<section class="content-section" id="related"><p class="eyebrow">RELATED TOOLS</p><h2>Related engineering tools</h2><div class="related-grid">
+<a href="../mtu-calculator/"><strong>MTU &amp; MSS Calculator</strong><p>Calculate encapsulation overhead and fragmentation risk.</p></a><a href="../otdr-event/"><strong>OTDR Event Analyzer</strong><p>Diagnose optical events and maintenance priorities.</p></a><a href="../pon-distance/"><strong>PON Maximum Distance Calculator</strong><p>Calculate optical and system reach.</p></a>
+</div></section>
+<aside aria-label="Advertisement" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">ADVERTISEMENT</div><div class="ad-body"></div></aside>
+<footer><div><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div><nav aria-label="Footer navigation" class="footer-links"><a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a></nav><p>© 2026 NetEngineerLab.com</p></footer>
+<script defer="" src="data/ip-reference.js"></script><script defer="" src="js/engine.js"></script><script defer="" src="js/pwa.js"></script><script defer="" src="../../assets/js/tool-integration.js"></script><script defer="" src="js/app.js"></script>
+</body></html>

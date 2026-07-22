@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="tools/subnet-calculator/"><head>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="../" name="app-base"/>
+<title>IP子网计算器 | NetEngineerLab</title><meta content="专业IPv4、IPv6、CIDR和VLSM计算器，计算网络地址、广播地址、掩码、反掩码、主机容量及子网规划。" name="description"/><meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
+<meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="IP子网计算器 | NetEngineerLab" property="og:title"/><meta content="专业IPv4、IPv6、CIDR和VLSM计算器，计算网络地址、广播地址、掩码、反掩码、主机容量及子网规划。" property="og:description"/><meta content="https://netengineerlab.com/tools/subnet-calculator/zh/" property="og:url"/><meta content="https://netengineerlab.com/tools/subnet-calculator/images/og-ip-subnet-calculator.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
+<link href="../images/icons/apple-touch-icon.png" rel="apple-touch-icon"/><link href="../images/logo.svg" rel="icon" type="image/svg+xml"/><link href="../css/style.css" rel="stylesheet"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"IP子网计算器","url":"https://netengineerlab.com/tools/subnet-calculator/zh/","description":"专业IPv4、IPv6、CIDR和VLSM计算器，计算网络地址、广播地址、掩码、反掩码、主机容量及子网规划。","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Network Engineering Calculator","operatingSystem":"Any","softwareVersion":"1.0.0","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
+<script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"工具中心","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"IP子网计算器","item":"https://netengineerlab.com/tools/subnet-calculator/zh/"}]}</script><meta content="NetEngineerLab" name="author"/>
+
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.7.3">
+<meta name="nel-locale" content="zh">
+<meta name="nel-route" content="tools/subnet-calculator/">
+<meta name="nel-available-locales" content="en,zh">
+<link rel="canonical" href="https://netengineerlab.com/tools/subnet-calculator/zh/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/subnet-calculator/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/subnet-calculator/zh/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/subnet-calculator/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css">
+<script defer src="../../../data/locales.js"></script>
+<script defer src="../../../data/site-config.js"></script>
+<script defer src="../../../assets/js/analytics.js"></script>
+<script defer src="../../../assets/js/adsense.js"></script>
+<script defer src="../../../assets/js/site.js"></script>
+<link rel="manifest" href="../manifest-zh.webmanifest">
+</head><body>
+<a class="skip" href="#calculator">跳到计算器</a><noscript><div class="noscript">本工具需要启用JavaScript。</div></noscript>
+<header class="site-header"><a class="brand" href="../../../zh/"><img alt="NetEngineerLab" height="52" src="../images/logo.svg" width="52"/><span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span></a>
+<nav aria-label="主导航" class="nav"><a href="../../../zh/">首页</a><a href="../../zh/">工具中心</a><a href="#methodology">计算方法</a><a href="#history">历史记录</a></nav>
+<div class="actions"><!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../" lang="en" hreflang="en"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="./" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END --><a class="cta" href="#calculator">开始计算</a></div></header>
+<nav aria-label="面包屑" class="breadcrumbs"><a href="../../../zh/">首页</a><span>›</span><a href="../../zh/">工具中心</a><span>›</span><span>IP子网计算器</span></nav>
+<section class="hero"><div class="hero-inner"><div><p class="eyebrow">IP ADDRESS PLANNING TOOL</p><h1>IP子网计算器</h1><p>计算IPv4和IPv6前缀，查看网络位与主机位，并为多个部门或业务生成VLSM地址分配方案。</p></div><div class="hero-tags"><span>IPv4 / IPv6</span><span>CIDR</span><span>VLSM</span><span>Binary View</span></div></div></section>
+<div class="mode-tabs"><button class="active" data-mode="ipv4">IPv4子网</button><button data-mode="ipv6">IPv6前缀</button><button data-mode="vlsm">VLSM规划</button></div>
+<main class="workspace" id="calculator">
+<section class="input-panel card">
+<div class="section-title"><span class="section-icon">IP</span><div><h2>地址与规划输入</h2><p>选择IPv4、IPv6或VLSM模式，结果自动更新。</p></div></div>
+<div class="notice">VLSM预留地址和前缀均可修改，请结合路由、安全区域和运维规范复核。</div>
+<div id="ipv4Panel">
+<div class="form-grid">
+<div class="field full"><label for="ipv4Address">IP地址</label><div class="input-wrap no-unit"><input id="ipv4Address" inputmode="decimal" value="192.168.10.130"/></div></div>
+<div class="field"><label for="ipv4PrefixMode">前缀输入方式</label><div class="input-wrap no-unit"><select id="ipv4PrefixMode"><option value="cidr">CIDR前缀</option><option value="mask">子网掩码</option></select></div></div>
+<div class="field" id="prefixField"><label for="ipv4Prefix">CIDR前缀</label><div class="input-wrap"><input id="ipv4Prefix" max="32" min="0" step="1" type="number" value="24"/><span>/0–32</span></div></div>
+<div class="field" hidden="" id="maskField"><label for="ipv4Mask">子网掩码</label><div class="input-wrap no-unit"><input id="ipv4Mask" value="255.255.255.0"/></div></div>
+</div><p class="validation" id="ipv4Validation"></p>
+</div>
+<div hidden="" id="ipv6Panel">
+<div class="form-grid">
+<div class="field full"><label for="ipv6Address">IP地址</label><div class="input-wrap no-unit"><input id="ipv6Address" value="2001:db8:1234:5678::1"/></div></div>
+<div class="field"><label for="ipv6Prefix">CIDR前缀</label><div class="input-wrap"><input id="ipv6Prefix" max="128" min="0" step="1" type="number" value="64"/><span>/0–128</span></div></div>
+<div class="field"><label for="ipv6BasePrefix">上级分配前缀</label><div class="input-wrap"><input id="ipv6BasePrefix" max="128" min="0" step="1" type="number" value="48"/><span>/0–128</span></div></div>
+</div><p class="validation" id="ipv6Validation"></p>
+</div>
+<div hidden="" id="vlsmPanel">
+<div class="form-grid">
+<div class="field"><label for="vlsmBaseAddress">基础网段</label><div class="input-wrap no-unit"><input id="vlsmBaseAddress" value="10.10.0.0"/></div></div>
+<div class="field"><label for="vlsmBasePrefix">CIDR前缀</label><div class="input-wrap"><input id="vlsmBasePrefix" max="32" min="0" step="1" type="number" value="20"/><span>/0–32</span></div></div>
+</div><p class="validation" id="vlsmValidation"></p>
+<div class="vlsm-editor"><div class="editor-head"><h3>VLSM规划</h3><div class="editor-buttons"><button id="addVlsmBtn" type="button">＋ 添加子网</button><button id="sampleVlsmBtn" type="button">▣ 载入示例</button></div></div>
+<div class="table-scroll"><table class="data-table"><thead><tr><th>#</th><th>子网名称</th><th>主机需求</th><th>预留地址</th><th></th></tr></thead><tbody id="vlsmInputBody"></tbody></table></div></div>
+</div>
+<div class="input-actions"><button class="primary" id="calculateBtn" type="button">▣ 计算</button><button class="secondary" id="resetBtn" type="button">↻ 重置参数</button></div>
+</section>
+<section aria-live="polite" class="result-panel card">
+<div class="section-title"><span class="section-icon">CIDR</span><div><h2>子网计算结果</h2><p>网络范围、容量、二进制视图和地址分配明细。</p></div></div>
+<div id="ipv4Result">
+<div class="result-hero"><small>CIDR</small><strong id="ipv4Cidr">192.168.10.0/24</strong></div>
+<div class="metric-grid">
+<article class="metric"><small>网络地址</small><strong id="ipv4Network"></strong></article>
+<article class="metric"><small>广播地址</small><strong id="ipv4Broadcast"></strong></article>
+<article class="metric"><small>首个可用主机</small><strong id="ipv4First"></strong></article>
+<article class="metric"><small>最后可用主机</small><strong id="ipv4Last"></strong></article>
+<article class="metric"><small>子网掩码</small><strong id="ipv4MaskResult"></strong></article>
+<article class="metric"><small>反掩码</small><strong id="ipv4Wildcard"></strong></article>
+<article class="metric"><small>地址总数</small><strong id="ipv4Total"></strong></article>
+<article class="metric"><small>可用主机数</small><strong id="ipv4Usable"></strong></article>
+<article class="metric"><small>地址范围类型</small><strong id="ipv4Scope"></strong></article>
+<article class="metric"><small>前一子网</small><strong id="ipv4Previous"></strong></article>
+<article class="metric"><small>后一子网</small><strong id="ipv4Next"></strong></article>
+<article class="metric"><small>反向DNS区域</small><strong id="ipv4Reverse"></strong></article>
+</div>
+<div class="bitbar" id="ipv4BitBar"></div>
+<div class="binary-grid">
+<article class="binary-card"><small>IP二进制</small><code id="ipv4BinaryIp"></code></article>
+<article class="binary-card"><small>掩码二进制</small><code id="ipv4BinaryMask"></code></article>
+<article class="binary-card"><small>网络地址二进制</small><code id="ipv4BinaryNetwork"></code></article>
+<article class="binary-card"><small>广播地址二进制</small><code id="ipv4BinaryBroadcast"></code></article>
+</div>
+</div>
+<div hidden="" id="ipv6Result">
+<div class="result-hero"><small>IPv6 CIDR</small><strong id="ipv6Cidr"></strong></div>
+<div class="metric-grid">
+<article class="metric"><small>网络前缀</small><strong id="ipv6Network"></strong></article>
+<article class="metric"><small>最后地址</small><strong id="ipv6Last"></strong></article>
+<article class="metric"><small>地址总数</small><strong id="ipv6Total"></strong></article>
+<article class="metric"><small>相对上级子网数</small><strong id="ipv6SubnetCount"></strong></article>
+<article class="metric"><small>主机/接口标识位</small><strong id="ipv6HostBits"></strong></article>
+<article class="metric"><small>地址范围类型</small><strong id="ipv6Scope"></strong></article>
+</div><div class="bitbar" id="ipv6BitBar"></div>
+</div>
+<div hidden="" id="vlsmResult">
+<div class="vlsm-summary">
+<article class="metric"><small>基础CIDR</small><strong id="vlsmBaseCidr"></strong></article>
+<article class="metric"><small>已使用地址</small><strong id="vlsmUsed"></strong></article>
+<article class="metric"><small>剩余地址</small><strong id="vlsmRemaining"></strong></article>
+<article class="metric"><small>利用率</small><strong id="vlsmUtilization"></strong></article>
+</div><div class="vlsm-progress"><span id="vlsmBar"></span></div>
+<div class="table-scroll"><table class="data-table allocation-table"><thead><tr><th>#</th><th>名称</th><th>主机</th><th>预留</th><th>CIDR</th><th>首地址</th><th>末地址</th><th>广播地址</th><th>可用数</th></tr></thead><tbody id="vlsmAllocationBody"></tbody></table></div>
+</div>
+<div class="result-actions"><button id="copyBtn" type="button">▣ 复制结果</button><button id="saveBtn" type="button">＋ 保存记录</button><button id="csvBtn" type="button">⇩ 导出CSV</button><button id="printBtn" type="button">⌑ 打印/PDF</button></div>
+</section>
+</main>
+<aside aria-label="广告" class="ad-slot" data-ad-key="afterCalculator" hidden=""><div class="ad-label">广告</div><div class="ad-body"></div></aside>
+<section class="content-section" id="methodology"><p class="eyebrow">METHODOLOGY</p><h2>计算方法</h2><div class="method-grid"><article><h3>CIDR计算</h3><p>前缀长度生成连续子网掩码，网络地址通过按位与计算，广播地址通过网络地址与反掩码组合计算。</p></article><article><h3>/31与/32</h3><p>/31按两地址点到点链路处理，/32表示单一主机路由。</p></article><article><h3>VLSM分配</h3><p>子网需求按容量从大到小排序，并对齐到下一合法网络边界后依次分配。</p></article><article><h3>IPv6前缀</h3><p>IPv6使用128位整数运算，输出网络地址、最后地址、主机位以及相对上级前缀的子网数量。</p></article></div>
+<div class="sources"><strong>主要标准来源：</strong>
+<a href="https://www.rfc-editor.org/rfc/rfc1918" rel="noopener">RFC 1918</a> ·
+<a href="https://www.rfc-editor.org/rfc/rfc3021" rel="noopener">RFC 3021</a> ·
+<a href="https://www.rfc-editor.org/rfc/rfc4632" rel="noopener">RFC 4632</a> ·
+<a href="https://www.rfc-editor.org/rfc/rfc4291" rel="noopener">RFC 4291</a> ·
+<a href="https://www.rfc-editor.org/rfc/rfc4193" rel="noopener">RFC 4193</a>
+</div></section>
+<section class="content-section" id="faq"><p class="eyebrow">FAQ</p><h2>常见问题</h2><div class="faq-grid"><details><summary>/24有多少可用主机？</summary><p>/24共有256个地址，通常可用主机地址为254个。</p></details><details><summary>为什么/31显示2个可用地址？</summary><p>RFC 3021允许点到点链路使用两个地址，不再保留传统网络地址和广播地址。</p></details><details><summary>什么是反掩码？</summary><p>反掩码是子网掩码的按位取反，常用于ACL和路由配置。</p></details><details><summary>VLSM是否自动预留网关地址？</summary><p>每个子网都有可编辑预留字段，可用于网关、冗余地址、基础设施和后续扩容。</p></details><details><summary>IPv6地址数量能否精确计算？</summary><p>可以。本工具使用BigInt整数运算，并显示完整十进制地址数量。</p></details><details><summary>只要地址够用就应该使用大广播域吗？</summary><p>不应只看地址容量，还要考虑故障域、广播流量、安全区域、路由汇总和运维边界。</p></details></div></section>
+<section class="content-section" id="history"><div class="history-head"><div><p class="eyebrow">PROJECT RECORDS</p><h2>历史记录</h2></div><button class="text-button" id="clearHistoryBtn">清空记录</button></div><div class="history-list" id="historyList"></div></section>
+<section class="content-section" id="related"><p class="eyebrow">RELATED TOOLS</p><h2>相关工程工具</h2><div class="related-grid">
+<a href="../../mtu-calculator/zh/"><strong>MTU与MSS计算器</strong><p>计算封装开销和分片风险。</p></a><a href="../../otdr-event/zh/"><strong>OTDR事件分析工具</strong><p>诊断光纤事件和维护优先级。</p></a><a href="../../pon-distance/zh/"><strong>PON最大传输距离计算器</strong><p>计算光预算与系统距离。</p></a>
+</div></section>
+<aside aria-label="广告" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">广告</div><div class="ad-body"></div></aside>
+<footer><div><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div><nav aria-label="页脚导航" class="footer-links"><a href="../../../zh/about/">关于</a><a href="../../../zh/contact/">联系</a><a href="../../../zh/privacy/">隐私政策</a><a href="../../../zh/terms/">使用条款</a></nav><p>© 2026 NetEngineerLab.com</p></footer>
+<script defer="" src="../data/ip-reference.js"></script><script defer="" src="../js/engine.js"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../assets/js/tool-integration.js"></script><script defer="" src="../js/app.js"></script>
+</body></html>

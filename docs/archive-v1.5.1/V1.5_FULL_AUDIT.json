@@ -1,0 +1,486 @@
+{
+  "version": "1.5.0",
+  "active_tools": [
+    "fiber-loss",
+    "optical-power-budget",
+    "pon-splitter-loss",
+    "onu-rx-power",
+    "pon-distance",
+    "otdr-event",
+    "mtu-calculator",
+    "subnet-calculator",
+    "bandwidth-calculator",
+    "48v-battery-runtime"
+  ],
+  "planned_tools": [
+    "ipv6-nat-planner",
+    "wifi-coverage-capacity-planner"
+  ],
+  "active_locales": [
+    "en",
+    "zh"
+  ],
+  "planned_locales": [
+    "es",
+    "pt-BR",
+    "ja",
+    "de",
+    "ru",
+    "hi",
+    "bn",
+    "ur"
+  ],
+  "build_idempotent": true,
+  "javascript": {
+    "scripts/build-multilingual.js": "PASS",
+    "scripts/scaffold-locale.js": "PASS",
+    "scripts/validate-multilingual.js": "PASS",
+    "website/assets/js/site.js": "PASS",
+    "website/assets/js/tool-integration.js": "PASS",
+    "website/data/bandwidth-units.js": "PASS",
+    "website/data/ip-reference.js": "PASS",
+    "website/data/locales.js": "PASS",
+    "website/data/mtu-overhead-library.js": "PASS",
+    "website/data/optical-standards.js": "PASS",
+    "website/data/otdr-event-rules.js": "PASS",
+    "website/data/tools-catalog.js": "PASS",
+    "website/tools/48v-battery-runtime/data/battery-presets.js": "PASS",
+    "website/tools/48v-battery-runtime/docs/engine-test.js": "PASS",
+    "website/tools/48v-battery-runtime/js/adsense.js": "PASS",
+    "website/tools/48v-battery-runtime/js/analytics.js": "PASS",
+    "website/tools/48v-battery-runtime/js/app.js": "PASS",
+    "website/tools/48v-battery-runtime/js/engine.js": "PASS",
+    "website/tools/48v-battery-runtime/js/pwa.js": "PASS",
+    "website/tools/48v-battery-runtime/js/site-config.js": "PASS",
+    "website/tools/48v-battery-runtime/sw.js": "PASS",
+    "website/tools/bandwidth-calculator/data/bandwidth-units.js": "PASS",
+    "website/tools/bandwidth-calculator/docs/engine-test.js": "PASS",
+    "website/tools/bandwidth-calculator/js/adsense.js": "PASS",
+    "website/tools/bandwidth-calculator/js/analytics.js": "PASS",
+    "website/tools/bandwidth-calculator/js/app.js": "PASS",
+    "website/tools/bandwidth-calculator/js/engine.js": "PASS",
+    "website/tools/bandwidth-calculator/js/pwa.js": "PASS",
+    "website/tools/bandwidth-calculator/js/site-config.js": "PASS",
+    "website/tools/bandwidth-calculator/sw.js": "PASS",
+    "website/tools/fiber-loss/js/adsense.js": "PASS",
+    "website/tools/fiber-loss/js/analytics.js": "PASS",
+    "website/tools/fiber-loss/js/app.js": "PASS",
+    "website/tools/fiber-loss/js/pwa.js": "PASS",
+    "website/tools/fiber-loss/js/site-config.js": "PASS",
+    "website/tools/fiber-loss/sw.js": "PASS",
+    "website/tools/mtu-calculator/data/mtu-overhead-library.js": "PASS",
+    "website/tools/mtu-calculator/docs/engine-test.js": "PASS",
+    "website/tools/mtu-calculator/js/adsense.js": "PASS",
+    "website/tools/mtu-calculator/js/analytics.js": "PASS",
+    "website/tools/mtu-calculator/js/app.js": "PASS",
+    "website/tools/mtu-calculator/js/engine.js": "PASS",
+    "website/tools/mtu-calculator/js/pwa.js": "PASS",
+    "website/tools/mtu-calculator/js/site-config.js": "PASS",
+    "website/tools/mtu-calculator/sw.js": "PASS",
+    "website/tools/onu-rx-power/js/adsense.js": "PASS",
+    "website/tools/onu-rx-power/js/analytics.js": "PASS",
+    "website/tools/onu-rx-power/js/app.js": "PASS",
+    "website/tools/onu-rx-power/js/pwa.js": "PASS",
+    "website/tools/onu-rx-power/js/site-config.js": "PASS",
+    "website/tools/onu-rx-power/sw.js": "PASS",
+    "website/tools/optical-power-budget/js/adsense.js": "PASS",
+    "website/tools/optical-power-budget/js/analytics.js": "PASS",
+    "website/tools/optical-power-budget/js/app.js": "PASS",
+    "website/tools/optical-power-budget/js/pwa.js": "PASS",
+    "website/tools/optical-power-budget/js/site-config.js": "PASS",
+    "website/tools/optical-power-budget/sw.js": "PASS",
+    "website/tools/otdr-event/data/otdr-event-rules.js": "PASS",
+    "website/tools/otdr-event/docs/engine-test.js": "PASS",
+    "website/tools/otdr-event/js/adsense.js": "PASS",
+    "website/tools/otdr-event/js/analytics.js": "PASS",
+    "website/tools/otdr-event/js/app.js": "PASS",
+    "website/tools/otdr-event/js/engine.js": "PASS",
+    "website/tools/otdr-event/js/pwa.js": "PASS",
+    "website/tools/otdr-event/js/site-config.js": "PASS",
+    "website/tools/otdr-event/sw.js": "PASS",
+    "website/tools/pon-distance/js/adsense.js": "PASS",
+    "website/tools/pon-distance/js/analytics.js": "PASS",
+    "website/tools/pon-distance/js/app.js": "PASS",
+    "website/tools/pon-distance/js/pwa.js": "PASS",
+    "website/tools/pon-distance/js/site-config.js": "PASS",
+    "website/tools/pon-distance/sw.js": "PASS",
+    "website/tools/pon-splitter-loss/js/adsense.js": "PASS",
+    "website/tools/pon-splitter-loss/js/analytics.js": "PASS",
+    "website/tools/pon-splitter-loss/js/app.js": "PASS",
+    "website/tools/pon-splitter-loss/js/pwa.js": "PASS",
+    "website/tools/pon-splitter-loss/js/site-config.js": "PASS",
+    "website/tools/pon-splitter-loss/sw.js": "PASS",
+    "website/tools/subnet-calculator/data/ip-reference.js": "PASS",
+    "website/tools/subnet-calculator/docs/engine-test.js": "PASS",
+    "website/tools/subnet-calculator/js/adsense.js": "PASS",
+    "website/tools/subnet-calculator/js/analytics.js": "PASS",
+    "website/tools/subnet-calculator/js/app.js": "PASS",
+    "website/tools/subnet-calculator/js/engine.js": "PASS",
+    "website/tools/subnet-calculator/js/pwa.js": "PASS",
+    "website/tools/subnet-calculator/js/site-config.js": "PASS",
+    "website/tools/subnet-calculator/sw.js": "PASS"
+  },
+  "engine_tests": {
+    "OTDR": {
+      "status": "PASS",
+      "output": "{\n  \"types\": [\n    \"splice\",\n    \"bend\",\n    \"connector\",\n    \"splice\",\n    \"end\"\n  ],\n  \"summary\": {\n    \"eventCount\": 5,\n    \"abnormalCount\": 3,\n    \"criticalCount\": 2,\n    \"reflectiveCount\": 2,\n    \"deadZoneCount\": 0,\n    \"maxEventLossDb\": 4.5,\n    \"meanEventSpacingM\": 2462.5,\n    \"eventLossPrimaryDb\": 6.52,\n    \"eventLossSecondaryDb\": 7.35,\n    \"estimatedLinkLossPrimaryDb\": 10.02,\n    \"estimatedLinkLossSecondaryDb\": 9.55,\n    \"maximumCumulativeLossDb\": 6.52,\n    \"lastEventDistanceKm\": 10\n  }\n}"
+    },
+    "MTU_MSS": {
+      "status": "PASS",
+      "output": "{\n  \"status\": \"PASS\",\n  \"pppoe\": {\n    \"mtu\": 1492,\n    \"mss\": 1452\n  },\n  \"vxlan\": {\n    \"mtu\": 1450,\n    \"mss\": 1410\n  },\n  \"ipv6\": {\n    \"mss\": 1440\n  }\n}"
+    },
+    "IP_Subnet": {
+      "status": "PASS",
+      "output": "{\n  \"status\": \"PASS\",\n  \"ipv4\": \"10.0.0.0/30\",\n  \"vlsm\": [\n    \"10.10.0.0/23\",\n    \"10.10.2.0/24\",\n    \"10.10.3.0/26\"\n  ],\n  \"ipv6\": \"2001:db8:1234:5678::/64\"\n}"
+    },
+    "Bandwidth": {
+      "status": "PASS",
+      "output": "{\n  \"status\": \"PASS\",\n  \"transferSeconds\": 80,\n  \"requiredMbps\": 185.18518518518516,\n  \"users\": 171,\n  \"volumeGB\": 38.475\n}"
+    },
+    "Battery_48V": {
+      "status": "PASS",
+      "output": "48V battery engine tests: PASS"
+    }
+  },
+  "html": {
+    "404.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "about.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "contact.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "index.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "privacy.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "terms.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/48v-battery-runtime/index.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/48v-battery-runtime/offline.html": {
+      "duplicate_ids": [],
+      "canonical_count": 0,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/48v-battery-runtime/zh/index.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/bandwidth-calculator/index.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/bandwidth-calculator/offline.html": {
+      "duplicate_ids": [],
+      "canonical_count": 0,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/bandwidth-calculator/zh/index.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/fiber-loss/index.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/fiber-loss/offline.html": {
+      "duplicate_ids": [],
+      "canonical_count": 0,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/fiber-loss/zh/index.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/index.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/mtu-calculator/index.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/mtu-calculator/offline.html": {
+      "duplicate_ids": [],
+      "canonical_count": 0,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/mtu-calculator/zh/index.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/onu-rx-power/index.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/onu-rx-power/offline.html": {
+      "duplicate_ids": [],
+      "canonical_count": 0,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/onu-rx-power/zh/index.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/optical-power-budget/index.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/optical-power-budget/offline.html": {
+      "duplicate_ids": [],
+      "canonical_count": 0,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/optical-power-budget/zh/index.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/otdr-event/index.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/otdr-event/offline.html": {
+      "duplicate_ids": [],
+      "canonical_count": 0,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/otdr-event/zh/index.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/pon-distance/index.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/pon-distance/offline.html": {
+      "duplicate_ids": [],
+      "canonical_count": 0,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/pon-distance/zh/index.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/pon-splitter-loss/index.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/pon-splitter-loss/offline.html": {
+      "duplicate_ids": [],
+      "canonical_count": 0,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/pon-splitter-loss/zh/index.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/subnet-calculator/index.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/subnet-calculator/offline.html": {
+      "duplicate_ids": [],
+      "canonical_count": 0,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/subnet-calculator/zh/index.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "tools/zh/index.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "zh/404.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "zh/about.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "zh/contact.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "zh/index.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "zh/privacy.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    },
+    "zh/terms.html": {
+      "duplicate_ids": [],
+      "canonical_count": 1,
+      "language_menu": true,
+      "locales_js": true,
+      "shared_site_js": true
+    }
+  },
+  "local_link_errors": [],
+  "anchor_errors": [],
+  "http_fetched": 302,
+  "http_errors": [],
+  "scaffold_test": {
+    "scaffold_returncode": 0,
+    "validation_returncode": 0,
+    "draft_pages": 17,
+    "battery_draft_exists": true,
+    "all_noindex": true,
+    "excluded_from_sitemap": true,
+    "excluded_from_hreflang": true
+  },
+  "critical": {
+    "ten_active_tools": true,
+    "battery_active": true,
+    "tool11_planned": true,
+    "tool12_planned": true,
+    "sitemap_24_urls": true,
+    "battery_en_sitemap": true,
+    "battery_zh_sitemap": true,
+    "all_js_pass": true,
+    "all_engines_pass": true,
+    "all_html_pass": true,
+    "no_local_link_errors": true,
+    "no_anchor_errors": true,
+    "no_http_errors": true,
+    "scaffold_safe": true,
+    "build_idempotent": true
+  },
+  "status": "PASS"
+}

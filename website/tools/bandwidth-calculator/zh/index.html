@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="tools/bandwidth-calculator/"><head>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="../" name="app-base"/>
+<title>带宽与传输时间计算器 | NetEngineerLab</title><meta content="专业带宽、文件传输时间、所需链路速率、并发用户容量和数据量计算器。" name="description"/><meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
+<meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="带宽与传输时间计算器 | NetEngineerLab" property="og:title"/><meta content="专业带宽、文件传输时间、所需链路速率、并发用户容量和数据量计算器。" property="og:description"/><meta content="https://netengineerlab.com/tools/bandwidth-calculator/zh/" property="og:url"/><meta content="https://netengineerlab.com/tools/bandwidth-calculator/images/og-bandwidth-transfer-calculator.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
+<link href="../images/icons/apple-touch-icon.png" rel="apple-touch-icon"/><link href="../images/logo.svg" rel="icon" type="image/svg+xml"/><link href="../css/style.css" rel="stylesheet"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"带宽与传输时间计算器","url":"https://netengineerlab.com/tools/bandwidth-calculator/zh/","description":"专业带宽、文件传输时间、所需链路速率、并发用户容量和数据量计算器。","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","softwareVersion":"1.0.0","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"工具中心","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"带宽与传输时间计算器","item":"https://netengineerlab.com/tools/bandwidth-calculator/zh/"}]}</script><meta content="NetEngineerLab" name="author"/>
+
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.7.3">
+<meta name="nel-locale" content="zh">
+<meta name="nel-route" content="tools/bandwidth-calculator/">
+<meta name="nel-available-locales" content="en,zh">
+<link rel="canonical" href="https://netengineerlab.com/tools/bandwidth-calculator/zh/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/bandwidth-calculator/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/bandwidth-calculator/zh/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/bandwidth-calculator/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css">
+<script defer src="../../../data/locales.js"></script>
+<script defer src="../../../data/site-config.js"></script>
+<script defer src="../../../assets/js/analytics.js"></script>
+<script defer src="../../../assets/js/adsense.js"></script>
+<script defer src="../../../assets/js/site.js"></script>
+<link rel="manifest" href="../manifest-zh.webmanifest">
+</head><body>
+<a class="skip" href="#calculator">跳到计算器</a>
+<header class="site-header"><a class="brand" href="../../../zh/"><img alt="NetEngineerLab" height="52" src="../images/logo.svg" width="52"/><span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span></a>
+<nav aria-label="主导航" class="nav"><a href="../../../zh/">首页</a><a href="../../zh/">工具中心</a><a href="#methodology">计算方法</a><a href="#history">历史记录</a></nav>
+<div class="actions"><!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../" lang="en" hreflang="en"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="./" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END --><a class="cta" href="#calculator">开始计算</a></div></header>
+<nav class="breadcrumbs"><a href="../../../zh/">首页</a><span>›</span><a href="../../zh/">工具中心</a><span>›</span><span>带宽与传输时间计算器</span></nav>
+<section class="hero"><div class="hero-inner"><div><p class="eyebrow">NETWORK CAPACITY PLANNING TOOL</p><h1>带宽与传输时间计算器</h1><p>估算文件传输时间，按完成窗口反算所需带宽，评估并发用户容量，并把持续速率换算为数据量。</p></div><div class="hero-tags"><span>bps / Mbps / Gbps</span><span>GB / GiB / TB</span><span>Concurrency</span><span>Efficiency</span></div></div></section>
+<div class="mode-tabs"><button class="active" data-mode="transfer">传输时间</button><button data-mode="required">所需带宽</button><button data-mode="concurrency">并发用户</button><button data-mode="volume">数据量换算</button></div>
+<main class="workspace" id="calculator">
+<section class="input-panel card">
+<div class="section-title"><span class="section-icon">BW</span><div><h2>业务与链路参数</h2><p>选择计算模式，并按实际情况修改效率、利用率和时延参数。</p></div></div>
+<div class="notice">网络速率默认采用十进制SI单位，文件大小可选择十进制或IEC二进制单位。</div>
+<div class="preset-row"><label for="preset">工程预设</label><select id="preset"><option value="ideal">理想链路</option><option selected="" value="ethernet">一般以太网业务</option><option value="internet">互联网文件传输</option><option value="vpn">VPN/加密隧道</option><option value="wan">高时延广域网</option><option value="backup">备份窗口</option></select></div>
+<div class="form-grid"><div class="field full"><label for="projectName">工程名称</label><div class="input-wrap no-unit"><input id="projectName" value="Bandwidth Planning"/></div></div></div>
+<div id="transferPanel"><div class="form-grid">
+<div class="field"><label for="transferFileSize">文件大小</label><div class="input-wrap"><input id="transferFileSize" min="0" step="0.01" type="number" value="10"/><select aria-label="文件大小单位" data-selected="GB" data-size-units="" id="transferFileUnit"></select></div></div>
+<div class="field"><label for="transferLinkRate">物理链路速率</label><div class="input-wrap"><input id="transferLinkRate" min="0" step="0.01" type="number" value="100"/><select aria-label="链路速率单位" data-rate-units="" data-selected="Mbps" id="transferRateUnit"></select></div></div>
+<div class="field"><label for="transferConcurrent">并发传输任务</label><div class="input-wrap"><input id="transferConcurrent" min="1" step="1" type="number" value="1"/><span>任务</span></div></div>
+<div class="field"><label for="transferEfficiency">业务载荷效率</label><div class="input-wrap"><input data-efficiency="" id="transferEfficiency" max="100" min="0" step="0.1" type="number" value="95"/><span>%</span></div></div>
+<div class="field"><label for="transferUtilization">允许链路利用率</label><div class="input-wrap"><input data-utilization="" id="transferUtilization" max="100" min="0" step="0.1" type="number" value="90"/><span>%</span></div></div>
+<div class="field"><label for="transferRtt">RTT</label><div class="input-wrap"><input data-rtt="" id="transferRtt" min="0" step="0.1" type="number" value="1"/><span>ms</span></div></div>
+<div class="field"><label for="transferSetupRtts">建立过程往返次数</label><div class="input-wrap"><input data-setup-rtts="" id="transferSetupRtts" min="0" step="1" type="number" value="1"/><span>RTT</span></div></div>
+</div></div>
+<div hidden="" id="requiredPanel"><div class="form-grid">
+<div class="field"><label for="requiredFileSize">单任务文件大小</label><div class="input-wrap"><input id="requiredFileSize" min="0" step="0.01" type="number" value="50"/><select aria-label="文件大小单位" data-selected="GB" data-size-units="" id="requiredFileUnit"></select></div></div>
+<div class="field"><label for="requiredTime">完成时间窗口</label><div class="input-wrap"><input id="requiredTime" min="0" step="0.01" type="number" value="1"/><select aria-label="完成时间单位" data-selected="hour" data-time-units="" id="requiredTimeUnit"></select></div></div>
+<div class="field"><label for="requiredConcurrent">并发传输任务</label><div class="input-wrap"><input id="requiredConcurrent" min="1" step="1" type="number" value="1"/><span>任务</span></div></div>
+<div class="field"><label for="requiredEfficiency">业务载荷效率</label><div class="input-wrap"><input data-efficiency="" id="requiredEfficiency" max="100" min="0" step="0.1" type="number" value="95"/><span>%</span></div></div>
+<div class="field"><label for="requiredUtilization">允许链路利用率</label><div class="input-wrap"><input data-utilization="" id="requiredUtilization" max="100" min="0" step="0.1" type="number" value="90"/><span>%</span></div></div>
+<div class="field"><label for="requiredRtt">RTT</label><div class="input-wrap"><input data-rtt="" id="requiredRtt" min="0" step="0.1" type="number" value="1"/><span>ms</span></div></div>
+<div class="field"><label for="requiredSetupRtts">建立过程往返次数</label><div class="input-wrap"><input data-setup-rtts="" id="requiredSetupRtts" min="0" step="1" type="number" value="1"/><span>RTT</span></div></div>
+</div></div>
+<div hidden="" id="concurrencyPanel"><div class="form-grid">
+<div class="field"><label for="capacityLinkRate">物理链路速率</label><div class="input-wrap"><input id="capacityLinkRate" min="0" step="0.01" type="number" value="1"/><select aria-label="链路速率单位" data-rate-units="" data-selected="Gbps" id="capacityRateUnit"></select></div></div>
+<div class="field"><label for="capacityPerUserRate">单用户平均速率</label><div class="input-wrap"><input id="capacityPerUserRate" min="0" step="0.01" type="number" value="5"/><select aria-label="单用户速率单位" data-rate-units="" data-selected="Mbps" id="capacityPerUserUnit"></select></div></div>
+<div class="field"><label for="capacityBurst">单用户突发系数</label><div class="input-wrap"><input id="capacityBurst" min="1" step="1" type="number" value="120"/><span>%</span></div></div>
+<div class="field"><label for="capacityTargetUsers">目标用户数</label><div class="input-wrap"><input id="capacityTargetUsers" min="0" step="1" type="number" value="100"/><span>用户</span></div></div>
+<div class="field"><label for="capacityEfficiency">业务载荷效率</label><div class="input-wrap"><input data-efficiency="" id="capacityEfficiency" max="100" min="0" step="0.1" type="number" value="95"/><span>%</span></div></div>
+<div class="field"><label for="capacityUtilization">允许链路利用率</label><div class="input-wrap"><input data-utilization="" id="capacityUtilization" max="100" min="0" step="0.1" type="number" value="90"/><span>%</span></div></div>
+</div></div>
+<div hidden="" id="volumePanel"><div class="form-grid">
+<div class="field"><label for="volumeLinkRate">物理链路速率</label><div class="input-wrap"><input id="volumeLinkRate" min="0" step="0.01" type="number" value="100"/><select aria-label="链路速率单位" data-rate-units="" data-selected="Mbps" id="volumeRateUnit"></select></div></div>
+<div class="field"><label for="volumeDuration">持续时间</label><div class="input-wrap"><input id="volumeDuration" min="0" step="0.01" type="number" value="24"/><select aria-label="持续时间单位" data-selected="hour" data-time-units="" id="volumeTimeUnit"></select></div></div>
+<div class="field"><label for="volumeEfficiency">业务载荷效率</label><div class="input-wrap"><input data-efficiency="" id="volumeEfficiency" max="100" min="0" step="0.1" type="number" value="95"/><span>%</span></div></div>
+<div class="field"><label for="volumeUtilization">允许链路利用率</label><div class="input-wrap"><input data-utilization="" id="volumeUtilization" max="100" min="0" step="0.1" type="number" value="90"/><span>%</span></div></div>
+</div></div>
+<p class="validation" id="validation"></p>
+<div class="input-actions"><button class="primary" id="calculateBtn" type="button">▣ 计算</button><button class="secondary" id="resetBtn" type="button">↻ 重置参数</button></div>
+</section>
+<section aria-live="polite" class="result-panel card">
+<div class="section-title"><span class="section-icon">NET</span><div><h2>带宽规划结果</h2><p>扣除效率和利用率限制后的有效业务性能。</p></div></div>
+<div class="summary-card"><div>
+<div id="transferResult"><small>预计完成时间</small><strong id="transferHeadline">—</strong></div>
+<div hidden="" id="requiredResult"><small>所需物理链路速率</small><strong id="requiredHeadline">—</strong></div>
+<div hidden="" id="concurrencyResult"><small>最大工程并发用户数</small><strong id="capacityHeadline">—</strong></div>
+<div hidden="" id="volumeResult"><small>有效业务数据量</small><strong id="volumeHeadline">—</strong></div>
+</div><span class="status-badge healthy" id="statusBadge">—</span></div>
+<div id="transferMetrics"><div class="metric-grid">
+<article class="metric"><small>单任务有效速率</small><strong id="transferPerRate"></strong></article>
+<article class="metric"><small>总有效业务速率</small><strong id="transferAggregateRate"></strong></article>
+<article class="metric"><small>数据传输时间</small><strong id="transferSerialization"></strong></article>
+<article class="metric"><small>建立时延</small><strong id="transferSetup"></strong></article>
+<article class="metric"><small>总传输数据量</small><strong id="transferTotalData"></strong></article>
+<article class="metric"><small>综合业务效率</small><strong id="transferEfficiencyResult"></strong></article>
+<article class="metric"><small>不可用/开销比例</small><strong id="transferOverheadResult"></strong></article>
+<article class="metric"><small>并发任务数</small><strong id="transferConcurrencyResult"></strong></article>
+</div><div class="progress-card"><div class="progress-head"><span>物理链路中的有效业务占比</span></div><div class="progress-track"><span class="progress-fill" id="transferBar"></span></div></div></div>
+<div hidden="" id="requiredMetrics"><div class="metric-grid">
+<article class="metric"><small>所需有效业务速率</small><strong id="requiredPayload"></strong></article>
+<article class="metric"><small>单任务有效速率</small><strong id="requiredPerTransfer"></strong></article>
+<article class="metric"><small>可用数据传输时间</small><strong id="requiredDataTime"></strong></article>
+<article class="metric"><small>建立时延</small><strong id="requiredSetup"></strong></article>
+<article class="metric"><small>总业务数据量</small><strong id="requiredTotalBits"></strong></article>
+<article class="metric"><small>综合业务效率</small><strong id="requiredCombined"></strong></article>
+<article class="metric"><small>并发任务数</small><strong id="requiredConcurrentResult"></strong></article>
+</div><div class="progress-card"><div class="progress-head"><span>综合业务效率</span></div><div class="progress-track"><span class="progress-fill" id="requiredBar"></span></div></div></div>
+<div hidden="" id="concurrencyMetrics"><div class="metric-grid">
+<article class="metric"><small>可用业务带宽</small><strong id="capacityAvailable"></strong></article>
+<article class="metric"><small>工程单用户速率</small><strong id="capacityPerUserEngineered"></strong></article>
+<article class="metric"><small>目标用户占用带宽</small><strong id="capacityUsedTarget"></strong></article>
+<article class="metric"><small>剩余带宽余量</small><strong id="capacityHeadroom"></strong></article>
+<article class="metric"><small>目标物理链路利用率</small><strong id="capacityTargetUtilization"></strong></article>
+<article class="metric"><small>综合业务效率</small><strong id="capacityCombined"></strong></article>
+<article class="metric"><small>目标容量判断</small><strong><span class="inline-status" id="capacityTargetStatus"></span></strong></article>
+</div><div class="progress-card"><div class="progress-head"><span>目标用户负载占物理链路比例</span></div><div class="progress-track"><span class="progress-fill" id="capacityBar"></span></div></div></div>
+<div hidden="" id="volumeMetrics"><div class="metric-grid">
+<article class="metric"><small>有效业务速率</small><strong id="volumePayloadRate"></strong></article>
+<article class="metric"><small>总传输比特数</small><strong id="volumeBits"></strong></article>
+<article class="metric"><small>等效每日数据量</small><strong id="volumeDaily"></strong></article>
+<article class="metric"><small>30天数据量</small><strong id="volumeMonthly"></strong></article>
+<article class="metric"><small>综合业务效率</small><strong id="volumeCombined"></strong></article>
+<article class="metric"><small>持续秒数</small><strong id="volumeDurationSeconds"></strong></article>
+</div><div class="progress-card"><div class="progress-head"><span>综合业务效率</span></div><div class="progress-track"><span class="progress-fill" id="volumeBar"></span></div></div></div>
+<div class="formula-card"><h3>核心计算关系</h3><code>有效业务速率 = 物理速率 × 业务载荷效率 × 允许利用率；传输时间 = 文件比特数 ÷ 有效业务速率 + 建立时延。</code></div>
+<div class="result-actions"><button id="copyBtn">▣ 复制结果</button><button id="saveBtn">＋ 保存记录</button><button id="csvBtn">⇩ 导出CSV</button><button id="printBtn">⌑ 打印/PDF</button></div>
+</section></main>
+<section class="content-section" id="methodology"><p class="eyebrow">METHODOLOGY</p><h2>计算方法</h2><div class="method-grid"><article><h3>bit与Byte</h3><p>网络速率通常以bit/s表示，文件大小通常以Byte表示，1 Byte等于8 bit。</p></article><article><h3>效率与利用率</h3><p>协议效率表示有效业务载荷占比，链路利用率表示允许该业务使用的物理链路容量比例。</p></article><article><h3>并发传输</h3><p>传输时间模式默认并发任务平均分享有效业务速率，实际调度、拥塞控制和优先级可能不同。</p></article><article><h3>时延与建立过程</h3><p>建立时延按RTT乘以建立往返次数计算，并与数据序列化时间相加。</p></article></div>
+<div class="sources"><strong>单位参考：</strong> <a href="https://www.bipm.org/en/publications/si-brochure" rel="noopener">SI Brochure</a> · <a href="https://www.nist.gov/pml/owm/si-units-information" rel="noopener">NIST SI Units</a> · <a href="https://www.rfc-editor.org/rfc/rfc6349" rel="noopener">RFC 6349</a></div></section>
+<section class="content-section"><p class="eyebrow">FAQ</p><h2>常见问题</h2><div class="faq-grid"><details><summary>为什么100 Mbps不能每秒传100 MB？</summary><p>100 Mbps表示每秒100兆比特，理论上等于12.5 MB/s，尚未扣除协议开销和链路利用率。</p></details><details><summary>文件大小应该用GB还是GiB？</summary><p>存储厂商通常使用十进制GB，操作系统或工具可能使用二进制GiB。</p></details><details><summary>效率应该填多少？</summary><p>优先使用实测应用吞吐率；没有实测数据时可从预设开始，并保留工程余量。</p></details><details><summary>RTT对大文件传输重要吗？</summary><p>本工具直接计入建立时延，但真实TCP中RTT还会影响窗口增长和丢包恢复。</p></details><details><summary>最大并发用户数如何计算？</summary><p>先计算链路可用业务带宽，再除以突发系数修正后的单用户带宽。</p></details><details><summary>能代替完整流量工程模型吗？</summary><p>不能。队列、QoS、报文长度、重传、流量分布和忙时特征仍需验证。</p></details></div></section>
+<section class="content-section" id="history"><div class="history-head"><div><p class="eyebrow">PROJECT RECORDS</p><h2>历史记录</h2></div><button class="text-button" id="clearHistoryBtn">清空记录</button></div><div class="history-list" id="historyList"></div></section>
+<section class="content-section"><p class="eyebrow">RELATED TOOLS</p><h2>相关工程工具</h2><div class="related-grid">
+<a href="../../mtu-calculator/zh/"><strong>MTU与MSS计算器</strong><p>计算封装开销和分片风险。</p></a><a href="../../subnet-calculator/zh/"><strong>IP子网计算器</strong><p>规划IPv4、IPv6和VLSM地址空间。</p></a><a href="../../otdr-event/zh/"><strong>OTDR事件分析工具</strong><p>诊断光纤事件和维护优先级。</p></a>
+</div></section>
+<footer><div><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div><nav class="footer-links"><a href="../../../zh/about/">关于</a><a href="../../../zh/contact/">联系</a><a href="../../../zh/privacy/">隐私政策</a><a href="../../../zh/terms/">使用条款</a></nav><p>© 2026 NetEngineerLab.com</p></footer>
+<script defer="" src="../data/bandwidth-units.js"></script><script defer="" src="../js/engine.js"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../assets/js/tool-integration.js"></script><script defer="" src="../js/app.js"></script>
+</body></html>

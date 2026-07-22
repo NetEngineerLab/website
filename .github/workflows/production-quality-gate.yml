@@ -1,0 +1,37 @@
+name: Production Quality Gate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-production-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Use pinned Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+
+      - name: Run NetEngineerLab production acceptance
+        run: npm run prepare:launch
+
+      - name: Upload acceptance reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: netengineerlab-production-reports
+          path: |
+            docs/LAUNCH_AUDIT_REPORT.json
+            docs/PRODUCTION_ACCEPTANCE_REPORT.json
+            docs/RELEASE_MANIFEST.json
+          if-no-files-found: warn

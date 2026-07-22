@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr" data-nel-locale="en" data-nel-route="tools/otdr-event/"><head>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="./" name="app-base"/>
+<title>OTDR Event Analyzer | NetEngineerLab</title><meta content="Professional OTDR event analysis for splices, connectors, bends, breaks, ghost events and dead-zone effects." name="description"/><meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
+<meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="OTDR Event Analyzer | NetEngineerLab" property="og:title"/><meta content="Professional OTDR event analysis for splices, connectors, bends, breaks, ghost events and dead-zone effects." property="og:description"/><meta content="https://netengineerlab.com/tools/otdr-event/" property="og:url"/><meta content="https://netengineerlab.com/tools/otdr-event/images/og-otdr-event-analyzer.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
+<link href="images/icons/apple-touch-icon.png" rel="apple-touch-icon"/><link href="images/logo.svg" rel="icon" type="image/svg+xml"/><link href="css/style.css" rel="stylesheet"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"OTDR Event Analyzer","url":"https://netengineerlab.com/tools/otdr-event/","description":"Professional OTDR event analysis for splices, connectors, bends, breaks, ghost events and dead-zone effects.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"OTDR Analysis Tool","operatingSystem":"Any","softwareVersion":"1.0.1","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"OTDR Event Analyzer","item":"https://netengineerlab.com/tools/otdr-event/"}]}</script><meta content="NetEngineerLab" name="author"/>
+
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.7.3">
+<meta name="nel-locale" content="en">
+<meta name="nel-route" content="tools/otdr-event/">
+<meta name="nel-available-locales" content="en,zh">
+<link rel="canonical" href="https://netengineerlab.com/tools/otdr-event/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/otdr-event/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/otdr-event/zh/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/otdr-event/">
+<link rel="stylesheet" href="../../assets/css/locale-menu.css">
+<script defer src="../../data/locales.js"></script>
+<script defer src="../../data/site-config.js"></script>
+<script defer src="../../assets/js/analytics.js"></script>
+<script defer src="../../assets/js/adsense.js"></script>
+<script defer src="../../assets/js/site.js"></script>
+<link rel="manifest" href="manifest.webmanifest">
+</head><body>
+<a class="skip" href="#analyzer">Skip to analyzer</a><noscript><div class="noscript">JavaScript is required.</div></noscript>
+<header class="site-header"><a class="brand" href="../../"><img alt="NetEngineerLab" height="52" src="images/logo.svg" width="52"/><span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span></a>
+<nav aria-label="Primary navigation" class="nav"><a href="../../">Home</a><a href="../">Tools</a><a href="#methodology">Methodology</a><a href="#history">History</a></nav>
+<div class="actions"><!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END --><a class="cta" href="#analyzer">Start analysis</a></div></header>
+<nav aria-label="Breadcrumb" class="breadcrumbs"><a href="../../">Home</a><span>›</span><a href="../">Tools</a><span>›</span><span>OTDR Event Analyzer</span></nav>
+<section class="hero"><div class="hero-inner"><div><p class="eyebrow">OTDR MAINTENANCE TOOL</p><h1>OTDR Event Analyzer</h1><p>Enter or import multiple OTDR events, compare two wavelengths, identify event types and generate maintenance priorities. Version 1.0 focuses on event-table diagnosis and does not parse SOR files directly.</p></div><div class="hero-tags"><span>Multi-event</span><span>Dual wavelength</span><span>Dead-zone check</span><span>CSV import</span></div></div></section>
+<main class="workspace" id="analyzer">
+<section class="config-panel card">
+<div class="section-title"><span class="section-icon">☷</span><div><h2>Test settings and thresholds</h2><p>All thresholds are editable engineering defaults.</p></div></div>
+<div class="notice">These thresholds are editable engineering defaults, not universal pass/fail criteria for every operator, vendor or acceptance scenario.</div>
+<div class="form-grid">
+<div class="field full"><label for="projectName">Project / cable name</label><div class="input-wrap no-unit"><input class="config-input" id="projectName" value="OTDR Link Event Analysis"/></div></div>
+<div class="subheading">OTDR test settings</div>
+<div class="field"><label for="primaryWavelength">Primary wavelength</label><div class="input-wrap no-unit"><select id="primaryWavelength"><option selected="" value="1310">1310</option><option value="1490">1490</option><option value="1550">1550</option><option value="1625">1625</option></select></div></div>
+<div class="field"><label for="secondaryWavelength">Secondary wavelength</label><div class="input-wrap no-unit"><select id="secondaryWavelength"><option value="1310">1310</option><option value="1490">1490</option><option selected="" value="1550">1550</option><option value="1625">1625</option></select></div></div>
+<div class="field"><label for="linkLength">Configured link length</label><div class="input-wrap"><input class="config-input" id="linkLength" min="0" step="0.001" type="number" value="10"/><span>km</span></div></div>
+<div class="field"><label for="pulseWidth">Pulse width</label><div class="input-wrap no-unit"><select class="config-input" id="pulseWidth"><option value="5">5</option><option value="10">10</option><option value="30">30</option><option value="50">50</option><option selected="" value="100">100</option><option value="300">300</option><option value="500">500</option><option value="1000">1000</option><option value="3000">3000</option><option value="10000">10000</option></select></div></div>
+<div class="field"><label for="ior">Group index / IOR</label><div class="input-wrap no-unit"><input class="config-input" id="ior" min="1" step="0.000001" type="number" value="1.468"/></div></div>
+<div class="field"><label for="primaryAttenuation">Primary attenuation</label><div class="input-wrap"><input class="config-input" id="primaryAttenuation" min="0" step="0.01" type="number" value="0.35"/><span>dB/km</span></div></div>
+<div class="field"><label for="secondaryAttenuation">Secondary attenuation</label><div class="input-wrap"><input class="config-input" id="secondaryAttenuation" min="0" step="0.01" type="number" value="0.22"/><span>dB/km</span></div></div>
+<div class="subheading">Event classification thresholds</div>
+<div class="field"><label for="normalSpliceLoss">Normal splice loss</label><div class="input-wrap"><input class="config-input" id="normalSpliceLoss" min="0" step="0.01" type="number" value="0.20"/><span>dB</span></div></div>
+<div class="field"><label for="attentionLoss">Attention loss</label><div class="input-wrap"><input class="config-input" id="attentionLoss" min="0" step="0.01" type="number" value="0.50"/><span>dB</span></div></div>
+<div class="field"><label for="criticalLoss">Critical loss</label><div class="input-wrap"><input class="config-input" id="criticalLoss" min="0" step="0.01" type="number" value="1.00"/><span>dB</span></div></div>
+<div class="field"><label for="strongReflection">Strong reflection</label><div class="input-wrap"><input class="config-input" id="strongReflection" step="1" type="number" value="-35"/><span>dB</span></div></div>
+<div class="field"><label for="veryStrongReflection">Very strong reflection</label><div class="input-wrap"><input class="config-input" id="veryStrongReflection" step="1" type="number" value="-25"/><span>dB</span></div></div>
+<div class="field"><label for="bendDelta">Bend wavelength delta</label><div class="input-wrap"><input class="config-input" id="bendDelta" min="0" step="0.01" type="number" value="0.30"/><span>dB</span></div></div>
+<div class="field"><label for="endLoss">End / break loss</label><div class="input-wrap"><input class="config-input" id="endLoss" min="0" step="0.1" type="number" value="3.0"/><span>dB</span></div></div>
+<div class="field"><label for="eventDeadZone">Event dead zone</label><div class="input-wrap"><input class="config-input" id="eventDeadZone" min="0" step="1" type="number" value="10"/><span>m</span></div></div>
+<div class="field"><label for="attenuationDeadZone">Attenuation dead zone</label><div class="input-wrap"><input class="config-input" id="attenuationDeadZone" min="0" step="1" type="number" value="50"/><span>m</span></div></div>
+<div class="field"><label for="ghostTolerance">Ghost distance tolerance</label><div class="input-wrap"><input class="config-input" id="ghostTolerance" min="0" step="1" type="number" value="50"/><span>m</span></div></div>
+<div class="field"><label for="nearEndTolerance">Near-end tolerance</label><div class="input-wrap"><input class="config-input" id="nearEndTolerance" min="0" step="1" type="number" value="100"/><span>m</span></div></div>
+</div>
+<div class="config-actions"><button class="primary" id="sampleBtn" type="button">▣ Load sample</button><button class="secondary" id="resetBtn" type="button">↻ Reset</button></div>
+</section>
+<section aria-live="polite" class="analysis-panel card">
+<div class="section-title"><span class="section-icon">OT</span><div><h2>Event analysis result</h2><p>Summary, topology, event classification and maintenance actions.</p></div></div>
+<div class="summary-bar">
+<article class="overall-card"><small>Overall status</small><strong class="status-badge" id="overallStatus">—</strong></article>
+<article class="summary-card"><small>Events</small><strong id="eventCount">0</strong></article>
+<article class="summary-card"><small>Abnormal</small><strong id="abnormalCount">0</strong></article>
+<article class="summary-card"><small>Critical</small><strong id="criticalCount">0</strong></article>
+<article class="summary-card"><small>Maximum event loss</small><strong><span id="maxEventLoss">0</span> dB</strong></article>
+<article class="summary-card"><small>Estimated primary loss</small><strong><span id="estimatedPrimaryLoss">0</span> dB</strong></article>
+<article class="summary-card"><small>Estimated secondary loss</small><strong><span id="estimatedSecondaryLoss">0</span> dB</strong></article>
+<article class="summary-card"><small>Reflective events</small><strong id="reflectiveCount">0</strong></article>
+<article class="summary-card"><small>Dead-zone affected</small><strong id="deadZoneCount">0</strong></article>
+</div>
+<div class="topology-wrap"><h3>Event position topology</h3><div class="topology" id="topology"></div></div>
+<div class="event-editor">
+<div class="editor-head"><h3>OTDR event input table</h3><div class="editor-buttons">
+<button id="addEventBtn" type="button">＋ Add event</button>
+<button id="importBtn" type="button">⇧ Import CSV</button>
+<button id="templateBtn" type="button">⇩ CSV template</button>
+<button id="clearEventsBtn" type="button">× Clear events</button>
+<input accept=".csv,text/csv" hidden="" id="csvFile" type="file"/>
+</div></div>
+<p class="mobile-table-hint">Swipe the tables horizontally on mobile to view every column.</p><div class="table-scroll"><table class="data-table"><thead><tr>
+<th>No.</th><th>Distance (km)</th><th>Primary loss (dB)</th><th>Secondary loss (dB)</th><th>Reflectance (dB)</th><th>Cumulative (dB)</th><th>Manual type</th><th>Note / action</th>
+</tr></thead><tbody id="eventInputBody"></tbody></table></div>
+</div>
+<div class="analysis-actions">
+<button class="primary" id="analyzeBtn" type="button">▣ Analyze events</button>
+<button id="copyBtn" type="button">▣ Copy result</button>
+<button id="saveBtn" type="button">＋ Save record</button>
+<button id="exportBtn" type="button">⇩ Export CSV</button>
+<button id="printBtn" type="button">⌑ Print / PDF</button>
+</div>
+<div class="results-section"><h3>Event diagnosis table</h3><p class="mobile-table-hint">Swipe the tables horizontally on mobile to view every column.</p><div class="table-scroll"><table class="data-table result-table"><thead><tr>
+<th>No.</th><th>Distance</th><th>Primary loss</th><th>Secondary loss</th><th>Reflectance</th><th>Detected type</th><th>Severity</th><th>Gap (m)</th><th>Reason</th><th>Recommended action</th>
+</tr></thead><tbody id="resultBody"></tbody></table></div></div>
+<h3 style="margin-top:18px">Priority diagnosis and actions</h3><div class="diagnosis-grid" id="diagnosisList"></div>
+</section>
+</main>
+<aside aria-label="Advertisement" class="ad-slot" data-ad-key="afterAnalyzer" hidden=""><div class="ad-label">ADVERTISEMENT</div><div class="ad-body"></div></aside>
+<section class="content-section" id="methodology"><p class="eyebrow">METHODOLOGY</p><h2>Methodology</h2><div class="method-grid">
+<article><h3>Non-reflective events</h3><p>Low-loss events are normally treated as splices. Higher loss increases severity according to editable thresholds.</p></article><article><h3>Reflective events</h3><p>Reflectance above the configured threshold indicates a connector, mechanical joint or strong reflective fault.</p></article><article><h3>Bend comparison</h3><p>A larger loss at the secondary wavelength can indicate macro- or micro-bending when the event is non-reflective.</p></article><article><h3>Dead-zone check</h3><p>Spacing from the previous event is compared with event and attenuation dead-zone defaults.</p></article>
+</div><div class="notice" style="margin-top:16px">Event classification is a rule-based engineering aid. Always review the original OTDR trace and test context.</div></section>
+<section class="content-section" id="faq"><p class="eyebrow">FAQ</p><h2>Frequently asked questions</h2><div class="faq-grid">
+<details><summary>Are OTDR event thresholds universal?</summary><p>No. Thresholds vary by operator, vendor, link type, wavelength, pulse width and acceptance rules. This tool keeps them editable.</p></details><details><summary>Why compare 1310 nm and 1550 nm?</summary><p>Bending loss often increases more at longer wavelengths. A wavelength difference can support bend diagnosis, but it is not a standalone conclusion.</p></details><details><summary>What is a ghost event?</summary><p>A ghost can appear at a multiple of the distance to a strong reflector and may show little real insertion loss. Change pulse width and range to verify it.</p></details><details><summary>Can this tool parse SOR files?</summary><p>Version 1.0 analyzes event-table data and CSV imports. Direct SOR parsing is reserved for a later version.</p></details><details><summary>Why can nearby events be unreliable?</summary><p>Events inside the event or attenuation dead zone can overlap, making reflectance or loss difficult to separate.</p></details><details><summary>Should results replace field judgment?</summary><p>No. Use the original trace, bidirectional tests, route records, power measurements and field inspection.</p></details>
+</div></section>
+<section class="content-section" id="history"><div class="history-head"><div><p class="eyebrow">PROJECT RECORDS</p><h2>History</h2></div><button class="text-button" id="clearHistoryBtn">Clear history</button></div><div class="history-list" id="historyList"></div></section>
+<section class="content-section" id="related"><p class="eyebrow">RELATED TOOLS</p><h2>Related engineering tools</h2><div class="related-grid">
+<a href="../fiber-loss/" lang="en" style="display:block"><strong>Fiber Loss Calculator</strong><p>Calculate distributed and passive optical losses.</p></a>
+<a href="../optical-power-budget/" lang="en" style="display:block"><strong>Optical Power Budget Calculator</strong><p>Verify transmit, receive and ODN budget.</p></a>
+<a href="../onu-rx-power/" lang="en" style="display:block"><strong>ONU RX Power Diagnosis</strong><p>Diagnose weak-light and overload conditions.</p></a>
+</div></section>
+<aside aria-label="Advertisement" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">ADVERTISEMENT</div><div class="ad-body"></div></aside>
+<footer><div><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div><nav aria-label="Footer navigation" class="footer-links"><a href="../../about/" style="display:inline">About</a><a href="../../contact/" style="display:inline">Contact</a><a href="../../privacy/" style="display:inline">Privacy</a><a href="../../terms/" style="display:inline">Terms</a></nav><p>© 2026 NetEngineerLab.com</p></footer>
+<script defer="" src="data/otdr-event-rules.js"></script><script defer="" src="js/engine.js"></script><script defer="" src="js/pwa.js"></script><script defer="" src="../../assets/js/tool-integration.js"></script><script defer="" src="js/app.js"></script>
+</body></html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr" data-nel-locale="en" data-nel-route="tools/mtu-calculator/"><head>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="./" name="app-base"/>
+<title>MTU &amp; MSS Calculator | NetEngineerLab</title><meta content="Professional MTU and TCP MSS calculator for PPPoE, VLAN, GRE, VXLAN, MPLS, IPsec and WireGuard encapsulation." name="description"/><meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
+<meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="MTU &amp; MSS Calculator | NetEngineerLab" property="og:title"/><meta content="Professional MTU and TCP MSS calculator for PPPoE, VLAN, GRE, VXLAN, MPLS, IPsec and WireGuard encapsulation." property="og:description"/><meta content="https://netengineerlab.com/tools/mtu-calculator/" property="og:url"/><meta content="https://netengineerlab.com/tools/mtu-calculator/images/og-mtu-mss-calculator.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
+<link href="images/icons/apple-touch-icon.png" rel="apple-touch-icon"/><link href="images/logo.svg" rel="icon" type="image/svg+xml"/><link href="css/style.css" rel="stylesheet"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"MTU & MSS Calculator","url":"https://netengineerlab.com/tools/mtu-calculator/","description":"Professional MTU and TCP MSS calculator for PPPoE, VLAN, GRE, VXLAN, MPLS, IPsec and WireGuard encapsulation.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Network Engineering Calculator","operatingSystem":"Any","softwareVersion":"1.0.0","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"MTU & MSS Calculator","item":"https://netengineerlab.com/tools/mtu-calculator/"}]}</script><meta content="NetEngineerLab" name="author"/>
+
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.7.3">
+<meta name="nel-locale" content="en">
+<meta name="nel-route" content="tools/mtu-calculator/">
+<meta name="nel-available-locales" content="en,zh">
+<link rel="canonical" href="https://netengineerlab.com/tools/mtu-calculator/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/mtu-calculator/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/mtu-calculator/zh/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/mtu-calculator/">
+<link rel="stylesheet" href="../../assets/css/locale-menu.css">
+<script defer src="../../data/locales.js"></script>
+<script defer src="../../data/site-config.js"></script>
+<script defer src="../../assets/js/analytics.js"></script>
+<script defer src="../../assets/js/adsense.js"></script>
+<script defer src="../../assets/js/site.js"></script>
+<link rel="manifest" href="manifest.webmanifest">
+</head><body>
+<a class="skip" href="#calculator">Skip to calculator</a><noscript><div class="noscript">JavaScript is required.</div></noscript>
+<header class="site-header"><a class="brand" href="../../"><img alt="NetEngineerLab" height="52" src="images/logo.svg" width="52"/><span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span></a>
+<nav aria-label="Primary navigation" class="nav"><a href="../../">Home</a><a href="../">Tools</a><a href="#methodology">Methodology</a><a href="#history">History</a></nav>
+<div class="actions"><!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END --><a class="cta" href="#calculator">Start calculating</a></div></header>
+<nav aria-label="Breadcrumb" class="breadcrumbs"><a href="../../">Home</a><span>›</span><a href="../">Tools</a><span>›</span><span>MTU &amp; MSS Calculator</span></nav>
+<section class="hero"><div class="hero-inner"><div><p class="eyebrow">NETWORK PACKET ENGINEERING TOOL</p><h1>MTU &amp; MSS Calculator</h1><p>Build an encapsulation stack, calculate effective inner MTU, TCP MSS, UDP payload and ping test size, then identify fragmentation and frame-size risks.</p></div><div class="hero-tags"><span>PPPoE</span><span>GRE / VXLAN</span><span>IPsec / WireGuard</span><span>MPLS</span></div></div></section>
+<main class="workspace" id="calculator">
+<section class="input-panel card">
+<div class="section-title"><span class="section-icon">MT</span><div><h2>Link and encapsulation parameters</h2><p>Select a preset, then edit every byte value when required.</p></div></div>
+<div class="notice">Encapsulation byte values are editable. Confirm IPsec, VPN and hardware frame behavior against the actual platform.</div>
+<div class="preset-row"><label for="preset">Scenario preset</label><select id="preset"><option value="plain">Standard Ethernet / no tunnel</option><option value="pppoe">PPPoE IPv4</option><option value="gre4">GRE over IPv4</option><option value="gre4key">GRE key over IPv4</option><option value="vxlan4">VXLAN over IPv4</option><option value="vxlan6">VXLAN over IPv6</option><option value="esp4natt">IPsec ESP NAT-T over IPv4</option><option value="wireguard4">WireGuard over IPv4</option><option value="wireguard6">WireGuard over IPv6</option><option value="mpls2">Two-label MPLS</option><option value="custom">Custom</option></select></div>
+<div class="form-grid">
+<div class="field full"><label for="projectName">Project name</label><div class="input-wrap no-unit"><input id="projectName" value="MTU and MSS Design"/></div></div>
+<div class="subheading">Underlay and target</div>
+<div class="field"><label for="underlayMtu">Base underlay MTU</label><div class="input-wrap"><input id="underlayMtu" min="0" step="1" type="number" value="1500"/><span>bytes</span></div></div>
+<div class="field"><label for="desiredInnerMtu">Target inner MTU</label><div class="input-wrap"><input id="desiredInnerMtu" min="0" step="1" type="number" value="1500"/><span>bytes</span></div></div>
+<div class="field"><label for="outerVlanTags">Outer VLAN tags</label><div class="input-wrap"><input id="outerVlanTags" max="4" min="0" step="1" type="number" value="0"/><span>tags</span></div></div>
+<div class="field"><label for="vlanMode">VLAN frame handling</label><div class="input-wrap no-unit"><select id="vlanMode"><option value="expand">Tagged frame expansion supported</option><option value="strict">Strict fixed-frame limit; deduct tags</option></select></div></div>
+<div class="subheading">Inner protocol headers</div>
+<div class="field"><label for="innerIp">Inner IP version</label><div class="input-wrap no-unit"><select id="innerIp"><option value="ipv4">IPv4</option><option value="ipv6">IPv6</option></select></div></div>
+<div class="field"><label for="ipExtraBytes">IP options / extension headers</label><div class="input-wrap"><input id="ipExtraBytes" min="0" step="1" type="number" value="0"/><span>bytes</span></div></div>
+<div class="field"><label for="tcpOptionsBytes">TCP options</label><div class="input-wrap"><input id="tcpOptionsBytes" min="0" step="1" type="number" value="0"/><span>bytes</span></div></div>
+</div>
+<div class="layer-editor"><div class="layer-head"><h3>Encapsulation stack</h3><button id="addLayerBtn" type="button">＋ Add custom layer</button></div><div class="table-scroll"><table class="layer-table"><thead><tr><th>Layer</th><th>Bytes</th><th>Count</th><th>Total</th><th></th></tr></thead><tbody id="layerBody"></tbody></table></div></div>
+<div class="input-actions"><button class="primary" id="calculateBtn" type="button">▣ Calculate MTU and MSS</button><button class="secondary" id="resetBtn" type="button">↻ Reset</button></div>
+</section>
+<section aria-live="polite" class="result-panel card">
+<div class="section-title"><span class="section-icon">MSS</span><div><h2>MTU, MSS and fragmentation result</h2><p>Effective inner packet size after all configured overhead.</p></div></div>
+<div class="summary-card healthy" id="summaryCard"><div><p>Effective inner MTU</p><strong><span id="effectiveMtu">1500</span><small>bytes</small></strong></div><span class="status-badge healthy" id="statusBadge">—</span></div>
+<div class="metric-grid">
+<article class="metric"><small>Total overhead</small><strong><span id="totalOverhead">0</span> B</strong></article>
+<article class="metric"><small>Recommended TCP MSS</small><strong><span id="recommendedMss">1460</span> B</strong></article>
+<article class="metric"><small>Actual TCP data with options</small><strong><span id="actualTcpPayload">1460</span> B</strong></article>
+<article class="metric"><small>Maximum UDP payload</small><strong><span id="udpPayload">1472</span> B</strong></article>
+</div>
+<div class="bar-card"><div class="bar-head"><span>Effective inner MTU</span><strong><span id="outerPacketLimit">1500</span> B outer limit</strong></div><div class="bar-track"><div class="bar-fill" id="mtuBar" style="width:100%"></div></div></div>
+<div class="bar-card"><div class="bar-head"><span>Overhead percentage</span><strong><span id="overheadPercent">0.00</span>%</strong></div><div class="bar-track"><div class="bar-fill overhead" id="overheadBar" style="width:0%"></div></div></div>
+<div class="stack-wrap"><h3>Encapsulation path</h3><div class="stack-diagram" id="stackDiagram"></div></div>
+<div class="result-grid">
+<article class="result-box"><span>ICMP echo data</span><strong><span id="icmpPayload">1472</span> B</strong></article>
+<article class="result-box"><span>Required base MTU</span><strong><span id="requiredUnderlay">1500</span> B</strong></article>
+<article class="result-box"><span>Target headroom</span><strong><span id="headroom">0</span> B</strong></article>
+<article class="result-box"><span>Excess / fragmentation bytes</span><strong><span id="fragmentationBytes">0</span> B</strong></article>
+<article class="result-box"><span>Current maximum wire frame</span><strong><span id="currentFrame">1518</span> B</strong></article>
+<article class="result-box"><span>Required wire frame</span><strong><span id="requiredFrame">1518</span> B</strong></article>
+<article class="result-box"><span>Configured IP header</span><strong><span id="ipHeader">20</span> B</strong></article>
+<article class="result-box"><span>Configured TCP header</span><strong><span id="tcpHeader">20</span> B</strong></article>
+</div>
+<div class="command-box"><h3>Ping / PMTU test commands</h3><div class="command-line"><b>Windows</b><code id="windowsPing"></code></div><div class="command-line"><b>Linux</b><code id="linuxPing"></code></div></div>
+<div class="breakdown"><h3>MTU breakdown</h3><table><tbody id="breakdownBody"></tbody></table></div>
+<div class="warning-box"><h3>Engineering assessment</h3><ul id="warningList"></ul></div>
+<div class="result-actions"><button id="copyBtn" type="button">▣ Copy result</button><button id="saveBtn" type="button">＋ Save record</button><button id="csvBtn" type="button">⇩ Export CSV</button><button id="printBtn" type="button">⌑ Print / PDF</button></div>
+</section>
+</main>
+<aside aria-label="Advertisement" class="ad-slot" data-ad-key="afterCalculator" hidden=""><div class="ad-label">ADVERTISEMENT</div><div class="ad-body"></div></aside>
+<section class="content-section" id="methodology"><p class="eyebrow">METHODOLOGY</p><h2>Methodology</h2><div class="method-grid"><article><h3>TCP MSS</h3><p>RFC 6691 recommends subtracting only the fixed IP and TCP headers when advertising MSS. The tool separately calculates actual data after configured options.</p></article><article><h3>PPPoE</h3><p>RFC 2516 uses 6 bytes for the PPPoE header and 2 bytes for the PPP protocol field, producing the familiar 1492-byte MTU on a 1500-byte Ethernet payload.</p></article><article><h3>VLAN and MPLS</h3><p>A VLAN tag is 4 bytes on the wire. Each MPLS label stack entry is 4 bytes. VLAN does not normally reduce configured IP MTU when tagged-frame expansion is supported.</p></article><article><h3>Tunnels and security</h3><p>GRE, VXLAN, IPsec and WireGuard overhead depends on outer IP version and optional fields. IPsec padding is variable, so its presets are editable estimates.</p></article></div>
+<div class="sources"><strong>Primary references:</strong>
+<a href="https://www.rfc-editor.org/rfc/rfc2516" rel="noopener">RFC 2516</a> ·
+<a href="https://www.rfc-editor.org/rfc/rfc6691" rel="noopener">RFC 6691</a> ·
+<a href="https://www.rfc-editor.org/rfc/rfc2784" rel="noopener">RFC 2784</a> ·
+<a href="https://www.rfc-editor.org/rfc/rfc2890" rel="noopener">RFC 2890</a> ·
+<a href="https://www.rfc-editor.org/rfc/rfc7348" rel="noopener">RFC 7348</a> ·
+<a href="https://www.rfc-editor.org/rfc/rfc3032" rel="noopener">RFC 3032</a> ·
+<a href="https://www.rfc-editor.org/rfc/rfc4303" rel="noopener">RFC 4303</a> ·
+<a href="https://www.rfc-editor.org/rfc/rfc8200" rel="noopener">RFC 8200</a> ·
+<a href="https://www.rfc-editor.org/rfc/rfc8201" rel="noopener">RFC 8201</a> ·
+<a href="https://www.wireguard.com/protocol/" rel="noopener">WireGuard Protocol</a>
+</div></section>
+<section class="content-section" id="faq"><p class="eyebrow">FAQ</p><h2>Frequently asked questions</h2><div class="faq-grid"><details><summary>Why is PPPoE MTU usually 1492?</summary><p>A 1500-byte Ethernet payload minus 8 bytes of PPPoE and PPP protocol overhead leaves 1492 bytes.</p></details><details><summary>Should VLAN always reduce IP MTU by 4 bytes?</summary><p>No. Most capable Ethernet devices support the slightly larger tagged frame while keeping IP MTU at 1500. Use strict mode only when the physical frame limit does not expand.</p></details><details><summary>Why are IPsec values estimates?</summary><p>ESP overhead depends on outer IP, NAT-T, IV, integrity tag and variable padding. Verify the actual cipher suite and vendor implementation.</p></details><details><summary>What is the correct TCP MSS for IPv6 MTU 1500?</summary><p>With fixed headers only, 1500 - 40-byte IPv6 header - 20-byte TCP header = 1440 bytes.</p></details><details><summary>Can ping prove the complete path MTU?</summary><p>It is useful but not conclusive. ICMP filtering, ECMP, tunnels and asymmetric routing can affect the result. Combine it with PMTUD, captures and device counters.</p></details><details><summary>What does IPv6 MTU below 1280 mean?</summary><p>IPv6 defines 1280 bytes as the minimum link MTU. Designs below that require lower-layer fragmentation/reassembly or adaptation and should be reviewed.</p></details></div></section>
+<section class="content-section" id="history"><div class="history-head"><div><p class="eyebrow">PROJECT RECORDS</p><h2>History</h2></div><button class="text-button" id="clearHistoryBtn">Clear history</button></div><div class="history-list" id="historyList"></div></section>
+<section class="content-section" id="related"><p class="eyebrow">RELATED TOOLS</p><h2>Related engineering tools</h2><div class="related-grid">
+<a href="../otdr-event/"><strong>OTDR Event Analyzer</strong><p>Diagnose optical events and maintenance priorities.</p></a><a href="../pon-distance/"><strong>PON Maximum Distance Calculator</strong><p>Calculate optical and system reach.</p></a><a href="../fiber-loss/"><strong>Fiber Loss Calculator</strong><p>Calculate detailed passive optical losses.</p></a>
+</div></section>
+<aside aria-label="Advertisement" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">ADVERTISEMENT</div><div class="ad-body"></div></aside>
+<footer><div><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div><nav aria-label="Footer navigation" class="footer-links"><a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a></nav><p>© 2026 NetEngineerLab.com</p></footer>
+<script defer="" src="data/mtu-overhead-library.js"></script><script defer="" src="js/engine.js"></script><script defer="" src="js/pwa.js"></script><script defer="" src="../../assets/js/tool-integration.js"></script><script defer="" src="js/app.js"></script>
+</body></html>

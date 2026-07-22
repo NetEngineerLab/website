@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="tools/otdr-event/"><head>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="../" name="app-base"/>
+<title>OTDR事件分析工具 | NetEngineerLab</title><meta content="专业OTDR事件分析工具，识别熔接点、连接器、弯曲、断纤、鬼影和盲区影响，并生成维护建议。" name="description"/><meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
+<meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="OTDR事件分析工具 | NetEngineerLab" property="og:title"/><meta content="专业OTDR事件分析工具，识别熔接点、连接器、弯曲、断纤、鬼影和盲区影响，并生成维护建议。" property="og:description"/><meta content="https://netengineerlab.com/tools/otdr-event/zh/" property="og:url"/><meta content="https://netengineerlab.com/tools/otdr-event/images/og-otdr-event-analyzer.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
+<link href="../images/icons/apple-touch-icon.png" rel="apple-touch-icon"/><link href="../images/logo.svg" rel="icon" type="image/svg+xml"/><link href="../css/style.css" rel="stylesheet"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"OTDR事件分析工具","url":"https://netengineerlab.com/tools/otdr-event/zh/","description":"专业OTDR事件分析工具，识别熔接点、连接器、弯曲、断纤、鬼影和盲区影响，并生成维护建议。","applicationCategory":"UtilitiesApplication","applicationSubCategory":"OTDR Analysis Tool","operatingSystem":"Any","softwareVersion":"1.0.1","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
+<script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"工具中心","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"OTDR事件分析工具","item":"https://netengineerlab.com/tools/otdr-event/zh/"}]}</script><meta content="NetEngineerLab" name="author"/>
+
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.7.3">
+<meta name="nel-locale" content="zh">
+<meta name="nel-route" content="tools/otdr-event/">
+<meta name="nel-available-locales" content="en,zh">
+<link rel="canonical" href="https://netengineerlab.com/tools/otdr-event/zh/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/otdr-event/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/otdr-event/zh/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/otdr-event/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css">
+<script defer src="../../../data/locales.js"></script>
+<script defer src="../../../data/site-config.js"></script>
+<script defer src="../../../assets/js/analytics.js"></script>
+<script defer src="../../../assets/js/adsense.js"></script>
+<script defer src="../../../assets/js/site.js"></script>
+<link rel="manifest" href="../manifest-zh.webmanifest">
+</head><body>
+<a class="skip" href="#analyzer">跳到分析工具</a><noscript><div class="noscript">本工具需要启用JavaScript。</div></noscript>
+<header class="site-header"><a class="brand" href="../../../zh/"><img alt="NetEngineerLab" height="52" src="../images/logo.svg" width="52"/><span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span></a>
+<nav aria-label="主导航" class="nav"><a href="../../../zh/">首页</a><a href="../../zh/">工具中心</a><a href="#methodology">判断方法</a><a href="#history">历史记录</a></nav>
+<div class="actions"><!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../" lang="en" hreflang="en"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="./" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END --><a class="cta" href="#analyzer">开始分析</a></div></header>
+<nav aria-label="面包屑" class="breadcrumbs"><a href="../../../zh/">首页</a><span>›</span><a href="../../zh/">工具中心</a><span>›</span><span>OTDR事件分析工具</span></nav>
+<section class="hero"><div class="hero-inner"><div><p class="eyebrow">OTDR MAINTENANCE TOOL</p><h1>OTDR事件分析工具</h1><p>录入或导入多条OTDR事件，对比双波长损耗，自动识别事件类型并生成维护优先级。V1.0聚焦事件表诊断，暂不直接解析SOR文件。</p></div><div class="hero-tags"><span>多事件</span><span>双波长</span><span>盲区判断</span><span>CSV导入</span></div></div></section>
+<main class="workspace" id="analyzer">
+<section class="config-panel card">
+<div class="section-title"><span class="section-icon">☷</span><div><h2>测试参数与判断阈值</h2><p>所有阈值均为可编辑工程默认值。</p></div></div>
+<div class="notice">以下阈值属于可编辑工程默认值，不是所有运营商、厂家和验收场景的统一判定标准。</div>
+<div class="form-grid">
+<div class="field full"><label for="projectName">工程/光缆名称</label><div class="input-wrap no-unit"><input class="config-input" id="projectName" value="OTDR Link Event Analysis"/></div></div>
+<div class="subheading">OTDR测试参数</div>
+<div class="field"><label for="primaryWavelength">主测试波长</label><div class="input-wrap no-unit"><select id="primaryWavelength"><option selected="" value="1310">1310</option><option value="1490">1490</option><option value="1550">1550</option><option value="1625">1625</option></select></div></div>
+<div class="field"><label for="secondaryWavelength">第二测试波长</label><div class="input-wrap no-unit"><select id="secondaryWavelength"><option value="1310">1310</option><option value="1490">1490</option><option selected="" value="1550">1550</option><option value="1625">1625</option></select></div></div>
+<div class="field"><label for="linkLength">链路设定长度</label><div class="input-wrap"><input class="config-input" id="linkLength" min="0" step="0.001" type="number" value="10"/><span>km</span></div></div>
+<div class="field"><label for="pulseWidth">脉冲宽度</label><div class="input-wrap no-unit"><select class="config-input" id="pulseWidth"><option value="5">5</option><option value="10">10</option><option value="30">30</option><option value="50">50</option><option selected="" value="100">100</option><option value="300">300</option><option value="500">500</option><option value="1000">1000</option><option value="3000">3000</option><option value="10000">10000</option></select></div></div>
+<div class="field"><label for="ior">群折射率/IOR</label><div class="input-wrap no-unit"><input class="config-input" id="ior" min="1" step="0.000001" type="number" value="1.468"/></div></div>
+<div class="field"><label for="primaryAttenuation">主波长衰减系数</label><div class="input-wrap"><input class="config-input" id="primaryAttenuation" min="0" step="0.01" type="number" value="0.35"/><span>dB/km</span></div></div>
+<div class="field"><label for="secondaryAttenuation">第二波长衰减系数</label><div class="input-wrap"><input class="config-input" id="secondaryAttenuation" min="0" step="0.01" type="number" value="0.22"/><span>dB/km</span></div></div>
+<div class="subheading">事件判断阈值</div>
+<div class="field"><label for="normalSpliceLoss">正常熔接损耗</label><div class="input-wrap"><input class="config-input" id="normalSpliceLoss" min="0" step="0.01" type="number" value="0.20"/><span>dB</span></div></div>
+<div class="field"><label for="attentionLoss">关注损耗</label><div class="input-wrap"><input class="config-input" id="attentionLoss" min="0" step="0.01" type="number" value="0.50"/><span>dB</span></div></div>
+<div class="field"><label for="criticalLoss">严重损耗</label><div class="input-wrap"><input class="config-input" id="criticalLoss" min="0" step="0.01" type="number" value="1.00"/><span>dB</span></div></div>
+<div class="field"><label for="strongReflection">强反射门限</label><div class="input-wrap"><input class="config-input" id="strongReflection" step="1" type="number" value="-35"/><span>dB</span></div></div>
+<div class="field"><label for="veryStrongReflection">极强反射门限</label><div class="input-wrap"><input class="config-input" id="veryStrongReflection" step="1" type="number" value="-25"/><span>dB</span></div></div>
+<div class="field"><label for="bendDelta">弯曲双波长差值</label><div class="input-wrap"><input class="config-input" id="bendDelta" min="0" step="0.01" type="number" value="0.30"/><span>dB</span></div></div>
+<div class="field"><label for="endLoss">末端/断纤损耗</label><div class="input-wrap"><input class="config-input" id="endLoss" min="0" step="0.1" type="number" value="3.0"/><span>dB</span></div></div>
+<div class="field"><label for="eventDeadZone">事件盲区</label><div class="input-wrap"><input class="config-input" id="eventDeadZone" min="0" step="1" type="number" value="10"/><span>m</span></div></div>
+<div class="field"><label for="attenuationDeadZone">衰减盲区</label><div class="input-wrap"><input class="config-input" id="attenuationDeadZone" min="0" step="1" type="number" value="50"/><span>m</span></div></div>
+<div class="field"><label for="ghostTolerance">鬼影距离容差</label><div class="input-wrap"><input class="config-input" id="ghostTolerance" min="0" step="1" type="number" value="50"/><span>m</span></div></div>
+<div class="field"><label for="nearEndTolerance">末端位置容差</label><div class="input-wrap"><input class="config-input" id="nearEndTolerance" min="0" step="1" type="number" value="100"/><span>m</span></div></div>
+</div>
+<div class="config-actions"><button class="primary" id="sampleBtn" type="button">▣ 载入示例</button><button class="secondary" id="resetBtn" type="button">↻ 重置参数</button></div>
+</section>
+<section aria-live="polite" class="analysis-panel card">
+<div class="section-title"><span class="section-icon">OT</span><div><h2>事件分析结果</h2><p>汇总、拓扑、事件分类和维护建议。</p></div></div>
+<div class="summary-bar">
+<article class="overall-card"><small>总体状态</small><strong class="status-badge" id="overallStatus">—</strong></article>
+<article class="summary-card"><small>事件数量</small><strong id="eventCount">0</strong></article>
+<article class="summary-card"><small>异常事件</small><strong id="abnormalCount">0</strong></article>
+<article class="summary-card"><small>严重事件</small><strong id="criticalCount">0</strong></article>
+<article class="summary-card"><small>最大事件损耗</small><strong><span id="maxEventLoss">0</span> dB</strong></article>
+<article class="summary-card"><small>预计主波长总损耗</small><strong><span id="estimatedPrimaryLoss">0</span> dB</strong></article>
+<article class="summary-card"><small>预计第二波长总损耗</small><strong><span id="estimatedSecondaryLoss">0</span> dB</strong></article>
+<article class="summary-card"><small>反射事件</small><strong id="reflectiveCount">0</strong></article>
+<article class="summary-card"><small>盲区影响</small><strong id="deadZoneCount">0</strong></article>
+</div>
+<div class="topology-wrap"><h3>事件位置拓扑</h3><div class="topology" id="topology"></div></div>
+<div class="event-editor">
+<div class="editor-head"><h3>OTDR事件录入表</h3><div class="editor-buttons">
+<button id="addEventBtn" type="button">＋ 添加事件</button>
+<button id="importBtn" type="button">⇧ 导入CSV</button>
+<button id="templateBtn" type="button">⇩ CSV模板</button>
+<button id="clearEventsBtn" type="button">× 清空事件</button>
+<input accept=".csv,text/csv" hidden="" id="csvFile" type="file"/>
+</div></div>
+<p class="mobile-table-hint">手机端可左右滑动表格，查看全部字段。</p><div class="table-scroll"><table class="data-table"><thead><tr>
+<th>序号</th><th>距离(km)</th><th>主波长损耗(dB)</th><th>第二波长损耗(dB)</th><th>反射率(dB)</th><th>累计损耗(dB)</th><th>手工类型</th><th>备注/操作</th>
+</tr></thead><tbody id="eventInputBody"></tbody></table></div>
+</div>
+<div class="analysis-actions">
+<button class="primary" id="analyzeBtn" type="button">▣ 分析事件</button>
+<button id="copyBtn" type="button">▣ 复制结果</button>
+<button id="saveBtn" type="button">＋ 保存记录</button>
+<button id="exportBtn" type="button">⇩ 导出CSV</button>
+<button id="printBtn" type="button">⌑ 打印/PDF</button>
+</div>
+<div class="results-section"><h3>事件诊断明细</h3><p class="mobile-table-hint">手机端可左右滑动表格，查看全部字段。</p><div class="table-scroll"><table class="data-table result-table"><thead><tr>
+<th>序号</th><th>距离</th><th>主波长损耗</th><th>第二波长损耗</th><th>反射率</th><th>识别类型</th><th>严重度</th><th>事件间距(m)</th><th>判断依据</th><th>处理建议</th>
+</tr></thead><tbody id="resultBody"></tbody></table></div></div>
+<h3 style="margin-top:18px">重点诊断与处理建议</h3><div class="diagnosis-grid" id="diagnosisList"></div>
+</section>
+</main>
+<aside aria-label="广告" class="ad-slot" data-ad-key="afterAnalyzer" hidden=""><div class="ad-label">广告</div><div class="ad-body"></div></aside>
+<section class="content-section" id="methodology"><p class="eyebrow">METHODOLOGY</p><h2>判断方法</h2><div class="method-grid">
+<article><h3>非反射事件</h3><p>低损耗事件通常按熔接点判断，损耗升高时按可编辑阈值提高严重度。</p></article><article><h3>反射事件</h3><p>反射率高于设定门限时，可能是连接器、机械接头或强反射异常。</p></article><article><h3>弯曲对比</h3><p>非反射事件在第二波长损耗明显升高时，可提示宏弯或微弯。</p></article><article><h3>盲区检查</h3><p>将事件与前一事件间距同事件盲区和衰减盲区默认值进行比较。</p></article>
+</div><div class="notice" style="margin-top:16px">事件分类属于基于规则的工程辅助判断，必须结合原始OTDR波形和测试环境复核。</div></section>
+<section class="content-section" id="faq"><p class="eyebrow">FAQ</p><h2>常见问题</h2><div class="faq-grid">
+<details><summary>OTDR事件阈值是否是统一标准？</summary><p>不是。不同运营商、厂家、链路类型、波长、脉冲宽度和验收规则可能不同，因此本工具全部阈值可修改。</p></details><details><summary>为什么要比较1310 nm和1550 nm？</summary><p>弯曲损耗通常在较长波长下更明显，双波长差异有助于判断弯曲，但不能单独作为最终结论。</p></details><details><summary>什么是鬼影事件？</summary><p>鬼影可能出现在强反射事件距离的倍数位置，且真实插入损耗很小。可调整脉冲宽度和量程进行复核。</p></details><details><summary>本工具能直接解析SOR文件吗？</summary><p>V1.0分析事件表和CSV导入数据，SOR文件直接解析将在后续版本开发。</p></details><details><summary>为什么距离很近的事件可能不准确？</summary><p>处于事件盲区或衰减盲区内的事件可能相互叠加，反射和损耗难以完全分离。</p></details><details><summary>分析结果能否替代现场判断？</summary><p>不能。应结合原始波形、双向测试、路由资料、光功率测试和现场检查综合判断。</p></details>
+</div></section>
+<section class="content-section" id="history"><div class="history-head"><div><p class="eyebrow">PROJECT RECORDS</p><h2>历史记录</h2></div><button class="text-button" id="clearHistoryBtn">清空记录</button></div><div class="history-list" id="historyList"></div></section>
+<section class="content-section" id="related"><p class="eyebrow">RELATED TOOLS</p><h2>相关工程工具</h2><div class="related-grid">
+<a href="../../fiber-loss/zh/" style="display:block"><strong>光纤链路损耗计算器</strong><p>计算光纤和无源器件损耗。</p></a>
+<a href="../../optical-power-budget/zh/" style="display:block"><strong>光功率预算计算器</strong><p>验证发送、接收和ODN预算。</p></a>
+<a href="../../onu-rx-power/zh/" style="display:block"><strong>ONU接收光功率诊断</strong><p>诊断弱光和过载状态。</p></a>
+</div></section>
+<aside aria-label="广告" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">广告</div><div class="ad-body"></div></aside>
+<footer><div><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div><nav aria-label="页脚导航" class="footer-links"><a href="../../../zh/about/" style="display:inline">关于</a><a href="../../../zh/contact/" style="display:inline">联系</a><a href="../../../zh/privacy/" style="display:inline">隐私政策</a><a href="../../../zh/terms/" style="display:inline">使用条款</a></nav><p>© 2026 NetEngineerLab.com</p></footer>
+<script defer="" src="../data/otdr-event-rules.js"></script><script defer="" src="../js/engine.js"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../assets/js/tool-integration.js"></script><script defer="" src="../js/app.js"></script>
+</body></html>

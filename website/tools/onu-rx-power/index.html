@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr" data-nel-locale="en" data-nel-route="tools/onu-rx-power/"><head>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="./" name="app-base"/>
+<title>ONU RX Power Diagnosis Tool | NetEngineerLab</title>
+<meta content="Professional ONU receive power diagnosis for measured power, sensitivity, overload, weak-light warning, expected power, excess loss and PON fault analysis." name="description"/>
+<meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
+<meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="ONU RX Power Diagnosis Tool" property="og:title"/><meta content="Diagnose weak light, critical low power, overload and possible no-signal conditions, and compare measured power with a modeled optical link." property="og:description"/><meta content="https://netengineerlab.com/tools/onu-rx-power/" property="og:url"/><meta content="https://netengineerlab.com/tools/onu-rx-power/images/og-onu-rx-power.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
+<link href="images/icons/apple-touch-icon.png" rel="apple-touch-icon"/><link href="images/logo.svg" rel="icon" type="image/svg+xml"/><link href="css/style.css?v=1.0.2" rel="stylesheet"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"ONU RX Power Diagnosis Tool","alternateName":"ONU RX Power Diagnosis","url":"https://netengineerlab.com/tools/onu-rx-power/","applicationCategory":"UtilitiesApplication","applicationSubCategory":"PON Troubleshooting Tool","operatingSystem":"Any","softwareVersion":"1.0.2","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"ONU RX Power Diagnosis","item":"https://netengineerlab.com/tools/onu-rx-power/"}]}</script><meta content="NetEngineerLab" name="author"/>
+
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.7.3">
+<meta name="nel-locale" content="en">
+<meta name="nel-route" content="tools/onu-rx-power/">
+<meta name="nel-available-locales" content="en,zh">
+<link rel="canonical" href="https://netengineerlab.com/tools/onu-rx-power/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/onu-rx-power/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/onu-rx-power/zh/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/onu-rx-power/">
+<link rel="stylesheet" href="../../assets/css/locale-menu.css">
+<script defer src="../../data/locales.js"></script>
+<script defer src="../../data/site-config.js"></script>
+<script defer src="../../assets/js/analytics.js"></script>
+<script defer src="../../assets/js/adsense.js"></script>
+<script defer src="../../assets/js/site.js"></script>
+<link rel="manifest" href="manifest.webmanifest">
+</head><body>
+<a class="skip-link" href="#calculator">Skip to diagnosis</a><noscript><div class="noscript">JavaScript is required.</div></noscript>
+<header class="site-header"><a class="brand" href="../../"><img alt="NetEngineerLab" height="54" src="images/logo.svg" width="54"/><span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span></a><nav aria-label="Primary navigation" class="top-nav"><a href="../../">Home</a><a href="../">Tools</a><a href="#calculator">Diagnosis</a><a href="#methodology">Methodology</a><a href="#history">History</a></nav><div class="header-actions"><!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END --><a class="start-btn" href="#calculator">Start diagnosis</a></div></header>
+<nav aria-label="Breadcrumb" class="breadcrumbs"><a href="../../">Home</a><span>›</span><a href="../">Tools</a><span>›</span><span aria-current="page">ONU RX Power Diagnosis</span></nav>
+<section class="hero"><div class="hero-inner"><div><p class="eyebrow">PON MAINTENANCE TOOL</p><h1>ONU RX Power Diagnosis Tool</h1><p class="hero-copy">Use measured ONU receive power, receiver sensitivity and overload limits to diagnose normal, weak-light, critical low-power, overload or possible no-signal conditions. Link-model mode also compares expected and measured power to estimate excess loss.</p></div><div class="hero-tags"><span>Weak-light diagnosis</span><span>Overload detection</span><span>Excess loss</span><span>Maintenance guidance</span></div></div></section>
+<main class="tool-shell" id="calculator">
+<section class="input-panel card">
+<div class="section-title"><span class="section-icon">☷</span><div><h2>Measured and equipment parameters</h2><p id="modeHint">Build a link model and compare expected versus measured receive power.</p></div></div>
+<div aria-label="Diagnosis mode" class="mode-tabs" role="tablist"><button aria-selected="false" class="mode-tab" data-mode="measured" role="tab">Quick diagnosis</button><button aria-selected="true" class="mode-tab active" data-mode="model" role="tab">Link-model diagnosis</button></div>
+<div class="preset-row"><label for="preset">Reference preset</label><select id="preset"><option value="custom">Custom</option><option selected="" value="gpon-b">GPON B+ reference (editable)</option><option value="gpon-c">GPON C+ reference (editable)</option><option value="epon">EPON reference (editable)</option><option value="customWeak">Weak-light example</option></select></div>
+<div class="form-grid">
+<div class="field full"><label for="projectName">Project / ONU name</label><div class="input-wrap no-unit"><input id="projectName" value="ONU Optical Power Check"/></div></div>
+<div class="subheading">Measured power and receiver window</div>
+<div class="field"><label for="measuredRx">Measured ONU receive power</label><div class="input-wrap"><input id="measuredRx" step="0.1" type="number" value="-18"/><span>dBm</span></div></div>
+<div class="field"><label for="rxSensitivity">Receiver sensitivity</label><div class="input-wrap"><input id="rxSensitivity" step="0.1" type="number" value="-27"/><span>dBm</span></div></div>
+<div class="field"><label for="rxOverload">Receiver overload threshold</label><div class="input-wrap"><input id="rxOverload" step="0.1" type="number" value="-8"/><span>dBm</span></div></div>
+<div class="field"><label for="warningMargin">Weak-light warning margin</label><div class="input-wrap"><input id="warningMargin" min="0" step="0.1" type="number" value="3"/><span>dB</span></div></div>
+<div class="field"><label for="noSignalThreshold">Possible no-signal threshold</label><div class="input-wrap"><input id="noSignalThreshold" step="0.1" type="number" value="-40"/><span>dBm</span></div></div>
+<div class="optional-card" id="modelFields">
+<p>The following parameters build the theoretical link model. Presets are editable references; final analysis should use actual equipment and field data.</p>
+<div class="optional-grid">
+<div class="field"><label for="txPower">Minimum OLT transmit power</label><div class="input-wrap"><input id="txPower" step="0.1" type="number" value="1.5"/><span>dBm</span></div></div>
+<div class="field"><label for="distance">Fiber distance</label><div class="input-wrap"><input id="distance" min="0" step="0.1" type="number" value="10"/><span>km</span></div></div>
+<div class="field"><label for="wavelength">Wavelength</label><div class="input-wrap no-unit"><select id="wavelength"><option value="1310">1310 nm</option><option selected="" value="1490">1490 nm</option><option value="1550">1550 nm</option><option value="custom">Custom</option></select></div></div>
+<div class="field"><label for="attenuation">Attenuation</label><div class="input-wrap"><input id="attenuation" min="0" step="0.01" type="number" value="0.30"/><span>dB/km</span></div></div>
+<div class="field"><label for="spliceCount">Number of splices</label><div class="input-wrap"><input id="spliceCount" min="0" step="1" type="number" value="6"/><span>pcs</span></div></div>
+<div class="field"><label for="spliceLoss">Loss per splice</label><div class="input-wrap"><input id="spliceLoss" min="0" step="0.01" type="number" value="0.10"/><span>dB</span></div></div>
+<div class="field"><label for="connectorCount">Number of connectors</label><div class="input-wrap"><input id="connectorCount" min="0" step="1" type="number" value="4"/><span>pcs</span></div></div>
+<div class="field"><label for="connectorLoss">Loss per connector</label><div class="input-wrap"><input id="connectorLoss" min="0" step="0.01" type="number" value="0.30"/><span>dB</span></div></div>
+<div class="field"><label for="splitter1">Primary splitter</label><div class="input-wrap no-unit"><select id="splitter1"><option value="0">None</option><option value="3.7">1:2 (3.7 dB)</option><option value="7.2">1:4 (7.2 dB)</option><option selected="" value="10.5">1:8 (10.5 dB)</option><option value="13.8">1:16 (13.8 dB)</option><option value="17">1:32 (17.0 dB)</option><option value="20.5">1:64 (20.5 dB)</option></select></div></div>
+<div class="field"><label for="splitter2">Secondary splitter</label><div class="input-wrap no-unit"><select id="splitter2"><option value="0">None</option><option value="3.7">1:2 (3.7 dB)</option><option value="7.2">1:4 (7.2 dB)</option><option selected="" value="10.5">1:8 (10.5 dB)</option><option value="13.8">1:16 (13.8 dB)</option></select></div></div>
+<div class="field"><label for="otherLoss">Other passive loss</label><div class="input-wrap"><input id="otherLoss" min="0" step="0.01" type="number" value="0"/><span>dB</span></div></div>
+</div></div>
+</div>
+<div class="input-actions"><button class="primary-action" id="calculateBtn">▣ Run optical diagnosis</button><button class="secondary-action" id="resetBtn">↻ Reset parameters</button></div><p class="validation" id="validation" role="alert"></p>
+</section>
+<section aria-live="polite" class="result-panel card">
+<div class="section-title"><span class="section-icon">▥</span><div><h2>Diagnosis result</h2><p>Checks sensitivity limit, overload limit and measured deviation.</p></div></div>
+<div class="summary-card healthy" id="summaryCard"><div><p>Measured receive power</p><strong><span id="measuredResult">0.00</span><small>dBm</small></strong></div><div class="health-badge" id="healthBadge">✓ Normal</div></div>
+<div class="metric-grid">
+<article class="metric-card"><span class="metric-icon">↓</span><div><small>Sensitivity margin</small><strong><span id="sensitivityMargin">0.00</span> dB</strong></div></article>
+<article class="metric-card"><span class="metric-icon">↑</span><div><small>Overload safety margin</small><strong><span id="overloadMargin">0.00</span> dB</strong></div></article>
+<article class="metric-card"><span class="metric-icon">↕</span><div><small>Receiver window</small><strong><span id="receiverWindow">0.00</span> dB</strong></div></article>
+<article class="metric-card"><span class="metric-icon">PON</span><div><small>Total split ratio</small><strong id="splitRatio">1:16</strong></div></article>
+</div>
+<div class="gauge"><div class="gauge-head"><span>Receive power position</span><strong id="gaugePower">-18.00 dBm</strong></div><div class="gauge-track"><div class="gauge-marker" id="gaugeMarker"></div></div><div class="gauge-labels"><span>Possible no signal</span><span>Critical weak light</span><span>Normal range</span><span>Overload</span></div></div>
+<div id="modelResults">
+<div class="result-grid">
+<article class="result-box"><span>Expected receive power</span><strong><span id="expectedRx">0.00</span> dBm</strong></article>
+<article class="result-box"><span>Measured versus expected deviation</span><strong><span id="deviation">0.00</span> dB</strong></article>
+<article class="result-box"><span>Inferred excess loss</span><strong><span id="inferredExtra">0.00</span> dB</strong></article>
+<article class="result-box"><span>Modeled physical loss</span><strong><span id="modeledLoss">0.00</span> dB</strong></article>
+</div>
+<div class="comparison"><h3>Modeled loss breakdown</h3>
+<div class="comparison-row"><span>Fiber loss</span><span><b id="fiberLoss">0.00</b> dB</span></div>
+<div class="comparison-row"><span>Splice loss</span><span><b id="spliceTotal">0.00</b> dB</span></div>
+<div class="comparison-row"><span>Connector loss</span><span><b id="connectorTotal">0.00</b> dB</span></div>
+<div class="comparison-row"><span>Splitter loss</span><span><b id="splitterLoss">0.00</b> dB</span></div>
+</div>
+</div>
+<div class="diagnosis healthy" id="diagnosis"><strong>Engineering conclusion</strong><p id="diagnosisText">—</p><ul class="cause-list" id="causeList"></ul></div>
+<div class="result-actions"><button id="copyBtn">▣ Copy result</button><button id="saveBtn">＋ Save record</button><button id="csvBtn">↧ Export CSV</button><button id="printBtn">⌑ Print / PDF</button></div>
+</section>
+</main>
+<aside aria-label="ADVERTISEMENT" class="ad-slot" data-ad-key="afterCalculator" hidden=""><div class="ad-label">ADVERTISEMENT</div><div class="ad-body"></div></aside>
+<section class="content-section" id="methodology"><div class="section-heading"><div><p class="eyebrow">METHODOLOGY</p><h2>Methodology and engineering notes</h2></div></div>
+<div class="method-grid">
+<article><h3>Sensitivity margin</h3><p>Measured receive power minus receiver sensitivity. Smaller margin makes the link more vulnerable to contamination, bending, ageing and temperature variation.</p></article>
+<article><h3>Overload safety margin</h3><p>Receiver overload threshold minus measured receive power. A negative result indicates excessive receive power.</p></article>
+<article><h3>Expected receive power</h3><p>Minimum OLT transmit power minus modeled physical loss. It is compared with the measured value and does not deduct a design reserve as physical loss.</p></article>
+<article><h3>Inferred excess loss</h3><p>When measured power is below the modeled value, the difference estimates unaccounted or abnormal loss.</p></article>
+</div>
+<div class="note"><strong>Important:</strong> Receiver sensitivity, overload threshold and transmit power must come from the actual equipment specification. This tool supports planning, verification and troubleshooting; it does not replace power-meter or OTDR testing and formal acceptance.</div>
+</section>
+<section class="content-section" id="faq"><div class="section-heading"><div><p class="eyebrow">FAQ</p><h2>Frequently asked questions</h2></div></div><div class="faq-grid">
+<details><summary>What ONU receive power is considered normal?</summary><p>There is no universal fixed value. Use the sensitivity and overload limits of the specific ONU or optical module and retain suitable engineering margin.</p></details>
+<details><summary>Should a link close to sensitivity be maintained even when service works?</summary><p>Yes. Treat it as a weak-light risk because minor contamination, bending or temperature variation may push the link below the receiver threshold.</p></details>
+<details><summary>What does a large difference between measured and expected power indicate?</summary><p>Possible causes include unmodeled connector loss, dirty interfaces, patch-cord bending, poor splices, splitter faults or increased route attenuation.</p></details>
+<details><summary>What problems can excessive receive power cause?</summary><p>It may saturate the receiver and cause errors, registration problems or unstable service. Verify optical class compatibility and whether attenuation is required.</p></details>
+<details><summary>Does possible no signal always mean a fiber break?</summary><p>No. It may also result from a disconnected patch cord, incorrect port mapping, an inactive OLT laser, splitter failure or severe bending.</p></details>
+<details><summary>Why are all preset values editable?</summary><p>Vendors, optical classes and network designs differ. Presets are demonstrations only; production diagnosis must use real equipment and field data.</p></details>
+</div></section>
+<section class="content-section" id="history"><div class="section-heading"><div><p class="eyebrow">PROJECT RECORDS</p><h2>Recent diagnosis records</h2></div><button class="text-button" id="clearHistoryBtn">Clear history</button></div><div class="history-list" id="historyList"></div></section>
+<section class="content-section" id="related"><div class="section-heading"><div><p class="eyebrow">RELATED TOOLS</p><h2>Related engineering tools</h2></div></div><div class="related-grid">
+<a class="related-card" href="../fiber-loss/"><strong>Fiber Loss Calculator</strong><p>Calculate complete link loss from fiber, splices, connectors and splitters.</p></a>
+<a class="related-card" href="../optical-power-budget/"><strong>Optical Power Budget Calculator</strong><p>Verify the complete optical budget from transmit power and receiver limits.</p></a>
+<a class="related-card" href="../pon-splitter-loss/"><strong>PON Splitter Loss Calculator</strong><p>Plan multi-stage splitter cascades and check total ratio and budget margin.</p></a>
+</div></section>
+<aside aria-label="ADVERTISEMENT" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">ADVERTISEMENT</div><div class="ad-body"></div></aside>
+<footer><div><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div><nav aria-label="Footer navigation" class="footer-links"><a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a></nav><p>© 2026 NetEngineerLab.com</p></footer>
+<script defer="" src="js/pwa.js?v=1.0.2"></script><script defer="" src="js/app.js?v=1.0.2"></script>
+<script defer="" src="../../data/optical-standards.js"></script><script defer="" src="../../assets/js/tool-integration.js"></script></body></html>

@@ -1,0 +1,1 @@
+if('serviceWorker'in navigator&&location.protocol!=='file:')addEventListener('load',()=>navigator.serviceWorker.register((document.querySelector('meta[name="app-base"]')?.content||'./')+'sw.js').catch(()=>{}),{once:true});

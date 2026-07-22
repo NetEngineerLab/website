@@ -1,0 +1,430 @@
+{
+  "version": "1.4.1",
+  "tool_count": 9,
+  "old_en_directories": [],
+  "link_errors": [],
+  "anchor_errors": [],
+  "javascript": {
+    "assets/js/site.js": "PASS",
+    "assets/js/tool-integration.js": "PASS",
+    "data/bandwidth-units.js": "PASS",
+    "data/ip-reference.js": "PASS",
+    "data/locales.js": "PASS",
+    "data/mtu-overhead-library.js": "PASS",
+    "data/optical-standards.js": "PASS",
+    "data/otdr-event-rules.js": "PASS",
+    "data/tools-catalog.js": "PASS",
+    "tools/bandwidth-calculator/data/bandwidth-units.js": "PASS",
+    "tools/bandwidth-calculator/docs/engine-test.js": "PASS",
+    "tools/bandwidth-calculator/js/adsense.js": "PASS",
+    "tools/bandwidth-calculator/js/analytics.js": "PASS",
+    "tools/bandwidth-calculator/js/app.js": "PASS",
+    "tools/bandwidth-calculator/js/engine.js": "PASS",
+    "tools/bandwidth-calculator/js/pwa.js": "PASS",
+    "tools/bandwidth-calculator/js/site-config.js": "PASS",
+    "tools/bandwidth-calculator/sw.js": "PASS",
+    "tools/fiber-loss/js/adsense.js": "PASS",
+    "tools/fiber-loss/js/analytics.js": "PASS",
+    "tools/fiber-loss/js/app.js": "PASS",
+    "tools/fiber-loss/js/pwa.js": "PASS",
+    "tools/fiber-loss/js/site-config.js": "PASS",
+    "tools/fiber-loss/sw.js": "PASS",
+    "tools/mtu-calculator/data/mtu-overhead-library.js": "PASS",
+    "tools/mtu-calculator/docs/engine-test.js": "PASS",
+    "tools/mtu-calculator/js/adsense.js": "PASS",
+    "tools/mtu-calculator/js/analytics.js": "PASS",
+    "tools/mtu-calculator/js/app.js": "PASS",
+    "tools/mtu-calculator/js/engine.js": "PASS",
+    "tools/mtu-calculator/js/pwa.js": "PASS",
+    "tools/mtu-calculator/js/site-config.js": "PASS",
+    "tools/mtu-calculator/sw.js": "PASS",
+    "tools/onu-rx-power/js/adsense.js": "PASS",
+    "tools/onu-rx-power/js/analytics.js": "PASS",
+    "tools/onu-rx-power/js/app.js": "PASS",
+    "tools/onu-rx-power/js/pwa.js": "PASS",
+    "tools/onu-rx-power/js/site-config.js": "PASS",
+    "tools/onu-rx-power/sw.js": "PASS",
+    "tools/optical-power-budget/js/adsense.js": "PASS",
+    "tools/optical-power-budget/js/analytics.js": "PASS",
+    "tools/optical-power-budget/js/app.js": "PASS",
+    "tools/optical-power-budget/js/pwa.js": "PASS",
+    "tools/optical-power-budget/js/site-config.js": "PASS",
+    "tools/optical-power-budget/sw.js": "PASS",
+    "tools/otdr-event/data/otdr-event-rules.js": "PASS",
+    "tools/otdr-event/docs/engine-test.js": "PASS",
+    "tools/otdr-event/js/adsense.js": "PASS",
+    "tools/otdr-event/js/analytics.js": "PASS",
+    "tools/otdr-event/js/app.js": "PASS",
+    "tools/otdr-event/js/engine.js": "PASS",
+    "tools/otdr-event/js/pwa.js": "PASS",
+    "tools/otdr-event/js/site-config.js": "PASS",
+    "tools/otdr-event/sw.js": "PASS",
+    "tools/pon-distance/js/adsense.js": "PASS",
+    "tools/pon-distance/js/analytics.js": "PASS",
+    "tools/pon-distance/js/app.js": "PASS",
+    "tools/pon-distance/js/pwa.js": "PASS",
+    "tools/pon-distance/js/site-config.js": "PASS",
+    "tools/pon-distance/sw.js": "PASS",
+    "tools/pon-splitter-loss/js/adsense.js": "PASS",
+    "tools/pon-splitter-loss/js/analytics.js": "PASS",
+    "tools/pon-splitter-loss/js/app.js": "PASS",
+    "tools/pon-splitter-loss/js/pwa.js": "PASS",
+    "tools/pon-splitter-loss/js/site-config.js": "PASS",
+    "tools/pon-splitter-loss/sw.js": "PASS",
+    "tools/subnet-calculator/data/ip-reference.js": "PASS",
+    "tools/subnet-calculator/docs/engine-test.js": "PASS",
+    "tools/subnet-calculator/js/adsense.js": "PASS",
+    "tools/subnet-calculator/js/analytics.js": "PASS",
+    "tools/subnet-calculator/js/app.js": "PASS",
+    "tools/subnet-calculator/js/engine.js": "PASS",
+    "tools/subnet-calculator/js/pwa.js": "PASS",
+    "tools/subnet-calculator/js/site-config.js": "PASS",
+    "tools/subnet-calculator/sw.js": "PASS"
+  },
+  "engine_tests": {
+    "otdr": {
+      "status": "PASS",
+      "output": "{\n  \"types\": [\n    \"splice\",\n    \"bend\",\n    \"connector\",\n    \"splice\",\n    \"end\"\n  ],\n  \"summary\": {\n    \"eventCount\": 5,\n    \"abnormalCount\": 3,\n    \"criticalCount\": 2,\n    \"reflectiveCount\": 2,\n    \"deadZoneCount\": 0,\n    \"maxEventLossDb\": 4.5,\n    \"meanEventSpacingM\": 2462.5,\n    \"eventLossPrimaryDb\": 6.52,\n    \"eventLossSecondaryDb\": 7.35,\n    \"estimatedLinkLossPrimaryDb\": 10.02,\n    \"estimatedLinkLossSecondaryDb\": 9.55,\n    \"maximumCumulativeLossDb\": 6.52,\n    \"lastEventDistanceKm\": 10\n  }\n}"
+    },
+    "mtu": {
+      "status": "PASS",
+      "output": "{\n  \"status\": \"PASS\",\n  \"pppoe\": {\n    \"mtu\": 1492,\n    \"mss\": 1452\n  },\n  \"vxlan\": {\n    \"mtu\": 1450,\n    \"mss\": 1410\n  },\n  \"ipv6\": {\n    \"mss\": 1440\n  }\n}"
+    },
+    "subnet": {
+      "status": "PASS",
+      "output": "{\n  \"status\": \"PASS\",\n  \"ipv4\": \"10.0.0.0/30\",\n  \"vlsm\": [\n    \"10.10.0.0/23\",\n    \"10.10.2.0/24\",\n    \"10.10.3.0/26\"\n  ],\n  \"ipv6\": \"2001:db8:1234:5678::/64\"\n}"
+    },
+    "bandwidth": {
+      "status": "PASS",
+      "output": "{\n  \"status\": \"PASS\",\n  \"transferSeconds\": 80,\n  \"requiredMbps\": 185.18518518518516,\n  \"users\": 171,\n  \"volumeGB\": 38.475\n}"
+    }
+  },
+  "english_cjk": {
+    "404.html": 0,
+    "about.html": 0,
+    "contact.html": 0,
+    "index.html": 0,
+    "privacy.html": 0,
+    "terms.html": 0,
+    "tools/bandwidth-calculator/index.html": 0,
+    "tools/bandwidth-calculator/offline.html": 0,
+    "tools/fiber-loss/index.html": 0,
+    "tools/index.html": 0,
+    "tools/mtu-calculator/index.html": 0,
+    "tools/mtu-calculator/offline.html": 0,
+    "tools/onu-rx-power/index.html": 0,
+    "tools/optical-power-budget/index.html": 0,
+    "tools/otdr-event/index.html": 0,
+    "tools/otdr-event/offline.html": 0,
+    "tools/pon-distance/index.html": 0,
+    "tools/pon-splitter-loss/index.html": 0,
+    "tools/subnet-calculator/index.html": 0,
+    "tools/subnet-calculator/offline.html": 0
+  },
+  "chinese_page_count": 21,
+  "canonical_errors": [],
+  "hreflang_errors": [],
+  "dynamic_links": {
+    "/website/": [
+      {
+        "tool": "bandwidth-calculator",
+        "url": "tools/bandwidth-calculator/",
+        "exists": true
+      },
+      {
+        "tool": "fiber-loss",
+        "url": "tools/fiber-loss/",
+        "exists": true
+      },
+      {
+        "tool": "mtu-calculator",
+        "url": "tools/mtu-calculator/",
+        "exists": true
+      },
+      {
+        "tool": "onu-rx-power",
+        "url": "tools/onu-rx-power/",
+        "exists": true
+      },
+      {
+        "tool": "optical-power-budget",
+        "url": "tools/optical-power-budget/",
+        "exists": true
+      },
+      {
+        "tool": "otdr-event",
+        "url": "tools/otdr-event/",
+        "exists": true
+      },
+      {
+        "tool": "pon-distance",
+        "url": "tools/pon-distance/",
+        "exists": true
+      },
+      {
+        "tool": "pon-splitter-loss",
+        "url": "tools/pon-splitter-loss/",
+        "exists": true
+      },
+      {
+        "tool": "subnet-calculator",
+        "url": "tools/subnet-calculator/",
+        "exists": true
+      }
+    ],
+    "/website/zh/": [
+      {
+        "tool": "bandwidth-calculator",
+        "url": "../tools/bandwidth-calculator/zh/",
+        "exists": true
+      },
+      {
+        "tool": "fiber-loss",
+        "url": "../tools/fiber-loss/zh/",
+        "exists": true
+      },
+      {
+        "tool": "mtu-calculator",
+        "url": "../tools/mtu-calculator/zh/",
+        "exists": true
+      },
+      {
+        "tool": "onu-rx-power",
+        "url": "../tools/onu-rx-power/zh/",
+        "exists": true
+      },
+      {
+        "tool": "optical-power-budget",
+        "url": "../tools/optical-power-budget/zh/",
+        "exists": true
+      },
+      {
+        "tool": "otdr-event",
+        "url": "../tools/otdr-event/zh/",
+        "exists": true
+      },
+      {
+        "tool": "pon-distance",
+        "url": "../tools/pon-distance/zh/",
+        "exists": true
+      },
+      {
+        "tool": "pon-splitter-loss",
+        "url": "../tools/pon-splitter-loss/zh/",
+        "exists": true
+      },
+      {
+        "tool": "subnet-calculator",
+        "url": "../tools/subnet-calculator/zh/",
+        "exists": true
+      }
+    ],
+    "/website/tools/": [
+      {
+        "tool": "bandwidth-calculator",
+        "url": "bandwidth-calculator/",
+        "exists": true
+      },
+      {
+        "tool": "fiber-loss",
+        "url": "fiber-loss/",
+        "exists": true
+      },
+      {
+        "tool": "mtu-calculator",
+        "url": "mtu-calculator/",
+        "exists": true
+      },
+      {
+        "tool": "onu-rx-power",
+        "url": "onu-rx-power/",
+        "exists": true
+      },
+      {
+        "tool": "optical-power-budget",
+        "url": "optical-power-budget/",
+        "exists": true
+      },
+      {
+        "tool": "otdr-event",
+        "url": "otdr-event/",
+        "exists": true
+      },
+      {
+        "tool": "pon-distance",
+        "url": "pon-distance/",
+        "exists": true
+      },
+      {
+        "tool": "pon-splitter-loss",
+        "url": "pon-splitter-loss/",
+        "exists": true
+      },
+      {
+        "tool": "subnet-calculator",
+        "url": "subnet-calculator/",
+        "exists": true
+      }
+    ],
+    "/website/tools/zh/": [
+      {
+        "tool": "bandwidth-calculator",
+        "url": "../bandwidth-calculator/zh/",
+        "exists": true
+      },
+      {
+        "tool": "fiber-loss",
+        "url": "../fiber-loss/zh/",
+        "exists": true
+      },
+      {
+        "tool": "mtu-calculator",
+        "url": "../mtu-calculator/zh/",
+        "exists": true
+      },
+      {
+        "tool": "onu-rx-power",
+        "url": "../onu-rx-power/zh/",
+        "exists": true
+      },
+      {
+        "tool": "optical-power-budget",
+        "url": "../optical-power-budget/zh/",
+        "exists": true
+      },
+      {
+        "tool": "otdr-event",
+        "url": "../otdr-event/zh/",
+        "exists": true
+      },
+      {
+        "tool": "pon-distance",
+        "url": "../pon-distance/zh/",
+        "exists": true
+      },
+      {
+        "tool": "pon-splitter-loss",
+        "url": "../pon-splitter-loss/zh/",
+        "exists": true
+      },
+      {
+        "tool": "subnet-calculator",
+        "url": "../subnet-calculator/zh/",
+        "exists": true
+      }
+    ]
+  },
+  "sitemap": {
+    "count": 22,
+    "duplicates": [],
+    "contains_old_en": false,
+    "contains_zh": 11
+  },
+  "pwa": {
+    "bandwidth-calculator": {
+      "en_manifest": true,
+      "zh_manifest": true,
+      "en_page_manifest": true,
+      "zh_page_manifest": true,
+      "sw_zh_cache": true,
+      "sw_no_en_reference": true,
+      "sw_syntax": true
+    },
+    "fiber-loss": {
+      "en_manifest": true,
+      "zh_manifest": true,
+      "en_page_manifest": true,
+      "zh_page_manifest": true,
+      "sw_zh_cache": true,
+      "sw_no_en_reference": true,
+      "sw_syntax": true
+    },
+    "mtu-calculator": {
+      "en_manifest": true,
+      "zh_manifest": true,
+      "en_page_manifest": true,
+      "zh_page_manifest": true,
+      "sw_zh_cache": true,
+      "sw_no_en_reference": true,
+      "sw_syntax": true
+    },
+    "onu-rx-power": {
+      "en_manifest": true,
+      "zh_manifest": true,
+      "en_page_manifest": true,
+      "zh_page_manifest": true,
+      "sw_zh_cache": true,
+      "sw_no_en_reference": true,
+      "sw_syntax": true
+    },
+    "optical-power-budget": {
+      "en_manifest": true,
+      "zh_manifest": true,
+      "en_page_manifest": true,
+      "zh_page_manifest": true,
+      "sw_zh_cache": true,
+      "sw_no_en_reference": true,
+      "sw_syntax": true
+    },
+    "otdr-event": {
+      "en_manifest": true,
+      "zh_manifest": true,
+      "en_page_manifest": true,
+      "zh_page_manifest": true,
+      "sw_zh_cache": true,
+      "sw_no_en_reference": true,
+      "sw_syntax": true
+    },
+    "pon-distance": {
+      "en_manifest": true,
+      "zh_manifest": true,
+      "en_page_manifest": true,
+      "zh_page_manifest": true,
+      "sw_zh_cache": true,
+      "sw_no_en_reference": true,
+      "sw_syntax": true
+    },
+    "pon-splitter-loss": {
+      "en_manifest": true,
+      "zh_manifest": true,
+      "en_page_manifest": true,
+      "zh_page_manifest": true,
+      "sw_zh_cache": true,
+      "sw_no_en_reference": true,
+      "sw_syntax": true
+    },
+    "subnet-calculator": {
+      "en_manifest": true,
+      "zh_manifest": true,
+      "en_page_manifest": true,
+      "zh_page_manifest": true,
+      "sw_zh_cache": true,
+      "sw_no_en_reference": true,
+      "sw_syntax": true
+    }
+  },
+  "http": {
+    "fetched": 41,
+    "errors": []
+  },
+  "jp_readiness": {
+    "locales_file": true,
+    "site_js_jp": true,
+    "no_published_jp_hreflang": true
+  },
+  "checks": {
+    "old_en_removed": true,
+    "links": true,
+    "anchors": true,
+    "canonical": true,
+    "hreflang": true,
+    "js": true,
+    "engines": true,
+    "english_clean": true,
+    "dynamic": true,
+    "sitemap": true,
+    "pwa": true,
+    "http": true,
+    "jp_ready": true
+  }
+}

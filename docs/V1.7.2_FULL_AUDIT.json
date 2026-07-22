@@ -1,0 +1,86 @@
+{
+  "version": "1.7.2",
+  "status": "PASS",
+  "scope": "Wi-Fi top configuration display correction",
+  "checks": {
+    "top_alignment": true,
+    "twelve_column_grid": true,
+    "spatial_stream_extra_width": true,
+    "phy_hint_wrapping": true,
+    "tablet_layout": true,
+    "mobile_layout": true,
+    "narrow_mobile_layout": true,
+    "english_hint_shortened": true,
+    "chinese_hint_shortened": true,
+    "wifi_sw_1_7_2": true,
+    "launch_audit": true,
+    "multilingual_validation": true,
+    "engines": true,
+    "javascript": true
+  },
+  "javascript_files_checked": 111,
+  "javascript_errors": [],
+  "engine_tests": {
+    "OTDR": {
+      "status": "PASS",
+      "output": "{\n  \"types\": [\n    \"splice\",\n    \"bend\",\n    \"connector\",\n    \"splice\",\n    \"end\"\n  ],\n  \"summary\": {\n    \"eventCount\": 5,\n    \"abnormalCount\": 3,\n    \"criticalCount\": 2,\n    \"reflectiveCount\": 2,\n    \"deadZoneCount\": 0,\n    \"maxEventLossDb\": 4.5,\n    \"meanEventSpacingM\": 2462.5,\n    \"eventLossPrimaryDb\": 6.52,\n    \"eventLossSecondaryDb\": 7.35,\n    \"estimatedLinkLossPrimaryDb\": 10.02,\n    \"estimatedLinkLossSecondaryDb\": 9.55,\n    \"maximumCumulativeLossDb\": 6.52,\n    \"lastEventDistanceKm\": 10\n  }\n}"
+    },
+    "MTU_MSS": {
+      "status": "PASS",
+      "output": "{\n  \"status\": \"PASS\",\n  \"pppoe\": {\n    \"mtu\": 1492,\n    \"mss\": 1452\n  },\n  \"vxlan\": {\n    \"mtu\": 1450,\n    \"mss\": 1410\n  },\n  \"ipv6\": {\n    \"mss\": 1440\n  }\n}"
+    },
+    "IP_Subnet": {
+      "status": "PASS",
+      "output": "{\n  \"status\": \"PASS\",\n  \"ipv4\": \"10.0.0.0/30\",\n  \"vlsm\": [\n    \"10.10.0.0/23\",\n    \"10.10.2.0/24\",\n    \"10.10.3.0/26\"\n  ],\n  \"ipv6\": \"2001:db8:1234:5678::/64\"\n}"
+    },
+    "Bandwidth": {
+      "status": "PASS",
+      "output": "{\n  \"status\": \"PASS\",\n  \"transferSeconds\": 80,\n  \"requiredMbps\": 185.18518518518516,\n  \"users\": 171,\n  \"volumeGB\": 38.475\n}"
+    },
+    "Battery_48V": {
+      "status": "PASS",
+      "output": "48V battery engine tests: PASS"
+    },
+    "IPv6_NAT": {
+      "status": "PASS",
+      "output": "{\n  \"status\": \"PASS\",\n  \"ipv6\": \"2001:db8:1200::/48\",\n  \"childPrefixes\": \"65536\",\n  \"nat44RequiredIPv4\": 2,\n  \"cgnBlocksPerIPv4\": 59,\n  \"nat64Cases\": 6\n}"
+    },
+    "WiFi_Coverage_Capacity": {
+      "status": "PASS",
+      "output": "{\n  \"status\": \"PASS\",\n  \"coverageRadiusM\": 13.77,\n  \"coverageAps\": 20,\n  \"capacityAps\": 7,\n  \"finalAps\": 20,\n  \"reusableChannels\": 6\n}"
+    }
+  },
+  "launch_audit": {
+    "version": "1.7.2",
+    "htmlPages": 38,
+    "activeTools": 12,
+    "sitemapUrls": 36,
+    "errors": [],
+    "warnings": [],
+    "status": "PASS"
+  },
+  "multilingual_validation": {
+    "version": "1.7.2",
+    "activeLocales": [
+      "en",
+      "zh"
+    ],
+    "plannedLocales": [
+      "es",
+      "pt-BR",
+      "ja",
+      "de",
+      "ru",
+      "hi",
+      "bn",
+      "ur"
+    ],
+    "routeGroups": 19,
+    "localizedPages": 38,
+    "sitemapUrls": 36,
+    "errors": [],
+    "warnings": [],
+    "status": "PASS"
+  },
+  "browser_automation_performed": false
+}

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="tools/fiber-loss/">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#0b6ffb" name="theme-color"/>
+<title>光纤链路损耗计算器 | Fiber Loss Calculator | NetEngineerLab</title>
+<meta content="专业光纤链路损耗、光功率预算、PON链路裕量及故障诊断工具，支持分光器、熔接点、连接器、工程余量和接收光功率分析。" name="description"/>
+<link href="../images/logo.svg" rel="icon" type="image/svg+xml"/>
+<link href="../css/style.css" rel="stylesheet"/>
+<meta content="../" name="app-base"/>
+<meta content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" name="robots"/>
+<meta content="website" property="og:type"/>
+<meta content="NetEngineerLab" property="og:site_name"/>
+<meta content="光纤链路损耗计算器 | Fiber Loss Calculator" property="og:title"/>
+<meta content="专业光纤链路损耗、光功率预算、PON链路裕量及工程诊断工具。" property="og:description"/>
+<meta content="https://netengineerlab.com/tools/fiber-loss/zh/" property="og:url"/>
+<meta content="https://netengineerlab.com/tools/fiber-loss/images/og-fiber-loss.png" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="zh_CN" property="og:locale"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="光纤链路损耗计算器 | NetEngineerLab" name="twitter:title"/>
+<meta content="计算光纤、熔接点、连接器、分光器和工程余量，评估接收光功率及链路健康状态。" name="twitter:description"/>
+<meta content="https://netengineerlab.com/tools/fiber-loss/images/og-fiber-loss.png" name="twitter:image"/>
+<link href="../images/icons/apple-touch-icon.png" rel="apple-touch-icon"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://netengineerlab.com/tools/fiber-loss/#app","name":"光纤链路损耗计算器","alternateName":"Fiber Loss Calculator","url":"https://netengineerlab.com/tools/fiber-loss/zh/","description":"专业光纤链路损耗、光功率预算、PON链路裕量及故障诊断工具。","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Network Engineering Calculator","operatingSystem":"Any","browserRequirements":"Requires JavaScript and a modern web browser","softwareVersion":"2.1.0","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/fiber-loss/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"NetEngineerLab","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"Fiber Loss Calculator","item":"https://netengineerlab.com/tools/fiber-loss/zh/"}]}]}</script>
+<script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"工具中心","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"光纤链路损耗计算器","item":"https://netengineerlab.com/tools/fiber-loss/zh/"}]}</script><meta content="NetEngineerLab" name="author"/>
+
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.7.3">
+<meta name="nel-locale" content="zh">
+<meta name="nel-route" content="tools/fiber-loss/">
+<meta name="nel-available-locales" content="en,zh">
+<link rel="canonical" href="https://netengineerlab.com/tools/fiber-loss/zh/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/fiber-loss/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/fiber-loss/zh/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/fiber-loss/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css">
+<script defer src="../../../data/locales.js"></script>
+<script defer src="../../../data/site-config.js"></script>
+<script defer src="../../../assets/js/analytics.js"></script>
+<script defer src="../../../assets/js/adsense.js"></script>
+<script defer src="../../../assets/js/site.js"></script>
+<link rel="manifest" href="../manifest-zh.webmanifest">
+</head>
+<body>
+<a class="skip-link" href="#calculator">跳到计算器</a>
+<noscript><div class="noscript">本工具需要启用 JavaScript 才能完成计算。</div></noscript>
+<header class="site-header">
+<a aria-label="NetEngineerLab home" class="brand" href="../../../zh/">
+<img alt="NetEngineerLab" height="54" src="../images/logo.svg" width="54"/>
+<span>
+<strong>NetEngineerLab</strong>
+<small data-i18n="brandSubtitle">网络工程师智能工具平台</small>
+</span>
+</a>
+<nav aria-label="主导航" class="top-nav">
+<a data-i18n="navHome" href="../../../zh/">首页</a>
+<a data-i18n="navCalculator" href="#calculator">计算器</a>
+<a data-i18n="navMethodology" href="#methodology">计算方法</a>
+<a data-i18n="navHistory" href="#history">历史记录</a>
+</nav>
+<div class="header-actions">
+<!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../" lang="en" hreflang="en"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="./" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+<a class="start-btn" data-i18n="startCalc" href="#calculator">开始计算</a>
+</div>
+</header>
+<nav aria-label="面包屑导航" class="breadcrumbs">
+<a href="../../../zh/">首页</a><span aria-hidden="true">›</span>
+<a href="../../zh/">工具中心</a><span aria-hidden="true">›</span>
+<span aria-current="page">光纤链路损耗计算器</span>
+</nav>
+<section class="tool-hero">
+<div>
+<p class="eyebrow" data-i18n="eyebrow">OPTICAL ENGINEERING TOOL</p>
+<h1 data-i18n="heroTitle">光纤链路损耗计算器</h1>
+<p class="hero-copy" data-i18n="heroCopy">
+        计算光纤、熔接点、连接器、分光器及其他无源器件造成的链路损耗，
+        同时评估工程余量、接收光功率和链路健康状态。
+      </p>
+</div>
+<div class="hero-badges">
+<span data-i18n="badge1">实时计算</span>
+<span data-i18n="badge2">双语界面</span>
+<span data-i18n="badge3">工程诊断</span>
+<span data-i18n="badge4">结果导出</span>
+</div>
+</section>
+<main class="calculator-shell" id="calculator">
+<section class="input-panel card">
+<div class="section-title">
+<span class="section-icon">☷</span>
+<div>
+<h2 data-i18n="linkParams">链路参数</h2>
+<p data-i18n="linkParamsHint">输入实际工程参数，系统将自动计算链路损耗。</p>
+</div>
+</div>
+<div class="preset-row">
+<label data-i18n="scenarioPreset" for="preset">工程场景预设</label>
+<select id="preset">
+<option data-i18n="presetCustom" value="custom">自定义</option>
+<option value="gpon-b">GPON B+（常用预算 28 dB）</option>
+<option value="gpon-c">GPON C+（常用预算 32 dB）</option>
+<option value="epon">EPON（常用预算 30 dB）</option>
+<option data-i18n="presetDataCenter" value="datacenter">数据中心短距链路</option>
+</select>
+</div>
+<div class="form-grid">
+<div class="field">
+<label data-i18n="projectName" for="projectName">工程名称</label>
+<div class="input-wrap no-unit">
+<input id="projectName" type="text" value="FTTH Optical Link"/>
+</div>
+</div>
+<div class="field">
+<label data-i18n="distance" for="distance">传输距离</label>
+<div class="input-wrap">
+<input id="distance" min="0" step="0.1" type="number" value="20"/>
+<span>km</span>
+</div>
+</div>
+<div class="field">
+<label data-i18n="wavelength" for="wavelength">工作波长</label>
+<div class="input-wrap no-unit">
+<select id="wavelength">
+<option value="1310">1310 nm</option>
+<option value="1490">1490 nm</option>
+<option selected="" value="1550">1550 nm</option>
+<option data-i18n="customWavelength" value="custom">自定义衰减</option>
+</select>
+</div>
+</div>
+<div class="field">
+<label data-i18n="attenuation" for="attenuation">光纤衰减系数</label>
+<div class="input-wrap">
+<input id="attenuation" min="0" step="0.01" type="number" value="0.20"/>
+<span>dB/km</span>
+</div>
+</div>
+<div class="field">
+<label data-i18n="spliceCount" for="spliceCount">熔接点数量</label>
+<div class="input-wrap">
+<input id="spliceCount" min="0" step="1" type="number" value="6"/>
+<span data-i18n="pcs">个</span>
+</div>
+</div>
+<div class="field">
+<label data-i18n="spliceLoss" for="spliceLoss">单个熔接损耗</label>
+<div class="input-wrap">
+<input id="spliceLoss" min="0" step="0.01" type="number" value="0.10"/>
+<span>dB</span>
+</div>
+</div>
+<div class="field">
+<label data-i18n="connectorCount" for="connectorCount">连接器数量</label>
+<div class="input-wrap">
+<input id="connectorCount" min="0" step="1" type="number" value="4"/>
+<span data-i18n="pcs">个</span>
+</div>
+</div>
+<div class="field">
+<label data-i18n="connectorLoss" for="connectorLoss">单个连接器损耗</label>
+<div class="input-wrap">
+<input id="connectorLoss" min="0" step="0.01" type="number" value="0.30"/>
+<span>dB</span>
+</div>
+</div>
+<div class="field">
+<label data-i18n="splitter1" for="splitter1">一级分光器</label>
+<div class="input-wrap no-unit">
+<select id="splitter1">
+<option data-i18n="none" value="0">无</option>
+<option value="3.7">1:2（3.7 dB）</option>
+<option value="7.2">1:4（7.2 dB）</option>
+<option value="10.5">1:8（10.5 dB）</option>
+<option value="13.8">1:16（13.8 dB）</option>
+<option value="17">1:32（17.0 dB）</option>
+<option value="20.5">1:64（20.5 dB）</option>
+</select>
+</div>
+</div>
+<div class="field">
+<label data-i18n="splitter2" for="splitter2">二级分光器</label>
+<div class="input-wrap no-unit">
+<select id="splitter2">
+<option data-i18n="none" value="0">无</option>
+<option value="3.7">1:2（3.7 dB）</option>
+<option value="7.2">1:4（7.2 dB）</option>
+<option value="10.5">1:8（10.5 dB）</option>
+<option value="13.8">1:16（13.8 dB）</option>
+<option value="17">1:32（17.0 dB）</option>
+<option value="20.5">1:64（20.5 dB）</option>
+</select>
+</div>
+</div>
+<div class="field">
+<label data-i18n="otherLoss" for="otherLoss">其他无源损耗</label>
+<div class="input-wrap">
+<input id="otherLoss" min="0" step="0.01" type="number" value="0"/>
+<span>dB</span>
+</div>
+</div>
+<div class="field">
+<label data-i18n="engineeringMargin" for="engineeringMargin">工程余量</label>
+<div class="input-wrap">
+<input id="engineeringMargin" min="0" step="0.1" type="number" value="3"/>
+<span>dB</span>
+</div>
+</div>
+<div class="field">
+<label data-i18n="availableBudget" for="availableBudget">可用光功率预算</label>
+<div class="input-wrap">
+<input id="availableBudget" min="0" step="0.1" type="number" value="28"/>
+<span>dB</span>
+</div>
+</div>
+<div class="field">
+<label data-i18n="txPower" for="txPower">发送光功率</label>
+<div class="input-wrap">
+<input id="txPower" step="0.1" type="number" value="3"/>
+<span>dBm</span>
+</div>
+</div>
+<div class="field">
+<label data-i18n="rxThreshold" for="rxThreshold">接收灵敏度门限</label>
+<div class="input-wrap">
+<input id="rxThreshold" step="0.1" type="number" value="-27"/>
+<span>dBm</span>
+</div>
+</div>
+</div>
+<div class="input-actions">
+<button class="primary-action" id="calculateBtn" type="button">
+<span>▣</span>
+<span data-i18n="calculateLink">计算链路</span>
+</button>
+<button class="secondary-action" id="resetBtn" type="button">
+<span>↻</span>
+<span data-i18n="reset">重置</span>
+</button>
+</div>
+<p class="validation-message" id="validationMessage" role="alert"></p>
+</section>
+<section aria-live="polite" class="result-panel card">
+<div class="section-title">
+<span class="section-icon">▥</span>
+<div>
+<h2 data-i18n="calculationResult">计算结果</h2>
+<p data-i18n="resultHint">设计损耗包含工程余量；物理损耗不包含工程余量。</p>
+</div>
+</div>
+<div class="summary-card healthy" id="summaryCard">
+<div>
+<p data-i18n="totalDesignLoss">总设计损耗</p>
+<strong><span id="designLoss">0.00</span><small>dB</small></strong>
+</div>
+<div class="health-badge" id="healthBadge">✓ Healthy</div>
+</div>
+<div class="metric-grid">
+<article class="metric-card">
+<span class="metric-icon blue">⌁</span>
+<div>
+<small data-i18n="fiberLoss">光纤损耗</small>
+<strong><span id="fiberLoss">0.00</span> dB</strong>
+</div>
+</article>
+<article class="metric-card">
+<span class="metric-icon cyan">⋈</span>
+<div>
+<small data-i18n="spliceTotal">熔接损耗</small>
+<strong><span id="spliceTotal">0.00</span> dB</strong>
+</div>
+</article>
+<article class="metric-card">
+<span class="metric-icon violet">↝</span>
+<div>
+<small data-i18n="connectorTotal">连接器损耗</small>
+<strong><span id="connectorTotal">0.00</span> dB</strong>
+</div>
+</article>
+<article class="metric-card">
+<span class="metric-icon gray">＋</span>
+<div>
+<small data-i18n="splitterOtherLoss">分光及其他损耗</small>
+<strong><span id="splitterOtherTotal">0.00</span> dB</strong>
+</div>
+</article>
+</div>
+<div aria-label="Optical link diagram" class="link-visual">
+<div class="endpoint tx"><span>✦</span><small data-i18n="transmitter">发送端</small></div>
+<div class="line-segment"></div>
+<div class="event-node"><span>⌁</span><small id="fiberLossDiagram">0.00 dB</small></div>
+<div class="line-segment"></div>
+<div class="event-node"><span>⋈</span><small id="spliceLossDiagram">0.00 dB</small></div>
+<div class="line-segment"></div>
+<div class="event-node"><span>↝</span><small id="connectorLossDiagram">0.00 dB</small></div>
+<div class="line-segment"></div>
+<div class="endpoint rx"><span>➤</span><small data-i18n="receiver">接收端</small></div>
+</div>
+<div class="budget-row">
+<div>
+<span data-i18n="physicalLoss">物理链路损耗</span>
+<strong><span id="physicalLoss">0.00</span> dB</strong>
+</div>
+<div>
+<span data-i18n="budgetRemaining">剩余预算</span>
+<strong id="budgetRemainingText"><span id="budgetRemaining">0.00</span> dB</strong>
+</div>
+</div>
+<div class="power-row">
+<article>
+<span data-i18n="estimatedRxPower">预计接收光功率</span>
+<strong><span id="estimatedRxPower">0.00</span> dBm</strong>
+</article>
+<article>
+<span data-i18n="rxMargin">接收门限余量</span>
+<strong><span id="rxMargin">0.00</span> dB</strong>
+</article>
+</div>
+<div class="diagnosis-box healthy" id="diagnosisBox">
+<strong data-i18n="engineeringConclusion">工程结论</strong>
+<p id="diagnosisText">—</p>
+</div>
+<div class="result-actions">
+<button id="copyBtn" type="button">▣ <span data-i18n="copyResult">复制结果</span></button>
+<button id="saveBtn" type="button">＋ <span data-i18n="saveHistory">保存记录</span></button>
+<button id="printBtn" type="button">↧ <span data-i18n="printReport">打印 / 导出 PDF</span></button>
+</div>
+</section>
+</main>
+<aside aria-label="广告" class="ad-slot" data-ad-key="afterCalculator" hidden="">
+<div class="ad-label">广告</div>
+<div class="ad-body"></div>
+</aside>
+<section class="content-section" id="history">
+<div class="section-heading">
+<div>
+<p class="eyebrow" data-i18n="projectRecords">PROJECT RECORDS</p>
+<h2 data-i18n="historyTitle">最近计算记录</h2>
+</div>
+<button class="text-button" data-i18n="clearHistory" id="clearHistoryBtn" type="button">清空记录</button>
+</div>
+<div class="history-list" id="historyList"></div>
+</section>
+<section class="content-section methodology" id="methodology">
+<div class="section-heading">
+<div>
+<p class="eyebrow" data-i18n="methodTag">METHODOLOGY</p>
+<h2 data-i18n="methodTitle">计算方法与工程说明</h2>
+</div>
+</div>
+<div class="method-grid">
+<article>
+<h3 data-i18n="formulaPhysical">物理链路损耗</h3>
+<p data-i18n="formulaPhysicalText">
+          光纤长度 × 衰减系数 + 熔接损耗 + 连接器损耗 + 分光器损耗 + 其他无源损耗。
+        </p>
+</article>
+<article>
+<h3 data-i18n="formulaDesign">总设计损耗</h3>
+<p data-i18n="formulaDesignText">物理链路损耗 + 工程余量。</p>
+</article>
+<article>
+<h3 data-i18n="formulaPower">接收光功率</h3>
+<p data-i18n="formulaPowerText">发送光功率 − 物理链路损耗。</p>
+</article>
+<article>
+<h3 data-i18n="healthRule">健康状态规则</h3>
+<p data-i18n="healthRuleText">
+          剩余预算 ≥ 3 dB：健康；0–3 dB：风险；小于 0 dB：超限。
+        </p>
+</article>
+</div>
+<div class="engineering-note">
+<strong data-i18n="importantNote">重要说明</strong>
+<p data-i18n="importantNoteText">
+        默认衰减和分光器损耗属于常用工程参考值。正式设计应以设备规格书、企业标准和现场测试数据为准。
+      </p>
+</div>
+</section>
+<section aria-labelledby="faq-title" class="content-section faq-section">
+<div class="section-heading">
+<div><p class="eyebrow">FAQ</p><h2 id="faq-title">常见问题</h2></div>
+</div>
+<div class="faq-grid">
+<details><summary>总设计损耗和物理链路损耗有什么区别？</summary><p>物理链路损耗只包含实际器件与线路损耗；总设计损耗还加入工程余量，用于覆盖老化、温度变化、维护连接和测量误差。</p></details>
+<details><summary>1310 nm、1490 nm、1550 nm该如何选择？</summary><p>应按实际发送方向和业务波长选择。常见PON上行使用1310 nm，下行可能使用1490 nm或1550 nm，具体以系统规格为准。</p></details>
+<details><summary>分光器损耗为什么可以修改？</summary><p>页面使用常见标称值。不同厂商、封装方式和工作波长会产生差异，正式设计应以器件规格书或现场测试值为准。</p></details>
+<details><summary>剩余预算多少比较安全？</summary><p>一般建议至少保留3 dB工程余量。余量越小，链路对污染、弯曲、老化及温度变化越敏感。</p></details>
+<details><summary>为什么接收光功率正常但预算显示风险？</summary><p>预算与接收门限是两个不同判断维度。当前发光功率较高时，接收功率可能正常，但设计预算仍可能缺少长期工程余量。</p></details>
+<details><summary>计算结果可以用于正式验收吗？</summary><p>本工具适合规划、复核和故障分析。正式验收应结合光功率计、OTDR、设备规格和企业验收标准。</p></details>
+</div>
+</section>
+<aside aria-label="广告" class="ad-slot" data-ad-key="afterMethodology" hidden="">
+<div class="ad-label">广告</div>
+<div class="ad-body"></div>
+</aside>
+<footer>
+<div class="footer-main">
+<strong>NetEngineerLab</strong>
+<p data-i18n="footerText">面向通信与网络工程师的专业在线工具平台。</p>
+</div>
+<nav aria-label="页脚导航" class="footer-links">
+<a href="../../../zh/about/">关于</a>
+<a href="../../../zh/contact/">联系</a>
+<a href="../../../zh/privacy/">隐私政策</a>
+<a href="../../../zh/terms/">使用条款</a>
+</nav>
+<p>© 2026 NetEngineerLab.com</p>
+</footer>
+<script defer="" src="../js/pwa.js"></script>
+<script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js"></script><script defer="" src="../js/app.js"></script>
+</body>
+</html>

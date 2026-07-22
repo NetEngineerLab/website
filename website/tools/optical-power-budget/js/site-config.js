@@ -1,0 +1,1 @@
+window.NETENGINEERLAB_CONFIG={analytics:{enabled:false,measurementId:'G-XXXXXXXXXX'},adsense:{enabled:false,client:'ca-pub-XXXXXXXXXXXXXXXX',slots:{afterCalculator:'0000000000',afterMethodology:'0000000000'}}};
