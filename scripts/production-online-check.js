@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 "use strict";
 
-const crypto=require("crypto");
 const fs=require("fs");
 const path=require("path");
+const{stableFileHash,stableHash}=require("./stable-text-hash");
 
 const root=path.resolve(__dirname,"..");
 const websiteRoot=path.join(root,"website");
@@ -39,8 +39,8 @@ const expectedTools=JSON.parse(fs.readFileSync(path.join(websiteRoot,"data/tools
 const expectedToolIds=expectedTools.map(tool=>tool.id);
 const deploymentMarker=fullHash(Buffer.from([version,...expectedHashes.values()].join(":"))).slice(0,12);
 
-function contentHash(file){return crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex").slice(0,12)}
-function fullHash(value){return crypto.createHash("sha256").update(value).digest("hex")}
+function contentHash(file){return stableFileHash(file,12)}
+function fullHash(value){return stableHash(value)}
 function sleep(ms){return new Promise(resolve=>setTimeout(resolve,ms))}
 function unique(items){return[...new Set(items)]}
 function parseNumberArg(name,fallback,{min=0,max=Number.MAX_SAFE_INTEGER}={}){

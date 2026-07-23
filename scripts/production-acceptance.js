@@ -3,8 +3,8 @@
 
 const fs=require("fs");
 const path=require("path");
-const crypto=require("crypto");
 const {spawn,spawnSync}=require("child_process");
+const{stableFileHash,stableHash}=require("./stable-text-hash");
 
 const root=path.resolve(__dirname,"..");
 const site=path.join(root,"website");
@@ -96,7 +96,7 @@ function validateJsonFile(rel){
   try{return JSON.parse(read(path.join(root,rel)))}catch(error){errors.push(`${rel}: invalid JSON ${error.message}`);return{}}
 }
 function assetDigest(file){
-  return crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex").slice(0,12);
+  return stableFileHash(file,12);
 }
 function auditVersionedAssets(){
   const issues=[];
@@ -124,7 +124,7 @@ function auditVersionedAssets(){
     const runtime=html.indexOf("assets/js/site.js?v=");
     return catalog>=0&&runtime>=0&&catalog<runtime;
   });
-  const sharedVersion=crypto.createHash("sha256").update(sharedRuntimeAssets.map(item=>assetDigest(path.join(site,...item.sitePath.split("/")))).join(":"),"utf8").digest("hex").slice(0,12);
+  const sharedVersion=stableHash(sharedRuntimeAssets.map(item=>assetDigest(path.join(site,...item.sitePath.split("/")))).join(":"),12);
   const serviceWorkers=walk(path.join(site,"tools")).filter(file=>file.endsWith(`${path.sep}sw.js`));
   const serviceWorkerIssues=[];
   for(const file of serviceWorkers){

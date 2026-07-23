@@ -3,7 +3,7 @@
 
 const fs=require("fs");
 const path=require("path");
-const crypto=require("crypto");
+const{stableFileHash,stableHash}=require("./stable-text-hash");
 
 const packageRoot=path.resolve(__dirname,"..");
 const siteRoot=path.join(packageRoot,"website");
@@ -111,7 +111,7 @@ function assetVersion(targetRel){
  if(assetVersionCache.has(clean))return assetVersionCache.get(clean);
  const file=path.join(siteRoot,...clean.split("/"));
  if(!fs.existsSync(file))throw new Error(`Versioned asset is missing: ${clean}`);
- const version=crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex").slice(0,12);
+ const version=stableFileHash(file,12);
  assetVersionCache.set(clean,version);
  return version;
 }
@@ -130,7 +130,7 @@ function versionRelativeAsset(html,currentRel,targetRel){
  return html.replace(pattern,`$1?v=${assetVersion(targetRel)}$2`);
 }
 function sharedRuntimeVersion(){
- return crypto.createHash("sha256").update(sharedRuntimeAssets.map(item=>assetVersion(item.sitePath)).join(":"),"utf8").digest("hex").slice(0,12);
+ return stableHash(sharedRuntimeAssets.map(item=>assetVersion(item.sitePath)).join(":"),12);
 }
 function removeHeadLinks(html){
  return html.replace(/<link\b[^>]*>/gi,tag=>{
