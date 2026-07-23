@@ -123,6 +123,12 @@ function versionExistingAsset(html,targetRel){
  const pattern=new RegExp(`((?:src|href)\\s*=\\s*["'][^"']*${escaped})(?:\\?[^"']*)?(["'])`,"gi");
  return html.replace(pattern,`$1?v=${assetVersion(targetRel)}$2`);
 }
+function versionRelativeAsset(html,currentRel,targetRel){
+ const relative=relativeFile(currentRel,targetRel);
+ const escaped=relative.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+ const pattern=new RegExp(`((?:src|href)\\s*=\\s*["']${escaped})(?:\\?[^"']*)?(["'])`,"gi");
+ return html.replace(pattern,`$1?v=${assetVersion(targetRel)}$2`);
+}
 function sharedRuntimeVersion(){
  return crypto.createHash("sha256").update(sharedRuntimeAssets.map(item=>assetVersion(item.sitePath)).join(":"),"utf8").digest("hex").slice(0,12);
 }
@@ -211,6 +217,9 @@ function replaceLanguageMenu(html,menuMarkup){
  if(actions.test(html))return html.replace(actions,match=>match+menuMarkup);
  return html;
 }
+function normalizeBrandLogoAlt(html){
+ return html.replace(/(<img\b[^>]*\balt\s*=\s*)(["'])NetEngineerLab\2/gi,'$1$2$2');
+}
 function rewriteInternalAnchors(html,currentRel,currentInfo,groups){
  const currentLocale=localeMap.get(currentInfo.localeId);
  const currentUrl=urlForRoute(currentInfo.route,currentLocale);
@@ -256,7 +265,8 @@ function menuMarkup(currentInfo,group){
   return `<a class="language-option" role="menuitem" href="${escapeHtml(href)}" lang="${escapeHtml(locale.htmlLang)}" hreflang="${escapeHtml(locale.hreflang)}"${current?' aria-current="page"':""}><span>${escapeHtml(locale.nativeLabel)}</span><small>${escapeHtml(locale.label)}</small></a>`;
  }).join("");
  const label=currentLocale.ui?.language||"Language";
- return `<!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="${escapeHtml(label)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">${escapeHtml(currentLocale.nativeLabel)}</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden>${options}</div></div><!-- NEL_LANGUAGE_MENU_END -->`;
+ const accessibleLabel=`${label}: ${currentLocale.nativeLabel}`;
+ return `<!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="${escapeHtml(accessibleLabel)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">${escapeHtml(currentLocale.nativeLabel)}</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden>${options}</div></div><!-- NEL_LANGUAGE_MENU_END -->`;
 }
 function updateManifestLink(html,currentRel,info){
  if(info.kind!=="tool")return html;
@@ -316,6 +326,12 @@ function generateManifests(groups){
       assets.push(`./${locale.folder}/index.html`,`./manifest-${locale.folder}.webmanifest`);
      }
     }
+    assets=assets.map(item=>{
+     const clean=item.split("?")[0];
+     if(clean!=="./css/style.css"&&clean!=="./js/app.js")return item;
+     const targetRel=`tools/${tool.id}/${clean.slice(2)}`;
+     return fs.existsSync(path.join(siteRoot,...targetRel.split("/")))?`${clean}?v=${assetVersion(targetRel)}`:item;
+    });
     assets=[...new Set(assets)];
     const replacement=`const C="nel-${tool.id}-locale-v${localeConfig.version}-${sharedRuntimeVersion()}",A=${JSON.stringify(assets)};`;
     sw=sw.replace(head,replacement);
@@ -357,6 +373,7 @@ function build(){
   let html=fs.readFileSync(record.file,"utf8");
   html=rewriteInternalAnchors(html,record.rel,record.info,groups);
   html=replaceLanguageMenu(html,menuMarkup(record.info,group));
+  html=normalizeBrandLogoAlt(html);
   html=removeHeadLinks(removeNelMeta(html));
   html=setHtmlAttributes(html,locale,record.info.route);
   html=setRobots(html,locale,record.info.route);
@@ -383,6 +400,12 @@ function build(){
   if(record.info.kind==="home"||record.info.kind==="toolsDirectory")html=ensureAsset(html,record.rel,"data/tools-catalog.js","js");
   html=ensureAsset(html,record.rel,"assets/js/site.js","js");
   html=versionExistingAsset(html,"assets/js/tool-integration.js");
+  if(record.info.kind==="tool"){
+   const toolBase=`tools/${record.info.toolSlug}`;
+   for(const localAsset of [`${toolBase}/css/style.css`,`${toolBase}/js/app.js`]){
+    if(fs.existsSync(path.join(siteRoot,...localAsset.split("/"))))html=versionRelativeAsset(html,record.rel,localAsset);
+   }
+  }
   html=updateManifestLink(html,record.rel,record.info);
   html=html.replace(/<head>([\s\S]*?)<\/head>/i,(whole,body)=>`<head>${body.replace(/(?:\r?\n[ \t]*){3,}/g,"\n\n")}</head>`);
   fs.writeFileSync(record.file,html,"utf8");

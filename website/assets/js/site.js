@@ -34,7 +34,7 @@
    const active=tool.status==="active";
    const tags=(copy.tags||[]).map(tag=>`<span>${String(tag)}</span>`).join("");
    return `<article class="tool-card ${active?"":"planned"}" data-category="${tool.category}">
-    <div class="tool-icon">${tool.icon}</div><h3>${copy.name||tool.id}</h3><p>${copy.description||""}</p>
+    <div class="tool-icon">${tool.icon}</div><h2>${copy.name||tool.id}</h2><p>${copy.description||""}</p>
     <div class="tool-tags">${tags}</div>
     ${active?`<a class="open" href="${toolUrl(tool.id)}">${ui.openTool}</a>`:`<div class="status">${ui.planned}</div>`}
    </article>`;
@@ -98,9 +98,9 @@
  document.documentElement.dataset.nelI18nVersion=config.version||"";
 
  }
- if(document.readyState==="complete"){
+ if(document.readyState!=="loading"){
   init();
  }else{
-  window.addEventListener("load",init,{once:true});
+  document.addEventListener("DOMContentLoaded",init,{once:true});
  }
 })();

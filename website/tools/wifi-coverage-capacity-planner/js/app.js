@@ -132,10 +132,44 @@ function activateTab(name){
  state.activeTab=name;
  document.querySelectorAll("[data-tab]").forEach(btn=>{
   const active=btn.dataset.tab===name;
-  btn.classList.toggle("active",active);btn.setAttribute("aria-selected",String(active));
+  btn.classList.toggle("active",active);
+  btn.setAttribute("aria-selected",String(active));
+  btn.tabIndex=active?0:-1;
  });
  document.querySelectorAll("[data-panel]").forEach(panel=>panel.hidden=panel.dataset.panel!==name);
  history.replaceState(null,"",`#${name}`);
+}
+
+function initializeAccessibility(){
+ document.querySelectorAll(".field").forEach(field=>{
+  const label=[...field.children].find(child=>child.matches("label"));
+  const control=field.querySelector(".input-wrap input,.input-wrap select,.input-wrap textarea,.checks input,.checks select");
+  if(label&&control?.id&&!label.htmlFor)label.htmlFor=control.id;
+ });
+
+ const tabs=[...document.querySelectorAll("[data-tab]")];
+ tabs.forEach((tab,index)=>{
+  const name=tab.dataset.tab;
+  tab.setAttribute("role","tab");
+  tab.id=`planner-tab-${name}`;
+  tab.setAttribute("aria-controls",`planner-panel-${name}`);
+  tab.addEventListener("keydown",event=>{
+   const keys=["ArrowLeft","ArrowRight","Home","End"];
+   if(!keys.includes(event.key))return;
+   event.preventDefault();
+   const current=tabs.indexOf(tab);
+   const target=event.key==="Home"?0:event.key==="End"?tabs.length-1:
+    (current+(event.key==="ArrowRight"?1:-1)+tabs.length)%tabs.length;
+   tabs[target].focus();
+   activateTab(tabs[target].dataset.tab);
+  });
+ });
+ document.querySelectorAll("[data-panel]").forEach(panel=>{
+  const name=panel.dataset.panel;
+  panel.id=`planner-panel-${name}`;
+  panel.setAttribute("role","tabpanel");
+  panel.setAttribute("aria-labelledby",`planner-tab-${name}`);
+ });
 }
 
 function updateBandAndWidthOptions(applyBandDefaults=false){
@@ -424,6 +458,7 @@ function renderHistory(){
  }));
 }
 
+initializeAccessibility();
 document.querySelectorAll("[data-tab]").forEach(btn=>btn.addEventListener("click",()=>activateTab(btn.dataset.tab)));
 $("profilePreset").addEventListener("change",event=>applyProfile(event.target.value));
 $("standard").addEventListener("change",()=>{updateBandAndWidthOptions(false);calculateAll()});

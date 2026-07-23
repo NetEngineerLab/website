@@ -477,20 +477,39 @@ footer p{margin:5px 0 0}
 }
 
 @media (max-width:760px){
-  .site-header{padding:12px 18px;min-height:72px}
+  .site-header{padding:8px 14px;min-height:60px;gap:10px}
   .brand{min-width:0}
-  .brand strong{font-size:19px}
+  .brand{gap:8px}
+  .brand strong{font-size:17px}
   .brand small{display:none}
-  .brand img{width:44px;height:44px}
+  .brand img{width:36px;height:36px}
   .header-actions{gap:5px}
   .start-btn{display:none}
-  .tool-hero{padding:30px 20px;display:block}
-  .hero-badges{justify-content:flex-start;margin-top:18px}
-  .calculator-shell{padding:15px}
-  .input-panel,.result-panel{padding:20px 16px}
+  .tool-hero{padding:22px 16px 24px;display:block}
+  .tool-hero h1{font-size:28px;line-height:1.16;letter-spacing:-.02em}
+  .tool-hero .eyebrow{font-size:10px;margin-bottom:7px}
+  .hero-copy{margin-top:12px;font-size:15px;line-height:1.62}
+  .hero-badges{justify-content:flex-start;margin-top:14px;gap:7px}
+  .hero-badges span{padding:7px 10px;font-size:12px}
+  .calculator-shell{padding:10px;gap:14px}
+  .card{border-radius:16px}
+  .input-panel,.result-panel{padding:16px 12px}
+  .section-title{gap:11px;margin-bottom:17px}
+  .section-icon{width:40px;height:40px;border-radius:12px;font-size:18px}
+  .section-title h2{font-size:21px}
+  .section-title p{font-size:13px}
+  .preset-row{padding:12px;margin-bottom:15px;gap:10px}
+  .preset-row select{padding:10px}
   .form-grid{grid-template-columns:1fr}
+  .form-grid{gap:13px}
+  .field label{margin-bottom:6px;font-size:13px}
+  .input-wrap input,.input-wrap select{padding:11px 12px;font-size:15px}
+  .input-wrap{grid-template-columns:minmax(0,1fr) 68px;border-radius:10px}
+  .input-wrap span{font-size:12px}
   .preset-row{grid-template-columns:1fr}
   .input-actions{grid-template-columns:1fr}
+  .input-actions{padding-top:17px;margin-top:17px}
+  .input-actions button{min-height:48px;font-size:15px}
   .metric-grid{grid-template-columns:1fr}
   .summary-card{display:block;padding:22px}
   .summary-card strong{font-size:54px}
@@ -501,6 +520,18 @@ footer p{margin:5px 0 0}
   .history-list,.method-grid{grid-template-columns:1fr}
   .link-visual{justify-content:flex-start}
   footer{display:block;text-align:center}
+}
+
+@media (max-width:420px){
+  .site-header{padding-left:11px;padding-right:11px}
+  .brand strong{font-size:16px}
+  .brand img{width:32px;height:32px}
+  .tool-hero{padding:20px 14px 22px}
+  .tool-hero h1{font-size:26px}
+  .hero-copy{font-size:14px}
+  .hero-badges span{padding:6px 9px;font-size:11px}
+  .calculator-shell{padding:8px}
+  .input-panel,.result-panel{padding:14px 10px}
 }
 
 @media print{

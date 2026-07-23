@@ -98,4 +98,33 @@ try{
   fs.rmSync(fixtureDir,{recursive:true,force:true});
 }
 
-console.log(`Production performance policy PASS (${policy.urls.length} pages x ${policy.numberOfRuns} runs; policy, median manifest, pass, regression, and missing-audit fixtures verified).`);
+const sharedSiteJs=fs.readFileSync(path.join(root,"website","assets","js","site.js"),"utf8");
+assert.match(sharedSiteJs,/document\.addEventListener\("DOMContentLoaded",init/);
+assert.doesNotMatch(sharedSiteJs,/window\.addEventListener\("load",init/);
+assert.match(sharedSiteJs,/<h2>\$\{copy\.name\|\|tool\.id\}<\/h2>/);
+
+const toolsCss=fs.readFileSync(path.join(root,"website","assets","css","site.css"),"utf8");
+assert.match(toolsCss,/--muted:#53677f/);
+assert.match(toolsCss,/\.filter\.active \.filter-count\{background:var\(--primary-dark\)/);
+assert.match(toolsCss,/\.tool-card h2\{/);
+
+const wifiApp=fs.readFileSync(path.join(root,"website","tools","wifi-coverage-capacity-planner","js","app.js"),"utf8");
+for(const marker of ['setAttribute("role","tab")','setAttribute("role","tabpanel")','label.htmlFor=control.id']){
+  assert.ok(wifiApp.includes(marker),`missing Wi-Fi accessibility marker: ${marker}`);
+}
+const wifiCss=fs.readFileSync(path.join(root,"website","tools","wifi-coverage-capacity-planner","css","style.css"),"utf8");
+assert.match(wifiCss,/--muted:#526b82/);
+assert.match(wifiCss,/\.eyebrow\{[^}]*color:#1d5f9f/);
+
+const fiberCss=fs.readFileSync(path.join(root,"website","tools","fiber-loss","css","style.css"),"utf8");
+for(const marker of [".tool-hero h1{font-size:28px",".brand img{width:36px;height:36px}",".input-panel,.result-panel{padding:16px 12px}"]){
+  assert.ok(fiberCss.includes(marker),`missing fiber-loss mobile marker: ${marker}`);
+}
+
+for(const rel of ["website/tools/index.html","website/tools/zh/index.html","website/tools/wifi-coverage-capacity-planner/zh/index.html"]){
+  const html=fs.readFileSync(path.join(root,rel),"utf8");
+  assert.match(html,/<img alt=""[^>]*logo\.svg/);
+  assert.match(html,/class="language-trigger"[^>]*aria-label="(?:Language: English|语言: 简体中文)"/);
+}
+
+console.log(`Production performance policy PASS (${policy.urls.length} pages x ${policy.numberOfRuns} runs; policy, median manifest, pass, regression, missing-audit, accessibility, CLS timing, and mobile-layout fixtures verified).`);
