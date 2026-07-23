@@ -130,9 +130,12 @@ assert.match(wifiCss,/--muted:#526b82/);
 assert.match(wifiCss,/\.eyebrow\{[^}]*color:#1d5f9f/);
 
 const fiberCss=fs.readFileSync(path.join(root,"website","tools","fiber-loss","css","style.css"),"utf8");
-for(const marker of [".tool-hero h1{font-size:28px",".brand img{width:36px;height:36px}",".input-panel,.result-panel{padding:16px 12px}"]){
-  assert.ok(fiberCss.includes(marker),`missing fiber-loss mobile marker: ${marker}`);
-}
+assert.match(fiberCss,/-webkit-text-size-adjust:100%/);
+assert.match(fiberCss,/\.site-header\{padding:7px 12px;min-height:54px/);
+assert.match(fiberCss,/\.tool-hero h1\{font-size:24px/);
+assert.match(fiberCss,/\.form-grid\{grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+assert.match(fiberCss,/\.input-wrap input,\.input-wrap select\{padding:10px 8px;font-size:16px\}/);
+assert.match(fiberCss,/@media \(max-width:380px\)/);
 
 for(const rel of ["website/tools/index.html","website/tools/zh/index.html","website/tools/wifi-coverage-capacity-planner/zh/index.html"]){
   const html=fs.readFileSync(path.join(root,rel),"utf8");
