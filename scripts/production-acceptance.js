@@ -9,7 +9,7 @@ const {spawn,spawnSync}=require("child_process");
 const root=path.resolve(__dirname,"..");
 const site=path.join(root,"website");
 const docs=path.join(root,"docs");
-const expectedVersion="1.7.4";
+const expectedVersion="1.7.5";
 const expectedOrigin="https://netengineerlab.com";
 const sharedRuntimeAssets=[
   {sitePath:"data/locales.js",cachePath:"../../data/locales.js"},
@@ -246,7 +246,7 @@ async function httpAudit(sitemapUrls){
   record("active tool count",Array.isArray(tools)&&tools.filter(item=>item.status==="active").length===12,String(Array.isArray(tools)?tools.filter(item=>item.status==="active").length:0));
   record("no planned tool placeholders",Array.isArray(tools)&&tools.every(item=>item.status==="active"));
 
-  for(const rel of [".node-version",".nvmrc",".gitignore",".gitattributes","VERSION",".github/workflows/production-quality-gate.yml",".github/workflows/production-online-monitor.yml","scripts/production-online-check.js","scripts/production-online-revalidation-test.js","website/_headers","website/_redirects","website/robots.txt","website/sitemap.xml","website/.well-known/security.txt"]){
+  for(const rel of [".node-version",".nvmrc",".gitignore",".gitattributes","VERSION",".github/workflows/production-quality-gate.yml",".github/workflows/production-online-monitor.yml",".github/workflows/production-performance-monitor.yml","scripts/production-online-check.js","scripts/production-online-revalidation-test.js","scripts/production-performance-report.js","scripts/production-performance-test.js","tests/lighthouse/production.lighthouserc.json","website/_headers","website/_redirects","website/robots.txt","website/sitemap.xml","website/.well-known/security.txt"]){
     record(`required file ${rel}`,exists(rel));
   }
   record("Node version pin",read(path.join(root,".node-version")).trim()==="22.16.0",read(path.join(root,".node-version")).trim());

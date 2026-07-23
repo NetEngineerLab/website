@@ -9,7 +9,7 @@ const root=path.resolve(__dirname,"..");
 const site=path.join(root,"website");
 const errors=[];
 const warnings=[];
-const expectedVersion="1.7.4";
+const expectedVersion="1.7.5";
 const expectedOrigin="https://netengineerlab.com";
 
 function walk(dir){return fs.readdirSync(dir,{withFileTypes:true}).flatMap(entry=>entry.isDirectory()?walk(path.join(dir,entry.name)):[path.join(dir,entry.name)])}
@@ -53,11 +53,11 @@ for(const file of htmlFiles){
 }
 
 for(const required of [
-  ".node-version",".nvmrc","VERSION",".gitignore",".gitattributes",".github/workflows/production-quality-gate.yml",".github/workflows/production-online-monitor.yml",
+  ".node-version",".nvmrc","VERSION",".gitignore",".gitattributes",".github/workflows/production-quality-gate.yml",".github/workflows/production-online-monitor.yml",".github/workflows/production-performance-monitor.yml",
   "website/_headers","website/_redirects","website/robots.txt","website/sitemap.xml","website/data/site-config.json",
   "website/assets/images/og-netengineerlab.png","website/.well-known/security.txt",
-  "scripts/production-acceptance.js","scripts/production-online-check.js","scripts/production-online-revalidation-test.js","scripts/remote-acceptance.js","scripts/release-manifest.js",
-  "docs/PRODUCTION_ONLINE_MONITORING_GUIDE.md","docs/V1.7.4_CHANGELOG.md"
+  "scripts/production-acceptance.js","scripts/production-online-check.js","scripts/production-online-revalidation-test.js","scripts/production-performance-report.js","scripts/production-performance-test.js","scripts/remote-acceptance.js","scripts/release-manifest.js",
+  "tests/lighthouse/production.lighthouserc.json","docs/PRODUCTION_ONLINE_MONITORING_GUIDE.md","docs/PRODUCTION_PERFORMANCE_MONITORING_GUIDE.md","docs/V1.7.4_CHANGELOG.md","docs/V1.7.5_CHANGELOG.md"
 ]){
   if(!fs.existsSync(path.join(root,required)))errors.push(`missing launch file: ${required}`);
 }

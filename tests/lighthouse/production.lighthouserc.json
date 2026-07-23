@@ -1,0 +1,126 @@
+{
+  "ci": {
+    "collect": {
+      "url": [
+        "https://netengineerlab.com/",
+        "https://netengineerlab.com/zh/",
+        "https://netengineerlab.com/tools/",
+        "https://netengineerlab.com/tools/wifi-coverage-capacity-planner/zh/"
+      ],
+      "numberOfRuns": 3,
+      "settings": {
+        "chromeFlags": "--headless --no-sandbox --disable-gpu",
+        "maxWaitForLoad": 60000
+      }
+    },
+    "assert": {
+      "includePassedAssertions": true,
+      "assertions": {
+        "categories:performance": [
+          "error",
+          {
+            "minScore": 0.75,
+            "aggregationMethod": "median-run"
+          }
+        ],
+        "categories:accessibility": [
+          "error",
+          {
+            "minScore": 0.9,
+            "aggregationMethod": "median-run"
+          }
+        ],
+        "categories:best-practices": [
+          "error",
+          {
+            "minScore": 0.9,
+            "aggregationMethod": "median-run"
+          }
+        ],
+        "categories:seo": [
+          "error",
+          {
+            "minScore": 0.9,
+            "aggregationMethod": "median-run"
+          }
+        ],
+        "first-contentful-paint": [
+          "error",
+          {
+            "maxNumericValue": 3000,
+            "aggregationMethod": "median-run"
+          }
+        ],
+        "largest-contentful-paint": [
+          "error",
+          {
+            "maxNumericValue": 4000,
+            "aggregationMethod": "median-run"
+          }
+        ],
+        "cumulative-layout-shift": [
+          "error",
+          {
+            "maxNumericValue": 0.1,
+            "aggregationMethod": "median-run"
+          }
+        ],
+        "total-blocking-time": [
+          "error",
+          {
+            "maxNumericValue": 600,
+            "aggregationMethod": "median-run"
+          }
+        ],
+        "speed-index": [
+          "error",
+          {
+            "maxNumericValue": 5000,
+            "aggregationMethod": "median-run"
+          }
+        ],
+        "resource-summary:total:size": [
+          "error",
+          {
+            "maxNumericValue": 512000,
+            "aggregationMethod": "median-run"
+          }
+        ],
+        "resource-summary:script:size": [
+          "error",
+          {
+            "maxNumericValue": 256000,
+            "aggregationMethod": "median-run"
+          }
+        ],
+        "resource-summary:stylesheet:size": [
+          "error",
+          {
+            "maxNumericValue": 131072,
+            "aggregationMethod": "median-run"
+          }
+        ],
+        "resource-summary:image:size": [
+          "error",
+          {
+            "maxNumericValue": 262144,
+            "aggregationMethod": "median-run"
+          }
+        ],
+        "errors-in-console": [
+          "error",
+          {
+            "maxLength": 0,
+            "aggregationMethod": "median-run"
+          }
+        ],
+        "is-on-https": "error",
+        "viewport": "error"
+      }
+    },
+    "upload": {
+      "target": "filesystem",
+      "outputDir": "artifacts/lighthouse"
+    }
+  }
+}

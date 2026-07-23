@@ -259,7 +259,7 @@ async function runFullCheck(readiness,readyAttempt){
   const home=readiness.home;
   const homeUrl=`${base}/`;
 
-  record("checked-out version",version==="1.7.4",version);
+  record("checked-out version",version==="1.7.5",version);
   record("production HTTPS or local test",baseUrl.protocol==="https:"||localMode,base);
   record("deployment matches checked-out asset hashes",readiness.ready,`attempt ${readyAttempt}/${attempts}`);
   record("home HTTP 200",home.response.status===200,String(home.response.status));

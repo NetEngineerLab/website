@@ -1,0 +1,67 @@
+name: Production Performance Monitor
+
+on:
+  workflow_run:
+    workflows: [Production Online Monitor]
+    types: [completed]
+  schedule:
+    # 00:45 UTC = 08:45 China Standard Time, after the 08:15 online monitor.
+    - cron: "45 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: netengineerlab-production-performance-monitor
+  cancel-in-progress: true
+
+jobs:
+  lighthouse-production:
+    if: github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out monitored commit
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || github.sha }}
+
+      - name: Use pinned Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+
+      - name: Validate performance policy
+        run: npm run test:performance-monitor
+
+      - name: Install pinned Lighthouse CI
+        run: npm install --global @lhci/cli@0.15.1
+
+      - name: Collect production Lighthouse runs
+        run: lhci collect --config=tests/lighthouse/production.lighthouserc.json
+
+      - name: Export local Lighthouse reports
+        run: lhci upload --config=tests/lighthouse/production.lighthouserc.json
+
+      - name: Build NetEngineerLab performance summary
+        if: always()
+        run: npm run report:performance
+
+      - name: Enforce Lighthouse assertions
+        run: lhci assert --config=tests/lighthouse/production.lighthouserc.json
+
+      - name: Upload production performance reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: netengineerlab-production-performance-report
+          path: |
+            docs/PRODUCTION_PERFORMANCE_REPORT.json
+            artifacts/lighthouse/
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Enforce generated performance summary
+        if: always()
+        run: node scripts/production-performance-report.js --verify-existing

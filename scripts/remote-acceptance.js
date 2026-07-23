@@ -86,7 +86,7 @@ function headerIncludes(response,name,value){return(response.headers.get(name)||
   record("service-worker revalidation",/no-cache|max-age=0/i.test(sw.response.headers.get("cache-control")||""),sw.response.headers.get("cache-control")||"missing");
 
   const report={
-    version:"1.7.4",
+    version:"1.7.5",
     base,
     generatedAt:new Date().toISOString(),
     sitemapUrls:urls.length,
@@ -99,7 +99,7 @@ function headerIncludes(response,name,value){return(response.headers.get(name)||
   console.log(JSON.stringify(report,null,2));
   if(errors.length)process.exit(1);
 })().catch(error=>{
-  const report={version:"1.7.4",base,generatedAt:new Date().toISOString(),errors:[error.stack||error.message||String(error)],warnings,status:"FAIL"};
+  const report={version:"1.7.5",base,generatedAt:new Date().toISOString(),errors:[error.stack||error.message||String(error)],warnings,status:"FAIL"};
   fs.writeFileSync(path.join(docs,"REMOTE_ACCEPTANCE_REPORT.json"),JSON.stringify(report,null,2)+"\n");
   console.error(error);process.exit(1);
 });
