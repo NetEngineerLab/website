@@ -11,6 +11,7 @@ const errors=[];
 const warnings=[];
 const expectedVersion="1.7.5";
 const expectedOrigin="https://netengineerlab.com";
+const expectedMeasurementId="G-KGNFX9MD8Q";
 
 function walk(dir){return fs.readdirSync(dir,{withFileTypes:true}).flatMap(entry=>entry.isDirectory()?walk(path.join(dir,entry.name)):[path.join(dir,entry.name)])}
 function read(file){return fs.readFileSync(file,"utf8")}
@@ -39,8 +40,12 @@ for(const file of htmlFiles){
   if(!is404&&!/<link\b[^>]*rel=["'][^"']*canonical/i.test(html))errors.push(`${rel}: canonical missing`);
   if(is404&&!/noindex,follow/i.test(html))errors.push(`${rel}: 404 noindex missing`);
   if(is404&&/<link\b[^>]*rel=["'][^"']*canonical/i.test(html))errors.push(`${rel}: 404 canonical must be absent`);
-  if(!/data\/site-config\.js/i.test(html))errors.push(`${rel}: global site config missing`);
-  if(!/assets\/js\/analytics\.js/i.test(html))errors.push(`${rel}: analytics loader missing`);
+  const configRefs=(html.match(/<script\b[^>]*src=["\'][^"\']*data\/site-config\.js[^"\']*["\'][^>]*>/gi)||[]).length;
+  const analyticsRefs=(html.match(/<script\b[^>]*src=["\'][^"\']*assets\/js\/analytics\.js[^"\']*["\'][^>]*>/gi)||[]).length;
+  if(configRefs!==1)errors.push(`${rel}: expected exactly one global site config, found ${configRefs}`);
+  if(analyticsRefs!==1)errors.push(`${rel}: expected exactly one analytics loader, found ${analyticsRefs}`);
+  if(html.indexOf("data/site-config.js")>html.indexOf("assets/js/analytics.js"))errors.push(`${rel}: analytics loader must follow site config`);
+  if(/googletagmanager\.com\/gtag\/js/i.test(html))errors.push(`${rel}: direct Google tag found; use the shared analytics loader only`);
   if(!/assets\/js\/adsense\.js/i.test(html))errors.push(`${rel}: ads loader missing`);
   if(!new RegExp(`NetEngineerLab Config-Driven Multilingual V${expectedVersion.replaceAll(".","\\.")}`).test(html))errors.push(`${rel}: framework version meta mismatch`);
   if(/href\s*=\s*["']#["']/i.test(html))errors.push(`${rel}: placeholder href=#`);
@@ -65,7 +70,12 @@ for(const js of ["website/assets/js/site.js","website/assets/js/analytics.js","w
   try{new vm.Script(read(path.join(root,js)),{filename:js})}catch(error){errors.push(`${js}: ${error.message}`)}
 }
 
-if(siteConfig.analytics?.enabled&&(!/^G-[A-Z0-9]+$/i.test(siteConfig.analytics.measurementId||"")||/X{3,}/.test(siteConfig.analytics.measurementId||"")))errors.push("GA4 enabled with invalid/placeholder measurement ID");
+if(!siteConfig.analytics?.enabled)errors.push("GA4 must be enabled for the V1.7.6 production rollout");
+if(siteConfig.analytics?.measurementId!==expectedMeasurementId)errors.push(`GA4 measurement ID ${siteConfig.analytics?.measurementId||"missing"} != ${expectedMeasurementId}`);
+const analyticsSource=read(path.join(site,"assets","js","analytics.js"));
+for(const marker of ["location.hostname.toLowerCase()","www.${productionHost}","script[data-nel-analytics]","script.dataset.nelAnalytics"]){
+  if(!analyticsSource.includes(marker))errors.push(`analytics production guard missing: ${marker}`);
+}
 if(siteConfig.adsense?.enabled&&(!/^ca-pub-\d{10,20}$/.test(siteConfig.adsense.client||"")||/X{3,}/.test(siteConfig.adsense.client||"")))errors.push("AdSense enabled with invalid/placeholder client ID");
 
 const sitemap=read(path.join(site,"sitemap.xml"));

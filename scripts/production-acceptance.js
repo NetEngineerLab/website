@@ -256,6 +256,9 @@ async function httpAudit(sitemapUrls){
   const analytics=siteConfig.analytics||{};
   const adsense=siteConfig.adsense||{};
   record("GA4 configuration",!analytics.enabled||(/^G-[A-Z0-9]+$/i.test(analytics.measurementId||"")&&!/X{3,}/.test(analytics.measurementId||"")),analytics.enabled?"enabled and valid":"disabled");
+  record("GA4 production activation",analytics.enabled===true&&analytics.measurementId==="G-KGNFX9MD8Q",analytics.measurementId||"missing");
+  const analyticsSource=read(path.join(site,"assets","js","analytics.js"));
+  record("GA4 production-domain guard",["location.hostname.toLowerCase()","www.${productionHost}","script[data-nel-analytics]"].every(marker=>analyticsSource.includes(marker)));
   record("AdSense configuration",!adsense.enabled||(/^ca-pub-\d{10,20}$/.test(adsense.client||"")&&!/X{3,}/.test(adsense.client||"")),adsense.enabled?"enabled and valid":"disabled");
 
   const websiteTextFiles=walk(site).filter(file=>/\.(?:html|css|js|json|xml|txt|webmanifest)$/i.test(file));
