@@ -42,6 +42,68 @@ function walk(dir){
 function escapeHtml(value){
  return String(value??"").replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[char]));
 }
+function toolCopy(tool,locale){
+ const translations=tool.translations||{};
+ const fallback=localeMap.get(localeConfig.fallbackLocale)||defaultLocale;
+ return translations[locale.catalogKey]
+  ||translations[locale.id]
+  ||translations[fallback.catalogKey]
+  ||translations[fallback.id]
+  ||translations.en
+  ||{};
+}
+function renderToolCards(currentInfo,locale,mode){
+ const currentUrl=urlForRoute(currentInfo.route,locale);
+ const fallback=localeMap.get(localeConfig.fallbackLocale)||defaultLocale;
+ const ui=Object.assign({openTool:"Open tool",planned:"In development"},fallback.ui||{},locale.ui||{});
+ const tools=toolCatalog
+  .slice()
+  .sort((a,b)=>a.order-b.order)
+  .filter(tool=>mode==="active"?tool.status==="active":mode==="planned"?tool.status==="planned":true);
+ return tools.map(tool=>{
+  const copy=toolCopy(tool,locale);
+  const active=tool.status==="active";
+  const tags=(copy.tags||[]).map(tag=>`<span>${escapeHtml(tag)}</span>`).join("");
+  const href=relativeUrl(currentUrl,urlForRoute(`tools/${tool.id}/`,locale));
+  return `<article class="${active?"tool-card":"tool-card planned"}" data-category="${escapeHtml(tool.category)}">
+    <div class="tool-icon">${escapeHtml(tool.icon)}</div><h2>${escapeHtml(copy.name||tool.id)}</h2><p>${escapeHtml(copy.description||"")}</p>
+    <div class="tool-tags">${tags}</div>
+    ${active?`<a class="open" href="${escapeHtml(href)}">${escapeHtml(ui.openTool)}</a>`:`<div class="status">${escapeHtml(ui.planned)}</div>`}
+   </article>`;
+ }).join("");
+}
+function prerenderToolGrid(html,currentInfo,locale){
+ const grid=html.match(/<div\b(?=[^>]*\bdata-tool-grid(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+))?)[^>]*>/i);
+ if(!grid)return html;
+ const mode=grid[0].match(/\bdata-mode\s*=\s*["']([^"']+)["']/i)?.[1]||"all";
+ const rendered=`<!-- NEL_TOOL_GRID_START -->${renderToolCards(currentInfo,locale,mode)}<!-- NEL_TOOL_GRID_END -->`;
+ const marker=/<!-- NEL_TOOL_GRID_START -->[\s\S]*?<!-- NEL_TOOL_GRID_END -->/i;
+ if(marker.test(html))html=html.replace(marker,rendered);
+ else{
+  const contentStart=grid.index+grid[0].length;
+  const tail=html.slice(contentStart);
+  const emptyClose=tail.match(/^(\s*)<\/div>/i);
+  if(!emptyClose)throw new Error(`Tool grid must be empty or contain NEL tool-grid markers: ${currentInfo.route}`);
+  html=html.slice(0,contentStart)+rendered+tail.slice(emptyClose[1].length);
+ }
+ if(currentInfo.kind!=="toolsDirectory")return html;
+ const counts=toolCatalog.reduce((map,tool)=>{
+  map[tool.category]=(map[tool.category]||0)+1;
+  return map;
+ },{});
+ html=html.replace(/<span\b([^>]*\bdata-category-count\s*=\s*["']([^"']+)["'][^>]*)>[\s\S]*?<\/span>/gi,(whole,attrs,category)=>{
+  const count=category==="all"?toolCatalog.length:(counts[category]||0);
+  return `<span${attrs}>${count}</span>`;
+ });
+ const allButton=html.match(/<button\b(?=[^>]*\bdata-filter\s*=\s*["']all["'])[^>]*>/i)?.[0]||"";
+ const allLabel=allButton.match(/\bdata-filter-label\s*=\s*["']([^"']+)["']/i)?.[1]||"all";
+ html=html.replace(/<p\b([^>]*\bdata-filter-status(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+))?[^>]*)>[\s\S]*?<\/p>/i,(whole,attrs)=>{
+  const template=attrs.match(/\bdata-template\s*=\s*["']([^"']+)["']/i)?.[1]||"{count} tools · {category}";
+  const status=template.replace("{count}",String(toolCatalog.length)).replace("{category}",allLabel);
+  return `<p${attrs}>${status}</p>`;
+ });
+ return html;
+}
 function identifyPage(rel){
  const clean=posix(rel).replace(/^\/+/,"");
  if(clean.endsWith("/offline.html")||clean==="offline.html")return null;
@@ -373,6 +435,7 @@ function build(){
   let html=fs.readFileSync(record.file,"utf8");
   html=rewriteInternalAnchors(html,record.rel,record.info,groups);
   html=replaceLanguageMenu(html,menuMarkup(record.info,group));
+  if(record.info.kind==="home"||record.info.kind==="toolsDirectory")html=prerenderToolGrid(html,record.info,locale);
   html=normalizeBrandLogoAlt(html);
   html=removeHeadLinks(removeNelMeta(html));
   html=setHtmlAttributes(html,locale,record.info.route);

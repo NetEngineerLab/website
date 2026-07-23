@@ -27,6 +27,7 @@
   return isToolsDirectory?`../${toolId}/${locale.folder}/`:`../tools/${toolId}/${locale.folder}/`;
  }
  document.querySelectorAll("[data-tool-grid]").forEach(grid=>{
+  if(grid.querySelector(".tool-card"))return;
   const mode=grid.dataset.mode||"all";
   const items=tools.filter(tool=>mode==="active"?tool.status==="active":mode==="planned"?tool.status==="planned":true);
   grid.innerHTML=items.map(tool=>{

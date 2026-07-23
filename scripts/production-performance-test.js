@@ -102,6 +102,19 @@ const sharedSiteJs=fs.readFileSync(path.join(root,"website","assets","js","site.
 assert.match(sharedSiteJs,/document\.addEventListener\("DOMContentLoaded",init/);
 assert.doesNotMatch(sharedSiteJs,/window\.addEventListener\("load",init/);
 assert.match(sharedSiteJs,/<h2>\$\{copy\.name\|\|tool\.id\}<\/h2>/);
+assert.match(sharedSiteJs,/if\(grid\.querySelector\("\.tool-card"\)\)return;/);
+
+for(const rel of ["website/index.html","website/zh/index.html","website/tools/index.html","website/tools/zh/index.html"]){
+  const html=fs.readFileSync(path.join(root,rel),"utf8");
+  assert.match(html,/<!-- NEL_TOOL_GRID_START -->/);
+  assert.match(html,/<!-- NEL_TOOL_GRID_END -->/);
+  assert.equal((html.match(/<article class="tool-card(?:\s|")/g)||[]).length,12,`${rel} must contain 12 build-rendered tool cards`);
+}
+for(const rel of ["website/tools/index.html","website/tools/zh/index.html"]){
+  const html=fs.readFileSync(path.join(root,rel),"utf8");
+  assert.match(html,/data-category-count="all">12<\/span>/);
+  assert.match(html,/data-filter-status[^>]*>[^<]*12[^<]*<\/p>/);
+}
 
 const toolsCss=fs.readFileSync(path.join(root,"website","assets","css","site.css"),"utf8");
 assert.match(toolsCss,/--muted:#53677f/);
@@ -127,4 +140,4 @@ for(const rel of ["website/tools/index.html","website/tools/zh/index.html","webs
   assert.match(html,/class="language-trigger"[^>]*aria-label="(?:Language: English|语言: 简体中文)"/);
 }
 
-console.log(`Production performance policy PASS (${policy.urls.length} pages x ${policy.numberOfRuns} runs; policy, median manifest, pass, regression, missing-audit, accessibility, CLS timing, and mobile-layout fixtures verified).`);
+console.log(`Production performance policy PASS (${policy.urls.length} pages x ${policy.numberOfRuns} runs; policy, median manifest, pass, regression, missing-audit, accessibility, build-rendered tool cards, CLS timing, and mobile-layout fixtures verified).`);
