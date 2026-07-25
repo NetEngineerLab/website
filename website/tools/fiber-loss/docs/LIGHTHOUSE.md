@@ -20,7 +20,7 @@ Lighthouse 分数会随设备、网络、Chrome版本、服务器响应、缓存
 5. 测试至少 3 次，关注中位数。
 
 ## CLI / Lighthouse CI
-项目附带 `tests/lighthouse/fiber-loss.lighthouserc.json` 和 `package.json`。安装 Node.js 后运行：
+项目附带 `lighthouserc.json` 和 `package.json`。安装 Node.js 后运行：
 
 ```bash
 npm install

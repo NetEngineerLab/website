@@ -1,0 +1,103 @@
+{
+  "version": "1.0.0",
+  "ipv6": {
+    "enterprise": {
+      "address": "2001:db8:1200::/48",
+      "parentPrefix": 48,
+      "childPrefix": 64,
+      "previewCount": 8
+    },
+    "isp": {
+      "address": "2001:db8::/32",
+      "parentPrefix": 32,
+      "childPrefix": 48,
+      "previewCount": 8
+    },
+    "site56": {
+      "address": "2001:db8:abcd:1200::/56",
+      "parentPrefix": 56,
+      "childPrefix": 64,
+      "previewCount": 8
+    },
+    "ula": {
+      "address": "fd12:3456:789a::/48",
+      "parentPrefix": 48,
+      "childPrefix": 64,
+      "previewCount": 8
+    }
+  },
+  "nat44": {
+    "smallEnterprise": {
+      "publicIps": 8,
+      "subscribers": 1000,
+      "portStart": 1024,
+      "portEnd": 65535,
+      "reservePct": 10,
+      "allocationPct": 85,
+      "sessionsPerSubscriber": 150,
+      "safetyPct": 25,
+      "tcpEnabled": true,
+      "udpEnabled": true
+    },
+    "ispAccess": {
+      "publicIps": 64,
+      "subscribers": 12000,
+      "portStart": 1024,
+      "portEnd": 65535,
+      "reservePct": 10,
+      "allocationPct": 90,
+      "sessionsPerSubscriber": 250,
+      "safetyPct": 30,
+      "tcpEnabled": true,
+      "udpEnabled": true
+    }
+  },
+  "cgnat": {
+    "deterministic1024": {
+      "subscribers": 20000,
+      "publicIps": 400,
+      "portStart": 1024,
+      "portEnd": 65535,
+      "reservePct": 5,
+      "allocationPct": 100,
+      "blockSize": 1024,
+      "activePct": 35,
+      "peakSessions": 250,
+      "tcpPct": 75,
+      "sessionsPerHour": 120,
+      "eventsPerSession": 2,
+      "bytesPerEvent": 180,
+      "retentionDays": 180
+    },
+    "deterministic512": {
+      "subscribers": 20000,
+      "publicIps": 200,
+      "portStart": 1024,
+      "portEnd": 65535,
+      "reservePct": 5,
+      "allocationPct": 100,
+      "blockSize": 512,
+      "activePct": 35,
+      "peakSessions": 180,
+      "tcpPct": 75,
+      "sessionsPerHour": 120,
+      "eventsPerSession": 2,
+      "bytesPerEvent": 180,
+      "retentionDays": 180
+    }
+  },
+  "nat64": {
+    "wkp": {
+      "prefix": "64:ff9b::/96",
+      "ipv4": "8.8.4.4"
+    },
+    "localUse": {
+      "prefix": "64:ff9b:1::/48",
+      "ipv4": "192.0.2.33"
+    },
+    "custom96": {
+      "prefix": "2001:db8:64::/96",
+      "ipv4": "192.0.2.33"
+    }
+  }
+}

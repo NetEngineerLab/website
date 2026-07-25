@@ -1,6 +1,4 @@
 (function(){
- function init(){
-
  const config=window.NEL_I18N||{locales:[{id:"en",folder:"",catalogKey:"en",htmlLang:"en",status:"active",ui:{openTool:"Open tool",planned:"In development"}}],defaultLocale:"en",fallbackLocale:"en"};
  const locales=config.locales||[];
  const metaLocale=document.querySelector('meta[name="nel-locale"]')?.content;
@@ -27,7 +25,6 @@
   return isToolsDirectory?`../${toolId}/${locale.folder}/`:`../tools/${toolId}/${locale.folder}/`;
  }
  document.querySelectorAll("[data-tool-grid]").forEach(grid=>{
-  if(grid.querySelector(".tool-card"))return;
   const mode=grid.dataset.mode||"all";
   const items=tools.filter(tool=>mode==="active"?tool.status==="active":mode==="planned"?tool.status==="planned":true);
   grid.innerHTML=items.map(tool=>{
@@ -35,7 +32,7 @@
    const active=tool.status==="active";
    const tags=(copy.tags||[]).map(tag=>`<span>${String(tag)}</span>`).join("");
    return `<article class="tool-card ${active?"":"planned"}" data-category="${tool.category}">
-    <div class="tool-icon">${tool.icon}</div><h2>${copy.name||tool.id}</h2><p>${copy.description||""}</p>
+    <div class="tool-icon">${tool.icon}</div><h3>${copy.name||tool.id}</h3><p>${copy.description||""}</p>
     <div class="tool-tags">${tags}</div>
     ${active?`<a class="open" href="${toolUrl(tool.id)}">${ui.openTool}</a>`:`<div class="status">${ui.planned}</div>`}
    </article>`;
@@ -97,11 +94,4 @@
  });
  document.documentElement.dataset.nelLocale=locale?.id||"en";
  document.documentElement.dataset.nelI18nVersion=config.version||"";
-
- }
- if(document.readyState!=="loading"){
-  init();
- }else{
-  document.addEventListener("DOMContentLoaded",init,{once:true});
- }
 })();

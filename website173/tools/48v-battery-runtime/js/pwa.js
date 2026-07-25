@@ -1,0 +1,7 @@
+(function(){
+ if(!("serviceWorker" in navigator))return;
+ addEventListener("load",()=>{
+  const base=document.querySelector('meta[name="app-base"]')?.content||"./";
+  navigator.serviceWorker.register(base+"sw.js").catch(()=>{});
+ });
+})();
