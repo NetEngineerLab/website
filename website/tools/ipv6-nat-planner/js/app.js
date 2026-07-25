@@ -141,6 +141,13 @@ function applyIPv6Preset(key){
  const p=P.ipv6[key];if(!p)return;
  fillFields("v6",p);calculateIPv6();
 }
+
+
+function formatIPv6Expanded(value){
+ if(!value)return "";
+ return String(value).replace(/:/g,":\u200b");
+}
+
 function calculateIPv6(){
  clearError("v6Error");
  const result=E.planIPv6({
@@ -152,8 +159,8 @@ function calculateIPv6(){
  });
  if(!result.ok){showError("v6Error",result.error);return}
  state.last.ipv6=result;
- setText("v6Canonical",result.input);
- setText("v6Expanded",result.expanded);
+ setText("v6Canonical",result.canonical||result.input);
+ setText("v6Expanded",formatIPv6Expanded(result.expanded));
  setText("v6Type",T.types[result.type]||result.type);setText("v6TypeBadge",T.types[result.type]||result.type);
  setText("v6ParentNetwork",result.parentNetwork);
  setText("v6ParentLast",result.parentLast);

@@ -15,3 +15,28 @@ footer{max-width:1360px;margin:30px auto 0;padding:28px 20px;border-top:1px soli
 
 .ad-slot{max-width:1360px;margin:18px auto;padding:14px 20px;text-align:center}.ad-label{font-size:10px;letter-spacing:.12em;color:#8797a8;margin-bottom:8px}.ad-body{min-height:0}
 .history-head>button{border:0;border-radius:9px;padding:9px 12px;background:#edf3f8;color:#2b506f;font-weight:850;cursor:pointer}
+
+
+/* V1.8.1 IPv6 mobile display optimization */
+code,
+.ipv6-address,
+[id^="v6"] code{
+    overflow-wrap:anywhere;
+    word-break:break-word;
+}
+
+.ipv6-address{
+    line-height:1.8;
+}
+
+@media(max-width:768px){
+ table{
+    display:block;
+    width:100%;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+ }
+ td code, th code{
+    white-space:normal;
+ }
+}
