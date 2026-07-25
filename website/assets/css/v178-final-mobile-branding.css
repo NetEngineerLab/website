@@ -1,0 +1,47 @@
+
+/* NetEngineerLab V1.7.8 Final Mobile Branding Fix */
+html,body{
+ width:100%;
+ max-width:100%;
+ overflow-x:hidden;
+}
+*,*::before,*::after{
+ box-sizing:border-box;
+}
+img,svg,video,canvas{
+ max-width:100%;
+ height:auto;
+}
+@media(max-width:768px){
+ .site-header{
+  padding-left:16px;
+  padding-right:16px;
+ }
+ .brand img{
+  width:42px;
+  height:42px;
+ }
+ .hero,
+ .tool-hero,
+ .page-hero,
+ [class*="hero"]{
+  height:auto !important;
+  min-height:0 !important;
+  overflow:visible !important;
+ }
+ .hero h1,
+ .tool-hero h1,
+ [class*="hero"] h1{
+  word-break:break-word;
+ }
+ .container,
+ .tool-container,
+ main,
+ .page{
+  width:100%;
+  max-width:100%;
+ }
+ input,select,textarea,button{
+  max-width:100%;
+ }
+}

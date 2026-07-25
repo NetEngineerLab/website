@@ -1,0 +1,24 @@
+# NetEngineerLab V1.7.2 Cloudflare Pages headers
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+
+/assets/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/tools/*/images/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=2592000
+
+/*.xml
+  Cache-Control: public, max-age=0, must-revalidate
+
+/robots.txt
+  Cache-Control: public, max-age=0, must-revalidate
+
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex
