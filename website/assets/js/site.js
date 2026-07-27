@@ -96,11 +96,30 @@ function initNetEngineerLabSite(){
  document.documentElement.dataset.nelI18nVersion=config.version||"";
 }
 
-// The tool catalog is loaded by a deferred script later in the document.
-// Waiting for DOMContentLoaded guarantees that every deferred data script has
-// finished before cards, filters and category counts are initialized.
-if(document.readyState==="loading"){
- document.addEventListener("DOMContentLoaded",initNetEngineerLabSite,{once:true});
-}else{
- initNetEngineerLabSite();
+// The catalog is intentionally loaded after this shared script on directory
+// pages. Start only when the catalog is actually available. This also recovers
+// from browsers that previously cached an older site.js which initialized too
+// early and replaced the server-rendered counts with zero.
+let nelSiteStarted=false;
+function startNetEngineerLabSite(){
+ const catalog=[...document.scripts].find(script=>String(script.src||"").includes("/data/tools-catalog.js"));
+ const start=()=>{
+  if(nelSiteStarted)return;
+  if(catalog&&(!Array.isArray(window.NEL_TOOLS)||window.NEL_TOOLS.length===0))return;
+  nelSiteStarted=true;
+  initNetEngineerLabSite();
+ };
+ if(Array.isArray(window.NEL_TOOLS)&&window.NEL_TOOLS.length>0){
+  start();
+  return;
+ }
+ if(catalog)catalog.addEventListener("load",start,{once:true});
+ window.addEventListener("nel:tools-ready",start,{once:true});
+ if(document.readyState==="loading"){
+  document.addEventListener("DOMContentLoaded",start,{once:true});
+ }else{
+  start();
+ }
+ setTimeout(start,250);
 }
+startNetEngineerLabSite();
