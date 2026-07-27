@@ -347,7 +347,8 @@ function clearHistory(){
 function setLanguage(lang){
   currentLang = lang;
   document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
-  $("langToggle").textContent = lang === "zh" ? "English" : "中文";
+  const legacyLangToggle = $("langToggle");
+  if (legacyLangToggle) legacyLangToggle.textContent = lang === "zh" ? "English" : "中文";
   document.querySelectorAll("[data-i18n]").forEach((element) => {
     const key = element.dataset.i18n;
     if (translations[lang][key] !== undefined) element.textContent = translations[lang][key];

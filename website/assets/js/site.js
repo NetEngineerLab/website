@@ -92,6 +92,11 @@ function initNetEngineerLabSite(){
   document.addEventListener("click",close);
   document.addEventListener("keydown",event=>{if(event.key==="Escape"){close();trigger.focus()}});
  });
+ document.querySelectorAll("input[id],select[id],textarea[id]").forEach(control=>{
+  if(control.labels?.length||control.hasAttribute("aria-label")||control.hasAttribute("aria-labelledby"))return;
+  const label=control.closest(".field")?.querySelector("label");
+  if(label)label.htmlFor=control.id;
+ });
  document.documentElement.dataset.nelLocale=locale?.id||"en";
  document.documentElement.dataset.nelI18nVersion=config.version||"";
 }
