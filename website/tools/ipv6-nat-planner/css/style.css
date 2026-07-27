@@ -40,3 +40,54 @@ code,
     white-space:normal;
  }
 }
+
+/* V1.7.9: keep long IPv6 values inside result cards on mobile Safari/WeChat. */
+.panel-layout,
+.card,
+.result-card,
+.summary,
+.summary>div,
+.metric-grid,
+.metric,
+.metric strong,
+.summary strong,
+.result-box,
+.result-box strong{
+    min-width:0;
+    max-width:100%;
+}
+
+.summary code,
+.metric code,
+.result-box code{
+    display:block;
+    width:100%;
+    max-width:100%;
+    white-space:normal;
+    overflow-wrap:anywhere;
+    word-wrap:break-word;
+    word-break:break-all;
+}
+
+@media(max-width:680px){
+    .summary{
+        flex-wrap:wrap;
+    }
+    .summary code,
+    .metric code,
+    .result-box code{
+        font-size:14px;
+        line-height:1.65;
+    }
+    .metric strong,
+    .result-box strong{
+        font-size:16px;
+        line-height:1.55;
+        overflow-wrap:anywhere;
+        word-break:break-word;
+    }
+}
+
+.ipv6-preview-table{
+    min-width:0;
+}

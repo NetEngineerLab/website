@@ -1,4 +1,4 @@
-(function(){
+function initNetEngineerLabSite(){
  const config=window.NEL_I18N||{locales:[{id:"en",folder:"",catalogKey:"en",htmlLang:"en",status:"active",ui:{openTool:"Open tool",planned:"In development"}}],defaultLocale:"en",fallbackLocale:"en"};
  const locales=config.locales||[];
  const metaLocale=document.querySelector('meta[name="nel-locale"]')?.content;
@@ -94,4 +94,13 @@
  });
  document.documentElement.dataset.nelLocale=locale?.id||"en";
  document.documentElement.dataset.nelI18nVersion=config.version||"";
-})();
+}
+
+// The tool catalog is loaded by a deferred script later in the document.
+// Waiting for DOMContentLoaded guarantees that every deferred data script has
+// finished before cards, filters and category counts are initialized.
+if(document.readyState==="loading"){
+ document.addEventListener("DOMContentLoaded",initNetEngineerLabSite,{once:true});
+}else{
+ initNetEngineerLabSite();
+}

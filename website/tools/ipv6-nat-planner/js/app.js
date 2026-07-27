@@ -160,17 +160,17 @@ function calculateIPv6(){
  if(!result.ok){showError("v6Error",result.error);return}
  state.last.ipv6=result;
  setText("v6Canonical",result.canonical||result.input);
- setText("v6Expanded",formatIPv6Expanded(result.expanded));
+ setText("v6Expanded",result.canonical||result.input);
  setText("v6Type",T.types[result.type]||result.type);setText("v6TypeBadge",T.types[result.type]||result.type);
  setText("v6ParentNetwork",result.parentNetwork);
- setText("v6ParentLast",result.parentLast);
+ setText("v6ParentLast",`/${result.parentPrefix} → /${result.childPrefix}`);
  setText("v6ChildCount",exactCount(result.childCount,result.childCountPower));
  setText("v6AddressesPerChild",exactCount(result.addressesPerChild,result.addressesPower));
  setText("v6Containing",result.containingCidr);
  setText("v6ContainingIndex",result.containingIndex);
  setText("v6Previous",result.previous||"—");
  setText("v6Next",result.next||"—");
- $("v6PreviewBody").innerHTML=result.preview.map(row=>`<tr><td>${row.index}</td><td><code>${row.cidr}</code></td><td><code>${row.first}</code></td><td><code>${row.last}</code></td></tr>`).join("");
+ $("v6PreviewBody").innerHTML=result.preview.map(row=>`<tr><td>${row.index}</td><td><code>${row.cidr}</code></td></tr>`).join("");
 }
 function ipv6Report(r){
  return[
