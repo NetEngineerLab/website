@@ -45,3 +45,17 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,su
 @media print{.site-header,.hero,.breadcrumbs,.input-panel,.result-actions,#history,#methodology,#faq,#related,footer,.ad-slot{display:none!important}body{background:#fff}.tool-shell{display:block;padding:0}.result-panel{box-shadow:none;border:0}}
 
 .help{display:block;margin-top:6px;color:#72839a;font-size:12px;line-height:1.5}
+
+/* V1.8.0 Hotfix 04: prevent localized controls from widening mobile cards. */
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+.tool-shell,.card,.input-panel,.result-panel,.form-grid,.field,.stage-card,.preset-row,.input-wrap,
+.section-title,.section-title>div{min-width:0;max-width:100%}
+.field input,.field select,.preset-row select{width:100%;max-width:100%}
+@media(max-width:760px){
+  .tool-shell{width:100%;max-width:100%;grid-template-columns:minmax(0,1fr)}
+  .card,.input-panel,.result-panel{width:100%;min-width:0;max-width:100%}
+  .section-title>div{flex:1 1 auto}
+  .section-title h2,.section-title p,.field label{overflow-wrap:anywhere}
+  .input-wrap,.input-wrap.no-unit{width:100%;min-width:0;max-width:100%;grid-template-columns:minmax(0,1fr) minmax(0,80px)}
+  .input-wrap.no-unit{grid-template-columns:minmax(0,1fr)}
+}
