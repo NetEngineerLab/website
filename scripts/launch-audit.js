@@ -9,7 +9,8 @@ const root=path.resolve(__dirname,"..");
 const site=path.join(root,"website");
 const errors=[];
 const warnings=[];
-const expectedVersion="1.7.5";
+const packageJson = require("../package.json");
+const expectedVersion = packageJson.version;
 const expectedOrigin="https://netengineerlab.com";
 const expectedMeasurementId="G-KGNFX9MD8Q";
 
@@ -17,7 +18,7 @@ function walk(dir){return fs.readdirSync(dir,{withFileTypes:true}).flatMap(entry
 function read(file){return fs.readFileSync(file,"utf8")}
 function json(rel){try{return JSON.parse(read(path.join(root,rel)))}catch(error){errors.push(`${rel}: ${error.message}`);return{}}}
 
-const packageJson=json("package.json");
+
 const config=json("website/data/locales.json");
 const siteConfig=json("website/data/site-config.json");
 const sitemapConfig=json("website/data/sitemap-routes.json");

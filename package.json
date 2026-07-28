@@ -1,7 +1,7 @@
 {
   "name": "netengineerlab-production-launch-acceptance",
   "private": true,
-  "version": "1.7.5",
+  "version": "1.8.1",
   "description": "Production launch, online availability, and Lighthouse performance monitoring for NetEngineerLab.",
   "scripts": {
     "build:i18n": "npm run build:config && node scripts/build-multilingual.js",
@@ -23,5 +23,8 @@
   },
   "engines": {
     "node": ">=20"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.0"
   }
 }
