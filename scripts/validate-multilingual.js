@@ -88,6 +88,15 @@ for(const record of records){
  if(!/data-language-menu/i.test(html))errors.push(`${record.rel}: language menu missing`);
  const canonical=config.siteUrl+urlFor(record.info.route,locale);
  const group=groups.get(record.info.route);
+ const menuCount=(html.match(/\bdata-language-menu\b/gi)||[]).length;
+ if(menuCount!==1)errors.push(`${record.rel}: expected one language menu, found ${menuCount}`);
+ const menu=html.match(/<!-- NEL_LANGUAGE_MENU_START -->([\s\S]*?)<!-- NEL_LANGUAGE_MENU_END -->/i)?.[1]||"";
+ for(const alt of active.filter(x=>group.has(x.id))){
+  const tag=(menu.match(/<a\b[^>]*>/gi)||[]).find(value=>new RegExp(`hreflang=["']${alt.hreflang.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}["']`,"i").test(value));
+  const href=tag?.match(/href=["']([^"']+)["']/i)?.[1];
+  const expected=config.siteUrl+urlFor(record.info.route,alt);
+  if(!href||new URL(href,canonical).href!==expected)errors.push(`${record.rel}: language menu ${alt.hreflang} target mismatch`);
+ }
  if(record.info.route==="404.html"){
   if(linkHref(html,"canonical"))errors.push(`${record.rel}: 404 must not have canonical`);
   if(!/name=["']robots["'][^>]*content=["']noindex,follow["']/i.test(html)&&!/content=["']noindex,follow["'][^>]*name=["']robots["']/i.test(html))errors.push(`${record.rel}: 404 must be noindex`);

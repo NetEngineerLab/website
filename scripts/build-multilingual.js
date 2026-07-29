@@ -272,6 +272,8 @@ function updateJsonLd(html,locale,canonical){
 }
 function replaceLanguageMenu(html,menuMarkup){
  const marker=/<!-- NEL_LANGUAGE_MENU_START -->[\s\S]*?<!-- NEL_LANGUAGE_MENU_END -->/i;
+ const nestedWrapper=/<div\b[^>]*class\s*=\s*["'][^"']*\blanguage-menu\b[^"']*["'][^>]*>\s*<button\b[^>]*class\s*=\s*["'][^"']*\blanguage-trigger\b[^"']*["'][^>]*>[\s\S]*?<\/button>\s*<div\b[^>]*class\s*=\s*["'][^"']*\blanguage-options\b[^"']*["'][^>]*>\s*(<!-- NEL_LANGUAGE_MENU_START -->[\s\S]*?<!-- NEL_LANGUAGE_MENU_END -->)[\s\S]*?<\/div>\s*<\/div>/i;
+ if(nestedWrapper.test(html))html=html.replace(nestedWrapper,"$1");
  if(marker.test(html))return html.replace(marker,menuMarkup);
  const anchor=/<a\b[^>]*class\s*=\s*["'][^"']*\blanguage\b[^"']*["'][^>]*>[\s\S]*?<\/a>/i;
  if(anchor.test(html))return html.replace(anchor,menuMarkup);
