@@ -44,7 +44,7 @@ function headerIncludes(response,name,value){return(response.headers.get(name)||
   const sitemapResponse=await request("/sitemap.xml");
   record("sitemap HTTP 200",sitemapResponse.response.status===200,String(sitemapResponse.response.status));
   const urls=[...sitemapResponse.text.matchAll(/<loc>(.*?)<\/loc>/g)].map(match=>match[1]);
-  record("sitemap URL count",urls.length===36,String(urls.length));
+  record("sitemap URL count",urls.length===38,String(urls.length));
   record("sitemap URLs unique",new Set(urls).size===urls.length);
   record("sitemap URLs use deployment origin",urls.every(url=>url.startsWith(base+"/")));
 
@@ -86,7 +86,7 @@ function headerIncludes(response,name,value){return(response.headers.get(name)||
   record("service-worker revalidation",/no-cache|max-age=0/i.test(sw.response.headers.get("cache-control")||""),sw.response.headers.get("cache-control")||"missing");
 
   const report={
-    version:"1.7.5",
+    version:"1.8.2",
     base,
     generatedAt:new Date().toISOString(),
     sitemapUrls:urls.length,
@@ -99,7 +99,7 @@ function headerIncludes(response,name,value){return(response.headers.get(name)||
   console.log(JSON.stringify(report,null,2));
   if(errors.length)process.exit(1);
 })().catch(error=>{
-  const report={version:"1.7.5",base,generatedAt:new Date().toISOString(),errors:[error.stack||error.message||String(error)],warnings,status:"FAIL"};
+  const report={version:"1.8.2",base,generatedAt:new Date().toISOString(),errors:[error.stack||error.message||String(error)],warnings,status:"FAIL"};
   fs.writeFileSync(path.join(docs,"REMOTE_ACCEPTANCE_REPORT.json"),JSON.stringify(report,null,2)+"\n");
   console.error(error);process.exit(1);
 });

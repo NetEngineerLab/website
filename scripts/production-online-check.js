@@ -184,7 +184,7 @@ async function readinessCheck(attempt){
   catch(error){return{ready:false,errors:[error.message||String(error)],home,toolsDirectory}}
   if(sitemapResponse.response.status!==200)errors.push(`/sitemap.xml: HTTP ${sitemapResponse.response.status}`);
   const sitemapUrls=[...sitemapResponse.text.matchAll(/<loc>(.*?)<\/loc>/g)].map(match=>match[1]);
-  if(sitemapUrls.length!==36)errors.push(`/sitemap.xml: expected 36 URLs, got ${sitemapUrls.length}`);
+  if(sitemapUrls.length!==38)errors.push(`/sitemap.xml: expected 38 URLs, got ${sitemapUrls.length}`);
 
   const pageResults=await mapLimit(sitemapUrls,8,async canonical=>{
     const pathname=new URL(canonical).pathname;
@@ -259,7 +259,7 @@ async function runFullCheck(readiness,readyAttempt){
   const home=readiness.home;
   const homeUrl=`${base}/`;
 
-  record("checked-out version",version==="1.7.5",version);
+  record("checked-out version",version==="1.8.2",version);
   record("production HTTPS or local test",baseUrl.protocol==="https:"||localMode,base);
   record("deployment matches checked-out asset hashes",readiness.ready,`attempt ${readyAttempt}/${attempts}`);
   record("home HTTP 200",home.response.status===200,String(home.response.status));
@@ -284,7 +284,7 @@ async function runFullCheck(readiness,readyAttempt){
   const sitemapResponse=readiness.sitemapResponse;
   record("sitemap HTTP 200",sitemapResponse.response.status===200,String(sitemapResponse.response.status));
   const sitemapUrls=readiness.sitemapUrls;
-  record("sitemap URL count",sitemapUrls.length===36,String(sitemapUrls.length));
+  record("sitemap URL count",sitemapUrls.length===38,String(sitemapUrls.length));
   record("sitemap URLs unique",new Set(sitemapUrls).size===sitemapUrls.length);
   record("sitemap production origin",sitemapUrls.every(url=>url.startsWith(`${expectedOrigin}/`)));
 
@@ -326,7 +326,7 @@ async function runFullCheck(readiness,readyAttempt){
   const catalogAsset=readiness.remoteAssets.find(item=>item.rel==="data/tools-catalog.js");
   record("tools catalog HTTP 200",catalogAsset.status===200,String(catalogAsset.status));
   const tools=readiness.tools;
-  record("active tools online",tools.length===12&&tools.every(tool=>tool.status==="active"),String(tools.length));
+  record("active tools online",tools.length===13&&tools.every(tool=>tool.status==="active"),String(tools.length));
   record("tool IDs unique",new Set(tools.map(tool=>tool.id)).size===tools.length);
   const actualCounts=tools.reduce((counts,tool)=>{counts[tool.category]=(counts[tool.category]||0)+1;return counts},{});
   record("tool category counts",JSON.stringify(actualCounts)===JSON.stringify(expectedCategoryCounts),JSON.stringify(actualCounts));

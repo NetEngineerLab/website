@@ -1,0 +1,16 @@
+const assert=require("node:assert/strict");
+const engine=require("../js/engine.js");
+const base={switchBudget:120,switchPorts:8,deviceCount:8,deviceWatts:10,cableLossPercent:10,headroomPercent:20,standard:"af"};
+const pass=engine.calculate(base);
+assert.equal(pass.status,"warning");
+assert.equal(pass.maxDevices,8);
+assert.ok(Math.abs(pass.requiredBudget-106.6667)<0.01);
+const portFail=engine.calculate({...base,deviceCount:10});
+assert.equal(portFail.portPass,false);
+assert.equal(portFail.status,"fail");
+const classFail=engine.calculate({...base,deviceWatts:20,standard:"af"});
+assert.equal(classFail.standardPass,false);
+assert.equal(classFail.recommended,"at");
+const budgetFail=engine.calculate({...base,switchBudget:60});
+assert.equal(budgetFail.budgetPass,false);
+console.log("PASS: PoE power budget engine");

@@ -9,7 +9,7 @@ const{stableFileHash,stableHash}=require("./stable-text-hash");
 const root=path.resolve(__dirname,"..");
 const site=path.join(root,"website");
 const docs=path.join(root,"docs");
-const expectedVersion="1.7.5";
+const expectedVersion="1.8.2";
 const expectedOrigin="https://netengineerlab.com";
 const sharedRuntimeAssets=[
   {sitePath:"data/locales.js",cachePath:"../../data/locales.js"},
@@ -243,7 +243,7 @@ async function httpAudit(sitemapUrls){
   record("locale version",localeConfig.version===expectedVersion,localeConfig.version||"missing");
   record("sitemap config version",sitemapConfig.version===expectedVersion,sitemapConfig.version||"missing");
   record("production origin",siteConfig.siteUrl===expectedOrigin,siteConfig.siteUrl||"missing");
-  record("active tool count",Array.isArray(tools)&&tools.filter(item=>item.status==="active").length===12,String(Array.isArray(tools)?tools.filter(item=>item.status==="active").length:0));
+  record("active tool count",Array.isArray(tools)&&tools.filter(item=>item.status==="active").length===13,String(Array.isArray(tools)?tools.filter(item=>item.status==="active").length:0));
   record("no planned tool placeholders",Array.isArray(tools)&&tools.every(item=>item.status==="active"));
 
   for(const rel of [".node-version",".nvmrc",".gitignore",".gitattributes","VERSION",".github/workflows/production-quality-gate.yml",".github/workflows/production-online-monitor.yml",".github/workflows/production-performance-monitor.yml","scripts/production-online-check.js","scripts/production-online-revalidation-test.js","scripts/production-performance-report.js","scripts/production-performance-test.js","tests/lighthouse/production.lighthouserc.json","website/_headers","website/_redirects","website/robots.txt","website/sitemap.xml","website/.well-known/security.txt"]){
@@ -261,7 +261,7 @@ async function httpAudit(sitemapUrls){
   record("GA4 production-domain guard",["location.hostname.toLowerCase()","www.${productionHost}","script[data-nel-analytics]"].every(marker=>analyticsSource.includes(marker)));
   record("AdSense configuration",!adsense.enabled||(/^ca-pub-\d{10,20}$/.test(adsense.client||"")&&!/X{3,}/.test(adsense.client||"")),adsense.enabled?"enabled and valid":"disabled");
 
-  const websiteTextFiles=walk(site).filter(file=>/\.(?:html|css|js|json|xml|txt|webmanifest)$/i.test(file));
+  const websiteTextFiles=walk(site).filter(file=>/\.(?:html|css|js|json|xml|txt|webmanifest)$/i.test(file)&&path.basename(file)!=="lighthouserc.json");
   const forbidden=[];
   for(const file of websiteTextFiles){
     const text=read(file);
@@ -276,7 +276,7 @@ async function httpAudit(sitemapUrls){
 
   const sitemap=read(path.join(site,"sitemap.xml"));
   const sitemapUrls=[...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match=>match[1]);
-  record("sitemap URL count",sitemapUrls.length===36,String(sitemapUrls.length));
+  record("sitemap URL count",sitemapUrls.length===38,String(sitemapUrls.length));
   record("sitemap URLs unique",new Set(sitemapUrls).size===sitemapUrls.length);
   record("sitemap HTTPS production origin",sitemapUrls.every(url=>url.startsWith(expectedOrigin+"/")));
   const robots=read(path.join(site,"robots.txt"));

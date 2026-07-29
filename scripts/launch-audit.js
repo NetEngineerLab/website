@@ -28,7 +28,7 @@ for(const [name,value] of [["package",packageJson.version],["locales",config.ver
   if(value!==expectedVersion)errors.push(`${name} version ${value||"missing"} != ${expectedVersion}`);
 }
 if(siteConfig.siteUrl!==expectedOrigin)errors.push(`site URL ${siteConfig.siteUrl||"missing"} != ${expectedOrigin}`);
-if(!Array.isArray(tools)||tools.filter(item=>item.status==="active").length!==12)errors.push("active tool count is not 12");
+if(!Array.isArray(tools)||tools.filter(item=>item.status==="active").length!==13)errors.push("active tool count is not 13");
 if(Array.isArray(tools)&&tools.some(item=>item.status!=="active"))errors.push("planned tools remain in production catalog");
 
 const htmlFiles=walk(site).filter(file=>file.endsWith(".html")&&!file.endsWith("offline.html"));
@@ -81,7 +81,7 @@ if(siteConfig.adsense?.enabled&&(!/^ca-pub-\d{10,20}$/.test(siteConfig.adsense.c
 
 const sitemap=read(path.join(site,"sitemap.xml"));
 const locs=[...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match=>match[1]);
-if(locs.length!==36)errors.push(`sitemap URL count ${locs.length} != 36`);
+if(locs.length!==38)errors.push(`sitemap URL count ${locs.length} != 38`);
 if(new Set(locs).size!==locs.length)errors.push("duplicate sitemap URLs");
 if(!locs.every(url=>url.startsWith(expectedOrigin+"/")))errors.push("sitemap contains non-production URL");
 for(const route of ["/about/","/contact/","/privacy/","/terms/","/zh/about/","/zh/contact/","/zh/privacy/","/zh/terms/"]){
