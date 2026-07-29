@@ -12,6 +12,7 @@ function update(ok){
   });
  }
  if(ok && typeof window.NEL_LOAD_ANALYTICS==="function") window.NEL_LOAD_ANALYTICS();
+ window.dispatchEvent(new CustomEvent("nel:consent-updated",{detail:{analytics:ok}}));
 }
 function show(){
  const isZh=(document.documentElement.lang||"").toLowerCase().startsWith("zh");

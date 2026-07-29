@@ -1,7 +1,7 @@
 {
   "name": "netengineerlab-production-launch-acceptance",
   "private": true,
-  "version": "1.8.1",
+  "version": "1.7.5",
   "description": "Production launch, online availability, and Lighthouse performance monitoring for NetEngineerLab.",
   "scripts": {
     "build:i18n": "npm run build:config && node scripts/build-multilingual.js",
@@ -9,7 +9,7 @@
     "scaffold:locale": "node scripts/scaffold-locale.js",
     "build": "npm run build:i18n",
     "audit:launch": "node scripts/launch-audit.js",
-    "prepare:launch": "npm run build:i18n && npm run validate:i18n && npm run audit:launch && npm run test:online-revalidation && npm run test:performance-monitor && npm run accept:production && npm run release:manifest",
+    "prepare:launch": "npm run build:i18n && npm run test:ga4 && npm run validate:i18n && npm run audit:launch && npm run test:online-revalidation && npm run test:performance-monitor && npm run accept:production && npm run release:manifest",
     "preview": "node scripts/preview-server.js",
     "build:config": "node scripts/build-site-config.js",
     "accept:production": "node scripts/production-acceptance.js",
@@ -19,12 +19,11 @@
     "report:performance": "node scripts/production-performance-report.js",
     "test:performance-monitor": "node scripts/production-performance-test.js",
     "release:manifest": "node scripts/release-manifest.js",
+    "test:ga4": "node scripts/ga4-config-test.js",
+    "check:ga4": "node scripts/ga4-online-check.js",
     "verify": "npm run prepare:launch"
   },
   "engines": {
     "node": ">=20"
-  },
-  "devDependencies": {
-    "@playwright/test": "^1.62.0"
   }
 }
