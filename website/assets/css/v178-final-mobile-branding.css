@@ -12,6 +12,52 @@ img,svg,video,canvas{
  max-width:100%;
  height:auto;
 }
+
+/* V1.8.2 Hotfix 04: one visual width and color system for generated tool pages. */
+:root{
+ --nel-content-max:1320px;
+ --nel-page-gutter:clamp(18px,4vw,48px);
+}
+@media(min-width:769px){
+ .breadcrumbs,
+ .breadcrumb,
+ .hero-inner,
+ .tool-shell,
+ .calculator-shell,
+ .content-section{
+  width:calc(100% - (var(--nel-page-gutter) * 2));
+  max-width:var(--nel-content-max) !important;
+  margin-left:auto;
+  margin-right:auto;
+ }
+ .tool-shell,
+ .calculator-shell,
+ .content-section{
+  padding-left:0 !important;
+  padding-right:0 !important;
+ }
+ .tool-hero{
+  width:calc(100% - (var(--nel-page-gutter) * 2));
+  max-width:var(--nel-content-max);
+  margin:22px auto 0;
+  padding-left:36px;
+  padding-right:36px;
+  border-radius:24px;
+  box-shadow:0 22px 55px rgba(8,49,100,.14);
+ }
+ .hero-inner{
+  padding-left:0;
+  padding-right:0;
+ }
+ .card,
+ .input-panel,
+ .result-panel,
+ .content-section article,
+ .method-grid article,
+ .related-card{
+  border-color:#d7e3f1;
+ }
+}
 @media(max-width:768px){
  .site-header{
   padding-left:16px;
@@ -43,5 +89,12 @@ img,svg,video,canvas{
  }
  input,select,textarea,button{
   max-width:100%;
+ }
+ .tool-hero{
+  width:calc(100% - 24px);
+  margin:12px auto 0;
+  padding-left:18px !important;
+  padding-right:18px !important;
+  border-radius:18px;
  }
 }
