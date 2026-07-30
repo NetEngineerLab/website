@@ -1,7 +1,7 @@
 {
   "name": "netengineerlab-production-launch-acceptance",
   "private": true,
-  "version": "1.8.2",
+  "version": "1.8.3",
   "description": "Production launch, online availability, and Lighthouse performance monitoring for NetEngineerLab.",
   "scripts": {
     "build:i18n": "npm run build:config && node scripts/build-multilingual.js",
@@ -19,6 +19,7 @@
     "report:performance": "node scripts/production-performance-report.js",
     "test:performance-monitor": "node scripts/production-performance-test.js",
     "release:manifest": "node scripts/release-manifest.js",
+    "test:sfp-qsfp": "node website/tools/sfp-qsfp-compatibility-calculator/docs/engine-test.js",
     "test:ga4": "node scripts/ga4-config-test.js",
     "check:ga4": "node scripts/ga4-online-check.js",
     "verify": "npm run prepare:launch"

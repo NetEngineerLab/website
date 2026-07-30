@@ -9,7 +9,7 @@ const{stableFileHash,stableHash}=require("./stable-text-hash");
 const root=path.resolve(__dirname,"..");
 const site=path.join(root,"website");
 const docs=path.join(root,"docs");
-const expectedVersion="1.8.2";
+const expectedVersion="1.8.3";
 const expectedOrigin="https://netengineerlab.com";
 const sharedRuntimeAssets=[
   {sitePath:"data/locales.js",cachePath:"../../data/locales.js"},
@@ -146,7 +146,8 @@ function runEngineTests(){
     Bandwidth:"website/tools/bandwidth-calculator/docs/engine-test.js",
     Battery_48V:"website/tools/48v-battery-runtime/docs/engine-test.js",
     IPv6_NAT:"website/tools/ipv6-nat-planner/docs/engine-test.js",
-    WiFi_Coverage_Capacity:"website/tools/wifi-coverage-capacity-planner/docs/engine-test.js"
+    WiFi_Coverage_Capacity:"website/tools/wifi-coverage-capacity-planner/docs/engine-test.js",
+    SFP_QSFP_Compatibility:"website/tools/sfp-qsfp-compatibility-calculator/docs/engine-test.js"
   };
   const results={};
   for(const [name,rel] of Object.entries(tests)){
@@ -243,7 +244,7 @@ async function httpAudit(sitemapUrls){
   record("locale version",localeConfig.version===expectedVersion,localeConfig.version||"missing");
   record("sitemap config version",sitemapConfig.version===expectedVersion,sitemapConfig.version||"missing");
   record("production origin",siteConfig.siteUrl===expectedOrigin,siteConfig.siteUrl||"missing");
-  record("active tool count",Array.isArray(tools)&&tools.filter(item=>item.status==="active").length===13,String(Array.isArray(tools)?tools.filter(item=>item.status==="active").length:0));
+  record("active tool count",Array.isArray(tools)&&tools.filter(item=>item.status==="active").length===14,String(Array.isArray(tools)?tools.filter(item=>item.status==="active").length:0));
   record("no planned tool placeholders",Array.isArray(tools)&&tools.every(item=>item.status==="active"));
 
   for(const rel of [".node-version",".nvmrc",".gitignore",".gitattributes","VERSION",".github/workflows/production-quality-gate.yml",".github/workflows/production-online-monitor.yml",".github/workflows/production-performance-monitor.yml","scripts/production-online-check.js","scripts/production-online-revalidation-test.js","scripts/production-performance-report.js","scripts/production-performance-test.js","tests/lighthouse/production.lighthouserc.json","website/_headers","website/_redirects","website/robots.txt","website/sitemap.xml","website/.well-known/security.txt"]){
@@ -276,7 +277,7 @@ async function httpAudit(sitemapUrls){
 
   const sitemap=read(path.join(site,"sitemap.xml"));
   const sitemapUrls=[...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match=>match[1]);
-  record("sitemap URL count",sitemapUrls.length===38,String(sitemapUrls.length));
+  record("sitemap URL count",sitemapUrls.length===40,String(sitemapUrls.length));
   record("sitemap URLs unique",new Set(sitemapUrls).size===sitemapUrls.length);
   record("sitemap HTTPS production origin",sitemapUrls.every(url=>url.startsWith(expectedOrigin+"/")));
   const robots=read(path.join(site,"robots.txt"));
