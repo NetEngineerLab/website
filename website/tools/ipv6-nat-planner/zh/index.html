@@ -28,6 +28,7 @@
 <link rel="manifest" href="../manifest-zh.webmanifest">
 <script defer src="/data/seo-config.js"></script>
 <script defer src="/assets/js/seo-engine.js"></script>
+<script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么IPv6子网地址数量非常大？","acceptedAnswer":{"@type":"Answer","text":"IPv6是128位地址。/64保留64位接口标识，因此地址数为2^64。工具同时显示指数和精确整数。"}},{"@type":"Question","name":"端口范围为什么可以修改？","acceptedAnswer":{"@type":"Answer","text":"不同设备会保留管理端口、静态映射端口或采用不同端口池策略，因此1024—65535只能作为常见工程起点。"}},{"@type":"Question","name":"TCP和UDP容量能直接相加吗？","acceptedAnswer":{"@type":"Answer","text":"二者端口空间独立，理论容量可以分别计算；实际承载仍受设备会话表、内存、CPU、超时和应用行为限制。"}},{"@type":"Question","name":"确定性端口块越小越好吗？","acceptedAnswer":{"@type":"Answer","text":"更小端口块能提高公网IPv4共享比，但会增加端口不足和应用兼容风险，应根据忙时会话分布选择。"}},{"@type":"Question","name":"知名NAT64前缀能映射私网IPv4吗？","acceptedAnswer":{"@type":"Answer","text":"RFC 6052限制知名前缀表示非全球IPv4地址。域内场景可评估网络专用前缀或RFC 8215本地使用前缀。"}}]}</script>
 </head><body>
 <a class="skip" href="#planner">开始规划</a><noscript><div class="noscript">JavaScript required / 本工具需要启用JavaScript。</div></noscript>
 <header class="site-header"><a class="brand" href="../../../zh/"><img alt="" src="../images/logo.svg"/><span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span></a>
