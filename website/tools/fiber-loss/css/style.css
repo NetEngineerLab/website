@@ -30,6 +30,12 @@ body{
 button,input,select{font:inherit}
 button,a{transition:.2s ease}
 button{cursor:pointer}
+.action-icon{
+  width:18px;height:18px;flex:0 0 18px;
+  display:inline-block;vertical-align:middle;
+  stroke:currentColor;fill:none;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round;
+}
 
 .site-header{
   min-height:84px;
@@ -137,6 +143,7 @@ button{cursor:pointer}
 .calculator-shell{
   display:grid;
   grid-template-columns:minmax(400px,.82fr) minmax(620px,1.45fr);
+  align-items:start;
   gap:22px;
   padding:24px 4vw 34px;
   max-width:1900px;
@@ -246,6 +253,7 @@ button{cursor:pointer}
   border-radius:13px;
   font-weight:850;
   font-size:16px;
+  display:flex;align-items:center;justify-content:center;gap:9px;
 }
 .primary-action{border:0;background:var(--primary);color:#fff}
 .primary-action:hover{background:var(--primary-dark)}
@@ -405,6 +413,7 @@ button{cursor:pointer}
   min-height:48px;border-radius:11px;
   border:1px solid #c9daee;background:#fff;color:#1760cc;
   font-weight:800;
+  display:flex;align-items:center;justify-content:center;gap:8px;
 }
 .result-actions button:hover{background:#f2f7ff;border-color:#8db8ef}
 
