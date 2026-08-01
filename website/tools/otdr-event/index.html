@@ -4,7 +4,7 @@
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="./" name="app-base"/>
 <title>OTDR Event Analyzer | NetEngineerLab</title><meta content="Professional OTDR event analysis for splices, connectors, bends, breaks, ghost events and dead-zone effects." name="description"/><meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
 <meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="OTDR Event Analyzer | NetEngineerLab" property="og:title"/><meta content="Professional OTDR event analysis for splices, connectors, bends, breaks, ghost events and dead-zone effects." property="og:description"/><meta content="https://netengineerlab.com/tools/otdr-event/" property="og:url"/><meta content="https://netengineerlab.com/tools/otdr-event/images/og-otdr-event-analyzer.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
-<link href="images/icons/apple-touch-icon.png" rel="apple-touch-icon"/><link href="images/logo.svg" rel="icon" type="image/svg+xml"/><link href="css/style.css?v=91cd1018944a" rel="stylesheet"/>
+<link href="images/icons/apple-touch-icon.png" rel="apple-touch-icon"/><link href="images/logo.svg" rel="icon" type="image/svg+xml"/><link href="css/style.css?v=1.9.4" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"OTDR Event Analyzer","url":"https://netengineerlab.com/tools/otdr-event/","description":"Professional OTDR event analysis for splices, connectors, bends, breaks, ghost events and dead-zone effects.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"OTDR Analysis Tool","operatingSystem":"Any","softwareVersion":"1.0.1","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
 <script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"OTDR Event Analyzer","item":"https://netengineerlab.com/tools/otdr-event/"}]}</script><meta content="NetEngineerLab" name="author"/>
 
@@ -63,7 +63,7 @@
 <div class="field"><label for="ghostTolerance">Ghost distance tolerance</label><div class="input-wrap"><input class="config-input" id="ghostTolerance" min="0" step="1" type="number" value="50"/><span>m</span></div></div>
 <div class="field"><label for="nearEndTolerance">Near-end tolerance</label><div class="input-wrap"><input class="config-input" id="nearEndTolerance" min="0" step="1" type="number" value="100"/><span>m</span></div></div>
 </div>
-<div class="config-actions"><button class="primary" id="sampleBtn" type="button">▣ Load sample</button><button class="secondary" id="resetBtn" type="button">↻ Reset</button></div>
+<div class="config-actions"><button class="primary" id="sampleBtn" type="button"><svg aria-hidden="true" class="action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8v8H8z"/></svg> Load sample</button><button class="secondary" id="resetBtn" type="button"><svg aria-hidden="true" class="action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg> Reset</button></div>
 </section>
 <section aria-live="polite" class="analysis-panel card">
 <div class="section-title"><span class="section-icon">OT</span><div><h2>Event analysis result</h2><p>Summary, topology, event classification and maintenance actions.</p></div></div>
@@ -81,9 +81,9 @@
 <div class="topology-wrap"><h3>Event position topology</h3><div class="topology" id="topology"></div></div>
 <div class="event-editor">
 <div class="editor-head"><h3>OTDR event input table</h3><div class="editor-buttons">
-<button id="addEventBtn" type="button">＋ Add event</button>
+<button id="addEventBtn" type="button"><svg aria-hidden="true" class="action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg> Add event</button>
 <button id="importBtn" type="button">⇧ Import CSV</button>
-<button id="templateBtn" type="button">⇩ CSV template</button>
+<button id="templateBtn" type="button"><svg aria-hidden="true" class="action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg> CSV template</button>
 <button id="clearEventsBtn" type="button">× Clear events</button>
 <input accept=".csv,text/csv" hidden="" id="csvFile" type="file"/>
 </div></div>
@@ -92,11 +92,11 @@
 </tr></thead><tbody id="eventInputBody"></tbody></table></div>
 </div>
 <div class="analysis-actions">
-<button class="primary" id="analyzeBtn" type="button">▣ Analyze events</button>
-<button id="copyBtn" type="button">▣ Copy result</button>
-<button id="saveBtn" type="button">＋ Save record</button>
-<button id="exportBtn" type="button">⇩ Export CSV</button>
-<button id="printBtn" type="button">⌑ Print / PDF</button>
+<button class="primary" id="analyzeBtn" type="button"><svg aria-hidden="true" class="action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8v8H8z"/></svg> Analyze events</button>
+<button id="copyBtn" type="button"><svg aria-hidden="true" class="action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8v8H8z"/></svg> Copy result</button>
+<button id="saveBtn" type="button"><svg aria-hidden="true" class="action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg> Save record</button>
+<button id="exportBtn" type="button"><svg aria-hidden="true" class="action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg> Export CSV</button>
+<button id="printBtn" type="button"><svg aria-hidden="true" class="action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/></svg> Print / PDF</button>
 </div>
 <div class="results-section"><h3>Event diagnosis table</h3><p class="mobile-table-hint">Swipe the tables horizontally on mobile to view every column.</p><div class="table-scroll"><table class="data-table result-table"><thead><tr>
 <th>No.</th><th>Distance</th><th>Primary loss</th><th>Secondary loss</th><th>Reflectance</th><th>Detected type</th><th>Severity</th><th>Gap (m)</th><th>Reason</th><th>Recommended action</th>
