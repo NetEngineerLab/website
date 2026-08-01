@@ -32,3 +32,9 @@ footer{max-width:1240px;margin:30px auto 0;padding:28px 20px;border-top:1px soli
 }
 
 .action-icon{display:inline-block;width:18px;height:18px;flex:0 0 18px;vertical-align:-4px;margin-right:6px;overflow:visible}
+
+/* V1.9.4-01: balance the unusually tall desktop input/result columns. */
+@media(min-width:1121px){
+ .workspace{align-items:stretch}
+ .result-panel{position:static;display:flex;flex-direction:column;justify-content:space-between}
+}
