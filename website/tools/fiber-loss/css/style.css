@@ -579,3 +579,10 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}
 
 /* V1.9.5-01: render content sections immediately to prevent blank placeholders. */
 .faq-section,.content-section,.methodology{content-visibility:visible;contain-intrinsic-size:none}
+
+/* V1.9.5-02: keep the desktop calculator columns visually balanced. */
+@media(min-width:761px){
+ .calculator-shell{align-items:stretch}
+ .input-panel,.result-panel{height:100%}
+ .result-panel{display:flex;flex-direction:column;justify-content:space-between}
+}
