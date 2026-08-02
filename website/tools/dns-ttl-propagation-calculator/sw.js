@@ -1,1 +1,1 @@
-const C='nel-dn-1.9.9';self.addEventListener('install',e=>e.waitUntil(caches.open(C).then(c=>c.addAll(['./','./zh/','./css/style.css','./js/engine.js','./js/app.js','./offline.html']))));
+const C='nel-dn-v1.9.9-01';self.addEventListener('install',e=>e.waitUntil(caches.open(C).then(c=>c.addAll(['./','./zh/','./css/style.css','./js/engine.js','./js/app.js','./offline.html']))));

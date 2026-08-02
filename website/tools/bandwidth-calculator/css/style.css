@@ -29,4 +29,6 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}.workspace,.workspace>*{mi
 /* V1.9.5-01: render content sections immediately to prevent blank placeholders. */
 .content-section{content-visibility:visible;contain-intrinsic-size:none}
 /* V1.9.5-05: unified vertical calculator layout */
-.workspace{max-width:1500px;grid-template-columns:minmax(0,1fr)}
+
+/* V1.9.9-01: keep the full site navigation visible on desktop. */
+@media (min-width: 1101px){.site-header .nav,.site-header .top-nav{display:flex!important;align-items:center;gap:20px;margin-left:auto}.site-header .nav a,.site-header .top-nav a{display:inline-flex!important;text-decoration:none;white-space:nowrap}}
