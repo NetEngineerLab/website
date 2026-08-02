@@ -1,0 +1,190 @@
+/*
+ * NetEngineerLab global tool-page layout, navigation and alignment layer.
+ * V1.9.9-02
+ *
+ * This file intentionally contains only cross-tool shell rules. Individual
+ * calculators keep their own colors, fields, metrics and calculation styles.
+ */
+:root {
+  --nel-tool-max-width: 1380px;
+  --nel-tool-gutter: 20px;
+  --nel-tool-column-gap: 22px;
+  --nel-tool-nav-ink: #173f65;
+  --nel-tool-nav-hover: #edf5ff;
+  --nel-tool-focus: #176ff2;
+}
+
+/* Use one horizontal reference line for every tool-page region. */
+.breadcrumbs,
+.hero-inner,
+main.workspace,
+main.calculator-shell,
+main.tool-shell,
+main.shell,
+.content,
+.content-section,
+body > footer {
+  width: 100%;
+  max-width: var(--nel-tool-max-width) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.site-header {
+  width: 100%;
+  padding-left: max(var(--nel-tool-gutter), calc((100vw - var(--nel-tool-max-width)) / 2 + var(--nel-tool-gutter))) !important;
+  padding-right: max(var(--nel-tool-gutter), calc((100vw - var(--nel-tool-max-width)) / 2 + var(--nel-tool-gutter))) !important;
+}
+
+/* Real, visible and keyboard-accessible navigation links on every page. */
+.site-header .nav,
+.site-header .top-nav,
+.site-header .nel-global-nav {
+  display: flex !important;
+  align-items: center;
+  gap: 6px !important;
+  margin-left: auto;
+}
+
+.site-header .nav a,
+.site-header .top-nav a,
+.site-header .nel-global-nav a {
+  display: inline-flex !important;
+  align-items: center;
+  min-height: 42px;
+  padding: 9px 12px;
+  border-radius: 9px;
+  color: var(--nel-tool-nav-ink) !important;
+  text-decoration: none !important;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.site-header .nav a:hover,
+.site-header .top-nav a:hover,
+.site-header .nel-global-nav a:hover,
+.site-header .nav a:focus-visible,
+.site-header .top-nav a:focus-visible,
+.site-header .nel-global-nav a:focus-visible {
+  color: var(--nel-tool-focus) !important;
+  background: var(--nel-tool-nav-hover);
+  outline: 2px solid transparent;
+}
+
+.site-header .nav a:focus-visible,
+.site-header .top-nav a:focus-visible,
+.site-header .nel-global-nav a:focus-visible,
+.site-header .language:focus-visible,
+.site-header .lang-link:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--nel-tool-focus) 35%, transparent);
+  outline-offset: 2px;
+}
+
+/*
+ * Standard calculator pages: two equal-height columns on desktop. Stretching
+ * the cards removes the exposed background block below the shorter column.
+ */
+@media (min-width: 1101px) {
+  main.nel-tool-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.08fr) minmax(420px, .92fr) !important;
+    gap: var(--nel-tool-column-gap) !important;
+    align-items: stretch !important;
+  }
+
+  main.nel-tool-grid > .card,
+  main.nel-tool-grid > .input-panel,
+  main.nel-tool-grid > .result-panel,
+  main.nel-tool-grid > .config-panel,
+  main.nel-tool-grid > .analysis-panel {
+    min-width: 0;
+    height: 100%;
+    margin-bottom: 0 !important;
+  }
+
+  main.nel-tool-grid > .input-panel,
+  main.nel-tool-grid > .card.input-card,
+  main.nel-tool-grid > .config-panel {
+    display: flex;
+    flex-direction: column;
+  }
+
+  main.nel-tool-grid > .input-panel > .actions:last-child,
+  main.nel-tool-grid > .card.input-card > .actions:last-child,
+  main.nel-tool-grid > .config-panel > .actions:last-child {
+    margin-top: auto;
+    padding-top: 18px;
+  }
+}
+
+/* Prevent tool-specific width rules from shifting explanatory sections. */
+.content,
+.content-section {
+  box-sizing: border-box;
+}
+
+@media (max-width: 1100px) {
+  main.nel-tool-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    align-items: start !important;
+  }
+}
+
+/* Keep all four destinations available on phones instead of hiding the nav. */
+@media (max-width: 760px) {
+  :root {
+    --nel-tool-gutter: 12px;
+  }
+
+  .site-header {
+    flex-wrap: wrap;
+    gap: 8px !important;
+  }
+
+  .site-header .brand,
+  .site-header .site-brand {
+    margin-right: auto;
+  }
+
+  .site-header .nav,
+  .site-header .top-nav,
+  .site-header .nel-global-nav {
+    order: 10;
+    width: 100%;
+    margin-left: 0;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: thin;
+  }
+
+  .site-header .nav a,
+  .site-header .top-nav a,
+  .site-header .nel-global-nav a {
+    flex: 1 0 auto;
+    justify-content: center;
+    min-height: 40px;
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+
+  .breadcrumbs,
+  .hero-inner,
+  main.workspace,
+  main.calculator-shell,
+  main.tool-shell,
+  main.shell,
+  .content,
+  .content-section,
+  body > footer {
+    max-width: 100% !important;
+  }
+}
+
+@media print {
+  .site-header .nav,
+  .site-header .top-nav,
+  .site-header .nel-global-nav {
+    display: none !important;
+  }
+}
