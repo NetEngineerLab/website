@@ -1,5 +1,40 @@
-// Shared layout asset: ../../assets/css/tool-layout-v1.9.9-02.css
-const C="nel-ipv6-nat-planner-locale-v1.9.9-01",A=["./","./index.html","./offline.html","./manifest.webmanifest","./css/style.css?v=1.9.9-01","./js/engine.js","./js/app.js?v=1c5cebdf9a34","./js/pwa.js","./data/presets.js","./images/logo.svg","./images/icons/icon-192.png","./images/icons/icon-512.png","../../data/locales.js?v=09fdf82dccd4","../../data/site-config.js?v=df8c8c8e0382","../../assets/css/locale-menu.css?v=7804394246fb","../../assets/js/analytics.js?v=1156b7864023","../../assets/js/adsense.js?v=f075c80ccc75","../../assets/js/site.js?v=ba674ecc71f2","../../assets/js/tool-integration.js?v=05f7934f4687","./zh/index.html","./manifest-zh.webmanifest"];
-addEventListener("install",e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(A)));skipWaiting()});
-addEventListener("activate",e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==C).map(k=>caches.delete(k)))));clients.claim()});
-addEventListener("fetch",e=>{const r=e.request,u=new URL(r.url);if(r.method!=="GET"||u.origin!==location.origin)return;if(r.mode==="navigate"){e.respondWith(fetch(r).then(x=>{const y=x.clone();caches.open(C).then(c=>c.put(r,y));return x}).catch(()=>caches.match(r).then(x=>x||caches.match("./offline.html"))));return}e.respondWith(caches.match(r).then(x=>x||fetch(r)))});
+"use strict";
+const CACHE = "nel-ipv6-nat-planner-v1.9.9-03";
+const CORE = [
+  "./", "./zh/", "./offline.html", "./manifest.webmanifest",
+  "./manifest-zh.webmanifest", "./css/style.css", "./js/app.js",
+  "./images/logo.svg", "../../assets/css/tool-design-system-v1.9.9-03.css",
+  "../../assets/js/tool-shell-v1.9.9-03.js"
+];
+self.addEventListener("install", (event) => {
+  event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)));
+  self.skipWaiting();
+});
+self.addEventListener("activate", (event) => {
+  event.waitUntil(caches.keys().then((keys) => Promise.all(
+    keys.filter((key) => key.startsWith("nel-ipv6-nat-planner-") && key !== CACHE).map((key) => caches.delete(key))
+  )));
+  self.clients.claim();
+});
+self.addEventListener("fetch", (event) => {
+  const request = event.request;
+  const url = new URL(request.url);
+  if (request.method !== "GET" || url.origin !== location.origin) return;
+  if (request.mode === "navigate") {
+    event.respondWith(fetch(request).then((response) => {
+      const copy = response.clone();
+      caches.open(CACHE).then((cache) => cache.put(request, copy));
+      return response;
+    }).catch(() => caches.match(request, { ignoreSearch: true }).then(
+      (cached) => cached || caches.match("./offline.html")
+    )));
+    return;
+  }
+  event.respondWith(caches.match(request, { ignoreSearch: true }).then((cached) => cached || fetch(request).then((response) => {
+    if (response.ok) {
+      const copy = response.clone();
+      caches.open(CACHE).then((cache) => cache.put(request, copy));
+    }
+    return response;
+  })));
+});

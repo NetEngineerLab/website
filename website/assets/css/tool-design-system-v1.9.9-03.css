@@ -1,0 +1,483 @@
+/* NetEngineerLab tool-page design system V1.9.9-03
+   Loaded last on every calculator page so all generations share one shell. */
+
+:root {
+  --nel-page: #f2f7fc;
+  --nel-surface: #ffffff;
+  --nel-ink: #082f59;
+  --nel-muted: #5d7691;
+  --nel-line: #d7e3ef;
+  --nel-blue: #0b6ff2;
+  --nel-blue-dark: #083d73;
+  --nel-hero-a: #063766;
+  --nel-hero-b: #0877dd;
+  --nel-radius: 22px;
+  --nel-shadow: 0 18px 48px rgba(8, 47, 89, 0.10);
+  --nel-max: 1400px;
+  --nel-gutter: 24px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { overflow-x: hidden; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+  color: var(--nel-ink);
+  background: linear-gradient(#fff 0 124px, var(--nel-page) 124px 100%);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 9999;
+  top: 8px;
+  left: 8px;
+  transform: translateY(-150%);
+  padding: 10px 14px;
+  border-radius: 10px;
+  color: #fff;
+  background: var(--nel-blue-dark);
+}
+
+.skip-link:focus { transform: none; }
+
+body > .site-header {
+  width: min(calc(100% - (var(--nel-gutter) * 2)), var(--nel-max)) !important;
+  max-width: var(--nel-max) !important;
+  min-height: 84px !important;
+  margin: 0 auto !important;
+  padding: 14px 0 !important;
+  border: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 24px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.site-header .brand {
+  flex: 0 0 auto;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  color: var(--nel-ink) !important;
+  text-decoration: none !important;
+}
+
+.site-header .brand img {
+  width: 54px !important;
+  height: 54px !important;
+  flex: 0 0 54px;
+  border-radius: 13px;
+}
+
+.site-header .brand strong {
+  display: block;
+  font-size: clamp(20px, 1.7vw, 27px) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.02em;
+}
+
+.site-header .brand small {
+  display: block;
+  margin-top: 4px;
+  color: var(--nel-muted) !important;
+  font-size: 13px !important;
+  line-height: 1.2;
+}
+
+.site-header .nel-global-nav,
+.site-header .top-nav,
+.site-header .nav {
+  margin-left: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 6px !important;
+}
+
+.site-header .nel-global-nav a,
+.site-header .top-nav a,
+.site-header .nav a {
+  min-height: 44px;
+  padding: 10px 14px !important;
+  border-radius: 11px;
+  display: inline-flex !important;
+  align-items: center;
+  color: var(--nel-ink) !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+.site-header .nel-global-nav a:hover,
+.site-header .nel-global-nav a:focus-visible {
+  color: var(--nel-blue) !important;
+  background: #edf5ff;
+}
+
+.site-header .header-actions {
+  flex: 0 0 auto;
+  display: flex !important;
+  align-items: center;
+  gap: 10px;
+}
+
+.site-header .language,
+.site-header .language-trigger,
+.site-header .start-btn {
+  min-height: 46px;
+  padding: 10px 16px !important;
+  border: 1px solid var(--nel-line) !important;
+  border-radius: 13px !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  color: var(--nel-ink) !important;
+  background: #fff !important;
+  font-weight: 800 !important;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+.site-header .start-btn {
+  border-color: var(--nel-blue) !important;
+  color: #fff !important;
+  background: var(--nel-blue) !important;
+  box-shadow: 0 10px 24px rgba(11, 111, 242, 0.22);
+}
+
+body > .breadcrumbs,
+body > nav.breadcrumbs {
+  width: min(calc(100% - (var(--nel-gutter) * 2)), var(--nel-max)) !important;
+  max-width: var(--nel-max) !important;
+  min-height: 52px;
+  margin: 0 auto !important;
+  padding: 14px 0 !important;
+  border: 0 !important;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--nel-muted) !important;
+  background: transparent !important;
+  font-size: 14px;
+}
+
+.breadcrumbs a {
+  color: #396b9c !important;
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover,
+.breadcrumbs a:focus-visible { text-decoration: underline; }
+
+body > .hero,
+body > .tool-hero {
+  width: min(calc(100% - (var(--nel-gutter) * 2)), var(--nel-max)) !important;
+  max-width: var(--nel-max) !important;
+  min-height: 260px !important;
+  margin: 0 auto !important;
+  padding: clamp(34px, 4vw, 56px) !important;
+  border-radius: 26px !important;
+  overflow: hidden;
+  color: #fff !important;
+  background: linear-gradient(118deg, var(--nel-hero-a), var(--nel-hero-b)) !important;
+  box-shadow: 0 22px 50px rgba(5, 51, 96, 0.16);
+}
+
+.hero .hero-inner,
+.tool-hero > div:first-child { max-width: 900px; }
+
+.hero .eyebrow,
+.tool-hero .eyebrow {
+  margin: 0 0 14px !important;
+  color: #8fd9ff !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero h1,
+.tool-hero h1 {
+  margin: 0 !important;
+  color: #fff !important;
+  font-size: clamp(36px, 4.2vw, 62px) !important;
+  line-height: 1.12 !important;
+  letter-spacing: -0.04em;
+}
+
+.hero h1 + p,
+.tool-hero .hero-copy {
+  max-width: 900px;
+  margin: 18px 0 0 !important;
+  color: #e6f3ff !important;
+  font-size: clamp(16px, 1.5vw, 20px) !important;
+  line-height: 1.8 !important;
+}
+
+.hero .tags,
+.tool-hero .hero-badges {
+  margin-top: 22px !important;
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hero .tags span,
+.tool-hero .hero-badges span {
+  padding: 8px 13px !important;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  border-radius: 999px !important;
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.07) !important;
+  font-size: 14px !important;
+  line-height: 1.2;
+}
+
+body > main,
+body > main.tool-shell,
+body > main.workspace,
+body > main.shell,
+body > main.calculator-shell {
+  width: min(calc(100% - (var(--nel-gutter) * 2)), var(--nel-max)) !important;
+  max-width: var(--nel-max) !important;
+  margin: 26px auto 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+body > main.nel-tool-grid {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr) !important;
+  align-items: stretch !important;
+  gap: 24px !important;
+}
+
+body > main.nel-tool-grid > section,
+body > main.nel-tool-grid > .card,
+body > main.nel-tool-grid > .input-panel,
+body > main.nel-tool-grid > .result-panel,
+body > main.nel-tool-grid > .config-panel,
+body > main.nel-tool-grid > .analysis-panel {
+  min-width: 0;
+  height: auto !important;
+  margin: 0 !important;
+  padding: clamp(22px, 2.4vw, 32px) !important;
+  border: 1px solid var(--nel-line) !important;
+  border-radius: var(--nel-radius) !important;
+  background: var(--nel-surface) !important;
+  box-shadow: var(--nel-shadow) !important;
+}
+
+body > .content,
+body > .content-section,
+body > section.content,
+body > section.content-section,
+body > section.methodology,
+body > section.faq-section,
+body > section#related {
+  width: min(calc(100% - (var(--nel-gutter) * 2)), var(--nel-max)) !important;
+  max-width: var(--nel-max) !important;
+  margin: 26px auto 0 !important;
+}
+
+.content > .grid,
+.content-section .method-grid,
+.content-section .faq-grid {
+  align-items: stretch;
+  gap: 24px !important;
+}
+
+.content > .grid > article,
+.content-section .method-grid > article,
+.content-section .faq-grid > details {
+  border: 1px solid var(--nel-line) !important;
+  border-radius: 18px !important;
+  background: #fff !important;
+}
+
+.actions,
+.action-row,
+.export-actions,
+.result-actions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center;
+  gap: 10px !important;
+}
+
+.actions button,
+.action-row button,
+.export-actions button,
+.result-actions button {
+  min-height: 44px;
+  padding: 10px 16px !important;
+  border: 1px solid var(--nel-line) !important;
+  border-radius: 12px !important;
+  color: var(--nel-ink) !important;
+  background: #edf4fb !important;
+  font-weight: 800 !important;
+  cursor: pointer;
+}
+
+.actions button.primary,
+.action-row button.primary,
+.export-actions button.primary,
+.result-actions button.primary {
+  border-color: var(--nel-blue) !important;
+  color: #fff !important;
+  background: var(--nel-blue) !important;
+}
+
+.nel-history {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--nel-line);
+}
+
+.nel-history summary {
+  color: var(--nel-ink);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.nel-history-list {
+  margin: 14px 0;
+  display: grid;
+  gap: 10px;
+}
+
+.nel-history-list article {
+  padding: 12px 14px;
+  border: 1px solid var(--nel-line);
+  border-radius: 12px;
+  background: #f7fbff;
+}
+
+.nel-history-list time {
+  color: var(--nel-muted);
+  font-size: 12px;
+}
+
+.nel-history-list p { margin: 5px 0 0; line-height: 1.6; }
+
+.nel-announcer {
+  position: fixed;
+  z-index: 9998;
+  right: 18px;
+  bottom: 18px;
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: 12px;
+  color: #fff;
+  background: var(--nel-blue-dark);
+  box-shadow: var(--nel-shadow);
+}
+
+body > footer {
+  width: min(calc(100% - (var(--nel-gutter) * 2)), var(--nel-max)) !important;
+  max-width: var(--nel-max) !important;
+  margin: 38px auto 0 !important;
+  padding: 28px 0 34px !important;
+  border-top: 1px solid var(--nel-line) !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  color: var(--nel-muted) !important;
+  background: transparent !important;
+}
+
+footer .footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+}
+
+footer .footer-links a { color: #396b9c; text-decoration: none; }
+footer .footer-links a:hover { text-decoration: underline; }
+
+@media (max-width: 980px) {
+  :root { --nel-gutter: 16px; }
+
+  body > .site-header {
+    min-height: auto !important;
+    padding: 12px 0 !important;
+    flex-wrap: wrap;
+    gap: 10px 14px !important;
+  }
+
+  .site-header .brand { margin-right: auto; }
+  .site-header .brand img { width: 46px !important; height: 46px !important; flex-basis: 46px; }
+  .site-header .brand strong { font-size: 20px !important; }
+  .site-header .brand small { display: none !important; }
+
+  .site-header .nel-global-nav,
+  .site-header .top-nav,
+  .site-header .nav {
+    order: 3;
+    width: 100%;
+    margin: 0 !important;
+    justify-content: flex-start !important;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .site-header .nel-global-nav::-webkit-scrollbar,
+  .site-header .top-nav::-webkit-scrollbar,
+  .site-header .nav::-webkit-scrollbar { display: none; }
+
+  .site-header .nel-global-nav a,
+  .site-header .top-nav a,
+  .site-header .nav a { padding: 8px 10px !important; font-size: 14px; }
+  .site-header .start-btn { display: none !important; }
+
+  body > .hero,
+  body > .tool-hero {
+    min-height: 0 !important;
+    padding: 30px 24px !important;
+    border-radius: 20px !important;
+  }
+
+  body > main.nel-tool-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  body > main.nel-tool-grid > section,
+  body > main.nel-tool-grid > .card,
+  body > main.nel-tool-grid > .input-panel,
+  body > main.nel-tool-grid > .result-panel,
+  body > main.nel-tool-grid > .config-panel,
+  body > main.nel-tool-grid > .analysis-panel { min-height: 0 !important; }
+}
+
+@media (max-width: 560px) {
+  :root { --nel-gutter: 12px; }
+  body > .breadcrumbs, body > nav.breadcrumbs { font-size: 13px; }
+  .hero h1, .tool-hero h1 { font-size: clamp(30px, 10vw, 42px) !important; }
+  .hero h1 + p, .tool-hero .hero-copy { font-size: 15px !important; line-height: 1.65 !important; }
+  body > main.nel-tool-grid > section,
+  body > main.nel-tool-grid > .card,
+  body > main.nel-tool-grid > .input-panel,
+  body > main.nel-tool-grid > .result-panel,
+  body > main.nel-tool-grid > .config-panel,
+  body > main.nel-tool-grid > .analysis-panel { padding: 20px !important; }
+  body > footer { align-items: flex-start; flex-direction: column; }
+}
+
+@media print {
+  body { background: #fff !important; }
+  .site-header, .breadcrumbs, .tool-hero, .hero, .actions, .action-row,
+  .export-actions, .cookie-banner, footer { display: none !important; }
+  body > main, body > .content, body > .content-section {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+}
