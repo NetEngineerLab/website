@@ -1,0 +1,1 @@
+const C='nel-poe-drop-1.9.7';self.addEventListener('install',e=>e.waitUntil(caches.open(C).then(c=>c.addAll(['./','./zh/','./css/style.css','./js/engine.js','./js/app.js','./offline.html']))));self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));

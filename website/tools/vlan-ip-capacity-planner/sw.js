@@ -1,0 +1,1 @@
+const C='nel-vl-1.9.9';self.addEventListener('install',e=>e.waitUntil(caches.open(C).then(c=>c.addAll(['./','./zh/','./css/style.css','./js/engine.js','./js/app.js','./offline.html']))));

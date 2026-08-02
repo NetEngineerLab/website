@@ -4,12 +4,12 @@
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="../" name="app-base"/>
 <title>OTDR事件分析工具 | NetEngineerLab</title><meta content="专业OTDR事件分析工具，识别熔接点、连接器、弯曲、断纤、鬼影和盲区影响，并生成维护建议。" name="description"/><meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
 <meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="OTDR事件分析工具 | NetEngineerLab" property="og:title"/><meta content="专业OTDR事件分析工具，识别熔接点、连接器、弯曲、断纤、鬼影和盲区影响，并生成维护建议。" property="og:description"/><meta content="https://netengineerlab.com/tools/otdr-event/zh/" property="og:url"/><meta content="https://netengineerlab.com/tools/otdr-event/images/og-otdr-event-analyzer.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
-<link href="../css/style.css?v=1.9.5-01" rel="stylesheet"/>
+<link href="../css/style.css?v=1.9.5-06" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"OTDR事件分析工具","url":"https://netengineerlab.com/tools/otdr-event/zh/","description":"专业OTDR事件分析工具，识别熔接点、连接器、弯曲、断纤、鬼影和盲区影响，并生成维护建议。","applicationCategory":"UtilitiesApplication","applicationSubCategory":"OTDR Analysis Tool","operatingSystem":"Any","softwareVersion":"1.0.1","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"工具中心","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"OTDR事件分析工具","item":"https://netengineerlab.com/tools/otdr-event/zh/"}]}</script><meta content="NetEngineerLab" name="author"/>
 
 <link rel="stylesheet" href="/assets/css/cookie-consent.css?v=v180-hotfix03">
-<link rel="stylesheet" href="/assets/css/v178-final-mobile-branding.css">
+<link rel="stylesheet" href="/assets/css/v178-final-mobile-branding.css?v=1.9.5-06">
 
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.8.3">
 <meta name="nel-locale" content="zh">
@@ -29,7 +29,7 @@
 <script defer src="/data/seo-config.js"></script>
 <script defer src="/assets/js/seo-engine.js"></script>
 <script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"OTDR事件阈值是否是统一标准？","acceptedAnswer":{"@type":"Answer","text":"不是。不同运营商、厂家、链路类型、波长、脉冲宽度和验收规则可能不同，因此本工具全部阈值可修改。"}},{"@type":"Question","name":"为什么要比较1310 nm和1550 nm？","acceptedAnswer":{"@type":"Answer","text":"弯曲损耗通常在较长波长下更明显，双波长差异有助于判断弯曲，但不能单独作为最终结论。"}},{"@type":"Question","name":"什么是鬼影事件？","acceptedAnswer":{"@type":"Answer","text":"鬼影可能出现在强反射事件距离的倍数位置，且真实插入损耗很小。可调整脉冲宽度和量程进行复核。"}},{"@type":"Question","name":"本工具能直接解析SOR文件吗？","acceptedAnswer":{"@type":"Answer","text":"V1.0分析事件表和CSV导入数据，SOR文件直接解析将在后续版本开发。"}},{"@type":"Question","name":"为什么距离很近的事件可能不准确？","acceptedAnswer":{"@type":"Answer","text":"处于事件盲区或衰减盲区内的事件可能相互叠加，反射和损耗难以完全分离。"}},{"@type":"Question","name":"分析结果能否替代现场判断？","acceptedAnswer":{"@type":"Answer","text":"不能。应结合原始波形、双向测试、路由资料、光功率测试和现场检查综合判断。"}}]}</script>
-<link href="/assets/icons/favicon.svg?v=1.9.5-03" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-03" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-03" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-03" rel="apple-touch-icon" sizes="180x180"/></head><body>
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/></head><body>
 <a class="skip" href="#analyzer">跳到分析工具</a><noscript><div class="noscript">本工具需要启用JavaScript。</div></noscript>
 <header class="site-header"><a class="brand" href="../../../zh/"><img alt="" height="52" src="../images/logo.svg" width="52"/><span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span></a>
 <nav aria-label="主导航" class="nav"><a href="../../../zh/">首页</a><a href="../../zh/">工具中心</a><a href="#methodology">判断方法</a><a href="#history">历史记录</a></nav>

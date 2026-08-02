@@ -1,0 +1,1 @@
+const C='nel-rack-1.9.8';self.addEventListener('install',e=>e.waitUntil(caches.open(C).then(c=>c.addAll(['./','./zh/','./css/style.css','./js/engine.js','./js/app.js','./offline.html']))));

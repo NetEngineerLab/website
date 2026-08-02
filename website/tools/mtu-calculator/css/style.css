@@ -38,3 +38,8 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}.workspace,.workspace>*,.t
 
 /* V1.9.5-01: render content sections immediately to prevent blank placeholders. */
 .content-section{content-visibility:visible;contain-intrinsic-size:none}
+
+/* V1.9.5-04: the long result no longer leaves an empty desktop column. */
+.workspace{max-width:1500px;grid-template-columns:1fr}
+/* V1.9.5-05: unified vertical calculator layout */
+.workspace{max-width:1500px;grid-template-columns:minmax(0,1fr)}
