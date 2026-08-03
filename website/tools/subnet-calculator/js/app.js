@@ -15,7 +15,8 @@ const T={
   clearHistory:"确定清空全部历史记录吗？",
   remove:"删除",allocationFailed:"地址空间不足",private:"私有地址",public:"公网地址",
   shared:"运营商共享地址",loopback:"环回地址",linklocal:"链路本地地址",multicast:"组播地址",
-  reserved:"保留地址",unique_local:"唯一本地地址",global:"全局单播",unspecified:"未指定地址"
+  reserved:"保留地址",documentation:"文档示例地址",benchmark:"基准测试地址",limited_broadcast:"有限广播地址",
+  unique_local:"唯一本地地址",global:"全局单播",unspecified:"未指定地址"
  },
  en:{
   invalidIPv4:"Enter a valid IPv4 address and CIDR prefix or subnet mask.",
@@ -24,13 +25,30 @@ const T={
   clearHistory:"Clear all saved history?",
   remove:"Remove",allocationFailed:"Insufficient address space",private:"Private",public:"Public",
   shared:"Shared address space",loopback:"Loopback",linklocal:"Link-local",multicast:"Multicast",
-  reserved:"Reserved",unique_local:"Unique local",global:"Global unicast",unspecified:"Unspecified"
+  reserved:"Reserved",documentation:"Documentation",benchmark:"Benchmark testing",limited_broadcast:"Limited broadcast",
+  unique_local:"Unique local",global:"Global unicast",unspecified:"Unspecified"
  }
 };
 function esc(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
 function temp(button,message){const old=button.innerHTML;button.textContent=message;setTimeout(()=>button.innerHTML=old,1300)}
 function formatInteger(value){try{return BigInt(value).toLocaleString("en-US")}catch{return Number(value).toLocaleString("en-US")}}
 function scopeLabel(scope){const key=scope?.type||scope||"public";return T[LANG][key]||scope?.[LANG]||key}
+function clearText(ids){ids.forEach(id=>{const node=$(id);if(node)node.textContent="—"})}
+function invalidate(mode,message){
+ last=null;
+ if(mode==="ipv4"){
+  clearText(["ipv4Cidr","ipv4Network","ipv4Broadcast","ipv4First","ipv4Last","ipv4MaskResult","ipv4Wildcard","ipv4Total","ipv4Usable","ipv4Scope","ipv4Previous","ipv4Next","ipv4Reverse","ipv4BinaryIp","ipv4BinaryMask","ipv4BinaryNetwork","ipv4BinaryBroadcast"]);
+  $("ipv4BitBar").replaceChildren();
+ }else if(mode==="ipv6"){
+  clearText(["ipv6Cidr","ipv6Network","ipv6Last","ipv6Total","ipv6SubnetCount","ipv6HostBits","ipv6Scope"]);
+  $("ipv6BitBar").replaceChildren();
+ }else{
+  clearText(["vlsmBaseCidr","vlsmUsed","vlsmRemaining","vlsmUtilization"]);
+  $("vlsmAllocationBody").replaceChildren();
+  $("vlsmBar").style.width="0%";
+ }
+ $(`${mode}Validation`).textContent=message;
+}
 function setMode(mode){
  activeMode=mode;
  document.querySelectorAll("[data-mode]").forEach(button=>button.classList.toggle("active",button.dataset.mode===mode));
@@ -73,7 +91,7 @@ function calculateIPv4(){
   $("ipv4BitBar").innerHTML=`<span class="network-bits" style="width:${result.prefix/32*100}%">${LANG==="zh"?"网络位":"Network"} ${result.prefix}</span><span class="host-bits" style="width:${hostBits/32*100}%">${LANG==="zh"?"主机位":"Host"} ${hostBits}</span>`;
   if(typeof window.nelTrack==="function")window.nelTrack("subnet_ipv4_calculate",{prefix:result.prefix,usable:result.usableHosts});
  }catch{
-  $("ipv4Validation").textContent=T[LANG].invalidIPv4;
+  invalidate("ipv4",T[LANG].invalidIPv4);
  }
 }
 function calculateIPv6(){
@@ -91,7 +109,7 @@ function calculateIPv6(){
   $("ipv6BitBar").innerHTML=`<span class="network-bits" style="width:${result.prefix/128*100}%">${LANG==="zh"?"网络位":"Network"} ${result.prefix}</span><span class="host-bits" style="width:${result.hostBits/128*100}%">${LANG==="zh"?"接口标识位":"Interface ID"} ${result.hostBits}</span>`;
   if(typeof window.nelTrack==="function")window.nelTrack("subnet_ipv6_calculate",{prefix:result.prefix});
  }catch{
-  $("ipv6Validation").textContent=T[LANG].invalidIPv6;
+  invalidate("ipv6",T[LANG].invalidIPv6);
  }
 }
 function addVlsmRow(name="",hosts=0,reserve=1){
@@ -147,7 +165,7 @@ function calculateVlsm(){
   $("vlsmBar").style.width=pct+"%";
   if(typeof window.nelTrack==="function")window.nelTrack("subnet_vlsm_calculate",{subnets:result.allocations.length,errors:result.errors.length});
  }catch{
-  $("vlsmValidation").textContent=T[LANG].invalidIPv4;
+  invalidate("vlsm",T[LANG].invalidIPv4);
  }
 }
 function loadSampleVlsm(){

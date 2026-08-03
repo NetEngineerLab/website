@@ -2,6 +2,7 @@
 (function(){
 "use strict";
 const KEY="nel_cookie_consent_v1";
+let lastFocus=null;
 function update(ok){
  if(typeof window.gtag==="function"){
   window.gtag("consent","update",{
@@ -15,6 +16,7 @@ function update(ok){
  window.dispatchEvent(new CustomEvent("nel:consent-updated",{detail:{analytics:ok}}));
 }
 function show(){
+ if(document.querySelector(".nel-cookie-banner"))return;
  const isZh=(document.documentElement.lang||"").toLowerCase().startsWith("zh");
  const copy=isZh
   ?{title:"Cookie 偏好设置",body:"我们使用 Cookie 改善使用体验并分析网站流量。",reject:"拒绝",accept:"全部接受"}
@@ -22,15 +24,32 @@ function show(){
  const e=document.createElement("div");
  e.className="nel-cookie-banner";
  e.setAttribute("role","dialog");
+ e.setAttribute("aria-modal","true");
  e.setAttribute("aria-labelledby","nel-cookie-title");
  e.setAttribute("aria-describedby","nel-cookie-description");
  e.innerHTML=`<h3 id="nel-cookie-title">🍪 ${copy.title}</h3><p id="nel-cookie-description">${copy.body}</p><div class="nel-cookie-actions"><button class="nel-cookie-reject" type="button">${copy.reject}</button><button class="nel-cookie-accept" type="button">${copy.accept}</button></div>`;
  document.body.appendChild(e);
- e.querySelector(".nel-cookie-accept").onclick=()=>{localStorage.setItem(KEY,"true");update(true);e.remove()};
- e.querySelector(".nel-cookie-reject").onclick=()=>{localStorage.setItem(KEY,"false");update(false);e.remove()};
+ lastFocus=document.activeElement;
+ const close=(value)=>{
+  localStorage.setItem(KEY,String(value));update(value);e.remove();
+  if(lastFocus&&typeof lastFocus.focus==="function")lastFocus.focus();
+ };
+ e.querySelector(".nel-cookie-accept").onclick=()=>close(true);
+ e.querySelector(".nel-cookie-reject").onclick=()=>close(false);
+ e.addEventListener("keydown",event=>{
+  if(event.key!=="Tab")return;
+  const buttons=[...e.querySelectorAll("button")];
+  const first=buttons[0],last=buttons[buttons.length-1];
+  if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}
+  else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
+ });
+ e.querySelector(".nel-cookie-reject").focus();
 }
 document.addEventListener("DOMContentLoaded",()=>{
  const v=localStorage.getItem(KEY);
  if(v===null) show(); else update(v==="true");
+ document.querySelectorAll("[data-nel-cookie-settings]").forEach(button=>button.addEventListener("click",()=>{
+  localStorage.removeItem(KEY);update(false);show();
+ }));
 });
 })();

@@ -10,12 +10,20 @@
    en:"Calculations follow CIDR-based modern IP planning. Review VLSM output against routing policy, gateway reservations, redundancy protocols, broadcast-domain size and enterprise addressing rules."
   },
   ipv4Scopes:[
+   {cidr:"0.0.0.0/32",type:"unspecified",zh:"未指定地址",en:"Unspecified"},
+   {cidr:"255.255.255.255/32",type:"limited_broadcast",zh:"有限广播地址",en:"Limited broadcast"},
+   {cidr:"0.0.0.0/8",type:"reserved",zh:"保留地址",en:"Reserved"},
    {cidr:"10.0.0.0/8",type:"private",zh:"私有地址",en:"Private"},
    {cidr:"172.16.0.0/12",type:"private",zh:"私有地址",en:"Private"},
    {cidr:"192.168.0.0/16",type:"private",zh:"私有地址",en:"Private"},
    {cidr:"100.64.0.0/10",type:"shared",zh:"运营商共享地址",en:"Shared address space"},
    {cidr:"127.0.0.0/8",type:"loopback",zh:"环回地址",en:"Loopback"},
    {cidr:"169.254.0.0/16",type:"linklocal",zh:"链路本地地址",en:"Link-local"},
+   {cidr:"192.0.0.0/24",type:"reserved",zh:"保留地址",en:"Reserved"},
+   {cidr:"192.0.2.0/24",type:"documentation",zh:"文档示例地址",en:"Documentation"},
+   {cidr:"198.18.0.0/15",type:"benchmark",zh:"基准测试地址",en:"Benchmark testing"},
+   {cidr:"198.51.100.0/24",type:"documentation",zh:"文档示例地址",en:"Documentation"},
+   {cidr:"203.0.113.0/24",type:"documentation",zh:"文档示例地址",en:"Documentation"},
    {cidr:"224.0.0.0/4",type:"multicast",zh:"组播地址",en:"Multicast"},
    {cidr:"240.0.0.0/4",type:"reserved",zh:"保留地址",en:"Reserved"}
   ],

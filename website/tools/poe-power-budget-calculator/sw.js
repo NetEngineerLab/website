@@ -1,10 +1,10 @@
 "use strict";
-const CACHE = "nel-poe-power-budget-calculator-v1.9.9-03";
+const CACHE = "nel-poe-power-budget-calculator-v1.9.9-04";
 const CORE = [
   "./", "./zh/", "./offline.html", "./manifest.webmanifest",
-  "./manifest-zh.webmanifest", "./css/style.css", "./js/app.js",
+  "./manifest-zh.webmanifest", "./css/style.css", "./js/engine.js", "./js/app.js",
   "./images/logo.svg", "../../assets/css/tool-design-system-v1.9.9-03.css",
-  "../../assets/js/tool-shell-v1.9.9-03.js"
+  "../../assets/js/tool-shell-v1.9.9-04.js"
 ];
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)));

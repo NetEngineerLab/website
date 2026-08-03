@@ -59,7 +59,9 @@
   for(const item of reference.ipv4Scopes||[]){
    const [networkText,prefixText]=item.cidr.split("/");
    const network=parseIPv4(networkText),prefix=Number(prefixText),mask=maskFromPrefix(prefix);
-   if((value&mask)===network)return item;
+   // Bitwise operators return signed 32-bit values. Convert the result back to
+   // unsigned before comparing networks in 128.0.0.0/1 and above.
+   if(((value&mask)>>>0)===network)return item;
   }
   return {type:"public",zh:"公网地址",en:"Public"};
  }

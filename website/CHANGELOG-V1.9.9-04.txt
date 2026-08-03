@@ -1,0 +1,41 @@
+NetEngineerLab V1.9.9-04
+P0/P1 Correctness, Consent and Offline Reliability
+
+Released: 2026-08-03
+Version: 1.9.9-04-p0-p1-correctness-consent-offline
+
+Correctness
+- Fixed signed 32-bit IPv4 scope comparisons.
+- Correctly identifies RFC1918 private, shared, loopback, link-local,
+  documentation, benchmarking, multicast, reserved, unspecified and limited
+  broadcast IPv4 address ranges.
+- Invalid subnet, IPv6 and VLSM inputs now clear prior results.
+- Invalid inputs in the newer interactive tools clear stale metrics and status.
+- Wireless obstacle positions must be greater than 0% and less than 100%.
+
+Privacy and consent
+- Updated English and Chinese About, Privacy and Terms content for the current
+  20-tool production website.
+- Disclosed consent-based GA4, Cloudflare processing and local browser storage.
+- Added a visible control for reviewing or withdrawing cookie preferences.
+- Added modal semantics, initial focus and keyboard focus containment to the
+  consent dialog.
+- Added the existing consent-based GA4 integration to all 40 localized tool
+  pages.
+
+PWA and cache reliability
+- Bumped all 20 tool Service Worker caches to V1.9.9-04.
+- Added all 15 independent calculation engines and required local data files to
+  their tool precache lists.
+- Added the V1.9.9-04 shared tool shell and stale-result safety handling.
+
+Verification
+- 17 IPv4 scope classification cases passed.
+- 4 wireless obstacle boundary cases passed.
+- Static audit passed for 20 tools and 40 localized pages.
+- Browser load, resource and page-error audit passed for all 40 localized pages.
+- Browser interaction regression passed for stale-result clearing and consent UI.
+
+Deferred to the next release
+- Global header, hero, footer, FAQ, related-tools and history template unification.
+- Full metadata, structured data and accessibility normalization.
