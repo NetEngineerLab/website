@@ -18,6 +18,8 @@ const managedAssets=[
   "data/locales.js",
   "data/site-config.js",
   "data/tools-catalog.js",
+  "assets/css/design-tokens.css",
+  "assets/css/site-shell.css",
   "assets/css/locale-menu.css",
   "assets/js/analytics.js",
   "assets/js/adsense.js",
@@ -28,15 +30,31 @@ const homeReadinessAssets=[
   "data/locales.js",
   "data/site-config.js",
   "data/tools-catalog.js",
+  "assets/css/design-tokens.css",
+  "assets/css/site-shell.css",
   "assets/css/locale-menu.css",
   "assets/js/analytics.js",
   "assets/js/adsense.js",
   "assets/js/site.js"
 ];
-const expectedCategoryCounts={optical:2,pon:2,maintenance:2,network:4,power:1,wireless:1};
 const expectedHashes=new Map(managedAssets.map(rel=>[rel,contentHash(path.join(websiteRoot,rel))]));
 const expectedTools=JSON.parse(fs.readFileSync(path.join(websiteRoot,"data/tools-catalog.json"),"utf8")).filter(tool=>tool.status==="active");
 const expectedToolIds=expectedTools.map(tool=>tool.id);
+const localeConfig=JSON.parse(fs.readFileSync(path.join(websiteRoot,"data/locales.json"),"utf8"));
+const activeLocales=localeConfig.locales.filter(locale=>locale.status==="active");
+const baseRoutes=JSON.parse(fs.readFileSync(path.join(websiteRoot,"data/sitemap-routes.json"),"utf8")).routes;
+const expectedCategoryCounts=expectedTools.reduce((counts,tool)=>{counts[tool.category]=(counts[tool.category]||0)+1;return counts},{});
+function baseRoutePath(route,locale){
+  const normalized=route.replace(/^\/+|\/+$/g,"");
+  if(!locale.folder)return normalized?`/${normalized}/`:"/";
+  if(normalized==="tools")return`/tools/${locale.folder}/`;
+  return normalized?`/${locale.folder}/${normalized}/`:`/${locale.folder}/`;
+}
+function toolRoutePath(tool,locale){return`/tools/${tool.id}/${locale.folder?`${locale.folder}/`:""}`}
+const expectedSitemapPaths=new Set([
+  ...baseRoutes.flatMap(route=>activeLocales.map(locale=>baseRoutePath(route.route,locale))),
+  ...expectedTools.flatMap(tool=>activeLocales.map(locale=>toolRoutePath(tool,locale)))
+]);
 const deploymentMarker=fullHash(Buffer.from([version,...expectedHashes.values()].join(":"))).slice(0,12);
 
 function contentHash(file){return stableFileHash(file,12)}
@@ -184,7 +202,12 @@ async function readinessCheck(attempt){
   catch(error){return{ready:false,errors:[error.message||String(error)],home,toolsDirectory}}
   if(sitemapResponse.response.status!==200)errors.push(`/sitemap.xml: HTTP ${sitemapResponse.response.status}`);
   const sitemapUrls=[...sitemapResponse.text.matchAll(/<loc>(.*?)<\/loc>/g)].map(match=>match[1]);
-  if(sitemapUrls.length!==40)errors.push(`/sitemap.xml: expected 40 URLs, got ${sitemapUrls.length}`);
+  const sitemapPaths=sitemapUrls.map(url=>new URL(url).pathname);
+  const actualSitemapPaths=new Set(sitemapPaths);
+  const missing=[...expectedSitemapPaths].filter(pathname=>!actualSitemapPaths.has(pathname));
+  const extra=[...actualSitemapPaths].filter(pathname=>!expectedSitemapPaths.has(pathname));
+  if(sitemapPaths.length!==actualSitemapPaths.size)errors.push(`/sitemap.xml: duplicate URLs found`);
+  if(missing.length||extra.length)errors.push(`/sitemap.xml: exact route set mismatch; missing ${missing.length}, extra ${extra.length}`);
 
   const pageResults=await mapLimit(sitemapUrls,8,async canonical=>{
     const pathname=new URL(canonical).pathname;
@@ -259,7 +282,7 @@ async function runFullCheck(readiness,readyAttempt){
   const home=readiness.home;
   const homeUrl=`${base}/`;
 
-  record("checked-out version",version==="1.8.3",version);
+  record("checked-out version",localeConfig.version===version,version);
   record("production HTTPS or local test",baseUrl.protocol==="https:"||localMode,base);
   record("deployment matches checked-out asset hashes",readiness.ready,`attempt ${readyAttempt}/${attempts}`);
   record("home HTTP 200",home.response.status===200,String(home.response.status));
@@ -284,9 +307,11 @@ async function runFullCheck(readiness,readyAttempt){
   const sitemapResponse=readiness.sitemapResponse;
   record("sitemap HTTP 200",sitemapResponse.response.status===200,String(sitemapResponse.response.status));
   const sitemapUrls=readiness.sitemapUrls;
-  record("sitemap URL count",sitemapUrls.length===40,String(sitemapUrls.length));
+  record("sitemap URL count",sitemapUrls.length===expectedSitemapPaths.size,`${sitemapUrls.length}/${expectedSitemapPaths.size}`);
   record("sitemap URLs unique",new Set(sitemapUrls).size===sitemapUrls.length);
   record("sitemap production origin",sitemapUrls.every(url=>url.startsWith(`${expectedOrigin}/`)));
+  const actualSitemapPaths=new Set(sitemapUrls.map(url=>new URL(url).pathname));
+  record("sitemap exact configured route set",actualSitemapPaths.size===expectedSitemapPaths.size&&[...expectedSitemapPaths].every(pathname=>actualSitemapPaths.has(pathname)),`${actualSitemapPaths.size}/${expectedSitemapPaths.size}`);
 
   const pageResults=readiness.pageResults;
   let pagesOk=0;
@@ -321,12 +346,13 @@ async function runFullCheck(readiness,readyAttempt){
   record("content-hashed shared asset URLs",assetErrors.length===0,`${versionedReferences} references`);
   errors.push(...orderErrors.map(pathname=>`${pathname}: tools catalog must load before site runtime`));
   record("tools catalog before site runtime",orderErrors.length===0,"4 directory/home pages");
-  record("tool pages expose working controls",toolPages===24&&toolPagesWithControls===toolPages,`${toolPagesWithControls}/${toolPages}`);
+  const expectedToolPages=expectedTools.length*activeLocales.length;
+  record("tool pages expose working controls",toolPages===expectedToolPages&&toolPagesWithControls===toolPages,`${toolPagesWithControls}/${expectedToolPages}`);
 
   const catalogAsset=readiness.remoteAssets.find(item=>item.rel==="data/tools-catalog.js");
   record("tools catalog HTTP 200",catalogAsset.status===200,String(catalogAsset.status));
   const tools=readiness.tools;
-  record("active tools online",tools.length===14&&tools.every(tool=>tool.status==="active"),String(tools.length));
+  record("active tools online",tools.length===expectedTools.length&&tools.every(tool=>tool.status==="active"),`${tools.length}/${expectedTools.length}`);
   record("tool IDs unique",new Set(tools.map(tool=>tool.id)).size===tools.length);
   const actualCounts=tools.reduce((counts,tool)=>{counts[tool.category]=(counts[tool.category]||0)+1;return counts},{});
   record("tool category counts",JSON.stringify(actualCounts)===JSON.stringify(expectedCategoryCounts),JSON.stringify(actualCounts));
