@@ -580,7 +580,7 @@ function build(){
   html=ensureAsset(html,record.rel,"assets/js/adsense.js","js");
   if(record.info.kind==="home"||record.info.kind==="toolsDirectory")html=ensureAsset(html,record.rel,"data/tools-catalog.js","js");
   html=ensureAsset(html,record.rel,"assets/js/site.js","js");
-  html=versionExistingAsset(html,"assets/css/home-mobile-grid-hotfix-20260828.css");
+  html=versionExistingAsset(html,"assets/css/home-mobile-layout-hotfix-20260828-02.css");
   html=versionExistingAsset(html,"assets/css/tool-design-system-v1.9.9-03.css");
   html=versionExistingAsset(html,"assets/js/tool-integration.js");
   html=versionExistingAsset(html,"assets/js/tool-shell-v1.9.9-04.js");
