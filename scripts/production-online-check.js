@@ -20,11 +20,13 @@ const managedAssets=[
   "data/tools-catalog.js",
   "assets/css/design-tokens.css",
   "assets/css/site-shell.css",
+  "assets/css/tool-design-system-v1.9.9-03.css",
   "assets/css/locale-menu.css",
   "assets/js/analytics.js",
   "assets/js/adsense.js",
   "assets/js/site.js",
-  "assets/js/tool-integration.js"
+  "assets/js/tool-integration.js",
+  "assets/js/tool-shell-v1.9.9-04.js"
 ];
 const homeReadinessAssets=[
   "data/locales.js",

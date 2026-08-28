@@ -237,7 +237,8 @@
     if (!(enhancedTools.has(slug) && main)) return;
 
     const header = document.querySelector(".site-header");
-    if (header && !header.querySelector(".start-btn")) {
+    const existingStart = header?.querySelector(".start-btn, .site-shell-context-action a[href^='#']");
+    if (header && !existingStart) {
       const start = document.createElement("a");
       start.className = "start-btn";
       start.href = `#${main.id}`;

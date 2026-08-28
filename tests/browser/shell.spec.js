@@ -45,6 +45,7 @@ test("all public pages use one computed Header and Footer shell",async({page},te
     const response=await page.goto(route,{waitUntil:"domcontentloaded"});
     expect(response?.status(),route).toBe(200);
     await expect(page.locator(".site-shell-header"),route).toBeVisible();
+    await expect(page.locator(".site-shell-header > .start-btn"),`${route} duplicate legacy start action`).toHaveCount(0);
     const signature=await page.evaluate(()=>{
       const header=document.querySelector(".site-shell-header");
       const footer=document.querySelector(".site-shell-footer");

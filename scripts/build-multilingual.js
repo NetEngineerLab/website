@@ -25,10 +25,12 @@ const sharedRuntimeAssets=[
  {sitePath:"assets/css/locale-menu.css",cachePath:"../../assets/css/locale-menu.css"},
  {sitePath:"assets/css/design-tokens.css",cachePath:"../../assets/css/design-tokens.css"},
  {sitePath:"assets/css/site-shell.css",cachePath:"../../assets/css/site-shell.css"},
+ {sitePath:"assets/css/tool-design-system-v1.9.9-03.css",cachePath:"../../assets/css/tool-design-system-v1.9.9-03.css"},
  {sitePath:"assets/js/analytics.js",cachePath:"../../assets/js/analytics.js"},
  {sitePath:"assets/js/adsense.js",cachePath:"../../assets/js/adsense.js"},
  {sitePath:"assets/js/site.js",cachePath:"../../assets/js/site.js"},
- {sitePath:"assets/js/tool-integration.js",cachePath:"../../assets/js/tool-integration.js"}
+ {sitePath:"assets/js/tool-integration.js",cachePath:"../../assets/js/tool-integration.js"},
+ {sitePath:"assets/js/tool-shell-v1.9.9-04.js",cachePath:"../../assets/js/tool-shell-v1.9.9-04.js"}
 ];
 const assetVersionCache=new Map();
 function isRootDirectoryRoute(route){return rootDirectoryRoutes.has(route)}
@@ -45,6 +47,9 @@ function walk(dir){
 }
 function escapeHtml(value){
  return String(value??"").replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[char]));
+}
+function decodeEntities(value){
+ return String(value??"").replace(/&amp;/g,"&").replace(/&quot;/g,'"').replace(/&#0?39;|&apos;/g,"'").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/\s+/g," ").trim();
 }
 function toolCopy(tool,locale){
  const translations=tool.translations||{};
@@ -273,6 +278,51 @@ function updateJsonLd(html,locale,canonical){
    return `<script${attrs}>${JSON.stringify(data)}</script>`;
   }catch{return whole}
  });
+}
+function ensureOpenGraphMeta(html,canonical){
+ const ensure=(property,content)=>{
+  const pattern=new RegExp(`<meta\\b[^>]*\\bproperty\\s*=\\s*["']${property}["'][^>]*>`,"i");
+  if(pattern.test(html)){
+   html=html.replace(pattern,tag=>/\bcontent\s*=\s*["'][^"']*["']/i.test(tag)
+    ?tag.replace(/\bcontent\s*=\s*["'][^"']*["']/i,`content="${escapeHtml(content)}"`)
+    :tag.replace(/\s*\/?\s*>$/,` content="${escapeHtml(content)}">`));
+  }else{
+   html=html.replace(/<\/head>/i,`<meta property="${property}" content="${escapeHtml(content)}">\n</head>`);
+  }
+ };
+ ensure("og:url",canonical);
+ if(!/<meta\b[^>]*\bproperty\s*=\s*["']og:image["'][^>]*>/i.test(html)){
+  ensure("og:image",`${localeConfig.siteUrl}/assets/images/og-netengineerlab.png`);
+ }
+ return html;
+}
+function ensureWebPageSchema(html,canonical,locale){
+ let hasPrimaryEntity=false;
+ for(const block of html.matchAll(/<script\b[^>]*type\s*=\s*["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)){
+  try{
+   const visit=node=>{
+    if(Array.isArray(node)){node.forEach(visit);return}
+    if(!node||typeof node!=="object")return;
+    if(node.url===canonical&&node.inLanguage===locale.htmlLang)hasPrimaryEntity=true;
+    Object.values(node).forEach(visit);
+   };
+   visit(JSON.parse(block[1].trim()));
+  }catch{}
+ }
+ if(hasPrimaryEntity)return html;
+ const title=decodeEntities(html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1]||"NetEngineerLab");
+ const descriptionTag=(html.match(/<meta\b[^>]*\bname\s*=\s*["']description["'][^>]*>/i)||[])[0]||"";
+ const description=decodeEntities(descriptionTag.match(/\bcontent\s*=\s*["']([^"']*)["']/i)?.[1]||"");
+ const schema={
+  "@context":"https://schema.org",
+  "@type":"WebPage",
+  name:title,
+  url:canonical,
+  description,
+  inLanguage:locale.htmlLang,
+  isPartOf:{"@type":"WebSite",name:"NetEngineerLab",url:localeConfig.siteUrl+urlForRoute("",locale)}
+ };
+ return html.replace(/<\/head>/i,`<script type="application/ld+json" data-nel-schema="webpage">${JSON.stringify(schema)}</script>\n</head>`);
 }
 function replaceLanguageMenu(html,menuMarkup){
  const marker=/<!-- NEL_LANGUAGE_MENU_START -->[\s\S]*?<!-- NEL_LANGUAGE_MENU_END -->/i;
@@ -517,6 +567,8 @@ function build(){
    seo.push(...available.map(item=>`<link rel="alternate" hreflang="${escapeHtml(item.hreflang)}" href="${escapeHtml(localeConfig.siteUrl+urlForRoute(record.info.route,item))}">`));
    if(group.has(defaultLocale.id))seo.push(`<link rel="alternate" hreflang="x-default" href="${escapeHtml(localeConfig.siteUrl+urlForRoute(record.info.route,defaultLocale))}">`);
   }
+  if(record.info.route!=="404.html")html=ensureOpenGraphMeta(html,canonical);
+  if(record.info.route!=="404.html")html=ensureWebPageSchema(html,canonical,locale);
   html=html.replace(/<\/head>/i,seo.join("\n")+"\n</head>");
   html=updateJsonLd(html,locale,canonical);
   html=ensureAsset(html,record.rel,"assets/css/locale-menu.css","css");
@@ -528,7 +580,9 @@ function build(){
   html=ensureAsset(html,record.rel,"assets/js/adsense.js","js");
   if(record.info.kind==="home"||record.info.kind==="toolsDirectory")html=ensureAsset(html,record.rel,"data/tools-catalog.js","js");
   html=ensureAsset(html,record.rel,"assets/js/site.js","js");
+  html=versionExistingAsset(html,"assets/css/tool-design-system-v1.9.9-03.css");
   html=versionExistingAsset(html,"assets/js/tool-integration.js");
+  html=versionExistingAsset(html,"assets/js/tool-shell-v1.9.9-04.js");
   if(record.info.kind==="tool"){
    const toolBase=`tools/${record.info.toolSlug}`;
    for(const localAsset of [`${toolBase}/css/style.css`,`${toolBase}/js/app.js`]){

@@ -104,11 +104,24 @@ function initNetEngineerLabSite(){
   document.addEventListener("keydown",event=>{if(event.key==="Escape"){close();toggle.focus()}});
   matchMedia("(min-width: 801px)").addEventListener?.("change",event=>{if(event.matches)close()});
  });
- document.querySelectorAll("input[id],select[id],textarea[id]").forEach(control=>{
-  if(control.labels?.length||control.hasAttribute("aria-label")||control.hasAttribute("aria-labelledby"))return;
-  const label=control.closest(".field")?.querySelector("label");
-  if(label)label.htmlFor=control.id;
- });
+ let generatedControlId=0;
+ function ensureControlLabels(scope=document){
+  scope.querySelectorAll?.("input,select,textarea").forEach(control=>{
+   if(control.labels?.length||control.hasAttribute("aria-label")||control.hasAttribute("aria-labelledby"))return;
+   const label=control.closest(".field")?.querySelector("label");
+   if(label){
+    if(!control.id)control.id=`nel-control-${++generatedControlId}`;
+    label.htmlFor=control.id;
+    return;
+   }
+   const rawName=control.getAttribute("placeholder")||control.name||control.id||`${control.tagName.toLowerCase()} ${++generatedControlId}`;
+   control.setAttribute("aria-label",rawName.replace(/[-_]+/g," ").replace(/([a-z])([A-Z])/g,"$1 $2").trim());
+  });
+ }
+ ensureControlLabels();
+ new MutationObserver(records=>records.forEach(record=>record.addedNodes.forEach(node=>{
+  if(node.nodeType===Node.ELEMENT_NODE)ensureControlLabels(node.matches?.("input,select,textarea")?node.parentElement:node);
+ }))).observe(document.body,{childList:true,subtree:true});
  document.documentElement.dataset.nelLocale=locale?.id||"en";
  document.documentElement.dataset.nelI18nVersion=config.version||"";
 }

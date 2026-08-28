@@ -145,7 +145,7 @@ function renderEventRows(){
   <td><input id="reflectance-${row.id}" type="number" step="0.1" value="${escapeHtml(row.reflectanceDb)}" aria-label="${LANG==="zh"?"反射率":"Reflectance"}"></td>
   <td><input id="cumulative-${row.id}" type="number" min="0" step="0.01" value="${escapeHtml(row.cumulativeLossDb)}" aria-label="${LANG==="zh"?"累计损耗":"Cumulative loss"}"></td>
   <td><select id="manual-${row.id}" aria-label="${LANG==="zh"?"手工事件类型":"Manual event type"}">${TYPE_OPTIONS.map(type=>`<option value="${type}" ${type===row.manualType?"selected":""}>${typeLabel(type)}</option>`).join("")}</select></td>
-  <td class="row-actions"><input id="note-${row.id}" type="text" value="${escapeHtml(row.note)}" placeholder="${LANG==="zh"?"备注":"Note"}"><button type="button" class="delete-row" data-delete="${row.id}" aria-label="${LANG==="zh"?"删除事件":"Delete event"}">×</button></td>
+  <td class="row-actions"><input id="note-${row.id}" type="text" value="${escapeHtml(row.note)}" placeholder="${LANG==="zh"?"备注":"Note"}" aria-label="${LANG==="zh"?`事件 ${row.id} 备注`:`Event ${row.id} note`}"><button type="button" class="delete-row" data-delete="${row.id}" aria-label="${LANG==="zh"?"删除事件":"Delete event"}">×</button></td>
  </tr>`).join("");
 
  body.querySelectorAll("input,select").forEach(control=>control.addEventListener("input",()=>{
