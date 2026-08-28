@@ -8,7 +8,7 @@
 <title>Fiber Loss Calculator &amp; Optical Link Budget | NetEngineerLab</title>
 <meta content="Free professional fiber loss calculator for optical link budgets, PON splitters, splices, connectors, engineering margin and receive power analysis." name="description"/>
 
-<link href="css/style.css?v=1.9.9-01" rel="stylesheet"/>
+<link href="css/style.css?v=e3e464bb9c10" rel="stylesheet"/>
 <meta content="./" name="app-base"/>
 <meta content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" name="robots"/>
 <meta content="website" property="og:type"/>
@@ -31,7 +31,12 @@
 <link rel="stylesheet" href="/assets/css/cookie-consent.css?v=v180-hotfix03">
 <link rel="stylesheet" href="/assets/css/v178-final-mobile-branding.css?v=1.9.5-06">
 
-<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.8.3">
+<script defer src="/data/seo-config.js"></script>
+<script defer src="/assets/js/seo-engine.js"></script>
+<script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the difference between physical loss and design loss?","acceptedAnswer":{"@type":"Answer","text":"Physical loss includes actual fiber and component losses. Design loss also includes engineering margin for ageing, temperature, maintenance connections and measurement variation."}},{"@type":"Question","name":"How should I choose 1310, 1490 or 1550 nm?","acceptedAnswer":{"@type":"Answer","text":"Select the actual service wavelength and direction. Common PON upstream uses 1310 nm, while downstream may use 1490 or 1550 nm. Follow the system specification."}},{"@type":"Question","name":"Why can splitter loss be adjusted?","acceptedAnswer":{"@type":"Answer","text":"The page uses typical nominal values. Actual loss varies by vendor, packaging and wavelength, so final designs should use specification or measured values."}},{"@type":"Question","name":"How much remaining budget is considered safe?","acceptedAnswer":{"@type":"Answer","text":"A minimum 3 dB engineering margin is commonly recommended. Smaller margins are more sensitive to contamination, bending, ageing and temperature changes."}},{"@type":"Question","name":"Why can receive power pass while the budget shows caution?","acceptedAnswer":{"@type":"Answer","text":"Receive threshold and design budget are separate checks. High transmit power may keep receive power acceptable while long-term design margin remains limited."}},{"@type":"Question","name":"Can this result be used for final acceptance?","acceptedAnswer":{"@type":"Answer","text":"This calculator supports planning, review and troubleshooting. Final acceptance should combine power meter and OTDR measurements, equipment specifications and enterprise standards."}}]}</script>
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="../../assets/css/tool-layout-v1.9.9-02.css?v=1.9.9-02"><link rel="stylesheet" href="/assets/css/tool-design-system-v1.9.9-03.css?v=1.9.9-03">
+
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="en">
 <meta name="nel-route" content="tools/fiber-loss/">
 <meta name="nel-available-locales" content="en,zh">
@@ -40,16 +45,13 @@
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/fiber-loss/zh/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/fiber-loss/">
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
-<script defer src="../../data/locales.js?v=09fdf82dccd4"></script>
-<script defer src="../../data/site-config.js?v=df8c8c8e0382"></script>
+<script defer src="../../data/locales.js?v=b541508dc0ee"></script>
+<script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../assets/js/site.js?v=ba674ecc71f2"></script>
 <link rel="manifest" href="manifest.webmanifest">
-<script defer src="/data/seo-config.js"></script>
-<script defer src="/assets/js/seo-engine.js"></script>
-<script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the difference between physical loss and design loss?","acceptedAnswer":{"@type":"Answer","text":"Physical loss includes actual fiber and component losses. Design loss also includes engineering margin for ageing, temperature, maintenance connections and measurement variation."}},{"@type":"Question","name":"How should I choose 1310, 1490 or 1550 nm?","acceptedAnswer":{"@type":"Answer","text":"Select the actual service wavelength and direction. Common PON upstream uses 1310 nm, while downstream may use 1490 or 1550 nm. Follow the system specification."}},{"@type":"Question","name":"Why can splitter loss be adjusted?","acceptedAnswer":{"@type":"Answer","text":"The page uses typical nominal values. Actual loss varies by vendor, packaging and wavelength, so final designs should use specification or measured values."}},{"@type":"Question","name":"How much remaining budget is considered safe?","acceptedAnswer":{"@type":"Answer","text":"A minimum 3 dB engineering margin is commonly recommended. Smaller margins are more sensitive to contamination, bending, ageing and temperature changes."}},{"@type":"Question","name":"Why can receive power pass while the budget shows caution?","acceptedAnswer":{"@type":"Answer","text":"Receive threshold and design budget are separate checks. High transmit power may keep receive power acceptable while long-term design margin remains limited."}},{"@type":"Question","name":"Can this result be used for final acceptance?","acceptedAnswer":{"@type":"Answer","text":"This calculator supports planning, review and troubleshooting. Final acceptance should combine power meter and OTDR measurements, equipment specifications and enterprise standards."}}]}</script>
-<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="../../assets/css/tool-layout-v1.9.9-02.css?v=1.9.9-02"><link rel="stylesheet" href="/assets/css/tool-design-system-v1.9.9-03.css?v=1.9.9-03"></head>
+</head>
 <body>
 <a class="skip-link" href="#calculator">Skip to calculator</a>
 <noscript><div class="noscript">JavaScript is required to run this calculator.</div></noscript>
@@ -61,7 +63,7 @@
 <small data-i18n="brandSubtitle">Network Engineering Intelligence Platform</small>
 </span>
 </a>
-<nav class="top-nav nel-global-nav" aria-label="Primary navigation"><a href="/">Home</a><a href="/tools/">Tools</a><a href="/about/">About</a><a href="/contact/">Contact</a></nav>
+<nav class="top-nav nel-global-nav" aria-label="Primary navigation"><a href="../../">Home</a><a href="../">Tools</a><a href="../../about/">About</a><a href="../../contact/">Contact</a></nav>
 <div class="header-actions">
 <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
 <a class="start-btn" data-i18n="startCalc" href="#calculator">Start calculating</a>
@@ -410,8 +412,8 @@
 </nav>
 <p>© 2026 NetEngineerLab.com</p>
 </footer>
-<script defer="" src="js/pwa.js"></script>
-<script defer="" src="../../data/optical-standards.js"></script><script defer="" src="../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="js/app.js?v=73319647e016"></script>
+<script defer src="js/engine.js"></script><script defer="" src="js/pwa.js"></script>
+<script defer="" src="../../data/optical-standards.js"></script><script defer="" src="../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="js/app.js?v=8a119eac9104"></script>
 <script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script>
 <script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=1.9.9-04"></script></body>
 </html>

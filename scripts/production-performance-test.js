@@ -3,6 +3,7 @@ const fs=require("node:fs");
 const path=require("node:path");
 
 const root=path.resolve(__dirname,"..");
+const releaseVersion=fs.readFileSync(path.join(root,"VERSION"),"utf8").trim();
 
 function read(file){
  return fs.readFileSync(path.join(root,file),"utf8");
@@ -290,7 +291,7 @@ console.log(
 );
 
 console.log(
-" NetEngineerLab V1.8.1 Production Acceptance PASS "
+` NetEngineerLab ${releaseVersion} Production Acceptance PASS `
 );
 
 console.log(

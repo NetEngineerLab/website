@@ -1,10 +1,27 @@
 "use strict";
-const CACHE = "nel-otdr-event-v1.9.9-04";
+const CACHE = "nel-otdr-event-locale-v1.9.9-04-p0-p1-correctness-consent-offline-ecf8f96e5bba";
 const CORE = [
-  "./", "./zh/", "./offline.html", "./manifest.webmanifest",
-  "./manifest-zh.webmanifest", "./data/otdr-event-rules.js", "./css/style.css", "./js/engine.js", "./js/app.js",
-  "./images/logo.svg", "../../assets/css/tool-design-system-v1.9.9-03.css",
-  "../../assets/js/tool-shell-v1.9.9-04.js"
+  "./index.html",
+  "./",
+  "./zh/",
+  "./offline.html",
+  "./manifest.webmanifest",
+  "./data/otdr-event-rules.js",
+  "./css/style.css?v=2d5090ce650f",
+  "./js/engine.js",
+  "./js/app.js?v=0e4153303897",
+  "./images/logo.svg",
+  "../../assets/css/tool-design-system-v1.9.9-03.css",
+  "../../assets/js/tool-shell-v1.9.9-04.js",
+  "../../data/locales.js?v=b541508dc0ee",
+  "../../data/site-config.js?v=b5072ad7fa47",
+  "../../assets/css/locale-menu.css?v=7804394246fb",
+  "../../assets/js/analytics.js?v=1156b7864023",
+  "../../assets/js/adsense.js?v=f075c80ccc75",
+  "../../assets/js/site.js?v=ba674ecc71f2",
+  "../../assets/js/tool-integration.js?v=05f7934f4687",
+  "./zh/index.html",
+  "./manifest-zh.webmanifest"
 ];
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)));

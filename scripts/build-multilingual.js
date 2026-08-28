@@ -372,8 +372,11 @@ function generateManifests(groups){
   const swPath=path.join(toolRoot,"sw.js");
   if(fs.existsSync(swPath)){
    let sw=fs.readFileSync(swPath,"utf8");
-   const head=/const C=(["'])(.*?)\1,A=(\[[\s\S]*?\]);/;
-   const match=sw.match(head);
+   const compactHead=/const C=(["'])(.*?)\1,A=(\[[\s\S]*?\]);/;
+   const verboseHead=/const CACHE\s*=\s*(["'])(.*?)\1;\s*const CORE\s*=\s*(\[[\s\S]*?\]);/;
+   const compactMatch=sw.match(compactHead);
+   const verboseMatch=sw.match(verboseHead);
+   const match=compactMatch||verboseMatch;
    if(match){
     let assets=[];
     try{assets=JSON.parse(match[3])}catch{}
@@ -397,8 +400,11 @@ function generateManifests(groups){
      return fs.existsSync(path.join(siteRoot,...targetRel.split("/")))?`${clean}?v=${assetVersion(targetRel)}`:item;
     });
     assets=[...new Set(assets)];
-    const replacement=`const C="nel-${tool.id}-locale-v${localeConfig.version}-${sharedRuntimeVersion()}",A=${JSON.stringify(assets)};`;
-    sw=sw.replace(head,replacement);
+    const cacheName=`nel-${tool.id}-locale-v${localeConfig.version}-${sharedRuntimeVersion()}`;
+    const replacement=compactMatch
+     ?`const C=${JSON.stringify(cacheName)},A=${JSON.stringify(assets)};`
+     :`const CACHE = ${JSON.stringify(cacheName)};\nconst CORE = ${JSON.stringify(assets,null,2)};`;
+    sw=sw.replace(compactMatch?compactHead:verboseHead,replacement);
     fs.writeFileSync(swPath,sw,"utf8");
    }
   }

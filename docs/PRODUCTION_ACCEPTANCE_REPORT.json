@@ -1,44 +1,92 @@
 {
-  "version": "1.8.3",
-  "generatedAt": "2026-07-30T16:06:20.066Z",
+  "version": "1.9.9-04-p0-p1-correctness-consent-offline",
+  "generatedAt": "2026-08-27T19:07:23.398Z",
   "node": "24.18.0",
   "siteUrl": "https://netengineerlab.com",
-  "htmlPages": 42,
-  "linksChecked": 1634,
-  "activeTools": 14,
+  "htmlPages": 54,
+  "linksChecked": 2411,
+  "activeTools": 20,
   "sitemapUrls": 40,
   "engines": {
-    "OTDR": {
+    "fiber-loss": {
+      "status": "PASS",
+      "output": "Fiber loss engine tests: PASS"
+    },
+    "optical-power-budget": {
+      "status": "PASS",
+      "output": "Optical power budget engine tests: PASS"
+    },
+    "pon-splitter-loss": {
+      "status": "PASS",
+      "output": "PON splitter loss engine tests: PASS"
+    },
+    "onu-rx-power": {
+      "status": "PASS",
+      "output": "ONU RX power engine tests: PASS"
+    },
+    "pon-distance": {
+      "status": "PASS",
+      "output": "PON maximum distance engine tests: PASS"
+    },
+    "otdr-event": {
       "status": "PASS",
       "output": "{\n  \"types\": [\n    \"splice\",\n    \"bend\",\n    \"connector\",\n    \"splice\",\n    \"end\"\n  ],\n  \"summary\": {\n    \"eventCount\": 5,\n    \"abnormalCount\": 3,\n    \"criticalCount\": 2,\n    \"reflectiveCount\": 2,\n    \"deadZoneCount\": 0,\n    \"maxEventLossDb\": 4.5,\n    \"meanEventSpacingM\": 2462.5,\n    \"eventLossPrimaryDb\": 6.52,\n    \"eventLossSecondaryDb\": 7.35,\n    \"estimatedLinkLossPrimaryDb\": 10.02,\n    \"estimatedLinkLossSecondaryDb\": 9.55,\n    \"maximumCumulativeLossDb\": 6.52,\n    \"lastEventDistanceKm\": 10\n  }\n}"
     },
-    "MTU_MSS": {
+    "mtu-calculator": {
       "status": "PASS",
       "output": "{\n  \"status\": \"PASS\",\n  \"pppoe\": {\n    \"mtu\": 1492,\n    \"mss\": 1452\n  },\n  \"vxlan\": {\n    \"mtu\": 1450,\n    \"mss\": 1410\n  },\n  \"ipv6\": {\n    \"mss\": 1440\n  }\n}"
     },
-    "IP_Subnet": {
+    "subnet-calculator": {
       "status": "PASS",
       "output": "{\n  \"status\": \"PASS\",\n  \"ipv4\": \"10.0.0.0/30\",\n  \"vlsm\": [\n    \"10.10.0.0/23\",\n    \"10.10.2.0/24\",\n    \"10.10.3.0/26\"\n  ],\n  \"ipv6\": \"2001:db8:1234:5678::/64\"\n}"
     },
-    "Bandwidth": {
+    "bandwidth-calculator": {
       "status": "PASS",
       "output": "{\n  \"status\": \"PASS\",\n  \"transferSeconds\": 80,\n  \"requiredMbps\": 185.18518518518516,\n  \"users\": 171,\n  \"volumeGB\": 38.475\n}"
     },
-    "Battery_48V": {
+    "48v-battery-runtime": {
       "status": "PASS",
       "output": "48V battery engine tests: PASS"
     },
-    "IPv6_NAT": {
+    "ipv6-nat-planner": {
       "status": "PASS",
       "output": "{\n  \"status\": \"PASS\",\n  \"ipv6\": \"2001:db8:1200::/48\",\n  \"childPrefixes\": \"65536\",\n  \"nat44RequiredIPv4\": 2,\n  \"cgnBlocksPerIPv4\": 59,\n  \"nat64Cases\": 6\n}"
     },
-    "WiFi_Coverage_Capacity": {
+    "wifi-coverage-capacity-planner": {
       "status": "PASS",
       "output": "{\n  \"status\": \"PASS\",\n  \"coverageRadiusM\": 13.77,\n  \"coverageAps\": 20,\n  \"capacityAps\": 7,\n  \"finalAps\": 20,\n  \"reusableChannels\": 6\n}"
     },
-    "SFP_QSFP_Compatibility": {
+    "poe-power-budget-calculator": {
+      "status": "PASS",
+      "output": "PASS: PoE power budget engine"
+    },
+    "sfp-qsfp-compatibility-calculator": {
       "status": "PASS",
       "output": "PASS: SFP/QSFP compatibility and optical-budget engine tests."
+    },
+    "wireless-link-budget-calculator": {
+      "status": "PASS",
+      "output": "Wireless link budget engine tests: PASS"
+    },
+    "poe-voltage-drop-calculator": {
+      "status": "PASS",
+      "output": "PoE voltage drop engine tests: PASS"
+    },
+    "network-rack-power-cooling-calculator": {
+      "status": "PASS",
+      "output": "Network rack power and cooling engine tests: PASS"
+    },
+    "vlan-ip-capacity-planner": {
+      "status": "PASS",
+      "output": "VLAN and IP capacity engine tests: PASS"
+    },
+    "switch-uplink-oversubscription-calculator": {
+      "status": "PASS",
+      "output": "Switch uplink oversubscription engine tests: PASS"
+    },
+    "dns-ttl-propagation-calculator": {
+      "status": "PASS",
+      "output": "DNS TTL propagation engine tests: PASS"
     }
   },
   "http": {
@@ -53,22 +101,22 @@
     {
       "name": "package version",
       "status": "PASS",
-      "detail": "1.8.3"
+      "detail": "1.9.9-04-p0-p1-correctness-consent-offline"
     },
     {
       "name": "site-config version",
       "status": "PASS",
-      "detail": "1.8.3"
+      "detail": "1.9.9-04-p0-p1-correctness-consent-offline"
     },
     {
       "name": "locale version",
       "status": "PASS",
-      "detail": "1.8.3"
+      "detail": "1.9.9-04-p0-p1-correctness-consent-offline"
     },
     {
       "name": "sitemap config version",
       "status": "PASS",
-      "detail": "1.8.3"
+      "detail": "1.9.9-04-p0-p1-correctness-consent-offline"
     },
     {
       "name": "production origin",
@@ -76,9 +124,9 @@
       "detail": "https://netengineerlab.com"
     },
     {
-      "name": "active tool count",
+      "name": "active tool catalog and directories",
       "status": "PASS",
-      "detail": "14"
+      "detail": "20"
     },
     {
       "name": "no planned tool placeholders",
@@ -213,7 +261,7 @@
     {
       "name": "content-hashed shared asset URLs",
       "status": "PASS",
-      "detail": "280 references"
+      "detail": "368 references"
     },
     {
       "name": "tools catalog loads before site runtime",
@@ -223,12 +271,12 @@
     {
       "name": "service-worker content-hash cache",
       "status": "PASS",
-      "detail": "14 service workers"
+      "detail": "20 service workers"
     },
     {
       "name": "sitemap URL count",
       "status": "PASS",
-      "detail": "40"
+      "detail": "40/40"
     },
     {
       "name": "sitemap URLs unique",
@@ -263,12 +311,12 @@
     {
       "name": "local link and anchor audit",
       "status": "PASS",
-      "detail": "42 pages, 1634 links"
+      "detail": "54 pages, 2411 links"
     },
     {
-      "name": "all calculation engines",
+      "name": "configured calculation engine suites",
       "status": "PASS",
-      "detail": ""
+      "detail": "20 suites"
     },
     {
       "name": "local HTTP production simulation",

@@ -35,7 +35,6 @@ const T={
  }
 };
 const attenuationMap={"1310":0.35,"1490":0.30,"1550":0.20};
-const ratioMap={"0":1,"3.7":2,"7.2":4,"10.5":8,"13.8":16,"17":32,"20.5":64};
 const presets={
  custom:null,
  "gpon-b":{tx:1.5,sens:-27,over:-8,system:20,wave:"1490",planned:5,s1:"10.5",s2:"10.5",margin:3},
@@ -66,28 +65,10 @@ function calculate(){
   spliceCount:n("spliceCount"),spliceLoss:n("spliceLoss"),connectorCount:n("connectorCount"),connectorLoss:n("connectorLoss"),
   s1:n("splitter1"),s2:n("splitter2"),other:n("otherLoss"),margin:n("margin")
  };
- const maxChannelLoss=v.tx-v.sens;
- const spliceTotal=v.spliceCount*v.spliceLoss,connectorTotal=v.connectorCount*v.connectorLoss,splitterTotal=v.s1+v.s2;
- const fixedPhysical=spliceTotal+connectorTotal+splitterTotal+v.other;
- const fiberAllowanceDesign=maxChannelLoss-fixedPhysical-v.margin;
- const opticalMax=v.attenuation>0?Math.max(0,fiberAllowanceDesign/v.attenuation):0;
- const effectiveMax=Math.min(opticalMax,v.systemReach);
- const plannedFiber=v.planned*v.attenuation;
- const plannedPhysical=fixedPhysical+plannedFiber;
- const plannedDesign=plannedPhysical+v.margin;
- const physicalHeadroom=maxChannelLoss-plannedPhysical;
- const designRemaining=maxChannelLoss-plannedDesign;
- const estimatedRx=v.tx-plannedPhysical;
- const overloadMargin=v.over-estimatedRx;
- const ratio=(ratioMap[String(v.s1)]||1)*(ratioMap[String(v.s2)]||1);
- let limiter="equal";
- if(opticalMax<v.systemReach-0.05)limiter="optical";
- else if(v.systemReach<opticalMax-0.05)limiter="system";
- let status="healthy";
- if(physicalHeadroom<0||estimatedRx<v.sens)status="failed";
- else if(designRemaining<0)status="warning";
- else if(limiter==="system"&&v.planned<=effectiveMax)status="limited";
- last={...v,maxChannelLoss,spliceTotal,connectorTotal,splitterTotal,fixedPhysical,fiberAllowanceDesign,opticalMax,effectiveMax,plannedFiber,plannedPhysical,plannedDesign,physicalHeadroom,designRemaining,estimatedRx,overloadMargin,ratio,limiter,status,timestamp:new Date().toISOString()};
+ const result=window.NELPonDistanceEngine.calculate(v);
+ if(!result.ok){$("validation").textContent=T[LANG].invalid;return}
+ const {maxChannelLoss,spliceTotal,connectorTotal,splitterTotal,fixedPhysical,fiberAllowanceDesign,opticalMax,effectiveMax,plannedFiber,plannedPhysical,plannedDesign,physicalHeadroom,designRemaining,estimatedRx,overloadMargin,ratio,limiter,status}=result;
+ last={...v,...result,timestamp:new Date().toISOString()};
  const set=(id,x)=>$(id).textContent=x.toFixed(2);
  set("effectiveMax",effectiveMax);set("opticalMax",opticalMax);set("systemReachResult",v.systemReach);set("plannedDistanceResult",v.planned);
  set("maxChannelLoss",maxChannelLoss);set("fixedPhysical",fixedPhysical);set("fiberAllowance",Math.max(0,fiberAllowanceDesign));set("plannedFiber",plannedFiber);

@@ -1,52 +1,24 @@
-import { test, expect } from '@playwright/test';
+const {test,expect}=require("@playwright/test");
 
-const BASE_URL = 'https://www.netengineerlab.com';
+function captureRuntimeErrors(page){
+  const errors=[];
+  page.on("console",message=>{if(message.type()==="error")errors.push(`console: ${message.text()}`)});
+  page.on("pageerror",error=>errors.push(`page: ${error.message}`));
+  return errors;
+}
 
-test.describe('NetEngineerLab 首页巡检', () => {
-
-  test('首页可以正常打开', async ({ page }) => {
-
-    const errors = [];
-
-    page.on('console', msg => {
-      if (msg.type() === 'error') {
-        errors.push(msg.text());
-      }
+test.describe("homepage",()=>{
+  for(const route of ["/","/zh/"]){
+    test(`${route} renders without runtime or overflow errors`,async({page})=>{
+      const errors=captureRuntimeErrors(page);
+      const response=await page.goto(route,{waitUntil:"networkidle"});
+      expect(response?.status()).toBe(200);
+      await expect(page).toHaveTitle(/NetEngineerLab/i);
+      await expect(page.locator("header").first()).toBeVisible();
+      await expect(page.locator("main").first()).toBeVisible();
+      const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth+1);
+      expect(overflow).toBe(false);
+      expect(errors).toEqual([]);
     });
-
-    await page.goto(BASE_URL, {
-      waitUntil: 'networkidle'
-    });
-
-    await expect(page).toHaveTitle(/NetEngineerLab/i);
-
-    expect(errors).toHaveLength(0);
-
-  });
-
-
-  test('首页 Logo 存在', async ({ page }) => {
-
-    await page.goto(BASE_URL);
-
-    const logo = page.locator('img');
-
-    await expect(logo.first()).toBeVisible();
-
-  });
-
-
-  test('首页没有横向溢出', async ({ page }) => {
-
-    await page.goto(BASE_URL);
-
-    const overflow = await page.evaluate(() => {
-      return document.documentElement.scrollWidth >
-             document.documentElement.clientWidth;
-    });
-
-    expect(overflow).toBe(false);
-
-  });
-
+  }
 });

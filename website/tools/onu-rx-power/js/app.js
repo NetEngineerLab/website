@@ -67,26 +67,14 @@ function setMode(mode){
 }
 function currentMode(){return document.querySelector(".mode-tab.active")?.dataset.mode||"model"}
 function calculate(){
- if(!validate()){$("validation").textContent=T[LANG].invalid;return}$("validation").textContent="";
  const v={
   project:$("projectName").value.trim()||"Untitled",mode:currentMode(),measured:n("measuredRx"),sens:n("rxSensitivity"),over:n("rxOverload"),noSignal:n("noSignalThreshold"),warning:n("warningMargin"),
   tx:n("txPower"),distance:n("distance"),attenuation:n("attenuation"),spliceCount:n("spliceCount"),spliceLoss:n("spliceLoss"),connectorCount:n("connectorCount"),connectorLoss:n("connectorLoss"),
   s1:n("splitter1"),s2:n("splitter2"),other:n("otherLoss"),wavelength:$("wavelength").value
  };
- const sensitivityMargin=v.measured-v.sens;
- const overloadMargin=v.over-v.measured;
- const receiverWindow=v.over-v.sens;
- let status="healthy";
- if(v.measured<=v.noSignal)status="nosignal";
- else if(v.measured<v.sens)status="failed";
- else if(v.measured>v.over)status="overload";
- else if(sensitivityMargin<v.warning||overloadMargin<v.warning)status="warning";
- const fiberLoss=v.distance*v.attenuation,spliceTotal=v.spliceCount*v.spliceLoss,connectorTotal=v.connectorCount*v.connectorLoss,splitterLoss=v.s1+v.s2;
- const modeledLoss=fiberLoss+spliceTotal+connectorTotal+splitterLoss+v.other;
- const expectedRx=v.tx-modeledLoss;
- const deviation=v.measured-expectedRx;
- const inferredExtra=Math.max(0,expectedRx-v.measured);
- const ratio=(splitterRatios[String(v.s1)]||1)*(splitterRatios[String(v.s2)]||1);
+ const result=window.NELOnuRxPowerEngine.calculate(v);
+ if(!result.ok){$("validation").textContent=T[LANG].invalid;return}$("validation").textContent="";
+ const {sensitivityMargin,overloadMargin,receiverWindow,status,fiberLoss,spliceTotal,connectorTotal,splitterLoss,modeledLoss,expectedRx,deviation,inferredExtra,ratio}=result;
  last={...v,sensitivityMargin,overloadMargin,receiverWindow,status,fiberLoss,spliceTotal,connectorTotal,splitterLoss,modeledLoss,expectedRx,deviation,inferredExtra,ratio,timestamp:new Date().toISOString()};
  const set=(id,x)=>$(id).textContent=x.toFixed(2);
  set("measuredResult",v.measured);set("sensitivityMargin",sensitivityMargin);set("overloadMargin",overloadMargin);set("receiverWindow",receiverWindow);

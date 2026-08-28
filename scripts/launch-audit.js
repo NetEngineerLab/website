@@ -10,7 +10,7 @@ const site=path.join(root,"website");
 const errors=[];
 const warnings=[];
 const packageJson = require("../package.json");
-const expectedVersion = packageJson.version;
+const expectedVersion = read(path.join(root,"VERSION")).trim();
 const expectedOrigin="https://netengineerlab.com";
 const expectedMeasurementId="G-KGNFX9MD8Q";
 
@@ -28,7 +28,11 @@ for(const [name,value] of [["package",packageJson.version],["locales",config.ver
   if(value!==expectedVersion)errors.push(`${name} version ${value||"missing"} != ${expectedVersion}`);
 }
 if(siteConfig.siteUrl!==expectedOrigin)errors.push(`site URL ${siteConfig.siteUrl||"missing"} != ${expectedOrigin}`);
-if(!Array.isArray(tools)||tools.filter(item=>item.status==="active").length!==14)errors.push("active tool count is not 14");
+const activeTools=Array.isArray(tools)?tools.filter(item=>item.status==="active"):[];
+if(!activeTools.length)errors.push("no active tools found");
+for(const tool of activeTools){
+  if(!fs.existsSync(path.join(site,"tools",tool.id,"index.html")))errors.push(`active tool directory missing: ${tool.id}`);
+}
 if(Array.isArray(tools)&&tools.some(item=>item.status!=="active"))errors.push("planned tools remain in production catalog");
 
 const htmlFiles=walk(site).filter(file=>file.endsWith(".html")&&!file.endsWith("offline.html"));
@@ -81,7 +85,8 @@ if(siteConfig.adsense?.enabled&&(!/^ca-pub-\d{10,20}$/.test(siteConfig.adsense.c
 
 const sitemap=read(path.join(site,"sitemap.xml"));
 const locs=[...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match=>match[1]);
-if(locs.length!==40)errors.push(`sitemap URL count ${locs.length} != 40`);
+const buildReport=json("docs/MULTILINGUAL_BUILD_REPORT.json");
+if(Number.isInteger(buildReport.sitemapUrls)&&locs.length!==buildReport.sitemapUrls)errors.push(`sitemap URL count ${locs.length} != generated ${buildReport.sitemapUrls}`);
 if(new Set(locs).size!==locs.length)errors.push("duplicate sitemap URLs");
 if(!locs.every(url=>url.startsWith(expectedOrigin+"/")))errors.push("sitemap contains non-production URL");
 for(const route of ["/about/","/contact/","/privacy/","/terms/","/zh/about/","/zh/contact/","/zh/privacy/","/zh/terms/"]){

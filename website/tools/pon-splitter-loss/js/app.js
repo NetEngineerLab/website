@@ -65,8 +65,6 @@ function applySystemProfile(){
  calculate();
 }
 function calculate(){
- if(!validate()){$("validation").textContent=T[LANG].invalid;return}
- $("validation").textContent="";
  const v={
   project:$("projectName").value.trim()||"Untitled",
   distance:num("distance"),attenuation:num("attenuation"),
@@ -77,27 +75,10 @@ function calculate(){
   tx:num("txPower"),sens:num("rxSensitivity"),over:num("rxOverload"),
   systemReach:num("systemReach"),wavelength:$("wavelength").value
  };
- const r1=ratios[String(v.s1)]||1,r2=ratios[String(v.s2)]||1,r3=ratios[String(v.s3)]||1,totalRatio=r1*r2*r3;
- const splitterLoss=v.s1+v.s2+v.s3;
- const idealLoss=10*Math.log10(totalRatio);
- const excessLoss=Math.max(0,splitterLoss-idealLoss);
- const fiberLoss=v.distance*v.attenuation;
- const spliceTotal=v.spliceCount*v.spliceLoss;
- const connectorTotal=v.connectorCount*v.connectorLoss;
- const fixedPhysical=spliceTotal+connectorTotal+splitterLoss+v.other;
- const physicalLoss=fiberLoss+fixedPhysical;
- const designLoss=physicalLoss+v.margin;
- const rawWindow=v.tx-v.sens;
- const standardBudget=Math.max(0,rawWindow-v.penalty);
- const remaining=standardBudget-designLoss;
- const rx=v.tx-physicalLoss;
- const sensMargin=rx-v.sens;
- const overMargin=v.over-rx;
- const opticalMax=v.attenuation>0?Math.max(0,(standardBudget-v.margin-fixedPhysical)/v.attenuation):0;
- const effectiveMax=Math.min(opticalMax,v.systemReach);
- let status="healthy";
- if(remaining<0||sensMargin<0||overMargin<0)status="failed";
- else if(remaining<3||sensMargin<3||overMargin<3)status="warning";
+ const result=window.NELPonSplitterLossEngine.calculate(v);
+ if(!result.ok){$("validation").textContent=T[LANG].invalid;return}
+ $("validation").textContent="";
+ const {r1,r2,r3,totalRatio,splitterLoss,idealLoss,excessLoss,fiberLoss,spliceTotal,connectorTotal,fixedPhysical,physicalLoss,designLoss,rawWindow,standardBudget,remaining,rx,sensMargin,overMargin,opticalMax,effectiveMax,status}=result;
  last={...v,totalRatio,splitterLoss,idealLoss,excessLoss,fiberLoss,spliceTotal,connectorTotal,fixedPhysical,physicalLoss,designLoss,rawWindow,standardBudget,remaining,rx,sensMargin,overMargin,opticalMax,effectiveMax,status,timestamp:new Date().toISOString()};
  const set=(id,x)=>$(id).textContent=x.toFixed(2);
  $("ratioResult").textContent="1:"+totalRatio;

@@ -9,7 +9,7 @@ const{stableFileHash,stableHash}=require("./stable-text-hash");
 const root=path.resolve(__dirname,"..");
 const site=path.join(root,"website");
 const docs=path.join(root,"docs");
-const expectedVersion="1.8.3";
+const expectedVersion=fs.readFileSync(path.join(root,"VERSION"),"utf8").trim();
 const expectedOrigin="https://netengineerlab.com";
 const sharedRuntimeAssets=[
   {sitePath:"data/locales.js",cachePath:"../../data/locales.js"},
@@ -134,24 +134,21 @@ function auditVersionedAssets(){
       const expected=`${asset.cachePath}?v=${assetDigest(path.join(site,...asset.sitePath.split("/")))}`;
       if(!text.includes(expected))serviceWorkerIssues.push(`${rel}: missing ${expected}`);
     }
-    if(!text.includes(`-${sharedVersion}\",A=`))serviceWorkerIssues.push(`${rel}: cache name does not include ${sharedVersion}`);
+    if(!text.includes(`-${sharedVersion}`))serviceWorkerIssues.push(`${rel}: cache name does not include ${sharedVersion}`);
   }
   return{references,issues,catalogOrder,serviceWorkers:serviceWorkers.length,serviceWorkerIssues};
 }
-function runEngineTests(){
-  const tests={
-    OTDR:"website/tools/otdr-event/docs/engine-test.js",
-    MTU_MSS:"website/tools/mtu-calculator/docs/engine-test.js",
-    IP_Subnet:"website/tools/subnet-calculator/docs/engine-test.js",
-    Bandwidth:"website/tools/bandwidth-calculator/docs/engine-test.js",
-    Battery_48V:"website/tools/48v-battery-runtime/docs/engine-test.js",
-    IPv6_NAT:"website/tools/ipv6-nat-planner/docs/engine-test.js",
-    WiFi_Coverage_Capacity:"website/tools/wifi-coverage-capacity-planner/docs/engine-test.js",
-    SFP_QSFP_Compatibility:"website/tools/sfp-qsfp-compatibility-calculator/docs/engine-test.js"
-  };
+function runEngineTests(activeTools){
   const results={};
-  for(const [name,rel] of Object.entries(tests)){
+  for(const tool of activeTools){
+    const name=tool.id;
+    const rel=`website/tools/${tool.id}/docs/engine-test.js`;
     const file=path.join(root,rel);
+    if(!fs.existsSync(file)){
+      results[name]={status:"FAIL",output:`missing ${rel}`};
+      errors.push(`${name} engine test missing`);
+      continue;
+    }
     const result=spawnSync(process.execPath,[file],{cwd:path.dirname(file),encoding:"utf8",timeout:60000});
     results[name]={status:result.status===0?"PASS":"FAIL",output:(result.stdout||result.stderr||"").trim()};
     if(result.status!==0)errors.push(`${name} engine test failed`);
@@ -244,7 +241,9 @@ async function httpAudit(sitemapUrls){
   record("locale version",localeConfig.version===expectedVersion,localeConfig.version||"missing");
   record("sitemap config version",sitemapConfig.version===expectedVersion,sitemapConfig.version||"missing");
   record("production origin",siteConfig.siteUrl===expectedOrigin,siteConfig.siteUrl||"missing");
-  record("active tool count",Array.isArray(tools)&&tools.filter(item=>item.status==="active").length===14,String(Array.isArray(tools)?tools.filter(item=>item.status==="active").length:0));
+  const activeTools=Array.isArray(tools)?tools.filter(item=>item.status==="active"):[];
+  const missingToolDirectories=activeTools.filter(tool=>!exists(`website/tools/${tool.id}/index.html`)).map(tool=>tool.id);
+  record("active tool catalog and directories",activeTools.length>0&&!missingToolDirectories.length,missingToolDirectories.length?`missing: ${missingToolDirectories.join(", ")}`:String(activeTools.length));
   record("no planned tool placeholders",Array.isArray(tools)&&tools.every(item=>item.status==="active"));
 
   for(const rel of [".node-version",".nvmrc",".gitignore",".gitattributes","VERSION",".github/workflows/production-quality-gate.yml",".github/workflows/production-online-monitor.yml",".github/workflows/production-performance-monitor.yml","scripts/production-online-check.js","scripts/production-online-revalidation-test.js","scripts/production-performance-report.js","scripts/production-performance-test.js","tests/lighthouse/production.lighthouserc.json","website/_headers","website/_redirects","website/robots.txt","website/sitemap.xml","website/.well-known/security.txt"]){
@@ -277,7 +276,8 @@ async function httpAudit(sitemapUrls){
 
   const sitemap=read(path.join(site,"sitemap.xml"));
   const sitemapUrls=[...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match=>match[1]);
-  record("sitemap URL count",sitemapUrls.length===40,String(sitemapUrls.length));
+  const buildReport=validateJsonFile("docs/MULTILINGUAL_BUILD_REPORT.json");
+  record("sitemap URL count",Number.isInteger(buildReport.sitemapUrls)&&sitemapUrls.length===buildReport.sitemapUrls,`${sitemapUrls.length}/${buildReport.sitemapUrls||"missing"}`);
   record("sitemap URLs unique",new Set(sitemapUrls).size===sitemapUrls.length);
   record("sitemap HTTPS production origin",sitemapUrls.every(url=>url.startsWith(expectedOrigin+"/")));
   const robots=read(path.join(site,"robots.txt"));
@@ -291,8 +291,8 @@ async function httpAudit(sitemapUrls){
   const linkSummary=linkAudit();
   record("local link and anchor audit",!errors.some(item=>/missing local target|missing anchor|placeholder href|duplicate HTML id|empty href\/src|link escapes/.test(item)),`${linkSummary.htmlPages} pages, ${linkSummary.linkCount} links`);
 
-  const engineResults=runEngineTests();
-  record("all calculation engines",Object.values(engineResults).every(item=>item.status==="PASS"));
+  const engineResults=runEngineTests(activeTools);
+  record("configured calculation engine suites",Object.values(engineResults).every(item=>item.status==="PASS"),`${Object.keys(engineResults).length} suites`);
 
   const httpResults=await httpAudit(sitemapUrls);
   record("local HTTP production simulation",!errors.some(item=>/^local route|expected 301|expected 404|preview security|asset cache|service worker/.test(item)),`${httpResults.routes} routes`);

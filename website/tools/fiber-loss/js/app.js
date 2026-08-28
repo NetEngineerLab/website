@@ -138,24 +138,6 @@ function applyPreset(){
   calculate();
 }
 
-function validate(values){
-  // Transmit power and receiver threshold are valid dBm values and may be negative.
-  // Distance, counts, loss coefficients, margins and budgets must be non-negative.
-  const nonNegativeKeys = [
-    "distance", "attenuation", "spliceCount", "spliceLoss",
-    "connectorCount", "connectorLoss", "splitter1", "splitter2",
-    "otherLoss", "engineeringMargin", "availableBudget"
-  ];
-
-  const nonNegativeValuesAreValid = nonNegativeKeys.every((key) =>
-    Number.isFinite(values[key]) && values[key] >= 0
-  );
-
-  return nonNegativeValuesAreValid
-    && Number.isFinite(values.txPower)
-    && Number.isFinite(values.rxThreshold);
-}
-
 function calculate(){
   const values = {
     distance:numberValue("distance"),
@@ -173,25 +155,17 @@ function calculate(){
     rxThreshold:numberValue("rxThreshold")
   };
 
-  if (!validate(values)){
+  const calculation = window.NELFiberLossEngine.calculate(values);
+  if (!calculation.ok){
     $("validationMessage").textContent = translations[currentLang].validation;
     return;
   }
   $("validationMessage").textContent = "";
 
-  const fiberLoss = values.distance * values.attenuation;
-  const spliceTotal = values.spliceCount * values.spliceLoss;
-  const connectorTotal = values.connectorCount * values.connectorLoss;
-  const splitterOtherTotal = values.splitter1 + values.splitter2 + values.otherLoss;
-  const physicalLoss = fiberLoss + spliceTotal + connectorTotal + splitterOtherTotal;
-  const designLoss = physicalLoss + values.engineeringMargin;
-  const budgetRemaining = values.availableBudget - designLoss;
-  const estimatedRxPower = values.txPower - physicalLoss;
-  const rxMargin = estimatedRxPower - values.rxThreshold;
-
-  let status = "healthy";
-  if (budgetRemaining < 0 || rxMargin < 0) status = "failed";
-  else if (budgetRemaining < 3 || rxMargin < 3) status = "warning";
+  const {
+    fiberLoss,spliceTotal,connectorTotal,splitterOtherTotal,
+    physicalLoss,designLoss,budgetRemaining,estimatedRxPower,rxMargin,status
+  } = calculation;
 
   lastResult = {
     projectName:$("projectName").value.trim() || "Untitled",

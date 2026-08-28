@@ -174,6 +174,11 @@ server.listen(requestedPort,host,()=>{
   console.log(`NetEngineerLab preview: http://${host}:${actualPort}/`);
 });
 
-function shutdown(){server.close(()=>process.exit(0))}
+function shutdown(){
+  server.close(()=>process.exit(0));
+  server.closeIdleConnections?.();
+  server.closeAllConnections?.();
+  setTimeout(()=>process.exit(0),2000).unref();
+}
 process.on("SIGTERM",shutdown);
 process.on("SIGINT",shutdown);
