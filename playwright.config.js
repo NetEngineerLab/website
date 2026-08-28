@@ -10,9 +10,9 @@ module.exports=defineConfig({
   reporter:[["line"],["html",{open:"never"}]],
   use:{baseURL:"http://127.0.0.1:4173",serviceWorkers:"allow",trace:"retain-on-failure",screenshot:"only-on-failure"},
   projects:[
-    {name:"chrome-desktop",use:{...devices["Desktop Chrome"]}},
-    {name:"edge-desktop",use:{...devices["Desktop Edge"],channel:"msedge"}},
-    {name:"edge-android",use:{...devices["Pixel 7"],channel:"msedge"}},
-    {name:"edge-iphone",use:{...devices["iPhone 13"],browserName:"chromium",channel:"msedge"}}
+    {name:"chrome-desktop",use:{...devices["Desktop Chrome"],deviceScaleFactor:1}},
+    {name:"edge-desktop",use:{...devices["Desktop Edge"],channel:"msedge",deviceScaleFactor:1}},
+    {name:"edge-android",use:{...devices["Pixel 7"],channel:"msedge",deviceScaleFactor:1}},
+    {name:"edge-iphone",use:{...devices["iPhone 13"],browserName:"chromium",channel:"msedge",deviceScaleFactor:1}}
   ]
 });

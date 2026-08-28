@@ -4,7 +4,7 @@ Date: 2026-08-28
 
 ## Repository and configuration
 
-- [ ] Architecture instructions are tracked by Git. (Pending commit; no commit was authorized.)
+- [x] Architecture instructions are tracked by Git.
 - [x] Root `VERSION` is the release-version source.
 - [x] Generated version fields are synchronized.
 - [x] Active tool counts are configuration-driven.
@@ -38,6 +38,17 @@ Date: 2026-08-28
 - [x] Offline and 404 pages use `noindex,follow`.
 - [x] Offline and 404 pages are excluded from Sitemap.
 - [x] Internal links and anchors pass validation.
+- [x] Sitemap exactly matches base routes and all active tool/locale routes (52 URLs).
+
+## Shared site shell
+
+- [x] Every public page uses the generated Header and Footer markers.
+- [x] English and Chinese Header/Footer templates are the only shell markup sources.
+- [x] Every public page loads the shared design tokens and site-shell stylesheet.
+- [x] All 54 public pages share one normalized Header DOM and one normalized Footer DOM.
+- [x] Desktop computed Header/Footer shell signatures are consistent.
+- [x] Mobile computed Header/Footer shell signatures are consistent.
+- [x] Mobile navigation opens, closes, and exposes the correct expanded state.
 
 ## PWA
 

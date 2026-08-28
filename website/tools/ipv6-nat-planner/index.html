@@ -25,16 +25,37 @@
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/ipv6-nat-planner/zh/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/ipv6-nat-planner/">
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../assets/css/design-tokens.css?v=1b428f96cadc">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=f34b1ffff9cc">
 <script defer src="../../data/locales.js?v=b541508dc0ee"></script>
 <script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../assets/js/site.js?v=ba674ecc71f2"></script>
+<script defer src="../../assets/js/site.js?v=9947a445485e"></script>
 <link rel="manifest" href="manifest.webmanifest">
 </head><body>
 <a class="skip" href="#planner">Start planning</a><noscript><div class="noscript">JavaScript required / 本工具需要启用JavaScript。</div></noscript>
-<header class="site-header"><a class="brand" href="../../"><img alt="" src="images/logo.svg"/><span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span></a>
-<nav class="nav nel-global-nav" aria-label="Primary navigation"><a href="../../">Home</a><a href="../">Tools</a><a href="../../about/">About</a><a href="../../contact/">Contact</a></nav><div class="actions"><!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END --><a class="header-cta" href="#planner">Start planning</a></div></header>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Primary navigation">
+      <a href="../../">Home</a>
+      <a href="../" aria-current="page">Tools</a>
+      <a href="../../about/">About</a>
+      <a href="../../contact/">Contact</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#planner">Start calculating</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
 <nav class="breadcrumbs"><a href="../../">Home</a><span>›</span><a href="../">Tools</a><span>›</span><span>IPv6 &amp; NAT Planning Calculator</span></nav>
 <section class="hero"><div class="hero-inner"><div><p class="eyebrow">IPV6 &amp; ADDRESS TRANSLATION ENGINEERING</p><h1>IPv6 &amp; NAT Planning Calculator</h1><p>Plan IPv6 hierarchy and canonical addresses, NAT44 port capacity, deterministic CGNAT blocks and logging, plus NAT64/DNS64 synthesis.</p><div class="hero-tags"><span>IPv6 prefix planning</span><span>NAT44/PAT capacity</span><span>CGNAT port blocks</span><span>NAT64/DNS64</span></div></div>
 <aside class="hero-card"><strong>Engineering boundary</strong><ul><li>IPv6 arithmetic uses 128-bit BigInt rather than JavaScript Number.</li><li>Port utilization, session demand and logging values are editable engineering assumptions.</li></ul></aside></div></section>
@@ -117,7 +138,17 @@
 <section class="content-section"><p class="eyebrow">FAQ</p><h2>Frequently asked questions</h2><div class="faq-grid"><details><summary>Why are IPv6 subnet address counts so large?</summary><p>IPv6 has 128 bits. A /64 leaves 64 interface-identifier bits, so it contains 2^64 addresses. The tool shows both exponent and exact integer.</p></details><details><summary>Why is the port range editable?</summary><p>Platforms may reserve management ports, static mappings or use different pool policies, so 1024–65535 is only a common engineering starting point.</p></details><details><summary>Can TCP and UDP capacity be added?</summary><p>Their port namespaces are independent and can be estimated separately, but real capacity is also limited by session tables, memory, CPU, timeouts and applications.</p></details><details><summary>Is a smaller deterministic block always better?</summary><p>Smaller blocks improve public-IPv4 sharing but increase port-exhaustion and application risks; choose them from busy-hour session distributions.</p></details><details><summary>Can the NAT64 well-known prefix represent private IPv4?</summary><p>RFC 6052 restricts the well-known prefix from representing non-global IPv4. Domain-local deployments can assess a network-specific prefix or the RFC 8215 local-use prefix.</p></details></div></section>
 <section class="content-section" id="history"><div class="history-head"><div><p class="eyebrow">PROJECT RECORDS</p><h2>Planning history</h2></div><button id="clearHistoryBtn">Clear history</button></div><div class="history-list" id="historyList"></div></section>
 <section class="content-section"><p class="eyebrow">RELATED TOOLS</p><h2>Related engineering tools</h2><div class="related-grid"><a href="../subnet-calculator/"><strong>IP Subnet Calculator</strong><p>Core IPv4, IPv6 and VLSM address calculations.</p></a><a href="../mtu-calculator/"><strong>MTU &amp; MSS Calculator</strong><p>Analyze IPv6, tunnels and NAT-T overhead.</p></a><a href="../bandwidth-calculator/"><strong>Bandwidth &amp; Transfer Time Calculator</strong><p>Calculate capacity, concurrent users and data volume.</p></a></div></section>
-<footer><div><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div><nav class="footer-links"><a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a></nav><p>© 2026 NetEngineerLab.com</p></footer>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Footer navigation">
+      <a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
 <div class="toast" id="toast" role="status"></div>
 <script defer="" src="data/presets.js"></script><script defer="" src="js/engine.js"></script><script defer="" src="js/app.js?v=1c5cebdf9a34"></script><script defer="" src="js/pwa.js"></script>
 <script defer="" src="../../assets/js/tool-integration.js?v=05f7934f4687"></script><script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script>

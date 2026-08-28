@@ -25,16 +25,37 @@
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/ipv6-nat-planner/zh/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/ipv6-nat-planner/">
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=1b428f96cadc">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f34b1ffff9cc">
 <script defer src="../../../data/locales.js?v=b541508dc0ee"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../../assets/js/site.js?v=ba674ecc71f2"></script>
+<script defer src="../../../assets/js/site.js?v=9947a445485e"></script>
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head><body>
 <a class="skip" href="#planner">开始规划</a><noscript><div class="noscript">JavaScript required / 本工具需要启用JavaScript。</div></noscript>
-<header class="site-header"><a class="brand" href="../../../zh/"><img alt="" src="../images/logo.svg"/><span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span></a>
-<nav class="nav nel-global-nav" aria-label="主导航"><a href="../../../zh/">首页</a><a href="../../zh/">工具中心</a><a href="../../../zh/about/">关于我们</a><a href="../../../zh/contact/">联系我们</a></nav><div class="actions"><!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../" lang="en" hreflang="en"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="./" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END --><a class="header-cta" href="#planner">开始规划</a></div></header>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../zh/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="打开导航菜单"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="主导航">
+      <a href="../../../zh/">首页</a>
+      <a href="../../zh/" aria-current="page">工具中心</a>
+      <a href="../../../zh/about/">关于我们</a>
+      <a href="../../../zh/contact/">联系我们</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../" lang="en" hreflang="en"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="./" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#planner">开始计算</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
 <nav class="breadcrumbs"><a href="../../../zh/">首页</a><span>›</span><a href="../../zh/">工具中心</a><span>›</span><span>IPv6与NAT规划计算器</span></nav>
 <section class="hero"><div class="hero-inner"><div><p class="eyebrow">IPV6 &amp; ADDRESS TRANSLATION ENGINEERING</p><h1>IPv6与NAT规划计算器</h1><p>统一完成IPv6前缀拆分、地址规范化、NAT44端口容量、CGNAT确定性端口块、日志量以及NAT64/DNS64地址合成。</p><div class="hero-tags"><span>IPv6前缀规划</span><span>NAT44/PAT容量</span><span>CGNAT端口块</span><span>NAT64/DNS64</span></div></div>
 <aside class="hero-card"><strong>工程使用边界</strong><ul><li>IPv6地址使用128位BigInt计算，不采用JavaScript Number。</li><li>端口利用率、会话数和日志参数均为可编辑工程假设。</li></ul></aside></div></section>
@@ -117,7 +138,17 @@
 <section class="content-section"><p class="eyebrow">FAQ</p><h2>常见问题</h2><div class="faq-grid"><details><summary>为什么IPv6子网地址数量非常大？</summary><p>IPv6是128位地址。/64保留64位接口标识，因此地址数为2^64。工具同时显示指数和精确整数。</p></details><details><summary>端口范围为什么可以修改？</summary><p>不同设备会保留管理端口、静态映射端口或采用不同端口池策略，因此1024—65535只能作为常见工程起点。</p></details><details><summary>TCP和UDP容量能直接相加吗？</summary><p>二者端口空间独立，理论容量可以分别计算；实际承载仍受设备会话表、内存、CPU、超时和应用行为限制。</p></details><details><summary>确定性端口块越小越好吗？</summary><p>更小端口块能提高公网IPv4共享比，但会增加端口不足和应用兼容风险，应根据忙时会话分布选择。</p></details><details><summary>知名NAT64前缀能映射私网IPv4吗？</summary><p>RFC 6052限制知名前缀表示非全球IPv4地址。域内场景可评估网络专用前缀或RFC 8215本地使用前缀。</p></details></div></section>
 <section class="content-section" id="history"><div class="history-head"><div><p class="eyebrow">PROJECT RECORDS</p><h2>规划历史记录</h2></div><button id="clearHistoryBtn">清空记录</button></div><div class="history-list" id="historyList"></div></section>
 <section class="content-section"><p class="eyebrow">RELATED TOOLS</p><h2>相关工程工具</h2><div class="related-grid"><a href="../../subnet-calculator/zh/"><strong>IP子网计算器</strong><p>IPv4、IPv6和VLSM基础地址计算。</p></a><a href="../../mtu-calculator/zh/"><strong>MTU与MSS计算器</strong><p>分析IPv6、隧道及NAT-T封装开销。</p></a><a href="../../bandwidth-calculator/zh/"><strong>带宽与传输时间计算器</strong><p>计算容量、并发用户及数据量。</p></a></div></section>
-<footer><div><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div><nav class="footer-links"><a href="../../../zh/about/">关于</a><a href="../../../zh/contact/">联系</a><a href="../../../zh/privacy/">隐私政策</a><a href="../../../zh/terms/">使用条款</a></nav><p>© 2026 NetEngineerLab.com</p></footer>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div>
+    <nav class="site-shell-footer-links" aria-label="页脚导航">
+      <a href="../../../zh/about/">关于</a><a href="../../../zh/contact/">联系</a><a href="../../../zh/privacy/">隐私政策</a><a href="../../../zh/terms/">使用条款</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
 <div class="toast" id="toast" role="status"></div>
 <script defer="" src="../data/presets.js"></script><script defer="" src="../js/engine.js"></script><script defer="" src="../js/app.js?v=1c5cebdf9a34"></script><script defer="" src="../js/pwa.js"></script>
 <script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script>

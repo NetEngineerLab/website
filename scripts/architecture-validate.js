@@ -14,6 +14,12 @@ function read(file){return fs.readFileSync(file,"utf8")}
 function json(rel){return JSON.parse(read(path.join(root,rel)))}
 function rel(file){return path.relative(root,file).split(path.sep).join("/")}
 function requireFile(file){if(!fs.existsSync(file))errors.push(`${rel(file)}: missing`)}
+function walk(dir){
+  return fs.readdirSync(dir,{withFileTypes:true}).flatMap(entry=>{
+    const full=path.join(dir,entry.name);
+    return entry.isDirectory()?walk(full):[full];
+  });
+}
 function metaContent(html,name){
   const tag=(html.match(new RegExp(`<meta\\b[^>]*name=["']${name}["'][^>]*>`,"i"))||[])[0]||"";
   return (tag.match(/content=["']([^"']*)["']/i)||[])[1]||"";
@@ -62,6 +68,13 @@ for(const [name,value] of [
 
 if(!Array.isArray(tools)||!tools.length)errors.push("website/data/tools-catalog.json: no tools found");
 const activeTools=Array.isArray(tools)?tools.filter(tool=>tool.status==="active"):[];
+const activeLocales=Array.isArray(localeConfig.locales)?localeConfig.locales.filter(locale=>locale.status==="active"):[];
+
+for(const locale of activeLocales){
+  requireFile(path.join(site,"templates",`header-${locale.id}.html`));
+  requireFile(path.join(site,"templates",`footer-${locale.id}.html`));
+}
+for(const relPath of ["website/assets/css/design-tokens.css","website/assets/css/site-shell.css"])requireFile(path.join(root,relPath));
 
 for(const tool of activeTools){
   const toolRoot=path.join(site,"tools",tool.id);
@@ -117,10 +130,79 @@ for(const toolId of pendingEngineMigrations){
   if(fs.existsSync(path.join(site,"tools",toolId,"js","engine.js")))errors.push(`migration state is stale; engine already exists: ${toolId}`);
 }
 
+function shellRegion(html,name){
+  const start=`<!-- NEL_${name}_START -->`;
+  const end=`<!-- NEL_${name}_END -->`;
+  const startCount=html.split(start).length-1;
+  const endCount=html.split(end).length-1;
+  if(startCount!==1||endCount!==1)return null;
+  return html.slice(html.indexOf(start)+start.length,html.indexOf(end));
+}
+function shellSignature(fragment,isHeader){
+  let value=fragment;
+  if(isHeader)value=value.replace(/<div\b[^>]*class=["'][^"']*\bsite-shell-context-action\b[^"']*["'][^>]*>[\s\S]*?<\/div>/i,'<div class="site-shell-context-action"></div>');
+  value=value
+    .replace(/<!--[^]*?-->/g,"")
+    .replace(/\s(?:href|src|lang|hreflang|aria-label)=["'][^"']*["']/gi,match=>` ${match.trim().split("=")[0]}=""`)
+    .replace(/\saria-current=["'][^"']*["']/gi,"")
+    .replace(/>[^<]*</g,"><")
+    .replace(/\s+/g," ")
+    .replace(/>\s+</g,"><")
+    .trim();
+  return value;
+}
+
+const publicHtml=walk(site).filter(file=>file.endsWith(".html")&&!file.endsWith(`${path.sep}offline.html`)&&!file.includes(`${path.sep}templates${path.sep}`));
+const headerSignatures=new Set();
+const footerSignatures=new Set();
+for(const file of publicHtml){
+  const html=read(file);
+  const fileRel=rel(file);
+  const header=shellRegion(html,"HEADER");
+  const footer=shellRegion(html,"FOOTER");
+  if(!header)errors.push(`${fileRel}: exactly one generated Header region is required`);
+  else headerSignatures.add(shellSignature(header,true));
+  if(!footer)errors.push(`${fileRel}: exactly one generated Footer region is required`);
+  else footerSignatures.add(shellSignature(footer,false));
+  if(!/design-tokens\.css\?v=[a-f0-9]{12}/i.test(html))errors.push(`${fileRel}: content-hashed design-tokens.css missing`);
+  if(!/site-shell\.css\?v=[a-f0-9]{12}/i.test(html))errors.push(`${fileRel}: content-hashed site-shell.css missing`);
+  if(header&&!/class=["'][^"']*\bsite-shell-menu-toggle\b/i.test(header))errors.push(`${fileRel}: navigation toggle missing`);
+  if(header&&(header.match(/<nav\b/gi)||[]).length!==1)errors.push(`${fileRel}: Header must contain exactly one navigation`);
+  if(footer&&(footer.match(/<nav\b/gi)||[]).length!==1)errors.push(`${fileRel}: Footer must contain exactly one navigation`);
+}
+if(headerSignatures.size!==1)errors.push(`generated Header DOM signatures differ: ${headerSignatures.size}`);
+if(footerSignatures.size!==1)errors.push(`generated Footer DOM signatures differ: ${footerSignatures.size}`);
+
+const invalidBaseRoutes=(sitemapConfig.routes||[]).filter(record=>/^tools\/[^/]+\/$/.test(record.route||""));
+if(invalidBaseRoutes.length)errors.push(`website/data/sitemap-routes.json: tool routes are not allowed: ${invalidBaseRoutes.map(item=>item.route).join(", ")}`);
+function publicUrl(route,locale){
+  const folder=locale.folder?`${locale.folder}/`:"";
+  if(route==="")return `${localeConfig.siteUrl}/${folder}`;
+  if(route==="tools/")return locale.folder?`${localeConfig.siteUrl}/tools/${locale.folder}/`:`${localeConfig.siteUrl}/tools/`;
+  if(route.startsWith("tools/")){
+    const slug=route.split("/")[1];
+    return locale.folder?`${localeConfig.siteUrl}/tools/${slug}/${locale.folder}/`:`${localeConfig.siteUrl}/tools/${slug}/`;
+  }
+  return `${localeConfig.siteUrl}/${folder}${route}`;
+}
+const expectedSitemap=new Set();
+for(const record of sitemapConfig.routes||[])for(const locale of activeLocales)expectedSitemap.add(publicUrl(record.route,locale));
+for(const tool of activeTools)for(const locale of activeLocales)expectedSitemap.add(publicUrl(`tools/${tool.id}/`,locale));
+const sitemapText=read(path.join(site,"sitemap.xml"));
+const actualSitemap=[...sitemapText.matchAll(/<loc>(.*?)<\/loc>/g)].map(match=>match[1]);
+const actualSet=new Set(actualSitemap);
+const missingSitemap=[...expectedSitemap].filter(url=>!actualSet.has(url));
+const extraSitemap=[...actualSet].filter(url=>!expectedSitemap.has(url));
+if(actualSitemap.length!==actualSet.size)errors.push("website/sitemap.xml: duplicate URLs");
+if(missingSitemap.length)errors.push(`website/sitemap.xml: missing URLs: ${missingSitemap.join(", ")}`);
+if(extraSitemap.length)errors.push(`website/sitemap.xml: extra URLs: ${extraSitemap.join(", ")}`);
+
 const report={
   version:releaseVersion,
   generatedAt:new Date().toISOString(),
   activeTools:activeTools.length,
+  publicPages:publicHtml.length,
+  sitemapUrls:actualSitemap.length,
   errors:[...new Set(errors)],
   warnings:[...new Set(warnings)],
   status:errors.length?"FAIL":"PASS"

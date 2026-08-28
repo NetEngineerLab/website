@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-otdr-event-locale-v1.9.9-04-p0-p1-correctness-consent-offline-ecf8f96e5bba";
+const CACHE = "nel-otdr-event-locale-v1.9.9-04-p0-p1-correctness-consent-offline-6fcf6905294e";
 const CORE = [
   "./index.html",
   "./",
@@ -16,9 +16,11 @@ const CORE = [
   "../../data/locales.js?v=b541508dc0ee",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
+  "../../assets/css/design-tokens.css?v=1b428f96cadc",
+  "../../assets/css/site-shell.css?v=f34b1ffff9cc",
   "../../assets/js/analytics.js?v=1156b7864023",
   "../../assets/js/adsense.js?v=f075c80ccc75",
-  "../../assets/js/site.js?v=ba674ecc71f2",
+  "../../assets/js/site.js?v=9947a445485e",
   "../../assets/js/tool-integration.js?v=05f7934f4687",
   "./zh/index.html",
   "./manifest-zh.webmanifest"

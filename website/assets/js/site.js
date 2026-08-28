@@ -92,6 +92,18 @@ function initNetEngineerLabSite(){
   document.addEventListener("click",close);
   document.addEventListener("keydown",event=>{if(event.key==="Escape"){close();trigger.focus()}});
  });
+ document.querySelectorAll(".site-shell-header").forEach(header=>{
+  const toggle=header.querySelector(".site-shell-menu-toggle");
+  const nav=header.querySelector(".site-shell-nav");
+  if(!toggle||!nav)return;
+  const close=()=>{header.dataset.navOpen="false";toggle.setAttribute("aria-expanded","false")};
+  const open=()=>{header.dataset.navOpen="true";toggle.setAttribute("aria-expanded","true")};
+  toggle.addEventListener("click",event=>{event.stopPropagation();header.dataset.navOpen==="true"?close():open()});
+  nav.addEventListener("click",event=>event.stopPropagation());
+  document.addEventListener("click",close);
+  document.addEventListener("keydown",event=>{if(event.key==="Escape"){close();toggle.focus()}});
+  matchMedia("(min-width: 801px)").addEventListener?.("change",event=>{if(event.matches)close()});
+ });
  document.querySelectorAll("input[id],select[id],textarea[id]").forEach(control=>{
   if(control.labels?.length||control.hasAttribute("aria-label")||control.hasAttribute("aria-labelledby"))return;
   const label=control.closest(".field")?.querySelector("label");

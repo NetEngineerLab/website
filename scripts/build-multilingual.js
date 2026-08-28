@@ -8,6 +8,7 @@ const{stableFileHash,stableHash}=require("./stable-text-hash");
 const packageRoot=path.resolve(__dirname,"..");
 const siteRoot=path.join(packageRoot,"website");
 const dataDir=path.join(siteRoot,"data");
+const templateDir=path.join(siteRoot,"templates");
 const localeConfig=JSON.parse(fs.readFileSync(path.join(dataDir,"locales.json"),"utf8"));
 const toolCatalog=JSON.parse(fs.readFileSync(path.join(dataDir,"tools-catalog.json"),"utf8"));
 const sitemapConfig=JSON.parse(fs.readFileSync(path.join(dataDir,"sitemap-routes.json"),"utf8"));
@@ -16,11 +17,14 @@ if(!defaultLocale)throw new Error("Default locale is missing from locales.json")
 const folderMap=new Map(localeConfig.locales.filter(item=>item.folder).map(item=>[item.folder,item]));
 const localeMap=new Map(localeConfig.locales.map(item=>[item.id,item]));
 const activeLocales=localeConfig.locales.filter(item=>item.status==="active");
+const activeTools=toolCatalog.filter(item=>item.status==="active");
 const rootDirectoryRoutes=new Set(["about/","contact/","privacy/","terms/"]);
 const sharedRuntimeAssets=[
  {sitePath:"data/locales.js",cachePath:"../../data/locales.js"},
  {sitePath:"data/site-config.js",cachePath:"../../data/site-config.js"},
  {sitePath:"assets/css/locale-menu.css",cachePath:"../../assets/css/locale-menu.css"},
+ {sitePath:"assets/css/design-tokens.css",cachePath:"../../assets/css/design-tokens.css"},
+ {sitePath:"assets/css/site-shell.css",cachePath:"../../assets/css/site-shell.css"},
  {sitePath:"assets/js/analytics.js",cachePath:"../../assets/js/analytics.js"},
  {sitePath:"assets/js/adsense.js",cachePath:"../../assets/js/adsense.js"},
  {sitePath:"assets/js/site.js",cachePath:"../../assets/js/site.js"},
@@ -312,7 +316,8 @@ function rewriteInternalAnchors(html,currentRel,currentInfo,groups){
 function ensureAsset(html,currentRel,targetRel,type){
  const href=versionedRelativeFile(currentRel,targetRel);
  if(type==="css"){
-  html=html.replace(/<link\b[^>]*href\s*=\s*["'][^"']*locale-menu\.css[^"']*["'][^>]*>\s*/gi,"");
+  const escaped=path.posix.basename(targetRel).replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+  html=html.replace(new RegExp(`<link\\b[^>]*href\\s*=\\s*["'][^"']*${escaped}[^"']*["'][^>]*>\\s*`,"gi"),"");
   return html.replace(/<\/head>/i,`<link rel="stylesheet" href="${href}">\n</head>`);
  }
  const escaped=path.posix.basename(targetRel).replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
@@ -331,6 +336,51 @@ function menuMarkup(currentInfo,group){
  const label=currentLocale.ui?.language||"Language";
  const accessibleLabel=`${label}: ${currentLocale.nativeLabel}`;
  return `<!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="${escapeHtml(accessibleLabel)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">${escapeHtml(currentLocale.nativeLabel)}</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden>${options}</div></div><!-- NEL_LANGUAGE_MENU_END -->`;
+}
+function renderShellTemplate(kind,locale,tokens){
+ const file=path.join(templateDir,`${kind}-${locale.id}.html`);
+ if(!fs.existsSync(file))throw new Error(`Missing ${kind} template for active locale ${locale.id}: ${posix(path.relative(packageRoot,file))}`);
+ let template=fs.readFileSync(file,"utf8").trim();
+ for(const [name,value] of Object.entries(tokens))template=template.replaceAll(`{{${name}}}`,value);
+ const unresolved=[...template.matchAll(/\{\{([A-Z0-9_]+)\}\}/g)].map(match=>match[1]);
+ if(unresolved.length)throw new Error(`${posix(path.relative(packageRoot,file))}: unresolved tokens ${unresolved.join(", ")}`);
+ return template;
+}
+function injectSiteShell(html,currentRel,currentInfo){
+ const locale=localeMap.get(currentInfo.localeId);
+ const currentUrl=urlForRoute(currentInfo.route,locale);
+ const href=route=>escapeHtml(relativeUrl(currentUrl,urlForRoute(route,locale)));
+ const current=route=>currentInfo.route===route?' aria-current="page"':"";
+ if(currentInfo.kind==="tool"&&!/<main\b[^>]*\bid=["'][^"']+["']/i.test(html))html=html.replace(/<main\b/i,'<main id="calculator"');
+ const mainId=(html.match(/<main\b[^>]*\bid=["']([^"']+)["']/i)||[])[1]||"calculator";
+ const contextAction=currentInfo.kind==="tool"
+  ?`<a href="#${escapeHtml(mainId)}">${locale.id===defaultLocale.id?"Start calculating":"开始计算"}</a>`
+  :"";
+ const tokens={
+  HOME_HREF:href(""),
+  TOOLS_HREF:href("tools/"),
+  ABOUT_HREF:href("about/"),
+  CONTACT_HREF:href("contact/"),
+  PRIVACY_HREF:href("privacy/"),
+  TERMS_HREF:href("terms/"),
+  LOGO_HREF:escapeHtml(relativeFile(currentRel,"assets/images/logo.svg")),
+  HOME_CURRENT:current(""),
+  TOOLS_CURRENT:currentInfo.route==="tools/"||currentInfo.kind==="tool"?' aria-current="page"':"",
+  ABOUT_CURRENT:current("about/"),
+  CONTACT_CURRENT:current("contact/"),
+  CONTEXT_ACTION:contextAction
+ };
+ const header=`<!-- NEL_HEADER_START -->\n${renderShellTemplate("header",locale,tokens)}\n<!-- NEL_HEADER_END -->`;
+ const footer=`<!-- NEL_FOOTER_START -->\n${renderShellTemplate("footer",locale,tokens)}\n<!-- NEL_FOOTER_END -->`;
+ const headerMarkers=/<!-- NEL_HEADER_START -->[\s\S]*?<!-- NEL_HEADER_END -->/i;
+ const footerMarkers=/<!-- NEL_FOOTER_START -->[\s\S]*?<!-- NEL_FOOTER_END -->/i;
+ if(headerMarkers.test(html))html=html.replace(headerMarkers,header);
+ else if(/<header\b[\s\S]*?<\/header>/i.test(html))html=html.replace(/<header\b[\s\S]*?<\/header>/i,header);
+ else throw new Error(`${currentRel}: header missing`);
+ if(footerMarkers.test(html))html=html.replace(footerMarkers,footer);
+ else if(/<footer\b[\s\S]*?<\/footer>/i.test(html))html=html.replace(/<footer\b[\s\S]*?<\/footer>/i,footer);
+ else throw new Error(`${currentRel}: footer missing`);
+ return html;
 }
 function updateManifestLink(html,currentRel,info){
  if(info.kind!=="tool")return html;
@@ -412,7 +462,12 @@ function generateManifests(groups){
 }
 function generateSitemap(groups){
  const lines=['<?xml version="1.0" encoding="UTF-8"?>','<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'];
- for(const record of sitemapConfig.routes){
+ const toolRecords=activeTools.map(tool=>({route:`tools/${tool.id}/`,changefreq:"monthly",priority:"0.9"}));
+ const records=[...sitemapConfig.routes,...toolRecords];
+ const seen=new Set();
+ for(const record of records){
+  if(seen.has(record.route))throw new Error(`Duplicate sitemap route: ${record.route}`);
+  seen.add(record.route);
   const group=groups.get(record.route);
   if(!group)continue;
   for(const locale of activeLocales){
@@ -442,6 +497,7 @@ function build(){
   if(!locale||!group)continue;
   let html=fs.readFileSync(record.file,"utf8");
   html=rewriteInternalAnchors(html,record.rel,record.info,groups);
+  html=injectSiteShell(html,record.rel,record.info);
   html=replaceLanguageMenu(html,menuMarkup(record.info,group));
   if(record.info.kind==="home"||record.info.kind==="toolsDirectory")html=prerenderToolGrid(html,record.info,locale);
   html=normalizeBrandLogoAlt(html);
@@ -464,6 +520,8 @@ function build(){
   html=html.replace(/<\/head>/i,seo.join("\n")+"\n</head>");
   html=updateJsonLd(html,locale,canonical);
   html=ensureAsset(html,record.rel,"assets/css/locale-menu.css","css");
+  html=ensureAsset(html,record.rel,"assets/css/design-tokens.css","css");
+  html=ensureAsset(html,record.rel,"assets/css/site-shell.css","css");
   html=ensureAsset(html,record.rel,"data/locales.js","js");
   html=ensureAsset(html,record.rel,"data/site-config.js","js");
   html=ensureAsset(html,record.rel,"assets/js/analytics.js","js");

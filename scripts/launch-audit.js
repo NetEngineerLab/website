@@ -35,7 +35,7 @@ for(const tool of activeTools){
 }
 if(Array.isArray(tools)&&tools.some(item=>item.status!=="active"))errors.push("planned tools remain in production catalog");
 
-const htmlFiles=walk(site).filter(file=>file.endsWith(".html")&&!file.endsWith("offline.html"));
+const htmlFiles=walk(site).filter(file=>file.endsWith(".html")&&!file.endsWith("offline.html")&&!file.includes(`${path.sep}templates${path.sep}`));
 for(const file of htmlFiles){
   const rel=path.relative(site,file).split(path.sep).join("/");
   const html=read(file);

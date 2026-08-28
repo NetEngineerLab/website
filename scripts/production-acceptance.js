@@ -15,6 +15,8 @@ const sharedRuntimeAssets=[
   {sitePath:"data/locales.js",cachePath:"../../data/locales.js"},
   {sitePath:"data/site-config.js",cachePath:"../../data/site-config.js"},
   {sitePath:"assets/css/locale-menu.css",cachePath:"../../assets/css/locale-menu.css"},
+  {sitePath:"assets/css/design-tokens.css",cachePath:"../../assets/css/design-tokens.css"},
+  {sitePath:"assets/css/site-shell.css",cachePath:"../../assets/css/site-shell.css"},
   {sitePath:"assets/js/analytics.js",cachePath:"../../assets/js/analytics.js"},
   {sitePath:"assets/js/adsense.js",cachePath:"../../assets/js/adsense.js"},
   {sitePath:"assets/js/site.js",cachePath:"../../assets/js/site.js"},
@@ -38,6 +40,9 @@ function walk(dir){
   });
 }
 function exists(rel){return fs.existsSync(path.join(root,rel))}
+function publicHtmlFiles(){
+  return walk(site).filter(file=>file.endsWith(".html")&&!file.endsWith(`${path.sep}offline.html`)&&!file.includes(`${path.sep}templates${path.sep}`));
+}
 function resolveSiteTarget(fromFile,raw){
   const clean=raw.split("#")[0].split("?")[0];
   if(!clean)return null;
@@ -56,7 +61,7 @@ function resolveSiteTarget(fromFile,raw){
   return target;
 }
 function linkAudit(){
-  const htmlFiles=walk(site).filter(file=>file.endsWith(".html")&&!file.endsWith("offline.html"));
+  const htmlFiles=publicHtmlFiles();
   let linkCount=0,anchorCount=0;
   for(const file of htmlFiles){
     const html=read(file);
@@ -101,7 +106,7 @@ function assetDigest(file){
 function auditVersionedAssets(){
   const issues=[];
   let references=0;
-  const htmlFiles=walk(site).filter(file=>file.endsWith(".html")&&!file.endsWith("offline.html"));
+  const htmlFiles=publicHtmlFiles();
   for(const file of htmlFiles){
     const html=read(file);
     const rel=path.relative(site,file).split(path.sep).join("/");
@@ -137,6 +142,49 @@ function auditVersionedAssets(){
     if(!text.includes(`-${sharedVersion}`))serviceWorkerIssues.push(`${rel}: cache name does not include ${sharedVersion}`);
   }
   return{references,issues,catalogOrder,serviceWorkers:serviceWorkers.length,serviceWorkerIssues};
+}
+function shellRegion(html,name){
+  const start=`<!-- NEL_${name}_START -->`;
+  const end=`<!-- NEL_${name}_END -->`;
+  if(html.split(start).length-1!==1||html.split(end).length-1!==1)return null;
+  return html.slice(html.indexOf(start)+start.length,html.indexOf(end));
+}
+function shellSignature(fragment,isHeader){
+  let value=fragment;
+  if(isHeader)value=value.replace(/<div\b[^>]*class=["'][^"']*\bsite-shell-context-action\b[^"']*["'][^>]*>[\s\S]*?<\/div>/i,'<div class="site-shell-context-action"></div>');
+  return value
+    .replace(/<!--[^]*?-->/g,"")
+    .replace(/\s(?:href|src|lang|hreflang|aria-label)=["'][^"']*["']/gi,match=>` ${match.trim().split("=")[0]}=""`)
+    .replace(/\saria-current=["'][^"']*["']/gi,"")
+    .replace(/>[^<]*</g,"><")
+    .replace(/\s+/g," ")
+    .replace(/>\s+</g,"><")
+    .trim();
+}
+function auditSiteShell(){
+  const issues=[],headerSignatures=new Set(),footerSignatures=new Set();
+  const files=publicHtmlFiles();
+  for(const file of files){
+    const html=read(file),rel=path.relative(site,file).split(path.sep).join("/");
+    const header=shellRegion(html,"HEADER"),footer=shellRegion(html,"FOOTER");
+    if(!header)issues.push(`${rel}: Header markers`);else headerSignatures.add(shellSignature(header,true));
+    if(!footer)issues.push(`${rel}: Footer markers`);else footerSignatures.add(shellSignature(footer,false));
+    if(!/design-tokens\.css\?v=[a-f0-9]{12}/i.test(html))issues.push(`${rel}: design tokens`);
+    if(!/site-shell\.css\?v=[a-f0-9]{12}/i.test(html))issues.push(`${rel}: site shell`);
+  }
+  if(headerSignatures.size!==1)issues.push(`Header signatures: ${headerSignatures.size}`);
+  if(footerSignatures.size!==1)issues.push(`Footer signatures: ${footerSignatures.size}`);
+  return{pages:files.length,headerSignatures:headerSignatures.size,footerSignatures:footerSignatures.size,issues};
+}
+function publicUrl(origin,route,locale){
+  const folder=locale.folder?`${locale.folder}/`:"";
+  if(route==="")return `${origin}/${folder}`;
+  if(route==="tools/")return locale.folder?`${origin}/tools/${locale.folder}/`:`${origin}/tools/`;
+  if(route.startsWith("tools/")){
+    const slug=route.split("/")[1];
+    return locale.folder?`${origin}/tools/${slug}/${locale.folder}/`:`${origin}/tools/${slug}/`;
+  }
+  return `${origin}/${folder}${route}`;
 }
 function runEngineTests(activeTools){
   const results={};
@@ -242,11 +290,13 @@ async function httpAudit(sitemapUrls){
   record("sitemap config version",sitemapConfig.version===expectedVersion,sitemapConfig.version||"missing");
   record("production origin",siteConfig.siteUrl===expectedOrigin,siteConfig.siteUrl||"missing");
   const activeTools=Array.isArray(tools)?tools.filter(item=>item.status==="active"):[];
+  const activeLocales=Array.isArray(localeConfig.locales)?localeConfig.locales.filter(item=>item.status==="active"):[];
   const missingToolDirectories=activeTools.filter(tool=>!exists(`website/tools/${tool.id}/index.html`)).map(tool=>tool.id);
   record("active tool catalog and directories",activeTools.length>0&&!missingToolDirectories.length,missingToolDirectories.length?`missing: ${missingToolDirectories.join(", ")}`:String(activeTools.length));
   record("no planned tool placeholders",Array.isArray(tools)&&tools.every(item=>item.status==="active"));
 
-  for(const rel of [".node-version",".nvmrc",".gitignore",".gitattributes","VERSION",".github/workflows/production-quality-gate.yml",".github/workflows/production-online-monitor.yml",".github/workflows/production-performance-monitor.yml","scripts/production-online-check.js","scripts/production-online-revalidation-test.js","scripts/production-performance-report.js","scripts/production-performance-test.js","tests/lighthouse/production.lighthouserc.json","website/_headers","website/_redirects","website/robots.txt","website/sitemap.xml","website/.well-known/security.txt"]){
+  const localeTemplates=activeLocales.flatMap(locale=>[`website/templates/header-${locale.id}.html`,`website/templates/footer-${locale.id}.html`]);
+  for(const rel of [".node-version",".nvmrc",".gitignore",".gitattributes","VERSION",".github/workflows/production-quality-gate.yml",".github/workflows/production-online-monitor.yml",".github/workflows/production-performance-monitor.yml","scripts/production-online-check.js","scripts/production-online-revalidation-test.js","scripts/production-performance-report.js","scripts/production-performance-test.js","tests/lighthouse/production.lighthouserc.json","website/_headers","website/_redirects","website/robots.txt","website/sitemap.xml","website/.well-known/security.txt","website/assets/css/design-tokens.css","website/assets/css/site-shell.css",...localeTemplates]){
     record(`required file ${rel}`,exists(rel));
   }
   record("Node version pin",read(path.join(root,".node-version")).trim()==="22.16.0",read(path.join(root,".node-version")).trim());
@@ -273,6 +323,8 @@ async function httpAudit(sitemapUrls){
   record("content-hashed shared asset URLs",assetAudit.issues.length===0,assetAudit.issues.length?assetAudit.issues.slice(0,5).join("; "):`${assetAudit.references} references`);
   record("tools catalog loads before site runtime",assetAudit.catalogOrder);
   record("service-worker content-hash cache",assetAudit.serviceWorkerIssues.length===0,assetAudit.serviceWorkerIssues.length?assetAudit.serviceWorkerIssues.slice(0,5).join("; "):`${assetAudit.serviceWorkers} service workers`);
+  const shellAudit=auditSiteShell();
+  record("generated site shell DOM",shellAudit.issues.length===0,shellAudit.issues.length?shellAudit.issues.slice(0,8).join("; "):`${shellAudit.pages} pages, ${shellAudit.headerSignatures} Header signature, ${shellAudit.footerSignatures} Footer signature`);
 
   const sitemap=read(path.join(site,"sitemap.xml"));
   const sitemapUrls=[...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match=>match[1]);
@@ -280,6 +332,15 @@ async function httpAudit(sitemapUrls){
   record("sitemap URL count",Number.isInteger(buildReport.sitemapUrls)&&sitemapUrls.length===buildReport.sitemapUrls,`${sitemapUrls.length}/${buildReport.sitemapUrls||"missing"}`);
   record("sitemap URLs unique",new Set(sitemapUrls).size===sitemapUrls.length);
   record("sitemap HTTPS production origin",sitemapUrls.every(url=>url.startsWith(expectedOrigin+"/")));
+  const invalidBaseRoutes=(sitemapConfig.routes||[]).filter(record=>/^tools\/[^/]+\/$/.test(record.route||""));
+  record("sitemap config contains only base routes",invalidBaseRoutes.length===0,invalidBaseRoutes.map(item=>item.route).join(", "));
+  const expectedSitemap=new Set();
+  for(const route of sitemapConfig.routes||[])for(const locale of activeLocales)expectedSitemap.add(publicUrl(expectedOrigin,route.route,locale));
+  for(const tool of activeTools)for(const locale of activeLocales)expectedSitemap.add(publicUrl(expectedOrigin,`tools/${tool.id}/`,locale));
+  const actualSitemap=new Set(sitemapUrls);
+  const missingSitemap=[...expectedSitemap].filter(url=>!actualSitemap.has(url));
+  const extraSitemap=[...actualSitemap].filter(url=>!expectedSitemap.has(url));
+  record("sitemap exact configured route set",missingSitemap.length===0&&extraSitemap.length===0,`expected ${expectedSitemap.size}, actual ${actualSitemap.size}${missingSitemap.length?`, missing: ${missingSitemap.join(", ")}`:""}${extraSitemap.length?`, extra: ${extraSitemap.join(", ")}`:""}`);
   const robots=read(path.join(site,"robots.txt"));
   record("robots sitemap declaration",robots.includes(`Sitemap: ${expectedOrigin}/sitemap.xml`));
 

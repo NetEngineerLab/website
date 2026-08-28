@@ -786,7 +786,11 @@ NetEngineerLab高级软件工程师。
 
 - 工具：`website/data/tools-catalog.json`
 - 语言：`website/data/locales.json`
-- 路由：`website/data/sitemap-routes.json`
+- 基础路由：`website/data/sitemap-routes.json`
+
+
+最终公开路由和 Sitemap 集合必须由“基础路由配置 + `active` 工具配置”合并生成；
+`sitemap-routes.json` 禁止重复登记工具路由。
 
 
 ==================================================
@@ -797,12 +801,17 @@ NetEngineerLab高级软件工程师。
 源文件：
 
 - `website/data/*.json`
-- 工具目录中的 HTML、CSS、JavaScript、Manifest 和 Service Worker
+- `website/templates/header-{locale.id}.html`
+- `website/templates/footer-{locale.id}.html`
+- `website/assets/css/design-tokens.css`
+- `website/assets/css/site-shell.css`
+- HTML 中 Header/Footer 标记之外的内容区
+- 工具目录中的 CSS、JavaScript、Manifest 和 Service Worker
 - `scripts/`
 - `tests/`
 
 
-生成文件：
+生成文件和生成区域：
 
 - `website/data/locales.js`
 - `website/data/tools-catalog.js`
@@ -810,6 +819,7 @@ NetEngineerLab高级软件工程师。
 - `website/sitemap.xml`
 - `docs/*_REPORT.json`
 - `docs/RELEASE_MANIFEST.json`
+- 所有 HTML 中 `NEL_HEADER_START/END` 与 `NEL_FOOTER_START/END` 标记内部
 
 
 生成文件不得作为独立配置源。
@@ -927,6 +937,137 @@ NetEngineerLab高级软件工程师。
 登记项在阶段验证中只能产生警告，不能被误报为已完成；完成迁移后必须立即从登记项移除。
 
 最终架构验收前，所有待迁移登记项必须清零。
+
+
+==================================================
+25. 全站视觉外壳与设计系统
+==================================================
+
+
+所有公开 HTML 页面必须使用同一个网站外壳。页面自身只负责 `<main>`、
+页面级 Hero、计算器和正文内容，不得自行维护另一套 Header 或 Footer。
+
+
+Header 和 Footer 的唯一模板源遵循以下命名规则：
+
+- `website/templates/header-{locale.id}.html`
+- `website/templates/footer-{locale.id}.html`
+
+
+当前 `active` locale `en`、`zh` 对应四个文件：
+
+- `website/templates/header-en.html`
+- `website/templates/header-zh.html`
+- `website/templates/footer-en.html`
+- `website/templates/footer-zh.html`
+
+
+每个 `website/data/locales.json` 中状态为 `active` 的 locale 必须存在对应模板；
+计划语言切换为 `active` 前必须先提供模板。模板查找以 `locale.id` 为键，禁止按目录名猜测。
+
+
+构建脚本必须在以下完整字面标记之间注入模板：
+
+- `<!-- NEL_HEADER_START -->` / `<!-- NEL_HEADER_END -->`
+- `<!-- NEL_FOOTER_START -->` / `<!-- NEL_FOOTER_END -->`
+
+
+模板必须在构建时写入完整 HTML，禁止仅依赖运行时 JavaScript 拼接；
+避免首屏闪动、布局偏移，并保证无脚本环境、SEO 和无障碍导航可用。
+
+
+统一 Header 必须满足：
+
+- 固定 DOM 结构、类名和导航顺序。
+- 固定包含 Logo、品牌名称、首页、工具、关于、联系和语言切换。
+- 英文和中文只能改变文案、链接及当前语言状态。
+- 工具页可以显示上下文操作按钮；普通页面隐藏该位置，但不得改变主体结构。
+- 桌面端使用统一高度和 sticky 行为；移动端使用统一高度及折叠菜单规则。
+- Logo 的资源、渲染尺寸和替代文本规则必须统一。
+
+
+统一 Footer 必须满足：
+
+- 固定包含品牌说明、关于、联系、隐私、条款和版权。
+- 固定 DOM 结构、类名、背景、间距和响应式排列。
+- 允许中英文自然文字换行导致最终高度小幅不同；禁止页面级 CSS 改写核心布局。
+
+
+设计变量唯一来源是 `website/assets/css/design-tokens.css`，至少包含：
+
+- 品牌色、背景色、表面色、边框色和页脚色。
+- 字体、内容最大宽度、Header 高度和响应式断点。
+- 间距、圆角、阴影和焦点环。
+
+
+网站外壳样式唯一来源是 `website/assets/css/site-shell.css`。
+工具目录中的 `css/style.css` 只能控制工具业务区，不得控制全局 Header、Footer、
+语言菜单或页面容器。全站页面必须加载设计变量和网站外壳样式。
+
+
+允许的页面差异仅包括：
+
+- 当前导航高亮。
+- 中英文文案和对应语言链接。
+- 工具页上下文操作按钮。
+- 首页和工具页自己的 Hero 与主内容布局。
+
+
+不得出现多套 Logo 尺寸、品牌副标题、Header 定位方式、Footer 结构或移动端导航规则。
+
+
+==================================================
+26. 网站外壳与 Sitemap 验收门禁
+==================================================
+
+
+构建及发布验收必须动态检查全部公开页面，不得写死页面数量。
+
+
+模板 DOM 一致性按以下规则生成确定性签名：
+
+- 构建完成后解析标记内部的元素树，比较标签名、类名、元素顺序和固定 ARIA 属性。
+- 忽略空白文本节点、可翻译文本、`href`、`lang`、`hreflang`、`aria-label` 和 `aria-current` 的具体值。
+- Header 的上下文操作必须位于 `.site-shell-context-action`，签名比较时只保留该插槽元素本身，忽略插槽内部内容。
+- 链接目标、语言属性、可访问名称和当前页状态必须由独立语义检查验证，不能因为签名忽略而跳过。
+
+
+浏览器视觉签名使用固定视口：桌面 `1440x900`，移动 `390x844`，设备缩放比为 `1`。
+Header 比较 `position`、`height`、`min-height`、四向 `padding`、`background-color`、
+`border-bottom`、Logo 渲染宽高及导航 `display`；Footer 比较 `display`、布局方向、
+四向 `padding`、`background-color` 和内容最大宽度。长度数值允许最多 `1 CSS px` 测量误差，
+颜色和枚举值必须完全一致。Header 实际高度必须唯一；Footer 实际高度因语言换行可不同且不进入签名。
+
+
+网站外壳验收至少覆盖：
+
+- 每个公开页面存在且仅存在一组 Header/Footer 注入标记。
+- 每个公开页面的 Header/Footer DOM 与对应语言模板一致。
+- 每个公开页面加载 `design-tokens.css` 和 `site-shell.css`。
+- 桌面端所有公开页面的 Header 核心计算样式签名唯一。
+- 移动端所有公开页面的 Header 核心计算样式签名唯一。
+- Footer 的核心背景、间距和布局签名唯一；中英文内容高度不作为失败条件。
+- 桌面和移动端无横向溢出、导航不可见或语言菜单不可用问题。
+
+
+Sitemap 必须由公开基础路由与全部启用工具动态合并生成：
+
+- `website/data/sitemap-routes.json` 只管理基础页面，禁止包含 `tools/{toolSlug}/` 工具路由。
+- `website/data/tools-catalog.json` 中每个 `active` 工具必须生成全部启用语言 URL。
+- Sitemap 中每个 URL 必须唯一、使用生产 HTTPS 域名，并对应可索引页面。
+- 每个启用工具缺少任一启用语言 URL 时，架构验证和发布验收必须失败。
+- 404、Offline、测试文档和内部集成页面不得进入 Sitemap。
+
+
+期望 Sitemap 集合必须精确等于：
+
+`基础路由 × active locales + active tools × active locales`
+
+
+实际集合与期望集合必须做双向集合比较；任何缺失 URL、重复 URL或多余 URL都必须失败。
+
+
+在线发布前必须对本地 Sitemap 与启用工具目录做集合验证，禁止只验证 URL 数量。
 
 
 
