@@ -1,10 +1,29 @@
 #!/usr/bin/env node
 "use strict";
 
+const fs=require("fs");
 const https=require("https");
+const path=require("path");
 
-const origin=(process.env.NEL_SITE_URL||"https://www.netengineerlab.com").replace(/\/+$/,"");
-const expectedId="G-KGNFX9MD8Q";
+const root=path.resolve(__dirname,"..");
+
+function monitorConfig(env=process.env){
+ const siteConfig=JSON.parse(fs.readFileSync(path.join(root,"website","data","site-config.json"),"utf8"));
+ const configuredOrigin=String(env.NEL_SITE_URL||siteConfig.siteUrl||"");
+ const expectedId=String(env.NEL_GA4_MEASUREMENT_ID||siteConfig.analytics?.measurementId||"");
+ let parsed;
+ try{parsed=new URL(configuredOrigin)}catch{throw new Error(`Invalid production origin: ${configuredOrigin||"missing"}`)}
+ if(parsed.protocol!=="https:"||parsed.username||parsed.password||parsed.pathname!=="/"||parsed.search||parsed.hash){
+  throw new Error(`Invalid production origin: ${configuredOrigin||"missing"}`);
+ }
+ const origin=parsed.origin;
+ if(!/^G-[A-Z0-9]+$/.test(expectedId))throw new Error(`Invalid GA4 measurement ID: ${expectedId||"missing"}`);
+ return{origin,expectedId};
+}
+
+function errorMessage(error){
+ return error?.message||error?.code||error?.cause?.message||String(error);
+}
 
 function get(url){
  return new Promise((resolve,reject)=>{
@@ -17,12 +36,12 @@ function get(url){
  });
 }
 
-(async()=>{
+async function checkGa4({origin,expectedId},request=get){
  const stamp=Date.now();
  const [home,config,analytics]=await Promise.all([
-  get(`${origin}/?ga4-check=${stamp}`),
-  get(`${origin}/data/site-config.js?ga4-check=${stamp}`),
-  get(`${origin}/assets/js/analytics.js?ga4-check=${stamp}`)
+  request(`${origin}/?ga4-check=${stamp}`),
+  request(`${origin}/data/site-config.js?ga4-check=${stamp}`),
+  request(`${origin}/assets/js/analytics.js?ga4-check=${stamp}`)
  ]);
  const errors=[];
  if(home.status!==200)errors.push(`home HTTP ${home.status}`);
@@ -36,10 +55,23 @@ function get(url){
  if(!analytics.body.includes("script[data-nel-analytics]"))errors.push("production duplicate-loader guard is missing");
  if(!home.body.includes("assets/js/analytics.js"))errors.push("home page does not reference the shared analytics loader");
 
- const report={status:errors.length?"FAIL":"PASS",origin,measurementId:expectedId,errors};
+ return{status:errors.length?"FAIL":"PASS",origin,measurementId:expectedId,errors};
+}
+
+async function main(){
+ const config=monitorConfig();
+ const report=await checkGa4(config);
  console.log(JSON.stringify(report,null,2));
- if(errors.length)process.exit(1);
-})().catch(error=>{
- console.error(JSON.stringify({status:"FAIL",origin,error:error.message},null,2));
- process.exit(1);
-});
+ if(report.errors.length)process.exitCode=1;
+}
+
+module.exports={checkGa4,errorMessage,monitorConfig};
+
+if(require.main===module){
+ main().catch(error=>{
+  let origin="unknown";
+  try{origin=monitorConfig().origin}catch{}
+  console.error(JSON.stringify({status:"FAIL",origin,error:errorMessage(error)},null,2));
+  process.exitCode=1;
+ });
+}
