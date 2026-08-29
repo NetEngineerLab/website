@@ -49,6 +49,15 @@ const contentContracts={
       "https://datatracker.ietf.org/doc/rfc7424/",
       "https://www.cisco.com/c/en/us/td/docs/solutions/CVD/Campus/cisco-campus-lan-wlan-design-guide.html"
     ]
+  },
+  "network-rack-power-cooling-calculator":{
+    faqCount:5,
+    references:[
+      "https://handbook.ashrae.org/Handbooks/A23/IP/A23_Ch20/a23_ch20_ip.aspx",
+      "https://www.nist.gov/document/fs376-bpdf",
+      "https://www.energy.gov/cmei/femp/incorporate-minimum-efficiency-requirements-heating-and-cooling-products-federal",
+      "https://www.thegreengrid.org/resources/glossary?combine=pue"
+    ]
   }
 };
 
