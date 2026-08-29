@@ -20,7 +20,7 @@
 
 ### 2026-08-29 — PoE 压降计算器正确性修复与 SEO/GEO 内容
 
-- 状态：`VALIDATOR PASS`
+- 状态：`ONLINE PASS`
 - 页面：`website/tools/poe-voltage-drop-calculator/` 中英文版本；计算引擎与测试同步更新。
 - 完成内容：补充摄像头、无线 AP、PTZ、门禁与大功率 PD 的线径、通道长度、接触电阻、线束温升和启动长尾场景；增加 5 组双语 FAQ 和 FAQPage；引用 IEEE 802.3bt、Ethernet Alliance 与 Fluke Networks。
 - 正确性修复：线损比例分母由“设备有效负载 + 线损”改为“远端 PoE 输入功率 + 线损”，与源端功率一致；为 10%/20% 状态门槛加入 `1e-9` 浮点容差，修复理论恰好 20% 被误判失败的问题。
@@ -29,7 +29,7 @@
 - 本地验证：`npm run verify` PASS；54 个 HTML 页面、52 个 Sitemap URL、20 个引擎、2573 个链接、0 errors、0 warnings；PoE 引擎 PASS；Chrome/Edge 双语多视口 8/8 PASS。
 - 独立验证：2 号验证官首轮因状态边界测试不足判定 `FAIL`；补齐测试并修复浮点边界后最终 `PASS`，独立 Edge 双语 × 桌面/Android/iPhone 6/6 PASS，`git diff --check` PASS。
 - 实现提交：`536887355926adda4408f99ce48516e3bd0257a1`。
-- 线上验收：待推送、工作流和正式站浏览器验收。
+- 线上验收：提交 `01ed48f3707021325a684065ca33e43664b39912` 对应 Quality Gate、Online Monitor、GA4 Monitor、Performance Monitor 全部成功；缓存绕过检查确认英中内容与引擎已部署；生产 Edge 双语 × 桌面/Android/iPhone 6/6 PASS，HTTP 200、5 个 FAQ、4 个权威来源、FAQ 展开、无溢出与无运行时错误；线上 1Ω 边界输入确认 10% 为通过、刚超 20% 为不通过。
 
 ### 2026-08-29 — 网络机柜功耗与制冷计算器 SEO/GEO 内容
 
