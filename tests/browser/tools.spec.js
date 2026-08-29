@@ -58,6 +58,15 @@ const contentContracts={
       "https://www.energy.gov/cmei/femp/incorporate-minimum-efficiency-requirements-heating-and-cooling-products-federal",
       "https://www.thegreengrid.org/resources/glossary?combine=pue"
     ]
+  },
+  "poe-voltage-drop-calculator":{
+    faqCount:5,
+    references:[
+      "https://www.ieee802.org/3/bt/",
+      "https://ethernetalliance.org/wp-content/uploads/2020/02/EthernetAlliance_Gen2PoECertProgram_techbrief-FINAL-19DEC19.pdf",
+      "https://www.ieee802.org/3/bt/public/may16/stover_02_0516_rev002.pdf",
+      "https://www.flukenetworks.com/blog/cabling-chronicles/upgrading-four-pair-poe-what-you-need-know"
+    ]
   }
 };
 
