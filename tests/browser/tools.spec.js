@@ -27,11 +27,28 @@ const calculationOutputs={
 const contentContracts={
   "vlan-ip-capacity-planner":{
     faqCount:5,
-    references:["rfc1918.html","rfc4632.html","rfc3021.html"]
+    references:[
+      "https://www.rfc-editor.org/rfc/rfc1918.html",
+      "https://www.rfc-editor.org/rfc/rfc4632.html",
+      "https://www.rfc-editor.org/rfc/rfc3021.html"
+    ]
   },
   "dns-ttl-propagation-calculator":{
     faqCount:5,
-    references:["rfc1035.html","rfc2308.html","rfc8767.html","rfc9199.html"]
+    references:[
+      "https://www.rfc-editor.org/rfc/rfc1035.html",
+      "https://www.rfc-editor.org/rfc/rfc2308.html",
+      "https://www.rfc-editor.org/rfc/rfc8767.html",
+      "https://www.rfc-editor.org/rfc/rfc9199.html"
+    ]
+  },
+  "switch-uplink-oversubscription-calculator":{
+    faqCount:5,
+    references:[
+      "https://standards.ieee.org/ieee/802.1AX/6768/",
+      "https://datatracker.ietf.org/doc/rfc7424/",
+      "https://www.cisco.com/c/en/us/td/docs/solutions/CVD/Campus/cisco-campus-lan-wlan-design-guide.html"
+    ]
   }
 };
 
@@ -67,7 +84,7 @@ test.describe("all configured tools",()=>{
         if(contentContract){
           await expect(page.locator(".content details")).toHaveCount(contentContract.faqCount);
           for(const reference of contentContract.references){
-            await expect(page.locator(`.content a[href="https://www.rfc-editor.org/rfc/${reference}"]`)).toBeVisible();
+            await expect(page.locator(`.content a[href="${reference}"]`)).toBeVisible();
           }
           const faqMatchesVisible=await page.evaluate(()=>{
             const schema=JSON.parse(document.querySelector('script[data-nel-schema="faq"]')?.textContent||"null");
