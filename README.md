@@ -157,8 +157,9 @@ docs/PRODUCTION_PERFORMANCE_REPORT.json
 artifacts/lighthouse/
 ```
 
-## 重要报告
+## 重要文档和报告
 
+- `docs/DEVELOPMENT_LOG.md`（已开发总账与下一步队列）
 - `docs/LAUNCH_AUDIT_REPORT.json`
 - `docs/PRODUCTION_ACCEPTANCE_REPORT.json`
 - `docs/RELEASE_MANIFEST.json`
