@@ -20,7 +20,7 @@
 
 ### 2026-08-29 — 网络机柜功耗与制冷计算器 SEO/GEO 内容
 
-- 状态：`VALIDATOR PASS`
+- 状态：`ONLINE PASS`
 - 页面：`website/tools/network-rack-power-cooling-calculator/` 中英文版本。
 - 完成内容：增加交换机机柜、边缘计算机柜、通信机房和小型数据中心长尾场景；解释连接功率、实际 IT 负载、设计 kW、VA、单相/三相电流、BTU/h、冷吨、COP、PUE 与成本范围；增加 5 组双语 FAQ 和 FAQPage；引用 ASHRAE、NIST、美国能源部和 The Green Grid。
 - 关键边界：冗余百分比只是乘法规划余量，不代表 N+1、2N 或 A/B 故障转移设计；三相公式假设负载平衡并输入线电压；80% 是工具规划门槛而非通用电气规范；月耗电与电费只含实际 IT 负载，不含制冷、UPS/PDU 损耗和其他设施能耗。
@@ -28,7 +28,7 @@
 - 本地验证：`npm run verify` PASS；54 个 HTML 页面、52 个 Sitemap URL、20 个引擎、2565 个链接、0 errors、0 warnings；机柜功耗与制冷引擎 PASS；Chrome/Edge 双语多视口定向测试 8/8 PASS。
 - 独立验证：2 号验证官最终 `PASS`；独立 Edge 双语 × 桌面/Android/iPhone 6/6 PASS，`git diff --check` PASS。
 - 实现提交：`369512864ffd32636e101a6c8a28ff560bc404ef`。
-- 线上验收：待推送、工作流和正式站浏览器验收。
+- 线上验收：提交 `f587c3610029a4706a64112272a3c4777c2a05a6` 对应 Quality Gate、Online Monitor、GA4 Monitor、Performance Monitor 全部成功；缓存绕过检查确认正式站英中内容已部署；生产 Edge 双语 × 桌面/Android/iPhone 6/6 PASS，HTTP 200、5 个 FAQ、4 个权威来源、FAQ 展开、计算结果、响应式溢出与控制台错误检查全部通过。
 
 ### 2026-08-29 — 交换机上联带宽与超售比计算器 SEO/GEO 内容
 
