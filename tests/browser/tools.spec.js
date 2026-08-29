@@ -24,6 +24,16 @@ const calculationOutputs={
   "switch-uplink-oversubscription-calculator":["#status","—"],
   "dns-ttl-propagation-calculator":["#status","—"]
 };
+const contentContracts={
+  "vlan-ip-capacity-planner":{
+    faqCount:5,
+    references:["rfc1918.html","rfc4632.html","rfc3021.html"]
+  },
+  "dns-ttl-propagation-calculator":{
+    faqCount:5,
+    references:["rfc1035.html","rfc2308.html","rfc8767.html","rfc9199.html"]
+  }
+};
 
 function captureRuntimeErrors(page){
   const errors=[];
@@ -53,11 +63,12 @@ test.describe("all configured tools",()=>{
         expect((await page.title()).trim().length).toBeGreaterThan(10);
         expect(await page.locator('link[rel="canonical"]').getAttribute("href")).toBe(expectedCanonical);
         expect((await page.locator("body").innerText()).length).toBeGreaterThan(200);
-        if(tool.id==="vlan-ip-capacity-planner"){
-          await expect(page.locator(".content details")).toHaveCount(5);
-          await expect(page.locator('.content a[href="https://www.rfc-editor.org/rfc/rfc1918.html"]')).toBeVisible();
-          await expect(page.locator('.content a[href="https://www.rfc-editor.org/rfc/rfc4632.html"]')).toBeVisible();
-          await expect(page.locator('.content a[href="https://www.rfc-editor.org/rfc/rfc3021.html"]')).toBeVisible();
+        const contentContract=contentContracts[tool.id];
+        if(contentContract){
+          await expect(page.locator(".content details")).toHaveCount(contentContract.faqCount);
+          for(const reference of contentContract.references){
+            await expect(page.locator(`.content a[href="https://www.rfc-editor.org/rfc/${reference}"]`)).toBeVisible();
+          }
           const faqMatchesVisible=await page.evaluate(()=>{
             const schema=JSON.parse(document.querySelector('script[data-nel-schema="faq"]')?.textContent||"null");
             const visible=[...document.querySelectorAll(".content details")].map(item=>({
