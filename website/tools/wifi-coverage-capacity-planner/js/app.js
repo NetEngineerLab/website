@@ -132,7 +132,7 @@ function activateTab(name){
  state.activeTab=name;
  document.querySelectorAll("[data-tab]").forEach(btn=>{
   const active=btn.dataset.tab===name;
-  btn.classList.toggle("active",active);btn.setAttribute("aria-selected",String(active));
+  btn.classList.toggle("active",active);btn.setAttribute("aria-selected",String(active));btn.tabIndex=active?0:-1;
  });
  document.querySelectorAll("[data-panel]").forEach(panel=>panel.hidden=panel.dataset.panel!==name);
  history.replaceState(null,"",`#${name}`);
@@ -424,7 +424,20 @@ function renderHistory(){
  }));
 }
 
-document.querySelectorAll("[data-tab]").forEach(btn=>btn.addEventListener("click",()=>activateTab(btn.dataset.tab)));
+const tabButtons=[...document.querySelectorAll("[data-tab]")];
+tabButtons.forEach((btn,index)=>{
+ btn.addEventListener("click",()=>activateTab(btn.dataset.tab));
+ btn.addEventListener("keydown",event=>{
+  let nextIndex;
+  if(event.key==="ArrowRight")nextIndex=(index+1)%tabButtons.length;
+  else if(event.key==="ArrowLeft")nextIndex=(index-1+tabButtons.length)%tabButtons.length;
+  else if(event.key==="Home")nextIndex=0;
+  else if(event.key==="End")nextIndex=tabButtons.length-1;
+  else return;
+  event.preventDefault();
+  const next=tabButtons[nextIndex];activateTab(next.dataset.tab);next.focus();
+ });
+});
 $("profilePreset").addEventListener("change",event=>applyProfile(event.target.value));
 $("standard").addEventListener("change",()=>{updateBandAndWidthOptions(false);calculateAll()});
 $("band").addEventListener("change",()=>{updateBandAndWidthOptions(true);calculateAll()});

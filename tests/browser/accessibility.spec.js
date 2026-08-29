@@ -36,3 +36,45 @@ test("all indexed pages expose a complete accessibility structure",async({page})
     expect(issues,`${route}\n${issues.join("\n")}`).toEqual([]);
   }
 });
+
+test("Wi-Fi planner tabs expose valid relationships and keyboard navigation",async({page})=>{
+  for(const route of [
+    "/tools/wifi-coverage-capacity-planner/",
+    "/tools/wifi-coverage-capacity-planner/zh/"
+  ]){
+    await page.goto(route,{waitUntil:"networkidle"});
+    const tabs=page.getByRole("tab");
+    await expect(tabs).toHaveCount(4);
+    await expect(tabs.nth(0)).toHaveAttribute("aria-selected","true");
+    await expect(tabs.nth(0)).toHaveAttribute("aria-controls","panel-coverage");
+    await expect(page.locator("#panel-coverage")).toHaveAttribute("role","tabpanel");
+    await expect(page.locator("#panel-coverage")).toHaveAttribute("aria-labelledby","tab-coverage");
+
+    await tabs.nth(0).focus();
+    await page.keyboard.press("ArrowRight");
+    await expect(tabs.nth(1)).toBeFocused();
+    await expect(tabs.nth(1)).toHaveAttribute("aria-selected","true");
+    await expect(tabs.nth(0)).toHaveAttribute("aria-selected","false");
+    await expect(page.locator("#panel-capacity")).toBeVisible();
+    await expect(page.locator("#panel-coverage")).toBeHidden();
+
+    await page.keyboard.press("End");
+    await expect(tabs.nth(3)).toBeFocused();
+    await expect(page.locator("#panel-summary")).toBeVisible();
+    await page.keyboard.press("ArrowRight");
+    await expect(tabs.nth(0)).toBeFocused();
+    await expect(tabs.nth(0)).toHaveAttribute("aria-selected","true");
+    await expect(tabs.nth(3)).toHaveAttribute("aria-selected","false");
+    await expect(page.locator("#panel-coverage")).toBeVisible();
+    await expect(page.locator("#panel-summary")).toBeHidden();
+    await page.keyboard.press("ArrowLeft");
+    await expect(tabs.nth(3)).toBeFocused();
+    await expect(tabs.nth(3)).toHaveAttribute("aria-selected","true");
+    await expect(tabs.nth(0)).toHaveAttribute("aria-selected","false");
+    await expect(page.locator("#panel-summary")).toBeVisible();
+    await expect(page.locator("#panel-coverage")).toBeHidden();
+    await page.keyboard.press("Home");
+    await expect(tabs.nth(0)).toBeFocused();
+    await expect(page.locator("#panel-coverage")).toBeVisible();
+  }
+});

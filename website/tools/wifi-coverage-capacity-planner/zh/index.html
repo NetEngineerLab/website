@@ -4,7 +4,7 @@
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="../" name="app-base"/>
 <title>Wi-Fi覆盖与容量规划计算器｜NetEngineerLab</title><meta content="计算Wi-Fi覆盖半径、AP数量、用户容量、吞吐量和信道复用压力，支持Wi-Fi 5、6、6E和7。" name="description"/><meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
 <meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="Wi-Fi覆盖与容量规划计算器｜NetEngineerLab" property="og:title"/><meta content="计算Wi-Fi覆盖半径、AP数量、用户容量、吞吐量和信道复用压力，支持Wi-Fi 5、6、6E和7。" property="og:description"/><meta content="https://netengineerlab.com/tools/wifi-coverage-capacity-planner/zh/" property="og:url"/><meta content="https://netengineerlab.com/tools/wifi-coverage-capacity-planner/images/og-wifi-planner.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
-<link href="../css/style.css?v=e99b4b4e4de8" rel="stylesheet"/>
+<link href="../css/style.css?v=d52606bc6dac" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Wi-Fi覆盖与容量规划计算器","url":"https://netengineerlab.com/tools/wifi-coverage-capacity-planner/zh/","description":"计算Wi-Fi覆盖半径、AP数量、用户容量、吞吐量和信道复用压力，支持Wi-Fi 5、6、6E和7。","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Wireless LAN Planning Calculator","operatingSystem":"Any","softwareVersion":"1.0.0","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"工具中心","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"Wi-Fi覆盖与容量规划计算器","item":"https://netengineerlab.com/tools/wifi-coverage-capacity-planner/zh/"}]}</script><meta content="NetEngineerLab" name="author"/>
 
@@ -70,8 +70,8 @@
 <label>每AP同频段射频数<input id="radiosPerAp" max="4" min="1" type="number" value="1"/></label>
 <div class="project-actions"><button class="primary" id="calculateBtn">执行综合计算</button><button id="copyBtn">复制结果</button><button id="csvBtn">导出CSV</button><button id="saveBtn">保存规划</button><button id="printBtn">打印/PDF</button><button id="resetBtn">恢复办公预设</button></div>
 </section>
-<div class="tabs" role="tablist"><button class="active" data-tab="coverage">射频覆盖</button><button data-tab="capacity">容量与AP数量</button><button data-tab="channel">信道规划</button><button data-tab="summary">综合方案</button></div>
-<section class="panel-layout" data-panel="coverage">
+<div class="tabs" role="tablist" aria-label="规划功能分区"><button class="active" data-tab="coverage" id="tab-coverage" role="tab" aria-controls="panel-coverage" aria-selected="true" tabindex="0">射频覆盖</button><button data-tab="capacity" id="tab-capacity" role="tab" aria-controls="panel-capacity" aria-selected="false" tabindex="-1">容量与AP数量</button><button data-tab="channel" id="tab-channel" role="tab" aria-controls="panel-channel" aria-selected="false" tabindex="-1">信道规划</button><button data-tab="summary" id="tab-summary" role="tab" aria-controls="panel-summary" aria-selected="false" tabindex="-1">综合方案</button></div>
+<section class="panel-layout" data-panel="coverage" id="panel-coverage" role="tabpanel" aria-labelledby="tab-coverage">
 <div class="card input-card"><div class="section-head"><span class="section-icon">RF</span><div><h2>射频覆盖 · 输入参数</h2><p>室内路径损耗采用以1米自由空间损耗为参考的对数距离模型，并叠加墙体、楼板和衰落余量。</p></div></div><div class="notice">所有默认功率、RSSI、墙体损耗、效率及用户参数均为可编辑工程预设，不是通用标准。</div>
 <div class="form-grid">
 <div class="field"><label>中心频率</label><div class="input-wrap"><input id="freqMHz" min="1" type="number" value="5500"/><span>MHz</span></div></div><div class="field"><label>总覆盖面积</label><div class="input-wrap"><input id="totalAreaM2" min="1" type="number" value="5000"/><span>m²</span></div></div>
@@ -98,7 +98,7 @@
 <article class="metric"><small>1米自由空间损耗</small><strong id="fspl1m">—</strong></article><article class="metric"><small>单AP有效覆盖面积</small><strong id="effectiveArea">—</strong></article>
 <article class="metric"><small>每层AP数量</small><strong id="apsPerFloor">—</strong></article><article class="metric"><small>每层面积</small><strong id="areaPerFloor">—</strong></article></div>
 <div class="warning-box"><h3>工程判断</h3><ul id="coverageWarnings"></ul></div></div></section>
-<section class="panel-layout" data-panel="capacity" hidden="">
+<section class="panel-layout" data-panel="capacity" id="panel-capacity" role="tabpanel" aria-labelledby="tab-capacity" hidden="">
 <div class="card input-card"><div class="section-head"><span class="section-icon">CAP</span><div><h2>容量与AP数量 · 输入参数</h2><p>PHY速率是参考上限，实际可用吞吐通过协议效率、可用空口比例和终端混合系数进行折算。</p></div></div><div class="notice">所有默认功率、RSSI、墙体损耗、效率及用户参数均为可编辑工程预设，不是通用标准。</div>
 <div class="form-grid">
 <div class="field"><label>总用户/终端数量</label><div class="input-wrap"><input id="totalUsers" min="1" type="number" value="300"/></div></div><div class="field"><label>忙时活跃比例</label><div class="input-wrap"><input id="activePct" max="100" min=".1" type="number" value="35"/><span>%</span></div></div>
@@ -117,7 +117,7 @@
 <article class="metric"><small>每AP关联用户</small><strong id="associatedUsersPerAp">—</strong></article><article class="metric"><small>每AP活跃用户</small><strong id="activeUsersPerAp">—</strong></article>
 <article class="metric"><small>每AP业务需求</small><strong id="demandPerAp">—</strong></article></div>
 <div class="warning-box"><h3>工程判断</h3><ul id="capacityWarnings"></ul></div></div></section>
-<section class="panel-layout" data-panel="channel" hidden="">
+<section class="panel-layout" data-panel="channel" id="panel-channel" role="tabpanel" aria-labelledby="tab-channel" hidden="">
 <div class="card input-card"><div class="section-head"><span class="section-icon">CH</span><div><h2>信道规划 · 输入参数</h2><p>输入本地允许使用的20MHz等效信道数量。工具只生成信道组，不替代国家/地区信道、DFS、AFC和功率限制核对。</p></div></div><div class="notice warning">例如：2.4GHz常用3个20MHz复用组；5GHz和6GHz必须按当地法规及设备能力修改。</div>
 <div class="form-grid"><div class="field full"><label>可用20MHz等效信道数</label><div class="input-wrap"><input id="available20MHzChannels" min="1" type="number" value="12"/><span>×20 MHz</span></div></div></div>
 <div class="error-box" hidden="" id="channelError"></div><div class="panel-actions"><button class="primary" onclick="document.getElementById('calculateBtn').click()">执行综合计算</button></div></div>
@@ -127,7 +127,7 @@
 <div class="metric-grid"><article class="metric"><small>每信道组AP数量</small><strong id="apsPerChannel">—</strong></article><article class="metric"><small>规划信道宽度</small><strong id="channelWidthResult">—</strong></article><article class="metric"><small>信道资源输入</small><strong id="channelInventory">—</strong></article></div>
 <div class="result-table-wrap"><table class="result-table"><thead><tr><th>AP</th><th>楼层</th><th>信道组</th></tr></thead><tbody id="channelPlanBody"></tbody></table></div>
 <div class="warning-box"><h3>工程判断</h3><ul id="channelWarnings"></ul></div></div></section>
-<section data-panel="summary" hidden="">
+<section data-panel="summary" id="panel-summary" role="tabpanel" aria-labelledby="tab-summary" hidden="">
 <div class="card"><div class="section-head"><span class="section-icon">Σ</span><div><h2>综合方案</h2><p>所有默认功率、RSSI、墙体损耗、效率及用户参数均为可编辑工程预设，不是通用标准。</p></div></div>
 <div class="summary"><div><small>最终建议AP数量</small><strong id="finalApCount">—</strong></div><span class="risk-badge low">主要约束: <b id="summaryBottleneck">—</b></span></div>
 <div class="summary-grid"><article class="summary-tile"><span>覆盖AP数</span><strong id="summaryCoverageAps">—</strong></article><article class="summary-tile"><span>容量AP数</span><strong id="summaryCapacityAps">—</strong></article>
@@ -156,6 +156,6 @@
 </footer>
 <!-- NEL_FOOTER_END -->
 <div class="toast" id="toast" role="status"></div>
-<script defer="" src="../data/presets.js"></script><script defer="" src="../js/engine.js"></script><script defer="" src="../js/app.js?v=49f22e5dd17a"></script><script defer="" src="../js/pwa.js"></script>
+<script defer="" src="../data/presets.js"></script><script defer="" src="../js/engine.js"></script><script defer="" src="../js/app.js?v=60067a1760c8"></script><script defer="" src="../js/pwa.js"></script>
 <script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script>
 <script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=d2715dc996b6"></script></body></html>

@@ -7,9 +7,9 @@ const CORE = [
   "./offline.html",
   "./manifest.webmanifest",
   "./data/presets.js",
-  "./css/style.css?v=e99b4b4e4de8",
+  "./css/style.css?v=d52606bc6dac",
   "./js/engine.js",
-  "./js/app.js?v=49f22e5dd17a",
+  "./js/app.js?v=60067a1760c8",
   "./images/logo.svg",
   "../../data/locales.js?v=b541508dc0ee",
   "../../data/site-config.js?v=b5072ad7fa47",
@@ -49,7 +49,7 @@ self.addEventListener("fetch", (event) => {
     )));
     return;
   }
-  event.respondWith(caches.match(request, { ignoreSearch: true }).then((cached) => cached || fetch(request).then((response) => {
+  event.respondWith(caches.match(request).then((cached) => cached || fetch(request).then((response) => {
     if (response.ok) {
       const copy = response.clone();
       caches.open(CACHE).then((cache) => cache.put(request, copy));

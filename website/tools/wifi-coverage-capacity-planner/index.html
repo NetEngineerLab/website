@@ -4,7 +4,7 @@
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="" name="app-base"/>
 <title>Wi-Fi Coverage &amp; Capacity Planner | NetEngineerLab</title><meta content="Plan Wi-Fi coverage radius, AP count, user capacity, throughput and channel reuse for Wi-Fi 5, 6, 6E and 7." name="description"/><meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
 <meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="Wi-Fi Coverage &amp; Capacity Planner | NetEngineerLab" property="og:title"/><meta content="Plan Wi-Fi coverage radius, AP count, user capacity, throughput and channel reuse for Wi-Fi 5, 6, 6E and 7." property="og:description"/><meta content="https://netengineerlab.com/tools/wifi-coverage-capacity-planner/" property="og:url"/><meta content="https://netengineerlab.com/tools/wifi-coverage-capacity-planner/images/og-wifi-planner.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
-<link href="css/style.css?v=e99b4b4e4de8" rel="stylesheet"/>
+<link href="css/style.css?v=d52606bc6dac" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Wi-Fi Coverage & Capacity Planner","url":"https://netengineerlab.com/tools/wifi-coverage-capacity-planner/","description":"Plan Wi-Fi coverage radius, AP count, user capacity, throughput and channel reuse for Wi-Fi 5, 6, 6E and 7.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Wireless LAN Planning Calculator","operatingSystem":"Any","softwareVersion":"1.0.0","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
 <script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"Wi-Fi Coverage & Capacity Planner","item":"https://netengineerlab.com/tools/wifi-coverage-capacity-planner/"}]}</script><meta content="NetEngineerLab" name="author"/>
 
@@ -70,8 +70,8 @@
 <label>Radios/AP on band<input id="radiosPerAp" max="4" min="1" type="number" value="1"/></label>
 <div class="project-actions"><button class="primary" id="calculateBtn">Calculate complete plan</button><button id="copyBtn">Copy result</button><button id="csvBtn">Export CSV</button><button id="saveBtn">Save project</button><button id="printBtn">Print/PDF</button><button id="resetBtn">Reset office preset</button></div>
 </section>
-<div class="tabs" role="tablist"><button class="active" data-tab="coverage">RF Coverage</button><button data-tab="capacity">Capacity &amp; AP Count</button><button data-tab="channel">Channel Plan</button><button data-tab="summary">Combined Plan</button></div>
-<section class="panel-layout" data-panel="coverage">
+<div class="tabs" role="tablist" aria-label="Planning sections"><button class="active" data-tab="coverage" id="tab-coverage" role="tab" aria-controls="panel-coverage" aria-selected="true" tabindex="0">RF Coverage</button><button data-tab="capacity" id="tab-capacity" role="tab" aria-controls="panel-capacity" aria-selected="false" tabindex="-1">Capacity &amp; AP Count</button><button data-tab="channel" id="tab-channel" role="tab" aria-controls="panel-channel" aria-selected="false" tabindex="-1">Channel Plan</button><button data-tab="summary" id="tab-summary" role="tab" aria-controls="panel-summary" aria-selected="false" tabindex="-1">Combined Plan</button></div>
+<section class="panel-layout" data-panel="coverage" id="panel-coverage" role="tabpanel" aria-labelledby="tab-coverage">
 <div class="card input-card"><div class="section-head"><span class="section-icon">RF</span><div><h2>RF Coverage · Inputs</h2><p>Indoor loss uses a log-distance model referenced to 1 m free-space loss, with wall/floor loss and fade margin added.</p></div></div><div class="notice">All power, RSSI, wall-loss, efficiency and user defaults are editable engineering presets, not universal standards.</div>
 <div class="form-grid">
 <div class="field"><label>Center frequency</label><div class="input-wrap"><input id="freqMHz" min="1" type="number" value="5500"/><span>MHz</span></div></div><div class="field"><label>Total project area</label><div class="input-wrap"><input id="totalAreaM2" min="1" type="number" value="5000"/><span>m²</span></div></div>
@@ -98,7 +98,7 @@
 <article class="metric"><small>1 m free-space loss</small><strong id="fspl1m">—</strong></article><article class="metric"><small>Effective area per AP</small><strong id="effectiveArea">—</strong></article>
 <article class="metric"><small>APs per floor</small><strong id="apsPerFloor">—</strong></article><article class="metric"><small>Area per floor</small><strong id="areaPerFloor">—</strong></article></div>
 <div class="warning-box"><h3>Engineering judgement</h3><ul id="coverageWarnings"></ul></div></div></section>
-<section class="panel-layout" data-panel="capacity" hidden="">
+<section class="panel-layout" data-panel="capacity" id="panel-capacity" role="tabpanel" aria-labelledby="tab-capacity" hidden="">
 <div class="card input-card"><div class="section-head"><span class="section-icon">CAP</span><div><h2>Capacity &amp; AP Count · Inputs</h2><p>PHY rate is a reference ceiling. Effective throughput is discounted by protocol efficiency, usable airtime and client mix.</p></div></div><div class="notice">All power, RSSI, wall-loss, efficiency and user defaults are editable engineering presets, not universal standards.</div>
 <div class="form-grid">
 <div class="field"><label>Total users / clients</label><div class="input-wrap"><input id="totalUsers" min="1" type="number" value="300"/></div></div><div class="field"><label>Busy-hour active ratio</label><div class="input-wrap"><input id="activePct" max="100" min=".1" type="number" value="35"/><span>%</span></div></div>
@@ -117,7 +117,7 @@
 <article class="metric"><small>Associated users/AP</small><strong id="associatedUsersPerAp">—</strong></article><article class="metric"><small>Active users/AP</small><strong id="activeUsersPerAp">—</strong></article>
 <article class="metric"><small>Demand/AP</small><strong id="demandPerAp">—</strong></article></div>
 <div class="warning-box"><h3>Engineering judgement</h3><ul id="capacityWarnings"></ul></div></div></section>
-<section class="panel-layout" data-panel="channel" hidden="">
+<section class="panel-layout" data-panel="channel" id="panel-channel" role="tabpanel" aria-labelledby="tab-channel" hidden="">
 <div class="card input-card"><div class="section-head"><span class="section-icon">CH</span><div><h2>Channel Plan · Inputs</h2><p>Enter the locally usable inventory in 20 MHz equivalents. The tool creates channel groups; it does not replace local channel, DFS, AFC or power-rule review.</p></div></div><div class="notice warning">Example: 2.4 GHz commonly starts with three 20 MHz reuse groups; edit 5/6 GHz inventory for local rules and equipment.</div>
 <div class="form-grid"><div class="field full"><label>Available 20 MHz channel equivalents</label><div class="input-wrap"><input id="available20MHzChannels" min="1" type="number" value="12"/><span>×20 MHz</span></div></div></div>
 <div class="error-box" hidden="" id="channelError"></div><div class="panel-actions"><button class="primary" onclick="document.getElementById('calculateBtn').click()">Calculate complete plan</button></div></div>
@@ -127,7 +127,7 @@
 <div class="metric-grid"><article class="metric"><small>APs per channel group</small><strong id="apsPerChannel">—</strong></article><article class="metric"><small>Planned channel width</small><strong id="channelWidthResult">—</strong></article><article class="metric"><small>Channel inventory input</small><strong id="channelInventory">—</strong></article></div>
 <div class="result-table-wrap"><table class="result-table"><thead><tr><th>AP</th><th>Floor</th><th>Channel group</th></tr></thead><tbody id="channelPlanBody"></tbody></table></div>
 <div class="warning-box"><h3>Engineering judgement</h3><ul id="channelWarnings"></ul></div></div></section>
-<section data-panel="summary" hidden="">
+<section data-panel="summary" id="panel-summary" role="tabpanel" aria-labelledby="tab-summary" hidden="">
 <div class="card"><div class="section-head"><span class="section-icon">Σ</span><div><h2>Combined Plan</h2><p>All power, RSSI, wall-loss, efficiency and user defaults are editable engineering presets, not universal standards.</p></div></div>
 <div class="summary"><div><small>Recommended final AP count</small><strong id="finalApCount">—</strong></div><span class="risk-badge low">Primary constraint: <b id="summaryBottleneck">—</b></span></div>
 <div class="summary-grid"><article class="summary-tile"><span>Coverage APs</span><strong id="summaryCoverageAps">—</strong></article><article class="summary-tile"><span>Capacity APs</span><strong id="summaryCapacityAps">—</strong></article>
@@ -156,6 +156,6 @@
 </footer>
 <!-- NEL_FOOTER_END -->
 <div class="toast" id="toast" role="status"></div>
-<script defer="" src="data/presets.js"></script><script defer="" src="js/engine.js"></script><script defer="" src="js/app.js?v=49f22e5dd17a"></script><script defer="" src="js/pwa.js"></script>
+<script defer="" src="data/presets.js"></script><script defer="" src="js/engine.js"></script><script defer="" src="js/app.js?v=60067a1760c8"></script><script defer="" src="js/pwa.js"></script>
 <script defer="" src="../../assets/js/tool-integration.js?v=05f7934f4687"></script><script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script>
 <script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=d2715dc996b6"></script></body></html>
