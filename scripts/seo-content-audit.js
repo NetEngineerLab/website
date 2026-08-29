@@ -3,6 +3,7 @@
 
 const fs=require("fs");
 const path=require("path");
+const {walkSchema}=require("./schema-walk");
 
 const root=path.resolve(__dirname,"..");
 const site=path.join(root,"website");
@@ -99,24 +100,47 @@ for(const url of urls){
 
   let schemaCount=0;
   const schemaEntities=[];
+  const faqSchemas=[];
   let webpageSchema=null;
   for(const block of html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)){
     schemaCount++;
     try{
       const schema=JSON.parse(block[1].trim());
-      const visit=node=>{
-        if(Array.isArray(node)){node.forEach(visit);return}
-        if(!node||typeof node!=="object")return;
+      walkSchema(schema,node=>{
         if(node["@type"])schemaEntities.push(node);
-        Object.values(node).forEach(visit);
-      };
-      visit(schema);
+        if(node["@type"]==="FAQPage")faqSchemas.push(node);
+      });
       if(/\bdata-nel-schema=["']webpage["']/i.test(block[0]))webpageSchema=schema;
     }catch(error){errors.push(`${rel}: invalid JSON-LD (${error.message})`)}
   }
   if(!schemaCount)errors.push(`${rel}: JSON-LD structured data required`);
   if(schemaCount&&!schemaEntities.some(entity=>entity.url===url&&entity.inLanguage===expectedLang)){
     errors.push(`${rel}: JSON-LD must contain a primary entity with canonical url and language`);
+  }
+  const visibleFaq=[...html.matchAll(/<details\b[^>]*>[\s\S]*?<summary\b[^>]*>([\s\S]*?)<\/summary>[\s\S]*?<p\b[^>]*>([\s\S]*?)<\/p>[\s\S]*?<\/details>/gi)]
+    .map(match=>({question:textContent(match[1]),answer:textContent(match[2])}));
+  const faqMarkerPresent=/\bdata-nel-faq(?:\s|=|>)/i.test(html);
+  if(faqMarkerPresent&&faqSchemas.length!==1)errors.push(`${rel}: data-nel-faq requires exactly one FAQPage schema`);
+  if(faqSchemas.length>1)errors.push(`${rel}: expected at most one FAQPage schema`);
+  for(const faq of faqSchemas){
+    const entities=Array.isArray(faq.mainEntity)?faq.mainEntity:[];
+    if(!entities.length)errors.push(`${rel}: FAQPage must contain mainEntity questions`);
+    if(entities.length!==visibleFaq.length)errors.push(`${rel}: FAQPage and visible FAQ counts must match`);
+    const schemaQuestions=entities.map(entity=>decode(entity?.name)).filter(Boolean);
+    const visibleQuestions=visibleFaq.map(item=>item.question).filter(Boolean);
+    if(new Set(schemaQuestions).size!==schemaQuestions.length)errors.push(`${rel}: FAQPage questions must be unique`);
+    if(new Set(visibleQuestions).size!==visibleQuestions.length)errors.push(`${rel}: visible FAQ questions must be unique`);
+    for(const entity of entities){
+      const question=decode(entity?.name);
+      const answer=decode(entity?.acceptedAnswer?.text);
+      if(entity?.["@type"]!=="Question"||entity?.acceptedAnswer?.["@type"]!=="Answer"){
+        errors.push(`${rel}: FAQPage entries must use Question and Answer types`);
+      }
+      if(!question||!answer)errors.push(`${rel}: FAQPage question and answer text are required`);
+      else if(!visibleFaq.some(item=>item.question===question&&item.answer===answer)){
+        errors.push(`${rel}: FAQPage entry must match a visible details item (${question})`);
+      }
+    }
   }
 
   const body=textContent(html.match(/<body\b[^>]*>([\s\S]*?)<\/body>/i)?.[1]||"");

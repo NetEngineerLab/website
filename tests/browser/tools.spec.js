@@ -53,6 +53,23 @@ test.describe("all configured tools",()=>{
         expect((await page.title()).trim().length).toBeGreaterThan(10);
         expect(await page.locator('link[rel="canonical"]').getAttribute("href")).toBe(expectedCanonical);
         expect((await page.locator("body").innerText()).length).toBeGreaterThan(200);
+        if(tool.id==="vlan-ip-capacity-planner"){
+          await expect(page.locator(".content details")).toHaveCount(5);
+          await expect(page.locator('.content a[href="https://www.rfc-editor.org/rfc/rfc1918.html"]')).toBeVisible();
+          await expect(page.locator('.content a[href="https://www.rfc-editor.org/rfc/rfc4632.html"]')).toBeVisible();
+          await expect(page.locator('.content a[href="https://www.rfc-editor.org/rfc/rfc3021.html"]')).toBeVisible();
+          const faqMatchesVisible=await page.evaluate(()=>{
+            const schema=JSON.parse(document.querySelector('script[data-nel-schema="faq"]')?.textContent||"null");
+            const visible=[...document.querySelectorAll(".content details")].map(item=>({
+              question:item.querySelector("summary")?.textContent.trim(),
+              answer:item.querySelector("p")?.textContent.trim()
+            }));
+            return schema?.mainEntity?.length===visible.length&&schema.mainEntity.every(entity=>visible.some(item=>
+              item.question===entity.name&&item.answer===entity.acceptedAnswer?.text
+            ));
+          });
+          expect(faqMatchesVisible).toBe(true);
+        }
         const engineLoaded=await page.evaluate(()=>performance.getEntriesByType("resource").some(entry=>/\/js\/engine\.js(?:\?|$)/.test(entry.name)));
         expect(engineLoaded).toBe(true);
         const calculationOutput=calculationOutputs[tool.id];
