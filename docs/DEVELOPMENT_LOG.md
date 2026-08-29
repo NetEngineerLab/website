@@ -20,7 +20,7 @@
 
 ### 2026-08-29 — 无线链路预算计算器 SEO/GEO 内容
 
-- 状态：`VALIDATOR PASS`
+- 状态：`ONLINE PASS`
 - 页面：`website/tools/wireless-link-budget-calculator/` 中英文版本。
 - 完成内容：补充 2.4/5/6/11/24/60 GHz 点对点链路的可靠性、目标调制、气候、多径、雨衰、氧气吸收、法规与现场勘测长尾场景；增加 5 组双语 FAQ 和 FAQPage；引用 ITU-R P.525、P.530、P.676 与 P.526。
 - 关键边界：FSPL 仅描述无遮挡自由空间；附加损耗是手动合并值；10/20 dB 是规划筛选门槛而非可用率保证；60% 菲涅耳净空只检查所填位置；EIRP 结果不是法规合规结论；接收灵敏度应匹配目标调制、带宽和吞吐量。
@@ -28,7 +28,7 @@
 - 本地验证：`npm run verify` PASS；54 个 HTML 页面、52 个 Sitemap URL、20 个引擎、2581 个链接、0 errors、0 warnings；无线链路引擎 PASS；Chrome/Edge 双语多视口 8/8 PASS。
 - 独立验证：2 号验证官最终 `PASS`；独立 Edge 双语 × 桌面/Android/iPhone 6/6 PASS，`git diff --check` PASS。
 - 实现提交：`566af0906d5d82b450debd934820bd43e6a3e918`。
-- 线上验收：待推送、工作流和正式站浏览器验收。
+- 线上验收：提交 `1a2a6ebd0122fe283bc41eebb124e85fb5475f13` 对应 Quality Gate、Online Monitor、GA4 Monitor、Performance Monitor 全部成功；缓存绕过检查确认英中内容已部署；生产 Edge 双语 × 桌面/Android/iPhone 6/6 PASS，HTTP 200、5 个 FAQ、4 个 ITU 来源、FAQ 展开、计算结果、响应式溢出与运行时错误检查全部通过。
 
 ### 2026-08-29 — PoE 压降计算器正确性修复与 SEO/GEO 内容
 
