@@ -67,6 +67,15 @@ const contentContracts={
       "https://www.ieee802.org/3/bt/public/may16/stover_02_0516_rev002.pdf",
       "https://www.flukenetworks.com/blog/cabling-chronicles/upgrading-four-pair-poe-what-you-need-know"
     ]
+  },
+  "wireless-link-budget-calculator":{
+    faqCount:5,
+    references:[
+      "https://www.itu.int/rec/R-REC-P.525-5-202411-I/en",
+      "https://www.itu.int/rec/R-REC-P.530/en",
+      "https://www.itu.int/rec/R-REC-P.676/en",
+      "https://www.itu.int/rec/R-REC-P.526-16-202511-I/en"
+    ]
   }
 };
 
