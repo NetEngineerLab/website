@@ -20,7 +20,7 @@
 
 ### 2026-08-29 — 交换机上联带宽与超售比计算器 SEO/GEO 内容
 
-- 状态：`VALIDATOR PASS`
+- 状态：`ONLINE PASS`
 - 页面：`website/tools/switch-uplink-oversubscription-calculator/` 中英文版本。
 - 完成内容：增加线速超售比与忙时需求区别、园区接入与服务器场景、正常与故障拓扑重算、5 组双语 FAQ 和 FAQPage；引用 IEEE 802.1AX、IETF RFC 7424 及 Cisco Campus LAN and Wireless LAN Design Guide。
 - 关键边界：只统计实际参与转发且可被流量利用的上联；备用或阻塞链路不计入当前容量；LAG 汇总容量不代表单流带宽，哈希和流量组合会影响成员链路均衡。
@@ -28,7 +28,7 @@
 - 本地验证：`npm run verify` PASS；54 个 HTML 页面、52 个 Sitemap URL、20 个引擎、2557 个链接、0 errors、0 warnings；交换机上联引擎 PASS；Edge 双语 × 桌面/Android/iPhone 6/6 PASS。
 - 独立验证：2 号验证官最终 `PASS`。
 - 实现提交：`46ae1145c02dc6c133fd41e87add3d40b12c0d08`。
-- 线上验收：待推送后补录；未完成前不得改为 `ONLINE PASS`。
+- 线上验收：提交 `da3d73438d5f20262fea1a24d8dd547f798b3af2` 对应 Quality Gate、Online Monitor、GA4 Monitor、Performance Monitor 全部成功；正式站点已出现中英文新内容；生产 Edge 双语 × 桌面/Android/iPhone 6/6 PASS，5 个 FAQ、3 个权威来源、计算结果、响应式溢出与控制台错误检查全部通过。
 
 ### 2026-08-29 — DNS TTL 传播计算器 SEO/GEO 内容
 
