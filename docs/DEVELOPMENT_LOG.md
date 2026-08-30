@@ -209,11 +209,22 @@
 - 实现提交：`02a7efeda4cfcca4d1e857c8d1b9393957210ede`。
 - 线上验收：提交 `addd66649a18f9207785ef34d88cc85a7853170c` 对应 Quality Gate `33327420495`、Online Monitor `33327420512`、GA4 Monitor `33327420492`、Performance Monitor `33327454020` 全部成功；正式站英中页面 Chrome/Edge/Android/iPhone 8/8 PASS，覆盖验证、Finding、Junos 转换、参数生成、恶意输入不执行、错误后旧结果清理、响应式溢出及控制台错误检查。
 
+### 2026-08-31 — PoE 功率预算计算器 SEO/GEO 内容
+
+- 状态：`VALIDATOR PASS`（实现已提交，等待推送与线上验收）。
+- 页面：`website/tools/poe-power-budget-calculator/` 中英文版本。
+- 完成内容：增加第 5 个双语长尾 FAQ 与 FAQPage；补充 IEEE 802.3bt、IEEE 802.3at、Ethernet Alliance、Cisco 和 Fluke Networks 共 5 个工程来源；增加可见内容复核日期与来源浏览器契约。
+- 正确性边界：明确 20% 至 25% 余量只是项目初始假设，不是 IEEE 强制值；网线损耗百分比只是规划输入，不是完整 IEEE 信道仿真；最终设计仍需核对 PSE/PD 等级、协商功率、电源与冗余状态、线缆信道、成束温升和设备启动行为。
+- SEO/GEO 结果：该工具由 `high` 降为 `maintain`，评分 0、无缺口；全站优先级变为 1 high、6 medium、14 maintain，下一项为 SFP/QSFP 兼容性工具。
+- 本地验证：`npm run verify` PASS；56 个 HTML 页面、54 个 Sitemap URL、21 个引擎、2713 个链接、0 errors、0 warnings；PoE 双语 Chrome/Edge/Android/iPhone 8/8 PASS；`git diff --check` PASS。
+- 独立验证：2 号验证官最终 `PASS`；确认技术内容与引擎一致、5 个来源有效、可见 FAQ 与 FAQPage 精确一致、四项目全站无障碍 8/8、独立完整验证通过。
+- 实现提交：`8db85687f8235cf0d172500baa7e588be1c20f3c`。
+
 ## 下一步队列
 
 按“小批次、验证通过后再继续”的顺序执行：
 
-1. 恢复 SEO/GEO 队列：PoE 功率预算、SFP/QSFP 兼容性、光纤损耗、光功率预算、PON 分光器损耗。
+1. 继续 SEO/GEO 队列：SFP/QSFP 兼容性、光纤损耗、光功率预算、PON 分光器损耗、ONU RX Power。
 2. MIB/OID Explorer Phase 0：按 `docs/MIB_OID_EXPLORER_DEVELOPMENT_PLAN.md` 完成来源许可调研、解析器选型、数据字典、威胁模型与技术 ADR；不得在门禁前批量抓取或公开厂商 MIB。
 
 任何新发现的 P0/P1 稳定性或正确性问题，优先级高于上述 SEO/GEO 队列，并必须在本文件说明插队原因。
