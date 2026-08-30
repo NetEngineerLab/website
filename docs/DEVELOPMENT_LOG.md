@@ -182,13 +182,25 @@
 - 实现提交：`b85e8ef8bed2ddf50c7f9f4b0972a40c76884a4e`。
 - 线上验收：提交 `86498cd1fc1b5767ffeed415c1abe6aec29c3382` 对应 Quality Gate `33304557631`、Online Monitor `33304557646`、GA4 Monitor `33304557628`、Performance Monitor `33304572111` 全部成功。
 
+### 2026-08-30 — Tool 21 ACL 生产规则层
+
+- 状态：`VALIDATOR PASS`（规则与运行时已完成，本批不公开 Tool 21 页面）。
+- 范围：新增 ACL-001 至 ACL-010 共 10 条双语生产规则，覆盖无限制 IPv4/TCP/UDP 放行、Telnet、SSH/SNMP 任意源、异动作遮蔽、精确重复、无 permit ACL、可达 deny-all 非末尾；适用于 Cisco IOS、Huawei VRP、H3C Comware、Juniper Junos。
+- 来源与证据：规则引用 NIST、CISA、IANA、Cisco 与 Juniper 权威资料；每条规则具备正/负/边界 Fixture 和最小充分 Evidence；deny-only 明示 `permitCount: 0`、deny 数量及完整序号，联合遮蔽保留所有实际首匹配规则证据。
+- 正确性边界：按 first-match 语义计算 source × destination × port 联合覆盖，并保守处理 protocol；支持多规则、混合 permit/deny 和源/目的地址分片遮蔽；同动作冗余不误报 HIGH，终止 deny 与 shadow Finding 共享根因；不可达 deny-all 不作为后续不可达根因；复杂度超限显式失败，禁止静默视为可达。
+- 运行时兼容：新增版本绑定的 `acl-policy-check@1.0.0` descriptor；规则包 Registry 与加载 handler 版本不一致时失败关闭；生成 10-rule 内容哈希 bundle 并刷新 20 个工具 Service Worker。
+- 自动化：新增 ACL 生产规则专项测试，并将规则契约、运行时、ACL core 与 ACL rules 全部接入 `npm run verify`；覆盖双 /1 联合、混合动作、目的地址联合、同动作 superset、重复、根因去重、Evidence 完整性、复杂度上限和版本失配注入。
+- 本地验证：最终 `npm run verify` PASS；10 production rules、7 operators、54 个 HTML、52 个 Sitemap URL、20 个现有引擎、2581 个链接、0 errors、0 warnings；`git diff --check` PASS。
+- 独立验证：2 号验证官连续五轮发现并推动修复联合覆盖、同动作误报、Evidence、版本绑定、混合动作/目的维度、复杂度 fail-open、首匹配动作、快速路径及不可达 deny-all 因果问题；第五轮最终 `PASS`。
+- 实现提交：`d363fc7aa50d82524952660567ec4bc57394af40`。
+- 线上验收：待推送后登记四条 GitHub 生产工作流结果；本批无新增公开 URL。
+
 ## 下一步队列
 
 按“小批次、验证通过后再继续”的顺序执行：
 
-1. Tool 21 ACL 规则层：完成 10–15 条有权威来源、正/负/边界 Fixture 和最小充分 Evidence 的高可信规则。
-2. Tool 21 双语页面与浏览器/PWA/线上验收。
-3. 恢复 SEO/GEO 队列：PoE 功率预算、SFP/QSFP 兼容性、光纤损耗、光功率预算、PON 分光器损耗。
-4. MIB/OID Explorer Phase 0：按 `docs/MIB_OID_EXPLORER_DEVELOPMENT_PLAN.md` 完成来源许可调研、解析器选型、数据字典、威胁模型与技术 ADR；不得在门禁前批量抓取或公开厂商 MIB。
+1. Tool 21 双语页面与浏览器/PWA/线上验收。
+2. 恢复 SEO/GEO 队列：PoE 功率预算、SFP/QSFP 兼容性、光纤损耗、光功率预算、PON 分光器损耗。
+3. MIB/OID Explorer Phase 0：按 `docs/MIB_OID_EXPLORER_DEVELOPMENT_PLAN.md` 完成来源许可调研、解析器选型、数据字典、威胁模型与技术 ADR；不得在门禁前批量抓取或公开厂商 MIB。
 
 任何新发现的 P0/P1 稳定性或正确性问题，优先级高于上述 SEO/GEO 队列，并必须在本文件说明插队原因。
