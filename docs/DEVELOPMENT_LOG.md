@@ -158,11 +158,22 @@
 - 线上验收：提交 `9fba1eda1e3ee4c20ef5444303e8624cab0e4d99` 对应 Quality Gate `33289329401`、Online Monitor `33289329395`、GA4 Monitor `33289329394`、Performance Monitor `33289367036` 全部成功。
 - 范围边界：仍为 6 operators、0 production rules；未新增 Tool 21 页面，未修改现有页面、公式或工具引擎。
 
+### 2026-08-30 — Tool 21 ACL IR 与 Cisco IOS 核心
+
+- 状态：`VALIDATOR PASS`（尚未公开页面，等待推送及线上工作流）。
+- 范围：新增 `website/tools/acl-generator-validator/` 的厂商无关 IPv4 ACL IR、Cisco IOS 命名扩展 ACL Parser/Generator、DOM-free engine、Golden Fixture 与专项测试；未加入工具目录或 Sitemap。
+- 工程边界：V1 本批仅支持 Cisco IOS 命名扩展 ACL、`ip/tcp/udp/icmp`、any/host/network、数值目标端口与 log；命名端口、混合显式/隐式 sequence、多 ACL 及其他语法明确拒绝或进入 unparsed，禁止静默视为已验证。
+- 安全与确定性：配置限制为 100 KiB/2000 行并拒绝 NUL；保留 sourceLine/raw/unparsed；严格拒绝错误类型、非安全整数和不兼容 IR version/domain/family；不执行粘贴内容。
+- 自动化：Golden Fixture、语法解析、Generate → Parse → IR 语义等价、通配符边界、恶意输入、输入限制、版本与类型故障注入已接入 `npm run verify`。
+- 本地验证：`npm run verify` PASS；54 个 HTML、52 个 Sitemap URL、20 个现有引擎、2581 个链接、0 errors、0 warnings；ACL 核心专项 PASS。
+- 独立验证：2 号验证官经过三轮故障注入发现并推动修复布尔强转、端口自证、混合序号、宽松类型/IR 兼容性及超大整数问题，最终 `PASS`。
+- 实现提交：`807e342704e49d5ee63c98a27811a5f15abf7531`。
+
 ## 下一步队列
 
 按“小批次、验证通过后再继续”的顺序执行：
 
-1. Tool 21 ACL 核心：先完成 ACL IR 与单一厂商 Parser/Generator，再扩展到四厂商和 10–15 条高可信规则。
+1. Tool 21 ACL 核心扩展：实现 Huawei VRP、H3C Comware、Juniper Junos Parser/Generator，再完成 10–15 条高可信规则。
 2. Tool 21 双语页面与浏览器/PWA/线上验收。
 3. 恢复 SEO/GEO 队列：PoE 功率预算、SFP/QSFP 兼容性、光纤损耗、光功率预算、PON 分光器损耗。
 
