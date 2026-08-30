@@ -9,6 +9,7 @@ const irApi=require("../js/ir-adapter");
 const parser=require("../js/parsers/cisco-ios");
 const generator=require("../js/generators/cisco-ios");
 const aclOperators=require("../js/acl-rule-operators");
+const rulesBundle=require("../../../assets/generated/rules-engine/rules-bundle.9d06acb2a0ff.js");
 const fixture=JSON.parse(fs.readFileSync(path.join(__dirname,"fixtures","cisco-ios-golden.json"),"utf8"));
 const vendorGolden=JSON.parse(fs.readFileSync(path.join(__dirname,"fixtures","multi-vendor-golden.json"),"utf8"));
 
@@ -21,6 +22,9 @@ assert.strictEqual(parsed.coverage.parsedRules,2);
 assert.deepStrictEqual(irApi.semanticView(parsed.ir),irApi.semanticView(ir));
 const roundTrip=engine.semanticRoundTrip({vendor:"cisco-ios",ir});
 assert.strictEqual(roundTrip.equivalent,true);
+const analysis=engine.analyzeConfiguration({vendor:"cisco-ios",input:fixture.configuration,bundle:rulesBundle,locale:"en"});
+assert.strictEqual(analysis.parsed.coverage.complete,true);assert.strictEqual(analysis.report.locale,"en");assert.strictEqual(analysis.score.passFail,null);assert.strictEqual(analysis.findings.length,0);assert.strictEqual(analysis.score.overall,100);
+const broadAnalysis=engine.analyzeConfiguration({vendor:"cisco-ios",input:"ip access-list extended BROAD\n 10 permit ip any any\nexit\n",bundle:rulesBundle,locale:"zh"});assert(broadAnalysis.findings.some(item=>item.ruleId==="ACL-001"));assert.strictEqual(broadAnalysis.report.locale,"zh");
 assert.strictEqual(roundTrip.configuration,fixture.configuration);
 const broad=irApi.createIr({name:"BROAD",rules:[{sequence:10,action:"permit",protocol:"ip",source:{kind:"any"},destination:{kind:"any"},log:false}]});
 assert.strictEqual(aclOperators.aclPolicyCheck({rules:broad.rules},{rulesPath:"rules",check:"unrestricted-ip-permit"}).matched,true);

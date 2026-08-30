@@ -1,4 +1,5 @@
 "use strict";
+{
 
 const evidenceApi=typeof module!=="undefined"&&module.exports?require("./evidence"):window.NetEngineerLabRulesEvidence;
 
@@ -17,3 +18,4 @@ function createReport(findings,score,{locale="en"}={}){
 const api=Object.freeze({createReport});
 if(typeof module!=="undefined"&&module.exports)module.exports=api;
 if(typeof window!=="undefined")window.NetEngineerLabRulesReport=api;
+}

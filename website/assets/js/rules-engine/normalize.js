@@ -1,4 +1,5 @@
 "use strict";
+{
 
 function pathParts(path){
   if(typeof path!=="string"||!path||!/^(?:[a-zA-Z_][a-zA-Z0-9_-]*|\d+)(?:\.(?:[a-zA-Z_][a-zA-Z0-9_-]*|\d+))*$/.test(path))throw new Error(`Invalid fact path: ${path}`);
@@ -27,3 +28,4 @@ function stableStringify(value){return JSON.stringify(stableValue(value))}
 const api=Object.freeze({getPath,pathParts,stableStringify,stableValue});
 if(typeof module!=="undefined"&&module.exports)module.exports=api;
 if(typeof window!=="undefined")window.NetEngineerLabRulesNormalize=api;
+}

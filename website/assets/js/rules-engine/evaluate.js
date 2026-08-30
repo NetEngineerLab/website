@@ -1,4 +1,5 @@
 "use strict";
+{
 
 const normalize=typeof module!=="undefined"&&module.exports?require("./normalize"):window.NetEngineerLabRulesNormalize;
 const evidenceApi=typeof module!=="undefined"&&module.exports?require("./evidence"):window.NetEngineerLabRulesEvidence;
@@ -60,3 +61,4 @@ function evaluateBundle(bundle,facts,options={}){validateBundleCompatibility(bun
 const api=Object.freeze({builtInOperators,evaluateBundle,evaluateRules,runtimeApiVersion,validateBundleCompatibility,validateCustomOperatorCompatibility});
 if(typeof module!=="undefined"&&module.exports)module.exports=api;
 if(typeof window!=="undefined")window.NetEngineerLabRulesEvaluate=api;
+}

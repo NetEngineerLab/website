@@ -486,7 +486,10 @@ function generateManifests(groups){
     assets=assets.filter(item=>!folders.some(folder=>item===`./${folder}/index.html`)&&!/^\.\/manifest-[^/]+\.webmanifest$/.test(item));
     if(!assets.includes("./index.html"))assets.unshift("./index.html");
     if(!assets.includes("./manifest.webmanifest"))assets.push("./manifest.webmanifest");
-    assets=assets.filter(item=>!sharedRuntimeAssets.some(asset=>item.split("?")[0]===asset.cachePath));
+    assets=assets.filter(item=>{
+     const clean=item.split("?")[0];
+     return !sharedRuntimeAssets.some(asset=>clean===asset.cachePath)&&!/^\.\.\/\.\.\/assets\/generated\/rules-engine\/rules-bundle\.[a-f0-9]{12}\.js$/.test(clean);
+    });
     for(const sharedAsset of sharedRuntimeAssets){
      assets.push(`${sharedAsset.cachePath}?v=${assetVersion(sharedAsset.sitePath)}`);
     }
@@ -591,6 +594,7 @@ function build(){
    for(const localAsset of [`${toolBase}/css/style.css`,`${toolBase}/js/app.js`]){
     if(fs.existsSync(path.join(siteRoot,...localAsset.split("/"))))html=versionRelativeAsset(html,record.rel,localAsset);
    }
+   for(const asset of sharedRuntimeAssets)html=versionExistingAsset(html,asset.sitePath);
   }
   html=updateManifestLink(html,record.rel,record.info);
   html=html.replace(/<head>([\s\S]*?)<\/head>/i,(whole,body)=>`<head>${body.replace(/(?:\r?\n[ \t]*){3,}/g,"\n\n")}</head>`);

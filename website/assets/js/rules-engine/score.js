@@ -1,4 +1,5 @@
 "use strict";
+{
 
 function scoreFindings(findings,policy){
   if(!Array.isArray(findings))throw new Error("Findings must be an array");
@@ -36,3 +37,4 @@ function scoreFindings(findings,policy){
 const api=Object.freeze({scoreFindings});
 if(typeof module!=="undefined"&&module.exports)module.exports=api;
 if(typeof window!=="undefined")window.NetEngineerLabRulesScore=api;
+}

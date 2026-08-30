@@ -1,0 +1,47 @@
+"use strict";
+const CACHE = "nel-acl-generator-validator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-f036711f9f38";
+const CORE = [
+  "./index.html",
+  "./",
+  "./zh/",
+  "./offline.html",
+  "./manifest.webmanifest",
+  "./css/style.css?v=568bf54381d6",
+  "./js/ir-adapter.js",
+  "./js/acl-rule-operators.js",
+  "./js/parsers/vrp-comware-factory.js",
+  "./js/generators/vrp-comware-factory.js",
+  "./js/parsers/cisco-ios.js",
+  "./js/generators/cisco-ios.js",
+  "./js/parsers/huawei-vrp.js",
+  "./js/generators/huawei-vrp.js",
+  "./js/parsers/h3c-comware.js",
+  "./js/generators/h3c-comware.js",
+  "./js/parsers/juniper-junos.js",
+  "./js/generators/juniper-junos.js",
+  "./js/engine.js",
+  "./js/app.js?v=3e81b821fdef",
+  "./js/pwa.js",
+  "../../data/locales.js?v=b541508dc0ee",
+  "../../data/site-config.js?v=b5072ad7fa47",
+  "../../assets/css/locale-menu.css?v=7804394246fb",
+  "../../assets/css/design-tokens.css?v=1b428f96cadc",
+  "../../assets/css/site-shell.css?v=f34b1ffff9cc",
+  "../../assets/css/tool-design-system-v1.9.9-03.css?v=74eed43d191e",
+  "../../assets/js/analytics.js?v=1156b7864023",
+  "../../assets/js/adsense.js?v=f075c80ccc75",
+  "../../assets/js/site.js?v=af1b8909e5b4",
+  "../../assets/js/tool-integration.js?v=05f7934f4687",
+  "../../assets/js/tool-shell-v1.9.9-04.js?v=d2715dc996b6",
+  "../../assets/js/rules-engine/normalize.js?v=9e2cb44bca10",
+  "../../assets/js/rules-engine/evidence.js?v=275bb87b037a",
+  "../../assets/js/rules-engine/evaluate.js?v=fdd7e0e551ef",
+  "../../assets/js/rules-engine/score.js?v=fce2240d4bb7",
+  "../../assets/js/rules-engine/report.js?v=01f2524dcdac",
+  "../../assets/generated/rules-engine/rules-bundle.9d06acb2a0ff.js?v=9d06acb2a0ff",
+  "./zh/index.html",
+  "./manifest-zh.webmanifest"
+];
+self.addEventListener("install",event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)));self.skipWaiting()});
+self.addEventListener("activate",event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith("nel-acl-generator-validator-")&&key!==CACHE).map(key=>caches.delete(key)))));self.clients.claim()});
+self.addEventListener("fetch",event=>{const request=event.request,url=new URL(request.url);if(request.method!=="GET"||url.origin!==location.origin)return;if(request.mode==="navigate"){event.respondWith(fetch(request).then(response=>{const copy=response.clone();caches.open(CACHE).then(cache=>cache.put(request,copy));return response}).catch(()=>caches.match(request,{ignoreSearch:true}).then(cached=>cached||caches.match("./offline.html"))));return}event.respondWith(caches.match(request,{ignoreSearch:true}).then(cached=>cached||fetch(request).then(response=>{if(response.ok){const copy=response.clone();caches.open(CACHE).then(cache=>cache.put(request,copy))}return response}))) });

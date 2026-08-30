@@ -95,6 +95,9 @@ for(const tool of activeTools){
     const expected=`${asset.cachePath}?v=${stableFileHash(path.join(site,...asset.sitePath.split("/")),12)}`;
     assert(sw.includes(expected),`${tool.id} Service Worker missing ${expected}`);
   }
+  const bundleReferences=[...sw.matchAll(/\.\.\/\.\.\/assets\/generated\/rules-engine\/rules-bundle\.([a-f0-9]{12})\.js\?v=([a-f0-9]{12})/g)];
+  assert.strictEqual(bundleReferences.length,1,`${tool.id} Service Worker must cache exactly one rules bundle`);
+  assert.strictEqual(bundleReferences[0][1],bundleReferences[0][2],`${tool.id} Service Worker rules bundle filename/query hash mismatch`);
 }
 const htmlFiles=[];
 const walk=directory=>{for(const entry of fs.readdirSync(directory,{withFileTypes:true})){const file=path.join(directory,entry.name);entry.isDirectory()?walk(file):entry.name.endsWith(".html")&&htmlFiles.push(file)}};

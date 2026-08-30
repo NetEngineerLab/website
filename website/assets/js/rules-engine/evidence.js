@@ -1,4 +1,5 @@
 "use strict";
+{
 
 const normalize=typeof module!=="undefined"&&module.exports?require("./normalize"):window.NetEngineerLabRulesNormalize;
 const secretPattern=/(?:^|[._-])(?:password|passwd|secret|secretkey|secret[-_]?key|community|privatekey|private[-_]?key|apikey|api[-_]?key|authkey|auth[-_]?key|token|key)(?:$|[._-])/i;
@@ -39,3 +40,4 @@ function formatEvidence(rule,facts,operatorResult={},customSelectors={}){
 const api=Object.freeze({escapeHtml,formatEvidence,isSecretKey,maskValue,redactSecrets,secretPattern});
 if(typeof module!=="undefined"&&module.exports)module.exports=api;
 if(typeof window!=="undefined")window.NetEngineerLabRulesEvidence=api;
+}

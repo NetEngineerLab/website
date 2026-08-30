@@ -22,7 +22,8 @@ const calculationOutputs={
   "network-rack-power-cooling-calculator":["#status","—"],
   "vlan-ip-capacity-planner":["#status","—"],
   "switch-uplink-oversubscription-calculator":["#status","—"],
-  "dns-ttl-propagation-calculator":["#status","—"]
+  "dns-ttl-propagation-calculator":["#status","—"],
+  "acl-generator-validator":["#score","—"]
 };
 const contentContracts={
   "vlan-ip-capacity-planner":{
@@ -75,6 +76,15 @@ const contentContracts={
       "https://www.itu.int/rec/R-REC-P.530/en",
       "https://www.itu.int/rec/R-REC-P.676/en",
       "https://www.itu.int/rec/R-REC-P.526-16-202511-I/en"
+    ]
+  },
+  "acl-generator-validator":{
+    faqCount:5,
+    references:[
+      "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-41r1.pdf",
+      "https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/sec_data_acl/configuration/15-sy/sec-data-acl-15-sy-book/sec-access-list-ov.html",
+      "https://www.juniper.net/documentation/us/en/software/junos/routing-policy/topics/concept/firewall-filter-qfx-series-evaluation-understanding.html",
+      "https://www.iana.org/assignments/service-names-port-numbers/"
     ]
   }
 };
@@ -129,7 +139,7 @@ test.describe("all configured tools",()=>{
         expect(engineLoaded).toBe(true);
         const calculationOutput=calculationOutputs[tool.id];
         expect(calculationOutput,`${tool.id} must declare a calculation output`).toBeTruthy();
-        const calculate=page.locator("#calculateBtn, #calculate, #analyzeBtn, button.primary-action, button[type=submit]").first();
+        const calculate=page.locator("#calculateBtn, #calculate, #analyzeBtn, #validate, button.primary-action, button[type=submit]").first();
         if(await calculate.count())await calculate.click();
         const output=page.locator(calculationOutput[0]);
         await expect(output).toBeVisible();
