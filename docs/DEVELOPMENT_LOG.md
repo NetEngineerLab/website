@@ -172,7 +172,7 @@
 
 ### 2026-08-30 — Tool 21 四厂商 ACL Parser/Generator 核心
 
-- 状态：`VALIDATOR PASS`（页面仍未公开，等待推送及线上工作流）。
+- 状态：`ONLINE PASS`（核心代码已部署，页面仍未公开）。
 - 范围：在 Cisco IOS 基础上新增 Huawei VRP、H3C Comware、Juniper Junos Parser/Generator、厂商 Golden Fixture 和四厂商 `Generate → Parse → IR` 语义等价测试。
 - 厂商边界：Huawei 使用 `acl name … advance`；H3C rule-id 限定 `0–65534`；Junos 采用受限 `set firewall family inet filter` 语法，任意 IPv4 省略 protocol 条件，并要求 `rule-N` 首次出现顺序严格递增。
 - 失败关闭：未知语法进入 `unparsed`；Junos 重复或冲突条件、term 逆序、多 filter 均拒绝；厂商序号范围由 Parser 与 Generator 双向验证，避免同源自证。
@@ -180,6 +180,7 @@
 - 本地验证：`npm run verify` PASS；54 个 HTML、52 个 Sitemap URL、20 个现有引擎、2581 个链接、0 errors、0 warnings；四厂商 ACL 专项 PASS。
 - 独立验证：2 号验证官经过三轮发现并推动修复 Huawei/Junos 真实语法、UMD、Junos 顺序与重复条件、H3C rule-id 上限问题，最终 `PASS`。
 - 实现提交：`b85e8ef8bed2ddf50c7f9f4b0972a40c76884a4e`。
+- 线上验收：提交 `86498cd1fc1b5767ffeed415c1abe6aec29c3382` 对应 Quality Gate `33304557631`、Online Monitor `33304557646`、GA4 Monitor `33304557628`、Performance Monitor `33304572111` 全部成功。
 
 ## 下一步队列
 
