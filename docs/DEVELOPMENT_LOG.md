@@ -197,8 +197,8 @@
 
 ### 2026-08-30 — Tool 21 ACL Generator & Validator 双语页面
 
-- 状态：`VALIDATOR PASS`（实现已提交，等待推送与线上验收）。
-- 页面：`website/tools/acl-generator-validator/` 中英文版本；计划正式 URL 为 `https://netengineerlab.com/tools/acl-generator-validator/` 与 `/zh/`。
+- 状态：`ONLINE PASS`。
+- 页面：`website/tools/acl-generator-validator/` 中英文版本；正式 URL 为 `https://netengineerlab.com/tools/acl-generator-validator/` 与 `/zh/`。
 - 完成内容：公开四厂商 ACL 验证、转换与参数生成页面，支持 Cisco IOS、Huawei VRP、H3C Comware、Juniper Junos；接入 10 条生产规则、确定性评分、双语 Finding、规则证据和语义往返校验。
 - 设计与内容：复用统一 Header/Footer、设计令牌和页面风格；提供本地处理隐私说明、5 组双语 FAQ、FAQPage、NIST/Cisco/Juniper/IANA 权威来源、canonical/hreflang、长尾场景内容与更新时间。
 - 安全与失败关闭：粘贴内容不执行；整体解析失败或被拒绝的非法/恶意输入必须清空旧 score、Finding 与输出，禁止失败后继续展示此前成功结果；部分不支持语法须明确显示覆盖不完整，结果仅适用于已解析规则；转换与参数生成必须通过 Generate → Parse → IR 语义等价校验。
@@ -207,13 +207,13 @@
 - 本地验证：`npm run verify` PASS；56 个 HTML 页面、54 个 Sitemap URL、21 个引擎、2703 个链接、0 errors、0 warnings；ACL 专项 Chrome/Edge/Android/iPhone 8/8 PASS；规则运行时与 ACL 核心专项 PASS；`git diff --check` PASS。
 - 独立验证：2 号验证官首轮发现错误输入仍保留旧结果；修复后最终 `PASS`，独立确认双语四终端 8/8、通用页面 8/8、无障碍、PWA 单一规则包哈希及完整 `npm run verify` 全部通过。
 - 实现提交：`02a7efeda4cfcca4d1e857c8d1b9393957210ede`。
+- 线上验收：提交 `addd66649a18f9207785ef34d88cc85a7853170c` 对应 Quality Gate `33327420495`、Online Monitor `33327420512`、GA4 Monitor `33327420492`、Performance Monitor `33327454020` 全部成功；正式站英中页面 Chrome/Edge/Android/iPhone 8/8 PASS，覆盖验证、Finding、Junos 转换、参数生成、恶意输入不执行、错误后旧结果清理、响应式溢出及控制台错误检查。
 
 ## 下一步队列
 
 按“小批次、验证通过后再继续”的顺序执行：
 
-1. 完成 Tool 21 推送、GitHub 工作流与正式站双语浏览器验收。
-2. 恢复 SEO/GEO 队列：PoE 功率预算、SFP/QSFP 兼容性、光纤损耗、光功率预算、PON 分光器损耗。
-3. MIB/OID Explorer Phase 0：按 `docs/MIB_OID_EXPLORER_DEVELOPMENT_PLAN.md` 完成来源许可调研、解析器选型、数据字典、威胁模型与技术 ADR；不得在门禁前批量抓取或公开厂商 MIB。
+1. 恢复 SEO/GEO 队列：PoE 功率预算、SFP/QSFP 兼容性、光纤损耗、光功率预算、PON 分光器损耗。
+2. MIB/OID Explorer Phase 0：按 `docs/MIB_OID_EXPLORER_DEVELOPMENT_PLAN.md` 完成来源许可调研、解析器选型、数据字典、威胁模型与技术 ADR；不得在门禁前批量抓取或公开厂商 MIB。
 
 任何新发现的 P0/P1 稳定性或正确性问题，优先级高于上述 SEO/GEO 队列，并必须在本文件说明插队原因。
