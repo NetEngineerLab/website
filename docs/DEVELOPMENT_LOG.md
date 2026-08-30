@@ -18,6 +18,18 @@
 
 ## 已完成批次
 
+### 2026-08-30 — Engineering Rules 基础契约与失败关闭门禁
+
+- 状态：`VALIDATOR PASS`
+- 范围：Rule JSON Schema、Severity Policy、Operator Registry、契约测试与 `npm run verify`；当前仍为 20 个生产工具、0 条生产规则，不新增页面或运行时规则引擎。
+- 完成内容：建立双语 Rule/Evidence/Fixture 契约、四级严重度和五维评分策略；注册 6 个基础 Operator，并按精确参数名、类型和适用 domain 失败关闭；扫描所有 domain 的 `rules.json`，拒绝全局重复 ID 和目录/domain 错配。
+- 安全与边界：拒绝可执行字段、未知字段/locale/Operator、LOW、非法来源类型、非 HTTPS 或无主机来源、空 Evidence、路径穿越 Fixture、缺少英中 Field Experience Note；预校准 Policy 固定 `passThreshold: null`、不显示 PASS/FAIL、INFO 不扣分。
+- 自动化：真实执行 Rule Schema 关键字；用临时双 domain 目录验证跨目录重复 ID；结构化验证 Operator Registry 与 Severity Policy 两个信任根，并覆盖五维完整性、扣分顺序、Score cap 和根因去重上限。
+- 本地验证：`npm run verify` PASS；规则契约为 6 operators/0 production rules；54 个 HTML 页面、52 个 Sitemap URL、20 个引擎、2581 个链接、0 errors、0 warnings；`git diff --check` PASS。
+- 独立验证：2 号验证官前三轮发现 Schema/手写验证不一致、路径与额外参数绕过、空来源、跨目录重复 ID、信任根及策略语义缺口；逐项修复后第四轮最终 `PASS`。
+- 实现提交：`6c24995834f894ac20dae863435dcc300e0bc2fd`。
+- 线上验收：待总账提交推送后执行 GitHub 工作流检查；本批无新增公开页面。
+
 ### 2026-08-30 — 工程规则驱动平台架构规范
 
 - 状态：`VALIDATOR PASS`
@@ -138,10 +150,9 @@
 
 按“小批次、验证通过后再继续”的顺序执行：
 
-1. Engineering Rules 基础契约：实现 Rule JSON Schema、Severity Policy、Operator Registry 和失败关闭验证测试。
-2. 共享规则运行时：实现确定性 Evaluator、Evidence Formatter、Score Policy 与内容哈希规则包构建。
-3. Tool 21 ACL 核心：先完成 ACL IR 与单一厂商 Parser/Generator，再扩展到四厂商和 10–15 条高可信规则。
-4. Tool 21 双语页面与浏览器/PWA/线上验收。
-5. 恢复 SEO/GEO 队列：PoE 功率预算、SFP/QSFP 兼容性、光纤损耗、光功率预算、PON 分光器损耗。
+1. 共享规则运行时：实现确定性 Evaluator、Evidence Formatter、Score Policy 与内容哈希规则包构建。
+2. Tool 21 ACL 核心：先完成 ACL IR 与单一厂商 Parser/Generator，再扩展到四厂商和 10–15 条高可信规则。
+3. Tool 21 双语页面与浏览器/PWA/线上验收。
+4. 恢复 SEO/GEO 队列：PoE 功率预算、SFP/QSFP 兼容性、光纤损耗、光功率预算、PON 分光器损耗。
 
 任何新发现的 P0/P1 稳定性或正确性问题，优先级高于上述 SEO/GEO 队列，并必须在本文件说明插队原因。
