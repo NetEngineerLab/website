@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0.0",
+  "scorePolicyVersion": "1.0.0-precalibration",
+  "passThreshold": null,
+  "displayPassFail": false,
+  "baseScore": 100,
+  "dimensions": ["connectivity", "security", "reliability", "manageability", "best-practice"],
+  "severities": {
+    "CRITICAL": {"deduction": 30, "overallScoreCap": 49},
+    "HIGH": {"deduction": 15, "overallScoreCap": null},
+    "MEDIUM": {"deduction": 6, "overallScoreCap": null},
+    "INFO": {"deduction": 0, "overallScoreCap": null}
+  },
+  "rootCauseDeduplication": {
+    "enabled": true,
+    "maximumSameRootCauseDeduction": 30
+  },
+  "disclaimer": {
+    "en": "This score is a deterministic screening aid, not proof of availability, security or compliance.",
+    "zh": "此评分是确定性筛查辅助指标，不代表可用性、安全性或合规证明。"
+  }
+}
