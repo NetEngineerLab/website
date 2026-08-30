@@ -26,6 +26,16 @@ const calculationOutputs={
   "acl-generator-validator":["#score","—"]
 };
 const contentContracts={
+  "poe-power-budget-calculator":{
+    faqCount:5,
+    references:[
+      "https://www.ieee802.org/3/bt/",
+      "https://www.ieee802.org/3/at/objectives.html",
+      "https://ethernetalliance.org/poecert/",
+      "https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus9000/sw/7-x/interfaces/configuration/Hidden/b_Power_Over_Ethernet/b_Power_Over_Ethernet_chapter_00.html",
+      "https://www.flukenetworks.com/blog/cabling-chronicles/bundle-or-not-bundle"
+    ]
+  },
   "vlan-ip-capacity-planner":{
     faqCount:5,
     references:[
