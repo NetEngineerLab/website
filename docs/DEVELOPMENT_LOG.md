@@ -148,13 +148,14 @@
 
 ### 2026-08-30 — 共享工程规则运行时
 
-- 状态：`VALIDATOR PASS`（等待推送及线上工作流）。
+- 状态：`ONLINE PASS`。
 - 完成内容：实现确定性 Evaluator、Evidence Formatter、Score Policy、双语 Report 与内容哈希规则包；增加运行时/规则包/评分策略版本兼容性门禁。
 - 安全与确定性：拒绝缺失 Evidence；自动及显式脱敏密码、令牌、通用 key 与 camel/snake/kebab 形式密钥；禁止覆盖内置 operator/selector；报告时间固定为空，规则包文件名由内容 SHA-256 决定。
 - 集成：5 个共享运行时资源与唯一规则包进入全部 20 个 active 工具 Service Worker；构建、生产验收、线上检查与 Release Manifest 同步校验。
 - 测试：覆盖自定义 selector、中文 Finding/Report、不兼容版本拒绝、旧 bundle 精确清理；`npm run verify` PASS：54 个 HTML、52 个 Sitemap URL、20 个引擎、2581 个链接、0 errors、0 warnings。
 - 独立验证：2 号验证官首轮发现 3 项阻断；修复后最终 `PASS`，并独立重跑专项测试及完整 `npm run verify`。
 - 实现提交：`fa89de6630ee7a28174c9486334b5e4043bcb01d`。
+- 线上验收：提交 `9fba1eda1e3ee4c20ef5444303e8624cab0e4d99` 对应 Quality Gate `33289329401`、Online Monitor `33289329395`、GA4 Monitor `33289329394`、Performance Monitor `33289367036` 全部成功。
 - 范围边界：仍为 6 operators、0 production rules；未新增 Tool 21 页面，未修改现有页面、公式或工具引擎。
 
 ## 下一步队列
