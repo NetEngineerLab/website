@@ -20,7 +20,7 @@
 
 ### 2026-08-30 — Engineering Rules 基础契约与失败关闭门禁
 
-- 状态：`VALIDATOR PASS`
+- 状态：`ONLINE PASS`
 - 范围：Rule JSON Schema、Severity Policy、Operator Registry、契约测试与 `npm run verify`；当前仍为 20 个生产工具、0 条生产规则，不新增页面或运行时规则引擎。
 - 完成内容：建立双语 Rule/Evidence/Fixture 契约、四级严重度和五维评分策略；注册 6 个基础 Operator，并按精确参数名、类型和适用 domain 失败关闭；扫描所有 domain 的 `rules.json`，拒绝全局重复 ID 和目录/domain 错配。
 - 安全与边界：拒绝可执行字段、未知字段/locale/Operator、LOW、非法来源类型、非 HTTPS 或无主机来源、空 Evidence、路径穿越 Fixture、缺少英中 Field Experience Note；预校准 Policy 固定 `passThreshold: null`、不显示 PASS/FAIL、INFO 不扣分。
@@ -28,11 +28,11 @@
 - 本地验证：`npm run verify` PASS；规则契约为 6 operators/0 production rules；54 个 HTML 页面、52 个 Sitemap URL、20 个引擎、2581 个链接、0 errors、0 warnings；`git diff --check` PASS。
 - 独立验证：2 号验证官前三轮发现 Schema/手写验证不一致、路径与额外参数绕过、空来源、跨目录重复 ID、信任根及策略语义缺口；逐项修复后第四轮最终 `PASS`。
 - 实现提交：`6c24995834f894ac20dae863435dcc300e0bc2fd`。
-- 线上验收：待总账提交推送后执行 GitHub 工作流检查；本批无新增公开页面。
+- 线上验收：远端 `8ec86ffc06a741316517ef170b516f74ee1e7130` 的 Quality Gate、Online Monitor、GA4 Monitor 和 Performance Monitor 全部成功；性能工作流完成 Lighthouse 采集与断言；本批无新增公开页面。
 
 ### 2026-08-30 — 工程规则驱动平台架构规范
 
-- 状态：`VALIDATOR PASS`
+- 状态：`ONLINE PASS`
 - 范围：平台设计规范与 Copilot 强制开发规则；不修改现有 20 个工具、公式、URL 或运行时资源。
 - 完成内容：正式确定 `Calculate → Configure → Validate → Diagnose` 路线，以确定性 Engineering Rules Engine 为共享核心；定义 Parser、厂商无关 IR、Rule、Evidence、Score、Presentation 与可选 AI 的职责边界；定义第 21 个工具 Multi-Vendor ACL Generator & Validator 的 V1 范围和分批交付顺序。
 - 关键边界：AI 不得裁决 Finding/Severity/Evidence；规则严重度只允许 CRITICAL/HIGH/MEDIUM/INFO；规则禁止可执行表达式；V1 配置完全本地处理；校准前 Score 不显示 PASS/FAIL；现有计算公式只在黄金样例对照和独立验证后迁移判断层。
@@ -40,11 +40,11 @@
 - 本地验证：设计路径及现行工具结构、PWA/离线、共享资源哈希和四厂商 Generator 闭环测试门禁设计已复核；`git diff --check` PASS；无运行时代码或运行测试变化。
 - 独立验证：2 号验证官前三轮发现标准工具结构、共享缓存、Generator 测试、AI/Score 边界、模块归属及生成物路径问题；逐项修订后第四轮最终 `PASS`。
 - 实现提交：`423e498225b8cd90cb2291216ce0b24a53ad0574`。
-- 线上验收：本批仅为设计规范；与后续规则 Schema 实现一起推送并执行 GitHub 工作流验收。
+- 线上验收：设计规范已随远端 `8ec86ffc06a741316517ef170b516f74ee1e7130` 推送；Quality Gate、Online Monitor、GA4 Monitor 和 Performance Monitor 全部成功。
 
 ### 2026-08-29 — 全站 SEO/GEO 覆盖盘点与自动化门禁
 
-- 状态：`VALIDATOR PASS`
+- 状态：`ONLINE PASS`
 - 范围：`website/data/tools-catalog.json` 中 20 个 active 工具的 40 个中英文工具页；不修改页面、计算公式、URL 或部署配置。
 - 完成内容：新增配置驱动的 SEO/GEO 内容覆盖审计，逐页记录双语搜索意图、目标主题、可见 FAQ 长尾问题、内容负责人、复核日期、内容长度、章节、FAQPage、外部来源和正文内链；生成 `docs/SEO_GEO_COVERAGE_REPORT.json`，并接入 `npm run verify`。
 - 关键决策：优先级是透明的内容缺口评分，不是排名、流量或转化预测；未发现正式可见复核日期时保持 `null`，不得虚构；外部来源数量仅作可核验性代理，来源质量仍需人工复核；Header、Footer、导航和面包屑不计入正文内链。
@@ -53,7 +53,7 @@
 - 本地验证：`npm run verify` PASS；54 个 HTML 页面、52 个 Sitemap URL、20 个引擎、2581 个链接、0 errors、0 warnings；SEO/GEO 覆盖报告为 20 tools/40 pages、2 high/6 medium/12 maintain；`git diff --check` PASS。
 - 独立验证：2 号验证官前三轮分别发现硬编码路由/壳层内链/伪 Schema/日期矛盾、`div.breadcrumbs` 漏排除及连字符 class 误匹配；逐项修复并增加故障注入测试后，第四轮最终 `PASS`。
 - 实现提交：`16af9f227037a84f4e8c6819c12419d4af11731e`。
-- 线上验收：待总账提交推送后执行 GitHub 工作流与正式站回归检查。
+- 线上验收：审计实现已随远端 `8ec86ffc06a741316517ef170b516f74ee1e7130` 推送；Quality Gate、Online Monitor、GA4 Monitor 和 Performance Monitor 全部成功；本批未修改正式站页面内容。
 
 ### 2026-08-29 — 无线链路预算计算器 SEO/GEO 内容
 
