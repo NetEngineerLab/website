@@ -160,7 +160,7 @@
 
 ### 2026-08-30 — Tool 21 ACL IR 与 Cisco IOS 核心
 
-- 状态：`VALIDATOR PASS`（尚未公开页面，等待推送及线上工作流）。
+- 状态：`ONLINE PASS`（核心代码已部署，Tool 21 页面仍未公开）。
 - 范围：新增 `website/tools/acl-generator-validator/` 的厂商无关 IPv4 ACL IR、Cisco IOS 命名扩展 ACL Parser/Generator、DOM-free engine、Golden Fixture 与专项测试；未加入工具目录或 Sitemap。
 - 工程边界：V1 本批仅支持 Cisco IOS 命名扩展 ACL、`ip/tcp/udp/icmp`、any/host/network、数值目标端口与 log；命名端口、混合显式/隐式 sequence、多 ACL 及其他语法明确拒绝或进入 unparsed，禁止静默视为已验证。
 - 安全与确定性：配置限制为 100 KiB/2000 行并拒绝 NUL；保留 sourceLine/raw/unparsed；严格拒绝错误类型、非安全整数和不兼容 IR version/domain/family；不执行粘贴内容。
@@ -168,6 +168,7 @@
 - 本地验证：`npm run verify` PASS；54 个 HTML、52 个 Sitemap URL、20 个现有引擎、2581 个链接、0 errors、0 warnings；ACL 核心专项 PASS。
 - 独立验证：2 号验证官经过三轮故障注入发现并推动修复布尔强转、端口自证、混合序号、宽松类型/IR 兼容性及超大整数问题，最终 `PASS`。
 - 实现提交：`807e342704e49d5ee63c98a27811a5f15abf7531`。
+- 线上验收：提交 `6aaf70fc490602558d7ee6729cf969c91f77f025` 对应 Quality Gate `33300333363`、Online Monitor `33300333364`、GA4 Monitor `33300333317`、Performance Monitor `33300350070` 全部成功。
 
 ## 下一步队列
 
