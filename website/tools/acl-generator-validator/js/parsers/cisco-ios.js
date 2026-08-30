@@ -18,7 +18,7 @@
   }
   function parseRule(text,line){
     const tokens=text.trim().split(/\s+/).map(token=>token.toLowerCase());let index=0,sequence;
-    if(/^\d+$/.test(tokens[0]))sequence=Number(tokens[index++]);
+    if(/^\d+$/.test(tokens[0])){sequence=Number(tokens[index++]);if(sequence<1)return null}
     const action=tokens[index++],protocol=tokens[index++];
     if(!["permit","deny"].includes(action)||!["ip","tcp","udp","icmp"].includes(protocol))return null;
     const source=endpoint(tokens,index);if(!source)return null;index=source.next;

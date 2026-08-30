@@ -1,0 +1,5 @@
+{
+  "huawei-vrp": "acl name EDGE-IN advance\n rule 10 permit tcp source 10.10.0.0 0.0.255.255 destination 192.0.2.10 0.0.0.0 destination-port eq 443 logging\n rule 20 deny ip source any destination any\nquit\n",
+  "h3c-comware": "acl advanced name EDGE-IN\n rule 10 permit tcp source 10.10.0.0 0.0.255.255 destination 192.0.2.10 0.0.0.0 destination-port eq 443 logging\n rule 20 deny ip source any destination any\nquit\n",
+  "juniper-junos": "set firewall family inet filter EDGE-IN term rule-10 from protocol tcp\nset firewall family inet filter EDGE-IN term rule-10 from source-address 10.10.0.0/16\nset firewall family inet filter EDGE-IN term rule-10 from destination-address 192.0.2.10/32\nset firewall family inet filter EDGE-IN term rule-10 from destination-port 443\nset firewall family inet filter EDGE-IN term rule-10 then log\nset firewall family inet filter EDGE-IN term rule-10 then accept\nset firewall family inet filter EDGE-IN term rule-20 then discard\n"
+}

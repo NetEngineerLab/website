@@ -3,13 +3,15 @@
 const assert=require("assert");
 const fs=require("fs");
 const path=require("path");
+const vm=require("vm");
 const engine=require("../js/engine");
 const irApi=require("../js/ir-adapter");
 const parser=require("../js/parsers/cisco-ios");
 const generator=require("../js/generators/cisco-ios");
 const fixture=JSON.parse(fs.readFileSync(path.join(__dirname,"fixtures","cisco-ios-golden.json"),"utf8"));
+const vendorGolden=JSON.parse(fs.readFileSync(path.join(__dirname,"fixtures","multi-vendor-golden.json"),"utf8"));
 
-assert.deepStrictEqual(engine.supportedVendors,["cisco-ios"]);
+assert.deepStrictEqual(engine.supportedVendors,["cisco-ios","huawei-vrp","h3c-comware","juniper-junos"]);
 const ir=irApi.createIr({name:fixture.name,rules:fixture.rules});
 assert.strictEqual(generator.generate(ir),fixture.configuration);
 const parsed=parser.parse(fixture.configuration);
@@ -19,6 +21,38 @@ assert.deepStrictEqual(irApi.semanticView(parsed.ir),irApi.semanticView(ir));
 const roundTrip=engine.semanticRoundTrip({vendor:"cisco-ios",ir});
 assert.strictEqual(roundTrip.equivalent,true);
 assert.strictEqual(roundTrip.configuration,fixture.configuration);
+for(const vendor of ["huawei-vrp","h3c-comware","juniper-junos"]){
+  const result=engine.semanticRoundTrip({vendor,ir});
+  assert.strictEqual(result.configuration,vendorGolden[vendor],`${vendor} golden fixture`);
+  assert.strictEqual(result.equivalent,true,`${vendor} semantic round-trip`);
+  assert.strictEqual(result.parsed.coverage.complete,true);
+  assert.strictEqual(result.parsed.ir.rules[0].sourceLine>0,true);
+}
+assert.match(engine.generateConfiguration({vendor:"huawei-vrp",ir}),/^acl name EDGE-IN advance\n/);
+assert.match(engine.generateConfiguration({vendor:"h3c-comware",ir}),/^acl advanced name EDGE-IN\n/);
+assert.match(engine.generateConfiguration({vendor:"juniper-junos",ir}),/^set firewall family inet filter EDGE-IN term rule-10/);
+assert(!engine.generateConfiguration({vendor:"juniper-junos",ir}).includes("protocol ip"));
+const junosParser=require("../js/parsers/juniper-junos");
+assert.throws(()=>junosParser.parse("set firewall family inet filter X term rule-10 from protocol tcp\nset firewall family inet filter X term rule-10 from protocol udp\nset firewall family inet filter X term rule-10 then accept\n"),/no_supported_rules/);
+assert.throws(()=>junosParser.parse("set firewall family inet filter X term rule-10 then accept\nset firewall family inet filter X term rule-10 then discard\n"),/no_supported_rules/);
+assert.throws(()=>junosParser.parse("set firewall family inet filter X term rule-20 then accept\nset firewall family inet filter X term rule-10 then discard\n"),/unsupported_term_order/);
+assert.throws(()=>junosParser.parse("set firewall family inet filter X term rule-10 from protocol tcp\nset firewall family inet filter X term rule-10 from protocol tcp\nset firewall family inet filter X term rule-10 then accept\n"),/no_supported_rules/);
+assert.throws(()=>junosParser.parse("set firewall family inet filter X term rule-10 then accept\nset firewall family inet filter X term rule-10 then accept\n"),/no_supported_rules/);
+const zeroIr=irApi.createIr({name:"ZERO",rules:[{...fixture.rules[1],sequence:0}]});
+assert.strictEqual(engine.parseConfiguration({vendor:"h3c-comware",input:engine.generateConfiguration({vendor:"h3c-comware",ir:zeroIr})}).ir.rules[0].sequence,0);
+const h3cMaxIr=irApi.createIr({name:"MAX",rules:[{...fixture.rules[1],sequence:65534}]});
+assert.strictEqual(engine.semanticRoundTrip({vendor:"h3c-comware",ir:h3cMaxIr}).equivalent,true);
+const h3cOverIr=irApi.createIr({name:"OVER",rules:[{...fixture.rules[1],sequence:65535}]});
+assert.throws(()=>engine.generateConfiguration({vendor:"h3c-comware",ir:h3cOverIr}),/sequence_out_of_range/);
+assert.throws(()=>engine.parseConfiguration({vendor:"h3c-comware",input:"acl advanced name OVER\n rule 65535 deny ip source any destination any\nquit\n"}),/no_supported_rules/);
+assert.throws(()=>engine.generateConfiguration({vendor:"cisco-ios",ir:zeroIr}),/sequence_must_be_positive/);
+assert.throws(()=>engine.parseConfiguration({vendor:"cisco-ios",input:"ip access-list extended ZERO\n 0 deny ip any any\nexit\n"}),/no_supported_rules/);
+
+const browserContext={};
+for(const relative of ["js/ir-adapter.js","js/parsers/vrp-comware-factory.js","js/generators/vrp-comware-factory.js","js/parsers/cisco-ios.js","js/generators/cisco-ios.js","js/parsers/huawei-vrp.js","js/generators/huawei-vrp.js","js/parsers/h3c-comware.js","js/generators/h3c-comware.js","js/parsers/juniper-junos.js","js/generators/juniper-junos.js","js/engine.js"]){
+  vm.runInNewContext(fs.readFileSync(path.join(__dirname,"..",relative),"utf8"),browserContext,{filename:relative});
+}
+assert.deepStrictEqual(Array.from(browserContext.NetEngineerLabAclEngine.supportedVendors),["cisco-ios","huawei-vrp","h3c-comware","juniper-junos"]);
 
 assert.strictEqual(irApi.wildcardToPrefix("0.0.255.255"),16);
 assert.strictEqual(irApi.prefixToWildcard(32),"0.0.0.0");

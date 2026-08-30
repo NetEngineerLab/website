@@ -13,6 +13,7 @@
   function generate(input){
     irApi.validateCompatibleIr(input);
     const ir=irApi.createIr(input);
+    if(ir.rules.some(rule=>rule.sequence<1))throw new Error("cisco_sequence_must_be_positive");
     const lines=[`ip access-list extended ${ir.name}`];
     for(const rule of ir.rules){
       let line=` ${rule.sequence} ${rule.action} ${rule.protocol} ${endpoint(rule.source)} ${endpoint(rule.destination)}`;

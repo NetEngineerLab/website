@@ -69,7 +69,7 @@
     if(!actions.has(action))throw new Error("invalid_action");
     if(!protocols.has(protocol))throw new Error("unsupported_protocol");
     const sequence=rule.sequence===undefined?10*(index+1):strictInteger(rule.sequence,"invalid_sequence");
-    if(sequence<1||sequence>2147483647)throw new Error("invalid_sequence");
+    if(sequence<0||sequence>2147483647)throw new Error("invalid_sequence");
     const destinationPort=normalizePort(rule.destinationPort);
     if(destinationPort!==undefined&&!new Set(["tcp","udp"]).has(protocol))throw new Error("port_requires_tcp_or_udp");
     const sourceLine=rule.sourceLine==null?null:strictInteger(rule.sourceLine,"invalid_source_line");
