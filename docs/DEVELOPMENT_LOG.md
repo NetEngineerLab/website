@@ -18,6 +18,19 @@
 
 ## 已完成批次
 
+### 2026-08-29 — 全站 SEO/GEO 覆盖盘点与自动化门禁
+
+- 状态：`VALIDATOR PASS`
+- 范围：`website/data/tools-catalog.json` 中 20 个 active 工具的 40 个中英文工具页；不修改页面、计算公式、URL 或部署配置。
+- 完成内容：新增配置驱动的 SEO/GEO 内容覆盖审计，逐页记录双语搜索意图、目标主题、可见 FAQ 长尾问题、内容负责人、复核日期、内容长度、章节、FAQPage、外部来源和正文内链；生成 `docs/SEO_GEO_COVERAGE_REPORT.json`，并接入 `npm run verify`。
+- 关键决策：优先级是透明的内容缺口评分，不是排名、流量或转化预测；未发现正式可见复核日期时保持 `null`，不得虚构；外部来源数量仅作可核验性代理，来源质量仍需人工复核；Header、Footer、导航和面包屑不计入正文内链。
+- 盘点结论：20 个工具、40 个双语页面全部纳入；2 个 high、6 个 medium、12 个 maintain。下一批前五项依次为 PoE 功率预算、SFP/QSFP 兼容性、光纤损耗、光功率预算、PON 分光器损耗；前两项同时缺 1 个 FAQ、3 个外部权威来源和可见复核日期。
+- 自动化：新增成功/薄内容评分、替代 `directoryStrategy.toolPage`、动态 active locale 与 `catalogKey`、inactive/planned 排除、同分稳定排序、相对正文内链、自链接排除、Header/Footer/Nav/精确 breadcrumb token 排除、连字符伪 breadcrumb 保留、正文伪 FAQPage 拒绝、嵌套 JSON-LD FAQPage 和中英文复核日期测试。
+- 本地验证：`npm run verify` PASS；54 个 HTML 页面、52 个 Sitemap URL、20 个引擎、2581 个链接、0 errors、0 warnings；SEO/GEO 覆盖报告为 20 tools/40 pages、2 high/6 medium/12 maintain；`git diff --check` PASS。
+- 独立验证：2 号验证官前三轮分别发现硬编码路由/壳层内链/伪 Schema/日期矛盾、`div.breadcrumbs` 漏排除及连字符 class 误匹配；逐项修复并增加故障注入测试后，第四轮最终 `PASS`。
+- 实现提交：`16af9f227037a84f4e8c6819c12419d4af11731e`。
+- 线上验收：待总账提交推送后执行 GitHub 工作流与正式站回归检查。
+
 ### 2026-08-29 — 无线链路预算计算器 SEO/GEO 内容
 
 - 状态：`ONLINE PASS`
@@ -113,6 +126,8 @@
 
 按“小批次、验证通过后再继续”的顺序执行：
 
-1. 全站 SEO/GEO 覆盖盘点：按搜索意图、内容深度、FAQ/Schema、来源质量与长尾场景建立下一轮优先级清单。
+1. PoE 功率预算计算器 SEO/GEO 内容：补足第 5 个真实工程 FAQ、至少 3 个权威来源和可见复核日期，并核验计算边界与正文内链。
+2. SFP/QSFP 兼容性计算器 SEO/GEO 内容：补足第 5 个真实工程 FAQ、至少 3 个权威来源和可见复核日期，并核验兼容性判断边界与正文内链。
+3. 光纤损耗、光功率预算、PON 分光器损耗页面：按覆盖报告顺序补充权威来源和可见复核信息。
 
 任何新发现的 P0/P1 稳定性或正确性问题，优先级高于上述 SEO/GEO 队列，并必须在本文件说明插队原因。
