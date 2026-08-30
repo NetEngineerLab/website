@@ -8,7 +8,7 @@ const CORE = [
   "./manifest.webmanifest",
   "./css/style.css?v=39e1f1076d7a",
   "./js/engine.js",
-  "./js/app.js?v=910005e12607",
+  "./js/app.js?v=4f284bb79706",
   "./images/logo.svg",
   "../../data/locales.js?v=b541508dc0ee",
   "../../data/site-config.js?v=b5072ad7fa47",

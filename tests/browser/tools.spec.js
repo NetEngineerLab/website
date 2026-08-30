@@ -36,6 +36,15 @@ const contentContracts={
       "https://www.flukenetworks.com/blog/cabling-chronicles/bundle-or-not-bundle"
     ]
   },
+  "sfp-qsfp-compatibility-calculator":{
+    faqCount:5,
+    references:[
+      "https://members.snia.org/document/dl/25916",
+      "https://www.snia.org/node/19611",
+      "https://www.cisco.com/c/en/us/products/collateral/interfaces-modules/gigabit-ethernet-gbic-sfp-modules/datasheet-c78-366584.html",
+      "https://www.juniper.net/documentation/us/en/hardware/800g-optics-cables-guide/optics/topics/concept/800g-optics-faqs.html"
+    ]
+  },
   "vlan-ip-capacity-planner":{
     faqCount:5,
     references:[

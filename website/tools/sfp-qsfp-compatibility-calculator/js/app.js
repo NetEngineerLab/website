@@ -4,22 +4,22 @@
   const $=id=>document.getElementById(id);
   const E=window.NELSfpQsfpEngine;
   let last;
-  const labels=zh?{PASS:"通过",WARNING:"需要确认",FAIL:"不兼容",rate:"速率",lanes:"通道",media:"介质",fiber:"光纤",wavelength:"波长",connector:"接口",sensitivity:"接收灵敏度",overload:"接收过载",ok:"当前参数满足被动链路兼容性和光功率预算。仍需核对设备厂商兼容清单、FEC和固件。",copied:"已复制",csv:"已导出"}:{PASS:"Compatible",WARNING:"Verify host support",FAIL:"Not compatible",rate:"Rate",lanes:"Lanes",media:"Media",fiber:"Fiber",wavelength:"Wavelength",connector:"Connector",sensitivity:"Receiver sensitivity",overload:"Receiver overload",ok:"The passive link and optical budget pass. Confirm vendor coding, host firmware and FEC before deployment.",copied:"Copied",csv:"Exported"};
+  const labels=zh?{PASS:"通过",WARNING:"需要确认",FAIL:"不兼容",rate:"速率",lanes:"通道",media:"介质",fiber:"光纤",wavelength:"波长",connector:"接口",input:"输入有效性",powerRange:"光功率范围",sensitivity:"接收灵敏度",overload:"接收过载",ok:"当前参数满足被动链路兼容性和光功率预算。仍需核对设备厂商兼容清单、FEC和固件。",copied:"已复制",csv:"已导出"}:{PASS:"Compatible",WARNING:"Verify host support",FAIL:"Not compatible",rate:"Rate",lanes:"Lanes",media:"Media",fiber:"Fiber",wavelength:"Wavelength",connector:"Connector",input:"Input validity",powerRange:"Optical power range",sensitivity:"Receiver sensitivity",overload:"Receiver overload",ok:"The passive link and optical budget pass. Confirm vendor coding, host firmware and FEC before deployment.",copied:"Copied",csv:"Exported"};
   const formFactors=Object.keys(E.FORM_FACTORS);
   ["aForm","bForm"].forEach(id=>formFactors.forEach(v=>$(id).add(new Option(v,v))));
   const presets={
-    "10glr":{form:"SFP+",rate:10,lanes:1,media:"SMF",wave:1310,connector:"LC",tx:-8.2,rx:-14.4,overload:.5,fiber:"SMF",distance:10,attenuation:.35,connectors:2,connectorLoss:.3,splices:2,spliceLoss:.1,margin:1.5},
-    "25glr":{form:"SFP28",rate:25,lanes:1,media:"SMF",wave:1310,connector:"LC",tx:-7,rx:-13.3,overload:.5,fiber:"SMF",distance:10,attenuation:.35,connectors:2,connectorLoss:.3,splices:2,spliceLoss:.1,margin:2},
-    "100glr4":{form:"QSFP28",rate:100,lanes:4,media:"SMF",wave:1310,connector:"LC",tx:-4.3,rx:-10.6,overload:4.5,fiber:"SMF",distance:10,attenuation:.35,connectors:2,connectorLoss:.3,splices:2,spliceLoss:.1,margin:2},
-    "40gsr4":{form:"QSFP+",rate:40,lanes:4,media:"MMF",wave:850,connector:"MPO",tx:-7.6,rx:-9.5,overload:2.4,fiber:"MMF",distance:.15,attenuation:3,connectors:2,connectorLoss:.35,splices:0,spliceLoss:.1,margin:.5}
+    "10glr":{form:"SFP+",rate:10,lanes:1,media:"SMF",wave:1310,connector:"LC",tx:-8.2,txMax:.5,rx:-14.4,overload:.5,fiber:"SMF",distance:10,attenuation:.35,connectors:2,connectorLoss:.3,splices:2,spliceLoss:.1,margin:1.5},
+    "25glr":{form:"SFP28",rate:25,lanes:1,media:"SMF",wave:1310,connector:"LC",tx:-7,txMax:2,rx:-13.3,overload:.5,fiber:"SMF",distance:10,attenuation:.35,connectors:2,connectorLoss:.3,splices:2,spliceLoss:.1,margin:2},
+    "100glr4":{form:"QSFP28",rate:100,lanes:4,media:"SMF",wave:1310,connector:"LC",tx:-4.3,txMax:4.5,rx:-10.6,overload:4.5,fiber:"SMF",distance:10,attenuation:.35,connectors:2,connectorLoss:.3,splices:2,spliceLoss:.1,margin:2},
+    "40gsr4":{form:"QSFP+",rate:40,lanes:4,media:"MMF",wave:850,connector:"MPO",tx:-7.6,txMax:2.4,rx:-9.5,overload:2.4,fiber:"MMF",distance:.15,attenuation:3,connectors:2,connectorLoss:.35,splices:0,spliceLoss:.1,margin:.5}
   };
   function setPreset(){
     const p=presets[$("preset").value];
-    ["a","b"].forEach(x=>{$(x+"Form").value=p.form;$(x+"Rate").value=p.rate;$(x+"Lanes").value=p.lanes;$(x+"Media").value=p.media;$(x+"Wave").value=p.wave;$(x+"Connector").value=p.connector;$(x+"Tx").value=p.tx;$(x+"Rx").value=p.rx;$(x+"Overload").value=p.overload;});
+    ["a","b"].forEach(x=>{$(x+"Form").value=p.form;$(x+"Rate").value=p.rate;$(x+"Lanes").value=p.lanes;$(x+"Media").value=p.media;$(x+"Wave").value=p.wave;$(x+"Connector").value=p.connector;$(x+"Tx").value=p.tx;$(x+"TxMax").value=p.txMax;$(x+"Rx").value=p.rx;$(x+"Overload").value=p.overload;});
     ["fiber","distance","attenuation","connectors","connectorLoss","splices","spliceLoss","margin"].forEach(id=>$(id).value=p[id]);
     calculate(false);
   }
-  function module(prefix){return{formFactor:$(prefix+"Form").value,aggregateRateGbps:$(prefix+"Rate").value,lanes:$(prefix+"Lanes").value,media:$(prefix+"Media").value,wavelengthNm:$(prefix+"Wave").value,connector:$(prefix+"Connector").value,txMinDbm:$(prefix+"Tx").value,rxSensitivityDbm:$(prefix+"Rx").value,rxOverloadDbm:$(prefix+"Overload").value};}
+  function module(prefix){return{formFactor:$(prefix+"Form").value,aggregateRateGbps:$(prefix+"Rate").value,lanes:$(prefix+"Lanes").value,media:$(prefix+"Media").value,wavelengthNm:$(prefix+"Wave").value,connector:$(prefix+"Connector").value,txMinDbm:$(prefix+"Tx").value,txMaxDbm:$(prefix+"TxMax").value,rxSensitivityDbm:$(prefix+"Rx").value,rxOverloadDbm:$(prefix+"Overload").value};}
   function values(){return{moduleA:module("a"),moduleB:module("b"),link:{fiberType:$("fiber").value,connector:$("aConnector").value,distanceKm:$("distance").value,attenuationDbPerKm:$("attenuation").value,connectorCount:$("connectors").value,connectorLossDb:$("connectorLoss").value,spliceCount:$("splices").value,spliceLossDb:$("spliceLoss").value,engineeringMarginDb:$("margin").value}};}
   const db=v=>Number.isFinite(v)?`${v.toFixed(2)} dB`:"—";
   function calculate(track=true){

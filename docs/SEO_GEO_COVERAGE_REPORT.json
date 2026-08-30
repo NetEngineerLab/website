@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-30T18:32:00.745Z",
+  "generatedAt": "2026-08-30T19:41:57.328Z",
   "methodology": {
     "scope": "Active bilingual tool pages configured by locales.json and tools-catalog.json",
     "meaning": "Rule-based content-gap priority; not a ranking, traffic, or conversion forecast",
@@ -20,81 +20,19 @@
     "activeTools": 21,
     "localePages": 42,
     "priorityCounts": {
-      "high": 1,
+      "high": 0,
       "medium": 6,
-      "maintain": 14
+      "maintain": 15
     }
   },
   "nextBatch": [
-    "sfp-qsfp-compatibility-calculator",
     "fiber-loss",
     "optical-power-budget",
     "pon-splitter-loss",
-    "onu-rx-power"
+    "onu-rx-power",
+    "pon-distance"
   ],
   "tools": [
-    {
-      "id": "sfp-qsfp-compatibility-calculator",
-      "catalogOrder": 14,
-      "category": "optical",
-      "searchIntent": {
-        "id": "validation",
-        "en": "validation",
-        "zh": "验证"
-      },
-      "targetTopic": {
-        "en": "SFP & QSFP Compatibility Checker",
-        "zh": "SFP与QSFP光模块兼容性查询"
-      },
-      "contentOwner": "NetEngineerLab Editorial",
-      "lastReviewedAt": {
-        "en": null,
-        "zh": null
-      },
-      "locales": {
-        "en": {
-          "visibleCharacters": 3751,
-          "sectionHeadings": 9,
-          "longTailQuestions": [
-            "Can I connect 10G SFP+ to 25G SFP28?",
-            "Can single-mode and multimode optical modules communicate?",
-            "Why is receiver overload checked?",
-            "Does PASS guarantee a branded switch accepts the module?"
-          ],
-          "faqCount": 4,
-          "faqSchema": true,
-          "externalReferences": [],
-          "externalReferenceCount": 0,
-          "internalLinkCount": 3,
-          "lastReviewedAt": null,
-          "reviewMarker": false
-        },
-        "zh": {
-          "visibleCharacters": 1475,
-          "sectionHeadings": 9,
-          "longTailQuestions": [
-            "10G SFP+可以连接25G SFP28吗？",
-            "单模和多模光模块可以互通吗？",
-            "为什么还要检查接收过载？",
-            "显示“通过”是否代表交换机一定识别模块？"
-          ],
-          "faqCount": 4,
-          "faqSchema": true,
-          "externalReferences": [],
-          "externalReferenceCount": 0,
-          "internalLinkCount": 3,
-          "lastReviewedAt": null,
-          "reviewMarker": false
-        }
-      },
-      "score": 30,
-      "priority": "high",
-      "gaps": [
-        "1 FAQ(s) below the five-question target",
-        "3 authoritative reference(s) below the three-source target",
-        "visible review/update marker missing"
-      ]
-    },
     {
       "id": "fiber-loss",
       "catalogOrder": 1,
@@ -1513,6 +1451,76 @@
             "https://www.flukenetworks.com/blog/cabling-chronicles/bundle-or-not-bundle"
           ],
           "externalReferenceCount": 5,
+          "internalLinkCount": 3,
+          "lastReviewedAt": "2026-08-31",
+          "reviewMarker": true
+        }
+      },
+      "score": 0,
+      "priority": "maintain",
+      "gaps": []
+    },
+    {
+      "id": "sfp-qsfp-compatibility-calculator",
+      "catalogOrder": 14,
+      "category": "optical",
+      "searchIntent": {
+        "id": "validation",
+        "en": "validation",
+        "zh": "验证"
+      },
+      "targetTopic": {
+        "en": "SFP & QSFP Compatibility Checker",
+        "zh": "SFP与QSFP光模块兼容性查询"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-08-31",
+        "zh": "2026-08-31"
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 4934,
+          "sectionHeadings": 10,
+          "longTailQuestions": [
+            "Can I connect 10G SFP+ to 25G SFP28?",
+            "Can single-mode and multimode optical modules communicate?",
+            "Why is receiver overload checked?",
+            "Does PASS guarantee a branded switch accepts the module?",
+            "Can I install a QSFP28 module in a QSFP-DD port?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://members.snia.org/document/dl/25916",
+            "https://www.snia.org/node/19611",
+            "https://www.cisco.com/c/en/us/products/collateral/interfaces-modules/gigabit-ethernet-gbic-sfp-modules/datasheet-c78-366584.html",
+            "https://www.juniper.net/documentation/us/en/hardware/800g-optics-cables-guide/optics/topics/concept/800g-optics-faqs.html"
+          ],
+          "externalReferenceCount": 4,
+          "internalLinkCount": 3,
+          "lastReviewedAt": "2026-08-31",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 1879,
+          "sectionHeadings": 10,
+          "longTailQuestions": [
+            "10G SFP+可以连接25G SFP28吗？",
+            "单模和多模光模块可以互通吗？",
+            "为什么还要检查接收过载？",
+            "显示“通过”是否代表交换机一定识别模块？",
+            "QSFP-DD端口可以安装QSFP28模块吗？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://members.snia.org/document/dl/25916",
+            "https://www.snia.org/node/19611",
+            "https://www.cisco.com/c/en/us/products/collateral/interfaces-modules/gigabit-ethernet-gbic-sfp-modules/datasheet-c78-366584.html",
+            "https://www.juniper.net/documentation/us/en/hardware/800g-optics-cables-guide/optics/topics/concept/800g-optics-faqs.html"
+          ],
+          "externalReferenceCount": 4,
           "internalLinkCount": 3,
           "lastReviewedAt": "2026-08-31",
           "reviewMarker": true
