@@ -177,5 +177,6 @@
 1. Tool 21 ACL 核心扩展：实现 Huawei VRP、H3C Comware、Juniper Junos Parser/Generator，再完成 10–15 条高可信规则。
 2. Tool 21 双语页面与浏览器/PWA/线上验收。
 3. 恢复 SEO/GEO 队列：PoE 功率预算、SFP/QSFP 兼容性、光纤损耗、光功率预算、PON 分光器损耗。
+4. MIB/OID Explorer Phase 0：按 `docs/MIB_OID_EXPLORER_DEVELOPMENT_PLAN.md` 完成来源许可调研、解析器选型、数据字典、威胁模型与技术 ADR；不得在门禁前批量抓取或公开厂商 MIB。
 
 任何新发现的 P0/P1 稳定性或正确性问题，优先级高于上述 SEO/GEO 队列，并必须在本文件说明插队原因。
