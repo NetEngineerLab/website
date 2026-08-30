@@ -801,10 +801,12 @@ NetEngineerLab高级软件工程师。
 源文件：
 
 - `website/data/*.json`
+- `website/data/engineering-rules/**/*.json` 中的规则、严重度策略和厂商能力源数据
 - `website/templates/header-{locale.id}.html`
 - `website/templates/footer-{locale.id}.html`
 - `website/assets/css/design-tokens.css`
 - `website/assets/css/site-shell.css`
+- `website/assets/js/rules-engine/` 中的共享规则引擎源文件
 - HTML 中 Header/Footer 标记之外的内容区
 - 工具目录中的 CSS、JavaScript、Manifest 和 Service Worker
 - `scripts/`
@@ -817,6 +819,7 @@ NetEngineerLab高级软件工程师。
 - `website/data/tools-catalog.js`
 - `website/data/site-config.js`
 - `website/sitemap.xml`
+- `website/assets/generated/rules-engine/rules-bundle.<sha256-12>.js`
 - `docs/*_REPORT.json`
 - `docs/RELEASE_MANIFEST.json`
 - 所有 HTML 中 `NEL_HEADER_START/END` 与 `NEL_FOOTER_START/END` 标记内部
@@ -1213,6 +1216,39 @@ GEO 内容必须便于搜索与生成式系统理解、核验和引用：
 
 新会话开始开发前必须先读取本规则和 `docs/DEVELOPMENT_LOG.md`，以记录中的未完成队列为基础，
 不得仅凭聊天记忆重新决定顺序。历史专项文档可以保留，但不得替代持续总账。
+
+
+==================================================
+32. 工程规则驱动平台
+==================================================
+
+
+NetEngineerLab 的目标架构采用 `Calculate → Configure → Validate → Diagnose`，共享核心为
+Engineering Rules Engine。详细规范以 `docs/ENGINEERING_RULES_PLATFORM_ARCHITECTURE.md` 为准。
+
+
+规则引擎必须遵守：
+
+- Parser 只负责把参数、配置或命令输出转成保留来源位置的厂商无关 IR；不得直接生成结论。
+- 确定性规则负责 Finding、Severity、Evidence、Rule ID 和评分影响；AI 不得新增、删除或改变这些结果。
+- 严重程度只使用 `CRITICAL`、`HIGH`、`MEDIUM`、`INFO`，禁止混入 `LOW`。
+- 每个 Finding 必须有最小充分 Evidence；无法解析的内容必须显式标记，禁止视为已验证。
+- 规则 JSON 只能调用已注册 Operator，禁止保存或执行 JavaScript 表达式，禁止 `eval` 和 `Function`。
+- 粘贴内容按不可信输入处理；必须限制大小与运行时间、转义输出、遮盖密钥，并禁止分析系统采集。
+- V1 完全在本地浏览器处理且不向 AI 传输输入或结论；未来 AI 仅能在独立授权设计下接收最小化脱敏结果。
+- Engineering Score 是筛查指标，不是可用性、安全性或合规证明；评分算法必须版本化和可解释，校准前不得显示 PASS/FAIL。
+- 现有计算公式不因迁移规则引擎而重写；判断层迁移必须具有新旧输出对照测试和独立验证。
+- 共享规则引擎必须使用内容哈希 URL，进入所有 active 工具 Service Worker 缓存，并纳入构建、离线和发布门禁。
+- 嵌套规则 JSON 不作为运行时 URL；构建必须校验后生成 `website/assets/generated/rules-engine/rules-bundle.<sha256-12>.js`，并检查 Evaluator、Schema、评分策略与规则包版本兼容性。
+- 发布门禁必须验证规则包确定性、文件名/内容哈希、源 JSON 无页面直连、版本不兼容时构建失败，以及页面、SW 与 Release Manifest 引用同一哈希产物。
+
+
+第 21 个架构验证工具为 Multi-Vendor ACL Generator & Validator。必须先完成规则 Schema、严重度策略、
+Operator Registry、共享 Evaluator、Evidence 和 Score 测试，再开发页面。首版规则应控制在 10–15 条高可信规则，
+不得为了达到数量目标加入缺少证据、来源或边界测试的规则。
+Tool 21 仍须保留标准 `engine.js`、`app.js`、`pwa.js`、`manifest.webmanifest` 与 `sw.js`；四厂商 Generator
+必须通过 Golden Fixture、语法验证和 `Generate → Parse → IR` 语义等价测试。
+厂商 Parser、Generator 和 ACL IR Adapter 必须使用工具专属模块文件；禁止把四厂商语法堆入 `engine.js` 或共享 Evaluator。
 
 
 End of NetEngineerLab Copilot Instructions
