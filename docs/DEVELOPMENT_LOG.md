@@ -18,6 +18,18 @@
 
 ## 已完成批次
 
+### 2026-08-30 — 工程规则驱动平台架构规范
+
+- 状态：`VALIDATOR PASS`
+- 范围：平台设计规范与 Copilot 强制开发规则；不修改现有 20 个工具、公式、URL 或运行时资源。
+- 完成内容：正式确定 `Calculate → Configure → Validate → Diagnose` 路线，以确定性 Engineering Rules Engine 为共享核心；定义 Parser、厂商无关 IR、Rule、Evidence、Score、Presentation 与可选 AI 的职责边界；定义第 21 个工具 Multi-Vendor ACL Generator & Validator 的 V1 范围和分批交付顺序。
+- 关键边界：AI 不得裁决 Finding/Severity/Evidence；规则严重度只允许 CRITICAL/HIGH/MEDIUM/INFO；规则禁止可执行表达式；V1 配置完全本地处理；校准前 Score 不显示 PASS/FAIL；现有计算公式只在黄金样例对照和独立验证后迁移判断层。
+- 构建设计：规则源位于 `website/data/engineering-rules/**/*.json`；运行时生成物固定为 `website/assets/generated/rules-engine/rules-bundle.<sha256-12>.js`，必须通过确定性哈希、版本兼容、源 JSON 禁直连、页面/SW/Release Manifest 同哈希门禁。
+- 本地验证：设计路径及现行工具结构、PWA/离线、共享资源哈希和四厂商 Generator 闭环测试门禁设计已复核；`git diff --check` PASS；无运行时代码或运行测试变化。
+- 独立验证：2 号验证官前三轮发现标准工具结构、共享缓存、Generator 测试、AI/Score 边界、模块归属及生成物路径问题；逐项修订后第四轮最终 `PASS`。
+- 实现提交：`423e498225b8cd90cb2291216ce0b24a53ad0574`。
+- 线上验收：本批仅为设计规范；与后续规则 Schema 实现一起推送并执行 GitHub 工作流验收。
+
 ### 2026-08-29 — 全站 SEO/GEO 覆盖盘点与自动化门禁
 
 - 状态：`VALIDATOR PASS`
@@ -126,8 +138,10 @@
 
 按“小批次、验证通过后再继续”的顺序执行：
 
-1. PoE 功率预算计算器 SEO/GEO 内容：补足第 5 个真实工程 FAQ、至少 3 个权威来源和可见复核日期，并核验计算边界与正文内链。
-2. SFP/QSFP 兼容性计算器 SEO/GEO 内容：补足第 5 个真实工程 FAQ、至少 3 个权威来源和可见复核日期，并核验兼容性判断边界与正文内链。
-3. 光纤损耗、光功率预算、PON 分光器损耗页面：按覆盖报告顺序补充权威来源和可见复核信息。
+1. Engineering Rules 基础契约：实现 Rule JSON Schema、Severity Policy、Operator Registry 和失败关闭验证测试。
+2. 共享规则运行时：实现确定性 Evaluator、Evidence Formatter、Score Policy 与内容哈希规则包构建。
+3. Tool 21 ACL 核心：先完成 ACL IR 与单一厂商 Parser/Generator，再扩展到四厂商和 10–15 条高可信规则。
+4. Tool 21 双语页面与浏览器/PWA/线上验收。
+5. 恢复 SEO/GEO 队列：PoE 功率预算、SFP/QSFP 兼容性、光纤损耗、光功率预算、PON 分光器损耗。
 
 任何新发现的 P0/P1 稳定性或正确性问题，优先级高于上述 SEO/GEO 队列，并必须在本文件说明插队原因。
