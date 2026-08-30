@@ -184,7 +184,7 @@
 
 ### 2026-08-30 — Tool 21 ACL 生产规则层
 
-- 状态：`VALIDATOR PASS`（规则与运行时已完成，本批不公开 Tool 21 页面）。
+- 状态：`ONLINE PASS`（规则与运行时已部署，本批不公开 Tool 21 页面）。
 - 范围：新增 ACL-001 至 ACL-010 共 10 条双语生产规则，覆盖无限制 IPv4/TCP/UDP 放行、Telnet、SSH/SNMP 任意源、异动作遮蔽、精确重复、无 permit ACL、可达 deny-all 非末尾；适用于 Cisco IOS、Huawei VRP、H3C Comware、Juniper Junos。
 - 来源与证据：规则引用 NIST、CISA、IANA、Cisco 与 Juniper 权威资料；每条规则具备正/负/边界 Fixture 和最小充分 Evidence；deny-only 明示 `permitCount: 0`、deny 数量及完整序号，联合遮蔽保留所有实际首匹配规则证据。
 - 正确性边界：按 first-match 语义计算 source × destination × port 联合覆盖，并保守处理 protocol；支持多规则、混合 permit/deny 和源/目的地址分片遮蔽；同动作冗余不误报 HIGH，终止 deny 与 shadow Finding 共享根因；不可达 deny-all 不作为后续不可达根因；复杂度超限显式失败，禁止静默视为可达。
@@ -193,7 +193,7 @@
 - 本地验证：最终 `npm run verify` PASS；10 production rules、7 operators、54 个 HTML、52 个 Sitemap URL、20 个现有引擎、2581 个链接、0 errors、0 warnings；`git diff --check` PASS。
 - 独立验证：2 号验证官连续五轮发现并推动修复联合覆盖、同动作误报、Evidence、版本绑定、混合动作/目的维度、复杂度 fail-open、首匹配动作、快速路径及不可达 deny-all 因果问题；第五轮最终 `PASS`。
 - 实现提交：`d363fc7aa50d82524952660567ec4bc57394af40`。
-- 线上验收：待推送后登记四条 GitHub 生产工作流结果；本批无新增公开 URL。
+- 线上验收：远端 `279ad363d2b35d3ef7b668c60ad65ec101f57474` 的 Quality Gate `33318530133`、Online Monitor `33318530260`、GA4 Monitor `33318530146`、Performance Monitor `33318562424` 全部成功；Performance 完成 Lighthouse 采集和断言；本批无新增公开 URL。
 
 ## 下一步队列
 
