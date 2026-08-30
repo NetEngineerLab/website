@@ -4,6 +4,7 @@
 const fs=require("fs");
 const path=require("path");
 const{stableFileHash,stableHash}=require("./stable-text-hash");
+const{rulesRuntimeAssets}=require("./rules-runtime-assets");
 
 const packageRoot=path.resolve(__dirname,"..");
 const siteRoot=path.join(packageRoot,"website");
@@ -30,7 +31,8 @@ const sharedRuntimeAssets=[
  {sitePath:"assets/js/adsense.js",cachePath:"../../assets/js/adsense.js"},
  {sitePath:"assets/js/site.js",cachePath:"../../assets/js/site.js"},
  {sitePath:"assets/js/tool-integration.js",cachePath:"../../assets/js/tool-integration.js"},
- {sitePath:"assets/js/tool-shell-v1.9.9-04.js",cachePath:"../../assets/js/tool-shell-v1.9.9-04.js"}
+ {sitePath:"assets/js/tool-shell-v1.9.9-04.js",cachePath:"../../assets/js/tool-shell-v1.9.9-04.js"},
+ ...rulesRuntimeAssets(siteRoot)
 ];
 const assetVersionCache=new Map();
 function isRootDirectoryRoute(route){return rootDirectoryRoutes.has(route)}

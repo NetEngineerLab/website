@@ -4,6 +4,7 @@
 const fs=require("fs");
 const path=require("path");
 const{stableFileHash,stableHash}=require("./stable-text-hash");
+const{rulesRuntimeAssets}=require("./rules-runtime-assets");
 
 const root=path.resolve(__dirname,"..");
 const websiteRoot=path.join(root,"website");
@@ -13,6 +14,7 @@ const expectedOrigin="https://netengineerlab.com";
 const expectedWwwOrigin="https://www.netengineerlab.com";
 const version=fs.readFileSync(path.join(root,"VERSION"),"utf8").trim();
 const startedAt=Date.now();
+const ruleAssets=rulesRuntimeAssets(websiteRoot).map(asset=>asset.sitePath);
 
 const managedAssets=[
   "data/locales.js",
@@ -27,7 +29,8 @@ const managedAssets=[
   "assets/js/adsense.js",
   "assets/js/site.js",
   "assets/js/tool-integration.js",
-  "assets/js/tool-shell-v1.9.9-04.js"
+  "assets/js/tool-shell-v1.9.9-04.js",
+  ...ruleAssets
 ];
 const homeReadinessAssets=[
   "data/locales.js",

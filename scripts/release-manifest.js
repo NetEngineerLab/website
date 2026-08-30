@@ -26,11 +26,16 @@ const entries=files.map(file=>({
 }));
 const treeMaterial=entries.map(entry=>`${entry.path}\0${entry.sha256}\n`).join("");
 const treeSha256=crypto.createHash("sha256").update(treeMaterial).digest("hex");
+const rulesBundles=entries.filter(entry=>/^assets\/generated\/rules-engine\/rules-bundle\.[a-f0-9]{12}\.js$/.test(entry.path));
+if(rulesBundles.length!==1)throw new Error(`Expected one rules bundle in Release Manifest, found ${rulesBundles.length}`);
+const bundleHash=rulesBundles[0].path.match(/rules-bundle\.([a-f0-9]{12})\.js$/)[1];
+if(!rulesBundles[0].sha256.startsWith(bundleHash))throw new Error("Rules bundle filename/content hash mismatch");
 const criticalPaths=[
   "index.html","zh/index.html","tools/index.html","tools/zh/index.html",
   "robots.txt","sitemap.xml","_headers","_redirects","data/site-config.json",
   "tools/ipv6-nat-planner/index.html","tools/ipv6-nat-planner/zh/index.html",
-  "tools/wifi-coverage-capacity-planner/index.html","tools/wifi-coverage-capacity-planner/zh/index.html"
+  "tools/wifi-coverage-capacity-planner/index.html","tools/wifi-coverage-capacity-planner/zh/index.html",
+  rulesBundles[0].path
 ];
 const critical={};
 for(const rel of criticalPaths){

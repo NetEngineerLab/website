@@ -76,8 +76,9 @@ function validateParamType(value,type,label){
 }
 
 function validateOperatorRegistry(value){
-  exactKeys(value,["schemaVersion","operators"],"operatorRegistry");
+  exactKeys(value,["schemaVersion","runtimeApiVersion","operators"],"operatorRegistry");
   if(value.schemaVersion!=="1.0.0")fail("operatorRegistry.schemaVersion must be 1.0.0");
+  if(value.runtimeApiVersion!=="1.0.0")fail("operatorRegistry.runtimeApiVersion must be 1.0.0");
   if(!Array.isArray(value.operators)||!value.operators.length)fail("operatorRegistry.operators are required");
   unique(value.operators.map(operator=>operator.id),"operator ids");
   for(const operator of value.operators){
@@ -98,8 +99,9 @@ function validateOperatorRegistry(value){
 }
 
 function validateSeverityPolicy(value){
-  exactKeys(value,["schemaVersion","scorePolicyVersion","passThreshold","displayPassFail","baseScore","dimensions","severities","rootCauseDeduplication","disclaimer"],"severityPolicy");
+  exactKeys(value,["schemaVersion","runtimeApiVersion","scorePolicyVersion","passThreshold","displayPassFail","baseScore","dimensions","severities","rootCauseDeduplication","disclaimer"],"severityPolicy");
   if(value.schemaVersion!=="1.0.0")fail("severityPolicy.schemaVersion must be 1.0.0");
+  if(value.runtimeApiVersion!=="1.0.0")fail("severityPolicy.runtimeApiVersion must be 1.0.0");
   if(!policyVersion.test(value.scorePolicyVersion||""))fail("scorePolicyVersion is invalid");
   if(value.passThreshold!==null||value.displayPassFail!==false)fail("precalibration policy must disable PASS/FAIL");
   if(!Number.isFinite(value.baseScore)||value.baseScore<=0||value.baseScore>100)fail("baseScore is invalid");

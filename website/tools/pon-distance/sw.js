@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-pon-distance-locale-v1.9.9-04-p0-p1-correctness-consent-offline-565843d65715";
+const CACHE = "nel-pon-distance-locale-v1.9.9-04-p0-p1-correctness-consent-offline-4cec156ed344";
 const CORE = [
   "./index.html",
   "./",
@@ -9,6 +9,7 @@ const CORE = [
   "./css/style.css?v=ea59b28754e0",
   "./js/app.js?v=e8e5dd2b0d96",
   "./images/logo.svg",
+  "../../assets/generated/rules-engine/rules-bundle.de12fe296b92.js?v=de12fe296b92",
   "../../data/locales.js?v=b541508dc0ee",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
@@ -20,6 +21,12 @@ const CORE = [
   "../../assets/js/site.js?v=af1b8909e5b4",
   "../../assets/js/tool-integration.js?v=05f7934f4687",
   "../../assets/js/tool-shell-v1.9.9-04.js?v=d2715dc996b6",
+  "../../assets/js/rules-engine/normalize.js?v=4fedb444e0a3",
+  "../../assets/js/rules-engine/evidence.js?v=5e7f891ba94a",
+  "../../assets/js/rules-engine/evaluate.js?v=52e9fa3c6fbc",
+  "../../assets/js/rules-engine/score.js?v=48a03ce92301",
+  "../../assets/js/rules-engine/report.js?v=87d664ed035b",
+  "../../assets/generated/rules-engine/rules-bundle.1fc20a3cb9bf.js?v=1fc20a3cb9bf",
   "./zh/index.html",
   "./manifest-zh.webmanifest"
 ];
