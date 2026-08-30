@@ -170,11 +170,22 @@
 - 实现提交：`807e342704e49d5ee63c98a27811a5f15abf7531`。
 - 线上验收：提交 `6aaf70fc490602558d7ee6729cf969c91f77f025` 对应 Quality Gate `33300333363`、Online Monitor `33300333364`、GA4 Monitor `33300333317`、Performance Monitor `33300350070` 全部成功。
 
+### 2026-08-30 — Tool 21 四厂商 ACL Parser/Generator 核心
+
+- 状态：`VALIDATOR PASS`（页面仍未公开，等待推送及线上工作流）。
+- 范围：在 Cisco IOS 基础上新增 Huawei VRP、H3C Comware、Juniper Junos Parser/Generator、厂商 Golden Fixture 和四厂商 `Generate → Parse → IR` 语义等价测试。
+- 厂商边界：Huawei 使用 `acl name … advance`；H3C rule-id 限定 `0–65534`；Junos 采用受限 `set firewall family inet filter` 语法，任意 IPv4 省略 protocol 条件，并要求 `rule-N` 首次出现顺序严格递增。
+- 失败关闭：未知语法进入 `unparsed`；Junos 重复或冲突条件、term 逆序、多 filter 均拒绝；厂商序号范围由 Parser 与 Generator 双向验证，避免同源自证。
+- 浏览器兼容：全部新增 factory、Parser、Generator 使用 UMD，VM 无 `module/require` 环境可加载完整四厂商 engine 链。
+- 本地验证：`npm run verify` PASS；54 个 HTML、52 个 Sitemap URL、20 个现有引擎、2581 个链接、0 errors、0 warnings；四厂商 ACL 专项 PASS。
+- 独立验证：2 号验证官经过三轮发现并推动修复 Huawei/Junos 真实语法、UMD、Junos 顺序与重复条件、H3C rule-id 上限问题，最终 `PASS`。
+- 实现提交：`b85e8ef8bed2ddf50c7f9f4b0972a40c76884a4e`。
+
 ## 下一步队列
 
 按“小批次、验证通过后再继续”的顺序执行：
 
-1. Tool 21 ACL 核心扩展：实现 Huawei VRP、H3C Comware、Juniper Junos Parser/Generator，再完成 10–15 条高可信规则。
+1. Tool 21 ACL 规则层：完成 10–15 条有权威来源、正/负/边界 Fixture 和最小充分 Evidence 的高可信规则。
 2. Tool 21 双语页面与浏览器/PWA/线上验收。
 3. 恢复 SEO/GEO 队列：PoE 功率预算、SFP/QSFP 兼容性、光纤损耗、光功率预算、PON 分光器损耗。
 4. MIB/OID Explorer Phase 0：按 `docs/MIB_OID_EXPLORER_DEVELOPMENT_PLAN.md` 完成来源许可调研、解析器选型、数据字典、威胁模型与技术 ADR；不得在门禁前批量抓取或公开厂商 MIB。
