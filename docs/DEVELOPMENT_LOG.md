@@ -195,11 +195,24 @@
 - 实现提交：`d363fc7aa50d82524952660567ec4bc57394af40`。
 - 线上验收：远端 `279ad363d2b35d3ef7b668c60ad65ec101f57474` 的 Quality Gate `33318530133`、Online Monitor `33318530260`、GA4 Monitor `33318530146`、Performance Monitor `33318562424` 全部成功；Performance 完成 Lighthouse 采集和断言；本批无新增公开 URL。
 
+### 2026-08-30 — Tool 21 ACL Generator & Validator 双语页面
+
+- 状态：`VALIDATOR PASS`（实现已提交，等待推送与线上验收）。
+- 页面：`website/tools/acl-generator-validator/` 中英文版本；计划正式 URL 为 `https://netengineerlab.com/tools/acl-generator-validator/` 与 `/zh/`。
+- 完成内容：公开四厂商 ACL 验证、转换与参数生成页面，支持 Cisco IOS、Huawei VRP、H3C Comware、Juniper Junos；接入 10 条生产规则、确定性评分、双语 Finding、规则证据和语义往返校验。
+- 设计与内容：复用统一 Header/Footer、设计令牌和页面风格；提供本地处理隐私说明、5 组双语 FAQ、FAQPage、NIST/Cisco/Juniper/IANA 权威来源、canonical/hreflang、长尾场景内容与更新时间。
+- 安全与失败关闭：粘贴内容不执行；整体解析失败或被拒绝的非法/恶意输入必须清空旧 score、Finding 与输出，禁止失败后继续展示此前成功结果；部分不支持语法须明确显示覆盖不完整，结果仅适用于已解析规则；转换与参数生成必须通过 Generate → Parse → IR 语义等价校验。
+- PWA 与运行时：页面资源进入离线缓存；构建会清理所有旧规则包 URL；21 个 Service Worker 均只缓存一个当前规则包，文件名哈希与查询哈希一致；共享 classic script 使用块级作用域避免顶层 `const` 冲突。
+- 自动化：新增 ACL 页面双语浏览器测试，并将工具纳入目录、Sitemap、SEO/GEO 覆盖、通用内容合约、生产验收和 Release Manifest。
+- 本地验证：`npm run verify` PASS；56 个 HTML 页面、54 个 Sitemap URL、21 个引擎、2703 个链接、0 errors、0 warnings；ACL 专项 Chrome/Edge/Android/iPhone 8/8 PASS；规则运行时与 ACL 核心专项 PASS；`git diff --check` PASS。
+- 独立验证：2 号验证官首轮发现错误输入仍保留旧结果；修复后最终 `PASS`，独立确认双语四终端 8/8、通用页面 8/8、无障碍、PWA 单一规则包哈希及完整 `npm run verify` 全部通过。
+- 实现提交：`02a7efeda4cfcca4d1e857c8d1b9393957210ede`。
+
 ## 下一步队列
 
 按“小批次、验证通过后再继续”的顺序执行：
 
-1. Tool 21 双语页面与浏览器/PWA/线上验收。
+1. 完成 Tool 21 推送、GitHub 工作流与正式站双语浏览器验收。
 2. 恢复 SEO/GEO 队列：PoE 功率预算、SFP/QSFP 兼容性、光纤损耗、光功率预算、PON 分光器损耗。
 3. MIB/OID Explorer Phase 0：按 `docs/MIB_OID_EXPLORER_DEVELOPMENT_PLAN.md` 完成来源许可调研、解析器选型、数据字典、威胁模型与技术 ADR；不得在门禁前批量抓取或公开厂商 MIB。
 
