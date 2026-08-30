@@ -16,8 +16,12 @@ function evaluateRules(rules,facts,{locale="en",customOperators={},customEvidenc
   if(!Array.isArray(rules))throw new Error("Rules must be an array");
   if(!facts||typeof facts!=="object"||Array.isArray(facts))throw new Error("Facts must be an object");
   if(!["en","zh"].includes(locale))throw new Error(`Unsupported finding locale: ${locale}`);
-  for(const name of Object.keys(customOperators))if(Object.hasOwn(builtInOperators,name))throw new Error(`Cannot override built-in operator: ${name}`);
-  const handlers={...builtInOperators,...customOperators};
+  const handlers={...builtInOperators};
+  for(const [name,descriptor] of Object.entries(customOperators)){
+    if(Object.hasOwn(builtInOperators,name))throw new Error(`Cannot override built-in operator: ${name}`);
+    if(!descriptor||typeof descriptor!=="object"||descriptor.id!==name||!/^[0-9]+\.[0-9]+\.[0-9]+$/.test(descriptor.version)||typeof descriptor.handler!=="function")throw new Error(`Invalid custom operator descriptor: ${name}`);
+    handlers[name]=descriptor.handler;
+  }
   return rules.filter(rule=>rule.status==="active").map(rule=>{
     const handler=handlers[rule.condition.operator];
     if(typeof handler!=="function")throw new Error(`No deterministic handler for operator: ${rule.condition.operator}`);
@@ -44,8 +48,15 @@ function validateBundleCompatibility(bundle){
   return true;
 }
 
-function evaluateBundle(bundle,facts,options={}){validateBundleCompatibility(bundle);return evaluateRules(bundle.rules,facts,options)}
+function validateCustomOperatorCompatibility(bundle,customOperators={}){
+  const registry=new Map((bundle.operatorRegistry?.operators||[]).map(operator=>[operator.id,operator.version]));
+  for(const [name,descriptor] of Object.entries(customOperators))if(!descriptor||descriptor.id!==name||registry.get(name)!==descriptor.version)throw new Error(`Custom operator version mismatch: ${name}`);
+  for(const rule of bundle.rules.filter(item=>item.status==="active"&&!Object.hasOwn(builtInOperators,item.condition.operator)))if(!customOperators[rule.condition.operator])throw new Error(`No compatible custom operator for bundle rule: ${rule.condition.operator}`);
+  return true;
+}
 
-const api=Object.freeze({builtInOperators,evaluateBundle,evaluateRules,runtimeApiVersion,validateBundleCompatibility});
+function evaluateBundle(bundle,facts,options={}){validateBundleCompatibility(bundle);validateCustomOperatorCompatibility(bundle,options.customOperators);return evaluateRules(bundle.rules,facts,options)}
+
+const api=Object.freeze({builtInOperators,evaluateBundle,evaluateRules,runtimeApiVersion,validateBundleCompatibility,validateCustomOperatorCompatibility});
 if(typeof module!=="undefined"&&module.exports)module.exports=api;
 if(typeof window!=="undefined")window.NetEngineerLabRulesEvaluate=api;

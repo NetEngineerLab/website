@@ -240,6 +240,7 @@ assert.throws(()=>validateRule(wrongDomainOperator),/not allowed for domain/);
 const validAclOperator=structuredClone(validRule);validAclOperator.condition={operator:"acl-shadowed-by-prior-rule",params:{rulesPath:"rules"}};
 assert(validateRule(validAclOperator));
 function discoverRules(directory){
+  const requireFixtures=path.resolve(directory)===path.resolve(dataRoot);
   const discovered=[];
   for(const entry of fs.readdirSync(directory,{withFileTypes:true})){
   if(!entry.isDirectory())continue;
@@ -250,6 +251,7 @@ function discoverRules(directory){
   for(const rule of rules){
     validateRule(rule);
     if(rule.domain!==entry.name)fail(`${entry.name}/rules.json contains domain ${rule.domain}`);
+    if(requireFixtures)for(const kind of ["positive","negative","boundary"])for(const fixture of rule.fixtures[kind])if(!fs.existsSync(path.join(directory,entry.name,fixture)))fail(`${rule.id} fixture is missing: ${fixture}`);
     discovered.push({domain:entry.name,id:rule.id});
   }
   }

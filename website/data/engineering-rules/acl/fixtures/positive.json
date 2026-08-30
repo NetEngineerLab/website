@@ -1,0 +1,12 @@
+{
+  "ACL-001":[["permit","ip","any","any",null]],
+  "ACL-002":[["permit","tcp","any","any",null]],
+  "ACL-003":[["permit","udp","any","any",null]],
+  "ACL-004":[["permit","tcp","10.0.0.0/8","any",23]],
+  "ACL-005":[["permit","tcp","any","192.0.2.10/32",22]],
+  "ACL-006":[["permit","udp","any","192.0.2.10/32",161]],
+  "ACL-007":[["permit","ip","10.0.0.0/8","any",null],["deny","tcp","10.1.1.1/32","any",443]],
+  "ACL-008":[["permit","tcp","10.0.0.0/8","192.0.2.10/32",443],["permit","tcp","10.0.0.0/8","192.0.2.10/32",443]],
+  "ACL-009":[["deny","ip","any","any",null]],
+  "ACL-010":[["deny","ip","any","any",null],["permit","tcp","10.0.0.0/8","192.0.2.10/32",443]]
+}

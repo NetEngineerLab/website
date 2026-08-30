@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-48v-battery-runtime-locale-v1.9.9-04-p0-p1-correctness-consent-offline-4cec156ed344";
+const CACHE = "nel-48v-battery-runtime-locale-v1.9.9-04-p0-p1-correctness-consent-offline-b37a6bdecfc8";
 const CORE = [
   "./index.html",
   "./",
@@ -12,6 +12,7 @@ const CORE = [
   "./js/app.js?v=e38ff09939d5",
   "./images/logo.svg",
   "../../assets/generated/rules-engine/rules-bundle.de12fe296b92.js?v=de12fe296b92",
+  "../../assets/generated/rules-engine/rules-bundle.1fc20a3cb9bf.js?v=1fc20a3cb9bf",
   "../../data/locales.js?v=b541508dc0ee",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
@@ -25,10 +26,10 @@ const CORE = [
   "../../assets/js/tool-shell-v1.9.9-04.js?v=d2715dc996b6",
   "../../assets/js/rules-engine/normalize.js?v=4fedb444e0a3",
   "../../assets/js/rules-engine/evidence.js?v=5e7f891ba94a",
-  "../../assets/js/rules-engine/evaluate.js?v=52e9fa3c6fbc",
+  "../../assets/js/rules-engine/evaluate.js?v=1c69ae2ee340",
   "../../assets/js/rules-engine/score.js?v=48a03ce92301",
   "../../assets/js/rules-engine/report.js?v=87d664ed035b",
-  "../../assets/generated/rules-engine/rules-bundle.1fc20a3cb9bf.js?v=1fc20a3cb9bf",
+  "../../assets/generated/rules-engine/rules-bundle.9d06acb2a0ff.js?v=9d06acb2a0ff",
   "./zh/index.html",
   "./manifest-zh.webmanifest"
 ];
