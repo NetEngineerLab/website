@@ -211,7 +211,7 @@
 
 ### 2026-08-31 — PoE 功率预算计算器 SEO/GEO 内容
 
-- 状态：`VALIDATOR PASS`（实现已提交，等待推送与线上验收）。
+- 状态：`ONLINE PASS`。
 - 页面：`website/tools/poe-power-budget-calculator/` 中英文版本。
 - 完成内容：增加第 5 个双语长尾 FAQ 与 FAQPage；补充 IEEE 802.3bt、IEEE 802.3at、Ethernet Alliance、Cisco 和 Fluke Networks 共 5 个工程来源；增加可见内容复核日期与来源浏览器契约。
 - 正确性边界：明确 20% 至 25% 余量只是项目初始假设，不是 IEEE 强制值；网线损耗百分比只是规划输入，不是完整 IEEE 信道仿真；最终设计仍需核对 PSE/PD 等级、协商功率、电源与冗余状态、线缆信道、成束温升和设备启动行为。
@@ -219,6 +219,7 @@
 - 本地验证：`npm run verify` PASS；56 个 HTML 页面、54 个 Sitemap URL、21 个引擎、2713 个链接、0 errors、0 warnings；PoE 双语 Chrome/Edge/Android/iPhone 8/8 PASS；`git diff --check` PASS。
 - 独立验证：2 号验证官最终 `PASS`；确认技术内容与引擎一致、5 个来源有效、可见 FAQ 与 FAQPage 精确一致、四项目全站无障碍 8/8、独立完整验证通过。
 - 实现提交：`8db85687f8235cf0d172500baa7e588be1c20f3c`。
+- 线上验收：提交 `f2b18e69c3761739e124c45e5ea7f1c128551a93` 对应 Quality Gate `33328719167`、Online Monitor `33328719188`、GA4 Monitor `33328719268` 全部成功；Performance Monitor `33328740464` 首次因未改动英文首页单次 TBT 738 ms 超过 600 ms 门槛失败，在不降低门槛的情况下重跑成功；正式站 PoE 英中页面 Chrome/Edge/Android/iPhone 8/8 PASS，覆盖计算、5 FAQ、5 来源、响应式溢出与控制台错误。
 
 ## 下一步队列
 
