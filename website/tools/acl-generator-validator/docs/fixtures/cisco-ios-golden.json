@@ -1,0 +1,23 @@
+{
+  "name": "EDGE-IN",
+  "rules": [
+    {
+      "sequence": 10,
+      "action": "permit",
+      "protocol": "tcp",
+      "source": {"kind": "network", "address": "10.10.0.0", "prefix": 16},
+      "destination": {"kind": "host", "address": "192.0.2.10"},
+      "destinationPort": 443,
+      "log": true
+    },
+    {
+      "sequence": 20,
+      "action": "deny",
+      "protocol": "ip",
+      "source": {"kind": "any"},
+      "destination": {"kind": "any"},
+      "log": false
+    }
+  ],
+  "configuration": "ip access-list extended EDGE-IN\n 10 permit tcp 10.10.0.0 0.0.255.255 host 192.0.2.10 eq 443 log\n 20 deny ip any any\nexit\n"
+}
