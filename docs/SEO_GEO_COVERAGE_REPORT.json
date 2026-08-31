@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31T08:04:25.572Z",
+  "generatedAt": "2026-08-31T09:50:20.255Z",
   "methodology": {
     "scope": "Active bilingual tool pages configured by locales.json and tools-catalog.json",
     "meaning": "Rule-based content-gap priority; not a ranking, traffic, or conversion forecast",
@@ -21,85 +21,18 @@
     "localePages": 42,
     "priorityCounts": {
       "high": 0,
-      "medium": 4,
-      "maintain": 17
+      "medium": 3,
+      "maintain": 18
     }
   },
   "nextBatch": [
-    "pon-splitter-loss",
     "onu-rx-power",
     "pon-distance",
     "otdr-event",
-    "wireless-link-budget-calculator"
+    "wireless-link-budget-calculator",
+    "poe-voltage-drop-calculator"
   ],
   "tools": [
-    {
-      "id": "pon-splitter-loss",
-      "catalogOrder": 3,
-      "category": "pon",
-      "searchIntent": {
-        "id": "planning",
-        "en": "planning",
-        "zh": "规划"
-      },
-      "targetTopic": {
-        "en": "PON Splitter Loss Calculator",
-        "zh": "PON分光器损耗计算器"
-      },
-      "contentOwner": "NetEngineerLab Editorial",
-      "lastReviewedAt": {
-        "en": null,
-        "zh": null
-      },
-      "locales": {
-        "en": {
-          "visibleCharacters": 5120,
-          "sectionHeadings": 14,
-          "longTailQuestions": [
-            "Why is GPON C+ the default for 1:8 × 1:8?",
-            "Which has lower loss, one-stage or two-stage splitting?",
-            "Why does 1:4 × 1:8 equal 1:32?",
-            "Why is ideal split loss different from nominal insertion loss?",
-            "Are more splitter cascade stages always better?",
-            "Can excessive receive power also cause problems?",
-            "Can this calculator replace field testing?"
-          ],
-          "faqCount": 7,
-          "faqSchema": true,
-          "externalReferences": [],
-          "externalReferenceCount": 0,
-          "internalLinkCount": 3,
-          "lastReviewedAt": null,
-          "reviewMarker": false
-        },
-        "zh": {
-          "visibleCharacters": 2156,
-          "sectionHeadings": 14,
-          "longTailQuestions": [
-            "为什么1:8 × 1:8默认采用GPON C+？",
-            "一级分光和二级分光哪个损耗更小？",
-            "1:4 × 1:8为什么等于1:32？",
-            "理论分光损耗和标称损耗为什么不同？",
-            "分光器级联越多越好吗？",
-            "接收光功率过高也会有问题吗？",
-            "本工具能否直接替代现场测试？"
-          ],
-          "faqCount": 7,
-          "faqSchema": true,
-          "externalReferences": [],
-          "externalReferenceCount": 0,
-          "internalLinkCount": 3,
-          "lastReviewedAt": null,
-          "reviewMarker": false
-        }
-      },
-      "score": 22,
-      "priority": "medium",
-      "gaps": [
-        "3 authoritative reference(s) below the three-source target",
-        "visible review/update marker missing"
-      ]
-    },
     {
       "id": "onu-rx-power",
       "catalogOrder": 4,
@@ -863,6 +796,80 @@
             "https://www.itu.int/rec/T-REC-G.984.2/en",
             "https://www.itu.int/rec/T-REC-G.652-202408-I/en",
             "https://webstore.iec.ch/en/publication/77134"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 3,
+          "lastReviewedAt": "2026-08-31",
+          "reviewMarker": true
+        }
+      },
+      "score": 4,
+      "priority": "maintain",
+      "gaps": [
+        "visible review/update marker missing"
+      ]
+    },
+    {
+      "id": "pon-splitter-loss",
+      "catalogOrder": 3,
+      "category": "pon",
+      "searchIntent": {
+        "id": "planning",
+        "en": "planning",
+        "zh": "规划"
+      },
+      "targetTopic": {
+        "en": "PON Splitter Loss Calculator",
+        "zh": "PON分光器损耗计算器"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": null,
+        "zh": "2026-08-31"
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 5876,
+          "sectionHeadings": 15,
+          "longTailQuestions": [
+            "Why is GPON C+ the default for 1:8 × 1:8?",
+            "Which has lower loss, one-stage or two-stage splitting?",
+            "Why does 1:4 × 1:8 equal 1:32?",
+            "Why is ideal split loss different from nominal insertion loss?",
+            "Are more splitter cascade stages always better?",
+            "Can excessive receive power also cause problems?",
+            "Can this calculator replace field testing?"
+          ],
+          "faqCount": 7,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.984.2/en",
+            "https://www.itu.int/rec/T-REC-G.671/en",
+            "https://www.itu.int/rec/T-REC-G.652-202408-I/en"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 3,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        },
+        "zh": {
+          "visibleCharacters": 2439,
+          "sectionHeadings": 15,
+          "longTailQuestions": [
+            "为什么1:8 × 1:8默认采用GPON C+？",
+            "一级分光和二级分光哪个损耗更小？",
+            "1:4 × 1:8为什么等于1:32？",
+            "理论分光损耗和标称损耗为什么不同？",
+            "分光器级联越多越好吗？",
+            "接收光功率过高也会有问题吗？",
+            "本工具能否直接替代现场测试？"
+          ],
+          "faqCount": 7,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.984.2/en",
+            "https://www.itu.int/rec/T-REC-G.671/en",
+            "https://www.itu.int/rec/T-REC-G.652-202408-I/en"
           ],
           "externalReferenceCount": 3,
           "internalLinkCount": 3,

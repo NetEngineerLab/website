@@ -8,7 +8,7 @@ const close=(actual,expected)=>assert.ok(Math.abs(actual-expected)<1e-9,`${actua
 const base={
   distance:10,attenuation:0.25,spliceCount:6,spliceLoss:0.1,
   connectorCount:4,connectorLoss:0.3,s1:10.5,s2:10.5,s3:0,
-  other:0,penalty:1,margin:3,tx:3,sens:-30,over:-8,systemReach:20
+  other:0,penalty:1,margin:3,tx:3,txMax:7,sens:-30,over:-8,systemReach:20
 };
 
 const result=engine.calculate(base);
@@ -21,6 +21,7 @@ close(result.designLoss,28.3);
 close(result.standardBudget,32);
 close(result.remaining,3.7);
 close(result.rx,-22.3);
+close(result.rxMax,-18.3);
 close(result.opticalMax,24.8);
 close(result.effectiveMax,20);
 assert.equal(result.status,"healthy");
@@ -33,11 +34,27 @@ assert.equal(engine.calculate({...base,margin:3.7}).status,"healthy");
 close(engine.calculate({...base,margin:6.7}).remaining,0);
 assert.equal(engine.calculate({...base,margin:6.7}).status,"warning");
 assert.equal(engine.calculate({...base,margin:6.8}).status,"failed");
-close(engine.calculate({...base,over:-22.3}).overMargin,0);
-assert.equal(engine.calculate({...base,over:-22.3}).status,"warning");
-close(engine.calculate({...base,over:-19.3}).overMargin,3);
-assert.equal(engine.calculate({...base,over:-19.3}).status,"healthy");
-assert.equal(engine.calculate({...base,attenuation:0}).opticalMax,0);
-assert.equal(engine.calculate({...base,systemReach:0}).effectiveMax,0);
+close(engine.calculate({...base,over:-18.3}).overMargin,0);
+assert.equal(engine.calculate({...base,over:-18.3}).status,"warning");
+close(engine.calculate({...base,over:-15.3}).overMargin,3);
+assert.equal(engine.calculate({...base,over:-15.3}).status,"healthy");
+assert.equal(engine.calculate({...base,attenuation:0}).ok,false);
+assert.equal(engine.calculate({...base,systemReach:0}).ok,false);
+assert.equal(engine.calculate({...base,systemReach:0.1}).ok,true);
+assert.equal(engine.calculate({...base,systemReach:0.099999999}).ok,false);
+assert.equal(engine.calculate({...base,systemReach:1e-300}).ok,false);
+
+for(const invalid of [undefined,null,[],"",{...base,distance:"10"},{...base,txMax:undefined}]){
+  assert.equal(engine.calculate(invalid).ok,false);
+}
+for(const [key,value] of [["spliceCount",1.5],["connectorCount",Number.MAX_SAFE_INTEGER+1]]){
+  assert.equal(engine.calculate({...base,[key]:value}).ok,false);
+}
+for(const [key,value] of [["s1",10.4],["s2",Number.NaN],["s3",1]]){
+  assert.equal(engine.calculate({...base,[key]:value}).ok,false);
+}
+assert.equal(engine.calculate({...base,tx:8,txMax:7}).ok,false);
+assert.equal(engine.calculate({...base,sens:-8,over:-8}).ok,false);
+assert.equal(engine.calculate({...base,distance:1e308,attenuation:1e308}).ok,false);
 
 console.log("PON splitter loss engine tests: PASS");

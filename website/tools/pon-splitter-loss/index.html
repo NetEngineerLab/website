@@ -78,9 +78,10 @@
 <div class="field"><label for="connectorCount">Number of connectors</label><div class="input-wrap"><input id="connectorCount" min="0" step="1" type="number" value="4"/><span>pcs</span></div></div>
 <div class="field"><label for="connectorLoss">Loss per connector</label><div class="input-wrap"><input id="connectorLoss" min="0" step="0.01" type="number" value="0.30"/><span>dB</span></div></div>
 <div class="field"><label for="otherLoss">Other passive loss</label><div class="input-wrap"><input id="otherLoss" min="0" step="0.01" type="number" value="0"/><span>dB</span></div></div>
-<div class="field"><label for="opticalPenalty">Optical path penalty</label><div class="input-wrap"><input id="opticalPenalty" min="0" step="0.1" type="number" value="1"/><span>dB</span></div><small class="help">C+ downstream reference value.</small></div><div class="field"><label for="margin">Engineering margin</label><div class="input-wrap"><input id="margin" min="0" step="0.1" type="number" value="3"/><span>dB</span></div></div><div class="field"><label for="systemReach">System reach cap</label><div class="input-wrap"><input id="systemReach" min="0" step="0.1" type="number" value="20"/><span>km</span></div><small class="help">Effective reach will not exceed this value.</small></div>
+<div class="field"><label for="opticalPenalty">Optical path penalty</label><div class="input-wrap"><input id="opticalPenalty" min="0" step="0.1" type="number" value="1"/><span>dB</span></div><small class="help">C+ downstream reference value.</small></div><div class="field"><label for="margin">Engineering margin</label><div class="input-wrap"><input id="margin" min="0" step="0.1" type="number" value="3"/><span>dB</span></div></div><div class="field"><label for="systemReach">System reach cap</label><div class="input-wrap"><input id="systemReach" min="0.1" step="0.1" type="number" value="20"/><span>km</span></div><small class="help">Effective reach will not exceed this value.</small></div>
 <div class="subheading">Equipment power window</div>
 <div class="field"><label for="txPower">Minimum transmit power</label><div class="input-wrap"><input id="txPower" step="0.1" type="number" value="3"/><span>dBm</span></div></div>
+<div class="field"><label for="txMaxPower">Maximum transmit power</label><div class="input-wrap"><input id="txMaxPower" step="0.1" type="number" value="7"/><span>dBm</span></div><small class="help">Used for the receiver-overload check; verify the exact equipment datasheet.</small></div>
 <div class="field"><label for="rxSensitivity">Receiver sensitivity</label><div class="input-wrap"><input id="rxSensitivity" step="0.1" type="number" value="-30"/><span>dBm</span></div></div>
 <div class="field"><label for="rxOverload">Receiver overload threshold</label><div class="input-wrap"><input id="rxOverload" step="0.1" type="number" value="-8"/><span>dBm</span></div></div>
 </div>
@@ -92,7 +93,7 @@
 <div class="metric-grid">
 <article class="metric-card"><span class="metric-icon">Σ</span><div><small>Total splitter loss</small><strong><span id="splitterLossResult">0.00</span> dB</strong></div></article>
 <article class="metric-card"><span class="metric-icon">P</span><div><small>Remaining budget</small><strong><span id="remaining">0.00</span> dB</strong></div></article>
-<article class="metric-card"><span class="metric-icon">RX</span><div><small>Estimated receive power</small><strong><span id="rxPower">0.00</span> dBm</strong></div></article>
+<article class="metric-card"><span class="metric-icon">RX</span><div><small>Estimated receive-power range</small><strong><span id="rxPower">0.00</span> dBm</strong></div></article>
 <article class="metric-card"><span class="metric-icon">↔</span><div><small>Effective maximum distance</small><strong><span id="maxDistance">0.00</span> km</strong></div></article>
 </div>
 <div class="topology">
@@ -140,6 +141,7 @@
 <details><summary>Can this calculator replace field testing?</summary><p>No. It supports planning and review; final acceptance still requires a power meter, OTDR and actual equipment parameters.</p></details>
 </div></section>
 <section class="content-section" id="history"><div class="section-heading"><div><p class="eyebrow">PROJECT RECORDS</p><h2>Recent calculations</h2></div><button class="text-button" id="clearHistoryBtn">Clear history</button></div><div class="history-list" id="historyList"></div></section>
+<section class="content-section" id="references"><div class="section-heading"><div><p class="eyebrow">ENGINEERING EVIDENCE</p><h2>Splitter assumptions and official references</h2></div></div><div class="note"><p>Minimum transmit power is used for sensitivity and ODN-budget checks; maximum transmit power is checked separately against receiver overload. The selectable insertion losses are planning values, not universal limits: use the exact splitter grade, uniformity, return loss and equipment datasheets for final design. The 3 dB Healthy/Caution boundary is this tool's planning threshold, not a universal standards mandate.</p><p>Reviewed: 2026-08-31. Official sources: <a href="https://www.itu.int/rec/T-REC-G.984.2/en" rel="noopener noreferrer" target="_blank">ITU-T G.984.2 GPON PMD</a>, <a href="https://www.itu.int/rec/T-REC-G.671/en" rel="noopener noreferrer" target="_blank">ITU-T G.671 optical components and PON branching components</a>, and <a href="https://www.itu.int/rec/T-REC-G.652-202408-I/en" rel="noopener noreferrer" target="_blank">ITU-T G.652 single-mode fibre</a>.</p></div></section>
 <section class="content-section" id="related"><div class="section-heading"><div><p class="eyebrow">RELATED TOOLS</p><h2>Related engineering tools</h2></div></div><div class="related-grid">
 <a class="related-card" href="../fiber-loss/"><strong>Fiber Loss Calculator</strong><p>Calculate total link loss from fiber, splices, connectors and splitters.</p></a>
 <a class="related-card" href="../optical-power-budget/"><strong>Optical Power Budget Calculator</strong><p>Verify the complete link budget from equipment transmit and receive parameters.</p></a>
@@ -157,6 +159,6 @@
   </div>
 </footer>
 <!-- NEL_FOOTER_END -->
-<script defer src="js/engine.js"></script><script defer="" src="js/pwa.js"></script><script defer="" src="../../data/optical-standards.js"></script><script defer="" src="../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="js/app.js?v=addd5ed85a62"></script>
+<script defer src="js/engine.js"></script><script defer="" src="js/pwa.js"></script><script defer="" src="../../data/optical-standards.js"></script><script defer="" src="../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="js/app.js?v=bcbd7e0e5202"></script>
 <script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script>
 <script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=d2715dc996b6"></script></body></html>
