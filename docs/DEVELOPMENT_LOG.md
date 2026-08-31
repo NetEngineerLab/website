@@ -18,6 +18,17 @@
 
 ## 已完成批次
 
+### 2026-08-31 — V2.0 可执行目录、Schema 与 Vendor Renderer 规范适配
+
+- 状态：`VALIDATOR PASS`（文档更新；无运行时代码、公开 URL 或正式站内容变更）。
+- 分析结论：用户提供的 88 节技术规范与现有 V2.0 架构一致，采纳 Feature-driven/Core-driven、Tool Schema、Validator、ToolResult、Normalized Model、Parser、Rules、Vendor Renderer、Exporter 和三类架构验证工具路线。
+- 仓库适配：明确当前 `website/tools/<slug>/`、原生 JavaScript、共享模板、Service Worker、Sitemap、canonical、hreflang 与现有 GitHub 门禁为生产事实；`src/*.ts` 等目录只作为未来迁移目标，不进行一次性重写。
+- 冲突决策：严重度继续使用现行 `CRITICAL/HIGH/MEDIUM/INFO`，不引入 `LOW/WARNING` 别名；Schema 先以 JSON/JSDoc/元数据落地，不强制立即引入 TypeScript；Vendor 命令必须同时有官方依据与独立 Golden/语义回环测试。
+- 新增文档：`docs/NETENGINEERLAB_V2_IMPLEMENTATION_SPEC.md`，定义接口职责、当前目录落点、新工具最小模板、验收门禁和实施顺序。
+- 独立验证：2 号验证官复核链路顺序、源/生成边界、Vendor 证据、Planner 契约和总账流程，五项问题修正后 `PASS`。
+- 实现提交：`60688311529e24bf178d5a2d344e2d5bc3ab229b`。
+- 线上验收：本批仅修改开发规范，无需部署；后续代码批次仍须执行完整门禁。
+
 ### 2026-08-31 — PON 最大距离计算器边界正确性、失败关闭与 SEO/GEO
 
 - 状态：`ONLINE PASS`。
