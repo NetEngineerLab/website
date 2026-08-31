@@ -18,6 +18,18 @@
 
 ## 已完成批次
 
+### 2026-08-31 — V2.0 工具平台架构基线文档
+
+- 状态：`VALIDATOR PASS`（文档基线更新；无运行时代码、公开 URL 或正式站内容变更）。
+- 文档：新增 `docs/NETENGINEERLAB_V2_ARCHITECTURE_SPEC.md`；在 `.github/copilot-instructions.md` 建立强制引用。
+- 采纳内容：确认 NetEngineerLab 从 Calculator 网站渐进演进为 Network Engineering Toolkit；定义 Calculator、Generator、Analyzer、Planner 边界，以及 Core、Tool Schema、Validator、Exporter、Vendor、Parser、Rules、Normalized Model、Shared UI 和 Frontend First 后端边界。
+- 仓库适配：保留当前 `website/tools/<slug>/`、`tools-catalog.json`、共享壳层、Service Worker、Sitemap、canonical、hreflang 和已上线 URL；`src/` 仅作为未来迁移目标，不进行一次性重写。V2.0 新工具继续使用 `/tools/<slug>/`，分类路径仅作为未来聚合页；嵌套路由必须等待完整配置驱动门禁后再启用。
+- 安全与契约：沿用现行 `CRITICAL/HIGH/MEDIUM/INFO` 严重度、Evidence、确定性 Evaluator、Local Processing、失败关闭和 AI 不得改变 Finding 的规则；文档明确分析稿中的 `LOW/WARNING` 不纳入现行契约。
+- 迁移路线：先建立共享契约和测试模板，新工具按 V2 开发，旧工具仅在维护/高价值重构时渐进迁移；禁止为了目录整洁一次性重写全站或提前引入大型后端。
+- 独立验证：2 号验证官首轮指出分类 URL 会与当前构建门禁和分类目录混淆；修正文档为当前 `/tools/<slug>/` 及完整路由升级前置条件后，第二轮最终 `PASS`；`git diff --check` PASS。
+- 实现提交：待文档提交后补录。
+- 线上验收：本批仅修改开发规范，无需部署；后续若规范触发代码或页面变更，按普通生产批次重新执行完整门禁。
+
 ### 2026-08-31 — PON 分光损耗计算器收发窗口正确性与 SEO/GEO
 
 - 状态：`ONLINE PASS`。

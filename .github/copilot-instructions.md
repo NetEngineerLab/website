@@ -1250,5 +1250,8 @@ Tool 21 仍须保留标准 `engine.js`、`app.js`、`pwa.js`、`manifest.webmani
 必须通过 Golden Fixture、语法验证和 `Generate → Parse → IR` 语义等价测试。
 厂商 Parser、Generator 和 ACL IR Adapter 必须使用工具专属模块文件；禁止把四厂商语法堆入 `engine.js` 或共享 Evaluator。
 
+V2.0 架构基线详见 `docs/NETENGINEERLAB_V2_ARCHITECTURE_SPEC.md`。该文档将现有
+`website/tools/<slug>/`、`tools-catalog.json`、共享壳层和规则引擎映射到渐进式 V2
+路线；不得据此一次性重写网站、修改已上线 URL 或绕过本文件中的安全、隐私和失败关闭门禁。
 
 End of NetEngineerLab Copilot Instructions
