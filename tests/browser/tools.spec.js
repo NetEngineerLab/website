@@ -36,6 +36,16 @@ const contentContracts={
       "https://webstore.iec.ch/en/publication/77134"
     ]
   },
+  "optical-power-budget":{
+    faqCount:7,
+    contentRoot:"body",
+    faqRoot:"#faq",
+    references:[
+      "https://www.itu.int/rec/T-REC-G.984.2/en",
+      "https://www.itu.int/rec/T-REC-G.652-202408-I/en",
+      "https://webstore.iec.ch/en/publication/77134"
+    ]
+  },
   "poe-power-budget-calculator":{
     faqCount:5,
     references:[
