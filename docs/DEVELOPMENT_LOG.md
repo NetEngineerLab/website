@@ -18,6 +18,19 @@
 
 ## 已完成批次
 
+### 2026-08-31 — PON 最大距离计算器边界正确性、失败关闭与 SEO/GEO
+
+- 状态：`VALIDATOR PASS`（线上同步待执行）。
+- 页面：`website/tools/pon-distance/` 中英文版本；同步更新引擎、交互、内容合约、专项浏览器测试、资源哈希与 Service Worker 缓存版本。
+- 正确性修复：输入必须为对象且非数组；熔接点/连接器为非负安全整数；分光比必须来自支持列表；衰减系数大于 0；系统可达距离至少 0.1 km；接收灵敏度低于过载门限；拒绝非有限数与派生溢出。
+- 数值与状态：统一 `1e-9 dB` 浮点边界；计划距离超过有效上限、物理余量或接收功率越界时失败关闭；系统限制状态与失败判定使用同一 epsilon，避免边界值误报健康。
+- 交互与安全：所有输入（含工程名称）在 debounce 前立即清空旧结果并禁用复制、保存、CSV、打印；无效报告导出返回空值，防止陈旧结果和旧项目元数据泄露。
+- 内容与 SEO/GEO：核验并纳入内容契约的 6 组现有双语 FAQ，新增 ITU-T G.984.2/G.671/G.650.3 官方来源、可见复核日期与 3 dB 规划阈值限制说明；全站覆盖 0 high、1 medium、20 maintain，下一批依次为 otdr-event、wireless-link-budget-calculator、poe-voltage-drop-calculator、network-rack-power-cooling-calculator、vlan-ip-capacity-planner。
+- 本地验证：`npm run verify` PASS；56 个 HTML 页面、54 个 Sitemap URL、21 个引擎、2751 个链接、0 errors、0 warnings；PON 引擎 PASS；Chrome/Edge/Android/iPhone 中英文边界与陈旧结果测试 16/16 PASS。
+- 独立验证：2 号验证官首轮发现系统距离下限与 HTML 不一致、limiter epsilon 不一致；统一为 `>=0.1` 并补充 0.1/0.099999999/极小值及 `1e-9` 边界回归，最终 `PASS`。
+- 实现提交：`b91564a0f5b0ff5687b96855d0076afe17380866`。
+- 线上验收：待实现提交、GitHub 门禁和正式站浏览器验收完成后登记 `ONLINE PASS`。
+
 ### 2026-08-31 — ONU 接收光功率诊断正确性、模式隔离与 SEO/GEO
 
 - 状态：`ONLINE PASS`。
@@ -304,7 +317,7 @@
 
 按“小批次、验证通过后再继续”的顺序执行：
 
-1. 继续 SEO/GEO 队列：pon-distance、otdr-event、wireless-link-budget-calculator、poe-voltage-drop-calculator、network-rack-power-cooling-calculator。
+1. 继续 SEO/GEO 队列：otdr-event、wireless-link-budget-calculator、poe-voltage-drop-calculator、network-rack-power-cooling-calculator、vlan-ip-capacity-planner。
 2. MIB/OID Explorer Phase 0：按 `docs/MIB_OID_EXPLORER_DEVELOPMENT_PLAN.md` 完成来源许可调研、解析器选型、数据字典、威胁模型与技术 ADR；不得在门禁前批量抓取或公开厂商 MIB。
 
 任何新发现的 P0/P1 稳定性或正确性问题，优先级高于上述 SEO/GEO 队列，并必须在本文件说明插队原因。
