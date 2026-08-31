@@ -29,8 +29,9 @@
 - SEO/GEO：fiber-loss 由 medium 降为 maintain；全站覆盖为 0 high、5 medium、16 maintain。下一批依次为 optical-power-budget、pon-splitter-loss、onu-rx-power、pon-distance、otdr-event。
 - 本地验证：`npm run verify` PASS；56 个 HTML 页面、54 个 Sitemap URL、21 个引擎、2727 个链接、0 errors、0 warnings；fiber-loss 核心 PASS；Chrome/Edge 双语 × 桌面/Android/iPhone 8/8 PASS；Service Worker 确定性重建、AST/路径故障注入及生产验收 PASS；`git diff --check` PASS。
 - 独立验证：2 号验证官先确认 fiber-loss 页面/引擎 `PASS`；缓存 P1 扩展后连续九轮发现并推动修复字符串/注释诱饵、伪 addAll、数组变异、作用域遮蔽、未等待 Promise、部署路径与真实路径绕过，最终第九轮 `PASS`。
+- CI 修复：首次推送 `a7c426900f9a1bf5dc4745e800bd60ac0c47be3a` 后，GA4 成功，但 Quality/Online 因工作流未安装新增的锁定 `acorn` 依赖而失败，Performance 依赖 Online 成功条件因此跳过；Quality/Online 均已在 `prepare:launch` 前增加 `npm ci` 与 npm 缓存。干净 `npm ci`（5 packages、0 vulnerabilities）后的全量 `npm run verify` PASS，2 号验证官独立复核 `PASS`；修复提交 `4783d6b3b41119866d06e86dfe2393b5790f6994`。
 - 实现提交：`1db3f75d074c0ebe5af5756145816e85b4389dab`。
-- 线上验收：待推送后补充四条 GitHub 工作流、正式站双语浏览器及缓存版本证据。
+- 线上验收：首次发布验收未闭环的 CI 失败证据已如实记录；等待重新推送后补充四条 GitHub 工作流、正式站双语浏览器及缓存版本证据。
 
 ### 2026-08-31 — SFP/QSFP 兼容性计算器正确性修复与 SEO/GEO 内容
 
