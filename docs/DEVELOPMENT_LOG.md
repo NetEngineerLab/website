@@ -20,7 +20,7 @@
 
 ### 2026-08-31 — SFP/QSFP 兼容性计算器正确性修复与 SEO/GEO 内容
 
-- 状态：`VALIDATOR PASS`（等待推送及正式站验收）。
+- 状态：`ONLINE PASS`。
 - 页面：`website/tools/sfp-qsfp-compatibility-calculator/` 中英文版本；计算引擎、浏览器测试与 Service Worker 同步更新。
 - 正确性修复：光预算改为分别计算 A→B、B→A；最小发射功率用于接收灵敏度/设计余量，最大发射功率用于接收过载，页面增加两端 Maximum Tx 输入和预设值；连接器不匹配升级为硬失败。
 - 失败关闭与数值边界：数值只接受有限 number 或严格十进制/科学计数字符串；枚举只接受原始字符串且不会执行对象 `toString()`；校验必填项、合法枚举、波长 800–2000 nm、功率 -200–200 dBm、安全整数计数、模块固有 lane 数、派生结果有限性及最小聚合速率 0.1 Gbps；用 `1e-9 dB` 明确容差把理论零余量规范为 0，不放宽真实负余量。
@@ -29,7 +29,7 @@
 - 本地验证：`npm run verify` PASS；56 个 HTML 页面、54 个 Sitemap URL、21 个引擎、2721 个链接、0 errors、0 warnings；核心引擎 PASS；Chrome/Edge 双语 × 桌面/Android/iPhone 定向 Playwright 16/16 PASS；`git diff --check` PASS。
 - 独立验证：2 号验证官连续九轮故障注入，依次发现空值/类型强转、非法连接器、波长与安全整数、模块 lane、数值范围/派生溢出、连接器状态、枚举对象、浮点零边界及最小速率契约问题；逐项修复并增加回归测试后，第九轮最终 `PASS`。
 - 实现提交：`7f8da6d2912c8f4db275dbe2d6152f3674750c5c`。
-- 线上验收：待推送后补充四条 GitHub 工作流及正式站双语浏览器证据。
+- 线上验收：提交 `471935364bd66acee4cf251af39c396992f30bb5` 对应 Quality Gate `33349327907`、Online Monitor `33349327915`、GA4 Monitor `33349327909`、Performance Monitor `33349364853` 全部成功；正式站 SFP/QSFP 英中页面 Chrome/Edge/Android/iPhone 16/16 PASS，覆盖双向预算、5 FAQ、4 个来源、响应式与运行时错误检查。
 
 ### 2026-08-30 — Engineering Rules 基础契约与失败关闭门禁
 
