@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31T09:50:20.255Z",
+  "generatedAt": "2026-08-31T13:21:37.635Z",
   "methodology": {
     "scope": "Active bilingual tool pages configured by locales.json and tools-catalog.json",
     "meaning": "Rule-based content-gap priority; not a ranking, traffic, or conversion forecast",
@@ -21,83 +21,18 @@
     "localePages": 42,
     "priorityCounts": {
       "high": 0,
-      "medium": 3,
-      "maintain": 18
+      "medium": 2,
+      "maintain": 19
     }
   },
   "nextBatch": [
-    "onu-rx-power",
     "pon-distance",
     "otdr-event",
     "wireless-link-budget-calculator",
-    "poe-voltage-drop-calculator"
+    "poe-voltage-drop-calculator",
+    "network-rack-power-cooling-calculator"
   ],
   "tools": [
-    {
-      "id": "onu-rx-power",
-      "catalogOrder": 4,
-      "category": "maintenance",
-      "searchIntent": {
-        "id": "diagnosis",
-        "en": "diagnosis",
-        "zh": "故障诊断"
-      },
-      "targetTopic": {
-        "en": "ONU RX Power Diagnosis",
-        "zh": "ONU接收光功率诊断"
-      },
-      "contentOwner": "NetEngineerLab Editorial",
-      "lastReviewedAt": {
-        "en": null,
-        "zh": null
-      },
-      "locales": {
-        "en": {
-          "visibleCharacters": 4732,
-          "sectionHeadings": 11,
-          "longTailQuestions": [
-            "What ONU receive power is considered normal?",
-            "Should a link close to sensitivity be maintained even when service works?",
-            "What does a large difference between measured and expected power indicate?",
-            "What problems can excessive receive power cause?",
-            "Does possible no signal always mean a fiber break?",
-            "Why are all preset values editable?"
-          ],
-          "faqCount": 6,
-          "faqSchema": true,
-          "externalReferences": [],
-          "externalReferenceCount": 0,
-          "internalLinkCount": 3,
-          "lastReviewedAt": null,
-          "reviewMarker": false
-        },
-        "zh": {
-          "visibleCharacters": 1747,
-          "sectionHeadings": 11,
-          "longTailQuestions": [
-            "ONU接收光功率多少才算正常？",
-            "光功率接近灵敏度但业务正常，需要处理吗？",
-            "实测值比理论值低很多说明什么？",
-            "接收光功率过高会导致什么问题？",
-            "疑似无光是否一定是断纤？",
-            "为什么预设参数都可以修改？"
-          ],
-          "faqCount": 6,
-          "faqSchema": true,
-          "externalReferences": [],
-          "externalReferenceCount": 0,
-          "internalLinkCount": 3,
-          "lastReviewedAt": null,
-          "reviewMarker": false
-        }
-      },
-      "score": 22,
-      "priority": "medium",
-      "gaps": [
-        "3 authoritative reference(s) below the three-source target",
-        "visible review/update marker missing"
-      ]
-    },
     {
       "id": "pon-distance",
       "catalogOrder": 5,
@@ -870,6 +805,78 @@
             "https://www.itu.int/rec/T-REC-G.984.2/en",
             "https://www.itu.int/rec/T-REC-G.671/en",
             "https://www.itu.int/rec/T-REC-G.652-202408-I/en"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 3,
+          "lastReviewedAt": "2026-08-31",
+          "reviewMarker": true
+        }
+      },
+      "score": 4,
+      "priority": "maintain",
+      "gaps": [
+        "visible review/update marker missing"
+      ]
+    },
+    {
+      "id": "onu-rx-power",
+      "catalogOrder": 4,
+      "category": "maintenance",
+      "searchIntent": {
+        "id": "diagnosis",
+        "en": "diagnosis",
+        "zh": "故障诊断"
+      },
+      "targetTopic": {
+        "en": "ONU RX Power Diagnosis",
+        "zh": "ONU接收光功率诊断"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": null,
+        "zh": "2026-08-31"
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 5318,
+          "sectionHeadings": 12,
+          "longTailQuestions": [
+            "What ONU receive power is considered normal?",
+            "Should a link close to sensitivity be maintained even when service works?",
+            "What does a large difference between measured and expected power indicate?",
+            "What problems can excessive receive power cause?",
+            "Does possible no signal always mean a fiber break?",
+            "Why are all preset values editable?"
+          ],
+          "faqCount": 6,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.984.2/en",
+            "https://www.itu.int/rec/T-REC-G.671/en",
+            "https://www.itu.int/rec/T-REC-G.650.3/en"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 3,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        },
+        "zh": {
+          "visibleCharacters": 1983,
+          "sectionHeadings": 12,
+          "longTailQuestions": [
+            "ONU接收光功率多少才算正常？",
+            "光功率接近灵敏度但业务正常，需要处理吗？",
+            "实测值比理论值低很多说明什么？",
+            "接收光功率过高会导致什么问题？",
+            "疑似无光是否一定是断纤？",
+            "为什么预设参数都可以修改？"
+          ],
+          "faqCount": 6,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.984.2/en",
+            "https://www.itu.int/rec/T-REC-G.671/en",
+            "https://www.itu.int/rec/T-REC-G.650.3/en"
           ],
           "externalReferenceCount": 3,
           "internalLinkCount": 3,
