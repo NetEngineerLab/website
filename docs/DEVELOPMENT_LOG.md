@@ -20,7 +20,7 @@
 
 ### 2026-08-31 — 光纤损耗计算器正确性、SEO/GEO 与全站缓存失效门禁
 
-- 状态：`VALIDATOR PASS`（等待推送及正式站验收）。
+- 状态：`ONLINE PASS`。
 - 页面：`website/tools/fiber-loss/` 中英文版本；同时修复 21 个工具的 Service Worker 本地资源缓存版本，以及 5 个旧光纤工具的计算引擎预缓存清单。
 - 正确性修复：熔接点与连接器数量必须为非负安全整数；输入对象、非有限数及派生乘法溢出失败关闭；用 `1e-9 dB` 处理理论 0 dB 与 3 dB 浮点边界，不放宽真实负余量。
 - 内容与范围：保留现有 6 组双语 FAQ，新增 ITU-T G.652、ITU-T G.671、IEC 61280-4-2:2024 三个官方来源与可见复核日期；明确 3 dB 是本工具规划门槛而非标准统一强制值，正式验收仍需器件规格与校准后的现场测量。
@@ -31,7 +31,7 @@
 - 独立验证：2 号验证官先确认 fiber-loss 页面/引擎 `PASS`；缓存 P1 扩展后连续九轮发现并推动修复字符串/注释诱饵、伪 addAll、数组变异、作用域遮蔽、未等待 Promise、部署路径与真实路径绕过，最终第九轮 `PASS`。
 - CI 修复：首次推送 `a7c426900f9a1bf5dc4745e800bd60ac0c47be3a` 后，GA4 成功，但 Quality/Online 因工作流未安装新增的锁定 `acorn` 依赖而失败，Performance 依赖 Online 成功条件因此跳过；Quality/Online 均已在 `prepare:launch` 前增加 `npm ci` 与 npm 缓存。干净 `npm ci`（5 packages、0 vulnerabilities）后的全量 `npm run verify` PASS，2 号验证官独立复核 `PASS`；修复提交 `4783d6b3b41119866d06e86dfe2393b5790f6994`。
 - 实现提交：`1db3f75d074c0ebe5af5756145816e85b4389dab`。
-- 线上验收：首次发布验收未闭环的 CI 失败证据已如实记录；等待重新推送后补充四条 GitHub 工作流、正式站双语浏览器及缓存版本证据。
+- 线上验收：修复后远端 `fc9e062d4b78a5b3225ec1ba65b8487f4fe9b858` 的 Quality Gate `33354114013`、Online Monitor `33354113911`、GA4 Monitor `33354113857`、Performance Monitor `33354139614` 全部成功；Online Monitor 验证正式站文件及 21 个 Service Worker 与目标提交一致；正式站 fiber-loss 英中页面 Chrome/Edge/Android/iPhone 8/8 PASS，覆盖计算、FAQ、官方来源、响应式和运行时错误检查。
 
 ### 2026-08-31 — SFP/QSFP 兼容性计算器正确性修复与 SEO/GEO 内容
 
