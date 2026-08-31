@@ -21,6 +21,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: .node-version
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
 
       - name: Run NetEngineerLab production acceptance
         run: npm run prepare:launch

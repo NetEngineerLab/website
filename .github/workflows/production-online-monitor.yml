@@ -27,6 +27,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: .node-version
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
 
       - name: Build and run local quality gate
         run: npm run prepare:launch
