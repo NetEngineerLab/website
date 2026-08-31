@@ -18,6 +18,20 @@
 
 ## 已完成批次
 
+### 2026-08-31 — 光纤损耗计算器正确性、SEO/GEO 与全站缓存失效门禁
+
+- 状态：`VALIDATOR PASS`（等待推送及正式站验收）。
+- 页面：`website/tools/fiber-loss/` 中英文版本；同时修复 21 个工具的 Service Worker 本地资源缓存版本，以及 5 个旧光纤工具的计算引擎预缓存清单。
+- 正确性修复：熔接点与连接器数量必须为非负安全整数；输入对象、非有限数及派生乘法溢出失败关闭；用 `1e-9 dB` 处理理论 0 dB 与 3 dB 浮点边界，不放宽真实负余量。
+- 内容与范围：保留现有 6 组双语 FAQ，新增 ITU-T G.652、ITU-T G.671、IEC 61280-4-2:2024 三个官方来源与可见复核日期；明确 3 dB 是本工具规划门槛而非标准统一强制值，正式验收仍需器件规格与校准后的现场测量。
+- P1 缓存修复：缓存名由共享运行时哈希扩展为“共享运行时 + 工具本地 CORE 内容”双哈希，解决 cache-first/ignoreSearch 下旧 app/engine 可能长期驻留的问题；fiber-loss、optical-power-budget、pon-splitter-loss、onu-rx-power、pon-distance 补入 `./js/engine.js`；连续两次构建的 21 个 SW 字节一致。
+- 缓存门禁：精确锁定 `acorn@8.15.0`，用 AST 验证唯一顶层 CORE/A 与 `install → waitUntil → caches.open → then → addAll` 数据流、全局对象未遮蔽、缓存 Promise 未丢弃；路径必须是 website 真实部署根内的现存目标，并拒绝协议/绝对/反斜杠/越界/缺失路径及符号链接或 Windows junction 指向站外；相关故障测试接入 `npm run verify`。
+- SEO/GEO：fiber-loss 由 medium 降为 maintain；全站覆盖为 0 high、5 medium、16 maintain。下一批依次为 optical-power-budget、pon-splitter-loss、onu-rx-power、pon-distance、otdr-event。
+- 本地验证：`npm run verify` PASS；56 个 HTML 页面、54 个 Sitemap URL、21 个引擎、2727 个链接、0 errors、0 warnings；fiber-loss 核心 PASS；Chrome/Edge 双语 × 桌面/Android/iPhone 8/8 PASS；Service Worker 确定性重建、AST/路径故障注入及生产验收 PASS；`git diff --check` PASS。
+- 独立验证：2 号验证官先确认 fiber-loss 页面/引擎 `PASS`；缓存 P1 扩展后连续九轮发现并推动修复字符串/注释诱饵、伪 addAll、数组变异、作用域遮蔽、未等待 Promise、部署路径与真实路径绕过，最终第九轮 `PASS`。
+- 实现提交：`1db3f75d074c0ebe5af5756145816e85b4389dab`。
+- 线上验收：待推送后补充四条 GitHub 工作流、正式站双语浏览器及缓存版本证据。
+
 ### 2026-08-31 — SFP/QSFP 兼容性计算器正确性修复与 SEO/GEO 内容
 
 - 状态：`ONLINE PASS`。
@@ -238,7 +252,7 @@
 
 按“小批次、验证通过后再继续”的顺序执行：
 
-1. 继续 SEO/GEO 队列：fiber-loss、optical-power-budget、pon-splitter-loss、onu-rx-power、pon-distance。
+1. 继续 SEO/GEO 队列：optical-power-budget、pon-splitter-loss、onu-rx-power、pon-distance、otdr-event。
 2. MIB/OID Explorer Phase 0：按 `docs/MIB_OID_EXPLORER_DEVELOPMENT_PLAN.md` 完成来源许可调研、解析器选型、数据字典、威胁模型与技术 ADR；不得在门禁前批量抓取或公开厂商 MIB。
 
 任何新发现的 P0/P1 稳定性或正确性问题，优先级高于上述 SEO/GEO 队列，并必须在本文件说明插队原因。
