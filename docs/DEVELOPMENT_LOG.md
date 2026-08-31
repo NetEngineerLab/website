@@ -18,6 +18,19 @@
 
 ## 已完成批次
 
+### 2026-08-31 — PON 分光损耗计算器收发窗口正确性与 SEO/GEO
+
+- 状态：`VALIDATOR PASS`（线上验收待推送部署后补录）。
+- 页面：`website/tools/pon-splitter-loss/` 中英文版本；同步更新计算引擎、专用浏览器测试、内容合约、资源哈希与 Service Worker 缓存版本。
+- 正确性修复：增加最小/最大发送功率边界；最小发送功率用于接收灵敏度与标准 ODN 预算，最大发送功率用于过载校核并输出接收功率范围；三段分光损耗必须精确来自支持列表，禁止非法值静默回退为 1:1；熔接点/连接器必须为非负安全整数，衰减系数必须大于 0，系统距离至少为 0.1 km，最小发送功率不得高于最大值，灵敏度必须低于过载门限，并拒绝非对象、数组、类型强转、非有限数和派生溢出。
+- 数值与交互边界：用 `1e-9 dB` 规范理论 0 dB/3 dB 浮点边界；无效输入立即清空 `last`、结果和状态并禁用复制/保存/CSV；工程名称及全部参数在 160 ms debounce 前同步失效，自动重算后才恢复操作，防止陈旧健康结果和旧工程元数据导出。
+- 内容与范围：双语页面新增最大发送功率输入、接收功率范围、ITU-T G.984.2、G.671、G.652 三个官方来源与可见复核日期；说明分光器插损值是规划值，须核对实际器件与设备规格，3 dB 是工具规划阈值而非标准统一强制值。
+- SEO/GEO：pon-splitter-loss 由 medium 降为 maintain；全站覆盖为 0 high、3 medium、18 maintain。下一批依次为 onu-rx-power、pon-distance、otdr-event、wireless-link-budget-calculator、poe-voltage-drop-calculator。
+- 本地验证：`npm run verify` PASS；56 个 HTML 页面、54 个 Sitemap URL、21 个引擎、2739 个链接、0 errors、0 warnings；PON 引擎测试 PASS；Chrome/Edge 双语 × 桌面/Android/iPhone 内容与边界浏览器测试 16/16 PASS；`git diff --check` PASS。
+- 独立验证：2 号验证官首轮发现 HTML `min=0.1` 与引擎仅要求大于 0 的距离下限不一致；统一引擎为 `systemReach >= 0.1` 并补充 0.1、0.099999999、极小正数回归断言后，第 2 轮最终 `PASS`；另完成 10,000 组随机公式对比、`1e-9` 浮点边界、非法输入/派生溢出故障注入、SW 校验和独立双语四终端测试。
+- 实现提交：`96198facc9a8e00fe8b759cecf1bf6748a55a87f`。
+- 线上验收：待推送、CI 与正式站浏览器验收后补录。
+
 ### 2026-08-31 — 光功率预算计算器收发窗口正确性与 SEO/GEO
 
 - 状态：`ONLINE PASS`。
@@ -266,7 +279,7 @@
 
 按“小批次、验证通过后再继续”的顺序执行：
 
-1. 继续 SEO/GEO 队列：pon-splitter-loss、onu-rx-power、pon-distance、otdr-event、wireless-link-budget-calculator。
+1. 继续 SEO/GEO 队列：onu-rx-power、pon-distance、otdr-event、wireless-link-budget-calculator、poe-voltage-drop-calculator。
 2. MIB/OID Explorer Phase 0：按 `docs/MIB_OID_EXPLORER_DEVELOPMENT_PLAN.md` 完成来源许可调研、解析器选型、数据字典、威胁模型与技术 ADR；不得在门禁前批量抓取或公开厂商 MIB。
 
 任何新发现的 P0/P1 稳定性或正确性问题，优先级高于上述 SEO/GEO 队列，并必须在本文件说明插队原因。
