@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-optical-power-budget-locale-v1.9.9-04-p0-p1-correctness-consent-offline-f036711f9f38";
+const CACHE = "nel-optical-power-budget-locale-v1.9.9-04-p0-p1-correctness-consent-offline-f036711f9f38-032ebdd45ac0";
 const CORE = [
   "./index.html",
   "./",
@@ -8,6 +8,7 @@ const CORE = [
   "./manifest.webmanifest",
   "./css/style.css?v=322f05710e8e",
   "./js/app.js?v=ac9dc7072caf",
+  "./js/engine.js",
   "./images/logo.svg",
   "../../data/locales.js?v=b541508dc0ee",
   "../../data/site-config.js?v=b5072ad7fa47",

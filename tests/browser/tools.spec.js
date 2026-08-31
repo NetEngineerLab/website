@@ -26,6 +26,16 @@ const calculationOutputs={
   "acl-generator-validator":["#score","—"]
 };
 const contentContracts={
+  "fiber-loss":{
+    faqCount:6,
+    contentRoot:"body",
+    faqRoot:".faq-section",
+    references:[
+      "https://www.itu.int/rec/T-REC-G.652-202408-I/en",
+      "https://www.itu.int/rec/T-REC-G.671/en",
+      "https://webstore.iec.ch/en/publication/77134"
+    ]
+  },
   "poe-power-budget-calculator":{
     faqCount:5,
     references:[
@@ -138,20 +148,22 @@ test.describe("all configured tools",()=>{
         expect((await page.locator("body").innerText()).length).toBeGreaterThan(200);
         const contentContract=contentContracts[tool.id];
         if(contentContract){
-          await expect(page.locator(".content details")).toHaveCount(contentContract.faqCount);
+          const contentRoot=contentContract.contentRoot||".content";
+          const faqRoot=contentContract.faqRoot||contentRoot;
+          await expect(page.locator(`${faqRoot} details`)).toHaveCount(contentContract.faqCount);
           for(const reference of contentContract.references){
-            await expect(page.locator(`.content a[href="${reference}"]`)).toBeVisible();
+            await expect(page.locator(`${contentRoot} a[href="${reference}"]`)).toBeVisible();
           }
-          const faqMatchesVisible=await page.evaluate(()=>{
+          const faqMatchesVisible=await page.evaluate((rootSelector)=>{
             const schema=JSON.parse(document.querySelector('script[data-nel-schema="faq"]')?.textContent||"null");
-            const visible=[...document.querySelectorAll(".content details")].map(item=>({
+            const visible=[...document.querySelectorAll(`${rootSelector} details`)].map(item=>({
               question:item.querySelector("summary")?.textContent.trim(),
               answer:item.querySelector("p")?.textContent.trim()
             }));
             return schema?.mainEntity?.length===visible.length&&schema.mainEntity.every(entity=>visible.some(item=>
               item.question===entity.name&&item.answer===entity.acceptedAnswer?.text
             ));
-          });
+          },faqRoot);
           expect(faqMatchesVisible).toBe(true);
         }
         const engineLoaded=await page.evaluate(()=>performance.getEntriesByType("resource").some(entry=>/\/js\/engine\.js(?:\?|$)/.test(entry.name)));

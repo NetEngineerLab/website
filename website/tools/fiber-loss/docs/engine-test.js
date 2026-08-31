@@ -45,4 +45,34 @@ assert.equal(engine.calculate({...base,rxThreshold:-5.8}).rxMargin,3);
 assert.equal(engine.calculate({...base,rxThreshold:-5.8}).status,"healthy");
 assert.equal(engine.calculate({...base,rxThreshold:-2.7}).status,"failed");
 
+for(const invalid of [undefined,null,[],"",{...base,distance:"20"}]){
+  assert.equal(engine.calculate(invalid).ok,false);
+}
+
+for(const [key,value] of [["spliceCount",1.5],["connectorCount",Number.MAX_SAFE_INTEGER+1]]){
+  assert.equal(engine.calculate({...base,[key]:value}).ok,false);
+}
+
+const overflow=engine.calculate({...base,distance:1e308,attenuation:1e308});
+assert.equal(overflow.ok,false);
+
+const exactZeroWithFloatNoise=engine.calculate({
+  ...base,
+  distance:1,
+  attenuation:0.1,
+  spliceCount:0,
+  connectorCount:1,
+  connectorLoss:0.2,
+  splitter1:0,
+  splitter2:0,
+  otherLoss:0,
+  engineeringMargin:0.3,
+  availableBudget:0.6,
+  txPower:0.3,
+  rxThreshold:0
+});
+assert.equal(exactZeroWithFloatNoise.budgetRemaining,0);
+assert.equal(exactZeroWithFloatNoise.rxMargin,0);
+assert.equal(exactZeroWithFloatNoise.status,"warning");
+
 console.log("Fiber loss engine tests: PASS");

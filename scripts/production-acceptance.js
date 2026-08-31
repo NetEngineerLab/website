@@ -6,6 +6,7 @@ const path=require("path");
 const {spawn,spawnSync}=require("child_process");
 const{stableFileHash,stableHash}=require("./stable-text-hash");
 const{rulesRuntimeAssets}=require("./rules-runtime-assets");
+const{parsePrecacheAssets,hasPrecacheAsset,precachePathIssues}=require("./service-worker-precache");
 
 const root=path.resolve(__dirname,"..");
 const site=path.join(root,"website");
@@ -139,6 +140,12 @@ function auditVersionedAssets(){
   for(const file of serviceWorkers){
     const text=read(file);
     const rel=path.relative(site,file).split(path.sep).join("/");
+    const toolRoot=path.dirname(file);
+    const precached=parsePrecacheAssets(text);
+    for(const issue of precachePathIssues(precached,toolRoot,site))serviceWorkerIssues.push(`${rel}: ${issue}`);
+    if(fs.existsSync(path.join(toolRoot,"js","engine.js"))&&!hasPrecacheAsset(text,"./js/engine.js")){
+      serviceWorkerIssues.push(`${rel}: missing local calculation engine`);
+    }
     for(const asset of sharedRuntimeAssets){
       const expected=`${asset.cachePath}?v=${assetDigest(path.join(site,...asset.sitePath.split("/")))}`;
       if(!text.includes(expected))serviceWorkerIssues.push(`${rel}: missing ${expected}`);

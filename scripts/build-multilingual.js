@@ -5,6 +5,7 @@ const fs=require("fs");
 const path=require("path");
 const{stableFileHash,stableHash}=require("./stable-text-hash");
 const{rulesRuntimeAssets}=require("./rules-runtime-assets");
+const{precachePathIssues}=require("./service-worker-precache");
 
 const packageRoot=path.resolve(__dirname,"..");
 const siteRoot=path.join(packageRoot,"website");
@@ -204,6 +205,16 @@ function versionRelativeAsset(html,currentRel,targetRel){
 }
 function sharedRuntimeVersion(){
  return stableHash(sharedRuntimeAssets.map(item=>assetVersion(item.sitePath)).join(":"),12);
+}
+function toolCacheVersion(toolRoot,assets){
+ const issues=precachePathIssues(assets,toolRoot,siteRoot);
+ if(issues.length)throw new Error(`Invalid Service Worker precache assets for ${path.relative(siteRoot,toolRoot)}: ${issues.join("; ")}`);
+ return stableHash(assets.map(item=>{
+  const clean=String(item).split(/[?#]/)[0];
+  const target=path.resolve(toolRoot,clean);
+  if(fs.existsSync(target)&&fs.statSync(target).isFile())return`${item}:${stableFileHash(target,12)}`;
+  return item;
+ }).join("\n"),12);
 }
 function removeHeadLinks(html){
  return html.replace(/<link\b[^>]*>/gi,tag=>{
@@ -505,7 +516,7 @@ function generateManifests(groups){
      return fs.existsSync(path.join(siteRoot,...targetRel.split("/")))?`${clean}?v=${assetVersion(targetRel)}`:item;
     });
     assets=[...new Set(assets)];
-    const cacheName=`nel-${tool.id}-locale-v${localeConfig.version}-${sharedRuntimeVersion()}`;
+    const cacheName=`nel-${tool.id}-locale-v${localeConfig.version}-${sharedRuntimeVersion()}-${toolCacheVersion(toolRoot,assets)}`;
     const replacement=compactMatch
      ?`const C=${JSON.stringify(cacheName)},A=${JSON.stringify(assets)};`
      :`const CACHE = ${JSON.stringify(cacheName)};\nconst CORE = ${JSON.stringify(assets,null,2)};`;

@@ -11,9 +11,17 @@
     "connectorCount","connectorLoss","splitter1","splitter2",
     "otherLoss","engineeringMargin","availableBudget"
   ];
+  const countKeys=["spliceCount","connectorCount"];
+  const DB_EPSILON=1e-9;
+
+  function normalizeNearZero(value){
+    return Math.abs(value)<=DB_EPSILON?0:value;
+  }
 
   function validate(values){
-    return nonNegativeKeys.every(key=>Number.isFinite(values[key])&&values[key]>=0)
+    return Boolean(values)&&typeof values==="object"&&!Array.isArray(values)
+      && nonNegativeKeys.every(key=>Number.isFinite(values[key])&&values[key]>=0)
+      && countKeys.every(key=>Number.isSafeInteger(values[key]))
       && Number.isFinite(values.txPower)
       && Number.isFinite(values.rxThreshold);
   }
@@ -26,12 +34,15 @@
     const splitterOtherTotal=values.splitter1+values.splitter2+values.otherLoss;
     const physicalLoss=fiberLoss+spliceTotal+connectorTotal+splitterOtherTotal;
     const designLoss=physicalLoss+values.engineeringMargin;
-    const budgetRemaining=values.availableBudget-designLoss;
+    const budgetRemaining=normalizeNearZero(values.availableBudget-designLoss);
     const estimatedRxPower=values.txPower-physicalLoss;
-    const rxMargin=estimatedRxPower-values.rxThreshold;
+    const rxMargin=normalizeNearZero(estimatedRxPower-values.rxThreshold);
+    if(![fiberLoss,spliceTotal,connectorTotal,splitterOtherTotal,physicalLoss,designLoss,budgetRemaining,estimatedRxPower,rxMargin].every(Number.isFinite)){
+      return{ok:false,error:"invalid-input"};
+    }
     let status="healthy";
-    if(budgetRemaining<0||rxMargin<0)status="failed";
-    else if(budgetRemaining<3||rxMargin<3)status="warning";
+    if(budgetRemaining < -DB_EPSILON || rxMargin < -DB_EPSILON)status="failed";
+    else if(budgetRemaining < 3-DB_EPSILON || rxMargin < 3-DB_EPSILON)status="warning";
     return{
       ok:true,fiberLoss,spliceTotal,connectorTotal,splitterOtherTotal,
       physicalLoss,designLoss,budgetRemaining,estimatedRxPower,rxMargin,status

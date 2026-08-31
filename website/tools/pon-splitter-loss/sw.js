@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-pon-splitter-loss-locale-v1.9.9-04-p0-p1-correctness-consent-offline-f036711f9f38";
+const CACHE = "nel-pon-splitter-loss-locale-v1.9.9-04-p0-p1-correctness-consent-offline-f036711f9f38-2cba37aab82f";
 const CORE = [
   "./index.html",
   "./",
@@ -8,6 +8,7 @@ const CORE = [
   "./manifest.webmanifest",
   "./css/style.css?v=19904f1c8326",
   "./js/app.js?v=addd5ed85a62",
+  "./js/engine.js",
   "./images/logo.svg",
   "../../data/locales.js?v=b541508dc0ee",
   "../../data/site-config.js?v=b5072ad7fa47",

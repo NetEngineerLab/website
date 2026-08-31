@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-onu-rx-power-locale-v1.9.9-04-p0-p1-correctness-consent-offline-f036711f9f38";
+const CACHE = "nel-onu-rx-power-locale-v1.9.9-04-p0-p1-correctness-consent-offline-f036711f9f38-6971dfacd544";
 const CORE = [
   "./index.html",
   "./",
@@ -8,6 +8,7 @@ const CORE = [
   "./manifest.webmanifest",
   "./css/style.css?v=4b12b3373275",
   "./js/app.js?v=6c30e5b75947",
+  "./js/engine.js",
   "./images/logo.svg",
   "../../data/locales.js?v=b541508dc0ee",
   "../../data/site-config.js?v=b5072ad7fa47",
