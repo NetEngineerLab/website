@@ -20,7 +20,7 @@
 
 ### 2026-08-31 — PON 最大距离计算器边界正确性、失败关闭与 SEO/GEO
 
-- 状态：`VALIDATOR PASS`（线上同步待执行）。
+- 状态：`ONLINE PASS`。
 - 页面：`website/tools/pon-distance/` 中英文版本；同步更新引擎、交互、内容合约、专项浏览器测试、资源哈希与 Service Worker 缓存版本。
 - 正确性修复：输入必须为对象且非数组；熔接点/连接器为非负安全整数；分光比必须来自支持列表；衰减系数大于 0；系统可达距离至少 0.1 km；接收灵敏度低于过载门限；拒绝非有限数与派生溢出。
 - 数值与状态：统一 `1e-9 dB` 浮点边界；计划距离超过有效上限、物理余量或接收功率越界时失败关闭；系统限制状态与失败判定使用同一 epsilon，避免边界值误报健康。
@@ -29,7 +29,7 @@
 - 本地验证：`npm run verify` PASS；56 个 HTML 页面、54 个 Sitemap URL、21 个引擎、2751 个链接、0 errors、0 warnings；PON 引擎 PASS；Chrome/Edge/Android/iPhone 中英文边界与陈旧结果测试 16/16 PASS。
 - 独立验证：2 号验证官首轮发现系统距离下限与 HTML 不一致、limiter epsilon 不一致；统一为 `>=0.1` 并补充 0.1/0.099999999/极小值及 `1e-9` 边界回归，最终 `PASS`。
 - 实现提交：`b91564a0f5b0ff5687b96855d0076afe17380866`。
-- 线上验收：待实现提交、GitHub 门禁和正式站浏览器验收完成后登记 `ONLINE PASS`。
+- 线上验收：远端 `e329ed692566faf5f87d3dbc4dcb0451417ed425` 的 Quality Gate `33401891440`、Online Monitor `33401891388`、GA4 Monitor `33401891400`、Performance Monitor `33401956195` 全部成功；正式站 pon-distance 英中页面 Chrome/Edge/Android/iPhone 内容与边界测试 16/16 PASS。
 
 ### 2026-08-31 — ONU 接收光功率诊断正确性、模式隔离与 SEO/GEO
 
