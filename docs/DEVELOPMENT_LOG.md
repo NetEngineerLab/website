@@ -18,6 +18,19 @@
 
 ## 已完成批次
 
+### 2026-08-31 — SFP/QSFP 兼容性计算器正确性修复与 SEO/GEO 内容
+
+- 状态：`VALIDATOR PASS`（等待推送及正式站验收）。
+- 页面：`website/tools/sfp-qsfp-compatibility-calculator/` 中英文版本；计算引擎、浏览器测试与 Service Worker 同步更新。
+- 正确性修复：光预算改为分别计算 A→B、B→A；最小发射功率用于接收灵敏度/设计余量，最大发射功率用于接收过载，页面增加两端 Maximum Tx 输入和预设值；连接器不匹配升级为硬失败。
+- 失败关闭与数值边界：数值只接受有限 number 或严格十进制/科学计数字符串；枚举只接受原始字符串且不会执行对象 `toString()`；校验必填项、合法枚举、波长 800–2000 nm、功率 -200–200 dBm、安全整数计数、模块固有 lane 数、派生结果有限性及最小聚合速率 0.1 Gbps；用 `1e-9 dB` 明确容差把理论零余量规范为 0，不放宽真实负余量。
+- 内容与范围：增加 5 组双语 FAQ、可见复核日期及 SNIA SFF-8472/SFP-QSFP 规范入口、Cisco 平台支持表、Juniper form-factor 兼容说明；明确工具不验证精确料号/厂商支持矩阵、EEPROM、FEC、breakout，也不把同名波长比较扩展为 BiDi/WDM 配对结论。
+- SEO/GEO：该工具由 high 降为 maintain；全站覆盖为 0 high、6 medium、15 maintain。下一批依次为 fiber-loss、optical-power-budget、pon-splitter-loss、onu-rx-power、pon-distance。
+- 本地验证：`npm run verify` PASS；56 个 HTML 页面、54 个 Sitemap URL、21 个引擎、2721 个链接、0 errors、0 warnings；核心引擎 PASS；Chrome/Edge 双语 × 桌面/Android/iPhone 定向 Playwright 16/16 PASS；`git diff --check` PASS。
+- 独立验证：2 号验证官连续九轮故障注入，依次发现空值/类型强转、非法连接器、波长与安全整数、模块 lane、数值范围/派生溢出、连接器状态、枚举对象、浮点零边界及最小速率契约问题；逐项修复并增加回归测试后，第九轮最终 `PASS`。
+- 实现提交：`7f8da6d2912c8f4db275dbe2d6152f3674750c5c`。
+- 线上验收：待推送后补充四条 GitHub 工作流及正式站双语浏览器证据。
+
 ### 2026-08-30 — Engineering Rules 基础契约与失败关闭门禁
 
 - 状态：`ONLINE PASS`
@@ -225,7 +238,7 @@
 
 按“小批次、验证通过后再继续”的顺序执行：
 
-1. 继续 SEO/GEO 队列：SFP/QSFP 兼容性、光纤损耗、光功率预算、PON 分光器损耗、ONU RX Power。
+1. 继续 SEO/GEO 队列：fiber-loss、optical-power-budget、pon-splitter-loss、onu-rx-power、pon-distance。
 2. MIB/OID Explorer Phase 0：按 `docs/MIB_OID_EXPLORER_DEVELOPMENT_PLAN.md` 完成来源许可调研、解析器选型、数据字典、威胁模型与技术 ADR；不得在门禁前批量抓取或公开厂商 MIB。
 
 任何新发现的 P0/P1 稳定性或正确性问题，优先级高于上述 SEO/GEO 队列，并必须在本文件说明插队原因。
