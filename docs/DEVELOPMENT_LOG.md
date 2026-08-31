@@ -20,7 +20,7 @@
 
 ### 2026-08-31 — ONU 接收光功率诊断正确性、模式隔离与 SEO/GEO
 
-- 状态：`VALIDATOR PASS`（线上验收待推送部署后补录）。
+- 状态：`ONLINE PASS`。
 - 页面：`website/tools/onu-rx-power/` 中英文版本；同步更新引擎、双语内容合约、专项浏览器测试、资源哈希与 Service Worker 缓存版本。
 - 正确性修复：输入对象/数组/类型、非有限数、非安全整数、非法分光值和派生溢出均失败关闭；要求衰减系数大于 0、疑似无光门限低于灵敏度、灵敏度低于过载门限；统一 `1e-9 dB` 浮点边界处理并保留无光/弱光/过载状态优先级。
 - 模式契约：`measured` 快速诊断只依赖实测功率和接收机门限，隐藏模型字段不再阻断计算；快速模式不输出理论接收功率、偏差或推算额外损耗，报告/CSV 同步隔离；`model` 模式继续完整校验并输出模型结果。
@@ -29,7 +29,7 @@
 - 本地验证：`npm run verify` PASS；56 个 HTML 页面、54 个 Sitemap URL、21 个引擎、2745 个链接、0 errors、0 warnings；ONU 引擎 PASS；构建后 Chrome/Edge/Android/iPhone 中英文内容、模式、边界测试 16/16 PASS；`git diff --check` PASS。
 - 独立验证：2 号验证官连续四轮发现并推动修复快速模式模型字段隔离、公共派生溢出和无效状态结果区显示问题；最终完成 10,000 组随机公式/状态对比、模式隔离、溢出注入、报告/CSV、SW/Manifest 和独立双语四终端 8/8，最终 `PASS`。
 - 实现提交：`5b6c9c0bbac23db4d193f619784762c1ac78e597`。
-- 线上验收：待推送、CI 与正式站浏览器验收后补录。
+- 线上验收：远端 `6bf229230927e2b82713ebb277c18ae591d552ff` 的 Quality Gate `33397445310`、Online Monitor `33397445411`、GA4 Monitor `33397445299`、Performance Monitor `33397506933` 全部成功；Online Monitor 验证正式站文件与目标提交一致；正式站 onu-rx-power 英中页面 Chrome/Edge/Android/iPhone 内容、模式隔离与边界测试 16/16 PASS。
 
 ### 2026-08-31 — V2.0 工具平台架构基线文档
 
