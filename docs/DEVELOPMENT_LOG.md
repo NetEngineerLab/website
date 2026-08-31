@@ -18,6 +18,19 @@
 
 ## 已完成批次
 
+### 2026-08-31 — 光功率预算计算器收发窗口正确性与 SEO/GEO
+
+- 状态：`VALIDATOR PASS`（等待推送及正式站验收）。
+- 页面：`website/tools/optical-power-budget/` 中英文版本；同步更新计算引擎、专用浏览器测试、内容合约、资源哈希与 Service Worker 缓存版本。
+- 正确性修复：把单一发送功率改为最小/最大边界；最小发送功率用于接收灵敏度和标准 ODN 预算，最大发送功率用于接收过载校核，避免短链路假安全；要求光纤衰减系数大于 0、熔接点/连接器为非负安全整数、最小发送功率不高于最大值、灵敏度低于过载门限，并拒绝空对象、非有限数、类型强转及派生溢出。
+- 数值与交互边界：用 `1e-9 dB` 处理理论 0 dB/3 dB 浮点边界；无效输入立即清空 `last`、数值和旧状态，预算条归零并禁用复制/保存/CSV；所有输入（含工程名称）在 debounce 前同步失效，自动重算后才恢复操作，消除陈旧健康结果和元数据导出窗口。
+- 内容与范围：双语页面新增最大发送功率输入、接收功率范围、ITU-T G.984.2、ITU-T G.652、IEC 61280-4-2:2024 官方来源与可见复核日期；明确预设不能替代具体设备规格书，3 dB 是工具规划门槛而非标准统一强制值。
+- SEO/GEO：optical-power-budget 由 medium 降为 maintain；全站覆盖为 0 high、4 medium、17 maintain。下一批依次为 pon-splitter-loss、onu-rx-power、pon-distance、otdr-event、wireless-link-budget-calculator。
+- 本地验证：`npm run verify` PASS；56 个 HTML 页面、54 个 Sitemap URL、21 个引擎、2733 个链接、0 errors、0 warnings；核心引擎 PASS；Chrome/Edge 双语 × 桌面/Android/iPhone 内容与边界浏览器测试 16/16 PASS；`git diff --check` PASS。
+- 独立验证：2 号验证官连续三轮发现无效输入保留旧健康结果、150 ms debounce 陈旧导出窗口及只修改工程名称时的旧元数据问题；逐项失败关闭并增加双语回归测试后，第四轮最终 `PASS`。
+- 实现提交：`bdc5bc44daca8f9e10f051bcf7ed69c91fcecf36`。
+- 线上验收：待推送后补充四条 GitHub 工作流、正式站双语浏览器及缓存版本证据。
+
 ### 2026-08-31 — 光纤损耗计算器正确性、SEO/GEO 与全站缓存失效门禁
 
 - 状态：`ONLINE PASS`。
@@ -253,7 +266,7 @@
 
 按“小批次、验证通过后再继续”的顺序执行：
 
-1. 继续 SEO/GEO 队列：optical-power-budget、pon-splitter-loss、onu-rx-power、pon-distance、otdr-event。
+1. 继续 SEO/GEO 队列：pon-splitter-loss、onu-rx-power、pon-distance、otdr-event、wireless-link-budget-calculator。
 2. MIB/OID Explorer Phase 0：按 `docs/MIB_OID_EXPLORER_DEVELOPMENT_PLAN.md` 完成来源许可调研、解析器选型、数据字典、威胁模型与技术 ADR；不得在门禁前批量抓取或公开厂商 MIB。
 
 任何新发现的 P0/P1 稳定性或正确性问题，优先级高于上述 SEO/GEO 队列，并必须在本文件说明插队原因。
