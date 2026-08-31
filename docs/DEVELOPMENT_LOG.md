@@ -18,6 +18,19 @@
 
 ## 已完成批次
 
+### 2026-08-31 — ONU 接收光功率诊断正确性、模式隔离与 SEO/GEO
+
+- 状态：`VALIDATOR PASS`（线上验收待推送部署后补录）。
+- 页面：`website/tools/onu-rx-power/` 中英文版本；同步更新引擎、双语内容合约、专项浏览器测试、资源哈希与 Service Worker 缓存版本。
+- 正确性修复：输入对象/数组/类型、非有限数、非安全整数、非法分光值和派生溢出均失败关闭；要求衰减系数大于 0、疑似无光门限低于灵敏度、灵敏度低于过载门限；统一 `1e-9 dB` 浮点边界处理并保留无光/弱光/过载状态优先级。
+- 模式契约：`measured` 快速诊断只依赖实测功率和接收机门限，隐藏模型字段不再阻断计算；快速模式不输出理论接收功率、偏差或推算额外损耗，报告/CSV 同步隔离；`model` 模式继续完整校验并输出模型结果。
+- 交互与安全：所有公共及模型输入（含工程名称）在 debounce 前立即清空旧结果并禁用复制、保存、CSV、打印；模式切换无论计算是否成功都同步隐藏/显示模型输入与结果区域，防止陈旧结果、`Infinity` 或旧工程元数据导出。
+- 内容与 SEO/GEO：新增 ITU-T G.984.2、G.671、G.650.3 官方来源、可见复核日期和 3 dB 规划阈值非统一强制说明；工具由 medium 降为 maintain，全站覆盖 0 high、2 medium、19 maintain，下一批依次为 pon-distance、otdr-event、wireless-link-budget-calculator、poe-voltage-drop-calculator、network-rack-power-cooling-calculator。
+- 本地验证：`npm run verify` PASS；56 个 HTML 页面、54 个 Sitemap URL、21 个引擎、2745 个链接、0 errors、0 warnings；ONU 引擎 PASS；构建后 Chrome/Edge/Android/iPhone 中英文内容、模式、边界测试 16/16 PASS；`git diff --check` PASS。
+- 独立验证：2 号验证官连续四轮发现并推动修复快速模式模型字段隔离、公共派生溢出和无效状态结果区显示问题；最终完成 10,000 组随机公式/状态对比、模式隔离、溢出注入、报告/CSV、SW/Manifest 和独立双语四终端 8/8，最终 `PASS`。
+- 实现提交：`5b6c9c0bbac23db4d193f619784762c1ac78e597`。
+- 线上验收：待推送、CI 与正式站浏览器验收后补录。
+
 ### 2026-08-31 — V2.0 工具平台架构基线文档
 
 - 状态：`VALIDATOR PASS`（文档基线更新；无运行时代码、公开 URL 或正式站内容变更）。
@@ -291,7 +304,7 @@
 
 按“小批次、验证通过后再继续”的顺序执行：
 
-1. 继续 SEO/GEO 队列：onu-rx-power、pon-distance、otdr-event、wireless-link-budget-calculator、poe-voltage-drop-calculator。
+1. 继续 SEO/GEO 队列：pon-distance、otdr-event、wireless-link-budget-calculator、poe-voltage-drop-calculator、network-rack-power-cooling-calculator。
 2. MIB/OID Explorer Phase 0：按 `docs/MIB_OID_EXPLORER_DEVELOPMENT_PLAN.md` 完成来源许可调研、解析器选型、数据字典、威胁模型与技术 ADR；不得在门禁前批量抓取或公开厂商 MIB。
 
 任何新发现的 P0/P1 稳定性或正确性问题，优先级高于上述 SEO/GEO 队列，并必须在本文件说明插队原因。
