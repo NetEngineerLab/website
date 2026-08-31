@@ -66,6 +66,16 @@ const contentContracts={
       "https://www.itu.int/rec/T-REC-G.650.3/en"
     ]
   },
+  "pon-distance":{
+    faqCount:6,
+    contentRoot:"body",
+    faqRoot:"#faq",
+    references:[
+      "https://www.itu.int/rec/T-REC-G.984.2/en",
+      "https://www.itu.int/rec/T-REC-G.671/en",
+      "https://www.itu.int/rec/T-REC-G.650.3/en"
+    ]
+  },
   "poe-power-budget-calculator":{
     faqCount:5,
     references:[

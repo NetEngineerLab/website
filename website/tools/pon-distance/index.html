@@ -70,7 +70,7 @@
 <div class="field"><label for="txPower">Minimum transmit power</label><div class="input-wrap"><input id="txPower" step="0.1" type="number" value="1.5"/><span>dBm</span></div></div>
 <div class="field"><label for="rxSensitivity">Receiver sensitivity</label><div class="input-wrap"><input id="rxSensitivity" step="0.1" type="number" value="-27"/><span>dBm</span></div></div>
 <div class="field"><label for="rxOverload">Receiver overload threshold</label><div class="input-wrap"><input id="rxOverload" step="0.1" type="number" value="-8"/><span>dBm</span></div></div>
-<div class="field"><label for="systemReach">System / protocol reach cap</label><div class="input-wrap"><input id="systemReach" min="0" step="0.1" type="number" value="20"/><span>km</span></div><small class="help">Edit according to OLT, ONU, ranging capability or planning rules.</small></div>
+<div class="field"><label for="systemReach">System / protocol reach cap</label><div class="input-wrap"><input id="systemReach" min="0.1" step="0.1" type="number" value="20"/><span>km</span></div><small class="help">Edit according to OLT, ONU, ranging capability or planning rules.</small></div>
 <div class="field"><label for="plannedDistance">Planned link distance</label><div class="input-wrap"><input id="plannedDistance" min="0" step="0.1" type="number" value="5"/><span>km</span></div></div>
 <div class="field"><label for="margin">Engineering margin</label><div class="input-wrap"><input id="margin" min="0" step="0.1" type="number" value="3"/><span>dB</span></div></div>
 <div class="subheading">Fiber and fixed passive losses</div>
@@ -138,6 +138,7 @@
 <details><summary>Can maximum-distance calculation replace OTDR testing?</summary><p>No. This tool supports design and review; field verification still requires a power meter, OTDR and actual equipment parameters.</p></details>
 </div></section>
 <section class="content-section" id="history"><div class="section-heading"><div><p class="eyebrow">PROJECT RECORDS</p><h2>Recent calculations</h2></div><button class="text-button" id="clearHistoryBtn">Clear history</button></div><div class="history-list" id="historyList"></div></section>
+<section class="content-section" id="references"><div class="section-heading"><div><p class="eyebrow">SOURCES &amp; REVIEW</p><h2>Engineering references and scope</h2></div></div><p>Reviewed: 2026-08-31. This calculator combines optical loss, receiver sensitivity and a configured system reach cap; it does not prove protocol interoperability or field acceptance. The engineering margin is a planning input, not a universal standards mandate. Verify the installed fibre, splitter and equipment specifications with power-meter and OTDR tests.</p><ul><li><a href="https://www.itu.int/rec/T-REC-G.984.2/en" rel="noopener noreferrer" target="_blank">ITU-T G.984.2 — GPON physical media dependent layer</a></li><li><a href="https://www.itu.int/rec/T-REC-G.671/en" rel="noopener noreferrer" target="_blank">ITU-T G.671 — Optical components and subsystems</a></li><li><a href="https://www.itu.int/rec/T-REC-G.650.3/en" rel="noopener noreferrer" target="_blank">ITU-T G.650.3 — Installed single-mode optical fibre link tests</a></li></ul></section>
 <section class="content-section" id="related"><div class="section-heading"><div><p class="eyebrow">RELATED TOOLS</p><h2>Related engineering tools</h2></div></div><div class="related-grid">
 <a class="related-card" href="../fiber-loss/"><strong>Fiber Loss Calculator</strong><p>Calculate detailed route and passive-component losses.</p></a>
 <a class="related-card" href="../optical-power-budget/"><strong>Optical Power Budget Calculator</strong><p>Verify transmit power, receiver thresholds and the complete link budget.</p></a>
@@ -155,6 +156,6 @@
   </div>
 </footer>
 <!-- NEL_FOOTER_END -->
-<script defer src="js/engine.js"></script><script defer="" src="js/pwa.js"></script><script defer="" src="../../data/optical-standards.js"></script><script defer="" src="../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="js/app.js?v=e8e5dd2b0d96"></script>
+<script defer src="js/engine.js"></script><script defer="" src="js/pwa.js"></script><script defer="" src="../../data/optical-standards.js"></script><script defer="" src="../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="js/app.js?v=609c92b5a856"></script>
 <script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script>
 <script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=d2715dc996b6"></script></body></html>

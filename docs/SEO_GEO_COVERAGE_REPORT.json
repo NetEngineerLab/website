@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31T13:21:37.635Z",
+  "generatedAt": "2026-08-31T14:07:28.671Z",
   "methodology": {
     "scope": "Active bilingual tool pages configured by locales.json and tools-catalog.json",
     "meaning": "Rule-based content-gap priority; not a ranking, traffic, or conversion forecast",
@@ -21,83 +21,18 @@
     "localePages": 42,
     "priorityCounts": {
       "high": 0,
-      "medium": 2,
-      "maintain": 19
+      "medium": 1,
+      "maintain": 20
     }
   },
   "nextBatch": [
-    "pon-distance",
     "otdr-event",
     "wireless-link-budget-calculator",
     "poe-voltage-drop-calculator",
-    "network-rack-power-cooling-calculator"
+    "network-rack-power-cooling-calculator",
+    "vlan-ip-capacity-planner"
   ],
   "tools": [
-    {
-      "id": "pon-distance",
-      "catalogOrder": 5,
-      "category": "pon",
-      "searchIntent": {
-        "id": "planning",
-        "en": "planning",
-        "zh": "规划"
-      },
-      "targetTopic": {
-        "en": "PON Maximum Distance Calculator",
-        "zh": "PON最大传输距离计算器"
-      },
-      "contentOwner": "NetEngineerLab Editorial",
-      "lastReviewedAt": {
-        "en": null,
-        "zh": null
-      },
-      "locales": {
-        "en": {
-          "visibleCharacters": 4826,
-          "sectionHeadings": 11,
-          "longTailQuestions": [
-            "Why can the optical budget reach 30 km while the result shows only 20 km?",
-            "Why does a primary 1:8 and secondary 1:8 produce a total ratio of 1:64?",
-            "Is optical-budget maximum distance the same as buildable distance?",
-            "What does \"physical reach only\" mean for the planned distance?",
-            "How much engineering margin should be configured?",
-            "Can maximum-distance calculation replace OTDR testing?"
-          ],
-          "faqCount": 6,
-          "faqSchema": true,
-          "externalReferences": [],
-          "externalReferenceCount": 0,
-          "internalLinkCount": 3,
-          "lastReviewedAt": null,
-          "reviewMarker": false
-        },
-        "zh": {
-          "visibleCharacters": 1854,
-          "sectionHeadings": 11,
-          "longTailQuestions": [
-            "为什么光预算能到30 km，结果却只显示20 km？",
-            "一级1:8加二级1:8为什么总分光比是1:64？",
-            "光预算最大距离是否等于可建设距离？",
-            "规划距离显示“仅物理可达”是什么意思？",
-            "工程余量应该设置多少？",
-            "最大距离计算能否替代OTDR测试？"
-          ],
-          "faqCount": 6,
-          "faqSchema": true,
-          "externalReferences": [],
-          "externalReferenceCount": 0,
-          "internalLinkCount": 3,
-          "lastReviewedAt": null,
-          "reviewMarker": false
-        }
-      },
-      "score": 22,
-      "priority": "medium",
-      "gaps": [
-        "3 authoritative reference(s) below the three-source target",
-        "visible review/update marker missing"
-      ]
-    },
     {
       "id": "otdr-event",
       "catalogOrder": 6,
@@ -870,6 +805,78 @@
             "接收光功率过高会导致什么问题？",
             "疑似无光是否一定是断纤？",
             "为什么预设参数都可以修改？"
+          ],
+          "faqCount": 6,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.984.2/en",
+            "https://www.itu.int/rec/T-REC-G.671/en",
+            "https://www.itu.int/rec/T-REC-G.650.3/en"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 3,
+          "lastReviewedAt": "2026-08-31",
+          "reviewMarker": true
+        }
+      },
+      "score": 4,
+      "priority": "maintain",
+      "gaps": [
+        "visible review/update marker missing"
+      ]
+    },
+    {
+      "id": "pon-distance",
+      "catalogOrder": 5,
+      "category": "pon",
+      "searchIntent": {
+        "id": "planning",
+        "en": "planning",
+        "zh": "规划"
+      },
+      "targetTopic": {
+        "en": "PON Maximum Distance Calculator",
+        "zh": "PON最大传输距离计算器"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": null,
+        "zh": "2026-08-31"
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 5399,
+          "sectionHeadings": 12,
+          "longTailQuestions": [
+            "Why can the optical budget reach 30 km while the result shows only 20 km?",
+            "Why does a primary 1:8 and secondary 1:8 produce a total ratio of 1:64?",
+            "Is optical-budget maximum distance the same as buildable distance?",
+            "What does \"physical reach only\" mean for the planned distance?",
+            "How much engineering margin should be configured?",
+            "Can maximum-distance calculation replace OTDR testing?"
+          ],
+          "faqCount": 6,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.984.2/en",
+            "https://www.itu.int/rec/T-REC-G.671/en",
+            "https://www.itu.int/rec/T-REC-G.650.3/en"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 3,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        },
+        "zh": {
+          "visibleCharacters": 2073,
+          "sectionHeadings": 12,
+          "longTailQuestions": [
+            "为什么光预算能到30 km，结果却只显示20 km？",
+            "一级1:8加二级1:8为什么总分光比是1:64？",
+            "光预算最大距离是否等于可建设距离？",
+            "规划距离显示“仅物理可达”是什么意思？",
+            "工程余量应该设置多少？",
+            "最大距离计算能否替代OTDR测试？"
           ],
           "faqCount": 6,
           "faqSchema": true,

@@ -70,7 +70,7 @@
 <div class="field"><label for="txPower">最小发送光功率</label><div class="input-wrap"><input id="txPower" step="0.1" type="number" value="1.5"/><span>dBm</span></div></div>
 <div class="field"><label for="rxSensitivity">接收灵敏度</label><div class="input-wrap"><input id="rxSensitivity" step="0.1" type="number" value="-27"/><span>dBm</span></div></div>
 <div class="field"><label for="rxOverload">接收过载门限</label><div class="input-wrap"><input id="rxOverload" step="0.1" type="number" value="-8"/><span>dBm</span></div></div>
-<div class="field"><label for="systemReach">系统/协议距离上限</label><div class="input-wrap"><input id="systemReach" min="0" step="0.1" type="number" value="20"/><span>km</span></div><small class="help">可按OLT、ONU、测距能力或企业规划要求修改。</small></div>
+<div class="field"><label for="systemReach">系统/协议距离上限</label><div class="input-wrap"><input id="systemReach" min="0.1" step="0.1" type="number" value="20"/><span>km</span></div><small class="help">可按OLT、ONU、测距能力或企业规划要求修改。</small></div>
 <div class="field"><label for="plannedDistance">规划链路距离</label><div class="input-wrap"><input id="plannedDistance" min="0" step="0.1" type="number" value="5"/><span>km</span></div></div>
 <div class="field"><label for="margin">工程余量</label><div class="input-wrap"><input id="margin" min="0" step="0.1" type="number" value="3"/><span>dB</span></div></div>
 <div class="subheading">光纤与固定无源损耗</div>
@@ -138,6 +138,7 @@
 <details><summary>最大距离计算能否替代OTDR测试？</summary><p>不能。本工具用于设计和复核，现场仍需光功率计、OTDR及真实设备参数进行验证。</p></details>
 </div></section>
 <section class="content-section" id="history"><div class="section-heading"><div><p class="eyebrow">PROJECT RECORDS</p><h2>最近计算记录</h2></div><button class="text-button" id="clearHistoryBtn">清空记录</button></div><div class="history-list" id="historyList"></div></section>
+<section class="content-section" id="references"><div class="section-heading"><div><p class="eyebrow">SOURCES &amp; REVIEW</p><h2>工程来源与适用范围</h2></div></div><p>复核日期：2026-08-31。本计算器组合光损耗、接收灵敏度和系统距离上限，不证明协议互通或现场验收。工程余量是规划输入，不是标准统一强制值。请用光功率计和 OTDR，结合已安装光纤、分光器和设备规格进行复核。</p><ul><li><a href="https://www.itu.int/rec/T-REC-G.984.2/en" rel="noopener noreferrer" target="_blank">ITU-T G.984.2 — GPON 物理媒质相关层</a></li><li><a href="https://www.itu.int/rec/T-REC-G.671/en" rel="noopener noreferrer" target="_blank">ITU-T G.671 — 光器件与子系统传输特性</a></li><li><a href="https://www.itu.int/rec/T-REC-G.650.3/en" rel="noopener noreferrer" target="_blank">ITU-T G.650.3 — 已安装单模光纤链路测试方法</a></li></ul></section>
 <section class="content-section" id="related"><div class="section-heading"><div><p class="eyebrow">RELATED TOOLS</p><h2>相关工程工具</h2></div></div><div class="related-grid">
 <a class="related-card" href="../../fiber-loss/zh/"><strong>光纤链路损耗计算器</strong><p>详细计算线路与器件造成的光链路损耗。</p></a>
 <a class="related-card" href="../../optical-power-budget/zh/"><strong>光功率预算计算器</strong><p>验证发送功率、接收门限和链路预算。</p></a>
@@ -155,6 +156,6 @@
   </div>
 </footer>
 <!-- NEL_FOOTER_END -->
-<script defer src="../js/engine.js"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=e8e5dd2b0d96"></script>
+<script defer src="../js/engine.js"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=609c92b5a856"></script>
 <script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script>
 <script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=d2715dc996b6"></script></body></html>

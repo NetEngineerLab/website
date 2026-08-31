@@ -3,7 +3,7 @@ const LANG=document.documentElement.lang.toLowerCase().startsWith("en")?"en":"zh
 const T={
  zh:{
   healthy:"✓ 满足设计",warning:"⚠ 仅物理可达",failed:"✕ 预算不足",limited:"◇ 系统距离受限",
-  invalid:"请检查输入：距离、数量、损耗、余量和系统距离上限必须为有效非负数；dBm功率可以为负数。",
+  invalid:"请检查输入：规划距离、系统距离上限、衰减系数和损耗必须有效；数量必须为非负整数，分光损耗必须来自支持列表，灵敏度必须低于过载门限。",
   copied:"结果已复制",saved:"记录已保存",csv:"CSV 已导出",empty:"暂无记录。完成计算后点击“保存记录”。",confirm:"确定清空全部记录吗？",
   opticalLimiter:"限制因素：光功率预算。无源损耗和工程余量决定了当前可用距离。",
   systemLimiter:"限制因素：系统/协议距离上限。光功率预算允许更远距离，但实际有效距离受系统能力限制。",
@@ -19,7 +19,7 @@ const T={
  },
  en:{
   healthy:"✓ Design passes",warning:"⚠ Physical reach only",failed:"✕ Insufficient budget",limited:"◇ System reach limited",
-  invalid:"Check inputs. Distance, counts, losses, margin and system reach must be valid non-negative values. dBm values may be negative.",
+  invalid:"Check inputs. Distances, attenuation and losses must be valid; counts must be non-negative integers, splitter loss must be supported, and sensitivity must be below overload.",
   copied:"Result copied",saved:"Record saved",csv:"CSV exported",empty:"No saved records yet.",confirm:"Clear all saved records?",
   opticalLimiter:"Limiting factor: optical power budget. Passive losses and engineering margin determine the available reach.",
   systemLimiter:"Limiting factor: system/protocol reach. The optical budget permits a longer route, but effective reach is capped by system capability.",
@@ -44,10 +44,12 @@ const presets={
 };
 let last=null;
 function n(id){return Number.parseFloat($(id).value)}
-function validate(){
- const non=["plannedDistance","systemReach","attenuation","spliceCount","spliceLoss","connectorCount","connectorLoss","splitter1","splitter2","otherLoss","margin"];
- const signed=["txPower","rxSensitivity","rxOverload"];
- return non.every(id=>Number.isFinite(n(id))&&n(id)>=0)&&signed.every(id=>Number.isFinite(n(id)));
+function invalidate(){
+ last=null;
+ ["effectiveMax","opticalMax","systemReachResult","plannedDistanceResult","maxChannelLoss","fixedPhysical","fiberAllowance","plannedFiber","plannedPhysical","plannedDesign","designRemaining","estimatedRx","physicalHeadroom","spliceTotal","connectorTotal","splitterTotal","otherResult","marginResult"].forEach(id=>$(id).textContent="—");
+ $("splitRatio").textContent="—";$("distanceScaleMax").textContent="—";$("effectiveBar").style.width="0";$("plannedMarker").style.left="0";
+ $("healthBadge").textContent=LANG==="zh"?"输入无效":"Invalid input";$("summaryCard").className="summary-card";$("diagnosis").className="diagnosis";$("diagnosisText").textContent=T[LANG].invalid;$("limiterText").textContent="";$("causeList").innerHTML="";$("validation").textContent=T[LANG].invalid;
+ ["copyBtn","saveBtn","csvBtn","printBtn"].forEach(id=>$(id).disabled=true);
 }
 function setAttenuation(){
  const wave=$("wavelength").value;
@@ -58,15 +60,16 @@ function applyPreset(){
  $("txPower").value=p.tx;$("rxSensitivity").value=p.sens;$("rxOverload").value=p.over;$("systemReach").value=p.system;$("wavelength").value=p.wave;$("plannedDistance").value=p.planned;$("splitter1").value=p.s1;$("splitter2").value=p.s2;$("margin").value=p.margin;setAttenuation();calculate();
 }
 function calculate(){
- if(!validate()){$("validation").textContent=T[LANG].invalid;return}$("validation").textContent="";
  const v={
   project:$("projectName").value.trim()||"Untitled",tx:n("txPower"),sens:n("rxSensitivity"),over:n("rxOverload"),
   planned:n("plannedDistance"),systemReach:n("systemReach"),attenuation:n("attenuation"),wavelength:$("wavelength").value,
   spliceCount:n("spliceCount"),spliceLoss:n("spliceLoss"),connectorCount:n("connectorCount"),connectorLoss:n("connectorLoss"),
   s1:n("splitter1"),s2:n("splitter2"),other:n("otherLoss"),margin:n("margin")
  };
+ if(!window.NELPonDistanceEngine||!window.NELPonDistanceEngine.validate(v)){invalidate();return}
+ $("validation").textContent="";
  const result=window.NELPonDistanceEngine.calculate(v);
- if(!result.ok){$("validation").textContent=T[LANG].invalid;return}
+ if(!result.ok){invalidate();return}
  const {maxChannelLoss,spliceTotal,connectorTotal,splitterTotal,fixedPhysical,fiberAllowanceDesign,opticalMax,effectiveMax,plannedFiber,plannedPhysical,plannedDesign,physicalHeadroom,designRemaining,estimatedRx,overloadMargin,ratio,limiter,status}=result;
  last={...v,...result,timestamp:new Date().toISOString()};
  const set=(id,x)=>$(id).textContent=x.toFixed(2);
@@ -85,26 +88,27 @@ function calculate(){
  $("plannedMarker").style.left=`calc(${Math.min(100,v.planned/scale*100)}% - 2px)`;
  $("distanceScaleMax").textContent=scale.toFixed(1)+" km";
  if(typeof nelTrack==="function")nelTrack("pon_max_distance_calculate",{status,limiter,optical_max:Number(opticalMax.toFixed(2)),effective_max:Number(effectiveMax.toFixed(2)),planned_distance:Number(v.planned.toFixed(2))});
+ ["copyBtn","saveBtn","csvBtn","printBtn"].forEach(id=>$(id).disabled=false);
 }
 function reset(){
  $("preset").value="gpon-b";$("projectName").value="PON Maximum Distance Design";$("txPower").value=1.5;$("rxSensitivity").value=-27;$("rxOverload").value=-8;$("systemReach").value=20;
  $("plannedDistance").value=5;$("wavelength").value="1490";setAttenuation();$("spliceCount").value=6;$("spliceLoss").value=.10;$("connectorCount").value=4;$("connectorLoss").value=.30;$("splitter1").value="10.5";$("splitter2").value="10.5";$("otherLoss").value=0;$("margin").value=3;calculate();
 }
 function report(){
- if(!last)calculate();const r=last;
+ if(!last)calculate();if(!last)return null;const r=last;
  return["NetEngineerLab - PON Maximum Distance Calculator",`${LANG==="zh"?"工程":"Project"}: ${r.project}`,`${LANG==="zh"?"光预算最大距离":"Optical maximum distance"}: ${r.opticalMax.toFixed(2)} km`,`${LANG==="zh"?"系统距离上限":"System reach cap"}: ${r.systemReach.toFixed(2)} km`,`${LANG==="zh"?"有效最大距离":"Effective maximum distance"}: ${r.effectiveMax.toFixed(2)} km`,`${LANG==="zh"?"规划距离":"Planned distance"}: ${r.planned.toFixed(2)} km`,`${LANG==="zh"?"规划距离剩余设计预算":"Design budget remaining"}: ${r.designRemaining.toFixed(2)} dB`,`${LANG==="zh"?"预计接收光功率":"Estimated RX"}: ${r.estimatedRx.toFixed(2)} dBm`,`${LANG==="zh"?"状态":"Status"}: ${T[LANG][r.status]}`].join("\n")
 }
 function temp(btn,msg){const old=btn.innerHTML;btn.textContent=msg;setTimeout(()=>btn.innerHTML=old,1400)}
-async function copyResult(){const txt=report();try{await navigator.clipboard.writeText(txt)}catch{const a=document.createElement("textarea");a.value=txt;document.body.appendChild(a);a.select();document.execCommand("copy");a.remove()}temp($("copyBtn"),T[LANG].copied)}
+async function copyResult(){const txt=report();if(!txt)return;try{await navigator.clipboard.writeText(txt)}catch{const a=document.createElement("textarea");a.value=txt;document.body.appendChild(a);a.select();document.execCommand("copy");a.remove()}temp($("copyBtn"),T[LANG].copied)}
 function getHistory(){try{return JSON.parse(localStorage.getItem("ponMaximumDistanceHistory")||"[]")}catch{return[]}}
-function save(){if(!last)calculate();const h=getHistory();h.unshift(last);localStorage.setItem("ponMaximumDistanceHistory",JSON.stringify(h.slice(0,12)));renderHistory();temp($("saveBtn"),T[LANG].saved)}
+function save(){if(!last)calculate();if(!last)return;const h=getHistory();h.unshift(last);localStorage.setItem("ponMaximumDistanceHistory",JSON.stringify(h.slice(0,12)));renderHistory();temp($("saveBtn"),T[LANG].saved)}
 function renderHistory(){const h=getHistory(),c=$("historyList");if(!h.length){c.innerHTML=`<div class="history-empty">${T[LANG].empty}</div>`;return}c.innerHTML=h.slice(0,6).map(r=>`<article class="history-item"><h3>${esc(r.project)}</h3><p>${new Date(r.timestamp).toLocaleString(LANG==="zh"?"zh-CN":"en-US")}</p><p>${LANG==="zh"?"有效最大距离":"Effective max"}: <strong>${r.effectiveMax.toFixed(2)} km</strong></p><p>${LANG==="zh"?"规划距离":"Planned"}: ${r.planned.toFixed(2)} km</p><p>${T[LANG][r.status]}</p></article>`).join("")}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
 function clearHistory(){if(confirm(T[LANG].confirm)){localStorage.removeItem("ponMaximumDistanceHistory");renderHistory()}}
 function csv(){
- if(!last)calculate();const r=last,rows=[["Project",r.project],["Optical maximum distance km",r.opticalMax.toFixed(2)],["System reach cap km",r.systemReach.toFixed(2)],["Effective maximum distance km",r.effectiveMax.toFixed(2)],["Planned distance km",r.planned.toFixed(2)],["Maximum channel loss dB",r.maxChannelLoss.toFixed(2)],["Fixed physical loss dB",r.fixedPhysical.toFixed(2)],["Planned physical loss dB",r.plannedPhysical.toFixed(2)],["Design remaining dB",r.designRemaining.toFixed(2)],["Estimated RX dBm",r.estimatedRx.toFixed(2)],["Status",T[LANG][r.status]]];
+ if(!last)calculate();if(!last)return;const r=last,rows=[["Project",r.project],["Optical maximum distance km",r.opticalMax.toFixed(2)],["System reach cap km",r.systemReach.toFixed(2)],["Effective maximum distance km",r.effectiveMax.toFixed(2)],["Planned distance km",r.planned.toFixed(2)],["Maximum channel loss dB",r.maxChannelLoss.toFixed(2)],["Fixed physical loss dB",r.fixedPhysical.toFixed(2)],["Planned physical loss dB",r.plannedPhysical.toFixed(2)],["Design remaining dB",r.designRemaining.toFixed(2)],["Estimated RX dBm",r.estimatedRx.toFixed(2)],["Status",T[LANG][r.status]]];
  const text="\uFEFF"+rows.map(x=>x.map(v=>`"${String(v).replaceAll('"','""')}"`).join(",")).join("\n"),blob=new Blob([text],{type:"text/csv;charset=utf-8"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="pon_maximum_distance_report.csv";a.click();URL.revokeObjectURL(a.href);temp($("csvBtn"),T[LANG].csv)
 }
-["txPower","rxSensitivity","rxOverload","plannedDistance","systemReach","attenuation","spliceCount","spliceLoss","connectorCount","connectorLoss","splitter1","splitter2","otherLoss","margin"].forEach(id=>$(id).addEventListener("input",()=>{clearTimeout(window.__ponDist);window.__ponDist=setTimeout(calculate,160)}));
+["projectName","txPower","rxSensitivity","rxOverload","plannedDistance","systemReach","attenuation","spliceCount","spliceLoss","connectorCount","connectorLoss","splitter1","splitter2","otherLoss","margin"].forEach(id=>$(id).addEventListener("input",()=>{invalidate();clearTimeout(window.__ponDist);window.__ponDist=setTimeout(calculate,160)}));
 $("wavelength").addEventListener("change",()=>{setAttenuation();calculate()});$("preset").addEventListener("change",applyPreset);$("calculateBtn").addEventListener("click",calculate);$("resetBtn").addEventListener("click",reset);$("copyBtn").addEventListener("click",copyResult);$("saveBtn").addEventListener("click",save);$("csvBtn").addEventListener("click",csv);$("printBtn").addEventListener("click",()=>print());$("clearHistoryBtn").addEventListener("click",clearHistory);
 setAttenuation();calculate();renderHistory();
