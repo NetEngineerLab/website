@@ -20,7 +20,7 @@
 
 ### 2026-09-01 — OTDR 事件分析器失败关闭、陈旧结果防护与 SEO/GEO
 
-- 状态：`VALIDATOR PASS`（线上同步待执行）。
+- 状态：`ONLINE PASS`。
 - 页面：`website/tools/otdr-event/` 中英文版本；同步更新引擎、交互、双语内容合约、专项浏览器测试、资源哈希与 Service Worker 缓存版本。
 - 输入与规则正确性：要求非空事件数组、严格对象和有限数；链路长度至少 0.1 km、双波长衰减大于 0、IOR 至少为 1；损耗/死区/容差阈值非负，反射阈值非正且顺序有效；事件类型固定为引擎支持的 8 类，不允许调用方扩展或用假值绕过。
 - 派生与状态安全：事件间距、链路损耗和累计结果发生非有限数时失败关闭；正反射率、非法手工类型、缺失/乱序规则、空事件和派生溢出均有回归断言。
@@ -29,7 +29,7 @@
 - 本地验证：`npm run verify` PASS；56 个 HTML 页面、54 个 Sitemap URL、21 个引擎、2757 个链接、0 errors、0 warnings；OTDR 引擎与语法测试 PASS；Chrome/Edge/Android/iPhone 中英文内容、日期和失效边界测试 16/16 PASS；`git diff --check` PASS。
 - 独立验证：2 号验证官多轮发现并推动修复规则字段/顺序/范围、事件类型绕过、空事件、超大间距、正反射率、debounce 陈旧结果、添加/删除事件失效路径和英文复核日期审计识别问题；最终确认 OTDR SEO 条目 `score: 0`、`gaps: []`，无剩余阻断，`PASS`。
 - 实现提交：`f4380d12fbead3710c422a05f49db72dcab79cec`。
-- 线上验收：待记录提交与推送、GitHub 门禁和正式站浏览器验收完成后登记 `ONLINE PASS`。
+- 线上验收：远端 `4a742cf94508bde6d810bfb232b7ce4650f1db51` 的 Quality Gate `33457242988`、Online Monitor `33457243017`、GA4 Monitor `33457242995` 均成功；Performance Monitor `33457287820` 首次因非本批页面 `wifi-coverage-capacity-planner/zh/` 单次 LCP 4543 ms 失败，失败 Job 第 2 次运行全部通过并最终成功。正式站 otdr-event 英中页面 Chrome/Edge/Android/iPhone 内容、日期和失效边界测试 16/16 PASS。
 
 ### 2026-08-31 — V2.0 可执行目录、Schema 与 Vendor Renderer 规范适配
 
