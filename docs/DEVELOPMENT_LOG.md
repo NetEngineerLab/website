@@ -382,11 +382,22 @@
 - 验证：官方 IANA、IETF Trust TLP 4.0、Cisco 与 PySMI 证据链接在线核验；`git diff --check` PASS。
 - 独立验证：2 号验证官三轮发现并推动修复错误年代 TLP、不可执行许可字段、采集阶段冲突、PEN 个人信息、证据固定性及重定向问题，最终 `PASS`，未发现新 P1/P2。
 
+### 2026-09-02 — MIB/OID Explorer Phase 0 解析器与部署 ADR
+
+- 状态：`LOCAL PASS`（待推送）。
+- 范围：新增 `docs/MIB_OID_PARSER_DEPLOYMENT_ADR.md`；本批未安装依赖、导入 MIB、构建容器或修改生产网站。
+- 技术决策：PySMI 2.0.0 作为固定版本主解析器候选，Net-SNMP `snmptranslate` 只作独立交叉验证；V1 原型采用离线构建、规范 JSON、静态分片与客户端精确搜索，不提前引入在线 API 或数据库。
+- 供应链：强制 build-input lock → 无网络候选构建 → runtime provenance/SBOM → 独立 immutable approval 四阶段；完整锁定 Python 传递依赖、基础镜像 digest、Net-SNMP 平台闭包、哈希与许可证，approval 前禁止解析。
+- 隔离与确定性：OCI 无网络、只读 root、非 root、cap-drop、no-new-privileges、1 CPU、512 MiB、禁 swap、PID/tmpfs/watchdog 上限；输入使用私有 staging 与双重类型/哈希复验；产物使用 stdout 单一流并在写盘前限制 16 MiB，验证后原子发布。
+- 解析边界：strict 默认失败关闭，禁止 borrowing 与自动联网；relaxed 结果永久不可发布，只能追加不可变人工裁决；source facts、parsed facts 与 editorial content 三层隔离。
+- 验证：PyPI、PySMI、Net-SNMP 官方资料在线核验；本机无 Docker 时确认禁止非隔离降级；`git diff --check` PASS。
+- 独立验证：2 号验证官四轮发现并推动修复传递依赖、镜像锁、OCI watchdog、构建锁循环、输出容量与生命周期、确定性审计和 TOCTOU 问题；三次失败后按规则停止并完成新诊断，最终 `PASS`，未发现新 P1/P2。
+
 ## 下一步队列
 
 按“小批次、验证通过后再继续”的顺序执行：
 
-1. MIB/OID Explorer Phase 0：在已通过的来源许可台账基础上完成解析器选型 ADR、数据字典与威胁模型；不得在门禁前批量抓取或公开厂商 MIB。
+1. MIB/OID Explorer Phase 0：在已通过的来源许可台账与解析器 ADR 基础上完成数据字典和威胁模型；不得在门禁前安装解析器、批量抓取或公开厂商 MIB。
 2. SEO/GEO 进入维护监测：当前 21 个工具均为 `maintain`，只依据 Search Console、站内搜索词或新内容缺口启动下一批，不重复改写已达标页面。
 
 任何新发现的 P0/P1 稳定性或正确性问题，优先级高于上述 SEO/GEO 队列，并必须在本文件说明插队原因。
