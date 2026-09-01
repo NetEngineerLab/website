@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-wireless-link-budget-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-f036711f9f38-8be05c144607";
+const CACHE = "nel-wireless-link-budget-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-f036711f9f38-6abaa0038883";
 const CORE = [
   "./index.html",
   "./",
@@ -8,7 +8,7 @@ const CORE = [
   "./manifest.webmanifest",
   "./css/style.css?v=fb9c194a7868",
   "./js/engine.js",
-  "./js/app.js?v=35a911a12f26",
+  "./js/app.js?v=8b98b445e671",
   "./images/logo.svg",
   "../../data/locales.js?v=b541508dc0ee",
   "../../data/site-config.js?v=b5072ad7fa47",
