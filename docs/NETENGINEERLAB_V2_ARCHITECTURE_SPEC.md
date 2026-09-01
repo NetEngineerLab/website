@@ -86,7 +86,7 @@ H1 → 问题定义 → 输入/操作 → 核心结果 → 解释/假设 → Eng
 
 V2.0 当前新增工具继续使用现有 `/tools/<slug>/` 路由；`/tools/routing/`、`/tools/security/` 等分类路径只作为未来分类聚合页，不表示具体工具。只有在 `directoryStrategy.toolPage`、目录结构、PWA、Sitemap、canonical、hreflang、301 重定向和全部发布门禁完成配置驱动升级后，才允许逐工具采用 `/tools/<category>/<slug>/` 等嵌套路由。已经上线或可能被收录的旧 URL 不得直接改名；任何迁移必须保留旧 URL、配置 301、更新 Sitemap、canonical、hreflang、内链、Service Worker 和生产浏览器证据。
 
-每个可索引页在设计阶段定义一个搜索意图、主主题词和自然长尾问题；内容必须给出输入、公式或判断逻辑、单位、假设、限制、结果含义和下一步行动。FAQ、JSON-LD、可见正文和双语表达必须逐字一致且可核验，不得堆砌关键词或制造近似页面。
+每个可索引页在设计阶段定义一个搜索意图、主主题词和自然长尾问题；内容必须给出输入、公式或判断逻辑、单位、假设、限制、结果含义和下一步行动。FAQ、JSON-LD、可见正文和双语表达必须语义一致且可核验，不得堆砌关键词或制造近似页面。Page Schema、SEO Resolver、URL、Metadata、JSON-LD、内链和 Sitemap 的适配冻结契约详见 [`NETENGINEERLAB_V2_SEO_GEO_ARCHITECTURE_SPEC.md`](./NETENGINEERLAB_V2_SEO_GEO_ARCHITECTURE_SPEC.md)。
 
 ## 7. 后端边界与隐私
 

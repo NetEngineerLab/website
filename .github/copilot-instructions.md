@@ -1254,4 +1254,11 @@ V2.0 架构基线详见 `docs/NETENGINEERLAB_V2_ARCHITECTURE_SPEC.md`。该文�
 `website/tools/<slug>/`、`tools-catalog.json`、共享壳层和规则引擎映射到渐进式 V2
 路线；不得据此一次性重写网站、修改已上线 URL 或绕过本文件中的安全、隐私和失败关闭门禁。
 
+SEO/GEO 页面架构的适配冻结契约详见 `docs/NETENGINEERLAB_V2_SEO_GEO_ARCHITECTURE_SPEC.md`。
+页面数据、Metadata、canonical、hreflang、JSON-LD、可见面包屑、内部链接和 Sitemap 必须来自同一
+注册事实并通过一致性门禁。当前中文工具 URL 固定为 `/tools/<slug>/zh/`；分析稿中的
+`/zh/tools/<slug>/` 不是现行路由，未经完整 301、PWA、Sitemap、索引和正式站门禁不得启用。
+GEO 不得虚构 AI 专用 Schema、排名保证或机器可见但用户不可见的内容；OAI-SearchBot 搜索发现与
+GPTBot 训练控制必须分别决策和审计。
+
 End of NetEngineerLab Copilot Instructions
