@@ -18,6 +18,17 @@
 
 ## 已完成批次
 
+### 2026-09-01 — 无线链路预算计算器正确性与 SEO/GEO 加固
+
+- 状态：`VALIDATOR PASS`（线上同步待执行）。
+- 页面：`website/tools/wireless-link-budget-calculator/` 中英文版本；计算引擎、页面状态、专项浏览器测试与 Service Worker 同步更新。
+- 正确性：严格拒绝缺失、非数值、负损耗、负净空及派生溢出输入；0 m 净空不再跳过菲涅尔检查；无效输入会清空旧结果并禁用复制、打印，避免陈旧结论继续使用。
+- 内容与 SEO/GEO：保留 5 组双语 FAQ 与 4 项 ITU-R 权威来源，增加可见复核日期、完整路径与现场验证边界，以及 Wi-Fi 容量和 PoE 功率预算上下文内链；覆盖评分降至 0、无缺口，下一项为 `poe-voltage-drop-calculator`。
+- 本地验证：无线引擎专项 PASS；Chrome、Edge、Android、iPhone 双语内容与边界测试 16/16 PASS；`npm run verify` PASS，56 个 HTML、54 个 Sitemap URL、21 个引擎、2761 个链接、0 errors、0 warnings；`git diff --check` PASS。
+- 独立验证：2 号验证官首轮发现两位小数显示值与原始状态边界矛盾、日志日期乱序；状态与 warnings 统一按展示值判定，补充 0/10/20 dB 及净空 0/-0.01 边界测试并移动日志后，第二轮最终 `PASS`。
+- 实现提交：`6439611e4db98cd7624787962bc418b922357c9a`。
+- 线上验收：待记录提交与推送、GitHub 门禁和正式站浏览器验收完成后登记 `ONLINE PASS`。
+
 ### 2026-09-01 — OTDR 事件分析器失败关闭、陈旧结果防护与 SEO/GEO
 
 - 状态：`ONLINE PASS`。
@@ -341,7 +352,7 @@
 
 按“小批次、验证通过后再继续”的顺序执行：
 
-1. 继续 SEO/GEO 队列：wireless-link-budget-calculator、poe-voltage-drop-calculator、network-rack-power-cooling-calculator、vlan-ip-capacity-planner、switch-uplink-oversubscription-calculator。
+1. 继续 SEO/GEO 队列：poe-voltage-drop-calculator、network-rack-power-cooling-calculator、vlan-ip-capacity-planner、switch-uplink-oversubscription-calculator、dns-ttl-propagation-calculator。
 2. MIB/OID Explorer Phase 0：按 `docs/MIB_OID_EXPLORER_DEVELOPMENT_PLAN.md` 完成来源许可调研、解析器选型、数据字典、威胁模型与技术 ADR；不得在门禁前批量抓取或公开厂商 MIB。
 
 任何新发现的 P0/P1 稳定性或正确性问题，优先级高于上述 SEO/GEO 队列，并必须在本文件说明插队原因。
