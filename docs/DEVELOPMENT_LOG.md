@@ -18,6 +18,18 @@
 
 ## 已完成批次
 
+### 2026-09-01 — V2.0 SEO/GEO 页面架构适配冻结
+
+- 状态：`VALIDATOR PASS`（开发框架与规则文档更新；无页面、运行时代码、公开 URL 或正式站内容变更）。
+- 文档：新增 `docs/NETENGINEERLAB_V2_SEO_GEO_ARCHITECTURE_SPEC.md`，并在 `docs/NETENGINEERLAB_V2_ARCHITECTURE_SPEC.md` 与 `.github/copilot-instructions.md` 建立强制引用。
+- 采纳内容：冻结 `Page Registry / Engineering Data → SEO Resolver → Metadata/Canonical/Hreflang → JSON-LD/Breadcrumb → Internal Links → Sitemap → CI` 单一事实源链路；补充页面族、本地化字段、生命周期、索引资格、页面类型、内容顺序、主题集群、爬虫边界和渐进实施门禁。
+- 仓库适配：保留现行英文 `/tools/<slug>/` 与中文 `/tools/<slug>/zh/`；工具集合、本地化路由、公共路由和站点默认值分别以 `tools-catalog.json`、`locales.json`、`sitemap-routes.json`、`seo-config.js` 为权威源，禁止使用通用中文 prefix 推导工具 URL；TypeScript、`src/` 和语言前缀路由不作为当前重写任务。
+- SEO/GEO 边界：标题/description 长度仅作质量提示；JSON-LD 必须与可见内容一致；FAQ 不承诺一般工具站富结果；不引入所谓 AI 专用 Schema；OAI-SearchBot 搜索发现与 GPTBot 训练控制分别决策。
+- 本地验证：`npm run verify` PASS；56 个 HTML 页面、54 个 Sitemap URL、21 个引擎、2761 个链接、0 errors、0 warnings；SEO/GEO 为 0 high、0 medium、21 maintain；`git diff --check` PASS。
+- 独立验证：2 号验证官首轮发现页面注册源、索引状态字段、现有公共页面类型和 locale 展开模型 4 个 P1 缺口；补齐 page-family 契约、`status/indexable` 失败关闭、四个权威配置源及现有路由映射后，第二轮最终 `PASS`。
+- 实现提交：`4210dc4affd192bb325d48e7b029111655025437`。
+- 线上验收：本批仅修改开发规范，无需部署；后续落地 Page Schema/SEO Resolver 或修改页面时，必须按生产批次重新执行浏览器、CI 与正式站验收。
+
 ### 2026-09-01 — 无线链路预算计算器正确性与 SEO/GEO 加固
 
 - 状态：`ONLINE PASS`。
