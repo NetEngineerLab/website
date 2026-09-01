@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-otdr-event-locale-v1.9.9-04-p0-p1-correctness-consent-offline-f036711f9f38-141131876416";
+const CACHE = "nel-otdr-event-locale-v1.9.9-04-p0-p1-correctness-consent-offline-f036711f9f38-9d52a93b6247";
 const CORE = [
   "./index.html",
   "./",
@@ -9,7 +9,7 @@ const CORE = [
   "./data/otdr-event-rules.js",
   "./css/style.css?v=2d5090ce650f",
   "./js/engine.js",
-  "./js/app.js?v=b9ad986b420f",
+  "./js/app.js?v=b47460a0b5d9",
   "./images/logo.svg",
   "../../data/locales.js?v=b541508dc0ee",
   "../../data/site-config.js?v=b5072ad7fa47",

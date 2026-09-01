@@ -76,6 +76,16 @@ const contentContracts={
       "https://www.itu.int/rec/T-REC-G.650.3/en"
     ]
   },
+  "otdr-event":{
+    faqCount:6,
+    contentRoot:"body",
+    faqRoot:"#faq",
+    references:[
+      "https://www.itu.int/rec/T-REC-G.650.1/en",
+      "https://www.itu.int/rec/T-REC-G.650.3/en",
+      "https://www.itu.int/rec/T-REC-G.671/en"
+    ]
+  },
   "poe-power-budget-calculator":{
     faqCount:5,
     references:[

@@ -11,6 +11,28 @@
   return {normal:0,attention:1,abnormal:2,critical:3}[value]??0;
  }
 
+ function validateInput(events,options){
+  if(!Array.isArray(events)||events.length===0||!options||typeof options!=="object"||Array.isArray(options))return false;
+  const numeric=[options.linkLengthKm,options.primaryAttenuationDbPerKm,options.secondaryAttenuationDbPerKm,options.ior];
+  if(!numeric.every(Number.isFinite)||options.linkLengthKm<0.1||options.primaryAttenuationDbPerKm<=0||options.secondaryAttenuationDbPerKm<=0||options.ior<1)return false;
+  const thresholds=options.rules?.thresholds;
+  const required=["normalSpliceLossDb","attentionLossDb","criticalLossDb","strongReflectionDb","veryStrongReflectionDb","bendDeltaDb","endLossDb","eventDeadZoneM","attenuationDeadZoneM","ghostDistanceToleranceM","nearEndToleranceM"];
+  if(!thresholds||!required.every(key=>Number.isFinite(thresholds[key])))return false;
+  const nonNegative=["normalSpliceLossDb","attentionLossDb","criticalLossDb","bendDeltaDb","endLossDb","eventDeadZoneM","attenuationDeadZoneM","ghostDistanceToleranceM","nearEndToleranceM"];
+  if(nonNegative.some(key=>thresholds[key]<0)||["strongReflectionDb","veryStrongReflectionDb"].some(key=>thresholds[key]>0))return false;
+  if(thresholds.normalSpliceLossDb>thresholds.attentionLossDb||thresholds.attentionLossDb>thresholds.criticalLossDb||thresholds.veryStrongReflectionDb<thresholds.strongReflectionDb||thresholds.eventDeadZoneM>thresholds.attenuationDeadZoneM)return false;
+  const allowed=options.rules?.eventTypes;
+  const fixedTypes=["auto","splice","connector","mechanical","bend","end","ghost","unknown"];
+  if(!Array.isArray(allowed)||new Set(allowed).size!==allowed.length||allowed.some(type=>typeof type!=="string")||allowed.length!==fixedTypes.length||allowed.some(type=>!fixedTypes.includes(type)))return false;
+  return events.every(event=>event&&typeof event==="object"&&!Array.isArray(event)
+   &&Number.isFinite(event.distanceKm)&&event.distanceKm>=0
+   &&Number.isFinite(event.lossPrimaryDb)&&event.lossPrimaryDb>=0
+   &&(event.lossSecondaryDb==null||(Number.isFinite(event.lossSecondaryDb)&&event.lossSecondaryDb>=0))
+   &&(event.reflectanceDb==null||(Number.isFinite(event.reflectanceDb)&&event.reflectanceDb<=0))
+   &&(event.cumulativeLossDb==null||(Number.isFinite(event.cumulativeLossDb)&&event.cumulativeLossDb>=0))
+   &&typeof event.manualType==="string"&&allowed.includes(event.manualType));
+ }
+
  function classifyAuto(event,context){
   const r=context.rules.thresholds;
   const distance=number(event.distanceKm);
@@ -96,10 +118,10 @@
  }
 
  function analyzeEvents(events,options){
+  if(!validateInput(events,options))return{ok:false,error:"invalid-input"};
   const rules=options.rules;
   const sorted=(events||[])
    .map((event,index)=>({...event,_inputIndex:index}))
-   .filter(event=>finite(event.distanceKm)&&number(event.distanceKm)>=0)
    .sort((a,b)=>number(a.distanceKm)-number(b.distanceKm));
 
   const strongReflectorDistancesKm=[];
@@ -114,6 +136,7 @@
     strongReflectorDistancesKm:[...strongReflectorDistancesKm]
    };
    const classification=classifyAuto(event,context);
+   if(previousDistanceKm!==null&&!Number.isFinite(classification.gapM))return{ok:false,error:"derived-overflow"};
    const severity=severityFor(event,classification,context);
    const reflectance=finite(event.reflectanceDb)?number(event.reflectanceDb):-80;
    if(reflectance>=rules.thresholds.strongReflectionDb){
@@ -152,7 +175,10 @@
    ? analyzed.slice(1).reduce((sum,e)=>sum+number(e.gapM),0)/(analyzed.length-1)
    : 0;
 
+  if(![eventLossPrimary,eventLossSecondary,estimatedPrimary,estimatedSecondary,maximumCumulative??0,maxLoss,meanSpacing].every(Number.isFinite))return{ok:false,error:"derived-overflow"};
+
   return {
+   ok:true,
    events:analyzed,
    summary:{
     eventCount:analyzed.length,
@@ -172,5 +198,5 @@
   };
  }
 
- return {analyzeEvents,classifyAuto,severityFor,severityRank,round};
+ return {analyzeEvents,classifyAuto,severityFor,severityRank,round,validateInput};
 });

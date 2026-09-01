@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31T14:07:28.671Z",
+  "generatedAt": "2026-09-01T00:56:55.336Z",
   "methodology": {
     "scope": "Active bilingual tool pages configured by locales.json and tools-catalog.json",
     "meaning": "Rule-based content-gap priority; not a ranking, traffic, or conversion forecast",
@@ -21,83 +21,18 @@
     "localePages": 42,
     "priorityCounts": {
       "high": 0,
-      "medium": 1,
-      "maintain": 20
+      "medium": 0,
+      "maintain": 21
     }
   },
   "nextBatch": [
-    "otdr-event",
     "wireless-link-budget-calculator",
     "poe-voltage-drop-calculator",
     "network-rack-power-cooling-calculator",
-    "vlan-ip-capacity-planner"
+    "vlan-ip-capacity-planner",
+    "switch-uplink-oversubscription-calculator"
   ],
   "tools": [
-    {
-      "id": "otdr-event",
-      "catalogOrder": 6,
-      "category": "maintenance",
-      "searchIntent": {
-        "id": "diagnosis",
-        "en": "diagnosis",
-        "zh": "故障诊断"
-      },
-      "targetTopic": {
-        "en": "OTDR Event Analyzer",
-        "zh": "OTDR事件分析工具"
-      },
-      "contentOwner": "NetEngineerLab Editorial",
-      "lastReviewedAt": {
-        "en": null,
-        "zh": null
-      },
-      "locales": {
-        "en": {
-          "visibleCharacters": 3881,
-          "sectionHeadings": 14,
-          "longTailQuestions": [
-            "Are OTDR event thresholds universal?",
-            "Why compare 1310 nm and 1550 nm?",
-            "What is a ghost event?",
-            "Can this tool parse SOR files?",
-            "Why can nearby events be unreliable?",
-            "Should results replace field judgment?"
-          ],
-          "faqCount": 6,
-          "faqSchema": true,
-          "externalReferences": [],
-          "externalReferenceCount": 0,
-          "internalLinkCount": 3,
-          "lastReviewedAt": null,
-          "reviewMarker": false
-        },
-        "zh": {
-          "visibleCharacters": 1499,
-          "sectionHeadings": 14,
-          "longTailQuestions": [
-            "OTDR事件阈值是否是统一标准？",
-            "为什么要比较1310 nm和1550 nm？",
-            "什么是鬼影事件？",
-            "本工具能直接解析SOR文件吗？",
-            "为什么距离很近的事件可能不准确？",
-            "分析结果能否替代现场判断？"
-          ],
-          "faqCount": 6,
-          "faqSchema": true,
-          "externalReferences": [],
-          "externalReferenceCount": 0,
-          "internalLinkCount": 3,
-          "lastReviewedAt": null,
-          "reviewMarker": false
-        }
-      },
-      "score": 22,
-      "priority": "medium",
-      "gaps": [
-        "3 authoritative reference(s) below the three-source target",
-        "visible review/update marker missing"
-      ]
-    },
     {
       "id": "wireless-link-budget-calculator",
       "catalogOrder": 15,
@@ -1414,6 +1349,76 @@
           "externalReferenceCount": 3,
           "internalLinkCount": 4,
           "lastReviewedAt": "2026-08-31",
+          "reviewMarker": true
+        }
+      },
+      "score": 0,
+      "priority": "maintain",
+      "gaps": []
+    },
+    {
+      "id": "otdr-event",
+      "catalogOrder": 6,
+      "category": "maintenance",
+      "searchIntent": {
+        "id": "diagnosis",
+        "en": "diagnosis",
+        "zh": "故障诊断"
+      },
+      "targetTopic": {
+        "en": "OTDR Event Analyzer",
+        "zh": "OTDR事件分析工具"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-09-01",
+        "zh": "2026-09-01"
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 4415,
+          "sectionHeadings": 15,
+          "longTailQuestions": [
+            "Are OTDR event thresholds universal?",
+            "Why compare 1310 nm and 1550 nm?",
+            "What is a ghost event?",
+            "Can this tool parse SOR files?",
+            "Why can nearby events be unreliable?",
+            "Should results replace field judgment?"
+          ],
+          "faqCount": 6,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.650.1/en",
+            "https://www.itu.int/rec/T-REC-G.650.3/en",
+            "https://www.itu.int/rec/T-REC-G.671/en"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 3,
+          "lastReviewedAt": "2026-09-01",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 1688,
+          "sectionHeadings": 15,
+          "longTailQuestions": [
+            "OTDR事件阈值是否是统一标准？",
+            "为什么要比较1310 nm和1550 nm？",
+            "什么是鬼影事件？",
+            "本工具能直接解析SOR文件吗？",
+            "为什么距离很近的事件可能不准确？",
+            "分析结果能否替代现场判断？"
+          ],
+          "faqCount": 6,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.650.1/en",
+            "https://www.itu.int/rec/T-REC-G.650.3/en",
+            "https://www.itu.int/rec/T-REC-G.671/en"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 3,
+          "lastReviewedAt": "2026-09-01",
           "reviewMarker": true
         }
       },

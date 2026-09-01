@@ -75,6 +75,11 @@ function escapeHtml(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;",
 function severityLabel(s){return TEXT[LANG][s]||s}
 function typeLabel(t){return TEXT[LANG][t]||t}
 function temp(button,message){const old=button.innerHTML;button.textContent=message;setTimeout(()=>button.innerHTML=old,1300)}
+function invalidateAnalysis(){
+ lastAnalysis=null;
+ renderEmptyResults();
+ ["copyBtn","saveBtn","exportBtn","printBtn"].forEach(id=>$(id).disabled=true);
+}
 
 function thresholdValues(){
  return {
@@ -110,6 +115,7 @@ function createRow(data={}){
  };
  rows.push(row);
  renderEventRows();
+ invalidateAnalysis();
 }
 
 function removeRow(id){
@@ -150,6 +156,7 @@ function renderEventRows(){
 
  body.querySelectorAll("input,select").forEach(control=>control.addEventListener("input",()=>{
   syncRowsFromDom();
+  invalidateAnalysis();
   clearTimeout(window.__otdrAnalyze);
   window.__otdrAnalyze=setTimeout(analyze,180);
  }));
@@ -184,13 +191,20 @@ function currentEvents(){
 }
 
 function analyze(){
- const events=currentEvents().filter(event=>finite(event.distanceKm)&&finite(event.lossPrimaryDb));
+ const events=currentEvents();
+ if(events.some(event=>!finite(event.distanceKm)||!finite(event.lossPrimaryDb))){
+  invalidateAnalysis();
+  return;
+ }
  if(!events.length){
-  lastAnalysis=null;
-  renderEmptyResults();
+  invalidateAnalysis();
   return;
  }
  const result=ENGINE.analyzeEvents(events,options());
+ if(!result.ok){
+  invalidateAnalysis();
+  return;
+ }
  lastAnalysis={
   ...result,
   meta:{
@@ -207,6 +221,7 @@ function analyze(){
  renderTopology(lastAnalysis.events);
  renderResultsTable(lastAnalysis.events);
  renderDiagnostics(lastAnalysis);
+ ["copyBtn","saveBtn","exportBtn","printBtn"].forEach(id=>$(id).disabled=false);
  if(typeof window.nelTrack==="function"){
   window.nelTrack("otdr_event_analyze",{
    event_count:lastAnalysis.summary.eventCount,
@@ -499,7 +514,7 @@ function clearHistory(){
  localStorage.removeItem("otdrEventHistory");renderHistory();
 }
 
-document.querySelectorAll(".config-input").forEach(input=>input.addEventListener("input",()=>{clearTimeout(window.__otdrConfig);window.__otdrConfig=setTimeout(analyze,180)}));
+document.querySelectorAll(".config-input").forEach(input=>input.addEventListener("input",()=>{invalidateAnalysis();clearTimeout(window.__otdrConfig);window.__otdrConfig=setTimeout(analyze,180)}));
 $("primaryWavelength").addEventListener("change",setWavelengthAttenuation);
 $("secondaryWavelength").addEventListener("change",setWavelengthAttenuation);
 $("addEventBtn").addEventListener("click",()=>createRow());
