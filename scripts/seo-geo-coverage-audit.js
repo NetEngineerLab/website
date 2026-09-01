@@ -66,7 +66,7 @@ function parseReviewDate(text){
   return `${zh[1]}-${zh[2].padStart(2,"0")}-${zh[3].padStart(2,"0")}`;
 }
 
-function pageSignals(html,pageUrl=`${origin}/`){
+function pageSignals(html,pageUrl=`${origin}/`,{includeInternalLinks=false}={}){
   const rawBody=html.match(/<body\b[^>]*>([\s\S]*?)<\/body>/i)?.[1]||"";
   const body=stripShell(rawBody);
   const questions=[...body.matchAll(/<details\b[^>]*>[\s\S]*?<summary\b[^>]*>([\s\S]*?)<\/summary>[\s\S]*?<p\b[^>]*>([\s\S]*?)<\/p>[\s\S]*?<\/details>/gi)]
@@ -93,6 +93,7 @@ function pageSignals(html,pageUrl=`${origin}/`){
     faqSchema,
     externalReferences,
     externalReferenceCount:externalReferences.length,
+    ...(includeInternalLinks?{internalLinks}:{}),
     internalLinkCount:internalLinks.length,
     lastReviewedAt,
     reviewMarker:Boolean(lastReviewedAt)
@@ -134,13 +135,13 @@ function scoreCoverage(locales){
   return {score,priority,gaps};
 }
 
-function buildReport({catalog,localeConfig,readPage,generatedAt=new Date().toISOString()}){
+function buildReport({catalog,localeConfig,readPage,generatedAt=new Date().toISOString(),includeInternalLinks=false}){
   const activeLocales=localeConfig.locales.filter(locale=>locale.status==="active");
   const tools=catalog.filter(tool=>tool.status==="active").map(tool=>{
     if(!intentByTool[tool.id])throw new Error(`Missing search intent for active tool: ${tool.id}`);
     const locales=Object.fromEntries(activeLocales.map(locale=>{
       const location=toolPageFile(localeConfig,locale,tool.id);
-      return [locale.id,pageSignals(readPage(location.file),`${localeConfig.siteUrl||origin}${location.route}`)];
+      return [locale.id,pageSignals(readPage(location.file),`${localeConfig.siteUrl||origin}${location.route}`,{includeInternalLinks})];
     }));
     const coverage=scoreCoverage(locales);
     return {
@@ -184,4 +185,4 @@ function main(){
 }
 
 if(require.main===module)main();
-module.exports={buildReport,pageSignals,parseReviewDate,scoreCoverage,toolPageFile,intentByTool};
+module.exports={buildReport,pageSignals,parseReviewDate,scoreCoverage,toolPageFile,intentByTool,intentLabels,owner};

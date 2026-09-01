@@ -116,6 +116,24 @@ function prerenderToolGrid(html,currentInfo,locale){
  });
  return html;
 }
+function ensureToolDirectoryItemList(html,locale){
+ const tools=activeTools.slice().sort((a,b)=>a.order-b.order);
+ const schema={
+  "@context":"https://schema.org",
+  "@type":"ItemList",
+  name:locale.id===defaultLocale.id?"NetEngineerLab tool directory":"NetEngineerLab工具目录",
+  numberOfItems:tools.length,
+  itemListElement:tools.map((tool,index)=>({
+   "@type":"ListItem",
+   position:index+1,
+   name:toolCopy(tool,locale).name||tool.id,
+   url:localeConfig.siteUrl+urlForRoute(`tools/${tool.id}/`,locale)
+  }))
+ };
+ const script=`<script data-nel-launch-schema="itemlist" type="application/ld+json">${JSON.stringify(schema)}</script>`;
+ const existing=/<script\b(?=[^>]*\bdata-nel-launch-schema=["']itemlist["'])[^>]*>[\s\S]*?<\/script>/i;
+ return existing.test(html)?html.replace(existing,script):html.replace(/<\/head>/i,`${script}\n</head>`);
+}
 function identifyPage(rel){
  const clean=posix(rel).replace(/^\/+/,"");
  if(clean.endsWith("/offline.html")||clean==="offline.html")return null;
@@ -566,6 +584,7 @@ function build(){
   html=injectSiteShell(html,record.rel,record.info);
   html=replaceLanguageMenu(html,menuMarkup(record.info,group));
   if(record.info.kind==="home"||record.info.kind==="toolsDirectory")html=prerenderToolGrid(html,record.info,locale);
+  if(record.info.kind==="toolsDirectory")html=ensureToolDirectoryItemList(html,locale);
   html=normalizeBrandLogoAlt(html);
   html=removeHeadLinks(removeNelMeta(html));
   html=setHtmlAttributes(html,locale,record.info.route);

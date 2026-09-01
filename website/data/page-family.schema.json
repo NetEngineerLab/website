@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://netengineerlab.com/schemas/page-family.schema.json",
+  "title": "NetEngineerLab Page Family",
+  "$defs": {
+    "localizedText": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": { "type": "string", "minLength": 1 }
+    },
+    "localizedQuestions": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "array",
+        "minItems": 1,
+        "uniqueItems": true,
+        "items": { "type": "string", "minLength": 1 }
+      }
+    },
+    "localizedDates": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "oneOf": [
+          { "type": "string", "format": "date" },
+          { "type": "null" }
+        ]
+      }
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "id", "pageType", "status", "indexable", "route", "translations", "searchIntent", "primaryTopic", "longTailQuestions", "breadcrumb", "structuredData", "relatedContent", "sources", "owner", "publishedAt", "reviewedAt", "withdrawal"],
+  "properties": {
+    "schemaVersion": { "const": "2.0.0" },
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "pageType": { "enum": ["home", "directory", "tool", "guide", "reference", "vendor", "compare", "glossary", "hub", "learn", "about", "contact", "legal"] },
+    "status": { "enum": ["planned", "active", "retired"] },
+    "indexable": { "type": "boolean" },
+    "route": { "type": "string", "pattern": "^(?:$|[a-z0-9][a-z0-9-]*/(?:[a-z0-9][a-z0-9-]*/)*)$" },
+    "toolId": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "changefreq": { "enum": ["always", "hourly", "daily", "weekly", "monthly", "yearly", "never"] },
+    "priority": { "type": "string", "pattern": "^(?:0(?:\\.[0-9])?|1(?:\\.0)?)$" },
+    "searchIntent": { "$ref": "#/$defs/localizedText" },
+    "primaryTopic": { "$ref": "#/$defs/localizedText" },
+    "longTailQuestions": { "$ref": "#/$defs/localizedQuestions" },
+    "breadcrumb": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
+    },
+    "structuredData": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "relatedContent": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^/" }
+    },
+    "sources": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^https://" }
+    },
+    "owner": { "type": "string", "minLength": 1 },
+    "publishedAt": {
+      "oneOf": [
+        { "type": "string", "format": "date" },
+        { "type": "null" }
+      ]
+    },
+    "reviewedAt": { "$ref": "#/$defs/localizedDates" },
+    "withdrawal": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["strategy"],
+          "properties": {
+            "strategy": { "enum": ["redirect", "not-found", "gone"] },
+            "targetFamilyId": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
+          }
+        }
+      ]
+    },
+    "translations": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["title", "description"],
+        "properties": {
+          "title": { "type": "string", "minLength": 1 },
+          "description": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}
