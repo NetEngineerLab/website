@@ -18,6 +18,19 @@
 
 ## 已完成批次
 
+### 2026-09-01 — OTDR 事件分析器失败关闭、陈旧结果防护与 SEO/GEO
+
+- 状态：`VALIDATOR PASS`（线上同步待执行）。
+- 页面：`website/tools/otdr-event/` 中英文版本；同步更新引擎、交互、双语内容合约、专项浏览器测试、资源哈希与 Service Worker 缓存版本。
+- 输入与规则正确性：要求非空事件数组、严格对象和有限数；链路长度至少 0.1 km、双波长衰减大于 0、IOR 至少为 1；损耗/死区/容差阈值非负，反射阈值非正且顺序有效；事件类型固定为引擎支持的 8 类，不允许调用方扩展或用假值绕过。
+- 派生与状态安全：事件间距、链路损耗和累计结果发生非有限数时失败关闭；正反射率、非法手工类型、缺失/乱序规则、空事件和派生溢出均有回归断言。
+- 交互与导出：工程参数、阈值和事件表变化时立即清空摘要、状态、拓扑、诊断和结果表，并禁用复制、保存、CSV、打印；新增空事件、删除最后事件及所有计算失败路径统一失效，只有成功分析后恢复导出。
+- 内容与 SEO/GEO：核验 6 组现有双语 FAQ，新增 ITU-T G.650.1、G.650.3、G.671 官方来源及双语可见复核日期；专项测试锁定来源、FAQ/Schema 和日期；全站覆盖达到 0 high、0 medium、21 maintain。下一批依次为 wireless-link-budget-calculator、poe-voltage-drop-calculator、network-rack-power-cooling-calculator、vlan-ip-capacity-planner、switch-uplink-oversubscription-calculator。
+- 本地验证：`npm run verify` PASS；56 个 HTML 页面、54 个 Sitemap URL、21 个引擎、2757 个链接、0 errors、0 warnings；OTDR 引擎与语法测试 PASS；Chrome/Edge/Android/iPhone 中英文内容、日期和失效边界测试 16/16 PASS；`git diff --check` PASS。
+- 独立验证：2 号验证官多轮发现并推动修复规则字段/顺序/范围、事件类型绕过、空事件、超大间距、正反射率、debounce 陈旧结果、添加/删除事件失效路径和英文复核日期审计识别问题；最终确认 OTDR SEO 条目 `score: 0`、`gaps: []`，无剩余阻断，`PASS`。
+- 实现提交：`f4380d12fbead3710c422a05f49db72dcab79cec`。
+- 线上验收：待记录提交与推送、GitHub 门禁和正式站浏览器验收完成后登记 `ONLINE PASS`。
+
 ### 2026-08-31 — V2.0 可执行目录、Schema 与 Vendor Renderer 规范适配
 
 - 状态：`VALIDATOR PASS`（文档更新；无运行时代码、公开 URL 或正式站内容变更）。
@@ -328,7 +341,7 @@
 
 按“小批次、验证通过后再继续”的顺序执行：
 
-1. 继续 SEO/GEO 队列：otdr-event、wireless-link-budget-calculator、poe-voltage-drop-calculator、network-rack-power-cooling-calculator、vlan-ip-capacity-planner。
+1. 继续 SEO/GEO 队列：wireless-link-budget-calculator、poe-voltage-drop-calculator、network-rack-power-cooling-calculator、vlan-ip-capacity-planner、switch-uplink-oversubscription-calculator。
 2. MIB/OID Explorer Phase 0：按 `docs/MIB_OID_EXPLORER_DEVELOPMENT_PLAN.md` 完成来源许可调研、解析器选型、数据字典、威胁模型与技术 ADR；不得在门禁前批量抓取或公开厂商 MIB。
 
 任何新发现的 P0/P1 稳定性或正确性问题，优先级高于上述 SEO/GEO 队列，并必须在本文件说明插队原因。
