@@ -362,7 +362,7 @@
 
 ### 2026-09-01 — V2.0 Page Schema 与 Page Registry 落地
 
-- 状态：`LOCAL PASS`（待推送并等待线上工作流）。
+- 状态：`ONLINE PASS`。
 - 架构：新增 `website/data/page-family.schema.json` 与 `scripts/page-registry.js`，以稳定 Page Family ID 统一公共页、目录页和 21 个工具页；输出 27 个页面家族、54 个本地化页面及明确的 canonical、hreflang、robots、Sitemap eligibility 和退役策略。
 - 数据治理：`sitemap-routes.json` 承载公共页面的 Search Intent、Primary Topic、Long-tail Questions、Breadcrumb、Structured Data、Related Content、Sources、Owner、发布日期与复核日期；21 个工具补齐真实 Git 首次发布日；工具目录 ItemList 改为从 active catalog 确定性生成，移除页面数量硬编码。
 - 生命周期与安全：planned/retired 通过真实加载链保留；退役跳转使用 `targetFamilyId` 并按同一 locale 展开，只允许指向 active/indexable 家族；拒绝自跳、环、缺失目标、跨语言路径注入、路径遍历、非法 HTTPS 来源、重复/非法 locale 标识，以及 locale 抢占保留 hreflang `x-default`。
@@ -370,6 +370,7 @@
 - 一致性修复：双语工具目录 ItemList 同步为 21 项并包含 ACL 工具；双语隐私页移除陈旧的“20 个工具”表述；首页和工具目录刷新 catalog 内容哈希。
 - 本地验证：`npm run verify` PASS；56 个 HTML 页面、54 个 Sitemap URL、21 个引擎、2761 个链接、0 errors、0 warnings；`git diff --check` PASS。
 - 独立验证：2 号验证官经过五轮发现并推动修复 Schema 全字段、locale/路径绕过、生命周期加载、页面家族跳转、canonical/hreflang 输出及保留键问题，最终 `PASS`，未发现新 P1/P2。
+- 实现提交：`8714667175e1c5df5b1ccf7d415fa46913f386ae`；Quality Gate `33509278420`、Online Monitor `33509278053`、GA4 Monitor `33509278201`、Performance Monitor `33509318653` 全部成功。
 
 ## 下一步队列
 
