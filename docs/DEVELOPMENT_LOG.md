@@ -372,11 +372,21 @@
 - 独立验证：2 号验证官经过五轮发现并推动修复 Schema 全字段、locale/路径绕过、生命周期加载、页面家族跳转、canonical/hreflang 输出及保留键问题，最终 `PASS`，未发现新 P1/P2。
 - 实现提交：`8714667175e1c5df5b1ccf7d415fa46913f386ae`；Quality Gate `33509278420`、Online Monitor `33509278053`、GA4 Monitor `33509278201`、Performance Monitor `33509318653` 全部成功。
 
+### 2026-09-02 — MIB/OID Explorer Phase 0 来源与许可门禁
+
+- 状态：`LOCAL PASS`（待推送）。
+- 范围：新增 `docs/MIB_OID_SOURCE_LICENSE_LEDGER.md`；本批未下载、镜像、解析或公开任何 MIB 文件，也未修改网站生产代码。
+- 来源决策：IANA 协议注册表事实按 CC0 使用但排除 Contact、Email 等个人字段；IETF MIB 按每个 RFC 发布日期、文档流、restriction legend 和 Pre-5378 状态逐项审核；Cisco 官方公共仓库在缺少覆盖性再分发许可时仅允许元数据与官方链接；PySMI 软件许可与其来源不明聚合档案严格分离。
+- 可执行门禁：建立 preauthorization → acquisition/hash → redistribution review 三阶段不可变记录；固定 TLP 版本及证据 SHA-256；未知、pending、非 approved 决定失败关闭；重定向默认禁用，例外逐跳重新预授权。
+- 原型语料：登记 10 个 IETF 标准 MIB 候选及自构造失败样例原则；下一门禁必须逐项审核并选出 8–10 个通过项，不足时只能扩充候选，不能降低许可门槛。
+- 验证：官方 IANA、IETF Trust TLP 4.0、Cisco 与 PySMI 证据链接在线核验；`git diff --check` PASS。
+- 独立验证：2 号验证官三轮发现并推动修复错误年代 TLP、不可执行许可字段、采集阶段冲突、PEN 个人信息、证据固定性及重定向问题，最终 `PASS`，未发现新 P1/P2。
+
 ## 下一步队列
 
 按“小批次、验证通过后再继续”的顺序执行：
 
-1. 继续 SEO/GEO 队列：poe-voltage-drop-calculator、network-rack-power-cooling-calculator、vlan-ip-capacity-planner、switch-uplink-oversubscription-calculator、dns-ttl-propagation-calculator。
-2. MIB/OID Explorer Phase 0：按 `docs/MIB_OID_EXPLORER_DEVELOPMENT_PLAN.md` 完成来源许可调研、解析器选型、数据字典、威胁模型与技术 ADR；不得在门禁前批量抓取或公开厂商 MIB。
+1. MIB/OID Explorer Phase 0：在已通过的来源许可台账基础上完成解析器选型 ADR、数据字典与威胁模型；不得在门禁前批量抓取或公开厂商 MIB。
+2. SEO/GEO 进入维护监测：当前 21 个工具均为 `maintain`，只依据 Search Console、站内搜索词或新内容缺口启动下一批，不重复改写已达标页面。
 
 任何新发现的 P0/P1 稳定性或正确性问题，优先级高于上述 SEO/GEO 队列，并必须在本文件说明插队原因。
