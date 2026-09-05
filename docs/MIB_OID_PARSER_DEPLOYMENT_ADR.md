@@ -27,6 +27,8 @@ V1 标准 MIB 原型采用构建时离线解析、确定性规范化 JSON、静�
 3. 构建后生成 `parser-runtime.provenance.json`：候选镜像 repository digest、目标 OS/architecture、完整 SBOM 及其 SHA-256、构建日志 SHA-256、输入锁 SHA-256、工具版本和许可证集合。
 4. 独立验证者从输入锁复建或核对镜像/SBOM/许可证；通过后签发引用 provenance hash 的 immutable approval。只有获得 approval 的镜像 digest 才能运行解析作业。
 
+`runtimeApprovalId` 使用 `runtime-approval/1.0.0` Schema：字段封闭为 `schemaVersion`、`runtimeApprovalId`、`runtimeImageDigest`、`provenanceSha256`、`inputLockSha256`、`sbomSha256`、`targetOs`、`targetArchitecture`、`decision`、`approvedBy`、`approvedAt`、`supersedesRuntimeApprovalId|null`、`recordSha256`。`runtimeImageDigest` 只能是 `sha256:` 加 64 位小写十六进制；Phase 0 的 `targetOs` 只能是 `linux`，`targetArchitecture` 只能是 `amd64`，扩展平台必须升级 Schema。先删除 `runtimeApprovalId` 与 `recordSha256`，对其余完整记录执行 NFC + RFC 8785 JCS + SHA-256；ID 为 `runtimeapproval-` 加完整 hash，`recordSha256` 为同一 hash。decision 只能为 `approved|rejected|withdrawn`；每个规范化 `{runtimeImageDigest, targetOs, targetArchitecture}` scope 恰有一个 root，后续 approval 只能 supersede 当前唯一 head。解析只能引用唯一 effective approved head，且运行容器报告的 digest/OS/architecture 必须与 scope 逐字节相等；多个 root/leaf、跨 scope、环、断链、回选旧 approval 或 hash 不一致均失败。
+
 任一范围依赖、平台包漂移、未哈希文件、镜像 tag（无 digest）、未知许可证或 lock/provenance 与实物不一致都必须阻断。本文不伪造尚未选择的依赖版本或镜像 digest；输入锁验证前不得构建，provenance approval 前不得运行解析。
 
 ## 为什么不是其他方案
@@ -61,13 +63,13 @@ V1 标准 MIB 原型采用构建时离线解析、确定性规范化 JSON、静�
 
 失败记录拆成两层：参与 Golden/hash 比较的 canonical failure facts 只含排序后的 error code、limit name、observed class、input hash、parser/runtime version 与 diagnostics hash，不含时间；audit envelope 单独记录 startedAt/endedAt、exit code、signal、timedOut、oomKilled、stdout/stderr SHA-256 和 cleanup result，不参与确定性比较。容器运行时负责 memory、CPU、PID、swap 和 tmpfs 最终边界。被 kill、OOM、timeout、异常退出、stderr 含未分类错误或依赖未闭包都视为失败。
 
-两种解析器环境统一固定 `LANG=C.UTF-8`、`LC_ALL=C.UTF-8`、`TZ=UTC`、`PYTHONUTF8=1`、`PYTHONHASHSEED=0`，输入仅接受 UTF-8 或 manifest 明示且可确定转换的编码。Net-SNMP 必须使用 `-C` 禁止默认配置、`-M` 指向唯一只读 Fixture 目录、`-m` 列出 manifest 依赖闭包，并清空/覆盖 `MIBDIRS`、`MIBS`、`SNMPCONFPATH` 与隔离 HOME；禁止读取系统 MIB 和用户配置。
+两种解析器环境统一固定 `LANG=C.UTF-8`、`LC_ALL=C.UTF-8`、`TZ=UTC`、`PYTHONUTF8=1`、`PYTHONHASHSEED=0`。Phase 0 输入只接受严格 UTF-8 且不含 BOM；非法序列、BOM 或其他编码直接失败，不进行转码。Net-SNMP 必须使用 `-C` 禁止默认配置、`-M` 指向唯一只读 Fixture 目录、`-m` 列出 manifest 依赖闭包，并清空/覆盖 `MIBDIRS`、`MIBS`、`SNMPCONFPATH` 与隔离 HOME；禁止读取系统 MIB 和用户配置。
 
 ## 解析模式
 
 1. 默认只运行 canonical SMIv1 或 SMIv2 严格语法，方言由 Fixture manifest 明确指定并经模块内容验证，禁止运行时猜测后静默切换。
 2. 严格解析失败时只记录 diagnostics，不自动 borrowing，不联网，不自动切换 relaxed。
-3. relaxed 模式只能由 Fixture manifest 显式允许，结果永久标记 `parseMode: relaxed` 和 `publishable: false`；人工审核只能追加引用该结果哈希的不可变 adjudication record，禁止原地翻转或改写解析结果。
+3. relaxed 模式只能由 Fixture manifest 显式允许，结果永久标记 `parseMode: relaxed` 和 `parseEligible: false`；人工审核只能追加引用该结果哈希的不可变 adjudication record，禁止原地翻转或改写解析结果。
 4. 未解析 IMPORT、重复 symbol/OID、OID 环、冲突 revision、非法 access/status、未知语法和截断输入必须失败关闭，不得丢弃后继续发布。
 
 ## 规范输出边界
@@ -83,6 +85,8 @@ PySMI AST/JSON 是解析器证据，不是公开 Schema。Adapter 只能把已�
 ## Golden Fixture 契约
 
 每个成功 Fixture 必须绑定：许可 review ID、输入 SHA-256、解析器包与 wheel SHA-256、parse mode、依赖闭包、期望 diagnostics、规范 JSON 和规范 JSON SHA-256。每个失败 Fixture 必须是自行构造的最小文本，并声明唯一主要失败原因。
+
+parse input manifest 使用 `mib-parse-input/1.0.0` Schema，字段封闭为 `schemaVersion`、`runtimeApprovalId`、`parseMode`、`rootInputs[]`、`dependencyArtifactIds[]`、`effectiveLicenseReviewIds[]`、`resourceLimitProfileId`。每个 `rootInputs[]` 项固定 `{artifactId, expectedLanguageDialect}` 并按 artifact ID 排序；另外两个数组去重并按完整 ID 的 UTF-8 byte order 排序。root 与 dependency 不得重叠，IMPORT 闭包必须完整，每个 artifact 的 acquisition 必须恰好对应一个当前 effective approved license review。对 NFC 后的 RFC 8785 JCS bytes 计算 SHA-256 得到 `inputManifestSha256`；未知字段、顺序错误、重复、闭包缺失、许可映射不唯一或 hash 不一致均失败。
 
 门禁至少覆盖 SMIv1、SMIv2、MODULE-IDENTITY、OBJECT-TYPE、TEXTUAL-CONVENTION、MODULE-COMPLIANCE、NOTIFICATION-TYPE、表与 INDEX、Counter64、IMPORT 闭包、重复 OID、循环依赖、截断、编码异常和全部资源上限。相同输入连续运行两次的字节输出必须一致；输入顺序改变不得改变规范结果。
 

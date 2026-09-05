@@ -53,6 +53,18 @@ MIB/SMI 解析优先选用成熟、仍维护且许可证兼容的库；不得从
 - 中英文工程解释、SNMP 命令示例、来源和适用边界可见。
 - 建立解析 Golden Fixture、重复导入幂等、错误输入、性能和搜索相关性测试。
 
+#### 精简 V1 冻结范围（2026-09-05）
+
+精简 V1 只交付 8 个逐文件许可审核为 approved、且 IMPORT 完整闭合的 IETF 标准 MIB。首选闭包固定为 `SNMPv2-SMI`、`SNMPv2-TC`、`SNMPv2-CONF`、`SNMPv2-MIB`、`INET-ADDRESS-MIB`、`TCP-MIB`、`UDP-MIB`、`SNMP-FRAMEWORK-MIB`；其中 TCP/UDP 对 INET-ADDRESS-MIB 的依赖已纳入。任一项未通过时，只能从全部 10 个已审核候选中选择仍保持 8 个且依赖闭合的替代集合；无法闭合就停止，不得降级许可或使用厂商/聚合站文件。
+
+公开功能只包括双语 `/mib/` 搜索入口、8 个模块页、获批对象的静态详情页、数字 OID 精确反查、对象名/模块名客户端搜索、来源与限制说明。页面必须复用现有 Header、Footer、设计令牌、内容顺序、Page Registry、canonical/hreflang、Sitemap 和浏览器验收；只有具备唯一已验证内容的页面可 index。
+
+精简 V1 明确不包含厂商 MIB/设备兼容关系、文件下载、用户上传、在线解析、API、数据库、专用搜索服务、自然语言/AI 搜索、监控场景库和自动增量采集。上述能力保持 V1.1+ 或 V2/V3，不得在本批顺手加入。
+
+执行顺序冻结为：威胁模型 → 审核全部 10 个候选并选出 8 个 approved 的闭合集合 → JSON Schema/故障测试 → parser lock/runtime approval → 隔离解析与 Golden → 静态索引/页面 → 双语四终端浏览器验收 → 推送与线上验收。每一步必须写入 `docs/DEVELOPMENT_LOG.md` 并由 2 号验证官 PASS 后才能进入下一步。
+
+V1 完成门槛：8/8 来源链和许可 head 有效、两次构建 byte-identical、OID/IMPORT/父子关系无未裁决冲突、精确 OID 测试 100% 命中、对象名与模块名 Golden 查询 Top-1 100%、公开页无孤页/重复 canonical/错误 hreflang、`npm run verify` 与四终端双语浏览器验收全部通过。
+
 ### V1.1 — Cisco 官方索引
 
 - 建立 Cisco 官方来源采集与版本更新流程。
