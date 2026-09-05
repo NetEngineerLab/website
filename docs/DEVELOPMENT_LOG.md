@@ -374,17 +374,18 @@
 
 ### 2026-09-02 — MIB/OID Explorer Phase 0 来源与许可门禁
 
-- 状态：`LOCAL PASS`（待推送）。
+- 状态：`ONLINE PASS`。
 - 范围：新增 `docs/MIB_OID_SOURCE_LICENSE_LEDGER.md`；本批未下载、镜像、解析或公开任何 MIB 文件，也未修改网站生产代码。
 - 来源决策：IANA 协议注册表事实按 CC0 使用但排除 Contact、Email 等个人字段；IETF MIB 按每个 RFC 发布日期、文档流、restriction legend 和 Pre-5378 状态逐项审核；Cisco 官方公共仓库在缺少覆盖性再分发许可时仅允许元数据与官方链接；PySMI 软件许可与其来源不明聚合档案严格分离。
 - 可执行门禁：建立 preauthorization → acquisition/hash → redistribution review 三阶段不可变记录；固定 TLP 版本及证据 SHA-256；未知、pending、非 approved 决定失败关闭；重定向默认禁用，例外逐跳重新预授权。
 - 原型语料：登记 10 个 IETF 标准 MIB 候选及自构造失败样例原则；下一门禁必须逐项审核并选出 8–10 个通过项，不足时只能扩充候选，不能降低许可门槛。
 - 验证：官方 IANA、IETF Trust TLP 4.0、Cisco 与 PySMI 证据链接在线核验；`git diff --check` PASS。
 - 独立验证：2 号验证官三轮发现并推动修复错误年代 TLP、不可执行许可字段、采集阶段冲突、PEN 个人信息、证据固定性及重定向问题，最终 `PASS`，未发现新 P1/P2。
+- 实现提交：`7830552a5dcdcd92fdc2b5697d497f544fc12521`；Quality Gate `33571922199`、Online Monitor `33571922176`、GA4 Monitor `33571922338`、Performance Monitor `33571952343` 全部成功。
 
 ### 2026-09-02 — MIB/OID Explorer Phase 0 解析器与部署 ADR
 
-- 状态：`LOCAL PASS`（待推送）。
+- 状态：`ONLINE PASS`。
 - 范围：新增 `docs/MIB_OID_PARSER_DEPLOYMENT_ADR.md`；本批未安装依赖、导入 MIB、构建容器或修改生产网站。
 - 技术决策：PySMI 2.0.0 作为固定版本主解析器候选，Net-SNMP `snmptranslate` 只作独立交叉验证；V1 原型采用离线构建、规范 JSON、静态分片与客户端精确搜索，不提前引入在线 API 或数据库。
 - 供应链：强制 build-input lock → 无网络候选构建 → runtime provenance/SBOM → 独立 immutable approval 四阶段；完整锁定 Python 传递依赖、基础镜像 digest、Net-SNMP 平台闭包、哈希与许可证，approval 前禁止解析。
@@ -392,12 +393,25 @@
 - 解析边界：strict 默认失败关闭，禁止 borrowing 与自动联网；relaxed 结果永久不可发布，只能追加不可变人工裁决；source facts、parsed facts 与 editorial content 三层隔离。
 - 验证：PyPI、PySMI、Net-SNMP 官方资料在线核验；本机无 Docker 时确认禁止非隔离降级；`git diff --check` PASS。
 - 独立验证：2 号验证官四轮发现并推动修复传递依赖、镜像锁、OCI watchdog、构建锁循环、输出容量与生命周期、确定性审计和 TOCTOU 问题；三次失败后按规则停止并完成新诊断，最终 `PASS`，未发现新 P1/P2。
+- 实现提交：`70da104ad48368e0d5a5b0269cc883ef8b332ea2`；Quality Gate `33572988926`、Online Monitor `33572988891`、GA4 Monitor `33572988971`、Performance Monitor `33573022475` 全部成功。
+
+### 2026-09-05 — MIB/OID 数据字典与精简 V1 范围冻结
+
+- 状态：`VALIDATOR PASS`（待推送）。
+- 范围：新增 `docs/MIB_OID_DATA_DICTIONARY.md`，同步收紧来源许可台账与解析器 ADR，并在开发计划冻结精简 V1；本批未下载 MIB、安装解析器或修改生产网站。
+- 精简 V1：先审核全部 10 个标准候选，再发布 8 个逐文件许可 approved 且 IMPORT 闭合的 IETF MIB；只做双语静态搜索、模块页、OID 详情与精确反查；厂商 MIB、下载、上传、在线解析、API、数据库、AI 搜索和场景库全部后移。
+- 数据门禁：固定 source → acquisition → byte range → artifact → parse result → revision 无环身份链；license/runtime/editorial/adjudication 使用不可变 effective-head 单链；snapshot 固定有效 heads，并在生成、部署、激活、回滚与索引构建时重新验证。
+- 确定性与撤回：结构化内容记录使用 NFC + RFC 8785 JCS，顶层字段型实体按固定字段顺序与 NUL 分隔 preimage，二者均使用完整 SHA-256 并可重算；数组排序、null/omit、UTF-8、OID/IMPORT/alias 规则失败关闭；许可或 runtime 撤回后旧 snapshot 仅保留审计并从 Page Registry、Sitemap、搜索与 precache 下线。
+- 本地验证：`git diff --check` PASS；身份循环、sourceRange 切片碰撞、snapshot/commit 自引用已通过专项文档检查。
+- 独立验证：2 号验证官多轮故障审查覆盖身份环、字节范围碰撞、许可/runtime 撤回、snapshot 激活/回滚、commit 自引用、IMPORT 传递闭包与日志真实性；最终 `PASS`，未发现新 P1/P2。
+- 实现提交：`4a5c305717245f6e9b0bc423727457c0ae863fb8`。
+- 下一步：完成威胁模型；通过前不得实现 Schema、Adapter、MIB 采集或公开页面。
 
 ## 下一步队列
 
 按“小批次、验证通过后再继续”的顺序执行：
 
-1. MIB/OID Explorer Phase 0：在已通过的来源许可台账与解析器 ADR 基础上完成数据字典和威胁模型；不得在门禁前安装解析器、批量抓取或公开厂商 MIB。
+1. MIB/OID Explorer 精简 V1：数据字典通过后完成威胁模型；不得在门禁前实现 Schema/Adapter、安装解析器、采集 MIB 或公开页面。
 2. SEO/GEO 进入维护监测：当前 21 个工具均为 `maintain`，只依据 Search Console、站内搜索词或新内容缺口启动下一批，不重复改写已达标页面。
 
 任何新发现的 P0/P1 稳定性或正确性问题，优先级高于上述 SEO/GEO 队列，并必须在本文件说明插队原因。
