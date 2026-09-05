@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-acl-generator-validator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-f036711f9f38-e32a3c5d3d5a";
+const CACHE = "nel-acl-generator-validator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-c2516a2a1055-864d7687eb1b";
 const CORE = [
   "./index.html",
   "./",
@@ -20,17 +20,17 @@ const CORE = [
   "./js/parsers/juniper-junos.js",
   "./js/generators/juniper-junos.js",
   "./js/engine.js",
-  "./js/app.js?v=3e81b821fdef",
+  "./js/app.js?v=b4fe133ce439",
   "./js/pwa.js",
   "../../data/locales.js?v=b541508dc0ee",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=1b428f96cadc",
   "../../assets/css/site-shell.css?v=f34b1ffff9cc",
-  "../../assets/css/tool-design-system-v1.9.9-03.css?v=74eed43d191e",
+  "../../assets/css/tool-design-system-v1.9.9-03.css?v=fd302ec2d73d",
   "../../assets/js/analytics.js?v=1156b7864023",
   "../../assets/js/adsense.js?v=f075c80ccc75",
-  "../../assets/js/site.js?v=af1b8909e5b4",
+  "../../assets/js/site.js?v=5c6907a4fe26",
   "../../assets/js/tool-integration.js?v=05f7934f4687",
   "../../assets/js/tool-shell-v1.9.9-04.js?v=d2715dc996b6",
   "../../assets/js/rules-engine/normalize.js?v=9e2cb44bca10",

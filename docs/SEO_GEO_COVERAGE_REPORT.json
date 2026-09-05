@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-01T06:44:29.255Z",
+  "generatedAt": "2026-09-05T12:01:22.374Z",
   "methodology": {
     "scope": "Active bilingual tool pages configured by locales.json and tools-catalog.json",
     "meaning": "Rule-based content-gap priority; not a ranking, traffic, or conversion forecast",
@@ -17,456 +17,22 @@
     ]
   },
   "summary": {
-    "activeTools": 21,
-    "localePages": 42,
+    "activeTools": 22,
+    "localePages": 44,
     "priorityCounts": {
       "high": 0,
       "medium": 0,
-      "maintain": 21
+      "maintain": 22
     }
   },
   "nextBatch": [
-    "poe-voltage-drop-calculator",
-    "network-rack-power-cooling-calculator",
-    "vlan-ip-capacity-planner",
-    "switch-uplink-oversubscription-calculator",
-    "dns-ttl-propagation-calculator"
+    "optical-power-budget",
+    "pon-splitter-loss",
+    "onu-rx-power",
+    "pon-distance",
+    "mtu-calculator"
   ],
   "tools": [
-    {
-      "id": "poe-voltage-drop-calculator",
-      "catalogOrder": 16,
-      "category": "power",
-      "searchIntent": {
-        "id": "calculation",
-        "en": "calculation",
-        "zh": "计算"
-      },
-      "targetTopic": {
-        "en": "Ethernet Cable PoE Voltage Drop Calculator",
-        "zh": "网线PoE压降计算器"
-      },
-      "contentOwner": "NetEngineerLab Editorial",
-      "lastReviewedAt": {
-        "en": null,
-        "zh": null
-      },
-      "locales": {
-        "en": {
-          "visibleCharacters": 4235,
-          "sectionHeadings": 10,
-          "longTailQuestions": [
-            "What cable length should I enter for a PoE camera or access point?",
-            "How do two-pair and four-pair PoE change voltage drop?",
-            "Is cable temperature the same as room temperature?",
-            "Will a passing steady-state result guarantee that the PoE device starts?",
-            "What does device power and conversion efficiency mean here?"
-          ],
-          "faqCount": 5,
-          "faqSchema": true,
-          "externalReferences": [
-            "https://www.ieee802.org/3/bt/",
-            "https://ethernetalliance.org/wp-content/uploads/2020/02/EthernetAlliance_Gen2PoECertProgram_techbrief-FINAL-19DEC19.pdf",
-            "https://www.ieee802.org/3/bt/public/may16/stover_02_0516_rev002.pdf",
-            "https://www.flukenetworks.com/blog/cabling-chronicles/upgrading-four-pair-poe-what-you-need-know"
-          ],
-          "externalReferenceCount": 4,
-          "internalLinkCount": 0,
-          "lastReviewedAt": null,
-          "reviewMarker": false
-        },
-        "zh": {
-          "visibleCharacters": 1539,
-          "sectionHeadings": 10,
-          "longTailQuestions": [
-            "PoE 摄像头或无线 AP 应输入多长的网线距离？",
-            "两线对与四线对 PoE 对压降有什么影响？",
-            "线缆温度就是机房环境温度吗？",
-            "稳态结果通过能保证 PoE 设备正常启动吗？",
-            "这里的设备功率与转换效率代表什么？"
-          ],
-          "faqCount": 5,
-          "faqSchema": true,
-          "externalReferences": [
-            "https://www.ieee802.org/3/bt/",
-            "https://ethernetalliance.org/wp-content/uploads/2020/02/EthernetAlliance_Gen2PoECertProgram_techbrief-FINAL-19DEC19.pdf",
-            "https://www.ieee802.org/3/bt/public/may16/stover_02_0516_rev002.pdf",
-            "https://www.flukenetworks.com/blog/cabling-chronicles/upgrading-four-pair-poe-what-you-need-know"
-          ],
-          "externalReferenceCount": 4,
-          "internalLinkCount": 0,
-          "lastReviewedAt": null,
-          "reviewMarker": false
-        }
-      },
-      "score": 10,
-      "priority": "maintain",
-      "gaps": [
-        "fewer than two contextual internal links",
-        "visible review/update marker missing"
-      ]
-    },
-    {
-      "id": "network-rack-power-cooling-calculator",
-      "catalogOrder": 17,
-      "category": "power",
-      "searchIntent": {
-        "id": "sizing",
-        "en": "sizing and selection",
-        "zh": "选型"
-      },
-      "targetTopic": {
-        "en": "Network Rack Power & Cooling Calculator",
-        "zh": "网络机柜功耗与制冷量计算器"
-      },
-      "contentOwner": "NetEngineerLab Editorial",
-      "lastReviewedAt": {
-        "en": null,
-        "zh": null
-      },
-      "locales": {
-        "en": {
-          "visibleCharacters": 4447,
-          "sectionHeadings": 9,
-          "longTailQuestions": [
-            "Should rack sizing use nameplate power or measured power?",
-            "Does design power include cooling electricity?",
-            "Why does three-phase current differ from single-phase current?",
-            "Does the redundancy allowance represent N+1, 2N or dual A/B feeds?",
-            "Is the 80% breaker or PDU threshold a universal electrical rule?"
-          ],
-          "faqCount": 5,
-          "faqSchema": true,
-          "externalReferences": [
-            "https://handbook.ashrae.org/Handbooks/A23/IP/A23_Ch20/a23_ch20_ip.aspx",
-            "https://www.nist.gov/document/fs376-bpdf",
-            "https://www.energy.gov/cmei/femp/incorporate-minimum-efficiency-requirements-heating-and-cooling-products-federal",
-            "https://www.thegreengrid.org/resources/glossary?combine=pue"
-          ],
-          "externalReferenceCount": 4,
-          "internalLinkCount": 0,
-          "lastReviewedAt": null,
-          "reviewMarker": false
-        },
-        "zh": {
-          "visibleCharacters": 1667,
-          "sectionHeadings": 9,
-          "longTailQuestions": [
-            "机柜容量应使用铭牌功率还是实测功率？",
-            "设计功率是否包含制冷用电？",
-            "三相电流为何与单相电流不同？",
-            "冗余余量是否代表 N+1、2N 或 A/B 双路供电？",
-            "80% 的断路器或 PDU 门槛是通用电气规范吗？"
-          ],
-          "faqCount": 5,
-          "faqSchema": true,
-          "externalReferences": [
-            "https://handbook.ashrae.org/Handbooks/A23/IP/A23_Ch20/a23_ch20_ip.aspx",
-            "https://www.nist.gov/document/fs376-bpdf",
-            "https://www.energy.gov/cmei/femp/incorporate-minimum-efficiency-requirements-heating-and-cooling-products-federal",
-            "https://www.thegreengrid.org/resources/glossary?combine=pue"
-          ],
-          "externalReferenceCount": 4,
-          "internalLinkCount": 0,
-          "lastReviewedAt": null,
-          "reviewMarker": false
-        }
-      },
-      "score": 10,
-      "priority": "maintain",
-      "gaps": [
-        "fewer than two contextual internal links",
-        "visible review/update marker missing"
-      ]
-    },
-    {
-      "id": "vlan-ip-capacity-planner",
-      "catalogOrder": 18,
-      "category": "network",
-      "searchIntent": {
-        "id": "planning",
-        "en": "planning",
-        "zh": "规划"
-      },
-      "targetTopic": {
-        "en": "VLAN & IP Subnet Capacity Planner",
-        "zh": "VLAN与IP子网容量规划器"
-      },
-      "contentOwner": "NetEngineerLab Editorial",
-      "lastReviewedAt": {
-        "en": null,
-        "zh": null
-      },
-      "locales": {
-        "en": {
-          "visibleCharacters": 3615,
-          "sectionHeadings": 11,
-          "longTailQuestions": [
-            "How many hosts should be placed in one VLAN?",
-            "How much IP address growth headroom should I reserve?",
-            "Does the calculator assign actual subnet addresses?",
-            "Can a /31 subnet be used for a user VLAN?",
-            "Can the result be used as the final network design?"
-          ],
-          "faqCount": 5,
-          "faqSchema": true,
-          "externalReferences": [
-            "https://www.rfc-editor.org/rfc/rfc1918.html",
-            "https://www.rfc-editor.org/rfc/rfc4632.html",
-            "https://www.rfc-editor.org/rfc/rfc3021.html"
-          ],
-          "externalReferenceCount": 3,
-          "internalLinkCount": 0,
-          "lastReviewedAt": null,
-          "reviewMarker": false
-        },
-        "zh": {
-          "visibleCharacters": 1286,
-          "sectionHeadings": 11,
-          "longTailQuestions": [
-            "一个VLAN放多少台主机合适？",
-            "IP地址扩容余量应该预留多少？",
-            "这个工具会分配具体的IP子网地址吗？",
-            "用户VLAN可以使用/31子网吗？",
-            "计算结果能直接作为最终网络设计吗？"
-          ],
-          "faqCount": 5,
-          "faqSchema": true,
-          "externalReferences": [
-            "https://www.rfc-editor.org/rfc/rfc1918.html",
-            "https://www.rfc-editor.org/rfc/rfc4632.html",
-            "https://www.rfc-editor.org/rfc/rfc3021.html"
-          ],
-          "externalReferenceCount": 3,
-          "internalLinkCount": 0,
-          "lastReviewedAt": null,
-          "reviewMarker": false
-        }
-      },
-      "score": 10,
-      "priority": "maintain",
-      "gaps": [
-        "fewer than two contextual internal links",
-        "visible review/update marker missing"
-      ]
-    },
-    {
-      "id": "switch-uplink-oversubscription-calculator",
-      "catalogOrder": 19,
-      "category": "network",
-      "searchIntent": {
-        "id": "sizing",
-        "en": "sizing and selection",
-        "zh": "选型"
-      },
-      "targetTopic": {
-        "en": "Switch Uplink Bandwidth & Oversubscription Calculator",
-        "zh": "交换机上联带宽与超售比计算器"
-      },
-      "contentOwner": "NetEngineerLab Editorial",
-      "lastReviewedAt": {
-        "en": null,
-        "zh": null
-      },
-      "locales": {
-        "en": {
-          "visibleCharacters": 4206,
-          "sectionHeadings": 11,
-          "longTailQuestions": [
-            "What switch uplink oversubscription ratio is acceptable?",
-            "Do two 10 Gbps uplinks give one flow 20 Gbps?",
-            "Should standby or blocked uplinks count as active capacity?",
-            "Why can a low busy-hour estimate still show a high oversubscription ratio?",
-            "Can this calculator replace traffic monitoring and QoS design?"
-          ],
-          "faqCount": 5,
-          "faqSchema": true,
-          "externalReferences": [
-            "https://standards.ieee.org/ieee/802.1AX/6768/",
-            "https://datatracker.ietf.org/doc/rfc7424/",
-            "https://www.cisco.com/c/en/us/td/docs/solutions/CVD/Campus/cisco-campus-lan-wlan-design-guide.html"
-          ],
-          "externalReferenceCount": 3,
-          "internalLinkCount": 0,
-          "lastReviewedAt": null,
-          "reviewMarker": false
-        },
-        "zh": {
-          "visibleCharacters": 1404,
-          "sectionHeadings": 11,
-          "longTailQuestions": [
-            "交换机上联超售比多少合适？",
-            "两条10 Gbps上联能让单个流达到20 Gbps吗？",
-            "备用或阻塞上联可以计入有效容量吗？",
-            "为什么忙时需求不高但线速超售比很大？",
-            "这个计算器能替代流量监控和QoS设计吗？"
-          ],
-          "faqCount": 5,
-          "faqSchema": true,
-          "externalReferences": [
-            "https://standards.ieee.org/ieee/802.1AX/6768/",
-            "https://datatracker.ietf.org/doc/rfc7424/",
-            "https://www.cisco.com/c/en/us/td/docs/solutions/CVD/Campus/cisco-campus-lan-wlan-design-guide.html"
-          ],
-          "externalReferenceCount": 3,
-          "internalLinkCount": 0,
-          "lastReviewedAt": null,
-          "reviewMarker": false
-        }
-      },
-      "score": 10,
-      "priority": "maintain",
-      "gaps": [
-        "fewer than two contextual internal links",
-        "visible review/update marker missing"
-      ]
-    },
-    {
-      "id": "dns-ttl-propagation-calculator",
-      "catalogOrder": 20,
-      "category": "network",
-      "searchIntent": {
-        "id": "planning",
-        "en": "planning",
-        "zh": "规划"
-      },
-      "targetTopic": {
-        "en": "DNS TTL & Propagation Time Calculator",
-        "zh": "DNS TTL与传播时间计算器"
-      },
-      "contentOwner": "NetEngineerLab Editorial",
-      "lastReviewedAt": {
-        "en": null,
-        "zh": null
-      },
-      "locales": {
-        "en": {
-          "visibleCharacters": 3965,
-          "sectionHeadings": 11,
-          "longTailQuestions": [
-            "Does a DNS record change propagate instantly?",
-            "When should I lower TTL before a DNS migration?",
-            "What is negative DNS caching?",
-            "Can cached DNS data be served after TTL expiry?",
-            "Does this calculator guarantee global DNS propagation time?"
-          ],
-          "faqCount": 5,
-          "faqSchema": true,
-          "externalReferences": [
-            "https://www.rfc-editor.org/rfc/rfc1035.html",
-            "https://www.rfc-editor.org/rfc/rfc2308.html",
-            "https://www.rfc-editor.org/rfc/rfc8767.html",
-            "https://www.rfc-editor.org/rfc/rfc9199.html"
-          ],
-          "externalReferenceCount": 4,
-          "internalLinkCount": 0,
-          "lastReviewedAt": null,
-          "reviewMarker": false
-        },
-        "zh": {
-          "visibleCharacters": 1482,
-          "sectionHeadings": 11,
-          "longTailQuestions": [
-            "DNS记录修改后会立即全球生效吗？",
-            "DNS迁移前应该提前多久降低TTL？",
-            "什么是否定DNS缓存？",
-            "TTL到期后解析器还能返回旧DNS数据吗？",
-            "这个计算器能保证全球DNS传播时间吗？"
-          ],
-          "faqCount": 5,
-          "faqSchema": true,
-          "externalReferences": [
-            "https://www.rfc-editor.org/rfc/rfc1035.html",
-            "https://www.rfc-editor.org/rfc/rfc2308.html",
-            "https://www.rfc-editor.org/rfc/rfc8767.html",
-            "https://www.rfc-editor.org/rfc/rfc9199.html"
-          ],
-          "externalReferenceCount": 4,
-          "internalLinkCount": 0,
-          "lastReviewedAt": null,
-          "reviewMarker": false
-        }
-      },
-      "score": 10,
-      "priority": "maintain",
-      "gaps": [
-        "fewer than two contextual internal links",
-        "visible review/update marker missing"
-      ]
-    },
-    {
-      "id": "acl-generator-validator",
-      "catalogOrder": 21,
-      "category": "network",
-      "searchIntent": {
-        "id": "validation",
-        "en": "validation",
-        "zh": "验证"
-      },
-      "targetTopic": {
-        "en": "Multi-Vendor ACL Generator & Validator",
-        "zh": "多厂商ACL生成与验证工具"
-      },
-      "contentOwner": "NetEngineerLab Editorial",
-      "lastReviewedAt": {
-        "en": null,
-        "zh": null
-      },
-      "locales": {
-        "en": {
-          "visibleCharacters": 4484,
-          "sectionHeadings": 15,
-          "longTailQuestions": [
-            "Which ACL vendors and syntax does the validator support?",
-            "Does the ACL validator upload my configuration?",
-            "Can this tool prove that an ACL is secure?",
-            "How does multi-vendor ACL conversion work?",
-            "What happens to unsupported ACL lines?"
-          ],
-          "faqCount": 5,
-          "faqSchema": true,
-          "externalReferences": [
-            "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-41r1.pdf",
-            "https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/sec_data_acl/configuration/15-sy/sec-data-acl-15-sy-book/sec-access-list-ov.html",
-            "https://www.juniper.net/documentation/us/en/software/junos/routing-policy/topics/concept/firewall-filter-qfx-series-evaluation-understanding.html",
-            "https://www.iana.org/assignments/service-names-port-numbers/"
-          ],
-          "externalReferenceCount": 4,
-          "internalLinkCount": 0,
-          "lastReviewedAt": null,
-          "reviewMarker": false
-        },
-        "zh": {
-          "visibleCharacters": 1765,
-          "sectionHeadings": 15,
-          "longTailQuestions": [
-            "ACL 验证工具支持哪些厂商和语法？",
-            "ACL 验证工具会上传我的配置吗？",
-            "这个工具能证明 ACL 安全吗？",
-            "多厂商 ACL 转换如何工作？",
-            "不支持的 ACL 行如何处理？"
-          ],
-          "faqCount": 5,
-          "faqSchema": true,
-          "externalReferences": [
-            "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-41r1.pdf",
-            "https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/sec_data_acl/configuration/15-sy/sec-data-acl-15-sy-book/sec-access-list-ov.html",
-            "https://www.juniper.net/documentation/us/en/software/junos/routing-policy/topics/concept/firewall-filter-qfx-series-evaluation-understanding.html",
-            "https://www.iana.org/assignments/service-names-port-numbers/"
-          ],
-          "externalReferenceCount": 4,
-          "internalLinkCount": 0,
-          "lastReviewedAt": null,
-          "reviewMarker": false
-        }
-      },
-      "score": 10,
-      "priority": "maintain",
-      "gaps": [
-        "fewer than two contextual internal links",
-        "visible review/update marker missing"
-      ]
-    },
     {
       "id": "optical-power-budget",
       "catalogOrder": 2,
@@ -487,8 +53,8 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 5838,
-          "sectionHeadings": 13,
+          "visibleCharacters": 6494,
+          "sectionHeadings": 14,
           "longTailQuestions": [
             "Why does the default change to GPON C+ when 1:8 × 1:8 is retained?",
             "How does a power budget differ from fiber loss?",
@@ -506,13 +72,13 @@
             "https://webstore.iec.ch/en/publication/77134"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 3,
+          "internalLinkCount": 4,
           "lastReviewedAt": null,
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 2397,
-          "sectionHeadings": 13,
+          "visibleCharacters": 2648,
+          "sectionHeadings": 14,
           "longTailQuestions": [
             "为什么保留1:8×1:8后默认改为GPON C+？",
             "光功率预算和光纤链路损耗有什么区别？",
@@ -530,7 +96,7 @@
             "https://webstore.iec.ch/en/publication/77134"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 3,
+          "internalLinkCount": 4,
           "lastReviewedAt": "2026-08-31",
           "reviewMarker": true
         }
@@ -561,8 +127,8 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 5876,
-          "sectionHeadings": 15,
+          "visibleCharacters": 6475,
+          "sectionHeadings": 16,
           "longTailQuestions": [
             "Why is GPON C+ the default for 1:8 × 1:8?",
             "Which has lower loss, one-stage or two-stage splitting?",
@@ -585,8 +151,8 @@
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 2439,
-          "sectionHeadings": 15,
+          "visibleCharacters": 2660,
+          "sectionHeadings": 16,
           "longTailQuestions": [
             "为什么1:8 × 1:8默认采用GPON C+？",
             "一级分光和二级分光哪个损耗更小？",
@@ -635,8 +201,8 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 5318,
-          "sectionHeadings": 12,
+          "visibleCharacters": 5859,
+          "sectionHeadings": 13,
           "longTailQuestions": [
             "What ONU receive power is considered normal?",
             "Should a link close to sensitivity be maintained even when service works?",
@@ -658,8 +224,8 @@
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 1983,
-          "sectionHeadings": 12,
+          "visibleCharacters": 2179,
+          "sectionHeadings": 13,
           "longTailQuestions": [
             "ONU接收光功率多少才算正常？",
             "光功率接近灵敏度但业务正常，需要处理吗？",
@@ -707,8 +273,8 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 5399,
-          "sectionHeadings": 12,
+          "visibleCharacters": 5943,
+          "sectionHeadings": 13,
           "longTailQuestions": [
             "Why can the optical budget reach 30 km while the result shows only 20 km?",
             "Why does a primary 1:8 and secondary 1:8 produce a total ratio of 1:64?",
@@ -730,8 +296,8 @@
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 2073,
-          "sectionHeadings": 12,
+          "visibleCharacters": 2271,
+          "sectionHeadings": 13,
           "longTailQuestions": [
             "为什么光预算能到30 km，结果却只显示20 km？",
             "一级1:8加二级1:8为什么总分光比是1:64？",
@@ -779,8 +345,8 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 3979,
-          "sectionHeadings": 15,
+          "visibleCharacters": 4756,
+          "sectionHeadings": 16,
           "longTailQuestions": [
             "Why is PPPoE MTU usually 1492?",
             "Should VLAN always reduce IP MTU by 4 bytes?",
@@ -804,13 +370,13 @@
             "https://www.wireguard.com/protocol/"
           ],
           "externalReferenceCount": 10,
-          "internalLinkCount": 3,
+          "internalLinkCount": 4,
           "lastReviewedAt": null,
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 1888,
-          "sectionHeadings": 15,
+          "visibleCharacters": 2210,
+          "sectionHeadings": 16,
           "longTailQuestions": [
             "为什么PPPoE通常是1492？",
             "VLAN是否一定要扣减4字节MTU？",
@@ -834,7 +400,7 @@
             "https://www.wireguard.com/protocol/"
           ],
           "externalReferenceCount": 10,
-          "internalLinkCount": 3,
+          "internalLinkCount": 4,
           "lastReviewedAt": null,
           "reviewMarker": false
         }
@@ -865,8 +431,8 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 3224,
-          "sectionHeadings": 11,
+          "visibleCharacters": 3838,
+          "sectionHeadings": 12,
           "longTailQuestions": [
             "How many usable hosts are in a /24?",
             "Why does /31 show two usable addresses?",
@@ -890,8 +456,8 @@
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 1326,
-          "sectionHeadings": 11,
+          "visibleCharacters": 1618,
+          "sectionHeadings": 12,
           "longTailQuestions": [
             "/24有多少可用主机？",
             "为什么/31显示2个可用地址？",
@@ -941,8 +507,8 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 4067,
-          "sectionHeadings": 11,
+          "visibleCharacters": 5085,
+          "sectionHeadings": 13,
           "longTailQuestions": [
             "Why does 100 Mbps not transfer 100 MB every second?",
             "Should file size use GB or GiB?",
@@ -959,13 +525,13 @@
             "https://www.rfc-editor.org/rfc/rfc6349"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 3,
+          "internalLinkCount": 5,
           "lastReviewedAt": null,
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 1615,
-          "sectionHeadings": 11,
+          "visibleCharacters": 2048,
+          "sectionHeadings": 13,
           "longTailQuestions": [
             "为什么100 Mbps不能每秒传100 MB？",
             "文件大小应该用GB还是GiB？",
@@ -982,7 +548,7 @@
             "https://www.rfc-editor.org/rfc/rfc6349"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 3,
+          "internalLinkCount": 5,
           "lastReviewedAt": null,
           "reviewMarker": false
         }
@@ -1013,8 +579,8 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 4516,
-          "sectionHeadings": 15,
+          "visibleCharacters": 5351,
+          "sectionHeadings": 17,
           "longTailQuestions": [
             "Why is there no power-factor input?",
             "Why not use only 48 V × Ah ÷ watts?",
@@ -1030,13 +596,13 @@
             "https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=54059"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 3,
+          "internalLinkCount": 6,
           "lastReviewedAt": null,
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 1708,
-          "sectionHeadings": 15,
+          "visibleCharacters": 2013,
+          "sectionHeadings": 17,
           "longTailQuestions": [
             "为什么没有功率因数输入？",
             "为什么不能只用48V×Ah÷功率？",
@@ -1052,7 +618,7 @@
             "https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=54059"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 3,
+          "internalLinkCount": 6,
           "lastReviewedAt": null,
           "reviewMarker": false
         }
@@ -1083,8 +649,8 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 6312,
-          "sectionHeadings": 17,
+          "visibleCharacters": 7238,
+          "sectionHeadings": 19,
           "longTailQuestions": [
             "Why are IPv6 subnet address counts so large?",
             "Why is the port range editable?",
@@ -1105,13 +671,13 @@
             "https://www.rfc-editor.org/rfc/rfc8215.html"
           ],
           "externalReferenceCount": 8,
-          "internalLinkCount": 3,
+          "internalLinkCount": 4,
           "lastReviewedAt": null,
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 2616,
-          "sectionHeadings": 17,
+          "visibleCharacters": 3025,
+          "sectionHeadings": 19,
           "longTailQuestions": [
             "为什么IPv6子网地址数量非常大？",
             "端口范围为什么可以修改？",
@@ -1132,7 +698,7 @@
             "https://www.rfc-editor.org/rfc/rfc8215.html"
           ],
           "externalReferenceCount": 8,
-          "internalLinkCount": 3,
+          "internalLinkCount": 4,
           "lastReviewedAt": null,
           "reviewMarker": false
         }
@@ -1163,8 +729,8 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 6243,
-          "sectionHeadings": 19,
+          "visibleCharacters": 7122,
+          "sectionHeadings": 21,
           "longTailQuestions": [
             "Why use the smaller uplink/downlink radius?",
             "Why not use PHY rate directly for capacity?",
@@ -1180,13 +746,13 @@
             "https://www.cisco.com/c/en/us/td/docs/wireless/controller/technotes/8-7/b_mesh_87/b_mesh_87_chapter_011.html"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 2,
+          "internalLinkCount": 4,
           "lastReviewedAt": null,
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 2717,
-          "sectionHeadings": 19,
+          "visibleCharacters": 3052,
+          "sectionHeadings": 21,
           "longTailQuestions": [
             "为什么覆盖要取上行和下行较小值？",
             "为什么不能用PHY速率直接计算用户容量？",
@@ -1202,7 +768,435 @@
             "https://www.cisco.com/c/en/us/td/docs/wireless/controller/technotes/8-7/b_mesh_87/b_mesh_87_chapter_011.html"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 2,
+          "internalLinkCount": 4,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        }
+      },
+      "score": 4,
+      "priority": "maintain",
+      "gaps": [
+        "visible review/update marker missing"
+      ]
+    },
+    {
+      "id": "poe-voltage-drop-calculator",
+      "catalogOrder": 16,
+      "category": "power",
+      "searchIntent": {
+        "id": "calculation",
+        "en": "calculation",
+        "zh": "计算"
+      },
+      "targetTopic": {
+        "en": "Ethernet Cable PoE Voltage Drop Calculator",
+        "zh": "网线PoE压降计算器"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": null,
+        "zh": null
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 5222,
+          "sectionHeadings": 12,
+          "longTailQuestions": [
+            "What cable length should I enter for a PoE camera or access point?",
+            "How do two-pair and four-pair PoE change voltage drop?",
+            "Is cable temperature the same as room temperature?",
+            "Will a passing steady-state result guarantee that the PoE device starts?",
+            "What does device power and conversion efficiency mean here?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.ieee802.org/3/bt/",
+            "https://ethernetalliance.org/wp-content/uploads/2020/02/EthernetAlliance_Gen2PoECertProgram_techbrief-FINAL-19DEC19.pdf",
+            "https://www.ieee802.org/3/bt/public/may16/stover_02_0516_rev002.pdf",
+            "https://www.flukenetworks.com/blog/cabling-chronicles/upgrading-four-pair-poe-what-you-need-know"
+          ],
+          "externalReferenceCount": 4,
+          "internalLinkCount": 3,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        },
+        "zh": {
+          "visibleCharacters": 1912,
+          "sectionHeadings": 12,
+          "longTailQuestions": [
+            "PoE 摄像头或无线 AP 应输入多长的网线距离？",
+            "两线对与四线对 PoE 对压降有什么影响？",
+            "线缆温度就是机房环境温度吗？",
+            "稳态结果通过能保证 PoE 设备正常启动吗？",
+            "这里的设备功率与转换效率代表什么？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.ieee802.org/3/bt/",
+            "https://ethernetalliance.org/wp-content/uploads/2020/02/EthernetAlliance_Gen2PoECertProgram_techbrief-FINAL-19DEC19.pdf",
+            "https://www.ieee802.org/3/bt/public/may16/stover_02_0516_rev002.pdf",
+            "https://www.flukenetworks.com/blog/cabling-chronicles/upgrading-four-pair-poe-what-you-need-know"
+          ],
+          "externalReferenceCount": 4,
+          "internalLinkCount": 3,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        }
+      },
+      "score": 4,
+      "priority": "maintain",
+      "gaps": [
+        "visible review/update marker missing"
+      ]
+    },
+    {
+      "id": "network-rack-power-cooling-calculator",
+      "catalogOrder": 17,
+      "category": "power",
+      "searchIntent": {
+        "id": "sizing",
+        "en": "sizing and selection",
+        "zh": "选型"
+      },
+      "targetTopic": {
+        "en": "Network Rack Power & Cooling Calculator",
+        "zh": "网络机柜功耗与制冷量计算器"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": null,
+        "zh": null
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 5476,
+          "sectionHeadings": 11,
+          "longTailQuestions": [
+            "Should rack sizing use nameplate power or measured power?",
+            "Does design power include cooling electricity?",
+            "Why does three-phase current differ from single-phase current?",
+            "Does the redundancy allowance represent N+1, 2N or dual A/B feeds?",
+            "Is the 80% breaker or PDU threshold a universal electrical rule?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://handbook.ashrae.org/Handbooks/A23/IP/A23_Ch20/a23_ch20_ip.aspx",
+            "https://www.nist.gov/document/fs376-bpdf",
+            "https://www.energy.gov/cmei/femp/incorporate-minimum-efficiency-requirements-heating-and-cooling-products-federal",
+            "https://www.thegreengrid.org/resources/glossary?combine=pue"
+          ],
+          "externalReferenceCount": 4,
+          "internalLinkCount": 4,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        },
+        "zh": {
+          "visibleCharacters": 2038,
+          "sectionHeadings": 11,
+          "longTailQuestions": [
+            "机柜容量应使用铭牌功率还是实测功率？",
+            "设计功率是否包含制冷用电？",
+            "三相电流为何与单相电流不同？",
+            "冗余余量是否代表 N+1、2N 或 A/B 双路供电？",
+            "80% 的断路器或 PDU 门槛是通用电气规范吗？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://handbook.ashrae.org/Handbooks/A23/IP/A23_Ch20/a23_ch20_ip.aspx",
+            "https://www.nist.gov/document/fs376-bpdf",
+            "https://www.energy.gov/cmei/femp/incorporate-minimum-efficiency-requirements-heating-and-cooling-products-federal",
+            "https://www.thegreengrid.org/resources/glossary?combine=pue"
+          ],
+          "externalReferenceCount": 4,
+          "internalLinkCount": 4,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        }
+      },
+      "score": 4,
+      "priority": "maintain",
+      "gaps": [
+        "visible review/update marker missing"
+      ]
+    },
+    {
+      "id": "vlan-ip-capacity-planner",
+      "catalogOrder": 18,
+      "category": "network",
+      "searchIntent": {
+        "id": "planning",
+        "en": "planning",
+        "zh": "规划"
+      },
+      "targetTopic": {
+        "en": "VLAN & IP Subnet Capacity Planner",
+        "zh": "VLAN与IP子网容量规划器"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": null,
+        "zh": null
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 4605,
+          "sectionHeadings": 13,
+          "longTailQuestions": [
+            "How many hosts should be placed in one VLAN?",
+            "How much IP address growth headroom should I reserve?",
+            "Does the calculator assign actual subnet addresses?",
+            "Can a /31 subnet be used for a user VLAN?",
+            "Can the result be used as the final network design?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.rfc-editor.org/rfc/rfc1918.html",
+            "https://www.rfc-editor.org/rfc/rfc4632.html",
+            "https://www.rfc-editor.org/rfc/rfc3021.html"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 4,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        },
+        "zh": {
+          "visibleCharacters": 1721,
+          "sectionHeadings": 13,
+          "longTailQuestions": [
+            "一个VLAN放多少台主机合适？",
+            "IP地址扩容余量应该预留多少？",
+            "这个工具会分配具体的IP子网地址吗？",
+            "用户VLAN可以使用/31子网吗？",
+            "计算结果能直接作为最终网络设计吗？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.rfc-editor.org/rfc/rfc1918.html",
+            "https://www.rfc-editor.org/rfc/rfc4632.html",
+            "https://www.rfc-editor.org/rfc/rfc3021.html"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 4,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        }
+      },
+      "score": 4,
+      "priority": "maintain",
+      "gaps": [
+        "visible review/update marker missing"
+      ]
+    },
+    {
+      "id": "switch-uplink-oversubscription-calculator",
+      "catalogOrder": 19,
+      "category": "network",
+      "searchIntent": {
+        "id": "sizing",
+        "en": "sizing and selection",
+        "zh": "选型"
+      },
+      "targetTopic": {
+        "en": "Switch Uplink Bandwidth & Oversubscription Calculator",
+        "zh": "交换机上联带宽与超售比计算器"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": null,
+        "zh": null
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 5251,
+          "sectionHeadings": 13,
+          "longTailQuestions": [
+            "What switch uplink oversubscription ratio is acceptable?",
+            "Do two 10 Gbps uplinks give one flow 20 Gbps?",
+            "Should standby or blocked uplinks count as active capacity?",
+            "Why can a low busy-hour estimate still show a high oversubscription ratio?",
+            "Can this calculator replace traffic monitoring and QoS design?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://standards.ieee.org/ieee/802.1AX/6768/",
+            "https://datatracker.ietf.org/doc/rfc7424/",
+            "https://www.cisco.com/c/en/us/td/docs/solutions/CVD/Campus/cisco-campus-lan-wlan-design-guide.html"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 3,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        },
+        "zh": {
+          "visibleCharacters": 1816,
+          "sectionHeadings": 13,
+          "longTailQuestions": [
+            "交换机上联超售比多少合适？",
+            "两条10 Gbps上联能让单个流达到20 Gbps吗？",
+            "备用或阻塞上联可以计入有效容量吗？",
+            "为什么忙时需求不高但线速超售比很大？",
+            "这个计算器能替代流量监控和QoS设计吗？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://standards.ieee.org/ieee/802.1AX/6768/",
+            "https://datatracker.ietf.org/doc/rfc7424/",
+            "https://www.cisco.com/c/en/us/td/docs/solutions/CVD/Campus/cisco-campus-lan-wlan-design-guide.html"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 3,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        }
+      },
+      "score": 4,
+      "priority": "maintain",
+      "gaps": [
+        "visible review/update marker missing"
+      ]
+    },
+    {
+      "id": "dns-ttl-propagation-calculator",
+      "catalogOrder": 20,
+      "category": "network",
+      "searchIntent": {
+        "id": "planning",
+        "en": "planning",
+        "zh": "规划"
+      },
+      "targetTopic": {
+        "en": "DNS TTL & Propagation Time Calculator",
+        "zh": "DNS TTL与传播时间计算器"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": null,
+        "zh": null
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 4854,
+          "sectionHeadings": 13,
+          "longTailQuestions": [
+            "Does a DNS record change propagate instantly?",
+            "When should I lower TTL before a DNS migration?",
+            "What is negative DNS caching?",
+            "Can cached DNS data be served after TTL expiry?",
+            "Does this calculator guarantee global DNS propagation time?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.rfc-editor.org/rfc/rfc1035.html",
+            "https://www.rfc-editor.org/rfc/rfc2308.html",
+            "https://www.rfc-editor.org/rfc/rfc8767.html",
+            "https://www.rfc-editor.org/rfc/rfc9199.html"
+          ],
+          "externalReferenceCount": 4,
+          "internalLinkCount": 4,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        },
+        "zh": {
+          "visibleCharacters": 1893,
+          "sectionHeadings": 13,
+          "longTailQuestions": [
+            "DNS记录修改后会立即全球生效吗？",
+            "DNS迁移前应该提前多久降低TTL？",
+            "什么是否定DNS缓存？",
+            "TTL到期后解析器还能返回旧DNS数据吗？",
+            "这个计算器能保证全球DNS传播时间吗？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.rfc-editor.org/rfc/rfc1035.html",
+            "https://www.rfc-editor.org/rfc/rfc2308.html",
+            "https://www.rfc-editor.org/rfc/rfc8767.html",
+            "https://www.rfc-editor.org/rfc/rfc9199.html"
+          ],
+          "externalReferenceCount": 4,
+          "internalLinkCount": 4,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        }
+      },
+      "score": 4,
+      "priority": "maintain",
+      "gaps": [
+        "visible review/update marker missing"
+      ]
+    },
+    {
+      "id": "acl-generator-validator",
+      "catalogOrder": 21,
+      "category": "network",
+      "searchIntent": {
+        "id": "validation",
+        "en": "validation",
+        "zh": "验证"
+      },
+      "targetTopic": {
+        "en": "Multi-Vendor ACL Generator & Validator",
+        "zh": "多厂商ACL生成与验证工具"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": null,
+        "zh": null
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 5559,
+          "sectionHeadings": 17,
+          "longTailQuestions": [
+            "Which ACL vendors and syntax does the validator support?",
+            "Does the ACL validator upload my configuration?",
+            "Can this tool prove that an ACL is secure?",
+            "How does multi-vendor ACL conversion work?",
+            "What happens to unsupported ACL lines?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-41r1.pdf",
+            "https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/sec_data_acl/configuration/15-sy/sec-data-acl-15-sy-book/sec-access-list-ov.html",
+            "https://www.juniper.net/documentation/us/en/software/junos/routing-policy/topics/concept/firewall-filter-qfx-series-evaluation-understanding.html",
+            "https://www.iana.org/assignments/service-names-port-numbers/"
+          ],
+          "externalReferenceCount": 4,
+          "internalLinkCount": 5,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        },
+        "zh": {
+          "visibleCharacters": 2208,
+          "sectionHeadings": 17,
+          "longTailQuestions": [
+            "ACL 验证工具支持哪些厂商和语法？",
+            "ACL 验证工具会上传我的配置吗？",
+            "这个工具能证明 ACL 安全吗？",
+            "多厂商 ACL 转换如何工作？",
+            "不支持的 ACL 行如何处理？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-41r1.pdf",
+            "https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/sec_data_acl/configuration/15-sy/sec-data-acl-15-sy-book/sec-access-list-ov.html",
+            "https://www.juniper.net/documentation/us/en/software/junos/routing-policy/topics/concept/firewall-filter-qfx-series-evaluation-understanding.html",
+            "https://www.iana.org/assignments/service-names-port-numbers/"
+          ],
+          "externalReferenceCount": 4,
+          "internalLinkCount": 5,
           "lastReviewedAt": null,
           "reviewMarker": false
         }
@@ -1233,8 +1227,8 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 4700,
-          "sectionHeadings": 15,
+          "visibleCharacters": 5040,
+          "sectionHeadings": 12,
           "longTailQuestions": [
             "What is the difference between physical loss and design loss?",
             "How should I choose 1310, 1490 or 1550 nm?",
@@ -1251,13 +1245,13 @@
             "https://webstore.iec.ch/en/publication/77134"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 4,
+          "internalLinkCount": 3,
           "lastReviewedAt": "2026-08-31",
           "reviewMarker": true
         },
         "zh": {
-          "visibleCharacters": 1908,
-          "sectionHeadings": 15,
+          "visibleCharacters": 2039,
+          "sectionHeadings": 12,
           "longTailQuestions": [
             "总设计损耗和物理链路损耗有什么区别？",
             "1310 nm、1490 nm、1550 nm该如何选择？",
@@ -1274,7 +1268,7 @@
             "https://webstore.iec.ch/en/publication/77134"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 4,
+          "internalLinkCount": 3,
           "lastReviewedAt": "2026-08-31",
           "reviewMarker": true
         }
@@ -1303,8 +1297,8 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 4415,
-          "sectionHeadings": 15,
+          "visibleCharacters": 5094,
+          "sectionHeadings": 16,
           "longTailQuestions": [
             "Are OTDR event thresholds universal?",
             "Why compare 1310 nm and 1550 nm?",
@@ -1326,8 +1320,8 @@
           "reviewMarker": true
         },
         "zh": {
-          "visibleCharacters": 1688,
-          "sectionHeadings": 15,
+          "visibleCharacters": 1943,
+          "sectionHeadings": 16,
           "longTailQuestions": [
             "OTDR事件阈值是否是统一标准？",
             "为什么要比较1310 nm和1550 nm？",
@@ -1373,8 +1367,8 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 5054,
-          "sectionHeadings": 10,
+          "visibleCharacters": 5952,
+          "sectionHeadings": 12,
           "longTailQuestions": [
             "How many PoE cameras can a 120 W switch support?",
             "Does cable length change the PoE budget?",
@@ -1392,13 +1386,13 @@
             "https://www.flukenetworks.com/blog/cabling-chronicles/bundle-or-not-bundle"
           ],
           "externalReferenceCount": 5,
-          "internalLinkCount": 3,
+          "internalLinkCount": 5,
           "lastReviewedAt": "2026-08-31",
           "reviewMarker": true
         },
         "zh": {
-          "visibleCharacters": 1868,
-          "sectionHeadings": 10,
+          "visibleCharacters": 2180,
+          "sectionHeadings": 12,
           "longTailQuestions": [
             "120 W PoE交换机能带多少摄像头？",
             "网线长度会影响PoE功率预算吗？",
@@ -1416,7 +1410,7 @@
             "https://www.flukenetworks.com/blog/cabling-chronicles/bundle-or-not-bundle"
           ],
           "externalReferenceCount": 5,
-          "internalLinkCount": 3,
+          "internalLinkCount": 5,
           "lastReviewedAt": "2026-08-31",
           "reviewMarker": true
         }
@@ -1445,8 +1439,8 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 4934,
-          "sectionHeadings": 10,
+          "visibleCharacters": 5951,
+          "sectionHeadings": 12,
           "longTailQuestions": [
             "Can I connect 10G SFP+ to 25G SFP28?",
             "Can single-mode and multimode optical modules communicate?",
@@ -1463,13 +1457,13 @@
             "https://www.juniper.net/documentation/us/en/hardware/800g-optics-cables-guide/optics/topics/concept/800g-optics-faqs.html"
           ],
           "externalReferenceCount": 4,
-          "internalLinkCount": 3,
+          "internalLinkCount": 5,
           "lastReviewedAt": "2026-08-31",
           "reviewMarker": true
         },
         "zh": {
-          "visibleCharacters": 1879,
-          "sectionHeadings": 10,
+          "visibleCharacters": 2280,
+          "sectionHeadings": 12,
           "longTailQuestions": [
             "10G SFP+可以连接25G SFP28吗？",
             "单模和多模光模块可以互通吗？",
@@ -1486,7 +1480,7 @@
             "https://www.juniper.net/documentation/us/en/hardware/800g-optics-cables-guide/optics/topics/concept/800g-optics-faqs.html"
           ],
           "externalReferenceCount": 4,
-          "internalLinkCount": 3,
+          "internalLinkCount": 5,
           "lastReviewedAt": "2026-08-31",
           "reviewMarker": true
         }
@@ -1515,8 +1509,8 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 4484,
-          "sectionHeadings": 10,
+          "visibleCharacters": 5498,
+          "sectionHeadings": 12,
           "longTailQuestions": [
             "How much fade margin does a point-to-point wireless link need?",
             "Does additional loss automatically calculate rain, oxygen or foliage attenuation?",
@@ -1533,13 +1527,13 @@
             "https://www.itu.int/rec/R-REC-P.526-16-202511-I/en"
           ],
           "externalReferenceCount": 4,
-          "internalLinkCount": 2,
+          "internalLinkCount": 3,
           "lastReviewedAt": "2026-09-01",
           "reviewMarker": true
         },
         "zh": {
-          "visibleCharacters": 1612,
-          "sectionHeadings": 10,
+          "visibleCharacters": 1998,
+          "sectionHeadings": 12,
           "longTailQuestions": [
             "点对点无线链路需要多少衰落余量？",
             "附加损耗会自动计算雨衰、氧气吸收或植被损耗吗？",
@@ -1556,8 +1550,76 @@
             "https://www.itu.int/rec/R-REC-P.526-16-202511-I/en"
           ],
           "externalReferenceCount": 4,
-          "internalLinkCount": 2,
+          "internalLinkCount": 3,
           "lastReviewedAt": "2026-09-01",
+          "reviewMarker": true
+        }
+      },
+      "score": 0,
+      "priority": "maintain",
+      "gaps": []
+    },
+    {
+      "id": "network-change-planner-mop-generator",
+      "catalogOrder": 22,
+      "category": "network",
+      "searchIntent": {
+        "id": "planning",
+        "en": "planning",
+        "zh": "规划"
+      },
+      "targetTopic": {
+        "en": "Network Change Planner & MOP Generator",
+        "zh": "网络变更规划与MOP生成器"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-09-05",
+        "zh": "2026-09-05"
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 6386,
+          "sectionHeadings": 24,
+          "longTailQuestions": [
+            "Why does the tool generate a minimal delta instead of a full replacement?",
+            "Can I paste any running configuration?",
+            "What can trigger ROLLBACK_REQUIRED?",
+            "Does this tool connect to devices and execute commands?",
+            "Why are device models and port ranges deliberately limited?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.cisco.com/c/en/us/support/switches/catalyst-9200-series-switches/series.html",
+            "https://support.huawei.com/enterprise/en/switches/index.html",
+            "https://www.juniper.net/documentation/product/us/en/ex-series/"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 4,
+          "lastReviewedAt": "2026-09-05",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 2724,
+          "sectionHeadings": 24,
+          "longTailQuestions": [
+            "为什么不是直接生成完整配置？",
+            "支持任意 running-config 吗？",
+            "什么时候会要求回退？",
+            "这个工具会直接连接设备执行命令吗？",
+            "为什么设备型号和端口范围是有限的？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.cisco.com/c/en/us/support/switches/catalyst-9200-series-switches/series.html",
+            "https://support.huawei.com/enterprise/en/switches/index.html",
+            "https://www.juniper.net/documentation/product/us/en/ex-series/"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 4,
+          "lastReviewedAt": "2026-09-05",
           "reviewMarker": true
         }
       },

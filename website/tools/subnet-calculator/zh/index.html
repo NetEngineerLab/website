@@ -14,7 +14,7 @@
 <script defer src="/data/seo-config.js"></script>
 <script defer src="/assets/js/seo-engine.js"></script>
 <script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"/24有多少可用主机？","acceptedAnswer":{"@type":"Answer","text":"/24共有256个地址，通常可用主机地址为254个。"}},{"@type":"Question","name":"为什么/31显示2个可用地址？","acceptedAnswer":{"@type":"Answer","text":"RFC 3021允许点到点链路使用两个地址，不再保留传统网络地址和广播地址。"}},{"@type":"Question","name":"什么是反掩码？","acceptedAnswer":{"@type":"Answer","text":"反掩码是子网掩码的按位取反，常用于ACL和路由配置。"}},{"@type":"Question","name":"VLSM是否自动预留网关地址？","acceptedAnswer":{"@type":"Answer","text":"每个子网都有可编辑预留字段，可用于网关、冗余地址、基础设施和后续扩容。"}},{"@type":"Question","name":"IPv6地址数量能否精确计算？","acceptedAnswer":{"@type":"Answer","text":"可以。本工具使用BigInt整数运算，并显示完整十进制地址数量。"}},{"@type":"Question","name":"只要地址够用就应该使用大广播域吗？","acceptedAnswer":{"@type":"Answer","text":"不应只看地址容量，还要考虑故障域、广播流量、安全区域、路由汇总和运维边界。"}}]}</script>
-<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="../../../assets/css/tool-layout-v1.9.9-02.css?v=1.9.9-02"><link rel="stylesheet" href="/assets/css/tool-design-system-v1.9.9-03.css?v=74eed43d191e">
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="../../../assets/css/tool-layout-v1.9.9-02.css?v=1.9.9-02"><link rel="stylesheet" href="/assets/css/tool-design-system-v1.9.9-03.css?v=fd302ec2d73d">
 
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
@@ -31,7 +31,7 @@
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../../assets/js/site.js?v=af1b8909e5b4"></script>
+<script defer src="../../../assets/js/site.js?v=5c6907a4fe26"></script>
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head><body>
 <a class="skip" href="#calculator">跳到计算器</a><noscript><div class="noscript">本工具需要启用JavaScript。</div></noscript>
@@ -148,10 +148,14 @@
 </div></section>
 <section class="content-section" id="faq"><p class="eyebrow">FAQ</p><h2>常见问题</h2><div class="faq-grid"><details><summary>/24有多少可用主机？</summary><p>/24共有256个地址，通常可用主机地址为254个。</p></details><details><summary>为什么/31显示2个可用地址？</summary><p>RFC 3021允许点到点链路使用两个地址，不再保留传统网络地址和广播地址。</p></details><details><summary>什么是反掩码？</summary><p>反掩码是子网掩码的按位取反，常用于ACL和路由配置。</p></details><details><summary>VLSM是否自动预留网关地址？</summary><p>每个子网都有可编辑预留字段，可用于网关、冗余地址、基础设施和后续扩容。</p></details><details><summary>IPv6地址数量能否精确计算？</summary><p>可以。本工具使用BigInt整数运算，并显示完整十进制地址数量。</p></details><details><summary>只要地址够用就应该使用大广播域吗？</summary><p>不应只看地址容量，还要考虑故障域、广播流量、安全区域、路由汇总和运维边界。</p></details></div></section>
 <section class="content-section" id="history"><div class="history-head"><div><p class="eyebrow">PROJECT RECORDS</p><h2>历史记录</h2></div><button class="text-button" id="clearHistoryBtn">清空记录</button></div><div class="history-list" id="historyList"></div></section>
-<section class="content-section" id="related"><p class="eyebrow">RELATED TOOLS</p><h2>相关工程工具</h2><div class="related-grid">
-<a href="../../mtu-calculator/zh/"><strong>MTU与MSS计算器</strong><p>计算封装开销和分片风险。</p></a><a href="../../otdr-event/zh/"><strong>OTDR事件分析工具</strong><p>诊断光纤事件和维护优先级。</p></a><a href="../../pon-distance/zh/"><strong>PON最大传输距离计算器</strong><p>计算光预算与系统距离。</p></a>
-</div></section>
 <aside aria-label="广告" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">广告</div><div class="ad-body"></div></aside>
+<!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="subnet-calculator" data-primary-workflow="enterprise-lan-ip-planning">
+<div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
+<div class="nel-workflow-context"><div><span>当前流程</span><strong>企业 LAN 与 IP 规划工作流</strong><p>把地址规划、VLAN 容量、MTU、上联、光模块、访问策略和 DNS 行为串成完整局域网设计流程。</p></div><div class="nel-workflow-step"><strong>步骤 1 / 9</strong><div class="nel-workflow-progress" aria-label="步骤 1 / 9"><span style="width:11%"></span></div></div></div><div class="nel-tool-graph-nav"><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">上一步</span><strong>流程起点</strong></div><a class="nel-tool-graph-card" href="/tools/ipv6-nat-planner/zh/"><span class="nel-tool-graph-label">下一步</span><strong>IPv6与NAT规划计算器</strong><span>规划IPv6前缀、NAT44容量、CGNAT确定性端口块、NAT64及DNS64地址。</span></a></div>
+<h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/vlan-ip-capacity-planner/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>VLAN与IP子网容量规划器</strong><span>规划VLAN数量、IPv4前缀、地址容量与扩容余量。</span></a><a class="nel-tool-graph-card" href="/tools/ipv6-nat-planner/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>IPv6与NAT规划计算器</strong><span>规划IPv6前缀、NAT44容量、CGNAT确定性端口块、NAT64及DNS64地址。</span></a><a class="nel-tool-graph-card" href="/tools/acl-generator-validator/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>多厂商ACL生成与验证工具</strong><span>生成、转换并验证Cisco IOS、华为VRP、H3C Comware和Juniper Junos IPv4 ACL。</span></a></div><div class="nel-workflow-memberships"><span>参与工作流</span><span class="nel-workflow-chip">企业 LAN 与 IP 规划工作流</span></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">

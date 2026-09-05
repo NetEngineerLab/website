@@ -1,0 +1,45 @@
+/** NetEngineerLab | V2.1-Phase2-RunningConfigV1 | Five-vendor supported-state snapshot parser */
+"use strict";
+const model=require("./model"),H=require("./helpers");
+const lagRegistry=require("../link-aggregation/vendor-registry");
+function diag(code,message,severity="warning",details={}){return {code,message,severity,details}}
+function logicalId(vendor,name){
+ const patterns={"cisco-ios":/^Port-channel(\d+)$/i,"arista-eos":/^Port-Channel(\d+)$/i,"huawei-vrp":/^Eth-Trunk(\d+)$/i,"h3c-comware":/^Bridge-Aggregation(\d+)$/i,"juniper-junos":/^ae(\d+)$/i};
+ const m=String(name||"").match(patterns[vendor]);return m?Number(m[1]):null;
+}
+function parseCiscoLike(vendor,input,deviceId){
+ const {blocks,global}=H.splitInterfaceBlocks(input),aggs=new Map(),ifvlans=[],known=new Set(),opaque=[],diagnostics=[];
+ for(const g of global){let m;if((m=g.match(/^vlan\s+(.+)$/i)))try{H.addVlans(known,m[1])}catch{}else if(g&&!/^(end|configure terminal|conf t)$/i.test(g))opaque.push(g)}
+ for(const b of blocks){const id=logicalId(vendor,b.name);let desc=null,mode=null,accessVlan=null,allowed=null,native=null;for(const x of b.lines){let m;if((m=x.match(/^description\s+(.+)$/i)))desc=m[1];else if((m=x.match(/^switchport mode\s+(access|trunk)$/i)))mode=m[1].toLowerCase();else if((m=x.match(/^switchport access vlan\s+(\d+)$/i)))accessVlan=Number(m[1]);else if((m=x.match(/^switchport trunk allowed vlan\s+(.+)$/i))){try{const s=new Set();H.addVlans(s,m[1]);allowed=[...s].sort((a,b)=>a-b)}catch(e){diagnostics.push(diag("UNPARSEABLE_VLAN_LIST",e.message,"error",{interfaceName:b.name,line:x}))}}else if((m=x.match(/^switchport trunk native vlan\s+(\d+)$/i)))native=Number(m[1]);}
+  if(id!==null){const prev=aggs.get(id)||{id,logicalInterface:b.name,mode:"static",members:[],description:desc};prev.description=desc;aggs.set(id,prev)}
+  if(mode)ifvlans.push(mode==="access"?{name:b.name,mode,accessVlan,description:desc}:{name:b.name,mode,allowedVlans:allowed||[],nativeVlan:native,description:desc});
+  for(const x of b.lines){const m=x.match(/^channel-group\s+(\d+)\s+mode\s+(active|passive|on)$/i);if(m&&id===null){const aid=Number(m[1]),a=aggs.get(aid)||{id:aid,logicalInterface:lagRegistry.get(vendor).logical(aid),mode:"static",members:[],description:null};a.members.push(b.name);if(m[2].toLowerCase()!=="on")a.mode="lacp";aggs.set(aid,a)}}
+ }
+ return finish(vendor,deviceId,aggs,ifvlans,known,opaque,diagnostics);
+}
+function parseHuawei(input,deviceId){
+ const vendor="huawei-vrp",{blocks,global}=H.splitInterfaceBlocks(input),aggs=new Map(),ifvlans=[],known=new Set(),opaque=[],diagnostics=[];
+ for(const g of global){let m;if((m=g.match(/^vlan batch\s+(.+)$/i)))try{H.addVlans(known,m[1])}catch{}else if((m=g.match(/^vlan\s+(\d+)$/i)))known.add(Number(m[1]));else if(g&&!/^(return|system-view)$/i.test(g))opaque.push(g)}
+ for(const b of blocks){const id=logicalId(vendor,b.name);let desc=null,mode=null,allowed=null,native=null,accessVlan=null;if(id!==null&&!aggs.has(id))aggs.set(id,{id,logicalInterface:b.name,mode:"static",members:[],description:null});for(const x of b.lines){let m;if((m=x.match(/^description\s+(.+)$/i)))desc=m[1];else if(/^mode lacp-static$/i.test(x)&&id!==null)aggs.get(id).mode="lacp";else if((m=x.match(/^trunkport\s+(.+)$/i))&&id!==null)aggs.get(id).members.push(m[1]);else if((m=x.match(/^eth-trunk\s+(\d+)$/i))&&id===null){const aid=Number(m[1]),a=aggs.get(aid)||{id:aid,logicalInterface:`Eth-Trunk${aid}`,mode:"static",members:[],description:null};a.members.push(b.name);aggs.set(aid,a)}else if((m=x.match(/^port link-type\s+(access|trunk)$/i)))mode=m[1];else if((m=x.match(/^port default vlan\s+(\d+)$/i)))accessVlan=Number(m[1]);else if((m=x.match(/^port trunk allow-pass vlan\s+(.+)$/i))){const s=new Set();try{H.addVlans(s,m[1]);allowed=[...s].sort((a,b)=>a-b)}catch(e){diagnostics.push(diag("UNPARSEABLE_VLAN_LIST",e.message,"error",{interfaceName:b.name,line:x}))}}else if((m=x.match(/^port trunk pvid vlan\s+(\d+)$/i)))native=Number(m[1])}if(id!==null)aggs.get(id).description=desc;if(mode)ifvlans.push(mode==="access"?{name:b.name,mode,accessVlan,description:desc}:{name:b.name,mode,allowedVlans:allowed||[],nativeVlan:native,description:desc})}
+ return finish(vendor,deviceId,aggs,ifvlans,known,opaque,diagnostics);
+}
+function parseH3c(input,deviceId){
+ const vendor="h3c-comware",{blocks,global}=H.splitInterfaceBlocks(input),aggs=new Map(),ifvlans=[],known=new Set(),opaque=[],diagnostics=[];
+ for(const g of global){let m;if((m=g.match(/^vlan\s+(.+)$/i)))try{H.addVlans(known,m[1])}catch{}else if(g&&!/^system-view$/i.test(g))opaque.push(g)}
+ for(const b of blocks){const id=logicalId(vendor,b.name);let desc=null,mode=null,allowed=null,native=null,accessVlan=null;if(id!==null&&!aggs.has(id))aggs.set(id,{id,logicalInterface:b.name,mode:"static",members:[],description:null});for(const x of b.lines){let m;if((m=x.match(/^description\s+(.+)$/i)))desc=m[1];else if(/^link-aggregation mode dynamic$/i.test(x)&&id!==null)aggs.get(id).mode="lacp";else if((m=x.match(/^port link-aggregation group\s+(\d+)$/i))&&id===null){const aid=Number(m[1]),a=aggs.get(aid)||{id:aid,logicalInterface:`Bridge-Aggregation${aid}`,mode:"static",members:[],description:null};a.members.push(b.name);aggs.set(aid,a)}else if((m=x.match(/^port link-type\s+(access|trunk)$/i)))mode=m[1];else if((m=x.match(/^port access vlan\s+(\d+)$/i)))accessVlan=Number(m[1]);else if((m=x.match(/^port trunk permit vlan\s+(.+)$/i))){const s=new Set();try{H.addVlans(s,m[1]);allowed=[...s].sort((a,b)=>a-b)}catch(e){diagnostics.push(diag("UNPARSEABLE_VLAN_LIST",e.message,"error",{interfaceName:b.name,line:x}))}}else if((m=x.match(/^port trunk pvid vlan\s+(\d+)$/i)))native=Number(m[1])}if(id!==null)aggs.get(id).description=desc;if(mode)ifvlans.push(mode==="access"?{name:b.name,mode,accessVlan,description:desc}:{name:b.name,mode,allowedVlans:allowed||[],nativeVlan:native,description:desc})}
+ return finish(vendor,deviceId,aggs,ifvlans,known,opaque,diagnostics);
+}
+function parseJunos(input,deviceId){
+ const vendor="juniper-junos",lines=H.trimmed(input),aggs=new Map(),ifMap=new Map(),known=new Set(),opaque=[],diagnostics=[];
+ function vlanState(name){if(!ifMap.has(name))ifMap.set(name,{name,mode:null,allowedVlans:[],nativeVlan:null,description:null});return ifMap.get(name)}
+ for(const x of lines){let m;if((m=x.match(/^set vlans \S+ vlan-id (\d+)$/i))){known.add(Number(m[1]));continue}if((m=x.match(/^set interfaces (\S+) ether-options 802\.3ad ae(\d+)$/i))){const aid=Number(m[2]),a=aggs.get(aid)||{id:aid,logicalInterface:`ae${aid}`,mode:"static",members:[],description:null};a.members.push(m[1]);aggs.set(aid,a);continue}if((m=x.match(/^set interfaces ae(\d+) aggregated-ether-options lacp (active|passive)$/i))){const aid=Number(m[1]),a=aggs.get(aid)||{id:aid,logicalInterface:`ae${aid}`,mode:"static",members:[],description:null};a.mode="lacp";aggs.set(aid,a);continue}if((m=x.match(/^set interfaces (ae\d+) description "?(.*?)"?$/i))){const id=logicalId(vendor,m[1]),a=aggs.get(id)||{id,logicalInterface:m[1],mode:"static",members:[],description:null};a.description=m[2].replace(/"$/,'');aggs.set(id,a);vlanState(m[1]).description=a.description;continue}if((m=x.match(/^set interfaces (\S+) unit 0 family ethernet-switching interface-mode (access|trunk)$/i))){vlanState(m[1]).mode=m[2];continue}if((m=x.match(/^set interfaces (\S+) unit 0 family ethernet-switching vlan members (\d+)$/i))){vlanState(m[1]).allowedVlans.push(Number(m[2]));continue}if((m=x.match(/^set interfaces (\S+) native-vlan-id (\d+)$/i))){vlanState(m[1]).nativeVlan=Number(m[2]);continue}opaque.push(x)}
+ const ifvlans=[];for(const s of ifMap.values())if(s.mode){const vs=[...new Set(s.allowedVlans)].sort((a,b)=>a-b);ifvlans.push(s.mode==="access"?{name:s.name,mode:s.mode,accessVlan:vs[0],description:s.description}:{name:s.name,mode:s.mode,allowedVlans:vs,nativeVlan:s.nativeVlan,description:s.description})}
+ return finish(vendor,deviceId,aggs,ifvlans,known,opaque,diagnostics);
+}
+function finish(vendor,deviceId,aggs,ifvlans,known,opaque,diagnostics){
+ const aggregates=[...aggs.values()].map(a=>({...a,members:[...new Set(a.members)].sort()})).sort((a,b)=>a.id-b.id),memberBindings=[];for(const a of aggregates)for(const interfaceName of a.members)memberBindings.push({interfaceName,aggregateId:a.id});
+ const seen=new Set();for(const a of aggregates){if(seen.has(a.id))diagnostics.push(diag("DUPLICATE_AGGREGATE_ID","Aggregate ID parsed more than once","error",{aggregateId:a.id}));seen.add(a.id)}
+ return model.create({vendor,deviceId,aggregates,interfaceVlans:ifvlans,knownVlans:[...known],memberBindings,reservedAggregateIds:aggregates.map(a=>a.id),opaqueLines:opaque,diagnostics});
+}
+function parse({vendor,input,deviceId=null}){const v=String(vendor||"");if(v==="cisco-ios"||v==="arista-eos")return parseCiscoLike(v,input,deviceId);if(v==="huawei-vrp")return parseHuawei(input,deviceId);if(v==="h3c-comware")return parseH3c(input,deviceId);if(v==="juniper-junos")return parseJunos(input,deviceId);throw new Error(`unsupported_running_config_vendor:${v}`)}
+module.exports=Object.freeze({parse,logicalId});

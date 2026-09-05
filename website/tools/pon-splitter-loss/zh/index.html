@@ -16,7 +16,7 @@
 <script defer src="/data/seo-config.js"></script>
 <script defer src="/assets/js/seo-engine.js"></script>
 <script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么1:8 × 1:8默认采用GPON C+？","acceptedAnswer":{"@type":"Answer","text":"两级分光器本身约21 dB，再叠加光纤、连接器、熔接点和工程余量后，B+预算容易不足；C+提供32 dB ODN等级，更适合该默认1:64方案。"}},{"@type":"Question","name":"一级分光和二级分光哪个损耗更小？","acceptedAnswer":{"@type":"Answer","text":"在总分光比相同的情况下，多级级联通常会增加额外插入损耗和连接点，因此一级分光一般更容易控制预算，但实际部署还要考虑覆盖范围和维护便利性。"}},{"@type":"Question","name":"1:4 × 1:8为什么等于1:32？","acceptedAnswer":{"@type":"Answer","text":"一级产生4个分支，每个分支再分成8路，总分支数量为4×8=32。"}},{"@type":"Question","name":"理论分光损耗和标称损耗为什么不同？","acceptedAnswer":{"@type":"Answer","text":"理论值只反映理想能量均分；标称插入损耗还包含器件制造、耦合、封装和均匀性等损耗。"}},{"@type":"Question","name":"分光器级联越多越好吗？","acceptedAnswer":{"@type":"Answer","text":"不是。级联越多，设计灵活性可能提高，但连接点、插入损耗和维护复杂度也会增加。"}},{"@type":"Question","name":"接收光功率过高也会有问题吗？","acceptedAnswer":{"@type":"Answer","text":"会。若超过接收机过载门限，可能导致误码或接收异常，因此需要同时检查灵敏度余量和过载余量。"}},{"@type":"Question","name":"本工具能否直接替代现场测试？","acceptedAnswer":{"@type":"Answer","text":"不能。它用于规划和复核，正式验收仍需光功率计、OTDR和设备实际参数。"}}]}</script>
-<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="../../../assets/css/tool-layout-v1.9.9-02.css?v=1.9.9-02"><link rel="stylesheet" href="/assets/css/tool-design-system-v1.9.9-03.css?v=74eed43d191e">
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="../../../assets/css/tool-layout-v1.9.9-02.css?v=1.9.9-02"><link rel="stylesheet" href="/assets/css/tool-design-system-v1.9.9-03.css?v=fd302ec2d73d">
 
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
@@ -33,7 +33,7 @@
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../../assets/js/site.js?v=af1b8909e5b4"></script>
+<script defer src="../../../assets/js/site.js?v=5c6907a4fe26"></script>
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head><body>
 <a class="skip-link" href="#calculator">跳到计算器</a><noscript><div class="noscript">本工具需要启用 JavaScript。</div></noscript>
@@ -142,12 +142,14 @@
 </div></section>
 <section class="content-section" id="history"><div class="section-heading"><div><p class="eyebrow">PROJECT RECORDS</p><h2>最近计算记录</h2></div><button class="text-button" id="clearHistoryBtn">清空记录</button></div><div class="history-list" id="historyList"></div></section>
 <section class="content-section" id="references"><div class="section-heading"><div><p class="eyebrow">ENGINEERING EVIDENCE</p><h2>分光假设与官方依据</h2></div></div><div class="note"><p>接收灵敏度和 ODN 预算按最小发送功率校核，接收过载单独按最大发送功率校核。可选插入损耗是规划值，不是统一上限；最终设计必须使用具体分光器等级、均匀性、回波损耗和设备规格书。3 dB 的健康/风险分界是本工具规划门槛，不是标准统一强制值。</p><p>复核日期：2026-08-31。官方来源：<a href="https://www.itu.int/rec/T-REC-G.984.2/en" rel="noopener noreferrer" target="_blank">ITU-T G.984.2 GPON PMD</a>、<a href="https://www.itu.int/rec/T-REC-G.671/en" rel="noopener noreferrer" target="_blank">ITU-T G.671 光器件与 PON 分支器件</a>、<a href="https://www.itu.int/rec/T-REC-G.652-202408-I/en" rel="noopener noreferrer" target="_blank">ITU-T G.652 单模光纤</a>。</p></div></section>
-<section class="content-section" id="related"><div class="section-heading"><div><p class="eyebrow">RELATED TOOLS</p><h2>相关工程工具</h2></div></div><div class="related-grid">
-<a class="related-card" href="../../fiber-loss/zh/"><strong>光纤链路损耗计算器</strong><p>计算光纤、熔接、连接器和分光器造成的总链路损耗。</p></a>
-<a class="related-card" href="../../optical-power-budget/zh/"><strong>光功率预算计算器</strong><p>根据设备发送和接收参数验证完整链路预算。</p></a>
-<a class="related-card" href="../../onu-rx-power/zh/"><strong>ONU接收光功率诊断</strong><p>根据现场光功率判断弱光、过载和潜在故障原因。</p></a>
-</div></section>
 <aside aria-label="广告" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">广告</div><div class="ad-body"></div></aside>
+<!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="pon-splitter-loss" data-primary-workflow="optical-link-design">
+<div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
+<div class="nel-workflow-context"><div><span>当前流程</span><strong>光链路设计工作流</strong><p>从物理损耗、分光规划到光功率预算和最大距离验证，完成一条光链路的设计闭环。</p></div><div class="nel-workflow-step"><strong>步骤 2 / 4</strong><div class="nel-workflow-progress" aria-label="步骤 2 / 4"><span style="width:50%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/fiber-loss/zh/"><span class="nel-tool-graph-label">上一步</span><strong>光纤链路损耗计算器</strong><span>计算光纤、熔接、连接器、分光器及工程余量，输出物理损耗与设计损耗。</span></a><a class="nel-tool-graph-card" href="/tools/optical-power-budget/zh/"><span class="nel-tool-graph-label">下一步</span><strong>光功率预算计算器</strong><span>结合发送功率、接收灵敏度、光学代价和ODN损耗验证完整光链路预算。</span></a></div>
+<h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/fiber-loss/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>光纤链路损耗计算器</strong><span>计算光纤、熔接、连接器、分光器及工程余量，输出物理损耗与设计损耗。</span></a><a class="nel-tool-graph-card" href="/tools/optical-power-budget/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>光功率预算计算器</strong><span>结合发送功率、接收灵敏度、光学代价和ODN损耗验证完整光链路预算。</span></a><a class="nel-tool-graph-card" href="/tools/pon-distance/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>PON最大传输距离计算器</strong><span>区分光预算最大距离和系统有效距离，并验证规划链路是否保留工程余量。</span></a></div><div class="nel-workflow-memberships"><span>参与工作流</span><span class="nel-workflow-chip">光链路设计工作流</span></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">

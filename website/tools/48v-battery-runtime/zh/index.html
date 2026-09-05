@@ -14,7 +14,7 @@
 <script defer src="/data/seo-config.js"></script>
 <script defer src="/assets/js/seo-engine.js"></script>
 <script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么没有功率因数输入？","acceptedAnswer":{"@type":"Answer","text":"功率因数用于交流系统。通信机房蓄电池在停电期间直接向直流母线供电，应使用直流W或A。"}},{"@type":"Question","name":"为什么不能只用48V×Ah÷功率？","acceptedAnswer":{"@type":"Answer","text":"实际续航还受终止电压、放电倍率、老化、低温、DOD、线损及厂家放电曲线影响。"}},{"@type":"Question","name":"2V电池为什么通常输入24只？","acceptedAnswer":{"@type":"Answer","text":"24只2V单体形成48V标称电池组。这是通信场景常见结构，但必须按现场系统和厂家配置修改。"}},{"@type":"Question","name":"Peukert指数应该填多少？","acceptedAnswer":{"@type":"Answer","text":"应优先使用厂家数据。预设值只是可编辑工程参考，锂电和高倍率放电更应使用厂家曲线或BMS数据。"}},{"@type":"Question","name":"计算结果能直接用于采购吗？","acceptedAnswer":{"@type":"Answer","text":"不能。结果用于方案比较和初步估算，采购前应按实测负载、厂家放电表、环境温度、终止电压和冗余要求复核。"}}]}</script>
-<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="../../../assets/css/tool-layout-v1.9.9-02.css?v=1.9.9-02"><link rel="stylesheet" href="/assets/css/tool-design-system-v1.9.9-03.css?v=74eed43d191e">
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="../../../assets/css/tool-layout-v1.9.9-02.css?v=1.9.9-02"><link rel="stylesheet" href="/assets/css/tool-design-system-v1.9.9-03.css?v=fd302ec2d73d">
 
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
@@ -31,7 +31,7 @@
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../../assets/js/site.js?v=af1b8909e5b4"></script>
+<script defer src="../../../assets/js/site.js?v=5c6907a4fe26"></script>
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head><body>
 <a class="skip" href="#calculator">跳到计算器</a><noscript><div class="noscript">JavaScript required / 本工具需要启用JavaScript。</div></noscript>
@@ -115,6 +115,13 @@
 <section class="content-section" id="faq"><p class="eyebrow">FAQ</p><h2>常见问题</h2><div class="faq-grid"><details><summary>为什么没有功率因数输入？</summary><p>功率因数用于交流系统。通信机房蓄电池在停电期间直接向直流母线供电，应使用直流W或A。</p></details><details><summary>为什么不能只用48V×Ah÷功率？</summary><p>实际续航还受终止电压、放电倍率、老化、低温、DOD、线损及厂家放电曲线影响。</p></details><details><summary>2V电池为什么通常输入24只？</summary><p>24只2V单体形成48V标称电池组。这是通信场景常见结构，但必须按现场系统和厂家配置修改。</p></details><details><summary>Peukert指数应该填多少？</summary><p>应优先使用厂家数据。预设值只是可编辑工程参考，锂电和高倍率放电更应使用厂家曲线或BMS数据。</p></details><details><summary>计算结果能直接用于采购吗？</summary><p>不能。结果用于方案比较和初步估算，采购前应按实测负载、厂家放电表、环境温度、终止电压和冗余要求复核。</p></details></div></section>
 <section class="content-section" id="history"><div class="history-head"><div><p class="eyebrow">PROJECT RECORDS</p><h2>工程历史记录</h2></div><button class="text-button" id="clearHistoryBtn">清空记录</button></div><div class="history-list" id="historyList"></div></section>
 <section class="content-section"><p class="eyebrow">RELATED TOOLS</p><h2>相关工程工具</h2><div class="related-grid"><a href="../../bandwidth-calculator/zh/"><strong>带宽与传输时间计算器</strong><p>计算链路速率、传输时间和并发容量。</p></a><a href="../../subnet-calculator/zh/"><strong>IP子网计算器</strong><p>规划IPv4、IPv6、CIDR和VLSM。</p></a><a href="../../mtu-calculator/zh/"><strong>MTU与MSS计算器</strong><p>分析隧道开销和分片风险。</p></a></div></section>
+<!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="48v-battery-runtime" data-primary-workflow="poe-rack-power-design">
+<div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
+<div class="nel-workflow-context"><div><span>当前流程</span><strong>PoE 与机架供电设计工作流</strong><p>依次验证 PoE 供电容量、线缆压降、机架功耗与制冷，并估算通信电池后备时长。</p></div><div class="nel-workflow-step"><strong>步骤 4 / 4</strong><div class="nel-workflow-progress" aria-label="步骤 4 / 4"><span style="width:100%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/network-rack-power-cooling-calculator/zh/"><span class="nel-tool-graph-label">上一步</span><strong>网络机柜功耗与制冷量计算器</strong><span>计算机柜功耗、电流、制冷量、耗电量和电费。</span></a><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">下一步</span><strong>流程终点</strong></div></div>
+<h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/network-rack-power-cooling-calculator/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>网络机柜功耗与制冷量计算器</strong><span>计算机柜功耗、电流、制冷量、耗电量和电费。</span></a><a class="nel-tool-graph-card" href="/tools/poe-power-budget-calculator/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>PoE功率预算计算器</strong><span>按总功率、端口、网线损耗、工程余量和802.3af/at/bt等级规划PoE交换机。</span></a><a class="nel-tool-graph-card" href="/tools/poe-voltage-drop-calculator/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>网线PoE压降计算器</strong><span>计算PoE网线回路电阻、压降、远端电压、电流和功率损耗。</span></a></div><div class="nel-workflow-memberships"><span>参与工作流</span><span class="nel-workflow-chip">PoE 与机架供电设计工作流</span></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">

@@ -551,3 +551,18 @@ footer .footer-links a:hover { text-decoration: underline; }
     margin: 0 !important;
   }
 }
+
+/* NetEngineerLab V2.1 Phase1 — Registry-driven workflow / previous / next / related navigation. */
+.nel-tool-graph{margin-top:28px!important}
+.nel-workflow-context{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,280px);gap:24px;align-items:center;padding:22px;border:1px solid #dce8f5;border-radius:16px;background:linear-gradient(135deg,#f7fbff 0%,#fff 75%)}
+.nel-workflow-context>div>span,.nel-workflow-memberships>span{display:block;margin-bottom:6px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#607d9a}
+.nel-workflow-context strong{display:block;color:#153f66;font-size:18px}.nel-workflow-context p{margin:7px 0 0;color:#526b82;line-height:1.65}
+.nel-workflow-step{min-width:0}.nel-workflow-step>strong{font-size:14px;text-align:right}.nel-workflow-progress{height:8px;margin-top:10px;border-radius:999px;background:#e6eef7;overflow:hidden}.nel-workflow-progress span{display:block;height:100%;border-radius:inherit;background:#176ff2}
+.nel-tool-graph-nav,.nel-tool-graph-related{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px}.nel-tool-graph-related{grid-template-columns:repeat(4,minmax(0,1fr))}
+.nel-tool-graph-card{display:flex;min-width:0;min-height:118px;flex-direction:column;gap:7px;padding:17px 18px;border:1px solid #dbe7f3;border-radius:14px;background:#fff;color:inherit;text-decoration:none!important;box-shadow:0 8px 24px rgba(31,72,112,.06);transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
+a.nel-tool-graph-card:hover,a.nel-tool-graph-card:focus-visible{transform:translateY(-2px);border-color:#8dbcf8;box-shadow:0 12px 28px rgba(31,72,112,.11);outline:none}.nel-tool-graph-card.is-muted{background:#f7f9fc;box-shadow:none;opacity:.8}
+.nel-tool-graph-label{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#176ff2}.nel-tool-graph-card strong{color:#153f66;font-size:16px;line-height:1.35}.nel-tool-graph-card>span:last-child{color:#60758a;font-size:13px;line-height:1.5}
+.nel-tool-graph-subtitle{margin:25px 0 0;color:#153f66;font-size:18px}.nel-workflow-memberships{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:22px;padding-top:18px;border-top:1px solid #e5edf5}.nel-workflow-memberships>span{width:100%;margin-bottom:1px}.nel-workflow-chip{display:inline-flex;padding:6px 10px;border-radius:999px;background:#edf5ff;color:#245d92;font-size:12px;font-weight:700}
+@media(max-width:900px){.nel-workflow-context{grid-template-columns:1fr}.nel-workflow-step>strong{text-align:left}.nel-tool-graph-related{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.nel-tool-graph-nav,.nel-tool-graph-related{grid-template-columns:1fr}.nel-tool-graph-card{min-height:0}.nel-workflow-context{padding:18px}}
+@media print{.nel-tool-graph{display:none!important}}

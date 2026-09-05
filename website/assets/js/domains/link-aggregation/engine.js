@@ -1,0 +1,8 @@
+/** NetEngineerLab | V2.1-Phase2-TopologyV1 | LAG render/parse/semantic round trip */
+"use strict";
+const model=require("./model"),registry=require("./vendor-registry"),resolver=require("../../device-topology/interface-topology-resolver"),catalog=require("../../device-platform-catalog/device-platform-registry");
+function render({vendor,model:input}){return registry.get(vendor).render(model.create(input))}
+function parse({vendor,input}){return registry.get(vendor).parse(input)}
+function roundTrip({vendor,model:input}){const expected=model.semanticView(input),configuration=render({vendor,model:input}),parsed=parse({vendor,input:configuration}),actual=model.semanticView(parsed.model);return Object.freeze({equivalent:JSON.stringify(expected)===JSON.stringify(actual),configuration,expected,actual,logicalInterface:registry.get(vendor).logical(expected.id)})}
+function renderIntent({deviceId,members,id,mode="lacp",description=null}){const d=catalog.get(deviceId);const resolved=members.map(selector=>resolver.resolve({deviceId,selector}));const names=resolved.map(r=>r.interfaceName);const speeds=resolved.map(r=>Math.max(...r.speedsMbps));if(new Set(speeds).size!==1)throw new Error("aggregate_member_speed_mismatch");const lag=model.create({id,mode,members:names,description}),result=roundTrip({vendor:d.vendor,model:lag});if(!result.equivalent)throw new Error("aggregate_semantic_round_trip_failed");return Object.freeze({...result,resolutions:Object.freeze(resolved),deviceId:d.id,vendor:d.vendor})}
+module.exports=Object.freeze({model,registry,resolver,render,parse,roundTrip,renderIntent});

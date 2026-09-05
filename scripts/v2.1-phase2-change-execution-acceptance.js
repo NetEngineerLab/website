@@ -1,0 +1,6 @@
+#!/usr/bin/env node
+/** NetEngineerLab | V2.1-Phase2-MOPV1 | Acceptance gate */
+"use strict";
+const fs=require("node:fs"),path=require("node:path"),cp=require("node:child_process"),assert=require("node:assert/strict");const root=path.resolve(__dirname,"..");
+const required=["website/assets/js/domains/change-execution/risk-score.js","website/assets/js/domains/change-execution/verification.js","website/assets/js/domains/change-execution/runbook.js","website/assets/js/domains/change-execution/engine.js","scripts/change-execution-mop-contract-test.js","docs/V2.1_PHASE2_CHANGE_EXECUTION_MOP.md","docs/V2.1_PHASE2_CHANGE_EXECUTION_MOP_ACCEPTANCE_REPORT.md"];
+for(const rel of required)assert.equal(fs.existsSync(path.join(root,rel)),true,`missing ${rel}`);const pkg=require(path.join(root,"package.json"));assert.ok(pkg.scripts["test:change-execution-mop"]);assert.ok(pkg.scripts["prepare:launch"].includes("test:change-execution-mop"));assert.ok(pkg.scripts["prepare:launch"].includes("accept:v2.1-phase2-change-execution"));cp.execFileSync(process.execPath,[path.join(root,"scripts/change-execution-mop-contract-test.js")],{stdio:"inherit",cwd:root});console.log("V2.1 Phase2 Change Execution / MOP: ACCEPTED");

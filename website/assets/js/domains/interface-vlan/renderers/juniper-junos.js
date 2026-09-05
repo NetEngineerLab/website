@@ -1,0 +1,3 @@
+"use strict";const M=require("../model");
+function render(model){const m=M.fromCanonical(model),p=`set interfaces ${m.name}`,l=[];if(m.description)l.push(`${p} description \"${m.description.replace(/\"/g,'\\\"')}\"`);l.push(`${p} unit 0 family ethernet-switching interface-mode ${m.mode}`);if(m.mode==="access")l.push(`${p} unit 0 family ethernet-switching vlan members ${m.accessVlan}`);else{for(const v of m.allowedVlans)l.push(`${p} unit 0 family ethernet-switching vlan members ${v}`);if(m.nativeVlan!==null)l.push(`${p} native-vlan-id ${m.nativeVlan}`)}return l.join("\n")}
+module.exports={render};

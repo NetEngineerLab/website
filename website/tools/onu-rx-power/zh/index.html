@@ -16,7 +16,7 @@
 <script defer src="/data/seo-config.js"></script>
 <script defer src="/assets/js/seo-engine.js"></script>
 <script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"ONU接收光功率多少才算正常？","acceptedAnswer":{"@type":"Answer","text":"没有适用于所有设备的固定值，应根据对应ONU或光模块的接收灵敏度和过载门限判断，并保留工程余量。"}},{"@type":"Question","name":"光功率接近灵敏度但业务正常，需要处理吗？","acceptedAnswer":{"@type":"Answer","text":"建议作为弱光隐患主动处理，因为轻微污染、弯曲或温度变化就可能使链路跌破门限。"}},{"@type":"Question","name":"实测值比理论值低很多说明什么？","acceptedAnswer":{"@type":"Answer","text":"可能存在未计入的连接损耗、接头污染、尾纤弯曲、熔接质量差、分光器异常或线路衰减增大。"}},{"@type":"Question","name":"接收光功率过高会导致什么问题？","acceptedAnswer":{"@type":"Answer","text":"可能使接收器饱和，出现误码、注册异常或业务不稳定，应核对设备等级和是否需要衰减器。"}},{"@type":"Question","name":"疑似无光是否一定是断纤？","acceptedAnswer":{"@type":"Answer","text":"不一定，还可能是跳纤脱落、端口对应错误、OLT不发光、分光器故障或严重弯曲。"}},{"@type":"Question","name":"为什么预设参数都可以修改？","acceptedAnswer":{"@type":"Answer","text":"不同厂家、设备等级和网络设计存在差异，预设只用于快速演示，正式诊断必须使用真实参数。"}}]}</script>
-<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="../../../assets/css/tool-layout-v1.9.9-02.css?v=1.9.9-02"><link rel="stylesheet" href="/assets/css/tool-design-system-v1.9.9-03.css?v=74eed43d191e">
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="../../../assets/css/tool-layout-v1.9.9-02.css?v=1.9.9-02"><link rel="stylesheet" href="/assets/css/tool-design-system-v1.9.9-03.css?v=fd302ec2d73d">
 
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
@@ -33,7 +33,7 @@
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../../assets/js/site.js?v=af1b8909e5b4"></script>
+<script defer src="../../../assets/js/site.js?v=5c6907a4fe26"></script>
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head><body>
 <a class="skip-link" href="#calculator">跳到诊断工具</a><noscript><div class="noscript">本工具需要启用 JavaScript。</div></noscript>
@@ -142,12 +142,14 @@
 <ul><li><a href="https://www.itu.int/rec/T-REC-G.984.2/en" rel="noopener noreferrer" target="_blank">ITU-T G.984.2 — GPON 物理媒质相关层</a></li><li><a href="https://www.itu.int/rec/T-REC-G.671/en" rel="noopener noreferrer" target="_blank">ITU-T G.671 — 光器件与子系统传输特性</a></li><li><a href="https://www.itu.int/rec/T-REC-G.650.3/en" rel="noopener noreferrer" target="_blank">ITU-T G.650.3 — 已安装单模光纤链路测试方法</a></li></ul>
 </section>
 <section class="content-section" id="history"><div class="section-heading"><div><p class="eyebrow">PROJECT RECORDS</p><h2>最近诊断记录</h2></div><button class="text-button" id="clearHistoryBtn">清空记录</button></div><div class="history-list" id="historyList"></div></section>
-<section class="content-section" id="related"><div class="section-heading"><div><p class="eyebrow">RELATED TOOLS</p><h2>相关工程工具</h2></div></div><div class="related-grid">
-<a class="related-card" href="../../fiber-loss/zh/"><strong>光纤链路损耗计算器</strong><p>计算光纤、熔接、连接器和分光器造成的完整链路损耗。</p></a>
-<a class="related-card" href="../../optical-power-budget/zh/"><strong>光功率预算计算器</strong><p>根据发送功率和接收门限验证完整光链路预算。</p></a>
-<a class="related-card" href="../../pon-splitter-loss/zh/"><strong>PON分光器损耗计算器</strong><p>规划多级分光并检查总分光比与预算余量。</p></a>
-</div></section>
 <aside aria-label="广告" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">广告</div><div class="ad-body"></div></aside>
+<!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="onu-rx-power" data-primary-workflow="optical-troubleshooting">
+<div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
+<div class="nel-workflow-context"><div><span>当前流程</span><strong>光网络故障定位工作流</strong><p>从 ONU 实测接收光功率入手，定位异常事件，再与设计损耗和预算进行交叉验证。</p></div><div class="nel-workflow-step"><strong>步骤 1 / 4</strong><div class="nel-workflow-progress" aria-label="步骤 1 / 4"><span style="width:25%"></span></div></div></div><div class="nel-tool-graph-nav"><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">上一步</span><strong>流程起点</strong></div><a class="nel-tool-graph-card" href="/tools/otdr-event/zh/"><span class="nel-tool-graph-label">下一步</span><strong>OTDR事件分析工具</strong><span>支持多事件录入、双波长对比，识别熔接、连接器、弯曲、断纤、鬼影及盲区影响。</span></a></div>
+<h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/optical-power-budget/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>光功率预算计算器</strong><span>结合发送功率、接收灵敏度、光学代价和ODN损耗验证完整光链路预算。</span></a><a class="nel-tool-graph-card" href="/tools/otdr-event/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>OTDR事件分析工具</strong><span>支持多事件录入、双波长对比，识别熔接、连接器、弯曲、断纤、鬼影及盲区影响。</span></a><a class="nel-tool-graph-card" href="/tools/fiber-loss/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>光纤链路损耗计算器</strong><span>计算光纤、熔接、连接器、分光器及工程余量，输出物理损耗与设计损耗。</span></a></div><div class="nel-workflow-memberships"><span>参与工作流</span><span class="nel-workflow-chip">光网络故障定位工作流</span></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">

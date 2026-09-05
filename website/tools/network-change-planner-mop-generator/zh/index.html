@@ -1,0 +1,91 @@
+<!doctype html><html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="tools/network-change-planner-mop-generator/"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>网络变更规划与MOP生成器 | NetEngineerLab</title><meta name="description" content="粘贴现网配置并输入目标LAG/VLAN变更，自动生成最小差异、风险评分、MOP、回退配置，并评估变更后验证输出。"><meta property="og:type" content="website"><meta property="og:title" content="网络变更规划与MOP生成器 | NetEngineerLab"><meta property="og:description" content="粘贴现网配置并输入目标LAG/VLAN变更，自动生成最小差异、风险评分、MOP、回退配置，并评估变更后验证输出。"><meta property="og:url" content="https://netengineerlab.com/tools/network-change-planner-mop-generator/zh/"><meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png"><meta name="twitter:card" content="summary_large_image"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"网络变更规划与MOP生成器","url":"https://netengineerlab.com/tools/network-change-planner-mop-generator/zh/","applicationCategory":"DeveloperApplication","operatingSystem":"Any","isAccessibleForFree":true,"description":"粘贴现网配置并输入目标LAG/VLAN变更，自动生成最小差异、风险评分、MOP、回退配置，并评估变更后验证输出。"}</script><script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"网络变更规划与MOP生成器 | NetEngineerLab","url":"https://netengineerlab.com/tools/network-change-planner-mop-generator/zh/","description":"粘贴现网配置并输入目标LAG/VLAN变更，自动生成最小差异、风险评分、MOP、回退配置，并评估变更后验证输出。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script><script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么不是直接生成完整配置？","acceptedAnswer":{"@type":"Answer","text":"因为真实变更更需要最小影响面。工具先解析当前受管状态，只生成实现目标意图所需的最小差异，并同时生成对应回退操作。"}},{"@type":"Question","name":"支持任意 running-config 吗？","acceptedAnswer":{"@type":"Answer","text":"当前旗舰 V1.1 只管理已经平台化并通过测试的 LAG 与 Trunk/VLAN 领域。其他配置保留为未受管上下文，不会被自动改写。"}},{"@type":"Question","name":"什么时候会要求回退？","acceptedAnswer":{"@type":"Answer","text":"聚合口 Down、有效成员不足、Trunk VLAN/PVID 与目标不一致、出现意外成员或新增接口错误等证据，会触发 ROLLBACK_REQUIRED。"}},{"@type":"Question","name":"这个工具会直接连接设备执行命令吗？","acceptedAnswer":{"@type":"Answer","text":"不会。当前V1.1是本地浏览器中的规划、生成与验证工具，不主动登录设备，不保存凭据，也不会自动推送配置。"}},{"@type":"Question","name":"为什么设备型号和端口范围是有限的？","acceptedAnswer":{"@type":"Answer","text":"自动接口解析只对已进入Device Platform Catalog并具有明确命名规则的基线型号开放。超出已验证范围时应由工程师人工确认，而不是让系统猜测端口名称。"}}]}</script><link rel="stylesheet" href="../../../assets/css/tool-layout-v1.9.9-02.css"><link rel="stylesheet" href="../../../assets/css/tool-design-system-v1.9.9-03.css?v=fd302ec2d73d"><link rel="stylesheet" href="../css/style.css?v=8f379a98d038">
+
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="zh">
+<meta name="nel-route" content="tools/network-change-planner-mop-generator/">
+<meta name="nel-available-locales" content="en,zh">
+<link rel="canonical" href="https://netengineerlab.com/tools/network-change-planner-mop-generator/zh/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/network-change-planner-mop-generator/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/network-change-planner-mop-generator/zh/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/network-change-planner-mop-generator/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=1b428f96cadc">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f34b1ffff9cc">
+<script defer src="../../../data/locales.js?v=b541508dc0ee"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=5c6907a4fe26"></script>
+<link rel="manifest" href="../manifest-zh.webmanifest">
+</head><body><!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../zh/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="打开导航菜单"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="主导航">
+      <a href="../../../zh/">首页</a>
+      <a href="../../zh/" aria-current="page">工具中心</a>
+      <a href="../../../zh/about/">关于我们</a>
+      <a href="../../../zh/contact/">联系我们</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../" lang="en" hreflang="en"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="./" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#change-workspace">开始计算</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END --><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../zh/">首页</a><span aria-hidden="true">›</span><a href="../../zh/">工具</a><span aria-hidden="true">›</span><span aria-current="page">网络变更规划与MOP生成器</span></nav><section class="hero"><div class="hero-inner"><p class="eyebrow">OBSERVE → PLAN → VERIFY → ROLLBACK</p><h1>网络变更规划与MOP生成器</h1><p>从现网状态到最小变更、风险、MOP、回退和变更后验证，形成闭环网络变更工作流。</p><div class="tags"><span>5 Vendors</span><span>Minimal Delta</span><span>Risk + MOP</span><span>Closed-loop Verification</span></div></div></section>
+<main id="change-workspace" class="planner-shell">
+  <p class="privacy-note">配置解析和验证全部在浏览器本地完成。V1.1 仅管理已经测试的平台化 LAG 与 Trunk/VLAN 配置域。</p>
+  <section class="product-guide" aria-label="变更规划流程">
+    <div class="guide-step complete"><span>1</span><div><b>获取当前状态</b><small>粘贴 running-config，或载入代表性工程案例。</small></div></div>
+    <div class="guide-step" id="step2"><span>2</span><div><b>定义目标意图</b><small>选择设备、聚合成员、VLAN 与 Native/PVID。</small></div></div>
+    <div class="guide-step" id="step3"><span>3</span><div><b>审查计划与风险</b><small>检查最小变更、风险原因、回退方案和 MOP。</small></div></div>
+    <div class="guide-step" id="step4"><span>4</span><div><b>验证实施结果</b><small>粘贴变更后证据，自动判断 PASS / ROLLBACK。</small></div></div>
+  </section>
+  <div id="plannerStatus" class="status-panel">请选择设备并生成第一份变更计划。</div>
+  <div class="planner-grid">
+    <section class="planner-card input-card">
+      <div class="card-heading"><div><p class="eyebrow">步骤 1 · 当前状态</p><h2>现网状态与工程案例</h2></div></div>
+      <div class="case-picker"><div class="case-picker-head"><label for="scenarioSelect">代表性工程案例</label><span class="example-badge">示例数据</span></div><select id="scenarioSelect"></select><p id="scenarioNote"></p><p class="sample-warning">当前载入的是演示数据。用于真实变更前，请务必替换为目标设备的现网配置。</p></div>
+      <div class="field full"><span>当前 running-config</span><textarea id="runningConfig" rows="18" spellcheck="false" placeholder="粘贴与本次变更相关的现网配置..."></textarea></div>
+      <div class="actions"><button id="sampleBtn" class="secondary" type="button">重新载入厂商示例</button></div>
+      <div class="input-check"><b>输入准备度</b><ul id="inputChecklist"></ul></div>
+      <div class="card-heading intent-heading"><div><p class="eyebrow">步骤 2 · 目标意图</p><h2>目标变更意图</h2></div></div>
+      <div class="field-grid"><div class="field"><span>设备型号</span><select id="deviceId"></select></div><div class="field"><span>聚合 ID</span><input id="aggregateId" type="number" min="1" value="10"></div><div class="field"><span>LAG 模式</span><select id="lagMode"><option value="lacp">LACP</option><option value="static">Static</option></select></div><div class="field"><span>聚合成员范围</span><small id="portHint"></small></div><div class="field"><span>成员 A</span><div class="member-row"><label class="mini-field"><small>堆叠 / 机框成员</small><input id="member1" type="number" aria-label="成员A堆叠/机框成员号"></label><label class="mini-field"><small>物理端口</small><input id="port1" type="number" aria-label="成员A端口"></label></div></div><div class="field"><span>成员 B</span><div class="member-row"><label class="mini-field"><small>堆叠 / 机框成员</small><input id="member2" type="number" aria-label="成员B堆叠/机框成员号"></label><label class="mini-field"><small>物理端口</small><input id="port2" type="number" aria-label="成员B端口"></label></div></div><div class="field"><span>Trunk 允许 VLAN</span><input id="allowedVlans" value="10,20,30,99,100"></div><div class="field"><span>Native / PVID VLAN</span><input id="nativeVlan" type="number" value="99"></div><div class="field full"><span>接口描述</span><input id="description" value="CORE-UPLINK-NEW"></div></div>
+      <div class="actions sticky-plan-action"><button id="planBtn" class="primary" type="button">生成变更计划</button><span>工具不会登录设备或自动下发命令。</span></div>
+    </section>
+    <section class="planner-card result-card">
+      <div class="card-heading"><div><p class="eyebrow">步骤 3 · 规划</p><h2>变更摘要与结果解释</h2></div></div><div id="nextAction" class="next-action"><b>下一步：</b>生成计划后，先看风险，再核对前向配置和回退配置，最后按 Runbook 执行。</div><nav class="plan-nav" aria-label="计划内容导航"><a href="#riskCard">风险</a><a href="#forwardSection">前向</a><a href="#rollbackSection">回退</a><a href="#runbookSection">Runbook</a><a href="#verificationSection">验证</a><a href="#mopDocument">MOP</a></nav>
+      <div id="riskCard" class="risk-card"><div class="metric"><b>—</b><span>风险评估</span></div><div><strong>—</strong></div></div>
+      <div id="riskReasons" class="risk-reasons"></div>
+      <h3>这份计划意味着什么</h3><div id="resultExplanation" class="explanation-box"><p><span>i</span>生成计划后，这里会解释当前漂移、变更范围和风险含义。</p></div>
+      <h3>语义差异</h3><div id="semanticDiff" class="diff-grid"></div>
+      <h3 id="forwardSection">最小前向配置</h3><pre id="forwardConfig" class="config-output"></pre><div class="actions"><button id="copyForward" class="secondary" type="button">复制前向配置</button></div>
+      <h3 id="rollbackSection">回退配置</h3><pre id="rollbackConfig" class="config-output"></pre><div class="actions"><button id="copyRollback" class="secondary" type="button">复制回退配置</button></div>
+    </section>
+    <section id="runbookSection" class="planner-card runbook-card"><div class="card-heading"><div><p class="eyebrow">实施</p><h2>执行 MOP / Runbook</h2></div></div><ol id="runbookList" class="runbook"></ol></section>
+    <section id="verificationSection" class="planner-card verification-card"><div class="card-heading"><div><p class="eyebrow">步骤 4 · 验证</p><h2>变更后闭环验证</h2></div></div><p class="section-help">请粘贴每条检查命令的真实输出。证据不足时返回 INCONCLUSIVE，不会误判为 PASS。</p><div id="verificationProgress" class="verification-progress">当前 0 项检查已有证据。</div><div id="verificationPanel" class="verification-list"></div><div class="actions"><button id="verifyBtn" class="primary" type="button" disabled>评估验证输出</button></div><div id="resultDecision" class="decision"></div></section>
+    <section id="mopDocument" class="planner-card mop-document printable-report"><div class="card-heading"><div><p class="eyebrow">文档</p><h2>可复制 MOP 文档</h2></div></div><p class="section-help">文档由同一份计划自动生成，包含风险原因、实施步骤、前向/回退配置及最终验证结论。</p><div id="mopActions" class="actions" hidden><button id="copyMop" class="secondary" type="button">复制 MOP</button><button id="downloadMop" class="secondary" type="button">下载 Markdown</button><button id="printMop" class="primary" type="button">打印 / 保存 PDF</button></div><pre id="mopPreview" class="mop-preview">生成变更计划后，这里会自动生成 MOP 文档。</pre></section>
+  </div>
+</main><section class="content"><h2>从“配置生成”升级为“变更实施闭环”</h2><div class="grid"><article><h3>1. 解析当前状态</h3><p>先从 running-config 提取受管的 LAG、成员口、Trunk、Allowed VLAN、Native/PVID 和 VLAN Inventory。未识别内容保留为 unmanaged context。</p></article><article><h3>2. 对齐目标意图</h3><p>选择真实设备型号和端口，声明聚合 ID、LACP/Static、Allowed VLAN 与 Native VLAN。系统先检查成员冲突和 VLAN 缺失。</p></article><article><h3>3. 只生成最小差异</h3><p>已经一致的状态不会重复下发。新增/删除成员、VLAN 或 Native VLAN 变化会被拆成最小 Forward 与对应 Rollback。</p></article><article><h3>4. 用真实 CLI 输出闭环</h3><p>按 MOP 执行后，把 show/display 输出粘回页面。只有证据能证明成功才 PASS；证据不足返回 INCONCLUSIVE。</p></article></div><h2>工程边界与安全原则</h2><div class="grid"><article><h3>Fail closed</h3><p>成员口已属于其他聚合、VLAN清单明确缺失目标VLAN、端口越界或意图无效时，工具停止生成执行配置。</p></article><article><h3>Evidence before PASS</h3><p>变更后验证必须有足够CLI证据才能判定PASS。输出缺失或格式无法确认时返回INCONCLUSIVE。</p></article><article><h3>Managed domain only</h3><p>当前只自动管理已经平台化的LAG与Trunk/VLAN语义，不会自动修改BGP、OSPF、STP、QoS等未纳入V1.1的配置。</p></article><article><h3>Operator control</h3><p>生成的MOP和Rollback用于工程变更辅助，最终执行仍应遵循设备厂商文档、变更审批、维护窗口和现场回退制度。</p></article></div><h2>常见问题</h2><div data-nel-faq><details><summary>为什么不是直接生成完整配置？</summary><p>因为真实变更更需要最小影响面。工具先解析当前受管状态，只生成实现目标意图所需的最小差异，并同时生成对应回退操作。</p></details><details><summary>支持任意 running-config 吗？</summary><p>当前旗舰 V1.1 只管理已经平台化并通过测试的 LAG 与 Trunk/VLAN 领域。其他配置保留为未受管上下文，不会被自动改写。</p></details><details><summary>什么时候会要求回退？</summary><p>聚合口 Down、有效成员不足、Trunk VLAN/PVID 与目标不一致、出现意外成员或新增接口错误等证据，会触发 ROLLBACK_REQUIRED。</p></details><details><summary>这个工具会直接连接设备执行命令吗？</summary><p>不会。当前V1.1是本地浏览器中的规划、生成与验证工具，不主动登录设备，不保存凭据，也不会自动推送配置。</p></details><details><summary>为什么设备型号和端口范围是有限的？</summary><p>自动接口解析只对已进入Device Platform Catalog并具有明确命名规则的基线型号开放。超出已验证范围时应由工程师人工确认，而不是让系统猜测端口名称。</p></details></div><h2>参考与复核</h2><p class="content-review">内容复核：2026-09-05 · 范围：LAG + Trunk/VLAN 变更闭环 V1.1</p><p>工程实施时应继续核对设备厂商官方配置指南。可参考 <a href="https://www.cisco.com/c/en/us/support/switches/catalyst-9200-series-switches/series.html" rel="noopener noreferrer">Cisco Catalyst 9200 文档</a>、<a href="https://support.huawei.com/enterprise/en/switches/index.html" rel="noopener noreferrer">Huawei Enterprise Switch 文档</a> 和 <a href="https://www.juniper.net/documentation/product/us/en/ex-series/" rel="noopener noreferrer">Juniper EX Series 文档</a>。</p></section><!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="network-change-planner-mop-generator" data-primary-workflow="network-change-automation">
+<div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
+<div class="nel-workflow-context"><div><span>当前流程</span><strong>网络变更自动化工作流</strong><p>先验证访问策略，再把设备当前状态与LAG/VLAN目标变更转化为带风险评分、验证步骤和回退方案的MOP。</p></div><div class="nel-workflow-step"><strong>步骤 2 / 2</strong><div class="nel-workflow-progress" aria-label="步骤 2 / 2"><span style="width:100%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/acl-generator-validator/zh/"><span class="nel-tool-graph-label">上一步</span><strong>多厂商ACL生成与验证工具</strong><span>生成、转换并验证Cisco IOS、华为VRP、H3C Comware和Juniper Junos IPv4 ACL。</span></a><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">下一步</span><strong>流程终点</strong></div></div>
+<h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/acl-generator-validator/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>多厂商ACL生成与验证工具</strong><span>生成、转换并验证Cisco IOS、华为VRP、H3C Comware和Juniper Junos IPv4 ACL。</span></a><a class="nel-tool-graph-card" href="/tools/switch-uplink-oversubscription-calculator/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>交换机上联带宽与超售比计算器</strong><span>根据接入端口、利用率、并发率与冗余方式规划交换机上联带宽。</span></a><a class="nel-tool-graph-card" href="/tools/vlan-ip-capacity-planner/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>VLAN与IP子网容量规划器</strong><span>规划VLAN数量、IPv4前缀、地址容量与扩容余量。</span></a><a class="nel-tool-graph-card" href="/tools/sfp-qsfp-compatibility-calculator/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>SFP与QSFP光模块兼容性查询</strong><span>检查SFP、SFP28、QSFP和QSFP28速率、通道、光纤、波长及光链路预算。</span></a></div><div class="nel-workflow-memberships"><span>参与工作流</span><span class="nel-workflow-chip">网络变更自动化工作流</span></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div>
+    <nav class="site-shell-footer-links" aria-label="页脚导航">
+      <a href="../../../zh/about/">关于</a><a href="../../../zh/contact/">联系</a><a href="../../../zh/privacy/">隐私政策</a><a href="../../../zh/terms/">使用条款</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END --><script>window.NEL_LANG="zh";</script><script src="../js/engine.js"></script><script src="../js/app.js?v=fdef38e15374"></script><script defer src="../js/pwa.js"></script><script defer src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer src="../../../assets/js/tool-shell-v1.9.9-04.js?v=d2715dc996b6"></script><script src="../../../assets/js/cookie-consent.js"></script></body></html>

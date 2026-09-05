@@ -13,7 +13,7 @@ const rulesBundle=require("../../../assets/generated/rules-engine/rules-bundle.9
 const fixture=JSON.parse(fs.readFileSync(path.join(__dirname,"fixtures","cisco-ios-golden.json"),"utf8"));
 const vendorGolden=JSON.parse(fs.readFileSync(path.join(__dirname,"fixtures","multi-vendor-golden.json"),"utf8"));
 
-assert.deepStrictEqual(engine.supportedVendors,["cisco-ios","huawei-vrp","h3c-comware","juniper-junos"]);
+assert.deepStrictEqual(engine.supportedVendors,["cisco-ios","huawei-vrp","h3c-comware","juniper-junos","arista-eos"]);
 const ir=irApi.createIr({name:fixture.name,rules:fixture.rules});
 assert.strictEqual(generator.generate(ir),fixture.configuration);
 const parsed=parser.parse(fixture.configuration);
@@ -39,7 +39,7 @@ assert.throws(()=>aclOperators.aclPolicyCheck({rules:[]},{rulesPath:"rules",chec
 assert.throws(()=>aclOperators.aclPolicyCheck({rules:[{}]},{rulesPath:"rules",check:"deny-only-acl"}),/invalid_rule/);
 const blockedTelnet=irApi.createIr({name:"BLOCKED",rules:[{sequence:10,action:"deny",protocol:"ip",source:{kind:"any"},destination:{kind:"any"},log:false},{sequence:20,action:"permit",protocol:"tcp",source:{kind:"any"},destination:{kind:"any"},destinationPort:23,log:false}]});
 assert.strictEqual(aclOperators.aclPolicyCheck({rules:blockedTelnet.rules},{rulesPath:"rules",check:"telnet-permit"}).matched,false);
-for(const vendor of ["huawei-vrp","h3c-comware","juniper-junos"]){
+for(const vendor of ["huawei-vrp","h3c-comware","juniper-junos","arista-eos"]){
   const result=engine.semanticRoundTrip({vendor,ir});
   assert.strictEqual(result.configuration,vendorGolden[vendor],`${vendor} golden fixture`);
   assert.strictEqual(result.equivalent,true,`${vendor} semantic round-trip`);
@@ -50,6 +50,7 @@ assert.match(engine.generateConfiguration({vendor:"huawei-vrp",ir}),/^acl name E
 assert.match(engine.generateConfiguration({vendor:"h3c-comware",ir}),/^acl advanced name EDGE-IN\n/);
 assert.match(engine.generateConfiguration({vendor:"juniper-junos",ir}),/^set firewall family inet filter EDGE-IN term rule-10/);
 assert(!engine.generateConfiguration({vendor:"juniper-junos",ir}).includes("protocol ip"));
+assert.match(engine.generateConfiguration({vendor:"arista-eos",ir}),/^ip access-list EDGE-IN\n/);
 const junosParser=require("../js/parsers/juniper-junos");
 assert.throws(()=>junosParser.parse("set firewall family inet filter X term rule-10 from protocol tcp\nset firewall family inet filter X term rule-10 from protocol udp\nset firewall family inet filter X term rule-10 then accept\n"),/no_supported_rules/);
 assert.throws(()=>junosParser.parse("set firewall family inet filter X term rule-10 then accept\nset firewall family inet filter X term rule-10 then discard\n"),/no_supported_rules/);
@@ -67,10 +68,13 @@ assert.throws(()=>engine.generateConfiguration({vendor:"cisco-ios",ir:zeroIr}),/
 assert.throws(()=>engine.parseConfiguration({vendor:"cisco-ios",input:"ip access-list extended ZERO\n 0 deny ip any any\nexit\n"}),/no_supported_rules/);
 
 const browserContext={};
-for(const relative of ["js/ir-adapter.js","js/acl-rule-operators.js","js/parsers/vrp-comware-factory.js","js/generators/vrp-comware-factory.js","js/parsers/cisco-ios.js","js/generators/cisco-ios.js","js/parsers/huawei-vrp.js","js/generators/huawei-vrp.js","js/parsers/h3c-comware.js","js/generators/h3c-comware.js","js/parsers/juniper-junos.js","js/generators/juniper-junos.js","js/engine.js"]){
+for(const absolute of [path.join(__dirname,"..","..","..","assets/js/vendor-renderer/vendor-registry.js"),path.join(__dirname,"..","..","..","assets/js/vendor-renderer/renderer-engine.js")]){
+  vm.runInNewContext(fs.readFileSync(absolute,"utf8"),browserContext,{filename:absolute});
+}
+for(const relative of ["js/ir-adapter.js","js/acl-rule-operators.js","js/parsers/vrp-comware-factory.js","js/generators/vrp-comware-factory.js","js/parsers/cisco-ios.js","js/generators/cisco-ios.js","js/parsers/huawei-vrp.js","js/generators/huawei-vrp.js","js/parsers/h3c-comware.js","js/generators/h3c-comware.js","js/parsers/juniper-junos.js","js/generators/juniper-junos.js","js/parsers/arista-eos.js","js/generators/arista-eos.js","js/vendor-registry.js","js/engine.js"]){
   vm.runInNewContext(fs.readFileSync(path.join(__dirname,"..",relative),"utf8"),browserContext,{filename:relative});
 }
-assert.deepStrictEqual(Array.from(browserContext.NetEngineerLabAclEngine.supportedVendors),["cisco-ios","huawei-vrp","h3c-comware","juniper-junos"]);
+assert.deepStrictEqual(Array.from(browserContext.NetEngineerLabAclEngine.supportedVendors),["cisco-ios","huawei-vrp","h3c-comware","juniper-junos","arista-eos"]);
 
 assert.strictEqual(irApi.wildcardToPrefix("0.0.255.255"),16);
 assert.strictEqual(irApi.prefixToWildcard(32),"0.0.0.0");
@@ -124,4 +128,4 @@ assert.throws(()=>parser.parse("ip access-list extended X\n 10 permit tcp any an
 const escaped=parser.parse("ip access-list extended SAFE\n 10 deny ip any any\n <script>alert(1)</script>\nexit\n");
 assert.strictEqual(escaped.coverage.complete,false);
 assert.strictEqual(escaped.unparsed[0].text," <script>alert(1)</script>");
-console.log("ACL core tests: PASS (Cisco IOS IR, parser, generator, golden and semantic round-trip).");
+console.log("ACL core tests: PASS (Shared Vendor Renderer + five-vendor ACL semantic round-trip).");

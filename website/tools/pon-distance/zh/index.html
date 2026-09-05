@@ -16,7 +16,7 @@
 <script defer src="/data/seo-config.js"></script>
 <script defer src="/assets/js/seo-engine.js"></script>
 <script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么光预算能到30 km，结果却只显示20 km？","acceptedAnswer":{"@type":"Answer","text":"因为有效距离取光预算距离和系统距离上限中的较小值。即使光功率足够，OLT测距或网络配置也可能限制实际部署距离。"}},{"@type":"Question","name":"一级1:8加二级1:8为什么总分光比是1:64？","acceptedAnswer":{"@type":"Answer","text":"两级分支数量相乘，8×8=64；损耗则按两个分光器的实际插入损耗相加。"}},{"@type":"Question","name":"光预算最大距离是否等于可建设距离？","acceptedAnswer":{"@type":"Answer","text":"不一定。还要核对系统距离上限、光缆路由、差分距离、设备规格和企业规划标准。"}},{"@type":"Question","name":"规划距离显示“仅物理可达”是什么意思？","acceptedAnswer":{"@type":"Answer","text":"说明物理损耗还未超过接收灵敏度预算，但无法完整保留设定的工程余量，长期可靠性不足。"}},{"@type":"Question","name":"工程余量应该设置多少？","acceptedAnswer":{"@type":"Answer","text":"应按企业标准和项目场景设置，用于覆盖老化、温度变化、维护连接、污染和测量误差。"}},{"@type":"Question","name":"最大距离计算能否替代OTDR测试？","acceptedAnswer":{"@type":"Answer","text":"不能。本工具用于设计和复核，现场仍需光功率计、OTDR及真实设备参数进行验证。"}}]}</script>
-<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="../../../assets/css/tool-layout-v1.9.9-02.css?v=1.9.9-02"><link rel="stylesheet" href="/assets/css/tool-design-system-v1.9.9-03.css?v=74eed43d191e">
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="../../../assets/css/tool-layout-v1.9.9-02.css?v=1.9.9-02"><link rel="stylesheet" href="/assets/css/tool-design-system-v1.9.9-03.css?v=fd302ec2d73d">
 
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
@@ -33,7 +33,7 @@
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../../assets/js/site.js?v=af1b8909e5b4"></script>
+<script defer src="../../../assets/js/site.js?v=5c6907a4fe26"></script>
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head><body>
 <a class="skip-link" href="#calculator">跳到计算器</a><noscript><div class="noscript">本工具需要启用 JavaScript。</div></noscript>
@@ -139,12 +139,14 @@
 </div></section>
 <section class="content-section" id="history"><div class="section-heading"><div><p class="eyebrow">PROJECT RECORDS</p><h2>最近计算记录</h2></div><button class="text-button" id="clearHistoryBtn">清空记录</button></div><div class="history-list" id="historyList"></div></section>
 <section class="content-section" id="references"><div class="section-heading"><div><p class="eyebrow">SOURCES &amp; REVIEW</p><h2>工程来源与适用范围</h2></div></div><p>复核日期：2026-08-31。本计算器组合光损耗、接收灵敏度和系统距离上限，不证明协议互通或现场验收。工程余量是规划输入，不是标准统一强制值。请用光功率计和 OTDR，结合已安装光纤、分光器和设备规格进行复核。</p><ul><li><a href="https://www.itu.int/rec/T-REC-G.984.2/en" rel="noopener noreferrer" target="_blank">ITU-T G.984.2 — GPON 物理媒质相关层</a></li><li><a href="https://www.itu.int/rec/T-REC-G.671/en" rel="noopener noreferrer" target="_blank">ITU-T G.671 — 光器件与子系统传输特性</a></li><li><a href="https://www.itu.int/rec/T-REC-G.650.3/en" rel="noopener noreferrer" target="_blank">ITU-T G.650.3 — 已安装单模光纤链路测试方法</a></li></ul></section>
-<section class="content-section" id="related"><div class="section-heading"><div><p class="eyebrow">RELATED TOOLS</p><h2>相关工程工具</h2></div></div><div class="related-grid">
-<a class="related-card" href="../../fiber-loss/zh/"><strong>光纤链路损耗计算器</strong><p>详细计算线路与器件造成的光链路损耗。</p></a>
-<a class="related-card" href="../../optical-power-budget/zh/"><strong>光功率预算计算器</strong><p>验证发送功率、接收门限和链路预算。</p></a>
-<a class="related-card" href="../../pon-splitter-loss/zh/"><strong>PON分光器损耗计算器</strong><p>规划一级、二级和多级分光方案。</p></a>
-</div></section>
 <aside aria-label="广告" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">广告</div><div class="ad-body"></div></aside>
+<!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="pon-distance" data-primary-workflow="optical-link-design">
+<div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
+<div class="nel-workflow-context"><div><span>当前流程</span><strong>光链路设计工作流</strong><p>从物理损耗、分光规划到光功率预算和最大距离验证，完成一条光链路的设计闭环。</p></div><div class="nel-workflow-step"><strong>步骤 4 / 4</strong><div class="nel-workflow-progress" aria-label="步骤 4 / 4"><span style="width:100%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/optical-power-budget/zh/"><span class="nel-tool-graph-label">上一步</span><strong>光功率预算计算器</strong><span>结合发送功率、接收灵敏度、光学代价和ODN损耗验证完整光链路预算。</span></a><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">下一步</span><strong>流程终点</strong></div></div>
+<h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/optical-power-budget/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>光功率预算计算器</strong><span>结合发送功率、接收灵敏度、光学代价和ODN损耗验证完整光链路预算。</span></a><a class="nel-tool-graph-card" href="/tools/pon-splitter-loss/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>PON分光器损耗计算器</strong><span>支持一级、二级、三级分光级联，并计算总分光比、实际插入损耗和有效距离。</span></a><a class="nel-tool-graph-card" href="/tools/fiber-loss/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>光纤链路损耗计算器</strong><span>计算光纤、熔接、连接器、分光器及工程余量，输出物理损耗与设计损耗。</span></a></div><div class="nel-workflow-memberships"><span>参与工作流</span><span class="nel-workflow-chip">光链路设计工作流</span></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">

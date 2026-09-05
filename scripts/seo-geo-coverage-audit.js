@@ -31,7 +31,8 @@ const intentByTool=Object.freeze({
   "vlan-ip-capacity-planner":"planning",
   "switch-uplink-oversubscription-calculator":"sizing",
   "dns-ttl-propagation-calculator":"planning",
-  "acl-generator-validator":"validation"
+  "acl-generator-validator":"validation",
+  "network-change-planner-mop-generator":"planning"
 });
 const intentLabels=Object.freeze({
   calculation:{en:"calculation",zh:"计算"},

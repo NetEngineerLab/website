@@ -14,7 +14,7 @@
 <script defer src="/data/seo-config.js"></script>
 <script defer src="/assets/js/seo-engine.js"></script>
 <script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"OTDR事件阈值是否是统一标准？","acceptedAnswer":{"@type":"Answer","text":"不是。不同运营商、厂家、链路类型、波长、脉冲宽度和验收规则可能不同，因此本工具全部阈值可修改。"}},{"@type":"Question","name":"为什么要比较1310 nm和1550 nm？","acceptedAnswer":{"@type":"Answer","text":"弯曲损耗通常在较长波长下更明显，双波长差异有助于判断弯曲，但不能单独作为最终结论。"}},{"@type":"Question","name":"什么是鬼影事件？","acceptedAnswer":{"@type":"Answer","text":"鬼影可能出现在强反射事件距离的倍数位置，且真实插入损耗很小。可调整脉冲宽度和量程进行复核。"}},{"@type":"Question","name":"本工具能直接解析SOR文件吗？","acceptedAnswer":{"@type":"Answer","text":"V1.0分析事件表和CSV导入数据，SOR文件直接解析将在后续版本开发。"}},{"@type":"Question","name":"为什么距离很近的事件可能不准确？","acceptedAnswer":{"@type":"Answer","text":"处于事件盲区或衰减盲区内的事件可能相互叠加，反射和损耗难以完全分离。"}},{"@type":"Question","name":"分析结果能否替代现场判断？","acceptedAnswer":{"@type":"Answer","text":"不能。应结合原始波形、双向测试、路由资料、光功率测试和现场检查综合判断。"}}]}</script>
-<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="../../../assets/css/tool-layout-v1.9.9-02.css?v=1.9.9-02"><link rel="stylesheet" href="/assets/css/tool-design-system-v1.9.9-03.css?v=74eed43d191e">
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="../../../assets/css/tool-layout-v1.9.9-02.css?v=1.9.9-02"><link rel="stylesheet" href="/assets/css/tool-design-system-v1.9.9-03.css?v=fd302ec2d73d">
 
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
@@ -31,7 +31,7 @@
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../../assets/js/site.js?v=af1b8909e5b4"></script>
+<script defer src="../../../assets/js/site.js?v=5c6907a4fe26"></script>
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head><body>
 <a class="skip" href="#analyzer">跳到分析工具</a><noscript><div class="noscript">本工具需要启用JavaScript。</div></noscript>
@@ -135,12 +135,14 @@
 </div></section>
 <section class="content-section" id="references"><p class="eyebrow">REFERENCES</p><h2>标准与工程参考</h2><p>复核日期：2026-09-01。这些资料用于核对光纤测试方法、术语和器件特性。页面中的可编辑阈值仍属于规划默认值，正式结论必须结合 OTDR 参数、光缆规格和验收合同复核。</p><ul><li><a href="https://www.itu.int/rec/T-REC-G.650.1/en" rel="noopener noreferrer" target="_blank">ITU-T G.650.1——线性确定性属性的定义与测试方法</a></li><li><a href="https://www.itu.int/rec/T-REC-G.650.3/en" rel="noopener noreferrer" target="_blank">ITU-T G.650.3——已安装单模光缆链路测试方法</a></li><li><a href="https://www.itu.int/rec/T-REC-G.671/en" rel="noopener noreferrer" target="_blank">ITU-T G.671——光器件与子系统特性</a></li></ul></section>
 <section class="content-section" id="history"><div class="history-head"><div><p class="eyebrow">PROJECT RECORDS</p><h2>历史记录</h2></div><button class="text-button" id="clearHistoryBtn">清空记录</button></div><div class="history-list" id="historyList"></div></section>
-<section class="content-section" id="related"><p class="eyebrow">RELATED TOOLS</p><h2>相关工程工具</h2><div class="related-grid">
-<a href="../../fiber-loss/zh/" style="display:block"><strong>光纤链路损耗计算器</strong><p>计算光纤和无源器件损耗。</p></a>
-<a href="../../optical-power-budget/zh/" style="display:block"><strong>光功率预算计算器</strong><p>验证发送、接收和ODN预算。</p></a>
-<a href="../../onu-rx-power/zh/" style="display:block"><strong>ONU接收光功率诊断</strong><p>诊断弱光和过载状态。</p></a>
-</div></section>
 <aside aria-label="广告" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">广告</div><div class="ad-body"></div></aside>
+<!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="otdr-event" data-primary-workflow="optical-troubleshooting">
+<div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
+<div class="nel-workflow-context"><div><span>当前流程</span><strong>光网络故障定位工作流</strong><p>从 ONU 实测接收光功率入手，定位异常事件，再与设计损耗和预算进行交叉验证。</p></div><div class="nel-workflow-step"><strong>步骤 2 / 4</strong><div class="nel-workflow-progress" aria-label="步骤 2 / 4"><span style="width:50%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/onu-rx-power/zh/"><span class="nel-tool-graph-label">上一步</span><strong>ONU接收光功率诊断</strong><span>根据实测光功率、灵敏度和过载门限判断正常、弱光、过载或疑似无光。</span></a><a class="nel-tool-graph-card" href="/tools/fiber-loss/zh/"><span class="nel-tool-graph-label">下一步</span><strong>光纤链路损耗计算器</strong><span>计算光纤、熔接、连接器、分光器及工程余量，输出物理损耗与设计损耗。</span></a></div>
+<h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/fiber-loss/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>光纤链路损耗计算器</strong><span>计算光纤、熔接、连接器、分光器及工程余量，输出物理损耗与设计损耗。</span></a><a class="nel-tool-graph-card" href="/tools/onu-rx-power/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>ONU接收光功率诊断</strong><span>根据实测光功率、灵敏度和过载门限判断正常、弱光、过载或疑似无光。</span></a><a class="nel-tool-graph-card" href="/tools/optical-power-budget/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>光功率预算计算器</strong><span>结合发送功率、接收灵敏度、光学代价和ODN损耗验证完整光链路预算。</span></a></div><div class="nel-workflow-memberships"><span>参与工作流</span><span class="nel-workflow-chip">光网络故障定位工作流</span></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">

@@ -14,7 +14,7 @@
 <script defer src="/data/seo-config.js"></script>
 <script defer src="/assets/js/seo-engine.js"></script>
 <script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么PPPoE通常是1492？","acceptedAnswer":{"@type":"Answer","text":"1500字节以太网载荷扣除8字节PPPoE和PPP协议开销后剩1492字节。"}},{"@type":"Question","name":"VLAN是否一定要扣减4字节MTU？","acceptedAnswer":{"@type":"Answer","text":"不一定。多数设备可支持略大的标签帧并保持IP MTU为1500；只有物理帧长不能扩展时才使用严格扣减模式。"}},{"@type":"Question","name":"为什么IPsec是估算值？","acceptedAnswer":{"@type":"Answer","text":"ESP开销受外层IP、NAT-T、IV、认证标签和可变填充影响，应核对实际算法套件和设备实现。"}},{"@type":"Question","name":"IPv6 MTU 1500时TCP MSS是多少？","acceptedAnswer":{"@type":"Answer","text":"仅按固定头计算：1500减40字节IPv6头，再减20字节TCP头，得到1440字节。"}},{"@type":"Question","name":"Ping能否完全证明路径MTU？","acceptedAnswer":{"@type":"Answer","text":"Ping有参考价值但不是绝对结论；ICMP过滤、ECMP、隧道和非对称路由都可能影响结果，应结合PMTUD、抓包和设备计数器。"}},{"@type":"Question","name":"IPv6 MTU低于1280意味着什么？","acceptedAnswer":{"@type":"Answer","text":"IPv6规定1280字节为最小链路MTU；低于该值需要下层分片重组或适配，应重点复核。"}}]}</script>
-<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="../../../assets/css/tool-layout-v1.9.9-02.css?v=1.9.9-02"><link rel="stylesheet" href="/assets/css/tool-design-system-v1.9.9-03.css?v=74eed43d191e">
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="../../../assets/css/tool-layout-v1.9.9-02.css?v=1.9.9-02"><link rel="stylesheet" href="/assets/css/tool-design-system-v1.9.9-03.css?v=fd302ec2d73d">
 
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
@@ -31,7 +31,7 @@
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../../assets/js/site.js?v=af1b8909e5b4"></script>
+<script defer src="../../../assets/js/site.js?v=5c6907a4fe26"></script>
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head><body>
 <a class="skip" href="#calculator">跳到计算器</a><noscript><div class="noscript">本工具需要启用JavaScript。</div></noscript>
@@ -122,10 +122,14 @@
 </div></section>
 <section class="content-section" id="faq"><p class="eyebrow">FAQ</p><h2>常见问题</h2><div class="faq-grid"><details><summary>为什么PPPoE通常是1492？</summary><p>1500字节以太网载荷扣除8字节PPPoE和PPP协议开销后剩1492字节。</p></details><details><summary>VLAN是否一定要扣减4字节MTU？</summary><p>不一定。多数设备可支持略大的标签帧并保持IP MTU为1500；只有物理帧长不能扩展时才使用严格扣减模式。</p></details><details><summary>为什么IPsec是估算值？</summary><p>ESP开销受外层IP、NAT-T、IV、认证标签和可变填充影响，应核对实际算法套件和设备实现。</p></details><details><summary>IPv6 MTU 1500时TCP MSS是多少？</summary><p>仅按固定头计算：1500减40字节IPv6头，再减20字节TCP头，得到1440字节。</p></details><details><summary>Ping能否完全证明路径MTU？</summary><p>Ping有参考价值但不是绝对结论；ICMP过滤、ECMP、隧道和非对称路由都可能影响结果，应结合PMTUD、抓包和设备计数器。</p></details><details><summary>IPv6 MTU低于1280意味着什么？</summary><p>IPv6规定1280字节为最小链路MTU；低于该值需要下层分片重组或适配，应重点复核。</p></details></div></section>
 <section class="content-section" id="history"><div class="history-head"><div><p class="eyebrow">PROJECT RECORDS</p><h2>历史记录</h2></div><button class="text-button" id="clearHistoryBtn">清空记录</button></div><div class="history-list" id="historyList"></div></section>
-<section class="content-section" id="related"><p class="eyebrow">RELATED TOOLS</p><h2>相关工程工具</h2><div class="related-grid">
-<a href="../../otdr-event/zh/"><strong>OTDR事件分析工具</strong><p>诊断光纤事件和维护优先级。</p></a><a href="../../pon-distance/zh/"><strong>PON最大传输距离计算器</strong><p>计算光预算与系统距离。</p></a><a href="../../fiber-loss/zh/"><strong>光纤链路损耗计算器</strong><p>计算详细无源光链路损耗。</p></a>
-</div></section>
 <aside aria-label="广告" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">广告</div><div class="ad-body"></div></aside>
+<!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="mtu-calculator" data-primary-workflow="enterprise-lan-ip-planning">
+<div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
+<div class="nel-workflow-context"><div><span>当前流程</span><strong>企业 LAN 与 IP 规划工作流</strong><p>把地址规划、VLAN 容量、MTU、上联、光模块、访问策略和 DNS 行为串成完整局域网设计流程。</p></div><div class="nel-workflow-step"><strong>步骤 4 / 9</strong><div class="nel-workflow-progress" aria-label="步骤 4 / 9"><span style="width:44%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/vlan-ip-capacity-planner/zh/"><span class="nel-tool-graph-label">上一步</span><strong>VLAN与IP子网容量规划器</strong><span>规划VLAN数量、IPv4前缀、地址容量与扩容余量。</span></a><a class="nel-tool-graph-card" href="/tools/bandwidth-calculator/zh/"><span class="nel-tool-graph-label">下一步</span><strong>带宽与传输时间计算器</strong><span>计算文件传输时间、所需链路速率、并发用户容量和持续速率对应的数据量。</span></a></div>
+<h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/bandwidth-calculator/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>带宽与传输时间计算器</strong><span>计算文件传输时间、所需链路速率、并发用户容量和持续速率对应的数据量。</span></a><a class="nel-tool-graph-card" href="/tools/ipv6-nat-planner/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>IPv6与NAT规划计算器</strong><span>规划IPv6前缀、NAT44容量、CGNAT确定性端口块、NAT64及DNS64地址。</span></a><a class="nel-tool-graph-card" href="/tools/acl-generator-validator/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>多厂商ACL生成与验证工具</strong><span>生成、转换并验证Cisco IOS、华为VRP、H3C Comware和Juniper Junos IPv4 ACL。</span></a></div><div class="nel-workflow-memberships"><span>参与工作流</span><span class="nel-workflow-chip">企业 LAN 与 IP 规划工作流</span></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">

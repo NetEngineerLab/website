@@ -1,0 +1,452 @@
+[
+  {
+    "id": "optical-link-design",
+    "schemaVersion": "2.1.0",
+    "status": "active",
+    "domain": "optical",
+    "primary": true,
+    "translations": {
+      "en": {
+        "name": "Optical Link Design Workflow",
+        "description": "Build an optical link from physical loss assumptions through split planning, power budget and maximum reach verification."
+      },
+      "zh": {
+        "name": "光链路设计工作流",
+        "description": "从物理损耗、分光规划到光功率预算和最大距离验证，完成一条光链路的设计闭环。"
+      }
+    },
+    "steps": [
+      {
+        "order": 1,
+        "toolId": "fiber-loss",
+        "translations": {
+          "en": {
+            "action": "Model physical and engineering loss"
+          },
+          "zh": {
+            "action": "计算物理损耗与工程余量"
+          }
+        }
+      },
+      {
+        "order": 2,
+        "toolId": "pon-splitter-loss",
+        "translations": {
+          "en": {
+            "action": "Plan splitter stages and insertion loss"
+          },
+          "zh": {
+            "action": "规划分光级联与插入损耗"
+          }
+        }
+      },
+      {
+        "order": 3,
+        "toolId": "optical-power-budget",
+        "translations": {
+          "en": {
+            "action": "Validate end-to-end optical margin"
+          },
+          "zh": {
+            "action": "验证端到端光功率余量"
+          }
+        }
+      },
+      {
+        "order": 4,
+        "toolId": "pon-distance",
+        "translations": {
+          "en": {
+            "action": "Check effective system reach"
+          },
+          "zh": {
+            "action": "核验系统有效传输距离"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "optical-troubleshooting",
+    "schemaVersion": "2.1.0",
+    "status": "active",
+    "domain": "operations",
+    "primary": true,
+    "translations": {
+      "en": {
+        "name": "Optical Fault Isolation Workflow",
+        "description": "Start from measured ONU receive power, locate abnormal events, then compare field loss with the design budget."
+      },
+      "zh": {
+        "name": "光网络故障定位工作流",
+        "description": "从 ONU 实测接收光功率入手，定位异常事件，再与设计损耗和预算进行交叉验证。"
+      }
+    },
+    "steps": [
+      {
+        "order": 1,
+        "toolId": "onu-rx-power",
+        "translations": {
+          "en": {
+            "action": "Classify measured receive-power health"
+          },
+          "zh": {
+            "action": "判断实测接收光功率健康状态"
+          }
+        }
+      },
+      {
+        "order": 2,
+        "toolId": "otdr-event",
+        "translations": {
+          "en": {
+            "action": "Locate and classify optical events"
+          },
+          "zh": {
+            "action": "定位并分类 OTDR 光事件"
+          }
+        }
+      },
+      {
+        "order": 3,
+        "toolId": "fiber-loss",
+        "translations": {
+          "en": {
+            "action": "Reconstruct expected path loss"
+          },
+          "zh": {
+            "action": "重建链路理论损耗"
+          }
+        }
+      },
+      {
+        "order": 4,
+        "toolId": "optical-power-budget",
+        "translations": {
+          "en": {
+            "action": "Confirm remaining optical margin"
+          },
+          "zh": {
+            "action": "确认剩余光功率余量"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "enterprise-lan-ip-planning",
+    "schemaVersion": "2.1.0",
+    "status": "active",
+    "domain": "ip-networking",
+    "primary": true,
+    "translations": {
+      "en": {
+        "name": "Enterprise LAN & IP Planning Workflow",
+        "description": "Plan addressing, VLAN capacity, packet size, uplinks, optics, access policy and DNS behavior as one LAN design sequence."
+      },
+      "zh": {
+        "name": "企业 LAN 与 IP 规划工作流",
+        "description": "把地址规划、VLAN 容量、MTU、上联、光模块、访问策略和 DNS 行为串成完整局域网设计流程。"
+      }
+    },
+    "steps": [
+      {
+        "order": 1,
+        "toolId": "subnet-calculator",
+        "translations": {
+          "en": {
+            "action": "Define IPv4 subnet boundaries"
+          },
+          "zh": {
+            "action": "确定 IPv4 子网边界"
+          }
+        }
+      },
+      {
+        "order": 2,
+        "toolId": "ipv6-nat-planner",
+        "translations": {
+          "en": {
+            "action": "Plan IPv6 prefixes and translation boundaries"
+          },
+          "zh": {
+            "action": "规划 IPv6 前缀与地址转换边界"
+          }
+        }
+      },
+      {
+        "order": 3,
+        "toolId": "vlan-ip-capacity-planner",
+        "translations": {
+          "en": {
+            "action": "Size VLAN and address capacity"
+          },
+          "zh": {
+            "action": "核算 VLAN 与地址容量"
+          }
+        }
+      },
+      {
+        "order": 4,
+        "toolId": "mtu-calculator",
+        "translations": {
+          "en": {
+            "action": "Validate MTU and MSS"
+          },
+          "zh": {
+            "action": "验证 MTU 与 MSS"
+          }
+        }
+      },
+      {
+        "order": 5,
+        "toolId": "bandwidth-calculator",
+        "translations": {
+          "en": {
+            "action": "Estimate traffic transfer requirements"
+          },
+          "zh": {
+            "action": "估算带宽与传输时间需求"
+          }
+        }
+      },
+      {
+        "order": 6,
+        "toolId": "switch-uplink-oversubscription-calculator",
+        "translations": {
+          "en": {
+            "action": "Size uplink bandwidth and oversubscription"
+          },
+          "zh": {
+            "action": "核算交换机上联带宽与超售比"
+          }
+        }
+      },
+      {
+        "order": 7,
+        "toolId": "sfp-qsfp-compatibility-calculator",
+        "translations": {
+          "en": {
+            "action": "Validate uplink optic compatibility"
+          },
+          "zh": {
+            "action": "验证上联光模块兼容性"
+          }
+        }
+      },
+      {
+        "order": 8,
+        "toolId": "acl-generator-validator",
+        "translations": {
+          "en": {
+            "action": "Generate and validate access policy"
+          },
+          "zh": {
+            "action": "生成并验证访问控制策略"
+          }
+        }
+      },
+      {
+        "order": 9,
+        "toolId": "dns-ttl-propagation-calculator",
+        "translations": {
+          "en": {
+            "action": "Plan DNS TTL and propagation behavior"
+          },
+          "zh": {
+            "action": "规划 DNS TTL 与传播时间"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "poe-rack-power-design",
+    "schemaVersion": "2.1.0",
+    "status": "active",
+    "domain": "power-datacenter",
+    "primary": true,
+    "translations": {
+      "en": {
+        "name": "PoE & Rack Power Design Workflow",
+        "description": "Verify PoE source capacity, cable voltage delivery, rack power and cooling, then estimate telecom battery backup runtime."
+      },
+      "zh": {
+        "name": "PoE 与机架供电设计工作流",
+        "description": "依次验证 PoE 供电容量、线缆压降、机架功耗与制冷，并估算通信电池后备时长。"
+      }
+    },
+    "steps": [
+      {
+        "order": 1,
+        "toolId": "poe-power-budget-calculator",
+        "translations": {
+          "en": {
+            "action": "Check PSE power capacity"
+          },
+          "zh": {
+            "action": "核验 PSE 供电容量"
+          }
+        }
+      },
+      {
+        "order": 2,
+        "toolId": "poe-voltage-drop-calculator",
+        "translations": {
+          "en": {
+            "action": "Verify delivered voltage at cable length"
+          },
+          "zh": {
+            "action": "验证线缆长度下的末端供电电压"
+          }
+        }
+      },
+      {
+        "order": 3,
+        "toolId": "network-rack-power-cooling-calculator",
+        "translations": {
+          "en": {
+            "action": "Size rack power and cooling load"
+          },
+          "zh": {
+            "action": "核算机架功耗与制冷负荷"
+          }
+        }
+      },
+      {
+        "order": 4,
+        "toolId": "48v-battery-runtime",
+        "translations": {
+          "en": {
+            "action": "Estimate -48V backup runtime"
+          },
+          "zh": {
+            "action": "估算 -48V 后备电池续航"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "wireless-access-deployment",
+    "schemaVersion": "2.1.0",
+    "status": "active",
+    "domain": "wireless",
+    "primary": true,
+    "translations": {
+      "en": {
+        "name": "Wireless Access Deployment Workflow",
+        "description": "Estimate Wi-Fi coverage and client capacity, verify RF link margin, then validate PoE delivery and access-switch uplink capacity."
+      },
+      "zh": {
+        "name": "无线接入部署工作流",
+        "description": "先估算 Wi-Fi 覆盖与容量，再验证无线链路余量，最后核验 AP 的 PoE 供电和接入交换机上联能力。"
+      }
+    },
+    "steps": [
+      {
+        "order": 1,
+        "toolId": "wifi-coverage-capacity-planner",
+        "translations": {
+          "en": {
+            "action": "Estimate AP count, coverage and client capacity"
+          },
+          "zh": {
+            "action": "估算 AP 数量、覆盖与终端容量"
+          }
+        }
+      },
+      {
+        "order": 2,
+        "toolId": "wireless-link-budget-calculator",
+        "translations": {
+          "en": {
+            "action": "Validate RF link budget and fade margin"
+          },
+          "zh": {
+            "action": "验证无线链路预算与衰落余量"
+          }
+        }
+      },
+      {
+        "order": 3,
+        "toolId": "poe-power-budget-calculator",
+        "translations": {
+          "en": {
+            "action": "Check aggregate AP PoE demand"
+          },
+          "zh": {
+            "action": "核验 AP 总体 PoE 功耗需求"
+          }
+        }
+      },
+      {
+        "order": 4,
+        "toolId": "poe-voltage-drop-calculator",
+        "translations": {
+          "en": {
+            "action": "Check long-cable AP voltage delivery"
+          },
+          "zh": {
+            "action": "检查长距离网线的 AP 供电电压"
+          }
+        }
+      },
+      {
+        "order": 5,
+        "toolId": "switch-uplink-oversubscription-calculator",
+        "translations": {
+          "en": {
+            "action": "Validate access-switch uplink headroom"
+          },
+          "zh": {
+            "action": "验证接入交换机上联余量"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "network-change-automation",
+    "schemaVersion": "2.1.0",
+    "status": "active",
+    "domain": "operations",
+    "primary": true,
+    "translations": {
+      "en": {
+        "name": "Network Change Automation Workflow",
+        "description": "Validate policy intent, then turn current device state and desired LAG/VLAN changes into a risk-scored, verifiable and reversible MOP."
+      },
+      "zh": {
+        "name": "网络变更自动化工作流",
+        "description": "先验证访问策略，再把设备当前状态与LAG/VLAN目标变更转化为带风险评分、验证步骤和回退方案的MOP。"
+      }
+    },
+    "steps": [
+      {
+        "order": 1,
+        "toolId": "acl-generator-validator",
+        "translations": {
+          "en": {
+            "action": "Validate access-policy configuration before change"
+          },
+          "zh": {
+            "action": "变更前验证访问控制策略"
+          }
+        }
+      },
+      {
+        "order": 2,
+        "toolId": "network-change-planner-mop-generator",
+        "translations": {
+          "en": {
+            "action": "Plan, risk-score, execute and verify the network change"
+          },
+          "zh": {
+            "action": "规划、评估、执行并验证网络变更"
+          }
+        }
+      }
+    ]
+  }
+]

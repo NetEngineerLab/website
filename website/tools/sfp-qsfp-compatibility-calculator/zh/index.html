@@ -14,7 +14,7 @@
 <script defer src="/data/seo-config.js"></script>
 <script defer src="/assets/js/seo-engine.js"></script>
 <script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"10G SFP+可以连接25G SFP28吗？","acceptedAnswer":{"@type":"Answer","text":"不同线速率不能直接互通。只有两端设备和模块都运行同一个受支持速率时才可能工作，例如支持向下兼容的SFP28端口统一运行10G。"}},{"@type":"Question","name":"单模和多模光模块可以互通吗？","acceptedAnswer":{"@type":"Answer","text":"不可以。两端光模块、光纤类型和波长方案必须构成受支持的完整链路。"}},{"@type":"Question","name":"为什么还要检查接收过载？","acceptedAnswer":{"@type":"Answer","text":"短链路的最高发射功率可能超过接收机最大输入。本工具使用最高Tx分别检查两个方向；过载余量为负时可能需要增加光衰减器。"}},{"@type":"Question","name":"显示“通过”是否代表交换机一定识别模块？","acceptedAnswer":{"@type":"Answer","text":"不代表。厂商编码与主机固件策略不属于光功率预算，仍需在交换机或网卡兼容列表中核对模块料号。"}},{"@type":"Question","name":"QSFP-DD端口可以安装QSFP28模块吗？","acceptedAnswer":{"@type":"Answer","text":"只有主机厂商明确支持向下兼容，并将端口配置为对应速率和通道模式时才可以。机械尺寸可插入不代表固件、FEC、拆分或光接口一定兼容。"}}]}</script>
-<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="../../../assets/css/tool-layout-v1.9.9-02.css?v=1.9.9-02"><link rel="stylesheet" href="/assets/css/tool-design-system-v1.9.9-03.css?v=74eed43d191e">
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="../../../assets/css/tool-layout-v1.9.9-02.css?v=1.9.9-02"><link rel="stylesheet" href="/assets/css/tool-design-system-v1.9.9-03.css?v=fd302ec2d73d">
 
 <meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 
@@ -33,7 +33,7 @@
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../../assets/js/site.js?v=af1b8909e5b4"></script>
+<script defer src="../../../assets/js/site.js?v=5c6907a4fe26"></script>
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head>
 <body>
@@ -76,6 +76,13 @@
 <div class="faq"><details><summary>10G SFP+可以连接25G SFP28吗？</summary><p>不同线速率不能直接互通。只有两端设备和模块都运行同一个受支持速率时才可能工作，例如支持向下兼容的SFP28端口统一运行10G。</p></details><details><summary>单模和多模光模块可以互通吗？</summary><p>不可以。两端光模块、光纤类型和波长方案必须构成受支持的完整链路。</p></details><details><summary>为什么还要检查接收过载？</summary><p>短链路的最高发射功率可能超过接收机最大输入。本工具使用最高Tx分别检查两个方向；过载余量为负时可能需要增加光衰减器。</p></details><details><summary>显示“通过”是否代表交换机一定识别模块？</summary><p>不代表。厂商编码与主机固件策略不属于光功率预算，仍需在交换机或网卡兼容列表中核对模块料号。</p></details><details><summary>QSFP-DD端口可以安装QSFP28模块吗？</summary><p>只有主机厂商明确支持向下兼容，并将端口配置为对应速率和通道模式时才可以。机械尺寸可插入不代表固件、FEC、拆分或光接口一定兼容。</p></details></div>
 <h2>SFP与QSFP工程参考资料</h2><ul><li><a href="https://members.snia.org/document/dl/25916">SNIA SFF-8472 SFP+管理接口规范</a></li><li><a href="https://www.snia.org/node/19611">SNIA SFF QSFP可插拔方案与规范映射</a></li><li><a href="https://www.cisco.com/c/en/us/products/collateral/interfaces-modules/gigabit-ethernet-gbic-sfp-modules/datasheet-c78-366584.html">Cisco千兆SFP模块与平台支持资料</a></li><li><a href="https://www.juniper.net/documentation/us/en/hardware/800g-optics-cables-guide/optics/topics/concept/800g-optics-faqs.html">Juniper光模块封装与向下兼容FAQ</a></li></ul><p>本工具不查询厂商兼容数据库，也不验证模块EEPROM编码、主机固件、FEC、拆分映射、温度等级、功率等级、BiDi配对或WDM通道方案。正式部署必须核对两端准确料号。内容复核：2026-08-31。</p>
 <h2>相关光通信工程工具</h2><div class="related"><a href="../../optical-power-budget/zh/">光功率预算计算器</a><a href="../../fiber-loss/zh/">光纤链路损耗计算器</a><a href="../../otdr-event/zh/">OTDR事件分析工具</a></div></section>
+<!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="sfp-qsfp-compatibility-calculator" data-primary-workflow="enterprise-lan-ip-planning">
+<div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
+<div class="nel-workflow-context"><div><span>当前流程</span><strong>企业 LAN 与 IP 规划工作流</strong><p>把地址规划、VLAN 容量、MTU、上联、光模块、访问策略和 DNS 行为串成完整局域网设计流程。</p></div><div class="nel-workflow-step"><strong>步骤 7 / 9</strong><div class="nel-workflow-progress" aria-label="步骤 7 / 9"><span style="width:78%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/switch-uplink-oversubscription-calculator/zh/"><span class="nel-tool-graph-label">上一步</span><strong>交换机上联带宽与超售比计算器</strong><span>根据接入端口、利用率、并发率与冗余方式规划交换机上联带宽。</span></a><a class="nel-tool-graph-card" href="/tools/acl-generator-validator/zh/"><span class="nel-tool-graph-label">下一步</span><strong>多厂商ACL生成与验证工具</strong><span>生成、转换并验证Cisco IOS、华为VRP、H3C Comware和Juniper Junos IPv4 ACL。</span></a></div>
+<h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/optical-power-budget/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>光功率预算计算器</strong><span>结合发送功率、接收灵敏度、光学代价和ODN损耗验证完整光链路预算。</span></a><a class="nel-tool-graph-card" href="/tools/fiber-loss/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>光纤链路损耗计算器</strong><span>计算光纤、熔接、连接器、分光器及工程余量，输出物理损耗与设计损耗。</span></a><a class="nel-tool-graph-card" href="/tools/switch-uplink-oversubscription-calculator/zh/"><span class="nel-tool-graph-label">相关工具</span><strong>交换机上联带宽与超售比计算器</strong><span>根据接入端口、利用率、并发率与冗余方式规划交换机上联带宽。</span></a></div><div class="nel-workflow-memberships"><span>参与工作流</span><span class="nel-workflow-chip">企业 LAN 与 IP 规划工作流</span></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">

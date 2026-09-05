@@ -23,7 +23,8 @@ const calculationOutputs={
   "vlan-ip-capacity-planner":["#status","—"],
   "switch-uplink-oversubscription-calculator":["#status","—"],
   "dns-ttl-propagation-calculator":["#status","—"],
-  "acl-generator-validator":["#score","—"]
+  "acl-generator-validator":["#score","—"],
+  "network-change-planner-mop-generator":["#riskCard .metric b","—"]
 };
 const contentContracts={
   "fiber-loss":{
@@ -220,7 +221,7 @@ test.describe("all configured tools",()=>{
         expect(engineLoaded).toBe(true);
         const calculationOutput=calculationOutputs[tool.id];
         expect(calculationOutput,`${tool.id} must declare a calculation output`).toBeTruthy();
-        const calculate=page.locator("#calculateBtn, #calculate, #analyzeBtn, #validate, button.primary-action, button[type=submit]").first();
+        const calculate=page.locator("#calculateBtn, #calculate, #analyzeBtn, #validate, #planBtn, button.primary-action, button[type=submit]").first();
         if(await calculate.count())await calculate.click();
         const output=page.locator(calculationOutput[0]);
         await expect(output).toBeVisible();

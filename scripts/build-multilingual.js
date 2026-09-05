@@ -84,6 +84,10 @@ function renderToolCards(currentInfo,locale,mode){
    </article>`;
  }).join("");
 }
+function updateToolCountMarkers(html){
+ const count=activeTools.length;
+ return html.replace(/(<(?:strong|span)\b[^>]*\bdata-tool-count(?:\s*=\s*(?:"[^"]*"|\'[^\']*\'|[^\s>]+))?[^>]*>)[\s\S]*?(<\/(?:strong|span)>)/gi,(whole,open,close)=>`${open}${count}${close}`);
+}
 function prerenderToolGrid(html,currentInfo,locale){
  const grid=html.match(/<div\b(?=[^>]*\bdata-tool-grid(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+))?)[^>]*>/i);
  if(!grid)return html;
@@ -584,6 +588,7 @@ function build(){
   html=injectSiteShell(html,record.rel,record.info);
   html=replaceLanguageMenu(html,menuMarkup(record.info,group));
   if(record.info.kind==="home"||record.info.kind==="toolsDirectory")html=prerenderToolGrid(html,record.info,locale);
+  html=updateToolCountMarkers(html);
   if(record.info.kind==="toolsDirectory")html=ensureToolDirectoryItemList(html,locale);
   html=normalizeBrandLogoAlt(html);
   html=removeHeadLinks(removeNelMeta(html));
