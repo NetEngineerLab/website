@@ -282,6 +282,15 @@ body > main.nel-tool-grid > .analysis-panel {
   box-shadow: var(--nel-shadow) !important;
 }
 
+/* Keep two-column tools readable at tablet/zoomed desktop widths. The
+ * higher-specificity base rule above otherwise overrides tool-layout's
+ * 1100px stack breakpoint and lets the result card run into the viewport. */
+@media (max-width: 1100px) {
+  body > main.nel-tool-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
 body > main h2,
 body > main .section-title h2 {
   margin-top: 0;

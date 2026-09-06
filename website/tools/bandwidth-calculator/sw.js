@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-bandwidth-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-196c09f859ce-343393810598";
+const CACHE = "nel-bandwidth-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-8e1fe9e410ff-2ec4c0f5cf97";
 const CORE = [
   "./index.html",
   "./",
@@ -16,7 +16,7 @@ const CORE = [
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=1b428f96cadc",
   "../../assets/css/site-shell.css?v=f34b1ffff9cc",
-  "../../assets/css/tool-design-system-v1.9.9-03.css?v=c34b46acb50b",
+  "../../assets/css/tool-design-system-v1.9.9-03.css?v=cef0a56c22e9",
   "../../assets/js/analytics.js?v=1156b7864023",
   "../../assets/js/adsense.js?v=f075c80ccc75",
   "../../assets/js/site.js?v=5c6907a4fe26",
