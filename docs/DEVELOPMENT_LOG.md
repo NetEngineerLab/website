@@ -20,14 +20,14 @@
 
 ### 2026-09-06 — 全站链接去下划线与共享 CSS 固定文件名
 
-- 状态：`VALIDATOR PASS`（本地实现已完成，待推送后进行线上验收）。
+- 状态：`ONLINE PASS`。
 - 目标：所有页面链接默认、hover、visited、active、focus-visible 状态不显示下划线；共享 CSS 文件名不再携带版本号。
 - 实现：新增全局 `a` 链接无下划线规则；清理 8 个 CSS 文件中的显式 `text-decoration: underline`；保留 `outline` 焦点可见性，不以去下划线牺牲键盘可访问性。
 - 文件名规范：`tool-design-system.css`、`tool-layout.css`、`home-mobile-layout.css`、`mobile-branding.css`；已更新 96 个页面、脚本、Service Worker 引用，旧版本 CSS 名称引用为 0。HTML 查询字符串哈希继续保留，仅用于缓存失效，不改变固定文件名。
 - 本地验证：`npm run build:i18n` PASS；`npm run verify` PASS；58 个页面、3023 个链接、22 个工具引擎、SEO/GEO、生产模拟全部 PASS；`git diff --check` PASS。
 - 独立验证：2 号验证官检查 58/58 页面，默认及焦点态链接均无下划线，旧 CSS 引用为 0，结论 `PASS`。
-- 实现提交：待提交。
-- 线上验收：待推送后验证正式站 CSS 与页面。
+- 实现提交：`a97f22c`。
+- 线上验收：`https://netengineerlab.com/tools/subnet-calculator/` 已加载 `mobile-branding.css`、`tool-layout.css`、`tool-design-system.css`、`site-shell.css`；4 个线上 CSS 的显式下划线声明均为 0，旧版 CSS 引用为 0。
 
 ### 2026-09-01 — V2.0 SEO/GEO 页面架构适配冻结
 
