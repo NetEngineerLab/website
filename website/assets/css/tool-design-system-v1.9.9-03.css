@@ -251,6 +251,14 @@ body > main.calculator-shell {
   background: transparent !important;
 }
 
+/* Standalone mode controls share the calculator's outer edges. */
+body > .mode-tabs {
+  width: min(calc(100% - (var(--nel-gutter) * 2)), var(--nel-max)) !important;
+  max-width: var(--nel-max) !important;
+  margin: 20px auto 0 !important;
+  padding: 0 !important;
+}
+
 body > main.nel-tool-grid {
   display: grid !important;
   grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr) !important;
@@ -344,6 +352,10 @@ body > section#related {
   width: min(calc(100% - (var(--nel-gutter) * 2)), var(--nel-max)) !important;
   max-width: var(--nel-max) !important;
   margin: 26px auto 0 !important;
+  /* The shared width already provides the page gutter. Legacy section
+     padding otherwise indents headings and cards relative to the calculator. */
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 .content > .grid,
@@ -359,6 +371,23 @@ body > section#related {
   border: 1px solid var(--nel-line) !important;
   border-radius: 18px !important;
   background: #fff !important;
+}
+
+/* ACL explanatory cards need their own layout and internal spacing. */
+main.acl-shell + .content > .grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+main.acl-shell + .content > .grid > article {
+  min-width: 0;
+  padding: 24px;
+  overflow-wrap: anywhere;
+}
+main.acl-shell + .content > .grid > article > h3 { margin: 0 0 12px; }
+main.acl-shell + .content > .grid > article > p { margin: 0; line-height: 1.65; }
+@media (max-width: 760px) {
+  main.acl-shell + .content > .grid { grid-template-columns: minmax(0, 1fr); }
+  main.acl-shell + .content > .grid > article { padding: 20px; }
 }
 
 .content h2,

@@ -87,11 +87,28 @@
   "preauthorizationId": "pa-<64 lowercase hex>",
   "sourceId": "source-<same 64 lowercase hex as preauthorization>",
   "finalSourceUrl": "https://www.rfc-editor.org/rfc/rfc6933.txt",
+  "networkHops": [
+    {
+      "position": 1,
+      "preauthorizationId": "pa-<64 lowercase hex for this hop>",
+      "requestUrl": "https://www.rfc-editor.org/rfc/rfc6933.txt",
+      "networkProtocol": "http/1.1",
+      "resolvedAt": "2026-09-01T00:00:00Z",
+      "answerAddresses": ["<sorted canonical public IPv4/IPv6>"],
+      "peerAddress": "<canonical address from connected socket>",
+      "httpStatus": 200,
+      "location": null,
+      "responseHeaderEvidenceSha256": "<64 lowercase hex>"
+    }
+  ],
   "retrievedAt": "2026-09-01T00:00:00Z",
   "contentSha256": "<64 lowercase hex>",
   "contentBytes": "<positive integer measured from response body>",
   "httpStatus": 200,
-  "responseContentType": "text/plain"
+  "responseContentType": "text/plain",
+  "responseContentEncoding": "identity",
+  "responseTransferEncoding": "none|chunked",
+  "declaredContentLength": "<non-negative integer or null>"
 }
 ```
 
@@ -133,7 +150,13 @@ RFC 6933 的官方发布日期精度是月份，因此记录为 `2013-05` / `mon
 
 ## 采集与发布门禁
 
-采集器必须先读取有效的 preauthorization，且请求 URL 与 `requestedSourceUrl` 精确匹配，才允许一次网络读取。默认禁用自动重定向；若业务上必须跟随，每一跳都必须是 HTTPS、命中该 source 的主机白名单、不得包含凭据、不得使用非默认端口，并在读取下一跳前获得独立 preauthorization；最终 URL 必须写入 acquisition。响应只能进入隔离暂存区并立即形成 acquisition/hash 记录。没有人工 redistribution review 或决定不是 `approved` 时，内容不得离开隔离区。解析器无网络、只读输入、独立临时输出，并施加文件大小、模块数、IMPORT 深度、AST 节点数、CPU 时间和内存上限。
+采集器必须先读取有效的 preauthorization，且请求 URL 与 `requestedSourceUrl` 精确匹配，才允许一次网络读取。请求必须显式使用 `Accept-Encoding: identity`；响应存在非 identity Content-Encoding、客户端发生透明解压或无法证明 hash 对应实际交给 staging 的原始实体字节时失败。必须清除 `HTTP_PROXY`、`HTTPS_PROXY`、`ALL_PROXY`、`NO_PROXY` 并禁止系统代理。每跳 DNS A/AAAA 答案先规范化：IPv4 使用无前导零十进制，IPv6 使用 RFC 5952 小写形式，IPv4-mapped IPv6 先还原并按 IPv4 分类；6to4、Teredo、NAT64 与其他 transition/embedded-address 范围一律拒绝。所有答案必须为公共可路由原生地址，拒绝 loopback、private、link-local、carrier-grade NAT、multicast、unspecified、文档保留地址和云 metadata 目标。经批准的地址集合固定到本次连接，TLS SNI/证书仍验证原 hostname；从 socket 取得的规范 `peerAddress` 必须属于该集合，连接前发现解析漂移即失败。
+
+每个请求/响应必须追加到 acquisition 的 `networkHops[]`，position 从 1 连续递增，整条链最多 4 hops（最多 3 次 redirect）、累计 raw response headers 不超过 32 KiB、从首次连接开始的 acquisition wall time 不超过 45 秒；任一全链上限超出立即终止并清理。每项保存本跳独立 preauthorizationId、精确 requestUrl、protocol、排序 DNS answers、resolvedAt、peer、status、原始 Location 或 null，以及 `responseHeaderEvidenceSha256`。该 hash 对 HTTP parser 接受前取得、保持出现顺序的 raw header name/value pairs 规范 bytes 计算，重复字段不会在 hash 前合并。默认只允许一个最终 200 hop；若业务上必须跟随重定向，每一跳都必须是 HTTPS、命中该 source 的主机白名单、不得包含凭据、不得使用非默认端口，并在下一请求前重新执行 DNS/网络检查与独立预授权。中间 hop 只允许批准的 3xx 与一个可解析 Location，不消费响应正文；下一 requestUrl 必须等于按 RFC URL resolution 得到的 Location 结果，`finalSourceUrl` 必须逐字节等于最后一项 requestUrl。缺跳、乱序、跨跳复用预授权或证据不一致均失败。
+
+顶层 `preauthorizationId` 必须等于 `networkHops[0].preauthorizationId`。`responseHeaderEvidenceSha256` 的规范 bytes 为按接收顺序排列的 `{nameRawAscii,valueRawAscii}` 数组执行 RFC 8785 JCS 的结果；字段名或值含控制字符/obs-fold、无法以严格 ASCII 表示或底层库不能在合并前提供每次出现项时失败。
+
+Phase 0 固定 HTTP/1.1。网络读取限制为：响应 header 总量不超过 16 KiB，连接 5 秒、首字节 10 秒、总时长 30 秒，最终响应实体最多 1 MiB。必须读取 raw headers 并拒绝重复或冲突 `Content-Length`、同时出现 `Transfer-Encoding` 与 `Content-Length`、非严格单值 `chunked` 的 transfer coding、chunk extension、任何 trailer、非法 framing，以及实收字节数与声明长度不一致。`responseTransferEncoding:none` 表示响应没有 Transfer-Encoding，并强制一个合法、未重复且不超限的 Content-Length；`chunked` 时 declaredContentLength 必须为 null。禁止 close-delimited 响应。每个 chunk 在写入私有 exclusive-create 临时文件前先计数，超过上限即中止连接并删除临时文件；单次 preauthorization 不自动重试。只有最终 hop 为 HTTP 200、允许的 text content type、identity content encoding、合法完整 framing、UTF-8/无 BOM、长度与 SHA-256 全部通过后才原子形成 acquisition。没有人工 redistribution review 或决定不是 `approved` 时，内容不得离开隔离区。解析器无网络、只读输入、独立临时输出，并施加文件大小、模块数、IMPORT 深度、AST 节点数、CPU 时间和内存上限。
 
 只有 `ALLOW_REGISTRY_DATA` 或已完成逐文件审核的 `CONDITIONAL_CODE_COMPONENT` 可以生成公开数据。`METADATA_LINK_ONLY` 只能生成不可还原原文的元数据页，并把下载动作指向官方来源。删除或许可撤回时，按稳定 Page Family ID 执行 `noindex`、`gone` 或同语种 redirect，且保留审计记录。
 
