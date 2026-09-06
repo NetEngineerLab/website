@@ -18,6 +18,17 @@
 
 ## 已完成批次
 
+### 2026-09-06 — 全站链接去下划线与共享 CSS 固定文件名
+
+- 状态：`VALIDATOR PASS`（本地实现已完成，待推送后进行线上验收）。
+- 目标：所有页面链接默认、hover、visited、active、focus-visible 状态不显示下划线；共享 CSS 文件名不再携带版本号。
+- 实现：新增全局 `a` 链接无下划线规则；清理 8 个 CSS 文件中的显式 `text-decoration: underline`；保留 `outline` 焦点可见性，不以去下划线牺牲键盘可访问性。
+- 文件名规范：`tool-design-system.css`、`tool-layout.css`、`home-mobile-layout.css`、`mobile-branding.css`；已更新 96 个页面、脚本、Service Worker 引用，旧版本 CSS 名称引用为 0。HTML 查询字符串哈希继续保留，仅用于缓存失效，不改变固定文件名。
+- 本地验证：`npm run build:i18n` PASS；`npm run verify` PASS；58 个页面、3023 个链接、22 个工具引擎、SEO/GEO、生产模拟全部 PASS；`git diff --check` PASS。
+- 独立验证：2 号验证官检查 58/58 页面，默认及焦点态链接均无下划线，旧 CSS 引用为 0，结论 `PASS`。
+- 实现提交：待提交。
+- 线上验收：待推送后验证正式站 CSS 与页面。
+
 ### 2026-09-01 — V2.0 SEO/GEO 页面架构适配冻结
 
 - 状态：`VALIDATOR PASS`（开发框架与规则文档更新；无页面、运行时代码、公开 URL 或正式站内容变更）。
@@ -420,7 +431,7 @@
 
 - 状态：`ONLINE PASS`。
 - 问题：高优先级共享网格规则覆盖 1100px 断点，浏览器缩放或平板 CSS 视口约 1024px 时仍保持双栏，导致结果卡和标签区域被裁切；用户截图所示页面属于此类。
-- 修复：在 `tool-design-system-v1.9.9-03.css` 增加高优先级 `max-width:1100px` 单栏规则；重新生成 44 个双语工具页 HTML 与 Service Worker 的 CSS 哈希引用。
+- 修复：在 `tool-design-system.css` 增加高优先级 `max-width:1100px` 单栏规则；重新生成 44 个双语工具页 HTML 与 Service Worker 的 CSS 哈希引用。
 - 验证：2 号验证官实测 44/44 页面在 1024px 无横向溢出、36 个网格页单栏；1280px 无溢出且恢复双栏；`npm run verify` 全量 PASS（58 页面、56 Sitemap URL、3023 链接、22 工具）。
 - 实现提交：`6efcd990812f3aac356a444ac8913b5ca2bbade7`，已推送 `origin/main`。
 - 线上验收：线上子网计算器 HTML 使用新 CSS 哈希 `cef0a56c22e9`，共享 CSS 已确认包含 `max-width:1100px` 单栏规则；Cloudflare/浏览器缓存已获得新资源版本。

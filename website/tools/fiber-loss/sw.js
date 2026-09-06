@@ -1,12 +1,12 @@
 "use strict";
-const CACHE = "nel-fiber-loss-locale-v1.9.9-04-p0-p1-correctness-consent-offline-8e1fe9e410ff-261a9a79aa24";
+const CACHE = "nel-fiber-loss-locale-v1.9.9-04-p0-p1-correctness-consent-offline-496b88001687-263b3dc96631";
 const CORE = [
   "./index.html",
   "./",
   "./zh/",
   "./offline.html",
   "./manifest.webmanifest",
-  "./css/style.css?v=e3e464bb9c10",
+  "./css/style.css?v=0a605f3e6840",
   "./js/app.js?v=8a119eac9104",
   "./js/engine.js",
   "./images/logo.svg",
@@ -14,8 +14,8 @@ const CORE = [
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=1b428f96cadc",
-  "../../assets/css/site-shell.css?v=f34b1ffff9cc",
-  "../../assets/css/tool-design-system-v1.9.9-03.css?v=cef0a56c22e9",
+  "../../assets/css/site-shell.css?v=58918fefbb35",
+  "../../assets/css/tool-design-system.css?v=b7969798cf78",
   "../../assets/js/analytics.js?v=1156b7864023",
   "../../assets/js/adsense.js?v=f075c80ccc75",
   "../../assets/js/site.js?v=5c6907a4fe26",

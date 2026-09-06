@@ -19,7 +19,7 @@ const sharedRuntimeAssets=[
   {sitePath:"assets/css/locale-menu.css",cachePath:"../../assets/css/locale-menu.css"},
   {sitePath:"assets/css/design-tokens.css",cachePath:"../../assets/css/design-tokens.css"},
   {sitePath:"assets/css/site-shell.css",cachePath:"../../assets/css/site-shell.css"},
-  {sitePath:"assets/css/tool-design-system-v1.9.9-03.css",cachePath:"../../assets/css/tool-design-system-v1.9.9-03.css"},
+  {sitePath:"assets/css/tool-design-system.css",cachePath:"../../assets/css/tool-design-system.css"},
   {sitePath:"assets/js/analytics.js",cachePath:"../../assets/js/analytics.js"},
   {sitePath:"assets/js/adsense.js",cachePath:"../../assets/js/adsense.js"},
   {sitePath:"assets/js/site.js",cachePath:"../../assets/js/site.js"},

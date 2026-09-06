@@ -6,17 +6,17 @@
 <meta content="专业PON最大传输距离计算器，根据发送功率、接收灵敏度、光纤衰减、多级分光器、熔接、连接器和工程余量计算光预算最大距离及系统有效距离。" name="description"/>
 <meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
 <meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="PON最大传输距离计算器" property="og:title"/><meta content="区分光预算最大距离与系统有效距离，并验证规划链路。" property="og:description"/><meta content="https://netengineerlab.com/tools/pon-distance/zh/" property="og:url"/><meta content="https://netengineerlab.com/tools/pon-distance/images/og-pon-maximum-distance.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
-<link href="../css/style.css?v=ea59b28754e0" rel="stylesheet"/>
+<link href="../css/style.css?v=0e0389eaa730" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"PON最大传输距离计算器","alternateName":"PON Maximum Distance Calculator","url":"https://netengineerlab.com/tools/pon-distance/zh/","applicationCategory":"UtilitiesApplication","applicationSubCategory":"PON Engineering Calculator","operatingSystem":"Any","softwareVersion":"1.0.0","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"工具中心","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"PON最大传输距离计算器","item":"https://netengineerlab.com/tools/pon-distance/zh/"}]}</script><meta content="NetEngineerLab" name="author"/>
 
 <link rel="stylesheet" href="/assets/css/cookie-consent.css?v=v180-hotfix03">
-<link rel="stylesheet" href="/assets/css/v178-final-mobile-branding.css?v=1.9.5-06">
+<link rel="stylesheet" href="/assets/css/mobile-branding.css?v=1.9.5-06">
 
 <script defer src="/data/seo-config.js"></script>
 <script defer src="/assets/js/seo-engine.js"></script>
 <script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么光预算能到30 km，结果却只显示20 km？","acceptedAnswer":{"@type":"Answer","text":"因为有效距离取光预算距离和系统距离上限中的较小值。即使光功率足够，OLT测距或网络配置也可能限制实际部署距离。"}},{"@type":"Question","name":"一级1:8加二级1:8为什么总分光比是1:64？","acceptedAnswer":{"@type":"Answer","text":"两级分支数量相乘，8×8=64；损耗则按两个分光器的实际插入损耗相加。"}},{"@type":"Question","name":"光预算最大距离是否等于可建设距离？","acceptedAnswer":{"@type":"Answer","text":"不一定。还要核对系统距离上限、光缆路由、差分距离、设备规格和企业规划标准。"}},{"@type":"Question","name":"规划距离显示“仅物理可达”是什么意思？","acceptedAnswer":{"@type":"Answer","text":"说明物理损耗还未超过接收灵敏度预算，但无法完整保留设定的工程余量，长期可靠性不足。"}},{"@type":"Question","name":"工程余量应该设置多少？","acceptedAnswer":{"@type":"Answer","text":"应按企业标准和项目场景设置，用于覆盖老化、温度变化、维护连接、污染和测量误差。"}},{"@type":"Question","name":"最大距离计算能否替代OTDR测试？","acceptedAnswer":{"@type":"Answer","text":"不能。本工具用于设计和复核，现场仍需光功率计、OTDR及真实设备参数进行验证。"}}]}</script>
-<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="../../../assets/css/tool-layout-v1.9.9-02.css?v=1.9.9-02"><link rel="stylesheet" href="/assets/css/tool-design-system-v1.9.9-03.css?v=cef0a56c22e9">
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=1.9.9-02"><link rel="stylesheet" href="/assets/css/tool-design-system.css?v=b7969798cf78">
 
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
@@ -28,7 +28,7 @@
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/pon-distance/">
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=1b428f96cadc">
-<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f34b1ffff9cc">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=58918fefbb35">
 <script defer src="../../../data/locales.js?v=b541508dc0ee"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>

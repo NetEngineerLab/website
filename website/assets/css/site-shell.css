@@ -1,3 +1,13 @@
+/* Global link treatment: use color, weight and focus outlines instead of
+   browser underlines across every page and locale. */
+a,
+a:hover,
+a:visited,
+a:active,
+a:focus-visible {
+  text-decoration: none !important;
+}
+
 body > .site-shell-header {
   position: sticky !important;
   top: 0 !important;
@@ -169,7 +179,7 @@ body > footer.site-shell-footer {
 .site-shell-footer strong { color: #fff !important; font-size: 18px !important; }
 .site-shell-footer-links { display: flex !important; flex-wrap: wrap !important; gap: 10px 18px !important; }
 .site-shell-footer-links a { color: #fff !important; text-decoration: none !important; }
-.site-shell-footer-links a:hover, .site-shell-footer-links a:focus-visible { text-decoration: underline !important; }
+.site-shell-footer-links a:hover, .site-shell-footer-links a:focus-visible { text-decoration:none !important; }
 .site-shell-copyright { white-space: nowrap; }
 
 .site-shell-header a:focus-visible,
