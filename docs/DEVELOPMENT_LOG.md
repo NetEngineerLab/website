@@ -407,14 +407,14 @@
 - 实现提交：`4a5c305717245f6e9b0bc423727457c0ae863fb8`。
 - 下一步：完成威胁模型；通过前不得实现 Schema、Adapter、MIB 采集或公开页面。
 
-### 2026-09-06 — 昨日页面生产基线推送准备
+### 2026-09-06 — 昨日页面生产基线推送
 
-- 状态：`VALIDATOR PASS`（待推送）。
+- 状态：`PUSHED`。
 - 范围：将 `D:\NetEngineerLab-V173-GitHub` 当前网站、工具、测试、工作流与开发文档作为 Git 首个生产基线；同步安装脚本名称与版本为 `INSTALL-V1.9.9.cmd`，消除旧 V1.8.2 标识漂移。
 - 本地验收：`npm run verify` 全量 PASS；22 个工具、58 个 HTML 页面、56 个 Sitemap URL、3023 个链接、22 套引擎、生产 HTTP 模拟、SEO/GEO、PWA、V2.1 全部 PASS；无 errors/warnings。
 - 独立验证：2 号验证官首轮发现安装脚本版本漂移；修正并复验后最终 `PASS`，未发现敏感文件或构建垃圾阻断。
 - 发布清单：645 个网站文件，树 SHA-256 为 `1dc544e03647f799285040cd329464b916b22d4fde0d160542853dfd0432a896`。
-- 下一步：建立首个基线提交并推送 `origin/main`，由 GitHub 生产质量门禁继续执行线上验收。
+- 实现提交：`8e624cfb4096976fd206896522d8f8061606b0d0`，已推送 `origin/main`；远端 GitHub Actions/Cloudflare 生产质量门禁接续执行线上验收。
 
 ## 下一步队列
 
