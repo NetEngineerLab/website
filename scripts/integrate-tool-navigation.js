@@ -19,27 +19,31 @@ function esc(v){return String(v??"").replace(/[&<>\"']/g,c=>({"&":"&amp;","<":"&
 function href(toolId,zh){const item=graph.tools[toolId];return item?item.routes[zh?"zh-CN":"en"]:"#";}
 function copy(toolId,zh){const item=graph.tools[toolId];return item?.translations?.[zh?"zh":"en"]||{};}
 function workflowCopy(id,zh){return graph.workflows[id]?.translations?.[zh?"zh":"en"]||{};}
-function card(toolId,zh,label){const c=copy(toolId,zh);return `<a class="nel-tool-graph-card" href="${esc(href(toolId,zh))}">${label?`<span class="nel-tool-graph-label">${esc(label)}</span>`:""}<strong>${esc(c.name||toolId)}</strong><span class="nel-tool-graph-description">${esc(c.description||"")}</span></a>`;}
+function card(toolId,zh,label,isNext=false){const c=copy(toolId,zh);return `<a class="nel-tool-graph-card${isNext?" is-next":""}" href="${esc(href(toolId,zh))}">${label?`<span class="nel-tool-graph-label">${esc(label)}</span>`:""}<strong>${esc(c.name||toolId)}${isNext?'<span class="nel-tool-graph-arrow" aria-hidden="true">→</span>':""}</strong><span class="nel-tool-graph-description">${esc(c.description||"")}</span></a>`;}
 function markup(toolId,zh){
  const node=graph.tools[toolId];if(!node)return "";
  const primary=node.workflows.find(w=>w.workflowId===node.primaryWorkflow)||node.workflows[0]||null;
  const labels=zh?{
-  eyebrow:"工程工作流",title:"继续下一步工程任务",position:"当前流程",step:"步骤",of:"/",previous:"上一步",next:"下一步",related:"相关工具",workflows:"同时用于",start:"流程起点",complete:"流程终点",none:"暂无"
+  eyebrow:"工程工作流",title:"继续下一步工程任务",position:"当前流程",step:"步骤",of:"/",previous:"上一步",next:"下一步",related:"相关工具",workflows:"同时用于",start:"流程起点",complete:"已到最后一步",none:"暂无"
  }:{
-  eyebrow:"ENGINEERING WORKFLOW",title:"Continue the engineering workflow",position:"Current workflow",step:"Step",of:"of",previous:"Previous",next:"Next",related:"Related tools",workflows:"Also used in",start:"Workflow start",complete:"Workflow complete",none:"None"
+  eyebrow:"ENGINEERING WORKFLOW",title:"Continue the engineering workflow",position:"Current workflow",step:"Step",of:"of",previous:"Previous",next:"Next",related:"Related tools",workflows:"Also used in",start:"Workflow start",complete:"You are at the final step",none:"None"
  };
  const flow=primary?workflowCopy(primary.workflowId,zh):null;
  const progress=primary?Math.round(primary.step/primary.total*100):0;
+ const stepText=primary?(zh?`当前第 ${primary.step} 步，共 ${primary.total} 步`:`Current step ${primary.step} of ${primary.total}`):"";
+ const remaining=primary?primary.total-primary.step:0;
+ const remainingText=zh?`后续还有 ${remaining} 步`:`${remaining} more ${remaining===1?"step":"steps"} ahead`;
+ const nextHint=primary?.next?`<a class="nel-workflow-next" href="${esc(href(primary.next,zh))}">${esc(labels.next)} → ${esc(copy(primary.next,zh).name||primary.next)}</a><span class="nel-workflow-remaining">${esc(remainingText)}</span>`:`<span class="nel-workflow-remaining">${esc(labels.complete)}</span>`;
  const memberships=node.workflows.filter(m=>m.workflowId!==primary?.workflowId).map(m=>`<span class="nel-workflow-chip">${esc(workflowCopy(m.workflowId,zh).name||m.workflowId)}</span>`).join("");
  const navCards=[];
  if(primary?.previous)navCards.push(card(primary.previous,zh,labels.previous));
  else navCards.push(`<div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">${esc(labels.previous)}</span><strong>${esc(labels.start)}</strong></div>`);
- if(primary?.next)navCards.push(card(primary.next,zh,labels.next));
+ if(primary?.next)navCards.push(card(primary.next,zh,labels.next,true));
  else navCards.push(`<div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">${esc(labels.next)}</span><strong>${esc(labels.complete)}</strong></div>`);
  const related=(node.related||[]).filter(id=>graph.tools[id]).slice(0,4).map(id=>card(id,zh,"")).join("");
  return `${START}\n<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="${esc(toolId)}" data-primary-workflow="${esc(primary?.workflowId||"")}">\n`+
  `<div class="section-heading"><div><p class="eyebrow">${esc(labels.eyebrow)}</p><h2 id="nel-tool-graph-title">${esc(labels.title)}</h2></div></div>\n`+
- (primary?`<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">${esc(labels.position)}</span><strong>${esc(flow?.name||primary.workflowId)}</strong><p>${esc(flow?.description||"")}</p></div><div class="nel-workflow-step"><strong>${esc(labels.step)} ${primary.step} ${esc(labels.of)} ${primary.total}</strong><div class="nel-workflow-progress" aria-label="${esc(labels.step)} ${primary.step} ${esc(labels.of)} ${primary.total}"><span style="width:${progress}%"></span></div></div></div>`:"")+
+ (primary?`<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">${esc(labels.position)}</span><strong>${esc(flow?.name||primary.workflowId)}</strong><p>${esc(flow?.description||"")}</p></div><div class="nel-workflow-step"><strong>${esc(stepText)}</strong>${nextHint}<div class="nel-workflow-progress" aria-hidden="true"><span style="width:${progress}%"></span></div></div></div>`:"")+
  `<div class="nel-tool-graph-nav">${navCards.join("")}</div>\n`+
  (related?`<h3 class="nel-tool-graph-subtitle">${esc(labels.related)}</h3><div class="nel-tool-graph-related">${related}</div>`:"")+
  (memberships?`<div class="nel-workflow-memberships"><span class="nel-workflow-memberships-label">${esc(labels.workflows)}</span>${memberships}</div>`:"")+`\n</section>\n${END}`;

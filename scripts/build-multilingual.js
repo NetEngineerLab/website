@@ -544,7 +544,9 @@ function generateManifests(groups){
      ?`const C=${JSON.stringify(cacheName)},A=${JSON.stringify(assets)};`
      :`const CACHE = ${JSON.stringify(cacheName)};\nconst CORE = ${JSON.stringify(assets,null,2)};`;
     sw=sw.replace(compactMatch?compactHead:verboseHead,replacement);
-    fs.writeFileSync(swPath,sw,"utf8");
+    const swTempPath=`${swPath}.tmp`;
+    fs.writeFileSync(swTempPath,sw,"utf8");
+    fs.renameSync(swTempPath,swPath);
    }
   }
  }
