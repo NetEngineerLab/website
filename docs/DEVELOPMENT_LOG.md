@@ -576,6 +576,15 @@
 - 独立审计：2 号验证官确认字段封闭、URL 精确、历史 TLP/Pre-5378 边界、禁止伪造 ID/hash、无正文采集和 `git diff --check` PASS。
 - 下一步：在 source record 审核完成后，才允许生成真实 preauthorization；仍禁止网络 acquisition。
 
+### 2026-09-09 — RFC 2578 source record 与 preauthorization
+
+- 状态：`VALIDATOR PASS`（source record 与 preauthorization 均经独立审计）。
+- 实现：新增 `records/mib/source-ledger-source-ietf-rfc-code-components.json` 与 `records/mib/pa-rfc2578-snmpv2-smi.json`；source hash 为 `3e7ebb…03bc`，preauthorization hash 为 `13db382a…e007`。
+- 记录链：source → preauthorization 的 `sourceId` 一致；preauthorization 为 11 个封闭字段，精确授权 RFC 2578 纯文本 URL 的一次受控许可审核读取。
+- 本地验证：source/preauthorization NFC+JCS+SHA-256 重算 PASS；`npm run test:mib-source-schema`、`npm run test:mib-source-faults`、`git diff --check` PASS。
+- 安全边界：未读取/下载 RFC 或 MIB 正文，未生成 acquisition、parser、Fixture、lock、approval、索引或公开页面。
+- 下一步：执行 acquisition 前响应 framing、网络地址和 staging 清理的本地门禁复核；通过前不发起网络读取。
+
 ## 下一步队列
 
 按“小批次、验证通过后再继续”的顺序执行：
