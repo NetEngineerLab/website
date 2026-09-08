@@ -567,6 +567,15 @@
 - 独立审计：2 号验证官确认首选 8、官方 URL、历史 TLP/Pre-5378 边界、PENDING_RECORD 状态和无正文复制边界完整，`git diff --check` PASS。
 - 下一步：为首个 RFC 生成 preauthorization 草案；仍禁止 acquisition、parser 和公开页面。
 
+### 2026-09-09 — RFC 2578 preauthorization 草案
+
+- 状态：`VALIDATOR PASS`（独立审计 Agent 复核通过）。
+- 范围：为 `SNMPv2-SMI / RFC 2578` 定义 `source-ledger/1.0.0` 的 11 个封闭预授权字段，固定纯文本请求 URL、文档 ID、允许动作、政策快照和 IETF Trust 证据入口。
+- 文档：新增 `docs/MIB_OID_RFC2578_PREAUTHORIZATION.md`。
+- 安全边界：`sourceId`、`preauthorizationId`、`recordHash`、审核人和日期均未填入真实值；未采集/复制 RFC 或 MIB 正文，未生成 acquisition、parser lock、Fixture 或公开页面。
+- 独立审计：2 号验证官确认字段封闭、URL 精确、历史 TLP/Pre-5378 边界、禁止伪造 ID/hash、无正文采集和 `git diff --check` PASS。
+- 下一步：在 source record 审核完成后，才允许生成真实 preauthorization；仍禁止网络 acquisition。
+
 ## 下一步队列
 
 按“小批次、验证通过后再继续”的顺序执行：
