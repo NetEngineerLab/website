@@ -1,0 +1,9 @@
+const crypto = require('node:crypto');
+const assert = (condition, message) => { if (!condition) throw new Error(message); };
+const h = (c) => c.repeat(64);
+function canonical(v) { if (typeof v === 'string') return JSON.stringify(v.normalize('NFC')); if (Array.isArray(v)) return `[${v.map(canonical).join(',')}]`; if (v && typeof v === 'object') return `{${Object.keys(v).sort().map(k => `${JSON.stringify(k)}:${canonical(v[k])}`).join(',')}}`; return JSON.stringify(v); }
+function provenance() { const p = { schemaVersion: 'parser-runtime.provenance/1.0.0', repositoryDigest: 'sha256:' + h('a'), targetOs: 'linux', targetArchitecture: 'amd64', parserVersion: 'pysmi==2.0.0', dependencyTreeSha256: h('b'), dockerfileSha256: h('c'), buildLogSha256: h('d'), inputLockSha256: h('e'), sbomSha256: h('f'), licenseManifestSha256: h('0'), networkDisabled: true, recordSha256: '' }; const q = { ...p }; delete q.recordSha256; p.recordSha256 = crypto.createHash('sha256').update(canonical(q)).digest('hex'); return p; }
+function admit(p) { if (!/^sha256:[0-9a-f]{64}$/.test(p.repositoryDigest) || p.targetOs !== 'linux' || p.targetArchitecture !== 'amd64' || p.networkDisabled !== true) throw new Error('provenance scope'); const q = { ...p }; delete q.recordSha256; if (crypto.createHash('sha256').update(canonical(q)).digest('hex') !== p.recordSha256) throw new Error('provenance hash'); return true; }
+const good = provenance(); admit(good);
+for (const [id, mutate] of [['P-01', p => { p.repositoryDigest = 'latest'; }], ['P-02', p => { p.networkDisabled = false; }], ['P-03', p => { p.targetArchitecture = 'arm64'; }], ['P-04', p => { p.sbomSha256 = h('1'); }], ['P-05', p => { p.recordSha256 = h('1'); }]]) { const bad = { ...good }; mutate(bad); let rejected = false; try { admit(bad); } catch { rejected = true; } assert(rejected, `${id} did not fail closed`); }
+console.log('MIB/OID runtime provenance tests PASS: digest, scope, offline and hash gates verified locally.');

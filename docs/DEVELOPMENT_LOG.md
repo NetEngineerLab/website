@@ -18,6 +18,26 @@
 
 ## 已完成批次
 
+### 2026-09-07 — GitHub 网络工程工具竞品对标
+
+- 状态：`LOCAL PASS`。
+- 范围：对标 NetDash Toolkit、MIB Beacon、SNMP MIB Browser、snmp-browser 和 nmlinux，记录工具组织、MIB/OID 浏览、SNMP 管理和本机诊断能力的可借鉴部分。
+- 结论：未发现与 NetEngineerLab 完全相同的 GitHub 项目；NetDash Toolkit 是最接近的综合网络工程工作台，MIB Beacon 和 SNMP MIB Browser 适合作为 MIB/OID Explorer 的交互参考，SNMP 在线查询、凭据、Trap 和监控范围不纳入精简 V1。
+- 产品决策：保留 22 个双语工具、注册表驱动目录、工作流串联、浏览器本地计算、来源/复核日期和 Cloudflare Pages 静态部署；不复制代码、数据、MIB 文件、界面资源或项目文本。
+- 文档：新增 `docs/COMPETITIVE_LANDSCAPE_NETWORK_TOOLS.md`。
+- 下一步：继续执行 MIB/OID Explorer 的威胁模型复核和 parser build-input lock 门禁，不因竞品功能扩大精简 V1 范围。
+
+### 2026-09-07 — MIB/OID Explorer 精简 V1 威胁模型本地验证
+
+- 状态：`VALIDATOR PASS`（独立审计 Agent 复核通过）。
+- 范围：完成 MIB/OID 精简 V1 威胁模型的文档级一致性复核，覆盖来源获取、许可链、解析器供应链、隔离执行、确定性解析、XSS/隐私、SEO、Service Worker、Cloudflare Pages、撤回与应急状态机。
+- 当前产品基线：工具目录权威源为 22 个 active 工具、44 个双语工具页、58 个 HTML 页面、56 条生产路由和 22 套引擎；开发总账中旧批次的 21 工具统计不再作为当前数量依据。
+- 本地验证：四份 MIB/OID 规范文档逐项核对；22 个 BLOCKER/HIGH 威胁条目均有控制与最小验证证据；`git diff --check` PASS；未下载 MIB、安装解析器、创建 Schema/Adapter、修改生产页面或增加公开路由。
+- 决策：本次 `VALIDATOR PASS` 只解除威胁模型文档门禁；parser lock、Schema、Adapter、MIB acquisition、公开页面和任何 MIB 静态产物仍然禁止进入 `website/`，直到后续来源、Schema 和解析器门禁分别通过。
+- 文档：新增 `docs/MIB_OID_THREAT_MODEL_VALIDATION.md`，并将数据字典、威胁模型和验证记录状态更新为 `VALIDATOR PASS`。
+- 独立审计：审计 Agent 确认 22/22 威胁条目完整，15 BLOCKER + 7 HIGH，未发现 P1/P2 或 MIB/OID 越界产物；`git diff --check` PASS。
+- 下一步：审核 10 个候选来源并选出 8 个许可 approved 且 IMPORT 闭合的集合，再进入 Schema/故障测试和 parser build-input lock。
+
 ### 2026-09-06 — 全站链接去下划线与共享 CSS 固定文件名
 
 - 状态：`ONLINE PASS`。
@@ -436,11 +456,115 @@
 - 实现提交：`6efcd990812f3aac356a444ac8913b5ca2bbade7`，已推送 `origin/main`。
 - 线上验收：线上子网计算器 HTML 使用新 CSS 哈希 `cef0a56c22e9`，共享 CSS 已确认包含 `max-width:1100px` 单栏规则；Cloudflare/浏览器缓存已获得新资源版本。
 
+### 2026-09-08 — MIB/OID 10 个候选来源文档审核
+
+- 状态：`VALIDATOR PASS`（独立审计 Agent 复核通过）。
+- 范围：基于 RFC Editor、IANA 和 IETF Trust 官方证据，核对 10 个标准候选的文档身份、模块用途、发布日期/stream 入口、IMPORTS 依赖和许可审核边界。
+- 候选决定：首选闭合集合固定为 `SNMPv2-SMI`、`SNMPv2-TC`、`SNMPv2-CONF`、`SNMPv2-MIB`、`INET-ADDRESS-MIB`、`TCP-MIB`、`UDP-MIB`、`SNMP-FRAMEWORK-MIB`；`IF-MIB` 与 `IANAifType-MIB` 保留为替代候选。
+- 门禁边界：本批没有下载、镜像或提交 MIB，没有生成 acquisition/hash、Schema、Adapter、Fixture、解析器或公开页面；`LOCAL PASS` 不等于逐文件 redistribution `approved`。
+- 文档：新增 `docs/MIB_OID_SOURCE_CANDIDATE_REVIEW.md`，记录官方 URL、依赖闭合、IANA 注册表与 RFC 正文的许可边界，以及下一步 source record 要求。
+- 独立审计：2 号验证官确认 10/10 候选覆盖、首选 8 闭合、替代关系正确、官方 URL 可访问、无 MIB/parser/Schema/Adapter/Fixture/公开页面越界，`git diff --check` PASS。
+- 下一步：为首选 8 个候选设计 source record/preauthorization/acquisition/review 的逐文件审核清单；全部有效前继续禁止采集和公开。
+
+### 2026-09-08 — MIB/OID 首选 8 个来源记录清单设计
+
+- 状态：`LOCAL PASS`（等待独立审计）。
+- 范围：为首选 8 个模块定义 source record、preauthorization、acquisition 和 redistribution review 的字段覆盖、依赖顺序、精确 URL 和失败关闭规则。
+- 文档：新增 `docs/MIB_OID_SOURCE_RECORD_CHECKLIST.md`；所有真实 ID、时间、响应证据、内容哈希和许可结论保持未生成状态。
+- 安全边界：清单不触发网络采集，不下载或提交 MIB，不安装/运行解析器，不生成 Schema、Adapter、Fixture、索引或公开页面。
+- 首轮独立审计：发现四类记录未逐项列出完整身份字段和 `recordHash` 规则；已补齐 `schemaVersion`、各类 ID、链路 ID、`supersedesReviewId`、JCS/SHA-256 重算及 effective-head 约束，等待复审。
+- 独立复审：2 号验证官确认字段覆盖、ID/hash 链、effective-head、失败关闭和无采集边界完整，结论 `VALIDATOR PASS`，`git diff --check` PASS。
+- 下一步：设计 JSON Schema 与 F-01 至 F-14 失败关闭测试；仍不得生成真实记录或运行解析器。
+
+### 2026-09-08 — MIB/OID Schema 与故障测试设计
+
+- 状态：`LOCAL PASS`（等待独立审计）。
+- 范围：定义 source、preauthorization、acquisition、redistribution review 四类记录的必填身份字段、哈希 preimage、跨记录不变量和 14 个失败关闭场景。
+- 文档：新增 `docs/MIB_OID_SCHEMA_FAULT_TEST_PLAN.md`。
+- 安全边界：仅使用文档级设计；没有真实 URL 响应、内容哈希、许可结论、MIB 字节、解析器、Schema 文件、Adapter、Fixture、索引或公开路由。
+- 下一步：审计 Schema/故障测试设计；通过后才能把设计转成纯本地机器可执行测试。
+
+### 2026-09-08 — MIB/OID 本地 Schema 契约测试
+
+- 状态：`VALIDATOR PASS`（独立审计 Agent 复核通过）。
+- 范围：将四类来源记录的身份字段、`additionalProperties=false`、哈希格式、HTTP identity/200/framing 上限和许可枚举转成仓库内 JSON Schema 与 Node.js 契约测试。
+- 实现：新增 `schemas/mib/source-ledger.schema.json`、`scripts/mib-source-ledger-schema-test.js`，并增加 `npm run test:mib-source-schema`。
+- 本地验证：`npm run test:mib-source-schema` PASS；测试仅读取本地 Schema，不访问网络、不读取 MIB、不运行解析器。
+- 安全边界：未生成真实来源记录、响应哈希、MIB 字节、Parser、Adapter、Fixture、索引或公开页面。
+- 独立审计：2 号验证官确认四类记录覆盖、关键失败关闭约束、脚本和 npm 入口正确，`npm run test:mib-source-schema` 与 `git diff --check` PASS。
+- 下一步：补充纯本地 F-01 至 F-14 合成故障执行器；通过前继续禁止真实网络 acquisition、parser 和公开页面。
+
+### 2026-09-08 — MIB/OID F-01 至 F-14 合成故障执行器
+
+- 状态：`VALIDATOR PASS`（独立审计 Agent 复核通过）。
+- 实现：新增 `scripts/mib-source-ledger-fault-test.js`，增加 `npm run test:mib-source-faults`；以本地合成记录分别注入缺字段、未知字段、哈希/ID、URL、hops、HTTP framing、字节完整性、review 链、许可状态、排序和 snapshot 准入故障。
+- 本地验证：`npm run test:mib-source-schema` PASS；`npm run test:mib-source-faults` PASS，F-01 至 F-14 全部复现失败关闭状态；`git diff --check` PASS。
+- 安全边界：测试不访问网络、不读取 MIB、不安装/运行 parser，不创建真实 source/acquisition/review、Fixture、索引或公开页面。
+- 首轮独立审计：指出测试只生成异常样本，未验证门禁实际拒绝；已补充本地拒绝器、review root/leaf 与 snapshot 准入断言、内容哈希检查，并在 JSON Schema 增加 chunked/Content-Length 条件互斥。
+- 独立复审：2 号验证官确认 F-01 至 F-14 均由本地拒绝器实际拒绝，Schema framing 互斥、内容哈希、review 链和 snapshot 门禁均通过，两个 npm 测试及 `git diff --check` PASS。
+- 下一步：进入 parser build-input lock 设计；仍禁止真实 acquisition、parser 和公开页面。
+
+### 2026-09-08 — MIB/OID parser build-input lock 设计
+
+- 状态：`VALIDATOR PASS`（独立审计 Agent 复核通过）。
+- 范围：定义未来 parser lock 的 8 模块输入字段、来源链、runtime provenance、资源限制、确定性、撤回和回滚重新校验规则。
+- 文档：新增 `docs/MIB_OID_PARSER_BUILD_INPUT_LOCK.md`；当前不生成真实 lock、时间、哈希或运行时依赖锁。
+- 安全边界：未进行网络 acquisition，未安装/运行 parser，未写入 MIB 字节、Golden Fixture、索引、Schema/Adapter 或公开页面。
+- 首轮独立审计：指出 lock 未显式固定 8 个模块 allowlist，且缺少 runtime approval ID、image digest、provenance 和 SBOM 凭证；已补齐固定模块集合及 runtime approval effective-head/撤回校验要求，等待复审。
+- 独立复审：2 号验证官确认固定 8 模块 allowlist、runtime approval 四项凭证、effective-head/撤回校验、资源限制和确定性规则完整，`git diff --check` PASS。
+- 下一步：设计机器可执行 lock Schema/runtime approval 测试；仍禁止真实 lock、parser 和 MIB acquisition。
+
+### 2026-09-08 — MIB/OID parser lock Schema 契约测试
+
+- 状态：`VALIDATOR PASS`（独立审计 Agent 复核通过）。
+- 实现：新增 `schemas/mib/parser-build-input.schema.json` 与 `scripts/mib-parser-build-input-schema-test.js`，增加 `npm run test:mib-parser-lock-schema`。
+- 覆盖：固定 8 模块 allowlist、source/acquisition/review ID 字段、runtime approval ID、image digest、provenance、SBOM、离线开关、8 项资源限制和 Fixture source binding。
+- 本地验证：`npm run test:mib-parser-lock-schema` PASS；`git diff --check` PASS。
+- 安全边界：没有真实 lock、runtime approval、MIB 字节、网络 acquisition、parser、Golden Fixture、索引或公开页面。
+- 首轮独立审计：指出 Schema 未强制 8 个模块各出现一次、缺少 tempDirectoryPolicy、Fixture 绑定字段不完整、lockHash 未验证；已补充 exact-once allowlist、临时目录策略、fixtureId/kind/parserVersion/sourceId/artifactId/expectedOutcome 和 NFC/JCS/SHA-256 本地计算断言，等待复审。
+- 第二轮独立审计：继续指出模块顺序、完整 lockHash 绑定、NFC/JCS 规范化和 Fixture 跨记录绑定未落到测试；已补充固定顺序、完整代表性 lock、NFC/JCS/SHA-256 重算、重排 hash 变化及 source/artifact 绑定断言，等待复审。
+- 第三轮独立审计：指出顺序仍未进入 Schema、artifact 未关联模块、运行时平台与 ADR 不一致、JCS 边界不足；已改用 `prefixItems` 固定顺序、为 modules 增加 artifactId、固定 `linux/amd64`、加入 NFC key collision/数值/完整代表性 lock 重算断言，等待复审。
+- 第四轮独立审计：发现 prefixItems `$ref` 指向错误位置且测试未检查引用解析；已将 module 定义移入顶层 `$defs`，Schema 使用 `items:false` 固定顺序，并加入 prefix `$ref` 可解析、artifact/source 关联和运行时平台断言，等待复审。
+- 独立复审：2 号验证官确认 `$defs`/prefixItems 引用可解析、顺序与数量固定、artifact/source 关联、linux/amd64、离线、资源限制、NFC/JCS 和 lockHash 重算均通过，npm 测试及 `git diff --check` PASS。
+- 下一步：设计 runtime approval/revocation 的纯本地状态测试；仍禁止真实 lock、parser 和 MIB acquisition。
+
+### 2026-09-08 — MIB/OID runtime approval/revocation 本地状态测试
+
+- 状态：`VALIDATOR PASS`（独立审计 Agent 复核通过）。
+- 实现：新增 `scripts/mib-runtime-approval-state-test.js`，增加 `npm run test:mib-runtime-approval`；批准匹配可通过，撤回、失效、runtime image/provenance/SBOM 和 approval ID 漂移均失败关闭。
+- 本地验证：`npm run test:mib-runtime-approval` PASS；`git diff --check` PASS。
+- 安全边界：仅使用合成 approval/lock 对象，不生成真实 approval、image digest、SBOM、parser、MIB、网络 acquisition 或公开页面。
+- 首轮独立审计：指出与 Parser Deployment ADR 的 decision/ID 命名不一致，且缺少 input lock、scope、effective-head、supersedes 链和 record hash；已统一 `runtimeapproval-`、`approved|rejected|withdrawn`、linux/amd64，并补充 hash、scope、root/旧 head/漂移故障。
+- 第二轮独立审计：指出 supersedes 链、NFC/JCS、每节点 record hash 和自定义 effective 布尔字段仍不符合 ADR；已改为按唯一 root/leaf 遍历链、逐节点重算 NFC/JCS/SHA-256、覆盖断链/环/旧 head，并移除 effective 字段依赖。
+- 第三轮独立审计：指出 runtimeApprovalId 未绑定 recordSha256；已改为由同一 hash preimage 生成 `runtimeapproval-<recordSha256>`，并在 effective-head 强制校验 ID/hash 一致，主路径和故障链均使用该绑定。
+- 独立复审：2 号验证官确认批准记录 ID/hash、decision、scope、input lock、effective-head、supersedes 链、断链/环/旧 head 和漂移故障均失败关闭，相关 npm 测试与 `git diff --check` PASS。
+- 下一步：进入 parser runtime provenance 设计；仍禁止真实 approval、lock、parser 和 MIB acquisition。
+
+### 2026-09-08 — MIB/OID parser runtime provenance 设计
+
+- 状态：`VALIDATOR PASS`（独立审计 Agent 复核通过）。
+- 范围：定义候选镜像 digest、目标平台、依赖树、Dockerfile/构建日志、lock/SBOM/许可证清单哈希、离线构建、独立批准和运行前复核顺序。
+- 文档：新增 `docs/MIB_OID_RUNTIME_PROVENANCE_PLAN.md`。
+- 安全边界：未下载依赖、构建镜像、生成 provenance/approval、运行 parser、写入 MIB/Fixture 或创建公开页面。
+- 独立审计：2 号验证官确认 provenance 字段、lock→构建→provenance→独立核验→approval 顺序、运行前复核和禁止动作完整，`git diff --check` PASS。
+- 下一步：写纯本地 provenance 字段/哈希/撤回测试；仍禁止真实镜像、依赖下载和 parser。
+
+### 2026-09-08 — MIB/OID runtime provenance 本地契约测试
+
+- 状态：`VALIDATOR PASS`（独立审计 Agent 复核通过）。
+- 实现：新增 `scripts/mib-runtime-provenance-test.js`，增加 `npm run test:mib-runtime-provenance`；验证 OCI digest、linux/amd64、网络关闭、provenance hash 和 SBOM 漂移失败关闭。
+- 本地验证：`npm run test:mib-runtime-provenance` PASS；`git diff --check` PASS。
+- 安全边界：仅使用合成 provenance，不构建镜像、不下载依赖、不生成真实 approval 或运行 parser。
+- 独立审计：2 号验证官确认 provenance 字段、digest/平台/离线/hash 失败关闭、ADR/lock/approval 顺序和无真实产物边界完整，`git diff --check` PASS。
+- 下一步：逐文件真实来源记录与许可审核；在 8 个模块全部 approved、IMPORT 闭合且独立复核前，继续禁止 parser、MIB acquisition 和公开页面。
+
 ## 下一步队列
 
 按“小批次、验证通过后再继续”的顺序执行：
 
-1. MIB/OID Explorer 精简 V1：数据字典通过后完成威胁模型；不得在门禁前实现 Schema/Adapter、安装解析器、采集 MIB 或公开页面。
-2. SEO/GEO 进入维护监测：当前 21 个工具均为 `maintain`，只依据 Search Console、站内搜索词或新内容缺口启动下一批，不重复改写已达标页面。
+1. MIB/OID Explorer 精简 V1：威胁模型文档已 `VALIDATOR PASS`；下一步审核 10 个候选来源并选出 8 个许可 approved 且 IMPORT 闭合的集合。
+2. 来源集合通过后，设计 JSON Schema/故障测试与 parser build-input lock；仍不得运行解析或公开 MIB。
+3. parser runtime provenance/SBOM 和隔离 Golden 通过后，才允许生成静态索引和页面。
+4. SEO/GEO 进入维护监测：当前 22 个工具以现行目录和审计结果为准，只依据 Search Console、站内搜索词或新内容缺口启动下一批，不重复改写已达标页面。
 
 任何新发现的 P0/P1 稳定性或正确性问题，优先级高于上述 SEO/GEO 队列，并必须在本文件说明插队原因。

@@ -61,7 +61,7 @@ MIB/SMI 解析优先选用成熟、仍维护且许可证兼容的库；不得从
 
 精简 V1 明确不包含厂商 MIB/设备兼容关系、文件下载、用户上传、在线解析、API、数据库、专用搜索服务、自然语言/AI 搜索、监控场景库和自动增量采集。上述能力保持 V1.1+ 或 V2/V3，不得在本批顺手加入。
 
-执行顺序冻结为：威胁模型 → 审核全部 10 个候选并选出 8 个 approved 的闭合集合 → JSON Schema/故障测试 → parser lock/runtime approval → 隔离解析与 Golden → 静态索引/页面 → 双语四终端浏览器验收 → 推送与线上验收。每一步必须写入 `docs/DEVELOPMENT_LOG.md` 并由 2 号验证官 PASS 后才能进入下一步。
+执行顺序冻结为：威胁模型独立 PASS → 审核全部 10 个候选并选出 8 个 approved 的闭合集合 → JSON Schema/故障测试 → parser build-input lock/runtime approval → 隔离解析与 Golden → 静态索引/页面 → 双语四终端浏览器验收 → 推送与线上验收。供应链 lock 只能在 8 个来源候选闭合、Schema/故障测试通过后进入；每一步必须写入 `docs/DEVELOPMENT_LOG.md` 并由 2 号验证官 PASS 后才能进入下一步。
 
 V1 完成门槛：8/8 来源链和许可 head 有效、两次构建 byte-identical、OID/IMPORT/父子关系无未裁决冲突、精确 OID 测试 100% 命中、对象名与模块名 Golden 查询 Top-1 100%、公开页无孤页/重复 canonical/错误 hreflang、`npm run verify` 与四终端双语浏览器验收全部通过。
 

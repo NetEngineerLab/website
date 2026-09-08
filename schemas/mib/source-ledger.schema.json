@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://netengineerlab.com/schemas/mib/source-ledger/1.0.0",
+  "title": "MIB/OID source ledger record",
+  "oneOf": [
+    { "$ref": "#/$defs/source" },
+    { "$ref": "#/$defs/preauthorization" },
+    { "$ref": "#/$defs/acquisition" },
+    { "$ref": "#/$defs/review" }
+  ],
+  "$defs": {
+    "hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "schemaVersion": { "const": "source-ledger/1.0.0" },
+    "source": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schemaVersion", "sourceId", "sourceKey", "authorityNamespace", "authorityBaseUrls", "policyClass", "evidenceUrls", "handlingRule", "recordHash"],
+      "properties": {
+        "schemaVersion": { "$ref": "#/$defs/schemaVersion" }, "sourceId": { "type": "string", "pattern": "^source-[0-9a-f]{64}$" }, "sourceKey": { "type": "string", "minLength": 1 },
+        "authorityNamespace": { "type": "string", "minLength": 1 }, "authorityBaseUrls": { "type": "array", "items": { "type": "string", "format": "uri" }, "minItems": 1, "uniqueItems": true },
+        "policyClass": { "enum": ["ALLOW_REGISTRY_DATA", "CONDITIONAL_CODE_COMPONENT", "METADATA_LINK_ONLY", "BLOCKED_UNVERIFIED"] }, "evidenceUrls": { "type": "array", "items": { "type": "string", "format": "uri" }, "minItems": 1, "uniqueItems": true }, "handlingRule": { "type": "string", "minLength": 1 }, "recordHash": { "$ref": "#/$defs/hash" }
+      }
+    },
+    "preauthorization": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schemaVersion", "preauthorizationId", "recordHash", "sourceId", "requestedSourceUrl", "expectedDocumentId", "allowedAction", "policySnapshot", "policyEvidenceUrl", "approvedBy", "approvedAt"],
+      "properties": {
+        "schemaVersion": { "$ref": "#/$defs/schemaVersion" }, "preauthorizationId": { "type": "string", "pattern": "^pa-[0-9a-f]{64}$" }, "recordHash": { "$ref": "#/$defs/hash" }, "sourceId": { "type": "string", "pattern": "^source-[0-9a-f]{64}$" },
+        "requestedSourceUrl": { "type": "string", "format": "uri" }, "expectedDocumentId": { "type": "string", "minLength": 1 }, "allowedAction": { "const": "acquire-for-license-review-only" }, "policySnapshot": { "type": "string", "minLength": 1 }, "policyEvidenceUrl": { "type": "string", "format": "uri" }, "approvedBy": { "type": "string", "minLength": 1 }, "approvedAt": { "type": "string", "format": "date" }
+      }
+    },
+    "hop": {
+      "type": "object", "additionalProperties": false,
+      "required": ["position", "preauthorizationId", "requestUrl", "networkProtocol", "resolvedAt", "answerAddresses", "peerAddress", "httpStatus", "location", "responseHeaderEvidenceSha256"],
+      "properties": {
+        "position": { "type": "integer", "minimum": 1 }, "preauthorizationId": { "type": "string", "pattern": "^pa-[0-9a-f]{64}$" }, "requestUrl": { "type": "string", "format": "uri" }, "networkProtocol": { "enum": ["http/1.1"] }, "resolvedAt": { "type": "string", "format": "date-time" }, "answerAddresses": { "type": "array", "items": { "type": "string" }, "minItems": 1 }, "peerAddress": { "type": "string", "minLength": 1 }, "httpStatus": { "type": "integer", "minimum": 200, "maximum": 599 }, "location": { "type": ["string", "null"], "format": "uri" }, "responseHeaderEvidenceSha256": { "$ref": "#/$defs/hash" }
+      }
+    },
+    "acquisition": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schemaVersion", "acquisitionId", "recordHash", "preauthorizationId", "sourceId", "finalSourceUrl", "networkHops", "retrievedAt", "contentSha256", "contentBytes", "httpStatus", "responseContentType", "responseContentEncoding", "responseTransferEncoding", "declaredContentLength"],
+      "properties": {
+        "schemaVersion": { "$ref": "#/$defs/schemaVersion" }, "acquisitionId": { "type": "string", "pattern": "^acq-[0-9a-f]{64}$" }, "recordHash": { "$ref": "#/$defs/hash" }, "preauthorizationId": { "type": "string", "pattern": "^pa-[0-9a-f]{64}$" }, "sourceId": { "type": "string", "pattern": "^source-[0-9a-f]{64}$" }, "finalSourceUrl": { "type": "string", "format": "uri" }, "networkHops": { "type": "array", "items": { "$ref": "#/$defs/hop" }, "minItems": 1, "maxItems": 4 }, "retrievedAt": { "type": "string", "format": "date-time" }, "contentSha256": { "$ref": "#/$defs/hash" }, "contentBytes": { "type": "integer", "minimum": 1, "maximum": 1048576 }, "httpStatus": { "const": 200 }, "responseContentType": { "type": "string", "minLength": 1 }, "responseContentEncoding": { "const": "identity" }, "responseTransferEncoding": { "enum": ["none", "chunked"] }, "declaredContentLength": { "type": ["integer", "null"], "minimum": 0 }
+      },
+      "allOf": [
+        { "if": { "properties": { "responseTransferEncoding": { "const": "chunked" } } }, "then": { "properties": { "declaredContentLength": { "type": "null" } } } },
+        { "if": { "properties": { "responseTransferEncoding": { "const": "none" } } }, "then": { "properties": { "declaredContentLength": { "type": "integer", "minimum": 0 } } } }
+      ]
+    },
+    "review": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schemaVersion", "reviewId", "recordHash", "acquisitionId", "sourceId", "reviewScope", "supersedesReviewId", "documentId", "documentStream", "publicationDate", "licenseStatus", "applicableTlpVersion", "licenseEvidenceUrl", "licenseEvidenceSha256", "copyrightNotice", "restrictionLegend", "pre5378Status", "attribution", "redistributionDecision", "reviewedBy", "reviewedAt"],
+      "properties": {
+        "schemaVersion": { "$ref": "#/$defs/schemaVersion" }, "reviewId": { "type": "string", "pattern": "^review-[0-9a-f]{64}$" }, "recordHash": { "$ref": "#/$defs/hash" }, "acquisitionId": { "type": "string", "pattern": "^acq-[0-9a-f]{64}$" }, "sourceId": { "type": "string", "pattern": "^source-[0-9a-f]{64}$" }, "reviewScope": { "type": "string", "minLength": 1 }, "supersedesReviewId": { "type": ["string", "null"], "pattern": "^review-[0-9a-f]{64}$" }, "documentId": { "type": "string", "minLength": 1 }, "documentStream": { "enum": ["IETF", "IANA"] }, "publicationDate": { "type": "object", "additionalProperties": false, "required": ["value", "precision"], "properties": { "value": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}$" }, "precision": { "const": "month" } } }, "licenseStatus": { "const": "conditional-code-component" }, "applicableTlpVersion": { "type": "string", "minLength": 1 }, "licenseEvidenceUrl": { "type": "string", "format": "uri" }, "licenseEvidenceSha256": { "$ref": "#/$defs/hash" }, "copyrightNotice": { "type": "string", "minLength": 1 }, "restrictionLegend": { "enum": ["none", "6.c.i", "6.c.ii", "6.c.iii", "unknown"] }, "pre5378Status": { "enum": ["absent", "present", "unknown"] }, "attribution": { "type": "string", "minLength": 1 }, "redistributionDecision": { "enum": ["pending", "approved", "rejected", "withdrawn"] }, "reviewedBy": { "type": "string", "minLength": 1 }, "reviewedAt": { "type": "string", "format": "date" }
+      }
+    }
+  }
+}

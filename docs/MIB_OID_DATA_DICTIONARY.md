@@ -1,6 +1,6 @@
 # MIB/OID Explorer 内部数据字典
 
-状态：`FROZEN FOR LEAN V1`（2 号验证官 PASS）  
+状态：`VALIDATOR PASS`（独立审计通过；尚未授权采集或公开）
 Schema version：`1.0.0-draft`  
 冻结日期：2026-09-05
 

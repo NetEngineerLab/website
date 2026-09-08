@@ -1,8 +1,8 @@
 # MIB/OID Explorer 精简 V1 威胁模型
 
-状态：`PROPOSED FOR VALIDATION`  
-版本：`1.0.0-draft`  
-日期：2026-09-05  
+状态：`VALIDATOR PASS`（独立审计通过；尚未授权采集或公开）
+版本：`1.0.0`
+日期：2026-09-07
 适用范围：精简 V1 的 10 个候选来源审核、8 个获批 IETF MIB、隔离解析、静态索引、双语页面、PWA 与撤回流程。
 
 ## 安全目标与边界
@@ -57,7 +57,7 @@ V1 没有用户上传、在线解析、API、数据库、账户、厂商 MIB、A
 | `TM-DAT-02` | 重复 OID、alias、revision 或人工解释覆盖标准事实 | `BLOCKER` | 多 binding 默认冲突；approved-alias 需完整语义指纹与 effective 裁决；editorial 不得写标准字段；每 family 单 revision | 冲突 OID、假 alias、旧裁决回选、editorial 越权字段、双 revision snapshot 均失败 |
 | `TM-PRV-01` | CONTACT-INFO、日志、路径或 Fixture 泄露个人信息/密钥 | `BLOCKER` | 公开模型默认排除联系人字段；日志只记分类/hash；不保存绝对路径、环境、原始 stderr 或 secret；Fixture 只用保留地址与占位凭据 | email/phone/address/community/API key/本机路径种子不得出现在生成目录、日志或 snapshot |
 | `TM-XSS-01` | DESCRIPTION、名字、搜索词或 editorial 注入 HTML/JSON-LD/script | `BLOCKER` | 所有 source/parsed/editorial 均视为不可信；HTML text/attribute/JSON context 分别编码；禁止 `innerHTML` 拼接、`eval`、`Function` 和事件属性；URL 使用明确协议/host allowlist | `</script>`、引号、实体、双向控制符、`javascript:`、SVG/onerror 与 JSON-LD 逃逸测试，浏览器中不得执行 |
-| `TM-WEB-01` | 缺失或错误 CSP 让单点注入扩大 | `HIGH` | MIB 页面发布前给出与现有站点兼容的 CSP 方案并做全站回归；优先外部内容哈希脚本，禁 `object-src`，限制 `base-uri`/`frame-ancestors`；不得在本批直接修改生产 header | Chrome/Edge 与移动端页面、GA4、PWA、离线、现有 21 工具回归通过，CSP 无未审计 violation |
+| `TM-WEB-01` | 缺失或错误 CSP 让单点注入扩大 | `HIGH` | MIB 页面发布前给出与现有站点兼容的 CSP 方案并做全站回归；优先外部内容哈希脚本，禁 `object-src`，限制 `base-uri`/`frame-ancestors`；不得在本批直接修改生产 header | Chrome/Edge 与移动端页面、GA4、PWA、离线、现有 22 工具回归通过，CSP 无未审计 violation |
 | `TM-SEO-01` | 恶意或错误事实进入 title、canonical、hreflang、JSON-LD 或海量薄页 | `HIGH` | URL 只由规范 ID/slug resolver 生成；Page Registry 是唯一发布事实；只有 approved snapshot 与独立内容页 index；JSON-LD 与可见文本同源 | 路径注入、重复 canonical、跨语言错配、孤页、薄页、withdrawn 页 Sitemap 残留均失败 |
 | `TM-SW-01` | Service Worker、浏览器或 CDN 缓存继续提供已撤回 snapshot | `BLOCKER` | MIB 页面/snapshot/index/object data 禁止进入 SW cache 和通用 `/assets/*`；使用专属路径并返回 `Cache-Control: no-store, max-age=0`；撤回部署删除旧对象并执行 Cloudflare purge；共享 shell 不含 MIB 事实 | 扫描 SW/路径/header；离线只显示占位页；撤回后从浏览器和线上多次请求旧页面/旧 shard 均不得返回旧事实 |
 | `TM-CI-01` | PR、可移动 Action 或 parser 作业窃取 GitHub/Cloudflare 凭据并发布 | `BLOCKER` | 不可信输入作业无 secrets、无 deploy 权限、无 Docker socket；解析与发布分离；protected main/environment；Action 完整 SHA allowlist；产物晋级只接受已验证 snapshot | fork/PR canary 无 secrets；Action tag 注入失败；解析 job 不能调用 deploy；篡改 artifact/approval 时发布 job 失败 |
@@ -128,9 +128,23 @@ Cloudflare Pages 静态部署不承担局部 quarantine，威胁模型不再假�
 
 即使所有门禁通过，仍可能存在官方 RFC/MIB 自身错误、两个解析器共享理解偏差、人工许可判断错误、浏览器/解析器未知漏洞，以及静态站撤回到缓存清除之间的短暂窗口。这些风险不能用“已验证”宣传消除；页面必须展示来源、revision、限制和复核日期，解析器/依赖安全公告需进入维护队列，撤回流程需定期演练。
 
-全站当前没有在本批内新增 CSP；这是实现 MIB 页面前的 `HIGH` 门禁，不授权直接修改生产 `_headers`。必须先形成兼容方案并验证现有 21 个工具、GA4、PWA 和离线功能，再单独实施。
+全站当前没有在本批内新增 CSP；这是实现 MIB 页面前的 `HIGH` 门禁，不授权直接修改生产 `_headers`。必须先形成兼容方案并验证现有 22 个工具、GA4、PWA 和离线功能，再单独实施。
 
 ## 威胁模型验收门禁
+
+## 本地验证记录
+
+本轮完成了文档级一致性复核，未下载 MIB、安装解析器、创建 Schema/Adapter、修改生产页面或增加公开路由。
+
+| 检查项 | 结果 | 证据 |
+|---|---|---|
+| 数据字典、来源台账、解析器 ADR 与威胁模型的 source/acquisition/artifact/runtime/snapshot 术语一致 | `PASS` | 四份文档逐项核对；未发现同名字段的不同语义 |
+| 22 个现有工具、Cloudflare Pages 和现行 GitHub 门禁不被 MIB 方案隐式改写 | `PASS` | MIB 产物限定在内部测试边界；明确禁止进入 `website/`、通用 assets 与现有 Service Worker |
+| BLOCKER/HIGH 风险均有控制和最小验证证据 | `PASS` | 22 个威胁条目逐项具备控制与故障测试要求；未发现空白证据列 |
+| 许可、runtime、事实层、撤回和缓存之间不存在回退绕过 | `PASS` | 发布/撤回状态机、effective head、security tag、edge gate 和 no-store 边界已交叉核对 |
+| 实现前硬阻断仍然有效 | `PASS` | 明确禁止 Schema、Adapter、parser lock、MIB acquisition 和公开页面，直至 2 号验证官复核通过 |
+
+独立审计结论为 `VALIDATOR PASS`。该结论只覆盖威胁模型文档门禁，不代表来源许可、parser lock、MIB 采集、解析或公开页面已经获批。
 
 1. 数据字典、来源台账、解析器 ADR 与本文不存在字段、状态或撤回语义冲突。
 2. 每个 `BLOCKER/HIGH` 风险都有可自动化的失败测试或明确的发布/应急人工证据。
