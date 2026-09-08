@@ -585,6 +585,15 @@
 - 安全边界：未读取/下载 RFC 或 MIB 正文，未生成 acquisition、parser、Fixture、lock、approval、索引或公开页面。
 - 下一步：执行 acquisition 前响应 framing、网络地址和 staging 清理的本地门禁复核；通过前不发起网络读取。
 
+### 2026-09-09 — MIB/OID acquisition preflight 本地门禁
+
+- 状态：`VALIDATOR PASS`（独立审计 Agent 复核通过）。
+- 实现：新增 `scripts/mib-acquisition-preflight-test.js`，增加 `npm run test:mib-acquisition-preflight`。
+- 覆盖：source/preauthorization 链、精确 HTTPS URL、代理、公共 IPv4/peer、HTTP 200、identity、framing、Content-Length/contentBytes、SHA-256、BOM、正文/响应头/时间限制和 staging 清理。
+- 本地验证：合法合成响应通过，11 个非法场景实际失败关闭；`npm run test:mib-acquisition-preflight` 与 `git diff --check` PASS。
+- 安全边界：无网络请求、无 RFC/MIB 读取、无真实 acquisition、parser、Fixture、索引或公开页面。
+- 下一步：继续执行 acquisition 记录生成前的审计，不直接读取 RFC/MIB 正文。
+
 ## 下一步队列
 
 按“小批次、验证通过后再继续”的顺序执行：
