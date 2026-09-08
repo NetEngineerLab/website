@@ -558,6 +558,15 @@
 - 独立审计：2 号验证官确认 provenance 字段、digest/平台/离线/hash 失败关闭、ADR/lock/approval 顺序和无真实产物边界完整，`git diff --check` PASS。
 - 下一步：逐文件真实来源记录与许可审核；在 8 个模块全部 approved、IMPORT 闭合且独立复核前，继续禁止 parser、MIB acquisition 和公开页面。
 
+### 2026-09-09 — 首选 8 个 RFC 许可证据矩阵
+
+- 状态：`VALIDATOR PASS`（独立审计 Agent 复核通过）。
+- 范围：基于 RFC Editor 与 IETF Trust 官方页面，记录首选 8 个 RFC 的发布日期、IETF stream、历史 TLP 适用路径和 Pre-5378/限制性 legend 待核字段。
+- 文档：新增 `docs/MIB_OID_RFC_LICENSE_EVIDENCE_MATRIX.md`。
+- 安全边界：只记录官方证据入口，不读取/复制 MIB 正文，不生成 acquisition、内容哈希、redistribution approval、parser lock 或公开页面。
+- 独立审计：2 号验证官确认首选 8、官方 URL、历史 TLP/Pre-5378 边界、PENDING_RECORD 状态和无正文复制边界完整，`git diff --check` PASS。
+- 下一步：为首个 RFC 生成 preauthorization 草案；仍禁止 acquisition、parser 和公开页面。
+
 ## 下一步队列
 
 按“小批次、验证通过后再继续”的顺序执行：
