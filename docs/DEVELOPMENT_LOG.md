@@ -620,6 +620,18 @@
 - 安全边界：不自写 HTTP parser、不真实联网、不生成或修改批准/acquisition/source 记录，不向 acquisition preflight 伪造 DNS answer 或 peer。
 - 下一步：不得把两个已测 Node 版本外推为所有 `>=20` 版本，也不得宣称真实 collector 或网络链合规；真实网络链仍受有效人工批准、DNS/TLS/peer、代理和 staging 门禁阻断。
 
+### 2026-09-09 — MIB/OID review head 纯离线拓扑解析
+
+- 状态：`VALIDATOR PASS`（仅限纯离线 review 拓扑与 head decision 描述；独立审计通过）。
+- 实现：新增 `scripts/lib/mib-review-head.js` 与导入式测试，新增 `npm run test:mib-review-head` 并接入 `preprepare:launch`；`scripts/mib-source-ledger-fault-test.js` 的旧 snapshot eligibility 假算法改为投影后调用同一 resolver，不再保留相互矛盾的双套 head 逻辑。
+- 输入契约：每条记录只接受 `reviewId/acquisitionId/sourceId/reviewScope/supersedesReviewId/redistributionDecision` 六字段最小拓扑 projection，字段严格封闭并执行字符串/ID/null/decision 类型检查；该 projection 不是完整 source-ledger review Schema。
+- 拓扑规则：同一 expected acquisition/source/scope 内要求 reviewId 唯一、父记录存在、唯一 root、无分叉、无环且全部连通；使用 Map 与迭代遍历避免递归栈，显式上限为 1000 条，输入顺序不影响结果且不修改输入。
+- 输出边界：返回冻结的唯一 head 副本及 `decisionAllowsPublication`；仅 head decision 为 `approved` 时该描述标志为 true，`pending/rejected/withdrawn` 均为 false。该标志不证明审核人身份、许可证据、签名、record hash、授权有效性或完整发布资格，不能单独作为发布门禁。
+- 本地证据：合法 root、`pending→approved`、`approved→withdrawn/rejected`、乱序、冻结输入与 1000 条边界通过；空/稀疏/null、字段、类型、重复 ID、断链、多 root、分叉、环、跨 acquisition/source/scope 和未知 decision 等 21 个隔离拒绝场景通过；更新后的既有 source-ledger 14 个故障测试、语法检查和 `git diff --check` 均 exit 0。总工在 Node v22.16.0 与 v24.18.0 分别执行同一 review-head 专项，均 exit 0；Node v24.18.0 全量 `npm run verify` exit 0。
+- 独立审计：审计 Agent 执行 22 个独立图、字段类型、decision 与数量边界向量，并复核旧 source-ledger fault 入口的 `pending→approved` 和 withdrawn 覆盖，全部得到预期结果，结论 `PASS`。
+- 安全边界：纯离线拓扑与决定描述校验；不联网、不改 records、不创建真实 review/批准、不进行身份、许可、签名、hash 或 acquisition 验证。
+- 下一步：不得把 decision 标志称为发布授权；完整许可、身份、签名和 record hash 门禁仍需独立验证。
+
 ## 下一步队列
 
 按“小批次、验证通过后再继续”的顺序执行：

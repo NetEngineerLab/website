@@ -1,4 +1,5 @@
 const crypto = require('node:crypto');
+const { resolveReviewHead } = require('./lib/mib-review-head');
 const assert = (condition, message) => { if (!condition) throw new Error(message); };
 const hash = 'a'.repeat(64);
 const ids = { source: `source-${hash}`, pa: `pa-${hash}`, acq: `acq-${hash}`, review: `review-${hash}` };
@@ -28,10 +29,10 @@ function reject(recordSet) {
 }
 
 function snapshotEligible(recordSet, reviews = [recordSet.review]) {
-  const roots = reviews.filter(r => r.supersedesReviewId === null);
-  if (roots.length !== 1) throw new Error('review roots');
-  if (reviews.filter(r => r.redistributionDecision === 'approved').length !== 1) throw new Error('snapshot decision');
-  if (reviews.some(r => r.redistributionDecision !== 'approved')) throw new Error('snapshot status');
+  const fields = ['reviewId', 'acquisitionId', 'sourceId', 'reviewScope', 'supersedesReviewId', 'redistributionDecision'];
+  const projection = reviews.map((review) => Object.fromEntries(fields.map((field) => [field, review[field]])));
+  const resolved = resolveReviewHead(projection, { acquisitionId: recordSet.acquisition.acquisitionId, sourceId: recordSet.source.sourceId, reviewScope: recordSet.review.reviewScope });
+  if (!resolved.decisionAllowsPublication) throw new Error('snapshot decision');
   return true;
 }
 
