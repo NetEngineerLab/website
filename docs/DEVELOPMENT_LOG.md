@@ -585,14 +585,15 @@
 - 安全边界：未读取/下载 RFC 或 MIB 正文，未生成 acquisition、parser、Fixture、lock、approval、索引或公开页面。
 - 下一步：执行 acquisition 前响应 framing、网络地址和 staging 清理的本地门禁复核；通过前不发起网络读取。
 
-### 2026-09-09 — MIB/OID acquisition preflight 本地门禁
+### 2026-09-09 — MIB/OID acquisition 离线响应校验器修复
 
-- 状态：`VALIDATOR PASS`（独立审计 Agent 复核通过）。
-- 实现：新增 `scripts/mib-acquisition-preflight-test.js`，增加 `npm run test:mib-acquisition-preflight`。
-- 覆盖：source/preauthorization 链、精确 HTTPS URL、代理、公共 IPv4/peer、HTTP 200、identity、framing、Content-Length/contentBytes、SHA-256、BOM、正文/响应头/时间限制和 staging 清理。
-- 本地验证：合法合成响应通过，11 个非法场景实际失败关闭；`npm run test:mib-acquisition-preflight` 与 `git diff --check` PASS。
-- 安全边界：无网络请求、无 RFC/MIB 读取、无真实 acquisition、parser、Fixture、索引或公开页面。
-- 下一步：继续执行 acquisition 记录生成前的审计，不直接读取 RFC/MIB 正文。
+- 状态：`VALIDATOR PASS`（仅限纯离线响应对象校验器；独立审计已通过）；撤回此前对网络 acquisition preflight 和 staging 清理作出的超范围表述。
+- 实现：新增纯函数模块 `scripts/lib/mib-acquisition-preflight.js`，测试通过导入该模块验证不可信响应；`npm run test:mib-acquisition-preflight` 通过 npm pre-script 接入 `prepare:launch`。
+- 覆盖：可信调用方注入的 source/preauthorization/精确 HTTPS URL 与响应分离；只接受非空 Buffer 字节、fatal UTF-8 且无真实 BOM；只接受 none/chunked framing；正文、响应头和耗时必须为非负安全整数并执行包含边界；DNS answer 为已排序去重的 canonical 公共 IPv4 集合且包含 peer，文档、私有、保留地址和当前不支持的 IPv6 失败关闭。
+- 本地证据：`npm run test:mib-acquisition-preflight` 完成合法 none/chunked、多个公共 DNS answer、包含边界和 46 个按错误码隔离的拒绝场景；`node --check` 与 `git diff --check` 通过。总工执行全量 `npm run verify` 及补跑专项测试均 exit 0。没有联网，也没有读写或删除 staging 文件。
+- 独立审计：审计 Agent 在合法基线通过后执行 55 个独立变异，发现并阻断稀疏 DNS 数组空槽绕过；修复为实体化数组逐项校验并加入定向回归后，额外 4 个 sparse-array 变异全部拒绝，复审结论 `PASS`。
+- 范围限制：本模块仅校验调用方提供的离线响应对象；不实现或证明 DNS 解析、DNS rebinding 防护、代理绕过防护、TLS、原始 HTTP framing/header 采集、网络 collector、授权批准有效性或 staging 生命周期合规。来源记录中的 schemaVersion 和审核人字段不作为本轮许可批准证明，且未修改任何不可变来源记录。
+- 下一步：不得据此宣称完整 acquisition 门禁已完成，也不发起 RFC/MIB 网络读取；先解决来源记录类型版本与可追责审核身份的契约缺口。
 
 ## 下一步队列
 
