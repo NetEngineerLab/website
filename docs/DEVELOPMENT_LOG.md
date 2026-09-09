@@ -607,6 +607,19 @@
 - 范围限制：canonicalizer 只实现本记录所需的字符串、字符串数组和普通对象范围，不声称是通用数字 JSON/JCS 实现；本批无网络、无来源记录写入、无真实批准、无 acquisition 或 parser 产物。
 - 下一步：旧 source/preauthorization 只能由新的合规不可变记录替代，不得原位修改或用于网络 expected context；后续先评估复用成熟 HTTP 实现进行合成响应验证，不自行承诺协议栈或网络 collector，本批未实现或验证二者。
 
+### 2026-09-09 — MIB/OID Node HTTP/1.1 固定长度响应离线适配器
+
+- 状态：`VALIDATOR PASS`（仅限 Node v22.16.0/v24.18.0 内存响应适配；独立审计通过）。
+- 实现：新增 `scripts/lib/mib-http-response-adapter.js` 与内存 Duplex 导入式测试，新增 `npm run test:mib-http-response-adapter` 并接入 `preprepare:launch`。适配器仅在调用方显式 factory 返回真实 `Duplex` 后创建请求，没有默认连接路径。
+- Node 解析边界：普通 HTTP/1.1 状态行、headers 和 framing 全部交给 Node 内置严格 HTTP parser，固定 `insecureHTTPParser:false` 与 `maxHeaderSize:16384`；源码核对发现 `agent:false` 会创建默认 Agent 且不能可靠固定 options factory，因此改用一次性、不开 keep-alive 的专用 Agent，并将其 `createConnection` 唯一绑定到预验证 Duplex。
+- 响应契约：只接受 HTTP/1.1 200、`text/plain` 可选 UTF-8 charset、缺失或 `identity` Content-Encoding、恰好一个 canonical 十进制 Content-Length；拒绝 Transfer-Encoding、Trailer、缺失/重复/非法长度、close-delimited、截断、超 header/body、BOM 与非法 UTF-8。实体按 Buffer 累计并先执行声明长度与累计上限，完成时要求 `response.complete`、实收长度相等，再计算 SHA-256。
+- 本地证据：本机 Node `v24.18.0` 下，连续与分片合法响应通过；重复同值/异值 Content-Length、TE+CL、chunked、缺长度、非法长度、截断、超限、状态、gzip、Trailer、BOM、UTF-8、HTTP/1.0、factory 缺失/抛错/非法返回、limits、timeout 和迟到字节场景得到预期结果；测试拦截 `net.connect`、`net.createConnection` 与 `dns.lookup` 并确认调用数为 0。总工执行的全量 `npm run verify` exit 0。总工另行下载 Node `v22.16.0` 官方 win-x64 `node.exe`，其 SHA-256 与官方 `SHASUMS256.txt` 匹配，使用该二进制运行同一 27 场景专项测试 exit 0；全量验证只在 Node v24.18.0 执行，不表述为双版本全量通过。
+- 独立审计：审计 Agent 复跑 27 个专项场景并执行 20 个独立向量，覆盖逐字节拆分、协议错误、截断、超限及 factory/setup/end 异常；确认默认网络调用为 0、受测流只销毁一次、deadline 全部清除，语法与 `git diff --check` 通过，结论 `PASS`。
+- 跨版本复审：独立审计 Agent 在 Node v22.16.0 补验逐字节合法响应、重复 Content-Length、TE+CL 和 4 个 factory 异常，默认网络调用为 0、受测流销毁一次，结论 `PASS`；远端 CI 在推送后另行核实。
+- 生命周期限制：deadline 与 destroy-once 只在内存 Duplex 场景验证，不证明真实网络 wall-clock、DNS、TLS、peer、代理、staging 或 collector 合规。Node 在首条固定长度消息完成时即可结束响应；这不能证明底层连接不存在后续字节，适配器完成后会销毁注入流，但不把该行为表述为连接级原始证据。
+- 安全边界：不自写 HTTP parser、不真实联网、不生成或修改批准/acquisition/source 记录，不向 acquisition preflight 伪造 DNS answer 或 peer。
+- 下一步：不得把两个已测 Node 版本外推为所有 `>=20` 版本，也不得宣称真实 collector 或网络链合规；真实网络链仍受有效人工批准、DNS/TLS/peer、代理和 staging 门禁阻断。
+
 ## 下一步队列
 
 按“小批次、验证通过后再继续”的顺序执行：
