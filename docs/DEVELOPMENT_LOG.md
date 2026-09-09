@@ -595,6 +595,18 @@
 - 范围限制：本模块仅校验调用方提供的离线响应对象；不实现或证明 DNS 解析、DNS rebinding 防护、代理绕过防护、TLS、原始 HTTP framing/header 采集、网络 collector、授权批准有效性或 staging 生命周期合规。来源记录中的 schemaVersion 和审核人字段不作为本轮许可批准证明，且未修改任何不可变来源记录。
 - 下一步：不得据此宣称完整 acquisition 门禁已完成，也不发起 RFC/MIB 网络读取；先解决来源记录类型版本与可追责审核身份的契约缺口。
 
+### 2026-09-09 — MIB/OID source/preauthorization 离线 eligibility 校验
+
+- 状态：`VALIDATOR PASS`（仅限纯离线 source/preauthorization eligibility；独立审计通过）。
+- 实现：新增 `scripts/lib/mib-preauthorization-eligibility.js` 与导入式测试，`npm run test:mib-preauthorization-eligibility` 已接入 `preprepare:launch`；source Schema 的类型版本契约修正为 `source-ledger-source/1.0.0`，preauthorization 继续使用 `source-ledger/1.0.0`。
+- 契约：严格校验封闭字段、非空 NFC 字符串、拒绝 lone surrogate、UTF-8 排序去重数组、类型限定 canonical preimage、SHA-256/ID 重算和 source→preauthorization 链；请求 URL 必须是无凭据、端口、query、fragment 或编码路径分隔符的 canonical HTTPS，并按 origin 与路径边界归属于 source。
+- Eligibility 范围：只允许 `CONDITIONAL_CODE_COMPONENT` 的 `acquire-for-license-review-only`；`ALLOW_REGISTRY_DATA` 需要独立 registry 流程，`METADATA_LINK_ONLY` 禁止正文读取，`BLOCKED_UNVERIFIED` 失败关闭。policy evidence URL 必须精确存在于 source evidence 集合。
+- 信任边界：reviewer identity allowlist 与当前日期必须由调用方显式注入，默认空名单拒绝；allowlist 仅表达调用方信任配置，不认证真人身份、不验证批准事件或签名，也不生成任何批准。批准日期仅支持本流程约定的 1900–2099 年真实 `YYYY-MM-DD`，且不晚于注入日期；该实现不声称是通用历史或未来日期处理器。
+- 本地证据：固定 canonical hash 向量与合成合法链通过，35 个独立错误码场景通过；现有不可变 source 因旧 schemaVersion、现有 preauthorization 因泛化角色身份被精确拒绝，记录未修改。eligibility 专项、source schema 专项、acquisition preflight 专项、语法检查、`git diff --check` 与总工执行的全量 `npm run verify` 均 exit 0。
+- 独立审计：审计 Agent 使用独立 Unicode 与闰日合法链复算，并执行 35 个定向拒绝变异，均得到预期结果，结论 `PASS`。
+- 范围限制：canonicalizer 只实现本记录所需的字符串、字符串数组和普通对象范围，不声称是通用数字 JSON/JCS 实现；本批无网络、无来源记录写入、无真实批准、无 acquisition 或 parser 产物。
+- 下一步：旧 source/preauthorization 只能由新的合规不可变记录替代，不得原位修改或用于网络 expected context；后续先评估复用成熟 HTTP 实现进行合成响应验证，不自行承诺协议栈或网络 collector，本批未实现或验证二者。
+
 ## 下一步队列
 
 按“小批次、验证通过后再继续”的顺序执行：

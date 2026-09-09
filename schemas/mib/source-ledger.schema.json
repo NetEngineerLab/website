@@ -15,7 +15,7 @@
       "type": "object", "additionalProperties": false,
       "required": ["schemaVersion", "sourceId", "sourceKey", "authorityNamespace", "authorityBaseUrls", "policyClass", "evidenceUrls", "handlingRule", "recordHash"],
       "properties": {
-        "schemaVersion": { "$ref": "#/$defs/schemaVersion" }, "sourceId": { "type": "string", "pattern": "^source-[0-9a-f]{64}$" }, "sourceKey": { "type": "string", "minLength": 1 },
+        "schemaVersion": { "const": "source-ledger-source/1.0.0" }, "sourceId": { "type": "string", "pattern": "^source-[0-9a-f]{64}$" }, "sourceKey": { "type": "string", "minLength": 1 },
         "authorityNamespace": { "type": "string", "minLength": 1 }, "authorityBaseUrls": { "type": "array", "items": { "type": "string", "format": "uri" }, "minItems": 1, "uniqueItems": true },
         "policyClass": { "enum": ["ALLOW_REGISTRY_DATA", "CONDITIONAL_CODE_COMPONENT", "METADATA_LINK_ONLY", "BLOCKED_UNVERIFIED"] }, "evidenceUrls": { "type": "array", "items": { "type": "string", "format": "uri" }, "minItems": 1, "uniqueItems": true }, "handlingRule": { "type": "string", "minLength": 1 }, "recordHash": { "$ref": "#/$defs/hash" }
       }

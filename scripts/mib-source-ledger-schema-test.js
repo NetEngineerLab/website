@@ -19,6 +19,8 @@ for (const [kind, fields] of Object.entries(required)) {
   for (const field of fields) assert(def.required.includes(field), `${kind}: missing required field ${field}`);
 }
 assert(schema.$defs.acquisition.properties.httpStatus.const === 200, 'F-14 acquisition must be final 200');
+assert(schema.$defs.source.properties.schemaVersion.const === 'source-ledger-source/1.0.0', 'source must use its type-specific schema version');
+assert(schema.$defs.preauthorization.properties.schemaVersion.$ref === '#/$defs/schemaVersion', 'preauthorization must retain source-ledger/1.0.0');
 assert(schema.$defs.acquisition.properties.responseContentEncoding.const === 'identity', 'identity encoding gate missing');
 assert(schema.$defs.review.properties.redistributionDecision.enum.includes('pending'), 'pending decision missing');
 assert(schema.$defs.review.properties.redistributionDecision.enum.includes('withdrawn'), 'withdrawn decision missing');
