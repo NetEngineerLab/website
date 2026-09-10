@@ -192,6 +192,12 @@ main > .tool-hero {
   box-shadow: 0 22px 50px rgba(5, 51, 96, 0.16);
 }
 
+/* Nested tool pages use a light hero surface; keep all text readable. */
+main > .tool-hero {
+  color: var(--nel-blue-dark) !important;
+  background: linear-gradient(118deg, #eef6ff, #f8fbff) !important;
+}
+
 .hero .hero-inner,
 .tool-hero > div:first-child { max-width: 900px; }
 
@@ -213,6 +219,10 @@ main > .tool-hero {
   letter-spacing: -0.04em;
 }
 
+main > .tool-hero h1 {
+  color: var(--nel-blue-dark) !important;
+}
+
 .hero h1 + p,
 .tool-hero .hero-copy {
   max-width: 900px;
@@ -220,6 +230,10 @@ main > .tool-hero {
   color: #e6f3ff !important;
   font-size: clamp(16px, 1.5vw, 20px) !important;
   line-height: 1.8 !important;
+}
+
+main > .tool-hero > p:last-child {
+  color: #153f66 !important;
 }
 
 .hero .tags,
