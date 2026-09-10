@@ -32,7 +32,19 @@ const intentByTool=Object.freeze({
   "switch-uplink-oversubscription-calculator":"sizing",
   "dns-ttl-propagation-calculator":"planning",
   "acl-generator-validator":"validation",
-  "network-change-planner-mop-generator":"planning"
+  "network-change-planner-mop-generator":"planning",
+  "pue-data-center-energy-efficiency":"calculation",
+  "telecom-solar-battery-sizing-calculator":"sizing",
+  "generator-fuel-runtime-calculator":"planning",
+  "telecom-rectifier-dc-power-sizing":"sizing",
+  "telecom-ac-dc-breaker-sizing":"sizing",
+  "ups-capacity-battery-runtime-calculator":"sizing",
+  "data-center-cooling-load-calculator":"sizing",
+  "dc-plant-efficiency-load-sharing":"diagnosis",
+  "data-center-airflow-containment-planner":"planning",
+  "generator-ups-transfer-ride-through-planner":"planning",
+  "transmission-ring-optimization-risk-analyzer":"planning",
+  "olt-dual-uplink-transport-mse-planner":"planning"
 });
 const intentLabels=Object.freeze({
   calculation:{en:"calculation",zh:"计算"},

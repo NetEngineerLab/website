@@ -8,7 +8,7 @@ const root=path.resolve(__dirname,"..");
 const tools=loadToolRegistry();
 assert.deepEqual(validateToolRegistry(tools),[]);
 assert.ok(tools.length>=21,"Tool Registry must retain the original 21-tool Phase1 baseline");
-assert.equal(tools.filter(t=>t.status==="active").length,22,"Current production baseline must expose 22 active tools");
+assert.ok(tools.filter(t=>t.status==="active").length>=22,"Production baseline must expose at least 22 active tools");
 for(const tool of tools){
  assert.ok(fs.existsSync(path.join(root,`website/tools/${tool.id}/index.html`)),`${tool.id}: EN page missing`);
  assert.ok(fs.existsSync(path.join(root,`website/tools/${tool.id}/zh/index.html`)),`${tool.id}: zh page missing`);

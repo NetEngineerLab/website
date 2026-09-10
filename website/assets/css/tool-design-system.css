@@ -582,7 +582,7 @@ footer .footer-links a:hover { text-decoration:none; }
 @media print {
   body { background: #fff !important; }
   .site-header, .breadcrumbs, .tool-hero, .hero, .actions, .action-row,
-  .export-actions, .result-actions, .cookie-banner, footer { display: none !important; }
+  .export-actions, .cookie-banner, footer { display: none !important; }
   body > main, body > .content, body > .content-section {
     width: 100% !important;
     max-width: none !important;
@@ -604,34 +604,3 @@ a.nel-tool-graph-card:hover,a.nel-tool-graph-card:focus-visible{transform:transl
 @media(max-width:900px){.nel-workflow-context{grid-template-columns:1fr}.nel-workflow-step>strong{text-align:left}.nel-tool-graph-related{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.nel-tool-graph-nav,.nel-tool-graph-related{grid-template-columns:1fr}.nel-tool-graph-card{min-height:0}.nel-workflow-context{padding:18px}}
 @media print{.nel-tool-graph{display:none!important}}
-
-/* Keep reference links consistent with tool navigation. */
-#references a, #references a:hover, #references a:focus-visible { color: #145bb5; text-decoration: none !important; }
-#references a:hover { color: #0d438c; }
-#references a:focus-visible { outline: 2px solid #176ff2; outline-offset: 3px; }
-
-/* Equal-width result actions, including wrapped mobile rows. */
-@media screen {
-  .result-actions {
-    display: grid !important;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    grid-auto-rows: 1fr;
-    align-items: stretch;
-  }
-  .result-actions button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-    min-width: 0;
-    margin: 0;
-    line-height: 1.4;
-    overflow-wrap: anywhere;
-  }
-  .result-actions .action-icon { flex: 0 0 18px; margin: 0; }
-}
-@media screen and (max-width: 760px) {
-  .result-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .result-actions button { padding: 10px 8px !important; }
-}

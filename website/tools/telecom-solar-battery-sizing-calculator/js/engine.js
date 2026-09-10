@@ -1,0 +1,19 @@
+(function(root,factory){const api=factory();if(typeof module==="object"&&module.exports)module.exports=api;root.NELSolarEngine=api;})(typeof globalThis!=="undefined"?globalThis:this,function(){"use strict";
+ const n=v=>Number(v), clamp=(v,a,b)=>Math.min(b,Math.max(a,v)), def=(v,d)=>Number.isFinite(Number(v))?Number(v):d;
+ function calculate(i={}){
+  const loads=[['telecom',n(i.telecomKW),def(i.telecomHours,24)],['transport',n(i.transportKW),def(i.transportHours,24)],['cooling',n(i.coolingKW),def(i.coolingHours,12)],['aux',n(i.auxKW),def(i.auxHours,24)]];
+  const dailyLoad=loads.reduce((s,[,kw,h])=>s+Math.max(0,kw)*clamp(h,0,24),0); const avgLoad=dailyLoad/24;
+  const psh=n(i.psh), moduleW=n(i.moduleW), sysEff=clamp(def(i.systemEfficiencyPct,80),1,100)/100;
+  const lossMult=['dustLossPct','tempLossPct','wiringLossPct','controllerLossPct'].reduce((m,k)=>m*(1-clamp(def(i[k],0),0,50)/100),1); const netEff=sysEff*lossMult;
+  const margin=1+clamp(def(i.designMarginPct,15),0,100)/100; const errors=[];
+  if(!(dailyLoad>0))errors.push('load'); if(!(psh>0))errors.push('psh'); if(!(moduleW>0))errors.push('moduleW'); if(!(netEff>0))errors.push('efficiency'); if(errors.length)return{ok:false,errors};
+  const requiredPV=dailyLoad*margin/(psh*netEff); const moduleCount=Math.ceil(requiredPV*1000/moduleW);
+  const modulesPerString=Math.max(1,Math.floor(def(i.modulesPerString,1))); const strings=Math.ceil(moduleCount/modulesPerString); const installedModules=strings*modulesPerString; const installedPV=installedModules*moduleW/1000;
+  const backupHours=Math.max(0,def(i.backupHours,0))+Math.max(0,def(i.rainyDays,0))*24; const dod=clamp(def(i.dodPct,80),1,100)/100, battEff=clamp(def(i.batteryEfficiencyPct,92),1,100)/100, battMargin=1+clamp(def(i.batteryMarginPct,10),0,100)/100;
+  const batteryUsable=dailyLoad/24*backupHours; const batteryNominal=batteryUsable/(dod*battEff)*battMargin; const voltage=Math.max(1,def(i.systemVoltage,48)); const batteryAh=batteryNominal*1000/voltage;
+  const dailyGeneration=installedPV*psh*netEff; const annualGeneration=dailyGeneration*365; const annualLoad=dailyLoad*365; const balance=dailyGeneration-dailyLoad; const coverage=dailyLoad?Math.min(100,dailyGeneration/dailyLoad*100):0;
+  const displaced=Math.min(annualGeneration,annualLoad); const tariff=Math.max(0,n(i.tariff)||0); const savings=displaced*tariff; const pvCost=Math.max(0,n(i.pvCostPerKWp)||0)*installedPV; const battCost=Math.max(0,n(i.batteryCostPerKWh)||0)*batteryNominal; const capex=pvCost+battCost; const payback=savings>0?capex/savings:null;
+  const gridFactor=Math.max(0,n(i.gridCO2KgPerKWh)||0); const co2=displaced*gridFactor; const genKWhPerL=Math.max(.1,n(i.generatorKWhPerLiter)||3); const dieselSaved=displaced/genKWhPerL;
+  const existingPV=Math.max(0,n(i.existingPVKWp)||0); const existingBatt=Math.max(0,n(i.existingBatteryKWh)||0); const pvGap=requiredPV-existingPV; const battGap=batteryNominal-existingBatt; const surplusContinuousW=Math.max(0,balance/24*1000);
+  const scenario=i.scenario||'grid-hybrid'; const supplement=Math.max(0,dailyLoad-dailyGeneration); return{ok:true,loads,dailyLoad,avgLoad,netEff,requiredPV,moduleCount,installedPV,modulesPerString,strings,installedModules,backupHours,batteryUsable,batteryNominal,batteryAh,dailyGeneration,monthlyGeneration:annualGeneration/12,annualGeneration,annualLoad,balance,coverage,scenario,gridSupplement:scenario==='grid-hybrid'?supplement:0,generatorSupplement:scenario==='offgrid'?supplement:0,displaced,savings,capex,payback,co2,dieselSaved,existingPV,existingBatt,pvGap,battGap,surplusContinuousW};
+ } return{calculate};});

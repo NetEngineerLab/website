@@ -448,5 +448,254 @@
         }
       }
     ]
+  },
+  {
+    "id": "telecom-power-energy",
+    "schemaVersion": "2.1.0",
+    "status": "active",
+    "domain": "power-datacenter",
+    "primary": true,
+    "translations": {
+      "en": {
+        "name": "Telecom Power & Energy Workflow",
+        "description": "Move from site load through AC/DC distribution, rectifier sizing and operating diagnostics, battery backup, generator fuel, solar generation and facility efficiency as one energy engineering sequence."
+      },
+      "zh": {
+        "name": "通信电源与能源工作流",
+        "description": "把站点负载、AC/DC配电、整流容量与运行诊断、后备电池、油机保障、光伏供能与设施能效串成完整能源工程流程。"
+      }
+    },
+    "steps": [
+      {
+        "order": 1,
+        "toolId": "network-rack-power-cooling-calculator",
+        "translations": {
+          "en": {
+            "action": "Establish rack/site power and cooling load"
+          },
+          "zh": {
+            "action": "确定机架/站点功耗与制冷负荷"
+          }
+        }
+      },
+      {
+        "order": 2,
+        "toolId": "telecom-ac-dc-breaker-sizing",
+        "translations": {
+          "en": {
+            "action": "Size AC/DC feeders and protective-device planning current"
+          },
+          "zh": {
+            "action": "核算AC/DC馈电与保护器件规划电流"
+          }
+        }
+      },
+      {
+        "order": 3,
+        "toolId": "telecom-rectifier-dc-power-sizing",
+        "translations": {
+          "en": {
+            "action": "Size rectifier capacity and redundancy"
+          },
+          "zh": {
+            "action": "配置整流模块容量与冗余"
+          }
+        }
+      },
+      {
+        "order": 4,
+        "toolId": "dc-plant-efficiency-load-sharing",
+        "translations": {
+          "en": {
+            "action": "Diagnose rectifier load sharing and DC conversion efficiency"
+          },
+          "zh": {
+            "action": "诊断整流模块均流与直流转换效率"
+          }
+        }
+      },
+      {
+        "order": 5,
+        "toolId": "48v-battery-runtime",
+        "translations": {
+          "en": {
+            "action": "Size -48V backup autonomy"
+          },
+          "zh": {
+            "action": "核算-48V后备电池续航"
+          }
+        }
+      },
+      {
+        "order": 6,
+        "toolId": "generator-fuel-runtime-calculator",
+        "translations": {
+          "en": {
+            "action": "Plan generator fuel and emergency runtime"
+          },
+          "zh": {
+            "action": "规划油机用油与应急续航"
+          }
+        }
+      },
+      {
+        "order": 7,
+        "toolId": "telecom-solar-battery-sizing-calculator",
+        "translations": {
+          "en": {
+            "action": "Size solar generation and storage"
+          },
+          "zh": {
+            "action": "配置光伏发电与储能"
+          }
+        }
+      },
+      {
+        "order": 8,
+        "toolId": "pue-data-center-energy-efficiency",
+        "translations": {
+          "en": {
+            "action": "Analyze facility energy efficiency and optimization"
+          },
+          "zh": {
+            "action": "分析设施能效与优化空间"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "data-center-critical-power-cooling",
+    "schemaVersion": "2.1.0",
+    "status": "active",
+    "domain": "power-datacenter",
+    "primary": true,
+    "translations": {
+      "en": {
+        "name": "Data Center Critical Power & Cooling Workflow",
+        "description": "Move from rack load through UPS protection, generator/ATS ride-through, precision cooling, airflow containment and facility PUE as one critical-infrastructure planning sequence."
+      },
+      "zh": {
+        "name": "数据中心关键电源与制冷工作流",
+        "description": "从机架负载、UPS保障、油机/ATS切换跨越、精密制冷、气流组织到PUE能效，形成数据中心关键基础设施规划流程。"
+      }
+    },
+    "steps": [
+      {
+        "order": 1,
+        "toolId": "network-rack-power-cooling-calculator",
+        "translations": {
+          "en": {
+            "action": "Establish rack IT power and heat load"
+          },
+          "zh": {
+            "action": "确定机架IT功耗与发热负荷"
+          }
+        }
+      },
+      {
+        "order": 2,
+        "toolId": "ups-capacity-battery-runtime-calculator",
+        "translations": {
+          "en": {
+            "action": "Size UPS capacity, redundancy and battery autonomy"
+          },
+          "zh": {
+            "action": "配置UPS容量、冗余与电池续航"
+          }
+        }
+      },
+      {
+        "order": 3,
+        "toolId": "generator-ups-transfer-ride-through-planner",
+        "translations": {
+          "en": {
+            "action": "Validate generator start, ATS transfer and UPS ride-through continuity"
+          },
+          "zh": {
+            "action": "校验油机启动、ATS切换与UPS跨越供电连续性"
+          }
+        }
+      },
+      {
+        "order": 4,
+        "toolId": "data-center-cooling-load-calculator",
+        "translations": {
+          "en": {
+            "action": "Size precision cooling and N+1 capacity"
+          },
+          "zh": {
+            "action": "配置精密制冷容量与N+1冗余"
+          }
+        }
+      },
+      {
+        "order": 5,
+        "toolId": "data-center-airflow-containment-planner",
+        "translations": {
+          "en": {
+            "action": "Plan rack airflow, aisle containment and N+1 delivery"
+          },
+          "zh": {
+            "action": "规划机柜气流、冷热通道封闭与N+1送风"
+          }
+        }
+      },
+      {
+        "order": 6,
+        "toolId": "pue-data-center-energy-efficiency",
+        "translations": {
+          "en": {
+            "action": "Analyze facility PUE and energy overhead"
+          },
+          "zh": {
+            "action": "分析设施PUE与能源开销"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "access-transport-optimization",
+    "schemaVersion": "2.1.0",
+    "status": "active",
+    "domain": "transport",
+    "primary": true,
+    "translations": {
+      "en": {
+        "name": "Access & Transport Capacity Optimization Workflow",
+        "description": "Plan protected OLT dual uplinks and transport/MSE capacity, then analyze ring protection-state bottlenecks and optimization options."
+      },
+      "zh": {
+        "name": "接入与传输容量优化工作流",
+        "description": "先规划OLT双上联、传输波道与MSE资源，再分析传输环保护倒换后的瓶颈和优化方案。"
+      }
+    },
+    "steps": [
+      {
+        "order": 1,
+        "toolId": "olt-dual-uplink-transport-mse-planner",
+        "translations": {
+          "en": {
+            "action": "Size OLT dual uplinks, transport channels and MSE ports"
+          },
+          "zh": {
+            "action": "规划OLT双上联、传输波道与MSE端口"
+          }
+        }
+      },
+      {
+        "order": 2,
+        "toolId": "transmission-ring-optimization-risk-analyzer",
+        "translations": {
+          "en": {
+            "action": "Simulate N-1 ring failures and optimize protection-state capacity"
+          },
+          "zh": {
+            "action": "模拟N-1环网故障并优化保护态容量"
+          }
+        }
+      }
+    ]
   }
 ]

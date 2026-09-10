@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-06T15:11:14.116Z",
+  "generatedAt": "2026-09-10T07:12:44.175Z",
   "methodology": {
     "scope": "Active bilingual tool pages configured by locales.json and tools-catalog.json",
     "meaning": "Rule-based content-gap priority; not a ranking, traffic, or conversion forecast",
@@ -17,22 +17,362 @@
     ]
   },
   "summary": {
-    "activeTools": 22,
-    "localePages": 44,
+    "activeTools": 34,
+    "localePages": 68,
     "priorityCounts": {
       "high": 0,
       "medium": 0,
-      "maintain": 22
+      "maintain": 34
     }
   },
   "nextBatch": [
-    "optical-power-budget",
-    "pon-splitter-loss",
-    "onu-rx-power",
-    "pon-distance",
-    "mtu-calculator"
+    "ups-capacity-battery-runtime-calculator",
+    "data-center-cooling-load-calculator",
+    "dc-plant-efficiency-load-sharing",
+    "data-center-airflow-containment-planner",
+    "generator-ups-transfer-ride-through-planner"
   ],
   "tools": [
+    {
+      "id": "ups-capacity-battery-runtime-calculator",
+      "catalogOrder": 28,
+      "category": "power",
+      "searchIntent": {
+        "id": "sizing",
+        "en": "sizing and selection",
+        "zh": "选型"
+      },
+      "targetTopic": {
+        "en": "UPS Capacity & Battery Backup Runtime Calculator",
+        "zh": "UPS容量与电池后备时间计算器"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-09-10",
+        "zh": "2026-09-10"
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 3613,
+          "sectionHeadings": 8,
+          "longTailQuestions": [
+            "Why size both kW and kVA?",
+            "Why add headroom?",
+            "Is battery runtime linear with Ah?",
+            "What does N+1 mean here?",
+            "Can this replace a vendor UPS selector?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.se.com/us/en/faqs/FAQ000268376/",
+            "https://www.se.com/us/en/work/products/tools/ups-selector/"
+          ],
+          "externalReferenceCount": 2,
+          "internalLinkCount": 5,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 1358,
+          "sectionHeadings": 8,
+          "longTailQuestions": [
+            "为什么要同时核算 kW 和 kVA？",
+            "为什么要增加工程余量？",
+            "电池续航是否与 Ah 完全线性？",
+            "这里的 N+1 如何计算？",
+            "能否替代厂家 UPS 选型工具？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.se.com/us/en/faqs/FAQ000268376/",
+            "https://www.se.com/us/en/work/products/tools/ups-selector/"
+          ],
+          "externalReferenceCount": 2,
+          "internalLinkCount": 5,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        }
+      },
+      "score": 6,
+      "priority": "maintain",
+      "gaps": [
+        "1 authoritative reference(s) below the three-source target"
+      ]
+    },
+    {
+      "id": "data-center-cooling-load-calculator",
+      "catalogOrder": 29,
+      "category": "power",
+      "searchIntent": {
+        "id": "sizing",
+        "en": "sizing and selection",
+        "zh": "选型"
+      },
+      "targetTopic": {
+        "en": "Data Center Cooling Load & Precision AC Capacity Calculator",
+        "zh": "数据中心制冷负荷与精密空调容量计算器"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-09-10",
+        "zh": "2026-09-10"
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 3798,
+          "sectionHeadings": 8,
+          "longTailQuestions": [
+            "Why is IT power approximately equal to IT heat?",
+            "Should UPS and PDU losses be added?",
+            "What is N+1 cooling?",
+            "Does this include humidity and latent load?",
+            "Can this replace a precision-air-conditioning selection tool?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.se.com/us/en/download/document/SPD_NRAN-5TE6HE_EN/",
+            "https://www.ashrae.org/technical-resources/bookstore/datacom-series"
+          ],
+          "externalReferenceCount": 2,
+          "internalLinkCount": 6,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 1356,
+          "sectionHeadings": 8,
+          "longTailQuestions": [
+            "为什么 IT 功耗可以近似看作 IT 发热量？",
+            "UPS和PDU损耗是否要计入？",
+            "制冷 N+1 如何计算？",
+            "是否包含湿度和潜热负荷？",
+            "能否替代精密空调厂家选型？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.se.com/us/en/download/document/SPD_NRAN-5TE6HE_EN/",
+            "https://www.ashrae.org/technical-resources/bookstore/datacom-series"
+          ],
+          "externalReferenceCount": 2,
+          "internalLinkCount": 6,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        }
+      },
+      "score": 6,
+      "priority": "maintain",
+      "gaps": [
+        "1 authoritative reference(s) below the three-source target"
+      ]
+    },
+    {
+      "id": "dc-plant-efficiency-load-sharing",
+      "catalogOrder": 30,
+      "category": "power",
+      "searchIntent": {
+        "id": "diagnosis",
+        "en": "diagnosis",
+        "zh": "故障诊断"
+      },
+      "targetTopic": {
+        "en": "DC Plant Efficiency & Rectifier Load-Sharing Analyzer",
+        "zh": "直流电源系统效率与整流模块均流分析器"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-09-10",
+        "zh": "2026-09-10"
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 4855,
+          "sectionHeadings": 9,
+          "longTailQuestions": [
+            "What does rectifier load sharing mean?",
+            "How is load-sharing deviation calculated?",
+            "Can low current prove a rectifier module is faulty?",
+            "How is DC plant efficiency calculated?",
+            "What does the recommended online-module count mean?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.etsi.org/deliver/etsi_en/300100_300199/30013202/",
+            "https://webstore.iec.ch/en/publication/6027"
+          ],
+          "externalReferenceCount": 2,
+          "internalLinkCount": 4,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 1552,
+          "sectionHeadings": 9,
+          "longTailQuestions": [
+            "什么是整流模块均流？",
+            "均流偏差如何计算？",
+            "电流偏低能否证明模块故障？",
+            "直流电源系统效率如何计算？",
+            "建议在线模块数量是什么意思？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.etsi.org/deliver/etsi_en/300100_300199/30013202/",
+            "https://webstore.iec.ch/en/publication/6027"
+          ],
+          "externalReferenceCount": 2,
+          "internalLinkCount": 4,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        }
+      },
+      "score": 6,
+      "priority": "maintain",
+      "gaps": [
+        "1 authoritative reference(s) below the three-source target"
+      ]
+    },
+    {
+      "id": "data-center-airflow-containment-planner",
+      "catalogOrder": 31,
+      "category": "power",
+      "searchIntent": {
+        "id": "planning",
+        "en": "planning",
+        "zh": "规划"
+      },
+      "targetTopic": {
+        "en": "Data Center Airflow & Hot-Aisle Containment Planner",
+        "zh": "数据中心气流组织与冷热通道规划工具"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-09-10",
+        "zh": "2026-09-10"
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 4716,
+          "sectionHeadings": 9,
+          "longTailQuestions": [
+            "Why is cooling kW alone not enough to size CRAH/CRAC?",
+            "What is the difference between bypass and recirculation?",
+            "Does aisle containment always reduce required airflow?",
+            "Can this tool replace CFD?",
+            "What does the N+1 check include?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.ashrae.org/technical-resources/bookstore/datacom-series",
+            "https://www.se.com/us/en/download/document/SPD_NRAN-5TE6HE_EN/"
+          ],
+          "externalReferenceCount": 2,
+          "internalLinkCount": 4,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 1675,
+          "sectionHeadings": 9,
+          "longTailQuestions": [
+            "为什么不能只按制冷量选CRAH/CRAC？",
+            "旁路风和热风回流有什么区别？",
+            "冷热通道封闭是否一定能降低总风量？",
+            "这个工具能代替CFD吗？",
+            "N+1检查同时考虑什么？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.ashrae.org/technical-resources/bookstore/datacom-series",
+            "https://www.se.com/us/en/download/document/SPD_NRAN-5TE6HE_EN/"
+          ],
+          "externalReferenceCount": 2,
+          "internalLinkCount": 4,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        }
+      },
+      "score": 6,
+      "priority": "maintain",
+      "gaps": [
+        "1 authoritative reference(s) below the three-source target"
+      ]
+    },
+    {
+      "id": "generator-ups-transfer-ride-through-planner",
+      "catalogOrder": 32,
+      "category": "power",
+      "searchIntent": {
+        "id": "planning",
+        "en": "planning",
+        "zh": "规划"
+      },
+      "targetTopic": {
+        "en": "Generator + UPS Transfer & Ride-Through Planner",
+        "zh": "油机 + UPS 切换与不间断供电保障规划器"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-09-10",
+        "zh": "2026-09-10"
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 4432,
+          "sectionHeadings": 11,
+          "longTailQuestions": [
+            "Why is UPS runtime entered at the current critical load?",
+            "What does the transfer window include?",
+            "Why add a ride-through reserve?",
+            "Does passing generator kW guarantee the transfer will succeed?",
+            "Can this replace an ATS/UPS/generator commissioning test?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.se.com/us/en/work/solutions/for-business/data-centers-and-networks/",
+            "https://www.cummins.com/generators"
+          ],
+          "externalReferenceCount": 2,
+          "internalLinkCount": 5,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 1563,
+          "sectionHeadings": 11,
+          "longTailQuestions": [
+            "为什么直接输入当前关键负载下的UPS续航时间？",
+            "切换窗口包含哪些时间？",
+            "为什么还要增加跨越时间安全储备？",
+            "油机kW容量通过是否代表切换一定成功？",
+            "这个工具能替代ATS/UPS/油机联调测试吗？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.se.com/us/en/work/solutions/for-business/data-centers-and-networks/",
+            "https://www.cummins.com/generators"
+          ],
+          "externalReferenceCount": 2,
+          "internalLinkCount": 5,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        }
+      },
+      "score": 6,
+      "priority": "maintain",
+      "gaps": [
+        "1 authoritative reference(s) below the three-source target"
+      ]
+    },
     {
       "id": "optical-power-budget",
       "catalogOrder": 2,
@@ -53,7 +393,7 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 6483,
+          "visibleCharacters": 6416,
           "sectionHeadings": 14,
           "longTailQuestions": [
             "Why does the default change to GPON C+ when 1:8 × 1:8 is retained?",
@@ -77,7 +417,7 @@
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 2658,
+          "visibleCharacters": 2623,
           "sectionHeadings": 14,
           "longTailQuestions": [
             "为什么保留1:8×1:8后默认改为GPON C+？",
@@ -127,7 +467,7 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 6452,
+          "visibleCharacters": 6384,
           "sectionHeadings": 16,
           "longTailQuestions": [
             "Why is GPON C+ the default for 1:8 × 1:8?",
@@ -151,7 +491,7 @@
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 2661,
+          "visibleCharacters": 2630,
           "sectionHeadings": 16,
           "longTailQuestions": [
             "为什么1:8 × 1:8默认采用GPON C+？",
@@ -201,7 +541,7 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 5820,
+          "visibleCharacters": 5764,
           "sectionHeadings": 13,
           "longTailQuestions": [
             "What ONU receive power is considered normal?",
@@ -224,7 +564,7 @@
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 2180,
+          "visibleCharacters": 2147,
           "sectionHeadings": 13,
           "longTailQuestions": [
             "ONU接收光功率多少才算正常？",
@@ -273,7 +613,7 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 5894,
+          "visibleCharacters": 5852,
           "sectionHeadings": 13,
           "longTailQuestions": [
             "Why can the optical budget reach 30 km while the result shows only 20 km?",
@@ -296,7 +636,7 @@
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 2255,
+          "visibleCharacters": 2241,
           "sectionHeadings": 13,
           "longTailQuestions": [
             "为什么光预算能到30 km，结果却只显示20 km？",
@@ -345,7 +685,7 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 4729,
+          "visibleCharacters": 4656,
           "sectionHeadings": 16,
           "longTailQuestions": [
             "Why is PPPoE MTU usually 1492?",
@@ -375,7 +715,7 @@
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 2204,
+          "visibleCharacters": 2171,
           "sectionHeadings": 16,
           "longTailQuestions": [
             "为什么PPPoE通常是1492？",
@@ -431,7 +771,7 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 3805,
+          "visibleCharacters": 3738,
           "sectionHeadings": 12,
           "longTailQuestions": [
             "How many usable hosts are in a /24?",
@@ -456,7 +796,7 @@
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 1615,
+          "visibleCharacters": 1579,
           "sectionHeadings": 12,
           "longTailQuestions": [
             "/24有多少可用主机？",
@@ -507,7 +847,7 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 4824,
+          "visibleCharacters": 4734,
           "sectionHeadings": 12,
           "longTailQuestions": [
             "Why does 100 Mbps not transfer 100 MB every second?",
@@ -530,7 +870,7 @@
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 1946,
+          "visibleCharacters": 1909,
           "sectionHeadings": 12,
           "longTailQuestions": [
             "为什么100 Mbps不能每秒传100 MB？",
@@ -579,7 +919,7 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 5039,
+          "visibleCharacters": 5301,
           "sectionHeadings": 16,
           "longTailQuestions": [
             "Why is there no power-factor input?",
@@ -596,12 +936,12 @@
             "https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=54059"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 3,
+          "internalLinkCount": 4,
           "lastReviewedAt": null,
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 1886,
+          "visibleCharacters": 1965,
           "sectionHeadings": 16,
           "longTailQuestions": [
             "为什么没有功率因数输入？",
@@ -618,7 +958,7 @@
             "https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=54059"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 3,
+          "internalLinkCount": 4,
           "lastReviewedAt": null,
           "reviewMarker": false
         }
@@ -649,7 +989,7 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 6946,
+          "visibleCharacters": 6876,
           "sectionHeadings": 18,
           "longTailQuestions": [
             "Why are IPv6 subnet address counts so large?",
@@ -676,7 +1016,7 @@
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 2914,
+          "visibleCharacters": 2877,
           "sectionHeadings": 18,
           "longTailQuestions": [
             "为什么IPv6子网地址数量非常大？",
@@ -729,7 +1069,7 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 6769,
+          "visibleCharacters": 6701,
           "sectionHeadings": 20,
           "longTailQuestions": [
             "Why use the smaller uplink/downlink radius?",
@@ -751,7 +1091,7 @@
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 2928,
+          "visibleCharacters": 2896,
           "sectionHeadings": 20,
           "longTailQuestions": [
             "为什么覆盖要取上行和下行较小值？",
@@ -799,7 +1139,7 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 5216,
+          "visibleCharacters": 5140,
           "sectionHeadings": 12,
           "longTailQuestions": [
             "What cable length should I enter for a PoE camera or access point?",
@@ -822,7 +1162,7 @@
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 1917,
+          "visibleCharacters": 1881,
           "sectionHeadings": 12,
           "longTailQuestions": [
             "PoE 摄像头或无线 AP 应输入多长的网线距离？",
@@ -871,7 +1211,7 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 5456,
+          "visibleCharacters": 5523,
           "sectionHeadings": 11,
           "longTailQuestions": [
             "Should rack sizing use nameplate power or measured power?",
@@ -894,7 +1234,7 @@
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 2041,
+          "visibleCharacters": 2047,
           "sectionHeadings": 11,
           "longTailQuestions": [
             "机柜容量应使用铭牌功率还是实测功率？",
@@ -943,7 +1283,7 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 4562,
+          "visibleCharacters": 4505,
           "sectionHeadings": 13,
           "longTailQuestions": [
             "How many hosts should be placed in one VLAN?",
@@ -965,7 +1305,7 @@
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 1715,
+          "visibleCharacters": 1682,
           "sectionHeadings": 13,
           "longTailQuestions": [
             "一个VLAN放多少台主机合适？",
@@ -1013,7 +1353,7 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 5233,
+          "visibleCharacters": 5164,
           "sectionHeadings": 13,
           "longTailQuestions": [
             "What switch uplink oversubscription ratio is acceptable?",
@@ -1035,7 +1375,7 @@
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 1821,
+          "visibleCharacters": 1782,
           "sectionHeadings": 13,
           "longTailQuestions": [
             "交换机上联超售比多少合适？",
@@ -1083,7 +1423,7 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 4796,
+          "visibleCharacters": 4754,
           "sectionHeadings": 13,
           "longTailQuestions": [
             "Does a DNS record change propagate instantly?",
@@ -1106,7 +1446,7 @@
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 1868,
+          "visibleCharacters": 1854,
           "sectionHeadings": 13,
           "longTailQuestions": [
             "DNS记录修改后会立即全球生效吗？",
@@ -1155,7 +1495,7 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 5545,
+          "visibleCharacters": 5472,
           "sectionHeadings": 17,
           "longTailQuestions": [
             "Which ACL vendors and syntax does the validator support?",
@@ -1178,7 +1518,7 @@
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 2212,
+          "visibleCharacters": 2174,
           "sectionHeadings": 17,
           "longTailQuestions": [
             "ACL 验证工具支持哪些厂商和语法？",
@@ -1227,7 +1567,7 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 5027,
+          "visibleCharacters": 4962,
           "sectionHeadings": 12,
           "longTailQuestions": [
             "What is the difference between physical loss and design loss?",
@@ -1250,7 +1590,7 @@
           "reviewMarker": true
         },
         "zh": {
-          "visibleCharacters": 2048,
+          "visibleCharacters": 2014,
           "sectionHeadings": 12,
           "longTailQuestions": [
             "总设计损耗和物理链路损耗有什么区别？",
@@ -1297,7 +1637,7 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 5057,
+          "visibleCharacters": 4999,
           "sectionHeadings": 16,
           "longTailQuestions": [
             "Are OTDR event thresholds universal?",
@@ -1320,7 +1660,7 @@
           "reviewMarker": true
         },
         "zh": {
-          "visibleCharacters": 1943,
+          "visibleCharacters": 1911,
           "sectionHeadings": 16,
           "longTailQuestions": [
             "OTDR事件阈值是否是统一标准？",
@@ -1367,7 +1707,7 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 5949,
+          "visibleCharacters": 5870,
           "sectionHeadings": 12,
           "longTailQuestions": [
             "How many PoE cameras can a 120 W switch support?",
@@ -1391,7 +1731,7 @@
           "reviewMarker": true
         },
         "zh": {
-          "visibleCharacters": 2182,
+          "visibleCharacters": 2149,
           "sectionHeadings": 12,
           "longTailQuestions": [
             "120 W PoE交换机能带多少摄像头？",
@@ -1439,7 +1779,7 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 5926,
+          "visibleCharacters": 5851,
           "sectionHeadings": 12,
           "longTailQuestions": [
             "Can I connect 10G SFP+ to 25G SFP28?",
@@ -1462,7 +1802,7 @@
           "reviewMarker": true
         },
         "zh": {
-          "visibleCharacters": 2277,
+          "visibleCharacters": 2241,
           "sectionHeadings": 12,
           "longTailQuestions": [
             "10G SFP+可以连接25G SFP28吗？",
@@ -1509,7 +1849,7 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 5464,
+          "visibleCharacters": 5400,
           "sectionHeadings": 12,
           "longTailQuestions": [
             "How much fade margin does a point-to-point wireless link need?",
@@ -1532,7 +1872,7 @@
           "reviewMarker": true
         },
         "zh": {
-          "visibleCharacters": 2000,
+          "visibleCharacters": 1967,
           "sectionHeadings": 12,
           "longTailQuestions": [
             "点对点无线链路需要多少衰落余量？",
@@ -1579,7 +1919,7 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 6317,
+          "visibleCharacters": 6275,
           "sectionHeadings": 24,
           "longTailQuestions": [
             "Why does the tool generate a minimal delta instead of a full replacement?",
@@ -1601,7 +1941,7 @@
           "reviewMarker": true
         },
         "zh": {
-          "visibleCharacters": 2701,
+          "visibleCharacters": 2687,
           "sectionHeadings": 24,
           "longTailQuestions": [
             "为什么不是直接生成完整配置？",
@@ -1620,6 +1960,482 @@
           "externalReferenceCount": 3,
           "internalLinkCount": 4,
           "lastReviewedAt": "2026-09-05",
+          "reviewMarker": true
+        }
+      },
+      "score": 0,
+      "priority": "maintain",
+      "gaps": []
+    },
+    {
+      "id": "pue-data-center-energy-efficiency",
+      "catalogOrder": 23,
+      "category": "power",
+      "searchIntent": {
+        "id": "calculation",
+        "en": "calculation",
+        "zh": "计算"
+      },
+      "targetTopic": {
+        "en": "PUE & Data Center Energy Efficiency Analyzer",
+        "zh": "数据中心PUE与能效分析器"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-09-10",
+        "zh": "2026-09-10"
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 3592,
+          "sectionHeadings": 14,
+          "longTailQuestions": [
+            "What measurement boundary should I use for PUE?",
+            "Can instantaneous power be used for PUE?",
+            "Why can PUE improve when IT load rises?",
+            "What does WUE add to PUE?",
+            "Is a lower PUE always better?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.iso.org/standard/30134-2",
+            "https://www.energy.gov/sites/default/files/2024-07/best-practice-guide-data-center-design_0.pdf",
+            "https://www.thegreengrid.org/system/files/store/WUE_v1.pdf"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 3,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 1391,
+          "sectionHeadings": 14,
+          "longTailQuestions": [
+            "PUE 应该采用什么计量边界？",
+            "瞬时功率可以计算 PUE 吗？",
+            "为什么 IT 负载上升后 PUE 可能下降？",
+            "WUE 相比 PUE 多看了什么？",
+            "PUE 越低就一定越好吗？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.iso.org/standard/30134-2",
+            "https://www.energy.gov/sites/default/files/2024-07/best-practice-guide-data-center-design_0.pdf",
+            "https://www.thegreengrid.org/system/files/store/WUE_v1.pdf"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 3,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        }
+      },
+      "score": 0,
+      "priority": "maintain",
+      "gaps": []
+    },
+    {
+      "id": "telecom-solar-battery-sizing-calculator",
+      "catalogOrder": 24,
+      "category": "power",
+      "searchIntent": {
+        "id": "sizing",
+        "en": "sizing and selection",
+        "zh": "选型"
+      },
+      "targetTopic": {
+        "en": "Telecom Solar Power & Battery Sizing Calculator",
+        "zh": "通信站点光伏发电与储能配置计算器"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-09-10",
+        "zh": "2026-09-10"
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 4482,
+          "sectionHeadings": 14,
+          "longTailQuestions": [
+            "How is required PV capacity estimated?",
+            "How should peak-sun hours be chosen?",
+            "How are cloudy days reflected in battery sizing?",
+            "Can I reuse an existing -48 V battery bank?",
+            "Does this replace detailed PV electrical design?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://pvwatts.nrel.gov/",
+            "https://sam.nrel.gov/",
+            "https://nsrdb.nrel.gov/"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 4,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 1738,
+          "sectionHeadings": 14,
+          "longTailQuestions": [
+            "所需光伏容量是怎样估算的？",
+            "峰值日照小时应该怎么选？",
+            "连续阴雨天怎样影响储能配置？",
+            "现有 -48V 电池组可以复用吗？",
+            "这个工具能替代详细光伏电气设计吗？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://pvwatts.nrel.gov/",
+            "https://sam.nrel.gov/",
+            "https://nsrdb.nrel.gov/"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 4,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        }
+      },
+      "score": 0,
+      "priority": "maintain",
+      "gaps": []
+    },
+    {
+      "id": "generator-fuel-runtime-calculator",
+      "catalogOrder": 25,
+      "category": "power",
+      "searchIntent": {
+        "id": "planning",
+        "en": "planning",
+        "zh": "规划"
+      },
+      "targetTopic": {
+        "en": "Generator Fuel Consumption & Runtime Calculator",
+        "zh": "油机油耗与应急续航计算器"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-09-10",
+        "zh": "2026-09-10"
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 4418,
+          "sectionHeadings": 15,
+          "longTailQuestions": [
+            "Why use a manufacturer fuel curve instead of a generic fuel-rate formula?",
+            "How is fuel consumption between load points calculated?",
+            "What does fuel reserve mean?",
+            "How does battery assistance affect the result?",
+            "Can this replace generator manufacturer sizing and fuel-system design?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.cat.com/en_US/by-industry/electric-power/Articles/White-papers.html",
+            "https://www.cummins.com/generators",
+            "https://www.epa.gov/energy/greenhouse-gas-equivalencies-calculator"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 3,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 1687,
+          "sectionHeadings": 15,
+          "longTailQuestions": [
+            "为什么必须优先使用厂家油耗曲线，而不是通用油耗公式？",
+            "负载点之间的油耗如何计算？",
+            "安全储油比例是什么意思？",
+            "电池协同如何影响结果？",
+            "这个工具能替代油机厂家选型和供油系统设计吗？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.cat.com/en_US/by-industry/electric-power/Articles/White-papers.html",
+            "https://www.cummins.com/generators",
+            "https://www.epa.gov/energy/greenhouse-gas-equivalencies-calculator"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 3,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        }
+      },
+      "score": 0,
+      "priority": "maintain",
+      "gaps": []
+    },
+    {
+      "id": "telecom-rectifier-dc-power-sizing",
+      "catalogOrder": 26,
+      "category": "power",
+      "searchIntent": {
+        "id": "sizing",
+        "en": "sizing and selection",
+        "zh": "选型"
+      },
+      "targetTopic": {
+        "en": "Telecom Rectifier & DC Power System Sizing Calculator",
+        "zh": "通信开关电源与整流模块容量配置计算器"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-09-10",
+        "zh": "2026-09-10"
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 4155,
+          "sectionHeadings": 9,
+          "longTailQuestions": [
+            "Why include battery recharge current in rectifier sizing?",
+            "How is N+1 or N+2 redundancy applied?",
+            "What does the one-module failure check mean?",
+            "Can I use the result to size the AC breaker?",
+            "Does the tool replace vendor DC power-system design?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-L.1200",
+            "https://www.iec.ch/",
+            "https://www.etsi.org/"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 5,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 1900,
+          "sectionHeadings": 9,
+          "longTailQuestions": [
+            "为什么整流容量要计入电池回充电流？",
+            "N+1和N+2冗余如何计算？",
+            "掉一块模块校验是什么意思？",
+            "能直接用这个结果选择交流空开吗？",
+            "这个工具能替代厂家开关电源设计吗？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-L.1200",
+            "https://www.iec.ch/",
+            "https://www.etsi.org/"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 5,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        }
+      },
+      "score": 0,
+      "priority": "maintain",
+      "gaps": []
+    },
+    {
+      "id": "telecom-ac-dc-breaker-sizing",
+      "catalogOrder": 27,
+      "category": "power",
+      "searchIntent": {
+        "id": "sizing",
+        "en": "sizing and selection",
+        "zh": "选型"
+      },
+      "targetTopic": {
+        "en": "Telecom AC/DC Power Capacity & Breaker Sizing Calculator",
+        "zh": "通信站点 AC/DC 电源容量与空开配置工具"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-09-10",
+        "zh": "2026-09-10"
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 3743,
+          "sectionHeadings": 9,
+          "longTailQuestions": [
+            "Why does the tool use power factor and conversion efficiency?",
+            "What is the engineering headroom input for?",
+            "Is the suggested breaker rating a final design value?",
+            "How should the combined derating factor be used?",
+            "Why is a DC branch calculation included?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-L.1200",
+            "https://www.iec.ch/",
+            "https://www.etsi.org/"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 4,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 1595,
+          "sectionHeadings": 9,
+          "longTailQuestions": [
+            "为什么要输入功率因数和转换效率？",
+            "工程余量用于什么？",
+            "建议空开档位可以直接施工吗？",
+            "综合降额比例应该怎么填？",
+            "为什么同时提供直流支路计算？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-L.1200",
+            "https://www.iec.ch/",
+            "https://www.etsi.org/"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 4,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        }
+      },
+      "score": 0,
+      "priority": "maintain",
+      "gaps": []
+    },
+    {
+      "id": "transmission-ring-optimization-risk-analyzer",
+      "catalogOrder": 33,
+      "category": "transport",
+      "searchIntent": {
+        "id": "planning",
+        "en": "planning",
+        "zh": "规划"
+      },
+      "targetTopic": {
+        "en": "Transmission Ring Optimization & Protection Risk Analyzer",
+        "zh": "传输环优化与保护风险分析器"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-09-10",
+        "zh": "2026-09-10"
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 4030,
+          "sectionHeadings": 12,
+          "longTailQuestions": [
+            "Does this simulate every single-link failure?",
+            "How are equal-hop paths handled?",
+            "Can this replace an OTN/PTN controller simulation?",
+            "What does the risk score mean?",
+            "What does the before/after result optimize?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.709/en",
+            "https://www.itu.int/rec/T-REC-G.872/en",
+            "https://www.itu.int/rec/T-REC-G.808.1/en"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 4,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 1402,
+          "sectionHeadings": 12,
+          "longTailQuestions": [
+            "是否逐个模拟所有单链路故障？",
+            "正常态等跳数路径怎么处理？",
+            "能替代OTN/PTN控制器仿真吗？",
+            "风险评分如何形成？",
+            "优化前后比较做了什么？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.709/en",
+            "https://www.itu.int/rec/T-REC-G.872/en",
+            "https://www.itu.int/rec/T-REC-G.808.1/en"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 4,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        }
+      },
+      "score": 0,
+      "priority": "maintain",
+      "gaps": []
+    },
+    {
+      "id": "olt-dual-uplink-transport-mse-planner",
+      "catalogOrder": 34,
+      "category": "transport",
+      "searchIntent": {
+        "id": "planning",
+        "en": "planning",
+        "zh": "规划"
+      },
+      "targetTopic": {
+        "en": "OLT Dual-Uplink Capacity, Transport Channel & MSE Port Planner",
+        "zh": "OLT双上联容量、传输波道与MSE端口规划工具"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-09-10",
+        "zh": "2026-09-10"
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 3895,
+          "sectionHeadings": 11,
+          "longTailQuestions": [
+            "Why size each side for the full protected traffic?",
+            "Can a 100G transport channel carry multiple 10G OLT uplinks?",
+            "What is a false dual-uplink risk?",
+            "How are MSE line cards calculated?",
+            "Does this replace detailed OTN/MSE vendor planning?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.9807.1/en",
+            "https://www.itu.int/rec/T-REC-G.709/en",
+            "https://www.broadband-forum.org/"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 4,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 1362,
+          "sectionHeadings": 11,
+          "longTailQuestions": [
+            "为什么每一侧都按全部保护业务规划？",
+            "100G波道可以承载多个10G OLT吗？",
+            "什么是“假双上联”？",
+            "MSE板卡数量如何计算？",
+            "能代替厂家OTN/MSE详细规划吗？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.9807.1/en",
+            "https://www.itu.int/rec/T-REC-G.709/en",
+            "https://www.broadband-forum.org/"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 4,
+          "lastReviewedAt": "2026-09-10",
           "reviewMarker": true
         }
       },

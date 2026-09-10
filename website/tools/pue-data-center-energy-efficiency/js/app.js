@@ -1,0 +1,17 @@
+(function(){"use strict";
+const $=id=>document.getElementById(id), num=id=>Number($(id)?.value||0), lang=document.documentElement.lang.startsWith("zh")?"zh":"en";
+const fmt=(v,d=2)=>Number(v).toLocaleString(undefined,{maximumFractionDigits:d});
+const text={en:{invalid:"Check total and IT inputs. Total must be at least IT load.",healthy:"At / below target",caution:"Near target",poor:"Above target",unitPower:"kW",unitEnergy:"kWh",saved:"Potential annual saving",fixed:"PUE if IT grows and facility overhead stays fixed",gap:"Unallocated non-IT overhead",breakWarn:"Breakdown exceeds calculated non-IT overhead; review component inputs."},zh:{invalid:"请检查总量和 IT 输入：数据中心总量必须不小于 IT 负载。",healthy:"达到/优于目标",caution:"接近目标",poor:"高于目标",unitPower:"kW",unitEnergy:"kWh",saved:"目标 PUE 下的年节能潜力",fixed:"IT 增长且设施开销不变时的 PUE",gap:"未分配的非 IT 开销",breakWarn:"分项合计超过计算得到的非 IT 开销，请检查分项输入。"}}[lang];
+function collect(){return{mode:$("mode").value,total:num("total"),it:num("it"),periodDays:num("periodDays"),tariff:num("tariff"),targetPUE:num("targetPUE"),itGrowthPct:num("itGrowthPct"),cooling:num("cooling"),ups:num("ups"),lighting:num("lighting"),distribution:num("distribution"),other:num("other"),annualWaterL:num("annualWaterL"),annualCO2kg:num("annualCO2kg"),monthlyPUE:$("monthlyPUE").value};}
+function set(id,v){$(id).textContent=v}
+function calc(){const r=window.NELPUEEngine.calculate(collect()); if(!r.ok){$("result").hidden=true;$("error").textContent=text.invalid;$("error").hidden=false;return} $("error").hidden=true;$("result").hidden=false;
+ const unit=r.mode==="power"?text.unitPower:text.unitEnergy; set("pue",fmt(r.pue,3)); set("status",text[r.status]); $("status").className=`badge ${r.status}`; set("itShare",fmt(r.itShare,1)+"%"); set("nonIT",fmt(r.nonIT,2)+" "+unit); set("overhead",fmt(r.overheadPct,1)+"%");
+ set("annualTotal",fmt(r.annualTotal,0)+" kWh");set("annualIT",fmt(r.annualIT,0)+" kWh");set("annualNonIT",fmt(r.annualNonIT,0)+" kWh");set("annualCost",fmt(r.annualCost,0));set("saveEnergy",fmt(r.savingsKWh,0)+" kWh");set("saveCost",fmt(r.savingsCost,0));set("whatIf",fmt(r.fixedOverheadPUE,3));set("gap",fmt(r.breakdownGap,2)+" "+unit);
+ set("wue",r.wue==null?"—":fmt(r.wue,3)+" L/kWh IT");set("cue",r.cue==null?"—":fmt(r.cue,4)+" kgCO₂/kWh IT");
+ const max=Math.max(r.nonIT,1); const parts=[['cooling',r.parts.cooling],['ups',r.parts.ups],['lighting',r.parts.lighting],['distribution',r.parts.distribution],['other',r.parts.other]]; $("bars").innerHTML=parts.map(([k,v])=>`<div class="barrow"><span>${k}</span><div><i style="width:${Math.min(100,Math.max(0,v/max*100))}%"></i></div><b>${fmt(v,2)} ${unit}</b></div>`).join("");
+ $("trend").innerHTML=r.trend.length?r.trend.map((v,i)=>`<span style="height:${Math.max(8,Math.min(100,(v-1)*90))}%" title="M${i+1}: ${v}"></span>`).join(""):`<em>${lang==='zh'?'输入月度 PUE 后显示趋势':'Enter monthly PUE values to show trend'}</em>`;
+ $("warnings").innerHTML=r.warnings.map(w=>`<li>${w==='breakdown_exceeds_overhead'?text.breakWarn:w}</li>`).join("");
+ }
+function mode(){const energy=$("mode").value==='energy';$("periodField").hidden=!energy;document.querySelectorAll('[data-unit]').forEach(x=>x.textContent=energy?'kWh':'kW');calc();}
+document.querySelectorAll('input,select').forEach(x=>x.addEventListener('input',calc));$("mode").addEventListener('change',mode);$("calculate").addEventListener('click',calc);mode();
+})();

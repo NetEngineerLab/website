@@ -339,9 +339,10 @@
         }
       },
       "related": [
+        "telecom-solar-battery-sizing-calculator",
         "network-rack-power-cooling-calculator",
-        "poe-power-budget-calculator",
-        "poe-voltage-drop-calculator"
+        "pue-data-center-energy-efficiency",
+        "generator-fuel-runtime-calculator"
       ],
       "workflows": [
         {
@@ -350,6 +351,13 @@
           "total": 4,
           "previous": "network-rack-power-cooling-calculator",
           "next": null
+        },
+        {
+          "workflowId": "telecom-power-energy",
+          "step": 5,
+          "total": 8,
+          "previous": "dc-plant-efficiency-load-sharing",
+          "next": "generator-fuel-runtime-calculator"
         }
       ],
       "primaryWorkflow": "poe-rack-power-design",
@@ -591,9 +599,9 @@
         }
       },
       "related": [
+        "pue-data-center-energy-efficiency",
         "48v-battery-runtime",
-        "poe-power-budget-calculator",
-        "switch-uplink-oversubscription-calculator"
+        "telecom-solar-battery-sizing-calculator"
       ],
       "workflows": [
         {
@@ -602,6 +610,20 @@
           "total": 4,
           "previous": "poe-voltage-drop-calculator",
           "next": "48v-battery-runtime"
+        },
+        {
+          "workflowId": "telecom-power-energy",
+          "step": 1,
+          "total": 8,
+          "previous": null,
+          "next": "telecom-ac-dc-breaker-sizing"
+        },
+        {
+          "workflowId": "data-center-critical-power-cooling",
+          "step": 1,
+          "total": 6,
+          "previous": null,
+          "next": "ups-capacity-battery-runtime-calculator"
         }
       ],
       "primaryWorkflow": "poe-rack-power-design",
@@ -792,6 +814,432 @@
       "primaryWorkflow": "network-change-automation",
       "previous": "acl-generator-validator",
       "next": null
+    },
+    "pue-data-center-energy-efficiency": {
+      "id": "pue-data-center-energy-efficiency",
+      "routes": {
+        "en": "/tools/pue-data-center-energy-efficiency/",
+        "zh-CN": "/tools/pue-data-center-energy-efficiency/zh/"
+      },
+      "translations": {
+        "en": {
+          "name": "PUE & Data Center Energy Efficiency Analyzer",
+          "description": "Analyze PUE, non-IT overhead, annual energy cost, target-PUE savings, WUE/CUE and monthly trends."
+        },
+        "zh": {
+          "name": "数据中心PUE与能效分析器",
+          "description": "分析PUE、非IT能耗、年度电费、目标PUE节能潜力、WUE/CUE和月度趋势。"
+        }
+      },
+      "related": [
+        "network-rack-power-cooling-calculator",
+        "48v-battery-runtime",
+        "telecom-solar-battery-sizing-calculator"
+      ],
+      "workflows": [
+        {
+          "workflowId": "telecom-power-energy",
+          "step": 8,
+          "total": 8,
+          "previous": "telecom-solar-battery-sizing-calculator",
+          "next": null
+        },
+        {
+          "workflowId": "data-center-critical-power-cooling",
+          "step": 6,
+          "total": 6,
+          "previous": "data-center-airflow-containment-planner",
+          "next": null
+        }
+      ],
+      "primaryWorkflow": "telecom-power-energy",
+      "previous": "telecom-solar-battery-sizing-calculator",
+      "next": null
+    },
+    "telecom-solar-battery-sizing-calculator": {
+      "id": "telecom-solar-battery-sizing-calculator",
+      "routes": {
+        "en": "/tools/telecom-solar-battery-sizing-calculator/",
+        "zh-CN": "/tools/telecom-solar-battery-sizing-calculator/zh/"
+      },
+      "translations": {
+        "en": {
+          "name": "Telecom Solar Power & Battery Sizing Calculator",
+          "description": "Size telecom solar PV, battery autonomy, energy balance, economics and emissions for grid-hybrid or off-grid sites."
+        },
+        "zh": {
+          "name": "通信站点光伏发电与储能配置计算器",
+          "description": "面向并网混合或离网站点计算通信负载、光伏阵列、储能续航、供电平衡、经济性和减排。"
+        }
+      },
+      "related": [
+        "48v-battery-runtime",
+        "pue-data-center-energy-efficiency",
+        "network-rack-power-cooling-calculator",
+        "generator-fuel-runtime-calculator"
+      ],
+      "workflows": [
+        {
+          "workflowId": "telecom-power-energy",
+          "step": 7,
+          "total": 8,
+          "previous": "generator-fuel-runtime-calculator",
+          "next": "pue-data-center-energy-efficiency"
+        }
+      ],
+      "primaryWorkflow": "telecom-power-energy",
+      "previous": "generator-fuel-runtime-calculator",
+      "next": "pue-data-center-energy-efficiency"
+    },
+    "generator-fuel-runtime-calculator": {
+      "id": "generator-fuel-runtime-calculator",
+      "routes": {
+        "en": "/tools/generator-fuel-runtime-calculator/",
+        "zh-CN": "/tools/generator-fuel-runtime-calculator/zh/"
+      },
+      "translations": {
+        "en": {
+          "name": "Generator Fuel Consumption & Runtime Calculator",
+          "description": "Estimate telecom generator fuel burn, usable-tank runtime, outage fuel requirement, refills and battery-assisted operation from a manufacturer load curve."
+        },
+        "zh": {
+          "name": "油机油耗与应急续航计算器",
+          "description": "根据油机厂家负载油耗曲线，计算通信站点分时油耗、油箱续航、保障油量、补油次数及电池协同。"
+        }
+      },
+      "related": [
+        "48v-battery-runtime",
+        "telecom-solar-battery-sizing-calculator",
+        "network-rack-power-cooling-calculator"
+      ],
+      "workflows": [
+        {
+          "workflowId": "telecom-power-energy",
+          "step": 6,
+          "total": 8,
+          "previous": "48v-battery-runtime",
+          "next": "telecom-solar-battery-sizing-calculator"
+        }
+      ],
+      "primaryWorkflow": "telecom-power-energy",
+      "previous": "48v-battery-runtime",
+      "next": "telecom-solar-battery-sizing-calculator"
+    },
+    "telecom-rectifier-dc-power-sizing": {
+      "id": "telecom-rectifier-dc-power-sizing",
+      "routes": {
+        "en": "/tools/telecom-rectifier-dc-power-sizing/",
+        "zh-CN": "/tools/telecom-rectifier-dc-power-sizing/zh/"
+      },
+      "translations": {
+        "en": {
+          "name": "Telecom Rectifier & DC Power System Sizing Calculator",
+          "description": "Size telecom rectifier modules, battery recharge current, N+1/N+2 redundancy, failure headroom, AC input demand and expansion margin."
+        },
+        "zh": {
+          "name": "通信开关电源与整流模块容量配置计算器",
+          "description": "计算通信开关电源整流模块数量、电池回充电流、N+1/N+2冗余、故障余量、交流输入需求与扩容空间。"
+        }
+      },
+      "related": [
+        "dc-plant-efficiency-load-sharing",
+        "48v-battery-runtime",
+        "network-rack-power-cooling-calculator",
+        "generator-fuel-runtime-calculator",
+        "telecom-ac-dc-breaker-sizing"
+      ],
+      "workflows": [
+        {
+          "workflowId": "telecom-power-energy",
+          "step": 3,
+          "total": 8,
+          "previous": "telecom-ac-dc-breaker-sizing",
+          "next": "dc-plant-efficiency-load-sharing"
+        }
+      ],
+      "primaryWorkflow": "telecom-power-energy",
+      "previous": "telecom-ac-dc-breaker-sizing",
+      "next": "dc-plant-efficiency-load-sharing"
+    },
+    "telecom-ac-dc-breaker-sizing": {
+      "id": "telecom-ac-dc-breaker-sizing",
+      "routes": {
+        "en": "/tools/telecom-ac-dc-breaker-sizing/",
+        "zh-CN": "/tools/telecom-ac-dc-breaker-sizing/zh/"
+      },
+      "translations": {
+        "en": {
+          "name": "Telecom AC/DC Power Capacity & Breaker Sizing Calculator",
+          "description": "Estimate telecom AC feeder, breaker, DC branch and conductor current from load, voltage, phase, power factor, efficiency, headroom and derating assumptions."
+        },
+        "zh": {
+          "name": "通信站点 AC/DC 电源容量与空开配置工具",
+          "description": "根据负载、电压、相制、功率因数、效率、工程余量和降额条件估算通信站点交流馈电、空开、直流支路及导体电流。"
+        }
+      },
+      "related": [
+        "telecom-rectifier-dc-power-sizing",
+        "network-rack-power-cooling-calculator",
+        "48v-battery-runtime",
+        "generator-fuel-runtime-calculator"
+      ],
+      "workflows": [
+        {
+          "workflowId": "telecom-power-energy",
+          "step": 2,
+          "total": 8,
+          "previous": "network-rack-power-cooling-calculator",
+          "next": "telecom-rectifier-dc-power-sizing"
+        }
+      ],
+      "primaryWorkflow": "telecom-power-energy",
+      "previous": "network-rack-power-cooling-calculator",
+      "next": "telecom-rectifier-dc-power-sizing"
+    },
+    "ups-capacity-battery-runtime-calculator": {
+      "id": "ups-capacity-battery-runtime-calculator",
+      "routes": {
+        "en": "/tools/ups-capacity-battery-runtime-calculator/",
+        "zh-CN": "/tools/ups-capacity-battery-runtime-calculator/zh/"
+      },
+      "translations": {
+        "en": {
+          "name": "UPS Capacity & Battery Backup Runtime Calculator",
+          "description": "Size UPS kW/kVA capacity, modular redundancy, battery autonomy, aging/temperature margin, recharge demand and bypass current."
+        },
+        "zh": {
+          "name": "UPS容量与电池后备时间计算器",
+          "description": "计算UPS kW/kVA容量、模块冗余、电池后备时间、老化/温度修正、回充需求与旁路电流。"
+        }
+      },
+      "related": [
+        "network-rack-power-cooling-calculator",
+        "48v-battery-runtime",
+        "data-center-cooling-load-calculator",
+        "pue-data-center-energy-efficiency"
+      ],
+      "workflows": [
+        {
+          "workflowId": "data-center-critical-power-cooling",
+          "step": 2,
+          "total": 6,
+          "previous": "network-rack-power-cooling-calculator",
+          "next": "generator-ups-transfer-ride-through-planner"
+        }
+      ],
+      "primaryWorkflow": "data-center-critical-power-cooling",
+      "previous": "network-rack-power-cooling-calculator",
+      "next": "generator-ups-transfer-ride-through-planner"
+    },
+    "data-center-cooling-load-calculator": {
+      "id": "data-center-cooling-load-calculator",
+      "routes": {
+        "en": "/tools/data-center-cooling-load-calculator/",
+        "zh-CN": "/tools/data-center-cooling-load-calculator/zh/"
+      },
+      "translations": {
+        "en": {
+          "name": "Data Center Cooling Load & Precision AC Capacity Calculator",
+          "description": "Calculate data-center sensible heat, N+1 precision cooling capacity, BTU/h, refrigeration tons and airflow from IT and facility loads."
+        },
+        "zh": {
+          "name": "数据中心制冷负荷与精密空调容量计算器",
+          "description": "根据IT及设施热源计算数据中心显热负荷、N+1精密空调容量、BTU/h、冷吨和风量。"
+        }
+      },
+      "related": [
+        "network-rack-power-cooling-calculator",
+        "ups-capacity-battery-runtime-calculator",
+        "pue-data-center-energy-efficiency",
+        "telecom-ac-dc-breaker-sizing"
+      ],
+      "workflows": [
+        {
+          "workflowId": "data-center-critical-power-cooling",
+          "step": 4,
+          "total": 6,
+          "previous": "generator-ups-transfer-ride-through-planner",
+          "next": "data-center-airflow-containment-planner"
+        }
+      ],
+      "primaryWorkflow": "data-center-critical-power-cooling",
+      "previous": "generator-ups-transfer-ride-through-planner",
+      "next": "data-center-airflow-containment-planner"
+    },
+    "dc-plant-efficiency-load-sharing": {
+      "id": "dc-plant-efficiency-load-sharing",
+      "routes": {
+        "en": "/tools/dc-plant-efficiency-load-sharing/",
+        "zh-CN": "/tools/dc-plant-efficiency-load-sharing/zh/"
+      },
+      "translations": {
+        "en": {
+          "name": "DC Plant Efficiency & Rectifier Load-Sharing Analyzer",
+          "description": "Analyze telecom DC plant rectifier load sharing, module-current imbalance, redundancy, measured conversion efficiency and online-module utilization."
+        },
+        "zh": {
+          "name": "直流电源系统效率与整流模块均流分析器",
+          "description": "分析通信直流电源整流模块均流偏差、模块负载、冗余、实测转换效率与在线模块运行质量。"
+        }
+      },
+      "related": [
+        "telecom-rectifier-dc-power-sizing",
+        "telecom-ac-dc-breaker-sizing",
+        "48v-battery-runtime",
+        "generator-fuel-runtime-calculator"
+      ],
+      "workflows": [
+        {
+          "workflowId": "telecom-power-energy",
+          "step": 4,
+          "total": 8,
+          "previous": "telecom-rectifier-dc-power-sizing",
+          "next": "48v-battery-runtime"
+        }
+      ],
+      "primaryWorkflow": "telecom-power-energy",
+      "previous": "telecom-rectifier-dc-power-sizing",
+      "next": "48v-battery-runtime"
+    },
+    "data-center-airflow-containment-planner": {
+      "id": "data-center-airflow-containment-planner",
+      "routes": {
+        "en": "/tools/data-center-airflow-containment-planner/",
+        "zh-CN": "/tools/data-center-airflow-containment-planner/zh/"
+      },
+      "translations": {
+        "en": {
+          "name": "Data Center Airflow & Hot-Aisle Containment Planner",
+          "description": "Plan rack airflow, bypass and recirculation control, CRAH/CRAC airflow, sensible capacity, containment quality and N+1 resilience."
+        },
+        "zh": {
+          "name": "数据中心气流组织与冷热通道规划工具",
+          "description": "规划机柜风量、旁路风与热回流控制、CRAH/CRAC风量、显冷量、冷热通道封闭效果和N+1冗余。"
+        }
+      },
+      "related": [
+        "data-center-cooling-load-calculator",
+        "network-rack-power-cooling-calculator",
+        "pue-data-center-energy-efficiency",
+        "ups-capacity-battery-runtime-calculator"
+      ],
+      "workflows": [
+        {
+          "workflowId": "data-center-critical-power-cooling",
+          "step": 5,
+          "total": 6,
+          "previous": "data-center-cooling-load-calculator",
+          "next": "pue-data-center-energy-efficiency"
+        }
+      ],
+      "primaryWorkflow": "data-center-critical-power-cooling",
+      "previous": "data-center-cooling-load-calculator",
+      "next": "pue-data-center-energy-efficiency"
+    },
+    "generator-ups-transfer-ride-through-planner": {
+      "id": "generator-ups-transfer-ride-through-planner",
+      "routes": {
+        "en": "/tools/generator-ups-transfer-ride-through-planner/",
+        "zh-CN": "/tools/generator-ups-transfer-ride-through-planner/zh/"
+      },
+      "translations": {
+        "en": {
+          "name": "Generator + UPS Transfer & Ride-Through Planner",
+          "description": "Plan UPS ride-through, generator start/retry timing, ATS transfer, redundancy and critical-load continuity after utility failure."
+        },
+        "zh": {
+          "name": "油机 + UPS 切换与不间断供电保障规划器",
+          "description": "规划市电故障后的UPS跨越、油机启动重试、ATS切换、容量冗余与关键负载供电连续性。"
+        }
+      },
+      "related": [
+        "ups-capacity-battery-runtime-calculator",
+        "generator-fuel-runtime-calculator",
+        "telecom-ac-dc-breaker-sizing",
+        "network-rack-power-cooling-calculator"
+      ],
+      "workflows": [
+        {
+          "workflowId": "data-center-critical-power-cooling",
+          "step": 3,
+          "total": 6,
+          "previous": "ups-capacity-battery-runtime-calculator",
+          "next": "data-center-cooling-load-calculator"
+        }
+      ],
+      "primaryWorkflow": "data-center-critical-power-cooling",
+      "previous": "ups-capacity-battery-runtime-calculator",
+      "next": "data-center-cooling-load-calculator"
+    },
+    "transmission-ring-optimization-risk-analyzer": {
+      "id": "transmission-ring-optimization-risk-analyzer",
+      "routes": {
+        "en": "/tools/transmission-ring-optimization-risk-analyzer/",
+        "zh-CN": "/tools/transmission-ring-optimization-risk-analyzer/zh/"
+      },
+      "translations": {
+        "en": {
+          "name": "Transmission Ring Optimization & Protection Risk Analyzer",
+          "description": "Model ring traffic, simulate N-1 span failures, identify protection-state bottlenecks, score risk and compare targeted capacity upgrades."
+        },
+        "zh": {
+          "name": "传输环优化与保护风险分析器",
+          "description": "建立传输环业务模型，模拟N-1链路故障，识别保护倒换瓶颈、风险和扩容优化效果。"
+        }
+      },
+      "related": [
+        "olt-dual-uplink-transport-mse-planner",
+        "bandwidth-calculator",
+        "switch-uplink-oversubscription-calculator",
+        "optical-power-budget"
+      ],
+      "workflows": [
+        {
+          "workflowId": "access-transport-optimization",
+          "step": 2,
+          "total": 2,
+          "previous": "olt-dual-uplink-transport-mse-planner",
+          "next": null
+        }
+      ],
+      "primaryWorkflow": "access-transport-optimization",
+      "previous": "olt-dual-uplink-transport-mse-planner",
+      "next": null
+    },
+    "olt-dual-uplink-transport-mse-planner": {
+      "id": "olt-dual-uplink-transport-mse-planner",
+      "routes": {
+        "en": "/tools/olt-dual-uplink-transport-mse-planner/",
+        "zh-CN": "/tools/olt-dual-uplink-transport-mse-planner/zh/"
+      },
+      "translations": {
+        "en": {
+          "name": "OLT Dual-Uplink Capacity, Transport Channel & MSE Port Planner",
+          "description": "Calculate OLT dual-uplink ports, transport channels, MSE ports and line cards, then verify single-side failure capacity and path diversity."
+        },
+        "zh": {
+          "name": "OLT双上联容量、传输波道与MSE端口规划工具",
+          "description": "计算OLT双上联端口、传输波道、MSE端口和板卡资源，并校验单边故障承载与双路由独立性。"
+        }
+      },
+      "related": [
+        "transmission-ring-optimization-risk-analyzer",
+        "bandwidth-calculator",
+        "switch-uplink-oversubscription-calculator",
+        "pon-distance"
+      ],
+      "workflows": [
+        {
+          "workflowId": "access-transport-optimization",
+          "step": 1,
+          "total": 2,
+          "previous": null,
+          "next": "transmission-ring-optimization-risk-analyzer"
+        }
+      ],
+      "primaryWorkflow": "access-transport-optimization",
+      "previous": null,
+      "next": "transmission-ring-optimization-risk-analyzer"
     }
   },
   "workflows": {
@@ -1222,6 +1670,246 @@
             },
             "zh": {
               "action": "规划、评估、执行并验证网络变更"
+            }
+          }
+        }
+      ]
+    },
+    "telecom-power-energy": {
+      "id": "telecom-power-energy",
+      "domain": "power-datacenter",
+      "translations": {
+        "en": {
+          "name": "Telecom Power & Energy Workflow",
+          "description": "Move from site load through AC/DC distribution, rectifier sizing and operating diagnostics, battery backup, generator fuel, solar generation and facility efficiency as one energy engineering sequence."
+        },
+        "zh": {
+          "name": "通信电源与能源工作流",
+          "description": "把站点负载、AC/DC配电、整流容量与运行诊断、后备电池、油机保障、光伏供能与设施能效串成完整能源工程流程。"
+        }
+      },
+      "steps": [
+        {
+          "order": 1,
+          "toolId": "network-rack-power-cooling-calculator",
+          "translations": {
+            "en": {
+              "action": "Establish rack/site power and cooling load"
+            },
+            "zh": {
+              "action": "确定机架/站点功耗与制冷负荷"
+            }
+          }
+        },
+        {
+          "order": 2,
+          "toolId": "telecom-ac-dc-breaker-sizing",
+          "translations": {
+            "en": {
+              "action": "Size AC/DC feeders and protective-device planning current"
+            },
+            "zh": {
+              "action": "核算AC/DC馈电与保护器件规划电流"
+            }
+          }
+        },
+        {
+          "order": 3,
+          "toolId": "telecom-rectifier-dc-power-sizing",
+          "translations": {
+            "en": {
+              "action": "Size rectifier capacity and redundancy"
+            },
+            "zh": {
+              "action": "配置整流模块容量与冗余"
+            }
+          }
+        },
+        {
+          "order": 4,
+          "toolId": "dc-plant-efficiency-load-sharing",
+          "translations": {
+            "en": {
+              "action": "Diagnose rectifier load sharing and DC conversion efficiency"
+            },
+            "zh": {
+              "action": "诊断整流模块均流与直流转换效率"
+            }
+          }
+        },
+        {
+          "order": 5,
+          "toolId": "48v-battery-runtime",
+          "translations": {
+            "en": {
+              "action": "Size -48V backup autonomy"
+            },
+            "zh": {
+              "action": "核算-48V后备电池续航"
+            }
+          }
+        },
+        {
+          "order": 6,
+          "toolId": "generator-fuel-runtime-calculator",
+          "translations": {
+            "en": {
+              "action": "Plan generator fuel and emergency runtime"
+            },
+            "zh": {
+              "action": "规划油机用油与应急续航"
+            }
+          }
+        },
+        {
+          "order": 7,
+          "toolId": "telecom-solar-battery-sizing-calculator",
+          "translations": {
+            "en": {
+              "action": "Size solar generation and storage"
+            },
+            "zh": {
+              "action": "配置光伏发电与储能"
+            }
+          }
+        },
+        {
+          "order": 8,
+          "toolId": "pue-data-center-energy-efficiency",
+          "translations": {
+            "en": {
+              "action": "Analyze facility energy efficiency and optimization"
+            },
+            "zh": {
+              "action": "分析设施能效与优化空间"
+            }
+          }
+        }
+      ]
+    },
+    "data-center-critical-power-cooling": {
+      "id": "data-center-critical-power-cooling",
+      "domain": "power-datacenter",
+      "translations": {
+        "en": {
+          "name": "Data Center Critical Power & Cooling Workflow",
+          "description": "Move from rack load through UPS protection, generator/ATS ride-through, precision cooling, airflow containment and facility PUE as one critical-infrastructure planning sequence."
+        },
+        "zh": {
+          "name": "数据中心关键电源与制冷工作流",
+          "description": "从机架负载、UPS保障、油机/ATS切换跨越、精密制冷、气流组织到PUE能效，形成数据中心关键基础设施规划流程。"
+        }
+      },
+      "steps": [
+        {
+          "order": 1,
+          "toolId": "network-rack-power-cooling-calculator",
+          "translations": {
+            "en": {
+              "action": "Establish rack IT power and heat load"
+            },
+            "zh": {
+              "action": "确定机架IT功耗与发热负荷"
+            }
+          }
+        },
+        {
+          "order": 2,
+          "toolId": "ups-capacity-battery-runtime-calculator",
+          "translations": {
+            "en": {
+              "action": "Size UPS capacity, redundancy and battery autonomy"
+            },
+            "zh": {
+              "action": "配置UPS容量、冗余与电池续航"
+            }
+          }
+        },
+        {
+          "order": 3,
+          "toolId": "generator-ups-transfer-ride-through-planner",
+          "translations": {
+            "en": {
+              "action": "Validate generator start, ATS transfer and UPS ride-through continuity"
+            },
+            "zh": {
+              "action": "校验油机启动、ATS切换与UPS跨越供电连续性"
+            }
+          }
+        },
+        {
+          "order": 4,
+          "toolId": "data-center-cooling-load-calculator",
+          "translations": {
+            "en": {
+              "action": "Size precision cooling and N+1 capacity"
+            },
+            "zh": {
+              "action": "配置精密制冷容量与N+1冗余"
+            }
+          }
+        },
+        {
+          "order": 5,
+          "toolId": "data-center-airflow-containment-planner",
+          "translations": {
+            "en": {
+              "action": "Plan rack airflow, aisle containment and N+1 delivery"
+            },
+            "zh": {
+              "action": "规划机柜气流、冷热通道封闭与N+1送风"
+            }
+          }
+        },
+        {
+          "order": 6,
+          "toolId": "pue-data-center-energy-efficiency",
+          "translations": {
+            "en": {
+              "action": "Analyze facility PUE and energy overhead"
+            },
+            "zh": {
+              "action": "分析设施PUE与能源开销"
+            }
+          }
+        }
+      ]
+    },
+    "access-transport-optimization": {
+      "id": "access-transport-optimization",
+      "domain": "transport",
+      "translations": {
+        "en": {
+          "name": "Access & Transport Capacity Optimization Workflow",
+          "description": "Plan protected OLT dual uplinks and transport/MSE capacity, then analyze ring protection-state bottlenecks and optimization options."
+        },
+        "zh": {
+          "name": "接入与传输容量优化工作流",
+          "description": "先规划OLT双上联、传输波道与MSE资源，再分析传输环保护倒换后的瓶颈和优化方案。"
+        }
+      },
+      "steps": [
+        {
+          "order": 1,
+          "toolId": "olt-dual-uplink-transport-mse-planner",
+          "translations": {
+            "en": {
+              "action": "Size OLT dual uplinks, transport channels and MSE ports"
+            },
+            "zh": {
+              "action": "规划OLT双上联、传输波道与MSE端口"
+            }
+          }
+        },
+        {
+          "order": 2,
+          "toolId": "transmission-ring-optimization-risk-analyzer",
+          "translations": {
+            "en": {
+              "action": "Simulate N-1 ring failures and optimize protection-state capacity"
+            },
+            "zh": {
+              "action": "模拟N-1环网故障并优化保护态容量"
             }
           }
         }

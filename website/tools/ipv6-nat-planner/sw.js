@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-ipv6-nat-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-f05831b2ab2d-b4fe35829ae1";
+const CACHE = "nel-ipv6-nat-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-ca275433f826-cf6046c63ed3";
 const CORE = [
   "./index.html",
   "./",
@@ -16,8 +16,8 @@ const CORE = [
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=1b428f96cadc",
   "../../assets/css/site-shell.css?v=58918fefbb35",
-  "../../assets/css/tool-design-system.css?v=e127c504f3ed",
-  "../../assets/css/tool-workflow.css?v=f1a30e847acc",
+  "../../assets/css/tool-design-system.css?v=b7969798cf78",
+  "../../assets/css/tool-workflow.css?v=66c8998b2681",
   "../../assets/js/analytics.js?v=1156b7864023",
   "../../assets/js/adsense.js?v=f075c80ccc75",
   "../../assets/js/site.js?v=5c6907a4fe26",

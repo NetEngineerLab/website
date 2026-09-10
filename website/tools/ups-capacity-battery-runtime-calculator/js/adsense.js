@@ -1,0 +1,1 @@
+/* Ads are managed by global runtime. */
