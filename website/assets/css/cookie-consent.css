@@ -6,12 +6,13 @@ img,svg{max-width:100%;height:auto}
 .container,.page-container,.tool-container,.tool-page,.main,.content{width:100%;max-width:1200px}
 .hero,.tool-hero,.page-hero{width:100%;max-width:none}
 input,select,textarea,button{max-width:100%;box-sizing:border-box}
-.nel-cookie-banner{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);width:min(94%,520px);background:#0b1f3a;color:#fff;padding:18px;border-radius:14px;z-index:99999;box-shadow:0 12px 40px rgba(0,0,0,.25);font-size:14px;line-height:1.6}
+.nel-cookie-banner{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);width:min(94%,520px);background:#0b1f3a;color:#fff;padding:18px;border-radius:14px;z-index:2147483000;isolation:isolate;pointer-events:auto;box-shadow:0 12px 40px rgba(0,0,0,.25);font-size:14px;line-height:1.6}
 .nel-cookie-banner h3{margin:0 0 8px;font-size:18px}
+.nel-cookie-banner p{margin:8px 0}.nel-cookie-legal{font-size:12px;color:#d7e6f7}.nel-cookie-legal a{color:#fff;text-decoration:underline}
 .nel-cookie-actions{display:flex;gap:10px;margin-top:12px}
-.nel-cookie-actions button{border:0;border-radius:8px;padding:10px 16px;cursor:pointer}
+.nel-cookie-actions button{position:relative;z-index:1;min-height:44px;border:2px solid transparent;border-radius:8px;padding:10px 16px;cursor:pointer;font:inherit;font-weight:700;pointer-events:auto;touch-action:manipulation}
 .nel-cookie-accept{background:#176ff2;color:#fff}
-.nel-cookie-reject{background:#475569;color:#fff}
+.nel-cookie-reject{background:#fff;color:#0b1f3a;border-color:#9fc1e3}
 @media(max-width:768px){
  .hero,.tool-hero{width:100%;max-width:100%;padding-left:16px;padding-right:16px}
  h1{word-break:break-word}
