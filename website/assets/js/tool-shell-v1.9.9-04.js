@@ -237,13 +237,7 @@
     if (!(enhancedTools.has(slug) && main)) return;
 
     const header = document.querySelector(".site-header");
-    // UI V1.2.1: the shared header template is the single source of truth for
-    // the context CTA. Older runtime fallback code used to append .start-btn
-    // when the header was still hydrating; on a few pages this created a
-    // second "Start calculating" control at the upper-left of the viewport.
-    // Remove any legacy runtime button and never synthesize a second CTA.
-    document.querySelectorAll(".start-btn[data-nel-runtime-start], body > .start-btn, .site-header > .start-btn")
-      .forEach((node) => node.remove());
+    // Shared header template is the only source of the calculator CTA.
     const headerStart = header?.querySelector(".site-shell-context-action a[href^='#']");
     if (headerStart && main.id) headerStart.href = `#${main.id}`;
 

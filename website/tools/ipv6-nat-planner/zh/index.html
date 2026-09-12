@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 
-<html data-nel-locale="zh" data-nel-route="tools/ipv6-nat-planner/" dir="ltr" lang="zh-CN"><head>
+<html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="tools/ipv6-nat-planner/"><head>
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="../" name="app-base"/>
 <title>IPv6与NAT规划计算器｜NetEngineerLab</title><meta content="IPv6前缀、NAT44、CGNAT确定性端口块、NAT64及DNS64规划计算工具。" name="description"/><meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
 <meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="IPv6与NAT规划计算器｜NetEngineerLab" property="og:title"/><meta content="IPv6前缀、NAT44、CGNAT确定性端口块、NAT64及DNS64规划计算工具。" property="og:description"/><meta content="https://netengineerlab.com/tools/ipv6-nat-planner/zh/" property="og:url"/><meta content="https://netengineerlab.com/tools/ipv6-nat-planner/images/og-ipv6-nat-planner.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
-<link href="../css/style.css?v=dd6554f6738c" rel="stylesheet"/>
+<link href="../css/style.css?v=73b8cea92836" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"IPv6与NAT规划计算器","url":"https://netengineerlab.com/tools/ipv6-nat-planner/zh/","description":"IPv6前缀、NAT44、CGNAT确定性端口块、NAT64及DNS64规划计算工具。","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Network Planning Calculator","operatingSystem":"Any","softwareVersion":"1.0.0","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"工具中心","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"IPv6与NAT规划计算器","item":"https://netengineerlab.com/tools/ipv6-nat-planner/zh/"}]}</script><meta content="NetEngineerLab" name="author"/>
 <link href="/assets/css/cookie-consent.css?v=v180-hotfix03" rel="stylesheet"/>
@@ -12,69 +12,70 @@
 <script defer="" src="/data/seo-config.js"></script>
 <script defer="" src="/assets/js/seo-engine.js"></script>
 <script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么IPv6子网地址数量非常大？","acceptedAnswer":{"@type":"Answer","text":"IPv6是128位地址。/64保留64位接口标识，因此地址数为2^64。工具同时显示指数和精确整数。"}},{"@type":"Question","name":"端口范围为什么可以修改？","acceptedAnswer":{"@type":"Answer","text":"不同设备会保留管理端口、静态映射端口或采用不同端口池策略，因此1024—65535只能作为常见工程起点。"}},{"@type":"Question","name":"TCP和UDP容量能直接相加吗？","acceptedAnswer":{"@type":"Answer","text":"二者端口空间独立，理论容量可以分别计算；实际承载仍受设备会话表、内存、CPU、超时和应用行为限制。"}},{"@type":"Question","name":"确定性端口块越小越好吗？","acceptedAnswer":{"@type":"Answer","text":"更小端口块能提高公网IPv4共享比，但会增加端口不足和应用兼容风险，应根据忙时会话分布选择。"}},{"@type":"Question","name":"知名NAT64前缀能映射私网IPv4吗？","acceptedAnswer":{"@type":"Answer","text":"RFC 6052限制知名前缀表示非全球IPv4地址。域内场景可评估网络专用前缀或RFC 8215本地使用前缀。"}}]}</script>
-<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link data-nel-workflow-style="" href="/assets/css/tool-workflow.css?v=66c8998b2681" rel="stylesheet">
-<meta content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline" name="nel-framework"/>
-<meta content="zh" name="nel-locale"/>
-<meta content="tools/ipv6-nat-planner/" name="nel-route"/>
-<meta content="en,zh" name="nel-available-locales"/>
-<link href="https://netengineerlab.com/tools/ipv6-nat-planner/zh/" rel="canonical"/>
-<link href="https://netengineerlab.com/tools/ipv6-nat-planner/" hreflang="en" rel="alternate"/>
-<link href="https://netengineerlab.com/tools/ipv6-nat-planner/zh/" hreflang="zh-CN" rel="alternate"/>
-<link href="https://netengineerlab.com/tools/ipv6-nat-planner/" hreflang="x-default" rel="alternate"/>
-<link href="../../../assets/css/locale-menu.css?v=7804394246fb" rel="stylesheet"/>
-<link href="../../../assets/css/design-tokens.css?v=dc6c5cc9b8ad" rel="stylesheet"/>
-<link href="../../../assets/css/tool-design-system.css?v=9905ea2be293" rel="stylesheet"/>
-<link href="../../../assets/css/site-shell.css?v=f0222e707b10" rel="stylesheet"/>
-<script defer="" src="../../../data/locales.js?v=909e05076a50"></script>
-<script defer="" src="../../../data/site-config.js?v=b5072ad7fa47"></script>
-<script defer="" src="../../../assets/js/analytics.js?v=1156b7864023"></script>
-<script defer="" src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer="" src="../../../assets/js/site.js?v=5c6907a4fe26"></script>
-<link href="../../../assets/css/tool-layout.css?v=1947f39ca345" rel="stylesheet"/>
-<link href="../manifest-zh.webmanifest" rel="manifest"/>
-</link></head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.2.2">
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"IPv6与NAT规划计算器｜NetEngineerLab","url":"https://netengineerlab.com/tools/ipv6-nat-planner/zh/","description":"IPv6前缀、NAT44、CGNAT确定性端口块、NAT64及DNS64规划计算工具。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="zh">
+<meta name="nel-route" content="tools/ipv6-nat-planner/">
+<meta name="nel-available-locales" content="en,zh">
+<link rel="canonical" href="https://netengineerlab.com/tools/ipv6-nat-planner/zh/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/ipv6-nat-planner/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/ipv6-nat-planner/zh/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/ipv6-nat-planner/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=dc6c5cc9b8ad">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=8c488ab6e2be">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=58918fefbb35">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=5c6907a4fe26"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=8d8b9520aba5">
+<link rel="manifest" href="../manifest-zh.webmanifest">
+</head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
 <a class="skip" href="#planner">开始规划</a><noscript><div class="noscript">JavaScript required / 本工具需要启用JavaScript。</div></noscript>
 <!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
-<div class="site-shell-header-inner">
-<a class="site-shell-brand brand" href="../../../zh/">
-<img alt="" height="42" src="../../../assets/images/logo.svg" width="42"/>
-<span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span>
-</a>
-<button aria-controls="site-shell-nav" aria-expanded="false" aria-label="打开导航菜单" class="site-shell-menu-toggle" type="button"><span aria-hidden="true"></span></button>
-<nav aria-label="主导航" class="site-shell-nav nel-global-nav" id="site-shell-nav">
-<a href="../../../zh/">首页</a>
-<a aria-current="page" href="../../zh/">工具中心</a>
-<a href="../../../zh/about/">关于我们</a>
-<a href="../../../zh/contact/">联系我们</a>
-</nav>
-<div class="site-shell-actions">
-<!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu="" data-open="false"><button aria-expanded="false" aria-haspopup="true" aria-label="语言: 简体中文" class="language-trigger" type="button"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z" fill="currentColor"></path></svg><span class="language-current">简体中文</span><span aria-hidden="true" class="language-caret">▾</span></button><div class="language-options" hidden="" role="menu"><a class="language-option" href="../" hreflang="en" lang="en" role="menuitem"><span>English</span><small>English</small></a><a aria-current="page" class="language-option" href="./" hreflang="zh-CN" lang="zh-CN" role="menuitem"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
-<div class="site-shell-context-action"><a href="#planner">开始计算</a></div>
-</div>
-</div>
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../zh/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="打开导航菜单"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="主导航">
+      <a href="../../../zh/">首页</a>
+      <a href="../../zh/" aria-current="page">工具中心</a>
+      <a href="../../../zh/about/">关于我们</a>
+      <a href="../../../zh/contact/">联系我们</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="./" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#planner">开始计算</a></div>
+    </div>
+  </div>
 </header>
 <!-- NEL_HEADER_END -->
 <!-- NEL_TOOL_RETURN_START -->
-<nav aria-label="Breadcrumb" class="breadcrumbs tool-return-nav">
-<a class="tool-return-link" href="../../zh/">← 返回工具中心</a>
-<span aria-hidden="true">/</span>
-<span aria-current="page">IPv6与NAT规划计算器</span>
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a class="tool-return-link" href="../../zh/">← 返回工具中心</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">IPv6与NAT规划计算器</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
-<section class="hero nel-tool-hero"><div class="hero-inner"><div><p class="eyebrow">IPV6 &amp; ADDRESS TRANSLATION ENGINEERING</p><h1>IPv6与NAT规划计算器</h1><p>统一完成IPv6前缀拆分、地址规范化、NAT44端口容量、CGNAT确定性端口块、日志量以及NAT64/DNS64地址合成。</p><div class="hero-tags"><span>IPv6前缀规划</span><span>NAT44/PAT容量</span><span>CGNAT端口块</span><span>NAT64/DNS64</span></div></div>
-<aside class="hero-card"><strong>工程使用边界</strong><ul><li>IPv6地址使用128位BigInt计算，不采用JavaScript Number。</li><li>端口利用率、会话数和日志参数均为可编辑工程假设。</li></ul></aside></div></section>
+<section class="hero nel-tool-hero"><div class="hero-inner"><p class="eyebrow">IPV6 &amp; ADDRESS TRANSLATION ENGINEERING</p><h1>IPv6与NAT规划计算器</h1><p>统一完成IPv6前缀拆分、地址规范化、NAT44端口容量、CGNAT确定性端口块、日志量以及NAT64/DNS64地址合成。</p><div class="hero-tags"><span>IPv6前缀规划</span><span>NAT44/PAT容量</span><span>CGNAT端口块</span><span>NAT64/DNS64</span></div></div></section>
 <main class="tool-shell nel-tool-main nel-tool-specialized" id="planner">
 <section class="project-bar"><label>工程名称<input id="projectName" value="IPv6 &amp; NAT Planning Project"/></label><div class="project-actions"><button id="copyBtn">复制结果</button><button id="csvBtn">导出CSV</button><button class="primary" id="saveBtn">保存规划</button><button id="printBtn">打印/PDF</button><button id="resetBtn">恢复预设</button></div></section>
 <div class="tabs" role="tablist"><button class="active" data-tab="ipv6">IPv6前缀规划</button><button data-tab="nat44">NAT44容量</button><button data-tab="cgn">CGNAT规划</button><button data-tab="nat64">NAT64 / DNS64</button></div>
 <section class="panel-layout" data-panel="ipv6">
 <div class="card input-card"><div class="section-head"><span class="section-icon">v6</span><div><h2>IPv6前缀规划 · 输入参数</h2><p>支持IPv6压缩/展开、父子前缀、相邻子网及最多32条子前缀预览。</p></div></div><div class="notice">所有默认值均为可编辑工程预设，不是通用标准或厂商容量承诺。</div>
-<div class="form-grid"><div class="field full"><label>工程预设</label><div class="input-wrap"><select id="v6Preset"><option value="enterprise">企业/园区 /48→/64</option><option value="isp">运营商 /32→/48</option><option value="site56">站点 /56→/64</option><option value="ula">ULA /48→/64</option></select></div></div>
-<div class="field full"><label>IPv6地址或前缀</label><div class="input-wrap"><input id="v6address" value="2001:db8:1200::/48"/></div></div>
-<div class="field"><label>父前缀长度</label><div class="input-wrap"><input id="v6parentPrefix" max="128" min="0" type="number" value="48"/><span>/</span></div></div>
-<div class="field"><label>目标子前缀长度</label><div class="input-wrap"><input id="v6childPrefix" max="128" min="0" type="number" value="64"/><span>/</span></div></div>
-<div class="field"><label>预览起始序号</label><div class="input-wrap"><input id="v6startIndex" value="0"/></div></div>
-<div class="field"><label>预览子网数量</label><div class="input-wrap"><input id="v6previewCount" max="32" min="1" type="number" value="8"/></div></div></div>
+<div class="form-grid"><div class="field full"><label>工程预设</label><div class="input-wrap"><select id="v6Preset" aria-label="工程预设"><option value="enterprise">企业/园区 /48→/64</option><option value="isp">运营商 /32→/48</option><option value="site56">站点 /56→/64</option><option value="ula">ULA /48→/64</option></select></div></div>
+<div class="field full"><label>IPv6地址或前缀</label><div class="input-wrap"><input id="v6address" value="2001:db8:1200::/48"/ aria-label="IPv6地址或前缀"></div></div>
+<div class="field"><label>父前缀长度</label><div class="input-wrap"><input id="v6parentPrefix" max="128" min="0" type="number" value="48"/ aria-label="/"><span>/</span></div></div>
+<div class="field"><label>目标子前缀长度</label><div class="input-wrap"><input id="v6childPrefix" max="128" min="0" type="number" value="64"/ aria-label="/"><span>/</span></div></div>
+<div class="field"><label>预览起始序号</label><div class="input-wrap"><input id="v6startIndex" value="0"/ aria-label="预览起始序号"></div></div>
+<div class="field"><label>预览子网数量</label><div class="input-wrap"><input id="v6previewCount" max="32" min="1" type="number" value="8"/ aria-label="预览子网数量"></div></div></div>
 <div class="error-box" hidden="" id="v6Error"></div><div class="panel-actions"><button class="primary" id="v6Calculate">执行计算</button></div></div>
 <div class="card result-card"><div class="section-head"><span class="section-icon">R</span><div><h2>IPv6前缀规划 · 规划结果</h2></div></div>
 <div class="summary"><div><small>规范压缩地址</small><strong><code id="v6Canonical">—</code></strong></div><span class="risk-badge low" id="v6TypeBadge">—</span></div>
@@ -86,11 +87,11 @@
 <div class="result-table-wrap"><table class="result-table ipv6-preview-table"><thead><tr><th>序号</th><th>子网CIDR</th></tr></thead><tbody id="v6PreviewBody"></tbody></table></div></div></section>
 <section class="panel-layout" data-panel="nat44" hidden="">
 <div class="card input-card"><div class="section-head"><span class="section-icon">44</span><div><h2>NAT44容量 · 输入参数</h2><p>TCP和UDP端口空间独立计算；设备实现、ALG、超时及映射行为需要结合厂家规格。</p></div></div><div class="notice">所有默认值均为可编辑工程预设，不是通用标准或厂商容量承诺。</div>
-<div class="form-grid"><div class="field full"><label>工程预设</label><div class="input-wrap"><select id="n44Preset"><option value="smallEnterprise">中小企业NAT</option><option value="ispAccess">接入网NAT容量</option></select></div></div>
-<div class="field"><label>公网IPv4数量</label><div class="input-wrap"><input id="n44publicIps" min="1" type="number" value="8"/></div></div><div class="field"><label>用户/终端数量</label><div class="input-wrap"><input id="n44subscribers" min="1" type="number" value="1000"/></div></div>
-<div class="field"><label>起始端口</label><div class="input-wrap"><input id="n44portStart" max="65535" min="0" type="number" value="1024"/></div></div><div class="field"><label>结束端口</label><div class="input-wrap"><input id="n44portEnd" max="65535" min="0" type="number" value="65535"/></div></div>
-<div class="field"><label>保留端口比例</label><div class="input-wrap"><input id="n44reservePct" max="99" min="0" type="number" value="10"/><span>%</span></div></div><div class="field"><label>端口池可分配比例</label><div class="input-wrap"><input id="n44allocationPct" max="100" min="1" type="number" value="85"/><span>%</span></div></div>
-<div class="field"><label>每用户峰值并发映射</label><div class="input-wrap"><input id="n44sessionsPerSubscriber" min="1" type="number" value="150"/></div></div><div class="field"><label>容量安全余量</label><div class="input-wrap"><input id="n44safetyPct" min="0" type="number" value="25"/><span>%</span></div></div>
+<div class="form-grid"><div class="field full"><label>工程预设</label><div class="input-wrap"><select id="n44Preset" aria-label="工程预设"><option value="smallEnterprise">中小企业NAT</option><option value="ispAccess">接入网NAT容量</option></select></div></div>
+<div class="field"><label>公网IPv4数量</label><div class="input-wrap"><input id="n44publicIps" min="1" type="number" value="8"/ aria-label="公网IPv4数量"></div></div><div class="field"><label>用户/终端数量</label><div class="input-wrap"><input id="n44subscribers" min="1" type="number" value="1000"/ aria-label="用户/终端数量"></div></div>
+<div class="field"><label>起始端口</label><div class="input-wrap"><input id="n44portStart" max="65535" min="0" type="number" value="1024"/ aria-label="起始端口"></div></div><div class="field"><label>结束端口</label><div class="input-wrap"><input id="n44portEnd" max="65535" min="0" type="number" value="65535"/ aria-label="结束端口"></div></div>
+<div class="field"><label>保留端口比例</label><div class="input-wrap"><input id="n44reservePct" max="99" min="0" type="number" value="10"/ aria-label="%"><span>%</span></div></div><div class="field"><label>端口池可分配比例</label><div class="input-wrap"><input id="n44allocationPct" max="100" min="1" type="number" value="85"/ aria-label="%"><span>%</span></div></div>
+<div class="field"><label>每用户峰值并发映射</label><div class="input-wrap"><input id="n44sessionsPerSubscriber" min="1" type="number" value="150"/ aria-label="每用户峰值并发映射"></div></div><div class="field"><label>容量安全余量</label><div class="input-wrap"><input id="n44safetyPct" min="0" type="number" value="25"/ aria-label="%"><span>%</span></div></div>
 <div class="field full"><label>启用协议端口池</label><div class="checks"><label><input checked="" id="n44tcpEnabled" type="checkbox"/>TCP</label><label><input checked="" id="n44udpEnabled" type="checkbox"/>UDP</label></div></div></div>
 <div class="error-box" hidden="" id="n44Error"></div><div class="panel-actions"><button class="primary" id="n44Calculate">执行计算</button></div></div>
 <div class="card result-card"><div class="section-head"><span class="section-icon">R</span><div><h2>NAT44容量 · 规划结果</h2></div></div>
@@ -104,14 +105,14 @@
 <div class="result-note" id="n44NamespaceNote"></div></div></section>
 <section class="panel-layout" data-panel="cgn" hidden="">
 <div class="card input-card"><div class="section-head"><span class="section-icon">CG</span><div><h2>CGNAT规划 · 输入参数</h2><p>100.64.0.0/10是运营商CGN共享地址空间参考；端口块、超售和日志参数应按设备及监管要求确认。</p></div></div><div class="notice warning">所有默认值均为可编辑工程预设，不是通用标准或厂商容量承诺。</div>
-<div class="form-grid"><div class="field full"><label>工程预设</label><div class="input-wrap"><select id="cgnPreset"><option value="deterministic1024">1024端口确定性块</option><option value="deterministic512">512端口确定性块</option></select></div></div>
-<div class="field"><label>用户/终端数量</label><div class="input-wrap"><input id="cgnsubscribers" min="1" type="number" value="20000"/></div></div><div class="field"><label>公网IPv4数量</label><div class="input-wrap"><input id="cgnpublicIps" min="1" type="number" value="400"/></div></div>
-<div class="field"><label>起始端口</label><div class="input-wrap"><input id="cgnportStart" min="0" type="number" value="1024"/></div></div><div class="field"><label>结束端口</label><div class="input-wrap"><input id="cgnportEnd" max="65535" type="number" value="65535"/></div></div>
-<div class="field"><label>保留端口比例</label><div class="input-wrap"><input id="cgnreservePct" max="99" min="0" type="number" value="5"/><span>%</span></div></div><div class="field"><label>端口池可分配比例</label><div class="input-wrap"><input id="cgnallocationPct" max="100" min="1" type="number" value="100"/><span>%</span></div></div>
-<div class="field"><label>每用户端口块大小</label><div class="input-wrap"><input id="cgnblockSize" min="1" type="number" value="1024"/><span>ports</span></div></div><div class="field"><label>忙时活跃用户比例</label><div class="input-wrap"><input id="cgnactivePct" max="100" min="0" type="number" value="35"/><span>%</span></div></div>
-<div class="field"><label>活跃用户峰值会话</label><div class="input-wrap"><input id="cgnpeakSessions" min="0" type="number" value="250"/></div></div><div class="field"><label>TCP会话占比</label><div class="input-wrap"><input id="cgntcpPct" max="100" min="0" type="number" value="75"/><span>%</span></div></div>
-<div class="subheading">Logging / 日志量</div><div class="field"><label>每活跃用户每小时新建会话</label><div class="input-wrap"><input id="cgnsessionsPerHour" min="0" type="number" value="120"/></div></div><div class="field"><label>每会话日志事件数</label><div class="input-wrap"><input id="cgneventsPerSession" min="0" type="number" value="2"/></div></div>
-<div class="field"><label>每条日志估算字节</label><div class="input-wrap"><input id="cgnbytesPerEvent" min="0" type="number" value="180"/><span>B</span></div></div><div class="field"><label>日志保留天数</label><div class="input-wrap"><input id="cgnretentionDays" min="0" type="number" value="180"/><span>days</span></div></div></div>
+<div class="form-grid"><div class="field full"><label>工程预设</label><div class="input-wrap"><select id="cgnPreset" aria-label="工程预设"><option value="deterministic1024">1024端口确定性块</option><option value="deterministic512">512端口确定性块</option></select></div></div>
+<div class="field"><label>用户/终端数量</label><div class="input-wrap"><input id="cgnsubscribers" min="1" type="number" value="20000"/ aria-label="用户/终端数量"></div></div><div class="field"><label>公网IPv4数量</label><div class="input-wrap"><input id="cgnpublicIps" min="1" type="number" value="400"/ aria-label="公网IPv4数量"></div></div>
+<div class="field"><label>起始端口</label><div class="input-wrap"><input id="cgnportStart" min="0" type="number" value="1024"/ aria-label="起始端口"></div></div><div class="field"><label>结束端口</label><div class="input-wrap"><input id="cgnportEnd" max="65535" type="number" value="65535"/ aria-label="结束端口"></div></div>
+<div class="field"><label>保留端口比例</label><div class="input-wrap"><input id="cgnreservePct" max="99" min="0" type="number" value="5"/ aria-label="%"><span>%</span></div></div><div class="field"><label>端口池可分配比例</label><div class="input-wrap"><input id="cgnallocationPct" max="100" min="1" type="number" value="100"/ aria-label="%"><span>%</span></div></div>
+<div class="field"><label>每用户端口块大小</label><div class="input-wrap"><input id="cgnblockSize" min="1" type="number" value="1024"/ aria-label="ports"><span>ports</span></div></div><div class="field"><label>忙时活跃用户比例</label><div class="input-wrap"><input id="cgnactivePct" max="100" min="0" type="number" value="35"/ aria-label="%"><span>%</span></div></div>
+<div class="field"><label>活跃用户峰值会话</label><div class="input-wrap"><input id="cgnpeakSessions" min="0" type="number" value="250"/ aria-label="活跃用户峰值会话"></div></div><div class="field"><label>TCP会话占比</label><div class="input-wrap"><input id="cgntcpPct" max="100" min="0" type="number" value="75"/ aria-label="%"><span>%</span></div></div>
+<div class="subheading">Logging / 日志量</div><div class="field"><label>每活跃用户每小时新建会话</label><div class="input-wrap"><input id="cgnsessionsPerHour" min="0" type="number" value="120"/ aria-label="每活跃用户每小时新建会话"></div></div><div class="field"><label>每会话日志事件数</label><div class="input-wrap"><input id="cgneventsPerSession" min="0" type="number" value="2"/ aria-label="每会话日志事件数"></div></div>
+<div class="field"><label>每条日志估算字节</label><div class="input-wrap"><input id="cgnbytesPerEvent" min="0" type="number" value="180"/ aria-label="B"><span>B</span></div></div><div class="field"><label>日志保留天数</label><div class="input-wrap"><input id="cgnretentionDays" min="0" type="number" value="180"/ aria-label="days"><span>days</span></div></div></div>
 <div class="error-box" hidden="" id="cgnError"></div><div class="panel-actions"><button class="primary" id="cgnCalculate">执行计算</button></div></div>
 <div class="card result-card"><div class="section-head"><span class="section-icon">R</span><div><h2>CGNAT规划 · 规划结果</h2></div></div>
 <div class="two-result"><article class="result-box"><span>用户容量风险</span><strong><span class="risk-badge low" id="cgnSubscriberRisk">—</span></strong></article><article class="result-box"><span>端口块风险</span><strong><span class="risk-badge low" id="cgnPortRisk">—</span></strong></article></div>
@@ -127,10 +128,10 @@
 <div class="result-note" id="cgnDeterministicNote"></div></div></section>
 <section class="panel-layout" data-panel="nat64" hidden="">
 <div class="card input-card"><div class="section-head"><span class="section-icon">64</span><div><h2>NAT64 / DNS64 · 输入参数</h2><p>RFC 6052算法支持/32、/40、/48、/56、/64和/96。DNS64合成地址与NAT64目标地址使用相同嵌入格式。</p></div></div><div class="notice">所有默认值均为可编辑工程预设，不是通用标准或厂商容量承诺。</div>
-<div class="form-grid"><div class="field full"><label>工程预设</label><div class="input-wrap"><select id="n64Preset"><option value="localUse">RFC 8215本地使用 /48</option><option value="wkp">RFC 6052知名前缀 /96</option><option value="custom96">自定义网络前缀 /96</option></select></div></div>
-<div class="field full"><label>IPv4/IPv6转换前缀</label><div class="input-wrap"><input id="n64prefix" value="64:ff9b:1::/48"/></div></div><div class="field full"><label>IPv4地址</label><div class="input-wrap"><input id="n64ipv4" value="192.0.2.33"/></div></div></div>
+<div class="form-grid"><div class="field full"><label>工程预设</label><div class="input-wrap"><select id="n64Preset" aria-label="工程预设"><option value="localUse">RFC 8215本地使用 /48</option><option value="wkp">RFC 6052知名前缀 /96</option><option value="custom96">自定义网络前缀 /96</option></select></div></div>
+<div class="field full"><label>IPv4/IPv6转换前缀</label><div class="input-wrap"><input id="n64prefix" value="64:ff9b:1::/48"/ aria-label="IPv4/IPv6转换前缀"></div></div><div class="field full"><label>IPv4地址</label><div class="input-wrap"><input id="n64ipv4" value="192.0.2.33"/ aria-label="IPv4地址"></div></div></div>
 <div class="error-box" hidden="" id="n64Error"></div><div class="panel-actions"><button class="primary" id="n64Calculate">执行计算</button></div>
-<div class="reverse-box"><h3>反向提取IPv4</h3><div class="field"><label>IPv4嵌入IPv6地址</label><div class="input-wrap"><input id="n64reverseIpv6"/></div></div><div class="error-box" hidden="" id="n64ReverseError"></div><div class="panel-actions"><button id="n64ReverseCalculate">提取IPv4</button></div></div></div>
+<div class="reverse-box"><h3>反向提取IPv4</h3><div class="field"><label>IPv4嵌入IPv6地址</label><div class="input-wrap"><input id="n64reverseIpv6"/ aria-label="IPv4嵌入IPv6地址"></div></div><div class="error-box" hidden="" id="n64ReverseError"></div><div class="panel-actions"><button id="n64ReverseCalculate">提取IPv4</button></div></div></div>
 <div class="card result-card"><div class="section-head"><span class="section-icon">R</span><div><h2>NAT64 / DNS64 · 规划结果</h2></div></div>
 <div class="summary"><div><small>合成IPv6地址</small><strong><code id="n64Ipv6Result">—</code></strong></div></div>
 <div class="metric-grid"><article class="metric"><small>规范转换前缀</small><strong><code id="n64PrefixResult">—</code></strong></article><article class="metric"><small>IPv4地址</small><strong id="n64Ipv4Result">—</strong></article>
@@ -143,24 +144,26 @@
 <section class="content-section nel-tool-supporting-section"><p class="eyebrow">FAQ</p><h2>常见问题</h2><div class="faq-grid"><details><summary>为什么IPv6子网地址数量非常大？</summary><p>IPv6是128位地址。/64保留64位接口标识，因此地址数为2^64。工具同时显示指数和精确整数。</p></details><details><summary>端口范围为什么可以修改？</summary><p>不同设备会保留管理端口、静态映射端口或采用不同端口池策略，因此1024—65535只能作为常见工程起点。</p></details><details><summary>TCP和UDP容量能直接相加吗？</summary><p>二者端口空间独立，理论容量可以分别计算；实际承载仍受设备会话表、内存、CPU、超时和应用行为限制。</p></details><details><summary>确定性端口块越小越好吗？</summary><p>更小端口块能提高公网IPv4共享比，但会增加端口不足和应用兼容风险，应根据忙时会话分布选择。</p></details><details><summary>知名NAT64前缀能映射私网IPv4吗？</summary><p>RFC 6052限制知名前缀表示非全球IPv4地址。域内场景可评估网络专用前缀或RFC 8215本地使用前缀。</p></details></div></section>
 <section class="content-section nel-tool-supporting-section" id="history"><div class="history-head"><div><p class="eyebrow">PROJECT RECORDS</p><h2>规划历史记录</h2></div><button id="clearHistoryBtn">清空记录</button></div><div class="history-list" id="historyList"></div></section>
 <!-- NEL_TOOL_GRAPH_START -->
-<section aria-labelledby="nel-tool-graph-title" class="content-section nel-tool-graph" data-primary-workflow="enterprise-lan-ip-planning" data-tool-id="ipv6-nat-planner" id="nel-tool-graph">
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="ipv6-nat-planner" data-primary-workflow="enterprise-lan-ip-planning">
 <div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
-<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">当前流程</span><strong>企业 LAN 与 IP 规划工作流</strong><p>把地址规划、VLAN 容量、MTU、上联、光模块、访问策略和 DNS 行为串成完整局域网设计流程。</p></div><div class="nel-workflow-step"><strong>步骤 2 / 9</strong><div aria-label="步骤 2 / 9" class="nel-workflow-progress"><span style="width:22%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/subnet-calculator/zh/"><span class="nel-tool-graph-label">上一步</span><strong>IP子网计算器</strong><span class="nel-tool-graph-description">计算IPv4、IPv6、CIDR、掩码、广播地址、主机容量，并支持VLSM地址规划。</span></a><a class="nel-tool-graph-card" href="/tools/vlan-ip-capacity-planner/zh/"><span class="nel-tool-graph-label">下一步</span><strong>VLAN与IP子网容量规划器</strong><span class="nel-tool-graph-description">规划VLAN数量、IPv4前缀、地址容量与扩容余量。</span></a></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">当前流程</span><strong>企业 LAN 与 IP 规划工作流</strong><p>把地址规划、VLAN 容量、MTU、上联、光模块、访问策略和 DNS 行为串成完整局域网设计流程。</p></div><div class="nel-workflow-step"><strong>步骤 2 / 9</strong><div class="nel-workflow-progress" aria-label="步骤 2 / 9"><span style="width:22%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/subnet-calculator/zh/"><span class="nel-tool-graph-label">上一步</span><strong>IP子网计算器</strong><span class="nel-tool-graph-description">计算IPv4、IPv6、CIDR、掩码、广播地址、主机容量，并支持VLSM地址规划。</span></a><a class="nel-tool-graph-card" href="/tools/vlan-ip-capacity-planner/zh/"><span class="nel-tool-graph-label">下一步</span><strong>VLAN与IP子网容量规划器</strong><span class="nel-tool-graph-description">规划VLAN数量、IPv4前缀、地址容量与扩容余量。</span></a></div>
 <h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/subnet-calculator/zh/"><strong>IP子网计算器</strong><span class="nel-tool-graph-description">计算IPv4、IPv6、CIDR、掩码、广播地址、主机容量，并支持VLSM地址规划。</span></a><a class="nel-tool-graph-card" href="/tools/vlan-ip-capacity-planner/zh/"><strong>VLAN与IP子网容量规划器</strong><span class="nel-tool-graph-description">规划VLAN数量、IPv4前缀、地址容量与扩容余量。</span></a><a class="nel-tool-graph-card" href="/tools/mtu-calculator/zh/"><strong>MTU与MSS计算器</strong><span class="nel-tool-graph-description">计算PPPoE、GRE、VXLAN、MPLS、IPsec和WireGuard封装后的有效MTU、TCP MSS与分片风险。</span></a></div>
 </section>
 <!-- NEL_TOOL_GRAPH_END -->
+
+<section class="nel-tool-supporting-section" data-nel-moved-from-hero="true"><strong>工程使用边界</strong><ul><li>IPv6地址使用128位BigInt计算，不采用JavaScript Number。</li><li>端口利用率、会话数和日志参数均为可编辑工程假设。</li></ul></section>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
-<div class="site-shell-footer-inner">
-<div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div>
-<nav aria-label="页脚导航" class="site-shell-footer-links">
-<a href="../../../zh/about/">关于</a><a href="../../../zh/contact/">联系</a><a href="../../../zh/privacy/">隐私政策</a><a href="../../../zh/terms/">使用条款</a>
-</nav>
-<p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
-</div>
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div>
+    <nav class="site-shell-footer-links" aria-label="页脚导航">
+      <a href="../../../zh/about/">关于</a><a href="../../../zh/contact/">联系</a><a href="../../../zh/privacy/">隐私政策</a><a href="../../../zh/terms/">使用条款</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
 </footer>
 <!-- NEL_FOOTER_END -->
 <div class="toast" id="toast" role="status"></div>
 <script defer="" src="../data/presets.js"></script><script defer="" src="../js/engine.js"></script><script defer="" src="../js/app.js?v=1c5cebdf9a34"></script><script defer="" src="../js/pwa.js"></script>
 <script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script>
-<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=beb69108de40"></script></body></html>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script></body></html>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 
-<html data-nel-locale="en" data-nel-route="tools/otdr-event/" dir="ltr" lang="en"><head>
+<html lang="en" dir="ltr" data-nel-locale="en" data-nel-route="tools/otdr-event/"><head>
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="./" name="app-base"/>
 <title>OTDR Event Analyzer | NetEngineerLab</title><meta content="Professional OTDR event analysis for splices, connectors, bends, breaks, ghost events and dead-zone effects." name="description"/><meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
 <meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="OTDR Event Analyzer | NetEngineerLab" property="og:title"/><meta content="Professional OTDR event analysis for splices, connectors, bends, breaks, ghost events and dead-zone effects." property="og:description"/><meta content="https://netengineerlab.com/tools/otdr-event/" property="og:url"/><meta content="https://netengineerlab.com/tools/otdr-event/images/og-otdr-event-analyzer.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
-<link href="css/style.css?v=16351f9cfe44" rel="stylesheet"/>
+<link href="css/style.css?v=3015a9598d59" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"OTDR Event Analyzer","url":"https://netengineerlab.com/tools/otdr-event/","description":"Professional OTDR event analysis for splices, connectors, bends, breaks, ghost events and dead-zone effects.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"OTDR Analysis Tool","operatingSystem":"Any","softwareVersion":"1.0.1","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
 <script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"OTDR Event Analyzer","item":"https://netengineerlab.com/tools/otdr-event/"}]}</script><meta content="NetEngineerLab" name="author"/>
 <link href="/assets/css/cookie-consent.css?v=v180-hotfix03" rel="stylesheet"/>
@@ -12,59 +12,61 @@
 <script defer="" src="/data/seo-config.js"></script>
 <script defer="" src="/assets/js/seo-engine.js"></script>
 <script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Are OTDR event thresholds universal?","acceptedAnswer":{"@type":"Answer","text":"No. Thresholds vary by operator, vendor, link type, wavelength, pulse width and acceptance rules. This tool keeps them editable."}},{"@type":"Question","name":"Why compare 1310 nm and 1550 nm?","acceptedAnswer":{"@type":"Answer","text":"Bending loss often increases more at longer wavelengths. A wavelength difference can support bend diagnosis, but it is not a standalone conclusion."}},{"@type":"Question","name":"What is a ghost event?","acceptedAnswer":{"@type":"Answer","text":"A ghost can appear at a multiple of the distance to a strong reflector and may show little real insertion loss. Change pulse width and range to verify it."}},{"@type":"Question","name":"Can this tool parse SOR files?","acceptedAnswer":{"@type":"Answer","text":"Version 1.0 analyzes event-table data and CSV imports. Direct SOR parsing is reserved for a later version."}},{"@type":"Question","name":"Why can nearby events be unreliable?","acceptedAnswer":{"@type":"Answer","text":"Events inside the event or attenuation dead zone can overlap, making reflectance or loss difficult to separate."}},{"@type":"Question","name":"Should results replace field judgment?","acceptedAnswer":{"@type":"Answer","text":"No. Use the original trace, bidirectional tests, route records, power measurements and field inspection."}}]}</script>
-<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link data-nel-workflow-style="" href="/assets/css/tool-workflow.css?v=66c8998b2681" rel="stylesheet"/>
-<meta content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline" name="nel-framework"/>
-<meta content="en" name="nel-locale"/>
-<meta content="tools/otdr-event/" name="nel-route"/>
-<meta content="en,zh" name="nel-available-locales"/>
-<link href="https://netengineerlab.com/tools/otdr-event/" rel="canonical">
-<link href="https://netengineerlab.com/tools/otdr-event/" hreflang="en" rel="alternate"/>
-<link href="https://netengineerlab.com/tools/otdr-event/zh/" hreflang="zh-CN" rel="alternate"/>
-<link href="https://netengineerlab.com/tools/otdr-event/" hreflang="x-default" rel="alternate"/>
-<link href="../../assets/css/locale-menu.css?v=7804394246fb" rel="stylesheet"/>
-<link href="../../assets/css/design-tokens.css?v=dc6c5cc9b8ad" rel="stylesheet"/>
-<link href="../../assets/css/tool-design-system.css?v=9905ea2be293" rel="stylesheet"/>
-<link href="../../assets/css/site-shell.css?v=f0222e707b10" rel="stylesheet"/>
-<script defer="" src="../../data/locales.js?v=909e05076a50"></script>
-<script defer="" src="../../data/site-config.js?v=b5072ad7fa47"></script>
-<script defer="" src="../../assets/js/analytics.js?v=1156b7864023"></script>
-<script defer="" src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer="" src="../../assets/js/site.js?v=5c6907a4fe26"></script>
-<link href="../../assets/css/tool-layout.css?v=1947f39ca345" rel="stylesheet"/>
-<link href="manifest.webmanifest" rel="manifest"/>
-</link></head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.2.2">
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"OTDR Event Analyzer | NetEngineerLab","url":"https://netengineerlab.com/tools/otdr-event/","description":"Professional OTDR event analysis for splices, connectors, bends, breaks, ghost events and dead-zone effects.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="en">
+<meta name="nel-route" content="tools/otdr-event/">
+<meta name="nel-available-locales" content="en,zh">
+<link rel="canonical" href="https://netengineerlab.com/tools/otdr-event/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/otdr-event/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/otdr-event/zh/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/otdr-event/">
+<link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../assets/css/design-tokens.css?v=dc6c5cc9b8ad">
+<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=8c488ab6e2be">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=58918fefbb35">
+<script defer src="../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../assets/js/site.js?v=5c6907a4fe26"></script>
+<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=8d8b9520aba5">
+<link rel="manifest" href="manifest.webmanifest">
+</head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
 <a class="skip" href="#analyzer">Skip to analyzer</a><noscript><div class="noscript">JavaScript is required.</div></noscript>
 <!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
-<div class="site-shell-header-inner">
-<a class="site-shell-brand brand" href="../../">
-<img alt="" height="42" src="../../assets/images/logo.svg" width="42"/>
-<span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span>
-</a>
-<button aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation" class="site-shell-menu-toggle" type="button"><span aria-hidden="true"></span></button>
-<nav aria-label="Primary navigation" class="site-shell-nav nel-global-nav" id="site-shell-nav">
-<a href="../../">Home</a>
-<a aria-current="page" href="../">Tools</a>
-<a href="../../about/">About</a>
-<a href="../../contact/">Contact</a>
-</nav>
-<div class="site-shell-actions">
-<!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu="" data-open="false"><button aria-expanded="false" aria-haspopup="true" aria-label="Language: English" class="language-trigger" type="button"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z" fill="currentColor"></path></svg><span class="language-current">English</span><span aria-hidden="true" class="language-caret">▾</span></button><div class="language-options" hidden="" role="menu"><a aria-current="page" class="language-option" href="./" hreflang="en" lang="en" role="menuitem"><span>English</span><small>English</small></a><a class="language-option" href="zh/" hreflang="zh-CN" lang="zh-CN" role="menuitem"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
-<div class="site-shell-context-action"><a href="#analyzer">Start calculating</a></div>
-</div>
-</div>
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Primary navigation">
+      <a href="../../">Home</a>
+      <a href="../" aria-current="page">Tools</a>
+      <a href="../../about/">About</a>
+      <a href="../../contact/">Contact</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#analyzer">Start calculating</a></div>
+    </div>
+  </div>
 </header>
 <!-- NEL_HEADER_END -->
 <!-- NEL_TOOL_RETURN_START -->
-<nav aria-label="Breadcrumb" class="breadcrumbs tool-return-nav">
-<a class="tool-return-link" href="../">← Back to Tools</a>
-<span aria-hidden="true">/</span>
-<span aria-current="page">OTDR Event Analyzer</span>
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a class="tool-return-link" href="../">← Back to Tools</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">OTDR Event Analyzer</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
-<section class="hero nel-tool-hero"><div class="hero-inner"><div><p class="eyebrow">OTDR MAINTENANCE TOOL</p><h1>OTDR Event Analyzer</h1><p>Enter or import multiple OTDR events, compare two wavelengths, identify event types and generate maintenance priorities. Version 1.0 focuses on event-table diagnosis and does not parse SOR files directly.</p></div><div class="hero-tags"><span>Multi-event</span><span>Dual wavelength</span><span>Dead-zone check</span><span>CSV import</span></div></div></section>
+<section class="hero nel-tool-hero"><div class="hero-inner"><p class="eyebrow">OTDR MAINTENANCE TOOL</p><h1>OTDR Event Analyzer</h1><p>Enter or import multiple OTDR events, compare two wavelengths, identify event types and generate maintenance priorities. Version 1.0 focuses on event-table diagnosis and does not parse SOR files directly.</p><div class="hero-tags"><span>Multi-event</span><span>Dual wavelength</span><span>Dead-zone check</span><span>CSV import</span></div></div></section>
 <main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="analyzer">
-<section class="config-panel card input-panel nel-tool-input">
+<section class="input-panel card nel-tool-input">
 <div class="section-title"><span class="section-icon">☷</span><div><h2>Test settings and thresholds</h2><p>All thresholds are editable engineering defaults.</p></div></div>
 <div class="notice">These thresholds are editable engineering defaults, not universal pass/fail criteria for every operator, vendor or acceptance scenario.</div>
 <div class="form-grid">
@@ -92,7 +94,7 @@
 </div>
 <div class="config-actions"><button class="primary" id="sampleBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> Load sample</button><button class="secondary" id="resetBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M20 11a8 8 0 1 0-2.3 5.7"></path><path d="M20 4v7h-7"></path></svg> Reset</button></div>
 </section>
-<section aria-live="polite" class="analysis-panel card result-panel nel-tool-result">
+<section aria-live="polite" class="result-panel card nel-tool-result">
 <div class="section-title"><span class="section-icon">OT</span><div><h2>Event analysis result</h2><p>Summary, topology, event classification and maintenance actions.</p></div></div>
 <div class="summary-bar">
 <article class="overall-card"><small>Overall status</small><strong class="status-badge" id="overallStatus">—</strong></article>
@@ -142,23 +144,23 @@
 <section class="content-section nel-tool-supporting-section" id="history"><div class="history-head"><div><p class="eyebrow">PROJECT RECORDS</p><h2>History</h2></div><button class="text-button" id="clearHistoryBtn">Clear history</button></div><div class="history-list" id="historyList"></div></section>
 <aside aria-label="Advertisement" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">ADVERTISEMENT</div><div class="ad-body"></div></aside>
 <!-- NEL_TOOL_GRAPH_START -->
-<section aria-labelledby="nel-tool-graph-title" class="content-section nel-tool-graph" data-primary-workflow="optical-troubleshooting" data-tool-id="otdr-event" id="nel-tool-graph">
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="otdr-event" data-primary-workflow="optical-troubleshooting">
 <div class="section-heading"><div><p class="eyebrow">ENGINEERING WORKFLOW</p><h2 id="nel-tool-graph-title">Continue the engineering workflow</h2></div></div>
-<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>Optical Fault Isolation Workflow</strong><p>Start from measured ONU receive power, locate abnormal events, then compare field loss with the design budget.</p></div><div class="nel-workflow-step"><strong>Step 2 of 4</strong><div aria-label="Step 2 of 4" class="nel-workflow-progress"><span style="width:50%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/onu-rx-power/"><span class="nel-tool-graph-label">Previous</span><strong>ONU RX Power Diagnosis</strong><span class="nel-tool-graph-description">Diagnose normal, weak-light, overload or possible no-signal conditions from measured power.</span></a><a class="nel-tool-graph-card" href="/tools/fiber-loss/"><span class="nel-tool-graph-label">Next</span><strong>Fiber Loss Calculator</strong><span class="nel-tool-graph-description">Calculate fiber, splice, connector, splitter and engineering losses for an optical link.</span></a></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>Optical Fault Isolation Workflow</strong><p>Start from measured ONU receive power, locate abnormal events, then compare field loss with the design budget.</p></div><div class="nel-workflow-step"><strong>Step 2 of 4</strong><div class="nel-workflow-progress" aria-label="Step 2 of 4"><span style="width:50%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/onu-rx-power/"><span class="nel-tool-graph-label">Previous</span><strong>ONU RX Power Diagnosis</strong><span class="nel-tool-graph-description">Diagnose normal, weak-light, overload or possible no-signal conditions from measured power.</span></a><a class="nel-tool-graph-card" href="/tools/fiber-loss/"><span class="nel-tool-graph-label">Next</span><strong>Fiber Loss Calculator</strong><span class="nel-tool-graph-description">Calculate fiber, splice, connector, splitter and engineering losses for an optical link.</span></a></div>
 <h3 class="nel-tool-graph-subtitle">Related tools</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/fiber-loss/"><strong>Fiber Loss Calculator</strong><span class="nel-tool-graph-description">Calculate fiber, splice, connector, splitter and engineering losses for an optical link.</span></a><a class="nel-tool-graph-card" href="/tools/onu-rx-power/"><strong>ONU RX Power Diagnosis</strong><span class="nel-tool-graph-description">Diagnose normal, weak-light, overload or possible no-signal conditions from measured power.</span></a><a class="nel-tool-graph-card" href="/tools/optical-power-budget/"><strong>Optical Power Budget Calculator</strong><span class="nel-tool-graph-description">Verify an optical link using transmit power, receiver sensitivity, optical penalty and ODN loss.</span></a></div>
 </section>
 <!-- NEL_TOOL_GRAPH_END -->
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
-<div class="site-shell-footer-inner">
-<div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
-<nav aria-label="Footer navigation" class="site-shell-footer-links">
-<a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a>
-</nav>
-<p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
-</div>
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Footer navigation">
+      <a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
 </footer>
 <!-- NEL_FOOTER_END -->
 <script defer="" src="data/otdr-event-rules.js"></script><script defer="" src="js/engine.js"></script><script defer="" src="js/pwa.js"></script><script defer="" src="../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="js/app.js?v=b47460a0b5d9"></script>
 <script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script>
-<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=beb69108de40"></script></body></html>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script></body></html>

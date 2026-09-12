@@ -4,6 +4,7 @@
 const fs=require("fs");
 const path=require("path");
 const vm=require("vm");
+const{loadPageRegistry}=require("./page-registry");
 
 const root=path.resolve(__dirname,"..");
 const site=path.join(root,"website");
@@ -140,7 +141,12 @@ function shellRegion(html,name){
 }
 function shellSignature(fragment,isHeader){
   let value=fragment;
-  if(isHeader)value=value.replace(/<div\b[^>]*class=["'][^"']*\bsite-shell-context-action\b[^"']*["'][^>]*>[\s\S]*?<\/div>/i,'<div class="site-shell-context-action"></div>');
+  if(isHeader){
+    value=value.replace(/<div\b[^>]*class=["'][^"']*\bsite-shell-context-action\b[^"']*["'][^>]*>[\s\S]*?<\/div>/i,'<div class="site-shell-context-action"></div>');
+    // Locale availability differs by page (EN/ZH everywhere, ES only where translated).
+    // Normalize only the generated language-menu payload while still comparing the shared Header shell itself.
+    value=value.replace(/<!--\s*NEL_LANGUAGE_MENU_START\s*-->[\s\S]*?<!--\s*NEL_LANGUAGE_MENU_END\s*-->/i,'<div class="language-menu"></div>');
+  }
   value=value
     .replace(/<!--[^]*?-->/g,"")
     .replace(/\s(?:href|src|lang|hreflang|aria-label)=["'][^"']*["']/gi,match=>` ${match.trim().split("=")[0]}=""`)
@@ -185,9 +191,10 @@ function publicUrl(route,locale){
   }
   return `${localeConfig.siteUrl}/${folder}${route}`;
 }
-const expectedSitemap=new Set();
-for(const record of sitemapConfig.routes||[])for(const locale of activeLocales)expectedSitemap.add(publicUrl(record.route,locale));
-for(const tool of activeTools)for(const locale of activeLocales)expectedSitemap.add(publicUrl(`tools/${tool.id}/`,locale));
+// Page Registry is the source of truth for partial-locale rollout. An active locale does not
+// imply that every page family is translated into that locale.
+const pageRegistry=loadPageRegistry();
+const expectedSitemap=new Set(pageRegistry.pages.filter(page=>page.sitemapEligible).map(page=>page.url));
 const sitemapText=read(path.join(site,"sitemap.xml"));
 const actualSitemap=[...sitemapText.matchAll(/<loc>(.*?)<\/loc>/g)].map(match=>match[1]);
 const actualSet=new Set(actualSitemap);

@@ -193,3 +193,39 @@ npm run audit:ui
 ## Mandatory Tool Detail UI template
 
 Before creating or refactoring any Tool Detail page, read `docs/NETENGINEERLAB_WEB_UI_DESIGN_SYSTEM_V1.1.md` and `docs/NETENGINEERLAB_UI_V1.2_TOOL_PAGE_TEMPLATE_UNIFICATION_AUDIT_2026-09-12.md`. All Tool Detail pages must pass `npm run audit:ui-v1.2`.
+
+
+## UI V1.3 强制基线
+
+Tool Detail 开发前必须读取 `docs/NETENGINEERLAB_WEB_UI_DESIGN_SYSTEM_V1.3.md`。视觉以 Network Change Planner & MOP Generator 为参考；发布前必须运行 `npm run audit:ui-v1.3` 与 `npm run audit2:ui-v1.3`。
+
+
+## UI Baseline — V1.3.1 Source Convergence (2026-09-12)
+
+Tool Detail UI development must read `docs/NETENGINEERLAB_WEB_UI_DESIGN_SYSTEM_V1.3.md` before changing or adding pages. V1.3.1 makes source convergence release-blocking: every Tool Detail Hero has tags, ordinary calculators use one canonical input/result DOM, tool-local CSS cannot redefine platform shell/card classes, and the retired V1.9.9-03 tool-shell runtime is removed. Run `npm run audit:ui-v1.3.1` and `npm run audit3:ui-v1.3.1` before release.
+
+## UI Audit4 Final Source Gate — V1.3.1 (2026-09-12)
+
+Tool Detail 页面发布前除 V1.3 / V1.3.1 门禁外，还必须运行 `npm run audit4:ui-v1.3.1`。Audit4 是最终源代码级阻断门禁：Header/Footer/Breadcrumb/Hero/H1/Header CTA 必须唯一；Hero 必须直接采用 MOP 基准结构，不允许额外 wrapper；Hero 标签只允许 `hero-tags > span`；工具本地 CSS 禁止重新定义平台级 Header/Footer/Breadcrumb/Hero/Main/Card/CTA；普通计算器必须使用统一 Input → Result 直接双栏 DOM；复杂工具必须显式标记 `nel-tool-specialized`。该门禁已加入 `prepare:launch`。
+
+## UI V1.3.1 Audit6 final production baseline (2026-09-12)
+
+The 6th independent audit is the final freeze gate for the UI V1.3.1 production baseline. It adds repository/package completeness checks on top of the UI, multilingual, SEO and engine gates. The final package must include Git/GitHub/Node baseline files (including dotfiles), pass `npm run audit6:ui-v1.3.1`, and still pass Launch Audit after a clean rebuild and after re-extraction from the delivered ZIP.
+
+## UI V1.3.1 Audit8 final gate
+
+The production baseline now includes `npm run audit8:ui-v1.3.1`. This gate independently verifies all 80 Tool Detail pages against the MOP visual baseline, requires exactly four concise Hero tags, rejects legacy CTA/template markers, checks local href/src integrity across all public pages, detects duplicate IDs, and blocks visible Spanish UI leakage on the Spanish home and 404 pages. It is part of `prepare:launch`.
+
+
+## UI V1.3.1 Audit9 full-source / accessibility / HTML validity gate
+
+Audit9 extends the production baseline beyond visual convergence. It blocks tool-local ownership of shared body/eyebrow/main geometry, requires one canonical `tool-layout.css` baseline, requires accessible names for active form controls, rejects malformed HTML void-element closing tags, verifies localized OpenGraph parity and localized language-menu secondary labels, and validates the Service Worker precache fallback without bundled `node_modules`. Before release run:
+Production Acceptance is also Page Registry-backed for partial-locale rollout, and Header shell comparison normalizes only the generated language-menu payload so legitimate locale availability differences do not count as UI drift.
+
+
+```bash
+npm run audit9:ui-v1.3.1
+npm run test:sw-precache
+```
+
+Both commands are part of the production release gate.

@@ -1,0 +1,82 @@
+{
+  "auditor": "3号审计员",
+  "result": "FAIL",
+  "tools": 35,
+  "pages": 80,
+  "p0": 0,
+  "p1": 3,
+  "p2": 2,
+  "findings": [
+    {
+      "level": "P1",
+      "title": "MOP Hero内容层未完全统一",
+      "detail": "13个工具（对应29个语言页）没有 hero-tags；V1.3 主审计将其降级为 warning，导致视觉差异被允许。",
+      "tools": [
+        "data-center-airflow-containment-planner",
+        "data-center-cooling-load-calculator",
+        "dc-plant-efficiency-load-sharing",
+        "fiber-loss",
+        "generator-fuel-runtime-calculator",
+        "generator-ups-transfer-ride-through-planner",
+        "olt-dual-uplink-transport-mse-planner",
+        "pue-data-center-energy-efficiency",
+        "telecom-ac-dc-breaker-sizing",
+        "telecom-rectifier-dc-power-sizing",
+        "telecom-solar-battery-sizing-calculator",
+        "transmission-ring-optimization-risk-analyzer",
+        "ups-capacity-battery-runtime-calculator"
+      ]
+    },
+    {
+      "level": "P1",
+      "title": "普通计算器主工作区仍存在多种源码骨架",
+      "detail": "除复杂工具外，标准输入/结果页仍存在 7 种 DOM/class 组合；视觉由共享 CSS 强行收敛，不是源结构真正统一。"
+    },
+    {
+      "level": "P1",
+      "title": "平台级组件仍由工具本地 CSS 重复控制",
+      "detail": {
+        "breadcrumbs": 23,
+        "card": 21,
+        "panel": 15,
+        "input-panel": 9,
+        "result-panel": 10,
+        "content-section": 22
+      }
+    },
+    {
+      "level": "P2",
+      "title": "旧 start-btn 源 CSS 残留",
+      "detail": "5个工具仍定义 .start-btn；当前被全局隐藏，但存在回归风险。",
+      "tools": [
+        "fiber-loss",
+        "onu-rx-power",
+        "optical-power-budget",
+        "pon-distance",
+        "pon-splitter-loss"
+      ]
+    },
+    {
+      "level": "P2",
+      "title": "旧 runtime 文件仍保留在 assets",
+      "detail": "tool-shell-v1.9.9-03.js 仍包含运行时创建 .start-btn 的旧逻辑，当前无页面引用，但建议删除或封存，避免以后误引用。"
+    }
+  ],
+  "complex_tools": [
+    "acl-generator-validator",
+    "ipv6-nat-planner",
+    "network-change-planner-mop-generator",
+    "wifi-coverage-capacity-planner"
+  ],
+  "standard_variant_count": 7,
+  "platform_css_counts": {
+    "breadcrumbs": 23,
+    "card": 21,
+    "panel": 15,
+    "input-panel": 9,
+    "result-panel": 10,
+    "content-section": 22,
+    "start-btn": 5
+  },
+  "recommendation": "V1.3.1 必须将 13 个工具补齐 hero-tags；普通计算器统一为单一 input/result DOM；把 breadcrumbs/card/panel/content-section 的平台几何从本地 CSS 移出；清除 start-btn 残留并收紧审计门禁。"
+}

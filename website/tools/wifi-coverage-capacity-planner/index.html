@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 
-<html data-nel-locale="en" data-nel-route="tools/wifi-coverage-capacity-planner/" dir="ltr" lang="en"><head>
+<html lang="en" dir="ltr" data-nel-locale="en" data-nel-route="tools/wifi-coverage-capacity-planner/"><head>
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="" name="app-base"/>
 <title>Wi-Fi Coverage &amp; Capacity Planner | NetEngineerLab</title><meta content="Plan Wi-Fi coverage radius, AP count, user capacity, throughput and channel reuse for Wi-Fi 5, 6, 6E and 7." name="description"/><meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
 <meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="Wi-Fi Coverage &amp; Capacity Planner | NetEngineerLab" property="og:title"/><meta content="Plan Wi-Fi coverage radius, AP count, user capacity, throughput and channel reuse for Wi-Fi 5, 6, 6E and 7." property="og:description"/><meta content="https://netengineerlab.com/tools/wifi-coverage-capacity-planner/" property="og:url"/><meta content="https://netengineerlab.com/tools/wifi-coverage-capacity-planner/images/og-wifi-planner.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
-<link href="css/style.css?v=45e92cd495f8" rel="stylesheet"/>
+<link href="css/style.css?v=b0e567844d41" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Wi-Fi Coverage & Capacity Planner","url":"https://netengineerlab.com/tools/wifi-coverage-capacity-planner/","description":"Plan Wi-Fi coverage radius, AP count, user capacity, throughput and channel reuse for Wi-Fi 5, 6, 6E and 7.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Wireless LAN Planning Calculator","operatingSystem":"Any","softwareVersion":"1.0.0","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
 <script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"Wi-Fi Coverage & Capacity Planner","item":"https://netengineerlab.com/tools/wifi-coverage-capacity-planner/"}]}</script><meta content="NetEngineerLab" name="author"/>
 <link href="/assets/css/cookie-consent.css?v=v180-hotfix03" rel="stylesheet"/>
@@ -12,58 +12,59 @@
 <script defer="" src="/data/seo-config.js"></script>
 <script defer="" src="/assets/js/seo-engine.js"></script>
 <script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why use the smaller uplink/downlink radius?","acceptedAnswer":{"@type":"Answer","text":"Client transmit power is often lower than AP power. Hearing the AP does not guarantee that the AP can reliably hear the client."}},{"@type":"Question","name":"Why not use PHY rate directly for capacity?","acceptedAnswer":{"@type":"Answer","text":"PHY rate is a physical-layer ceiling; protocol overhead, contention, retries, client capability and airtime utilization reduce usable throughput."}},{"@type":"Question","name":"Are default wall losses reliable?","acceptedAnswer":{"@type":"Answer","text":"Material, thickness, angle and band cause large variation. Defaults are only for early estimates and should be calibrated with predictive and on-site measurements."}},{"@type":"Question","name":"Must Wi-Fi 7 use 320 MHz?","acceptedAnswer":{"@type":"Answer","text":"No. 160 MHz or narrower channels can provide better reuse in dense sites. Plan 320 MHz only in 6 GHz where local rules and equipment support it."}},{"@type":"Question","name":"Why is channel inventory editable?","acceptedAnswer":{"@type":"Answer","text":"Country, indoor/outdoor mode, DFS, low-power indoor, standard-power and AFC rules differ, so inventory must match deployment location and certification."}}]}</script>
-<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link data-nel-workflow-style="" href="/assets/css/tool-workflow.css?v=66c8998b2681" rel="stylesheet">
-<meta content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline" name="nel-framework"/>
-<meta content="en" name="nel-locale"/>
-<meta content="tools/wifi-coverage-capacity-planner/" name="nel-route"/>
-<meta content="en,zh" name="nel-available-locales"/>
-<link href="https://netengineerlab.com/tools/wifi-coverage-capacity-planner/" rel="canonical"/>
-<link href="https://netengineerlab.com/tools/wifi-coverage-capacity-planner/" hreflang="en" rel="alternate"/>
-<link href="https://netengineerlab.com/tools/wifi-coverage-capacity-planner/zh/" hreflang="zh-CN" rel="alternate"/>
-<link href="https://netengineerlab.com/tools/wifi-coverage-capacity-planner/" hreflang="x-default" rel="alternate"/>
-<link href="../../assets/css/locale-menu.css?v=7804394246fb" rel="stylesheet"/>
-<link href="../../assets/css/design-tokens.css?v=dc6c5cc9b8ad" rel="stylesheet"/>
-<link href="../../assets/css/tool-design-system.css?v=9905ea2be293" rel="stylesheet"/>
-<link href="../../assets/css/site-shell.css?v=f0222e707b10" rel="stylesheet"/>
-<script defer="" src="../../data/locales.js?v=909e05076a50"></script>
-<script defer="" src="../../data/site-config.js?v=b5072ad7fa47"></script>
-<script defer="" src="../../assets/js/analytics.js?v=1156b7864023"></script>
-<script defer="" src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer="" src="../../assets/js/site.js?v=5c6907a4fe26"></script>
-<link href="../../assets/css/tool-layout.css?v=1947f39ca345" rel="stylesheet"/>
-<link href="manifest.webmanifest" rel="manifest"/>
-</link></head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.2.2">
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Wi-Fi Coverage & Capacity Planner | NetEngineerLab","url":"https://netengineerlab.com/tools/wifi-coverage-capacity-planner/","description":"Plan Wi-Fi coverage radius, AP count, user capacity, throughput and channel reuse for Wi-Fi 5, 6, 6E and 7.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="en">
+<meta name="nel-route" content="tools/wifi-coverage-capacity-planner/">
+<meta name="nel-available-locales" content="en,zh">
+<link rel="canonical" href="https://netengineerlab.com/tools/wifi-coverage-capacity-planner/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/wifi-coverage-capacity-planner/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/wifi-coverage-capacity-planner/zh/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/wifi-coverage-capacity-planner/">
+<link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../assets/css/design-tokens.css?v=dc6c5cc9b8ad">
+<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=8c488ab6e2be">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=58918fefbb35">
+<script defer src="../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../assets/js/site.js?v=5c6907a4fe26"></script>
+<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=8d8b9520aba5">
+<link rel="manifest" href="manifest.webmanifest">
+</head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
 <a class="skip" href="#planner">Start planning</a><noscript><div class="noscript">JavaScript required / 本工具需要启用JavaScript。</div></noscript>
 <!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
-<div class="site-shell-header-inner">
-<a class="site-shell-brand brand" href="../../">
-<img alt="" height="42" src="../../assets/images/logo.svg" width="42"/>
-<span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span>
-</a>
-<button aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation" class="site-shell-menu-toggle" type="button"><span aria-hidden="true"></span></button>
-<nav aria-label="Primary navigation" class="site-shell-nav nel-global-nav" id="site-shell-nav">
-<a href="../../">Home</a>
-<a aria-current="page" href="../">Tools</a>
-<a href="../../about/">About</a>
-<a href="../../contact/">Contact</a>
-</nav>
-<div class="site-shell-actions">
-<!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu="" data-open="false"><button aria-expanded="false" aria-haspopup="true" aria-label="Language: English" class="language-trigger" type="button"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z" fill="currentColor"></path></svg><span class="language-current">English</span><span aria-hidden="true" class="language-caret">▾</span></button><div class="language-options" hidden="" role="menu"><a aria-current="page" class="language-option" href="./" hreflang="en" lang="en" role="menuitem"><span>English</span><small>English</small></a><a class="language-option" href="zh/" hreflang="zh-CN" lang="zh-CN" role="menuitem"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
-<div class="site-shell-context-action"><a href="#planner">Start calculating</a></div>
-</div>
-</div>
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Primary navigation">
+      <a href="../../">Home</a>
+      <a href="../" aria-current="page">Tools</a>
+      <a href="../../about/">About</a>
+      <a href="../../contact/">Contact</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#planner">Start calculating</a></div>
+    </div>
+  </div>
 </header>
 <!-- NEL_HEADER_END -->
 <!-- NEL_TOOL_RETURN_START -->
-<nav aria-label="Breadcrumb" class="breadcrumbs tool-return-nav">
-<a class="tool-return-link" href="../">← Back to Tools</a>
-<span aria-hidden="true">/</span>
-<span aria-current="page">Wi-Fi Coverage &amp; Capacity Planner</span>
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a class="tool-return-link" href="../">← Back to Tools</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">Wi-Fi Coverage &amp; Capacity Planner</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
-<section class="hero nel-tool-hero"><div class="hero-inner"><div><p class="eyebrow">WIRELESS LAN ENGINEERING PLANNER</p><h1>Wi-Fi Coverage &amp; Capacity Planner</h1><p>Combine RF link budget, uplink/downlink coverage, user concurrency, PHY rate, effective throughput and reusable channels to estimate final AP count and floor allocation.</p><div class="hero-tags"><span>2.4 / 5 / 6 GHz</span><span>Wi-Fi 5 / 6 / 6E / 7</span><span>Coverage &amp; capacity constraints</span><span>Channel reuse risk</span></div></div>
-<aside class="hero-card"><strong>Professional planning principles</strong><ul><li>Coverage must satisfy both AP downlink and client uplink; the smaller radius controls.</li><li>Capacity discounts PHY rate by protocol efficiency, usable airtime and client-mix factors.</li></ul></aside></div></section>
+<section class="hero nel-tool-hero"><div class="hero-inner"><p class="eyebrow">WIRELESS LAN ENGINEERING PLANNER</p><h1>Wi-Fi Coverage &amp; Capacity Planner</h1><p>Combine RF link budget, uplink/downlink coverage, user concurrency, PHY rate, effective throughput and reusable channels to estimate final AP count and floor allocation.</p><div class="hero-tags"><span>2.4 / 5 / 6 GHz</span><span>Wi-Fi 5 / 6 / 6E / 7</span><span>Coverage &amp; capacity constraints</span><span>Channel reuse risk</span></div></div></section>
 <main class="tool-shell nel-tool-main nel-tool-specialized" id="planner">
 <section class="project-bar">
 <label>Project name<input id="projectName" value="Wi-Fi Coverage &amp; Capacity Project"/></label>
@@ -79,20 +80,20 @@
 <section aria-labelledby="tab-coverage" class="panel-layout" data-panel="coverage" id="panel-coverage" role="tabpanel">
 <div class="card input-card"><div class="section-head"><span class="section-icon">RF</span><div><h2>RF Coverage · Inputs</h2><p>Indoor loss uses a log-distance model referenced to 1 m free-space loss, with wall/floor loss and fade margin added.</p></div></div><div class="notice">All power, RSSI, wall-loss, efficiency and user defaults are editable engineering presets, not universal standards.</div>
 <div class="form-grid">
-<div class="field"><label>Center frequency</label><div class="input-wrap"><input id="freqMHz" min="1" type="number" value="5500"/><span>MHz</span></div></div><div class="field"><label>Total project area</label><div class="input-wrap"><input id="totalAreaM2" min="1" type="number" value="5000"/><span>m²</span></div></div>
-<div class="field"><label>Floors</label><div class="input-wrap"><input id="floors" min="1" type="number" value="5"/></div></div><div class="field"><label>Path-loss exponent n</label><div class="input-wrap"><input id="pathLossExponent" max="6" min="1" step=".1" type="number" value="2.7"/></div></div>
+<div class="field"><label>Center frequency</label><div class="input-wrap"><input id="freqMHz" min="1" type="number" value="5500"/ aria-label="MHz"><span>MHz</span></div></div><div class="field"><label>Total project area</label><div class="input-wrap"><input id="totalAreaM2" min="1" type="number" value="5000"/ aria-label="m²"><span>m²</span></div></div>
+<div class="field"><label>Floors</label><div class="input-wrap"><input id="floors" min="1" type="number" value="5"/ aria-label="Floors"></div></div><div class="field"><label>Path-loss exponent n</label><div class="input-wrap"><input id="pathLossExponent" max="6" min="1" step=".1" type="number" value="2.7"/ aria-label="Path-loss exponent n"></div></div>
 <div class="subheading">RF Link Budget</div>
-<div class="field"><label>AP transmit power</label><div class="input-wrap"><input id="apTxPowerDbm" type="number" value="18"/><span>dBm</span></div></div><div class="field"><label>Client transmit power</label><div class="input-wrap"><input id="clientTxPowerDbm" type="number" value="15"/><span>dBm</span></div></div>
-<div class="field"><label>AP antenna gain</label><div class="input-wrap"><input id="apAntennaGainDbi" type="number" value="4"/><span>dBi</span></div></div><div class="field"><label>Client antenna gain</label><div class="input-wrap"><input id="clientAntennaGainDbi" type="number" value="0"/><span>dBi</span></div></div>
-<div class="field"><label>AP cable loss</label><div class="input-wrap"><input id="apCableLossDb" min="0" type="number" value="0"/><span>dB</span></div></div><div class="field"><label>Client RF loss</label><div class="input-wrap"><input id="clientCableLossDb" min="0" type="number" value="0"/><span>dB</span></div></div>
-<div class="field"><label>Client target RSSI</label><div class="input-wrap"><input id="targetRssiClient" type="number" value="-67"/><span>dBm</span></div></div><div class="field"><label>AP receive target RSSI</label><div class="input-wrap"><input id="targetRssiAp" type="number" value="-67"/><span>dBm</span></div></div>
-<div class="field"><label>Fade margin</label><div class="input-wrap"><input id="fadeMarginDb" min="0" type="number" value="5"/><span>dB</span></div></div><div class="field"><label>Design-radius cap</label><div class="input-wrap"><input id="maxDesignRadiusM" min="1" type="number" value="22"/><span>m</span></div></div>
-<div class="field"><label>Layout efficiency</label><div class="input-wrap"><input id="layoutEfficiencyPct" max="100" min="1" type="number" value="65"/><span>%</span></div></div><div class="field"><label>Roaming overlap allowance</label><div class="input-wrap"><input id="overlapPct" max="90" min="0" type="number" value="15"/><span>%</span></div></div>
+<div class="field"><label>AP transmit power</label><div class="input-wrap"><input id="apTxPowerDbm" type="number" value="18"/ aria-label="dBm"><span>dBm</span></div></div><div class="field"><label>Client transmit power</label><div class="input-wrap"><input id="clientTxPowerDbm" type="number" value="15"/ aria-label="dBm"><span>dBm</span></div></div>
+<div class="field"><label>AP antenna gain</label><div class="input-wrap"><input id="apAntennaGainDbi" type="number" value="4"/ aria-label="dBi"><span>dBi</span></div></div><div class="field"><label>Client antenna gain</label><div class="input-wrap"><input id="clientAntennaGainDbi" type="number" value="0"/ aria-label="dBi"><span>dBi</span></div></div>
+<div class="field"><label>AP cable loss</label><div class="input-wrap"><input id="apCableLossDb" min="0" type="number" value="0"/ aria-label="dB"><span>dB</span></div></div><div class="field"><label>Client RF loss</label><div class="input-wrap"><input id="clientCableLossDb" min="0" type="number" value="0"/ aria-label="dB"><span>dB</span></div></div>
+<div class="field"><label>Client target RSSI</label><div class="input-wrap"><input id="targetRssiClient" type="number" value="-67"/ aria-label="dBm"><span>dBm</span></div></div><div class="field"><label>AP receive target RSSI</label><div class="input-wrap"><input id="targetRssiAp" type="number" value="-67"/ aria-label="dBm"><span>dBm</span></div></div>
+<div class="field"><label>Fade margin</label><div class="input-wrap"><input id="fadeMarginDb" min="0" type="number" value="5"/ aria-label="dB"><span>dB</span></div></div><div class="field"><label>Design-radius cap</label><div class="input-wrap"><input id="maxDesignRadiusM" min="1" type="number" value="22"/ aria-label="m"><span>m</span></div></div>
+<div class="field"><label>Layout efficiency</label><div class="input-wrap"><input id="layoutEfficiencyPct" max="100" min="1" type="number" value="65"/ aria-label="%"><span>%</span></div></div><div class="field"><label>Roaming overlap allowance</label><div class="input-wrap"><input id="overlapPct" max="90" min="0" type="number" value="15"/ aria-label="%"><span>%</span></div></div>
 <div class="subheading">Obstacle losses</div>
-<div class="field"><label>Light walls</label><div class="input-wrap"><input id="lightWalls" min="0" type="number" value="1"/></div></div><div class="field"><label>Loss/light wall</label><div class="input-wrap"><input id="lightWallLossDb" min="0" type="number" value="3"/><span>dB</span></div></div>
-<div class="field"><label>Medium walls</label><div class="input-wrap"><input id="mediumWalls" min="0" type="number" value="0"/></div></div><div class="field"><label>Loss/medium wall</label><div class="input-wrap"><input id="mediumWallLossDb" min="0" type="number" value="5"/><span>dB</span></div></div>
-<div class="field"><label>Heavy walls</label><div class="input-wrap"><input id="heavyWalls" min="0" type="number" value="0"/></div></div><div class="field"><label>Loss/heavy wall</label><div class="input-wrap"><input id="heavyWallLossDb" min="0" type="number" value="10"/><span>dB</span></div></div>
-<div class="field"><label>Floor penetrations</label><div class="input-wrap"><input id="floorPenetrations" min="0" type="number" value="0"/></div></div><div class="field"><label>Loss/floor</label><div class="input-wrap"><input id="floorLossDb" min="0" type="number" value="15"/><span>dB</span></div></div>
+<div class="field"><label>Light walls</label><div class="input-wrap"><input id="lightWalls" min="0" type="number" value="1"/ aria-label="Light walls"></div></div><div class="field"><label>Loss/light wall</label><div class="input-wrap"><input id="lightWallLossDb" min="0" type="number" value="3"/ aria-label="dB"><span>dB</span></div></div>
+<div class="field"><label>Medium walls</label><div class="input-wrap"><input id="mediumWalls" min="0" type="number" value="0"/ aria-label="Medium walls"></div></div><div class="field"><label>Loss/medium wall</label><div class="input-wrap"><input id="mediumWallLossDb" min="0" type="number" value="5"/ aria-label="dB"><span>dB</span></div></div>
+<div class="field"><label>Heavy walls</label><div class="input-wrap"><input id="heavyWalls" min="0" type="number" value="0"/ aria-label="Heavy walls"></div></div><div class="field"><label>Loss/heavy wall</label><div class="input-wrap"><input id="heavyWallLossDb" min="0" type="number" value="10"/ aria-label="dB"><span>dB</span></div></div>
+<div class="field"><label>Floor penetrations</label><div class="input-wrap"><input id="floorPenetrations" min="0" type="number" value="0"/ aria-label="Floor penetrations"></div></div><div class="field"><label>Loss/floor</label><div class="input-wrap"><input id="floorLossDb" min="0" type="number" value="15"/ aria-label="dB"><span>dB</span></div></div>
 </div><div class="error-box" hidden="" id="coverageError"></div><div class="panel-actions"><button class="primary" id="coverageCalcButton" onclick="document.getElementById('calculateBtn').click()">Calculate complete plan</button></div></div>
 <div class="card result-card"><div class="section-head"><span class="section-icon">R</span><div><h2>RF Coverage · Results</h2></div></div>
 <div class="summary"><div><small>Coverage AP count</small><strong id="coverageApCount">—</strong></div><span class="risk-badge low">Design coverage radius: <b id="designRadius">—</b></span></div>
@@ -106,12 +107,12 @@
 <section aria-labelledby="tab-capacity" class="panel-layout" data-panel="capacity" hidden="" id="panel-capacity" role="tabpanel">
 <div class="card input-card"><div class="section-head"><span class="section-icon">CAP</span><div><h2>Capacity &amp; AP Count · Inputs</h2><p>PHY rate is a reference ceiling. Effective throughput is discounted by protocol efficiency, usable airtime and client mix.</p></div></div><div class="notice">All power, RSSI, wall-loss, efficiency and user defaults are editable engineering presets, not universal standards.</div>
 <div class="form-grid">
-<div class="field"><label>Total users / clients</label><div class="input-wrap"><input id="totalUsers" min="1" type="number" value="300"/></div></div><div class="field"><label>Busy-hour active ratio</label><div class="input-wrap"><input id="activePct" max="100" min=".1" type="number" value="35"/><span>%</span></div></div>
-<div class="field"><label>Mbps per active user</label><div class="input-wrap"><input id="perActiveUserMbps" min=".01" type="number" value="5"/><span>Mbps</span></div></div><div class="field"><label>Engineering associated-client limit/AP</label><div class="input-wrap"><input id="maxAssociatedUsersPerAp" min="1" type="number" value="45"/></div></div>
-<div class="field"><label>Protocol efficiency</label><div class="input-wrap"><input id="protocolEfficiencyPct" max="100" min="1" type="number" value="55"/><span>%</span></div></div><div class="field"><label>Usable airtime</label><div class="input-wrap"><input id="usableAirtimePct" max="100" min="1" type="number" value="65"/><span>%</span></div></div>
-<div class="field"><label>Client capability mix</label><div class="input-wrap"><input id="clientMixPct" max="100" min="1" type="number" value="75"/><span>%</span></div></div><div class="field"><label>Minimum AP count</label><div class="input-wrap"><input id="minimumApCount" min="1" type="number" value="2"/></div></div>
+<div class="field"><label>Total users / clients</label><div class="input-wrap"><input id="totalUsers" min="1" type="number" value="300"/ aria-label="Total users / clients"></div></div><div class="field"><label>Busy-hour active ratio</label><div class="input-wrap"><input id="activePct" max="100" min=".1" type="number" value="35"/ aria-label="%"><span>%</span></div></div>
+<div class="field"><label>Mbps per active user</label><div class="input-wrap"><input id="perActiveUserMbps" min=".01" type="number" value="5"/ aria-label="Mbps"><span>Mbps</span></div></div><div class="field"><label>Engineering associated-client limit/AP</label><div class="input-wrap"><input id="maxAssociatedUsersPerAp" min="1" type="number" value="45"/ aria-label="Engineering associated-client limit/AP"></div></div>
+<div class="field"><label>Protocol efficiency</label><div class="input-wrap"><input id="protocolEfficiencyPct" max="100" min="1" type="number" value="55"/ aria-label="%"><span>%</span></div></div><div class="field"><label>Usable airtime</label><div class="input-wrap"><input id="usableAirtimePct" max="100" min="1" type="number" value="65"/ aria-label="%"><span>%</span></div></div>
+<div class="field"><label>Client capability mix</label><div class="input-wrap"><input id="clientMixPct" max="100" min="1" type="number" value="75"/ aria-label="%"><span>%</span></div></div><div class="field"><label>Minimum AP count</label><div class="input-wrap"><input id="minimumApCount" min="1" type="number" value="2"/ aria-label="Minimum AP count"></div></div>
 <div class="field full"><label>Use custom PHY rate</label><div class="checks"><label><input id="useCustomPhyRate" type="checkbox"/>Use custom PHY rate</label></div></div>
-<div class="field full" hidden="" id="customPhyField"><label>Custom PHY rate</label><div class="input-wrap"><input id="customPhyRateMbps" min="1" type="number" value="1000"/><span>Mbps</span></div></div>
+<div class="field full" hidden="" id="customPhyField"><label>Custom PHY rate</label><div class="input-wrap"><input id="customPhyRateMbps" min="1" type="number" value="1000"/ aria-label="Mbps"><span>Mbps</span></div></div>
 </div><div class="error-box" hidden="" id="capacityError"></div><div class="panel-actions"><button class="primary" onclick="document.getElementById('calculateBtn').click()">Calculate complete plan</button></div></div>
 <div class="card result-card"><div class="section-head"><span class="section-icon">R</span><div><h2>Capacity &amp; AP Count · Results</h2></div></div>
 <div class="summary"><div><small>Capacity AP count</small><strong id="capacityApCount">—</strong></div><span class="risk-badge low">Selected PHY rate: <b id="phyRate">—</b></span></div>
@@ -124,7 +125,7 @@
 <div class="warning-box"><h3>Engineering judgement</h3><ul id="capacityWarnings"></ul></div></div></section>
 <section aria-labelledby="tab-channel" class="panel-layout" data-panel="channel" hidden="" id="panel-channel" role="tabpanel">
 <div class="card input-card"><div class="section-head"><span class="section-icon">CH</span><div><h2>Channel Plan · Inputs</h2><p>Enter the locally usable inventory in 20 MHz equivalents. The tool creates channel groups; it does not replace local channel, DFS, AFC or power-rule review.</p></div></div><div class="notice warning">Example: 2.4 GHz commonly starts with three 20 MHz reuse groups; edit 5/6 GHz inventory for local rules and equipment.</div>
-<div class="form-grid"><div class="field full"><label>Available 20 MHz channel equivalents</label><div class="input-wrap"><input id="available20MHzChannels" min="1" type="number" value="12"/><span>×20 MHz</span></div></div></div>
+<div class="form-grid"><div class="field full"><label>Available 20 MHz channel equivalents</label><div class="input-wrap"><input id="available20MHzChannels" min="1" type="number" value="12"/ aria-label="×20 MHz"><span>×20 MHz</span></div></div></div>
 <div class="error-box" hidden="" id="channelError"></div><div class="panel-actions"><button class="primary" onclick="document.getElementById('calculateBtn').click()">Calculate complete plan</button></div></div>
 <div class="card result-card"><div class="section-head"><span class="section-icon">R</span><div><h2>Channel Plan · Results</h2></div></div>
 <div class="summary"><div><small>Reusable channel groups</small><strong id="reusableChannels">—</strong></div><span class="risk-badge low" id="channelRisk">—</span></div>
@@ -149,24 +150,26 @@
 <section class="content-section nel-tool-supporting-section"><p class="eyebrow">FAQ</p><h2>Frequently asked questions</h2><div class="faq-grid"><details><summary>Why use the smaller uplink/downlink radius?</summary><p>Client transmit power is often lower than AP power. Hearing the AP does not guarantee that the AP can reliably hear the client.</p></details><details><summary>Why not use PHY rate directly for capacity?</summary><p>PHY rate is a physical-layer ceiling; protocol overhead, contention, retries, client capability and airtime utilization reduce usable throughput.</p></details><details><summary>Are default wall losses reliable?</summary><p>Material, thickness, angle and band cause large variation. Defaults are only for early estimates and should be calibrated with predictive and on-site measurements.</p></details><details><summary>Must Wi-Fi 7 use 320 MHz?</summary><p>No. 160 MHz or narrower channels can provide better reuse in dense sites. Plan 320 MHz only in 6 GHz where local rules and equipment support it.</p></details><details><summary>Why is channel inventory editable?</summary><p>Country, indoor/outdoor mode, DFS, low-power indoor, standard-power and AFC rules differ, so inventory must match deployment location and certification.</p></details></div></section>
 <section class="content-section nel-tool-supporting-section" id="history"><div class="history-head"><div><p class="eyebrow">PROJECT RECORDS</p><h2>Planning history</h2></div><button id="clearHistoryBtn">Clear history</button></div><div class="history-list" id="historyList"></div></section>
 <!-- NEL_TOOL_GRAPH_START -->
-<section aria-labelledby="nel-tool-graph-title" class="content-section nel-tool-graph" data-primary-workflow="wireless-access-deployment" data-tool-id="wifi-coverage-capacity-planner" id="nel-tool-graph">
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="wifi-coverage-capacity-planner" data-primary-workflow="wireless-access-deployment">
 <div class="section-heading"><div><p class="eyebrow">ENGINEERING WORKFLOW</p><h2 id="nel-tool-graph-title">Continue the engineering workflow</h2></div></div>
-<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>Wireless Access Deployment Workflow</strong><p>Estimate Wi-Fi coverage and client capacity, verify RF link margin, then validate PoE delivery and access-switch uplink capacity.</p></div><div class="nel-workflow-step"><strong>Step 1 of 5</strong><div aria-label="Step 1 of 5" class="nel-workflow-progress"><span style="width:20%"></span></div></div></div><div class="nel-tool-graph-nav"><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Previous</span><strong>Workflow start</strong></div><a class="nel-tool-graph-card" href="/tools/wireless-link-budget-calculator/"><span class="nel-tool-graph-label">Next</span><strong>Wireless Link Budget Calculator</strong><span class="nel-tool-graph-description">Calculate EIRP, FSPL, received signal, fade margin and Fresnel-zone clearance.</span></a></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>Wireless Access Deployment Workflow</strong><p>Estimate Wi-Fi coverage and client capacity, verify RF link margin, then validate PoE delivery and access-switch uplink capacity.</p></div><div class="nel-workflow-step"><strong>Step 1 of 5</strong><div class="nel-workflow-progress" aria-label="Step 1 of 5"><span style="width:20%"></span></div></div></div><div class="nel-tool-graph-nav"><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Previous</span><strong>Workflow start</strong></div><a class="nel-tool-graph-card" href="/tools/wireless-link-budget-calculator/"><span class="nel-tool-graph-label">Next</span><strong>Wireless Link Budget Calculator</strong><span class="nel-tool-graph-description">Calculate EIRP, FSPL, received signal, fade margin and Fresnel-zone clearance.</span></a></div>
 <h3 class="nel-tool-graph-subtitle">Related tools</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/wireless-link-budget-calculator/"><strong>Wireless Link Budget Calculator</strong><span class="nel-tool-graph-description">Calculate EIRP, FSPL, received signal, fade margin and Fresnel-zone clearance.</span></a><a class="nel-tool-graph-card" href="/tools/bandwidth-calculator/"><strong>Bandwidth &amp; Transfer Time Calculator</strong><span class="nel-tool-graph-description">Calculate file transfer time, required link rate, concurrent-user capacity and sustained-rate data volume.</span></a><a class="nel-tool-graph-card" href="/tools/poe-power-budget-calculator/"><strong>PoE Power Budget Calculator</strong><span class="nel-tool-graph-description">Size PoE switches by watts, ports, cable loss, headroom and IEEE 802.3af/at/bt device limits.</span></a></div>
 </section>
 <!-- NEL_TOOL_GRAPH_END -->
+
+<section class="nel-tool-supporting-section" data-nel-moved-from-hero="true"><strong>Professional planning principles</strong><ul><li>Coverage must satisfy both AP downlink and client uplink; the smaller radius controls.</li><li>Capacity discounts PHY rate by protocol efficiency, usable airtime and client-mix factors.</li></ul></section>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
-<div class="site-shell-footer-inner">
-<div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
-<nav aria-label="Footer navigation" class="site-shell-footer-links">
-<a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a>
-</nav>
-<p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
-</div>
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Footer navigation">
+      <a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
 </footer>
 <!-- NEL_FOOTER_END -->
 <div class="toast" id="toast" role="status"></div>
 <script defer="" src="data/presets.js"></script><script defer="" src="js/engine.js"></script><script defer="" src="js/app.js?v=60067a1760c8"></script><script defer="" src="js/pwa.js"></script>
 <script defer="" src="../../assets/js/tool-integration.js?v=05f7934f4687"></script><script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script>
-<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=beb69108de40"></script></body></html>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script></body></html>

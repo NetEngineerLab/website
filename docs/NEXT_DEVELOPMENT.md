@@ -28,3 +28,8 @@ V1.7.5不修改12个工具的计算公式。生产性能基线稳定后再进入
 ## UI V1.2 mandatory Tool Detail template
 
 All new/refactored Tool Detail pages MUST follow `NETENGINEERLAB_UI_V1.2_TOOL_PAGE_TEMPLATE_UNIFICATION_AUDIT_2026-09-12.md` and pass `npm run audit:ui-v1.2` before merge.
+
+
+## UI V1.3 强制基线
+
+Tool Detail 开发前必须读取 `docs/NETENGINEERLAB_WEB_UI_DESIGN_SYSTEM_V1.3.md`。视觉以 Network Change Planner & MOP Generator 为参考；发布前必须运行 `npm run audit:ui-v1.3` 与 `npm run audit2:ui-v1.3`。

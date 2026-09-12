@@ -7,6 +7,7 @@ const {spawn,spawnSync}=require("child_process");
 const{stableFileHash,stableHash}=require("./stable-text-hash");
 const{rulesRuntimeAssets}=require("./rules-runtime-assets");
 const{parsePrecacheAssets,hasPrecacheAsset,precachePathIssues}=require("./service-worker-precache");
+const{loadPageRegistry}=require("./page-registry");
 
 const root=path.resolve(__dirname,"..");
 const site=path.join(root,"website");
@@ -163,7 +164,12 @@ function shellRegion(html,name){
 }
 function shellSignature(fragment,isHeader){
   let value=fragment;
-  if(isHeader)value=value.replace(/<div\b[^>]*class=["'][^"']*\bsite-shell-context-action\b[^"']*["'][^>]*>[\s\S]*?<\/div>/i,'<div class="site-shell-context-action"></div>');
+  if(isHeader){
+    value=value.replace(/<div\b[^>]*class=["'][^"']*\bsite-shell-context-action\b[^"']*["'][^>]*>[\s\S]*?<\/div>/i,'<div class="site-shell-context-action"></div>');
+    // Locale availability is page-specific during partial rollouts. Normalize the generated
+    // language-menu payload while preserving the shared Header shell around it.
+    value=value.replace(/<!--\s*NEL_LANGUAGE_MENU_START\s*-->[\s\S]*?<!--\s*NEL_LANGUAGE_MENU_END\s*-->/i,'<div class="language-menu"></div>');
+  }
   return value
     .replace(/<!--[^]*?-->/g,"")
     .replace(/\s(?:href|src|lang|hreflang|aria-label)=["'][^"']*["']/gi,match=>` ${match.trim().split("=")[0]}=""`)
@@ -346,9 +352,10 @@ async function httpAudit(sitemapUrls){
   record("sitemap HTTPS production origin",sitemapUrls.every(url=>url.startsWith(expectedOrigin+"/")));
   const invalidBaseRoutes=(sitemapConfig.routes||[]).filter(record=>/^tools\/[^/]+\/$/.test(record.route||""));
   record("sitemap config contains only base routes",invalidBaseRoutes.length===0,invalidBaseRoutes.map(item=>item.route).join(", "));
-  const expectedSitemap=new Set();
-  for(const route of sitemapConfig.routes||[])for(const locale of activeLocales)expectedSitemap.add(publicUrl(expectedOrigin,route.route,locale));
-  for(const tool of activeTools)for(const locale of activeLocales)expectedSitemap.add(publicUrl(expectedOrigin,`tools/${tool.id}/`,locale));
+  // Page Registry is the production source of truth for partial-locale rollout. An active
+  // locale does not imply that every page family is translated/published in that locale.
+  const pageRegistry=loadPageRegistry();
+  const expectedSitemap=new Set(pageRegistry.pages.filter(page=>page.sitemapEligible).map(page=>page.url));
   const actualSitemap=new Set(sitemapUrls);
   const missingSitemap=[...expectedSitemap].filter(url=>!actualSitemap.has(url));
   const extraSitemap=[...actualSitemap].filter(url=>!expectedSitemap.has(url));

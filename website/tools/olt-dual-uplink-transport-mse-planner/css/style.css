@@ -1,102 +1,29 @@
-*{box-sizing:border-box}.hero{padding:44px 20px;background:linear-gradient(135deg,#081a2b,#12395b);color:#fff}.hero-inner,.wrap{max-width:var(--nel-content-max, 1400px);margin:auto}.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.75}.grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:22px;margin:24px 0}.panel{background: var(--nel-color-surface);border: 1px solid var(--nel-color-border);border-radius: var(--nel-radius-card);padding:20px;margin-bottom:18px;box-shadow: var(--nel-shadow-card)}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field label{display:block;font-weight:700;margin-bottom:6px}.field input,.field select{width:100%;padding:11px 12px;border:1px solid #bdc9d5;border-radius:9px;background:#fff}.hint{font-size:13px;color:#617184}.btn{width:100%;padding:13px 16px;border:0;border-radius:10px;font-weight:800;background:#0b67b2;color:white;cursor:pointer}.metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.metric{padding:14px;border-radius:12px;background:#f4f8fb}.metric span{display:block;font-size:12px;color:#607080}.metric strong{font-size:22px}.warn{padding:12px;border-left:4px solid #d98200;background:#fff8e8;margin-top:12px}.ok{padding:12px;border-left:4px solid #16845b;background:#eefaf5;margin-top:12px}.content-section{max-width:var(--nel-content-max, 1400px);margin:28px auto;padding:0 20px}.content-section h2{margin-top:0}.subhead{grid-column:1/-1;margin:6px 0 -2px;font-size:14px;color:#294966}.note{padding:12px;border-radius:10px;background:#f5f8fb;color:#4a6074;font-size:13px}@media(max-width:760px){.grid{grid-template-columns:1fr}.form-grid,.metrics{grid-template-columns:1fr}.hero{padding:32px 16px}.panel{padding:16px}}.status{display:inline-flex;padding:.28rem .55rem;border-radius:999px;font-size:.78rem;font-weight:800;letter-spacing:.04em}.status.healthy{background:#e8f7ee}.status.caution{background:#fff6df}.status.high{background:#fdecec}.note-box{margin-top:12px;padding:12px 14px;border:1px solid #d8e0ea;border-radius:12px;background:#f8fafc}.result-list{margin:10px 0 0;padding-left:20px}.result-list li{margin:.35rem 0}.metric small{display:block;margin-top:4px;color:#64748b;font-weight:500}.input-help{font-size:.86rem;color:#64748b;line-height:1.5;margin:.3rem 0 0}@media(max-width:760px){.metrics{grid-template-columns:1fr 1fr}.form-grid{grid-template-columns:1fr}.metric strong{font-size:1.05rem}}@media(max-width:420px){.metrics{grid-template-columns:1fr}}.timeline li{display:flex;justify-content:space-between;gap:16px}.timeline span{font-variant-numeric:tabular-nums;white-space:nowrap}textarea{width:100%;padding:11px 12px;border:1px solid #bdc9d5;border-radius:9px;background:#fff;font:inherit;resize:vertical}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:.92rem}th,td{text-align:left;border-bottom:1px solid #e2e8f0;padding:8px}.check-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:12px 0}.check-grid label{display:flex;gap:8px;align-items:center;background:#f6f9fc;border:1px solid #dce6ef;border-radius:10px;padding:10px}@media(max-width:760px){.check-grid{grid-template-columns:1fr}}/* V1.1 Hero readability fix — 2026-09-12
+*{box-sizing:border-box}.grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:22px;margin:24px 0}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field label{display:block;font-weight:700;margin-bottom:6px}.field input, .field select{width:100%;padding:11px 12px;border:1px solid #bdc9d5;border-radius:9px;background:#fff}.hint{font-size:13px;color:#617184}.btn{width:100%;padding:13px 16px;border:0;border-radius:10px;font-weight:800;background:#0b67b2;color:white;cursor:pointer}.metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.metric{padding:14px;border-radius:12px;background:#f4f8fb}.metric span{display:block;font-size:12px;color:#607080}.metric strong{font-size:22px}.warn{padding:12px;border-left:4px solid #d98200;background:#fff8e8;margin-top:12px}.ok{padding:12px;border-left:4px solid #16845b;background:#eefaf5;margin-top:12px}.subhead{grid-column:1/-1;margin:6px 0 -2px;font-size:14px;color:#294966}.note{padding:12px;border-radius:10px;background:#f5f8fb;color:#4a6074;font-size:13px}@media (max-width:760px){.grid{grid-template-columns:1fr}.form-grid, .metrics{grid-template-columns:1fr}}.status{display:inline-flex;padding:.28rem .55rem;border-radius:999px;font-size:.78rem;font-weight:800;letter-spacing:.04em}.status.healthy{background:#e8f7ee}.status.caution{background:#fff6df}.status.high{background:#fdecec}.note-box{margin-top:12px;padding:12px 14px;border:1px solid #d8e0ea;border-radius:12px;background:#f8fafc}.result-list{margin:10px 0 0;padding-left:20px}.result-list li{margin:.35rem 0}.metric small{display:block;margin-top:4px;color:#64748b;font-weight:500}.input-help{font-size:.86rem;color:#64748b;line-height:1.5;margin:.3rem 0 0}@media (max-width:760px){.metrics{grid-template-columns:1fr 1fr}.form-grid{grid-template-columns:1fr}.metric strong{font-size:1.05rem}}@media (max-width:420px){.metrics{grid-template-columns:1fr}}.timeline li{display:flex;justify-content:space-between;gap:16px}.timeline span{font-variant-numeric:tabular-nums;white-space:nowrap}textarea{width:100%;padding:11px 12px;border:1px solid #bdc9d5;border-radius:9px;background:#fff;font:inherit;resize:vertical}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:.92rem}th, td{text-align:left;border-bottom:1px solid #e2e8f0;padding:8px}.check-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:12px 0}.check-grid label{display:flex;gap:8px;align-items:center;background:#f6f9fc;border:1px solid #dce6ef;border-radius:10px;padding:10px}@media (max-width:760px){.check-grid{grid-template-columns:1fr}}/* V1.1 Hero readability fix — 2026-09-12
    Keep long EN/ZH engineering titles readable on desktop and prevent orphan wrapping. */
-main#calculator > .tool-hero{
-  min-height:220px !important;
-  padding:clamp(36px,3.4vw,48px) clamp(40px,4vw,56px) !important;
-}main#calculator > .tool-hero h1{
-  max-width: 24ch;
-  font-size:clamp(36px,3.15vw,52px) !important;
-  line-height:1.16 !important;
-  letter-spacing:-.025em !important;
-  text-wrap:balance;
-}main#calculator > .tool-hero > p:last-child{
-  max-width: 68ch;
-  margin-top:16px !important;
-  font-size:clamp(16px,1.25vw,19px) !important;
-  line-height:1.7 !important;
-}
-@media(max-width:900px){main#calculator > .tool-hero{min-height:0 !important;padding:32px 28px !important}main#calculator > .tool-hero h1{font-size:clamp(32px,5.8vw,44px) !important}
-}
-@media(max-width:560px){main#calculator > .tool-hero{padding:26px 20px !important;border-radius:18px !important}main#calculator > .tool-hero h1{font-size:clamp(28px,8.2vw,36px) !important;line-height:1.2 !important}main#calculator > .tool-hero > p:last-child{font-size:15px !important;line-height:1.65 !important}
+
+@media (max-width:900px){
 }/* V1.2 Full-page engineering UI refinement — 2026-09-12
-   Improves hierarchy,grouped inputs,desktop two-column planning layout,sticky result visibility and failure-state capacity visualization. */
+   Improves hierarchy, grouped inputs, desktop two-column planning layout, sticky result visibility and failure-state capacity visualization. */
 /* V1.2 Full-page engineering UI refinement — 2026-09-12
-   Improves hierarchy,grouped inputs,desktop two-column planning layout,sticky result visibility and failure-state capacity visualization. */
+   Improves hierarchy, grouped inputs, desktop two-column planning layout, sticky result visibility and failure-state capacity visualization. */
 /* V1.2 Full-page engineering UI refinement — 2026-09-12
-   Improves hierarchy,grouped inputs,desktop two-column planning layout,sticky result visibility and failure-state capacity visualization. */
+   Improves hierarchy, grouped inputs, desktop two-column planning layout, sticky result visibility and failure-state capacity visualization. */
 /* V1.2 Full-page engineering UI refinement — 2026-09-12
-   Improves hierarchy,grouped inputs,desktop two-column planning layout,sticky result visibility and failure-state capacity visualization. */
+   Improves hierarchy, grouped inputs, desktop two-column planning layout, sticky result visibility and failure-state capacity visualization. */
 /* V1.2 Full-page engineering UI refinement — 2026-09-12
-   Improves hierarchy,grouped inputs,desktop two-column planning layout,sticky result visibility and failure-state capacity visualization. */
+   Improves hierarchy, grouped inputs, desktop two-column planning layout, sticky result visibility and failure-state capacity visualization. */
 /* V1.2 Full-page engineering UI refinement — 2026-09-12
-   Improves hierarchy,grouped inputs,desktop two-column planning layout,sticky result visibility and failure-state capacity visualization. */
+   Improves hierarchy, grouped inputs, desktop two-column planning layout, sticky result visibility and failure-state capacity visualization. */
 /* V1.2 Full-page engineering UI refinement — 2026-09-12
-   Improves hierarchy,grouped inputs,desktop two-column planning layout,sticky result visibility and failure-state capacity visualization. */
+   Improves hierarchy, grouped inputs, desktop two-column planning layout, sticky result visibility and failure-state capacity visualization. */
 /* V1.2 Full-page engineering UI refinement — 2026-09-12
-   Improves hierarchy,grouped inputs,desktop two-column planning layout,sticky result visibility and failure-state capacity visualization. */
-main#calculator{
-  width:100% !important;
-  max-width:none !important;
-  margin:26px auto 0 !important;
-}main#calculator > .tool-hero,main#calculator > .tool-layout{
-  width:min(calc(100% - 48px),1400px) !important;
-  max-width: var(--nel-content-max, 1400px) !important;
-  margin-left:auto !important;
-  margin-right:auto !important;
-}main#calculator > .tool-hero{
-  min-height:208px !important;
-  padding:38px 48px !important;
-  border:1px solid #d9e8f7 !important;
-  box-shadow:0 18px 44px rgba(8,61,115,.10) !important;
-}main#calculator > .tool-hero .eyebrow{
-  margin-bottom:10px !important;
-  color:#43a7e8 !important;
-  font-size:13px !important;
-  letter-spacing:.08em !important;
-}main#calculator > .tool-hero h1{
-  max-width: 24ch;
-  font-size:clamp(34px,3vw,50px) !important;
-  line-height:1.12 !important;
-  letter-spacing:-.032em !important;
-}main#calculator > .tool-hero .hero-description{
-  max-width: 68ch;
-  margin:14px 0 0 !important;
-  color:#244f76 !important;
-  font-size:17px !important;
-  line-height:1.7 !important;
-}main#calculator > .tool-hero .hero-badges{
-  margin-top:20px !important;
-  display:flex !important;
-  flex-wrap:wrap;
-  gap:8px;
-}main#calculator > .tool-hero .hero-badges span{
-  padding:7px 11px !important;
-  border:1px solid #c8def3 !important;
-  border-radius:999px !important;
-  color:#15528b !important;
-  background:#fff !important;
-  box-shadow:0 4px 12px rgba(8,61,115,.05);
-  font-size:13px !important;
-  font-weight:800;
-}.tool-layout{
+   Improves hierarchy, grouped inputs, desktop two-column planning layout, sticky result visibility and failure-state capacity visualization. */
+.tool-layout{
   display:grid;
   grid-template-columns:minmax(0,1.08fr) minmax(410px,.92fr);
   gap:24px;
   align-items:start;
   margin-top:24px !important;
-}.tool-layout > .panel{
-  min-width:0;
-  margin:0;
-  padding:26px;
-  border:1px solid #d9e5f0;
-  border-radius:22px;
-  box-shadow:0 14px 38px rgba(15,35,55,.07);
-}.input-panel{
-  background:linear-gradient(180deg,#fff 0%,#fbfdff 100%);
-}.result-panel{
-  position:sticky;
-  top:104px;
-  overflow:hidden;
 }.section-heading{
   display:flex;
   align-items:flex-start;
@@ -159,12 +86,12 @@ main#calculator{
 }.field label span{
   color:#71879c;
   font-weight:600;
-}.field input,.field select{
+}.field input, .field select{
   min-height:44px;
   padding:10px 12px;
   border-color:#cbd9e7;
   transition:border-color .15s ease, box-shadow .15s ease, background .15s ease;
-}.field input:hover,.field select:hover{border-color:#9fb9d1}.field input:focus,.field select:focus{
+}.field input:hover, .field select:hover{border-color:#9fb9d1}.field input:focus, .field select:focus{
   border-color:#428ed1 !important;
   box-shadow:0 0 0 3px rgba(66,142,209,.12);
 }.protection-group{background:#fbfdff}.check-grid{
@@ -329,9 +256,9 @@ main#calculator{
   background:#e0a02a;
 }.warning-list li.no-warning::before{background:#27a36e}
 
-@media(max-width:1100px){.tool-layout{grid-template-columns:1fr}.result-panel{position:static}
+@media (max-width:1100px){.tool-layout{grid-template-columns:1fr}
 }
-@media(max-width:760px){main#calculator > .tool-hero,main#calculator > .tool-layout{width:min(calc(100% - 32px),1400px) !important}main#calculator > .tool-hero{padding:30px 26px !important}main#calculator > .tool-hero h1{font-size:clamp(30px,7vw,40px) !important}main#calculator > .tool-hero .hero-description{font-size:15px !important}.tool-layout > .panel{padding:20px}.parameter-group{padding:15px}.form-grid{grid-template-columns:1fr}.metrics{grid-template-columns:1fr 1fr}.check-grid{grid-template-columns:1fr}
+@media (max-width:760px){.parameter-group{padding:15px}.form-grid{grid-template-columns:1fr}.metrics{grid-template-columns:1fr 1fr}.check-grid{grid-template-columns:1fr}
 }
-@media(max-width:520px){main#calculator > .tool-hero,main#calculator > .tool-layout{width:min(calc(100% - 24px),1400px) !important}main#calculator > .tool-hero{padding:24px 20px !important;border-radius:18px !important}main#calculator > .tool-hero h1{font-size:30px !important;line-height:1.18 !important}main#calculator > .tool-hero .hero-badges span{font-size:11px !important}.tool-layout{gap:16px;margin-top:16px !important}.tool-layout > .panel{padding:16px;border-radius:18px}.metrics{grid-template-columns:1fr}.metric{min-height:0}.section-heading{align-items:flex-start}.result-heading{gap:10px}
+@media (max-width:520px){.tool-layout{gap:16px;margin-top:16px !important}.metrics{grid-template-columns:1fr}.metric{min-height:0}.section-heading{align-items:flex-start}.result-heading{gap:10px}
 }

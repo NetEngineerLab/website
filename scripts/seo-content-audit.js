@@ -4,6 +4,7 @@
 const fs=require("fs");
 const path=require("path");
 const {walkSchema}=require("./schema-walk");
+const {loadPageRegistry}=require("./page-registry");
 
 const root=path.resolve(__dirname,"..");
 const site=path.join(root,"website");
@@ -43,13 +44,18 @@ const urlForRoute=(route,locale)=>{
   if(rootRoutes.has(route))return locale.folder?`/${locale.folder}/${route}`:`/${route}`;
   throw new Error(`Unsupported configured route: ${route}`);
 };
-const expectedRoutes=[
-  ...sitemapConfig.routes.map(item=>item.route),
-  ...toolCatalog.filter(tool=>tool.status==="active").map(tool=>`tools/${tool.id}/`)
-];
-const expectedRecords=expectedRoutes.flatMap(route=>activeLocales.map(locale=>({
-  route,locale,url:`${localeConfig.siteUrl}${urlForRoute(route,locale)}`
-})));
+// Page Registry is the source of truth for partial-locale rollout.
+// An active locale (for example ES) does not imply every page family has that locale.
+const pageRegistry=loadPageRegistry();
+const familyById=new Map(pageRegistry.families.map(family=>[family.id,family]));
+const localeById=new Map(activeLocales.map(locale=>[locale.id,locale]));
+const expectedRecords=pageRegistry.pages.filter(page=>page.sitemapEligible).map(page=>({
+  route:familyById.get(page.familyId).route,
+  familyId:page.familyId,
+  locale:localeById.get(page.locale),
+  url:page.url,
+  expectedHreflang:page.hreflang
+}));
 const expectedByUrl=new Map(expectedRecords.map(record=>[record.url,record]));
 
 const sitemap=read(path.join(site,"sitemap.xml"));
@@ -76,8 +82,7 @@ for(const url of urls){
   const h1s=[...html.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/gi)].map(match=>textContent(match[1]));
   const htmlLang=attr(html.match(/<html\b[^>]*>/i)?.[0],"lang");
   const alternates=new Map(links(html,"alternate").filter(tag=>attr(tag,"hreflang")).map(tag=>[attr(tag,"hreflang"),attr(tag,"href")]));
-  const expectedAlternates=new Map(activeLocales.map(locale=>[locale.hreflang,`${localeConfig.siteUrl}${urlForRoute(record.route,locale)}`]));
-  expectedAlternates.set("x-default",`${localeConfig.siteUrl}${urlForRoute(record.route,defaultLocale)}`);
+  const expectedAlternates=new Map(Object.entries(record.expectedHreflang));
 
   if(titleMatches.length!==1)errors.push(`${rel}: expected one title, found ${titleMatches.length}`);
   if(descriptions.length!==1)errors.push(`${rel}: expected one description, found ${descriptions.length}`);
@@ -87,7 +92,7 @@ for(const url of urls){
   for(const [hreflang,href] of expectedAlternates){
     if(alternates.get(hreflang)!==href)errors.push(`${rel}: hreflang ${hreflang} must equal ${href}`);
   }
-  if(alternates.size!==expectedAlternates.size)errors.push(`${rel}: expected exactly three hreflang links`);
+  if(alternates.size!==expectedAlternates.size)errors.push(`${rel}: expected exactly ${expectedAlternates.size} hreflang links`);
 
   const ogTitle=meta(html,"property","og:title");
   const ogDescription=meta(html,"property","og:description");
@@ -155,13 +160,11 @@ for(const url of urls){
   const descriptionMax=isZh?100:180;
   if(title.length<15||title.length>75)warnings.push(`${rel}: title length ${title.length}`);
   if(description.length<descriptionMin||description.length>descriptionMax)warnings.push(`${rel}: description length ${description.length}`);
-  pages.push({url,rel,route:record.route,locale:record.locale.id,title,description,h1:h1s[0]||"",bodyLength,schemaCount});
+  pages.push({url,rel,route:record.route,familyId:record.familyId,locale:record.locale.id,title,description,h1:h1s[0]||"",bodyLength,schemaCount});
 }
 
 for(const page of pages.filter(item=>item.locale===defaultLocale.id)){
-  const zhLocale=activeLocales.find(locale=>locale.id==="zh");
-  const zhUrl=`${localeConfig.siteUrl}${urlForRoute(page.route,zhLocale)}`;
-  const pair=pages.find(item=>item.url===zhUrl);
+  const pair=pages.find(item=>item.familyId===page.familyId&&item.locale==="zh");
   if(!pair){errors.push(`${page.rel}: Chinese pair missing`);continue}
   if(page.title===pair.title)warnings.push(`${page.rel}: EN/ZH title is identical`);
   if(page.description===pair.description)warnings.push(`${page.rel}: EN/ZH description is identical`);

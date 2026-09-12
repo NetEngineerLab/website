@@ -244,6 +244,12 @@ function toolCacheVersion(toolRoot,assets){
   return item;
  }).join("\n"),12);
 }
+function removeInvalidVoidClosers(html){
+ // HTML void elements never have end tags. Historical Spanish rollout files
+ // contained stray </meta> / </link> closers that browsers recover from but
+ // validators and crawlers correctly flag as malformed markup.
+ return html.replace(/<\/(?:meta|link)>/gi,"");
+}
 function removeHeadLinks(html){
  return html.replace(/<link\b[^>]*>/gi,tag=>{
   const isCanonical=/\brel\s*=\s*["'][^"']*\bcanonical\b[^"']*["']/i.test(tag);
@@ -321,6 +327,9 @@ function updateJsonLd(html,locale,canonical){
  });
 }
 function ensureOpenGraphMeta(html,canonical){
+ const title=decodeEntities(html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1]||"NetEngineerLab");
+ const descriptionTag=(html.match(/<meta\b[^>]*\bname\s*=\s*["']description["'][^>]*>/i)||[])[0]||"";
+ const description=decodeEntities(descriptionTag.match(/\bcontent\s*=\s*["']([^"']*)["']/i)?.[1]||"");
  const ensure=(property,content)=>{
   const pattern=new RegExp(`<meta\\b[^>]*\\bproperty\\s*=\\s*["']${property}["'][^>]*>`,"i");
   if(pattern.test(html)){
@@ -332,25 +341,15 @@ function ensureOpenGraphMeta(html,canonical){
   }
  };
  ensure("og:url",canonical);
+ ensure("og:title",title);
+ if(description)ensure("og:description",description);
  if(!/<meta\b[^>]*\bproperty\s*=\s*["']og:image["'][^>]*>/i.test(html)){
   ensure("og:image",`${localeConfig.siteUrl}/assets/images/og-netengineerlab.png`);
  }
  return html;
 }
+
 function ensureWebPageSchema(html,canonical,locale){
- let hasPrimaryEntity=false;
- for(const block of html.matchAll(/<script\b[^>]*type\s*=\s*["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)){
-  try{
-   const visit=node=>{
-    if(Array.isArray(node)){node.forEach(visit);return}
-    if(!node||typeof node!=="object")return;
-    if(node.url===canonical&&node.inLanguage===locale.htmlLang)hasPrimaryEntity=true;
-    Object.values(node).forEach(visit);
-   };
-   visit(JSON.parse(block[1].trim()));
-  }catch{}
- }
- if(hasPrimaryEntity)return html;
  const title=decodeEntities(html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1]||"NetEngineerLab");
  const descriptionTag=(html.match(/<meta\b[^>]*\bname\s*=\s*["']description["'][^>]*>/i)||[])[0]||"";
  const description=decodeEntities(descriptionTag.match(/\bcontent\s*=\s*["']([^"']*)["']/i)?.[1]||"");
@@ -363,6 +362,10 @@ function ensureWebPageSchema(html,canonical,locale){
   inLanguage:locale.htmlLang,
   isPartOf:{"@type":"WebSite",name:"NetEngineerLab",url:localeConfig.siteUrl+urlForRoute("",locale)}
  };
+ // The tagged WebPage schema is generated state. Always replace it from the
+ // current title/description/canonical instead of accepting a stale primary
+ // entity left by an earlier locale rollout.
+ html=html.replace(/<script\b[^>]*\bdata-nel-schema\s*=\s*["']webpage["'][^>]*>[\s\S]*?<\/script>\s*/gi,"");
  return html.replace(/<\/head>/i,`<script type="application/ld+json" data-nel-schema="webpage">${JSON.stringify(schema)}</script>\n</head>`);
 }
 function replaceLanguageMenu(html,menuMarkup){
@@ -419,10 +422,16 @@ function menuMarkup(currentInfo,group){
  const currentLocale=localeMap.get(currentInfo.localeId);
  const available=activeLocales.filter(locale=>group.has(locale.id));
  const currentUrl=urlForRoute(currentInfo.route,currentLocale);
+ const languageNames={
+  en:{en:"English",zh:"Chinese",es:"Spanish"},
+  zh:{en:"英语",zh:"简体中文",es:"西班牙语"},
+  es:{en:"Inglés",zh:"Chino simplificado",es:"Español"}
+ };
  const options=available.map(locale=>{
   const href=relativeUrl(currentUrl,urlForRoute(currentInfo.route,locale));
   const current=locale.id===currentLocale.id;
-  return `<a class="language-option" role="menuitem" href="${escapeHtml(href)}" lang="${escapeHtml(locale.htmlLang)}" hreflang="${escapeHtml(locale.hreflang)}"${current?' aria-current="page"':""}><span>${escapeHtml(locale.nativeLabel)}</span><small>${escapeHtml(locale.label)}</small></a>`;
+  const secondary=languageNames[currentLocale.id]?.[locale.id]||locale.label;
+  return `<a class="language-option" role="menuitem" href="${escapeHtml(href)}" lang="${escapeHtml(locale.htmlLang)}" hreflang="${escapeHtml(locale.hreflang)}"${current?' aria-current="page"':""}><span>${escapeHtml(locale.nativeLabel)}</span><small>${escapeHtml(secondary)}</small></a>`;
  }).join("");
  const label=currentLocale.ui?.language||"Language";
  const accessibleLabel=`${label}: ${currentLocale.nativeLabel}`;
@@ -608,6 +617,7 @@ function build(){
   const group=groups.get(record.info.route);
   if(!locale||!group)continue;
   let html=fs.readFileSync(record.file,"utf8");
+  html=removeInvalidVoidClosers(html);
   html=rewriteInternalAnchors(html,record.rel,record.info,groups);
   html=injectSiteShell(html,record.rel,record.info);
   html=injectToolReturnNavigation(html,record.rel,record.info);

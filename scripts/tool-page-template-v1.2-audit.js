@@ -22,7 +22,7 @@ function classAttr(re) { return new RegExp(`class=["'][^"']*\\b${re}\\b[^"']*["'
 
 for (const page of pages) {
   const html = fs.readFileSync(page.file, 'utf8');
-  need(/<body[^>]*data-nel-template=["']tool-detail-v1\.2\.2["']/i.test(html), page, 'missing data-nel-template=tool-detail-v1.2.2');
+  need(/<body[^>]*data-nel-template=["']tool-detail-v1\.(?:2\.2|3(?:\.1)?)["']/i.test(html), page, 'missing supported data-nel-template (v1.2.2 or v1.3)');
   need(/<header[^>]*site-shell-header/i.test(html), page, 'missing shared header');
   need(/<nav[^>]*tool-return-nav/i.test(html), page, 'missing return/breadcrumb navigation');
   need(/<section[^>]*class=["'][^"']*\bnel-tool-hero\b[^"']*["']/i.test(html), page, 'missing canonical V1.2.2 hero');
@@ -57,7 +57,7 @@ for (const page of pages) {
 }
 
 const report = {
-  version: 'UI V1.2.2',
+  version: 'UI V1.2.2 compatibility gate (accepts V1.3)',
   tools: toolDirs.length,
   pages: pages.length,
   errors: failures.length,
@@ -65,7 +65,7 @@ const report = {
   failures
 };
 fs.writeFileSync(path.join(__dirname,'..','docs','UI_V1.2.2_TEMPLATE_RUNTIME_AUDIT.json'), JSON.stringify(report,null,2));
-console.log(`Tool Page Template V1.2.2 Audit: ${report.status}`);
+console.log(`Tool Page Template compatibility Audit: ${report.status}`);
 console.log(`Tools: ${report.tools} | Pages: ${report.pages} | Errors: ${report.errors}`);
 if (failures.length) {
   failures.forEach((f) => console.error(`- ${f}`));

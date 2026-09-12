@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 
-<html data-nel-locale="en" data-nel-route="tools/ipv6-nat-planner/" dir="ltr" lang="en"><head>
+<html lang="en" dir="ltr" data-nel-locale="en" data-nel-route="tools/ipv6-nat-planner/"><head>
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="" name="app-base"/>
 <title>IPv6 &amp; NAT Planning Calculator | NetEngineerLab</title><meta content="Plan IPv6 prefixes, NAT44 capacity, deterministic CGNAT port blocks, NAT64 and DNS64 addressing." name="description"/><meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
 <meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="IPv6 &amp; NAT Planning Calculator | NetEngineerLab" property="og:title"/><meta content="Plan IPv6 prefixes, NAT44 capacity, deterministic CGNAT port blocks, NAT64 and DNS64 addressing." property="og:description"/><meta content="https://netengineerlab.com/tools/ipv6-nat-planner/" property="og:url"/><meta content="https://netengineerlab.com/tools/ipv6-nat-planner/images/og-ipv6-nat-planner.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
-<link href="css/style.css?v=dd6554f6738c" rel="stylesheet"/>
+<link href="css/style.css?v=73b8cea92836" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"IPv6 & NAT Planning Calculator","url":"https://netengineerlab.com/tools/ipv6-nat-planner/","description":"Plan IPv6 prefixes, NAT44 capacity, deterministic CGNAT port blocks, NAT64 and DNS64 addressing.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Network Planning Calculator","operatingSystem":"Any","softwareVersion":"1.0.0","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
 <script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"IPv6 & NAT Planning Calculator","item":"https://netengineerlab.com/tools/ipv6-nat-planner/"}]}</script><meta content="NetEngineerLab" name="author"/>
 <link href="/assets/css/cookie-consent.css?v=v180-hotfix03" rel="stylesheet"/>
@@ -12,69 +12,70 @@
 <script defer="" src="/data/seo-config.js"></script>
 <script defer="" src="/assets/js/seo-engine.js"></script>
 <script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why are IPv6 subnet address counts so large?","acceptedAnswer":{"@type":"Answer","text":"IPv6 has 128 bits. A /64 leaves 64 interface-identifier bits, so it contains 2^64 addresses. The tool shows both exponent and exact integer."}},{"@type":"Question","name":"Why is the port range editable?","acceptedAnswer":{"@type":"Answer","text":"Platforms may reserve management ports, static mappings or use different pool policies, so 1024–65535 is only a common engineering starting point."}},{"@type":"Question","name":"Can TCP and UDP capacity be added?","acceptedAnswer":{"@type":"Answer","text":"Their port namespaces are independent and can be estimated separately, but real capacity is also limited by session tables, memory, CPU, timeouts and applications."}},{"@type":"Question","name":"Is a smaller deterministic block always better?","acceptedAnswer":{"@type":"Answer","text":"Smaller blocks improve public-IPv4 sharing but increase port-exhaustion and application risks; choose them from busy-hour session distributions."}},{"@type":"Question","name":"Can the NAT64 well-known prefix represent private IPv4?","acceptedAnswer":{"@type":"Answer","text":"RFC 6052 restricts the well-known prefix from representing non-global IPv4. Domain-local deployments can assess a network-specific prefix or the RFC 8215 local-use prefix."}}]}</script>
-<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link data-nel-workflow-style="" href="/assets/css/tool-workflow.css?v=66c8998b2681" rel="stylesheet">
-<meta content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline" name="nel-framework"/>
-<meta content="en" name="nel-locale"/>
-<meta content="tools/ipv6-nat-planner/" name="nel-route"/>
-<meta content="en,zh" name="nel-available-locales"/>
-<link href="https://netengineerlab.com/tools/ipv6-nat-planner/" rel="canonical"/>
-<link href="https://netengineerlab.com/tools/ipv6-nat-planner/" hreflang="en" rel="alternate"/>
-<link href="https://netengineerlab.com/tools/ipv6-nat-planner/zh/" hreflang="zh-CN" rel="alternate"/>
-<link href="https://netengineerlab.com/tools/ipv6-nat-planner/" hreflang="x-default" rel="alternate"/>
-<link href="../../assets/css/locale-menu.css?v=7804394246fb" rel="stylesheet"/>
-<link href="../../assets/css/design-tokens.css?v=dc6c5cc9b8ad" rel="stylesheet"/>
-<link href="../../assets/css/tool-design-system.css?v=9905ea2be293" rel="stylesheet"/>
-<link href="../../assets/css/site-shell.css?v=f0222e707b10" rel="stylesheet"/>
-<script defer="" src="../../data/locales.js?v=909e05076a50"></script>
-<script defer="" src="../../data/site-config.js?v=b5072ad7fa47"></script>
-<script defer="" src="../../assets/js/analytics.js?v=1156b7864023"></script>
-<script defer="" src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer="" src="../../assets/js/site.js?v=5c6907a4fe26"></script>
-<link href="../../assets/css/tool-layout.css?v=1947f39ca345" rel="stylesheet"/>
-<link href="manifest.webmanifest" rel="manifest"/>
-</link></head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.2.2">
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"IPv6 & NAT Planning Calculator | NetEngineerLab","url":"https://netengineerlab.com/tools/ipv6-nat-planner/","description":"Plan IPv6 prefixes, NAT44 capacity, deterministic CGNAT port blocks, NAT64 and DNS64 addressing.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="en">
+<meta name="nel-route" content="tools/ipv6-nat-planner/">
+<meta name="nel-available-locales" content="en,zh">
+<link rel="canonical" href="https://netengineerlab.com/tools/ipv6-nat-planner/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/ipv6-nat-planner/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/ipv6-nat-planner/zh/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/ipv6-nat-planner/">
+<link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../assets/css/design-tokens.css?v=dc6c5cc9b8ad">
+<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=8c488ab6e2be">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=58918fefbb35">
+<script defer src="../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../assets/js/site.js?v=5c6907a4fe26"></script>
+<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=8d8b9520aba5">
+<link rel="manifest" href="manifest.webmanifest">
+</head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
 <a class="skip" href="#planner">Start planning</a><noscript><div class="noscript">JavaScript required / 本工具需要启用JavaScript。</div></noscript>
 <!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
-<div class="site-shell-header-inner">
-<a class="site-shell-brand brand" href="../../">
-<img alt="" height="42" src="../../assets/images/logo.svg" width="42"/>
-<span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span>
-</a>
-<button aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation" class="site-shell-menu-toggle" type="button"><span aria-hidden="true"></span></button>
-<nav aria-label="Primary navigation" class="site-shell-nav nel-global-nav" id="site-shell-nav">
-<a href="../../">Home</a>
-<a aria-current="page" href="../">Tools</a>
-<a href="../../about/">About</a>
-<a href="../../contact/">Contact</a>
-</nav>
-<div class="site-shell-actions">
-<!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu="" data-open="false"><button aria-expanded="false" aria-haspopup="true" aria-label="Language: English" class="language-trigger" type="button"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z" fill="currentColor"></path></svg><span class="language-current">English</span><span aria-hidden="true" class="language-caret">▾</span></button><div class="language-options" hidden="" role="menu"><a aria-current="page" class="language-option" href="./" hreflang="en" lang="en" role="menuitem"><span>English</span><small>English</small></a><a class="language-option" href="zh/" hreflang="zh-CN" lang="zh-CN" role="menuitem"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
-<div class="site-shell-context-action"><a href="#planner">Start calculating</a></div>
-</div>
-</div>
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Primary navigation">
+      <a href="../../">Home</a>
+      <a href="../" aria-current="page">Tools</a>
+      <a href="../../about/">About</a>
+      <a href="../../contact/">Contact</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#planner">Start calculating</a></div>
+    </div>
+  </div>
 </header>
 <!-- NEL_HEADER_END -->
 <!-- NEL_TOOL_RETURN_START -->
-<nav aria-label="Breadcrumb" class="breadcrumbs tool-return-nav">
-<a class="tool-return-link" href="../">← Back to Tools</a>
-<span aria-hidden="true">/</span>
-<span aria-current="page">IPv6 &amp; NAT Planning Calculator</span>
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a class="tool-return-link" href="../">← Back to Tools</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">IPv6 &amp; NAT Planning Calculator</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
-<section class="hero nel-tool-hero"><div class="hero-inner"><div><p class="eyebrow">IPV6 &amp; ADDRESS TRANSLATION ENGINEERING</p><h1>IPv6 &amp; NAT Planning Calculator</h1><p>Plan IPv6 hierarchy and canonical addresses, NAT44 port capacity, deterministic CGNAT blocks and logging, plus NAT64/DNS64 synthesis.</p><div class="hero-tags"><span>IPv6 prefix planning</span><span>NAT44/PAT capacity</span><span>CGNAT port blocks</span><span>NAT64/DNS64</span></div></div>
-<aside class="hero-card"><strong>Engineering boundary</strong><ul><li>IPv6 arithmetic uses 128-bit BigInt rather than JavaScript Number.</li><li>Port utilization, session demand and logging values are editable engineering assumptions.</li></ul></aside></div></section>
+<section class="hero nel-tool-hero"><div class="hero-inner"><p class="eyebrow">IPV6 &amp; ADDRESS TRANSLATION ENGINEERING</p><h1>IPv6 &amp; NAT Planning Calculator</h1><p>Plan IPv6 hierarchy and canonical addresses, NAT44 port capacity, deterministic CGNAT blocks and logging, plus NAT64/DNS64 synthesis.</p><div class="hero-tags"><span>IPv6 prefix planning</span><span>NAT44/PAT capacity</span><span>CGNAT port blocks</span><span>NAT64/DNS64</span></div></div></section>
 <main class="tool-shell nel-tool-main nel-tool-specialized" id="planner">
 <section class="project-bar"><label>Project name<input id="projectName" value="IPv6 &amp; NAT Planning Project"/></label><div class="project-actions"><button id="copyBtn">Copy result</button><button id="csvBtn">Export CSV</button><button class="primary" id="saveBtn">Save project</button><button id="printBtn">Print/PDF</button><button id="resetBtn">Reset presets</button></div></section>
 <div class="tabs" role="tablist"><button class="active" data-tab="ipv6">IPv6 Prefix Planner</button><button data-tab="nat44">NAT44 Capacity</button><button data-tab="cgn">CGNAT Planner</button><button data-tab="nat64">NAT64 / DNS64</button></div>
 <section class="panel-layout" data-panel="ipv6">
 <div class="card input-card"><div class="section-head"><span class="section-icon">v6</span><div><h2>IPv6 Prefix Planner · Inputs</h2><p>Supports compression/expansion, parent-child prefixes, adjacent subnets and up to 32 preview rows.</p></div></div><div class="notice">All defaults are editable engineering presets, not universal standards or vendor capacity guarantees.</div>
-<div class="form-grid"><div class="field full"><label>Engineering preset</label><div class="input-wrap"><select id="v6Preset"><option value="enterprise">Enterprise /48 to /64</option><option value="isp">ISP /32 to /48</option><option value="site56">Site /56 to /64</option><option value="ula">ULA /48 to /64</option></select></div></div>
-<div class="field full"><label>IPv6 address or prefix</label><div class="input-wrap"><input id="v6address" value="2001:db8:1200::/48"/></div></div>
-<div class="field"><label>Parent prefix length</label><div class="input-wrap"><input id="v6parentPrefix" max="128" min="0" type="number" value="48"/><span>/</span></div></div>
-<div class="field"><label>Target child prefix length</label><div class="input-wrap"><input id="v6childPrefix" max="128" min="0" type="number" value="64"/><span>/</span></div></div>
-<div class="field"><label>Preview start index</label><div class="input-wrap"><input id="v6startIndex" value="0"/></div></div>
-<div class="field"><label>Preview subnet count</label><div class="input-wrap"><input id="v6previewCount" max="32" min="1" type="number" value="8"/></div></div></div>
+<div class="form-grid"><div class="field full"><label>Engineering preset</label><div class="input-wrap"><select id="v6Preset" aria-label="Engineering preset"><option value="enterprise">Enterprise /48 to /64</option><option value="isp">ISP /32 to /48</option><option value="site56">Site /56 to /64</option><option value="ula">ULA /48 to /64</option></select></div></div>
+<div class="field full"><label>IPv6 address or prefix</label><div class="input-wrap"><input id="v6address" value="2001:db8:1200::/48"/ aria-label="IPv6 address or prefix"></div></div>
+<div class="field"><label>Parent prefix length</label><div class="input-wrap"><input id="v6parentPrefix" max="128" min="0" type="number" value="48"/ aria-label="/"><span>/</span></div></div>
+<div class="field"><label>Target child prefix length</label><div class="input-wrap"><input id="v6childPrefix" max="128" min="0" type="number" value="64"/ aria-label="/"><span>/</span></div></div>
+<div class="field"><label>Preview start index</label><div class="input-wrap"><input id="v6startIndex" value="0"/ aria-label="Preview start index"></div></div>
+<div class="field"><label>Preview subnet count</label><div class="input-wrap"><input id="v6previewCount" max="32" min="1" type="number" value="8"/ aria-label="Preview subnet count"></div></div></div>
 <div class="error-box" hidden="" id="v6Error"></div><div class="panel-actions"><button class="primary" id="v6Calculate">Calculate</button></div></div>
 <div class="card result-card"><div class="section-head"><span class="section-icon">R</span><div><h2>IPv6 Prefix Planner · Planning results</h2></div></div>
 <div class="summary"><div><small>Canonical address</small><strong><code id="v6Canonical">—</code></strong></div><span class="risk-badge low" id="v6TypeBadge">—</span></div>
@@ -86,11 +87,11 @@
 <div class="result-table-wrap"><table class="result-table ipv6-preview-table"><thead><tr><th>Index</th><th>Subnet CIDR</th></tr></thead><tbody id="v6PreviewBody"></tbody></table></div></div></section>
 <section class="panel-layout" data-panel="nat44" hidden="">
 <div class="card input-card"><div class="section-head"><span class="section-icon">44</span><div><h2>NAT44 Capacity · Inputs</h2><p>TCP and UDP port spaces are calculated separately; implementation, ALG, timeout and mapping behavior remain vendor-specific.</p></div></div><div class="notice">All defaults are editable engineering presets, not universal standards or vendor capacity guarantees.</div>
-<div class="form-grid"><div class="field full"><label>Engineering preset</label><div class="input-wrap"><select id="n44Preset"><option value="smallEnterprise">Small enterprise NAT</option><option value="ispAccess">ISP access NAT</option></select></div></div>
-<div class="field"><label>Public IPv4 addresses</label><div class="input-wrap"><input id="n44publicIps" min="1" type="number" value="8"/></div></div><div class="field"><label>Subscribers / endpoints</label><div class="input-wrap"><input id="n44subscribers" min="1" type="number" value="1000"/></div></div>
-<div class="field"><label>First allocatable port</label><div class="input-wrap"><input id="n44portStart" max="65535" min="0" type="number" value="1024"/></div></div><div class="field"><label>Last allocatable port</label><div class="input-wrap"><input id="n44portEnd" max="65535" min="0" type="number" value="65535"/></div></div>
-<div class="field"><label>Reserved port ratio</label><div class="input-wrap"><input id="n44reservePct" max="99" min="0" type="number" value="10"/><span>%</span></div></div><div class="field"><label>Allocatable pool ratio</label><div class="input-wrap"><input id="n44allocationPct" max="100" min="1" type="number" value="85"/><span>%</span></div></div>
-<div class="field"><label>Peak mappings per subscriber</label><div class="input-wrap"><input id="n44sessionsPerSubscriber" min="1" type="number" value="150"/></div></div><div class="field"><label>Capacity safety margin</label><div class="input-wrap"><input id="n44safetyPct" min="0" type="number" value="25"/><span>%</span></div></div>
+<div class="form-grid"><div class="field full"><label>Engineering preset</label><div class="input-wrap"><select id="n44Preset" aria-label="Engineering preset"><option value="smallEnterprise">Small enterprise NAT</option><option value="ispAccess">ISP access NAT</option></select></div></div>
+<div class="field"><label>Public IPv4 addresses</label><div class="input-wrap"><input id="n44publicIps" min="1" type="number" value="8"/ aria-label="Public IPv4 addresses"></div></div><div class="field"><label>Subscribers / endpoints</label><div class="input-wrap"><input id="n44subscribers" min="1" type="number" value="1000"/ aria-label="Subscribers / endpoints"></div></div>
+<div class="field"><label>First allocatable port</label><div class="input-wrap"><input id="n44portStart" max="65535" min="0" type="number" value="1024"/ aria-label="First allocatable port"></div></div><div class="field"><label>Last allocatable port</label><div class="input-wrap"><input id="n44portEnd" max="65535" min="0" type="number" value="65535"/ aria-label="Last allocatable port"></div></div>
+<div class="field"><label>Reserved port ratio</label><div class="input-wrap"><input id="n44reservePct" max="99" min="0" type="number" value="10"/ aria-label="%"><span>%</span></div></div><div class="field"><label>Allocatable pool ratio</label><div class="input-wrap"><input id="n44allocationPct" max="100" min="1" type="number" value="85"/ aria-label="%"><span>%</span></div></div>
+<div class="field"><label>Peak mappings per subscriber</label><div class="input-wrap"><input id="n44sessionsPerSubscriber" min="1" type="number" value="150"/ aria-label="Peak mappings per subscriber"></div></div><div class="field"><label>Capacity safety margin</label><div class="input-wrap"><input id="n44safetyPct" min="0" type="number" value="25"/ aria-label="%"><span>%</span></div></div>
 <div class="field full"><label>Enabled protocol port pools</label><div class="checks"><label><input checked="" id="n44tcpEnabled" type="checkbox"/>TCP</label><label><input checked="" id="n44udpEnabled" type="checkbox"/>UDP</label></div></div></div>
 <div class="error-box" hidden="" id="n44Error"></div><div class="panel-actions"><button class="primary" id="n44Calculate">Calculate</button></div></div>
 <div class="card result-card"><div class="section-head"><span class="section-icon">R</span><div><h2>NAT44 Capacity · Planning results</h2></div></div>
@@ -104,14 +105,14 @@
 <div class="result-note" id="n44NamespaceNote"></div></div></section>
 <section class="panel-layout" data-panel="cgn" hidden="">
 <div class="card input-card"><div class="section-head"><span class="section-icon">CG</span><div><h2>CGNAT Planner · Inputs</h2><p>100.64.0.0/10 is the shared address-space reference for provider CGN; confirm port blocks, oversubscription and logging against equipment and regulatory requirements.</p></div></div><div class="notice warning">All defaults are editable engineering presets, not universal standards or vendor capacity guarantees.</div>
-<div class="form-grid"><div class="field full"><label>Engineering preset</label><div class="input-wrap"><select id="cgnPreset"><option value="deterministic1024">Deterministic 1024-port block</option><option value="deterministic512">Deterministic 512-port block</option></select></div></div>
-<div class="field"><label>Subscribers / endpoints</label><div class="input-wrap"><input id="cgnsubscribers" min="1" type="number" value="20000"/></div></div><div class="field"><label>Public IPv4 addresses</label><div class="input-wrap"><input id="cgnpublicIps" min="1" type="number" value="400"/></div></div>
-<div class="field"><label>First allocatable port</label><div class="input-wrap"><input id="cgnportStart" min="0" type="number" value="1024"/></div></div><div class="field"><label>Last allocatable port</label><div class="input-wrap"><input id="cgnportEnd" max="65535" type="number" value="65535"/></div></div>
-<div class="field"><label>Reserved port ratio</label><div class="input-wrap"><input id="cgnreservePct" max="99" min="0" type="number" value="5"/><span>%</span></div></div><div class="field"><label>Allocatable pool ratio</label><div class="input-wrap"><input id="cgnallocationPct" max="100" min="1" type="number" value="100"/><span>%</span></div></div>
-<div class="field"><label>Port block size / subscriber</label><div class="input-wrap"><input id="cgnblockSize" min="1" type="number" value="1024"/><span>ports</span></div></div><div class="field"><label>Busy-hour active subscribers</label><div class="input-wrap"><input id="cgnactivePct" max="100" min="0" type="number" value="35"/><span>%</span></div></div>
-<div class="field"><label>Peak sessions / active subscriber</label><div class="input-wrap"><input id="cgnpeakSessions" min="0" type="number" value="250"/></div></div><div class="field"><label>TCP session share</label><div class="input-wrap"><input id="cgntcpPct" max="100" min="0" type="number" value="75"/><span>%</span></div></div>
-<div class="subheading">Logging / 日志量</div><div class="field"><label>New sessions / active subscriber / hour</label><div class="input-wrap"><input id="cgnsessionsPerHour" min="0" type="number" value="120"/></div></div><div class="field"><label>Log events per session</label><div class="input-wrap"><input id="cgneventsPerSession" min="0" type="number" value="2"/></div></div>
-<div class="field"><label>Estimated bytes per log event</label><div class="input-wrap"><input id="cgnbytesPerEvent" min="0" type="number" value="180"/><span>B</span></div></div><div class="field"><label>Log retention</label><div class="input-wrap"><input id="cgnretentionDays" min="0" type="number" value="180"/><span>days</span></div></div></div>
+<div class="form-grid"><div class="field full"><label>Engineering preset</label><div class="input-wrap"><select id="cgnPreset" aria-label="Engineering preset"><option value="deterministic1024">Deterministic 1024-port block</option><option value="deterministic512">Deterministic 512-port block</option></select></div></div>
+<div class="field"><label>Subscribers / endpoints</label><div class="input-wrap"><input id="cgnsubscribers" min="1" type="number" value="20000"/ aria-label="Subscribers / endpoints"></div></div><div class="field"><label>Public IPv4 addresses</label><div class="input-wrap"><input id="cgnpublicIps" min="1" type="number" value="400"/ aria-label="Public IPv4 addresses"></div></div>
+<div class="field"><label>First allocatable port</label><div class="input-wrap"><input id="cgnportStart" min="0" type="number" value="1024"/ aria-label="First allocatable port"></div></div><div class="field"><label>Last allocatable port</label><div class="input-wrap"><input id="cgnportEnd" max="65535" type="number" value="65535"/ aria-label="Last allocatable port"></div></div>
+<div class="field"><label>Reserved port ratio</label><div class="input-wrap"><input id="cgnreservePct" max="99" min="0" type="number" value="5"/ aria-label="%"><span>%</span></div></div><div class="field"><label>Allocatable pool ratio</label><div class="input-wrap"><input id="cgnallocationPct" max="100" min="1" type="number" value="100"/ aria-label="%"><span>%</span></div></div>
+<div class="field"><label>Port block size / subscriber</label><div class="input-wrap"><input id="cgnblockSize" min="1" type="number" value="1024"/ aria-label="ports"><span>ports</span></div></div><div class="field"><label>Busy-hour active subscribers</label><div class="input-wrap"><input id="cgnactivePct" max="100" min="0" type="number" value="35"/ aria-label="%"><span>%</span></div></div>
+<div class="field"><label>Peak sessions / active subscriber</label><div class="input-wrap"><input id="cgnpeakSessions" min="0" type="number" value="250"/ aria-label="Peak sessions / active subscriber"></div></div><div class="field"><label>TCP session share</label><div class="input-wrap"><input id="cgntcpPct" max="100" min="0" type="number" value="75"/ aria-label="%"><span>%</span></div></div>
+<div class="subheading">Logging / 日志量</div><div class="field"><label>New sessions / active subscriber / hour</label><div class="input-wrap"><input id="cgnsessionsPerHour" min="0" type="number" value="120"/ aria-label="New sessions / active subscriber / hour"></div></div><div class="field"><label>Log events per session</label><div class="input-wrap"><input id="cgneventsPerSession" min="0" type="number" value="2"/ aria-label="Log events per session"></div></div>
+<div class="field"><label>Estimated bytes per log event</label><div class="input-wrap"><input id="cgnbytesPerEvent" min="0" type="number" value="180"/ aria-label="B"><span>B</span></div></div><div class="field"><label>Log retention</label><div class="input-wrap"><input id="cgnretentionDays" min="0" type="number" value="180"/ aria-label="days"><span>days</span></div></div></div>
 <div class="error-box" hidden="" id="cgnError"></div><div class="panel-actions"><button class="primary" id="cgnCalculate">Calculate</button></div></div>
 <div class="card result-card"><div class="section-head"><span class="section-icon">R</span><div><h2>CGNAT Planner · Planning results</h2></div></div>
 <div class="two-result"><article class="result-box"><span>Subscriber capacity risk</span><strong><span class="risk-badge low" id="cgnSubscriberRisk">—</span></strong></article><article class="result-box"><span>Port-block risk</span><strong><span class="risk-badge low" id="cgnPortRisk">—</span></strong></article></div>
@@ -127,10 +128,10 @@
 <div class="result-note" id="cgnDeterministicNote"></div></div></section>
 <section class="panel-layout" data-panel="nat64" hidden="">
 <div class="card input-card"><div class="section-head"><span class="section-icon">64</span><div><h2>NAT64 / DNS64 · Inputs</h2><p>RFC 6052 supports /32, /40, /48, /56, /64 and /96. DNS64 synthesis uses the same IPv4-embedded address format as the NAT64 destination.</p></div></div><div class="notice">All defaults are editable engineering presets, not universal standards or vendor capacity guarantees.</div>
-<div class="form-grid"><div class="field full"><label>Engineering preset</label><div class="input-wrap"><select id="n64Preset"><option value="localUse">RFC 8215 local-use /48</option><option value="wkp">RFC 6052 well-known /96</option><option value="custom96">Custom network-specific /96</option></select></div></div>
-<div class="field full"><label>IPv4/IPv6 translation prefix</label><div class="input-wrap"><input id="n64prefix" value="64:ff9b:1::/48"/></div></div><div class="field full"><label>IPv4 address</label><div class="input-wrap"><input id="n64ipv4" value="192.0.2.33"/></div></div></div>
+<div class="form-grid"><div class="field full"><label>Engineering preset</label><div class="input-wrap"><select id="n64Preset" aria-label="Engineering preset"><option value="localUse">RFC 8215 local-use /48</option><option value="wkp">RFC 6052 well-known /96</option><option value="custom96">Custom network-specific /96</option></select></div></div>
+<div class="field full"><label>IPv4/IPv6 translation prefix</label><div class="input-wrap"><input id="n64prefix" value="64:ff9b:1::/48"/ aria-label="IPv4/IPv6 translation prefix"></div></div><div class="field full"><label>IPv4 address</label><div class="input-wrap"><input id="n64ipv4" value="192.0.2.33"/ aria-label="IPv4 address"></div></div></div>
 <div class="error-box" hidden="" id="n64Error"></div><div class="panel-actions"><button class="primary" id="n64Calculate">Calculate</button></div>
-<div class="reverse-box"><h3>Reverse IPv4 extraction</h3><div class="field"><label>IPv4-embedded IPv6 address</label><div class="input-wrap"><input id="n64reverseIpv6"/></div></div><div class="error-box" hidden="" id="n64ReverseError"></div><div class="panel-actions"><button id="n64ReverseCalculate">Extract IPv4</button></div></div></div>
+<div class="reverse-box"><h3>Reverse IPv4 extraction</h3><div class="field"><label>IPv4-embedded IPv6 address</label><div class="input-wrap"><input id="n64reverseIpv6"/ aria-label="IPv4-embedded IPv6 address"></div></div><div class="error-box" hidden="" id="n64ReverseError"></div><div class="panel-actions"><button id="n64ReverseCalculate">Extract IPv4</button></div></div></div>
 <div class="card result-card"><div class="section-head"><span class="section-icon">R</span><div><h2>NAT64 / DNS64 · Planning results</h2></div></div>
 <div class="summary"><div><small>Synthesized IPv6 address</small><strong><code id="n64Ipv6Result">—</code></strong></div></div>
 <div class="metric-grid"><article class="metric"><small>Canonical translation prefix</small><strong><code id="n64PrefixResult">—</code></strong></article><article class="metric"><small>IPv4 address</small><strong id="n64Ipv4Result">—</strong></article>
@@ -143,24 +144,26 @@
 <section class="content-section nel-tool-supporting-section"><p class="eyebrow">FAQ</p><h2>Frequently asked questions</h2><div class="faq-grid"><details><summary>Why are IPv6 subnet address counts so large?</summary><p>IPv6 has 128 bits. A /64 leaves 64 interface-identifier bits, so it contains 2^64 addresses. The tool shows both exponent and exact integer.</p></details><details><summary>Why is the port range editable?</summary><p>Platforms may reserve management ports, static mappings or use different pool policies, so 1024–65535 is only a common engineering starting point.</p></details><details><summary>Can TCP and UDP capacity be added?</summary><p>Their port namespaces are independent and can be estimated separately, but real capacity is also limited by session tables, memory, CPU, timeouts and applications.</p></details><details><summary>Is a smaller deterministic block always better?</summary><p>Smaller blocks improve public-IPv4 sharing but increase port-exhaustion and application risks; choose them from busy-hour session distributions.</p></details><details><summary>Can the NAT64 well-known prefix represent private IPv4?</summary><p>RFC 6052 restricts the well-known prefix from representing non-global IPv4. Domain-local deployments can assess a network-specific prefix or the RFC 8215 local-use prefix.</p></details></div></section>
 <section class="content-section nel-tool-supporting-section" id="history"><div class="history-head"><div><p class="eyebrow">PROJECT RECORDS</p><h2>Planning history</h2></div><button id="clearHistoryBtn">Clear history</button></div><div class="history-list" id="historyList"></div></section>
 <!-- NEL_TOOL_GRAPH_START -->
-<section aria-labelledby="nel-tool-graph-title" class="content-section nel-tool-graph" data-primary-workflow="enterprise-lan-ip-planning" data-tool-id="ipv6-nat-planner" id="nel-tool-graph">
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="ipv6-nat-planner" data-primary-workflow="enterprise-lan-ip-planning">
 <div class="section-heading"><div><p class="eyebrow">ENGINEERING WORKFLOW</p><h2 id="nel-tool-graph-title">Continue the engineering workflow</h2></div></div>
-<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>Enterprise LAN &amp; IP Planning Workflow</strong><p>Plan addressing, VLAN capacity, packet size, uplinks, optics, access policy and DNS behavior as one LAN design sequence.</p></div><div class="nel-workflow-step"><strong>Step 2 of 9</strong><div aria-label="Step 2 of 9" class="nel-workflow-progress"><span style="width:22%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/subnet-calculator/"><span class="nel-tool-graph-label">Previous</span><strong>IP Subnet Calculator</strong><span class="nel-tool-graph-description">Calculate IPv4, IPv6, CIDR, masks, broadcast ranges and host capacity, with VLSM planning.</span></a><a class="nel-tool-graph-card" href="/tools/vlan-ip-capacity-planner/"><span class="nel-tool-graph-label">Next</span><strong>VLAN &amp; IP Subnet Capacity Planner</strong><span class="nel-tool-graph-description">Plan VLAN count, IPv4 prefix, address capacity and growth headroom.</span></a></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>Enterprise LAN &amp; IP Planning Workflow</strong><p>Plan addressing, VLAN capacity, packet size, uplinks, optics, access policy and DNS behavior as one LAN design sequence.</p></div><div class="nel-workflow-step"><strong>Step 2 of 9</strong><div class="nel-workflow-progress" aria-label="Step 2 of 9"><span style="width:22%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/subnet-calculator/"><span class="nel-tool-graph-label">Previous</span><strong>IP Subnet Calculator</strong><span class="nel-tool-graph-description">Calculate IPv4, IPv6, CIDR, masks, broadcast ranges and host capacity, with VLSM planning.</span></a><a class="nel-tool-graph-card" href="/tools/vlan-ip-capacity-planner/"><span class="nel-tool-graph-label">Next</span><strong>VLAN &amp; IP Subnet Capacity Planner</strong><span class="nel-tool-graph-description">Plan VLAN count, IPv4 prefix, address capacity and growth headroom.</span></a></div>
 <h3 class="nel-tool-graph-subtitle">Related tools</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/subnet-calculator/"><strong>IP Subnet Calculator</strong><span class="nel-tool-graph-description">Calculate IPv4, IPv6, CIDR, masks, broadcast ranges and host capacity, with VLSM planning.</span></a><a class="nel-tool-graph-card" href="/tools/vlan-ip-capacity-planner/"><strong>VLAN &amp; IP Subnet Capacity Planner</strong><span class="nel-tool-graph-description">Plan VLAN count, IPv4 prefix, address capacity and growth headroom.</span></a><a class="nel-tool-graph-card" href="/tools/mtu-calculator/"><strong>MTU &amp; MSS Calculator</strong><span class="nel-tool-graph-description">Calculate effective MTU, TCP MSS and fragmentation risk for PPPoE, GRE, VXLAN, MPLS, IPsec and WireGuard.</span></a></div>
 </section>
 <!-- NEL_TOOL_GRAPH_END -->
+
+<section class="nel-tool-supporting-section" data-nel-moved-from-hero="true"><strong>Engineering boundary</strong><ul><li>IPv6 arithmetic uses 128-bit BigInt rather than JavaScript Number.</li><li>Port utilization, session demand and logging values are editable engineering assumptions.</li></ul></section>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
-<div class="site-shell-footer-inner">
-<div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
-<nav aria-label="Footer navigation" class="site-shell-footer-links">
-<a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a>
-</nav>
-<p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
-</div>
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Footer navigation">
+      <a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
 </footer>
 <!-- NEL_FOOTER_END -->
 <div class="toast" id="toast" role="status"></div>
 <script defer="" src="data/presets.js"></script><script defer="" src="js/engine.js"></script><script defer="" src="js/app.js?v=1c5cebdf9a34"></script><script defer="" src="js/pwa.js"></script>
 <script defer="" src="../../assets/js/tool-integration.js?v=05f7934f4687"></script><script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script>
-<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=beb69108de40"></script></body></html>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script></body></html>

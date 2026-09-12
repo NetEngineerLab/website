@@ -56,19 +56,301 @@ function shadowsServiceWorkerGlobals(program) {
   return shadowed;
 }
 
+function tokenizeFallback(source) {
+  const tokens = [];
+  let i = 0;
+  const isIdStart = ch => /[A-Za-z_$]/.test(ch || "");
+  const isIdPart = ch => /[A-Za-z0-9_$]/.test(ch || "");
+  while (i < source.length) {
+    const ch = source[i];
+    if (/\s/.test(ch)) { i += 1; continue; }
+    if (ch === "/" && source[i + 1] === "/") {
+      i += 2;
+      while (i < source.length && source[i] !== "\n") i += 1;
+      continue;
+    }
+    if (ch === "/" && source[i + 1] === "*") {
+      i += 2;
+      while (i + 1 < source.length && !(source[i] === "*" && source[i + 1] === "/")) i += 1;
+      i = Math.min(source.length, i + 2);
+      continue;
+    }
+    if (ch === '"' || ch === "'") {
+      const quote = ch;
+      let raw = ch;
+      i += 1;
+      let closed = false;
+      while (i < source.length) {
+        const c = source[i];
+        raw += c;
+        i += 1;
+        if (c === "\\" && i < source.length) {
+          raw += source[i];
+          i += 1;
+          continue;
+        }
+        if (c === quote) { closed = true; break; }
+      }
+      if (!closed) return null;
+      tokens.push({ type: "string", raw, value: decodeFallbackString(raw) });
+      continue;
+    }
+    if (ch === "`") {
+      let raw = ch;
+      i += 1;
+      let closed = false;
+      while (i < source.length) {
+        const c = source[i];
+        raw += c;
+        i += 1;
+        if (c === "\\" && i < source.length) {
+          raw += source[i];
+          i += 1;
+          continue;
+        }
+        if (c === "`") { closed = true; break; }
+      }
+      if (!closed) return null;
+      tokens.push({ type: "template", raw, value: raw.slice(1, -1) });
+      continue;
+    }
+    if (isIdStart(ch)) {
+      let j = i + 1;
+      while (j < source.length && isIdPart(source[j])) j += 1;
+      tokens.push({ type: "id", value: source.slice(i, j) });
+      i = j;
+      continue;
+    }
+    if (source.startsWith("=>", i)) {
+      tokens.push({ type: "op", value: "=>" });
+      i += 2;
+      continue;
+    }
+    if (source.startsWith("!==", i) || source.startsWith("===", i)) {
+      tokens.push({ type: "op", value: source.slice(i, i + 3) });
+      i += 3;
+      continue;
+    }
+    if (source.startsWith("!=", i) || source.startsWith("==", i) || source.startsWith("<=", i) || source.startsWith(">=", i) || source.startsWith("&&", i) || source.startsWith("||", i)) {
+      tokens.push({ type: "op", value: source.slice(i, i + 2) });
+      i += 2;
+      continue;
+    }
+    tokens.push({ type: "punct", value: ch });
+    i += 1;
+  }
+  return tokens;
+}
+
+function decodeFallbackString(raw) {
+  const body = raw.slice(1, -1);
+  let out = "";
+  for (let i = 0; i < body.length; i += 1) {
+    const ch = body[i];
+    if (ch !== "\\") { out += ch; continue; }
+    i += 1;
+    if (i >= body.length) return "";
+    const esc = body[i];
+    const basic = { n: "\n", r: "\r", t: "\t", b: "\b", f: "\f", v: "\v", "0": "\0" };
+    if (Object.prototype.hasOwnProperty.call(basic, esc)) out += basic[esc];
+    else if (esc === "x" && /^[0-9A-Fa-f]{2}$/.test(body.slice(i + 1, i + 3))) {
+      out += String.fromCharCode(parseInt(body.slice(i + 1, i + 3), 16)); i += 2;
+    } else if (esc === "u" && /^[0-9A-Fa-f]{4}$/.test(body.slice(i + 1, i + 5))) {
+      out += String.fromCharCode(parseInt(body.slice(i + 1, i + 5), 16)); i += 4;
+    } else out += esc;
+  }
+  return out;
+}
+
+function tokenIs(tokens, index, value, type = null) {
+  const token = tokens[index];
+  return Boolean(token && token.value === value && (!type || token.type === type));
+}
+
+function matchingToken(tokens, start, open, close) {
+  if (!tokenIs(tokens, start, open)) return -1;
+  let depth = 0;
+  for (let i = start; i < tokens.length; i += 1) {
+    if (tokenIs(tokens, i, open)) depth += 1;
+    else if (tokenIs(tokens, i, close)) {
+      depth -= 1;
+      if (depth === 0) return i;
+    }
+  }
+  return -1;
+}
+
+function splitTopLevel(tokens, start, end, separator) {
+  const parts = [];
+  let begin = start;
+  let paren = 0, bracket = 0, brace = 0;
+  for (let i = start; i < end; i += 1) {
+    const v = tokens[i].value;
+    if (v === "(") paren += 1;
+    else if (v === ")") paren -= 1;
+    else if (v === "[") bracket += 1;
+    else if (v === "]") bracket -= 1;
+    else if (v === "{") brace += 1;
+    else if (v === "}") brace -= 1;
+    else if (v === separator && paren === 0 && bracket === 0 && brace === 0) {
+      parts.push([begin, i]);
+      begin = i + 1;
+    }
+  }
+  parts.push([begin, end]);
+  return parts.filter(([a, b]) => b > a);
+}
+
+function topLevelConstDeclarations(tokens) {
+  const output = [];
+  let braceDepth = 0;
+  for (let i = 0; i < tokens.length; i += 1) {
+    const v = tokens[i].value;
+    if (v === "{") { braceDepth += 1; continue; }
+    if (v === "}") { braceDepth = Math.max(0, braceDepth - 1); continue; }
+    if (braceDepth !== 0 || !tokenIs(tokens, i, "const", "id")) continue;
+    let end = i + 1;
+    let paren = 0, bracket = 0, brace = 0;
+    for (; end < tokens.length; end += 1) {
+      const x = tokens[end].value;
+      if (x === "(") paren += 1;
+      else if (x === ")") paren -= 1;
+      else if (x === "[") bracket += 1;
+      else if (x === "]") bracket -= 1;
+      else if (x === "{") brace += 1;
+      else if (x === "}") brace -= 1;
+      else if (x === ";" && paren === 0 && bracket === 0 && brace === 0) break;
+    }
+    if (end >= tokens.length) return [];
+    for (const [a, b] of splitTopLevel(tokens, i + 1, end, ",")) {
+      if (b - a < 3 || tokens[a].type !== "id" || !tokenIs(tokens, a + 1, "=")) continue;
+      output.push({ name: tokens[a].value, nameIndex: a, exprStart: a + 2, exprEnd: b });
+    }
+    i = end;
+  }
+  return output;
+}
+
+function parseStringArray(tokens, start, end) {
+  if (end - start < 2 || !tokenIs(tokens, start, "[") || !tokenIs(tokens, end - 1, "]")) return null;
+  const assets = [];
+  let i = start + 1;
+  let expectValue = true;
+  while (i < end - 1) {
+    if (tokenIs(tokens, i, ",")) {
+      if (expectValue && i !== end - 2) return null;
+      expectValue = true;
+      i += 1;
+      continue;
+    }
+    if (!expectValue || tokens[i].type !== "string") return null;
+    assets.push(tokens[i].value);
+    expectValue = false;
+    i += 1;
+  }
+  return assets;
+}
+
+function parseArrowParameter(tokens, start, end) {
+  if (start >= end) return null;
+  if (tokens[start].type === "id" && start + 1 < end && tokenIs(tokens, start + 1, "=>")) {
+    return { name: tokens[start].value, bodyStart: start + 2 };
+  }
+  if (tokenIs(tokens, start, "(")) {
+    const close = matchingToken(tokens, start, "(", ")");
+    if (close > start && close < end && close === start + 2 && tokens[start + 1].type === "id" && tokenIs(tokens, close + 1, "=>")) {
+      return { name: tokens[start + 1].value, bodyStart: close + 2 };
+    }
+  }
+  return null;
+}
+
+function matchesPrecacheChain(tokens, start, end, cacheVariable, arrayVariable) {
+  let i = start;
+  if (!tokenIs(tokens, i++, "caches", "id") || !tokenIs(tokens, i++, ".") || !tokenIs(tokens, i++, "open", "id") || !tokenIs(tokens, i++, "(")) return false;
+  if (!tokenIs(tokens, i++, cacheVariable, "id") || !tokenIs(tokens, i++, ")") || !tokenIs(tokens, i++, ".") || !tokenIs(tokens, i++, "then", "id") || !tokenIs(tokens, i++, "(")) return false;
+  const thenClose = matchingToken(tokens, i - 1, "(", ")");
+  if (thenClose !== end - 1) return false;
+  const arrow = parseArrowParameter(tokens, i, thenClose);
+  if (!arrow || arrow.name === "self" || arrow.name === "caches") return false;
+  i = arrow.bodyStart;
+  if (!tokenIs(tokens, i++, arrow.name, "id") || !tokenIs(tokens, i++, ".") || !tokenIs(tokens, i++, "addAll", "id") || !tokenIs(tokens, i++, "(")) return false;
+  if (!tokenIs(tokens, i++, arrayVariable, "id") || !tokenIs(tokens, i++, ")")) return false;
+  return i === thenClose;
+}
+
+function validateInstallUse(tokens, cacheVariable, arrayVariable) {
+  let installMatches = 0;
+  for (let i = 0; i + 6 < tokens.length; i += 1) {
+    if (!tokenIs(tokens, i, "self", "id") || !tokenIs(tokens, i + 1, ".") || !tokenIs(tokens, i + 2, "addEventListener", "id") || !tokenIs(tokens, i + 3, "(")) continue;
+    const callClose = matchingToken(tokens, i + 3, "(", ")");
+    if (callClose < 0 || tokens[i + 4]?.type !== "string" || tokens[i + 4].value !== "install" || !tokenIs(tokens, i + 5, ",")) continue;
+    const handler = parseArrowParameter(tokens, i + 6, callClose);
+    if (!handler || handler.name === "self" || handler.name === "caches") continue;
+    const eventName = handler.name;
+    const bodyStart = handler.bodyStart;
+    let waitStart = -1;
+    let waitOpen = -1;
+    let waitClose = -1;
+    if (tokenIs(tokens, bodyStart, "{")) {
+      const bodyClose = matchingToken(tokens, bodyStart, "{", "}");
+      if (bodyClose !== callClose - 1) continue;
+      let paren = 0, bracket = 0, brace = 0;
+      for (let j = bodyStart + 1; j < bodyClose; j += 1) {
+        const v = tokens[j].value;
+        if (v === "(") paren += 1;
+        else if (v === ")") paren -= 1;
+        else if (v === "[") bracket += 1;
+        else if (v === "]") bracket -= 1;
+        else if (v === "{") brace += 1;
+        else if (v === "}") brace -= 1;
+        if (paren === 0 && bracket === 0 && brace === 0 && tokenIs(tokens, j, eventName, "id") && tokenIs(tokens, j + 1, ".") && tokenIs(tokens, j + 2, "waitUntil", "id") && tokenIs(tokens, j + 3, "(")) {
+          waitStart = j; waitOpen = j + 3; waitClose = matchingToken(tokens, waitOpen, "(", ")"); break;
+        }
+      }
+    } else if (tokenIs(tokens, bodyStart, eventName, "id") && tokenIs(tokens, bodyStart + 1, ".") && tokenIs(tokens, bodyStart + 2, "waitUntil", "id") && tokenIs(tokens, bodyStart + 3, "(")) {
+      waitStart = bodyStart; waitOpen = bodyStart + 3; waitClose = matchingToken(tokens, waitOpen, "(", ")");
+      if (waitClose !== callClose - 1) continue;
+    }
+    if (waitStart < 0 || waitClose < 0) continue;
+    if (matchesPrecacheChain(tokens, waitOpen + 1, waitClose, cacheVariable, arrayVariable)) installMatches += 1;
+  }
+  return installMatches === 1;
+}
+
+function parsePrecacheAssetsFallback(source) {
+  const tokens = tokenizeFallback(source);
+  if (!tokens) return [];
+  // In legitimate service workers these globals are only used as member-expression roots.
+  // Reject declarations, assignments, parameters, or other shadowing/alias patterns conservatively.
+  for (let i = 0; i < tokens.length; i += 1) {
+    if ((tokenIs(tokens, i, "self", "id") || tokenIs(tokens, i, "caches", "id")) && !tokenIs(tokens, i + 1, ".")) return [];
+  }
+  const declarations = topLevelConstDeclarations(tokens);
+  const arrays = declarations.filter(item => item.name === "CORE" || item.name === "A");
+  if (arrays.length !== 1) return [];
+  const candidate = arrays[0];
+  const expectedCacheName = candidate.name === "CORE" ? "CACHE" : "C";
+  const caches = declarations.filter(item => item.name === expectedCacheName);
+  if (caches.length !== 1) return [];
+  const cacheDecl = caches[0];
+  if (cacheDecl.exprEnd - cacheDecl.exprStart !== 1 || tokens[cacheDecl.exprStart].type !== "string") return [];
+  // Do not allow the alternate naming pair to coexist and create an ambiguous fallback parse.
+  if (declarations.some(item => (candidate.name === "CORE" ? item.name === "A" || item.name === "C" : item.name === "CORE" || item.name === "CACHE"))) return [];
+  const assets = parseStringArray(tokens, candidate.exprStart, candidate.exprEnd);
+  if (!assets) return [];
+  const references = tokens.reduce((list, token, index) => {
+    if (token.type === "id" && token.value === candidate.name && index !== candidate.nameIndex) list.push(index);
+    return list;
+  }, []);
+  if (references.length !== 1) return [];
+  if (!validateInstallUse(tokens, expectedCacheName, candidate.name)) return [];
+  return assets;
+}
+
 function parsePrecacheAssets(source) {
   if (typeof source !== "string") return [];
-  if (!acorn) {
-    // Offline build fallback: accept only the two canonical service-worker declarations used by this repository.
-    // This keeps local release builds deterministic when node_modules is not bundled in an artifact.
-    const match = source.match(/const\s+(?:C|CACHE)\s*=\s*["'][^"']+["']\s*,?\s*(?:A|CORE)\s*=\s*(\[[\s\S]*?\])\s*;|const\s+(?:C|CACHE)\s*=\s*["'][^"']+["']\s*;\s*const\s+(?:A|CORE)\s*=\s*(\[[\s\S]*?\])\s*;/);
-    if (!match) return [];
-    try {
-      const raw = match[1] || match[2];
-      const assets = JSON.parse(raw.replace(/'/g,'"'));
-      return Array.isArray(assets) && assets.every(item => typeof item === "string") ? assets : [];
-    } catch { return []; }
-  }
+  if (!acorn) return parsePrecacheAssetsFallback(source);
   try {
     const program = acorn.parse(source, { ecmaVersion: "latest", sourceType: "script", allowHashBang: true });
     if (shadowsServiceWorkerGlobals(program)) return [];
