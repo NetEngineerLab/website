@@ -1,62 +1,60 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" data-nel-locale="en" data-nel-route="tools/olt-dual-uplink-transport-mse-planner/"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>OLT Dual-Uplink Transport Channel &amp; MSE Port Planner | NetEngineerLab</title><meta content="Calculate OLT dual-uplink ports, transport channels, MSE ports and line cards, then verify full-load single-side failure capacity and path diversity." name="description"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="OLT Dual-Uplink Transport Channel &amp; MSE Port Planner | NetEngineerLab" property="og:title"/><meta content="Calculate OLT dual-uplink ports, transport channels, MSE ports and line cards, then verify full-load single-side failure capacity and path diversity." property="og:description"/><meta content="https://netengineerlab.com/tools/olt-dual-uplink-transport-mse-planner/" property="og:url"/><meta content="https://netengineerlab.com/tools/olt-dual-uplink-transport-mse-planner/images/og-olt-dual-uplink-transport-mse-planner.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><link href="css/style.css?v=588fbd7e35e7" rel="stylesheet"/><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why size each side for the full protected traffic?","acceptedAnswer":{"@type":"Answer","text":"Because a dual-uplink design should be checked for the single-side failure state, not only for the normal 50/50 load-sharing condition."}},{"@type":"Question","name":"Can a 100G transport channel carry multiple 10G OLT uplinks?","acceptedAnswer":{"@type":"Answer","text":"Yes in a capacity model, provided the transport technology supports the required client mapping and the aggregate stays within the configured planning limit."}},{"@type":"Question","name":"What is a false dual-uplink risk?","acceptedAnswer":{"@type":"Answer","text":"It means two logical uplinks still share a common physical route, transport ring or system, so one failure can take both paths down."}},{"@type":"Question","name":"How are MSE line cards calculated?","acceptedAnswer":{"@type":"Answer","text":"The engine first calculates failure-state MSE ports per protected side, multiplies by the MSE node count, then rounds up by the configured ports per line card."}},{"@type":"Question","name":"Does this replace detailed OTN/MSE vendor planning?","acceptedAnswer":{"@type":"Answer","text":"No. Client mapping, slot/board limits, protection switching and hardware-specific oversubscription must still be verified against vendor design rules."}}]}</script><script data-nel-schema="webpage" type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"OLT Dual-Uplink Transport Channel & MSE Port Planner | NetEngineerLab","url":"https://netengineerlab.com/tools/olt-dual-uplink-transport-mse-planner/","description":"Calculate OLT dual-uplink ports, transport channels, MSE ports and line cards, then verify full-load single-side failure capacity and path diversity.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
-<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
 
-<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
-<meta name="nel-locale" content="en">
-<meta name="nel-route" content="tools/olt-dual-uplink-transport-mse-planner/">
-<meta name="nel-available-locales" content="en,zh">
-<link rel="canonical" href="https://netengineerlab.com/tools/olt-dual-uplink-transport-mse-planner/">
-<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/olt-dual-uplink-transport-mse-planner/">
-<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/olt-dual-uplink-transport-mse-planner/zh/">
-<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/olt-dual-uplink-transport-mse-planner/">
-<link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
-<link rel="stylesheet" href="../../assets/css/design-tokens.css?v=dc6c5cc9b8ad">
-<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=9905ea2be293">
-<link rel="stylesheet" href="../../assets/css/site-shell.css?v=58918fefbb35">
-<script defer src="../../data/locales.js?v=909e05076a50"></script>
-<script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
-<script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
-<script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../assets/js/site.js?v=5c6907a4fe26"></script>
-<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=591fcb5937d9">
-<link rel="manifest" href="manifest.webmanifest">
-</head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.2"><!-- NEL_HEADER_START -->
+<html data-nel-locale="en" data-nel-route="tools/olt-dual-uplink-transport-mse-planner/" dir="ltr" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>OLT Dual-Uplink Transport Channel &amp; MSE Port Planner | NetEngineerLab</title><meta content="Calculate OLT dual-uplink ports, transport channels, MSE ports and line cards, then verify full-load single-side failure capacity and path diversity." name="description"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="OLT Dual-Uplink Transport Channel &amp; MSE Port Planner | NetEngineerLab" property="og:title"/><meta content="Calculate OLT dual-uplink ports, transport channels, MSE ports and line cards, then verify full-load single-side failure capacity and path diversity." property="og:description"/><meta content="https://netengineerlab.com/tools/olt-dual-uplink-transport-mse-planner/" property="og:url"/><meta content="https://netengineerlab.com/tools/olt-dual-uplink-transport-mse-planner/images/og-olt-dual-uplink-transport-mse-planner.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><link href="css/style.css?v=588fbd7e35e7" rel="stylesheet"/><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why size each side for the full protected traffic?","acceptedAnswer":{"@type":"Answer","text":"Because a dual-uplink design should be checked for the single-side failure state, not only for the normal 50/50 load-sharing condition."}},{"@type":"Question","name":"Can a 100G transport channel carry multiple 10G OLT uplinks?","acceptedAnswer":{"@type":"Answer","text":"Yes in a capacity model, provided the transport technology supports the required client mapping and the aggregate stays within the configured planning limit."}},{"@type":"Question","name":"What is a false dual-uplink risk?","acceptedAnswer":{"@type":"Answer","text":"It means two logical uplinks still share a common physical route, transport ring or system, so one failure can take both paths down."}},{"@type":"Question","name":"How are MSE line cards calculated?","acceptedAnswer":{"@type":"Answer","text":"The engine first calculates failure-state MSE ports per protected side, multiplies by the MSE node count, then rounds up by the configured ports per line card."}},{"@type":"Question","name":"Does this replace detailed OTN/MSE vendor planning?","acceptedAnswer":{"@type":"Answer","text":"No. Client mapping, slot/board limits, protection switching and hardware-specific oversubscription must still be verified against vendor design rules."}}]}</script><script data-nel-schema="webpage" type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"OLT Dual-Uplink Transport Channel & MSE Port Planner | NetEngineerLab","url":"https://netengineerlab.com/tools/olt-dual-uplink-transport-mse-planner/","description":"Calculate OLT dual-uplink ports, transport channels, MSE ports and line cards, then verify full-load single-side failure capacity and path diversity.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<link data-nel-workflow-style="" href="/assets/css/tool-workflow.css?v=66c8998b2681" rel="stylesheet"/>
+<meta content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline" name="nel-framework"/>
+<meta content="en" name="nel-locale"/>
+<meta content="tools/olt-dual-uplink-transport-mse-planner/" name="nel-route"/>
+<meta content="en,zh" name="nel-available-locales"/>
+<link href="https://netengineerlab.com/tools/olt-dual-uplink-transport-mse-planner/" rel="canonical"/>
+<link href="https://netengineerlab.com/tools/olt-dual-uplink-transport-mse-planner/" hreflang="en" rel="alternate"/>
+<link href="https://netengineerlab.com/tools/olt-dual-uplink-transport-mse-planner/zh/" hreflang="zh-CN" rel="alternate"/>
+<link href="https://netengineerlab.com/tools/olt-dual-uplink-transport-mse-planner/" hreflang="x-default" rel="alternate"/>
+<link href="../../assets/css/locale-menu.css?v=7804394246fb" rel="stylesheet"/>
+<link href="../../assets/css/design-tokens.css?v=dc6c5cc9b8ad" rel="stylesheet"/>
+<link href="../../assets/css/tool-design-system.css?v=9905ea2be293" rel="stylesheet"/>
+<link href="../../assets/css/site-shell.css?v=f0222e707b10" rel="stylesheet"/>
+<script defer="" src="../../data/locales.js?v=909e05076a50"></script>
+<script defer="" src="../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer="" src="../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer="" src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer="" src="../../assets/js/site.js?v=5c6907a4fe26"></script>
+<link href="../../assets/css/tool-layout.css?v=1947f39ca345" rel="stylesheet"/>
+<link href="manifest.webmanifest" rel="manifest"/>
+</head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.2.2"><!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
-  <div class="site-shell-header-inner">
-    <a class="site-shell-brand brand" href="../../">
-      <img src="../../assets/images/logo.svg" alt="" width="42" height="42">
-      <span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span>
-    </a>
-    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation"><span aria-hidden="true"></span></button>
-    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Primary navigation">
-      <a href="../../">Home</a>
-      <a href="../" aria-current="page">Tools</a>
-      <a href="../../about/">About</a>
-      <a href="../../contact/">Contact</a>
-    </nav>
-    <div class="site-shell-actions">
-      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
-      <div class="site-shell-context-action"><a href="#calculator">Start calculating</a></div>
-    </div>
-  </div>
+<div class="site-shell-header-inner">
+<a class="site-shell-brand brand" href="../../">
+<img alt="" height="42" src="../../assets/images/logo.svg" width="42"/>
+<span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span>
+</a>
+<button aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation" class="site-shell-menu-toggle" type="button"><span aria-hidden="true"></span></button>
+<nav aria-label="Primary navigation" class="site-shell-nav nel-global-nav" id="site-shell-nav">
+<a href="../../">Home</a>
+<a aria-current="page" href="../">Tools</a>
+<a href="../../about/">About</a>
+<a href="../../contact/">Contact</a>
+</nav>
+<div class="site-shell-actions">
+<!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu="" data-open="false"><button aria-expanded="false" aria-haspopup="true" aria-label="Language: English" class="language-trigger" type="button"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z" fill="currentColor"></path></svg><span class="language-current">English</span><span aria-hidden="true" class="language-caret">▾</span></button><div class="language-options" hidden="" role="menu"><a aria-current="page" class="language-option" href="./" hreflang="en" lang="en" role="menuitem"><span>English</span><small>English</small></a><a class="language-option" href="zh/" hreflang="zh-CN" lang="zh-CN" role="menuitem"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+<div class="site-shell-context-action"><a href="#calculator">Start calculating</a></div>
+</div>
+</div>
 </header>
 <!-- NEL_HEADER_END -->
 <!-- NEL_TOOL_RETURN_START -->
-<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
-  <a class="tool-return-link" href="../">← Back to Tools</a>
-  <span aria-hidden="true">/</span>
-  <span aria-current="page">OLT Dual-Uplink Capacity, Transport Channel &amp; MSE Port Planner</span>
+<nav aria-label="Breadcrumb" class="breadcrumbs tool-return-nav">
+<a class="tool-return-link" href="../">← Back to Tools</a>
+<span aria-hidden="true">/</span>
+<span aria-current="page">OLT Dual-Uplink Capacity, Transport Channel &amp; MSE Port Planner</span>
 </nav>
-<!-- NEL_TOOL_RETURN_END --><section class="tool-hero hero nel-tool-hero">
+<!-- NEL_TOOL_RETURN_END --><section class="tool-hero hero nel-tool-hero"><div class="hero-inner">
 <p class="eyebrow">ACCESS × TRANSPORT × MSE CAPACITY</p>
 <h1>OLT Dual-Uplink, Transport Channel &amp; MSE Port Planner</h1>
 <p class="hero-description">Plan OLT uplinks, transport channels and MSE port resources together, then verify that one surviving side can carry 100% of protected traffic.</p>
 <div aria-label="Tool capabilities" class="hero-badges"><span>N-1 failure check</span><span>Transport channel sizing</span><span>MSE ports &amp; boards</span><span>Path diversity</span></div>
-</section><main class="nel-tool-main" id="calculator">
-
-<div class="tool-layout nel-tool-primary-grid">
-<section aria-labelledby="input-title" class="panel input-panel card nel-tool-input">
+</div></section><main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
+<section aria-labelledby="input-title" class="panel input-panel card nel-tool-input"><div class="section-title nel-generated-section-title" data-nel-generated="v1.2.2"><span class="section-icon">☷</span><div><h2>Engineering inputs</h2><p>Set the engineering assumptions and design parameters.</p></div></div>
 <div class="section-heading"><div><p class="panel-kicker">Planning inputs</p><h2 id="input-title">OLT, Transport &amp; MSE Parameters</h2></div></div>
 <p class="panel-intro">Enter service scale, uplink rate, transport granularity and protection assumptions. Final capacity is validated against the single-side failure state.</p>
 <section aria-labelledby="group-olt" class="parameter-group"><div class="group-heading"><span>01</span><div><h3 id="group-olt">OLT &amp; Traffic</h3><p>Define access scale, traffic per OLT and dual-uplink operating mode.</p></div></div><div class="form-grid">
@@ -82,8 +80,7 @@
 <div class="note-box"><strong>Protection principle</strong><p>Plan for a single-side failure: when either side fails, the surviving transport / MSE side must carry total traffic plus reserve while remaining below the configured planning limit.</p></div>
 <p aria-live="polite" class="input-help" id="inputState"></p>
 <button class="btn" id="calculate" type="button">Calculate dual-uplink resources</button>
-</section>
-<aside aria-labelledby="result-title" aria-live="polite" class="panel result-panel card nel-tool-result" id="result">
+</section><aside aria-labelledby="result-title" aria-live="polite" class="panel result-panel card nel-tool-result" id="result"><div class="section-title nel-generated-section-title" data-nel-generated="v1.2.2"><span class="section-icon">▥</span><div><h2>Engineering results</h2><p>Review calculated capacity, limits and design checks.</p></div></div>
 <div class="section-heading result-heading"><div><p class="panel-kicker">Engineering result</p><h2 id="result-title">Capacity &amp; Protection</h2></div><span class="status" id="risk"></span></div>
 <div class="result-lead"><strong>Single-side failure first</strong><span>Results assume one surviving side carries 100% of protected traffic</span></div>
 <div class="metrics">
@@ -100,22 +97,21 @@
 </section>
 <div class="validation-grid"><section><div class="subsection-heading"><h3>Protection Checks</h3><span>PASS / FAIL</span></div><ul class="result-list check-list" id="checks"></ul></section><section><div class="subsection-heading"><h3>Warnings &amp; Advice</h3><span>Engineering notes</span></div><ul class="result-list warning-list" id="warnings"></ul></section></div>
 </aside>
-</div>
 </main><section class="content-section nel-tool-supporting-section"><h2>Plan the three resource layers together</h2><p>Dual OLT uplinks consume physical access ports, transport-channel capacity and MSE-facing ports. Planning only one layer can create a hidden bottleneck at another layer.</p><h2>Failure-state sizing</h2><p>The planner sizes each protected side so that after one side fails, the surviving side can carry 100% of OLT traffic plus the configured reserve while staying below the channel and MSE planning limits.</p><h2>Detect false dual uplinks</h2><p>Two logical uplinks are not truly independent if they share the same physical route, transport ring or transport system. The tool flags this common-mode risk explicitly.</p></section><section class="content-section nel-tool-supporting-section"><h2>Engineering references</h2><p><a href="https://www.itu.int/rec/T-REC-G.9807.1/en" rel="noopener">ITU-T G.9807.1</a> · <a href="https://www.itu.int/rec/T-REC-G.709/en" rel="noopener">ITU-T G.709</a> · <a href="https://www.broadband-forum.org/" rel="noopener">Broadband Forum</a></p><p>Content reviewed: 2026-09-10</p></section><section class="content-section nel-tool-supporting-section"><h2>FAQ</h2><details><summary>Why size each side for the full protected traffic?</summary><p>Because a dual-uplink design should be checked for the single-side failure state, not only for the normal 50/50 load-sharing condition.</p></details><details><summary>Can a 100G transport channel carry multiple 10G OLT uplinks?</summary><p>Yes in a capacity model, provided the transport technology supports the required client mapping and the aggregate stays within the configured planning limit.</p></details><details><summary>What is a false dual-uplink risk?</summary><p>It means two logical uplinks still share a common physical route, transport ring or system, so one failure can take both paths down.</p></details><details><summary>How are MSE line cards calculated?</summary><p>The engine first calculates failure-state MSE ports per protected side, multiplies by the MSE node count, then rounds up by the configured ports per line card.</p></details><details><summary>Does this replace detailed OTN/MSE vendor planning?</summary><p>No. Client mapping, slot/board limits, protection switching and hardware-specific oversubscription must still be verified against vendor design rules.</p></details></section><!-- NEL_TOOL_GRAPH_START -->
-<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="olt-dual-uplink-transport-mse-planner" data-primary-workflow="access-transport-optimization">
+<section aria-labelledby="nel-tool-graph-title" class="content-section nel-tool-graph" data-primary-workflow="access-transport-optimization" data-tool-id="olt-dual-uplink-transport-mse-planner" id="nel-tool-graph">
 <div class="section-heading"><div><p class="eyebrow">ENGINEERING WORKFLOW</p><h2 id="nel-tool-graph-title">Continue the engineering workflow</h2></div></div>
-<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>Access &amp; Transport Capacity Optimization Workflow</strong><p>Plan protected OLT dual uplinks and transport/MSE capacity, then analyze ring protection-state bottlenecks and optimization options.</p></div><div class="nel-workflow-step"><strong>Step 1 of 2</strong><div class="nel-workflow-progress" aria-label="Step 1 of 2"><span style="width:50%"></span></div></div></div><div class="nel-tool-graph-nav"><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Previous</span><strong>Workflow start</strong></div><a class="nel-tool-graph-card" href="/tools/transmission-ring-optimization-risk-analyzer/"><span class="nel-tool-graph-label">Next</span><strong>Transmission Ring Optimization &amp; Protection Risk Analyzer</strong><span class="nel-tool-graph-description">Model ring traffic, simulate N-1 span failures, identify protection-state bottlenecks, score risk and compare targeted capacity upgrades.</span></a></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>Access &amp; Transport Capacity Optimization Workflow</strong><p>Plan protected OLT dual uplinks and transport/MSE capacity, then analyze ring protection-state bottlenecks and optimization options.</p></div><div class="nel-workflow-step"><strong>Step 1 of 2</strong><div aria-label="Step 1 of 2" class="nel-workflow-progress"><span style="width:50%"></span></div></div></div><div class="nel-tool-graph-nav"><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Previous</span><strong>Workflow start</strong></div><a class="nel-tool-graph-card" href="/tools/transmission-ring-optimization-risk-analyzer/"><span class="nel-tool-graph-label">Next</span><strong>Transmission Ring Optimization &amp; Protection Risk Analyzer</strong><span class="nel-tool-graph-description">Model ring traffic, simulate N-1 span failures, identify protection-state bottlenecks, score risk and compare targeted capacity upgrades.</span></a></div>
 <h3 class="nel-tool-graph-subtitle">Related tools</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/transmission-ring-optimization-risk-analyzer/"><strong>Transmission Ring Optimization &amp; Protection Risk Analyzer</strong><span class="nel-tool-graph-description">Model ring traffic, simulate N-1 span failures, identify protection-state bottlenecks, score risk and compare targeted capacity upgrades.</span></a><a class="nel-tool-graph-card" href="/tools/bandwidth-calculator/"><strong>Bandwidth &amp; Transfer Time Calculator</strong><span class="nel-tool-graph-description">Calculate file transfer time, required link rate, concurrent-user capacity and sustained-rate data volume.</span></a><a class="nel-tool-graph-card" href="/tools/switch-uplink-oversubscription-calculator/"><strong>Switch Uplink Bandwidth &amp; Oversubscription Calculator</strong><span class="nel-tool-graph-description">Size switch uplinks from access ports, utilization, concurrency and redundancy.</span></a><a class="nel-tool-graph-card" href="/tools/pon-distance/"><strong>PON Maximum Distance Calculator</strong><span class="nel-tool-graph-description">Calculate optical-budget reach, effective system reach and planned link margin.</span></a></div>
 </section>
 <!-- NEL_TOOL_GRAPH_END -->
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
-  <div class="site-shell-footer-inner">
-    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
-    <nav class="site-shell-footer-links" aria-label="Footer navigation">
-      <a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a>
-    </nav>
-    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
-  </div>
+<div class="site-shell-footer-inner">
+<div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
+<nav aria-label="Footer navigation" class="site-shell-footer-links">
+<a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a>
+</nav>
+<p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+</div>
 </footer>
 <!-- NEL_FOOTER_END --><script src="js/engine.js"></script><script src="js/app.js?v=e8627f68c359"></script><script src="js/pwa.js"></script></body></html>

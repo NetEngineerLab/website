@@ -675,3 +675,15 @@
 - Added `docs/NETENGINEERLAB_UI_V1.2_TOOL_PAGE_TEMPLATE_UNIFICATION_AUDIT_2026-09-12.md` and JSON audit evidence.
 - Updated shared Hero typography/geometry to prevent isolated Chinese title orphan wrapping and normalized legacy primary-grid visuals.
 - Regression: multilingual build, UI V1.1 source audit, V1.2 template audit, i18n, Page Registry, Tool Navigation, Launch Audit, SEO/GEO and Schema traversal all PASS.
+
+## 2026-09-12 — UI V1.2.2 True Tool Page Template Migration
+
+- Corrected the V1.2 audit false-positive: semantic hooks alone did not guarantee true source-template migration.
+- Re-scanned all 35 active tools / 80 localized Tool Detail pages.
+- Physically flattened historical `wrap > grid`, `tool-layout`, and `layout` primary wrappers on standard calculators.
+- Standardized 72 normal calculators on direct `tool-shell > input card + result card` structure.
+- Preserved 8 complex engineering tools as specialized workspaces while unifying their outer template.
+- Moved 18 supporting/methodology/FAQ sections outside the primary calculator workspace.
+- Added V1.2.2 canonical Hero/card/spacing/mobile rules in the final shared compliance layer.
+- Strengthened `audit:ui-v1.2` so the old V1.2 false-positive can no longer pass.
+- Regression: UI audits, i18n, Page Registry, Workflow Registry, Tool Navigation, Launch Audit, SEO/GEO, Schema and selected engineering engines all PASS.

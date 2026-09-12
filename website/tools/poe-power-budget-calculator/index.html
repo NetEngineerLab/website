@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en" dir="ltr" data-nel-locale="en" data-nel-route="tools/poe-power-budget-calculator/">
+<html data-nel-locale="en" data-nel-route="tools/poe-power-budget-calculator/" dir="ltr" lang="en">
 <head>
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/>
 <title>PoE Power Budget Calculator – Switch Sizing &amp; Device Capacity</title>
@@ -13,63 +13,62 @@
 <script defer="" src="/data/seo-config.js"></script>
 <script defer="" src="/assets/js/seo-engine.js"></script>
 <script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many PoE cameras can a 120 W switch support?","acceptedAnswer":{"@type":"Answer","text":"It depends on maximum camera watts, cable loss, reserve and ports. Eight 10 W fixed cameras may fit comfortably, while eight 15 W cameras can exhaust the budget after loss and headroom."}},{"@type":"Question","name":"Does cable length change the PoE budget?","acceptedAnswer":{"@type":"Answer","text":"Yes. Longer or higher-resistance cabling increases I²R loss. This calculator models loss as a planning percentage; verify conductor gauge, category, bundle temperature and run length for final design."}},{"@type":"Question","name":"Should I use average or maximum device consumption?","acceptedAnswer":{"@type":"Answer","text":"Use maximum rated or measured demand for capacity planning. Average values can hide boot surges, IR activation, PTZ motors and high radio utilization."}},{"@type":"Question","name":"What does a PASS result mean?","acceptedAnswer":{"@type":"Answer","text":"PASS means the entered design meets total watts, available ports and per-port power class with the selected assumptions. It is an engineering estimate, not a substitute for manufacturer requirements or electrical safety review."}},{"@type":"Question","name":"Is 20% PoE headroom required by IEEE?","acceptedAnswer":{"@type":"Answer","text":"No. Headroom is a project planning choice, not a universal IEEE requirement. Select it from measured peak load, startup behavior, cable conditions, expansion plans, power-supply configuration and the availability target."}}]}</script>
-<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><meta content="https://netengineerlab.com/assets/images/og-netengineerlab.png" property="og:image"/>
-<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
-
-</link></link></link><meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
-<meta name="nel-locale" content="en">
-<meta name="nel-route" content="tools/poe-power-budget-calculator/">
-<meta name="nel-available-locales" content="en,zh,es">
-<link rel="canonical" href="https://netengineerlab.com/tools/poe-power-budget-calculator/">
-<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/poe-power-budget-calculator/">
-<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/poe-power-budget-calculator/zh/">
-<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/poe-power-budget-calculator/es/">
-<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/poe-power-budget-calculator/">
-<link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
-<link rel="stylesheet" href="../../assets/css/design-tokens.css?v=dc6c5cc9b8ad">
-<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=9905ea2be293">
-<link rel="stylesheet" href="../../assets/css/site-shell.css?v=58918fefbb35">
-<script defer src="../../data/locales.js?v=909e05076a50"></script>
-<script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
-<script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
-<script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../assets/js/site.js?v=5c6907a4fe26"></script>
-<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=591fcb5937d9">
-<link rel="manifest" href="manifest.webmanifest">
-</head>
-<body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.2">
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><meta content="https://netengineerlab.com/assets/images/og-netengineerlab.png" property="og:image"/>
+<link data-nel-workflow-style="" href="/assets/css/tool-workflow.css?v=66c8998b2681" rel="stylesheet"/>
+<meta content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline" name="nel-framework"/>
+<meta content="en" name="nel-locale"/>
+<meta content="tools/poe-power-budget-calculator/" name="nel-route"/>
+<meta content="en,zh,es" name="nel-available-locales"/>
+<link href="https://netengineerlab.com/tools/poe-power-budget-calculator/" rel="canonical">
+<link href="https://netengineerlab.com/tools/poe-power-budget-calculator/" hreflang="en" rel="alternate"/>
+<link href="https://netengineerlab.com/tools/poe-power-budget-calculator/zh/" hreflang="zh-CN" rel="alternate"/>
+<link href="https://netengineerlab.com/tools/poe-power-budget-calculator/es/" hreflang="es" rel="alternate"/>
+<link href="https://netengineerlab.com/tools/poe-power-budget-calculator/" hreflang="x-default" rel="alternate"/>
+<link href="../../assets/css/locale-menu.css?v=7804394246fb" rel="stylesheet"/>
+<link href="../../assets/css/design-tokens.css?v=dc6c5cc9b8ad" rel="stylesheet"/>
+<link href="../../assets/css/tool-design-system.css?v=9905ea2be293" rel="stylesheet"/>
+<link href="../../assets/css/site-shell.css?v=f0222e707b10" rel="stylesheet"/>
+<script defer="" src="../../data/locales.js?v=909e05076a50"></script>
+<script defer="" src="../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer="" src="../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer="" src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer="" src="../../assets/js/site.js?v=5c6907a4fe26"></script>
+<link href="../../assets/css/tool-layout.css?v=1947f39ca345" rel="stylesheet"/>
+<link href="manifest.webmanifest" rel="manifest"/>
+</link></head>
+<body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.2.2">
 <a class="skip" href="#calculator">Skip to calculator</a>
 <!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
-  <div class="site-shell-header-inner">
-    <a class="site-shell-brand brand" href="../../">
-      <img src="../../assets/images/logo.svg" alt="" width="42" height="42">
-      <span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span>
-    </a>
-    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation"><span aria-hidden="true"></span></button>
-    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Primary navigation">
-      <a href="../../">Home</a>
-      <a href="../" aria-current="page">Tools</a>
-      <a href="../../about/">About</a>
-      <a href="../../contact/">Contact</a>
-    </nav>
-    <div class="site-shell-actions">
-      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a><a class="language-option" role="menuitem" href="es/" lang="es" hreflang="es"><span>Español</span><small>Spanish</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
-      <div class="site-shell-context-action"><a href="#calculator">Start calculating</a></div>
-    </div>
-  </div>
+<div class="site-shell-header-inner">
+<a class="site-shell-brand brand" href="../../">
+<img alt="" height="42" src="../../assets/images/logo.svg" width="42"/>
+<span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span>
+</a>
+<button aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation" class="site-shell-menu-toggle" type="button"><span aria-hidden="true"></span></button>
+<nav aria-label="Primary navigation" class="site-shell-nav nel-global-nav" id="site-shell-nav">
+<a href="../../">Home</a>
+<a aria-current="page" href="../">Tools</a>
+<a href="../../about/">About</a>
+<a href="../../contact/">Contact</a>
+</nav>
+<div class="site-shell-actions">
+<!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu="" data-open="false"><button aria-expanded="false" aria-haspopup="true" aria-label="Language: English" class="language-trigger" type="button"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z" fill="currentColor"></path></svg><span class="language-current">English</span><span aria-hidden="true" class="language-caret">▾</span></button><div class="language-options" hidden="" role="menu"><a aria-current="page" class="language-option" href="./" hreflang="en" lang="en" role="menuitem"><span>English</span><small>English</small></a><a class="language-option" href="zh/" hreflang="zh-CN" lang="zh-CN" role="menuitem"><span>简体中文</span><small>Chinese</small></a><a class="language-option" href="es/" hreflang="es" lang="es" role="menuitem"><span>Español</span><small>Spanish</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+<div class="site-shell-context-action"><a href="#calculator">Start calculating</a></div>
+</div>
+</div>
 </header>
 <!-- NEL_HEADER_END -->
 <!-- NEL_TOOL_RETURN_START -->
-<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
-  <a class="tool-return-link" href="../">← Back to Tools</a>
-  <span aria-hidden="true">/</span>
-  <span aria-current="page">PoE Power Budget Calculator</span>
+<nav aria-label="Breadcrumb" class="breadcrumbs tool-return-nav">
+<a class="tool-return-link" href="../">← Back to Tools</a>
+<span aria-hidden="true">/</span>
+<span aria-current="page">PoE Power Budget Calculator</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
 <section class="hero nel-tool-hero"><div class="hero-inner"><p class="eyebrow">POWER OVER ETHERNET PLANNING TOOL</p><h1>PoE Power Budget Calculator</h1><p>Size a PoE switch for IP cameras, PTZ cameras, Wi-Fi access points, VoIP phones and access-control devices. Check total watts, available ports, cable loss, engineering headroom and IEEE 802.3af, 802.3at or 802.3bt per-port limits.</p><div class="tags"><span>PoE switch sizing</span><span>Camera capacity</span><span>PoE+ / PoE++</span><span>Cable loss</span></div></div></section>
-<main class="workspace nel-tool-grid nel-tool-main nel-tool-primary-grid" id="calculator">
-<section class="card input-panel nel-tool-input"><h2>PoE switch and device inputs</h2><p class="intro">Use the maximum device draw, not the marketing average. Night-mode infrared, heaters, radios and USB accessories can increase demand.</p>
+<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
+<section class="card input-panel nel-tool-input"><div class="section-title nel-generated-section-title" data-nel-generated="v1.2.2"><span class="section-icon">☷</span><div><h2>Engineering inputs</h2><p>Set the engineering assumptions and design parameters.</p></div></div><h2>PoE switch and device inputs</h2><p class="intro">Use the maximum device draw, not the marketing average. Night-mode infrared, heaters, radios and USB accessories can increase demand.</p>
 <div class="preset"><label for="preset">Deployment preset</label><select id="preset"><option value="cameras">8 fixed IP cameras</option><option value="ptz">8 high-power PTZ cameras</option><option value="wifi">16 Wi-Fi access points</option><option value="mixed">12 mixed PoE devices</option></select></div>
 <div class="form">
 <div class="field"><label for="switchBudget">Switch PoE budget (W)</label><input id="switchBudget" min="0" step="1" type="number"/></div>
@@ -80,7 +79,7 @@
 <div class="field"><label for="cableLoss">Estimated cable loss (%)</label><input id="cableLoss" max="40" min="0" step=".5" type="number"/></div>
 <div class="field"><label for="headroom">Engineering headroom (%)</label><input id="headroom" max="80" min="0" step="1" type="number"/></div>
 </div><button class="calculate" id="calculate" type="button">Calculate PoE budget</button></section>
-<section aria-live="polite" class="card result-panel nel-tool-result"><h2>PoE sizing result</h2><div class="headline"><div><small>Required switch power budget</small><strong id="required">—</strong></div><span class="status" id="status">—</span></div><div class="metrics">
+<section aria-live="polite" class="card result-panel nel-tool-result"><div class="section-title nel-generated-section-title" data-nel-generated="v1.2.2"><span class="section-icon">▥</span><div><h2>Engineering results</h2><p>Review calculated capacity, limits and design checks.</p></div></div><h2>PoE sizing result</h2><div class="headline"><div><small>Required switch power budget</small><strong id="required">—</strong></div><span class="status" id="status">—</span></div><div class="metrics">
 <article class="metric"><small>Device load at PSE</small><strong id="load">—</strong></article><article class="metric"><small>Source watts per device</small><strong id="perDevice">—</strong></article><article class="metric"><small>Remaining budget</small><strong id="remaining">—</strong></article><article class="metric"><small>Budget utilization</small><strong id="utilization">—</strong></article><article class="metric"><small>Maximum supported devices</small><strong id="maximum">—</strong></article><article class="metric"><small>Ports used</small><strong id="portsUsed">—</strong></article>
 </div><div class="progress"><span id="bar"></span></div><p class="advice" id="advice"></p><div class="result-actions"><button id="copy" type="button">Copy result</button><button id="csv" type="button">Export CSV</button></div></section>
 </main>
@@ -92,22 +91,22 @@
 <h2>PoE engineering references</h2><ul><li><a href="https://www.ieee802.org/3/bt/">IEEE 802.3bt four-pair Power over Ethernet task force</a></li><li><a href="https://www.ieee802.org/3/at/objectives.html">IEEE 802.3at PoE Plus task-force objectives</a></li><li><a href="https://ethernetalliance.org/poecert/">Ethernet Alliance PoE Certification Program</a></li><li><a href="https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus9000/sw/7-x/interfaces/configuration/Hidden/b_Power_Over_Ethernet/b_Power_Over_Ethernet_chapter_00.html">Cisco: configuring and budgeting Power over Ethernet</a></li><li><a href="https://www.flukenetworks.com/blog/cabling-chronicles/bundle-or-not-bundle">Fluke Networks: PoE cable bundles and temperature rise</a></li></ul><p>The cable-loss percentage is a planning input, not a complete IEEE channel simulation. Final design should verify PSE and PD classes, negotiated allocation, power-supply and redundancy state, cable channel, bundle temperature and device startup behavior. Last reviewed: 2026-08-31.</p>
 <h2>Related network engineering calculators</h2><div class="related"><a href="../wifi-coverage-capacity-planner/">Wi-Fi Coverage &amp; Capacity Planner</a><a href="../48v-battery-runtime/">-48V Battery Runtime Calculator</a><a href="../bandwidth-calculator/">Bandwidth &amp; Transfer Time Calculator</a></div></section>
 <!-- NEL_TOOL_GRAPH_START -->
-<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="poe-power-budget-calculator" data-primary-workflow="poe-rack-power-design">
+<section aria-labelledby="nel-tool-graph-title" class="content-section nel-tool-graph" data-primary-workflow="poe-rack-power-design" data-tool-id="poe-power-budget-calculator" id="nel-tool-graph">
 <div class="section-heading"><div><p class="eyebrow">ENGINEERING WORKFLOW</p><h2 id="nel-tool-graph-title">Continue the engineering workflow</h2></div></div>
-<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>PoE &amp; Rack Power Design Workflow</strong><p>Verify PoE source capacity, cable voltage delivery, rack power and cooling, then estimate telecom battery backup runtime.</p></div><div class="nel-workflow-step"><strong>Step 1 of 4</strong><div class="nel-workflow-progress" aria-label="Step 1 of 4"><span style="width:25%"></span></div></div></div><div class="nel-tool-graph-nav"><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Previous</span><strong>Workflow start</strong></div><a class="nel-tool-graph-card" href="/tools/poe-voltage-drop-calculator/"><span class="nel-tool-graph-label">Next</span><strong>Ethernet Cable PoE Voltage Drop Calculator</strong><span class="nel-tool-graph-description">Calculate PoE cable resistance, voltage drop, remote voltage, current and power loss.</span></a></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>PoE &amp; Rack Power Design Workflow</strong><p>Verify PoE source capacity, cable voltage delivery, rack power and cooling, then estimate telecom battery backup runtime.</p></div><div class="nel-workflow-step"><strong>Step 1 of 4</strong><div aria-label="Step 1 of 4" class="nel-workflow-progress"><span style="width:25%"></span></div></div></div><div class="nel-tool-graph-nav"><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Previous</span><strong>Workflow start</strong></div><a class="nel-tool-graph-card" href="/tools/poe-voltage-drop-calculator/"><span class="nel-tool-graph-label">Next</span><strong>Ethernet Cable PoE Voltage Drop Calculator</strong><span class="nel-tool-graph-description">Calculate PoE cable resistance, voltage drop, remote voltage, current and power loss.</span></a></div>
 <h3 class="nel-tool-graph-subtitle">Related tools</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/poe-voltage-drop-calculator/"><strong>Ethernet Cable PoE Voltage Drop Calculator</strong><span class="nel-tool-graph-description">Calculate PoE cable resistance, voltage drop, remote voltage, current and power loss.</span></a><a class="nel-tool-graph-card" href="/tools/network-rack-power-cooling-calculator/"><strong>Network Rack Power &amp; Cooling Calculator</strong><span class="nel-tool-graph-description">Calculate rack power, current, cooling load, energy and cost.</span></a><a class="nel-tool-graph-card" href="/tools/wifi-coverage-capacity-planner/"><strong>Wi-Fi Coverage &amp; Capacity Planner</strong><span class="nel-tool-graph-description">Estimate bidirectional RF coverage, AP count, user capacity, throughput and channel reuse.</span></a></div><div class="nel-workflow-memberships"><span class="nel-workflow-memberships-label">Also used in</span><span class="nel-workflow-chip">Wireless Access Deployment Workflow</span></div>
 </section>
 <!-- NEL_TOOL_GRAPH_END -->
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
-  <div class="site-shell-footer-inner">
-    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
-    <nav class="site-shell-footer-links" aria-label="Footer navigation">
-      <a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a>
-    </nav>
-    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
-  </div>
+<div class="site-shell-footer-inner">
+<div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
+<nav aria-label="Footer navigation" class="site-shell-footer-links">
+<a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a>
+</nav>
+<p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+</div>
 </footer>
 <!-- NEL_FOOTER_END -->
 <script src="js/engine.js"></script><script src="js/app.js?v=c4c11d356b2f"></script><script src="js/pwa.js"></script>
-<script defer="" src="/assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=d2715dc996b6"></script><script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script></body></html>
+<script defer="" src="/assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=beb69108de40"></script><script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script></body></html>

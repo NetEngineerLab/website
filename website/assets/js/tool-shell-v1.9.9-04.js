@@ -237,14 +237,15 @@
     if (!(enhancedTools.has(slug) && main)) return;
 
     const header = document.querySelector(".site-header");
-    const existingStart = header?.querySelector(".start-btn, .site-shell-context-action a[href^='#']");
-    if (header && !existingStart) {
-      const start = document.createElement("a");
-      start.className = "start-btn";
-      start.href = `#${main.id}`;
-      start.textContent = text.start;
-      header.appendChild(start);
-    }
+    // UI V1.2.1: the shared header template is the single source of truth for
+    // the context CTA. Older runtime fallback code used to append .start-btn
+    // when the header was still hydrating; on a few pages this created a
+    // second "Start calculating" control at the upper-left of the viewport.
+    // Remove any legacy runtime button and never synthesize a second CTA.
+    document.querySelectorAll(".start-btn[data-nel-runtime-start], body > .start-btn, .site-header > .start-btn")
+      .forEach((node) => node.remove());
+    const headerStart = header?.querySelector(".site-shell-context-action a[href^='#']");
+    if (headerStart && main.id) headerStart.href = `#${main.id}`;
 
     const controls = [...main.querySelectorAll("input, select, textarea")];
     controls.forEach((control) => {

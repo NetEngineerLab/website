@@ -18,35 +18,54 @@ for (const tool of toolDirs) {
 
 const failures = [];
 function need(ok, page, rule) { if (!ok) failures.push(`${page.tool}/${page.rel}: ${rule}`); }
+function classAttr(re) { return new RegExp(`class=["'][^"']*\\b${re}\\b[^"']*["']`, 'i'); }
+
 for (const page of pages) {
   const html = fs.readFileSync(page.file, 'utf8');
-  need(/<body[^>]*data-nel-template=["']tool-detail-v1\.2["']/i.test(html), page, 'missing data-nel-template=tool-detail-v1.2');
+  need(/<body[^>]*data-nel-template=["']tool-detail-v1\.2\.2["']/i.test(html), page, 'missing data-nel-template=tool-detail-v1.2.2');
   need(/<header[^>]*site-shell-header/i.test(html), page, 'missing shared header');
   need(/<nav[^>]*tool-return-nav/i.test(html), page, 'missing return/breadcrumb navigation');
-  need(/<section[^>]*class=["'][^"']*nel-tool-hero[^"']*["']/i.test(html), page, 'missing V1.2 hero hook');
-  need(!/<main[\s\S]{0,3000}<section[^>]*class=["'][^"']*nel-tool-hero/i.test(html), page, 'hero remains nested inside main');
-  need(/<main[^>]*class=["'][^"']*nel-tool-main[^"']*["']/i.test(html), page, 'missing V1.2 main hook');
-  need(/nel-tool-primary-grid|nel-tool-specialized/i.test(html), page, 'missing primary workspace semantic hook');
+  need(/<section[^>]*class=["'][^"']*\bnel-tool-hero\b[^"']*["']/i.test(html), page, 'missing canonical V1.2.2 hero');
+  need(!/<main[\s\S]{0,3000}<section[^>]*class=["'][^"']*\bnel-tool-hero\b/i.test(html), page, 'hero remains nested inside main');
+  need(/<main[^>]*class=["'][^"']*\btool-shell\b[^"']*\bnel-tool-main\b[^"']*["']/i.test(html), page, 'main is not canonical tool-shell/nel-tool-main');
   need(/<footer[^>]*site-shell-footer/i.test(html), page, 'missing shared footer');
   need(/tool-layout\.css/i.test(html), page, 'missing final tool layout stylesheet');
+
+  const mainTag = (html.match(/<main\b[^>]*>/i) || [''])[0];
+  const isGrid = /\bnel-tool-grid\b/i.test(mainTag);
+  const isSpecialized = /\bnel-tool-specialized\b/i.test(mainTag);
+  need(isGrid || isSpecialized, page, 'main must declare nel-tool-grid or nel-tool-specialized');
+
+  if (isGrid) {
+    need(/<main[^>]*\bnel-tool-grid\b[^>]*>[\s\S]*?\bnel-tool-input\b/i.test(html), page, 'grid page missing canonical input card');
+    need(/<main[^>]*\bnel-tool-grid\b[^>]*>[\s\S]*?\bnel-tool-result\b/i.test(html), page, 'grid page missing canonical result card');
+    // The old wrappers were the root cause of the two-template visual split.
+    need(!/<main[^>]*>\s*<div[^>]*class=["'][^"']*\b(?:grid|tool-layout|layout)\b[^"']*["']/i.test(html), page, 'legacy primary wrapper still nested directly under main');
+    need(!/class=["'][^"']*\b(?:wrap|workspace|calculator-shell)\b[^"']*["'][^>]*\bnel-tool-main\b/i.test(mainTag), page, 'legacy main identity remains on canonical grid page');
+  }
+
+  const contextActions = html.match(/class=["'][^"']*site-shell-context-action[^"']*["']/gi) || [];
+  need(contextActions.length === 1, page, `expected exactly one shared context CTA container, found ${contextActions.length}`);
+  need(!/class=["'][^"']*\bstart-btn\b[^"']*["']/i.test(html), page, 'legacy .start-btn CTA remains in static HTML');
+
   const headerPos = html.search(/<header[^>]*site-shell-header/i);
   const navPos = html.search(/<nav[^>]*tool-return-nav/i);
-  const heroPos = html.search(/<section[^>]*class=[\"'][^\"']*nel-tool-hero/i);
-  const mainPos = html.search(/<main[^>]*class=[\"'][^\"']*nel-tool-main/i);
+  const heroPos = html.search(/<section[^>]*class=["'][^"']*\bnel-tool-hero\b/i);
+  const mainPos = html.search(/<main[^>]*class=["'][^"']*\bnel-tool-main\b/i);
   const footerPos = html.search(/<footer[^>]*site-shell-footer/i);
   need(headerPos >= 0 && navPos > headerPos && heroPos > navPos && mainPos > heroPos && footerPos > mainPos, page, 'canonical Header > Return > Hero > Main > Footer order violated');
 }
 
 const report = {
-  version: 'UI V1.2',
+  version: 'UI V1.2.2',
   tools: toolDirs.length,
   pages: pages.length,
   errors: failures.length,
   status: failures.length ? 'FAIL' : 'PASS',
   failures
 };
-fs.writeFileSync(path.join(__dirname,'..','docs','UI_V1.2_TEMPLATE_UNIFICATION_RUNTIME_AUDIT.json'), JSON.stringify(report,null,2));
-console.log(`Tool Page Template V1.2 Audit: ${report.status}`);
+fs.writeFileSync(path.join(__dirname,'..','docs','UI_V1.2.2_TEMPLATE_RUNTIME_AUDIT.json'), JSON.stringify(report,null,2));
+console.log(`Tool Page Template V1.2.2 Audit: ${report.status}`);
 console.log(`Tools: ${report.tools} | Pages: ${report.pages} | Errors: ${report.errors}`);
 if (failures.length) {
   failures.forEach((f) => console.error(`- ${f}`));

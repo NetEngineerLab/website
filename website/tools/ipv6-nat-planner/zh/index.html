@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="tools/ipv6-nat-planner/"><head>
+<html data-nel-locale="zh" data-nel-route="tools/ipv6-nat-planner/" dir="ltr" lang="zh-CN"><head>
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="../" name="app-base"/>
 <title>IPv6与NAT规划计算器｜NetEngineerLab</title><meta content="IPv6前缀、NAT44、CGNAT确定性端口块、NAT64及DNS64规划计算工具。" name="description"/><meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
 <meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="IPv6与NAT规划计算器｜NetEngineerLab" property="og:title"/><meta content="IPv6前缀、NAT44、CGNAT确定性端口块、NAT64及DNS64规划计算工具。" property="og:description"/><meta content="https://netengineerlab.com/tools/ipv6-nat-planner/zh/" property="og:url"/><meta content="https://netengineerlab.com/tools/ipv6-nat-planner/images/og-ipv6-nat-planner.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
@@ -12,55 +12,54 @@
 <script defer="" src="/data/seo-config.js"></script>
 <script defer="" src="/assets/js/seo-engine.js"></script>
 <script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么IPv6子网地址数量非常大？","acceptedAnswer":{"@type":"Answer","text":"IPv6是128位地址。/64保留64位接口标识，因此地址数为2^64。工具同时显示指数和精确整数。"}},{"@type":"Question","name":"端口范围为什么可以修改？","acceptedAnswer":{"@type":"Answer","text":"不同设备会保留管理端口、静态映射端口或采用不同端口池策略，因此1024—65535只能作为常见工程起点。"}},{"@type":"Question","name":"TCP和UDP容量能直接相加吗？","acceptedAnswer":{"@type":"Answer","text":"二者端口空间独立，理论容量可以分别计算；实际承载仍受设备会话表、内存、CPU、超时和应用行为限制。"}},{"@type":"Question","name":"确定性端口块越小越好吗？","acceptedAnswer":{"@type":"Answer","text":"更小端口块能提高公网IPv4共享比，但会增加端口不足和应用兼容风险，应根据忙时会话分布选择。"}},{"@type":"Question","name":"知名NAT64前缀能映射私网IPv4吗？","acceptedAnswer":{"@type":"Answer","text":"RFC 6052限制知名前缀表示非全球IPv4地址。域内场景可评估网络专用前缀或RFC 8215本地使用前缀。"}}]}</script>
-<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
-
-</link></link><meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
-<meta name="nel-locale" content="zh">
-<meta name="nel-route" content="tools/ipv6-nat-planner/">
-<meta name="nel-available-locales" content="en,zh">
-<link rel="canonical" href="https://netengineerlab.com/tools/ipv6-nat-planner/zh/">
-<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/ipv6-nat-planner/">
-<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/ipv6-nat-planner/zh/">
-<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/ipv6-nat-planner/">
-<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
-<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=dc6c5cc9b8ad">
-<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=9905ea2be293">
-<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=58918fefbb35">
-<script defer src="../../../data/locales.js?v=909e05076a50"></script>
-<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
-<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
-<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../../assets/js/site.js?v=5c6907a4fe26"></script>
-<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=591fcb5937d9">
-<link rel="manifest" href="../manifest-zh.webmanifest">
-</head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.2">
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link data-nel-workflow-style="" href="/assets/css/tool-workflow.css?v=66c8998b2681" rel="stylesheet">
+<meta content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline" name="nel-framework"/>
+<meta content="zh" name="nel-locale"/>
+<meta content="tools/ipv6-nat-planner/" name="nel-route"/>
+<meta content="en,zh" name="nel-available-locales"/>
+<link href="https://netengineerlab.com/tools/ipv6-nat-planner/zh/" rel="canonical"/>
+<link href="https://netengineerlab.com/tools/ipv6-nat-planner/" hreflang="en" rel="alternate"/>
+<link href="https://netengineerlab.com/tools/ipv6-nat-planner/zh/" hreflang="zh-CN" rel="alternate"/>
+<link href="https://netengineerlab.com/tools/ipv6-nat-planner/" hreflang="x-default" rel="alternate"/>
+<link href="../../../assets/css/locale-menu.css?v=7804394246fb" rel="stylesheet"/>
+<link href="../../../assets/css/design-tokens.css?v=dc6c5cc9b8ad" rel="stylesheet"/>
+<link href="../../../assets/css/tool-design-system.css?v=9905ea2be293" rel="stylesheet"/>
+<link href="../../../assets/css/site-shell.css?v=f0222e707b10" rel="stylesheet"/>
+<script defer="" src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer="" src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer="" src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer="" src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer="" src="../../../assets/js/site.js?v=5c6907a4fe26"></script>
+<link href="../../../assets/css/tool-layout.css?v=1947f39ca345" rel="stylesheet"/>
+<link href="../manifest-zh.webmanifest" rel="manifest"/>
+</link></head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.2.2">
 <a class="skip" href="#planner">开始规划</a><noscript><div class="noscript">JavaScript required / 本工具需要启用JavaScript。</div></noscript>
 <!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
-  <div class="site-shell-header-inner">
-    <a class="site-shell-brand brand" href="../../../zh/">
-      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
-      <span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span>
-    </a>
-    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="打开导航菜单"><span aria-hidden="true"></span></button>
-    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="主导航">
-      <a href="../../../zh/">首页</a>
-      <a href="../../zh/" aria-current="page">工具中心</a>
-      <a href="../../../zh/about/">关于我们</a>
-      <a href="../../../zh/contact/">联系我们</a>
-    </nav>
-    <div class="site-shell-actions">
-      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../" lang="en" hreflang="en"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="./" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
-      <div class="site-shell-context-action"><a href="#planner">开始计算</a></div>
-    </div>
-  </div>
+<div class="site-shell-header-inner">
+<a class="site-shell-brand brand" href="../../../zh/">
+<img alt="" height="42" src="../../../assets/images/logo.svg" width="42"/>
+<span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span>
+</a>
+<button aria-controls="site-shell-nav" aria-expanded="false" aria-label="打开导航菜单" class="site-shell-menu-toggle" type="button"><span aria-hidden="true"></span></button>
+<nav aria-label="主导航" class="site-shell-nav nel-global-nav" id="site-shell-nav">
+<a href="../../../zh/">首页</a>
+<a aria-current="page" href="../../zh/">工具中心</a>
+<a href="../../../zh/about/">关于我们</a>
+<a href="../../../zh/contact/">联系我们</a>
+</nav>
+<div class="site-shell-actions">
+<!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu="" data-open="false"><button aria-expanded="false" aria-haspopup="true" aria-label="语言: 简体中文" class="language-trigger" type="button"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z" fill="currentColor"></path></svg><span class="language-current">简体中文</span><span aria-hidden="true" class="language-caret">▾</span></button><div class="language-options" hidden="" role="menu"><a class="language-option" href="../" hreflang="en" lang="en" role="menuitem"><span>English</span><small>English</small></a><a aria-current="page" class="language-option" href="./" hreflang="zh-CN" lang="zh-CN" role="menuitem"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+<div class="site-shell-context-action"><a href="#planner">开始计算</a></div>
+</div>
+</div>
 </header>
 <!-- NEL_HEADER_END -->
 <!-- NEL_TOOL_RETURN_START -->
-<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
-  <a class="tool-return-link" href="../../zh/">← 返回工具中心</a>
-  <span aria-hidden="true">/</span>
-  <span aria-current="page">IPv6与NAT规划计算器</span>
+<nav aria-label="Breadcrumb" class="breadcrumbs tool-return-nav">
+<a class="tool-return-link" href="../../zh/">← 返回工具中心</a>
+<span aria-hidden="true">/</span>
+<span aria-current="page">IPv6与NAT规划计算器</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
 <section class="hero nel-tool-hero"><div class="hero-inner"><div><p class="eyebrow">IPV6 &amp; ADDRESS TRANSLATION ENGINEERING</p><h1>IPv6与NAT规划计算器</h1><p>统一完成IPv6前缀拆分、地址规范化、NAT44端口容量、CGNAT确定性端口块、日志量以及NAT64/DNS64地址合成。</p><div class="hero-tags"><span>IPv6前缀规划</span><span>NAT44/PAT容量</span><span>CGNAT端口块</span><span>NAT64/DNS64</span></div></div>
@@ -144,24 +143,24 @@
 <section class="content-section nel-tool-supporting-section"><p class="eyebrow">FAQ</p><h2>常见问题</h2><div class="faq-grid"><details><summary>为什么IPv6子网地址数量非常大？</summary><p>IPv6是128位地址。/64保留64位接口标识，因此地址数为2^64。工具同时显示指数和精确整数。</p></details><details><summary>端口范围为什么可以修改？</summary><p>不同设备会保留管理端口、静态映射端口或采用不同端口池策略，因此1024—65535只能作为常见工程起点。</p></details><details><summary>TCP和UDP容量能直接相加吗？</summary><p>二者端口空间独立，理论容量可以分别计算；实际承载仍受设备会话表、内存、CPU、超时和应用行为限制。</p></details><details><summary>确定性端口块越小越好吗？</summary><p>更小端口块能提高公网IPv4共享比，但会增加端口不足和应用兼容风险，应根据忙时会话分布选择。</p></details><details><summary>知名NAT64前缀能映射私网IPv4吗？</summary><p>RFC 6052限制知名前缀表示非全球IPv4地址。域内场景可评估网络专用前缀或RFC 8215本地使用前缀。</p></details></div></section>
 <section class="content-section nel-tool-supporting-section" id="history"><div class="history-head"><div><p class="eyebrow">PROJECT RECORDS</p><h2>规划历史记录</h2></div><button id="clearHistoryBtn">清空记录</button></div><div class="history-list" id="historyList"></div></section>
 <!-- NEL_TOOL_GRAPH_START -->
-<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="ipv6-nat-planner" data-primary-workflow="enterprise-lan-ip-planning">
+<section aria-labelledby="nel-tool-graph-title" class="content-section nel-tool-graph" data-primary-workflow="enterprise-lan-ip-planning" data-tool-id="ipv6-nat-planner" id="nel-tool-graph">
 <div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
-<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">当前流程</span><strong>企业 LAN 与 IP 规划工作流</strong><p>把地址规划、VLAN 容量、MTU、上联、光模块、访问策略和 DNS 行为串成完整局域网设计流程。</p></div><div class="nel-workflow-step"><strong>步骤 2 / 9</strong><div class="nel-workflow-progress" aria-label="步骤 2 / 9"><span style="width:22%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/subnet-calculator/zh/"><span class="nel-tool-graph-label">上一步</span><strong>IP子网计算器</strong><span class="nel-tool-graph-description">计算IPv4、IPv6、CIDR、掩码、广播地址、主机容量，并支持VLSM地址规划。</span></a><a class="nel-tool-graph-card" href="/tools/vlan-ip-capacity-planner/zh/"><span class="nel-tool-graph-label">下一步</span><strong>VLAN与IP子网容量规划器</strong><span class="nel-tool-graph-description">规划VLAN数量、IPv4前缀、地址容量与扩容余量。</span></a></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">当前流程</span><strong>企业 LAN 与 IP 规划工作流</strong><p>把地址规划、VLAN 容量、MTU、上联、光模块、访问策略和 DNS 行为串成完整局域网设计流程。</p></div><div class="nel-workflow-step"><strong>步骤 2 / 9</strong><div aria-label="步骤 2 / 9" class="nel-workflow-progress"><span style="width:22%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/subnet-calculator/zh/"><span class="nel-tool-graph-label">上一步</span><strong>IP子网计算器</strong><span class="nel-tool-graph-description">计算IPv4、IPv6、CIDR、掩码、广播地址、主机容量，并支持VLSM地址规划。</span></a><a class="nel-tool-graph-card" href="/tools/vlan-ip-capacity-planner/zh/"><span class="nel-tool-graph-label">下一步</span><strong>VLAN与IP子网容量规划器</strong><span class="nel-tool-graph-description">规划VLAN数量、IPv4前缀、地址容量与扩容余量。</span></a></div>
 <h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/subnet-calculator/zh/"><strong>IP子网计算器</strong><span class="nel-tool-graph-description">计算IPv4、IPv6、CIDR、掩码、广播地址、主机容量，并支持VLSM地址规划。</span></a><a class="nel-tool-graph-card" href="/tools/vlan-ip-capacity-planner/zh/"><strong>VLAN与IP子网容量规划器</strong><span class="nel-tool-graph-description">规划VLAN数量、IPv4前缀、地址容量与扩容余量。</span></a><a class="nel-tool-graph-card" href="/tools/mtu-calculator/zh/"><strong>MTU与MSS计算器</strong><span class="nel-tool-graph-description">计算PPPoE、GRE、VXLAN、MPLS、IPsec和WireGuard封装后的有效MTU、TCP MSS与分片风险。</span></a></div>
 </section>
 <!-- NEL_TOOL_GRAPH_END -->
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
-  <div class="site-shell-footer-inner">
-    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div>
-    <nav class="site-shell-footer-links" aria-label="页脚导航">
-      <a href="../../../zh/about/">关于</a><a href="../../../zh/contact/">联系</a><a href="../../../zh/privacy/">隐私政策</a><a href="../../../zh/terms/">使用条款</a>
-    </nav>
-    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
-  </div>
+<div class="site-shell-footer-inner">
+<div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div>
+<nav aria-label="页脚导航" class="site-shell-footer-links">
+<a href="../../../zh/about/">关于</a><a href="../../../zh/contact/">联系</a><a href="../../../zh/privacy/">隐私政策</a><a href="../../../zh/terms/">使用条款</a>
+</nav>
+<p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+</div>
 </footer>
 <!-- NEL_FOOTER_END -->
 <div class="toast" id="toast" role="status"></div>
 <script defer="" src="../data/presets.js"></script><script defer="" src="../js/engine.js"></script><script defer="" src="../js/app.js?v=1c5cebdf9a34"></script><script defer="" src="../js/pwa.js"></script>
 <script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script>
-<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=d2715dc996b6"></script></body></html>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=beb69108de40"></script></body></html>
