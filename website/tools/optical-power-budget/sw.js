@@ -1,21 +1,21 @@
 "use strict";
-const CACHE = "nel-optical-power-budget-locale-v1.9.9-04-p0-p1-correctness-consent-offline-a5ad54e03080-963cf12ee72d";
+const CACHE = "nel-optical-power-budget-locale-v1.9.9-04-p0-p1-correctness-consent-offline-28ce5f771f70-98fa18f40bd7";
 const CORE = [
   "./index.html",
   "./",
   "./zh/",
   "./offline.html",
   "./manifest.webmanifest",
-  "./css/style.css?v=ef535c705ff6",
+  "./css/style.css?v=02281a0ba2f1",
   "./js/app.js?v=1fa80f0b6cda",
   "./js/engine.js",
   "./images/logo.svg",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
-  "../../assets/css/design-tokens.css?v=1b428f96cadc",
+  "../../assets/css/design-tokens.css?v=dc6c5cc9b8ad",
   "../../assets/css/site-shell.css?v=58918fefbb35",
-  "../../assets/css/tool-design-system.css?v=060f4c8f3dc4",
+  "../../assets/css/tool-design-system.css?v=9905ea2be293",
   "../../assets/css/tool-workflow.css?v=66c8998b2681",
   "../../assets/js/analytics.js?v=1156b7864023",
   "../../assets/js/adsense.js?v=f075c80ccc75",

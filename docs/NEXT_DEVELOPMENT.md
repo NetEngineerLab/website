@@ -23,3 +23,8 @@ V1.7.5生产性能自动巡检上线后，执行：
 5. 稳定后逐步收紧性能预算，再开展工具页内容与SEO增强。
 
 V1.7.5不修改12个工具的计算公式。生产性能基线稳定后再进入下一阶段产品开发。
+
+
+## UI V1.2 mandatory Tool Detail template
+
+All new/refactored Tool Detail pages MUST follow `NETENGINEERLAB_UI_V1.2_TOOL_PAGE_TEMPLATE_UNIFICATION_AUDIT_2026-09-12.md` and pass `npm run audit:ui-v1.2` before merge.

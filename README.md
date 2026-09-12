@@ -188,3 +188,8 @@ npm run audit:ui
 ```
 
 `audit:ui` is also part of `prepare:launch`. Tool pages must keep the shared Header/Footer, 1400px page grid, localized Back-to-Tools breadcrumb, responsive mobile shell and final `tool-layout.css` compliance layer.
+
+
+## Mandatory Tool Detail UI template
+
+Before creating or refactoring any Tool Detail page, read `docs/NETENGINEERLAB_WEB_UI_DESIGN_SYSTEM_V1.1.md` and `docs/NETENGINEERLAB_UI_V1.2_TOOL_PAGE_TEMPLATE_UNIFICATION_AUDIT_2026-09-12.md`. All Tool Detail pages must pass `npm run audit:ui-v1.2`.

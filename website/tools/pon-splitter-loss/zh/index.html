@@ -9,16 +9,14 @@
 <link href="../css/style.css?v=57985c7e20dd" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"PON分光器损耗计算器","alternateName":"PON Splitter Loss Calculator","url":"https://netengineerlab.com/tools/pon-splitter-loss/zh/","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Optical Engineering Calculator","operatingSystem":"Any","softwareVersion":"1.0.2","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"工具中心","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"PON分光器损耗计算器","item":"https://netengineerlab.com/tools/pon-splitter-loss/zh/"}]}</script><meta content="NetEngineerLab" name="author"/>
-
-<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=v180-hotfix03">
-<link rel="stylesheet" href="/assets/css/mobile-branding.css?v=1.9.5-06">
-
-<script defer src="/data/seo-config.js"></script>
-<script defer src="/assets/js/seo-engine.js"></script>
+<link href="/assets/css/cookie-consent.css?v=v180-hotfix03" rel="stylesheet"/>
+<link href="/assets/css/mobile-branding.css?v=1.9.5-06" rel="stylesheet"/>
+<script defer="" src="/data/seo-config.js"></script>
+<script defer="" src="/assets/js/seo-engine.js"></script>
 <script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么1:8 × 1:8默认采用GPON C+？","acceptedAnswer":{"@type":"Answer","text":"两级分光器本身约21 dB，再叠加光纤、连接器、熔接点和工程余量后，B+预算容易不足；C+提供32 dB ODN等级，更适合该默认1:64方案。"}},{"@type":"Question","name":"一级分光和二级分光哪个损耗更小？","acceptedAnswer":{"@type":"Answer","text":"在总分光比相同的情况下，多级级联通常会增加额外插入损耗和连接点，因此一级分光一般更容易控制预算，但实际部署还要考虑覆盖范围和维护便利性。"}},{"@type":"Question","name":"1:4 × 1:8为什么等于1:32？","acceptedAnswer":{"@type":"Answer","text":"一级产生4个分支，每个分支再分成8路，总分支数量为4×8=32。"}},{"@type":"Question","name":"理论分光损耗和标称损耗为什么不同？","acceptedAnswer":{"@type":"Answer","text":"理论值只反映理想能量均分；标称插入损耗还包含器件制造、耦合、封装和均匀性等损耗。"}},{"@type":"Question","name":"分光器级联越多越好吗？","acceptedAnswer":{"@type":"Answer","text":"不是。级联越多，设计灵活性可能提高，但连接点、插入损耗和维护复杂度也会增加。"}},{"@type":"Question","name":"接收光功率过高也会有问题吗？","acceptedAnswer":{"@type":"Answer","text":"会。若超过接收机过载门限，可能导致误码或接收异常，因此需要同时检查灵敏度余量和过载余量。"}},{"@type":"Question","name":"本工具能否直接替代现场测试？","acceptedAnswer":{"@type":"Answer","text":"不能。它用于规划和复核，正式验收仍需光功率计、OTDR和设备实际参数。"}}]}</script>
-<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
 
-<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+</link></link><meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
 <meta name="nel-route" content="tools/pon-splitter-loss/">
 <meta name="nel-available-locales" content="en,zh,es">
@@ -28,8 +26,8 @@
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/pon-splitter-loss/es/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/pon-splitter-loss/">
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
-<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=1b428f96cadc">
-<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=060f4c8f3dc4">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=dc6c5cc9b8ad">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=9905ea2be293">
 <link rel="stylesheet" href="../../../assets/css/site-shell.css?v=58918fefbb35">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
@@ -38,7 +36,7 @@
 <script defer src="../../../assets/js/site.js?v=5c6907a4fe26"></script>
 <link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=591fcb5937d9">
 <link rel="manifest" href="../manifest-zh.webmanifest">
-</head><body>
+</head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.2">
 <a class="skip-link" href="#calculator">跳到计算器</a><noscript><div class="noscript">本工具需要启用 JavaScript。</div></noscript>
 <!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
@@ -68,9 +66,9 @@
   <span aria-current="page">PON分光器损耗计算器</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
-<section class="hero"><div class="hero-inner"><div><p class="eyebrow">PON ENGINEERING TOOL</p><h1>PON分光器损耗计算器</h1><p class="hero-copy">规划一级、二级或三级PON分光级联，计算总分光比、分光器总插入损耗、理论分光损耗、额外损耗、链路预算和预计ONU接收光功率。</p></div><div class="hero-tags"><span>三级级联</span><span>1:2–1:128</span><span>预算诊断</span><span>最大距离</span></div></div></section>
-<main class="tool-shell nel-tool-grid" id="calculator">
-<section class="input-panel card">
+<section class="hero nel-tool-hero"><div class="hero-inner"><div><p class="eyebrow">PON ENGINEERING TOOL</p><h1>PON分光器损耗计算器</h1><p class="hero-copy">规划一级、二级或三级PON分光级联，计算总分光比、分光器总插入损耗、理论分光损耗、额外损耗、链路预算和预计ONU接收光功率。</p></div><div class="hero-tags"><span>三级级联</span><span>1:2–1:128</span><span>预算诊断</span><span>最大距离</span></div></div></section>
+<main class="tool-shell nel-tool-grid nel-tool-main nel-tool-primary-grid" id="calculator">
+<section class="input-panel card nel-tool-input">
 <div class="section-title"><span class="section-icon">☷</span><div><h2>分光与链路参数</h2><p>输入分光级联、链路损耗和设备光功率窗口。</p></div></div>
 <div class="preset-row"><label for="preset">分光场景预设</label><select id="preset"><option value="custom">自定义</option><option selected="" value="8x8">二级 1:8 × 1:8</option><option value="1x16">一级 1:16</option><option value="1x32">一级 1:32</option><option value="1x64">一级 1:64</option><option value="2x8">二级 1:2 × 1:8</option><option value="4x8">二级 1:4 × 1:8</option><option value="4x4x4">三级 1:4 × 1:4 × 1:4</option></select></div>
 <div class="form-grid">
@@ -94,9 +92,9 @@
 <div class="field"><label for="rxSensitivity">接收灵敏度</label><div class="input-wrap"><input id="rxSensitivity" step="0.1" type="number" value="-30"/><span>dBm</span></div></div>
 <div class="field"><label for="rxOverload">接收过载门限</label><div class="input-wrap"><input id="rxOverload" step="0.1" type="number" value="-8"/><span>dBm</span></div></div>
 </div>
-<div class="input-actions"><button class="primary-action" id="calculateBtn"><svg aria-hidden="true" class="action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8v8H8z"/></svg> 计算分光损耗</button><button class="secondary-action" id="resetBtn"><svg aria-hidden="true" class="action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg> 重置参数</button></div><p class="validation" id="validation" role="alert"></p>
+<div class="input-actions"><button class="primary-action" id="calculateBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> 计算分光损耗</button><button class="secondary-action" id="resetBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M20 11a8 8 0 1 0-2.3 5.7"></path><path d="M20 4v7h-7"></path></svg> 重置参数</button></div><p class="validation" id="validation" role="alert"></p>
 </section>
-<section aria-live="polite" class="result-panel card">
+<section aria-live="polite" class="result-panel card nel-tool-result">
 <div class="section-title"><span class="section-icon">▥</span><div><h2>分光与预算结果</h2><p>按扣除光学代价后的标准ODN预算计算，并受系统距离上限约束。</p></div></div>
 <div class="summary-card healthy" id="summaryCard"><div><p>总分光比</p><strong id="ratioResult">1:64</strong></div><div class="health-badge" id="healthBadge">✓ 健康</div></div>
 <div class="metric-grid">
@@ -128,11 +126,11 @@
 <div class="breakdown-row"><span>系统光学代价</span><span><b id="opticalPenaltyResult">0.00</b> dB</span></div><div class="breakdown-row"><span>工程余量</span><span><b id="marginResult">0.00</b> dB</span></div>
 </div>
 <div class="diagnosis healthy" id="diagnosis"><strong>工程诊断</strong><p id="diagnosisText">—</p></div>
-<div class="result-actions"><button id="copyBtn"><svg aria-hidden="true" class="action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8v8H8z"/></svg> 复制结果</button><button id="saveBtn"><svg aria-hidden="true" class="action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg> 保存记录</button><button id="csvBtn"><svg aria-hidden="true" class="action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg> 导出 CSV</button><button id="printBtn"><svg aria-hidden="true" class="action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/></svg> 打印 / PDF</button></div>
+<div class="result-actions"><button id="copyBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> 复制结果</button><button id="saveBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 5v14M5 12h14"></path></svg> 保存记录</button><button id="csvBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg> 导出 CSV</button><button id="printBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M6 9V3h12v6"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v7H6z"></path></svg> 打印 / PDF</button></div>
 </section>
 </main>
 <aside aria-label="广告" class="ad-slot" data-ad-key="afterCalculator" hidden=""><div class="ad-label">广告</div><div class="ad-body"></div></aside>
-<section class="content-section" id="methodology"><div class="section-heading"><div><p class="eyebrow">METHODOLOGY</p><h2>计算方法与工程说明</h2></div></div>
+<section class="content-section nel-tool-supporting-section" id="methodology"><div class="section-heading"><div><p class="eyebrow">METHODOLOGY</p><h2>计算方法与工程说明</h2></div></div>
 <div class="method-grid">
 <article><h3>总分光比</h3><p>各级分光比相乘。一级1:8与二级1:8形成总分光比1:64。</p></article>
 <article><h3>实际分光损耗</h3><p>各级分光器标称插入损耗相加；1:8加1:8默认共21.0 dB。</p></article>
@@ -141,7 +139,7 @@
 </div>
 <div class="note"><strong>工程说明：</strong>1490 nm的0.25 dB/km为可编辑的工程典型值，不是统一验收上限；正式设计应以设备、光缆和企业标准为准。</div>
 </section>
-<section class="content-section" id="faq"><div class="section-heading"><div><p class="eyebrow">FAQ</p><h2>常见问题</h2></div></div><div class="faq-grid"><details id="faqCplusDefault"><summary>为什么1:8 × 1:8默认采用GPON C+？</summary><p>两级分光器本身约21 dB，再叠加光纤、连接器、熔接点和工程余量后，B+预算容易不足；C+提供32 dB ODN等级，更适合该默认1:64方案。</p></details>
+<section class="content-section nel-tool-supporting-section" id="faq"><div class="section-heading"><div><p class="eyebrow">FAQ</p><h2>常见问题</h2></div></div><div class="faq-grid"><details id="faqCplusDefault"><summary>为什么1:8 × 1:8默认采用GPON C+？</summary><p>两级分光器本身约21 dB，再叠加光纤、连接器、熔接点和工程余量后，B+预算容易不足；C+提供32 dB ODN等级，更适合该默认1:64方案。</p></details>
 <details><summary>一级分光和二级分光哪个损耗更小？</summary><p>在总分光比相同的情况下，多级级联通常会增加额外插入损耗和连接点，因此一级分光一般更容易控制预算，但实际部署还要考虑覆盖范围和维护便利性。</p></details>
 <details><summary>1:4 × 1:8为什么等于1:32？</summary><p>一级产生4个分支，每个分支再分成8路，总分支数量为4×8=32。</p></details>
 <details><summary>理论分光损耗和标称损耗为什么不同？</summary><p>理论值只反映理想能量均分；标称插入损耗还包含器件制造、耦合、封装和均匀性等损耗。</p></details>
@@ -149,8 +147,8 @@
 <details><summary>接收光功率过高也会有问题吗？</summary><p>会。若超过接收机过载门限，可能导致误码或接收异常，因此需要同时检查灵敏度余量和过载余量。</p></details>
 <details><summary>本工具能否直接替代现场测试？</summary><p>不能。它用于规划和复核，正式验收仍需光功率计、OTDR和设备实际参数。</p></details>
 </div></section>
-<section class="content-section" id="history"><div class="section-heading"><div><p class="eyebrow">PROJECT RECORDS</p><h2>最近计算记录</h2></div><button class="text-button" id="clearHistoryBtn">清空记录</button></div><div class="history-list" id="historyList"></div></section>
-<section class="content-section" id="references"><div class="section-heading"><div><p class="eyebrow">ENGINEERING EVIDENCE</p><h2>分光假设与官方依据</h2></div></div><div class="note"><p>接收灵敏度和 ODN 预算按最小发送功率校核，接收过载单独按最大发送功率校核。可选插入损耗是规划值，不是统一上限；最终设计必须使用具体分光器等级、均匀性、回波损耗和设备规格书。3 dB 的健康/风险分界是本工具规划门槛，不是标准统一强制值。</p><p>复核日期：2026-08-31。官方来源：<a href="https://www.itu.int/rec/T-REC-G.984.2/en" rel="noopener noreferrer" target="_blank">ITU-T G.984.2 GPON PMD</a>、<a href="https://www.itu.int/rec/T-REC-G.671/en" rel="noopener noreferrer" target="_blank">ITU-T G.671 光器件与 PON 分支器件</a>、<a href="https://www.itu.int/rec/T-REC-G.652-202408-I/en" rel="noopener noreferrer" target="_blank">ITU-T G.652 单模光纤</a>。</p></div></section>
+<section class="content-section nel-tool-supporting-section" id="history"><div class="section-heading"><div><p class="eyebrow">PROJECT RECORDS</p><h2>最近计算记录</h2></div><button class="text-button" id="clearHistoryBtn">清空记录</button></div><div class="history-list" id="historyList"></div></section>
+<section class="content-section nel-tool-supporting-section" id="references"><div class="section-heading"><div><p class="eyebrow">ENGINEERING EVIDENCE</p><h2>分光假设与官方依据</h2></div></div><div class="note"><p>接收灵敏度和 ODN 预算按最小发送功率校核，接收过载单独按最大发送功率校核。可选插入损耗是规划值，不是统一上限；最终设计必须使用具体分光器等级、均匀性、回波损耗和设备规格书。3 dB 的健康/风险分界是本工具规划门槛，不是标准统一强制值。</p><p>复核日期：2026-08-31。官方来源：<a href="https://www.itu.int/rec/T-REC-G.984.2/en" rel="noopener noreferrer" target="_blank">ITU-T G.984.2 GPON PMD</a>、<a href="https://www.itu.int/rec/T-REC-G.671/en" rel="noopener noreferrer" target="_blank">ITU-T G.671 光器件与 PON 分支器件</a>、<a href="https://www.itu.int/rec/T-REC-G.652-202408-I/en" rel="noopener noreferrer" target="_blank">ITU-T G.652 单模光纤</a>。</p></div></section>
 <aside aria-label="广告" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">广告</div><div class="ad-body"></div></aside>
 <!-- NEL_TOOL_GRAPH_START -->
 <section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="pon-splitter-loss" data-primary-workflow="optical-link-design">
@@ -170,6 +168,6 @@
   </div>
 </footer>
 <!-- NEL_FOOTER_END -->
-<script defer src="../js/engine.js"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=13b784c5ec67"></script>
+<script defer="" src="../js/engine.js"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=13b784c5ec67"></script>
 <script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script>
-<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=d2715dc996b6"></script></body></html>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=d2715dc996b6"></script></body></html>

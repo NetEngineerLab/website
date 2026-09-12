@@ -7,16 +7,14 @@
 <link href="../css/style.css?v=25f3a1ffa4e3" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"带宽与传输时间计算器","url":"https://netengineerlab.com/tools/bandwidth-calculator/zh/","description":"专业带宽、文件传输时间、所需链路速率、并发用户容量和数据量计算器。","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","softwareVersion":"1.0.0","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 <script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"工具中心","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"带宽与传输时间计算器","item":"https://netengineerlab.com/tools/bandwidth-calculator/zh/"}]}</script><meta content="NetEngineerLab" name="author"/>
-
-<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=v180-hotfix03">
-<link rel="stylesheet" href="/assets/css/mobile-branding.css?v=1.9.5-06">
-
-<script defer src="/data/seo-config.js"></script>
-<script defer src="/assets/js/seo-engine.js"></script>
+<link href="/assets/css/cookie-consent.css?v=v180-hotfix03" rel="stylesheet"/>
+<link href="/assets/css/mobile-branding.css?v=1.9.5-06" rel="stylesheet"/>
+<script defer="" src="/data/seo-config.js"></script>
+<script defer="" src="/assets/js/seo-engine.js"></script>
 <script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么100 Mbps不能每秒传100 MB？","acceptedAnswer":{"@type":"Answer","text":"100 Mbps表示每秒100兆比特，理论上等于12.5 MB/s，尚未扣除协议开销和链路利用率。"}},{"@type":"Question","name":"文件大小应该用GB还是GiB？","acceptedAnswer":{"@type":"Answer","text":"存储厂商通常使用十进制GB，操作系统或工具可能使用二进制GiB。"}},{"@type":"Question","name":"效率应该填多少？","acceptedAnswer":{"@type":"Answer","text":"优先使用实测应用吞吐率；没有实测数据时可从预设开始，并保留工程余量。"}},{"@type":"Question","name":"RTT对大文件传输重要吗？","acceptedAnswer":{"@type":"Answer","text":"本工具直接计入建立时延，但真实TCP中RTT还会影响窗口增长和丢包恢复。"}},{"@type":"Question","name":"最大并发用户数如何计算？","acceptedAnswer":{"@type":"Answer","text":"先计算链路可用业务带宽，再除以突发系数修正后的单用户带宽。"}},{"@type":"Question","name":"能代替完整流量工程模型吗？","acceptedAnswer":{"@type":"Answer","text":"不能。队列、QoS、报文长度、重传、流量分布和忙时特征仍需验证。"}}]}</script>
-<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
 
-<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+</link></link><meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
 <meta name="nel-route" content="tools/bandwidth-calculator/">
 <meta name="nel-available-locales" content="en,zh,es">
@@ -26,8 +24,8 @@
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/bandwidth-calculator/es/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/bandwidth-calculator/">
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
-<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=1b428f96cadc">
-<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=060f4c8f3dc4">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=dc6c5cc9b8ad">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=9905ea2be293">
 <link rel="stylesheet" href="../../../assets/css/site-shell.css?v=58918fefbb35">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
@@ -36,7 +34,7 @@
 <script defer src="../../../assets/js/site.js?v=5c6907a4fe26"></script>
 <link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=591fcb5937d9">
 <link rel="manifest" href="../manifest-zh.webmanifest">
-</head><body>
+</head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.2">
 <a class="skip" href="#calculator">跳到计算器</a>
 <!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
@@ -66,10 +64,10 @@
   <span aria-current="page">带宽与传输时间计算器</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
-<section class="hero"><div class="hero-inner"><div><p class="eyebrow">NETWORK CAPACITY PLANNING TOOL</p><h1>带宽与传输时间计算器</h1><p>估算文件传输时间，按完成窗口反算所需带宽，评估并发用户容量，并把持续速率换算为数据量。</p></div><div class="hero-tags"><span>bps / Mbps / Gbps</span><span>GB / GiB / TB</span><span>Concurrency</span><span>Efficiency</span></div></div></section>
+<section class="hero nel-tool-hero"><div class="hero-inner"><div><p class="eyebrow">NETWORK CAPACITY PLANNING TOOL</p><h1>带宽与传输时间计算器</h1><p>估算文件传输时间，按完成窗口反算所需带宽，评估并发用户容量，并把持续速率换算为数据量。</p></div><div class="hero-tags"><span>bps / Mbps / Gbps</span><span>GB / GiB / TB</span><span>Concurrency</span><span>Efficiency</span></div></div></section>
 <div class="mode-tabs"><button class="active" data-mode="transfer">传输时间</button><button data-mode="required">所需带宽</button><button data-mode="concurrency">并发用户</button><button data-mode="volume">数据量换算</button></div>
-<main class="workspace nel-tool-grid" id="calculator">
-<section class="input-panel card">
+<main class="workspace nel-tool-grid nel-tool-main nel-tool-primary-grid" id="calculator">
+<section class="input-panel card nel-tool-input">
 <div class="section-title"><span class="section-icon">BW</span><div><h2>业务与链路参数</h2><p>选择计算模式，并按实际情况修改效率、利用率和时延参数。</p></div></div>
 <div class="notice">网络速率默认采用十进制SI单位，文件大小可选择十进制或IEC二进制单位。</div>
 <div class="preset-row"><label for="preset">工程预设</label><select id="preset"><option value="ideal">理想链路</option><option selected="" value="ethernet">一般以太网业务</option><option value="internet">互联网文件传输</option><option value="vpn">VPN/加密隧道</option><option value="wan">高时延广域网</option><option value="backup">备份窗口</option></select></div>
@@ -107,9 +105,9 @@
 <div class="field"><label for="volumeUtilization">允许链路利用率</label><div class="input-wrap"><input data-utilization="" id="volumeUtilization" max="100" min="0" step="0.1" type="number" value="90"/><span>%</span></div></div>
 </div></div>
 <p class="validation" id="validation"></p>
-<div class="input-actions"><button class="primary" id="calculateBtn" type="button"><svg aria-hidden="true" class="action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8v8H8z"/></svg> 计算</button><button class="secondary" id="resetBtn" type="button"><svg aria-hidden="true" class="action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg> 重置参数</button></div>
+<div class="input-actions"><button class="primary" id="calculateBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> 计算</button><button class="secondary" id="resetBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M20 11a8 8 0 1 0-2.3 5.7"></path><path d="M20 4v7h-7"></path></svg> 重置参数</button></div>
 </section>
-<section aria-live="polite" class="result-panel card">
+<section aria-live="polite" class="result-panel card nel-tool-result">
 <div class="section-title"><span class="section-icon">NET</span><div><h2>带宽规划结果</h2><p>扣除效率和利用率限制后的有效业务性能。</p></div></div>
 <div class="summary-card"><div>
 <div id="transferResult"><small>预计完成时间</small><strong id="transferHeadline">—</strong></div>
@@ -154,12 +152,12 @@
 <article class="metric"><small>持续秒数</small><strong id="volumeDurationSeconds"></strong></article>
 </div><div class="progress-card"><div class="progress-head"><span>综合业务效率</span></div><div class="progress-track"><span class="progress-fill" id="volumeBar"></span></div></div></div>
 <div class="formula-card"><h3>核心计算关系</h3><code>有效业务速率 = 物理速率 × 业务载荷效率 × 允许利用率；传输时间 = 文件比特数 ÷ 有效业务速率 + 建立时延。</code></div>
-<div class="result-actions"><button id="copyBtn"><svg aria-hidden="true" class="action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8v8H8z"/></svg> 复制结果</button><button id="saveBtn"><svg aria-hidden="true" class="action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg> 保存记录</button><button id="csvBtn"><svg aria-hidden="true" class="action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg> 导出CSV</button><button id="printBtn"><svg aria-hidden="true" class="action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/></svg> 打印/PDF</button></div>
+<div class="result-actions"><button id="copyBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> 复制结果</button><button id="saveBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 5v14M5 12h14"></path></svg> 保存记录</button><button id="csvBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg> 导出CSV</button><button id="printBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M6 9V3h12v6"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v7H6z"></path></svg> 打印/PDF</button></div>
 </section></main>
-<section class="content-section" id="methodology"><p class="eyebrow">METHODOLOGY</p><h2>计算方法</h2><div class="method-grid"><article><h3>bit与Byte</h3><p>网络速率通常以bit/s表示，文件大小通常以Byte表示，1 Byte等于8 bit。</p></article><article><h3>效率与利用率</h3><p>协议效率表示有效业务载荷占比，链路利用率表示允许该业务使用的物理链路容量比例。</p></article><article><h3>并发传输</h3><p>传输时间模式默认并发任务平均分享有效业务速率，实际调度、拥塞控制和优先级可能不同。</p></article><article><h3>时延与建立过程</h3><p>建立时延按RTT乘以建立往返次数计算，并与数据序列化时间相加。</p></article></div>
+<section class="content-section nel-tool-supporting-section" id="methodology"><p class="eyebrow">METHODOLOGY</p><h2>计算方法</h2><div class="method-grid"><article><h3>bit与Byte</h3><p>网络速率通常以bit/s表示，文件大小通常以Byte表示，1 Byte等于8 bit。</p></article><article><h3>效率与利用率</h3><p>协议效率表示有效业务载荷占比，链路利用率表示允许该业务使用的物理链路容量比例。</p></article><article><h3>并发传输</h3><p>传输时间模式默认并发任务平均分享有效业务速率，实际调度、拥塞控制和优先级可能不同。</p></article><article><h3>时延与建立过程</h3><p>建立时延按RTT乘以建立往返次数计算，并与数据序列化时间相加。</p></article></div>
 <div class="sources"><strong>单位参考：</strong> <a href="https://www.bipm.org/en/publications/si-brochure" rel="noopener">SI Brochure</a> · <a href="https://www.nist.gov/pml/owm/si-units-information" rel="noopener">NIST SI Units</a> · <a href="https://www.rfc-editor.org/rfc/rfc6349" rel="noopener">RFC 6349</a></div></section>
-<section class="content-section"><p class="eyebrow">FAQ</p><h2>常见问题</h2><div class="faq-grid"><details><summary>为什么100 Mbps不能每秒传100 MB？</summary><p>100 Mbps表示每秒100兆比特，理论上等于12.5 MB/s，尚未扣除协议开销和链路利用率。</p></details><details><summary>文件大小应该用GB还是GiB？</summary><p>存储厂商通常使用十进制GB，操作系统或工具可能使用二进制GiB。</p></details><details><summary>效率应该填多少？</summary><p>优先使用实测应用吞吐率；没有实测数据时可从预设开始，并保留工程余量。</p></details><details><summary>RTT对大文件传输重要吗？</summary><p>本工具直接计入建立时延，但真实TCP中RTT还会影响窗口增长和丢包恢复。</p></details><details><summary>最大并发用户数如何计算？</summary><p>先计算链路可用业务带宽，再除以突发系数修正后的单用户带宽。</p></details><details><summary>能代替完整流量工程模型吗？</summary><p>不能。队列、QoS、报文长度、重传、流量分布和忙时特征仍需验证。</p></details></div></section>
-<section class="content-section" id="history"><div class="history-head"><div><p class="eyebrow">PROJECT RECORDS</p><h2>历史记录</h2></div><button class="text-button" id="clearHistoryBtn">清空记录</button></div><div class="history-list" id="historyList"></div></section>
+<section class="content-section nel-tool-supporting-section"><p class="eyebrow">FAQ</p><h2>常见问题</h2><div class="faq-grid"><details><summary>为什么100 Mbps不能每秒传100 MB？</summary><p>100 Mbps表示每秒100兆比特，理论上等于12.5 MB/s，尚未扣除协议开销和链路利用率。</p></details><details><summary>文件大小应该用GB还是GiB？</summary><p>存储厂商通常使用十进制GB，操作系统或工具可能使用二进制GiB。</p></details><details><summary>效率应该填多少？</summary><p>优先使用实测应用吞吐率；没有实测数据时可从预设开始，并保留工程余量。</p></details><details><summary>RTT对大文件传输重要吗？</summary><p>本工具直接计入建立时延，但真实TCP中RTT还会影响窗口增长和丢包恢复。</p></details><details><summary>最大并发用户数如何计算？</summary><p>先计算链路可用业务带宽，再除以突发系数修正后的单用户带宽。</p></details><details><summary>能代替完整流量工程模型吗？</summary><p>不能。队列、QoS、报文长度、重传、流量分布和忙时特征仍需验证。</p></details></div></section>
+<section class="content-section nel-tool-supporting-section" id="history"><div class="history-head"><div><p class="eyebrow">PROJECT RECORDS</p><h2>历史记录</h2></div><button class="text-button" id="clearHistoryBtn">清空记录</button></div><div class="history-list" id="historyList"></div></section>
 <!-- NEL_TOOL_GRAPH_START -->
 <section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="bandwidth-calculator" data-primary-workflow="enterprise-lan-ip-planning">
 <div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
@@ -180,4 +178,4 @@
 <!-- NEL_FOOTER_END -->
 <script defer="" src="../data/bandwidth-units.js"></script><script defer="" src="../js/engine.js"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=ba2f95b12ff5"></script>
 <script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script>
-<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=d2715dc996b6"></script></body></html>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=d2715dc996b6"></script></body></html>

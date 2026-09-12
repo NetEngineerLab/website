@@ -662,3 +662,16 @@
 - Normalized duplicate 1180/1200px platform-level stack breakpoints to 1100px where applicable.
 - Upgraded `audit:ui` from warning-based legacy detection to source-clean release enforcement.
 - Final result: 101 public pages / 80 tool detail pages / 35 tool source CSS files, 0 errors, 0 warnings.
+
+## 2026-09-12 — UI V1.2 Tool Page Template Unification
+
+- Audited all 35 active tools and 80 localized Tool Detail pages at the HTML-template level.
+- Pre-migration inventory: 23 standard V1.1 pages, 22 legacy `wrap/grid` pages, 21 transitional-grid pages, 6 nested-Hero pages, and 8 specialized-workspace pages.
+- Added the mandatory `tool-detail-v1.2` template contract to all 80 pages.
+- Standardized platform hooks: `.nel-tool-detail-page`, `.nel-tool-hero`, `.nel-tool-main`, `.nel-tool-primary-grid`, `.nel-tool-input`, `.nel-tool-result`, and supporting-section hooks.
+- Moved the 6 nested-Hero pages to the canonical Header → Return Navigation → Hero → Main hierarchy.
+- Retained specialized internal engineering workspaces while unifying their outer platform template.
+- Added `scripts/tool-page-template-v1.2-audit.js`, `npm run audit:ui-v1.2`, and wired the gate into `prepare:launch`.
+- Added `docs/NETENGINEERLAB_UI_V1.2_TOOL_PAGE_TEMPLATE_UNIFICATION_AUDIT_2026-09-12.md` and JSON audit evidence.
+- Updated shared Hero typography/geometry to prevent isolated Chinese title orphan wrapping and normalized legacy primary-grid visuals.
+- Regression: multilingual build, UI V1.1 source audit, V1.2 template audit, i18n, Page Registry, Tool Navigation, Launch Audit, SEO/GEO and Schema traversal all PASS.

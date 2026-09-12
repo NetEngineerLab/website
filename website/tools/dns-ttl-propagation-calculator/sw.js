@@ -1,21 +1,21 @@
 "use strict";
-const CACHE = "nel-dns-ttl-propagation-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-a5ad54e03080-0a58db0b5be2";
+const CACHE = "nel-dns-ttl-propagation-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-28ce5f771f70-7fb1190093f7";
 const CORE = [
   "./index.html",
   "./",
   "./zh/",
   "./offline.html",
   "./manifest.webmanifest",
-  "./css/style.css?v=0d7d435b1f3d",
+  "./css/style.css?v=b248ebcfaeae",
   "./js/engine.js",
   "./js/app.js?v=a5253c01f326",
   "./images/logo.svg",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
-  "../../assets/css/design-tokens.css?v=1b428f96cadc",
+  "../../assets/css/design-tokens.css?v=dc6c5cc9b8ad",
   "../../assets/css/site-shell.css?v=58918fefbb35",
-  "../../assets/css/tool-design-system.css?v=060f4c8f3dc4",
+  "../../assets/css/tool-design-system.css?v=9905ea2be293",
   "../../assets/css/tool-workflow.css?v=66c8998b2681",
   "../../assets/js/analytics.js?v=1156b7864023",
   "../../assets/js/adsense.js?v=f075c80ccc75",

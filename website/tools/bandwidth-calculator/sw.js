@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-bandwidth-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-a5ad54e03080-3ab0e7bb3006";
+const CACHE = "nel-bandwidth-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-28ce5f771f70-26925aa5bb95";
 const CORE = [
   "./index.html",
   "./",
@@ -7,16 +7,16 @@ const CORE = [
   "./offline.html",
   "./manifest.webmanifest",
   "./data/bandwidth-units.js",
-  "./css/style.css?v=f68e54cbb0b8",
+  "./css/style.css?v=25f3a1ffa4e3",
   "./js/engine.js",
   "./js/app.js?v=ba2f95b12ff5",
   "./images/logo.svg",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
-  "../../assets/css/design-tokens.css?v=1b428f96cadc",
+  "../../assets/css/design-tokens.css?v=dc6c5cc9b8ad",
   "../../assets/css/site-shell.css?v=58918fefbb35",
-  "../../assets/css/tool-design-system.css?v=060f4c8f3dc4",
+  "../../assets/css/tool-design-system.css?v=9905ea2be293",
   "../../assets/css/tool-workflow.css?v=66c8998b2681",
   "../../assets/js/analytics.js?v=1156b7864023",
   "../../assets/js/adsense.js?v=f075c80ccc75",

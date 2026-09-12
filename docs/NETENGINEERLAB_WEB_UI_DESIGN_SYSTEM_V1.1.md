@@ -814,3 +814,8 @@ The target is simple:
 > A user should be able to move between any NetEngineerLab tool and immediately recognize the same platform, the same navigation model, the same engineering hierarchy and the same mobile interaction quality.
 
 **One platform. One shell. One grid. One component language. Tool-specific engineering depth inside a consistent UI.**
+
+## V1.2 Tool Detail template addendum
+
+Tool Detail pages MUST follow `docs/NETENGINEERLAB_UI_V1.2_TOOL_PAGE_TEMPLATE_UNIFICATION_AUDIT_2026-09-12.md`.
+The outer page contract is mandatory even when the engineering workspace itself is specialized. New pages must expose `data-nel-template="tool-detail-v1.2"`, `.nel-tool-hero`, `.nel-tool-main`, and either `.nel-tool-primary-grid` or an approved specialized workspace hook. Run `npm run audit:ui-v1.2` before merge/release.

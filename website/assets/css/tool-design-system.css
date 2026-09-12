@@ -634,3 +634,86 @@ a.nel-tool-graph-card:hover,a.nel-tool-graph-card:focus-visible{transform:transl
 @media(max-width:900px){.nel-workflow-context{grid-template-columns:1fr}.nel-workflow-step>strong{text-align:left}.nel-tool-graph-related{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.nel-tool-graph-nav,.nel-tool-graph-related{grid-template-columns:1fr}.nel-tool-graph-card{min-height:0}.nel-workflow-context{padding:18px}}
 @media print{.nel-tool-graph{display:none!important}}
+
+/* ================================================================
+   NetEngineerLab Tool Detail Template V1.2
+   Unified semantic hooks for all generations of tool pages.
+   ================================================================ */
+.nel-tool-detail-page > .nel-tool-hero {
+  width: min(calc(100% - (var(--nel-gutter) * 2)), var(--nel-max)) !important;
+  max-width: var(--nel-max) !important;
+  min-height: 260px !important;
+  margin: 0 auto !important;
+  padding: clamp(34px, 4vw, 56px) !important;
+  border-radius: 26px !important;
+  color: #fff !important;
+  background: linear-gradient(118deg, var(--nel-hero-a), var(--nel-hero-b)) !important;
+  box-shadow: 0 22px 50px rgba(5, 51, 96, 0.16) !important;
+}
+
+.nel-tool-detail-page > .nel-tool-hero .hero-inner {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+.nel-tool-detail-page > .nel-tool-hero h1 {
+  max-width: 1180px;
+  font-size: clamp(34px, 3.8vw, 56px) !important;
+  line-height: 1.14 !important;
+  overflow-wrap: normal;
+  word-break: keep-all;
+}
+
+.nel-tool-detail-page > .nel-tool-hero p:not(.eyebrow) {
+  max-width: 1060px;
+}
+
+/* Legacy calculators keep their engine-specific .grid/.layout class, but the
+ * source HTML now also exposes this single V1.2 semantic workspace hook. */
+.nel-tool-main > .nel-tool-primary-grid:not(.acl-grid):not(.planner-grid),
+.nel-tool-main.nel-tool-primary-grid {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.05fr) minmax(380px, .95fr) !important;
+  gap: 24px !important;
+  align-items: stretch !important;
+}
+
+.nel-tool-main > .nel-tool-primary-grid:not(.acl-grid):not(.planner-grid) > .nel-tool-input,
+.nel-tool-main > .nel-tool-primary-grid:not(.acl-grid):not(.planner-grid) > .nel-tool-result {
+  min-width: 0;
+  height: 100%;
+  margin: 0 !important;
+  padding: clamp(22px, 2.4vw, 32px) !important;
+  border: 1px solid var(--nel-line) !important;
+  border-radius: var(--nel-radius) !important;
+  background: var(--nel-surface) !important;
+  box-shadow: var(--nel-shadow) !important;
+}
+
+/* Standard direct-grid generations use the same two semantic cards. */
+.nel-tool-main.nel-tool-primary-grid > .nel-tool-input,
+.nel-tool-main.nel-tool-primary-grid > .nel-tool-result {
+  min-width: 0;
+}
+
+.nel-tool-supporting-section {
+  box-sizing: border-box;
+}
+
+@media (max-width: 1100px) {
+  .nel-tool-main > .nel-tool-primary-grid:not(.acl-grid):not(.planner-grid),
+  .nel-tool-main.nel-tool-primary-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .nel-tool-detail-page > .nel-tool-hero {
+    padding: 28px 22px !important;
+    border-radius: 20px !important;
+    min-height: 0 !important;
+  }
+  .nel-tool-detail-page > .nel-tool-hero h1 {
+    font-size: clamp(30px, 8vw, 42px) !important;
+  }
+}
