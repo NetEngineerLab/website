@@ -1,4 +1,4 @@
-"use strict";const CACHE = "nel-telecom-ac-dc-breaker-sizing-locale-v1.9.9-04-p0-p1-correctness-consent-offline-357c8180fe9b-d42637b1d713";
+"use strict";const CACHE = "nel-telecom-ac-dc-breaker-sizing-locale-v1.9.9-04-p0-p1-correctness-consent-offline-357c8180fe9b-d42637b1d713-zh-copy-20260913";
 const CORE = [
   "./",
   "./index.html",
