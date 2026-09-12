@@ -7,16 +7,14 @@
 <meta name="keywords" content="SFP光模块兼容性查询,SFP+与SFP28兼容性,QSFP+与QSFP28兼容性,光模块链路预算计算器,单模多模光模块是否兼容">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1"><meta name="author" content="NetEngineerLab">
 <meta property="og:type" content="website"><meta property="og:site_name" content="NetEngineerLab"><meta property="og:title" content="SFP与QSFP光模块兼容性查询"><meta property="og:description" content="核对光模块速率、通道、介质、波长、接口和光功率预算。"><meta property="og:url" content="https://netengineerlab.com/tools/sfp-qsfp-compatibility-calculator/zh/">
-<link rel="stylesheet" href="../css/style.css?v=39e1f1076d7a"><link rel="stylesheet" href="/assets/css/cookie-consent.css?v=v180-hotfix03"><link rel="stylesheet" href="/assets/css/mobile-branding.css?v=1.9.5-06">
+<link rel="stylesheet" href="../css/style.css?v=c6636dfe636d"><link rel="stylesheet" href="/assets/css/cookie-consent.css?v=v180-hotfix03"><link rel="stylesheet" href="/assets/css/mobile-branding.css?v=1.9.5-06">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"SFP与QSFP光模块兼容性查询","url":"https://netengineerlab.com/tools/sfp-qsfp-compatibility-calculator/zh/","description":"光模块兼容性与光纤链路预算计算器。","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"工具中心","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"SFP与QSFP光模块兼容性查询","item":"https://netengineerlab.com/tools/sfp-qsfp-compatibility-calculator/zh/"}]}</script>
 
 <script defer src="/data/seo-config.js"></script>
 <script defer src="/assets/js/seo-engine.js"></script>
 <script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"10G SFP+可以连接25G SFP28吗？","acceptedAnswer":{"@type":"Answer","text":"不同线速率不能直接互通。只有两端设备和模块都运行同一个受支持速率时才可能工作，例如支持向下兼容的SFP28端口统一运行10G。"}},{"@type":"Question","name":"单模和多模光模块可以互通吗？","acceptedAnswer":{"@type":"Answer","text":"不可以。两端光模块、光纤类型和波长方案必须构成受支持的完整链路。"}},{"@type":"Question","name":"为什么还要检查接收过载？","acceptedAnswer":{"@type":"Answer","text":"短链路的最高发射功率可能超过接收机最大输入。本工具使用最高Tx分别检查两个方向；过载余量为负时可能需要增加光衰减器。"}},{"@type":"Question","name":"显示“通过”是否代表交换机一定识别模块？","acceptedAnswer":{"@type":"Answer","text":"不代表。厂商编码与主机固件策略不属于光功率预算，仍需在交换机或网卡兼容列表中核对模块料号。"}},{"@type":"Question","name":"QSFP-DD端口可以安装QSFP28模块吗？","acceptedAnswer":{"@type":"Answer","text":"只有主机厂商明确支持向下兼容，并将端口配置为对应速率和通道模式时才可以。机械尺寸可插入不代表固件、FEC、拆分或光接口一定兼容。"}}]}</script>
-<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=1.9.9-02"><link rel="stylesheet" href="/assets/css/tool-design-system.css?v=676c405eec72">
-
-<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 
 <link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
 
@@ -30,12 +28,14 @@
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/sfp-qsfp-compatibility-calculator/">
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=1b428f96cadc">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=060f4c8f3dc4">
 <link rel="stylesheet" href="../../../assets/css/site-shell.css?v=58918fefbb35">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../../assets/js/site.js?v=5c6907a4fe26"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=591fcb5937d9">
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head>
 <body>
@@ -61,7 +61,13 @@
   </div>
 </header>
 <!-- NEL_HEADER_END -->
-<nav class="breadcrumbs"><a href="../../../zh/">首页</a>&nbsp;›&nbsp;<a href="../../zh/">工具中心</a>&nbsp;›&nbsp;SFP与QSFP光模块兼容性查询</nav>
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a class="tool-return-link" href="../../zh/">← 返回工具中心</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">SFP与QSFP光模块兼容性查询</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END -->
 <section class="hero"><div class="hero-inner"><p class="eyebrow">光模块兼容与链路预算工具</p><h1>SFP与QSFP光模块兼容性查询</h1><p>对比SFP、SFP+、SFP28、QSFP+、QSFP28或QSFP-DD两端模块，一次检查以太网速率、通道数、单模或多模光纤、波长、接口以及接收光功率余量。</p><div class="tags"><span>SFP+与SFP28</span><span>QSFP+与QSFP28</span><span>光链路预算</span><span>光纤兼容性</span></div></div></section>
 <main class="workspace nel-tool-grid" id="calculator">
 <section class="card"><h2>光模块与光纤参数</h2><p class="intro">除非设备明确提供变速、拆分或Gearbox模式，否则两端必须使用一致的链路速率、传输介质和兼容光接口。V1模型要求相同标称波长，不验证BiDi互补波长或WDM各通道波长。</p>

@@ -1,4 +1,8 @@
 # NetEngineerLab V1.7.5 生产性能自动巡检版
+## Web UI 强制基线
+
+新增或重构任何公开页面前，必须先读取 `docs/NETENGINEERLAB_WEB_UI_DESIGN_SYSTEM_V1.1.md`。该文件冻结全站 Header、Footer、导航、返回路径、1400px 对齐、Hero、卡片、表单、桌面/移动端布局、多语言与 UI 验收规则。
+
 
 这是首批12个通信与网络工程工具的生产发布包，在V1.7.4在线可用性巡检基础上增加Lighthouse生产性能监控。
 
@@ -174,3 +178,13 @@ artifacts/lighthouse/
 - `docs/CLOUDFLARE_PAGES_DEPLOYMENT.md`
 
 上线前保持AdSense关闭。GA4真实编号配置完成后，再运行一次`npm run prepare:launch`。
+### UI Design System release gate
+
+Before shipping any new or materially refactored public page, read `docs/NETENGINEERLAB_WEB_UI_DESIGN_SYSTEM_V1.1.md` and run:
+
+```bash
+npm run build:i18n
+npm run audit:ui
+```
+
+`audit:ui` is also part of `prepare:launch`. Tool pages must keep the shared Header/Footer, 1400px page grid, localized Back-to-Tools breadcrumb, responsive mobile shell and final `tool-layout.css` compliance layer.

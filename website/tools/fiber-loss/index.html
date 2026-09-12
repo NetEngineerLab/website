@@ -8,7 +8,7 @@
 <title>Fiber Loss Calculator &amp; Optical Link Budget | NetEngineerLab</title>
 <meta content="Free professional fiber loss calculator for optical link budgets, PON splitters, splices, connectors, engineering margin and receive power analysis." name="description"/>
 
-<link href="css/style.css?v=0a605f3e6840" rel="stylesheet"/>
+<link href="css/style.css?v=3abc9824b808" rel="stylesheet"/>
 <meta content="./" name="app-base"/>
 <meta content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" name="robots"/>
 <meta content="website" property="og:type"/>
@@ -34,9 +34,7 @@
 <script defer src="/data/seo-config.js"></script>
 <script defer src="/assets/js/seo-engine.js"></script>
 <script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the difference between physical loss and design loss?","acceptedAnswer":{"@type":"Answer","text":"Physical loss includes actual fiber and component losses. Design loss also includes engineering margin for ageing, temperature, maintenance connections and measurement variation."}},{"@type":"Question","name":"How should I choose 1310, 1490 or 1550 nm?","acceptedAnswer":{"@type":"Answer","text":"Select the actual service wavelength and direction. Common PON upstream uses 1310 nm, while downstream may use 1490 or 1550 nm. Follow the system specification."}},{"@type":"Question","name":"Why can splitter loss be adjusted?","acceptedAnswer":{"@type":"Answer","text":"The page uses typical nominal values. Actual loss varies by vendor, packaging and wavelength, so final designs should use specification or measured values."}},{"@type":"Question","name":"How much remaining budget is considered safe?","acceptedAnswer":{"@type":"Answer","text":"A minimum 3 dB engineering margin is commonly recommended. Smaller margins are more sensitive to contamination, bending, ageing and temperature changes."}},{"@type":"Question","name":"Why can receive power pass while the budget shows caution?","acceptedAnswer":{"@type":"Answer","text":"Receive threshold and design budget are separate checks. High transmit power may keep receive power acceptable while long-term design margin remains limited."}},{"@type":"Question","name":"Can this result be used for final acceptance?","acceptedAnswer":{"@type":"Answer","text":"This calculator supports planning, review and troubleshooting. Final acceptance should combine power meter and OTDR measurements, equipment specifications and enterprise standards."}}]}</script>
-<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="../../assets/css/tool-layout.css?v=1.9.9-02"><link rel="stylesheet" href="/assets/css/tool-design-system.css?v=676c405eec72">
-
-<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
 
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="en">
@@ -49,12 +47,14 @@
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/fiber-loss/">
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=1b428f96cadc">
+<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=060f4c8f3dc4">
 <link rel="stylesheet" href="../../assets/css/site-shell.css?v=58918fefbb35">
 <script defer src="../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../assets/js/site.js?v=5c6907a4fe26"></script>
+<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=591fcb5937d9">
 <link rel="manifest" href="manifest.webmanifest">
 </head>
 <body>
@@ -81,11 +81,13 @@
   </div>
 </header>
 <!-- NEL_HEADER_END -->
-<nav aria-label="Breadcrumb" class="breadcrumbs">
-<a href="../../">Home</a><span aria-hidden="true">›</span>
-<a href="../">Tools</a><span aria-hidden="true">›</span>
-<span aria-current="page">Fiber Loss Calculator</span>
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a class="tool-return-link" href="../">← Back to Tools</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">Fiber Loss Calculator</span>
 </nav>
+<!-- NEL_TOOL_RETURN_END -->
 <section class="tool-hero">
 <div>
 <p class="eyebrow" data-i18n="eyebrow">OPTICAL ENGINEERING TOOL</p>

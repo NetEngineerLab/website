@@ -43,7 +43,7 @@ const report=buildReport({
 });
 assert.deepStrictEqual(report.summary,{activeTools:2,localePages:4,priorityCounts:{high:0,medium:0,maintain:2}});
 assert.deepStrictEqual(report.nextBatch,["fiber-loss","optical-power-budget"]);
-assert.deepStrictEqual(report.tools[0].searchIntent,{id:"calculation",en:"calculation",zh:"计算"});
+assert.deepStrictEqual(report.tools[0].searchIntent,{id:"calculation",en:"calculation",zh:"计算",es:"cálculo"});
 assert.deepStrictEqual(report.tools[0].targetTopic,{en:"Fiber Loss",zh:"光纤损耗"});
 assert.strictEqual(report.tools[0].contentOwner,"NetEngineerLab Editorial");
 assert.deepStrictEqual(report.tools[0].lastReviewedAt,{en:"2026-08-29",zh:"2026-08-29"});

@@ -22,3 +22,6 @@ This recovery does **not** claim that MIB/OID Explorer is production-approved. T
 
 ## Final acceptance result
 `npm run verify` completed PASS on 2026-09-10 with 32 active tools, 8 workflows, 78 public pages, 76 production routes, 32 engine suites, 32 Service Workers and 3925 internal-link checks. Audit 2 status: PASS / ACCEPTED.
+## UI non-regression baseline (2026-09-12)
+All new or materially refactored public pages must comply with `docs/NETENGINEERLAB_WEB_UI_DESIGN_SYSTEM_V1.1.md`. Shared Header/Footer, tool return navigation, canonical page alignment, responsive behavior and card/form conventions are now part of the non-regression baseline. A feature is not accepted when calculation logic passes but the public page breaks the shared UI contract.
+

@@ -1,4 +1,4 @@
-<!doctype html><html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="tools/olt-dual-uplink-transport-mse-planner/"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>OLT双上联容量、传输波道与MSE端口规划工具 | NetEngineerLab</title><meta name="description" content="计算OLT双上联、传输波道、MSE端口和板卡资源，并校验单边故障100%承载与双路由独立性。"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="NetEngineerLab"><meta property="og:title" content="OLT双上联容量、传输波道与MSE端口规划工具 | NetEngineerLab"><meta property="og:description" content="计算OLT双上联、传输波道、MSE端口和板卡资源，并校验单边故障100%承载与双路由独立性。"><meta property="og:url" content="https://netengineerlab.com/tools/olt-dual-uplink-transport-mse-planner/zh/"><meta property="og:image" content="https://netengineerlab.com/tools/olt-dual-uplink-transport-mse-planner/images/og-olt-dual-uplink-transport-mse-planner.png"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=676c405eec72"><link rel="stylesheet" href="../css/style.css?v=f96519090988"><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么每一侧都按全部保护业务规划？","acceptedAnswer":{"@type":"Answer","text":"因为双上联设计必须校验单边故障场景，而不是只看正常状态下的50/50负载分担。"}},{"@type":"Question","name":"100G波道可以承载多个10G OLT吗？","acceptedAnswer":{"@type":"Answer","text":"在容量模型上可以，但仍需要实际传输设备支持对应客户侧映射，并满足规划利用率和保护规则。"}},{"@type":"Question","name":"什么是“假双上联”？","acceptedAnswer":{"@type":"Answer","text":"两条逻辑链路共享物理路由、传输环或传输系统时，一次共同故障仍可能同时中断两路，因此不是真正独立保护。"}},{"@type":"Question","name":"MSE板卡数量如何计算？","acceptedAnswer":{"@type":"Answer","text":"先按故障态求出每个保护侧所需MSE端口，再乘MSE节点数量，最后按每板端口数向上取整。"}},{"@type":"Question","name":"能代替厂家OTN/MSE详细规划吗？","acceptedAnswer":{"@type":"Answer","text":"不能。客户侧映射、槽位/板卡能力、保护倒换和硬件超售仍需按实际厂家设计规范复核。"}}]}</script><script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"OLT双上联容量、传输波道与MSE端口规划工具 | NetEngineerLab","url":"https://netengineerlab.com/tools/olt-dual-uplink-transport-mse-planner/zh/","description":"计算OLT双上联、传输波道、MSE端口和板卡资源，并校验单边故障100%承载与双路由独立性。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
+<!doctype html><html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="tools/olt-dual-uplink-transport-mse-planner/"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>OLT双上联容量、传输波道与MSE端口规划工具 | NetEngineerLab</title><meta name="description" content="计算OLT双上联、传输波道、MSE端口和板卡资源，并校验单边故障100%承载与双路由独立性。"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:site_name" content="NetEngineerLab"><meta property="og:title" content="OLT双上联容量、传输波道与MSE端口规划工具 | NetEngineerLab"><meta property="og:description" content="计算OLT双上联、传输波道、MSE端口和板卡资源，并校验单边故障100%承载与双路由独立性。"><meta property="og:url" content="https://netengineerlab.com/tools/olt-dual-uplink-transport-mse-planner/zh/"><meta property="og:image" content="https://netengineerlab.com/tools/olt-dual-uplink-transport-mse-planner/images/og-olt-dual-uplink-transport-mse-planner.png"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="../css/style.css?v=588fbd7e35e7"><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么每一侧都按全部保护业务规划？","acceptedAnswer":{"@type":"Answer","text":"因为双上联设计必须校验单边故障场景，而不是只看正常状态下的50/50负载分担。"}},{"@type":"Question","name":"100G波道可以承载多个10G OLT吗？","acceptedAnswer":{"@type":"Answer","text":"在容量模型上可以，但仍需要实际传输设备支持对应客户侧映射，并满足规划利用率和保护规则。"}},{"@type":"Question","name":"什么是“假双上联”？","acceptedAnswer":{"@type":"Answer","text":"两条逻辑链路共享物理路由、传输环或传输系统时，一次共同故障仍可能同时中断两路，因此不是真正独立保护。"}},{"@type":"Question","name":"MSE板卡数量如何计算？","acceptedAnswer":{"@type":"Answer","text":"先按故障态求出每个保护侧所需MSE端口，再乘MSE节点数量，最后按每板端口数向上取整。"}},{"@type":"Question","name":"能代替厂家OTN/MSE详细规划吗？","acceptedAnswer":{"@type":"Answer","text":"不能。客户侧映射、槽位/板卡能力、保护倒换和硬件超售仍需按实际厂家设计规范复核。"}}]}</script><script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"OLT双上联容量、传输波道与MSE端口规划工具 | NetEngineerLab","url":"https://netengineerlab.com/tools/olt-dual-uplink-transport-mse-planner/zh/","description":"计算OLT双上联、传输波道、MSE端口和板卡资源，并校验单边故障100%承载与双路由独立性。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 
 <link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
 
@@ -12,12 +12,14 @@
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/olt-dual-uplink-transport-mse-planner/">
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=1b428f96cadc">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=060f4c8f3dc4">
 <link rel="stylesheet" href="../../../assets/css/site-shell.css?v=58918fefbb35">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../../assets/js/site.js?v=5c6907a4fe26"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=591fcb5937d9">
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head><body><!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
@@ -39,7 +41,14 @@
     </div>
   </div>
 </header>
-<!-- NEL_HEADER_END --><main id="calculator">
+<!-- NEL_HEADER_END -->
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a class="tool-return-link" href="../../zh/">← 返回工具中心</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">OLT双上联容量、传输波道与MSE端口规划工具</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END --><main id="calculator">
 <section class="tool-hero">
   <p class="eyebrow">接入网 × 传输网 × MSE 资源协同</p>
   <h1>OLT双上联、传输波道与 MSE 端口规划</h1>

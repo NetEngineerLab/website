@@ -473,6 +473,24 @@ function injectSiteShell(html,currentRel,currentInfo){
  else throw new Error(`${currentRel}: footer missing`);
  return html;
 }
+function injectToolReturnNavigation(html,currentRel,currentInfo){
+ if(currentInfo.kind!=="tool")return html;
+ const locale=localeMap.get(currentInfo.localeId);
+ const currentUrl=urlForRoute(currentInfo.route,locale);
+ const toolsHref=escapeHtml(relativeUrl(currentUrl,urlForRoute("tools/",locale)));
+ const tool=toolCatalog.find(item=>item.id===currentInfo.toolSlug);
+ const copy=tool?toolCopy(tool,locale):{};
+ const toolName=escapeHtml(copy.name||currentInfo.toolSlug);
+ const backLabel=locale.id===defaultLocale.id?"Back to Tools":locale.id==="es"?"Volver a herramientas":"返回工具中心";
+ const nav=`<!-- NEL_TOOL_RETURN_START -->\n<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">\n  <a class="tool-return-link" href="${toolsHref}">← ${escapeHtml(backLabel)}</a>\n  <span aria-hidden="true">/</span>\n  <span aria-current="page">${toolName}</span>\n</nav>\n<!-- NEL_TOOL_RETURN_END -->`;
+ const markers=/<!-- NEL_TOOL_RETURN_START -->[\s\S]*?<!-- NEL_TOOL_RETURN_END -->/i;
+ if(markers.test(html))return html.replace(markers,nav);
+ const existing=/<nav\b[^>]*class\s*=\s*["'][^"']*\bbreadcrumbs\b[^"']*["'][^>]*>[\s\S]*?<\/nav>/i;
+ if(existing.test(html))return html.replace(existing,nav);
+ const headerEnd=/<!-- NEL_HEADER_END -->/i;
+ if(headerEnd.test(html))return html.replace(headerEnd,match=>`${match}\n${nav}`);
+ return html.replace(/<\/header>/i,match=>`${match}\n${nav}`);
+}
 function updateManifestLink(html,currentRel,info){
  if(info.kind!=="tool")return html;
  const locale=localeMap.get(info.localeId);
@@ -592,6 +610,7 @@ function build(){
   let html=fs.readFileSync(record.file,"utf8");
   html=rewriteInternalAnchors(html,record.rel,record.info,groups);
   html=injectSiteShell(html,record.rel,record.info);
+  html=injectToolReturnNavigation(html,record.rel,record.info);
   html=replaceLanguageMenu(html,menuMarkup(record.info,group));
   if(record.info.kind==="home"||record.info.kind==="toolsDirectory")html=prerenderToolGrid(html,record.info,locale);
   html=updateToolCountMarkers(html,locale);
@@ -619,6 +638,10 @@ function build(){
   html=updateJsonLd(html,locale,canonical);
   html=ensureAsset(html,record.rel,"assets/css/locale-menu.css","css");
   html=ensureAsset(html,record.rel,"assets/css/design-tokens.css","css");
+  // Every Tool Detail page must use the shared tool design system. Place it
+  // after tool-local CSS but before site-shell.css, so tool geometry is
+  // normalized while the shared Header/Footer shell keeps final precedence.
+  if(record.info.kind==="tool")html=ensureAsset(html,record.rel,"assets/css/tool-design-system.css","css");
   html=ensureAsset(html,record.rel,"assets/css/site-shell.css","css");
   html=ensureAsset(html,record.rel,"data/locales.js","js");
   html=ensureAsset(html,record.rel,"data/site-config.js","js");
@@ -636,6 +659,9 @@ function build(){
     if(fs.existsSync(path.join(siteRoot,...localAsset.split("/"))))html=versionRelativeAsset(html,record.rel,localAsset);
    }
    for(const asset of sharedRuntimeAssets)html=versionExistingAsset(html,asset.sitePath);
+   // UI Design System V1.0: the compliance layer must load after every
+   // tool-specific stylesheet so legacy width/mobile rules cannot win.
+   html=ensureAsset(html,record.rel,"assets/css/tool-layout.css","css");
   }
   html=updateManifestLink(html,record.rel,record.info);
   html=html.replace(/<head>([\s\S]*?)<\/head>/i,(whole,body)=>`<head>${body.replace(/(?:\r?\n[ \t]*){3,}/g,"\n\n")}</head>`);

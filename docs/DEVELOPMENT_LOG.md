@@ -642,3 +642,23 @@
 4. SEO/GEO 进入维护监测：当前 22 个工具以现行目录和审计结果为准，只依据 Search Console、站内搜索词或新内容缺口启动下一批，不重复改写已达标页面。
 
 任何新发现的 P0/P1 稳定性或正确性问题，优先级高于上述 SEO/GEO 队列，并必须在本文件说明插队原因。
+
+## 2026-09-12 — Web UI Design System V1.0 baseline
+
+- Audited existing UI documentation and confirmed that design rules were fragmented across tokens, shell CSS, tool layout CSS and page-specific UI changelogs.
+- Added `docs/NETENGINEERLAB_WEB_UI_DESIGN_SYSTEM_V1.0.md` as the mandatory global public-page UI baseline.
+- Frozen shared rules for Header, Footer, global navigation, tool return/breadcrumb navigation, canonical 1400px alignment, Hero, calculator workspace, cards, forms, results, methodology, responsive/mobile layouts, localization, accessibility, SEO-visible structure and UI acceptance.
+- Added mandatory-read references to `README.md` and `docs/NEXT_DEVELOPMENT.md`.
+- Added UI compliance to `docs/NETENGINEERLAB_BASELINE_RECOVERY_V1.md` non-regression policy.
+- No calculator formulas or runtime engines changed.
+
+## 2026-09-12 — UI V1.1 second visual audit / source-clean migration
+
+- Upgraded the mandatory UI baseline to `docs/NETENGINEERLAB_WEB_UI_DESIGN_SYSTEM_V1.1.md`.
+- Refactored 35 legacy tool stylesheets instead of relying on the final compliance layer to override old geometry.
+- Removed tool-local ownership of Header/Nav/Footer styles.
+- Replaced legacy primary page max-widths with `--nel-content-max` and standardized base-card tokens.
+- Added `--nel-ad-max` for intentionally narrower ad inventory.
+- Normalized duplicate 1180/1200px platform-level stack breakpoints to 1100px where applicable.
+- Upgraded `audit:ui` from warning-based legacy detection to source-clean release enforcement.
+- Final result: 101 public pages / 80 tool detail pages / 35 tool source CSS files, 0 errors, 0 warnings.

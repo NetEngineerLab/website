@@ -1,97 +1,91 @@
 /*
- * NetEngineerLab global tool-page layout, navigation and alignment layer.
- * V1.9.9-02
+ * NetEngineerLab Tool Page UI Compliance Layer
+ * Web UI Design System & Page Standard V1.0
  *
- * This file intentionally contains only cross-tool shell rules. Individual
- * calculators keep their own colors, fields, metrics and calculation styles.
+ * Loaded LAST on every tool detail page by build-multilingual.js.
+ * This file only enforces cross-tool geometry, shell alignment and responsive
+ * safety. Calculator-specific colors, fields and engineering visuals stay in
+ * each tool's local stylesheet.
  */
 :root {
-  --nel-tool-max-width: 1380px;
-  --nel-tool-gutter: 20px;
-  --nel-tool-column-gap: 22px;
+  --nel-tool-max-width: var(--nel-content-max, 1400px);
+  --nel-tool-gutter: 24px;
+  --nel-tool-column-gap: 24px;
   --nel-tool-nav-ink: #173f65;
-  --nel-tool-nav-hover: #edf5ff;
   --nel-tool-focus: #176ff2;
 }
 
-/* Use one horizontal reference line for every tool-page region. */
-.breadcrumbs,
-.hero-inner,
-main.workspace,
-main.calculator-shell,
-main.tool-shell,
-main.shell,
-.content,
-.content-section,
-body > footer {
-  width: 100%;
+/* One horizontal reference system: breadcrumb, hero, workspace and content. */
+body > .breadcrumbs,
+body > nav.breadcrumbs,
+body > .hero,
+body > .tool-hero,
+body > main.workspace,
+body > main.calculator-shell,
+body > main.tool-shell,
+body > main.shell,
+body > main,
+body > .content,
+body > .content-section {
+  width: min(calc(100% - (var(--nel-tool-gutter) * 2)), var(--nel-tool-max-width)) !important;
   max-width: var(--nel-tool-max-width) !important;
   margin-left: auto !important;
   margin-right: auto !important;
+  box-sizing: border-box !important;
 }
 
-.site-header {
-  width: 100%;
-  padding-left: max(var(--nel-tool-gutter), calc((100vw - var(--nel-tool-max-width)) / 2 + var(--nel-tool-gutter))) !important;
-  padding-right: max(var(--nel-tool-gutter), calc((100vw - var(--nel-tool-max-width)) / 2 + var(--nel-tool-gutter))) !important;
+/* Sections nested inside the canonical main must NOT subtract the gutter a
+ * second time. This fixes the recurring "Hero is 48px narrower" defect. */
+main > .hero,
+main > .tool-hero,
+main > .breadcrumbs,
+main > .tool-layout,
+main > .panel-layout,
+main > .workspace,
+main > .content,
+main > .content-section {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  box-sizing: border-box !important;
 }
 
-/* Real, visible and keyboard-accessible navigation links on every page. */
-.site-header .nav,
-.site-header .top-nav,
-.site-header .nel-global-nav {
+/* Breadcrumb / return path is a mandatory visible platform component. */
+.tool-return-nav {
+  min-height: 52px;
+  padding-top: 14px !important;
+  padding-bottom: 14px !important;
   display: flex !important;
-  align-items: center;
-  gap: 6px !important;
-  margin-left: auto;
+  align-items: center !important;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: #5d7691;
+  font-size: 14px;
 }
-
-.site-header .nav a,
-.site-header .top-nav a,
-.site-header .nel-global-nav a {
-  display: inline-flex !important;
+.tool-return-link {
+  min-height: 40px;
+  padding: 8px 10px;
+  margin-left: -10px;
+  border-radius: 10px;
+  display: inline-flex;
   align-items: center;
-  min-height: 42px;
-  padding: 9px 12px;
-  border-radius: 9px;
-  color: var(--nel-tool-nav-ink) !important;
+  color: #2f6599 !important;
+  font-weight: 750;
   text-decoration: none !important;
-  white-space: nowrap;
-  cursor: pointer;
 }
+.tool-return-link:hover,
+.tool-return-link:focus-visible { background: #edf5ff; color: var(--nel-tool-focus) !important; }
+.tool-return-link:focus-visible { outline: 3px solid rgba(23,111,242,.28); outline-offset: 2px; }
 
-.site-header .nav a:hover,
-.site-header .top-nav a:hover,
-.site-header .nel-global-nav a:hover,
-.site-header .nav a:focus-visible,
-.site-header .top-nav a:focus-visible,
-.site-header .nel-global-nav a:focus-visible {
-  color: var(--nel-tool-focus) !important;
-  background: var(--nel-tool-nav-hover);
-  outline: 2px solid transparent;
-}
-
-.site-header .nav a:focus-visible,
-.site-header .top-nav a:focus-visible,
-.site-header .nel-global-nav a:focus-visible,
-.site-header .language:focus-visible,
-.site-header .lang-link:focus-visible {
-  outline: 3px solid color-mix(in srgb, var(--nel-tool-focus) 35%, transparent);
-  outline-offset: 2px;
-}
-
-/*
- * Standard calculator pages: two equal-height columns on desktop. Stretching
- * the cards removes the exposed background block below the shorter column.
- */
+/* Standard calculator pages opt into nel-tool-grid; keep both columns aligned. */
 @media (min-width: 1101px) {
   main.nel-tool-grid {
     display: grid !important;
-    grid-template-columns: minmax(0, 1.08fr) minmax(420px, .92fr) !important;
+    grid-template-columns: minmax(0, 1.05fr) minmax(420px, .95fr) !important;
     gap: var(--nel-tool-column-gap) !important;
     align-items: stretch !important;
   }
-
   main.nel-tool-grid > .card,
   main.nel-tool-grid > .input-panel,
   main.nel-tool-grid > .result-panel,
@@ -101,90 +95,44 @@ body > footer {
     height: 100%;
     margin-bottom: 0 !important;
   }
-
-  main.nel-tool-grid > .input-panel,
-  main.nel-tool-grid > .card.input-card,
-  main.nel-tool-grid > .config-panel {
-    display: flex;
-    flex-direction: column;
-  }
-
-  main.nel-tool-grid > .input-panel > .actions:last-child,
-  main.nel-tool-grid > .card.input-card > .actions:last-child,
-  main.nel-tool-grid > .config-panel > .actions:last-child {
-    margin-top: auto;
-    padding-top: 18px;
-  }
 }
 
-/* Prevent tool-specific width rules from shifting explanatory sections. */
-.content,
-.content-section {
-  box-sizing: border-box;
-}
+/* Shared safety for tool cards/tables; no horizontal page overflow. */
+main img, .content img, .content-section img { max-width: 100%; height: auto; }
+main table, .content table, .content-section table { max-width: 100%; }
+.result-table-wrap, .table-wrap, .responsive-table { max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
 @media (max-width: 1100px) {
-  main.nel-tool-grid {
-    display: grid !important;
-    grid-template-columns: minmax(0, 1fr) !important;
-    align-items: start !important;
-  }
+  :root { --nel-tool-gutter: 20px; }
+  main.nel-tool-grid { display: grid !important; grid-template-columns: minmax(0, 1fr) !important; align-items: start !important; }
+  .result-card, .result-panel, .analysis-panel { position: static !important; top: auto !important; }
 }
 
-/* Keep all four destinations available on phones instead of hiding the nav. */
-@media (max-width: 760px) {
-  :root {
-    --nel-tool-gutter: 12px;
+@media (max-width: 768px) {
+  :root { --nel-tool-gutter: 16px; }
+  body > .breadcrumbs,
+  body > nav.breadcrumbs,
+  body > .hero,
+  body > .tool-hero,
+  body > main,
+  body > main.workspace,
+  body > main.calculator-shell,
+  body > main.tool-shell,
+  body > main.shell,
+  body > .content,
+  body > .content-section {
+    width: calc(100% - (var(--nel-tool-gutter) * 2)) !important;
+    max-width: none !important;
   }
+  .tool-return-nav { min-height: 48px; padding-top: 8px !important; padding-bottom: 8px !important; }
+  .tool-return-link { min-height: 44px; }
+  main > .hero, main > .tool-hero { border-radius: 20px !important; }
+}
 
-  .site-header {
-    flex-wrap: wrap;
-    gap: 8px !important;
-  }
-
-  .site-header .brand,
-  .site-header .site-brand {
-    margin-right: auto;
-  }
-
-  .site-header .nav,
-  .site-header .top-nav,
-  .site-header .nel-global-nav {
-    order: 10;
-    width: 100%;
-    margin-left: 0;
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    scrollbar-width: thin;
-  }
-
-  .site-header .nav a,
-  .site-header .top-nav a,
-  .site-header .nel-global-nav a {
-    flex: 1 0 auto;
-    justify-content: center;
-    min-height: 40px;
-    padding: 8px 10px;
-    font-size: 14px;
-  }
-
-  .breadcrumbs,
-  .hero-inner,
-  main.workspace,
-  main.calculator-shell,
-  main.tool-shell,
-  main.shell,
-  .content,
-  .content-section,
-  body > footer {
-    max-width: 100% !important;
-  }
+@media (max-width: 420px) {
+  :root { --nel-tool-gutter: 14px; }
 }
 
 @media print {
-  .site-header .nav,
-  .site-header .top-nav,
-  .site-header .nel-global-nav {
-    display: none !important;
-  }
+  .tool-return-nav { display: none !important; }
 }

@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-otdr-event-locale-v1.9.9-04-p0-p1-correctness-consent-offline-0acfeb4bb3ce-c8556ef945b9";
+const CACHE = "nel-otdr-event-locale-v1.9.9-04-p0-p1-correctness-consent-offline-a5ad54e03080-9c6f1c133f62";
 const CORE = [
   "./index.html",
   "./",
@@ -16,7 +16,7 @@ const CORE = [
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=1b428f96cadc",
   "../../assets/css/site-shell.css?v=58918fefbb35",
-  "../../assets/css/tool-design-system.css?v=676c405eec72",
+  "../../assets/css/tool-design-system.css?v=060f4c8f3dc4",
   "../../assets/css/tool-workflow.css?v=66c8998b2681",
   "../../assets/js/analytics.js?v=1156b7864023",
   "../../assets/js/adsense.js?v=f075c80ccc75",

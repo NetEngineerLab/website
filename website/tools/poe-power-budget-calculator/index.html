@@ -7,16 +7,14 @@
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1"><meta name="author" content="NetEngineerLab">
 
 <meta property="og:type" content="website"><meta property="og:site_name" content="NetEngineerLab"><meta property="og:title" content="PoE Power Budget Calculator"><meta property="og:description" content="Size a PoE switch by watts, ports, cable loss, headroom and IEEE power class."><meta property="og:url" content="https://netengineerlab.com/tools/poe-power-budget-calculator/">
-<link rel="stylesheet" href="css/style.css?v=583bf259e6a9"><link rel="stylesheet" href="/assets/css/cookie-consent.css?v=v180-hotfix03"><link rel="stylesheet" href="/assets/css/mobile-branding.css?v=1.9.5-06">
+<link rel="stylesheet" href="css/style.css?v=2494816a02bb"><link rel="stylesheet" href="/assets/css/cookie-consent.css?v=v180-hotfix03"><link rel="stylesheet" href="/assets/css/mobile-branding.css?v=1.9.5-06">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"PoE Power Budget Calculator","url":"https://netengineerlab.com/tools/poe-power-budget-calculator/","description":"PoE switch sizing calculator for cameras, access points and other powered devices.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"PoE Power Budget Calculator","item":"https://netengineerlab.com/tools/poe-power-budget-calculator/"}]}</script>
 
 <script defer src="/data/seo-config.js"></script>
 <script defer src="/assets/js/seo-engine.js"></script>
 <script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many PoE cameras can a 120 W switch support?","acceptedAnswer":{"@type":"Answer","text":"It depends on maximum camera watts, cable loss, reserve and ports. Eight 10 W fixed cameras may fit comfortably, while eight 15 W cameras can exhaust the budget after loss and headroom."}},{"@type":"Question","name":"Does cable length change the PoE budget?","acceptedAnswer":{"@type":"Answer","text":"Yes. Longer or higher-resistance cabling increases I²R loss. This calculator models loss as a planning percentage; verify conductor gauge, category, bundle temperature and run length for final design."}},{"@type":"Question","name":"Should I use average or maximum device consumption?","acceptedAnswer":{"@type":"Answer","text":"Use maximum rated or measured demand for capacity planning. Average values can hide boot surges, IR activation, PTZ motors and high radio utilization."}},{"@type":"Question","name":"What does a PASS result mean?","acceptedAnswer":{"@type":"Answer","text":"PASS means the entered design meets total watts, available ports and per-port power class with the selected assumptions. It is an engineering estimate, not a substitute for manufacturer requirements or electrical safety review."}},{"@type":"Question","name":"Is 20% PoE headroom required by IEEE?","acceptedAnswer":{"@type":"Answer","text":"No. Headroom is a project planning choice, not a universal IEEE requirement. Select it from measured peak load, startup behavior, cable conditions, expansion plans, power-supply configuration and the availability target."}}]}</script>
-<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="../../assets/css/tool-layout.css?v=1.9.9-02"><link rel="stylesheet" href="/assets/css/tool-design-system.css?v=676c405eec72">
-
-<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 
 <link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
 
@@ -31,12 +29,14 @@
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/poe-power-budget-calculator/">
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=1b428f96cadc">
+<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=060f4c8f3dc4">
 <link rel="stylesheet" href="../../assets/css/site-shell.css?v=58918fefbb35">
 <script defer src="../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../assets/js/site.js?v=5c6907a4fe26"></script>
+<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=591fcb5937d9">
 <link rel="manifest" href="manifest.webmanifest">
 </head>
 <body>
@@ -62,7 +62,13 @@
   </div>
 </header>
 <!-- NEL_HEADER_END -->
-<nav class="breadcrumbs"><a href="../../">Home</a>&nbsp;›&nbsp;<a href="../">Tools</a>&nbsp;›&nbsp;PoE Power Budget Calculator</nav>
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a class="tool-return-link" href="../">← Back to Tools</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">PoE Power Budget Calculator</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END -->
 <section class="hero"><div class="hero-inner"><p class="eyebrow">POWER OVER ETHERNET PLANNING TOOL</p><h1>PoE Power Budget Calculator</h1><p>Size a PoE switch for IP cameras, PTZ cameras, Wi-Fi access points, VoIP phones and access-control devices. Check total watts, available ports, cable loss, engineering headroom and IEEE 802.3af, 802.3at or 802.3bt per-port limits.</p><div class="tags"><span>PoE switch sizing</span><span>Camera capacity</span><span>PoE+ / PoE++</span><span>Cable loss</span></div></div></section>
 <main class="workspace nel-tool-grid" id="calculator">
 <section class="card"><h2>PoE switch and device inputs</h2><p class="intro">Use the maximum device draw, not the marketing average. Night-mode infrared, heaters, radios and USB accessories can increase demand.</p>

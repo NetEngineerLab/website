@@ -177,13 +177,27 @@ body > nav.breadcrumbs {
 .breadcrumbs a:focus-visible { text-decoration:none; }
 
 body > .hero,
-body > .tool-hero,
-main > .hero,
-main > .tool-hero {
+body > .tool-hero {
   width: min(calc(100% - (var(--nel-gutter) * 2)), var(--nel-max)) !important;
   max-width: var(--nel-max) !important;
   min-height: 260px !important;
   margin: 0 auto !important;
+  padding: clamp(34px, 4vw, 56px) !important;
+  border-radius: 26px !important;
+  overflow: hidden;
+  color: #fff !important;
+  background: linear-gradient(118deg, var(--nel-hero-a), var(--nel-hero-b)) !important;
+  box-shadow: 0 22px 50px rgba(5, 51, 96, 0.16);
+}
+
+/* A Hero nested inside the canonical main already inherits the page gutter.
+   Never subtract that gutter again. */
+main > .hero,
+main > .tool-hero {
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 260px !important;
+  margin: 0 !important;
   padding: clamp(34px, 4vw, 56px) !important;
   border-radius: 26px !important;
   overflow: hidden;

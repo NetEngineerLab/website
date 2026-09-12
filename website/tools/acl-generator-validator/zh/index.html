@@ -2,7 +2,7 @@
 <html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="tools/acl-generator-validator/"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>多厂商 ACL 生成与验证工具 | NetEngineerLab</title><meta name="description" content="在浏览器本地生成、转换并验证 Cisco IOS、华为 VRP、H3C Comware 和 Juniper Junos IPv4 ACL，提供确定性检查与行号证据。">
 <meta property="og:type" content="website"><meta property="og:title" content="多厂商 ACL 生成与验证工具 | NetEngineerLab"><meta property="og:description" content="在浏览器本地生成、转换并验证四厂商 IPv4 ACL。"><meta property="og:url" content="https://netengineerlab.com/tools/acl-generator-validator/zh/"><meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png"><meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=1.9.9-02"><link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=676c405eec72"><link rel="stylesheet" href="../css/style.css?v=568bf54381d6"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"多厂商 ACL 生成与验证工具","url":"https://netengineerlab.com/tools/acl-generator-validator/zh/","applicationCategory":"DeveloperApplication","operatingSystem":"Any","isAccessibleForFree":true,"description":"生成、转换并验证 Cisco IOS、华为 VRP、H3C Comware 和 Juniper Junos IPv4 ACL。"}</script>
+<link rel="stylesheet" href="../css/style.css?v=0a49596ee9f0"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"多厂商 ACL 生成与验证工具","url":"https://netengineerlab.com/tools/acl-generator-validator/zh/","applicationCategory":"DeveloperApplication","operatingSystem":"Any","isAccessibleForFree":true,"description":"生成、转换并验证 Cisco IOS、华为 VRP、H3C Comware 和 Juniper Junos IPv4 ACL。"}</script>
 <script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"ACL 验证工具支持哪些厂商和语法？","acceptedAnswer":{"@type":"Answer","text":"V1 支持 Cisco IOS 命名扩展 ACL、华为 VRP 高级命名 ACL、H3C Comware 高级命名 ACL，以及 Juniper Junos set firewall family inet filter 的已说明 IPv4 子集。"}},{"@type":"Question","name":"ACL 验证工具会上传我的配置吗？","acceptedAnswer":{"@type":"Answer","text":"不会。V1 的解析、生成、确定性检查和评分全部在浏览器本地运行，原始配置与检查结果不会发送给 AI 或分析服务。"}},{"@type":"Question","name":"这个工具能证明 ACL 安全吗？","acceptedAnswer":{"@type":"Answer","text":"不能。它是确定性筛查工具。方向、挂载点、拓扑、对象组、真实应用、命中计数以及 ACL 外部控制都会影响工程结论。"}},{"@type":"Question","name":"多厂商 ACL 转换如何工作？","acceptedAnswer":{"@type":"Answer","text":"源配置先解析为带版本的厂商无关 IPv4 ACL 模型，再生成目标语法、重新解析，并在支持范围内比较语义等价性。"}},{"@type":"Question","name":"不支持的 ACL 行如何处理？","acceptedAnswer":{"@type":"Answer","text":"页面会统计不支持的行并明确显示解析覆盖不完整，不会把它们静默视为已验证；检查结果只适用于成功解析的规则。"}}]}</script>
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"多厂商 ACL 生成与验证工具 | NetEngineerLab","url":"https://netengineerlab.com/tools/acl-generator-validator/zh/","description":"在浏览器本地生成、转换并验证 Cisco IOS、华为 VRP、H3C Comware 和 Juniper Junos IPv4 ACL，提供确定性检查与行号证据。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 
@@ -18,12 +18,14 @@
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/acl-generator-validator/">
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=1b428f96cadc">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=060f4c8f3dc4">
 <link rel="stylesheet" href="../../../assets/css/site-shell.css?v=58918fefbb35">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../../assets/js/site.js?v=5c6907a4fe26"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=591fcb5937d9">
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head><body><!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
@@ -46,7 +48,13 @@
   </div>
 </header>
 <!-- NEL_HEADER_END -->
-<nav class="breadcrumbs" aria-label="面包屑"><a href="../../../zh/">首页</a><span aria-hidden="true">›</span><a href="../../zh/">工具</a><span aria-hidden="true">›</span><span aria-current="page">ACL 生成与验证</span></nav>
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a class="tool-return-link" href="../../zh/">← 返回工具中心</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">多厂商ACL生成与验证工具</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END -->
 <section class="hero"><div class="hero-inner"><p class="eyebrow">配置 → 验证 → 解释</p><h1>多厂商 ACL 生成与验证工具</h1><p>为 Cisco IOS、华为 VRP、H3C Comware 和 Juniper Junos 构建、转换并检查 IPv4 ACL，提供确定性结论和源行证据。</p><div class="tags"><span>IPv4 ACL</span><span>四厂商</span><span>本地处理</span></div></div></section>
 <main id="acl-workspace" class="acl-shell"><p id="localNotice" class="privacy-note"></p><div id="statusPanel" class="status-panel" role="status" aria-live="polite"></div>
 <div class="acl-grid"><section class="acl-card"><h2>验证或转换配置</h2><div class="acl-vendors"><div class="acl-field"><label for="sourceVendor">源厂商</label><select id="sourceVendor"><option value="cisco-ios">Cisco IOS</option><option value="huawei-vrp">华为 VRP</option><option value="h3c-comware">H3C Comware</option><option value="juniper-junos">Juniper Junos</option></select></div><div class="acl-field"><label for="targetVendor">目标厂商</label><select id="targetVendor"><option value="huawei-vrp">华为 VRP</option><option value="cisco-ios">Cisco IOS</option><option value="h3c-comware">H3C Comware</option><option value="juniper-junos">Juniper Junos</option></select></div></div><div class="acl-field"><label for="configuration">ACL 配置</label><textarea id="configuration" maxlength="102400" spellcheck="false" aria-describedby="configurationHelp"></textarea><small id="configurationHelp">V1：单个命名 IPv4 ACL，ip/tcp/udp/icmp、any/host/network、数字目的端口和日志；最多 100 KiB / 2,000 行。</small></div><div class="acl-actions"><button id="loadSample" type="button">加载厂商示例</button><button id="validate" class="primary" type="button">验证并解释</button><button id="convert" type="button">转换为目标配置</button></div></section>

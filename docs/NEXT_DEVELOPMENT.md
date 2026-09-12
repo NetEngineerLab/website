@@ -1,3 +1,17 @@
+# UI 基线（所有后续页面开发前强制读取）
+
+从 2026-09-12 起，新增或重构任何公开网页前，必须先读取：
+
+- `docs/NETENGINEERLAB_WEB_UI_DESIGN_SYSTEM_V1.1.md`
+- `website/assets/css/design-tokens.css`
+- `website/assets/css/site-shell.css`
+- `website/assets/css/tool-design-system.css`
+- `website/assets/css/tool-layout.css`
+
+Header、Footer、导航、返回工具中心/面包屑、1400px 页面基准、Hero、卡片、桌面双栏、移动端单列、语言切换和可访问性均不得由单个工具页自行另起一套。
+
+---
+
 # V1.7.5完成后的下一阶段
 
 V1.7.5生产性能自动巡检上线后，执行：
