@@ -57,8 +57,10 @@ for(const locale of config.locales){
 }
 for(const tool of tools){
  for(const locale of active){
+  if(locale.id===defaultLocale.id||locale.id==="zh")continue;
   const key=locale.catalogKey;
-  if(!tool.translations?.[key])errors.push(`missing ${key} translation for ${tool.id}`);
+  // Partial locale rollout is allowed: a tool participates only when localized catalog copy exists.
+  if(tool.translations?.[key]&&!fs.existsSync(path.join(site,"tools",tool.id,locale.folder,"index.html")))errors.push(`localized page missing for translated tool: ${locale.id} ${tool.id}`);
  }
 }
 const records=[],groups=new Map();
@@ -69,7 +71,10 @@ for(const file of walk(site).filter(x=>x.endsWith(".html"))){
  groups.get(info.route).set(info.localeId,rel);
 }
 for(const [route,group] of groups){
- for(const locale of active)if(!group.has(locale.id))errors.push(`active locale page missing: ${locale.id} ${route||"/"}`);
+ for(const locale of active){
+  if(locale.id===defaultLocale.id||locale.id==="zh") { if(!group.has(locale.id))errors.push(`active locale page missing: ${locale.id} ${route||"/"}`); continue; }
+  // Additional active locales may roll out per page family; group membership defines availability.
+ }
 }
 for(const record of records){
  const locale=localeMap.get(record.info.localeId),html=fs.readFileSync(record.file,"utf8");

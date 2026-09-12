@@ -1,5 +1,5 @@
 const $=id=>document.getElementById(id);
-const LANG=document.documentElement.lang.toLowerCase().startsWith("en")?"en":"zh";
+const LANG=document.documentElement.lang.toLowerCase().startsWith("zh")?"zh":"en";
 const T={
  zh:{
   healthy:"✓ 健康",warning:"⚠ 风险",failed:"✕ 超限",

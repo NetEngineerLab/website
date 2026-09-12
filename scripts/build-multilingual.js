@@ -72,7 +72,8 @@ function renderToolCards(currentInfo,locale,mode){
  const tools=toolCatalog
   .slice()
   .sort((a,b)=>a.order-b.order)
-  .filter(tool=>mode==="active"?tool.status==="active":mode==="planned"?tool.status==="planned":true);
+  .filter(tool=>mode==="active"?tool.status==="active":mode==="planned"?tool.status==="planned":true)
+  .filter(tool=>locale.id===defaultLocale.id||Boolean(tool.translations?.[locale.catalogKey]||tool.translations?.[locale.id]));
  return tools.map(tool=>{
   const copy=toolCopy(tool,locale);
   const active=tool.status==="active";
@@ -85,8 +86,11 @@ function renderToolCards(currentInfo,locale,mode){
    </article>`;
  }).join("");
 }
-function updateToolCountMarkers(html){
- const count=activeTools.length;
+function localizedActiveTools(locale){
+ return activeTools.filter(tool=>locale.id===defaultLocale.id||Boolean(tool.translations?.[locale.catalogKey]||tool.translations?.[locale.id]));
+}
+function updateToolCountMarkers(html,locale){
+ const count=localizedActiveTools(locale).length;
  return html.replace(/(<(?:strong|span)\b[^>]*\bdata-tool-count(?:\s*=\s*(?:"[^"]*"|\'[^\']*\'|[^\s>]+))?[^>]*>)[\s\S]*?(<\/(?:strong|span)>)/gi,(whole,open,close)=>`${open}${count}${close}`);
 }
 function prerenderToolGrid(html,currentInfo,locale){
@@ -104,29 +108,30 @@ function prerenderToolGrid(html,currentInfo,locale){
   html=html.slice(0,contentStart)+rendered+tail.slice(emptyClose[1].length);
  }
  if(currentInfo.kind!=="toolsDirectory")return html;
- const counts=toolCatalog.reduce((map,tool)=>{
+ const localizedCatalog=toolCatalog.filter(tool=>locale.id===defaultLocale.id||Boolean(tool.translations?.[locale.catalogKey]||tool.translations?.[locale.id]));
+ const counts=localizedCatalog.reduce((map,tool)=>{
   map[tool.category]=(map[tool.category]||0)+1;
   return map;
  },{});
  html=html.replace(/<span\b([^>]*\bdata-category-count\s*=\s*["']([^"']+)["'][^>]*)>[\s\S]*?<\/span>/gi,(whole,attrs,category)=>{
-  const count=category==="all"?toolCatalog.length:(counts[category]||0);
+  const count=category==="all"?localizedCatalog.length:(counts[category]||0);
   return `<span${attrs}>${count}</span>`;
  });
  const allButton=html.match(/<button\b(?=[^>]*\bdata-filter\s*=\s*["']all["'])[^>]*>/i)?.[0]||"";
  const allLabel=allButton.match(/\bdata-filter-label\s*=\s*["']([^"']+)["']/i)?.[1]||"all";
  html=html.replace(/<p\b([^>]*\bdata-filter-status(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+))?[^>]*)>[\s\S]*?<\/p>/i,(whole,attrs)=>{
   const template=attrs.match(/\bdata-template\s*=\s*["']([^"']+)["']/i)?.[1]||"{count} tools · {category}";
-  const status=template.replace("{count}",String(toolCatalog.length)).replace("{category}",allLabel);
+  const status=template.replace("{count}",String(localizedCatalog.length)).replace("{category}",allLabel);
   return `<p${attrs}>${status}</p>`;
  });
  return html;
 }
 function ensureToolDirectoryItemList(html,locale){
- const tools=activeTools.slice().sort((a,b)=>a.order-b.order);
+ const tools=localizedActiveTools(locale).slice().sort((a,b)=>a.order-b.order);
  const schema={
   "@context":"https://schema.org",
   "@type":"ItemList",
-  name:locale.id===defaultLocale.id?"NetEngineerLab tool directory":"NetEngineerLab工具目录",
+  name:locale.id===defaultLocale.id?"NetEngineerLab tool directory":locale.id==="es"?"Directorio de herramientas de NetEngineerLab":"NetEngineerLab工具目录",
   numberOfItems:tools.length,
   itemListElement:tools.map((tool,index)=>({
    "@type":"ListItem",
@@ -440,7 +445,7 @@ function injectSiteShell(html,currentRel,currentInfo){
  if(currentInfo.kind==="tool"&&!/<main\b[^>]*\bid=["'][^"']+["']/i.test(html))html=html.replace(/<main\b/i,'<main id="calculator"');
  const mainId=(html.match(/<main\b[^>]*\bid=["']([^"']+)["']/i)||[])[1]||"calculator";
  const contextAction=currentInfo.kind==="tool"
-  ?`<a href="#${escapeHtml(mainId)}">${locale.id===defaultLocale.id?"Start calculating":"开始计算"}</a>`
+  ?`<a href="#${escapeHtml(mainId)}">${locale.id===defaultLocale.id?"Start calculating":locale.id==="es"?"Empezar a calcular":"开始计算"}</a>`
   :"";
  const tokens={
   HOME_HREF:href(""),
@@ -589,7 +594,7 @@ function build(){
   html=injectSiteShell(html,record.rel,record.info);
   html=replaceLanguageMenu(html,menuMarkup(record.info,group));
   if(record.info.kind==="home"||record.info.kind==="toolsDirectory")html=prerenderToolGrid(html,record.info,locale);
-  html=updateToolCountMarkers(html);
+  html=updateToolCountMarkers(html,locale);
   if(record.info.kind==="toolsDirectory")html=ensureToolDirectoryItemList(html,locale);
   html=normalizeBrandLogoAlt(html);
   html=removeHeadLinks(removeNelMeta(html));

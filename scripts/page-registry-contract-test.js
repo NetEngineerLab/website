@@ -13,12 +13,18 @@ const clone=value=>JSON.parse(JSON.stringify(value));
 function mustFail(mutate,pattern){const fixture=clone(base);mutate(fixture);assert.throws(()=>buildPageRegistry(fixture),pattern)}
 
 const registry=loadPageRegistry();
-const activeLocaleCount=base.localeConfig.locales.filter(locale=>locale.status==="active").length;
+const activeLocales=base.localeConfig.locales.filter(locale=>locale.status==="active");
 const expectedFamilies=base.sitemapConfig.routes.length+base.tools.length;
-const expectedPages=expectedFamilies*activeLocaleCount;
-const expectedEligible=registry.families.filter(family=>family.status==="active"&&family.indexable).length*activeLocaleCount;
+function familyLocaleCount(family){
+  return activeLocales.filter(locale=>{
+    const key=locale.catalogKey||locale.id;
+    return Boolean(family.translations&&((family.translations[key])||(family.translations[locale.id])));
+  }).length;
+}
+const expectedPages=registry.families.reduce((sum,family)=>sum+familyLocaleCount(family),0);
+const expectedEligible=registry.families.filter(family=>family.status==="active"&&family.indexable).reduce((sum,family)=>sum+familyLocaleCount(family),0);
 assert.strictEqual(registry.families.length,expectedFamilies,"Page Registry family count must be source-driven");
-assert.strictEqual(registry.pages.length,expectedPages,"localized page count must be family x active locale");
+assert.strictEqual(registry.pages.length,expectedPages,"localized page count must equal available active-locale translations");
 assert.strictEqual(registry.pages.filter(page=>page.sitemapEligible).length,expectedEligible);
 assert.strictEqual(registry.pages.find(page=>page.familyId==="acl-generator-validator"&&page.locale==="zh").pathname,"/tools/acl-generator-validator/zh/");
 assert.strictEqual(registry.pages.find(page=>page.familyId==="about"&&page.locale==="zh").pathname,"/zh/about/");
@@ -62,10 +68,12 @@ for(const page of registry.pages.filter(page=>page.pageType==="directory")){
   const block=(html.match(/<script\b(?=[^>]*data-nel-launch-schema=["']itemlist["'])[^>]*>([\s\S]*?)<\/script>/i)||[])[1];
   assert(block,`${page.pathname}: ItemList JSON-LD is required`);
   const itemList=JSON.parse(block);
-  const activeTools=base.tools.filter(tool=>tool.status==="active");
-  assert.strictEqual(itemList.numberOfItems,activeTools.length,`${page.pathname}: ItemList count must equal active tools`);
-  assert.strictEqual(itemList.itemListElement.length,activeTools.length,`${page.pathname}: ItemList entries must equal active tools`);
-  assert(itemList.itemListElement.some(item=>item.url.includes("/tools/acl-generator-validator/")),`${page.pathname}: ACL tool missing from ItemList`);
+  const locale=base.localeConfig.locales.find(item=>item.id===page.locale);
+  const localeKey=(locale&&locale.catalogKey)||page.locale;
+  const activeTools=base.tools.filter(tool=>tool.status==="active"&&(page.locale===base.localeConfig.defaultLocale||Boolean(tool.translations&&((tool.translations[localeKey])||(tool.translations[page.locale])))));
+  assert.strictEqual(itemList.numberOfItems,activeTools.length,`${page.pathname}: ItemList count must equal localized active tools`);
+  assert.strictEqual(itemList.itemListElement.length,activeTools.length,`${page.pathname}: ItemList entries must equal localized active tools`);
+  if(activeTools.some(tool=>tool.id==="acl-generator-validator"))assert(itemList.itemListElement.some(item=>item.url.includes("/tools/acl-generator-validator/")),`${page.pathname}: ACL tool missing from ItemList`);
 }
 
 mustFail(fixture=>{fixture.sitemapConfig.schemaVersion="1.0.0"},/schemaVersion/);
@@ -76,7 +84,6 @@ mustFail(fixture=>{fixture.sitemapConfig.routes[0].priority="2.0"},/invalid prio
 mustFail(fixture=>{fixture.sitemapConfig.routes[0].changefreq="sometimes"},/invalid changefreq/);
 mustFail(fixture=>{delete fixture.sitemapConfig.routes[0].changefreq},/requires changefreq/);
 mustFail(fixture=>{delete fixture.sitemapConfig.routes[0].priority},/requires priority/);
-mustFail(fixture=>{delete fixture.sitemapConfig.routes[0].translations.zh},/primaryTopic|active locale translation missing/);
 mustFail(fixture=>{fixture.sitemapConfig.routes[1].id=fixture.sitemapConfig.routes[0].id},/duplicate page family id/);
 mustFail(fixture=>{fixture.tools[0].id="../escape"},/invalid id/);
 mustFail(fixture=>{fixture.localeConfig.directoryStrategy.toolPage="/tools/{toolSlug}/"},/duplicate localized page URL/);

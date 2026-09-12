@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html data-nel-locale="es" data-nel-route="tools/pon-splitter-loss/" dir="ltr" lang="es"><head>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="./" name="app-base"/>
+<title>Calculadora de pérdidas de divisores PON | NetEngineerLab</title>
+<meta content="Planifica divisores PON de una o varias etapas, relación total, pérdida de inserción, presupuesto ODN, potencia recibida y alcance efectivo." name="description"/>
+<meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
+<meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"><meta content="Calculadora de pérdidas de divisores PON" property="og:title"/><meta content="Planifica divisores PON de una o varias etapas, relación total, pérdida de inserción, presupuesto ODN, potencia recibida y alcance efectivo." property="og:description"/><meta content="https://netengineerlab.com/tools/pon-splitter-loss/es/" property="og:url"/><meta content="https://netengineerlab.com/tools/pon-splitter-loss/images/og-pon-splitter-loss.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
+<link href="../css/style.css?v=54a4661685c3" rel="stylesheet"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de pérdidas de divisores PON","url":"https://netengineerlab.com/tools/pon-splitter-loss/es/","description":"Planifica divisores PON de una o varias etapas, relación total, pérdida de inserción, presupuesto ODN, potencia recibida y alcance efectivo.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Optical Engineering Calculator","operatingSystem":"Any","softwareVersion":"1.0.2","inLanguage":"es","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
+<script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://netengineerlab.com/es/"},{"@type":"ListItem","position":2,"name":"Herramientas","item":"https://netengineerlab.com/tools/es/"},{"@type":"ListItem","position":3,"name":"Calculadora de pérdidas de divisores PON","item":"https://netengineerlab.com/tools/pon-splitter-loss/es/"}]}</script><meta content="NetEngineerLab" name="author">
+<link href="/assets/css/cookie-consent.css?v=v180-hotfix03" rel="stylesheet"/>
+<link href="/assets/css/mobile-branding.css?v=1.9.5-06" rel="stylesheet"/>
+<script defer="" src="/data/seo-config.js"></script>
+<script defer="" src="/assets/js/seo-engine.js"></script>
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link href="../../../assets/css/tool-layout.css?v=1.9.9-02" rel="stylesheet"/><link href="/assets/css/tool-design-system.css?v=676c405eec72" rel="stylesheet"/>
+<link data-nel-workflow-style="" href="/assets/css/tool-workflow.css?v=66c8998b2681" rel="stylesheet"/>
+<meta content="launch" name="nel-translation-status">
+<script data-nel-schema="webpage" type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Calculadora de pérdidas de divisores PON","url":"https://netengineerlab.com/tools/pon-splitter-loss/es/","description":"Planifica divisores PON de una o varias etapas, relación total, pérdida de inserción, presupuesto ODN, potencia recibida y alcance efectivo.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
+</meta>
+</meta><script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Por qué GPON C+ es una referencia habitual para 1:8 × 1:8?","acceptedAnswer":{"@type":"Answer","text":"La cascada aporta aproximadamente 21 dB solo en divisores; al añadir fibra, conectores, empalmes y margen, B+ puede resultar insuficiente mientras C+ dispone de una clase ODN mayor."}},{"@type":"Question","name":"¿Una sola etapa tiene menos pérdida que dos etapas?","acceptedAnswer":{"@type":"Answer","text":"Para una relación total equivalente, varias etapas suelen añadir pérdida excedente y puntos de conexión, aunque pueden facilitar cobertura y mantenimiento."}},{"@type":"Question","name":"¿Por qué la pérdida ideal difiere de la pérdida de inserción?","acceptedAnswer":{"@type":"Answer","text":"La ideal representa división perfecta de potencia. La pérdida de inserción incluye fabricación, acoplamiento, encapsulado y uniformidad."}},{"@type":"Question","name":"¿Demasiada potencia recibida también es un problema?","acceptedAnswer":{"@type":"Answer","text":"Sí. Debe verificarse tanto la sensibilidad como el umbral de sobrecarga del receptor."}},{"@type":"Question","name":"¿Sustituye a las pruebas de campo?","acceptedAnswer":{"@type":"Answer","text":"No. La aceptación final requiere medidor de potencia, OTDR y parámetros reales del equipo."}}]}</script><meta content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline" name="nel-framework"/>
+<meta content="es" name="nel-locale"/>
+<meta content="tools/pon-splitter-loss/" name="nel-route"/>
+<meta content="en,zh,es" name="nel-available-locales"/>
+<link href="https://netengineerlab.com/tools/pon-splitter-loss/es/" rel="canonical"/>
+<link href="https://netengineerlab.com/tools/pon-splitter-loss/" hreflang="en" rel="alternate"/>
+<link href="https://netengineerlab.com/tools/pon-splitter-loss/zh/" hreflang="zh-CN" rel="alternate"/>
+<link href="https://netengineerlab.com/tools/pon-splitter-loss/es/" hreflang="es" rel="alternate"/>
+<link href="https://netengineerlab.com/tools/pon-splitter-loss/" hreflang="x-default" rel="alternate"/>
+<link href="../../../assets/css/locale-menu.css?v=7804394246fb" rel="stylesheet"/>
+<link href="../../../assets/css/design-tokens.css?v=1b428f96cadc" rel="stylesheet"/>
+<link href="../../../assets/css/site-shell.css?v=58918fefbb35" rel="stylesheet"/>
+<script defer="" src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer="" src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer="" src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer="" src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer="" src="../../../assets/js/site.js?v=5c6907a4fe26"></script>
+<link href="../manifest-es.webmanifest" rel="manifest"/>
+</meta></head><body>
+<a class="skip-link" href="#calculator">Saltar a la calculadora</a><noscript><div class="noscript">Se requiere JavaScript.</div></noscript>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+<div class="site-shell-header-inner">
+<a class="site-shell-brand brand" href="../../../">
+<img alt="" height="42" src="../../../assets/images/logo.svg" width="42"/>
+<span><strong>NetEngineerLab</strong><small>Plataforma de inteligencia para ingeniería de redes</small></span>
+</a>
+<button aria-controls="site-shell-nav" aria-expanded="false" aria-label="Abrir navegación" class="site-shell-menu-toggle" type="button"><span aria-hidden="true"></span></button>
+<nav aria-label="Navegación principal" class="site-shell-nav nel-global-nav" id="site-shell-nav">
+<a href="../../../">Inicio</a>
+<a aria-current="page" href="../../es/">Herramientas</a>
+<a href="../../../es/about/">Acerca de</a>
+<a href="../../../es/contact/">Contacto</a>
+</nav>
+<div class="site-shell-actions">
+<!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu="" data-open="false"><button aria-expanded="false" aria-haspopup="true" aria-label="Idioma: Español" class="language-trigger" type="button"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z" fill="currentColor"></path></svg><span class="language-current">Español</span><span aria-hidden="true" class="language-caret">▾</span></button><div class="language-options" hidden="" role="menu"><a class="language-option" href="../" hreflang="en" lang="en" role="menuitem"><span>English</span><small>Inglés</small></a><a class="language-option" href="../zh/" hreflang="zh-CN" lang="zh-CN" role="menuitem"><span>简体中文</span><small>Chino simplificado</small></a><a aria-current="page" class="language-option" href="./" hreflang="es" lang="es" role="menuitem"><span>Español</span><small>Español</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+<div class="site-shell-context-action"><a href="#calculator">Empezar a calcular</a></div>
+</div>
+</div>
+</header>
+<!-- NEL_HEADER_END -->
+<nav aria-label="Breadcrumb" class="breadcrumbs"><a href="../../es/">Inicio</a><span>›</span><a href="./">Herramientas</a><span>›</span><span aria-current="page">Calculadora de pérdidas de divisores PON</span></nav>
+<section class="hero"><div class="hero-inner"><div><p class="eyebrow">HERRAMIENTA DE INGENIERÍA PON</p><h1>Calculadora de pérdidas de divisores PON</h1><p class="hero-copy">Planifica cascadas de divisores PON de una, dos o tres etapas y calcula la relación total, la pérdida de inserción, la pérdida ideal de división, la pérdida adicional, el presupuesto óptico y la potencia de recepción estimada de la ONU.</p></div><div class="hero-tags"><span>Cascada de tres etapas</span><span>1:2–1:128</span><span>Diagnóstico del presupuesto</span><span>Distancia máxima</span></div></div></section>
+<main class="tool-shell nel-tool-grid" id="calculator">
+<section class="input-panel card">
+<div class="section-title"><span class="section-icon">☷</span><div><h2>Parámetros del divisor y del enlace</h2><p>Introduce la cascada de divisores, las pérdidas pasivas y la ventana de potencia del equipo.</p></div></div>
+<div class="preset-row"><label for="preset">Preajuste de divisores</label><select id="preset"><option value="custom">Personalizado</option><option selected="" value="8x8">Dos etapas 1:8 × 1:8</option><option value="1x16">Una etapa 1:16</option><option value="1x32">Una etapa 1:32</option><option value="1x64">Una etapa 1:64</option><option value="2x8">Dos etapas 1:2 × 1:8</option><option value="4x8">Dos etapas 1:4 × 1:8</option><option value="4x4x4">Tres etapas 1:4 × 1:4 × 1:4</option></select></div>
+<div class="form-grid">
+<div class="field full"><label for="projectName">Nombre del proyecto</label><div class="input-wrap no-unit"><input id="projectName" value="GPON C+ 1:64 Splitter Design"/></div></div><div class="field"><label for="systemProfile">Perfil del sistema</label><div class="input-wrap no-unit"><select id="systemProfile"><option value="custom">Personalizado</option><option value="gpon-b">GPON B+ (28 dB)</option><option selected="" value="gpon-c">GPON C+ (32 dB)</option></select></div><small class="help">Valor predeterminado para la cascada 1:8 × 1:8 seleccionada.</small></div>
+<div class="subheading">Cascada de divisores</div>
+<div class="stage-card"><h3>Divisor primario</h3><div class="field"><label for="splitter1">Relación de división</label><div class="input-wrap no-unit"><select id="splitter1"><option value="0">Ninguno</option><option value="3.7">1:2 (3.7 dB)</option><option value="7.2">1:4 (7.2 dB)</option><option selected="" value="10.5">1:8 (10.5 dB)</option><option value="13.8">1:16 (13.8 dB)</option><option value="17">1:32 (17.0 dB)</option><option value="20.5">1:64 (20.5 dB)</option><option value="24">1:128 (24.0 dB)</option></select></div></div><div class="field"><label>Pérdida actual</label><div class="input-wrap"><input disabled="" value="Defined by split ratio"/><span>dB</span></div></div></div>
+<div class="stage-card"><h3>Divisor secundario</h3><div class="field"><label for="splitter2">Relación de división</label><div class="input-wrap no-unit"><select id="splitter2"><option value="0">Ninguno</option><option value="3.7">1:2 (3.7 dB)</option><option value="7.2">1:4 (7.2 dB)</option><option selected="" value="10.5">1:8 (10.5 dB)</option><option value="13.8">1:16 (13.8 dB)</option><option value="17">1:32 (17.0 dB)</option></select></div></div><div class="field"><label>Pérdida actual</label><div class="input-wrap"><input disabled="" value="Defined by split ratio"/><span>dB</span></div></div></div>
+<div class="stage-card"><h3>Tercer divisor</h3><div class="field"><label for="splitter3">Relación de división</label><div class="input-wrap no-unit"><select id="splitter3"><option selected="" value="0">Ninguno</option><option value="3.7">1:2 (3.7 dB)</option><option value="7.2">1:4 (7.2 dB)</option><option value="10.5">1:8 (10.5 dB)</option><option value="13.8">1:16 (13.8 dB)</option></select></div></div><div class="field"><label>Pérdida actual</label><div class="input-wrap"><input disabled="" value="Defined by split ratio"/><span>dB</span></div></div></div>
+<div class="subheading">Parámetros del enlace</div>
+<div class="field"><label for="distance">Distancia de fibra</label><div class="input-wrap"><input id="distance" min="0" step="0.1" type="number" value="10"/><span>km</span></div></div>
+<div class="field"><label for="wavelength">Longitud de onda</label><div class="input-wrap no-unit"><select id="wavelength"><option value="1310">1310 nm</option><option selected="" value="1490">1490 nm</option><option value="1550">1550 nm</option><option value="custom">Personalizado</option></select></div></div><div class="field"><label for="attenuation">Atenuación</label><div class="input-wrap"><input id="attenuation" min="0" step="0.01" type="number" value="0.25"/><span>dB/km</span></div><small class="help">Valor predeterminado a 1490 nm: 0,25 dB/km como referencia típica de ingeniería; editable para diseños conservadores.</small></div>
+<div class="field"><label for="spliceCount">Número de empalmes</label><div class="input-wrap"><input id="spliceCount" min="0" step="1" type="number" value="6"/><span>pcs</span></div></div>
+<div class="field"><label for="spliceLoss">Pérdida por empalme</label><div class="input-wrap"><input id="spliceLoss" min="0" step="0.01" type="number" value="0.10"/><span>dB</span></div></div>
+<div class="field"><label for="connectorCount">Número de conectores</label><div class="input-wrap"><input id="connectorCount" min="0" step="1" type="number" value="4"/><span>pcs</span></div></div>
+<div class="field"><label for="connectorLoss">Pérdida por conector</label><div class="input-wrap"><input id="connectorLoss" min="0" step="0.01" type="number" value="0.30"/><span>dB</span></div></div>
+<div class="field"><label for="otherLoss">Otras pérdidas pasivas</label><div class="input-wrap"><input id="otherLoss" min="0" step="0.01" type="number" value="0"/><span>dB</span></div></div>
+<div class="field"><label for="opticalPenalty">Penalización de trayecto óptico</label><div class="input-wrap"><input id="opticalPenalty" min="0" step="0.1" type="number" value="1"/><span>dB</span></div><small class="help">Valor de referencia C+ en sentido descendente.</small></div><div class="field"><label for="margin">Margen de ingeniería</label><div class="input-wrap"><input id="margin" min="0" step="0.1" type="number" value="3"/><span>dB</span></div></div><div class="field"><label for="systemReach">Límite de alcance del sistema</label><div class="input-wrap"><input id="systemReach" min="0.1" step="0.1" type="number" value="20"/><span>km</span></div><small class="help">El alcance efectivo no superará este valor.</small></div>
+<div class="subheading">Ventana de potencia del equipo</div>
+<div class="field"><label for="txPower">Potencia mínima de transmisión</label><div class="input-wrap"><input id="txPower" step="0.1" type="number" value="3"/><span>dBm</span></div></div>
+<div class="field"><label for="txMaxPower">Potencia máxima de transmisión</label><div class="input-wrap"><input id="txMaxPower" step="0.1" type="number" value="7"/><span>dBm</span></div><small class="help">Se usa para comprobar la sobrecarga del receptor; verifica la ficha técnica exacta del equipo.</small></div>
+<div class="field"><label for="rxSensitivity">Sensibilidad del receptor</label><div class="input-wrap"><input id="rxSensitivity" step="0.1" type="number" value="-30"/><span>dBm</span></div></div>
+<div class="field"><label for="rxOverload">Umbral de sobrecarga del receptor</label><div class="input-wrap"><input id="rxOverload" step="0.1" type="number" value="-8"/><span>dBm</span></div></div>
+</div>
+<div class="input-actions"><button class="primary-action" id="calculateBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> Calcular pérdida de divisores</button><button class="secondary-action" id="resetBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M20 11a8 8 0 1 0-2.3 5.7"></path><path d="M20 4v7h-7"></path></svg> Restablecer parámetros</button></div><p class="validation" id="validation" role="alert"></p>
+</section>
+<section aria-live="polite" class="result-panel card">
+<div class="section-title"><span class="section-icon">▥</span><div><h2>Resultados de divisores y presupuesto</h2><p>Utiliza el presupuesto ODN estándar después de la penalización de trayecto óptico y limita el alcance efectivo por la distancia máxima del sistema.</p></div></div>
+<div class="summary-card healthy" id="summaryCard"><div><p>Relación total de división</p><strong id="ratioResult">1:64</strong></div><div class="health-badge" id="healthBadge">✓ Correcto</div></div>
+<div class="metric-grid">
+<article class="metric-card"><span class="metric-icon">Σ</span><div><small>Pérdida total de divisores</small><strong><span id="splitterLossResult">0.00</span> dB</strong></div></article>
+<article class="metric-card"><span class="metric-icon">P</span><div><small>Presupuesto restante</small><strong><span id="remaining">0.00</span> dB</strong></div></article>
+<article class="metric-card"><span class="metric-icon">RX</span><div><small>Rango estimado de potencia recibida</small><strong><span id="rxPower">0.00</span> dBm</strong></div></article>
+<article class="metric-card"><span class="metric-icon">↔</span><div><small>Distancia máxima efectiva</small><strong><span id="maxDistance">0.00</span> km</strong></div></article>
+</div>
+<div class="topology">
+<div class="node endpoint"><b>OLT</b><span>Transmitter</span></div><div class="line"></div>
+<div class="node"><b id="stage1Ratio">1:8</b><span id="stage1Loss">10.50 dB</span></div><div class="line"></div>
+<div class="node"><b id="stage2Ratio">1:8</b><span id="stage2Loss">10.50 dB</span></div><div class="line"></div>
+<div class="node"><b id="stage3Ratio">1:1</b><span id="stage3Loss">0.00 dB</span></div><div class="line"></div>
+<div class="node endpoint"><b>ONU</b><span>Receptor</span></div>
+</div>
+<div class="result-grid"><article class="result-box"><span>Presupuesto ODN estándar</span><strong><span id="standardBudget">0.00</span> dB</strong></article><article class="result-box"><span>Distancia máxima por presupuesto óptico</span><strong><span id="opticalMaxDistance">0.00</span> km</strong></article>
+<article class="result-box"><span>Pérdida ideal de división</span><strong><span id="idealLoss">0.00</span> dB</strong></article>
+<article class="result-box"><span>Pérdida de inserción adicional</span><strong><span id="excessLoss">0.00</span> dB</strong></article>
+<article class="result-box"><span>Pérdida física del enlace</span><strong><span id="physicalLoss">0.00</span> dB</strong></article>
+<article class="result-box"><span>Pérdida total de diseño</span><strong><span id="designLoss">0.00</span> dB</strong></article>
+<article class="result-box"><span>Margen sobre sensibilidad</span><strong><span id="sensMargin">0.00</span> dB</strong></article>
+<article class="result-box"><span>Margen frente a sobrecarga</span><strong><span id="overMargin">0.00</span> dB</strong></article>
+</div>
+<div class="breakdown"><h3>Desglose de pérdidas y presupuesto ODN</h3>
+<div class="breakdown-row"><span>Pérdida de fibra</span><span><b id="fiberLoss">0.00</b> dB</span></div>
+<div class="breakdown-row"><span>Pérdida de empalmes</span><span><b id="spliceTotal">0.00</b> dB</span></div>
+<div class="breakdown-row"><span>Pérdida de conectores</span><span><b id="connectorTotal">0.00</b> dB</span></div>
+<div class="breakdown-row"><span>Otras pérdidas pasivas</span><span><b id="otherResult">0.00</b> dB</span></div>
+<div class="breakdown-row"><span>Penalización de trayecto óptico</span><span><b id="opticalPenaltyResult">0.00</b> dB</span></div><div class="breakdown-row"><span>Margen de ingeniería</span><span><b id="marginResult">0.00</b> dB</span></div>
+</div>
+<div class="diagnosis healthy" id="diagnosis"><strong>Diagnóstico de ingeniería</strong><p id="diagnosisText">—</p></div>
+<div class="result-actions"><button id="copyBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> Copiar resultado</button><button id="saveBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 5v14M5 12h14"></path></svg> Guardar registro</button><button id="csvBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg> Exportar CSV</button><button id="printBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M6 9V3h12v6"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v7H6z"></path></svg> Imprimir / PDF</button></div>
+</section>
+</main>
+<aside aria-label="PUBLICIDAD" class="ad-slot" data-ad-key="afterCalculator" hidden=""><div class="ad-label">PUBLICIDAD</div><div class="ad-body"></div></aside>
+<section class="content-section" id="methodology"><h2>Metodología y notas de ingeniería</h2><div class="grid"><article><h3>Relación total</h3><p>Multiplica la relación de cada etapa. Por ejemplo, 1:8 × 1:8 produce una relación total 1:64.</p></article><article><h3>Pérdida real de divisores</h3><p>Suma la pérdida de inserción nominal de todas las etapas, no solo la pérdida ideal de división.</p></article><article><h3>Presupuesto ODN</h3><p>Se verifica con potencia mínima Tx, sensibilidad Rx, penalización óptica, pérdida física y margen de ingeniería.</p></article><article><h3>Alcance efectivo</h3><p>Se calcula primero el alcance por presupuesto óptico y después se toma el menor valor frente al límite de alcance del sistema.</p></article></div></section>
+<section class="content-section" id="faq"><h2>Preguntas frecuentes</h2><div data-nel-faq=""><details><summary>¿Por qué GPON C+ es una referencia habitual para 1:8 × 1:8?</summary><p>La cascada aporta aproximadamente 21 dB solo en divisores; al añadir fibra, conectores, empalmes y margen, B+ puede resultar insuficiente mientras C+ dispone de una clase ODN mayor.</p></details><details><summary>¿Una sola etapa tiene menos pérdida que dos etapas?</summary><p>Para una relación total equivalente, varias etapas suelen añadir pérdida excedente y puntos de conexión, aunque pueden facilitar cobertura y mantenimiento.</p></details><details><summary>¿Por qué la pérdida ideal difiere de la pérdida de inserción?</summary><p>La ideal representa división perfecta de potencia. La pérdida de inserción incluye fabricación, acoplamiento, encapsulado y uniformidad.</p></details><details><summary>¿Demasiada potencia recibida también es un problema?</summary><p>Sí. Debe verificarse tanto la sensibilidad como el umbral de sobrecarga del receptor.</p></details><details><summary>¿Sustituye a las pruebas de campo?</summary><p>No. La aceptación final requiere medidor de potencia, OTDR y parámetros reales del equipo.</p></details></div></section>
+<section class="content-section" id="history"><div class="section-heading"><div><p class="eyebrow">REGISTROS DEL PROYECTO</p><h2>Cálculos recientes</h2></div><button class="text-button" id="clearHistoryBtn">Borrar historial</button></div><div class="history-list" id="historyList"></div></section>
+<section class="content-section" id="references"><h2>Hipótesis de divisores y referencias oficiales</h2><p>Las pérdidas seleccionables son valores de planificación. Para el diseño final usa la clase exacta del divisor, uniformidad, pérdida de retorno y fichas técnicas del OLT/ONU.</p><ul><li>ITU‑T G.671 — componentes ópticos y componentes de ramificación PON.</li><li>ITU‑T G.984.2 — parámetros ópticos GPON.</li></ul><p>El umbral de 3 dB es una regla de planificación configurable, no un mandato universal.</p></section>
+<aside aria-label="PUBLICIDAD" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">PUBLICIDAD</div><div class="ad-body"></div></aside>
+<!-- NEL_TOOL_GRAPH_START -->
+<section aria-labelledby="nel-tool-graph-title" class="content-section nel-tool-graph" data-primary-workflow="optical-link-design" data-tool-id="pon-splitter-loss" id="nel-tool-graph">
+<div class="section-heading"><div><p class="eyebrow">FLUJO DE TRABAJO DE INGENIERÍA</p><h2 id="nel-tool-graph-title">Continuar el flujo de trabajo de ingeniería</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Flujo de trabajo actual</span><strong>Flujo de diseño de enlace óptico</strong><p>Construye un enlace óptico desde las hipótesis de pérdida física, pasando por planificación de divisores y presupuesto, hasta verificar el alcance máximo.</p></div><div class="nel-workflow-step"><strong>Paso 2 de 4</strong><div aria-label="Paso 2 de 4" class="nel-workflow-progress"><span style="width:50%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="../../fiber-loss/es/"><span class="nel-tool-graph-label">Anterior</span><strong>Calculadora de pérdidas de fibra</strong><span class="nel-tool-graph-description">Calcula pérdidas de fibra, empalmes, conectores, divisores y margen de ingeniería de un enlace óptico.</span></a><a class="nel-tool-graph-card" href="../../optical-power-budget/es/"><span class="nel-tool-graph-label">Siguiente</span><strong>Calculadora de presupuesto de potencia óptica</strong><span class="nel-tool-graph-description">Verifica un enlace óptico con potencia de transmisión, sensibilidad del receptor, penalización óptica y pérdida ODN.</span></a></div>
+<h3 class="nel-tool-graph-subtitle">Herramientas relacionadas</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="../../fiber-loss/es/"><strong>Calculadora de pérdidas de fibra</strong><span class="nel-tool-graph-description">Calcula pérdidas de fibra, empalmes, conectores, divisores y margen de ingeniería de un enlace óptico.</span></a><a class="nel-tool-graph-card" href="../../optical-power-budget/es/"><strong>Calculadora de presupuesto de potencia óptica</strong><span class="nel-tool-graph-description">Verifica un enlace óptico con potencia de transmisión, sensibilidad del receptor, penalización óptica y pérdida ODN.</span></a><a class="nel-tool-graph-card" href="../../pon-distance/"><strong>Calculadora de distancia máxima PON</strong><span class="nel-tool-graph-description">Calcula el alcance por presupuesto óptico, el alcance efectivo del sistema y el margen planificado.</span></a></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+<div class="site-shell-footer-inner">
+<div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Herramientas profesionales en línea para ingenieros de telecomunicaciones y redes.</p></div>
+<nav aria-label="Navegación del pie de página" class="site-shell-footer-links">
+<a href="../../../es/about/">Acerca de</a><a href="../../../es/contact/">Contacto</a><a href="../../../es/privacy/">Privacidad</a><a href="../../../es/terms/">Términos</a>
+</nav>
+<p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+</div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script defer="" src="../js/engine.js"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=13b784c5ec67"></script>
+<script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=d2715dc996b6"></script><script defer="" src="/assets/js/es-launch-runtime.js?v=1.3.0"></script></body></html>

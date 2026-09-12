@@ -1,5 +1,5 @@
 const $=id=>document.getElementById(id);
-const LANG=document.documentElement.lang.toLowerCase().startsWith("en")?"en":"zh";
+const LANG=document.documentElement.lang.toLowerCase().startsWith("zh")?"zh":"en";
 const LIB=window.NEL_BANDWIDTH_UNITS;
 const ENGINE=window.BandwidthEngine;
 let activeMode="transfer";

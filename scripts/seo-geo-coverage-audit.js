@@ -44,14 +44,15 @@ const intentByTool=Object.freeze({
   "data-center-airflow-containment-planner":"planning",
   "generator-ups-transfer-ride-through-planner":"planning",
   "transmission-ring-optimization-risk-analyzer":"planning",
-  "olt-dual-uplink-transport-mse-planner":"planning"
+  "olt-dual-uplink-transport-mse-planner":"planning",
+  "data-center-network-convergence-fabric-capacity-planner":"planning"
 });
 const intentLabels=Object.freeze({
-  calculation:{en:"calculation",zh:"计算"},
-  validation:{en:"validation",zh:"验证"},
-  planning:{en:"planning",zh:"规划"},
-  diagnosis:{en:"diagnosis",zh:"故障诊断"},
-  sizing:{en:"sizing and selection",zh:"选型"}
+  calculation:{en:"calculation",zh:"计算",es:"cálculo"},
+  validation:{en:"validation",zh:"验证",es:"validación"},
+  planning:{en:"planning",zh:"规划",es:"planificación"},
+  diagnosis:{en:"diagnosis",zh:"故障诊断",es:"diagnóstico"},
+  sizing:{en:"sizing and selection",zh:"选型",es:"dimensionamiento y selección"}
 });
 
 const read=file=>fs.readFileSync(file,"utf8");
@@ -152,7 +153,12 @@ function buildReport({catalog,localeConfig,readPage,generatedAt=new Date().toISO
   const activeLocales=localeConfig.locales.filter(locale=>locale.status==="active");
   const tools=catalog.filter(tool=>tool.status==="active").map(tool=>{
     if(!intentByTool[tool.id])throw new Error(`Missing search intent for active tool: ${tool.id}`);
-    const locales=Object.fromEntries(activeLocales.map(locale=>{
+    const availableLocales=activeLocales.filter(locale=>{
+      if(locale.id===localeConfig.defaultLocale)return true;
+      const key=locale.catalogKey||locale.id;
+      return Boolean(tool.translations?.[key]?.name||tool.translations?.[locale.id]?.name);
+    });
+    const locales=Object.fromEntries(availableLocales.map(locale=>{
       const location=toolPageFile(localeConfig,locale,tool.id);
       return [locale.id,pageSignals(readPage(location.file),`${localeConfig.siteUrl||origin}${location.route}`,{includeInternalLinks})];
     }));
@@ -162,13 +168,13 @@ function buildReport({catalog,localeConfig,readPage,generatedAt=new Date().toISO
       catalogOrder:tool.order,
       category:tool.category,
       searchIntent:{id:intentByTool[tool.id],...intentLabels[intentByTool[tool.id]]},
-      targetTopic:Object.fromEntries(activeLocales.map(locale=>{
-        const translation=tool.translations[locale.catalogKey||locale.id];
+      targetTopic:Object.fromEntries(availableLocales.map(locale=>{
+        const translation=tool.translations[locale.catalogKey||locale.id]||tool.translations[locale.id];
         if(!translation?.name)throw new Error(`Missing ${locale.id} target topic for active tool: ${tool.id}`);
         return [locale.id,translation.name];
       })),
       contentOwner:owner,
-      lastReviewedAt:Object.fromEntries(activeLocales.map(locale=>[locale.id,locales[locale.id].lastReviewedAt])),
+      lastReviewedAt:Object.fromEntries(availableLocales.map(locale=>[locale.id,locales[locale.id].lastReviewedAt])),
       locales,
       ...coverage
     };
@@ -177,12 +183,12 @@ function buildReport({catalog,localeConfig,readPage,generatedAt=new Date().toISO
   return {
     generatedAt,
     methodology:{
-      scope:"Active bilingual tool pages configured by locales.json and tools-catalog.json",
+      scope:"Active localized tool pages configured by locales.json and tools-catalog.json; partial locale rollouts are supported",
       meaning:"Rule-based content-gap priority; not a ranking, traffic, or conversion forecast",
       thresholds:{faqQuestions:5,externalReferences:3,sectionHeadings:4,contextualInternalLinks:2,visibleCharactersPerLocale:1200},
       limitations:["No Search Console, analytics, backlink, search-volume, or live ranking data is used.","Source authority is counted as unique external references; editorial quality still requires human review.","lastReviewedAt remains null until a formal content review is recorded."]
     },
-    summary:{activeTools:tools.length,localePages:tools.length*activeLocales.length,priorityCounts:counts},
+    summary:{activeTools:tools.length,localePages:tools.reduce((sum,tool)=>sum+Object.keys(tool.locales).length,0),priorityCounts:counts},
     nextBatch:tools.slice(0,5).map(tool=>tool.id),
     tools
   };

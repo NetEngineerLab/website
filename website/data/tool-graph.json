@@ -6,7 +6,8 @@
       "id": "fiber-loss",
       "routes": {
         "en": "/tools/fiber-loss/",
-        "zh-CN": "/tools/fiber-loss/zh/"
+        "zh-CN": "/tools/fiber-loss/zh/",
+        "es": "/tools/fiber-loss/es/"
       },
       "translations": {
         "en": {
@@ -16,6 +17,10 @@
         "zh": {
           "name": "光纤链路损耗计算器",
           "description": "计算光纤、熔接、连接器、分光器及工程余量，输出物理损耗与设计损耗。"
+        },
+        "es": {
+          "name": "Calculadora de pérdidas de fibra",
+          "description": "Calcula las pérdidas de fibra, empalmes, conectores, divisores y margen de ingeniería de un enlace óptico."
         }
       },
       "related": [
@@ -47,7 +52,8 @@
       "id": "optical-power-budget",
       "routes": {
         "en": "/tools/optical-power-budget/",
-        "zh-CN": "/tools/optical-power-budget/zh/"
+        "zh-CN": "/tools/optical-power-budget/zh/",
+        "es": "/tools/optical-power-budget/es/"
       },
       "translations": {
         "en": {
@@ -57,6 +63,10 @@
         "zh": {
           "name": "光功率预算计算器",
           "description": "结合发送功率、接收灵敏度、光学代价和ODN损耗验证完整光链路预算。"
+        },
+        "es": {
+          "name": "Calculadora de presupuesto óptico",
+          "description": "Verifica un enlace óptico con potencia de transmisión, sensibilidad del receptor, penalización óptica y pérdidas ODN."
         }
       },
       "related": [
@@ -88,7 +98,8 @@
       "id": "pon-splitter-loss",
       "routes": {
         "en": "/tools/pon-splitter-loss/",
-        "zh-CN": "/tools/pon-splitter-loss/zh/"
+        "zh-CN": "/tools/pon-splitter-loss/zh/",
+        "es": "/tools/pon-splitter-loss/es/"
       },
       "translations": {
         "en": {
@@ -98,6 +109,10 @@
         "zh": {
           "name": "PON分光器损耗计算器",
           "description": "支持一级、二级、三级分光级联，并计算总分光比、实际插入损耗和有效距离。"
+        },
+        "es": {
+          "name": "Calculadora de pérdidas del divisor PON",
+          "description": "Planifica divisiones en varias etapas y calcula la relación total, la pérdida de inserción y el alcance efectivo."
         }
       },
       "related": [
@@ -258,7 +273,8 @@
       "id": "subnet-calculator",
       "routes": {
         "en": "/tools/subnet-calculator/",
-        "zh-CN": "/tools/subnet-calculator/zh/"
+        "zh-CN": "/tools/subnet-calculator/zh/",
+        "es": "/tools/subnet-calculator/es/"
       },
       "translations": {
         "en": {
@@ -268,6 +284,10 @@
         "zh": {
           "name": "IP子网计算器",
           "description": "计算IPv4、IPv6、CIDR、掩码、广播地址、主机容量，并支持VLSM地址规划。"
+        },
+        "es": {
+          "name": "Calculadora de subredes IP",
+          "description": "Calcula IPv4, IPv6, CIDR, máscaras, rangos de broadcast y capacidad de hosts, con planificación VLSM."
         }
       },
       "related": [
@@ -292,7 +312,8 @@
       "id": "bandwidth-calculator",
       "routes": {
         "en": "/tools/bandwidth-calculator/",
-        "zh-CN": "/tools/bandwidth-calculator/zh/"
+        "zh-CN": "/tools/bandwidth-calculator/zh/",
+        "es": "/tools/bandwidth-calculator/es/"
       },
       "translations": {
         "en": {
@@ -302,6 +323,10 @@
         "zh": {
           "name": "带宽与传输时间计算器",
           "description": "计算文件传输时间、所需链路速率、并发用户容量和持续速率对应的数据量。"
+        },
+        "es": {
+          "name": "Calculadora de ancho de banda y tiempo de transferencia",
+          "description": "Calcula el tiempo de transferencia, la velocidad necesaria y la capacidad de usuarios concurrentes."
         }
       },
       "related": [
@@ -315,6 +340,13 @@
           "step": 5,
           "total": 9,
           "previous": "mtu-calculator",
+          "next": "switch-uplink-oversubscription-calculator"
+        },
+        {
+          "workflowId": "data-center-network-fabric-planning",
+          "step": 1,
+          "total": 5,
+          "previous": null,
           "next": "switch-uplink-oversubscription-calculator"
         }
       ],
@@ -436,7 +468,8 @@
       "id": "poe-power-budget-calculator",
       "routes": {
         "en": "/tools/poe-power-budget-calculator/",
-        "zh-CN": "/tools/poe-power-budget-calculator/zh/"
+        "zh-CN": "/tools/poe-power-budget-calculator/zh/",
+        "es": "/tools/poe-power-budget-calculator/es/"
       },
       "translations": {
         "en": {
@@ -446,6 +479,10 @@
         "zh": {
           "name": "PoE功率预算计算器",
           "description": "按总功率、端口、网线损耗、工程余量和802.3af/at/bt等级规划PoE交换机。"
+        },
+        "es": {
+          "name": "Calculadora de presupuesto de potencia PoE",
+          "description": "Dimensiona switches PoE según potencia, puertos, pérdidas del cable, margen y límites IEEE 802.3af/at/bt."
         }
       },
       "related": [
@@ -501,6 +538,13 @@
           "total": 9,
           "previous": "switch-uplink-oversubscription-calculator",
           "next": "acl-generator-validator"
+        },
+        {
+          "workflowId": "data-center-network-fabric-planning",
+          "step": 4,
+          "total": 5,
+          "previous": "data-center-network-convergence-fabric-capacity-planner",
+          "next": "network-change-planner-mop-generator"
         }
       ],
       "primaryWorkflow": "enterprise-lan-ip-planning",
@@ -511,7 +555,8 @@
       "id": "wireless-link-budget-calculator",
       "routes": {
         "en": "/tools/wireless-link-budget-calculator/",
-        "zh-CN": "/tools/wireless-link-budget-calculator/zh/"
+        "zh-CN": "/tools/wireless-link-budget-calculator/zh/",
+        "es": "/tools/wireless-link-budget-calculator/es/"
       },
       "translations": {
         "en": {
@@ -521,6 +566,10 @@
         "zh": {
           "name": "无线链路预算计算器",
           "description": "计算无线链路EIRP、自由空间损耗、接收电平、衰落余量和菲涅尔区净空。"
+        },
+        "es": {
+          "name": "Calculadora de presupuesto de enlace inalámbrico",
+          "description": "Calcula pérdidas de espacio libre, margen de desvanecimiento, disponibilidad y alcance del enlace inalámbrico."
         }
       },
       "related": [
@@ -634,7 +683,8 @@
       "id": "vlan-ip-capacity-planner",
       "routes": {
         "en": "/tools/vlan-ip-capacity-planner/",
-        "zh-CN": "/tools/vlan-ip-capacity-planner/zh/"
+        "zh-CN": "/tools/vlan-ip-capacity-planner/zh/",
+        "es": "/tools/vlan-ip-capacity-planner/es/"
       },
       "translations": {
         "en": {
@@ -644,6 +694,10 @@
         "zh": {
           "name": "VLAN与IP子网容量规划器",
           "description": "规划VLAN数量、IPv4前缀、地址容量与扩容余量。"
+        },
+        "es": {
+          "name": "Planificador de capacidad VLAN y subredes IP",
+          "description": "Planifica la cantidad de VLAN, prefijos IPv4, capacidad de direcciones y crecimiento de subredes."
         }
       },
       "related": [
@@ -699,6 +753,13 @@
           "total": 5,
           "previous": "poe-voltage-drop-calculator",
           "next": null
+        },
+        {
+          "workflowId": "data-center-network-fabric-planning",
+          "step": 2,
+          "total": 5,
+          "previous": "bandwidth-calculator",
+          "next": "data-center-network-convergence-fabric-capacity-planner"
         }
       ],
       "primaryWorkflow": "enterprise-lan-ip-planning",
@@ -809,6 +870,13 @@
           "total": 2,
           "previous": "acl-generator-validator",
           "next": null
+        },
+        {
+          "workflowId": "data-center-network-fabric-planning",
+          "step": 5,
+          "total": 5,
+          "previous": "sfp-qsfp-compatibility-calculator",
+          "next": null
         }
       ],
       "primaryWorkflow": "network-change-automation",
@@ -819,7 +887,8 @@
       "id": "pue-data-center-energy-efficiency",
       "routes": {
         "en": "/tools/pue-data-center-energy-efficiency/",
-        "zh-CN": "/tools/pue-data-center-energy-efficiency/zh/"
+        "zh-CN": "/tools/pue-data-center-energy-efficiency/zh/",
+        "es": "/tools/pue-data-center-energy-efficiency/es/"
       },
       "translations": {
         "en": {
@@ -829,6 +898,10 @@
         "zh": {
           "name": "数据中心PUE与能效分析器",
           "description": "分析PUE、非IT能耗、年度电费、目标PUE节能潜力、WUE/CUE和月度趋势。"
+        },
+        "es": {
+          "name": "Analizador de PUE y eficiencia del centro de datos",
+          "description": "Analiza PUE, consumo no IT, coste anual, ahorro potencial, WUE, CUE y tendencias mensuales."
         }
       },
       "related": [
@@ -1000,7 +1073,8 @@
       "id": "ups-capacity-battery-runtime-calculator",
       "routes": {
         "en": "/tools/ups-capacity-battery-runtime-calculator/",
-        "zh-CN": "/tools/ups-capacity-battery-runtime-calculator/zh/"
+        "zh-CN": "/tools/ups-capacity-battery-runtime-calculator/zh/",
+        "es": "/tools/ups-capacity-battery-runtime-calculator/es/"
       },
       "translations": {
         "en": {
@@ -1010,6 +1084,10 @@
         "zh": {
           "name": "UPS容量与电池后备时间计算器",
           "description": "计算UPS kW/kVA容量、模块冗余、电池后备时间、老化/温度修正、回充需求与旁路电流。"
+        },
+        "es": {
+          "name": "Calculadora de capacidad UPS y autonomía de baterías",
+          "description": "Calcula capacidad UPS, redundancia modular, autonomía y correcciones por envejecimiento y temperatura."
         }
       },
       "related": [
@@ -1240,6 +1318,41 @@
       "primaryWorkflow": "access-transport-optimization",
       "previous": null,
       "next": "transmission-ring-optimization-risk-analyzer"
+    },
+    "data-center-network-convergence-fabric-capacity-planner": {
+      "id": "data-center-network-convergence-fabric-capacity-planner",
+      "routes": {
+        "en": "/tools/data-center-network-convergence-fabric-capacity-planner/",
+        "zh-CN": "/tools/data-center-network-convergence-fabric-capacity-planner/zh/"
+      },
+      "translations": {
+        "en": {
+          "name": "Data Center Network Convergence & Fabric Capacity Planner",
+          "description": "Plan Leaf-Spine and three-tier data center convergence, east-west/north-south demand, Spine N-1 resilience, bottlenecks and growth."
+        },
+        "zh": {
+          "name": "数据中心网络收敛比与 Fabric 容量规划器",
+          "description": "规划 Leaf-Spine 和三层数据中心的收敛比、东西向/南北向业务、Spine N-1、瓶颈与增长容量。"
+        }
+      },
+      "related": [
+        "switch-uplink-oversubscription-calculator",
+        "bandwidth-calculator",
+        "sfp-qsfp-compatibility-calculator",
+        "network-change-planner-mop-generator"
+      ],
+      "workflows": [
+        {
+          "workflowId": "data-center-network-fabric-planning",
+          "step": 3,
+          "total": 5,
+          "previous": "switch-uplink-oversubscription-calculator",
+          "next": "sfp-qsfp-compatibility-calculator"
+        }
+      ],
+      "primaryWorkflow": "data-center-network-fabric-planning",
+      "previous": "switch-uplink-oversubscription-calculator",
+      "next": "sfp-qsfp-compatibility-calculator"
     }
   },
   "workflows": {
@@ -1910,6 +2023,82 @@
             },
             "zh": {
               "action": "模拟N-1环网故障并优化保护态容量"
+            }
+          }
+        }
+      ]
+    },
+    "data-center-network-fabric-planning": {
+      "id": "data-center-network-fabric-planning",
+      "domain": "switching",
+      "translations": {
+        "en": {
+          "name": "Data Center Network Fabric Planning Workflow",
+          "description": "Move from traffic sizing through switch uplinks, fabric convergence, optics and implementation planning for a data center network."
+        },
+        "zh": {
+          "name": "数据中心网络 Fabric 规划工作流",
+          "description": "从业务带宽、交换机上联、Fabric 收敛、光模块到实施变更，形成数据中心网络容量设计闭环。"
+        }
+      },
+      "steps": [
+        {
+          "order": 1,
+          "toolId": "bandwidth-calculator",
+          "translations": {
+            "en": {
+              "action": "Estimate application and transfer demand"
+            },
+            "zh": {
+              "action": "估算业务与传输带宽需求"
+            }
+          }
+        },
+        {
+          "order": 2,
+          "toolId": "switch-uplink-oversubscription-calculator",
+          "translations": {
+            "en": {
+              "action": "Size per-switch uplinks and oversubscription"
+            },
+            "zh": {
+              "action": "规划单台交换机上联与超售"
+            }
+          }
+        },
+        {
+          "order": 3,
+          "toolId": "data-center-network-convergence-fabric-capacity-planner",
+          "translations": {
+            "en": {
+              "action": "Validate fabric convergence, N-1 and traffic direction"
+            },
+            "zh": {
+              "action": "验证 Fabric 收敛、N-1 与流量方向"
+            }
+          }
+        },
+        {
+          "order": 4,
+          "toolId": "sfp-qsfp-compatibility-calculator",
+          "translations": {
+            "en": {
+              "action": "Validate optics and interface compatibility"
+            },
+            "zh": {
+              "action": "核验光模块与接口兼容性"
+            }
+          }
+        },
+        {
+          "order": 5,
+          "toolId": "network-change-planner-mop-generator",
+          "translations": {
+            "en": {
+              "action": "Turn the approved design into a change plan and MOP"
+            },
+            "zh": {
+              "action": "将确认后的设计转成变更计划与 MOP"
             }
           }
         }

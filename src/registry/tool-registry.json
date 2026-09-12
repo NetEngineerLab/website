@@ -29,9 +29,9 @@
         "name": "Calculadora de pérdidas de fibra",
         "description": "Calcula las pérdidas de fibra, empalmes, conectores, divisores y margen de ingeniería de un enlace óptico.",
         "tags": [
-          "Fiber",
-          "Link loss",
-          "Budget"
+          "Fibra",
+          "Pérdida de enlace",
+          "Presupuesto"
         ]
       }
     },
@@ -44,7 +44,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/fiber-loss/",
-      "zh-CN": "/tools/fiber-loss/zh/"
+      "zh-CN": "/tools/fiber-loss/zh/",
+      "es": "/tools/fiber-loss/es/"
     },
     "relationships": {
       "related": [
@@ -52,6 +53,19 @@
         "pon-splitter-loss",
         "otdr-event"
       ]
+    },
+    "pageContent": {
+      "searchIntent": {
+        "es": "cálculo de pérdidas de fibra y presupuesto óptico"
+      },
+      "reviewedAt": {
+        "es": "2026-09-12"
+      },
+      "longTailQuestions": {
+        "es": [
+          "¿Cómo se calcula la pérdida total de un enlace de fibra?"
+        ]
+      }
     }
   },
   {
@@ -84,9 +98,9 @@
         "name": "Calculadora de presupuesto óptico",
         "description": "Verifica un enlace óptico con potencia de transmisión, sensibilidad del receptor, penalización óptica y pérdidas ODN.",
         "tags": [
-          "ODN",
-          "Power",
-          "C+"
+          "Potencia óptica",
+          "Presupuesto",
+          "ODN"
         ]
       }
     },
@@ -99,7 +113,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/optical-power-budget/",
-      "zh-CN": "/tools/optical-power-budget/zh/"
+      "zh-CN": "/tools/optical-power-budget/zh/",
+      "es": "/tools/optical-power-budget/es/"
     },
     "relationships": {
       "related": [
@@ -107,6 +122,19 @@
         "pon-distance",
         "onu-rx-power"
       ]
+    },
+    "pageContent": {
+      "searchIntent": {
+        "es": "verificación de presupuesto de potencia óptica"
+      },
+      "reviewedAt": {
+        "es": "2026-09-12"
+      },
+      "longTailQuestions": {
+        "es": [
+          "¿Cómo se verifica un presupuesto de potencia óptica ODN?"
+        ]
+      }
     }
   },
   {
@@ -140,8 +168,8 @@
         "description": "Planifica divisiones en varias etapas y calcula la relación total, la pérdida de inserción y el alcance efectivo.",
         "tags": [
           "PON",
-          "1:64",
-          "Splitter"
+          "Divisor",
+          "Alcance"
         ]
       }
     },
@@ -154,7 +182,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/pon-splitter-loss/",
-      "zh-CN": "/tools/pon-splitter-loss/zh/"
+      "zh-CN": "/tools/pon-splitter-loss/zh/",
+      "es": "/tools/pon-splitter-loss/es/"
     },
     "relationships": {
       "related": [
@@ -162,6 +191,19 @@
         "optical-power-budget",
         "pon-distance"
       ]
+    },
+    "pageContent": {
+      "searchIntent": {
+        "es": "planificación de divisores PON y pérdida de inserción"
+      },
+      "reviewedAt": {
+        "es": "2026-09-12"
+      },
+      "longTailQuestions": {
+        "es": [
+          "¿Cuánta pérdida introduce una cascada de divisores PON?"
+        ]
+      }
     }
   },
   {
@@ -380,7 +422,7 @@
         "tags": [
           "IPv4",
           "IPv6",
-          "VLSM"
+          "CIDR"
         ]
       }
     },
@@ -393,7 +435,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/subnet-calculator/",
-      "zh-CN": "/tools/subnet-calculator/zh/"
+      "zh-CN": "/tools/subnet-calculator/zh/",
+      "es": "/tools/subnet-calculator/es/"
     },
     "relationships": {
       "related": [
@@ -401,6 +444,19 @@
         "ipv6-nat-planner",
         "acl-generator-validator"
       ]
+    },
+    "pageContent": {
+      "searchIntent": {
+        "es": "cálculo de subredes IPv4 IPv6 y VLSM"
+      },
+      "reviewedAt": {
+        "es": "2026-09-12"
+      },
+      "longTailQuestions": {
+        "es": [
+          "¿Cómo calculo una subred IPv4, IPv6 o un plan VLSM?"
+        ]
+      }
     }
   },
   {
@@ -433,9 +489,9 @@
         "name": "Calculadora de ancho de banda y tiempo de transferencia",
         "description": "Calcula el tiempo de transferencia, la velocidad necesaria y la capacidad de usuarios concurrentes.",
         "tags": [
-          "Bandwidth",
-          "Transfer",
-          "Capacity"
+          "Ancho de banda",
+          "Transferencia",
+          "Usuarios"
         ]
       }
     },
@@ -448,7 +504,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/bandwidth-calculator/",
-      "zh-CN": "/tools/bandwidth-calculator/zh/"
+      "zh-CN": "/tools/bandwidth-calculator/zh/",
+      "es": "/tools/bandwidth-calculator/es/"
     },
     "relationships": {
       "related": [
@@ -456,6 +513,19 @@
         "wifi-coverage-capacity-planner",
         "mtu-calculator"
       ]
+    },
+    "pageContent": {
+      "searchIntent": {
+        "es": "cálculo de ancho de banda y tiempo de transferencia"
+      },
+      "reviewedAt": {
+        "es": "2026-09-12"
+      },
+      "longTailQuestions": {
+        "es": [
+          "¿Qué ancho de banda necesito para transferir un archivo en un tiempo determinado?"
+        ]
+      }
     }
   },
   {
@@ -627,9 +697,9 @@
         "name": "Calculadora de presupuesto de potencia PoE",
         "description": "Dimensiona switches PoE según potencia, puertos, pérdidas del cable, margen y límites IEEE 802.3af/at/bt.",
         "tags": [
-          "PoE++",
-          "Switch sizing",
-          "Cameras"
+          "PoE",
+          "Potencia",
+          "IEEE 802.3"
         ]
       }
     },
@@ -642,7 +712,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/poe-power-budget-calculator/",
-      "zh-CN": "/tools/poe-power-budget-calculator/zh/"
+      "zh-CN": "/tools/poe-power-budget-calculator/zh/",
+      "es": "/tools/poe-power-budget-calculator/es/"
     },
     "relationships": {
       "related": [
@@ -650,6 +721,19 @@
         "network-rack-power-cooling-calculator",
         "wifi-coverage-capacity-planner"
       ]
+    },
+    "pageContent": {
+      "searchIntent": {
+        "es": "dimensionamiento del presupuesto de potencia PoE"
+      },
+      "reviewedAt": {
+        "es": "2026-09-12"
+      },
+      "longTailQuestions": {
+        "es": [
+          "¿Cuántos dispositivos PoE puede alimentar mi switch?"
+        ]
+      }
     }
   },
   {
@@ -728,9 +812,9 @@
         "name": "Calculadora de presupuesto de enlace inalámbrico",
         "description": "Calcula pérdidas de espacio libre, margen de desvanecimiento, disponibilidad y alcance del enlace inalámbrico.",
         "tags": [
+          "Enlace inalámbrico",
           "RF",
-          "FSPL",
-          "Fresnel"
+          "Disponibilidad"
         ]
       }
     },
@@ -743,7 +827,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/wireless-link-budget-calculator/",
-      "zh-CN": "/tools/wireless-link-budget-calculator/zh/"
+      "zh-CN": "/tools/wireless-link-budget-calculator/zh/",
+      "es": "/tools/wireless-link-budget-calculator/es/"
     },
     "relationships": {
       "related": [
@@ -751,6 +836,19 @@
         "bandwidth-calculator",
         "poe-power-budget-calculator"
       ]
+    },
+    "pageContent": {
+      "searchIntent": {
+        "es": "cálculo de presupuesto de radioenlace y Fresnel"
+      },
+      "reviewedAt": {
+        "es": "2026-09-12"
+      },
+      "longTailQuestions": {
+        "es": [
+          "¿Cómo calculo el margen de un radioenlace y la zona de Fresnel?"
+        ]
+      }
     }
   },
   {
@@ -876,8 +974,8 @@
         "description": "Planifica la cantidad de VLAN, prefijos IPv4, capacidad de direcciones y crecimiento de subredes.",
         "tags": [
           "VLAN",
-          "IPv4",
-          "Capacity"
+          "Subred IP",
+          "Capacidad"
         ]
       }
     },
@@ -890,7 +988,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/vlan-ip-capacity-planner/",
-      "zh-CN": "/tools/vlan-ip-capacity-planner/zh/"
+      "zh-CN": "/tools/vlan-ip-capacity-planner/zh/",
+      "es": "/tools/vlan-ip-capacity-planner/es/"
     },
     "relationships": {
       "related": [
@@ -898,6 +997,19 @@
         "ipv6-nat-planner",
         "switch-uplink-oversubscription-calculator"
       ]
+    },
+    "pageContent": {
+      "searchIntent": {
+        "es": "planificación de capacidad VLAN e IPv4"
+      },
+      "reviewedAt": {
+        "es": "2026-09-12"
+      },
+      "longTailQuestions": {
+        "es": [
+          "¿Cuántas VLAN y qué prefijo IPv4 necesito para mi red?"
+        ]
+      }
     }
   },
   {
@@ -1117,9 +1229,9 @@
         "name": "Analizador de PUE y eficiencia del centro de datos",
         "description": "Analiza PUE, consumo no IT, coste anual, ahorro potencial, WUE, CUE y tendencias mensuales.",
         "tags": [
+          "Centro de datos",
           "PUE",
-          "Data center",
-          "Energy"
+          "Eficiencia"
         ]
       }
     },
@@ -1133,7 +1245,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/pue-data-center-energy-efficiency/",
-      "zh-CN": "/tools/pue-data-center-energy-efficiency/zh/"
+      "zh-CN": "/tools/pue-data-center-energy-efficiency/zh/",
+      "es": "/tools/pue-data-center-energy-efficiency/es/"
     },
     "relationships": {
       "related": [
@@ -1141,6 +1254,19 @@
         "48v-battery-runtime",
         "telecom-solar-battery-sizing-calculator"
       ]
+    },
+    "pageContent": {
+      "searchIntent": {
+        "es": "análisis de PUE y eficiencia energética de centros de datos"
+      },
+      "reviewedAt": {
+        "es": "2026-09-12"
+      },
+      "longTailQuestions": {
+        "es": [
+          "¿Cómo se calcula el PUE de un centro de datos?"
+        ]
+      }
     }
   },
   {
@@ -1366,8 +1492,8 @@
         "description": "Calcula capacidad UPS, redundancia modular, autonomía y correcciones por envejecimiento y temperatura.",
         "tags": [
           "UPS",
-          "Battery runtime",
-          "N+1"
+          "Batería",
+          "Autonomía"
         ]
       }
     },
@@ -1381,7 +1507,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/ups-capacity-battery-runtime-calculator/",
-      "zh-CN": "/tools/ups-capacity-battery-runtime-calculator/zh/"
+      "zh-CN": "/tools/ups-capacity-battery-runtime-calculator/zh/",
+      "es": "/tools/ups-capacity-battery-runtime-calculator/es/"
     },
     "relationships": {
       "related": [
@@ -1390,6 +1517,19 @@
         "data-center-cooling-load-calculator",
         "pue-data-center-energy-efficiency"
       ]
+    },
+    "pageContent": {
+      "searchIntent": {
+        "es": "dimensionamiento de UPS y autonomía de baterías"
+      },
+      "reviewedAt": {
+        "es": "2026-09-12"
+      },
+      "longTailQuestions": {
+        "es": [
+          "¿Qué capacidad UPS y autonomía de batería necesito?"
+        ]
+      }
     }
   },
   {
@@ -1679,6 +1819,56 @@
         "bandwidth-calculator",
         "switch-uplink-oversubscription-calculator",
         "pon-distance"
+      ]
+    }
+  },
+  {
+    "id": "data-center-network-convergence-fabric-capacity-planner",
+    "publishedAt": "2026-09-11",
+    "order": 35,
+    "status": "active",
+    "category": "network",
+    "icon": "DC",
+    "translations": {
+      "en": {
+        "name": "Data Center Network Convergence & Fabric Capacity Planner",
+        "description": "Plan Leaf-Spine and three-tier data center convergence, east-west/north-south demand, Spine N-1 resilience, bottlenecks and growth.",
+        "tags": [
+          "Data center fabric",
+          "Convergence ratio",
+          "Leaf-Spine"
+        ]
+      },
+      "zh": {
+        "name": "数据中心网络收敛比与 Fabric 容量规划器",
+        "description": "规划 Leaf-Spine 和三层数据中心的收敛比、东西向/南北向业务、Spine N-1、瓶颈与增长容量。",
+        "tags": [
+          "数据中心Fabric",
+          "收敛比",
+          "Leaf-Spine"
+        ]
+      }
+    },
+    "schemaVersion": "2.1.0",
+    "domain": "switching",
+    "capabilities": [
+      "calculate",
+      "plan",
+      "analyze",
+      "validate",
+      "design"
+    ],
+    "maturity": "production",
+    "routes": {
+      "en": "/tools/data-center-network-convergence-fabric-capacity-planner/",
+      "zh-CN": "/tools/data-center-network-convergence-fabric-capacity-planner/zh/"
+    },
+    "relationships": {
+      "related": [
+        "switch-uplink-oversubscription-calculator",
+        "bandwidth-calculator",
+        "sfp-qsfp-compatibility-calculator",
+        "network-change-planner-mop-generator"
       ]
     }
   }

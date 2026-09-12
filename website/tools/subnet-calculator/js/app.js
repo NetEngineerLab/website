@@ -1,5 +1,5 @@
 const $=id=>document.getElementById(id);
-const LANG=document.documentElement.lang.toLowerCase().startsWith("en")?"en":"zh";
+const LANG=document.documentElement.lang.toLowerCase().startsWith("zh")?"zh":"en";
 const ENGINE=window.SubnetEngine;
 const REF=window.NEL_IP_REFERENCE;
 let activeMode="ipv4";

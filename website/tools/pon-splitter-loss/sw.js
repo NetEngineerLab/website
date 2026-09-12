@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-pon-splitter-loss-locale-v1.9.9-04-p0-p1-correctness-consent-offline-ca275433f826-b8974b2a4cc6";
+const CACHE = "nel-pon-splitter-loss-locale-v1.9.9-04-p0-p1-correctness-consent-offline-0acfeb4bb3ce-ca21b3c67afd";
 const CORE = [
   "./index.html",
   "./",
@@ -7,15 +7,15 @@ const CORE = [
   "./offline.html",
   "./manifest.webmanifest",
   "./css/style.css?v=54a4661685c3",
-  "./js/app.js?v=bcbd7e0e5202",
+  "./js/app.js?v=13b784c5ec67",
   "./js/engine.js",
   "./images/logo.svg",
-  "../../data/locales.js?v=b541508dc0ee",
+  "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=1b428f96cadc",
   "../../assets/css/site-shell.css?v=58918fefbb35",
-  "../../assets/css/tool-design-system.css?v=b7969798cf78",
+  "../../assets/css/tool-design-system.css?v=676c405eec72",
   "../../assets/css/tool-workflow.css?v=66c8998b2681",
   "../../assets/js/analytics.js?v=1156b7864023",
   "../../assets/js/adsense.js?v=f075c80ccc75",
@@ -29,7 +29,9 @@ const CORE = [
   "../../assets/js/rules-engine/report.js?v=01f2524dcdac",
   "../../assets/generated/rules-engine/rules-bundle.9d06acb2a0ff.js?v=9d06acb2a0ff",
   "./zh/index.html",
-  "./manifest-zh.webmanifest"
+  "./manifest-zh.webmanifest",
+  "./es/index.html",
+  "./manifest-es.webmanifest"
 ];
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)));

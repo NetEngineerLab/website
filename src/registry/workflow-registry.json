@@ -697,5 +697,84 @@
         }
       }
     ]
+  },
+  {
+    "id": "data-center-network-fabric-planning",
+    "schemaVersion": "2.1.0",
+    "status": "active",
+    "domain": "switching",
+    "primary": true,
+    "translations": {
+      "en": {
+        "name": "Data Center Network Fabric Planning Workflow",
+        "description": "Move from traffic sizing through switch uplinks, fabric convergence, optics and implementation planning for a data center network."
+      },
+      "zh": {
+        "name": "数据中心网络 Fabric 规划工作流",
+        "description": "从业务带宽、交换机上联、Fabric 收敛、光模块到实施变更，形成数据中心网络容量设计闭环。"
+      }
+    },
+    "steps": [
+      {
+        "order": 1,
+        "toolId": "bandwidth-calculator",
+        "translations": {
+          "en": {
+            "action": "Estimate application and transfer demand"
+          },
+          "zh": {
+            "action": "估算业务与传输带宽需求"
+          }
+        }
+      },
+      {
+        "order": 2,
+        "toolId": "switch-uplink-oversubscription-calculator",
+        "translations": {
+          "en": {
+            "action": "Size per-switch uplinks and oversubscription"
+          },
+          "zh": {
+            "action": "规划单台交换机上联与超售"
+          }
+        }
+      },
+      {
+        "order": 3,
+        "toolId": "data-center-network-convergence-fabric-capacity-planner",
+        "translations": {
+          "en": {
+            "action": "Validate fabric convergence, N-1 and traffic direction"
+          },
+          "zh": {
+            "action": "验证 Fabric 收敛、N-1 与流量方向"
+          }
+        }
+      },
+      {
+        "order": 4,
+        "toolId": "sfp-qsfp-compatibility-calculator",
+        "translations": {
+          "en": {
+            "action": "Validate optics and interface compatibility"
+          },
+          "zh": {
+            "action": "核验光模块与接口兼容性"
+          }
+        }
+      },
+      {
+        "order": 5,
+        "toolId": "network-change-planner-mop-generator",
+        "translations": {
+          "en": {
+            "action": "Turn the approved design into a change plan and MOP"
+          },
+          "zh": {
+            "action": "将确认后的设计转成变更计划与 MOP"
+          }
+        }
+      }
+    ]
   }
 ]

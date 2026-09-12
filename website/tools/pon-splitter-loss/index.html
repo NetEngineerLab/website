@@ -16,22 +16,23 @@
 <script defer src="/data/seo-config.js"></script>
 <script defer src="/assets/js/seo-engine.js"></script>
 <script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why is GPON C+ the default for 1:8 × 1:8?","acceptedAnswer":{"@type":"Answer","text":"The splitter cascade alone contributes about 21 dB. After fiber, connectors, splices and engineering margin are added, a B+ budget can be insufficient, while C+ provides a 32 dB ODN class."}},{"@type":"Question","name":"Which has lower loss, one-stage or two-stage splitting?","acceptedAnswer":{"@type":"Answer","text":"For the same total split ratio, a multi-stage cascade normally adds excess insertion loss and connection points. One-stage splitting is usually easier to budget, although coverage and maintenance requirements also matter."}},{"@type":"Question","name":"Why does 1:4 × 1:8 equal 1:32?","acceptedAnswer":{"@type":"Answer","text":"The first stage creates 4 branches and each branch is split into 8 outputs, producing 4 × 8 = 32 outputs."}},{"@type":"Question","name":"Why is ideal split loss different from nominal insertion loss?","acceptedAnswer":{"@type":"Answer","text":"The ideal value reflects perfect power division only. Nominal insertion loss also includes manufacturing, coupling, packaging and uniformity losses."}},{"@type":"Question","name":"Are more splitter cascade stages always better?","acceptedAnswer":{"@type":"Answer","text":"No. Additional stages may improve design flexibility, but they also increase connection points, insertion loss and maintenance complexity."}},{"@type":"Question","name":"Can excessive receive power also cause problems?","acceptedAnswer":{"@type":"Answer","text":"Yes. Power above the receiver overload threshold can cause errors or receiver instability, so both sensitivity margin and overload margin must be checked."}},{"@type":"Question","name":"Can this calculator replace field testing?","acceptedAnswer":{"@type":"Answer","text":"No. It supports planning and review; final acceptance still requires a power meter, OTDR and actual equipment parameters."}}]}</script>
-<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="../../assets/css/tool-layout.css?v=1.9.9-02"><link rel="stylesheet" href="/assets/css/tool-design-system.css?v=b7969798cf78">
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="../../assets/css/tool-layout.css?v=1.9.9-02"><link rel="stylesheet" href="/assets/css/tool-design-system.css?v=676c405eec72">
 
 <link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
 
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="en">
 <meta name="nel-route" content="tools/pon-splitter-loss/">
-<meta name="nel-available-locales" content="en,zh">
+<meta name="nel-available-locales" content="en,zh,es">
 <link rel="canonical" href="https://netengineerlab.com/tools/pon-splitter-loss/">
 <link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/pon-splitter-loss/">
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/pon-splitter-loss/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/pon-splitter-loss/es/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/pon-splitter-loss/">
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=1b428f96cadc">
 <link rel="stylesheet" href="../../assets/css/site-shell.css?v=58918fefbb35">
-<script defer src="../../data/locales.js?v=b541508dc0ee"></script>
+<script defer src="../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
@@ -54,7 +55,7 @@
       <a href="../../contact/">Contact</a>
     </nav>
     <div class="site-shell-actions">
-      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a><a class="language-option" role="menuitem" href="es/" lang="es" hreflang="es"><span>Español</span><small>Spanish</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
       <div class="site-shell-context-action"><a href="#calculator">Start calculating</a></div>
     </div>
   </div>
@@ -163,6 +164,6 @@
   </div>
 </footer>
 <!-- NEL_FOOTER_END -->
-<script defer src="js/engine.js"></script><script defer="" src="js/pwa.js"></script><script defer="" src="../../data/optical-standards.js"></script><script defer="" src="../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="js/app.js?v=bcbd7e0e5202"></script>
+<script defer src="js/engine.js"></script><script defer="" src="js/pwa.js"></script><script defer="" src="../../data/optical-standards.js"></script><script defer="" src="../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="js/app.js?v=13b784c5ec67"></script>
 <script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script>
 <script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=d2715dc996b6"></script></body></html>

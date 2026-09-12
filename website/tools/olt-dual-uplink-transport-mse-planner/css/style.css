@@ -3,3 +3,444 @@
 .timeline li{display:flex;justify-content:space-between;gap:16px}.timeline span{font-variant-numeric:tabular-nums;white-space:nowrap}
 
 textarea{width:100%;padding:11px 12px;border:1px solid #bdc9d5;border-radius:9px;background:#fff;font:inherit;resize:vertical}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:.92rem}th,td{text-align:left;border-bottom:1px solid #e2e8f0;padding:8px}.check-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:12px 0}.check-grid label{display:flex;gap:8px;align-items:center;background:#f6f9fc;border:1px solid #dce6ef;border-radius:10px;padding:10px}@media(max-width:760px){.check-grid{grid-template-columns:1fr}}
+
+/* V1.1 Hero readability fix — 2026-09-12
+   Keep long EN/ZH engineering titles readable on desktop and prevent orphan wrapping. */
+main#calculator > .tool-hero{
+  min-height:220px !important;
+  padding:clamp(36px,3.4vw,48px) clamp(40px,4vw,56px) !important;
+}
+main#calculator > .tool-hero h1{
+  max-width:1500px;
+  font-size:clamp(36px,3.15vw,52px) !important;
+  line-height:1.16 !important;
+  letter-spacing:-.025em !important;
+  text-wrap:balance;
+}
+main#calculator > .tool-hero > p:last-child{
+  max-width:1180px;
+  margin-top:16px !important;
+  font-size:clamp(16px,1.25vw,19px) !important;
+  line-height:1.7 !important;
+}
+@media(max-width:900px){
+  main#calculator > .tool-hero{min-height:0 !important;padding:32px 28px !important}
+  main#calculator > .tool-hero h1{font-size:clamp(32px,5.8vw,44px) !important}
+}
+@media(max-width:560px){
+  main#calculator > .tool-hero{padding:26px 20px !important;border-radius:18px !important}
+  main#calculator > .tool-hero h1{font-size:clamp(28px,8.2vw,36px) !important;line-height:1.2 !important}
+  main#calculator > .tool-hero > p:last-child{font-size:15px !important;line-height:1.65 !important}
+}
+
+/* V1.2 Full-page engineering UI refinement — 2026-09-12
+   Improves hierarchy, grouped inputs, desktop two-column planning layout,
+   sticky result visibility and failure-state capacity visualization. */
+main#calculator{
+  width:100% !important;
+  max-width:none !important;
+  margin:26px auto 0 !important;
+}
+main#calculator > .tool-hero,
+main#calculator > .tool-layout{
+  width:min(calc(100% - 48px),1400px) !important;
+  max-width:1400px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+main#calculator > .tool-hero{
+  min-height:208px !important;
+  padding:38px 48px !important;
+  border:1px solid #d9e8f7 !important;
+  box-shadow:0 18px 44px rgba(8,61,115,.10) !important;
+}
+main#calculator > .tool-hero .eyebrow{
+  margin-bottom:10px !important;
+  color:#43a7e8 !important;
+  font-size:13px !important;
+  letter-spacing:.08em !important;
+}
+main#calculator > .tool-hero h1{
+  max-width:1260px;
+  font-size:clamp(34px,3vw,50px) !important;
+  line-height:1.12 !important;
+  letter-spacing:-.032em !important;
+}
+main#calculator > .tool-hero .hero-description{
+  max-width:1050px;
+  margin:14px 0 0 !important;
+  color:#244f76 !important;
+  font-size:17px !important;
+  line-height:1.7 !important;
+}
+main#calculator > .tool-hero .hero-badges{
+  margin-top:20px !important;
+  display:flex !important;
+  flex-wrap:wrap;
+  gap:8px;
+}
+main#calculator > .tool-hero .hero-badges span{
+  padding:7px 11px !important;
+  border:1px solid #c8def3 !important;
+  border-radius:999px !important;
+  color:#15528b !important;
+  background:#fff !important;
+  box-shadow:0 4px 12px rgba(8,61,115,.05);
+  font-size:13px !important;
+  font-weight:800;
+}
+
+.tool-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1.08fr) minmax(410px,.92fr);
+  gap:24px;
+  align-items:start;
+  margin-top:24px !important;
+}
+.tool-layout > .panel{
+  min-width:0;
+  margin:0;
+  padding:26px;
+  border:1px solid #d9e5f0;
+  border-radius:22px;
+  box-shadow:0 14px 38px rgba(15,35,55,.07);
+}
+.input-panel{
+  background:linear-gradient(180deg,#fff 0%,#fbfdff 100%);
+}
+.result-panel{
+  position:sticky;
+  top:104px;
+  overflow:hidden;
+}
+.section-heading{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:8px;
+}
+.section-heading h2{
+  margin:0 !important;
+}
+.panel-kicker{
+  margin:0 0 5px;
+  color:#2f82c9;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.panel-intro{
+  margin:0 0 20px;
+  color:#60758b;
+  font-size:14px;
+  line-height:1.65;
+}
+
+.parameter-group{
+  margin-top:16px;
+  padding:18px;
+  border:1px solid #e0e9f2;
+  border-radius:16px;
+  background:#fff;
+}
+.parameter-group:first-of-type{margin-top:10px}
+.group-heading{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  margin-bottom:14px;
+}
+.group-heading > span{
+  width:32px;
+  height:32px;
+  flex:0 0 32px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:10px;
+  color:#0b67b2;
+  background:#eaf5ff;
+  font-size:12px;
+  font-weight:900;
+}
+.group-heading h3{
+  margin:0;
+  color:#153f66;
+  font-size:16px;
+  line-height:1.3;
+}
+.group-heading p{
+  margin:3px 0 0;
+  color:#6a7f93;
+  font-size:12px;
+  line-height:1.5;
+}
+.form-grid{
+  gap:12px;
+}
+.field label{
+  margin-bottom:7px;
+  color:#183f63;
+  font-size:13px;
+}
+.field label span{
+  color:#71879c;
+  font-weight:600;
+}
+.field input,.field select{
+  min-height:44px;
+  padding:10px 12px;
+  border-color:#cbd9e7;
+  transition:border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.field input:hover,.field select:hover{border-color:#9fb9d1}
+.field input:focus,.field select:focus{
+  border-color:#428ed1 !important;
+  box-shadow:0 0 0 3px rgba(66,142,209,.12);
+}
+.protection-group{background:#fbfdff}
+.check-grid{
+  margin:0;
+  gap:10px;
+}
+.check-grid label{
+  min-height:74px;
+  align-items:flex-start;
+  padding:12px;
+  border-color:#dce7f1;
+  background:#fff;
+  cursor:pointer;
+  transition:border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+}
+.check-grid label:hover{
+  border-color:#9fc4e7;
+  box-shadow:0 7px 18px rgba(8,61,115,.07);
+  transform:translateY(-1px);
+}
+.check-grid input{margin-top:3px}
+.check-grid label > span{display:block;min-width:0}
+.check-grid strong{display:block;color:#173f65;font-size:13px}
+.check-grid small{display:block;margin-top:4px;color:#72879a;font-size:11px;line-height:1.4}
+.note-box{
+  margin-top:16px;
+  padding:14px 16px;
+  border-color:#cfe2f4;
+  background:#f3f9ff;
+}
+.note-box strong{color:#0a568f}
+.note-box p{margin:5px 0 0;color:#526f89;line-height:1.6}
+.input-help{
+  min-height:21px;
+  margin:10px 0 8px;
+  color:#57728b;
+}
+.btn{
+  min-height:48px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#086bc1,#0b7ce6);
+  box-shadow:0 11px 24px rgba(11,111,242,.20);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.btn:hover{transform:translateY(-1px);box-shadow:0 14px 28px rgba(11,111,242,.24)}
+
+.result-heading{
+  padding-bottom:16px;
+  border-bottom:1px solid #e7eef5;
+}
+.status{
+  min-width:78px;
+  min-height:30px;
+  justify-content:center;
+  align-items:center;
+  padding:.35rem .68rem;
+  border:1px solid transparent;
+}
+.status.healthy{color:#116b48;border-color:#bce7ce;background:#ebf8f1}
+.status.caution{color:#986406;border-color:#f2d899;background:#fff8e7}
+.status.high{color:#a12f2f;border-color:#f1c6c6;background:#fff0f0}
+.status.critical{color:#8a1c1c;border-color:#e6a8a8;background:#ffe6e6}
+.result-lead{
+  margin:14px 0 16px;
+  padding:12px 14px;
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+  border:1px solid #cfe3f7;
+  border-radius:13px;
+  background:linear-gradient(135deg,#edf7ff,#f9fcff);
+}
+.result-lead strong{color:#0d5e9e;font-size:13px}
+.result-lead span{color:#5e758b;font-size:12px;line-height:1.45}
+.metrics{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+}
+.metric{
+  min-height:104px;
+  padding:14px;
+  border-color:#e0e9f2 !important;
+  background:linear-gradient(180deg,#fff,#fbfdff) !important;
+}
+.metric span{font-size:12px;line-height:1.4}
+.metric strong{
+  display:block;
+  margin-top:5px;
+  color:#0a4d82;
+  font-size:24px;
+  line-height:1.1;
+}
+.metric small{font-size:11px;line-height:1.35}
+.utilization-card{
+  margin-top:16px;
+  padding:16px;
+  border:1px solid #dbe7f1;
+  border-radius:16px;
+  background:#fbfdff;
+}
+.subsection-heading{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:12px;
+}
+.subsection-heading h3{
+  margin:0;
+  color:#153f66;
+  font-size:15px;
+}
+.subsection-heading > span{
+  color:#8091a2;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.utilization-row + .utilization-row{margin-top:16px}
+.utilization-label{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:7px;
+  color:#4e6880;
+  font-size:12px;
+}
+.utilization-label strong{color:#153f66;font-size:14px}
+.utilization-track{
+  position:relative;
+  height:9px;
+  overflow:visible;
+  border-radius:999px;
+  background:#e9f0f6;
+}
+.utilization-track > span{
+  position:absolute;
+  inset:0 auto 0 0;
+  width:0;
+  max-width:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg,#1b8bd2,#0c70c8);
+  transition:width .25s ease, background .2s ease;
+}
+.utilization-track > span.warn{background:linear-gradient(90deg,#d99a1f,#e17f17)}
+.utilization-track > span.fail{background:linear-gradient(90deg,#d9534f,#b82f31)}
+.utilization-track > i{
+  position:absolute;
+  top:-3px;
+  bottom:-3px;
+  width:2px;
+  left:80%;
+  border-radius:2px;
+  background:#173f65;
+  opacity:.48;
+  transform:translateX(-1px);
+}
+.utilization-row > small{
+  display:block;
+  margin-top:6px;
+  color:#7b8d9e;
+  font-size:10px;
+}
+.validation-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+  margin-top:16px;
+}
+.validation-grid > section{
+  padding:15px 16px;
+  border:1px solid #e0e8f0;
+  border-radius:15px;
+  background:#fff;
+}
+.result-list{
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+.result-list li{
+  margin:0;
+  padding:8px 0;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  border-top:1px solid #eef3f7;
+  color:#536c82;
+  font-size:12px;
+  line-height:1.45;
+}
+.result-list li:first-child{border-top:0;padding-top:0}
+.result-list li:last-child{padding-bottom:0}
+.check-list li > strong{font-size:11px;white-space:nowrap}
+.check-list li.pass > strong{color:#16704c}
+.check-list li.fail > strong{color:#bd3434}
+.warning-list li{
+  display:block;
+  padding-left:18px;
+  position:relative;
+}
+.warning-list li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:14px;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#e0a02a;
+}
+.warning-list li.no-warning::before{background:#27a36e}
+
+@media(max-width:1100px){
+  .tool-layout{grid-template-columns:1fr}
+  .result-panel{position:static}
+}
+@media(max-width:760px){
+  main#calculator > .tool-hero,
+  main#calculator > .tool-layout{width:min(calc(100% - 32px),1400px) !important}
+  main#calculator > .tool-hero{padding:30px 26px !important}
+  main#calculator > .tool-hero h1{font-size:clamp(30px,7vw,40px) !important}
+  main#calculator > .tool-hero .hero-description{font-size:15px !important}
+  .tool-layout > .panel{padding:20px}
+  .parameter-group{padding:15px}
+  .form-grid{grid-template-columns:1fr}
+  .metrics{grid-template-columns:1fr 1fr}
+  .check-grid{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+  main#calculator > .tool-hero,
+  main#calculator > .tool-layout{width:min(calc(100% - 24px),1400px) !important}
+  main#calculator > .tool-hero{padding:24px 20px !important;border-radius:18px !important}
+  main#calculator > .tool-hero h1{font-size:30px !important;line-height:1.18 !important}
+  main#calculator > .tool-hero .hero-badges span{font-size:11px !important}
+  .tool-layout{gap:16px;margin-top:16px !important}
+  .tool-layout > .panel{padding:16px;border-radius:18px}
+  .metrics{grid-template-columns:1fr}
+  .metric{min-height:0}
+  .section-heading{align-items:flex-start}
+  .result-heading{gap:10px}
+}

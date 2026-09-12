@@ -105,7 +105,7 @@ const translations = {
   }
 };
 
-let currentLang = document.documentElement.lang.toLowerCase().startsWith("en") ? "en" : "zh";
+let currentLang = document.documentElement.lang.toLowerCase().startsWith("zh") ? "zh" : "en";
 let lastResult = null;
 
 const numericIds = [
@@ -320,7 +320,7 @@ function clearHistory(){
 
 function setLanguage(lang){
   currentLang = lang;
-  document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+  document.documentElement.lang = document.documentElement.dataset.nelLocale === "es" ? "es" : (lang === "zh" ? "zh-CN" : "en");
   const legacyLangToggle = $("langToggle");
   if (legacyLangToggle) legacyLangToggle.textContent = lang === "zh" ? "English" : "中文";
   document.querySelectorAll("[data-i18n]").forEach((element) => {

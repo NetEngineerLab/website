@@ -8,7 +8,8 @@
     defaultLocale: "en",
     locales: Object.freeze({
       en: Object.freeze({ hreflang: "en", prefix: "" }),
-      zh: Object.freeze({ hreflang: "zh-CN", prefix: "/zh" })
+      zh: Object.freeze({ hreflang: "zh-CN", prefix: "/zh" }),
+      es: Object.freeze({ hreflang: "es", prefix: "/es" })
     }),
     defaults: Object.freeze({
       en: Object.freeze({
@@ -18,6 +19,10 @@
       zh: Object.freeze({
         title: "NetEngineerLab | 通信与网络工程工具",
         description: "面向通信与网络工程师的光纤、PON、OTDR、MTU/MSS、IP地址规划和带宽计算工具。"
+      }),
+      es: Object.freeze({
+        title: "NetEngineerLab | Herramientas de telecomunicaciones e ingeniería de redes",
+        description: "Herramientas profesionales para ingeniería óptica, PON, redes IP, PoE, energía, centro de datos y planificación inalámbrica."
       })
     }),
     socialImage: "/assets/images/og-netengineerlab.png",

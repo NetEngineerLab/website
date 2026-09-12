@@ -59,7 +59,7 @@ function deriveToolGraph(workflows=loadWorkflowRegistry(),tools=loadToolRegistry
   }
   const primary=memberships[0]||null;
   graph.tools[tool.id]={
-   id:tool.id,routes:tool.routes,translations:{en:{name:tool.translations.en.name,description:tool.translations.en.description},zh:{name:tool.translations.zh.name,description:tool.translations.zh.description}},
+   id:tool.id,routes:tool.routes,translations:Object.fromEntries(Object.entries(tool.translations||{}).map(([key,value])=>[key,{name:value.name,description:value.description}])), 
    related:[...(tool.relationships?.related||[])],workflows:memberships,primaryWorkflow:primary?.workflowId||null,previous:primary?.previous||null,next:primary?.next||null
   };
  }

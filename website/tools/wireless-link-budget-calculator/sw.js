@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-wireless-link-budget-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-ca275433f826-982c063e3a0d";
+const CACHE = "nel-wireless-link-budget-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-0acfeb4bb3ce-71a318f86cdc";
 const CORE = [
   "./index.html",
   "./",
@@ -10,12 +10,12 @@ const CORE = [
   "./js/engine.js",
   "./js/app.js?v=8b98b445e671",
   "./images/logo.svg",
-  "../../data/locales.js?v=b541508dc0ee",
+  "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=1b428f96cadc",
   "../../assets/css/site-shell.css?v=58918fefbb35",
-  "../../assets/css/tool-design-system.css?v=b7969798cf78",
+  "../../assets/css/tool-design-system.css?v=676c405eec72",
   "../../assets/css/tool-workflow.css?v=66c8998b2681",
   "../../assets/js/analytics.js?v=1156b7864023",
   "../../assets/js/adsense.js?v=f075c80ccc75",
@@ -29,7 +29,9 @@ const CORE = [
   "../../assets/js/rules-engine/report.js?v=01f2524dcdac",
   "../../assets/generated/rules-engine/rules-bundle.9d06acb2a0ff.js?v=9d06acb2a0ff",
   "./zh/index.html",
-  "./manifest-zh.webmanifest"
+  "./manifest-zh.webmanifest",
+  "./es/index.html",
+  "./manifest-es.webmanifest"
 ];
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)));

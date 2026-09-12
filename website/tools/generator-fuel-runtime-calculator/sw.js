@@ -1,4 +1,4 @@
-"use strict";const CACHE = "nel-generator-fuel-runtime-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-ca275433f826-b09a97584247";
+"use strict";const CACHE = "nel-generator-fuel-runtime-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-0acfeb4bb3ce-28047f893056";
 const CORE = [
   "./",
   "./index.html",
@@ -9,12 +9,12 @@ const CORE = [
   "./js/engine.js",
   "./js/app.js?v=4d21c42736e6",
   "./js/pwa.js",
-  "../../data/locales.js?v=b541508dc0ee",
+  "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=1b428f96cadc",
   "../../assets/css/site-shell.css?v=58918fefbb35",
-  "../../assets/css/tool-design-system.css?v=b7969798cf78",
+  "../../assets/css/tool-design-system.css?v=676c405eec72",
   "../../assets/css/tool-workflow.css?v=66c8998b2681",
   "../../assets/js/analytics.js?v=1156b7864023",
   "../../assets/js/adsense.js?v=f075c80ccc75",

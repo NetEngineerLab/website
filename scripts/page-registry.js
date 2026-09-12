@@ -183,15 +183,17 @@ function loadRegistryInputs({toolsOverride}={}){
         for(const type of jsonLdTypes(html))schemaTypes.add(type);
       }
     }
-    const localeKeys=activeLocales.map(locale=>[locale,locale.catalogKey||locale.id]);
+    const localeKeys=activeLocales
+      .filter(locale=>Boolean(tool.translations?.[locale.catalogKey||locale.id]||tool.translations?.[locale.id]))
+      .map(locale=>[locale,locale.catalogKey||locale.id]);
     const configuredContent=tool.pageContent||{};
     const intent=intentLabels[intentByTool[tool.id]];
     return[tool.id,{
       searchIntent:Object.fromEntries(localeKeys.map(([locale,key])=>[key,intent?.[locale.id]||configuredContent.searchIntent?.[key]])),
       primaryTopic:Object.fromEntries(localeKeys.map(([locale,key])=>[key,tool.translations?.[key]?.name])),
-      longTailQuestions:Object.fromEntries(localeKeys.map(([locale,key])=>[key,localizedSignals[locale.id]?.longTailQuestions||configuredContent.longTailQuestions?.[key]])),
+      longTailQuestions:Object.fromEntries(localeKeys.map(([locale,key])=>[key,(localizedSignals[locale.id]?.longTailQuestions?.length?localizedSignals[locale.id].longTailQuestions:configuredContent.longTailQuestions?.[key])])),
       structuredData:[...schemaTypes].length?[...schemaTypes]:(configuredContent.structuredData||[]),
-      relatedContent:[...new Set(localeKeys.flatMap(([locale])=>localizedSignals[locale.id]?.internalLinks||configuredContent.relatedContent||[]))].sort(),
+      relatedContent:[...new Set(localeKeys.flatMap(([locale])=>localizedSignals[locale.id]?.internalLinks||configuredContent.relatedContent||[]))].filter(item=>existingIndexPathnames().includes(new URL(item,"https://registry.invalid/").pathname)).sort(),
       sources:[...new Set(localeKeys.flatMap(([locale])=>localizedSignals[locale.id]?.externalReferences||configuredContent.sources||[]))].sort(),
       owner:configuredContent.owner||owner,
       reviewedAt:Object.fromEntries(localeKeys.map(([locale,key])=>[key,localizedSignals[locale.id]?.lastReviewedAt??configuredContent.reviewedAt?.[key]??null]))
@@ -261,7 +263,10 @@ function buildPageRegistry({localeConfig,sitemapConfig,tools,schema,toolContent,
   }
   const pages=[];
   for(const family of families){
-    const localized=activeLocales.map(locale=>{
+    const localized=activeLocales.filter(locale=>{
+      const key=locale.catalogKey||locale.id;
+      return Boolean(family.translations[key]||family.translations[locale.id]);
+    }).map(locale=>{
       const key=locale.catalogKey||locale.id;
       const copy=family.translations[key]||family.translations[locale.id];
       invariant(copy,`${family.id}: active locale translation missing: ${locale.id}`);
