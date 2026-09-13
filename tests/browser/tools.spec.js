@@ -25,6 +25,19 @@ const calculationOutputs={
   "dns-ttl-propagation-calculator":["#status","—"],
   "acl-generator-validator":["#score","—"],
   "network-change-planner-mop-generator":["#riskCard .metric b","—"]
+  ,"pue-data-center-energy-efficiency":["#pue","—"]
+  ,"telecom-solar-battery-sizing-calculator":["#requiredPV","—"]
+  ,"generator-fuel-runtime-calculator":["#runtime","—"]
+  ,"telecom-rectifier-dc-power-sizing":["#reqA","—"]
+  ,"telecom-ac-dc-breaker-sizing":["#acdesign","—"]
+  ,"ups-capacity-battery-runtime-calculator":["#reqKVA","—"]
+  ,"data-center-cooling-load-calculator":["#design","—"]
+  ,"dc-plant-efficiency-load-sharing":["#recommended","—"]
+  ,"data-center-airflow-containment-planner":["#design","—"]
+  ,"generator-ups-transfer-ride-through-planner":["#overall","—"]
+  ,"transmission-ring-optimization-risk-analyzer":["#risk","—"]
+  ,"olt-dual-uplink-transport-mse-planner":["#risk","—"]
+  ,"data-center-network-convergence-fabric-capacity-planner":["#designStatus","—"]
 };
 const contentContracts={
   "fiber-loss":{

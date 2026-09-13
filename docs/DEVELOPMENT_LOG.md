@@ -687,3 +687,10 @@
 - Added V1.2.2 canonical Hero/card/spacing/mobile rules in the final shared compliance layer.
 - Strengthened `audit:ui-v1.2` so the old V1.2 false-positive can no longer pass.
 - Regression: UI audits, i18n, Page Registry, Workflow Registry, Tool Navigation, Launch Audit, SEO/GEO, Schema and selected engineering engines all PASS.
+
+## 2026-09-13 — Product and Engineering Master Specification V2.3.1
+
+- Added `docs/master/NETENGINEERLAB-PRODUCT-ENGINEERING-SPEC-V2.3.1.md` as the highest-priority product and engineering baseline.
+- Recorded the specification's frozen rules for incremental architecture changes, Tool Registry, canonical models, deterministic engines, workflows, i18n, SEO/GEO, analytics, observability, security, testing and release gates.
+- New development work must read this master specification together with the relevant domain/tool specification and release quality gate before implementation.
+- Existing deployment routes and production URLs remain unchanged; this documentation change does not alter runtime behavior.

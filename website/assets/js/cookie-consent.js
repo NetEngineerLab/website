@@ -18,17 +18,20 @@ function update(ok){
 function show(){
  if(document.querySelector(".nel-cookie-banner"))return;
  const isZh=(document.documentElement.lang||"").toLowerCase().startsWith("zh");
+ const isEs=(document.documentElement.lang||"").toLowerCase().startsWith("es");
  const copy=isZh
-  ?{title:"Cookie 偏好设置",body:"必要功能无需 Cookie。只有在你明确同意后，我们才启用可选分析，用于了解页面使用情况。你可以随时在隐私页面撤回选择。",reject:"拒绝分析",accept:"接受分析",privacy:"隐私政策"}
-  :{title:"Cookie Preferences",body:"Necessary features work without cookies. Optional analytics is enabled only after you agree, and you can withdraw your choice at any time from the privacy page.",reject:"Decline analytics",accept:"Accept analytics",privacy:"Privacy policy"};
+  ?{title:"Cookie 偏好设置",body:"必要功能无需 Cookie。只有在你明确同意后，我们才启用可选分析，用于了解页面使用情况。你可以随时在隐私页面撤回选择。",reject:"拒绝分析",accept:"接受分析",privacy:"隐私政策",legal:"ePrivacy 第 5(3) 条 / GDPR 第 7 条"}
+  :isEs
+  ?{title:"Preferencias de cookies",body:"Las funciones necesarias no requieren cookies. Solo activamos las analíticas opcionales después de tu consentimiento y puedes retirar tu elección en cualquier momento.",reject:"Rechazar analíticas",accept:"Aceptar analíticas",privacy:"Política de privacidad",legal:"ePrivacy, artículo 5(3) / RGPD, artículo 7"}
+  :{title:"Cookie Preferences",body:"Necessary features work without cookies. Optional analytics is enabled only after you agree, and you can withdraw your choice at any time from the privacy page.",reject:"Decline analytics",accept:"Accept analytics",privacy:"Privacy policy",legal:"ePrivacy Article 5(3) / GDPR Article 7"};
  const e=document.createElement("div");
  e.className="nel-cookie-banner";
  e.setAttribute("role","dialog");
  e.setAttribute("aria-modal","true");
  e.setAttribute("aria-labelledby","nel-cookie-title");
  e.setAttribute("aria-describedby","nel-cookie-description");
- const privacyHref=isZh?"/zh/privacy/":"/privacy/";
- e.innerHTML=`<h3 id="nel-cookie-title">${copy.title}</h3><p id="nel-cookie-description">${copy.body}</p><p class="nel-cookie-legal"><a href="${privacyHref}">${copy.privacy}</a> · ePrivacy 第 5(3) 条 / GDPR 第 7 条</p><div class="nel-cookie-actions"><button class="nel-cookie-reject" type="button">${copy.reject}</button><button class="nel-cookie-accept" type="button">${copy.accept}</button></div>`;
+ const privacyHref=isZh?"/zh/privacy/":isEs?"/es/privacy/":"/privacy/";
+ e.innerHTML=`<h3 id="nel-cookie-title">${copy.title}</h3><p id="nel-cookie-description">${copy.body}</p><p class="nel-cookie-legal"><a href="${privacyHref}">${copy.privacy}</a> · ${copy.legal}</p><div class="nel-cookie-actions"><button class="nel-cookie-reject" type="button">${copy.reject}</button><button class="nel-cookie-accept" type="button">${copy.accept}</button></div>`;
  document.body.appendChild(e);
  lastFocus=document.activeElement;
  const close=(value)=>{
