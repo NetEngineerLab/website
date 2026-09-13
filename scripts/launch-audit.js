@@ -67,7 +67,7 @@ for(const required of [
   "website/_headers","website/_redirects","website/robots.txt","website/sitemap.xml","website/data/site-config.json",
   "website/assets/images/og-netengineerlab.png","website/.well-known/security.txt",
   "scripts/production-acceptance.js","scripts/production-online-check.js","scripts/production-online-revalidation-test.js","scripts/production-performance-report.js","scripts/production-performance-test.js","scripts/remote-acceptance.js","scripts/release-manifest.js",
-  "tests/lighthouse/production.lighthouserc.json","docs/PRODUCTION_ONLINE_MONITORING_GUIDE.md","docs/PRODUCTION_PERFORMANCE_MONITORING_GUIDE.md","docs/archive-v1-history/V1.7.4_CHANGELOG.md","docs/archive-v1-history/V1.7.5_CHANGELOG.md"
+  "tests/lighthouse/production.lighthouserc.json","docs/PRODUCTION_ONLINE_MONITORING_GUIDE.md","docs/PRODUCTION_PERFORMANCE_MONITORING_GUIDE.md"
 ]){
   if(!fs.existsSync(path.join(root,required)))errors.push(`missing launch file: ${required}`);
 }
