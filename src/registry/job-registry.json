@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "2.4.0",
+  "jobs": [
+    {"id":"design-ftth-pon","domain":"optical","toolIds":["subnet-calculator","pon-splitter-loss","optical-power-budget","pon-distance","olt-dual-uplink-transport-mse-planner"],"deliverables":["engineering-report","bom"],"nextStep":"design-olt-expansion"},
+    {"id":"design-olt-expansion","domain":"access","toolIds":["olt-dual-uplink-transport-mse-planner","transmission-ring-optimization-risk-analyzer"],"deliverables":["upgrade-plan","engineering-report"],"nextStep":"plan-network-change"},
+    {"id":"plan-network-change","domain":"operations","toolIds":["acl-generator-validator","network-change-planner-mop-generator"],"deliverables":["mop","runbook"],"nextStep":null},
+    {"id":"design-data-center-fabric","domain":"switching","toolIds":["bandwidth-calculator","switch-uplink-oversubscription-calculator","data-center-network-convergence-fabric-capacity-planner","sfp-qsfp-compatibility-calculator"],"deliverables":["engineering-report","bom"],"nextStep":"design-critical-power"},
+    {"id":"design-critical-power","domain":"power-datacenter","toolIds":["network-rack-power-cooling-calculator","ups-capacity-battery-runtime-calculator","generator-ups-transfer-ride-through-planner","data-center-cooling-load-calculator","pue-data-center-energy-efficiency"],"deliverables":["engineering-report","resilience-checklist"],"nextStep":null}
+  ]
+}

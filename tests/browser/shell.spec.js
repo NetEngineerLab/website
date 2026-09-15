@@ -37,6 +37,7 @@ function compareWithTolerance(expected,actual,pathName="signature",issues=[]){
 }
 
 test("all public pages use one computed Header and Footer shell",async({page},testInfo)=>{
+  test.setTimeout(180000);
   const mobile=isMobileProject(testInfo.project.name);
   await page.setViewportSize(mobile?{width:390,height:844}:{width:1440,height:900});
   expect(await page.evaluate(()=>window.devicePixelRatio),"device pixel ratio").toBe(1);

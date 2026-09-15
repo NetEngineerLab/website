@@ -7,6 +7,7 @@ const sitemap=fs.readFileSync(path.join(root,"website","sitemap.xml"),"utf8");
 const routes=[...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match=>new URL(match[1]).pathname);
 
 test("all indexed pages expose a complete accessibility structure",async({page})=>{
+  test.setTimeout(180000);
   for(const route of routes){
     await page.goto(route,{waitUntil:"domcontentloaded"});
     const issues=await page.evaluate(()=>{

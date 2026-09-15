@@ -694,3 +694,10 @@
 - Recorded the specification's frozen rules for incremental architecture changes, Tool Registry, canonical models, deterministic engines, workflows, i18n, SEO/GEO, analytics, observability, security, testing and release gates.
 - New development work must read this master specification together with the relevant domain/tool specification and release quality gate before implementation.
 - Existing deployment routes and production URLs remain unchanged; this documentation change does not alter runtime behavior.
+
+## 2026-09-15 — V2.4 Job Registry foundation
+
+- Added `src/registry/job-registry.json` with five deep engineering jobs covering FTTH/PON, OLT expansion, network change, data-center fabric and critical power.
+- Added `scripts/job-registry.js` validation and wired it into `build:config` as `validate:job-registry`.
+- Each job declares participating tools, planned deliverables and, where applicable, a valid next Job; terminal jobs use `null`. This establishes the V2.4 Job Graph foundation. Step-level rules, validation and deliverable generation remain later implementation stages.
+- Added `scripts/build-v24-metadata.js` and generated `website/data/v24-tool-metadata.json` with tool levels, supported jobs and next tools for all 35 active tools. Input/output context remains empty until verified field mappings are implemented.

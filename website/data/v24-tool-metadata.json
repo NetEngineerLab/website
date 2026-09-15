@@ -1,0 +1,460 @@
+{
+  "schemaVersion": "2.4.0",
+  "tools": {
+    "fiber-loss": {
+      "id": "fiber-loss",
+      "toolLevel": "planner",
+      "supportedJobs": [],
+      "nextTools": [
+        "optical-power-budget",
+        "pon-splitter-loss",
+        "otdr-event"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "optical-power-budget": {
+      "id": "optical-power-budget",
+      "toolLevel": "calculator",
+      "supportedJobs": [
+        "design-ftth-pon"
+      ],
+      "nextTools": [
+        "fiber-loss",
+        "pon-distance",
+        "onu-rx-power"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "pon-splitter-loss": {
+      "id": "pon-splitter-loss",
+      "toolLevel": "planner",
+      "supportedJobs": [
+        "design-ftth-pon"
+      ],
+      "nextTools": [
+        "fiber-loss",
+        "optical-power-budget",
+        "pon-distance"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "onu-rx-power": {
+      "id": "onu-rx-power",
+      "toolLevel": "analyzer",
+      "supportedJobs": [],
+      "nextTools": [
+        "optical-power-budget",
+        "otdr-event",
+        "fiber-loss"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "pon-distance": {
+      "id": "pon-distance",
+      "toolLevel": "planner",
+      "supportedJobs": [
+        "design-ftth-pon"
+      ],
+      "nextTools": [
+        "optical-power-budget",
+        "pon-splitter-loss",
+        "fiber-loss"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "otdr-event": {
+      "id": "otdr-event",
+      "toolLevel": "analyzer",
+      "supportedJobs": [],
+      "nextTools": [
+        "fiber-loss",
+        "onu-rx-power",
+        "optical-power-budget"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "mtu-calculator": {
+      "id": "mtu-calculator",
+      "toolLevel": "calculator",
+      "supportedJobs": [],
+      "nextTools": [
+        "bandwidth-calculator",
+        "ipv6-nat-planner",
+        "acl-generator-validator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "subnet-calculator": {
+      "id": "subnet-calculator",
+      "toolLevel": "planner",
+      "supportedJobs": [
+        "design-ftth-pon"
+      ],
+      "nextTools": [
+        "vlan-ip-capacity-planner",
+        "ipv6-nat-planner",
+        "acl-generator-validator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "bandwidth-calculator": {
+      "id": "bandwidth-calculator",
+      "toolLevel": "planner",
+      "supportedJobs": [
+        "design-data-center-fabric"
+      ],
+      "nextTools": [
+        "switch-uplink-oversubscription-calculator",
+        "wifi-coverage-capacity-planner",
+        "mtu-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "48v-battery-runtime": {
+      "id": "48v-battery-runtime",
+      "toolLevel": "planner",
+      "supportedJobs": [],
+      "nextTools": [
+        "telecom-solar-battery-sizing-calculator",
+        "network-rack-power-cooling-calculator",
+        "pue-data-center-energy-efficiency"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "ipv6-nat-planner": {
+      "id": "ipv6-nat-planner",
+      "toolLevel": "planner",
+      "supportedJobs": [],
+      "nextTools": [
+        "subnet-calculator",
+        "vlan-ip-capacity-planner",
+        "mtu-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "wifi-coverage-capacity-planner": {
+      "id": "wifi-coverage-capacity-planner",
+      "toolLevel": "planner",
+      "supportedJobs": [],
+      "nextTools": [
+        "wireless-link-budget-calculator",
+        "bandwidth-calculator",
+        "poe-power-budget-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "poe-power-budget-calculator": {
+      "id": "poe-power-budget-calculator",
+      "toolLevel": "planner",
+      "supportedJobs": [],
+      "nextTools": [
+        "poe-voltage-drop-calculator",
+        "network-rack-power-cooling-calculator",
+        "wifi-coverage-capacity-planner"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "sfp-qsfp-compatibility-calculator": {
+      "id": "sfp-qsfp-compatibility-calculator",
+      "toolLevel": "analyzer",
+      "supportedJobs": [
+        "design-data-center-fabric"
+      ],
+      "nextTools": [
+        "optical-power-budget",
+        "fiber-loss",
+        "switch-uplink-oversubscription-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "wireless-link-budget-calculator": {
+      "id": "wireless-link-budget-calculator",
+      "toolLevel": "planner",
+      "supportedJobs": [],
+      "nextTools": [
+        "wifi-coverage-capacity-planner",
+        "bandwidth-calculator",
+        "poe-power-budget-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "poe-voltage-drop-calculator": {
+      "id": "poe-voltage-drop-calculator",
+      "toolLevel": "calculator",
+      "supportedJobs": [],
+      "nextTools": [
+        "poe-power-budget-calculator",
+        "48v-battery-runtime",
+        "network-rack-power-cooling-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "network-rack-power-cooling-calculator": {
+      "id": "network-rack-power-cooling-calculator",
+      "toolLevel": "planner",
+      "supportedJobs": [
+        "design-critical-power"
+      ],
+      "nextTools": [
+        "pue-data-center-energy-efficiency",
+        "48v-battery-runtime",
+        "telecom-solar-battery-sizing-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "vlan-ip-capacity-planner": {
+      "id": "vlan-ip-capacity-planner",
+      "toolLevel": "planner",
+      "supportedJobs": [],
+      "nextTools": [
+        "subnet-calculator",
+        "ipv6-nat-planner",
+        "switch-uplink-oversubscription-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "switch-uplink-oversubscription-calculator": {
+      "id": "switch-uplink-oversubscription-calculator",
+      "toolLevel": "planner",
+      "supportedJobs": [
+        "design-data-center-fabric"
+      ],
+      "nextTools": [
+        "bandwidth-calculator",
+        "vlan-ip-capacity-planner",
+        "sfp-qsfp-compatibility-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "dns-ttl-propagation-calculator": {
+      "id": "dns-ttl-propagation-calculator",
+      "toolLevel": "planner",
+      "supportedJobs": [],
+      "nextTools": [
+        "ipv6-nat-planner",
+        "subnet-calculator",
+        "mtu-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "acl-generator-validator": {
+      "id": "acl-generator-validator",
+      "toolLevel": "calculator",
+      "supportedJobs": [
+        "plan-network-change"
+      ],
+      "nextTools": [
+        "subnet-calculator",
+        "ipv6-nat-planner",
+        "mtu-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "network-change-planner-mop-generator": {
+      "id": "network-change-planner-mop-generator",
+      "toolLevel": "planner",
+      "supportedJobs": [
+        "plan-network-change"
+      ],
+      "nextTools": [
+        "acl-generator-validator",
+        "switch-uplink-oversubscription-calculator",
+        "vlan-ip-capacity-planner"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "pue-data-center-energy-efficiency": {
+      "id": "pue-data-center-energy-efficiency",
+      "toolLevel": "planner",
+      "supportedJobs": [
+        "design-critical-power"
+      ],
+      "nextTools": [
+        "network-rack-power-cooling-calculator",
+        "48v-battery-runtime",
+        "telecom-solar-battery-sizing-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "telecom-solar-battery-sizing-calculator": {
+      "id": "telecom-solar-battery-sizing-calculator",
+      "toolLevel": "planner",
+      "supportedJobs": [],
+      "nextTools": [
+        "48v-battery-runtime",
+        "pue-data-center-energy-efficiency",
+        "network-rack-power-cooling-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "generator-fuel-runtime-calculator": {
+      "id": "generator-fuel-runtime-calculator",
+      "toolLevel": "planner",
+      "supportedJobs": [],
+      "nextTools": [
+        "48v-battery-runtime",
+        "telecom-solar-battery-sizing-calculator",
+        "network-rack-power-cooling-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "telecom-rectifier-dc-power-sizing": {
+      "id": "telecom-rectifier-dc-power-sizing",
+      "toolLevel": "planner",
+      "supportedJobs": [],
+      "nextTools": [
+        "dc-plant-efficiency-load-sharing",
+        "48v-battery-runtime",
+        "network-rack-power-cooling-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "telecom-ac-dc-breaker-sizing": {
+      "id": "telecom-ac-dc-breaker-sizing",
+      "toolLevel": "planner",
+      "supportedJobs": [],
+      "nextTools": [
+        "telecom-rectifier-dc-power-sizing",
+        "network-rack-power-cooling-calculator",
+        "48v-battery-runtime"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "ups-capacity-battery-runtime-calculator": {
+      "id": "ups-capacity-battery-runtime-calculator",
+      "toolLevel": "planner",
+      "supportedJobs": [
+        "design-critical-power"
+      ],
+      "nextTools": [
+        "network-rack-power-cooling-calculator",
+        "48v-battery-runtime",
+        "data-center-cooling-load-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "data-center-cooling-load-calculator": {
+      "id": "data-center-cooling-load-calculator",
+      "toolLevel": "planner",
+      "supportedJobs": [
+        "design-critical-power"
+      ],
+      "nextTools": [
+        "network-rack-power-cooling-calculator",
+        "ups-capacity-battery-runtime-calculator",
+        "pue-data-center-energy-efficiency"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "dc-plant-efficiency-load-sharing": {
+      "id": "dc-plant-efficiency-load-sharing",
+      "toolLevel": "analyzer",
+      "supportedJobs": [],
+      "nextTools": [
+        "telecom-rectifier-dc-power-sizing",
+        "telecom-ac-dc-breaker-sizing",
+        "48v-battery-runtime"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "data-center-airflow-containment-planner": {
+      "id": "data-center-airflow-containment-planner",
+      "toolLevel": "planner",
+      "supportedJobs": [],
+      "nextTools": [
+        "data-center-cooling-load-calculator",
+        "network-rack-power-cooling-calculator",
+        "pue-data-center-energy-efficiency"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "generator-ups-transfer-ride-through-planner": {
+      "id": "generator-ups-transfer-ride-through-planner",
+      "toolLevel": "planner",
+      "supportedJobs": [
+        "design-critical-power"
+      ],
+      "nextTools": [
+        "ups-capacity-battery-runtime-calculator",
+        "generator-fuel-runtime-calculator",
+        "telecom-ac-dc-breaker-sizing"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "transmission-ring-optimization-risk-analyzer": {
+      "id": "transmission-ring-optimization-risk-analyzer",
+      "toolLevel": "planner",
+      "supportedJobs": [
+        "design-olt-expansion"
+      ],
+      "nextTools": [
+        "olt-dual-uplink-transport-mse-planner",
+        "bandwidth-calculator",
+        "switch-uplink-oversubscription-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "olt-dual-uplink-transport-mse-planner": {
+      "id": "olt-dual-uplink-transport-mse-planner",
+      "toolLevel": "planner",
+      "supportedJobs": [
+        "design-ftth-pon",
+        "design-olt-expansion"
+      ],
+      "nextTools": [
+        "transmission-ring-optimization-risk-analyzer",
+        "bandwidth-calculator",
+        "switch-uplink-oversubscription-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "data-center-network-convergence-fabric-capacity-planner": {
+      "id": "data-center-network-convergence-fabric-capacity-planner",
+      "toolLevel": "planner",
+      "supportedJobs": [
+        "design-data-center-fabric"
+      ],
+      "nextTools": [
+        "switch-uplink-oversubscription-calculator",
+        "bandwidth-calculator",
+        "sfp-qsfp-compatibility-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    }
+  }
+}
