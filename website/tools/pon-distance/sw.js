@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-pon-distance-locale-v1.9.9-04-p0-p1-correctness-consent-offline-357c8180fe9b-926b72b1d66d";
+const CACHE = "nel-pon-distance-locale-v2.0-deep-acceptance-20260919-357c8180fe9b";
 const CORE = [
   "./index.html",
   "./",

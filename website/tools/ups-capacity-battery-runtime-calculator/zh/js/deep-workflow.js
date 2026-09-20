@@ -1,0 +1,34 @@
+(() => {
+  'use strict';
+  if (document.getElementById('nelDeepWorkflow')) return;
+  const lang = (document.documentElement.lang || 'en').toLowerCase();
+  const zh = lang.startsWith('zh');
+  const slug = document.documentElement.dataset.nelRoute || location.pathname.replace(/^\//, '');
+  const basePath = slug.endsWith('/') ? slug : `${slug}/`;
+  const website = `https://netengineerlab.com/${basePath}${zh ? '' : ''}`;
+  const title = zh ? '深度方案与工程输出' : 'Deep scenarios & engineering outputs';
+  const sourceLabel = zh ? '网站地址' : 'Website';
+  const fields = [...document.querySelectorAll('main input, main select, main textarea')];
+  const read = () => Object.fromEntries(fields.filter(e => e.id).map(e => [e.id, e.value]));
+  const formatValue = (value) => { const n = Number(value); return Number.isFinite(n) && value !== '' ? String(Number(n.toFixed(4))) : value; };
+  const setNumeric = (values, factor) => Object.fromEntries(Object.entries(values).map(([k, v]) => {
+    const n = Number(v); return [k, Number.isFinite(n) && n > 0 ? formatValue(n * factor) : v];
+  }));
+  const resultText = () => document.querySelector('main .nel-tool-result, main [id="result"]')?.innerText || '';
+  const escapeHtml = (value) => String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const conclusions = (text) => text.split(/\n+/).map(s => s.replace(/[▥☷]/g, '').trim()).filter(Boolean).filter(s => !/^(工程计算结果|Engineering results|查看计算容量|Review calculated capacity)/i.test(s)).join('；');
+  const download = (name, body, type) => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([body], {type})); a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000); };
+  const csv = (obj) => [['Field', 'Value'], ...Object.entries(obj)].map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\n');
+  const section = document.createElement('section'); section.id = 'nelDeepWorkflow'; section.className = 'content-section nel-tool-supporting-section';
+  section.innerHTML = `<h2>${title}</h2><p>${zh ? '基于当前输入快速比较基线、增长和保守场景，并导出可追溯工程成果。' : 'Compare baseline, growth and conservative scenarios from the current inputs, then export traceable engineering outputs.'}</p><p class="deep-source">${sourceLabel}：<a href="${website}">${website}</a></p><div class="deep-actions"><button type="button" data-action="compare">${zh ? '比较方案' : 'Compare scenarios'}</button><button type="button" data-action="print">${zh ? '打印工程报告' : 'Print engineering report'}</button><button type="button" data-action="report">${zh ? '导出工程报告' : 'Export engineering report'}</button><button type="button" data-action="bom">${zh ? '导出 BOM' : 'Export BOM'}</button></div><p class="deep-feedback" role="status" aria-live="polite"></p><div class="table-wrap"><table><thead><tr><th>${zh ? '场景' : 'Scenario'}</th><th>${zh ? '输入摘要' : 'Input summary'}</th><th>${zh ? '重要结论' : 'Key conclusions'}</th></tr></thead><tbody></tbody></table></div>`;
+  const main = document.querySelector('main');
+  if (main?.parentNode) main.parentNode.insertBefore(section, main.nextSibling);
+  else document.body.appendChild(section);
+  const body = section.querySelector('tbody'), feedback = section.querySelector('.deep-feedback');
+  const render = () => { const base = read(); const scenarios = [[zh ? '当前基线' : 'Baseline', base], [zh ? '增长场景 +10%' : 'Growth +10%', setNumeric(base, 1.1)], [zh ? '保守场景 +20%' : 'Conservative +20%', setNumeric(base, 1.2)]]; const result = escapeHtml(conclusions(resultText())); body.innerHTML = scenarios.map(([name, input]) => `<tr><td>${name}</td><td>${Object.entries(input).slice(0, 4).map(([k, v]) => `${escapeHtml(k)}: ${escapeHtml(formatValue(v))}`).join(' · ')}</td><td><p class="deep-conclusions">${result}</p></td></tr>`).join(''); };
+  section.querySelector('[data-action="compare"]').onclick = () => { render(); feedback.textContent = zh ? '方案比较已更新。' : 'Scenario comparison updated.'; };
+  section.querySelector('[data-action="print"]').onclick = () => { window.print(); feedback.textContent = zh ? '已打开打印预览。' : 'Print preview opened.'; };
+  section.querySelector('[data-action="report"]').onclick = () => { download('netengineerlab-engineering-report.json', JSON.stringify({tool: document.title, website, locale: lang, generatedAt: new Date().toISOString(), inputs: read(), result: resultText()}, null, 2), 'application/json;charset=utf-8'); feedback.textContent = zh ? '工程报告已开始下载。' : 'Engineering report download started.'; };
+  section.querySelector('[data-action="bom"]').onclick = () => { const values = read(); download('netengineerlab-bom.csv', csv({'Tool': document.title, 'Generated at': new Date().toISOString(), Locale: lang, 'Website URL': website, ...values}), 'text/csv;charset=utf-8'); feedback.textContent = zh ? 'BOM 已开始下载。' : 'BOM download started.'; };
+  render();
+})();

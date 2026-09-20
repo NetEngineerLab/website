@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-mtu-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-357c8180fe9b-7a6bce9fc7b8";
+const CACHE = "nel-mtu-calculator-locale-v2.0-engine-4d8be2-357c8180fe9b";
 const CORE = [
   "./index.html",
   "./",
@@ -8,8 +8,10 @@ const CORE = [
   "./manifest.webmanifest",
   "./data/mtu-overhead-library.js",
   "./css/style.css?v=3a1be647f0e6",
+  "./css/deep-workflow.css?v=mtu-v2",
   "./js/engine.js",
   "./js/app.js?v=fe30effd0a90",
+  "./js/deep-workflow.js?v=mtu-v2",
   "./images/logo.svg",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",

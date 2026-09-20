@@ -1,6 +1,6 @@
-# NetEngineerLab Telecom Power & Energy Roadmap V2.1
+﻿# NetEngineerLab Telecom Power & Energy Roadmap V2.1
 
-**Modified:** 2026-09-10
+**Modified:** 2026-09-19
 
 ## Product principle
 Deep engineering first, breadth second. Every tool must expose assumptions, edge conditions, warnings, bilingual routes, workflow context, tests and production acceptance.
@@ -59,21 +59,27 @@ Rack IT load → UPS capacity & battery autonomy → Precision cooling sizing �
 
 ### Tool #31 engineering scope — DELIVERED
 - Rack-based or direct total IT heat input
+- Baseline, peak-rack/growth and conservative planning scenarios
 - Supply/return temperature delta and first-order sensible airflow calculation
-- Bypass-air correction and hot-air recirculation screening
+- Bypass-air correction, containment closure, row-end leakage and floor-delivery effectiveness
+- Hot-air recirculation screening and structured engineering risk output
 - Estimated rack-inlet mixing temperature
 - CRAH/CRAC airflow and sensible-capacity dual constraint
-- N/N+1/N+2 unit planning and one-unit-out resilience
+- N/N+1/N+2 unit planning with one- and two-unit-out resilience checks
 - Per-rack effective airflow and installed airflow/cooling margins
+- Before/After scenario comparison plus JSON engineering report and CSV check sheet
 - Explicit boundary: planning model, not CFD or psychrometric latent-load design
 
 
 ### Tool #32 engineering scope — DELIVERED
 - Critical-load UPS kW adequacy
+- Baseline, peak and conservative load scenarios
 - UPS autonomy at actual critical load and initial battery SOC
 - Utility-failure detection, generator start delay, crank attempts and retry intervals
 - Generator warm-up, ATS transfer and post-transfer stabilization timeline
 - User-defined ride-through reserve and latest safe transfer time
+- Structured transfer timeline, retry exposure and risk actions
 - Generator N/N+1-style available-unit check and usable-rating derating
+- Before/After comparison plus JSON engineering report and CSV check sheet
 - Step-load margin screening and generator load percentage
 - Explicit boundary: planning model, not ATS/UPS/generator commissioning acceptance

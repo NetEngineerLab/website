@@ -1,4 +1,4 @@
-"use strict";const CACHE = "nel-telecom-ac-dc-breaker-sizing-locale-v1.9.9-04-p0-p1-correctness-consent-offline-357c8180fe9b-6bfac3183df9";
+"use strict";const CACHE = "nel-telecom-ac-dc-breaker-sizing-locale-v2.0.0-engine-gates-20260919-357c8180fe9b";
 const CORE = [
   "./",
   "./index.html",
@@ -6,8 +6,8 @@ const CORE = [
   "./offline.html",
   "./manifest.webmanifest",
   "./css/style.css?v=5075f2bc42fd",
-  "./js/engine.js",
-  "./js/app.js?v=47156a3fd0ee",
+  "./js/engine.js?v=2.0.0",
+  "./js/app.js?v=2.0.0",
   "./js/pwa.js",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",

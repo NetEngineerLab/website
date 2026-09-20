@@ -5,7 +5,12 @@ const assert=require("assert");
 const engine=require("../js/engine.js");
 
 const base={lengthM:100,sourceV:50,loadW:30,awg:24,pairs:2,tempC:20,contactOhm:0.2,efficiency:90,minV:42};
-assert.deepEqual(engine.calculate(base),{ok:true,conductorR:84.22,loopR:8.622,current:0.769,perConductorA:0.384,dropV:6.63,remoteV:43.37,lossW:5.09,lossPct:13.3,status:"warning",warnings:["loss","current"]});
+const legacy=engine.calculate(base); assert.equal(legacy.status,"warning"); assert.deepEqual({conductorR:legacy.conductorR,loopR:legacy.loopR,current:legacy.current,perConductorA:legacy.perConductorA,dropV:legacy.dropV,remoteV:legacy.remoteV,lossW:legacy.lossW,lossPct:legacy.lossPct,status:legacy.status,warnings:legacy.warnings},{conductorR:84.22,loopR:8.622,current:0.769,perConductorA:0.384,dropV:6.63,remoteV:43.37,lossW:5.09,lossPct:13.3,status:"warning",warnings:["loss","current"]});
+assert.equal(engine.calculate({...base,standard:"802.3af"}).status,"fail");
+assert.ok(engine.calculate({...base,startupSurgeA:1}).startupVoltage<engine.calculate(base).startupVoltage);
+assert.ok(engine.calculate({...base,pseBudgetW:20}).warnings.includes("budget"));
+assert.ok(engine.calculate({...base,nMinusOne:true,activePorts:1}).warnings.includes("redundancy"));
+assert.ok(engine.calculate({...base,before:{lengthM:50}}).beforeAfter);
 for(const change of [{lengthM:0},{sourceV:0},{loadW:0},{awg:21},{pairs:3},{efficiency:0},{efficiency:101},{lengthM:Number.NaN},{sourceV:Number.POSITIVE_INFINITY}])assert.equal(engine.calculate({...base,...change}).ok,false);
 assert.equal(engine.calculate({...base,loadW:Number.NEGATIVE_INFINITY}).ok,false);
 const overload=engine.calculate({...base,lengthM:1000,loadW:500});

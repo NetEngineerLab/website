@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-switch-uplink-oversubscription-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-357c8180fe9b-9d45b4896d98";
+const CACHE = "nel-switch-uplink-oversubscription-calculator-locale-v2.0.0-switch-uplink-20260919-357c8180fe9b";
 const CORE = [
   "./index.html",
   "./",
@@ -8,7 +8,7 @@ const CORE = [
   "./manifest.webmanifest",
   "./css/style.css?v=9850477ac6fc",
   "./js/engine.js",
-  "./js/app.js?v=a5253c01f326",
+  "./js/app.js?v=20260919-v8",
   "./images/logo.svg",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",

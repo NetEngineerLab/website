@@ -6,4 +6,8 @@ r=E.calculate({...base,segments:[{name:'bad',loadKW:35,hours:24}]});assert(r.ok&
 r=E.calculate({...base,segments:[{name:'a',loadKW:10,hours:20},{name:'b',loadKW:10,hours:10}]});assert(!r.ok&&r.errors.includes('profileHours'));
 r=E.calculate({...base,batteryUsableKWh:15,batteryDischargeEfficiencyPct:90});assert(r.batteryAssistHours>0&&r.fuelAfterBattery<r.rawTargetFuel);
 r=E.calculate({...base,targetHours:72,tankLiters:40});assert(r.refills>=1);
+// Engineering maturity gates: scenarios, environmental derating, N-1, wet-stack and export contracts.
+r=E.calculate({...base,generatorCount:2,redundantGen:1,ambientTempC:45,altitudeM:2500,segments:[{loadKW:28,hours:24}]});assert(r.ok&&r.scenarios.length===4);assert(r.environment.totalDeratePct>0);assert(r.nMinus1Capacity>0&&r.nMinus1Pass===false);assert(r.risk&&r.wetStackRisk);assert(E.toJSONReport(r).includes('generator-fuel-report/1.0.0'));assert(E.toCSV(r).includes('nMinus1Pass'));
+r=E.calculate({...base,segments:[{loadKW:5,hours:8},{loadKW:18,hours:16}],wetStackHoursThreshold:4});assert(r.wetStackRisk==='high');
+const before={...base,generatorCount:1},after={...base,generatorCount:2,redundantGen:1};const delta=E.compareBeforeAfter(before,after);assert(delta.ok&&Object.hasOwn(delta,'delta'));
 console.log('Generator fuel engine: PASS');

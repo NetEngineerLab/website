@@ -1,1 +1,15 @@
-const assert=require('assert');const E=require('../js/engine.js');let r=E.calculate({loadKW:12,acVoltage:230,phase:'1p',powerFactor:.95,efficiencyPct:94,headroomPct:25,deratingPct:100,dcLoadA:80,dcHeadroomPct:25});assert(r.ok);assert(r.baseA>58&&r.baseA<59);assert(r.suggestedBreakerA>=r.designA);assert.equal(r.suggestedDCBreakerA,100);r=E.calculate({loadKW:30,acVoltage:400,phase:'3p',powerFactor:.9,efficiencyPct:95,headroomPct:20,deratingPct:90});assert(r.ok&&r.baseA>50&&r.baseA<52);console.log('AC/DC breaker sizing engine: PASS');
+const assert=require('assert');
+const E=require('../js/engine.js');
+let r=E.calculate({loadKW:12,acVoltage:230,phase:'1p',powerFactor:.95,efficiencyPct:94,headroomPct:25,deratingPct:100,dcLoadA:80,dcHeadroomPct:25,growthPct:20,conservativePct:35});
+assert(r.ok&&r.baseA>58&&r.baseA<59&&r.suggestedBreakerA>=r.designA);
+assert.deepStrictEqual(Object.keys(r.scenarios).sort(),['baseline','conservative','growth','n1']);
+assert(r.scenarios.conservative.designA>r.scenarios.baseline.designA);
+assert.equal(r.scenarios.baseline.dcBreakerA,100);
+r=E.calculate({loadKW:30,acVoltage:400,phase:'3p',powerFactor:.9,efficiencyPct:95,headroomPct:20,deratingPct:90,conductorAmpacityA:40,conductorLengthM:100,conductorAreaMm2:10,faultCurrentKA:25,breakerInterruptKA:10,sourceUnits:2,unitRatingA:40});
+assert(r.ok&&r.scenarios.baseline.acA>50&&r.scenarios.baseline.acA<52);
+assert(r.risks.some(x=>x.code==='CONDUCTOR_AMPACITY'));
+assert(r.risks.some(x=>x.code==='INTERRUPTING_RATING'));
+assert(r.risks.some(x=>x.code==='N1_CAPACITY'));
+assert(r.exportJSON().includes('beforeAfter')&&r.exportCSV().includes('voltage drop'));
+r=E.calculate({loadKW:10,acVoltage:230,ambientC:60,altitudeM:3000});assert(r.deratingPct<80&&r.warnings.length>0);
+console.log('AC/DC breaker sizing engine: PASS');

@@ -76,13 +76,13 @@ function calculate(){
   s1:num("splitter1"),s2:num("splitter2"),s3:num("splitter3"),
   other:num("otherLoss"),penalty:num("opticalPenalty"),margin:num("margin"),
   tx:num("txPower"),txMax:num("txMaxPower"),sens:num("rxSensitivity"),over:num("rxOverload"),
-  systemReach:num("systemReach"),wavelength:$("wavelength").value
+  systemReach:num("systemReach"),aging:num("aging"),temperature:num("temperature"),maintenance:num("maintenance"),protection:num("protection"),wavelength:$("wavelength").value
  };
  const result=window.NELPonSplitterLossEngine.calculate(v);
  if(!result.ok){invalidate();$("validation").textContent=T[LANG].invalid;return}
  $("validation").textContent="";
- const {r1,r2,r3,totalRatio,splitterLoss,idealLoss,excessLoss,fiberLoss,spliceTotal,connectorTotal,fixedPhysical,physicalLoss,designLoss,rawWindow,standardBudget,remaining,rx,rxMax,sensMargin,overMargin,opticalMax,effectiveMax,status}=result;
- last={...v,totalRatio,splitterLoss,idealLoss,excessLoss,fiberLoss,spliceTotal,connectorTotal,fixedPhysical,physicalLoss,designLoss,rawWindow,standardBudget,remaining,rx,rxMax,sensMargin,overMargin,opticalMax,effectiveMax,status,timestamp:new Date().toISOString()};
+ const {r1,r2,r3,totalRatio,splitterLoss,idealLoss,excessLoss,fiberLoss,spliceTotal,connectorTotal,fixedPhysical,physicalLoss,aging,temperature,maintenance,protection,resilienceLoss,designLoss,rawWindow,standardBudget,remaining,rx,rxMax,sensMargin,overMargin,opticalMax,effectiveMax,status,risk}=result;
+ last={...v,totalRatio,splitterLoss,idealLoss,excessLoss,fiberLoss,spliceTotal,connectorTotal,fixedPhysical,physicalLoss,aging,temperature,maintenance,protection,resilienceLoss,designLoss,rawWindow,standardBudget,remaining,rx,rxMax,sensMargin,overMargin,opticalMax,effectiveMax,status,risk,timestamp:new Date().toISOString()};
  const set=(id,x)=>$(id).textContent=x.toFixed(2);
  $("ratioResult").textContent="1:"+totalRatio;
  set("splitterLossResult",splitterLoss);set("remaining",remaining);$("rxPower").textContent=`${rx.toFixed(2)} to ${rxMax.toFixed(2)}`;set("maxDistance",effectiveMax);
@@ -91,6 +91,11 @@ function calculate(){
  set("sensMargin",sensMargin);set("overMargin",overMargin);
  set("fiberLoss",fiberLoss);set("spliceTotal",spliceTotal);set("connectorTotal",connectorTotal);
  set("otherResult",v.other);set("opticalPenaltyResult",v.penalty);set("marginResult",v.margin);
+ if($("resilienceResult"))set("resilienceResult",resilienceLoss);
+ if($("riskResult"))$("riskResult").textContent=risk;
+ if($("beforeDesignLoss"))$("beforeDesignLoss").textContent=(designLoss-resilienceLoss).toFixed(2);
+ if($("afterDesignLoss"))$("afterDesignLoss").textContent=designLoss.toFixed(2);
+ if($("designDelta"))$("designDelta").textContent=resilienceLoss.toFixed(2);
  ["copyBtn","saveBtn","csvBtn"].forEach(id=>$(id).disabled=false);
  const card=$("summaryCard"),diag=$("diagnosis");
  card.className="summary-card "+status;diag.className="diagnosis "+status;
@@ -108,7 +113,7 @@ function reset(){
  $("distance").value=10;$("wavelength").value="1490";setAttenuation();
  $("spliceCount").value=6;$("spliceLoss").value=.10;$("connectorCount").value=4;$("connectorLoss").value=.30;
  $("splitter1").value="10.5";$("splitter2").value="10.5";$("splitter3").value="0";
- $("otherLoss").value=0;$("opticalPenalty").value=1;$("margin").value=3;$("systemReach").value=20;
+ $("aging").value=0;$("temperature").value=0;$("maintenance").value=0;$("protection").value=0;$("otherLoss").value=0;$("opticalPenalty").value=1;$("margin").value=3;$("systemReach").value=20;
  $("txPower").value=3;$("txMaxPower").value=7;$("rxSensitivity").value=-30;$("rxOverload").value=-8;
  calculate();
 }
@@ -155,7 +160,7 @@ function exportCsv(){
  const blob=new Blob([csv],{type:"text/csv;charset=utf-8"}),a=document.createElement("a");
  a.href=URL.createObjectURL(blob);a.download="pon_splitter_loss_report.csv";a.click();URL.revokeObjectURL(a.href);temp($("csvBtn"),T[LANG].csv);
 }
-["projectName","distance","attenuation","spliceCount","spliceLoss","connectorCount","connectorLoss","splitter1","splitter2","splitter3","otherLoss","opticalPenalty","margin","systemReach","txPower","txMaxPower","rxSensitivity","rxOverload"].forEach(id=>$(id).addEventListener("input",()=>{invalidate();clearTimeout(window.__pon);window.__pon=setTimeout(calculate,160)}));
+["projectName","distance","attenuation","spliceCount","spliceLoss","connectorCount","connectorLoss","splitter1","splitter2","splitter3","otherLoss","opticalPenalty","margin","aging","temperature","maintenance","protection","systemReach","txPower","txMaxPower","rxSensitivity","rxOverload"].forEach(id=>$(id)?.addEventListener("input",()=>{invalidate();clearTimeout(window.__pon);window.__pon=setTimeout(calculate,160)}));
 $("wavelength").addEventListener("change",()=>{setAttenuation();calculate()});
 $("preset").addEventListener("change",applySplitterPreset);
 $("systemProfile").addEventListener("change",applySystemProfile);

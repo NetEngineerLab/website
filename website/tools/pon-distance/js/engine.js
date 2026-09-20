@@ -40,6 +40,20 @@
     const estimatedRx=values.tx-plannedPhysical;
     const overloadMargin=values.over-estimatedRx;
     const ratio=splitterRatios[String(values.s1)]*splitterRatios[String(values.s2)];
+    const agingLoss=Number.isFinite(values.agingLoss)?values.agingLoss:0;
+    const temperatureLoss=Number.isFinite(values.temperatureLoss)?values.temperatureLoss:0;
+    const maintenanceLoss=Number.isFinite(values.maintenanceLoss)?values.maintenanceLoss:0;
+    const protectionRequired=values.protectionRequired===true;
+    const protectionPresent=values.protectionPresent!==false;
+    const dualUplinkRequired=values.dualUplinkRequired===true;
+    const dualUplinkPresent=values.dualUplinkPresent!==false;
+    const riskLoss=agingLoss+temperatureLoss+maintenanceLoss;
+    const deepDesignRemaining=designRemaining-riskLoss;
+    const constraintFailures=[];
+    if(protectionRequired&&!protectionPresent)constraintFailures.push("protection-chain-missing");
+    if(dualUplinkRequired&&!dualUplinkPresent)constraintFailures.push("dual-uplink-missing");
+    if(deepDesignRemaining<0)constraintFailures.push("risk-reserve-exhausted");
+    const riskLevel=constraintFailures.length?"high":deepDesignRemaining<1?"medium":"low";
     if(![maxChannelLoss,spliceTotal,connectorTotal,splitterTotal,fixedPhysical,fiberAllowanceDesign,opticalMax,effectiveMax,plannedFiber,plannedPhysical,plannedDesign,physicalHeadroom,designRemaining,estimatedRx,overloadMargin,ratio].every(Number.isFinite))return{ok:false,error:"invalid-input"};
     let limiter="equal";
     if(opticalMax<values.systemReach-0.05)limiter="optical";
@@ -48,7 +62,12 @@
     if(values.planned>effectiveMax+DB_EPSILON||physicalHeadroom<-DB_EPSILON||estimatedRx<values.sens-DB_EPSILON)status="failed";
     else if(designRemaining<-DB_EPSILON)status="warning";
     else if(limiter==="system"&&values.planned<=effectiveMax+DB_EPSILON)status="limited";
-    return{ok:true,maxChannelLoss,spliceTotal,connectorTotal,splitterTotal,fixedPhysical,fiberAllowanceDesign,opticalMax,effectiveMax,plannedFiber,plannedPhysical,plannedDesign,physicalHeadroom,designRemaining,estimatedRx,overloadMargin,ratio,limiter,status};
+    if(constraintFailures.length)status="failed";
+    return{ok:true,maxChannelLoss,spliceTotal,connectorTotal,splitterTotal,fixedPhysical,fiberAllowanceDesign,opticalMax,effectiveMax,plannedFiber,plannedPhysical,plannedDesign,physicalHeadroom,designRemaining,estimatedRx,overloadMargin,ratio,limiter,status,
+      agingLoss,temperatureLoss,maintenanceLoss,riskLoss,deepDesignRemaining,riskLevel,constraintFailures,
+      before:{plannedDistance:values.planned,designRemaining,estimatedRx,status},
+      after:{plannedDistance:values.planned,effectiveMax,deepDesignRemaining,riskLevel,status},
+      protectionRequired,protectionPresent,dualUplinkRequired,dualUplinkPresent};
   }
 
   return{validate,calculate};

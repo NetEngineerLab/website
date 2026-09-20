@@ -1,4 +1,4 @@
-"use strict";const CACHE = "nel-generator-ups-transfer-ride-through-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-357c8180fe9b-718b1463cbfb";
+"use strict";const CACHE = "nel-generator-ups-transfer-ride-through-planner-locale-v2.0.0-generator-ups-report-20260919-357c8180fe9b";
 const CORE = [
   "./",
   "./index.html",

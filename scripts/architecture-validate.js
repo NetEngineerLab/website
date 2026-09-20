@@ -21,6 +21,10 @@ function walk(dir){
     return entry.isDirectory()?walk(full):[full];
   });
 }
+function isSearchEngineVerificationFile(file){
+  const relative=path.relative(site,file).split(path.sep).join("/");
+  return !relative.includes("/")&&/^(?:google[a-z0-9_-]+|yandex_[a-z0-9_-]+|baidu_verify_[a-z0-9_-]+|sogou_site_verification_[a-z0-9_-]+)\.html$/i.test(relative);
+}
 function metaContent(html,name){
   const tag=(html.match(new RegExp(`<meta\\b[^>]*name=["']${name}["'][^>]*>`,"i"))||[])[0]||"";
   return (tag.match(/content=["']([^"']*)["']/i)||[])[1]||"";
@@ -158,7 +162,7 @@ function shellSignature(fragment,isHeader){
   return value;
 }
 
-const publicHtml=walk(site).filter(file=>file.endsWith(".html")&&!file.endsWith(`${path.sep}offline.html`)&&!file.includes(`${path.sep}templates${path.sep}`));
+const publicHtml=walk(site).filter(file=>file.endsWith(".html")&&!file.endsWith(`${path.sep}offline.html`)&&!file.includes(`${path.sep}templates${path.sep}`)&&!isSearchEngineVerificationFile(file));
 const headerSignatures=new Set();
 const footerSignatures=new Set();
 for(const file of publicHtml){

@@ -11,6 +11,10 @@ const localeMap=new Map(config.locales.map(x=>[x.id,x]));
 const rootDirectoryRoutes=new Set(["about/","contact/","privacy/","terms/"]);
 const errors=[],warnings=[];
 const posix=v=>v.split(path.sep).join("/");
+function isSearchEngineVerificationFile(file){
+ const rel=posix(path.relative(site,file));
+ return !rel.includes("/")&&/^(?:google[a-z0-9_-]+|yandex_[a-z0-9_-]+|baidu_verify_[a-z0-9_-]+|sogou_site_verification_[a-z0-9_-]+)\.html$/i.test(rel);
+}
 function walk(dir){return fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(path.join(dir,e.name)):[path.join(dir,e.name)])}
 function identify(rel){
  const p=posix(rel),parts=p.split("/");
@@ -64,7 +68,7 @@ for(const tool of tools){
  }
 }
 const records=[],groups=new Map();
-for(const file of walk(site).filter(x=>x.endsWith(".html"))){
+for(const file of walk(site).filter(x=>x.endsWith(".html")&&!isSearchEngineVerificationFile(x))){
  const rel=posix(path.relative(site,file)),info=identify(rel);if(!info)continue;
  records.push({file,rel,info});
  if(!groups.has(info.route))groups.set(info.route,new Map());
@@ -148,7 +152,7 @@ for(const js of [path.join(site,"assets/js/site.js"),path.join(site,"data/locale
 const siteJs=fs.readFileSync(path.join(site,"assets/js/site.js"),"utf8");
 if(!siteJs.includes("window.NEL_I18N"))errors.push("site.js is not driven by NEL_I18N");
 if(!siteJs.includes("tool.translations"))errors.push("site.js is not driven by tool translations");
-const allText=walk(site).filter(x=>/\.(?:html|js|json|xml)$/.test(x)).map(x=>fs.readFileSync(x,"utf8")).join("\n");
+const allText=walk(site).filter(x=>/\.(?:html|js|json|xml)$/.test(x)&&!isSearchEngineVerificationFile(x)).map(x=>fs.readFileSync(x,"utf8")).join("\n");
 if(/netengineerlab\.com\/(?:en\/|tools\/(?:en\/|[^/]+\/en\/))/.test(allText)||/(?:href|src)=["'][^"']*\/tools\/[^"']*\/en\//.test(allText))warnings.push("legacy NetEngineerLab /en/ path remains somewhere; inspect if intentional");
 const report={
  version:config.version,

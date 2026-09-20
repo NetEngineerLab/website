@@ -1,102 +1,32 @@
 (function(root,factory){
  const engine=factory();
- if(typeof module==="object"&&module.exports)module.exports=engine;
+ if(typeof module==='object'&&module.exports)module.exports=engine;
  else root.MTUEngine=engine;
-})(typeof self!=="undefined"?self:this,function(){
+})(typeof self!=='undefined'?self:this,function(){
+ 'use strict';
  const finite=v=>Number.isFinite(Number(v));
  const number=(v,fallback=0)=>finite(v)?Number(v):fallback;
- const clampNonNegative=v=>Math.max(0,number(v));
+ const nonNegative=v=>Math.max(0,number(v));
+ const integer=(v,fallback=0)=>Math.max(0,Math.floor(number(v,fallback)));
  const round=(v,d=0)=>Number(number(v).toFixed(d));
-
- function calculate(input){
-  const underlayMtu=clampNonNegative(input.underlayMtu);
-  const desiredInnerMtu=clampNonNegative(input.desiredInnerMtu);
-  const outerVlanTags=Math.max(0,Math.floor(number(input.outerVlanTags)));
-  const strictVlan=Boolean(input.strictVlan);
-  const vlanBytes=outerVlanTags*4;
-  const layers=(input.layers||[]).map(layer=>({
-   ...layer,
-   bytes:clampNonNegative(layer.bytes),
-   count:Math.max(0,Math.floor(number(layer.count,1))),
-  })).filter(layer=>layer.count>0&&layer.bytes>=0);
-  const totalLayerOverhead=layers.reduce((sum,layer)=>sum+layer.bytes*layer.count,0);
-  const outerPacketLimit=Math.max(0,underlayMtu-(strictVlan?vlanBytes:0));
-  const effectiveInnerMtu=Math.max(0,outerPacketLimit-totalLayerOverhead);
-  const requiredBaseMtu=desiredInnerMtu+totalLayerOverhead+(strictVlan?vlanBytes:0);
-  const currentWireFrameBytes=14+vlanBytes+outerPacketLimit+4;
-  const requiredWireFrameBytes=14+vlanBytes+desiredInnerMtu+totalLayerOverhead+4;
-
-  const innerIp=input.innerIp==="ipv6"?"ipv6":"ipv4";
-  const ipFixed=innerIp==="ipv6"?40:20;
-  const ipExtra=clampNonNegative(input.ipExtraBytes);
-  const tcpFixed=20;
-  const tcpOptions=clampNonNegative(input.tcpOptionsBytes);
-  const udpFixed=8;
-  const icmpFixed=8;
-
-  const advertisedMss=Math.max(0,effectiveInnerMtu-ipFixed-tcpFixed);
-  const actualTcpData=Math.max(0,effectiveInnerMtu-ipFixed-ipExtra-tcpFixed-tcpOptions);
-  const udpPayload=Math.max(0,effectiveInnerMtu-ipFixed-ipExtra-udpFixed);
-  const icmpPayload=Math.max(0,effectiveInnerMtu-ipFixed-ipExtra-icmpFixed);
-  const desiredAdvertisedMss=Math.max(0,desiredInnerMtu-ipFixed-tcpFixed);
-  const fragmentationBytes=Math.max(0,desiredInnerMtu-effectiveInnerMtu);
-  const headroomBytes=effectiveInnerMtu-desiredInnerMtu;
-  const overheadPercent=underlayMtu>0?totalLayerOverhead/underlayMtu*100:0;
-
-  let status="healthy";
-  const warnings=[];
-  if(effectiveInnerMtu<=ipFixed+8){
-   status="failed";
-   warnings.push("headers_exceed_mtu");
-  }else if(desiredInnerMtu>effectiveInnerMtu){
-   status="failed";
-   warnings.push("desired_exceeds_effective");
-  }
-  if(innerIp==="ipv6"&&effectiveInnerMtu<1280){
-   status=status==="failed"?"failed":"warning";
-   warnings.push("ipv6_below_1280");
-  }
-  if(innerIp==="ipv4"&&effectiveInnerMtu<576){
-   status=status==="failed"?"failed":"warning";
-   warnings.push("ipv4_below_576");
-  }
-  if(headroomBytes>=0&&headroomBytes<40&&status==="healthy"){
-   status="warning";
-   warnings.push("low_headroom");
-  }
-  if(totalLayerOverhead===0&&desiredInnerMtu<=effectiveInnerMtu&&status==="healthy"){
-   warnings.push("plain_path");
-  }
-
-  const windowsPingPayload=icmpPayload;
-  const linuxPingPayload=icmpPayload;
-  const commands=innerIp==="ipv4" ? {
-   windows:`ping -f -l ${windowsPingPayload} DESTINATION`,
-   linux:`ping -M do -s ${linuxPingPayload} DESTINATION`
-  } : {
-   windows:`ping -6 -l ${windowsPingPayload} DESTINATION`,
-   linux:`ping -6 -M do -s ${linuxPingPayload} DESTINATION`
-  };
-
-  return {
-   underlayMtu,desiredInnerMtu,outerVlanTags,strictVlan,vlanBytes,layers,
-   totalLayerOverhead:round(totalLayerOverhead),
-   outerPacketLimit:round(outerPacketLimit),
-   effectiveInnerMtu:round(effectiveInnerMtu),
-   requiredBaseMtu:round(requiredBaseMtu),
-   currentWireFrameBytes:round(currentWireFrameBytes),
-   requiredWireFrameBytes:round(requiredWireFrameBytes),
-   innerIp,ipFixed,ipExtra,tcpFixed,tcpOptions,udpFixed,icmpFixed,
-   advertisedMss:round(advertisedMss),
-   desiredAdvertisedMss:round(desiredAdvertisedMss),
-   actualTcpData:round(actualTcpData),
-   udpPayload:round(udpPayload),
-   icmpPayload:round(icmpPayload),
-   fragmentationBytes:round(fragmentationBytes),
-   headroomBytes:round(headroomBytes),
-   overheadPercent:round(overheadPercent,2),
-   status,warnings,commands
-  };
+ const RISK={P0:'P0',P1:'P1',P2:'P2',p0:['failed','headers_exceed_mtu','desired_exceeds_effective','ipv6_below_1280','invalid_input'],p1:['low_headroom','high_overhead','single_path','variable_overhead','frame_limit'],p2:['plain_path','no_redundancy_data']};
+ function riskFor(warnings){if(warnings.some(x=>RISK.p0.includes(x)))return RISK.P0;if(warnings.some(x=>RISK.p1.includes(x)))return RISK.P1;return RISK.P2;}
+ function normalizeLayers(input){return (Array.isArray(input?.layers)?input.layers:[]).map((layer,index)=>({type:String(layer?.type||'custom'),label:layer?.label||layer?.type||`Layer ${index+1}`,bytes:nonNegative(layer?.bytes),count:integer(layer?.count,1)})).filter(layer=>layer.count>0);}
+ function calculate(input={}){
+  const errors=[];const rawUnderlay=number(input.underlayMtu,1500),rawDesired=number(input.desiredInnerMtu,1500);
+  if(!finite(input.underlayMtu)||rawUnderlay<576)errors.push('underlay_mtu_out_of_range');
+  if(!finite(input.desiredInnerMtu)||rawDesired<0)errors.push('desired_mtu_invalid');
+  const underlayMtu=nonNegative(rawUnderlay),desiredInnerMtu=nonNegative(rawDesired),outerVlanTags=Math.min(16,integer(input.outerVlanTags)),strictVlan=Boolean(input.strictVlan),vlanBytes=outerVlanTags*4,layers=normalizeLayers(input);
+  const totalLayerOverhead=layers.reduce((sum,l)=>sum+l.bytes*l.count,0),outerPacketLimit=Math.max(0,underlayMtu-(strictVlan?vlanBytes:0)),effectiveInnerMtu=Math.max(0,outerPacketLimit-totalLayerOverhead),requiredBaseMtu=desiredInnerMtu+totalLayerOverhead+(strictVlan?vlanBytes:0),currentWireFrameBytes=14+vlanBytes+outerPacketLimit+4,requiredWireFrameBytes=14+vlanBytes+desiredInnerMtu+totalLayerOverhead+4;
+  const innerIp=input.innerIp==='ipv6'?'ipv6':'ipv4',ipFixed=innerIp==='ipv6'?40:20,ipExtra=nonNegative(input.ipExtraBytes),tcpFixed=20,tcpOptions=nonNegative(input.tcpOptionsBytes),udpFixed=8,icmpFixed=8;
+  const advertisedMss=Math.max(0,effectiveInnerMtu-ipFixed-tcpFixed),actualTcpData=Math.max(0,effectiveInnerMtu-ipFixed-ipExtra-tcpFixed-tcpOptions),udpPayload=Math.max(0,effectiveInnerMtu-ipFixed-ipExtra-udpFixed),icmpPayload=Math.max(0,effectiveInnerMtu-ipFixed-ipExtra-icmpFixed),desiredAdvertisedMss=Math.max(0,desiredInnerMtu-ipFixed-tcpFixed),fragmentationBytes=Math.max(0,desiredInnerMtu-effectiveInnerMtu),headroomBytes=effectiveInnerMtu-desiredInnerMtu,overheadPercent=underlayMtu>0?totalLayerOverhead/underlayMtu*100:0;
+  const warnings=[];let status='healthy';if(errors.length){status='failed';warnings.push('invalid_input');}if(effectiveInnerMtu<=ipFixed+8){status='failed';warnings.push('headers_exceed_mtu');}else if(desiredInnerMtu>effectiveInnerMtu){status='failed';warnings.push('desired_exceeds_effective');}if(innerIp==='ipv6'&&effectiveInnerMtu<1280){status=status==='failed'?'failed':'warning';warnings.push('ipv6_below_1280');}if(innerIp==='ipv4'&&effectiveInnerMtu<576){status=status==='failed'?'failed':'warning';warnings.push('ipv4_below_576');}if(headroomBytes>=0&&headroomBytes<40&&status==='healthy'){status='warning';warnings.push('low_headroom');}if(overheadPercent>=10&&status==='healthy'){status='warning';warnings.push('high_overhead');}if(layers.some(l=>/esp|ipsec|custom/i.test(l.type)))warnings.push('variable_overhead');if(requiredWireFrameBytes>1518)warnings.push('frame_limit');if(!layers.length&&status==='healthy')warnings.push('plain_path');const pathCount=integer(input.pathCount,1);if(pathCount<2)warnings.push('single_path');
+  const commands=innerIp==='ipv4'?{windows:`ping -f -l ${icmpPayload} DESTINATION`,linux:`ping -M do -s ${icmpPayload} DESTINATION`}:{windows:`ping -6 -l ${icmpPayload} DESTINATION`,linux:`ping -6 -M do -s ${icmpPayload} DESTINATION`};const riskLevel=riskFor(warnings),riskScore=Math.min(100,(riskLevel===RISK.P0?80:riskLevel===RISK.P1?45:10)+Math.min(20,warnings.length*3));
+  return {underlayMtu,desiredInnerMtu,outerVlanTags,strictVlan,vlanBytes,layers,totalLayerOverhead:round(totalLayerOverhead),outerPacketLimit:round(outerPacketLimit),effectiveInnerMtu:round(effectiveInnerMtu),requiredBaseMtu:round(requiredBaseMtu),currentWireFrameBytes:round(currentWireFrameBytes),requiredWireFrameBytes:round(requiredWireFrameBytes),innerIp,ipFixed,ipExtra,tcpFixed,tcpOptions,udpFixed,icmpFixed,advertisedMss:round(advertisedMss),desiredAdvertisedMss:round(desiredAdvertisedMss),actualTcpData:round(actualTcpData),udpPayload:round(udpPayload),icmpPayload:round(icmpPayload),fragmentationBytes:round(fragmentationBytes),headroomBytes:round(headroomBytes),overheadPercent:round(overheadPercent,2),status,warnings,errors,commands,riskLevel,riskScore,pathCount,engineering:{acceptance:status==='healthy'?'PASS':status==='warning'?'REVIEW':'BLOCK',mtuMargin:round(headroomBytes),wireFrameMargin:round(1518-requiredWireFrameBytes),redundancy:pathCount>=2?'N+1 path declared':'No redundant path declared',faultBoundary:layers.length?`Loss of ${layers[0].label} (${round(layers[0].bytes)} B) changes inner MTU to ${round(effectiveInnerMtu+layers[0].bytes*layers[0].count)} B`:'No encapsulation fault boundary modeled'}};
  }
- return {calculate,round};
+ function compareScenarios(input={},options={}){const growth=number(options.growth,0.1),conservative=number(options.conservative,0.2),scale=factor=>({...input,desiredInnerMtu:nonNegative(number(input.desiredInnerMtu)*factor)});return [{id:'baseline',name:options.baselineName||'Baseline',factor:1,input:{...input}},{id:'growth',name:options.growthName||'Growth +10%',factor:1+growth,input:scale(1+growth)},{id:'conservative',name:options.conservativeName||'Conservative +20%',factor:1+conservative,input:scale(1+conservative)}].map(s=>({...s,result:calculate(s.input)}));}
+ function beforeAfter(input={}){const before=calculate(input),hardened={...input,desiredInnerMtu:Math.min(number(input.desiredInnerMtu,1500),before.effectiveInnerMtu),pathCount:Math.max(2,integer(input.pathCount,1))},after=calculate(hardened);return {before,after,delta:{mtu:after.effectiveInnerMtu-before.effectiveInnerMtu,mss:after.advertisedMss-before.advertisedMss,riskScore:after.riskScore-before.riskScore},actions:[before.desiredInnerMtu>before.effectiveInnerMtu?'Set inner MTU to the effective path MTU':'Keep target MTU within path limit',before.pathCount<2?'Provide a second path or document single-path acceptance':'Validate both paths with PMTUD']};}
+ function professionalReport(input={},meta={}){const result=calculate(input),scenarios=compareScenarios(input),ba=beforeAfter(input);return {schemaVersion:'mtu-engineering-report/2.0',tool:'NetEngineerLab MTU & MSS Calculator',project:meta.project||'Untitled',generatedAt:new Date().toISOString(),input,result,scenarios,beforeAfter:ba,assumptions:['Ethernet FCS 4 B and header 14 B are included in wire-frame estimates','IPsec/custom overhead is an editable estimate','PMTUD must be validated on every ECMP/failover path']};}
+ function bom(input={}){const r=calculate(input);return [['Item','Value','Unit','Basis'],['Underlay MTU',r.requiredBaseMtu,'bytes','Required for target inner MTU'],['Effective inner MTU',r.effectiveInnerMtu,'bytes','After configured overhead'],['TCP MSS',r.advertisedMss,'bytes','Inner IP + TCP fixed headers'],['Encapsulation overhead',r.totalLayerOverhead,'bytes','Layer stack'],['Wire frame',r.requiredWireFrameBytes,'bytes','Header + payload + FCS'],['Risk level',r.riskLevel,'','Engineering gate'],['Path redundancy',r.pathCount>=2?'N+1':'Single path','','Declared path count']];}
+ return {calculate,compareScenarios,beforeAfter,professionalReport,bom,round};
 });

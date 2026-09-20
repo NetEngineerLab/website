@@ -1,74 +1,8 @@
-/**
- * NetEngineerLab
- * Version: V2.1-Power-Tool-32
- * Modified: 2026-09-10 10:55:00
- * Purpose: Generator + UPS transfer and ride-through planning engine.
- */
-(function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;root.NELGeneratorUpsRideThroughEngine=api;})(typeof globalThis!=='undefined'?globalThis:this,function(){
-'use strict';
-const num=(v,d=0)=>Number.isFinite(Number(v))?Number(v):d;
-const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
-function calculate(i={}){
- const errors=[],warnings=[];
- const criticalLoadKW=num(i.criticalLoadKW,80);
- const upsUsableKW=num(i.upsUsableKW,100);
- const upsAutonomyMin=num(i.upsAutonomyMin,10);
- const batterySocPct=clamp(num(i.batterySocPct,100),1,100);
- const genRatedKW=num(i.generatorRatedKW,120);
- const genCount=Math.max(1,Math.floor(num(i.generatorCount,2)));
- const redundantGen=Math.max(0,Math.floor(num(i.redundantGen,1)));
- const genUsablePct=clamp(num(i.genUsablePct,80),10,100);
- const stepFactor=clamp(num(i.stepFactor,1.15),1,2);
- const outageDetectSec=Math.max(0,num(i.outageDetectSec,1));
- const startDelaySec=Math.max(0,num(i.startDelaySec,5));
- const crankSec=Math.max(0,num(i.crankSec,10));
- const successfulAttempt=Math.max(1,Math.floor(num(i.successfulAttempt,1)));
- const retryIntervalSec=Math.max(0,num(i.retryIntervalSec,10));
- const warmupSec=Math.max(0,num(i.warmupSec,15));
- const atsTransferSec=Math.max(0,num(i.atsTransferSec,3));
- const stabilizeSec=Math.max(0,num(i.stabilizeSec,10));
- const reserveSec=Math.max(0,num(i.reserveSec,60));
- if(!(criticalLoadKW>0&&upsUsableKW>0&&upsAutonomyMin>0&&genRatedKW>0))errors.push('capacity');
- if(redundantGen>=genCount)errors.push('redundancy');
- if(successfulAttempt>5)errors.push('attempts');
- if(errors.length)return{ok:false,errors,warnings};
- const effectiveUpsAutonomySec=upsAutonomyMin*60*(batterySocPct/100);
- const retryDelayTotal=(successfulAttempt-1)*retryIntervalSec;
- const crankTotal=successfulAttempt*crankSec;
- const transferWindowSec=outageDetectSec+startDelaySec+crankTotal+retryDelayTotal+warmupSec+atsTransferSec+stabilizeSec;
- const requiredRideThroughSec=transferWindowSec+reserveSec;
- const rideThroughMarginSec=effectiveUpsAutonomySec-requiredRideThroughSec;
- const upsLoadPct=criticalLoadKW/upsUsableKW*100;
- const remainingGenerators=genCount-redundantGen;
- const generatorUsableKW=remainingGenerators*genRatedKW*(genUsablePct/100);
- const generatorDesignLoadKW=criticalLoadKW*stepFactor;
- const generatorLoadPct=generatorDesignLoadKW/generatorUsableKW*100;
- const upsCapacityPass=criticalLoadKW<=upsUsableKW;
- const rideThroughPass=rideThroughMarginSec>=0;
- const generatorCapacityPass=generatorUsableKW>=generatorDesignLoadKW;
- const overallPass=upsCapacityPass&&rideThroughPass&&generatorCapacityPass;
- const latestSafeTransferSec=Math.max(0,effectiveUpsAutonomySec-reserveSec);
- const maxExtraDelaySec=Math.max(0,rideThroughMarginSec);
- const batteryUsedPct=transferWindowSec/effectiveUpsAutonomySec*100;
- let risk='healthy';
- if(!overallPass)risk='high';
- else if(rideThroughMarginSec<120||upsLoadPct>85||generatorLoadPct>85||successfulAttempt>1)risk='caution';
- if(!upsCapacityPass)warnings.push('upsCapacity');
- if(!rideThroughPass)warnings.push('rideThrough');
- if(!generatorCapacityPass)warnings.push('generatorCapacity');
- if(upsLoadPct>85)warnings.push('upsHighLoad');
- if(generatorLoadPct>85)warnings.push('generatorHighLoad');
- if(successfulAttempt>1)warnings.push('retryExposure');
- if(batterySocPct<80)warnings.push('lowSoc');
- const timeline=[
-  {event:'utilityFailure',atSec:0},
-  {event:'upsRideThrough',atSec:outageDetectSec},
-  {event:'generatorStartCommand',atSec:outageDetectSec+startDelaySec},
-  {event:'generatorAvailable',atSec:outageDetectSec+startDelaySec+crankTotal+retryDelayTotal+warmupSec},
-  {event:'atsTransferComplete',atSec:outageDetectSec+startDelaySec+crankTotal+retryDelayTotal+warmupSec+atsTransferSec},
-  {event:'stableOnGenerator',atSec:transferWindowSec}
- ];
- return{ok:true,errors,warnings,criticalLoadKW,upsUsableKW,upsAutonomyMin,batterySocPct,effectiveUpsAutonomySec,upsLoadPct,genRatedKW,genCount,redundantGen,remainingGenerators,genUsablePct,generatorUsableKW,stepFactor,generatorDesignLoadKW,generatorLoadPct,successfulAttempt,transferWindowSec,reserveSec,requiredRideThroughSec,rideThroughMarginSec,latestSafeTransferSec,maxExtraDelaySec,batteryUsedPct,upsCapacityPass,rideThroughPass,generatorCapacityPass,overallPass,risk,timeline};
-}
-return{calculate};
-});
+(function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;root.NELGeneratorUpsRideThroughEngine=api;})(globalThis,function(){'use strict';
+const n=(v,d=0)=>Number.isFinite(Number(v))?Number(v):d,c=(v,a,b)=>Math.max(a,Math.min(b,v)),u=a=>[...new Set(a)];
+function calculate(i={}){const e=[],errors=e,warnings=[],critical=n(i.criticalLoadKW,80),peak=Math.max(critical,n(i.peakLoadKW,critical)),growth=c(n(i.growthPct,15),0,300)/100,cons=Math.max(peak,critical*(1+growth+c(n(i.conservativePct,15),0,300)/100)),ups=n(i.upsUsableKW,100),aut=n(i.upsAutonomyMin,10),soc=c(n(i.batterySocPct,100),1,100),rated=n(i.generatorRatedKW,120),count=Math.max(1,Math.floor(n(i.generatorCount,2))),red=Math.max(0,Math.floor(n(i.redundantGen,1))),usable=c(n(i.genUsablePct,80),10,100),step=c(n(i.stepFactor,1.15),1,2),detect=Math.max(0,n(i.outageDetectSec,1)),start=Math.max(0,n(i.startDelaySec,5)),crank=Math.max(0,n(i.crankSec,10)),attempt=Math.max(1,Math.floor(n(i.successfulAttempt,1))),retry=Math.max(0,n(i.retryIntervalSec,10)),warm=Math.max(0,n(i.warmupSec,15)),ats=Math.max(0,n(i.atsTransferSec,3)),stab=Math.max(0,n(i.stabilizeSec,10)),reserve=Math.max(0,n(i.reserveSec,60)),initialWindow=detect+start+attempt*crank+(attempt-1)*retry+warm+ats+stab;
+if(!(critical>0&&ups>0&&aut>0&&rated>0))e.push('capacity');if(red>=count)e.push('redundancy');if(attempt>5)e.push('attempts');if(e.length)return{ok:false,errors:e,warnings};
+const make=(name,load)=>{const autonomy=aut*60*(soc/100),window=initialWindow,required=window+reserve,margin=autonomy-required,remaining=count-red,genKW=remaining*rated*usable/100,design=load*step,upsPass=load<=ups,ridePass=margin>=0,genPass=genKW>=design,upsPct=load/ups*100,genPct=design/genKW*100,ws=[];if(!upsPass)ws.push('upsCapacity');if(!ridePass)ws.push('rideThrough');if(!genPass)ws.push('generatorCapacity');if(upsPct>85)ws.push('upsHighLoad');if(genPct>85)ws.push('generatorHighLoad');if(attempt>1)ws.push('retryExposure');if(soc<80)ws.push('lowSoc');const risks=[];if(!upsPass)risks.push({code:'UPS_CAPACITY',severity:'critical',message:'Critical load exceeds usable UPS capacity',action:'Increase UPS capacity or shed non-critical load'});if(!ridePass)risks.push({code:'RIDE_THROUGH',severity:'critical',message:'UPS autonomy cannot cover transfer window plus reserve',action:'Reduce transfer time or increase battery autonomy'});if(!genPass)risks.push({code:'GENERATOR_CAPACITY',severity:'critical',message:'Derated N-1 generator capacity cannot carry step load',action:'Add generator capacity or reduce step load'});if(attempt>1)risks.push({code:'START_RETRY',severity:'high',message:'Generator start retries extend ride-through exposure',action:'Investigate start reliability and validate worst-case crank timing'});return{name,loadKW:load,upsCapacityPass:upsPass,rideThroughPass:ridePass,generatorCapacityPass:genPass,overallPass:upsPass&&ridePass&&genPass,upsLoadPct:upsPct,generatorUsableKW:genKW,generatorDesignLoadKW:design,generatorLoadPct:genPct,effectiveUpsAutonomySec:autonomy,transferWindowSec:window,reserveSec:reserve,requiredRideThroughSec:required,rideThroughMarginSec:margin,latestSafeTransferSec:Math.max(0,autonomy-reserve),maxExtraDelaySec:Math.max(0,margin),batteryUsedPct:window/autonomy*100,warnings:ws,risks,risk:risks.some(x=>x.severity==='critical')?'high':risks.length?'caution':'healthy'};};
+const scenarios={baseline:make('baseline',critical),peak:make('peak',peak),conservative:make('conservative',cons)},b=scenarios.baseline,a=scenarios.conservative,all=Object.values(scenarios),risks=all.flatMap(x=>x.risks),timeline=[{event:'utilityFailure',atSec:0},{event:'upsRideThrough',atSec:detect},{event:'generatorStartCommand',atSec:detect+start},{event:'generatorAvailable',atSec:detect+start+attempt*crank+(attempt-1)*retry+warm},{event:'atsTransferComplete',atSec:detect+start+attempt*crank+(attempt-1)*retry+warm+ats},{event:'stableOnGenerator',atSec:initialWindow}];
+return{ok:true,modelVersion:'generator-ups-ride-through-engine/2.0.0',errors,warnings:u(all.flatMap(x=>x.warnings)),risks,risk:risks.some(x=>x.severity==='critical')?'high':risks.length?'caution':'healthy',criticalLoadKW:critical,upsUsableKW:ups,upsAutonomyMin:aut,batterySocPct:soc,effectiveUpsAutonomySec:b.effectiveUpsAutonomySec,upsLoadPct:b.upsLoadPct,genRatedKW:rated,genCount:count,redundantGen:red,remainingGenerators:count-red,genUsablePct:usable, generatorUsableKW:b.generatorUsableKW,stepFactor:step,generatorDesignLoadKW:b.generatorDesignLoadKW,generatorLoadPct:b.generatorLoadPct,successfulAttempt:attempt,transferWindowSec:b.transferWindowSec,reserveSec:reserve,requiredRideThroughSec:b.requiredRideThroughSec,rideThroughMarginSec:b.rideThroughMarginSec,latestSafeTransferSec:b.latestSafeTransferSec,maxExtraDelaySec:b.maxExtraDelaySec,batteryUsedPct:b.batteryUsedPct,upsCapacityPass:b.upsCapacityPass,rideThroughPass:b.rideThroughPass,generatorCapacityPass:b.generatorCapacityPass,overallPass:b.overallPass,timeline,scenarios,beforeAfter:{before:b,after:a,delta:{transferWindowSec:a.transferWindowSec-b.transferWindowSec,rideThroughMarginSec:a.rideThroughMarginSec-b.rideThroughMarginSec,generatorLoadPct:a.generatorLoadPct-b.generatorLoadPct}}};}
+function buildReport(input){return{schemaVersion:'generator-ups-ride-through-report/2.0.0',tool:'generator-ups-transfer-ride-through-planner',generatedAt:new Date().toISOString(),inputs:input,result:calculate(input)}}function toJSON(r){return JSON.stringify(r&&r.result?r:buildReport(r||{}),null,2)}function toCSV(r){r=r&&r.result?r.result:r;return[['scenario','loadKW','transferWindowSec','rideThroughMarginSec','generatorLoadPct','overallPass','risk'],...(Object.values(r.scenarios||{}).map(s=>[s.name,s.loadKW,s.transferWindowSec,s.rideThroughMarginSec,s.generatorLoadPct,s.overallPass?'PASS':'FAIL',s.risk]))].map(x=>x.join(',')).join('\n')}return{calculate,buildReport,toJSON,toCSV};});

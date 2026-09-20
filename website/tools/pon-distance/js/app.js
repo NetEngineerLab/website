@@ -49,7 +49,7 @@ function invalidate(){
  ["effectiveMax","opticalMax","systemReachResult","plannedDistanceResult","maxChannelLoss","fixedPhysical","fiberAllowance","plannedFiber","plannedPhysical","plannedDesign","designRemaining","estimatedRx","physicalHeadroom","spliceTotal","connectorTotal","splitterTotal","otherResult","marginResult"].forEach(id=>$(id).textContent="—");
  $("splitRatio").textContent="—";$("distanceScaleMax").textContent="—";$("effectiveBar").style.width="0";$("plannedMarker").style.left="0";
  $("healthBadge").textContent=LANG==="zh"?"输入无效":"Invalid input";$("summaryCard").className="summary-card";$("diagnosis").className="diagnosis";$("diagnosisText").textContent=T[LANG].invalid;$("limiterText").textContent="";$("causeList").innerHTML="";$("validation").textContent=T[LANG].invalid;
- ["copyBtn","saveBtn","csvBtn","printBtn"].forEach(id=>$(id).disabled=true);
+ ["copyBtn","saveBtn","csvBtn","printBtn","jsonBtn"].forEach(id=>{if($(id))$(id).disabled=true});
 }
 function setAttenuation(){
  const wave=$("wavelength").value;
@@ -64,6 +64,9 @@ function calculate(){
   project:$("projectName").value.trim()||"Untitled",tx:n("txPower"),sens:n("rxSensitivity"),over:n("rxOverload"),
   planned:n("plannedDistance"),systemReach:n("systemReach"),attenuation:n("attenuation"),wavelength:$("wavelength").value,
   spliceCount:n("spliceCount"),spliceLoss:n("spliceLoss"),connectorCount:n("connectorCount"),connectorLoss:n("connectorLoss"),
+  agingLoss:n("agingLoss"),temperatureLoss:n("temperatureLoss"),maintenanceLoss:n("maintenanceLoss"),
+  protectionRequired:$("protectionRequired").checked,protectionPresent:$("protectionPresent").checked,
+  dualUplinkRequired:$("dualUplinkRequired").checked,dualUplinkPresent:$("dualUplinkPresent").checked,
   s1:n("splitter1"),s2:n("splitter2"),other:n("otherLoss"),margin:n("margin")
  };
  if(!window.NELPonDistanceEngine||!window.NELPonDistanceEngine.validate(v)){invalidate();return}
@@ -88,7 +91,7 @@ function calculate(){
  $("plannedMarker").style.left=`calc(${Math.min(100,v.planned/scale*100)}% - 2px)`;
  $("distanceScaleMax").textContent=scale.toFixed(1)+" km";
  if(typeof nelTrack==="function")nelTrack("pon_max_distance_calculate",{status,limiter,optical_max:Number(opticalMax.toFixed(2)),effective_max:Number(effectiveMax.toFixed(2)),planned_distance:Number(v.planned.toFixed(2))});
- ["copyBtn","saveBtn","csvBtn","printBtn"].forEach(id=>$(id).disabled=false);
+ ["copyBtn","saveBtn","csvBtn","printBtn","jsonBtn"].forEach(id=>{if($(id))$(id).disabled=false});
 }
 function reset(){
  $("preset").value="gpon-b";$("projectName").value="PON Maximum Distance Design";$("txPower").value=1.5;$("rxSensitivity").value=-27;$("rxOverload").value=-8;$("systemReach").value=20;
@@ -107,8 +110,18 @@ function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",
 function clearHistory(){if(confirm(T[LANG].confirm)){localStorage.removeItem("ponMaximumDistanceHistory");renderHistory()}}
 function csv(){
  if(!last)calculate();if(!last)return;const r=last,rows=[["Project",r.project],["Optical maximum distance km",r.opticalMax.toFixed(2)],["System reach cap km",r.systemReach.toFixed(2)],["Effective maximum distance km",r.effectiveMax.toFixed(2)],["Planned distance km",r.planned.toFixed(2)],["Maximum channel loss dB",r.maxChannelLoss.toFixed(2)],["Fixed physical loss dB",r.fixedPhysical.toFixed(2)],["Planned physical loss dB",r.plannedPhysical.toFixed(2)],["Design remaining dB",r.designRemaining.toFixed(2)],["Estimated RX dBm",r.estimatedRx.toFixed(2)],["Status",T[LANG][r.status]]];
- const text="\uFEFF"+rows.map(x=>x.map(v=>`"${String(v).replaceAll('"','""')}"`).join(",")).join("\n"),blob=new Blob([text],{type:"text/csv;charset=utf-8"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="pon_maximum_distance_report.csv";a.click();URL.revokeObjectURL(a.href);temp($("csvBtn"),T[LANG].csv)
+ rows.push(["Risk reserve dB",r.deepDesignRemaining.toFixed(2)],["Risk level",r.riskLevel],["Constraint failures",r.constraintFailures.join("|")]);
+ const text="\uFEFF"+rows.map(x=>x.map(v=>`"${String(v).replaceAll('"','""')}"`).join(",")).join("\n"),blob=new Blob([text],{type:"text/csv;charset=utf-8"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="pon_maximum_distance_acceptance_report.csv";a.click();URL.revokeObjectURL(a.href);temp($("csvBtn"),T[LANG].csv)
+}
+function jsonReport(){if(!last)calculate();if(!last)return;const payload={reportType:"pon-distance-construction-acceptance",version:"2.0",generatedAt:new Date().toISOString(),locale:LANG,before:last.before,after:last.after,inputs:last,result:last,acceptance:{status:last.status,riskLevel:last.riskLevel,constraintFailures:last.constraintFailures}};const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json;charset=utf-8"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="pon-distance-construction-acceptance.json";a.click();URL.revokeObjectURL(a.href)}
+function installDeepControls(){
+ const host=document.querySelector(".input-panel .form-grid");if(!host||$("agingLoss"))return;
+ const wrap=document.createElement("div");wrap.className="subheading";wrap.textContent=LANG==="zh"?"深度风险与冗余约束":"Deep risk and redundancy constraints";host.append(wrap);
+ [["agingLoss",LANG==="zh"?"老化预留":"Ageing reserve","0.5"],["temperatureLoss",LANG==="zh"?"温度预留":"Temperature reserve","0.3"],["maintenanceLoss",LANG==="zh"?"维护预留":"Maintenance reserve","0.2"]].forEach(([id,label,value])=>{const d=document.createElement("div");d.className="field";d.innerHTML=`<label for="${id}">${label}</label><div class="input-wrap"><input id="${id}" min="0" step="0.1" type="number" value="${value}"><span>dB</span></div>`;host.append(d)});
+ [["protectionRequired",LANG==="zh"?"要求保护链路":"Protection chain required"],["protectionPresent",LANG==="zh"?"保护链路已具备":"Protection chain present"],["dualUplinkRequired",LANG==="zh"?"要求双上联":"Dual uplink required"],["dualUplinkPresent",LANG==="zh"?"双上联已具备":"Dual uplink present"]].forEach(([id,label])=>{const d=document.createElement("div");d.className="field";d.innerHTML=`<label><input id="${id}" type="checkbox"> ${label}</label>`;host.append(d)});
+ const actions=document.querySelector(".result-actions");if(actions&&!$("jsonBtn")){const b=document.createElement("button");b.id="jsonBtn";b.textContent=LANG==="zh"?"导出验收 JSON":"Export acceptance JSON";b.disabled=true;b.addEventListener("click",jsonReport);actions.append(b)}
+ ["agingLoss","temperatureLoss","maintenanceLoss"].forEach(id=>$(id).addEventListener("input",()=>{invalidate();calculate()}));["protectionRequired","protectionPresent","dualUplinkRequired","dualUplinkPresent"].forEach(id=>$(id).addEventListener("change",calculate));
 }
 ["projectName","txPower","rxSensitivity","rxOverload","plannedDistance","systemReach","attenuation","spliceCount","spliceLoss","connectorCount","connectorLoss","splitter1","splitter2","otherLoss","margin"].forEach(id=>$(id).addEventListener("input",()=>{invalidate();clearTimeout(window.__ponDist);window.__ponDist=setTimeout(calculate,160)}));
 $("wavelength").addEventListener("change",()=>{setAttenuation();calculate()});$("preset").addEventListener("change",applyPreset);$("calculateBtn").addEventListener("click",calculate);$("resetBtn").addEventListener("click",reset);$("copyBtn").addEventListener("click",copyResult);$("saveBtn").addEventListener("click",save);$("csvBtn").addEventListener("click",csv);$("printBtn").addEventListener("click",()=>print());$("clearHistoryBtn").addEventListener("click",clearHistory);
-setAttenuation();calculate();renderHistory();
+installDeepControls();setAttenuation();calculate();renderHistory();

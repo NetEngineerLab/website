@@ -1,4 +1,4 @@
-"use strict";const CACHE = "nel-data-center-airflow-containment-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-357c8180fe9b-8876c5c820fb";
+"use strict";const CACHE = "nel-data-center-airflow-containment-planner-locale-v2.1.0-airflow-engine-report-20260920-357c8180fe9b";
 const CORE = [
   "./",
   "./index.html",
@@ -7,7 +7,7 @@ const CORE = [
   "./manifest.webmanifest",
   "./css/style.css?v=37031183c2e0",
   "./js/engine.js",
-  "./js/app.js?v=25c0b53f8fc7",
+  "./js/app.js?v=airflow-v2.1.0",
   "./js/pwa.js",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",

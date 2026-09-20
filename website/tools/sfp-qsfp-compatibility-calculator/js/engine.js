@@ -162,9 +162,30 @@
       .every(value => Number.isFinite(value) && value >= -200 && value <= 200) &&
       txMaxA >= txMinA && txMaxB >= txMinB && rxOverloadA >= rxSensitivityA && rxOverloadB >= rxSensitivityB;
     if (optical && !powerRangesValid) errors.push("opticalPowerRange");
+    // Optional engineering conditions. Defaults are deliberately neutral so the
+    // original optical-budget result remains reproducible for existing links.
+    const scenario = input && input.scenario ? input.scenario : {};
+    const agingYears = optionalNumber(scenario.agingYears, 0);
+    const agingLossDbPerYear = optionalNumber(scenario.agingLossDbPerYear, 0.02);
+    const temperatureDeltaC = optionalNumber(scenario.temperatureDeltaC, 0);
+    const temperatureLossDbPerC = optionalNumber(scenario.temperatureLossDbPerC, 0.005);
+    const maintenanceLossDb = optionalNumber(scenario.maintenanceLossDb, 0);
+    const growthRatePct = optionalNumber(scenario.growthRatePct, 0);
+    const conditionValid = [agingYears, agingLossDbPerYear, temperatureDeltaC, temperatureLossDbPerC, maintenanceLossDb, growthRatePct]
+      .every(Number.isFinite) && agingYears >= 0 && agingLossDbPerYear >= 0 && temperatureLossDbPerC >= 0 && maintenanceLossDb >= 0 && growthRatePct >= 0;
+    if (!conditionValid) errors.push("scenario");
+    const agingLossDb = agingYears * agingLossDbPerYear;
+    const temperatureLossDb = Math.abs(temperatureDeltaC) * temperatureLossDbPerC;
+    const adjustedLossDb = physicalLossDb + agingLossDb + temperatureLossDb + maintenanceLossDb;
+    const domA = optionalNumber(a.domHealthPct, 100);
+    const domB = optionalNumber(b.domHealthPct, 100);
+    const domValid = [domA, domB].every(v => Number.isFinite(v) && v >= 0 && v <= 100);
+    if (!domValid) errors.push("domHealthPct");
+    const domPenaltyDb = domValid ? Math.max(0, 100 - Math.min(domA, domB)) * 0.01 : 0;
+    const conservativeLossDb = adjustedLossDb + domPenaltyDb;
     const direction = (txMin, txMax, rxSensitivity, rxOverload) => {
-      const estimatedRxMinDbm = txMin - physicalLossDb;
-      const estimatedRxMaxDbm = txMax - physicalLossDb;
+      const estimatedRxMinDbm = txMin - conservativeLossDb;
+      const estimatedRxMaxDbm = txMax - conservativeLossDb;
       const sensitivityMarginDb = estimatedRxMinDbm - rxSensitivity;
       return {
         estimatedRxMinDbm,
@@ -182,6 +203,39 @@
     const sensitivityMarginDb = Math.min(aToB.sensitivityMarginDb, bToA.sensitivityMarginDb);
     const designMarginDb = Math.min(aToB.designMarginDb, bToA.designMarginDb);
     const overloadHeadroomDb = Math.min(aToB.overloadHeadroomDb, bToA.overloadHeadroomDb);
+
+    const redundancyProvided = Boolean(input && input.redundancy);
+    const redundancy = redundancyProvided ? input.redundancy : {};
+    const pathCount = redundancy.pathCount === undefined ? 1 : number(redundancy.pathCount);
+    const spareModules = redundancy.spareModules === undefined ? 0 : number(redundancy.spareModules);
+    const dualPath = redundancy.dualPath === true || normalized(redundancy.dualPath) === "TRUE";
+    const redundancyValid = Number.isSafeInteger(pathCount) && pathCount >= 1 && Number.isSafeInteger(spareModules) && spareModules >= 0;
+    if (!redundancyValid) errors.push("redundancy");
+    const nMinusOnePass = redundancyValid && pathCount >= 2;
+    const sparePass = redundancyValid && spareModules >= 1;
+    checks.push({ id: "redundancy", pass: !redundancyProvided || (nMinusOnePass && sparePass), detail: redundancyProvided ? `${pathCount} path(s), ${spareModules} spare module(s)` : "Not assessed (optional)" });
+    checks.push({ id: "condition", pass: conditionValid && domValid, detail: `aging ${agingLossDb.toFixed(2)} dB; temperature ${temperatureLossDb.toFixed(2)} dB; DOM ${Math.min(domA, domB).toFixed(0)}%` });
+    const before = input && input.beforeAfter && input.beforeAfter.before ? input.beforeAfter.before : null;
+    const after = input && input.beforeAfter && input.beforeAfter.after ? input.beforeAfter.after : null;
+    const evalLoss = (item) => {
+      if (!item) return null;
+      const d = number(item.distanceKm);
+      const extra = optionalNumber(item.extraLossDb, 0);
+      if (!Number.isFinite(d) || d < 0 || !Number.isFinite(extra) || extra < 0) return null;
+      return d * attenuation + connectorLoss + spliceLoss + otherLoss + extra;
+    };
+    const beforeLossDb = evalLoss(before);
+    const afterLossDb = evalLoss(after);
+    const beforeAfter = beforeLossDb !== null && afterLossDb !== null ? {
+      beforeLossDb,
+      afterLossDb,
+      deltaLossDb: afterLossDb - beforeLossDb,
+      beforeDistanceKm: number(before.distanceKm),
+      afterDistanceKm: number(after.distanceKm),
+      beforeDesignMarginDb: Math.min(txMinA, txMinB) - beforeLossDb - Math.max(rxSensitivityA, rxSensitivityB) - engineeringMargin,
+      afterDesignMarginDb: Math.min(txMinA, txMinB) - afterLossDb - Math.max(rxSensitivityA, rxSensitivityB) - engineeringMargin
+    } : null;
+    if (input && input.beforeAfter && !beforeAfter) errors.push("beforeAfter");
 
     checks.push({
       id: "input",
@@ -228,12 +282,23 @@
       errors,
       budget: {
         physicalLossDb,
+        adjustedLossDb: conservativeLossDb,
+        conditionLossDb: agingLossDb + temperatureLossDb + maintenanceLossDb + domPenaltyDb,
         estimatedRxDbm,
         sensitivityMarginDb,
         engineeringMarginDb: engineeringMargin,
         designMarginDb,
         overloadHeadroomDb,
         directions: { aToB, bToA }
+      },
+      scenario: { agingYears, agingLossDb, temperatureDeltaC, temperatureLossDb, maintenanceLossDb, growthRatePct, domPenaltyDb },
+      redundancy: { dualPath, pathCount, spareModules, nMinusOnePass, sparePass },
+      beforeAfter,
+      report: {
+        format: "engineering-v2",
+        generatedAt: new Date().toISOString(),
+        assumptions: ["Verify vendor coding, host firmware, FEC and DOM calibration before production."],
+        acceptance: { opticalBudget: status === "PASS", redundancy: nMinusOnePass && sparePass, conditions: conditionValid && domValid }
       }
     };
   }

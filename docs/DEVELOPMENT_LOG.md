@@ -701,3 +701,101 @@
 - Added `scripts/job-registry.js` validation and wired it into `build:config` as `validate:job-registry`.
 - Each job declares participating tools, planned deliverables and, where applicable, a valid next Job; terminal jobs use `null`. This establishes the V2.4 Job Graph foundation. Step-level rules, validation and deliverable generation remain later implementation stages.
 - Added `scripts/build-v24-metadata.js` and generated `website/data/v24-tool-metadata.json` with tool levels, supported jobs and next tools for all 35 active tools. Input/output context remains empty until verified field mappings are implemented.
+- Tuned the Fabric planner's default example in both English and Chinese to a healthy reference design (25% access utilization, 4×100G fabric uplinks, 15% annual growth); failure cases remain available through presets and input changes.
+- Added bilingual deep-workflow panel with Current/Balanced/High-bandwidth scenario comparison, Before/After capacity signals, N-1 failure preview and print-ready engineering comparison.
+- Added JSON engineering report export and CSV BOM export to the Fabric deep-workflow panel in English and Chinese.
+
+## 2026-09-15 — 页面级深度工具实施标准
+
+- 以数据中心 Fabric 容量规划器的实现为基准，将统一页面外壳、健康默认场景、方案比较、N-1 故障预览、双语一致性、工程报告/BOM 输出和网站地址追溯要求写入 V2.4 开发规范第 41 节。
+- 新增工具必须通过计算、桌面/移动端、中英文、导出内容和独立审计五类验收后，才允许合并或发布。
+
+## 2026-09-15 — 五个数据中心电力与制冷工具深度层（LOCAL PASS）
+
+- 为 `pue-data-center-energy-efficiency`、`data-center-cooling-load-calculator`、`ups-capacity-battery-runtime-calculator`、`generator-ups-transfer-ride-through-planner` 和 `network-rack-power-cooling-calculator` 接入统一深度工作流层。
+- 页面新增基线/增长/保守场景比较、打印工程报告、JSON 工程报告、CSV BOM、网站地址追溯和操作反馈；英文与中文页面同步接入。
+- 五个引擎测试通过；五个工具英文/中文 Chrome 页面测试共 10/10 通过。独立审计 Agent 因当前模型额度限制未能运行，尚未取得 `VALIDATOR PASS`，因此本批不得合并或推送生产。
+- 修复深度面板插入位置：统一放在主计算区之后、方法说明和页脚之前；中文脚本路径 404 已补齐，回归测试 10/10 通过。
+- 优化方案表展示：数值统一去除无意义尾随小数，“结果摘要”改为完整的编号重要结论（1、2、3…），避免截断和难以阅读的中英混排。
+- 根据页面复核反馈，将“重要结论”进一步改为单段简洁结论，移除编号、图标和重复标题；五个工具中英文页面回归测试 10/10 通过。
+- 完成 35 个中文工具页可见文本扫描，修复整流电源、气流规划、无线规划等页面的英文 UI 残留；剩余英文仅为 URL、公式及标准/品牌正式名称。受影响页面回归测试 8/8 通过。
+## 2026-09-19 — PUE & Data Center Energy Efficiency Calculator
+
+- 状态：`LOCAL PASS` / `VALIDATOR PASS`
+- 范围：核验并完善 ROADMAP 的唯一 `NEXT` 工具；补齐 PUE 场景比较与工程报告导出，修复 Infinity、负增长和无穷周期输入边界；保留英文/中文页面与现有注册表路由。
+- 验证：PUE engine PASS；PUE 浏览器 EN/ZH 2/2 PASS；tool registry、workflow registry、tool navigation contracts 全 PASS；边界检查 PASS；`git diff --check` PASS。
+- 审计：独立审计确认核心计算、页面、注册表与工作流通过；复核 Agent 因上游服务 503 未能提供报告，未将其伪称为通过。
+- 下一步：`Communication Solar Power & Battery Planner` 已提升为唯一 `NEXT`。
+## 2026-09-19 — Communication Solar Power & Battery Planner
+
+- 状态：`LOCAL PASS` / `VALIDATOR PASS`
+- 范围：补强通信站点光伏与储能规划工具，覆盖负载、日耗电、PV 阵列、串联、蓄电池续航、供需平衡、经济性与减排；新增基线/增长/保守场景比较、工程报告与 BOM 导出，并接入英文/中文页面及 Service Worker 缓存。
+- 修复：对 Infinity、NaN、负值和非法场景进行有限值归一化；无效负载、PSH、组件功率和效率返回结构化错误。
+- 验证：Telecom solar engine PASS；PUE+Telecom Solar audit PASS；英文/中文浏览器 2/2 PASS；tool registry、workflow registry、tool navigation contracts 全 PASS；`git diff --check` PASS。
+- 审计：独立审计 Agent 确认边界、场景、经济性和页面接线通过；旧审计脚本已改为读取当前 35 个 active tools 与现行生产报告，不再硬编码过期的 24/62/60 基线。
+- 下一步：`Generator Fuel Consumption & Backup Runtime Planner` 已提升为唯一 `NEXT`。
+### 2026-09-19 — DNS TTL Propagation P1 深度升级
+
+- `dns-ttl-propagation-calculator` 保持原 URL 与工具数量不变；引擎升级至 `dns-ttl-engine/2.0.0`，增加 baseline/afterChange、解析器增长、stale-serve、权威查询负载风险、Before/After、工程检查及 JSON/CSV 报告导出。
+- 修复 NaN/Infinity 原始输入校验；legacy 基线输出保持精确兼容。中英文页面资源查询统一为 `20260919-v2`，Service Worker 缓存升级至 v2.0.0；中文页面与 manifest 恢复真实 UTF-8/合法 JSON。
+- 验证：引擎测试 PASS；engine/app `node --check` PASS；双语 Playwright 2/2 PASS；Service Worker precache、工具注册、工作流注册、工具导航契约 PASS；独立 2 号审计 PASS。
+### 2026-09-19 — VLAN & IP Capacity P1 深度升级
+
+- `vlan-ip-capacity-planner` 保持原 URL/工具数量；引擎增加 DHCP 保留、网关保留、故障域、VRF、增长场景、Before/After、风险检查及 JSON/CSV 计划输出，同时兼容旧基线。
+- 中英文页面接入高级输入，资源查询与 Service Worker 缓存升级至 v2.0.0；运行旧引擎测试、JS 语法、双语 Playwright 2/2、SW precache、工具/工作流/导航契约均通过。
+- 独立审计代理因上游 503 不可用，未能完成 2 号审计；因此本项不得标记为独立审计 PASS，需后续补审。
+
+- 后续复审：独立 2 号审计 PASS；engine/app/pwa 语法、VLAN 引擎、Interface/VLAN renderer、SW precache、三份 manifest 与双语 Playwright 全部通过。`run-browser-tests.js` 的 4173 端口冲突通过复用现有预览服务规避，不属于代码阻断。
+
+### 2026-09-19 — Wireless Link Budget P1 深度升级进行中
+
+- 已扩展链路预算引擎：雨衰、极化损耗、对准损耗、可用性目标、保护链路、Before/After、风险分级、勘测清单及 JSON/CSV 输出；旧引擎测试兼容。
+- 双语 Playwright、引擎测试、JS/SW 语法、SW precache、工具/工作流/导航契约均通过；独立 2 号审计待回执。
+- 独立审计首轮发现并已修复：状态/警告未本地化、无效输入未清空或禁用操作、中文页面运行文案乱码；专用双语 UI 测试现已 2/2 PASS，等待复审。
+- 独立 2 号复审：PASS。专用引擎、双语 Playwright、无效输入清空/禁用、状态与警告双语、中文 UTF-8、manifest、SW precache、Tool/Page/Navigation 契约全部通过。
+
+### 2026-09-19 — PON Splitter Loss P1 深度升级进行中
+
+- 引擎增加老化、温度、维护、保护 PON 余量及 resilience loss、风险字段；页面接入新增余量输入并保持旧测试兼容。
+- 修复中文默认页面未接线导致的 0.00 结果；专用引擎测试、双语 Playwright 2/2、SW 语法/precache、工具/工作流/导航契约通过；独立 2 号审计待复核。
+### 2026-09-19 — PoE 压降计算器深度开发
+
+- 模型：保留稳态恒功率压降与温度/线规/线对计算，新增显式 802.3af/at/bt 等级校核、启动浪涌后远端电压、PSE 多端口预算、N-1 冗余和 Before/After 差异。
+- 输出：引擎提供 JSON/CSV 报告数据；双语页面动态接线新增等级、端口、预算、浪涌与冗余输入及结果指标。
+- 验证：引擎测试、JS 语法、SW precache、工具/工作流/导航契约通过；Chrome/Edge Android/Edge iPhone 双语 Playwright 6/6 通过；独立 2 号审计 PASS。
+### 2026-09-19 — 网络机柜功耗与制冷量计算器深度开发
+
+- 模型：新增 UPS/PDU 效率热损、显热/潜热、环境温湿度、机柜 U 位与功率密度、双路供电、N+1 故障风险和 Before/After 差异。
+- 输出：新增 JSON/CSV 工程报告及深度工作流场景输出；双语页面保持原 URL 并同步 Service Worker 缓存。
+- 验证：引擎测试、语法、SW precache、SEO 内容审计、工具/工作流/导航契约通过；Chrome/Edge iPhone 双语 Playwright 4/4 通过；中文 UTF-8 与 FAQ/WebPage JSON-LD 已修复；独立审计复审通过。
+### 2026-09-19 — VLAN 与 IP 容量规划器深度开发
+
+- 模型：新增保留地址、网关/DHCP 预留、增长后场景、故障域对齐、VRF 规划、利用率/余量风险与 Before/After 差异。
+- 输出：新增 JSON/CSV 工程报告；双语页面保持原 URL 并动态接入深度输入和结果。
+- 验证：引擎测试、语法、SW precache、SEO 内容审计、工具/工作流/导航契约通过；Chrome/Edge Android/Edge iPhone 双语 Playwright 6/6 通过；独立 2 号审计 PASS。
+### 2026-09-19 — 交换机上联带宽与超售比计算器深度开发
+
+- 模型：新增突发余量、目标利用率、峰值/保守场景、N-1 故障上联、单路径与容量风险分析。
+- 输出：新增 Before/After 差异及 JSON/CSV 工程报告；双语页面动态接入深度输入与风险结果。
+- 验证：引擎测试、语法、SW precache、SEO、工具/工作流/导航契约通过；Chrome/Edge Android/Edge iPhone 双语 Playwright 6/6 通过；独立只读审计 PASS。
+### 2026-09-19 — SFP/QSFP 光模块兼容性工具深度开发
+
+- 模型：新增老化、温度、维护损耗、DOM 健康度、冗余路径与备件校核，以及 Before/After 光预算差异。
+- 输出：新增工程验收报告字段；英文/中文页面接入生命周期与冗余输入，保持原 URL 与缓存契约。
+- 验证：引擎测试、语法、SW precache、SEO、工具/工作流/导航契约通过；Chrome/Edge Android/Edge iPhone 双语 Playwright 6/6 通过；中文状态文案与运行时乱码修复；独立 2 号审计 PASS。
+
+### 2026-09-20 — Data Center Airflow & Containment Planner 深度升级
+
+- 模型：新增峰值机柜、增长/保守场景、冷热通道封闭率、行端泄漏、地板送风效率、旁路风与热风回流影响，并同时校核 N+1/N+2 风量与显冷量容量。
+- 输出：新增风险提示、Before/After 差异、N+1/N+2 状态、JSON 工程报告、CSV 校核表和打印工程报告；英文/中文页面保持原 URL，资源与 Service Worker 缓存升级至 v2.1.0。
+- 验证：引擎测试、engine/app/sw 语法、SW precache、工具/工作流/导航契约、SEO 98/98 全部通过；双语多视口 Playwright 8/8 通过；专用 `audit2:power-tool-31` PASS；UTF-8/乱码扫描通过。
+- 独立审计：未参与实现的 2 号审计代理最终 `PASS`，确认真实页面接线、工程场景、故障冗余、Before/After 与报告导出无阻断。
+- 下一步：ROADMAP 中唯一 `NEXT` 保持为后续队列的最高优先级工具；本工具已完成深度升级闭环。
+
+### 2026-09-19 — Generator Fuel Consumption & Backup Runtime Planner 深度开发
+
+- 模型：保留厂家负载—油耗曲线插值，新增基线/峰值/保守/降额场景、环境温度与海拔降额、N-1 容量校核、油机轮换、补油与油箱可用量、低负载湿堆风险、启动失败风险及电池协同。
+- 输出：新增 Before/After 油耗、N-1 容量与续航差异，风险分级、JSON 工程报告、CSV 校核表；英文/中文页面保持原 URL 并同步 Service Worker v2.0.0 缓存。
+- 验证：Generator engine PASS；`node --check` engine/app/sw PASS；Generator audit2 PASS；SW precache、工具/工作流/导航契约及 SEO PASS；双语多浏览器 Playwright 8/8 PASS；中文 UTF-8 与缓存一致性 PASS。
+- 独立审计：未参与实现的 2 号审计代理最终 `PASS`，确认 Before/After 结果真实渲染、N-1 告警、双语接线与缓存版本无阻断。
+- 下一步：`Data Center Airflow & Containment Planner` 保持唯一 `NEXT`，进入冷热通道、风量/静压、封闭率、旁路气流与故障场景深度升级。

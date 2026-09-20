@@ -17,6 +17,10 @@ const expectedMeasurementId="G-KGNFX9MD8Q";
 function walk(dir){return fs.readdirSync(dir,{withFileTypes:true}).flatMap(entry=>entry.isDirectory()?walk(path.join(dir,entry.name)):[path.join(dir,entry.name)])}
 function read(file){return fs.readFileSync(file,"utf8")}
 function json(rel){try{return JSON.parse(read(path.join(root,rel)))}catch(error){errors.push(`${rel}: ${error.message}`);return{}}}
+function isSearchEngineVerificationFile(file){
+  const relative=path.relative(site,file).split(path.sep).join("/");
+  return !relative.includes("/")&&/^(?:google[a-z0-9_-]+|yandex_[a-z0-9_-]+|baidu_verify_[a-z0-9_-]+|sogou_site_verification_[a-z0-9_-]+)\.html$/i.test(relative);
+}
 
 
 const config=json("website/data/locales.json");
@@ -35,7 +39,7 @@ for(const tool of activeTools){
 }
 if(Array.isArray(tools)&&tools.some(item=>item.status!=="active"))errors.push("planned tools remain in production catalog");
 
-const htmlFiles=walk(site).filter(file=>file.endsWith(".html")&&!file.endsWith("offline.html")&&!file.includes(`${path.sep}templates${path.sep}`));
+const htmlFiles=walk(site).filter(file=>file.endsWith(".html")&&!file.endsWith("offline.html")&&!file.includes(`${path.sep}templates${path.sep}`)&&!isSearchEngineVerificationFile(file));
 for(const file of htmlFiles){
   const rel=path.relative(site,file).split(path.sep).join("/");
   const html=read(file);

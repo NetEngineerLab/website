@@ -9,10 +9,11 @@
  function calc(input={}){
   const mode=input.mode||"power";
   const total=n(input.total), it=n(input.it);
-  const periodDays=Math.max(1,n(input.periodDays)||30);
+  const periodRaw=n(input.periodDays);
+  const periodDays=Number.isFinite(periodRaw)?Math.max(1,periodRaw):30;
   const errors=[];
-  if(!(total>0))errors.push("total");
-  if(!(it>0))errors.push("it");
+  if(!(Number.isFinite(total)&&total>0))errors.push("total");
+  if(!(Number.isFinite(it)&&it>0))errors.push("it");
   if(total>0&&it>total)errors.push("it_gt_total");
   if(errors.length)return{ok:false,errors};
   const pue=total/it, nonIT=total-it, itShare=it/total*100, overheadPct=nonIT/it*100;
@@ -24,7 +25,8 @@
   const targetAnnualTotal=annualIT*targetPUE;
   const savingsKWh=Math.max(0,annualTotal-targetAnnualTotal);
   const savingsCost=savingsKWh*tariff;
-  const growthPct=n(input.itGrowthPct)||20;
+  const growthRaw=n(input.itGrowthPct);
+  const growthPct=Number.isFinite(growthRaw)?Math.max(0,Math.min(500,growthRaw)):20;
   const grownIT=annualIT*(1+growthPct/100);
   const fixedOverheadPUE=(grownIT+annualNonIT)/grownIT;
   const parts={cooling:n(input.cooling)||0,ups:n(input.ups)||0,lighting:n(input.lighting)||0,distribution:n(input.distribution)||0,other:n(input.other)||0};
