@@ -1,0 +1,97 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr" data-nel-locale="zh"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>交换机超售比与上联容量专题 | NetEngineerLab</title><meta name="description" content="集中学习交换机超售比、48口交换机案例、上联容量规划、LAG、N-1故障分析，并使用NetEngineerLab在线计算工具。">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<link rel="canonical" href="https://netengineerlab.com/zh/topics/switch-oversubscription/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/topics/switch-oversubscription/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/topics/switch-oversubscription/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/topics/switch-oversubscription/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="NetEngineerLab">
+<meta property="og:title" content="交换机超售比与上联容量专题 | NetEngineerLab"><meta property="og:description" content="集中学习交换机超售比、48口交换机案例、上联容量规划、LAG、N-1故障分析，并使用NetEngineerLab在线计算工具。">
+<meta property="og:url" content="https://netengineerlab.com/zh/topics/switch-oversubscription/">
+<link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../../assets/css/site.css">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css">
+<link rel="stylesheet" href="../../../assets/css/guide.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "交换机超售比与上联容量专题", "description": "集中学习交换机超售比、48口交换机案例、上联容量规划、LAG、N-1故障分析，并使用NetEngineerLab在线计算工具。", "url": "https://netengineerlab.com/zh/topics/switch-oversubscription/", "isPartOf": {"@type": "WebSite", "name": "NetEngineerLab", "url": "https://netengineerlab.com/"}}</script>
+<script defer src="../../../assets/js/site.js"></script></head><body class="guide-page"><!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false"><div class="site-shell-header-inner"><a class="site-shell-brand brand" href="../../../zh/"><img src="../../../assets/images/logo.svg" alt="" width="42" height="42"><span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span></a><button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation"><span aria-hidden="true"></span></button><nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Primary navigation"><a href="../../../zh/">Home</a><a href="../../../tools/zh/">Tools</a><a href="../../../zh/about/">About</a><a href="../../../zh/contact/">Contact</a></nav><div class="site-shell-actions"><!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言：简体中文"><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../../../topics/switch-oversubscription/" lang="en" hreflang="en"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="./" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END --><div class="site-shell-context-action"><a href="../../../tools/switch-uplink-oversubscription-calculator/zh/">打开计算器</a></div></div></div></header>
+<!-- NEL_HEADER_END -->
+<nav class="guide-breadcrumb" aria-label="面包屑"><a href="../../../zh/">首页</a> / <span>专题</span> / <span aria-current="page">交换机超售比</span></nav>
+<main class="guide-shell" id="main">
+<section class="guide-hero">
+<p class="eyebrow">专题中心</p>
+<h1>交换机超售比与上联容量</h1>
+<p class="guide-lead">集中学习交换机超售比、上联容量规划、LAG、N-1故障分析和48口交换机典型案例。</p>
+<div class="guide-meta"><span>超售比</span><span>上联容量</span><span>LAG</span><span>N-1</span><span>48口案例</span></div>
+</section>
+
+<div class="guide-layout">
+<article class="guide-article">
+
+<h2>从这里开始</h2>
+<p>第一次进入这个专题，建议先阅读主指南，理解公式、理论容量与实际容量、LAG、N-1以及增长余量。</p>
+<div class="guide-related-grid">
+<a href="../../../zh/guides/switch-oversubscription-ratio/"><strong>交换机上联超售比完整指南</strong><br>公式、实例、实际利用率、LAG、N-1和容量规划流程。</a>
+</div>
+
+<h2>直接计算自己的方案</h2>
+<div class="guide-cta">
+<strong>交换机上联超售比计算器</strong>
+<p>输入端口数量、端口速率、上联数量和上联速率，评估上联容量。</p>
+<a href="../../../tools/switch-uplink-oversubscription-calculator/zh/">打开计算器 →</a>
+</div>
+
+<h2>常见工程场景</h2>
+<div class="guide-related-grid">
+<a href="../../../zh/guides/48-port-switch-oversubscription/"><strong>48口交换机超售比实例</strong><br>比较2×10G、4×10G、2×25G以及N-1故障场景。</a>
+</div>
+
+<a href="../../../zh/guides/48-port-switch-2x10g-enough/"><strong>48口千兆交换机2×10G上联够不够？</strong><br>分析忙时流量、LAG、N-1和升级方案。</a>
+<h2>故障与冗余</h2>
+<p>不能只看正常状态。具备冗余要求的网络还应该检查一条上联故障后的剩余容量、忙时业务需求和增长余量。</p>
+
+<a href="../../../zh/guides/switch-oversubscription-n-1/"><strong>N-1故障下交换机超售比怎么计算？</strong><br>计算故障后的剩余容量、余量和升级方案。</a>
+<h2>GitHub工程资源</h2>
+<p>GitHub版本用于工程速查，不复制网站全文。</p>
+<div class="guide-related-grid">
+<a href="https://github.com/" rel="nofollow"><strong>GitHub：交换机超售比工程速查</strong><br>NetEngineerLab仓库发布后替换为真实文件地址。</a>
+<a href="https://github.com/" rel="nofollow"><strong>GitHub：48口交换机案例</strong><br>NetEngineerLab仓库发布后替换为真实文件地址。</a>
+</div>
+<p><small>项目中对应Markdown已经位于 <code>docs/guides/switching/</code>，仓库发布后再替换成真实GitHub URL。</small></p>
+
+<h2>推荐学习顺序</h2>
+<ol>
+<li>先阅读完整超售比指南。</li>
+<li>再看48口交换机实例。</li>
+<li>用计算器代入自己的参数。</li>
+<li>重新计算N-1故障状态。</li>
+<li>比较2×10G、4×10G、2×25G等现实升级方案。</li>
+</ol>
+
+<h2>当前专题资源</h2>
+<table>
+<thead><tr><th>资源</th><th>用途</th><th>状态</th></tr></thead>
+<tbody>
+<tr><td>主指南</td><td>完整概念与工程流程</td><td>已完成</td></tr>
+<tr><td>48口案例</td><td>典型实例</td><td>已完成</td></tr>
+<tr><td>在线计算器</td><td>交互式容量规划</td><td>已完成</td></tr>
+<tr><td>GitHub工程速查</td><td>Markdown技术资料</td><td>项目文件已完成</td></tr>
+<tr><td>GitHub 48口案例</td><td>Markdown案例</td><td>项目文件已完成</td></tr>
+<tr><td>2×10G问题页</td><td>长尾搜索入口</td><td>已完成</td></tr>
+<tr><td>N-1问题页</td><td>故障容量分析</td><td>已完成</td></tr>
+</tbody>
+</table>
+
+</article>
+<aside class="guide-toc" aria-label="专题目录">
+<strong>专题内容</strong>
+<a href="../../../zh/guides/switch-oversubscription-ratio/">主指南</a>
+<a href="../../../zh/guides/48-port-switch-oversubscription/">48口案例</a>
+<a href="../../../tools/switch-uplink-oversubscription-calculator/zh/">计算器</a>
+</aside>
+</div>
+</main>
+<!-- NEL_FOOTER_START --><footer class="site-shell-footer"><div class="site-shell-footer-inner"><div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div><nav class="site-shell-footer-links" aria-label="Footer navigation"><a href="../../../zh/about/">About</a><a href="../../../zh/contact/">Contact</a><a href="../../../zh/privacy/">Privacy</a><a href="../../../zh/terms/">Terms</a></nav><p class="site-shell-copyright">© 2026 NetEngineerLab.com</p></div></footer><!-- NEL_FOOTER_END --><script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script></body></html>

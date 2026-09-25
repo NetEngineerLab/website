@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-nel-locale="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Switch Oversubscription & Uplink Capacity Topic Hub | NetEngineerLab</title><meta name="description" content="Explore switch oversubscription formulas, 48-port worked examples, uplink sizing, LAG, N-1 resilience and the NetEngineerLab oversubscription calculator.">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<link rel="canonical" href="https://netengineerlab.com/topics/switch-oversubscription/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/topics/switch-oversubscription/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/topics/switch-oversubscription/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/topics/switch-oversubscription/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="NetEngineerLab">
+<meta property="og:title" content="Switch Oversubscription & Uplink Capacity Topic Hub | NetEngineerLab"><meta property="og:description" content="Explore switch oversubscription formulas, 48-port worked examples, uplink sizing, LAG, N-1 resilience and the NetEngineerLab oversubscription calculator.">
+<meta property="og:url" content="https://netengineerlab.com/topics/switch-oversubscription/">
+<link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<link rel="stylesheet" href="../../assets/css/design-tokens.css">
+<link rel="stylesheet" href="../../assets/css/site-shell.css">
+<link rel="stylesheet" href="../../assets/css/locale-menu.css">
+<link rel="stylesheet" href="../../assets/css/guide.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Switch Oversubscription & Uplink Capacity Topic Hub", "description": "Explore switch oversubscription formulas, 48-port worked examples, uplink sizing, LAG, N-1 resilience and the NetEngineerLab oversubscription calculator.", "url": "https://netengineerlab.com/topics/switch-oversubscription/", "isPartOf": {"@type": "WebSite", "name": "NetEngineerLab", "url": "https://netengineerlab.com/"}}</script>
+<script defer src="../../assets/js/site.js"></script></head><body class="guide-page"><!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false"><div class="site-shell-header-inner"><a class="site-shell-brand brand" href="../../"><img src="../../assets/images/logo.svg" alt="" width="42" height="42"><span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span></a><button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation"><span aria-hidden="true"></span></button><nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Primary navigation"><a href="../../">Home</a><a href="../../tools/">Tools</a><a href="../../about/">About</a><a href="../../contact/">Contact</a></nav><div class="site-shell-actions"><!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="../../zh/topics/switch-oversubscription/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END --><div class="site-shell-context-action"><a href="../../tools/switch-uplink-oversubscription-calculator/">Open calculator</a></div></div></div></header>
+<!-- NEL_HEADER_END -->
+<nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../../">Home</a> / <span>Topics</span> / <span aria-current="page">Switch Oversubscription</span></nav>
+<main class="guide-shell" id="main">
+<section class="guide-hero">
+<p class="eyebrow">TOPIC HUB</p>
+<h1>Switch Oversubscription &amp; Uplink Capacity</h1>
+<p class="guide-lead">A practical learning and planning hub for switch oversubscription, uplink sizing, LAG behavior, N-1 resilience and real traffic capacity.</p>
+<div class="guide-meta"><span>Oversubscription</span><span>Uplink Sizing</span><span>LAG</span><span>N-1</span><span>48-Port Examples</span></div>
+</section>
+
+<div class="guide-layout">
+<article class="guide-article">
+
+<h2>Start Here</h2>
+<p>If you are new to the topic, begin with the main guide. It explains the formula, theoretical vs practical capacity, LAG behavior, N-1 failure and growth planning.</p>
+<div class="guide-related-grid">
+<a href="../../guides/switch-oversubscription-ratio/"><strong>Switch Oversubscription Ratio Guide</strong><br>Formula, worked examples, utilization, LAG, N-1 and design workflow.</a>
+</div>
+
+<h2>Calculate Your Design</h2>
+<p>Use the engineering calculator when you want to move from theory to a real switch design.</p>
+<div class="guide-cta">
+<strong>Switch Uplink &amp; Oversubscription Calculator</strong>
+<p>Model port count, port speed, uplink count, uplink speed and practical capacity assumptions.</p>
+<a href="../../tools/switch-uplink-oversubscription-calculator/">Open the Calculator →</a>
+</div>
+
+<h2>Common Scenarios</h2>
+<div class="guide-related-grid">
+<a href="../../guides/48-port-switch-oversubscription/"><strong>48-Port Switch Oversubscription</strong><br>Compare 2×10G, 4×10G, 2×25G and N-1 for a 48-port switch.</a>
+</div>
+
+<a href="../../guides/48-port-switch-2x10g-enough/"><strong>Is 2×10G Enough for a 48-Port Gigabit Switch?</strong><br>Evaluate practical demand, LAG, N-1 and upgrade options.</a>
+<h2>Failure &amp; Resilience</h2>
+<p>Oversubscription should not be approved using normal-state bandwidth alone. A resilient design should also be checked after the loss of an uplink or other required N-1 component.</p>
+<ul>
+<li>Normal-state oversubscription</li>
+<li>N-1 surviving uplink capacity</li>
+<li>Busy-hour demand under failure</li>
+<li>Growth margin after failure</li>
+</ul>
+
+<a href="../../guides/switch-oversubscription-n-1/"><strong>Switch Oversubscription Under N-1 Failure</strong><br>Calculate surviving uplink capacity, headroom and upgrade options.</a>
+<h2>Engineering Resources</h2>
+<p>The GitHub versions are concise engineering references intended for quick lookup and reuse.</p>
+<div class="guide-related-grid">
+<a href="https://github.com/" rel="nofollow"><strong>GitHub: Switch Oversubscription Ratio Cheat Sheet</strong><br>Repository link placeholder until the NetEngineerLab GitHub repository is connected/published.</a>
+<a href="https://github.com/" rel="nofollow"><strong>GitHub: 48-Port Switch Worked Examples</strong><br>Repository link placeholder until the NetEngineerLab GitHub repository is connected/published.</a>
+</div>
+<p><small>Note: the project already contains the corresponding Markdown files under <code>docs/guides/switching/</code>. Replace these placeholders with real GitHub file URLs after repository publication.</small></p>
+
+<h2>Recommended Learning Path</h2>
+<ol>
+<li>Read the main oversubscription guide.</li>
+<li>Work through the 48-port switch example.</li>
+<li>Use the calculator with your own port and uplink values.</li>
+<li>Repeat the calculation under N-1.</li>
+<li>Compare realistic upgrade options such as 2×10G, 4×10G and 2×25G.</li>
+</ol>
+
+<h2>Current Topic Assets</h2>
+<table>
+<thead><tr><th>Asset</th><th>Purpose</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Main Guide</td><td>Complete oversubscription concept and workflow</td><td>Available</td></tr>
+<tr><td>48-Port Example</td><td>Focused practical scenario</td><td>Available</td></tr>
+<tr><td>Calculator</td><td>Interactive capacity planning</td><td>Available</td></tr>
+<tr><td>GitHub Cheat Sheet</td><td>Concise engineering reference</td><td>Project file ready</td></tr>
+<tr><td>GitHub 48-Port Example</td><td>Focused Markdown example</td><td>Project file ready</td></tr>
+<tr><td>2×10G Problem Page</td><td>Long-tail search question</td><td>Available</td></tr>
+<tr><td>N-1 Problem Page</td><td>Failure-state capacity analysis</td><td>Available</td></tr>
+</tbody>
+</table>
+
+</article>
+<aside class="guide-toc" aria-label="On this page">
+<strong>Topic contents</strong>
+<a href="#main">Overview</a>
+<a href="../../guides/switch-oversubscription-ratio/">Main Guide</a>
+<a href="../../guides/48-port-switch-oversubscription/">48-Port Example</a>
+<a href="../../tools/switch-uplink-oversubscription-calculator/">Calculator</a>
+</aside>
+</div>
+</main>
+<!-- NEL_FOOTER_START --><footer class="site-shell-footer"><div class="site-shell-footer-inner"><div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div><nav class="site-shell-footer-links" aria-label="Footer navigation"><a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a></nav><p class="site-shell-copyright">© 2026 NetEngineerLab.com</p></div></footer><!-- NEL_FOOTER_END --><script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script></body></html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr" data-nel-locale="zh"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>N-1故障下交换机超售比怎么计算？| NetEngineerLab</title><meta name="description" content="学习如何计算N-1故障状态下的交换机超售比，对比正常与故障后的上联容量、业务需求、余量和升级方案。">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<link rel="canonical" href="https://netengineerlab.com/zh/guides/switch-oversubscription-n-1/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/switch-oversubscription-n-1/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/switch-oversubscription-n-1/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/switch-oversubscription-n-1/">
+<meta property="og:type" content="article"><meta property="og:site_name" content="NetEngineerLab">
+<meta property="og:title" content="N-1故障下交换机超售比怎么计算？| NetEngineerLab"><meta property="og:description" content="学习如何计算N-1故障状态下的交换机超售比，对比正常与故障后的上联容量、业务需求、余量和升级方案。">
+<meta property="og:url" content="https://netengineerlab.com/zh/guides/switch-oversubscription-n-1/">
+<link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../../assets/css/site.css">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css">
+<link rel="stylesheet" href="../../../assets/css/guide.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "N-1故障下交换机超售比怎么计算？| NetEngineerLab", "description": "学习如何计算N-1故障状态下的交换机超售比，对比正常与故障后的上联容量、业务需求、余量和升级方案。", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://netengineerlab.com/zh/guides/switch-oversubscription-n-1/"}, "publisher": {"@type": "Organization", "name": "NetEngineerLab", "url": "https://netengineerlab.com/"}, "inLanguage": "zh-CN"}</script>
+<script defer src="../../../assets/js/site.js"></script></head><body class="guide-page"><!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false"><div class="site-shell-header-inner"><a class="site-shell-brand brand" href="../../../zh/"><img src="../../../assets/images/logo.svg" alt="" width="42" height="42"><span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span></a><button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation"><span aria-hidden="true"></span></button><nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Primary navigation"><a href="../../../zh/">Home</a><a href="../../../tools/zh/">Tools</a><a href="../../../zh/about/">About</a><a href="../../../zh/contact/">Contact</a></nav><div class="site-shell-actions"><!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言：简体中文"><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../../../guides/switch-oversubscription-n-1/" lang="en" hreflang="en"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="./" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END --><div class="site-shell-context-action"><a href="../../../tools/switch-uplink-oversubscription-calculator/zh/">打开计算器</a></div></div></div></header>
+<!-- NEL_HEADER_END -->
+<nav class="guide-breadcrumb" aria-label="面包屑"><a href="../../../zh/">首页</a> / <span>指南</span> / <span aria-current="page">N-1故障超售比</span></nav>
+<main class="guide-shell" id="main">
+<section class="guide-hero">
+<p class="eyebrow">故障容量指南</p>
+<h1>N-1故障下交换机超售比怎么计算？</h1>
+<p class="guide-lead">网络设计不能只看正常状态。N-1分析要回答的是：失去一个关键上联成员后，剩余容量还能不能承载要求保障的业务。</p>
+<div class="guide-meta"><span>N-1</span><span>故障容量</span><span>超售比</span><span>余量</span></div>
+</section>
+<div class="guide-layout"><article class="guide-article">
+
+<h2 id="quick-answer">快速结论</h2>
+<div class="guide-example">
+<p>48×1G接入 = <strong>48Gbps</strong></p>
+<p>正常2×10G上联 = <strong>20Gbps</strong> → <strong>2.4:1</strong></p>
+<p>N-1后剩1×10G = <strong>10Gbps</strong> → <strong>4.8:1</strong></p>
+</div>
+<div class="guide-cta"><strong>直接计算正常与N-1状态</strong><p>用NetEngineerLab计算器代入自己的交换机和上联参数。</p><a href="../../../tools/switch-uplink-oversubscription-calculator/zh/">打开计算器 →</a></div>
+
+<h2 id="what-n1">什么是N-1？</h2>
+<p>N-1表示网络在失去一个要求容忍的关键组件后，仍然需要评估剩余容量。这个组件可能是一条物理上联、一条LAG成员链路、一个上游路径或其他单点故障。</p>
+
+<h2 id="normal-vs-failure">正常状态与N-1对比</h2>
+<table><thead><tr><th>状态</th><th>下联容量</th><th>上联容量</th><th>超售比</th></tr></thead><tbody>
+<tr><td>正常</td><td>48Gbps</td><td>20Gbps</td><td>2.4:1</td></tr>
+<tr><td>N-1</td><td>48Gbps</td><td>10Gbps</td><td>4.8:1</td></tr>
+</tbody></table>
+
+<h2 id="traffic">再与实际业务需求比较</h2>
+<div class="guide-example">
+<p>40个在线端口 × 1Gbps × 30%忙时利用率 = <strong>12Gbps预计需求</strong></p>
+<p>正常20Gbps容量 → <strong>8Gbps余量</strong></p>
+<p>N-1只剩10Gbps → <strong>-2Gbps缺口</strong></p>
+</div>
+<p>这就是为什么正常状态看起来没有问题，但故障状态可能已经不满足容量要求。</p>
+
+<h2 id="acceptable">什么样的N-1结果算可接受？</h2>
+<p>没有一个固定超售比适合所有网络。要结合故障期间必须保障的业务量、是否允许临时拥塞、业务对时延和丢包的敏感度、修复时长以及未来增长判断。</p>
+
+<h2 id="lag">LAG下的N-1</h2>
+<table><thead><tr><th>方案</th><th>正常容量</th><th>N-1容量</th><th>48×1G N-1超售比</th></tr></thead><tbody>
+<tr><td>2×10G</td><td>20Gbps</td><td>10Gbps</td><td>4.8:1</td></tr>
+<tr><td>4×10G</td><td>40Gbps</td><td>30Gbps</td><td>1.6:1</td></tr>
+<tr><td>2×25G</td><td>50Gbps</td><td>25Gbps</td><td>1.92:1</td></tr>
+</tbody></table>
+
+<h2 id="growth">故障状态也要加入未来增长</h2>
+<div class="guide-example">
+<p>当前忙时需求10Gbps，预计增长30%</p>
+<p>未来需求 = <strong>13Gbps</strong></p>
+<p>正常2×10G还有7Gbps余量</p>
+<p>N-1只剩10Gbps → <strong>3Gbps缺口</strong></p>
+</div>
+
+<h2 id="workflow">N-1容量规划流程</h2>
+<ol>
+<li>计算最大下联容量。</li>
+<li>读取忙时真实流量。</li>
+<li>计算正常状态上联容量。</li>
+<li>移除一个要求容忍的故障组件。</li>
+<li>计算剩余上联容量。</li>
+<li>重新计算超售比。</li>
+<li>比较剩余容量与忙时需求。</li>
+<li>加入未来增长。</li>
+<li>判断故障期间允许不允许拥塞。</li>
+<li>不满足时比较升级方案。</li>
+</ol>
+
+<h2 id="faq">常见问题</h2>
+<h3>为什么正常状态通过，N-1却不通过？</h3><p>因为同样的业务需求要由更少的剩余上联容量承载。</p>
+<h3>N-1一定是一条物理链路吗？</h3><p>不一定，具体取决于架构和冗余要求。</p>
+<h3>4.8:1的N-1超售比一定不合理吗？</h3><p>不一定，还要看实际忙时流量、业务敏感度和故障期间的服务要求。</p>
+
+<section class="guide-related"><h2>继续阅读</h2><div class="guide-related-grid">
+<a href="../../../zh/topics/switch-oversubscription/"><strong>交换机超售比专题</strong><br>查看专题全部内容。</a>
+<a href="../switch-oversubscription-ratio/"><strong>交换机超售比完整指南</strong><br>理解公式和容量规划基础。</a>
+<a href="../48-port-switch-oversubscription/"><strong>48口交换机案例</strong><br>比较不同上联方案。</a>
+<a href="../48-port-switch-2x10g-enough/"><strong>2×10G够不够？</strong><br>专门分析48口交换机2×10G设计。</a>
+</div></section>
+
+</article>
+<aside class="guide-toc" aria-label="本页目录"><strong>本页目录</strong>
+<a href="#quick-answer">快速结论</a><a href="#what-n1">什么是N-1</a><a href="#normal-vs-failure">正常与故障</a><a href="#traffic">业务需求</a><a href="#lag">LAG</a><a href="#growth">增长</a><a href="#workflow">规划流程</a><a href="#faq">常见问题</a>
+</aside></div></main>
+<!-- NEL_FOOTER_START --><footer class="site-shell-footer"><div class="site-shell-footer-inner"><div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div><nav class="site-shell-footer-links" aria-label="Footer navigation"><a href="../../../zh/about/">About</a><a href="../../../zh/contact/">Contact</a><a href="../../../zh/privacy/">Privacy</a><a href="../../../zh/terms/">Terms</a></nav><p class="site-shell-copyright">© 2026 NetEngineerLab.com</p></div></footer><!-- NEL_FOOTER_END --><script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script></body></html>

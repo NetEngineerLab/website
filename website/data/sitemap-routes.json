@@ -3,6 +3,51 @@
   "schemaVersion": "2.0.0",
   "routes": [
     {
+      "id": "topic-switch-oversubscription",
+      "publishedAt": "2026-09-25",
+      "searchIntent": {
+        "en": "learn switch oversubscription and find calculators, guides and worked examples",
+        "zh": "学习交换机超售比并查找计算器、指南和工程案例"
+      },
+      "primaryTopic": {
+        "en": "switch oversubscription and uplink capacity",
+        "zh": "交换机超售比与上联容量"
+      },
+      "breadcrumb": [
+        "home"
+      ],
+      "structuredData": [
+        "CollectionPage",
+        "WebPage"
+      ],
+      "relatedContent": [
+        "/guides/switch-oversubscription-ratio/",
+        "/guides/48-port-switch-oversubscription/",
+        "/tools/switch-uplink-oversubscription-calculator/"
+      ],
+      "owner": "NetEngineerLab Editorial",
+      "reviewedAt": {
+        "en": "2026-09-25",
+        "zh": "2026-09-25"
+      },
+      "pageType": "topic",
+      "status": "active",
+      "indexable": true,
+      "route": "topics/switch-oversubscription/",
+      "changefreq": "weekly",
+      "priority": "0.9",
+      "translations": {
+        "en": {
+          "title": "Switch Oversubscription & Uplink Capacity Topic Hub | NetEngineerLab",
+          "description": "Explore switch oversubscription formulas, 48-port worked examples, uplink sizing, LAG, N-1 resilience and the NetEngineerLab oversubscription calculator."
+        },
+        "zh": {
+          "title": "交换机超售比与上联容量专题 | NetEngineerLab",
+          "description": "集中学习交换机超售比、48口交换机案例、上联容量规划、LAG、N-1故障分析，并使用NetEngineerLab在线计算工具。"
+        }
+      }
+    },
+    {
       "id": "home",
       "publishedAt": "2026-07-22",
       "searchIntent": {
@@ -377,6 +422,225 @@
         "es": {
           "title": "Herramientas de ingeniería | NetEngineerLab",
           "description": "Directorio en español de calculadoras y planificadores de telecomunicaciones, redes, energía y centros de datos."
+        }
+      }
+    },
+    {
+      "id": "guide-switch-oversubscription-ratio",
+      "publishedAt": "2026-09-25",
+      "searchIntent": {
+        "en": "calculate switch oversubscription ratio and size uplinks",
+        "zh": "计算交换机上联超售比并规划上联容量"
+      },
+      "primaryTopic": {
+        "en": "Switch oversubscription ratio and uplink capacity planning",
+        "zh": "交换机上联超售比与容量规划"
+      },
+      "longTailQuestions": {
+        "en": [
+          "How do I calculate switch oversubscription ratio?",
+          "Is 2x10G enough for a 48-port Gigabit switch?",
+          "How should I calculate N-1 uplink oversubscription?"
+        ],
+        "zh": [
+          "交换机上联超售比如何计算？",
+          "48口千兆交换机用2×10G上联够吗？",
+          "N-1故障情况下如何计算超售比？"
+        ]
+      },
+      "breadcrumb": [
+        "home"
+      ],
+      "structuredData": [
+        "Article",
+        "WebPage"
+      ],
+      "relatedContent": [
+        "/tools/switch-uplink-oversubscription-calculator/"
+      ],
+      "sources": [
+        "Cisco Campus LAN and Wireless LAN Design Guide",
+        "IEEE 802.1AX",
+        "RFC 7424"
+      ],
+      "owner": "NetEngineerLab Editorial",
+      "reviewedAt": {
+        "en": "2026-09-25",
+        "zh": "2026-09-25"
+      },
+      "withdrawal": null,
+      "pageType": "guide",
+      "status": "active",
+      "indexable": true,
+      "route": "guides/switch-oversubscription-ratio/",
+      "changefreq": "monthly",
+      "priority": "0.8",
+      "translations": {
+        "en": {
+          "title": "Switch Oversubscription Ratio: Formula, Examples & Calculator | NetEngineerLab",
+          "description": "Learn how to calculate switch oversubscription ratio with 48-port examples, uplink sizing, LAG behavior, N-1 failure, utilization and capacity planning."
+        },
+        "zh": {
+          "title": "交换机上联超售比计算：公式、案例与N-1容量规划 | NetEngineerLab",
+          "description": "用48口交换机实例学习上联超售比计算，并结合LAG、忙时利用率、N-1故障和增长余量进行容量规划。"
+        }
+      }
+    },
+    {
+      "id": "guide-48-port-switch-oversubscription",
+      "publishedAt": "2026-09-25",
+      "searchIntent": {
+        "en": "calculate oversubscription for a 48-port switch and compare uplink options",
+        "zh": "计算48口交换机超售比并比较不同上联方案"
+      },
+      "primaryTopic": {
+        "en": "48-port switch oversubscription and uplink sizing",
+        "zh": "48口交换机超售比与上联容量规划"
+      },
+      "longTailQuestions": {
+        "en": [
+          "What is the oversubscription ratio of a 48-port switch with two 10G uplinks?",
+          "Is 2x10G enough for a 48-port Gigabit switch?",
+          "What happens to a 48-port switch uplink under N-1?"
+        ],
+        "zh": [
+          "48口千兆交换机配2×10G上联超售比是多少？",
+          "48口交换机2×10G上联够不够？",
+          "48口交换机N-1故障后超售比是多少？"
+        ]
+      },
+      "breadcrumb": [
+        "home",
+        "guide-switch-oversubscription-ratio"
+      ],
+      "structuredData": [
+        "Article",
+        "WebPage"
+      ],
+      "relatedContent": [
+        "/guides/switch-oversubscription-ratio/",
+        "/tools/switch-uplink-oversubscription-calculator/"
+      ],
+      "sources": [
+        "Cisco Campus LAN and Wireless LAN Design Guide",
+        "IEEE 802.1AX",
+        "RFC 7424"
+      ],
+      "owner": "NetEngineerLab Editorial",
+      "reviewedAt": {
+        "en": "2026-09-25",
+        "zh": "2026-09-25"
+      },
+      "withdrawal": null,
+      "pageType": "guide",
+      "status": "active",
+      "indexable": true,
+      "route": "guides/48-port-switch-oversubscription/",
+      "changefreq": "monthly",
+      "priority": "0.8",
+      "translations": {
+        "en": {
+          "title": "How to Calculate Oversubscription for a 48-Port Switch | NetEngineerLab",
+          "description": "Calculate oversubscription for a 48-port switch with 1G, 2.5G, 10G and 25G uplinks. See 2×10G, 4×10G and N-1 examples, then size the uplink correctly."
+        },
+        "zh": {
+          "title": "48口交换机超售比怎么计算：1G接入、10G/25G上联与N-1案例 | NetEngineerLab",
+          "description": "用48口交换机实例计算超售比，对比2×10G、4×10G、2×25G上联，并分析N-1故障、实际利用率和扩容余量。"
+        }
+      }
+    },
+    {
+      "id": "guide-48-port-switch-2x10g-enough",
+      "publishedAt": "2026-09-25",
+      "searchIntent": {
+        "en": "determine whether two 10G uplinks are enough for a 48-port Gigabit switch",
+        "zh": "判断48口千兆交换机2×10G上联是否足够"
+      },
+      "primaryTopic": {
+        "en": "48-port switch 2x10G uplink capacity",
+        "zh": "48口交换机2×10G上联容量"
+      },
+      "breadcrumb": [
+        "home",
+        "topic-switch-oversubscription"
+      ],
+      "structuredData": [
+        "Article",
+        "WebPage"
+      ],
+      "relatedContent": [
+        "/topics/switch-oversubscription/",
+        "/guides/switch-oversubscription-ratio/",
+        "/guides/48-port-switch-oversubscription/",
+        "/tools/switch-uplink-oversubscription-calculator/"
+      ],
+      "owner": "NetEngineerLab Editorial",
+      "reviewedAt": {
+        "en": "2026-09-25",
+        "zh": "2026-09-25"
+      },
+      "pageType": "guide",
+      "status": "active",
+      "indexable": true,
+      "route": "guides/48-port-switch-2x10g-enough/",
+      "changefreq": "monthly",
+      "priority": "0.8",
+      "translations": {
+        "en": {
+          "title": "Is 2×10G Enough for a 48-Port Gigabit Switch? | NetEngineerLab",
+          "description": "See when 2×10G uplinks are enough for a 48-port Gigabit switch. Compare theoretical ratio, busy-hour demand, LAG behavior, N-1 failure and upgrade options."
+        },
+        "zh": {
+          "title": "48口千兆交换机2×10G上联够不够？| NetEngineerLab",
+          "description": "分析48口千兆交换机使用2×10G上联是否足够，对比理论超售比、忙时流量、LAG、N-1故障和升级方案。"
+        }
+      }
+    },
+    {
+      "id": "guide-switch-oversubscription-n-1",
+      "publishedAt": "2026-09-25",
+      "searchIntent": {
+        "en": "calculate switch oversubscription after one uplink fails",
+        "zh": "计算交换机单个上联故障后的超售比"
+      },
+      "primaryTopic": {
+        "en": "N-1 switch oversubscription and surviving uplink capacity",
+        "zh": "N-1交换机超售比与剩余上联容量"
+      },
+      "breadcrumb": [
+        "home",
+        "topic-switch-oversubscription"
+      ],
+      "structuredData": [
+        "Article",
+        "WebPage"
+      ],
+      "relatedContent": [
+        "/topics/switch-oversubscription/",
+        "/guides/switch-oversubscription-ratio/",
+        "/guides/48-port-switch-oversubscription/",
+        "/guides/48-port-switch-2x10g-enough/",
+        "/tools/switch-uplink-oversubscription-calculator/"
+      ],
+      "owner": "NetEngineerLab Editorial",
+      "reviewedAt": {
+        "en": "2026-09-25",
+        "zh": "2026-09-25"
+      },
+      "pageType": "guide",
+      "status": "active",
+      "indexable": true,
+      "route": "guides/switch-oversubscription-n-1/",
+      "changefreq": "monthly",
+      "priority": "0.8",
+      "translations": {
+        "en": {
+          "title": "How to Calculate Switch Oversubscription Under N-1 Failure | NetEngineerLab",
+          "description": "Learn how to calculate switch oversubscription under N-1 failure. Compare normal and surviving uplink capacity, traffic demand, headroom and upgrade options."
+        },
+        "zh": {
+          "title": "N-1故障下交换机超售比怎么计算？| NetEngineerLab",
+          "description": "学习如何计算N-1故障状态下的交换机超售比，对比正常与故障后的上联容量、业务需求、余量和升级方案。"
         }
       }
     }

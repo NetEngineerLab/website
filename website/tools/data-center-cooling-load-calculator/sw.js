@@ -1,13 +1,13 @@
-"use strict";const CACHE = "nel-data-center-cooling-load-calculator-locale-v2.0.1-engine-gates-20260919-357c8180fe9b";
+"use strict";const CACHE = "nel-data-center-cooling-load-calculator-locale-v2.0.2-scenario-ui-20260920";
 const CORE = [
   "./",
   "./index.html",
   "./zh/",
   "./offline.html",
   "./manifest.webmanifest",
-  "./css/style.css?v=0b15b533089f",
-  "./js/engine.js?v=2.0.1",
-  "./js/app.js?v=2.0.1",
+  "./css/style.css?v=20260920-v2",
+  "./js/engine.js?v=20260920-v2",
+  "./js/app.js?v=20260920-v2",
   "./js/deep-workflow.js",
   "./zh/js/deep-workflow.js",
   "./js/pwa.js",

@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-nel-locale="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to Calculate Switch Oversubscription Under N-1 Failure | NetEngineerLab</title><meta name="description" content="Learn how to calculate switch oversubscription under N-1 failure. Compare normal and surviving uplink capacity, traffic demand, headroom and upgrade options.">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<link rel="canonical" href="https://netengineerlab.com/guides/switch-oversubscription-n-1/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/switch-oversubscription-n-1/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/switch-oversubscription-n-1/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/switch-oversubscription-n-1/">
+<meta property="og:type" content="article"><meta property="og:site_name" content="NetEngineerLab">
+<meta property="og:title" content="How to Calculate Switch Oversubscription Under N-1 Failure | NetEngineerLab"><meta property="og:description" content="Learn how to calculate switch oversubscription under N-1 failure. Compare normal and surviving uplink capacity, traffic demand, headroom and upgrade options.">
+<meta property="og:url" content="https://netengineerlab.com/guides/switch-oversubscription-n-1/">
+<link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<link rel="stylesheet" href="../../assets/css/design-tokens.css">
+<link rel="stylesheet" href="../../assets/css/site-shell.css">
+<link rel="stylesheet" href="../../assets/css/locale-menu.css">
+<link rel="stylesheet" href="../../assets/css/guide.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How to Calculate Switch Oversubscription Under N-1 Failure", "description": "Learn how to calculate switch oversubscription under N-1 failure. Compare normal and surviving uplink capacity, traffic demand, headroom and upgrade options.", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://netengineerlab.com/guides/switch-oversubscription-n-1/"}, "publisher": {"@type": "Organization", "name": "NetEngineerLab", "url": "https://netengineerlab.com/"}, "inLanguage": "en"}</script>
+<script defer src="../../assets/js/site.js"></script></head><body class="guide-page"><!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false"><div class="site-shell-header-inner"><a class="site-shell-brand brand" href="../../"><img src="../../assets/images/logo.svg" alt="" width="42" height="42"><span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span></a><button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation"><span aria-hidden="true"></span></button><nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Primary navigation"><a href="../../">Home</a><a href="../../tools/">Tools</a><a href="../../about/">About</a><a href="../../contact/">Contact</a></nav><div class="site-shell-actions"><!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="../../zh/guides/switch-oversubscription-n-1/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END --><div class="site-shell-context-action"><a href="../../tools/switch-uplink-oversubscription-calculator/">Open calculator</a></div></div></div></header>
+<!-- NEL_HEADER_END -->
+<nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../../">Home</a> / <span>Guides</span> / <span aria-current="page">N-1 Oversubscription</span></nav>
+<main class="guide-shell" id="main">
+<section class="guide-hero">
+<p class="eyebrow">FAILURE CAPACITY GUIDE</p>
+<h1>How to Calculate Switch Oversubscription Under N-1 Failure</h1>
+<p class="guide-lead">A switch design should not be approved only in its normal state. N-1 analysis asks whether the surviving uplink capacity can still carry expected traffic after one required component fails.</p>
+<div class="guide-meta"><span>N-1</span><span>Failure Capacity</span><span>Oversubscription</span><span>Headroom</span></div>
+</section>
+
+<div class="guide-layout"><article class="guide-article">
+
+<h2 id="quick-answer">Quick Answer</h2>
+<p>Start with the normal-state formula:</p>
+<div class="guide-formula"><strong>Oversubscription Ratio = Total Downlink Capacity ÷ Total Uplink Capacity</strong></div>
+<p>Then remove one required uplink member and calculate again.</p>
+<div class="guide-example">
+<p>48 × 1G access = <strong>48 Gbps</strong></p>
+<p>Normal uplink: 2 × 10G = <strong>20 Gbps</strong> → <strong>2.4:1</strong></p>
+<p>N-1 uplink: 1 × 10G = <strong>10 Gbps</strong> → <strong>4.8:1</strong></p>
+</div>
+
+<div class="guide-cta"><strong>Model normal and N-1 capacity</strong><p>Use the NetEngineerLab calculator with your actual port count and uplink design.</p><a href="../../tools/switch-uplink-oversubscription-calculator/">Open the Calculator →</a></div>
+
+<h2 id="what-n1">What Does N-1 Mean?</h2>
+<p>N-1 means the network is evaluated after one required component is unavailable. In an uplink design, that may mean one physical member link, one LAG member, one upstream device path, or another single failure the design is expected to tolerate.</p>
+<p>The purpose is not to assume that every failure must preserve full performance. The purpose is to understand the surviving capacity and decide whether that result meets the business requirement.</p>
+
+<h2 id="normal-vs-failure">Normal vs. N-1 Oversubscription</h2>
+<table>
+<thead><tr><th>State</th><th>Downlink Capacity</th><th>Uplink Capacity</th><th>Ratio</th></tr></thead>
+<tbody>
+<tr><td>Normal</td><td>48 Gbps</td><td>20 Gbps</td><td>2.4:1</td></tr>
+<tr><td>N-1</td><td>48 Gbps</td><td>10 Gbps</td><td>4.8:1</td></tr>
+</tbody></table>
+<p>The ratio doubles because the available uplink capacity is cut in half while the installed access capacity remains unchanged.</p>
+
+<h2 id="traffic">Now Compare Against Real Traffic Demand</h2>
+<p>Theoretical ratio is only the first step. Compare the surviving uplink with expected busy-hour traffic.</p>
+<div class="guide-example">
+<p>40 active ports × 1 Gbps × 30% busy-hour utilization = <strong>12 Gbps modeled demand</strong></p>
+<p>Normal capacity = <strong>20 Gbps</strong> → headroom = <strong>8 Gbps</strong></p>
+<p>N-1 capacity = <strong>10 Gbps</strong> → headroom = <strong>-2 Gbps</strong></p>
+</div>
+<p>This design looks comfortable in the normal state but becomes capacity-deficient after one uplink fails.</p>
+
+<h2 id="good-design">What Makes an N-1 Result Acceptable?</h2>
+<p>There is no universal ratio. An acceptable failure state depends on:</p>
+<ul>
+<li>how much busy-hour traffic must continue during the failure;</li>
+<li>whether temporary congestion is acceptable;</li>
+<li>latency and packet-loss sensitivity;</li>
+<li>how quickly the failed path can be restored;</li>
+<li>how much traffic growth is expected;</li>
+<li>whether the network is designed for graceful degradation or full service continuity.</li>
+</ul>
+
+<h2 id="lag">N-1 with LAG</h2>
+<p>If a LAG has two 10G members, losing one member leaves 10 Gbps aggregate capacity. If a LAG has four 10G members, losing one leaves 30 Gbps.</p>
+<table>
+<thead><tr><th>Design</th><th>Normal Capacity</th><th>N-1 Capacity</th><th>48×1G N-1 Ratio</th></tr></thead>
+<tbody>
+<tr><td>2×10G</td><td>20 Gbps</td><td>10 Gbps</td><td>4.8:1</td></tr>
+<tr><td>4×10G</td><td>40 Gbps</td><td>30 Gbps</td><td>1.6:1</td></tr>
+<tr><td>2×25G</td><td>50 Gbps</td><td>25 Gbps</td><td>1.92:1</td></tr>
+</tbody></table>
+
+<h2 id="growth">Add Growth to the Failure State</h2>
+<p>Suppose current busy-hour demand is 10 Gbps and traffic is expected to grow by 30%.</p>
+<div class="guide-example">
+<p>Future demand = 10 × 1.30 = <strong>13 Gbps</strong></p>
+<p>2×10G normal capacity = 20 Gbps → <strong>7 Gbps headroom</strong></p>
+<p>2×10G N-1 capacity = 10 Gbps → <strong>3 Gbps deficit</strong></p>
+</div>
+<p>A design can therefore pass today's normal-state check and still fail future N-1 requirements.</p>
+
+<h2 id="upgrade">Compare N-1 Upgrade Options</h2>
+<table>
+<thead><tr><th>Design</th><th>Normal</th><th>N-1</th><th>Use Case</th></tr></thead>
+<tbody>
+<tr><td>2×10G</td><td>20 Gbps</td><td>10 Gbps</td><td>Moderate access demand</td></tr>
+<tr><td>4×10G</td><td>40 Gbps</td><td>30 Gbps</td><td>More granular redundancy</td></tr>
+<tr><td>2×25G</td><td>50 Gbps</td><td>25 Gbps</td><td>Higher-capacity dual-uplink design</td></tr>
+</tbody></table>
+
+<h2 id="workflow">N-1 Capacity Planning Workflow</h2>
+<ol>
+<li>Calculate installed downlink capacity.</li>
+<li>Measure active busy-hour traffic.</li>
+<li>Calculate normal-state uplink capacity.</li>
+<li>Remove one required failure component.</li>
+<li>Calculate surviving uplink capacity.</li>
+<li>Recalculate oversubscription.</li>
+<li>Compare surviving capacity with busy-hour demand.</li>
+<li>Add future growth.</li>
+<li>Decide whether congestion during failure is acceptable.</li>
+<li>Compare upgrade options if the failure state is insufficient.</li>
+</ol>
+
+<h2 id="faq">Frequently Asked Questions</h2>
+<h3>Why can a network pass normal-state checks but fail N-1?</h3><p>Because the same traffic demand must be carried by less remaining capacity after a failure.</p>
+<h3>Does N-1 always mean one physical link?</h3><p>No. It means one required component is unavailable. The exact component depends on the architecture and resilience requirement.</p>
+<h3>Should I design N-1 for 100% of theoretical access bandwidth?</h3><p>Not necessarily. Use the service objective and realistic busy-hour demand, but keep the maximum theoretical ratio visible for context.</p>
+<h3>Is 4.8:1 N-1 automatically unacceptable?</h3><p>No. The ratio is only one indicator. Compare it with actual demand, application sensitivity and the required service level during failure.</p>
+
+<section class="guide-related"><h2>Continue the Topic</h2><div class="guide-related-grid">
+<a href="../../topics/switch-oversubscription/"><strong>Switch Oversubscription Topic Hub</strong><br>See the complete topic structure.</a>
+<a href="../switch-oversubscription-ratio/"><strong>Main Oversubscription Guide</strong><br>Formula, utilization and design fundamentals.</a>
+<a href="../48-port-switch-oversubscription/"><strong>48-Port Worked Example</strong><br>Compare practical uplink options.</a>
+<a href="../48-port-switch-2x10g-enough/"><strong>Is 2×10G Enough?</strong><br>Focus on the 48-port 2×10G design decision.</a>
+</div></section>
+
+</article>
+<aside class="guide-toc" aria-label="On this page"><strong>On this page</strong>
+<a href="#quick-answer">Quick answer</a><a href="#what-n1">What is N-1?</a><a href="#normal-vs-failure">Normal vs N-1</a><a href="#traffic">Traffic demand</a><a href="#lag">LAG</a><a href="#growth">Growth</a><a href="#workflow">Workflow</a><a href="#faq">FAQ</a>
+</aside></div></main>
+<!-- NEL_FOOTER_START --><footer class="site-shell-footer"><div class="site-shell-footer-inner"><div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div><nav class="site-shell-footer-links" aria-label="Footer navigation"><a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a></nav><p class="site-shell-copyright">© 2026 NetEngineerLab.com</p></div></footer><!-- NEL_FOOTER_END --><script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script></body></html>
