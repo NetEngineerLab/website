@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-bandwidth-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-357c8180fe9b-e2eff5d5c35e";
+const CACHE = "nel-bandwidth-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-357c8180fe9b-10929a3c4874";
 const CORE = [
   "./index.html",
   "./",

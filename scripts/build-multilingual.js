@@ -20,6 +20,7 @@ const folderMap=new Map(localeConfig.locales.filter(item=>item.folder).map(item=
 const localeMap=new Map(localeConfig.locales.map(item=>[item.id,item]));
 const activeLocales=localeConfig.locales.filter(item=>item.status==="active");
 const activeTools=toolCatalog.filter(item=>item.status==="active");
+const configuredRoutes=new Set(sitemapConfig.routes.map(item=>item.route));
 const rootDirectoryRoutes=new Set(["about/","contact/","privacy/","terms/"]);
 const sharedRuntimeAssets=[
  {sitePath:"data/locales.js",cachePath:"../../data/locales.js"},
@@ -147,6 +148,8 @@ function ensureToolDirectoryItemList(html,locale){
 function identifyPage(rel){
  const clean=posix(rel).replace(/^\/+/,"");
  if(clean.endsWith("/offline.html")||clean==="offline.html")return null;
+ // Search-engine ownership verification files are public artifacts, not pages.
+ if(/^(?:google|bing|yandex|baidu)[-_a-z0-9]*\.html$/i.test(clean))return null;
  const parts=clean.split("/");
  if(parts[0]==="tools"){
   if(parts.length===2&&parts[1]==="index.html"){
@@ -174,6 +177,13 @@ function identifyPage(rel){
  }
  if(parts.length===3&&folderMap.has(parts[0])&&parts[2]==="index.html"&&rootDirectoryRoutes.has(`${parts[1]}/`)){
   return{route:`${parts[1]}/`,localeId:folderMap.get(parts[0]).id,kind:"rootPage"};
+ }
+ if(parts.at(-1)==="index.html"){
+  const localized=folderMap.has(parts[0]);
+  const locale=localized?folderMap.get(parts[0]):defaultLocale;
+  const routeParts=parts.slice(localized?1:0,-1);
+  const route=`${routeParts.join("/")}/`;
+  if(configuredRoutes.has(route))return{route,localeId:locale.id,kind:sitemapConfig.routes.find(item=>item.route===route)?.pageType||"rootPage"};
  }
  return null;
 }
@@ -582,7 +592,7 @@ function generateManifests(groups){
  }
 }
 function generateSitemap(groups){
- const lines=['<?xml version="1.0" encoding="UTF-8"?>','<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'];
+ const lines=['<?xml version="1.0" encoding="UTF-8"?>','<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">'];
  const toolRecords=activeTools.map(tool=>({route:`tools/${tool.id}/`,changefreq:"monthly",priority:"0.9"}));
  const records=[...sitemapConfig.routes,...toolRecords];
  const seen=new Set();
@@ -593,7 +603,16 @@ function generateSitemap(groups){
   if(!group)continue;
   for(const locale of activeLocales){
    if(!group.has(locale.id))continue;
-   lines.push(`  <url><loc>${localeConfig.siteUrl}${urlForRoute(record.route,locale)}</loc><changefreq>${record.changefreq}</changefreq><priority>${record.priority}</priority></url>`);
+   lines.push("  <url>");
+   lines.push(`    <loc>${localeConfig.siteUrl}${urlForRoute(record.route,locale)}</loc>`);
+   for(const alternate of activeLocales){
+    if(!group.has(alternate.id))continue;
+    lines.push(`    <xhtml:link rel="alternate" hreflang="${alternate.hreflang}" href="${localeConfig.siteUrl}${urlForRoute(record.route,alternate)}"/>`);
+   }
+   if(group.has(defaultLocale.id))lines.push(`    <xhtml:link rel="alternate" hreflang="x-default" href="${localeConfig.siteUrl}${urlForRoute(record.route,defaultLocale)}"/>`);
+   lines.push(`    <changefreq>${record.changefreq}</changefreq>`);
+   lines.push(`    <priority>${record.priority}</priority>`);
+   lines.push("  </url>");
   }
  }
  lines.push("</urlset>","");

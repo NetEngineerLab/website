@@ -1,4 +1,4 @@
-"use strict";const CACHE = "nel-telecom-solar-battery-sizing-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-357c8180fe9b-f1473698e75c";
+"use strict";const CACHE = "nel-telecom-solar-battery-sizing-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-357c8180fe9b-b337533a0596";
 const CORE = [
   "./",
   "./index.html",

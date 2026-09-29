@@ -1,4 +1,4 @@
-# NetEngineerLab Topic Growth & GitHub Sync Development Standard V1.0
+# NetEngineerLab Topic Growth & GitHub Sync Development Standard V1.1
 
 ## 1. Purpose
 
@@ -76,7 +76,7 @@ Project documentation / GitHub reference content:
 
 ```text
 docs/
-├─ NETENGINEERLAB_TOPIC_GROWTH_GITHUB_SYNC_STANDARD_V1.0.md
+├─ NETENGINEERLAB_TOPIC_GROWTH_GITHUB_SYNC_STANDARD_V1.1.md
 └─ guides/
    └─ <topic>/
       ├─ <pillar-guide>.md
@@ -280,19 +280,27 @@ Topic:
 
 Current website assets:
 
+- `/topics/switch-oversubscription/`
 - `/guides/switch-oversubscription-ratio/`
 - `/guides/48-port-switch-oversubscription/`
+- `/guides/48-port-switch-2x10g-enough/`
+- `/guides/switch-oversubscription-n-1/`
 - `/tools/switch-uplink-oversubscription-calculator/`
 
 Chinese routes:
 
+- `/zh/topics/switch-oversubscription/`
 - `/zh/guides/switch-oversubscription-ratio/`
 - `/zh/guides/48-port-switch-oversubscription/`
+- `/zh/guides/48-port-switch-2x10g-enough/`
+- `/zh/guides/switch-oversubscription-n-1/`
 - `/tools/switch-uplink-oversubscription-calculator/zh/`
 
 GitHub/reference assets:
 
 - `docs/guides/switching/switch-oversubscription-ratio.md`
 - `docs/guides/switching/48-port-switch-oversubscription.md`
+- `docs/guides/switching/48-port-switch-2x10g-enough.md`
+- `docs/guides/switching/switch-oversubscription-n-1.md`
 
 This topic is the template for subsequent NetEngineerLab topic clusters.

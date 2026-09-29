@@ -1,13 +1,13 @@
-"use strict";const CACHE = "nel-ups-capacity-battery-runtime-calculator-locale-v2.0.1-engine-gates-20260919-357c8180fe9b";
+"use strict";const CACHE = "nel-ups-capacity-battery-runtime-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-357c8180fe9b-488559fb7270";
 const CORE = [
   "./",
   "./index.html",
   "./zh/",
   "./offline.html",
   "./manifest.webmanifest",
-  "./css/style.css?v=0b15b533089f",
+  "./css/style.css?v=4dea5061cb25",
   "./js/engine.js?v=2.0.0",
-  "./js/app.js?v=2.0.0",
+  "./js/app.js?v=d69d55d789f5",
   "./js/deep-workflow.js",
   "./zh/js/deep-workflow.js",
   "./js/pwa.js",

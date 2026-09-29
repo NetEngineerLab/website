@@ -1,13 +1,13 @@
-"use strict";const CACHE = "nel-generator-ups-transfer-ride-through-planner-locale-v2.0.0-generator-ups-report-20260919-357c8180fe9b";
+"use strict";const CACHE = "nel-generator-ups-transfer-ride-through-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-357c8180fe9b-f7e70886688b";
 const CORE = [
   "./",
   "./index.html",
   "./zh/",
   "./offline.html",
   "./manifest.webmanifest",
-  "./css/style.css?v=664986002e80",
+  "./css/style.css?v=ae1922842737",
   "./js/engine.js",
-  "./js/app.js?v=dd0a98da1190",
+  "./js/app.js?v=e685592da1a3",
   "./js/pwa.js",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",

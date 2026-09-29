@@ -1,11 +1,11 @@
-"use strict";const CACHE = "nel-pue-data-center-energy-efficiency-locale-v1.9.9-04-p0-p1-correctness-consent-offline-357c8180fe9b-9889da382d74";
+"use strict";const CACHE = "nel-pue-data-center-energy-efficiency-locale-v1.9.9-04-p0-p1-correctness-consent-offline-357c8180fe9b-d11e02807de9";
 const CORE = [
   "./",
   "./index.html",
   "./zh/",
   "./offline.html",
   "./manifest.webmanifest",
-  "./css/style.css?v=8028a21799a2",
+  "./css/style.css?v=61f0081dd060",
   "./js/engine.js",
   "./js/app.js?v=bacd79684ff2",
   "./js/pwa.js",

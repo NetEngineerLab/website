@@ -1,25 +1,54 @@
-<!DOCTYPE html><html lang="zh-CN" dir="ltr" data-nel-locale="zh"><head>
+<!DOCTYPE html><html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="guides/48-port-switch-2x10g-enough/"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>48口千兆交换机2×10G上联够不够？| NetEngineerLab</title><meta name="description" content="分析48口千兆交换机使用2×10G上联是否足够，对比理论超售比、忙时流量、LAG、N-1故障和升级方案。">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+
+<meta property="og:type" content="article"><meta property="og:site_name" content="NetEngineerLab">
+<meta property="og:title" content="48口千兆交换机2×10G上联够不够？| NetEngineerLab"><meta property="og:description" content="分析48口千兆交换机使用2×10G上联是否足够，对比理论超售比、忙时流量、LAG、N-1故障和升级方案。">
+<meta property="og:url" content="https://netengineerlab.com/zh/guides/48-port-switch-2x10g-enough/"><meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../../assets/css/site.css">
+<link rel="stylesheet" href="../../../assets/css/guide.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://netengineerlab.com/zh/guides/48-port-switch-2x10g-enough/#webpage","name":"48口千兆交换机2×10G上联够不够？","description":"分析48口千兆交换机使用2×10G上联是否足够，对比理论超售比、忙时流量、LAG、N-1故障和升级方案。","url":"https://netengineerlab.com/zh/guides/48-port-switch-2x10g-enough","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}},{"@type":"Article","@id":"https://netengineerlab.com/zh/guides/48-port-switch-2x10g-enough/#article","headline":"48口千兆交换机2×10G上联够不够？","description":"分析48口千兆交换机使用2×10G上联是否足够，对比理论超售比、忙时流量、LAG、N-1故障和升级方案。","url":"https://netengineerlab.com/zh/guides/48-port-switch-2x10g-enough","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://netengineerlab.com/zh/guides/48-port-switch-2x10g-enough/#webpage"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/","logo":{"@type":"ImageObject","url":"https://netengineerlab.com/zh/assets/images/logo.svg"}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"指南","item":"https://netengineerlab.com/zh/topics/switch-oversubscription"},{"@type":"ListItem","position":3,"name":"48口千兆交换机2×10G上联够不够？","item":"https://netengineerlab.com/zh/guides/48-port-switch-2x10g-enough"}]}]}</script>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"48口千兆交换机2×10G上联够不够？| NetEngineerLab","url":"https://netengineerlab.com/zh/guides/48-port-switch-2x10g-enough/","description":"分析48口千兆交换机使用2×10G上联是否足够，对比理论超售比、忙时流量、LAG、N-1故障和升级方案。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="zh">
+<meta name="nel-route" content="guides/48-port-switch-2x10g-enough/">
+<meta name="nel-available-locales" content="en,zh">
 <link rel="canonical" href="https://netengineerlab.com/zh/guides/48-port-switch-2x10g-enough/">
 <link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/48-port-switch-2x10g-enough/">
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/48-port-switch-2x10g-enough/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/48-port-switch-2x10g-enough/">
-<meta property="og:type" content="article"><meta property="og:site_name" content="NetEngineerLab">
-<meta property="og:title" content="48口千兆交换机2×10G上联够不够？| NetEngineerLab"><meta property="og:description" content="分析48口千兆交换机使用2×10G上联是否足够，对比理论超售比、忙时流量、LAG、N-1故障和升级方案。">
-<meta property="og:url" content="https://netengineerlab.com/zh/guides/48-port-switch-2x10g-enough/">
-<link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../../../assets/css/site.css">
-<link rel="stylesheet" href="../../../assets/css/design-tokens.css">
-<link rel="stylesheet" href="../../../assets/css/site-shell.css">
-<link rel="stylesheet" href="../../../assets/css/locale-menu.css">
-<link rel="stylesheet" href="../../../assets/css/guide.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "48口千兆交换机2×10G上联够不够？| NetEngineerLab", "description": "分析48口千兆交换机使用2×10G上联是否足够，对比理论超售比、忙时流量、LAG、N-1故障和升级方案。", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://netengineerlab.com/zh/guides/48-port-switch-2x10g-enough/"}, "publisher": {"@type": "Organization", "name": "NetEngineerLab", "url": "https://netengineerlab.com/"}, "inLanguage": "zh-CN"}</script>
-<script defer src="../../../assets/js/site.js"></script></head><body class="guide-page"><!-- NEL_HEADER_START -->
-<header class="site-header site-shell-header" data-nav-open="false"><div class="site-shell-header-inner"><a class="site-shell-brand brand" href="../../../zh/"><img src="../../../assets/images/logo.svg" alt="" width="42" height="42"><span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span></a><button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation"><span aria-hidden="true"></span></button><nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Primary navigation"><a href="../../../zh/">Home</a><a href="../../../tools/zh/">Tools</a><a href="../../../zh/about/">About</a><a href="../../../zh/contact/">Contact</a></nav><div class="site-shell-actions"><!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言：简体中文"><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../../../guides/48-port-switch-2x10g-enough/" lang="en" hreflang="en"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="./" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END --><div class="site-shell-context-action"><a href="../../../tools/switch-uplink-oversubscription-calculator/zh/">打开计算器</a></div></div></div></header>
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=dc6c5cc9b8ad">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=58918fefbb35">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=5c6907a4fe26"></script>
+</head><body class="guide-page"><!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="打开导航菜单"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="主导航">
+      <a href="../../">首页</a>
+      <a href="../../../tools/zh/">工具中心</a>
+      <a href="../../about/">关于我们</a>
+      <a href="../../contact/">联系我们</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../../../guides/48-port-switch-2x10g-enough/" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="./" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
 <!-- NEL_HEADER_END -->
-<nav class="guide-breadcrumb" aria-label="面包屑"><a href="../../../zh/">首页</a> / <span>指南</span> / <span aria-current="page">48口交换机2×10G上联</span></nav>
+<nav class="guide-breadcrumb" aria-label="面包屑"><a href="../../">首页</a> / <span>指南</span> / <span aria-current="page">48口交换机2×10G上联</span></nav>
 <main class="guide-shell" id="main">
 <section class="guide-hero">
 <p class="eyebrow">问题页</p>
@@ -63,11 +92,21 @@
 <ol><li>读取忙时真实流量。</li><li>统计实际在线端口。</li><li>确认两条上联是否都参与转发。</li><li>检查LAG哈希与流量分担。</li><li>计算正常状态余量。</li><li>计算N-1状态余量。</li><li>加入未来12–24个月增长。</li><li>必要时比较4×10G或2×25G。</li></ol>
 
 <section class="guide-related"><h2>继续阅读</h2><div class="guide-related-grid"><a href="../switch-oversubscription-n-1/"><strong>N-1故障超售比指南</strong><br>检查单点故障后的剩余上联容量。</a>
-<a href="../../../zh/topics/switch-oversubscription/"><strong>交换机超售比专题</strong><br>查看专题全部文章、工具和GitHub资源。</a>
+<a href="../../topics/switch-oversubscription/"><strong>交换机超售比专题</strong><br>查看专题全部文章、工具和GitHub资源。</a>
 <a href="../switch-oversubscription-ratio/"><strong>交换机超售比完整指南</strong><br>理解公式、利用率、LAG和N-1。</a>
 <a href="../48-port-switch-oversubscription/"><strong>48口交换机案例</strong><br>对比2×10G、4×10G和2×25G。</a>
 </div></section>
 </article>
 <aside class="guide-toc" aria-label="本页目录"><strong>本页目录</strong><a href="#quick-answer">快速结论</a><a href="#when-enough">什么情况够用</a><a href="#when-not">什么情况不够</a><a href="#n1">N-1</a><a href="#lag">LAG</a><a href="#compare">升级对比</a><a href="#checklist">判断清单</a></aside>
 </div></main>
-<!-- NEL_FOOTER_START --><footer class="site-shell-footer"><div class="site-shell-footer-inner"><div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div><nav class="site-shell-footer-links" aria-label="Footer navigation"><a href="../../../zh/about/">About</a><a href="../../../zh/contact/">Contact</a><a href="../../../zh/privacy/">Privacy</a><a href="../../../zh/terms/">Terms</a></nav><p class="site-shell-copyright">© 2026 NetEngineerLab.com</p></div></footer><!-- NEL_FOOTER_END --><script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script></body></html>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div>
+    <nav class="site-shell-footer-links" aria-label="页脚导航">
+      <a href="../../about/">关于</a><a href="../../contact/">联系</a><a href="../../privacy/">隐私政策</a><a href="../../terms/">使用条款</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END --><script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script></body></html>

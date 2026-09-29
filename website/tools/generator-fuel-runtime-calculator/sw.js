@@ -1,4 +1,4 @@
-"use strict";const CACHE = "nel-generator-fuel-runtime-calculator-locale-v2.0.0-engine-gates-20260919-357c8180fe9b";
+"use strict";const CACHE = "nel-generator-fuel-runtime-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-357c8180fe9b-00bedc59a7e4";
 const CORE = [
   "./",
   "./index.html",
@@ -7,7 +7,7 @@ const CORE = [
   "./manifest.webmanifest",
   "./css/style.css?v=95ea5b65c505",
   "./js/engine.js?v=2.0.0",
-  "./js/app.js?v=2.0.0",
+  "./js/app.js?v=bb04eb7f6a65",
   "./js/pwa.js",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",
