@@ -1,0 +1,11 @@
+const assert=require('assert');const E=require('../js/engine.js');
+const base={category:'environment',title:'Temperature',status:'normal',afterStatus:'normal'};
+let r=E.calculate({items:[base]});assert(r.ok&&r.overall==='safe'&&r.completionPct===100);
+r=E.calculate({items:[{...base,status:'abnormal',likelihood:3,impact:3,exposurePct:100,controlEffectivenessPct:0,certaintyPct:100,afterStatus:'normal'}]});assert(r.overall==='action-required'&&r.riskReductionPct===100);
+r=E.calculate({items:[{...base,status:'abnormal',ruleId:'ELEC-EXPOSED-01',criticalTrigger:'Exposed energized conductor',afterStatus:'abnormal'}]});assert(r.overall==='critical'&&r.topRisks[0].before.ruleId==='ELEC-EXPOSED-01');
+r=E.calculate({items:[{...base,status:'na'},{...base,title:'unknown',status:'unverified'}]});assert(r.overall==='needs-verification'&&r.completionPct===0&&r.counts.na===1);
+const low=E.phase({...base,status:'abnormal',likelihood:4,impact:4,exposurePct:20,controlEffectivenessPct:80,certaintyPct:40});const high=E.phase({...base,status:'abnormal',likelihood:4,impact:4,exposurePct:100,controlEffectivenessPct:0,certaintyPct:100});assert(high.score>low.score);
+const csv=E.toCSV(E.calculate({items:[{...base,title:'Breaker, "A"',status:'abnormal',afterStatus:'normal'}]}));assert(csv.includes('"Breaker, ""A"""'));
+assert(csv.includes('https://netengineerlab.com/tools/network-risk-hidden-hazard-assessment-generator/'));
+r=E.calculate({items:[{...base,status:'abnormal',likelihood:1,impact:1,exposurePct:0,controlEffectivenessPct:100,certaintyPct:0,afterStatus:'abnormal',afterLikelihood:5,afterImpact:5,afterExposurePct:100,afterControlEffectivenessPct:0,afterCertaintyPct:100}]});assert(r.riskReductionPct===0);
+console.log('Network hidden-hazard assessment engine: PASS');

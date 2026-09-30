@@ -45,7 +45,8 @@ const intentByTool=Object.freeze({
   "generator-ups-transfer-ride-through-planner":"planning",
   "transmission-ring-optimization-risk-analyzer":"planning",
   "olt-dual-uplink-transport-mse-planner":"planning",
-  "data-center-network-convergence-fabric-capacity-planner":"planning"
+  "data-center-network-convergence-fabric-capacity-planner":"planning",
+  "network-risk-hidden-hazard-assessment-generator":"planning"
 });
 const intentLabels=Object.freeze({
   calculation:{en:"calculation",zh:"计算",es:"cálculo"},

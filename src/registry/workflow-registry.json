@@ -776,5 +776,20 @@
         }
       }
     ]
+  },
+  {
+    "id": "network-risk-remediation",
+    "schemaVersion": "2.1.0",
+    "status": "active",
+    "domain": "operations",
+    "primary": true,
+    "translations": {
+      "en": {"name": "Network Risk Assessment & Remediation Workflow", "description": "Record site hazards, prioritize and assign remediation, then prepare controlled network changes."},
+      "zh": {"name": "网络风险评估与整改工作流", "description": "记录现场隐患，确定整改优先级与责任，再准备受控网络变更。"}
+    },
+    "steps": [
+      {"order": 1, "toolId": "network-risk-hidden-hazard-assessment-generator", "translations": {"en": {"action": "Assess hazards and assign remediation ownership"}, "zh": {"action": "评估隐患并落实整改责任"}}},
+      {"order": 2, "toolId": "network-change-planner-mop-generator", "translations": {"en": {"action": "Prepare a verifiable and reversible remediation change"}, "zh": {"action": "准备可验证、可回退的整改变更"}}}
+    ]
   }
 ]

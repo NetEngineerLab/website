@@ -275,7 +275,8 @@
       "id": "network-change-planner-mop-generator",
       "toolLevel": "planner",
       "supportedJobs": [
-        "plan-network-change"
+        "plan-network-change",
+        "assess-network-risk"
       ],
       "nextTools": [
         "acl-generator-validator",
@@ -452,6 +453,20 @@
         "switch-uplink-oversubscription-calculator",
         "bandwidth-calculator",
         "sfp-qsfp-compatibility-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "network-risk-hidden-hazard-assessment-generator": {
+      "id": "network-risk-hidden-hazard-assessment-generator",
+      "toolLevel": "planner",
+      "supportedJobs": [
+        "assess-network-risk"
+      ],
+      "nextTools": [
+        "network-change-planner-mop-generator",
+        "data-center-airflow-containment-planner",
+        "olt-dual-uplink-transport-mse-planner"
       ],
       "inputContext": [],
       "outputContext": []

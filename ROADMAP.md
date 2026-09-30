@@ -105,8 +105,8 @@
 - 输出：负载率、预计油耗、库存可支撑时长、补油时间、保障风险
 - 升级：多机房批量应急保障台账
 
-### [ ] Transmission Ring Optimization & Risk Analyzer
-- 状态：`NEXT`
+### [x] Transmission Ring Optimization & Risk Analyzer
+- 状态：`DONE`
 - 优先级：`P1`
 - 场景：OTN/PTN/IPRAN/MSTP/SDH/分组传送网络
 - 输出：环结构、容量、拥塞段、保护风险、N-1、拆环/并环建议
@@ -114,15 +114,15 @@
 - 专业壁垒：极高
 - 备注：应做深度工具，不做简单节点统计器
 
-### [ ] OLT Dual Uplink & Transport Resource Planner
-- 状态：`READY`
+### [x] OLT Dual Uplink & Transport Resource Planner
+- 状态：`DONE`
 - 优先级：`P1`
 - 场景：OLT双上联、传输波道、MSE端口资源规划
 - 输出：上联带宽、保护、波道、端口需求、瓶颈与冗余
 - 协同：接入网容量规划工具集
 
-### [ ] Network Risk / Hidden Hazard Assessment Generator
-- 状态：`PLANNED`
+### [x] Network Risk / Hidden Hazard Assessment Generator
+- 状态：`DONE`
 - 优先级：`P1`
 - 场景：机房、电源、ODF、光缆、网络设备等隐患判断
 - 输出：隐患等级、风险说明、规范依据、整改建议、检查报告
@@ -132,18 +132,18 @@
 
 ## 4. P2 — 专业工具集群扩展
 
-### [ ] Data Center Network Convergence & Fabric Capacity Planner
-- 状态：`READY`
+### [x] Data Center Network Convergence & Fabric Capacity Planner
+- 状态：`DONE`
 - 优先级：`P2`
 - 能力：Leaf-Spine、Access-Aggregation-Core、多层收敛、Spine N-1、东西/南北向流量
 
-### [ ] Switch Uplink Capacity & Oversubscription Planner
-- 状态：`READY`
+### [x] Switch Uplink Capacity & Oversubscription Planner
+- 状态：`DONE`
 - 优先级：`P2`
 - 能力：接入端口、上联容量、Oversubscription、峰值利用率、冗余
 
 ### [ ] Optical Power / Fiber Link Engineering Suite
-- 状态：`PLANNED`
+- 状态：`NEXT`
 - 优先级：`P2`
 - 方向：光功率预算、光衰、链路损耗、分光、余量、异常判断
 

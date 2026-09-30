@@ -1,15 +1,7 @@
-"use strict";const CACHE = "nel-network-change-planner-mop-generator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-357c8180fe9b-d7bcd0680524";
+'use strict';const CACHE = "nel-network-risk-hidden-hazard-assessment-generator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-357c8180fe9b-3088187093bb";
 const CORE = [
-  "./",
   "./index.html",
-  "./zh/",
-  "./offline.html",
   "./manifest.webmanifest",
-  "./css/style.css?v=34a0e21783df",
-  "./js/engine.js",
-  "./js/app.js?v=47a83736347f",
-  "./js/pwa.js",
-  "../../assets/images/logo.svg",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
@@ -30,4 +22,4 @@ const CORE = [
   "../../assets/generated/rules-engine/rules-bundle.9d06acb2a0ff.js?v=9d06acb2a0ff",
   "./zh/index.html",
   "./manifest-zh.webmanifest"
-];self.addEventListener("install",event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)));self.skipWaiting()});self.addEventListener("activate",event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith("nel-network-change-planner-mop-generator-")&&k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim()});self.addEventListener("fetch",event=>{const request=event.request,url=new URL(request.url);if(request.method!=="GET"||url.origin!==location.origin)return;if(request.mode==="navigate"){event.respondWith(fetch(request).catch(()=>caches.match(request,{ignoreSearch:true}).then(x=>x||caches.match("./offline.html"))));return}event.respondWith(caches.match(request,{ignoreSearch:true}).then(x=>x||fetch(request)))});
+];self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)));self.skipWaiting()});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('nel-network-hidden-hazard-')&&k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim()});self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(caches.match(e.request,{ignoreSearch:true}).then(hit=>hit||fetch(e.request).catch(()=>caches.match('./offline.html'))))});
