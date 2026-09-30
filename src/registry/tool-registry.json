@@ -1883,34 +1883,150 @@
       "en": {
         "name": "Network Risk & Hidden-Hazard Assessment Generator",
         "description": "Screen five network-site risk categories, preserve unknown findings, compare before and after risk, and assign remediation ownership.",
-        "tags": ["Risk assessment", "Hidden hazard", "Remediation"]
+        "tags": [
+          "Risk assessment",
+          "Hidden hazard",
+          "Remediation"
+        ]
       },
       "zh": {
         "name": "网络风险与隐患评估报告生成器",
         "description": "筛查五类网络现场风险，保留未知项，对比整改前后风险，并落实整改责任。",
-        "tags": ["风险评估", "隐患排查", "整改闭环"]
+        "tags": [
+          "风险评估",
+          "隐患排查",
+          "整改闭环"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
     "domain": "operations",
-    "capabilities": ["generate", "analyze", "validate", "plan"],
+    "capabilities": [
+      "generate",
+      "analyze",
+      "validate",
+      "plan"
+    ],
     "maturity": "production",
     "routes": {
       "en": "/tools/network-risk-hidden-hazard-assessment-generator/",
       "zh-CN": "/tools/network-risk-hidden-hazard-assessment-generator/zh/"
     },
     "relationships": {
-      "related": ["network-change-planner-mop-generator", "data-center-airflow-containment-planner", "olt-dual-uplink-transport-mse-planner", "transmission-ring-optimization-risk-analyzer"]
+      "related": [
+        "network-change-planner-mop-generator",
+        "data-center-airflow-containment-planner",
+        "olt-dual-uplink-transport-mse-planner",
+        "transmission-ring-optimization-risk-analyzer"
+      ]
     },
     "pageContent": {
-      "searchIntent": {"en": "network risk and hidden-hazard assessment report", "zh": "网络风险与隐患评估报告"},
-      "reviewedAt": {"en": "2026-09-30", "zh": "2026-09-30"},
-      "longTailQuestions": {
-        "en": ["How do I score and document network-site hidden hazards?"],
-        "zh": ["如何评分并记录网络现场隐患？"]
+      "searchIntent": {
+        "en": "network risk and hidden-hazard assessment report",
+        "zh": "网络风险与隐患评估报告"
       },
-      "structuredData": ["WebApplication", "FAQPage"],
-      "sources": ["https://www.iso.org/standard/65694.html", "https://csrc.nist.gov/pubs/sp/800/30/r1/final", "https://www.osha.gov/electrical/", "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.335"]
+      "reviewedAt": {
+        "en": "2026-09-30",
+        "zh": "2026-09-30"
+      },
+      "longTailQuestions": {
+        "en": [
+          "How do I score and document network-site hidden hazards?"
+        ],
+        "zh": [
+          "如何评分并记录网络现场隐患？"
+        ]
+      },
+      "structuredData": [
+        "WebApplication",
+        "FAQPage"
+      ],
+      "sources": [
+        "https://www.iso.org/standard/65694.html",
+        "https://csrc.nist.gov/pubs/sp/800/30/r1/final",
+        "https://www.osha.gov/electrical/",
+        "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.335"
+      ]
+    }
+  },
+  {
+    "id": "odf-odn-resource-planner",
+    "publishedAt": "2026-09-30",
+    "order": 37,
+    "status": "active",
+    "category": "optical",
+    "icon": "ODF",
+    "translations": {
+      "en": {
+        "name": "ODF / ODN Fiber Resource & Split Planning Planner",
+        "description": "Compare ODF/ODN resource plans and calculate PON ports, splitters, fibre cores, ODF capacity, gaps and a planning BOM.",
+        "tags": [
+          "ODF",
+          "ODN",
+          "Fiber resources"
+        ]
+      },
+      "zh": {
+        "name": "ODF / ODN 光纤资源与分光规划器",
+        "description": "比较 ODF/ODN 资源方案，计算 PON 端口、分光器、纤芯、ODF 容量、资源缺口与规划 BOM。",
+        "tags": [
+          "ODF",
+          "ODN",
+          "光纤资源"
+        ]
+      }
+    },
+    "schemaVersion": "2.1.0",
+    "domain": "optical",
+    "capabilities": [
+      "calculate",
+      "analyze",
+      "plan",
+      "generate",
+      "validate"
+    ],
+    "maturity": "production",
+    "routes": {
+      "en": "/tools/odf-odn-resource-planner/",
+      "zh-CN": "/tools/odf-odn-resource-planner/zh/"
+    },
+    "relationships": {
+      "related": [
+        "fiber-loss",
+        "pon-splitter-loss",
+        "optical-power-budget",
+        "pon-distance",
+        "olt-dual-uplink-transport-mse-planner"
+      ]
+    },
+    "pageContent": {
+      "searchIntent": {
+        "en": "ODF ODN fiber resource and splitter planning",
+        "zh": "ODF ODN 光纤资源与分光规划"
+      },
+      "reviewedAt": {
+        "en": "2026-09-30",
+        "zh": "2026-09-30"
+      },
+      "longTailQuestions": {
+        "en": [
+          "How many PON ports, splitters, fibre cores and ODF ports does an ODN need?"
+        ],
+        "zh": [
+          "ODN 需要多少 PON 端口、分光器、纤芯和 ODF 端口？"
+        ]
+      },
+      "structuredData": [
+        "WebApplication",
+        "FAQPage"
+      ],
+      "sources": [
+        "https://www.itu.int/rec/T-REC-G.984.2/en",
+        "https://www.itu.int/rec/T-REC-G.9807.1/en",
+        "https://www.itu.int/rec/T-REC-G.652/en",
+        "https://www.itu.int/rec/T-REC-G.657/en",
+        "https://www.itu.int/rec/T-REC-G.671/en"
+      ]
     }
   }
 ]

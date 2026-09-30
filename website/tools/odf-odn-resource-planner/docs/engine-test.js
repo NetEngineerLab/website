@@ -1,0 +1,18 @@
+'use strict';
+const assert=require('assert'),E=require('../js/engine.js');
+const base={targetOnu:1000,stages:2,r1:8,r2:8,r3:1,operatorCap:64,protectionFactor:1,reservePct:20,maxCableCores:144,existingOdfPorts:12,existingOdfTrays:0,existingSpliceTrays:0,existingFeederCores:16,existingDistributionCores:128,odfTrayCapacity:12,spliceTrayCapacity:12};
+const good={id:'A',name:'Plan A',distanceKm:10,downAttenuation:.25,upAttenuation:.35,splitterLoss:17,spliceCount:10,spliceLoss:.1,connectorCount:4,connectorLoss:.3,otherLoss:.3,agingAllowance:1,temperatureAllowance:.5,maintenanceAllowance:1,repairAllowance:.5,maxOdnLoss:32,maxReachKm:20,pathPenalty:0,downTxMin:4,downTxMax:6,downRxSensitivity:-28,downRxOverload:-8,upTxMin:1,upTxMax:4,upRxSensitivity:-31,upRxOverload:-8};
+let r=E.calculate({...base,scenarios:[good,{...good,id:'B',maxOdnLoss:20},{...good,id:'C',downTxMax:''}]});
+assert.equal(r.resources.effectiveOnuPerPort,64);assert.equal(r.resources.ponPorts,16);assert.equal(r.resources.splitterCounts.level1,16);assert.equal(r.resources.splitterCounts.level2,128);assert.equal(r.resources.servedCapacity,1024);
+assert.equal(r.resources.segments.feeder.workingCores,16);assert.equal(r.resources.segments.feeder.plannedCores,20);assert.deepEqual(r.resources.segments.feeder.cables,[24]);
+assert.equal(r.resources.segments.distribution.plannedCores,160);assert(r.resources.segments.distribution.multiCable);assert(r.resources.segments.distribution.provided>=160);assert(!r.resources.segments.distribution.cables.includes(160));
+assert.equal(r.resources.required.odfPorts,16);assert.equal(r.resources.gaps.odfPorts,4);assert.equal(r.scenarios[0].status,'PASS');assert.equal(r.scenarios[1].status,'FAIL');assert.equal(r.scenarios[2].status,'INCONCLUSIVE');assert.equal(r.recommended,'A');
+let d=E.direction({...good,downAttenuation:.25,splitterLoss:17},'down');assert.equal(d.physicalLoss,22);assert.equal(d.designLoss,25);assert.equal(d.standardHeadroom,7);
+let edge={...good,downTxMin:-3,downRxSensitivity:-28,downAttenuation:.25};assert.notEqual(E.scenario(edge).status,'FAIL');edge.downTxMin=-3.01;assert.equal(E.scenario(edge).status,'FAIL');
+let warn={...good,upAttenuation:.25,maxOdnLoss:27.99};assert.equal(E.scenario(warn).status,'WARNING');warn.maxOdnLoss=28;assert.equal(E.scenario(warn).status,'PASS');
+let overload={...good,downRxOverload:-19};assert.equal(E.scenario(overload).status,'FAIL');assert(E.scenario(overload).diagnostics.some(x=>x.includes('add-attenuation')));
+assert(r.metadata.canonical&&r.metadata.sources.length===5&&r.metadata.reviewedAt);const csv=E.toCSV(r,{source:'https://netengineerlab.com/tools/odf-odn-resource-planner/zh/',input:base});assert(csv.includes('Plan A'));assert(csv.includes('Source,https://netengineerlab.com/tools/odf-odn-resource-planner/zh/'));assert(csv.includes('Input JSON'));assert(csv.includes('BOM item'));assert(csv.includes('Result JSON'));assert(csv.includes('targetOnu'));
+let zero=E.resourcePlan({...base,reservePct:0});assert(zero.valid);assert.equal(zero.segments.feeder.plannedCores,16);
+let invalid=E.calculate({...base,reservePct:100,scenarios:[good]});assert.equal(invalid.ok,false);assert.equal(invalid.scenarios[0].status,'INCONCLUSIVE');assert(invalid.resources.errors.includes('reservePct'));
+let varied=E.calculate({...base,existingOdfPorts:0,scenarios:[{...good,id:'A',r1:8,r2:8,existingOdfPorts:16},{...good,id:'B',r1:4,r2:8,existingOdfPorts:0}]});assert.notEqual(varied.scenarios[0].resources.ponPorts,varied.scenarios[1].resources.ponPorts);assert.equal(varied.recommended,'A');assert(varied.scenarios[0].resourceGap<varied.scenarios[1].resourceGap);
+console.log('ODF/ODN resource planner engine: 14 fixtures PASS');

@@ -32,7 +32,7 @@
         {
           "workflowId": "optical-link-design",
           "step": 1,
-          "total": 4,
+          "total": 5,
           "previous": null,
           "next": "pon-splitter-loss"
         },
@@ -78,7 +78,7 @@
         {
           "workflowId": "optical-link-design",
           "step": 3,
-          "total": 4,
+          "total": 5,
           "previous": "pon-splitter-loss",
           "next": "pon-distance"
         },
@@ -124,7 +124,7 @@
         {
           "workflowId": "optical-link-design",
           "step": 2,
-          "total": 4,
+          "total": 5,
           "previous": "fiber-loss",
           "next": "optical-power-budget"
         }
@@ -192,14 +192,14 @@
         {
           "workflowId": "optical-link-design",
           "step": 4,
-          "total": 4,
+          "total": 5,
           "previous": "optical-power-budget",
-          "next": null
+          "next": "odf-odn-resource-planner"
         }
       ],
       "primaryWorkflow": "optical-link-design",
       "previous": "optical-power-budget",
-      "next": null
+      "next": "odf-odn-resource-planner"
     },
     "otdr-event": {
       "id": "otdr-event",
@@ -1395,6 +1395,42 @@
       "primaryWorkflow": "network-risk-remediation",
       "previous": null,
       "next": "network-change-planner-mop-generator"
+    },
+    "odf-odn-resource-planner": {
+      "id": "odf-odn-resource-planner",
+      "routes": {
+        "en": "/tools/odf-odn-resource-planner/",
+        "zh-CN": "/tools/odf-odn-resource-planner/zh/"
+      },
+      "translations": {
+        "en": {
+          "name": "ODF / ODN Fiber Resource & Split Planning Planner",
+          "description": "Compare ODF/ODN resource plans and calculate PON ports, splitters, fibre cores, ODF capacity, gaps and a planning BOM."
+        },
+        "zh": {
+          "name": "ODF / ODN 光纤资源与分光规划器",
+          "description": "比较 ODF/ODN 资源方案，计算 PON 端口、分光器、纤芯、ODF 容量、资源缺口与规划 BOM。"
+        }
+      },
+      "related": [
+        "fiber-loss",
+        "pon-splitter-loss",
+        "optical-power-budget",
+        "pon-distance",
+        "olt-dual-uplink-transport-mse-planner"
+      ],
+      "workflows": [
+        {
+          "workflowId": "optical-link-design",
+          "step": 5,
+          "total": 5,
+          "previous": "pon-distance",
+          "next": null
+        }
+      ],
+      "primaryWorkflow": "optical-link-design",
+      "previous": "pon-distance",
+      "next": null
     }
   },
   "workflows": {
@@ -1457,6 +1493,18 @@
             },
             "zh": {
               "action": "核验系统有效传输距离"
+            }
+          }
+        },
+        {
+          "order": 5,
+          "toolId": "odf-odn-resource-planner",
+          "translations": {
+            "en": {
+              "action": "Convert the validated link into ODF/ODN resources and a planning BOM"
+            },
+            "zh": {
+              "action": "将已通过预算的链路转换为 ODF/ODN 资源与规划 BOM"
             }
           }
         }

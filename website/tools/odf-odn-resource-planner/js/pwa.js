@@ -1,0 +1,1 @@
+(()=>{'use strict';if('serviceWorker'in navigator)window.addEventListener('load',()=>{const zh=document.documentElement.lang.startsWith('zh');navigator.serviceWorker.register(zh?'../sw.js':'./sw.js').catch(()=>{});});})();

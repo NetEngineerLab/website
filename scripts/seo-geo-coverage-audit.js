@@ -11,6 +11,7 @@ const origin="https://netengineerlab.com";
 const owner="NetEngineerLab Editorial";
 
 const intentByTool=Object.freeze({
+  "odf-odn-resource-planner":"planning",
   "fiber-loss":"calculation",
   "optical-power-budget":"validation",
   "pon-splitter-loss":"planning",

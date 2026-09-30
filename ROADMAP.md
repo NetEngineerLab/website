@@ -142,13 +142,13 @@
 - 优先级：`P2`
 - 能力：接入端口、上联容量、Oversubscription、峰值利用率、冗余
 
-### [ ] Optical Power / Fiber Link Engineering Suite
-- 状态：`NEXT`
+### [x] Optical Power / Fiber Link Engineering Suite
+- 状态：`DONE`
 - 优先级：`P2`
 - 方向：光功率预算、光衰、链路损耗、分光、余量、异常判断
 
 ### [ ] Network Capacity Forecast Planner
-- 状态：`PLANNED`
+- 状态：`NEXT`
 - 优先级：`P2`
 - 输出：当前利用率、增长趋势、扩容临界点、扩容时间建议
 
