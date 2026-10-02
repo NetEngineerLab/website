@@ -1,8 +1,8 @@
 # NetEngineerLab UI V1.3.1 — 6号审计员最终生产基线终审
 
 - 结论：**PASS**
-- 工具：35
-- Tool Detail 页面：80
+- 工具：37
+- Tool Detail 页面：84
 - 普通计算器页面：72
 - 普通计算器 DOM 指纹：1
 - 发布基线必需文件检查：14 项
@@ -14,8 +14,8 @@
 - 检查最终 ZIP 所需 Git/GitHub/Node 发布基线文件。
 - 检查 Header/Footer/Breadcrumb/Hero/CTA 唯一性。
 - Hero 必须严格为 Eyebrow → H1 → 描述 → Hero Tags。
-- 72 个普通计算器必须保持同一 Input → Result 主 DOM。
-- 4 个复杂工具必须显式 specialized。
+- 所有普通计算器必须保持同一 Input → Result 主 DOM。
+- 所有复杂工具必须显式 specialized。
 - 全站禁止旧 start-btn 与 tool-detail-v1.3 兼容残留。
 - 交叉检查历史审计报告与 prepare:launch 门禁。
 

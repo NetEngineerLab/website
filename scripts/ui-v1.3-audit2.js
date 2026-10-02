@@ -1,3 +1,4 @@
+const inventory=require('./lib/ui-tool-audit-inventory');
 // Independent "Auditor 2" gate: intentionally checks different invariants from the primary audit.
 const fs=require('fs');const path=require('path');const root=path.join(__dirname,'..');const tr=path.join(root,'website','tools');
 const issues=[];let pages=0;let tools=0;const heroFingerprints=new Set();
@@ -28,8 +29,8 @@ const required=[
  /font-size:clamp\(40px,3\.65vw,62px\)/
 ];
 for(const r of required)if(!r.test(css))issues.push(`shared V1.3 CSS invariant missing: ${r}`);
-if(tools!==35)issues.push(`expected 35 active tool directories, got ${tools}`);if(pages!==80)issues.push(`expected 80 tool-detail locale pages, got ${pages}`);
+if(tools!==inventory.activeToolCount)issues.push(`expected ${inventory.activeToolCount} active tool directories, got ${tools}`);if(pages!==inventory.pageCount)issues.push(`expected ${inventory.pageCount} tool-detail locale pages, got ${pages}`);
 const result={auditor:'2号审核员',result:issues.length?'FAIL':'PASS',tools,pages,issues,heroStructureFingerprints:heroFingerprints.size};
 fs.writeFileSync(path.join(root,'docs','UI_V1.3_AUDIT2_REPORT.json'),JSON.stringify(result,null,2));
 fs.writeFileSync(path.join(root,'docs','UI_V1.3_AUDIT2_REPORT.md'),`# NetEngineerLab UI V1.3 — 2号审核员独立复核\n\n- 结论：**${result.result}**\n- 工具：${tools}\n- Tool Detail 页面：${pages}\n- Hero 结构指纹数：${heroFingerprints.size}\n- 问题数：${issues.length}\n\n${issues.length?issues.map(x=>`- ${x}`).join('\n'):'独立复核未发现阻断问题。全站工具页已统一到 Network Change Planner 风格的共享视觉基线；复杂工具仅保留内部业务工作区差异。'}\n`);
-console.log(`2号审核员 UI V1.3: ${result.result}`);console.log(`35-tool target: ${tools}; 80-page target: ${pages}; Issues: ${issues.length}`);if(issues.length){console.error(issues.join('\n'));process.exit(1)}
+console.log(`2号审核员 UI V1.3: ${result.result}`);console.log(`${inventory.activeToolCount}-tool target: ${tools}; ${inventory.pageCount}-page target: ${pages}; Issues: ${issues.length}`);if(issues.length){console.error(issues.join('\n'));process.exit(1)}

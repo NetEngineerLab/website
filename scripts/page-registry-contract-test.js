@@ -42,6 +42,16 @@ function publicHtml(pathname){
   const relative=pathname==="/"?"index.html":`${pathname.replace(/^\//,"")}index.html`;
   return fs.readFileSync(path.join(root,"website",...relative.split("/")),"utf8");
 }
+function decodeHtmlMetadata(value){
+  const named={amp:"&",quot:'"',apos:"'",lt:"<",gt:">"};
+  return value.replace(/&(#(?:x[0-9a-f]+|[0-9]+)|amp|quot|apos|lt|gt);/gi,(entity,code)=>{
+    if(code[0]==="#"){
+      const number=code[1].toLowerCase()==="x"?parseInt(code.slice(2),16):parseInt(code.slice(1),10);
+      return number>=0&&number<=0x10ffff?String.fromCodePoint(number):entity;
+    }
+    return named[code.toLowerCase()]||entity;
+  });
+}
 for(const page of registry.pages.filter(page=>page.sitemapEligible)){
   const html=publicHtml(page.pathname);
   const canonicalTag=(html.match(/<link\b(?=[^>]*\brel=["']canonical["'])[^>]*>/i)||[])[0]||"";
@@ -60,8 +70,8 @@ for(const page of registry.pages.filter(page=>page.pageType!=="tool")){
   const title=(html.match(/<title>([^<]+)<\/title>/i)||[])[1]||"";
   const descriptionTag=(html.match(/<meta\b(?=[^>]*\bname=["']description["'])[^>]*>/i)||[])[0]||"";
   const description=(descriptionTag.match(/\bcontent=["']([^"']*)["']/i)||[])[1]||"";
-  assert.strictEqual(title,page.title,`${page.pathname}: registry title must equal HTML metadata`);
-  assert.strictEqual(description,page.description,`${page.pathname}: registry description must equal HTML metadata`);
+  assert.strictEqual(decodeHtmlMetadata(title),decodeHtmlMetadata(page.title),`${page.pathname}: registry title must equal HTML metadata`);
+  assert.strictEqual(decodeHtmlMetadata(description),decodeHtmlMetadata(page.description),`${page.pathname}: registry description must equal HTML metadata`);
 }
 for(const page of registry.pages.filter(page=>page.pageType==="directory")){
   const html=publicHtml(page.pathname);

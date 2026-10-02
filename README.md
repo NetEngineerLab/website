@@ -114,6 +114,20 @@ Root directory: /
 Node.js: 22.16.0（已由.node-version锁定）
 ```
 
+## 统一部署入口
+
+在本仓库根目录运行：
+
+```text
+npm ci
+npm run verify
+npm run deploy
+```
+
+`npm run verify` 依次运行源码测试、生产构建和完整的 `gate:release`。当前项目没有独立的 typecheck 或 lint 脚本，因此这两步不适用；`gate:release` 保留了原 `prepare:launch` 构建之后的全部测试、验收、发布审计与清单检查。Cloudflare Pages 的构建命令仍是 `npm run prepare:launch`，会先构建，再运行同一套发布门禁。
+
+`npm run deploy` 执行 `git push origin main`。请先将通过验证的改动提交到本地 `main`；推送后，现有 Cloudflare Pages GitHub 集成会自动构建并发布 `website`。部署后可运行 `npm run accept:remote -- --base=https://netengineerlab.com` 验收线上站点。回滚时在 `main` 上撤销需要回退的提交，重新运行 `npm run verify`，然后运行 `npm run deploy`，让 Pages 发布回退版本。
+
 ## 正式上线后远程验收
 
 ```text

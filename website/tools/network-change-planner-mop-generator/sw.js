@@ -1,4 +1,4 @@
-"use strict";const CACHE = "nel-network-change-planner-mop-generator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-357c8180fe9b-d7bcd0680524";
+"use strict";const CACHE = "nel-network-change-planner-mop-generator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-b051bc56ca01-ec74750207f4";
 const CORE = [
   "./",
   "./index.html",
@@ -19,7 +19,7 @@ const CORE = [
   "../../assets/css/tool-workflow.css?v=66c8998b2681",
   "../../assets/js/analytics.js?v=1156b7864023",
   "../../assets/js/adsense.js?v=f075c80ccc75",
-  "../../assets/js/site.js?v=5c6907a4fe26",
+  "../../assets/js/site.js?v=0da39eabe820",
   "../../assets/js/tool-integration.js?v=05f7934f4687",
   "../../assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b",
   "../../assets/js/rules-engine/normalize.js?v=9e2cb44bca10",

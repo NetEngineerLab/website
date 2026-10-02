@@ -1,8 +1,9 @@
+const inventory=require('./lib/ui-tool-audit-inventory');
 const fs=require('fs');
 const path=require('path');
 const root=path.join(__dirname,'..');
 const toolsRoot=path.join(root,'website','tools');
-const COMPLEX=new Set(['acl-generator-validator','ipv6-nat-planner','network-change-planner-mop-generator','wifi-coverage-capacity-planner']);
+const COMPLEX=inventory.complexTools;
 const FORBIDDEN=['breadcrumbs','card','panel','input-panel','result-panel','content-section','start-btn'];
 const errors=[]; const pageRows=[]; const tools=new Set();
 function read(p){return fs.readFileSync(p,'utf8')}
@@ -57,10 +58,10 @@ const oldRuntime=path.join(root,'website','assets','js','tool-shell-v1.9.9-03.js
 if(fs.existsSync(oldRuntime)) errors.push('legacy runtime tool-shell-v1.9.9-03.js must be deleted');
 const shared=read(path.join(root,'website','assets','css','tool-layout.css'));
 for(const token of ['UI V1.3.1 — CANONICAL TOOL DETAIL BASELINE','data-nel-template="tool-detail-v1.3.1"']) if(!shared.includes(token)) errors.push(`shared CSS missing ${token}`);
-if(tools.size!==35) errors.push(`expected 35 tools, found ${tools.size}`);
-if(pageRows.length!==80) errors.push(`expected 80 Tool Detail pages, found ${pageRows.length}`);
+if(tools.size!==inventory.activeToolCount) errors.push(`expected ${inventory.activeToolCount} tools, found ${tools.size}`);
+if(pageRows.length!==inventory.pageCount) errors.push(`expected ${inventory.pageCount} Tool Detail pages, found ${pageRows.length}`);
 const ordinary=pageRows.filter(x=>!x.complex).length;
-if(ordinary!==72) errors.push(`expected 72 ordinary locale pages, found ${ordinary}`);
+if(ordinary!==inventory.ordinaryPageCount) errors.push(`expected ${inventory.ordinaryPageCount} ordinary locale pages, found ${ordinary}`);
 const report={version:'UI V1.3.1 Source Convergence',result:errors.length?'FAIL':'PASS',tools:tools.size,pages:pageRows.length,ordinaryPages:ordinary,complexTools:[...COMPLEX].sort(),forbiddenLocalSelectors:FORBIDDEN,errors};
 fs.writeFileSync(path.join(root,'docs','UI_V1.3.1_SOURCE_CONVERGENCE_AUDIT.json'),JSON.stringify(report,null,2));
 fs.writeFileSync(path.join(root,'docs','UI_V1.3.1_SOURCE_CONVERGENCE_AUDIT.md'),`# NetEngineerLab UI V1.3.1 Source Convergence Audit\n\n- Result: **${report.result}**\n- Tools: ${report.tools}\n- Tool Detail pages: ${report.pages}\n- Ordinary locale pages: ${report.ordinaryPages}\n- Errors: ${errors.length}\n\n${errors.length?errors.map(e=>`- ${e}`).join('\n'):'All source-convergence blocking rules passed.'}\n`);

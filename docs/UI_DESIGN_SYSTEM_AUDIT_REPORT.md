@@ -1,9 +1,9 @@
 # NetEngineerLab UI Design System Audit Report
 
 - Standard: NETENGINEERLAB_WEB_UI_DESIGN_SYSTEM_V1.1
-- Public pages checked: 101
-- Tool detail pages checked: 80
-- Tool source CSS checked: 35
+- Public pages checked: 125
+- Tool detail pages checked: 84
+- Tool source CSS checked: 37
 - Errors: 0
 - Warnings: 0
 - Result: **PASS**

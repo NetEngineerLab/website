@@ -38,6 +38,8 @@ const calculationOutputs={
   ,"transmission-ring-optimization-risk-analyzer":["#risk","—"]
   ,"olt-dual-uplink-transport-mse-planner":["#risk","—"]
   ,"data-center-network-convergence-fabric-capacity-planner":["#designStatus","—"]
+  ,"network-risk-hidden-hazard-assessment-generator":["#overall",null]
+  ,"odf-odn-resource-planner":["#ponPorts","—"]
 };
 const contentContracts={
   "fiber-loss":{
@@ -238,7 +240,11 @@ test.describe("all configured tools",()=>{
         if(await calculate.count())await calculate.click();
         const output=page.locator(calculationOutput[0]);
         await expect(output).toBeVisible();
-        await expect.poll(async()=>(await output.textContent())?.trim()??"").not.toBe(calculationOutput[1]);
+        if(calculationOutput[1]===null){
+          await expect(output).toHaveAttribute("data-state",/^(safe|critical|action-required|needs-verification)$/);
+        }else{
+          await expect.poll(async()=>(await output.textContent())?.trim()??"").not.toBe(calculationOutput[1]);
+        }
         await expect(page.locator("#error")).toBeHidden();
         const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth+1);
         expect(overflow).toBe(false);

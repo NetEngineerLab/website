@@ -5,7 +5,13 @@ const assert = require("node:assert/strict");
 const path = require("node:path");
 const fs = require("node:fs");
 const os = require("node:os");
-const { parsePrecacheAssets, hasPrecacheAsset, precachePathIssues } = require("./service-worker-precache");
+const { parsePrecacheAssets, parsePrecacheArrayLiteral, hasPrecacheAsset, precachePathIssues } = require("./service-worker-precache");
+
+assert.deepEqual(parsePrecacheArrayLiteral("['./index.html', './js/engine.js',]"), ["./index.html", "./js/engine.js"]);
+assert.deepEqual(parsePrecacheArrayLiteral('["./index.html", "./js/engine.js"]'), ["./index.html", "./js/engine.js"]);
+for (const invalid of ['["./index.html", doSomething()]', '["./index.html", 42]', '[...ASSETS]', '["./index.html"]; doSomething()']) {
+  assert.equal(parsePrecacheArrayLiteral(invalid), null);
+}
 
 const verbose = 'const CACHE = "cache";\nconst CORE = ["./index.html","./js/engine.js?v=abc123"]; self.addEventListener("install", event => event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(CORE))));';
 assert.deepEqual(parsePrecacheAssets(verbose), ["./index.html", "./js/engine.js?v=abc123"]);

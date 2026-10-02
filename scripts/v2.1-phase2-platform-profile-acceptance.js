@@ -7,5 +7,5 @@ for(const rel of required)assert(fs.existsSync(path.join(root,rel)),`missing ${r
 const P=require("../website/assets/js/platform-profiles/platform-profile-engine"),E=require("../website/assets/js/domains/interface-vlan/engine");
 assert.strictEqual(P.registry.ids.length,5);assert.strictEqual(E.platformProfiles,P);
 for(const vendor of E.supportedVendors)assert.strictEqual(P.registry.forVendor(vendor).length,1,`${vendor} must have one baseline profile`);
-const pkg=require("../package.json");assert(pkg.scripts["prepare:launch"].includes("test:platform-profiles"));assert(pkg.scripts["prepare:launch"].includes("accept:v2.1-phase2-platform-profile"));
+const pkg=require("../package.json");const {reachableNpmScripts}=require("./lib/npm-script-reachability");const launchScripts=reachableNpmScripts(pkg.scripts,"prepare:launch");assert(launchScripts.has("test:platform-profiles"));assert(launchScripts.has("accept:v2.1-phase2-platform-profile"));
 console.log("V2.1 Phase2 Platform Profile acceptance: PASS (platform-aware capability gate integrated with Interface/VLAN renderer)");

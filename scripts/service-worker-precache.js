@@ -251,6 +251,11 @@ function parseStringArray(tokens, start, end) {
   return assets;
 }
 
+function parsePrecacheArrayLiteral(source) {
+  const tokens = typeof source === "string" ? tokenizeFallback(source) : null;
+  return tokens ? parseStringArray(tokens, 0, tokens.length) : null;
+}
+
 function parseArrowParameter(tokens, start, end) {
   if (start >= end) return null;
   if (tokens[start].type === "id" && start + 1 < end && tokenIs(tokens, start + 1, "=>")) {
@@ -448,4 +453,4 @@ function precachePathIssues(assets, toolRoot, siteRoot) {
   return issues;
 }
 
-module.exports = { parsePrecacheAssets, hasPrecacheAsset, precachePathIssues };
+module.exports = { parsePrecacheAssets, parsePrecacheArrayLiteral, hasPrecacheAsset, precachePathIssues };

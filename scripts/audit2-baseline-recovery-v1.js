@@ -9,6 +9,8 @@
 const fs=require("fs"),path=require("path"),cp=require("child_process");
 const root=path.resolve(__dirname,".."); const errors=[];
 const pkg=JSON.parse(fs.readFileSync(path.join(root,"package.json"),"utf8"));
+const {reachableNpmScripts}=require("./lib/npm-script-reachability");
+const launchScripts=reachableNpmScripts(pkg.scripts,"prepare:launch");
 const requiredScripts={
  "audit:workflow-ui":"node scripts/workflow-ui-production-audit.js",
  "accept:v2.1-flagship-analytics":"node scripts/network-change-planner-analytics-acceptance.js",
@@ -16,7 +18,7 @@ const requiredScripts={
 };
 for(const [name,cmd] of Object.entries(requiredScripts)){
  if(pkg.scripts?.[name]!==cmd)errors.push(`package gate missing or changed: ${name}`);
- if(!pkg.scripts?.["prepare:launch"]?.includes(`npm run ${name}`))errors.push(`prepare:launch missing gate: ${name}`);
+ if(!launchScripts.has(name))errors.push(`prepare:launch missing gate: ${name}`);
 }
 for(const rel of [
  "website/assets/css/tool-workflow.css",

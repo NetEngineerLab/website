@@ -1,7 +1,12 @@
-'use strict';const CACHE = "nel-network-risk-hidden-hazard-assessment-generator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-357c8180fe9b-59b189deab46";
+'use strict';const CACHE = "nel-network-risk-hidden-hazard-assessment-generator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-b051bc56ca01-8e039e47e864";
 const CORE = [
   "./index.html",
   "./manifest.webmanifest",
+  "./offline.html",
+  "./css/style.css?v=13ce344ed548",
+  "./js/engine.js",
+  "./js/app.js?v=3fe1f098cb09",
+  "./js/pwa.js",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
@@ -11,7 +16,7 @@ const CORE = [
   "../../assets/css/tool-workflow.css?v=66c8998b2681",
   "../../assets/js/analytics.js?v=1156b7864023",
   "../../assets/js/adsense.js?v=f075c80ccc75",
-  "../../assets/js/site.js?v=5c6907a4fe26",
+  "../../assets/js/site.js?v=0da39eabe820",
   "../../assets/js/tool-integration.js?v=05f7934f4687",
   "../../assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b",
   "../../assets/js/rules-engine/normalize.js?v=9e2cb44bca10",
@@ -22,4 +27,4 @@ const CORE = [
   "../../assets/generated/rules-engine/rules-bundle.9d06acb2a0ff.js?v=9d06acb2a0ff",
   "./zh/index.html",
   "./manifest-zh.webmanifest"
-];self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)));self.skipWaiting()});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('nel-network-hidden-hazard-')&&k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim()});self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(caches.match(e.request,{ignoreSearch:true}).then(hit=>hit||fetch(e.request).catch(()=>caches.match('./offline.html'))))});
+];self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE).then(()=>self.skipWaiting())))});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('nel-network-hidden-hazard-')&&k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim()});self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(caches.match(e.request,{ignoreSearch:true}).then(hit=>hit||fetch(e.request).catch(()=>caches.match('./offline.html'))))});

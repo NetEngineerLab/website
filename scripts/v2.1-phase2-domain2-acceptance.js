@@ -21,5 +21,5 @@ assert.notStrictEqual(iv.vendorRegistry,acl.vendorRegistry,"domains must own sep
 for(const id of vendors){const v=iv.vendorRegistry.get(id);for(const cap of ["parse","render","semantic-round-trip","interface-vlan-v1"])assert(v.capabilities.includes(cap),`${id} missing ${cap}`)}
 // Prove both domains depend on the same unchanged shared orchestration contract.
 const shared=require("../website/assets/js/vendor-renderer/renderer-engine");assert.strictEqual(typeof shared.create,"function");
-const packageJson=require("../package.json");assert(packageJson.scripts["prepare:launch"].includes("test:interface-vlan-renderer"));assert(packageJson.scripts["prepare:launch"].includes("accept:v2.1-phase2-domain2"));
+const packageJson=require("../package.json");const {reachableNpmScripts}=require("./lib/npm-script-reachability");const launchScripts=reachableNpmScripts(packageJson.scripts,"prepare:launch");assert(launchScripts.has("test:interface-vlan-renderer"));assert(launchScripts.has("accept:v2.1-phase2-domain2"));
 console.log("V2.1 Phase2 Domain2 acceptance: PASS (Shared Core reused by ACL + Interface/VLAN across 5 vendors)");

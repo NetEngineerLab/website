@@ -5,7 +5,7 @@ const fs=require("fs");
 const path=require("path");
 const{stableFileHash,stableHash}=require("./stable-text-hash");
 const{rulesRuntimeAssets}=require("./rules-runtime-assets");
-const{precachePathIssues}=require("./service-worker-precache");
+const{precachePathIssues,parsePrecacheArrayLiteral}=require("./service-worker-precache");
 
 const packageRoot=path.resolve(__dirname,"..");
 const siteRoot=path.join(packageRoot,"website");
@@ -66,22 +66,24 @@ function toolCopy(tool,locale){
   ||translations.en
   ||{};
 }
+const homeQuickIds=["fiber-loss","subnet-calculator","poe-power-budget-calculator","wifi-coverage-capacity-planner","pue-data-center-energy-efficiency","data-center-network-convergence-fabric-capacity-planner"];
 function renderToolCards(currentInfo,locale,mode){
  const currentUrl=urlForRoute(currentInfo.route,locale);
  const fallback=localeMap.get(localeConfig.fallbackLocale)||defaultLocale;
  const ui=Object.assign({openTool:"Open tool",planned:"In development"},fallback.ui||{},locale.ui||{});
- const tools=toolCatalog
+ const tools=(currentInfo.kind==="home"?homeQuickIds.map(id=>toolCatalog.find(tool=>tool.id===id)):toolCatalog)
   .slice()
-  .sort((a,b)=>a.order-b.order)
+  .sort((a,b)=>currentInfo.kind==="home"?homeQuickIds.indexOf(a.id)-homeQuickIds.indexOf(b.id):a.order-b.order)
   .filter(tool=>mode==="active"?tool.status==="active":mode==="planned"?tool.status==="planned":true)
-  .filter(tool=>locale.id===defaultLocale.id||Boolean(tool.translations?.[locale.catalogKey]||tool.translations?.[locale.id]));
+  .filter(tool=>currentInfo.kind==="home"||locale.id===defaultLocale.id||Boolean(tool.translations?.[locale.catalogKey]||tool.translations?.[locale.id]));
  return tools.map(tool=>{
   const copy=toolCopy(tool,locale);
   const active=tool.status==="active";
   const tags=(copy.tags||[]).map(tag=>`<span>${escapeHtml(tag)}</span>`).join("");
-  const href=relativeUrl(currentUrl,urlForRoute(`tools/${tool.id}/`,locale));
+  const hasTranslation=Boolean(tool.translations?.[locale.catalogKey]||tool.translations?.[locale.id]);
+  const href=relativeUrl(currentUrl,urlForRoute(`tools/${tool.id}/`,hasTranslation?locale:defaultLocale));
   return `<article class="${active?"tool-card":"tool-card planned"}" data-category="${escapeHtml(tool.category)}">
-    <div class="tool-icon">${escapeHtml(tool.icon)}</div><h2>${escapeHtml(copy.name||tool.id)}</h2><p>${escapeHtml(copy.description||"")}</p>
+    <div class="tool-icon">${escapeHtml(tool.icon)}</div><h2>${escapeHtml(copy.name||tool.id)}${!hasTranslation&&locale.id!=="en"?" (English)":""}</h2><p>${escapeHtml(copy.description||"")}</p>
     <div class="tool-tags">${tags}</div>
     ${active?`<a class="open" href="${escapeHtml(href)}">${escapeHtml(ui.openTool)}</a>`:`<div class="status">${escapeHtml(ui.planned)}</div>`}
    </article>`;
@@ -92,10 +94,10 @@ function localizedActiveTools(locale){
 }
 function updateToolCountMarkers(html,locale){
  const count=localizedActiveTools(locale).length;
- return html.replace(/(<(?:strong|span)\b[^>]*\bdata-tool-count(?:\s*=\s*(?:"[^"]*"|\'[^\']*\'|[^\s>]+))?[^>]*>)[\s\S]*?(<\/(?:strong|span)>)/gi,(whole,open,close)=>`${open}${count}${close}`);
+ return html.replace(/(<(?:strong|span)\b[^>]*\bdata-(?:tool-count|localized-tool-count)(?:\s*=\s*(?:"[^"]*"|\'[^\']*\'|[^\s>]+))?[^>]*>)[\s\S]*?(<\/(?:strong|span)>)/gi,(whole,open,close)=>`${open}${count}${close}`);
 }
 function prerenderToolGrid(html,currentInfo,locale){
- const grid=html.match(/<div\b(?=[^>]*\bdata-tool-grid(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+))?)[^>]*>/i);
+ const grid=html.match(/<div\b(?=[^>]*\bdata-(?:tool-grid|home-quick-grid)(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+))?)[^>]*>/i);
  if(!grid)return html;
  const mode=grid[0].match(/\bdata-mode\s*=\s*["']([^"']+)["']/i)?.[1]||"all";
  const rendered=`<!-- NEL_TOOL_GRID_START -->${renderToolCards(currentInfo,locale,mode)}<!-- NEL_TOOL_GRID_END -->`;
@@ -107,6 +109,11 @@ function prerenderToolGrid(html,currentInfo,locale){
   const emptyClose=tail.match(/^(\s*)<\/div>/i);
   if(!emptyClose)throw new Error(`Tool grid must be empty or contain NEL tool-grid markers: ${currentInfo.route}`);
   html=html.slice(0,contentStart)+rendered+tail.slice(emptyClose[1].length);
+ }
+ if(currentInfo.kind==="home"){
+  if(locale.id==="es")html=html.replace(/(<a\b[^>]*data-category-link="([^"]+)"[^>]*href=")[^"]+("[^>]*><strong>)([^<]+)(<\/strong>)/g,(whole,before,category,after,title,close)=>before+"../tools/?category="+category+after+title.replace(/(?: \(English\))+/g,"")+" (English)"+close);
+  const counts=activeTools.reduce((map,tool)=>{map[tool.category]=(map[tool.category]||0)+1;return map},{});
+  html=html.replace(/<(b|span)\b([^>]*\bdata-category-count\s*=\s*["']([^"']+)["'][^>]*)>[\s\S]*?<\/\1>/gi,(whole,tag,attrs,category)=>`<${tag}${attrs}>${counts[category]||0}</${tag}>`);
  }
  if(currentInfo.kind!=="toolsDirectory")return html;
  const localizedCatalog=toolCatalog.filter(tool=>locale.id===defaultLocale.id||Boolean(tool.translations?.[locale.catalogKey]||tool.translations?.[locale.id]));
@@ -556,8 +563,8 @@ function generateManifests(groups){
    const verboseMatch=sw.match(verboseHead);
    const match=compactMatch||verboseMatch;
    if(match){
-    let assets=[];
-    try{assets=JSON.parse(match[3])}catch{}
+    let assets=parsePrecacheArrayLiteral(match[3]);
+    if(!assets)throw new Error(`Invalid Service Worker asset array: ${path.relative(siteRoot,swPath)}`);
     const folders=localeConfig.locales.filter(item=>item.folder).map(item=>item.folder);
     assets=assets.filter(item=>!folders.some(folder=>item===`./${folder}/index.html`)&&!/^\.\/manifest-[^/]+\.webmanifest$/.test(item));
     if(!assets.includes("./index.html"))assets.unshift("./index.html");

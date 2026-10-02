@@ -1,3 +1,4 @@
+const inventory=require('./lib/ui-tool-audit-inventory');
 const fs=require('fs'), path=require('path');
 const root=process.cwd(), toolsRoot=path.join(root,'website','tools');
 const errors=[], warnings=[];
@@ -6,7 +7,7 @@ for(const f of reqFiles) if(!fs.existsSync(path.join(root,f))) errors.push(`miss
 function walk(dir,pred,out=[]){for(const e of fs.readdirSync(dir,{withFileTypes:true})){const p=path.join(dir,e.name); if(e.isDirectory())walk(p,pred,out); else if(pred(p))out.push(p);} return out;}
 function count(s,re){return (s.match(re)||[]).length;}
 function classTokens(s){const out=[]; for(const m of s.matchAll(/class="([^"]*)"/g)) out.push(...m[1].trim().split(/\s+/).filter(Boolean)); return out;}
-const COMPLEX=new Set(['acl-generator-validator','ipv6-nat-planner','network-change-planner-mop-generator','wifi-coverage-capacity-planner']);
+const COMPLEX=inventory.complexTools;
 const pages=walk(toolsRoot,p=>p.endsWith('index.html')).filter(p=>fs.readFileSync(p,'utf8').includes('data-nel-template="tool-detail-v1.3.1"'));
 const tools=new Set(); let ordinary=0; const domSigs=new Set();
 for(const p of pages){
@@ -30,8 +31,8 @@ for(const p of pages){
 // Every tool-local CSS file is forbidden from owning platform shell/detail selectors.
 const forbidden=['tool-return-link','tool-return-nav','breadcrumbs','site-shell-header','site-shell-footer','site-shell-actions','site-shell-context-action','nel-tool-hero','hero-inner','hero-tags','nel-tool-main','nel-tool-grid','nel-tool-input','nel-tool-result','content-section','input-panel','result-panel','start-btn'];
 for(const p of walk(toolsRoot,p=>p.endsWith('.css'))){const s=fs.readFileSync(p,'utf8'), rel=path.relative(root,p).replaceAll('\\','/'); for(const c of forbidden){const rx=new RegExp(`(?:^|[},\\s])[^{}]*\\.${c}(?=[\\s.#:\\[>,+~{])[^{}]*\\{`,'m'); if(rx.test(s))errors.push(`${rel}: local CSS owns platform selector .${c}`);}}
-if(tools.size!==35)errors.push(`tool count ${tools.size}, expected 35`); if(pages.length!==80)errors.push(`page count ${pages.length}, expected 80`); if(ordinary!==72)errors.push(`ordinary page count ${ordinary}, expected 72`); if(domSigs.size!==1)errors.push(`ordinary DOM signature count ${domSigs.size}, expected 1`);
+if(tools.size!==inventory.activeToolCount)errors.push(`tool count ${tools.size}, expected ${inventory.activeToolCount}`); if(pages.length!==inventory.pageCount)errors.push(`page count ${pages.length}, expected ${inventory.pageCount}`); if(ordinary!==inventory.ordinaryPageCount)errors.push(`ordinary page count ${ordinary}, expected ${inventory.ordinaryPageCount}`); if(domSigs.size!==1)errors.push(`ordinary DOM signature count ${domSigs.size}, expected 1`);
 const result={auditor:'7号审计员',version:'UI V1.3.1 Audit7 Independent Final Verification',result:errors.length?'FAIL':'PASS',tools:tools.size,pages:pages.length,ordinaryPages:ordinary,domSignatures:domSigs.size,errors,warnings};
 fs.writeFileSync(path.join(root,'docs','UI_V1.3.1_AUDIT7_REPORT.json'),JSON.stringify(result,null,2));
-const md=['# NetEngineerLab UI V1.3.1 — 7号审计员独立终审','',`- 结论：**${result.result}**`,`- 工具：${result.tools}`,`- Tool Detail 页面：${result.pages}`,`- 普通计算器：${result.ordinaryPages}`,`- 普通 DOM 指纹：${result.domSignatures}`,`- 阻断问题：${errors.length}`,'','## 独立检查范围','','- 不继承 2～6 号结论。','- Hero 源结构必须与 MOP 参考页完全一致，描述段不得保留 hero-copy / hero-description。','- 工具本地任意 CSS 文件不得重新拥有 Header/Footer/Breadcrumb/Hero/Main/Card/CTA 平台组件。','- Tool Detail 所引用本地 CSS/JS/图片/favicon/manifest 必须在交付包中真实存在。','- Git/GitHub/Node 生产发布基线文件必须随 ZIP 交付。','- 72 个普通计算器保持唯一 Input → Result 主 DOM。','']; if(errors.length)md.push('## 阻断问题','',...errors.map(x=>'- '+x)); else md.push('7号审计确认：上述独立约束全部满足。'); fs.writeFileSync(path.join(root,'docs','UI_V1.3.1_AUDIT7_REPORT.md'),md.join('\n')+'\n');
+const md=['# NetEngineerLab UI V1.3.1 — 7号审计员独立终审','',`- 结论：**${result.result}**`,`- 工具：${result.tools}`,`- Tool Detail 页面：${result.pages}`,`- 普通计算器：${result.ordinaryPages}`,`- 普通 DOM 指纹：${result.domSignatures}`,`- 阻断问题：${errors.length}`,'','## 独立检查范围','','- 不继承 2～6 号结论。','- Hero 源结构必须与 MOP 参考页完全一致，描述段不得保留 hero-copy / hero-description。','- 工具本地任意 CSS 文件不得重新拥有 Header/Footer/Breadcrumb/Hero/Main/Card/CTA 平台组件。','- Tool Detail 所引用本地 CSS/JS/图片/favicon/manifest 必须在交付包中真实存在。','- Git/GitHub/Node 生产发布基线文件必须随 ZIP 交付。','- 所有普通计算器保持唯一 Input → Result 主 DOM。','']; if(errors.length)md.push('## 阻断问题','',...errors.map(x=>'- '+x)); else md.push('7号审计确认：上述独立约束全部满足。'); fs.writeFileSync(path.join(root,'docs','UI_V1.3.1_AUDIT7_REPORT.md'),md.join('\n')+'\n');
 console.log(`7号审计员 UI V1.3.1: ${result.result}`); console.log(`Tools ${result.tools}; Pages ${result.pages}; Ordinary ${result.ordinaryPages}; DOM ${result.domSignatures}; Errors ${errors.length}`); if(errors.length){for(const e of errors)console.error('- '+e);process.exit(1)}

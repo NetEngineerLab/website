@@ -1,8 +1,9 @@
+const inventory=require('./lib/ui-tool-audit-inventory');
 const fs = require('fs');
 const path = require('path');
 const root = path.join(__dirname, '..');
 const toolsRoot = path.join(root, 'website', 'tools');
-const COMPLEX = new Set(['acl-generator-validator','ipv6-nat-planner','network-change-planner-mop-generator','wifi-coverage-capacity-planner']);
+const COMPLEX=inventory.complexTools;
 const PLATFORM_CLASSES = [
   'breadcrumbs','card','panel','input-panel','result-panel','content-section','start-btn',
   'hero','tool-hero','hero-inner','hero-tags','tool-shell','nel-tool-main','nel-tool-grid','nel-tool-primary-grid',
@@ -83,9 +84,9 @@ for (const f of walk(assetsRoot)) {
 }
 if (fs.existsSync(path.join(root,'website','assets','js','tool-shell-v1.9.9-03.js'))) errors.push('legacy tool-shell-v1.9.9-03.js still exists');
 
-if (tools.size!==35) errors.push(`tool count ${tools.size}, expected 35`);
-if (pages!==80) errors.push(`Tool Detail page count ${pages}, expected 80`);
-if (ordinaryPages!==72) errors.push(`ordinary calculator page count ${ordinaryPages}, expected 72`);
+if (tools.size!==inventory.activeToolCount) errors.push(`tool count ${tools.size}, expected ${inventory.activeToolCount}`);
+if (pages!==inventory.pageCount) errors.push(`Tool Detail page count ${pages}, expected ${inventory.pageCount}`);
+if (ordinaryPages!==inventory.ordinaryPageCount) errors.push(`ordinary calculator page count ${ordinaryPages}, expected ${inventory.ordinaryPageCount}`);
 
 const result={auditor:'5号审计员',version:'UI V1.3.1 Audit5 Repository Closure',result:errors.length?'FAIL':'PASS',tools:tools.size,pages,ordinaryPages,errors};
 fs.writeFileSync(path.join(root,'docs','UI_V1.3.1_AUDIT5_REPORT.json'),JSON.stringify(result,null,2));

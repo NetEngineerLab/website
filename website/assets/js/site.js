@@ -17,6 +17,8 @@ function initNetEngineerLabSite(){
  const normalizedPath=location.pathname.replace(/\/+$/,"/");
  const folderPattern=locales.filter(item=>item.folder).map(item=>item.folder.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")).join("|");
  const isToolsDirectory=new RegExp(`/tools/(?:${folderPattern?`(?:${folderPattern})/`:""})?$`).test(normalizedPath);
+ const directoryTools=tools.filter(tool=>locale?.id===config.defaultLocale||Boolean(tool.translations?.[catalogKey]||tool.translations?.[locale?.id]));
+ if(isToolsDirectory)document.querySelectorAll("[data-tool-count]").forEach(node=>{node.textContent=String(directoryTools.filter(tool=>tool.status==="active").length)});
  function copyFor(tool){
   const translations=tool.translations||{};
   return translations[catalogKey]||translations[locale?.id]||translations[fallbackKey]||translations.en||tool[catalogKey]||tool.en||{};
@@ -27,7 +29,7 @@ function initNetEngineerLabSite(){
  }
  document.querySelectorAll("[data-tool-grid]").forEach(grid=>{
   const mode=grid.dataset.mode||"all";
-  const items=tools.filter(tool=>mode==="active"?tool.status==="active":mode==="planned"?tool.status==="planned":true);
+  const items=tools.filter(tool=>!isToolsDirectory||locale?.id===config.defaultLocale||Boolean(tool.translations?.[catalogKey]||tool.translations?.[locale?.id])).filter(tool=>mode==="active"?tool.status==="active":mode==="planned"?tool.status==="planned":true);
   grid.innerHTML=items.map(tool=>{
    const copy=copyFor(tool);
    const active=tool.status==="active";
@@ -42,10 +44,10 @@ function initNetEngineerLabSite(){
  const filterButtons=[...document.querySelectorAll("[data-filter]")];
  const validFilters=new Set(["all",...tools.map(tool=>tool.category)]);
  function updateCategoryCounts(){
-  const counts=tools.reduce((map,tool)=>{map[tool.category]=(map[tool.category]||0)+1;return map},{});
+  const counts=(isToolsDirectory?directoryTools:tools).reduce((map,tool)=>{map[tool.category]=(map[tool.category]||0)+1;return map},{});
   document.querySelectorAll("[data-category-count]").forEach(node=>{
    const category=node.dataset.categoryCount;
-   node.textContent=String(category==="all"?tools.length:(counts[category]||0));
+   node.textContent=String(category==="all"?(isToolsDirectory?directoryTools.length:tools.length):(counts[category]||0));
   });
  }
  function applyFilter(category,{updateUrl=true}={}){

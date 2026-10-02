@@ -1,6 +1,7 @@
+const inventory=require('./lib/ui-tool-audit-inventory');
 const fs=require('fs'); const path=require('path');
 const root=path.join(__dirname,'..'), toolsRoot=path.join(root,'website','tools');
-const complex=new Set(['acl-generator-validator','ipv6-nat-planner','network-change-planner-mop-generator','wifi-coverage-capacity-planner']);
+const complex=inventory.complexTools;
 const forbidden=['breadcrumbs','card','panel','input-panel','result-panel','content-section','start-btn'];
 let pages=0; const tools=new Set(); const issues=[]; const ordinarySigs=new Set();
 const rd=p=>fs.readFileSync(p,'utf8');
@@ -28,7 +29,7 @@ for(const tool of fs.readdirSync(toolsRoot)){
  }
 }
 if(fs.existsSync(path.join(root,'website/assets/js/tool-shell-v1.9.9-03.js'))) issues.push('legacy runtime still exists');
-if(tools.size!==35) issues.push(`tool count ${tools.size}`); if(pages!==80) issues.push(`page count ${pages}`); if(ordinarySigs.size!==1) issues.push(`ordinary DOM signatures ${ordinarySigs.size}`);
+if(tools.size!==inventory.activeToolCount) issues.push(`tool count ${tools.size}`); if(pages!==inventory.pageCount) issues.push(`page count ${pages}`); if(ordinarySigs.size!==1) issues.push(`ordinary DOM signatures ${ordinarySigs.size}`);
 const out={auditor:'3号审计员',version:'UI V1.3.1',result:issues.length?'FAIL':'PASS',tools:tools.size,pages,ordinaryDomSignatures:ordinarySigs.size,issues};
 fs.writeFileSync(path.join(root,'docs','UI_V1.3.1_AUDIT3_REPORT.json'),JSON.stringify(out,null,2));
 fs.writeFileSync(path.join(root,'docs','UI_V1.3.1_AUDIT3_REPORT.md'),`# NetEngineerLab UI V1.3.1 — 3号审计员独立复核\n\n- 结论：**${out.result}**\n- 工具：${out.tools}\n- Tool Detail 页面：${out.pages}\n- 普通计算器 DOM 指纹：${out.ordinaryDomSignatures}\n- 问题数：${issues.length}\n\n${issues.length?issues.map(x=>`- ${x}`).join('\n'):'3号审计员复核：此前 V1.3 的 Hero tags、普通计算器多 DOM、本地平台 CSS、旧 CTA 与旧 runtime 问题均已关闭。'}\n`);

@@ -42,6 +42,7 @@ function validatePwaRegistration(toolId,toolRoot,localePath){
     location:{protocol:"https:",href:pageUrl.href},
     navigator:{serviceWorker:{register:value=>{registrations.push(new URL(value,pageUrl).pathname);return Promise.resolve()}}},
     document:{
+      documentElement:{lang:(html.match(/<html\b[^>]*\blang=["']([^"']*)["']/i)||[])[1]||""},
       currentScript:{src:scriptUrl.href},
       querySelector:selector=>selector==='meta[name="app-base"]'?{content:metaContent(html,"app-base")}:null
     },
