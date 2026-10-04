@@ -1,4 +1,4 @@
-# Bandwidth & Transfer Time Calculator | NetEngineerLab
+# IPv6 & NAT Planning Calculator | NetEngineerLab
 
 ## Problem
 
@@ -22,4 +22,4 @@ Load the default scenario, replace example values, and compare with equipment sp
 
 ## Online Demo
 
-[Open the online calculator](https://netengineerlab.com/tools/bandwidth-calculator/)
+[Open the online calculator](https://netengineerlab.com/tools/ipv6-nat-planner/)

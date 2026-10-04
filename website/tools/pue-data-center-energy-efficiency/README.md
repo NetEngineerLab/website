@@ -1,4 +1,4 @@
-# Bandwidth & Transfer Time Calculator | NetEngineerLab
+# PUE & Data Center Energy Efficiency Analyzer | NetEngineerLab
 
 ## Problem
 
@@ -22,4 +22,4 @@ Load the default scenario, replace example values, and compare with equipment sp
 
 ## Online Demo
 
-[Open the online calculator](https://netengineerlab.com/tools/bandwidth-calculator/)
+[Open the online calculator](https://netengineerlab.com/tools/pue-data-center-energy-efficiency/)
