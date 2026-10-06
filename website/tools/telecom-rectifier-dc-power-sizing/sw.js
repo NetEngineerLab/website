@@ -1,13 +1,13 @@
-"use strict";const CACHE = "nel-telecom-rectifier-dc-power-sizing-locale-v1.9.9-04-p0-p1-correctness-consent-offline-b051bc56ca01-ad8b2e5c1606";
+"use strict";const CACHE = "nel-telecom-rectifier-dc-power-sizing-locale-v1.9.9-04-p0-p1-correctness-consent-offline-b051bc56ca01-870eb1001956";
 const CORE = [
   "./",
   "./index.html",
   "./zh/",
   "./offline.html",
   "./manifest.webmanifest",
-  "./css/style.css?v=5075f2bc42fd",
-  "./js/engine.js?v=2.0.0",
-  "./js/app.js?v=c1e37012119c",
+  "./css/style.css?v=594a28ab2b51",
+  "./js/engine.js?v=3.0.0",
+  "./js/app.js?v=14395e70e069",
   "./js/pwa.js",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",
@@ -28,5 +28,7 @@ const CORE = [
   "../../assets/js/rules-engine/report.js?v=01f2524dcdac",
   "../../assets/generated/rules-engine/rules-bundle.9d06acb2a0ff.js?v=9d06acb2a0ff",
   "./zh/index.html",
-  "./manifest-zh.webmanifest"
+  "./manifest-zh.webmanifest",
+  "./es/index.html",
+  "./manifest-es.webmanifest"
 ];self.addEventListener("install",e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)));self.skipWaiting()});self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith("nel-telecom-rectifier-dc-power-sizing-")&&k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim()});self.addEventListener("fetch",e=>{if(e.request.method!=="GET")return;e.respondWith(caches.match(e.request,{ignoreSearch:true}).then(c=>c||fetch(e.request)))});

@@ -1,4 +1,4 @@
-const CACHE = "nel-odf-odn-resource-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-b051bc56ca01-5f4494013aaa";
+const CACHE = "nel-odf-odn-resource-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-b051bc56ca01-19f97af5f0ac";
 const CORE = [
   "./index.html",
   "./",
@@ -28,5 +28,7 @@ const CORE = [
   "../../assets/js/rules-engine/report.js?v=01f2524dcdac",
   "../../assets/generated/rules-engine/rules-bundle.9d06acb2a0ff.js?v=9d06acb2a0ff",
   "./zh/index.html",
-  "./manifest-zh.webmanifest"
+  "./manifest-zh.webmanifest",
+  "./es/index.html",
+  "./manifest-es.webmanifest"
 ];self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE).then(()=>self.skipWaiting()))));self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==CACHE).map(x=>caches.delete(x)))).then(()=>self.clients.claim())));self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(x=>{const y=x.clone();caches.open(CACHE).then(c=>c.put(e.request,y));return x}).catch(()=>caches.match('./offline.html'))))});

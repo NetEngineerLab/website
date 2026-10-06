@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html lang="es" dir="ltr" data-nel-locale="es" data-nel-route="tools/pon-distance/"><head>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="./" name="app-base"/>
+<title>Calculadora de distancia máxima PON | NetEngineerLab</title>
+<meta content="Calcular maximum PON distance from transmit power, receiver sensitivity, fiber attenuation, pérdida del divisor, conexiones, engineering margin and system reach." name="description"/>
+<meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
+<meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="Calculadora de distancia máxima PON | NetEngineerLab" property="og:title"/><meta content="Calcular maximum PON distance from transmit power, receiver sensitivity, fiber attenuation, pérdida del divisor, conexiones, engineering margin and system reach." property="og:description"/><meta content="https://netengineerlab.com/tools/pon-distance/es/" property="og:url"/><meta content="https://netengineerlab.com/tools/pon-distance/images/og-pon-maximum-distance.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
+<link href="css/style.css?v=ab73366a0006" rel="stylesheet"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"PON Máximo Distancia Calculator","url":"https://netengineerlab.com/tools/pon-distance/es/","description":"Calcular optical-budget reach, effective system reach and planned PON link margin.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"PON Engineering Calculator","operatingSystem":"Any","sdetwareVersion":"1.0.1","inLanguage":"es","isAccessibleForFree":true,"defers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
+<script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://netengineerlab.com/es/"},{"@type":"ListItem","position":2,"name":"Herramientas","item":"https://netengineerlab.com/tools/es/"},{"@type":"ListItem","position":3,"name":"PON Máximo Distancia Calculator","item":"https://netengineerlab.com/tools/pon-distance/es/"}]}</script><meta content="NetEngineerLab" name="author"/>
+<link href="/assets/css/cookie-consent.css?v=v180-hotfix03" rel="stylesheet"/>
+<link href="/assets/css/mobile-branding.css?v=1.9.5-06" rel="stylesheet"/>
+<script defer="" src="/data/seo-config.js"></script>
+<script defer="" src="/assets/js/seo-engine.js"></script>
+<script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Por qué puede the optical budget reach 30 km while the result shows only 20 km?","acceptedAnswer":{"@type":"Answer","text":"La distancia efectiva es el menor valor entre el alcance del presupuesto óptico y el límite de alcance del sistema. Even when optical power is sufficient, OLT ranging or network configuration may limit deployment."}},{"@type":"Question","name":"¿Por qué a primary 1:8 and secondary 1:8 produce a total ratio de 1:64?","acceptedAnswer":{"@type":"Answer","text":"Los factores de división se multiplican: 8 × 8 = 64. The losses are the sum de the actual insertion losses de the two splitters."}},{"@type":"Question","name":"Is optical-budget maximum distance the same as buildable distance?","acceptedAnswer":{"@type":"Answer","text":"No necesariamente. Also verify the límite de alcance del sistema, ruta del cable, differential distance, especificaciones del equipo and enterprise normas de planificación."}},{"@type":"Question","name":"¿Qué significa \"physical reach only\" mean for the planned distance?","acceptedAnswer":{"@type":"Answer","text":"Physical loss remains within the receiver-sensitivity budget, but the configured engineering margin is not fully retained, reducing fiabilidad a largo plazo."}},{"@type":"Question","name":"¿Cuánto engineering margin should be configured?","acceptedAnswer":{"@type":"Answer","text":"Configúrelo según las normas de la empresa y las condiciones del proyecto to cover envejecimiento, cambios de temperatura, maintenance conexiones, contaminación and variación de medición."}},{"@type":"Question","name":"¿Puede maximum-distance calculation replace OTDR testing?","acceptedAnswer":{"@type":"Answer","text":"No. Esta herramienta supports design and review; la verificación en campo todavía requiere a medidor de potencia, OTDR and parámetros reales del equipo."}}]}</script>
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Calculadora de distancia máxima PON | NetEngineerLab","url":"https://netengineerlab.com/tools/pon-distance/es/","description":"Calcular maximum PON distance from transmit power, receiver sensitivity, fiber attenuation, pérdida del divisor, conexiones, engineering margin and system reach.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="es">
+<meta name="nel-route" content="tools/pon-distance/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/tools/pon-distance/es/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/pon-distance/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/pon-distance/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/pon-distance/es/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/pon-distance/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=dc6c5cc9b8ad">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=8c488ab6e2be">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=58918fefbb35">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=0da39eabe820"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=8d8b9520aba5">
+<link rel="manifest" href="../manifest-es.webmanifest">
+</head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<a class="skip-link" href="#calculator">Ir a la calculadora</a><noscript><div class="noscript">Se requiere JavaScript.</div></noscript>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../es/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Plataforma de inteligencia para ingeniería de redes</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Abrir navegación"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navegación principal">
+      <a href="../../../es/">Inicio</a>
+      <a href="../../es/" aria-current="page">Herramientas</a>
+      <a href="../../../es/about/">Acerca de</a>
+      <a href="../../../es/contact/">Contacto</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Español"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Español</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../" lang="en" hreflang="en"><span>English</span><small>Inglés</small></a><a class="language-option" role="menuitem" href="../zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chino simplificado</small></a><a class="language-option" role="menuitem" href="./" lang="es" hreflang="es" aria-current="page"><span>Español</span><small>Español</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">Empezar a calcular</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a class="tool-return-link" href="../../es/">← Volver a herramientas</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">PON Maximum Distance Calculator</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END -->
+<section class="hero nel-tool-hero"><div class="hero-inner"><p class="eyebrow">PON PLANNING TOOL</p><h1>Calculadora de distancia máxima PON</h1><p>Calcular optical-budget reach from equipment power window, fiber attenuation, splitters, splices, connectors and engineering margin. An editable system/protocol reach cap provides an effective planning distance.</p><div class="hero-tags"><span>Optical-budget reach</span><span>Alcance del sistema cap</span><span>Verificación del enlace planificado</span><span>Limiting-factor analysis</span></div></div></section>
+<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
+<section class="input-panel card nel-tool-input">
+<div class="section-title"><span class="section-icon">☷</span><div><h2>Equipment, loss and planning parameters</h2><p>Primary and secondary splitters default to 1:8 and can be edited.</p></div></div>
+<div class="preset-row"><label for="preset">Reference preset</label><select id="preset"><option value="custom">Custom</option><option selected="" value="gpon-b">GPON B+ reference (editable)</option><option value="gpon-c">GPON C+ reference (editable)</option><option value="epon">EPON reference (editable)</option><option value="longreach">Long-reach example</option></select></div>
+<div class="form-grid">
+<div class="field full"><label for="projectName">Project name</label><div class="input-wrap no-unit"><input id="projectName" value="PON Máximo Distancia Design"/></div></div>
+<div class="subheading">Equipment power and reach limits</div>
+<div class="field"><label for="txPower">Mínimo transmit power</label><div class="input-wrap"><input id="txPower" step="0.1" type="number" value="1.5"/><span>dBm</span></div></div>
+<div class="field"><label for="rxSensitivity">Sensibilidad del receptor</label><div class="input-wrap"><input id="rxSensitivity" step="0.1" type="number" value="-27"/><span>dBm</span></div></div>
+<div class="field"><label for="rxOverload">Receiver overload threshold</label><div class="input-wrap"><input id="rxOverload" step="0.1" type="number" value="-8"/><span>dBm</span></div></div>
+<div class="field"><label for="systemReach">System / protocol reach cap</label><div class="input-wrap"><input id="systemReach" min="0.1" step="0.1" type="number" value="20"/><span>km</span></div><small class="help">Edit according to OLT, ONU, ranging capability or planning rules.</small></div>
+<div class="field"><label for="plannedDistancia">Planned link distance</label><div class="input-wrap"><input id="plannedDistancia" min="0" step="0.1" type="number" value="5"/><span>km</span></div></div>
+<div class="field"><label for="margin">Margen de ingeniería</label><div class="input-wrap"><input id="margin" min="0" step="0.1" type="number" value="3"/><span>dB</span></div></div>
+<div class="subheading">Fiber and fixed passive losses</div>
+<div class="field"><label for="wavelength">Wavelength</label><div class="input-wrap no-unit"><select id="wavelength"><option value="1310">1310 nm</option><option selected="" value="1490">1490 nm</option><option value="1550">1550 nm</option><option value="custom">Custom</option></select></div></div>
+<div class="field"><label for="attenuation">Atenuación de fibra</label><div class="input-wrap"><input id="attenuation" min="0" step="0.01" type="number" value="0.30"/><span>dB/km</span></div></div>
+<div class="field"><label for="spliceCount">Number de splices</label><div class="input-wrap"><input id="spliceCount" min="0" step="1" type="number" value="6"/><span>pcs</span></div></div>
+<div class="field"><label for="spliceLoss">Loss per splice</label><div class="input-wrap"><input id="spliceLoss" min="0" step="0.01" type="number" value="0.10"/><span>dB</span></div></div>
+<div class="field"><label for="connectorCount">Number de connectors</label><div class="input-wrap"><input id="connectorCount" min="0" step="1" type="number" value="4"/><span>pcs</span></div></div>
+<div class="field"><label for="connectorLoss">Loss per connector</label><div class="input-wrap"><input id="connectorLoss" min="0" step="0.01" type="number" value="0.30"/><span>dB</span></div></div>
+<div class="field"><label for="splitter1">Primary splitter</label><div class="input-wrap no-unit"><select id="splitter1"><option value="0">None</option><option value="3.7">1:2 (3.7 dB)</option><option value="7.2">1:4 (7.2 dB)</option><option selected="" value="10.5">1:8 (10.5 dB)</option><option value="13.8">1:16 (13.8 dB)</option><option value="17">1:32 (17.0 dB)</option><option value="20.5">1:64 (20.5 dB)</option></select></div></div>
+<div class="field"><label for="splitter2">Secondary splitter</label><div class="input-wrap no-unit"><select id="splitter2"><option value="0">None</option><option value="3.7">1:2 (3.7 dB)</option><option value="7.2">1:4 (7.2 dB)</option><option selected="" value="10.5">1:8 (10.5 dB)</option><option value="13.8">1:16 (13.8 dB)</option></select></div></div>
+<div class="field"><label for="otherLoss">Other passive loss</label><div class="input-wrap"><input id="otherLoss" min="0" step="0.01" type="number" value="0"/><span>dB</span></div></div>
+</div>
+<div class="input-actions"><button class="primary-action" id="calculateBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> Calcular maximum distance</button><button class="secondary-action" id="resetBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M20 11a8 8 0 1 0-2.3 5.7"></path><path d="M20 4v7h-7"></path></svg> Restablecer parameters</button></div><p class="validation" id="validation" role="alert"></p>
+</section>
+<section aria-live="polite" class="result-panel card nel-tool-result">
+<div class="section-title"><span class="section-icon">▥</span><div><h2>Distancia and budget result</h2><p>Distancia máxima efectiva is the smaller de optical-budget reach and the límite de alcance del sistema.</p></div></div>
+<div class="summary-card healthy" id="summaryCard"><div><p>Distancia máxima efectiva</p><strong><span id="effectiveMax">0.00</span><small>km</small></strong></div><div class="health-badge" id="healthBadge">✓ Design passes</div></div>
+<div class="metric-grid">
+<article class="metric-card"><span class="metric-icon">OPT</span><div><small>Distancia óptica máxima</small><strong><span id="opticalMax">0.00</span> km</strong></div></article>
+<article class="metric-card"><span class="metric-icon">SYS</span><div><small>Alcance del sistema cap</small><strong><span id="systemReachResultado">0.00</span> km</strong></div></article>
+<article class="metric-card"><span class="metric-icon">PLAN</span><div><small>Planned link distance</small><strong><span id="plannedDistanciaResultado">0.00</span> km</strong></div></article>
+<article class="metric-card"><span class="metric-icon">PON</span><div><small>Total split ratio</small><strong id="splitRatio">1:64</strong></div></article>
+</div>
+<div class="distance-visual"><div class="distance-head"><span>Planned versus effective distance</span><strong id="distanceScaleMax">20.0 km</strong></div><div class="distance-track"><div class="distance-effective" id="effectiveBar"></div><div class="distance-plan" id="plannedMarker"></div></div><div class="distance-labels"><span>0 km</span><span>Effective reach</span><span>Scale maximum</span></div></div>
+<div class="result-grid">
+<article class="result-box"><span>Máximo channel loss</span><strong><span id="maxChannelLoss">0.00</span> dB</strong></article>
+<article class="result-box"><span>Fixed pérdida física</span><strong><span id="fixedPhysical">0.00</span> dB</strong></article>
+<article class="result-box"><span>Design loss available to fiber</span><strong><span id="fiberAllowance">0.00</span> dB</strong></article>
+<article class="result-box"><span>Planned fiber loss</span><strong><span id="plannedFiber">0.00</span> dB</strong></article>
+<article class="result-box"><span>Planned pérdida física</span><strong><span id="plannedPhysical">0.00</span> dB</strong></article>
+<article class="result-box"><span>Planned design loss</span><strong><span id="plannedDesign">0.00</span> dB</strong></article>
+<article class="result-box"><span>Design budget remaining</span><strong><span id="designRemaining">0.00</span> dB</strong></article>
+<article class="result-box"><span>Estimated receive power</span><strong><span id="estimatedRx">0.00</span> dBm</strong></article>
+</div>
+<div class="breakdown"><h3>Fixed-loss breakdown</h3>
+<div class="breakdown-row"><span>Splice loss</span><span><b id="spliceTotal">0.00</b> dB</span></div>
+<div class="breakdown-row"><span>Connector loss</span><span><b id="connectorTotal">0.00</b> dB</span></div>
+<div class="breakdown-row"><span>Splitter loss</span><span><b id="splitterTotal">0.00</b> dB</span></div>
+<div class="breakdown-row"><span>Other passive loss</span><span><b id="otherResultado">0.00</b> dB</span></div>
+<div class="breakdown-row"><span>Margen de ingeniería</span><span><b id="marginResultado">0.00</b> dB</span></div>
+<div class="breakdown-row"><span>Physical budget headroom</span><span><b id="physicalHeadroom">0.00</b> dB</span></div>
+</div>
+<div class="limiter"><strong>Primary limiting factor</strong><span id="limiterText">—</span></div>
+<div class="diagnosis healthy" id="diagnosis"><strong>Engineering conclusion</strong><p id="diagnosisText">—</p><ul class="cause-list" id="causeList"></ul></div>
+<div class="result-actions"><button id="copyBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> Copiar result</button><button id="saveBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 5v14M5 12h14"></path></svg> Guardar record</button><button id="csvBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg> Exportar CSV</button><button id="printBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M6 9V3h12v6"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v7H6z"></path></svg> Print / PDF</button><button id="jsonBtn" disabled>Exportar acceptance JSON</button></div>
+</section>
+</main>
+<aside aria-label="PUBLICIDAD" class="ad-slot" data-ad-key="afterCalculator" hidden=""><div class="ad-label">PUBLICIDAD</div><div class="ad-body"></div></aside>
+<section class="content-section nel-tool-supporting-section" id="methodology"><div class="section-heading"><div><p class="eyebrow">METODOLOGÍA</p><h2>Metodología y notas de ingeniería</h2></div></div>
+<div class="method-grid">
+<article><h3>Máximo channel loss</h3><p>Mínimo transmit power minus receiver sensitivity. Use the worst-case values from the especificaciones del equipo.</p></article>
+<article><h3>Distancia óptica máxima</h3><p>Subtract fixed losses and engineering margin from the maximum channel loss, then divide by fiber attenuation per kilometer.</p></article>
+<article><h3>Distancia máxima efectiva</h3><p>Use the smaller de optical-budget maximum distance and the system or protocol reach cap.</p></article>
+<article><h3>Verificación del enlace planificado</h3><p>Check whether pérdida física exceeds the equipment budget and whether the configured engineering margin is fully retained.</p></article>
+</div>
+<div class="note"><strong>Nota importante:</strong>PON deployment reach is not determined by presupuesto de potencia óptica alone. OLT ranging, equipment configuration, protocol capability, differential distance and planning rules may also apply. The tool therefore displays optical-budget reach and effective system reach separately.</div>
+</section>
+<section class="content-section nel-tool-supporting-section" id="faq"><div class="section-heading"><div><p class="eyebrow">Preguntas frecuentes</p><h2>Preguntas frecuentes</h2></div></div><div class="faq-grid">
+<details><summary>¿Por qué puede the optical budget reach 30 km while the result shows only 20 km?</summary><p>La distancia efectiva es el menor valor entre el alcance del presupuesto óptico y el límite de alcance del sistema. Even when optical power is sufficient, OLT ranging or network configuration may limit deployment.</p></details>
+<details><summary>¿Por qué a primary 1:8 and secondary 1:8 produce a total ratio de 1:64?</summary><p>Los factores de división se multiplican: 8 × 8 = 64. The losses are the sum de the actual insertion losses de the two splitters.</p></details>
+<details><summary>Is optical-budget maximum distance the same as buildable distance?</summary><p>No necesariamente. Also verify the límite de alcance del sistema, ruta del cable, differential distance, especificaciones del equipo and enterprise normas de planificación.</p></details>
+<details><summary>¿Qué significa "physical reach only" mean for the planned distance?</summary><p>Physical loss remains within the receiver-sensitivity budget, but the configured engineering margin is not fully retained, reducing fiabilidad a largo plazo.</p></details>
+<details><summary>¿Cuánto engineering margin should be configured?</summary><p>Configúrelo según las normas de la empresa y las condiciones del proyecto to cover envejecimiento, cambios de temperatura, maintenance conexiones, contaminación and variación de medición.</p></details>
+<details><summary>¿Puede maximum-distance calculation replace OTDR testing?</summary><p>No. Esta herramienta supports design and review; la verificación en campo todavía requiere a medidor de potencia, OTDR and parámetros reales del equipo.</p></details>
+</div></section>
+<section class="content-section nel-tool-supporting-section" id="history"><div class="section-heading"><div><p class="eyebrow">REGISTROS DEL PROYECTO</p><h2>Cálculos recientes</h2></div><button class="text-button" id="clearHistoryBtn">Borrar historial</button></div><div class="history-list" id="historyList"></div></section>
+<section class="content-section nel-tool-supporting-section" id="references"><div class="section-heading"><div><p class="eyebrow">FUENTES Y REVISIÓN</p><h2>Referencias y alcance de ingeniería</h2></div></div><p>Revisado: 2026-08-31. This calculator combines optical loss, receiver sensitivity and a configured límite de alcance del sistema; it does not prove protocol interoperability or field acceptance. The engineering margin is a planning input, not a universal standards mandate. Verify the installed fibre, splitter and especificaciones del equipo with power-meter and OTDR tests.</p><ul><li><a href="https://www.itu.int/rec/T-REC-G.984.2/en" rel="noopener noreferrer" target="_blank">ITU-T G.984.2 — GPON physical media dependent layer</a></li><li><a href="https://www.itu.int/rec/T-REC-G.671/en" rel="noopener noreferrer" target="_blank">ITU-T G.671 — Optical components and subsystems</a></li><li><a href="https://www.itu.int/rec/T-REC-G.650.3/en" rel="noopener noreferrer" target="_blank">ITU-T G.650.3 — Installed single-mode optical fibre link tests</a></li></ul></section>
+<aside aria-label="PUBLICIDAD" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">PUBLICIDAD</div><div class="ad-body"></div></aside>
+<!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="pon-distance" data-primary-workflow="optical-link-design">
+<div class="section-heading"><div><p class="eyebrow">ENGINEERING WORKFLOW</p><h2 id="nel-tool-graph-title">Continuar el flujo de trabajo de ingeniería</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Flujo de trabajo actual</span><strong>Flujo de diseño de enlaces ópticos</strong><p>Build an optical link from pérdida física assumptions through split planning, power budget and maximum reach verification.</p></div><div class="nel-workflow-step"><strong>Paso 4 de 5</strong><div class="nel-workflow-progress" aria-label="Paso 4 de 5"><span style="width:80%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="../../optical-power-budget/es/"><span class="nel-tool-graph-label">Anterior</span><strong>Optical Power Budget Calculator</strong><span class="nel-tool-graph-description">Verifique un enlace óptico usando transmit power, receiver sensitivity, optical penalty and ODN loss.</span></a><a class="nel-tool-graph-card" href="../../odf-odn-resource-planner/es/"><span class="nel-tool-graph-label">Siguiente</span><strong>ODF / ODN Fiber Resource &amp; Split Planning Planner</strong><span class="nel-tool-graph-description">Compare ODF/ODN resource plans and calculate PON ports, splitters, fibre cores, ODF capacity, gaps and a planning BOM.</span></a></div>
+<h3 class="nel-tool-graph-subtitle">Herramientas relacionadas</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="../../optical-power-budget/es/"><strong>Optical Power Budget Calculator</strong><span class="nel-tool-graph-description">Verifique un enlace óptico usando transmit power, receiver sensitivity, optical penalty and ODN loss.</span></a><a class="nel-tool-graph-card" href="../../pon-splitter-loss/es/"><strong>PON Splitter Loss Calculator</strong><span class="nel-tool-graph-description">Planifique la división multietapa y calcule total ratio, insertion loss and effective reach.</span></a><a class="nel-tool-graph-card" href="../../fiber-loss/es/"><strong>Fiber Loss Calculator</strong><span class="nel-tool-graph-description">Calcular fiber, splice, connector, splitter and engineering losses for an optical link.</span></a></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Herramientas profesionales en línea para ingenieros de telecomunicaciones y redes.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navegación del pie de página">
+      <a href="../../../es/about/">Acerca de</a><a href="../../../es/contact/">Contacto</a><a href="../../../es/privacy/">Privacidad</a><a href="../../../es/terms/">Términos</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script defer="" src="js/engine.js"></script><script defer="" src="js/pwa.js"></script><script defer="" src="../../data/optical-standards.js"></script><script defer="" src="../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="js/app.js?v=b97cad384381"></script>
+<script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script></body></html>
+
+
+
+
+
+

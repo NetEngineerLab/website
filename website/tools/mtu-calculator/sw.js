@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-mtu-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-b051bc56ca01-0dfc5d37b267";
+const CACHE = "nel-mtu-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-b051bc56ca01-03f32c3e2ed0";
 const CORE = [
   "./index.html",
   "./",
@@ -10,7 +10,7 @@ const CORE = [
   "./css/style.css?v=3a1be647f0e6",
   "./css/deep-workflow.css?v=mtu-v2",
   "./js/engine.js",
-  "./js/app.js?v=fe30effd0a90",
+  "./js/app.js?v=10f1c630267b",
   "./js/deep-workflow.js?v=mtu-v2",
   "./images/logo.svg",
   "../../data/locales.js?v=909e05076a50",
@@ -32,7 +32,9 @@ const CORE = [
   "../../assets/js/rules-engine/report.js?v=01f2524dcdac",
   "../../assets/generated/rules-engine/rules-bundle.9d06acb2a0ff.js?v=9d06acb2a0ff",
   "./zh/index.html",
-  "./manifest-zh.webmanifest"
+  "./manifest-zh.webmanifest",
+  "./es/index.html",
+  "./manifest-es.webmanifest"
 ];
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)));

@@ -1,4 +1,4 @@
-"use strict";const CACHE = "nel-dc-plant-efficiency-load-sharing-locale-v1.9.9-04-p0-p1-correctness-consent-offline-b051bc56ca01-efc94e0a8619";
+"use strict";const CACHE = "nel-dc-plant-efficiency-load-sharing-locale-v1.9.9-04-p0-p1-correctness-consent-offline-b051bc56ca01-ad632a48e3ec";
 const CORE = [
   "./",
   "./index.html",
@@ -28,5 +28,7 @@ const CORE = [
   "../../assets/js/rules-engine/report.js?v=01f2524dcdac",
   "../../assets/generated/rules-engine/rules-bundle.9d06acb2a0ff.js?v=9d06acb2a0ff",
   "./zh/index.html",
-  "./manifest-zh.webmanifest"
+  "./manifest-zh.webmanifest",
+  "./es/index.html",
+  "./manifest-es.webmanifest"
 ];self.addEventListener("install",e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)));self.skipWaiting()});self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith("nel-dc-plant-efficiency-load-sharing-")&&k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim()});self.addEventListener("fetch",e=>{if(e.request.method!=="GET")return;e.respondWith(caches.match(e.request,{ignoreSearch:true}).then(c=>c||fetch(e.request).catch(()=>caches.match("./offline.html"))))});

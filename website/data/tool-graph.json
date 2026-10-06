@@ -260,7 +260,7 @@
         {
           "workflowId": "enterprise-lan-ip-planning",
           "step": 4,
-          "total": 9,
+          "total": 11,
           "previous": "vlan-ip-capacity-planner",
           "next": "bandwidth-calculator"
         }
@@ -299,7 +299,7 @@
         {
           "workflowId": "enterprise-lan-ip-planning",
           "step": 1,
-          "total": 9,
+          "total": 11,
           "previous": null,
           "next": "ipv6-nat-planner"
         }
@@ -338,7 +338,7 @@
         {
           "workflowId": "enterprise-lan-ip-planning",
           "step": 5,
-          "total": 9,
+          "total": 11,
           "previous": "mtu-calculator",
           "next": "switch-uplink-oversubscription-calculator"
         },
@@ -421,7 +421,7 @@
         {
           "workflowId": "enterprise-lan-ip-planning",
           "step": 2,
-          "total": 9,
+          "total": 11,
           "previous": "subnet-calculator",
           "next": "vlan-ip-capacity-planner"
         }
@@ -534,9 +534,9 @@
       "workflows": [
         {
           "workflowId": "enterprise-lan-ip-planning",
-          "step": 7,
-          "total": 9,
-          "previous": "switch-uplink-oversubscription-calculator",
+          "step": 8,
+          "total": 11,
+          "previous": "ospf-cost-calculator",
           "next": "acl-generator-validator"
         },
         {
@@ -548,7 +548,7 @@
         }
       ],
       "primaryWorkflow": "enterprise-lan-ip-planning",
-      "previous": "switch-uplink-oversubscription-calculator",
+      "previous": "ospf-cost-calculator",
       "next": "acl-generator-validator"
     },
     "wireless-link-budget-calculator": {
@@ -709,7 +709,7 @@
         {
           "workflowId": "enterprise-lan-ip-planning",
           "step": 3,
-          "total": 9,
+          "total": 11,
           "previous": "ipv6-nat-planner",
           "next": "mtu-calculator"
         }
@@ -743,9 +743,9 @@
         {
           "workflowId": "enterprise-lan-ip-planning",
           "step": 6,
-          "total": 9,
+          "total": 11,
           "previous": "bandwidth-calculator",
-          "next": "sfp-qsfp-compatibility-calculator"
+          "next": "ospf-cost-calculator"
         },
         {
           "workflowId": "wireless-access-deployment",
@@ -764,7 +764,7 @@
       ],
       "primaryWorkflow": "enterprise-lan-ip-planning",
       "previous": "bandwidth-calculator",
-      "next": "sfp-qsfp-compatibility-calculator"
+      "next": "ospf-cost-calculator"
     },
     "dns-ttl-propagation-calculator": {
       "id": "dns-ttl-propagation-calculator",
@@ -790,15 +790,15 @@
       "workflows": [
         {
           "workflowId": "enterprise-lan-ip-planning",
-          "step": 9,
-          "total": 9,
+          "step": 10,
+          "total": 11,
           "previous": "acl-generator-validator",
-          "next": null
+          "next": "network-capacity-forecast-planner"
         }
       ],
       "primaryWorkflow": "enterprise-lan-ip-planning",
       "previous": "acl-generator-validator",
-      "next": null
+      "next": "network-capacity-forecast-planner"
     },
     "acl-generator-validator": {
       "id": "acl-generator-validator",
@@ -824,8 +824,8 @@
       "workflows": [
         {
           "workflowId": "enterprise-lan-ip-planning",
-          "step": 8,
-          "total": 9,
+          "step": 9,
+          "total": 11,
           "previous": "sfp-qsfp-compatibility-calculator",
           "next": "dns-ttl-propagation-calculator"
         },
@@ -1390,6 +1390,13 @@
           "total": 2,
           "previous": null,
           "next": "network-change-planner-mop-generator"
+        },
+        {
+          "workflowId": "engineering-deliverable-assembly",
+          "step": 2,
+          "total": 3,
+          "previous": "network-capacity-forecast-planner",
+          "next": "engineering-report-batch-export-center"
         }
       ],
       "primaryWorkflow": "network-risk-remediation",
@@ -1430,6 +1437,116 @@
       ],
       "primaryWorkflow": "optical-link-design",
       "previous": "pon-distance",
+      "next": null
+    },
+    "ospf-cost-calculator": {
+      "id": "ospf-cost-calculator",
+      "routes": {
+        "en": "/tools/ospf-cost-calculator/",
+        "zh-CN": "/tools/ospf-cost-calculator/zh/"
+      },
+      "translations": {
+        "en": {
+          "name": "OSPF Cost Calculator",
+          "description": "Calculate OSPF interface costs from reference bandwidth, compare path costs and identify ECMP candidates."
+        },
+        "zh": {
+          "name": "OSPF Cost计算器",
+          "description": "根据参考带宽计算OSPF接口Cost，比较路径总成本并识别ECMP候选。"
+        }
+      },
+      "related": [
+        "subnet-calculator",
+        "vlan-ip-capacity-planner",
+        "switch-uplink-oversubscription-calculator",
+        "acl-generator-validator"
+      ],
+      "workflows": [
+        {
+          "workflowId": "enterprise-lan-ip-planning",
+          "step": 7,
+          "total": 11,
+          "previous": "switch-uplink-oversubscription-calculator",
+          "next": "sfp-qsfp-compatibility-calculator"
+        }
+      ],
+      "primaryWorkflow": "enterprise-lan-ip-planning",
+      "previous": "switch-uplink-oversubscription-calculator",
+      "next": "sfp-qsfp-compatibility-calculator"
+    },
+    "network-capacity-forecast-planner": {
+      "id": "network-capacity-forecast-planner",
+      "routes": {
+        "en": "/tools/network-capacity-forecast-planner/",
+        "zh-CN": "/tools/network-capacity-forecast-planner/zh/"
+      },
+      "translations": {
+        "en": {
+          "name": "Network Capacity Forecast Planner",
+          "description": "Forecast network demand growth, expansion timing and capacity targets from measured utilization."
+        },
+        "zh": {
+          "name": "网络容量增长预测规划器",
+          "description": "根据实测利用率预测网络增长、扩容时机和目标容量。"
+        }
+      },
+      "related": [
+        "bandwidth-calculator",
+        "switch-uplink-oversubscription-calculator",
+        "data-center-network-convergence-fabric-capacity-planner"
+      ],
+      "workflows": [
+        {
+          "workflowId": "enterprise-lan-ip-planning",
+          "step": 11,
+          "total": 11,
+          "previous": "dns-ttl-propagation-calculator",
+          "next": null
+        },
+        {
+          "workflowId": "engineering-deliverable-assembly",
+          "step": 1,
+          "total": 3,
+          "previous": null,
+          "next": "network-risk-hidden-hazard-assessment-generator"
+        }
+      ],
+      "primaryWorkflow": "enterprise-lan-ip-planning",
+      "previous": "dns-ttl-propagation-calculator",
+      "next": null
+    },
+    "engineering-report-batch-export-center": {
+      "id": "engineering-report-batch-export-center",
+      "routes": {
+        "en": "/tools/engineering-report-batch-export-center/",
+        "zh-CN": "/tools/engineering-report-batch-export-center/zh/"
+      },
+      "translations": {
+        "en": {
+          "name": "Engineering Report & Batch Export Center",
+          "description": "Combine network tool outputs into traceable engineering reports, MOPs, review checklists and batch registers."
+        },
+        "zh": {
+          "name": "工程报告与批量导出中心",
+          "description": "汇总网络工具结果，生成可追溯工程报告、MOP、复核检查表和批量台账。"
+        }
+      },
+      "related": [
+        "network-capacity-forecast-planner",
+        "network-risk-hidden-hazard-assessment-generator",
+        "network-change-planner-mop-generator"
+      ],
+      "workflows": [
+        {
+          "workflowId": "engineering-deliverable-assembly",
+          "step": 3,
+          "total": 3,
+          "previous": "network-risk-hidden-hazard-assessment-generator",
+          "next": null
+        }
+      ],
+      "primaryWorkflow": "engineering-deliverable-assembly",
+      "previous": "network-risk-hidden-hazard-assessment-generator",
       "next": null
     }
   },
@@ -1662,6 +1779,18 @@
         },
         {
           "order": 7,
+          "toolId": "ospf-cost-calculator",
+          "translations": {
+            "en": {
+              "action": "Calculate OSPF interface and path costs"
+            },
+            "zh": {
+              "action": "计算 OSPF 接口与路径 Cost"
+            }
+          }
+        },
+        {
+          "order": 8,
           "toolId": "sfp-qsfp-compatibility-calculator",
           "translations": {
             "en": {
@@ -1673,7 +1802,7 @@
           }
         },
         {
-          "order": 8,
+          "order": 9,
           "toolId": "acl-generator-validator",
           "translations": {
             "en": {
@@ -1685,7 +1814,7 @@
           }
         },
         {
-          "order": 9,
+          "order": 10,
           "toolId": "dns-ttl-propagation-calculator",
           "translations": {
             "en": {
@@ -1693,6 +1822,18 @@
             },
             "zh": {
               "action": "规划 DNS TTL 与传播时间"
+            }
+          }
+        },
+        {
+          "order": 11,
+          "toolId": "network-capacity-forecast-planner",
+          "translations": {
+            "en": {
+              "action": "Forecast growth and schedule capacity expansion"
+            },
+            "zh": {
+              "action": "预测增长并安排容量扩容"
             }
           }
         }
@@ -2229,6 +2370,58 @@
             },
             "zh": {
               "action": "准备可验证、可回退的整改变更"
+            }
+          }
+        }
+      ]
+    },
+    "engineering-deliverable-assembly": {
+      "id": "engineering-deliverable-assembly",
+      "domain": "operations",
+      "translations": {
+        "en": {
+          "name": "Engineering Deliverable Assembly Workflow",
+          "description": "Collect capacity and risk findings, then compile them into a project report, MOP, checklist and results register."
+        },
+        "zh": {
+          "name": "工程交付文档汇编工作流",
+          "description": "汇集容量与风险分析结果，生成项目报告、MOP、检查表和结果台账。"
+        }
+      },
+      "steps": [
+        {
+          "order": 1,
+          "toolId": "network-capacity-forecast-planner",
+          "translations": {
+            "en": {
+              "action": "Create a documented capacity forecast result"
+            },
+            "zh": {
+              "action": "生成有来源记录的容量预测结果"
+            }
+          }
+        },
+        {
+          "order": 2,
+          "toolId": "network-risk-hidden-hazard-assessment-generator",
+          "translations": {
+            "en": {
+              "action": "Add site risk and remediation findings"
+            },
+            "zh": {
+              "action": "补充现场风险与整改结论"
+            }
+          }
+        },
+        {
+          "order": 3,
+          "toolId": "engineering-report-batch-export-center",
+          "translations": {
+            "en": {
+              "action": "Compile imported outputs into engineering deliverables"
+            },
+            "zh": {
+              "action": "将导入结果汇总为工程交付文档"
             }
           }
         }

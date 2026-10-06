@@ -1,0 +1,39 @@
+"use strict";
+const CACHE = "nel-ospf-cost-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-b051bc56ca01-37a2a0b8af32";
+const CORE = [
+  "./index.html",
+  "./",
+  "./offline.html",
+  "./manifest.webmanifest",
+  "./css/ospf.css?v=ospf1",
+  "./js/engine.js",
+  "./js/app.js?v=28de5c5753db",
+  "./images/logo.svg",
+  "./images/icons/icon-192.png",
+  "./images/icons/icon-512.png",
+  "../../data/locales.js?v=909e05076a50",
+  "../../data/site-config.js?v=b5072ad7fa47",
+  "../../assets/css/locale-menu.css?v=7804394246fb",
+  "../../assets/css/design-tokens.css?v=dc6c5cc9b8ad",
+  "../../assets/css/site-shell.css?v=58918fefbb35",
+  "../../assets/css/tool-design-system.css?v=8c488ab6e2be",
+  "../../assets/css/tool-workflow.css?v=66c8998b2681",
+  "../../assets/js/analytics.js?v=1156b7864023",
+  "../../assets/js/adsense.js?v=f075c80ccc75",
+  "../../assets/js/site.js?v=0da39eabe820",
+  "../../assets/js/tool-integration.js?v=05f7934f4687",
+  "../../assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b",
+  "../../assets/js/rules-engine/normalize.js?v=9e2cb44bca10",
+  "../../assets/js/rules-engine/evidence.js?v=275bb87b037a",
+  "../../assets/js/rules-engine/evaluate.js?v=fdd7e0e551ef",
+  "../../assets/js/rules-engine/score.js?v=fce2240d4bb7",
+  "../../assets/js/rules-engine/report.js?v=01f2524dcdac",
+  "../../assets/generated/rules-engine/rules-bundle.9d06acb2a0ff.js?v=9d06acb2a0ff",
+  "./zh/index.html",
+  "./manifest-zh.webmanifest",
+  "./es/index.html",
+  "./manifest-es.webmanifest"
+];
+self.addEventListener("install",e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE))));
+self.addEventListener("activate",e=>e.waitUntil(self.clients.claim()));
+self.addEventListener("fetch",e=>{if(e.request.method!=="GET")return;e.respondWith(caches.match(e.request,{ignoreSearch:true}).then(c=>c||fetch(e.request).then(r=>{if(r.ok){const copy=r.clone();caches.open(CACHE).then(x=>x.put(e.request,copy));}return r;}).catch(()=>caches.match("./offline.html"))));});

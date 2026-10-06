@@ -484,6 +484,42 @@
       ],
       "inputContext": [],
       "outputContext": []
+    },
+    "ospf-cost-calculator": {
+      "id": "ospf-cost-calculator",
+      "toolLevel": "analyzer",
+      "supportedJobs": [],
+      "nextTools": [
+        "subnet-calculator",
+        "vlan-ip-capacity-planner",
+        "switch-uplink-oversubscription-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "network-capacity-forecast-planner": {
+      "id": "network-capacity-forecast-planner",
+      "toolLevel": "planner",
+      "supportedJobs": [],
+      "nextTools": [
+        "bandwidth-calculator",
+        "switch-uplink-oversubscription-calculator",
+        "data-center-network-convergence-fabric-capacity-planner"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "engineering-report-batch-export-center": {
+      "id": "engineering-report-batch-export-center",
+      "toolLevel": "analyzer",
+      "supportedJobs": [],
+      "nextTools": [
+        "network-capacity-forecast-planner",
+        "network-risk-hidden-hazard-assessment-generator",
+        "network-change-planner-mop-generator"
+      ],
+      "inputContext": [],
+      "outputContext": []
     }
   }
 }

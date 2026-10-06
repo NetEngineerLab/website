@@ -1,8 +1,17 @@
-const assert=require('assert');const E=require('../js/engine.js');
-let r=E.calculate({dcVoltage:53.5,loadCurrentA:180,batteryChargeCurrentA:60,moduleCurrentA:50,redundancyModules:1,headroomPct:15,efficiencyPct:94,acVoltage:230,powerFactor:.95,phase:'1p'});
-assert(r.ok&&r.recommendedModules>=7&&r.survives1&&r.scenarios.length===4&&r.riskLevel);
-assert(r.scenarios.some(s=>s.name==='recharge-peak')&&r.scenarios.some(s=>s.name==='conservative'));
-r=E.calculate({dcVoltage:53.5,loadCurrentA:240,batteryChargeCurrentA:60,moduleCurrentA:50,installedModules:6,redundancyModules:2,headroomPct:10,ambientTempC:45,altitudeM:2000,frameMaxModules:6});
-assert(r.ok&&r.risks.includes('N-1-fail')&&r.risks.includes('frame-limit')&&r.deratePct<100);
-assert(E.toJSON(r).includes('scenarios')&&E.toCSV(r).includes('scenario'));
-console.log('Rectifier sizing deep engine: PASS');
+'use strict';
+const assert=require('assert/strict'),E=require('../js/engine.js');
+const base={dcVoltage:53.5,loadCurrentA:180,batteryChargeCurrentA:60,moduleCurrentA:50,redundancyModules:1,headroomPct:15,efficiencyPct:94,acVoltage:230,powerFactor:.95,phase:'1p'};
+const near=(a,b)=>assert(Math.abs(a-b)<1e-8,`${a} != ${b}`);
+let r=E.calculate(base);assert(r.ok);assert.equal(r.recommendedModules,7);assert(r.survives1);assert.equal(r.scenarios.length,5);assert.equal(r.plans.length,3);
+r=E.calculate({...base,installedModules:10,targetUtilizationPct:80,growthPct:15,rechargePeakPct:25,frameMaxModules:12,frameInstalledModules:12});assert(r.ok);near(r.requiredA,352.5);assert.equal(r.recommendedModules,10);near(r.effectiveModuleA,50);near(r.planningModuleA,40);near(r.normalCapacityA,500);near(r.normalUtilPct,70.5);assert.equal(r.riskLevel,'LOW');assert(r.plans.every(p=>p.targetSurvives));near(r.acInputKW,282*53.5/1000/.94);
+const combined=r.scenarios.find(s=>s.name==='growth-recharge');near(combined.requiredA,324.3);assert(combined.requiredA>r.scenarios.find(s=>s.name==='growth').requiredA);assert(combined.requiredA>r.scenarios.find(s=>s.name==='recharge-peak').requiredA);
+r=E.calculate({...base,installedModules:6,redundancyModules:2,headroomPct:10,ambientTempC:45,altitudeM:2000,frameMaxModules:6,frameInstalledModules:6});assert(r.ok);near(r.deratePct,94);assert(r.risks.includes('N-1-fail'));assert(r.risks.includes('N-2-fail'));assert(r.risks.includes('frame-limit'));assert(r.deliverables.frameFits===false);assert(r.deliverables.additionalSlots>0);
+// Target limit may fail while physical N-1 still passes; capacity must not be double derated.
+r=E.calculate({...base,loadCurrentA:100,batteryChargeCurrentA:0,headroomPct:0,conservativePct:0,installedModules:3,targetUtilizationPct:80});assert(r.survives1);assert(!r.scenarios[0].targetSurvives);near(r.after1CapacityA,100);assert(r.risks.includes('target-reserve-shortfall'));assert(!r.risks.includes('N-1-fail'));
+// Exact multiples and a barely higher current round conservatively.
+r=E.calculate({...base,loadCurrentA:250,batteryChargeCurrentA:0,headroomPct:0,conservativePct:0});assert.equal(r.recommendedModules,6);r=E.calculate({...base,loadCurrentA:250.0000000005,batteryChargeCurrentA:0,headroomPct:0,conservativePct:0});assert.equal(r.recommendedModules,7);
+for(const invalid of [null,[],false,3,'input',{...base,loadCurrentA:''},{...base,loadCurrentA:NaN},{...base,moduleCurrentA:Infinity},{...base,redundancyModules:3},{...base,installedModules:1.5},{...base,headroomPct:-1},{...base,efficiencyPct:101},{...base,targetUtilizationPct:0},{...base,growthPct:201},{...base,phase:'bad'},{...base,frameMaxModules:5,frameInstalledModules:6},{...base,installedModules:6,frameInstalledModules:5},{...base,tempDeratePctPer10C:100,ambientTempC:45}])assert.equal(E.calculate(invalid).ok,false,JSON.stringify(invalid));assert(!E.calculate().ok);
+r=E.calculate({...base,installedModules:0,growthPct:100,frameMaxModules:8,frameInstalledModules:8});assert(r.risks.includes('N-1-fail'));assert(r.risks.includes('frame-limit'));assert.equal(r.plans[2].survives1,true);assert.equal(r.deliverables.frameFits,false);
+r=E.calculate({...base,installedModules:10,growthPct:15,rechargePeakPct:25,targetUtilizationPct:80,frameMaxModules:12,frameInstalledModules:12});const context={language:'zh',generatedAt:'2026-10-04T00:00:00.000Z'},p=JSON.parse(E.toJSON(r,context));assert(p.website.endsWith('/zh/'));assert.equal(p.language,'zh');assert.deepEqual(p.inputs,r.inputs);assert(p.assumptions.every(a=>/[\u4e00-\u9fff]/.test(a)));for(const csv of [E.toCSV(r,context),E.toBOM(r,context)]){assert(csv.includes(p.website));assert(csv.includes(context.generatedAt));assert(csv.includes('直流母线电压_V'));assert(csv.includes('增长与回充叠加'));assert(csv.includes('N-1'));assert(!csv.includes('UNVERIFIED'));}assert(E.toBOM(r,context).includes('建议总模块'));
+const single=E.calculate(base),three=E.calculate({...base,phase:'3p',acVoltage:400});near(three.acInputA,single.acInputKW*1000/(Math.sqrt(3)*400*.95));
+console.log('Rectifier N-1/N-2 engine: PASS (formula, combination, target, limits, strict invalid inputs, exports)');

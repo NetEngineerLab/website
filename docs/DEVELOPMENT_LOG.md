@@ -799,3 +799,10 @@
 - 验证：Generator engine PASS；`node --check` engine/app/sw PASS；Generator audit2 PASS；SW precache、工具/工作流/导航契约及 SEO PASS；双语多浏览器 Playwright 8/8 PASS；中文 UTF-8 与缓存一致性 PASS。
 - 独立审计：未参与实现的 2 号审计代理最终 `PASS`，确认 Before/After 结果真实渲染、N-1 告警、双语接线与缓存版本无阻断。
 - 下一步：`Data Center Airflow & Containment Planner` 保持唯一 `NEXT`，进入冷热通道、风量/静压、封闭率、旁路气流与故障场景深度升级。
+### 2026-10-02 — OSPF Cost Calculator 深度开发
+
+- 原因：按用户指定的深度开发队列插入 OSPF Cost Calculator，作为企业 LAN 与 IP 规划工作流的第 7 步。
+- 范围：新增双语 OSPF Cost 计算器、失败关闭输入校验、接口 Cost/路径 Cost/ECMP 计算、工程报告复制、PWA 离线资源、SEO 与标准 NEL Header/Footer，并接入 registry、catalog、tool graph、workflow 与 sitemap。
+- 验证：OSPF engine PASS；architecture validation PASS（38 tools/127 pages/124 sitemap）；tool navigation PASS（76 bilingual pages）；page registry PASS（54 families/124 localized pages）；tool registry PASS；app/engine 语法检查 PASS。
+- 审计：等待未参与实现的独立审计 Agent 对最新产物复核后，再进入 Route Summarization Calculator。
+

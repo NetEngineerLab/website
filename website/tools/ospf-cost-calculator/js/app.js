@@ -1,0 +1,9 @@
+(function(){
+  const E=window.OspfCostEngine;
+  const $=id=>document.getElementById(id);
+  function lines(id){return $(id).value.split(String.fromCharCode(10));}
+  function parseInterfaces(){return lines('interfaces').map(function(line,i){const p=line.split(',').map(x=>x.trim());return {name:p[0]||('Interface '+(i+1)),bandwidthMbps:Number(p[1]),metricOverride:p[2]||undefined,enabled:p[3]!=='disabled'};}).filter(x=>x.name||x.bandwidthMbps);}
+  function parsePaths(){return lines('paths').map(function(line){return line.trim();}).filter(Boolean).map(function(line,i){return {name:'Path '+(i+1),interfaces:line.split(';').map(function(chunk,j){const p=chunk.split(',').map(x=>x.trim());return {name:p[0]||('link-'+(j+1)),bandwidthMbps:Number(p[1]),metricOverride:p[2]||undefined};})};});}
+  function run(){const input={referenceBandwidthMbps:Number($('reference').value),calculationMode:$('mode').value,interfaces:parseInterfaces(),paths:parsePaths()};const r=E.calculate(input);$('status').textContent=r.status.toUpperCase();$('status').className='status '+r.status;$('totalCost').textContent=r.totalCost;$('activeCount').textContent=r.activeInterfaceCount;$('bestPath').textContent=r.bestPathCost;$('ecmp').textContent=r.ecmpPaths;$('warnings').innerHTML=r.warnings.length?r.warnings.map(function(x){return '<li>'+x.replaceAll('_',' ')+'</li>';}).join(''):'<li>No warnings</li>';$('table').innerHTML=r.interfaces.map(function(x){return '<tr><td>'+x.name+'</td><td>'+x.bandwidthMbps+'</td><td>'+(x.calculatedCost??'N/A')+'</td><td><strong>'+(x.cost??'N/A')+'</strong></td><td>'+x.status+'</td></tr>';}).join('');$('json').textContent=JSON.stringify(r,null,2);}
+  $('calculate').addEventListener('click',run);$('reset').addEventListener('click',function(){location.reload()});$('copy').addEventListener('click',function(){if(navigator.clipboard)navigator.clipboard.writeText($('json').textContent);});run();
+})();

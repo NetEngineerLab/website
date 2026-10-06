@@ -1,5 +1,5 @@
 const $=id=>document.getElementById(id);
-const LANG=document.documentElement.lang.toLowerCase().startsWith("zh")?"zh":"en";
+const LANG=document.documentElement.lang.toLowerCase().startsWith("zh")?"zh":(document.documentElement.lang.toLowerCase().startsWith("es")?"es":"en");
 const ENGINE=window.SubnetEngine;
 const REF=window.NEL_IP_REFERENCE;
 let activeMode="ipv4";
@@ -29,9 +29,10 @@ const T={
   unique_local:"Unique local",global:"Global unicast",unspecified:"Unspecified"
  }
 };
+T.es={invalidIPv4:"Introduzca una dirección IPv4 y un prefijo CIDR o máscara válidos.",invalidIPv6:"Introduzca una dirección IPv6 y una longitud de prefijo válidas.",copied:"Resultado copiado",saved:"Registro guardado",csv:"CSV exportado",empty:"No hay registros guardados.",clearHistory:"¿Borrar todo el historial guardado?",remove:"Eliminar",allocationFailed:"Espacio de direcciones insuficiente",private:"Privada",public:"Pública",shared:"Espacio compartido",loopback:"Bucle local",linklocal:"Enlace local",multicast:"Multidifusión",reserved:"Reservada",documentation:"Documentación",benchmark:"Benchmark",limited_broadcast:"Broadcast limitado",unique_local:"Local única",global:"Unidifusión global",unspecified:"No especificada"};
 function esc(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
 function temp(button,message){const old=button.innerHTML;button.textContent=message;setTimeout(()=>button.innerHTML=old,1300)}
-function formatInteger(value){try{return BigInt(value).toLocaleString("en-US")}catch{return Number(value).toLocaleString("en-US")}}
+function formatInteger(value){try{return BigInt(value).toLocaleString(LANG==="zh"?"zh-CN":(LANG==="es"?"es-ES":"en-US"))}catch{return Number(value).toLocaleString(LANG==="zh"?"zh-CN":(LANG==="es"?"es-ES":"en-US"))}}
 function scopeLabel(scope){const key=scope?.type||scope||"public";return T[LANG][key]||scope?.[LANG]||key}
 function clearText(ids){ids.forEach(id=>{const node=$(id);if(node)node.textContent="—"})}
 function invalidate(mode,message){
@@ -88,7 +89,7 @@ function calculateIPv4(){
   };
   Object.entries(values).forEach(([id,value])=>$(id).textContent=value);
   const hostBits=32-result.prefix;
-  $("ipv4BitBar").innerHTML=`<span class="network-bits" style="width:${result.prefix/32*100}%">${LANG==="zh"?"网络位":"Network"} ${result.prefix}</span><span class="host-bits" style="width:${hostBits/32*100}%">${LANG==="zh"?"主机位":"Host"} ${hostBits}</span>`;
+  $("ipv4BitBar").innerHTML=`<span class="network-bits" style="width:${result.prefix/32*100}%">${LANG==="zh"?"网络位":(LANG==="es"?"Bits de red":"Network")} ${result.prefix}</span><span class="host-bits" style="width:${hostBits/32*100}%">${LANG==="zh"?"主机位":(LANG==="es"?"Bits de host":"Host")} ${hostBits}</span>`;
   if(typeof window.nelTrack==="function")window.nelTrack("subnet_ipv4_calculate",{prefix:result.prefix,usable:result.usableHosts});
  }catch{
   invalidate("ipv4",T[LANG].invalidIPv4);
@@ -106,7 +107,7 @@ function calculateIPv6(){
   $("ipv6SubnetCount").textContent=formatInteger(result.subnetCountFromBase);
   $("ipv6HostBits").textContent=result.hostBits;
   $("ipv6Scope").textContent=scopeLabel(result.scope);
-  $("ipv6BitBar").innerHTML=`<span class="network-bits" style="width:${result.prefix/128*100}%">${LANG==="zh"?"网络位":"Network"} ${result.prefix}</span><span class="host-bits" style="width:${result.hostBits/128*100}%">${LANG==="zh"?"接口标识位":"Interface ID"} ${result.hostBits}</span>`;
+  $("ipv6BitBar").innerHTML=`<span class="network-bits" style="width:${result.prefix/128*100}%">${LANG==="zh"?"网络位":(LANG==="es"?"Bits de red":"Network")} ${result.prefix}</span><span class="host-bits" style="width:${result.hostBits/128*100}%">${LANG==="zh"?"接口标识位":(LANG==="es"?"ID de interfaz":"Interface ID")} ${result.hostBits}</span>`;
   if(typeof window.nelTrack==="function")window.nelTrack("subnet_ipv6_calculate",{prefix:result.prefix});
  }catch{
   invalidate("ipv6",T[LANG].invalidIPv6);
@@ -132,14 +133,14 @@ function syncVlsmRows(){
 function renderVlsmRows(){
  const body=$("vlsmInputBody");
  if(!vlsmRows.length){
-  body.innerHTML=`<tr><td colspan="5" class="empty-row">${LANG==="zh"?"暂无子网需求。":"No subnet requirements yet."}</td></tr>`;
+  body.innerHTML=`<tr><td colspan="5" class="empty-row">${LANG==="zh"?"暂无子网需求。":(LANG==="es"?"Todavía no hay requisitos de subred.":"No subnet requirements yet.")}</td></tr>`;
   return;
  }
  body.innerHTML=vlsmRows.map((row,index)=>`<tr>
   <td>${index+1}</td>
-  <td><input id="vlsm-name-${row.id}" value="${esc(row.name)}" aria-label="${LANG==="zh"?"子网名称":"Subnet name"}"></td>
-  <td><input id="vlsm-hosts-${row.id}" type="number" min="0" step="1" value="${row.hosts}" aria-label="${LANG==="zh"?"主机需求":"Host requirement"}"></td>
-  <td><input id="vlsm-reserve-${row.id}" type="number" min="0" step="1" value="${row.reserve}" aria-label="${LANG==="zh"?"预留地址":"Reserved addresses"}"></td>
+  <td><input id="vlsm-name-${row.id}" value="${esc(row.name)}" aria-label="${LANG==="zh"?"子网名称":(LANG==="es"?"Nombre de subred":"Subnet name")}"></td>
+  <td><input id="vlsm-hosts-${row.id}" type="number" min="0" step="1" value="${row.hosts}" aria-label="${LANG==="zh"?"主机需求":(LANG==="es"?"Necesidad de hosts":"Host requirement")}"></td>
+  <td><input id="vlsm-reserve-${row.id}" type="number" min="0" step="1" value="${row.reserve}" aria-label="${LANG==="zh"?"预留地址":(LANG==="es"?"Direcciones reservadas":"Reserved addresses")}"></td>
   <td><button class="delete-row" data-delete="${row.id}" aria-label="${T[LANG].remove}">×</button></td>
  </tr>`).join("");
  body.querySelectorAll("input").forEach(input=>input.addEventListener("input",()=>{
@@ -180,14 +181,15 @@ function resetAll(){
 }
 function reportText(){
  if(!last)return"";
+ const L=LANG==="es"?{network:"Red",broadcast:"Broadcast",hostRange:"Rango de hosts",mask:"Máscara",wildcard:"Máscara wildcard",usable:"Hosts utilizables",last:"Última dirección",hostBits:"Bits de host",count:"Cantidad de direcciones",base:"Base",used:"Usadas",remaining:"Restantes"}:null;
  if(last.mode==="ipv4"){
-  const r=last.result;return[`NetEngineerLab - IP Subnet Calculator`,`CIDR: ${r.cidr}`,`Network: ${r.network}`,`Broadcast: ${r.broadcast}`,`Host range: ${r.firstHost} - ${r.lastHost}`,`Mask: ${r.mask}`,`Wildcard: ${r.wildcard}`,`Usable hosts: ${r.usableHosts}`].join("\n");
+  const r=last.result;return[`NetEngineerLab - ${LANG==="es"?"Calculadora de subred IP":"IP Subnet Calculator"}`,`CIDR: ${r.cidr}`,`${LANG==="es"?L.network:"Network"}: ${r.network}`,`${LANG==="es"?L.broadcast:"Broadcast"}: ${r.broadcast}`,`${LANG==="es"?L.hostRange:"Host range"}: ${r.firstHost} - ${r.lastHost}`,`${LANG==="es"?L.mask:"Mask"}: ${r.mask}`,`${LANG==="es"?L.wildcard:"Wildcard"}: ${r.wildcard}`,`${LANG==="es"?L.usable:"Usable hosts"}: ${r.usableHosts}`].join("\n");
  }
  if(last.mode==="ipv6"){
-  const r=last.result;return[`NetEngineerLab - IPv6 Prefix Calculator`,`CIDR: ${r.cidr}`,`Network: ${r.network}`,`Last address: ${r.lastAddress}`,`Host bits: ${r.hostBits}`,`Address count: ${r.totalAddresses}`].join("\n");
+  const r=last.result;return[`NetEngineerLab - ${LANG==="es"?"Calculadora de prefijos IPv6":"IPv6 Prefix Calculator"}`,`CIDR: ${r.cidr}`,`${LANG==="es"?L.network:"Network"}: ${r.network}`,`${LANG==="es"?L.last:"Last address"}: ${r.lastAddress}`,`${LANG==="es"?L.hostBits:"Host bits"}: ${r.hostBits}`,`${LANG==="es"?L.count:"Address count"}: ${r.totalAddresses}`].join("\n");
  }
  const r=last.result;
- return [`NetEngineerLab - VLSM Planner`,`Base: ${r.base.cidr}`,`Used: ${r.usedAddresses}`,`Remaining: ${r.remainingAddresses}`,...r.allocations.map(item=>`${item.name}: ${item.cidr} ${item.firstHost}-${item.lastHost}`)].join("\n");
+ return [`NetEngineerLab - ${LANG==="es"?"Planificador VLSM":"VLSM Planner"}`,`${LANG==="es"?L.base:"Base"}: ${r.base.cidr}`,`${LANG==="es"?L.used:"Used"}: ${r.usedAddresses}`,`${LANG==="es"?L.remaining:"Remaining"}: ${r.remainingAddresses}`,...r.allocations.map(item=>`${item.name}: ${item.cidr} ${item.firstHost}-${item.lastHost}`)].join("\n");
 }
 async function copyResult(){
  const text=reportText();if(!text)return;
@@ -199,11 +201,11 @@ function exportCsv(){
  if(!last)return;
  let rows=[];
  if(last.mode==="ipv4"){
-  const r=last.result;rows=[["CIDR",r.cidr],["Network",r.network],["Broadcast",r.broadcast],["First host",r.firstHost],["Last host",r.lastHost],["Mask",r.mask],["Wildcard",r.wildcard],["Usable hosts",r.usableHosts]];
+  const r=last.result;rows=[["CIDR",r.cidr],[LANG==="es"?"Red":"Network",r.network],[LANG==="es"?"Broadcast":"Broadcast",r.broadcast],[LANG==="es"?"Primer host":"First host",r.firstHost],[LANG==="es"?"Último host":"Last host",r.lastHost],[LANG==="es"?"Máscara":"Mask",r.mask],[LANG==="es"?"Máscara wildcard":"Wildcard",r.wildcard],[LANG==="es"?"Hosts utilizables":"Usable hosts",r.usableHosts]];
  }else if(last.mode==="ipv6"){
-  const r=last.result;rows=[["CIDR",r.cidr],["Network",r.network],["Last address",r.lastAddress],["Total addresses",r.totalAddresses],["Host bits",r.hostBits],["Scope",r.scope]];
+  const r=last.result;rows=[["CIDR",r.cidr],[LANG==="es"?"Red":"Network",r.network],[LANG==="es"?"Última dirección":"Last address",r.lastAddress],[LANG==="es"?"Total de direcciones":"Total addresses",r.totalAddresses],[LANG==="es"?"Bits de host":"Host bits",r.hostBits],[LANG==="es"?"Ámbito":"Scope",scopeLabel(r.scope)]];
  }else{
-  rows=[["Name","Hosts","Reserve","CIDR","First host","Last host","Broadcast","Usable"]];
+  rows=[[LANG==="es"?"Nombre":"Name",LANG==="es"?"Hosts":"Hosts",LANG==="es"?"Reserva":"Reserve","CIDR",LANG==="es"?"Primer host":"First host",LANG==="es"?"Último host":"Last host",LANG==="es"?"Broadcast":"Broadcast",LANG==="es"?"Utilizables":"Usable"]];
   last.result.allocations.forEach(item=>rows.push([item.name,item.hosts,item.reserve,item.cidr,item.firstHost,item.lastHost,item.broadcast,item.usableHosts]));
  }
  const csv="\uFEFF"+rows.map(row=>row.map(v=>`"${String(v).replaceAll('"','""')}"`).join(",")).join("\n");
@@ -219,7 +221,7 @@ function saveHistory(){
 }
 function renderHistory(){
  const history=getHistory();
- $("historyList").innerHTML=history.length?history.slice(0,6).map(item=>`<article class="history-card"><strong>${item.mode.toUpperCase()}</strong><span>${new Date(item.time).toLocaleString(LANG==="zh"?"zh-CN":"en-US")}</span><p>${esc(item.summary)}</p></article>`).join(""):`<div class="history-empty">${T[LANG].empty}</div>`;
+ $("historyList").innerHTML=history.length?history.slice(0,6).map(item=>`<article class="history-card"><strong>${item.mode.toUpperCase()}</strong><span>${new Date(item.time).toLocaleString(LANG==="zh"?"zh-CN":(LANG==="es"?"es-ES":"en-US"))}</span><p>${esc(item.summary)}</p></article>`).join(""):`<div class="history-empty">${T[LANG].empty}</div>`;
 }
 function clearHistory(){
  if(!confirm(T[LANG].clearHistory))return;
@@ -240,3 +242,8 @@ $("csvBtn").addEventListener("click",exportCsv);
 $("printBtn").addEventListener("click",()=>window.print());
 $("clearHistoryBtn").addEventListener("click",clearHistory);
 resetAll();setMode("ipv4");renderHistory();
+
+
+
+
+

@@ -1,5 +1,5 @@
 const $=id=>document.getElementById(id);
-const LANG=document.documentElement.lang.toLowerCase().startsWith("zh")?"zh":"en";
+const LANG=document.documentElement.lang.toLowerCase().startsWith("zh")?"zh":(document.documentElement.lang.toLowerCase().startsWith("es")?"es":"en");
 const LIB=window.NEL_BANDWIDTH_UNITS;
 const ENGINE=window.BandwidthEngine;
 let activeMode="transfer";
@@ -21,12 +21,13 @@ const T={
   transfer:"Transfer time",required:"Required bandwidth",concurrency:"Concurrent capacity",volume:"Data volume"
  }
 };
-function esc(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+T.es={copied:"Resultado copiado",saved:"Registro guardado",csv:"CSV exportado",empty:"No hay registros guardados.",clearHistory:"¿Borrar todo el historial guardado?",healthy:"Configuración válida",warning:"Revisar",invalid:"Parámetro no válido",day:"días",hour:"horas",minute:"minutos",second:"segundos",pass:"La capacidad cumple el objetivo",fail:"La capacidad es insuficiente",transfer:"Tiempo de transferencia",required:"Ancho de banda necesario",concurrency:"Capacidad concurrente",volume:"Volumen de datos"};
+const DEFAULT_PROJECT=LANG==="es"?"Sin título":"Untitled"; function esc(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
 function n(id){return Number.parseFloat($(id).value)}
 function temp(button,message){const old=button.innerHTML;button.textContent=message;setTimeout(()=>button.innerHTML=old,1300)}
 function formatNumber(value,digits=2){
  if(!Number.isFinite(Number(value)))return"∞";
- return Number(value).toLocaleString(LANG==="zh"?"zh-CN":"en-US",{maximumFractionDigits:digits});
+ return Number(value).toLocaleString(LANG==="zh"?"zh-CN":(LANG==="es"?"es-ES":"en-US"),{maximumFractionDigits:digits});
 }
 function bestRate(bps){
  const abs=Math.abs(bps);
@@ -63,15 +64,15 @@ function setMode(mode){
 function populateUnitSelects(){
  document.querySelectorAll("[data-rate-units]").forEach(select=>{
   const selected=select.dataset.selected||"Mbps";
-  select.innerHTML=Object.entries(LIB.rateUnits).map(([id,item])=>`<option value="${id}" ${id===selected?"selected":""}>${item[LANG]}</option>`).join("");
+  select.innerHTML=Object.entries(LIB.rateUnits).map(([id,item])=>`<option value="${id}" ${id===selected?"selected":""}>${(item[LANG]||item.en)}</option>`).join("");
  });
  document.querySelectorAll("[data-size-units]").forEach(select=>{
   const selected=select.dataset.selected||"GB";
-  select.innerHTML=Object.entries(LIB.sizeUnits).map(([id,item])=>`<option value="${id}" ${id===selected?"selected":""}>${item[LANG]}</option>`).join("");
+  select.innerHTML=Object.entries(LIB.sizeUnits).map(([id,item])=>`<option value="${id}" ${id===selected?"selected":""}>${(item[LANG]||item.en)}</option>`).join("");
  });
  document.querySelectorAll("[data-time-units]").forEach(select=>{
   const selected=select.dataset.selected||"minute";
-  select.innerHTML=Object.entries(LIB.timeUnits).map(([id,item])=>`<option value="${id}" ${id===selected?"selected":""}>${item[LANG]}</option>`).join("");
+  select.innerHTML=Object.entries(LIB.timeUnits).map(([id,item])=>`<option value="${id}" ${id===selected?"selected":""}>${(item[LANG]||item.en)}</option>`).join("");
  });
 }
 function applyPreset(){
@@ -177,7 +178,7 @@ function calculate(){
   $("validation").textContent="";
   if(typeof window.nelTrack==="function")window.nelTrack("bandwidth_calculate",{mode:activeMode,status:last.result.status});
  }catch(error){
-  $("validation").textContent=LANG==="zh"?"请检查输入参数和单位。":"Check the input values and units.";
+  $("validation").textContent=LANG==="zh"?"请检查输入参数和单位。":(LANG==="es"?"Compruebe los valores y las unidades introducidas.":"Check the input values and units.");
   renderStatus("invalid");
  }
 }
@@ -192,13 +193,13 @@ function resetAll(){
 }
 function reportText(){
  if(!last)return"";
- const project=$("projectName").value.trim()||"Untitled";
- const lines=["NetEngineerLab - Bandwidth & Transfer Time Calculator",`${LANG==="zh"?"工程":"Project"}: ${project}`,`${LANG==="zh"?"模式":"Mode"}: ${T[LANG][last.mode]}`];
+ const project=$("projectName").value.trim()||DEFAULT_PROJECT;
+ const lines=["NetEngineerLab - Bandwidth & Transfer Time Calculator",`${LANG==="zh"?"工程":(LANG==="es"?"Proyecto":"Project")}: ${project}`,`${LANG==="zh"?"模式":(LANG==="es"?"Modo":"Mode")}: ${T[LANG][last.mode]}`];
  const r=last.result;
- if(last.mode==="transfer")lines.push(`Transfer time: ${humanTime(r.time)}`,`Per-transfer payload rate: ${bestRate(r.perTransferBps)}`,`Aggregate payload rate: ${bestRate(r.payloadAggregateBps)}`,`Total data: ${bestSize(r.totalTransferredBytes)}`);
- if(last.mode==="required")lines.push(`Required link rate: ${bestRate(r.requiredLinkBps)}`,`Required payload rate: ${bestRate(r.requiredPayloadBps)}`,`Data time: ${formatNumber(r.dataSeconds,3)} s`);
- if(last.mode==="concurrency")lines.push(`Maximum users: ${r.maxUsers}`,`Available payload rate: ${bestRate(r.availablePayloadBps)}`,`Headroom: ${bestRate(r.headroomBps)}`);
- if(last.mode==="volume")lines.push(`Transferred payload: ${bestSize(r.totalBytes)}`,`Payload rate: ${bestRate(r.payloadBps)}`,`30-day volume: ${bestSize(r.monthly30Bytes)}`);
+ if(last.mode==="transfer")lines.push(`${LANG==="es"?"Tiempo de transferencia":"Transfer time"}: ${humanTime(r.time)}`,`${LANG==="es"?"Velocidad de carga por transferencia":"Per-transfer payload rate"}: ${bestRate(r.perTransferBps)}`,`${LANG==="es"?"Velocidad de carga agregada":"Aggregate payload rate"}: ${bestRate(r.payloadAggregateBps)}`,`${LANG==="es"?"Datos totales":"Total data"}: ${bestSize(r.totalTransferredBytes)}`);
+ if(last.mode==="required")lines.push(`${LANG==="es"?"Velocidad de enlace requerida":"Required link rate"}: ${bestRate(r.requiredLinkBps)}`,`${LANG==="es"?"Velocidad de carga requerida":"Required payload rate"}: ${bestRate(r.requiredPayloadBps)}`,`${LANG==="es"?"Tiempo de datos":"Data time"}: ${formatNumber(r.dataSeconds,3)} s`);
+ if(last.mode==="concurrency")lines.push(`${LANG==="es"?"Usuarios máximos":"Maximum users"}: ${r.maxUsers}`,`${LANG==="es"?"Velocidad de carga disponible":"Available payload rate"}: ${bestRate(r.availablePayloadBps)}`,`${LANG==="es"?"Margen":"Headroom"}: ${bestRate(r.headroomBps)}`);
+ if(last.mode==="volume")lines.push(`${LANG==="es"?"Carga transferida":"Transferred payload"}: ${bestSize(r.totalBytes)}`,`${LANG==="es"?"Velocidad de carga":"Payload rate"}: ${bestRate(r.payloadBps)}`,`${LANG==="es"?"Volumen de 30 días":"30-day volume"}: ${bestSize(r.monthly30Bytes)}`);
  return lines.join("\n");
 }
 async function copyResult(){
@@ -218,12 +219,12 @@ function getHistory(){try{return JSON.parse(localStorage.getItem("bandwidthHisto
 function saveHistory(){
  if(!last)return;
  const history=getHistory();
- history.unshift({mode:last.mode,time:new Date().toISOString(),project:$("projectName").value.trim()||"Untitled",summary:reportText().split("\n").slice(2,5).join(" | ")});
+ history.unshift({mode:last.mode,time:new Date().toISOString(),project:$("projectName").value.trim()||DEFAULT_PROJECT,summary:reportText().split("\n").slice(2,5).join(" | ")});
  localStorage.setItem("bandwidthHistory",JSON.stringify(history.slice(0,12)));renderHistory();temp($("saveBtn"),T[LANG].saved);
 }
 function renderHistory(){
  const history=getHistory();
- $("historyList").innerHTML=history.length?history.slice(0,6).map(item=>`<article class="history-card"><strong>${esc(item.project)}</strong><span>${new Date(item.time).toLocaleString(LANG==="zh"?"zh-CN":"en-US")} · ${esc(T[LANG][item.mode])}</span><p>${esc(item.summary)}</p></article>`).join(""):`<div class="history-empty">${T[LANG].empty}</div>`;
+ $("historyList").innerHTML=history.length?history.slice(0,6).map(item=>`<article class="history-card"><strong>${esc(item.project)}</strong><span>${new Date(item.time).toLocaleString(LANG==="zh"?"zh-CN":(LANG==="es"?"es-ES":"en-US"))} · ${esc(T[LANG][item.mode])}</span><p>${esc(item.summary)}</p></article>`).join(""):`<div class="history-empty">${T[LANG].empty}</div>`;
 }
 function clearHistory(){
  if(!confirm(T[LANG].clearHistory))return;
@@ -244,3 +245,9 @@ $("csvBtn").addEventListener("click",exportCsv);
 $("printBtn").addEventListener("click",()=>window.print());
 $("clearHistoryBtn").addEventListener("click",clearHistory);
 resetAll();setMode("transfer");renderHistory();
+
+
+
+
+
+

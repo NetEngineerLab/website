@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-bandwidth-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-b051bc56ca01-4f0aadfb7eec";
+const CACHE = "nel-bandwidth-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-b051bc56ca01-455e83c2db4b";
 const CORE = [
   "./index.html",
   "./",
@@ -9,7 +9,7 @@ const CORE = [
   "./data/bandwidth-units.js",
   "./css/style.css?v=8f2687eb88a1",
   "./js/engine.js",
-  "./js/app.js?v=ba2f95b12ff5",
+  "./js/app.js?v=109cebc488bf",
   "./images/logo.svg",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",

@@ -3,8 +3,8 @@
 const E=window.NELIPv6NATEngine;
 const P=window.NEL_IPV6_NAT_PRESETS;
 const $=id=>document.getElementById(id);
-const lang=(document.documentElement.lang||"en").toLowerCase().startsWith("zh")?"zh":"en";
-const locale=lang==="zh"?"zh-CN":"en-US";
+const rawLang=(document.documentElement.lang||"en").toLowerCase(); const lang=rawLang.startsWith("zh")?"zh":(rawLang.startsWith("es")?"es":"en");
+const locale=lang==="zh"?"zh-CN":(lang==="es"?"es-ES":"en-US");
 const state={last:{},activeTab:"ipv6"};
 
 const T={
@@ -75,7 +75,9 @@ const T={
   deterministicNote:"确定性端口块通常在各传输协议中独立保留相同的数字端口块。",
   engineering:"结果为可编辑工程估算，不代表设备厂商容量承诺或正式部署审批。"
  }
-}[lang];
+};
+T.es={...T.en,errors:{invalidIPv6:"Introduzca una dirección o prefijo IPv6 válido.",invalidPrefix:"El prefijo hijo debe ser igual o más largo que el prefijo padre.",invalidIndex:"El índice inicial está fuera del prefijo padre.",invalidIPv4:"Introduzca una dirección IPv4 válida.",invalidNAT:"Revise IPv4 pública, puertos y sesiones.",invalidCGN:"Revise suscriptores, IPv4 pública y puertos.",blockTooLarge:"El bloque de puertos supera el rango utilizable.",unsupportedNAT64Prefix:"RFC 6052 admite /32, /40, /48, /56, /64 o /96.",invalidUOctet:"Los bits 64–71 deben ser cero para este prefijo /96.",prefixMismatch:"La dirección IPv6 no pertenece al prefijo seleccionado.",invalidNAT64:"Revise el prefijo y la dirección NAT64."},types:{unspecified:"No especificada",loopback:"Bucle local",multicast:"Multidifusión","link-local":"Enlace local","unique-local":"Local única",documentation:"Documentación","ipv4-mapped":"IPv4 mapeada","nat64-wkp":"Prefijo conocido NAT64","nat64-local-use":"Prefijo NAT64 de uso local","global-unicast":"Unidifusión global",other:"Otra",global:"IPv4 global",private:"IPv4 privada","shared-cgn":"Espacio CGN compartido",reserved:"Reservada",benchmark:"Benchmark","ietf-protocol":"Asignación IETF","this-network":"Esta red"},risk:{low:"Bajo",medium:"Medio",high:"Alto",critical:"Crítico"},copied:"Resultado copiado.",csv:"CSV exportado.",saved:"Proyecto guardado.",cleared:"Historial borrado.",noHistory:"No hay proyectos guardados.",load:"Cargar",delete:"Eliminar",confirmClear:"¿Borrar todos los proyectos guardados?",wkpWarning:"El prefijo conocido RFC 6052 no debe representar IPv4 no global.",localUseNote:"Prefijo de uso local para traducción IPv4/IPv6 dentro del dominio.",portNamespace:"TCP y UDP tienen espacios de puertos independientes.",deterministicNote:"El bloque determinista se reserva por separado para cada protocolo.",engineering:"Estimación de ingeniería editable; no es garantía del proveedor."};
+Object.assign(T,T[lang]||T.en);
 
 function format(n,d=2){
  const v=Number(n);
@@ -427,3 +429,8 @@ const initial=location.hash.replace("#","");
 activateTab(["ipv6","nat44","cgn","nat64"].includes(initial)?initial:"ipv6");
 resetAll();renderHistory();
 })();
+
+
+
+
+

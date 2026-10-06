@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-subnet-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-b051bc56ca01-959f16544037";
+const CACHE = "nel-subnet-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-b051bc56ca01-88d99ba5f1e4";
 const CORE = [
   "./index.html",
   "./",
@@ -9,7 +9,7 @@ const CORE = [
   "./data/ip-reference.js",
   "./css/style.css?v=659ebdf7cbf7",
   "./js/engine.js",
-  "./js/app.js?v=5b795671f39f",
+  "./js/app.js?v=0a012c60e19c",
   "./images/logo.svg",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",

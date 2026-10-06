@@ -236,6 +236,18 @@
       },
       {
         "order": 7,
+        "toolId": "ospf-cost-calculator",
+        "translations": {
+          "en": {
+            "action": "Calculate OSPF interface and path costs"
+          },
+          "zh": {
+            "action": "计算 OSPF 接口与路径 Cost"
+          }
+        }
+      },
+      {
+        "order": 8,
         "toolId": "sfp-qsfp-compatibility-calculator",
         "translations": {
           "en": {
@@ -247,7 +259,7 @@
         }
       },
       {
-        "order": 8,
+        "order": 9,
         "toolId": "acl-generator-validator",
         "translations": {
           "en": {
@@ -259,7 +271,7 @@
         }
       },
       {
-        "order": 9,
+        "order": 10,
         "toolId": "dns-ttl-propagation-calculator",
         "translations": {
           "en": {
@@ -267,6 +279,18 @@
           },
           "zh": {
             "action": "规划 DNS TTL 与传播时间"
+          }
+        }
+      },
+      {
+        "order": 11,
+        "toolId": "network-capacity-forecast-planner",
+        "translations": {
+          "en": {
+            "action": "Forecast growth and schedule capacity expansion"
+          },
+          "zh": {
+            "action": "预测增长并安排容量扩容"
           }
         }
       }
@@ -827,6 +851,61 @@
           },
           "zh": {
             "action": "准备可验证、可回退的整改变更"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "engineering-deliverable-assembly",
+    "schemaVersion": "2.1.0",
+    "status": "active",
+    "domain": "operations",
+    "primary": true,
+    "translations": {
+      "en": {
+        "name": "Engineering Deliverable Assembly Workflow",
+        "description": "Collect capacity and risk findings, then compile them into a project report, MOP, checklist and results register."
+      },
+      "zh": {
+        "name": "工程交付文档汇编工作流",
+        "description": "汇集容量与风险分析结果，生成项目报告、MOP、检查表和结果台账。"
+      }
+    },
+    "steps": [
+      {
+        "order": 1,
+        "toolId": "network-capacity-forecast-planner",
+        "translations": {
+          "en": {
+            "action": "Create a documented capacity forecast result"
+          },
+          "zh": {
+            "action": "生成有来源记录的容量预测结果"
+          }
+        }
+      },
+      {
+        "order": 2,
+        "toolId": "network-risk-hidden-hazard-assessment-generator",
+        "translations": {
+          "en": {
+            "action": "Add site risk and remediation findings"
+          },
+          "zh": {
+            "action": "补充现场风险与整改结论"
+          }
+        }
+      },
+      {
+        "order": 3,
+        "toolId": "engineering-report-batch-export-center",
+        "translations": {
+          "en": {
+            "action": "Compile imported outputs into engineering deliverables"
+          },
+          "zh": {
+            "action": "将导入结果汇总为工程交付文档"
           }
         }
       }

@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-fiber-loss-locale-v1.9.9-04-p0-p1-correctness-consent-offline-b051bc56ca01-2daab9d4456d";
+const CACHE = "nel-fiber-loss-locale-v1.9.9-04-p0-p1-correctness-consent-offline-b051bc56ca01-8edacd9dce32";
 const CORE = [
   "./index.html",
   "./",

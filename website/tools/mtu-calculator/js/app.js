@@ -1,5 +1,5 @@
 const $=id=>document.getElementById(id);
-const LANG=document.documentElement.lang.toLowerCase().startsWith("en")?"en":"zh";
+const LANG=document.documentElement.lang.toLowerCase().startsWith("zh")?"zh":(document.documentElement.lang.toLowerCase().startsWith("es")?"es":"en");
 const LIB=window.NEL_MTU_LIBRARY;
 const ENGINE=window.MTUEngine;
 let layers=[];
@@ -36,10 +36,12 @@ const T={
   }
  }
 };
+T.es={healthy:"✓ Configuración válida",warning:"⚠ Revisar",failed:"✕ Riesgo de fragmentación",layer:"Capa de encapsulación",bytes:"Bytes por capa",count:"Cantidad",total:"Total",remove:"Eliminar",copied:"Resultado copiado",saved:"Registro guardado",csv:"CSV exportado",empty:"No hay registros guardados.",clearHistory:"¿Borrar todo el historial guardado?",warnings:{headers_exceed_mtu:"La MTU efectiva no admite las cabeceras configuradas.",desired_exceeds_effective:"La MTU interna objetivo supera la MTU efectiva y puede fragmentarse o descartarse.",ipv6_below_1280:"La MTU IPv6 efectiva es inferior a 1280 bytes; revisa el diseño.",ipv4_below_576:"La MTU IPv4 efectiva es inferior a 576 bytes.",low_headroom:"La MTU objetivo está a menos de 40 bytes del límite efectivo.",plain_path:"No se ha configurado encapsulación adicional."}};
 
-function esc(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+const DEFAULT_PROJECT=LANG==="es"?"Sin título":"Untitled"; function esc(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
 function num(id){return Number.parseFloat($(id).value)}
-function layerLabel(id){return LIB.layers[id]?.[LANG]||id}
+const ES_LAYERS={pppoe:"Cabecera de sesión PPPoE + campo de protocolo PPP",mpls:"Etiqueta MPLS individual",ipip4:"Cabecera IPv4 exterior IP-in-IP",ipip6:"Cabecera IPv6 exterior IP-in-IP",gre4:"IPv4 exterior + GRE básico",gre4key:"IPv4 exterior + clave GRE",gre4keyseq:"IPv4 exterior + clave GRE + secuencia",gre6:"IPv6 exterior + GRE básico",vxlan4:"IPv4 exterior + UDP + VXLAN + Ethernet interior",vxlan6:"IPv6 exterior + UDP + VXLAN + Ethernet interior",esp4:"Estimación IPv4 ESP AES-GCM",esp4natt:"Estimación IPv4 ESP AES-GCM + NAT-T",esp6:"Estimación IPv6 ESP AES-GCM",esp6natt:"Estimación IPv6 ESP AES-GCM + NAT-T",wireguard4:"Sobrecarga de transporte IPv4 + UDP + WireGuard",wireguard6:"Sobrecarga de transporte IPv6 + UDP + WireGuard",custom:"Sobrecarga personalizada"};
+function layerLabel(id){return LANG==="es"?(ES_LAYERS[id]||id):(LIB.layers[id]?.[LANG]||id)}
 function temp(button,message){const old=button.innerHTML;button.textContent=message;setTimeout(()=>button.innerHTML=old,1300)}
 
 function addLayer(type="custom",count=1,bytes=null){
@@ -66,7 +68,7 @@ function typeOptions(selected){
 function renderLayers(){
  const body=$("layerBody");
  if(!layers.length){
-  body.innerHTML=`<tr><td colspan="5" class="empty-row">${LANG==="zh"?"未添加额外封装层。":"No additional encapsulation layers."}</td></tr>`;
+  body.innerHTML=`<tr><td colspan="5" class="empty-row">${LANG==="zh"?"未添加额外封装层。":(LANG==="es"?"No hay capas de encapsulación adicionales.":"No additional encapsulation layers.")}</td></tr>`;
   return;
  }
  body.innerHTML=layers.map(layer=>`<tr>
@@ -163,24 +165,24 @@ function renderResult(r){
  $("mtuBar").style.width=Math.max(0,Math.min(100,r.effectiveInnerMtu/Math.max(1,r.underlayMtu)*100))+"%";
 
  $("warningList").innerHTML=r.warnings.map(code=>`<li>${esc(T[LANG].warnings[code]||code)}</li>`).join("");
- if(!r.warnings.length)$("warningList").innerHTML=`<li>${LANG==="zh"?"当前参数未发现明显风险。":"No material risk was found with the current inputs."}</li>`;
+ if(!r.warnings.length)$("warningList").innerHTML=`<li>${LANG==="zh"?"当前参数未发现明显风险。":(LANG==="es"?"No se detectó riesgo material con las entradas actuales.":"No material risk was found with the current inputs.")}</li>`;
 
  $("breakdownBody").innerHTML=[
-  [LANG==="zh"?"基础Underlay MTU":"Base underlay MTU",r.underlayMtu],
-  [LANG==="zh"?"严格VLAN扣减":"Strict VLAN deduction",r.strictVlan?r.vlanBytes:0],
+  [LANG==="zh"?"基础Underlay MTU":(LANG==="es"?"MTU base subyacente":"Base underlay MTU"),r.underlayMtu],
+  [LANG==="zh"?"严格VLAN扣减":(LANG==="es"?"Deducción VLAN estricta":"Strict VLAN deduction"),r.strictVlan?r.vlanBytes:0],
   ...r.layers.map(layer=>[`${esc(layer.label)} × ${layer.count}`,layer.bytes*layer.count]),
-  [LANG==="zh"?"总封装开销":"Total encapsulation overhead",r.totalLayerOverhead],
-  [LANG==="zh"?"有效内层MTU":"Effective inner MTU",r.effectiveInnerMtu]
+  [LANG==="zh"?"总封装开销":(LANG==="es"?"Sobrecarga total de encapsulación":"Total encapsulation overhead"),r.totalLayerOverhead],
+  [LANG==="zh"?"有效内层MTU":(LANG==="es"?"MTU interna efectiva":"Effective inner MTU"),r.effectiveInnerMtu]
  ].map(([name,bytes],index)=>`<tr class="${index>=r.layers.length+2?"total-row":""}"><td>${name}</td><td>${bytes} B</td></tr>`).join("");
 
  renderStack(r);
 }
 function renderStack(r){
  const items=[
-  {name:LANG==="zh"?"物理链路":"Physical link",bytes:r.underlayMtu},
+  {name:LANG==="zh"?"物理链路":(LANG==="es"?"Enlace físico":"Physical link"),bytes:r.underlayMtu},
   ...(r.strictVlan&&r.vlanBytes?[{name:`VLAN × ${r.outerVlanTags}`,bytes:r.vlanBytes}]:[]),
   ...r.layers.map(layer=>({name:layer.label,bytes:layer.bytes*layer.count})),
-  {name:LANG==="zh"?"有效内层IP":"Effective inner IP",bytes:r.effectiveInnerMtu}
+  {name:LANG==="zh"?"有效内层IP":(LANG==="es"?"IP interna efectiva":"Effective inner IP"),bytes:r.effectiveInnerMtu}
  ];
  $("stackDiagram").innerHTML=items.map((item,index)=>`<div class="stack-item ${index===items.length-1?"inner":""}"><strong>${esc(item.name)}</strong><span>${item.bytes} B</span></div>`).join('<span class="stack-arrow">→</span>');
 }
@@ -194,15 +196,15 @@ function reportText(){
  if(!last)calculate();
  return [
   "NetEngineerLab - MTU & MSS Calculator",
-  `${LANG==="zh"?"工程":"Project"}: ${$("projectName").value.trim()||"Untitled"}`,
-  `${LANG==="zh"?"基础Underlay MTU":"Base underlay MTU"}: ${last.underlayMtu} B`,
-  `${LANG==="zh"?"总封装开销":"Total overhead"}: ${last.totalLayerOverhead} B`,
-  `${LANG==="zh"?"有效内层MTU":"Effective inner MTU"}: ${last.effectiveInnerMtu} B`,
-  `${LANG==="zh"?"推荐TCP MSS":"Recommended TCP MSS"}: ${last.advertisedMss} B`,
-  `${LANG==="zh"?"实际TCP数据":"Actual TCP data"}: ${last.actualTcpData} B`,
-  `${LANG==="zh"?"ICMP测试载荷":"ICMP test payload"}: ${last.icmpPayload} B`,
-  `${LANG==="zh"?"所需Underlay MTU":"Required underlay MTU"}: ${last.requiredBaseMtu} B`,
-  `${LANG==="zh"?"状态":"Status"}: ${T[LANG][last.status]}`
+  `${LANG==="zh"?"工程":(LANG==="es"?"Proyecto":"Project")}: ${$("projectName").value.trim()||DEFAULT_PROJECT}`,
+  `${LANG==="zh"?"基础Underlay MTU":(LANG==="es"?"MTU base subyacente":"Base underlay MTU")}: ${last.underlayMtu} B`,
+  `${LANG==="zh"?"总封装开销":(LANG==="es"?"Sobrecarga total":"Total overhead")}: ${last.totalLayerOverhead} B`,
+  `${LANG==="zh"?"有效内层MTU":(LANG==="es"?"MTU interna efectiva":"Effective inner MTU")}: ${last.effectiveInnerMtu} B`,
+  `${LANG==="zh"?"推荐TCP MSS":(LANG==="es"?"MSS TCP recomendado":"Recommended TCP MSS")}: ${last.advertisedMss} B`,
+  `${LANG==="zh"?"实际TCP数据":(LANG==="es"?"Datos TCP reales":"Actual TCP data")}: ${last.actualTcpData} B`,
+  `${LANG==="zh"?"ICMP测试载荷":(LANG==="es"?"Carga de prueba ICMP":"ICMP test payload")}: ${last.icmpPayload} B`,
+  `${LANG==="zh"?"所需Underlay MTU":(LANG==="es"?"MTU subyacente requerida":"Required underlay MTU")}: ${last.requiredBaseMtu} B`,
+  `${LANG==="zh"?"状态":(LANG==="es"?"Estado":"Status")}: ${T[LANG][last.status]}`
  ].join("\n");
 }
 async function copyResult(){
@@ -214,16 +216,16 @@ async function copyResult(){
 function exportCsv(){
  if(!last)calculate();
  const rows=[
-  ["Project",$("projectName").value.trim()||"Untitled"],
-  ["Base underlay MTU",last.underlayMtu],
-  ["Total overhead",last.totalLayerOverhead],
-  ["Effective inner MTU",last.effectiveInnerMtu],
-  ["Recommended TCP MSS",last.advertisedMss],
-  ["Actual TCP payload",last.actualTcpData],
-  ["UDP payload",last.udpPayload],
-  ["ICMP payload",last.icmpPayload],
-  ["Required underlay MTU",last.requiredBaseMtu],
-  ["Status",T[LANG][last.status]]
+  [LANG==="es"?"Proyecto":"Project",$("projectName").value.trim()||DEFAULT_PROJECT],
+  [LANG==="es"?"MTU base subyacente":"Base underlay MTU",last.underlayMtu],
+  [LANG==="es"?"Sobrecarga total":"Total overhead",last.totalLayerOverhead],
+  [LANG==="es"?"MTU interna efectiva":"Effective inner MTU",last.effectiveInnerMtu],
+  [LANG==="es"?"MSS TCP recomendado":"Recommended TCP MSS",last.advertisedMss],
+  [LANG==="es"?"Carga TCP real":"Actual TCP payload",last.actualTcpData],
+  [LANG==="es"?"Carga UDP":"UDP payload",last.udpPayload],
+  [LANG==="es"?"Carga ICMP":"ICMP payload",last.icmpPayload],
+  [LANG==="es"?"MTU subyacente requerida":"Required underlay MTU",last.requiredBaseMtu],
+  [LANG==="es"?"Estado":"Status",T[LANG][last.status]]
  ];
  const csv="\uFEFF"+rows.map(row=>row.map(v=>`"${String(v).replaceAll('"','""')}"`).join(",")).join("\n");
  const blob=new Blob([csv],{type:"text/csv;charset=utf-8"}),a=document.createElement("a");
@@ -234,7 +236,7 @@ function saveHistory(){
  if(!last)calculate();
  const history=getHistory();
  history.unshift({
-  project:$("projectName").value.trim()||"Untitled",
+  project:$("projectName").value.trim()||DEFAULT_PROJECT,
   time:new Date().toISOString(),
   effective:last.effectiveInnerMtu,
   mss:last.advertisedMss,
@@ -246,7 +248,7 @@ function saveHistory(){
 }
 function renderHistory(){
  const history=getHistory();
- $("historyList").innerHTML=history.length?history.slice(0,6).map(item=>`<article class="history-card"><strong>${esc(item.project)}</strong><span>${new Date(item.time).toLocaleString(LANG==="zh"?"zh-CN":"en-US")}</span><p>MTU ${item.effective} · MSS ${item.mss} · ${item.overhead} B</p><small>${T[LANG][item.status]}</small></article>`).join(""):`<div class="history-empty">${T[LANG].empty}</div>`;
+ $("historyList").innerHTML=history.length?history.slice(0,6).map(item=>`<article class="history-card"><strong>${esc(item.project)}</strong><span>${new Date(item.time).toLocaleString(LANG==="zh"?"zh-CN":(LANG==="es"?"es-ES":"en-US"))}</span><p>MTU ${item.effective} · MSS ${item.mss} · ${item.overhead} B</p><small>${T[LANG][item.status]}</small></article>`).join(""):`<div class="history-empty">${T[LANG].empty}</div>`;
 }
 function clearHistory(){
  if(!confirm(T[LANG].clearHistory))return;
@@ -263,3 +265,9 @@ $("csvBtn").addEventListener("click",exportCsv);
 $("printBtn").addEventListener("click",()=>window.print());
 $("clearHistoryBtn").addEventListener("click",clearHistory);
 resetAll();renderHistory();
+
+
+
+
+
+

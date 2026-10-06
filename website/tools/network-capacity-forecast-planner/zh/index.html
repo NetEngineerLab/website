@@ -1,0 +1,70 @@
+<!doctype html><html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="tools/network-capacity-forecast-planner/"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>网络容量增长预测规划器 | NetEngineerLab</title><meta name="description" content="根据实测忙时利用率预测网络流量增长，估算达到扩容阈值的时间和所需容量。"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"网络容量增长预测规划器","url":"https://netengineerlab.com/tools/network-capacity-forecast-planner/zh/","applicationCategory":"UtilitiesApplication","isAccessibleForFree":true,"description":"根据实测忙时利用率预测网络流量增长，估算达到扩容阈值的时间和所需容量。"}</script><meta property="og:url" content="https://netengineerlab.com/tools/network-capacity-forecast-planner/zh/">
+<meta property="og:title" content="网络容量增长预测规划器 | NetEngineerLab">
+<meta property="og:description" content="根据实测忙时利用率预测网络流量增长，估算达到扩容阈值的时间和所需容量。">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"网络容量增长预测规划器 | NetEngineerLab","url":"https://netengineerlab.com/tools/network-capacity-forecast-planner/zh/","description":"根据实测忙时利用率预测网络流量增长，估算达到扩容阈值的时间和所需容量。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="zh">
+<meta name="nel-route" content="tools/network-capacity-forecast-planner/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/tools/network-capacity-forecast-planner/zh/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/network-capacity-forecast-planner/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/network-capacity-forecast-planner/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/network-capacity-forecast-planner/es/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/network-capacity-forecast-planner/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=dc6c5cc9b8ad">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=8c488ab6e2be">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=58918fefbb35">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=0da39eabe820"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=8d8b9520aba5">
+<link rel="manifest" href="../manifest-zh.webmanifest">
+</head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1"><!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../zh/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="打开导航菜单"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="主导航">
+      <a href="../../../zh/">首页</a>
+      <a href="../../zh/" aria-current="page">工具中心</a>
+      <a href="../../../zh/about/">关于我们</a>
+      <a href="../../../zh/contact/">联系我们</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="./" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a><a class="language-option" role="menuitem" href="../es/" lang="es" hreflang="es"><span>Español</span><small>西班牙语</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">开始计算</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END --><!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a class="tool-return-link" href="../../zh/">← 返回工具中心</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">网络容量增长预测规划器</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END --><section class="hero nel-tool-hero"><div class="hero-inner"><p class="eyebrow">容量规划</p><h1>网络容量增长预测规划器</h1><p>将实测忙时利用率转化为增长预测、扩容触发时间和目标容量。</p><div class="hero-tags"><span>增长预测</span><span>扩容时机</span><span>目标容量</span></div></div></section><main id="calculator" class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid"><section class="input-panel card nel-tool-input"><h2>实测基线与设计假设</h2><p>统一资源边界，例如单条链路、聚合链路、路径或共享容量池。</p><div class="form-grid"><div class="field"><label for="capacityGbps">已安装可用容量（Gbps）</label><input id="capacityGbps" type="number" min="0.01" step="any" value="100"></div><div class="field"><label for="utilizationPct">实测忙时利用率（%）</label><input id="utilizationPct" type="number" min="0" max="100" step="any" value="50"></div><div class="field"><label for="annualGrowthPct">年复合增长率（%）</label><input id="annualGrowthPct" type="number" min="0" max="300" step="any" value="20"></div><div class="field"><label for="peakFactorPct">峰值/百分位余量（%）</label><input id="peakFactorPct" type="number" min="0" max="200" step="any" value="10"></div><div class="field"><label for="targetUtilizationPct">扩容触发利用率（%）</label><input id="targetUtilizationPct" type="number" min="1" max="100" step="any" value="70"></div><div class="field"><label for="horizonYears">规划周期（年）</label><input id="horizonYears" type="number" min="1" max="30" step="1" value="3"></div><div class="history-panel"><h3>历史忙时观测（可选）</h3><p>粘贴 CSV：date,utilizationPct；至少 3 行，系统拟合增长率并检查缺失周期与异常值。</p><textarea id="historyObservations" rows="5" placeholder="date,utilizationPct\n2026-01-01,48\n2026-02-01,51\n2026-03-01,55"></textarea><p id="historyFeedback" class="note-box"></p></div></div><p class="error" id="error" hidden>请输入有效参数：扩容阈值须高于当前利用率，且不超过已安装容量。</p><div class="actions"><button id="copy" type="button">复制 JSON 报告</button><button id="download" type="button">下载预测 CSV</button><button id="print" type="button">打印</button></div></section><section class="result-panel card nel-tool-result"><h2>预测结果与扩容决策依据</h2><p class="summary"><strong id="headline">—</strong> <span id="status">—</span></p><div class="metrics"><article class="metric"><small>当前实测需求</small><strong><span id="currentDemand">—</span> Gbps</strong></article><article class="metric"><small>当前峰值需求</small><strong><span id="currentPeak">—</span> Gbps</strong></article><article class="metric"><small>当前峰值利用率</small><strong><span id="currentUtil">—</span>%</strong></article><article class="metric"><small>扩容阈值</small><strong><span id="threshold">—</span>%</strong></article><article class="metric"><small>距触发阈值（月）</small><strong><span id="months">—</span></strong></article><article class="metric"><small>规划期峰值需求</small><strong><span id="projectedPeak">—</span> Gbps</strong></article><article class="metric"><small>规划期峰值利用率</small><strong><span id="projectedUtil">—</span>%</strong></article><article class="metric"><small>阈值下所需容量</small><strong><span id="requiredCapacity">—</span> Gbps</strong></article><article class="metric"><small>建议新增容量</small><strong><span id="additional">—</span> Gbps</strong></article></div><p id="notes" class="warnings"></p><h3>逐年预测</h3><div class="table-wrap"><table><thead><tr><th>年</th><th>需求</th><th>峰值</th><th>峰值利用率</th><th>剩余容量</th><th>状态</th></tr></thead><tbody id="forecastRows"></tbody></table></div></section></main><section class="content nel-tool-supporting-section"><h2>预测结果使用说明</h2><div class="grid"><article><h3>使用实测基线</h3><p>采用有代表性的忙时 P95/P99 或其他已记录规划百分位，并确保容量边界和流量方向一致。</p></article><article><h3>设置触发值与周期</h3><p>扩容阈值应结合时延、丢包、队列、服务承诺和采购周期确定，不存在适用于所有网络的统一安全比例。</p></article><article><h3>理解扩容时间</h3><p>距阈值月份按固定复合增长率估算。应随着实测增长变化定期更新。</p></article><article><h3>校验扩容方案</h3><p>采购前还需检查故障后的存活容量、路径多样性、流量不对称、硬件限制、队列丢包和交付周期。</p></article></div><h2>工程边界</h2><p>本地浏览器规划器不会读取原始计数器，也不模拟季节性、队列行为、ECMP 不均衡或故障拓扑。增长结果用于初步筛查，须结合遥测和设计评审验证。</p><h2>常见问题</h2><div data-nel-faq><details><summary>年增长率如何确定？</summary><p>根据数月或数季度的可比忙时测量拟合趋势，并记录新站点、用户或应用上线等变化。</p></details><details><summary>预测月份能保证届时不会拥塞吗？</summary><p>不能。计算依据是输入的平均基线和增长假设。短时峰值、流量不均或故障都可能使阈值更早被突破。</p></details><details><summary>为什么所需容量高于已安装容量？</summary><p>规划会保留所设目标利用率作为余量；所需容量等于规划峰值需求除以目标利用率。</p></details></div><p>方法：复合增长预测和目标利用率容量测算。采购前须使用实际遥测复核。</p><a href="../../../zh/topics/switch-oversubscription/">交换机容量规划专题</a></section><script>window.NEL_LANG='zh';</script><script src="../js/engine.js"></script><script src="../js/app.js?v=3ed2eba563d7"></script><script defer src="/assets/js/tool-integration.js?v=05f7934f4687"></script><script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script><!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="network-capacity-forecast-planner" data-primary-workflow="enterprise-lan-ip-planning">
+<div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">当前流程</span><strong>企业 LAN 与 IP 规划工作流</strong><p>把地址规划、VLAN 容量、MTU、上联、光模块、访问策略和 DNS 行为串成完整局域网设计流程。</p></div><div class="nel-workflow-step"><strong>步骤 11 / 11</strong><div class="nel-workflow-progress" aria-label="步骤 11 / 11"><span style="width:100%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="../../dns-ttl-propagation-calculator/zh/"><span class="nel-tool-graph-label">上一步</span><strong>DNS TTL与传播时间计算器</strong><span class="nel-tool-graph-description">估算DNS缓存到期、传播窗口与TTL变更时间表。</span></a><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">下一步</span><strong>流程终点</strong></div></div>
+<h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="../../bandwidth-calculator/zh/"><strong>带宽与传输时间计算器</strong><span class="nel-tool-graph-description">计算文件传输时间、所需链路速率、并发用户容量和持续速率对应的数据量。</span></a><a class="nel-tool-graph-card" href="../../switch-uplink-oversubscription-calculator/zh/"><strong>交换机上联带宽与超售比计算器</strong><span class="nel-tool-graph-description">根据接入端口、利用率、并发率与冗余方式规划交换机上联带宽。</span></a><a class="nel-tool-graph-card" href="../../data-center-network-convergence-fabric-capacity-planner/zh/"><strong>数据中心网络收敛比与 Fabric 容量规划器</strong><span class="nel-tool-graph-description">规划 Leaf-Spine 和三层数据中心的收敛比、东西向/南北向业务、Spine N-1、瓶颈与增长容量。</span></a></div><div class="nel-workflow-memberships"><span class="nel-workflow-memberships-label">同时用于</span><span class="nel-workflow-chip">工程交付文档汇编工作流</span></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div>
+    <nav class="site-shell-footer-links" aria-label="页脚导航">
+      <a href="../../../zh/about/">关于</a><a href="../../../zh/contact/">联系</a><a href="../../../zh/privacy/">隐私政策</a><a href="../../../zh/terms/">使用条款</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END --></body></html>

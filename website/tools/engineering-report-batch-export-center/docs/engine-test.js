@@ -1,0 +1,10 @@
+"use strict";
+var assert=require("node:assert/strict"),E=require("../js/engine");
+var records=E.parseImport(JSON.stringify({tool:"Capacity Planner",website:"/tools/capacity/",generatedAt:"2026-10-02",inputs:{capacity:100},result:{status:"warning",required:120}}));assert.equal(records.length,1);assert.equal(records[0].status,"warning");
+var many=E.parseImport(JSON.stringify({results:[{tool:"A",result:{risk:"LOW"}},{tool:"B",result:{decision:"PASS"}}]}));assert.equal(many.length,2);
+assert.deepEqual(E.parseImport('Tool,Status,Result\n"Optical, Link",PASS,"margin: 3 dB"',"results.csv").map(function(x){return x.tool;}),["Optical, Link"]);
+assert.throws(function(){E.parseImport('Tool,Status\nA,PASS,EXTRA',"bad.csv");},/different number/);
+assert.throws(function(){E.parseImport('Tool,Status\n"A,PASS',"bad.csv");},/unterminated/);
+var bundle=E.createBundle(records.concat(many),{project:"Metro Upgrade",owner:"NetOps",locale:"zh"});assert.equal(bundle.records.length,3);assert.match(E.toMarkdown(bundle,"mop"),/实施顺序/);assert.match(E.toMarkdown(bundle,"checklist"),/工程复核检查表/);assert.match(E.toMarkdown(bundle,"ledger"),/工程结果台账/);assert.match(E.toMarkdown(bundle,"report"),/Capacity Planner/);assert.match(E.toCsv(bundle),/Capacity Planner/);assert.throws(function(){E.parseImport("");},/non-empty/);assert.throws(function(){E.createBundle([]);},/at least one/);console.log("Engineering Report Center engine PASS (JSON/CSV import, bundle, report/MOP/checklist/register exports)");
+var hostile=E.createBundle([{tool:"Edge | Link",sourceUrl:"x|y",status:"PASS",result:{finding:"value|injected"}}],{project:"P|Q",locale:"en"});var safe=E.toMarkdown(hostile,"ledger");assert.match(safe,/Edge \\\| Link/);assert.match(safe,/x\\\|y/);assert.match(E.toMarkdown(hostile,"report"),/value\\\|injected/);
+assert.throws(function(){E.parseImport("");},/non-empty/);assert.throws(function(){E.createBundle([]);},/at least one/);console.log("Engineering Report Center engine PASS (JSON/CSV import, malformed CSV rejection, escaped Markdown, report/MOP/checklist/register exports)");

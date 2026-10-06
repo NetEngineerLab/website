@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html lang="es" dir="ltr" data-nel-locale="es" data-nel-route="tools/48v-battery-runtime/"><head>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="" name="app-base"/>
+<title>Calculadora de autonomía de batería telecom -48 V | NetEngineerLab</title><meta content="Enterprise -48V telecom battery runtime, capacity and parallel-string calculator for OLT, BBU, transport and core network equipment." name="description"/><meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
+<meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="Calculadora de autonomía de batería telecom -48 V | NetEngineerLab" property="og:title"/><meta content="Enterprise -48V telecom battery runtime, capacity and parallel-string calculator for OLT, BBU, transport and core network equipment." property="og:description"/><meta content="https://netengineerlab.com/tools/48v-battery-runtime/es/" property="og:url"/><meta content="https://netengineerlab.com/tools/48v-battery-runtime/images/og-48v-battery-runtime.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
+<link href="css/style.css?v=615b07db9494" rel="stylesheet"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"-48V Telecom Battery Ejecutartime Calculator","url":"https://netengineerlab.com/tools/48v-battery-runtime/es/","description":"Enterprise -48V telecom battery runtime, capacity and parallel-string calculator for OLT, BBU, transport and core network equipment.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Telecom Power Engineering Calculator","operatingSystem":"Any","sdetwareVersion":"1.1.1","inLanguage":"es","isAccessibleForFree":true,"defers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
+<script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://netengineerlab.com/es/"},{"@type":"ListItem","position":2,"name":"Herramientas","item":"https://netengineerlab.com/tools/es/"},{"@type":"ListItem","position":3,"name":"-48V Telecom Battery Ejecutartime Calculator","item":"https://netengineerlab.com/tools/48v-battery-runtime/es/"}]}</script><meta content="NetEngineerLab" name="author"/>
+<link href="/assets/css/cookie-consent.css?v=v180-hotfix03" rel="stylesheet"/>
+<link href="/assets/css/mobile-branding.css?v=1.9.5-06" rel="stylesheet"/>
+<script defer="" src="/data/seo-config.js"></script>
+<script defer="" src="/assets/js/seo-engine.js"></script>
+<script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why is there no power-factor input?","acceptedAnswer":{"@type":"Answer","text":"Power factor applies to AC systems. During an outage, the battery supplies the DC bus, so use DC watts or amperes."}},{"@type":"Question","name":"Why not use only 48 V × Ah ÷ watts?","acceptedAnswer":{"@type":"Answer","text":"Ejecutartime also depends on end voltage, discharge rate, envejecimiento, temperature, usable depth, DC losses and the manufacturer's discharge curve."}},{"@type":"Question","name":"¿Por qué the preset use 24 two-volt cells?","acceptedAnswer":{"@type":"Answer","text":"Twenty-four 2 V cells form a nominal 48 V string. It is a common telecom arrangement, but the actual site and vendor configuration governs."}},{"@type":"Question","name":"What Peukert exponent should be used?","acceptedAnswer":{"@type":"Answer","text":"Use manufacturer data whenever possible. Presets are editable engineering references; lithium and high-rate systems particularly require vendor curves or BMS data."}},{"@type":"Question","name":"¿Puede the result be used directly for procurement?","acceptedAnswer":{"@type":"Answer","text":"No. It is for comparison and preliminary sizing. Procurement requires measured load, manufacturer tables, site temperature, end voltage and redundancy review."}}]}</script>
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Calculadora de autonomía de batería telecom -48 V | NetEngineerLab","url":"https://netengineerlab.com/tools/48v-battery-runtime/es/","description":"Enterprise -48V telecom battery runtime, capacity and parallel-string calculator for OLT, BBU, transport and core network equipment.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="es">
+<meta name="nel-route" content="tools/48v-battery-runtime/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/tools/48v-battery-runtime/es/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/48v-battery-runtime/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/48v-battery-runtime/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/48v-battery-runtime/es/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/48v-battery-runtime/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=dc6c5cc9b8ad">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=8c488ab6e2be">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=58918fefbb35">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=0da39eabe820"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=8d8b9520aba5">
+<link rel="manifest" href="../manifest-es.webmanifest">
+</head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<a class="skip" href="#calculator">Ir a la calculadora</a><noscript><div class="noscript">JavaScript required / 本工具需要启用JavaScript。</div></noscript>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../es/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Plataforma de inteligencia para ingeniería de redes</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Abrir navegación"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navegación principal">
+      <a href="../../../es/">Inicio</a>
+      <a href="../../es/" aria-current="page">Herramientas</a>
+      <a href="../../../es/about/">Acerca de</a>
+      <a href="../../../es/contact/">Contacto</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Español"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Español</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../" lang="en" hreflang="en"><span>English</span><small>Inglés</small></a><a class="language-option" role="menuitem" href="../zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chino simplificado</small></a><a class="language-option" role="menuitem" href="./" lang="es" hreflang="es" aria-current="page"><span>Español</span><small>Español</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">Empezar a calcular</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a class="tool-return-link" href="../../es/">← Volver a herramientas</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">-48V Telecom Battery Runtime Calculator</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END -->
+<section class="hero nel-tool-hero"><div class="hero-inner"><p class="eyebrow">TELECOM DC POWER ENGINEERING TOOL</p><h1>Calculadora de autonomía de batería telecom -48 V</h1><p>Estimate battery runtime, required capacity, parallel strings and discharge-current rise for OLT, BBU, transport, core and access telecom sites.</p><div class="hero-tags"><span>2 V cells × 24</span><span>Constant power/current</span><span>Temperature &amp; envejecimiento</span><span>Reverse sizing</span></div></div></section>
+<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
+<section class="input-panel card nel-tool-input"><div class="section-title"><span class="section-icon">48</span><div><h2>Battery bank and load parameters</h2><p>Select an engineering preset, then replace it with actual battery and equipment data.</p></div></div><div class="notice">All defaults are editable engineering presets, not universal standards. Final sizing must use manufacturer discharge curves, end voltage and measured site load.</div>
+<div class="form-grid">
+<div class="field full"><label for="projectName">Project name</label><div class="input-wrap"><input id="projectName" value="Telecom DC Backup Design"/></div></div>
+<div class="field"><label for="batteryPreset">Battery preset</label><div class="input-wrap no-unit"><select id="batteryPreset"></select></div></div>
+<div class="field"><label for="model">Calculation model</label><div class="input-wrap no-unit"><select id="model"><option value="peukert">Peukert-adjusted estimate</option><option value="simple">Simplified Ah/energy model</option></select></div></div>
+<div class="subheading">Battery-bank structure</div>
+<div class="field"><label for="nominalCellV">Nominal cell voltage</label><div class="input-wrap"><input id="nominalCellV" min="0.1" step="0.01" type="number"/><span>V</span></div></div>
+<div class="field"><label for="floatCellV">Reference float voltage/cell</label><div class="input-wrap"><input id="floatCellV" min="0.1" step="0.01" type="number"/><span>V</span></div></div>
+<div class="field"><label for="startCellV">Discharge start voltage/cell</label><div class="input-wrap"><input id="startCellV" min="0.1" step="0.01" type="number"/><span>V</span></div></div>
+<div class="field"><label for="cutdefCellV">End voltage/cell</label><div class="input-wrap"><input id="cutdefCellV" min="0.1" step="0.01" type="number"/><span>V</span></div></div>
+<div class="field"><label for="seriesCells">Cells in series/string</label><div class="input-wrap"><input id="seriesCells" min="1" step="1" type="number"/><span>cells</span></div></div>
+<div class="field"><label for="parallelStrings">Parallel strings</label><div class="input-wrap"><input id="parallelStrings" min="1" step="1" type="number" value="2"/><span>strings</span></div></div>
+<div class="field"><label for="capacityAh">Rated capacity/string</label><div class="input-wrap"><input id="capacityAh" min="1" step="1" type="number"/><span>Ah</span></div></div>
+<div class="field"><label for="ratedHours">Capacity rating duration</label><div class="input-wrap"><input id="ratedHours" min=".1" step=".1" type="number"/><span>h</span></div></div>
+</div>
+<button aria-expanded="false" class="advanced-toggle" data-advanced-toggle="" type="button">Advanced discharge parameters ▾</button>
+<div class="advanced-panel" hidden="" id="advancedPanel"><div class="form-grid">
+<div class="field"><label for="peukertExponent">Peukert exponent</label><div class="input-wrap"><input id="peukertExponent" max="1.5" min="1" step=".01" type="number"/></div></div>
+<div class="field"><label for="chemistry">Battery chemistry</label><div class="input-wrap no-unit"><select id="chemistry"><option value="lead-acid">Lead-acid</option><option value="lifepo4">LiFePO₄</option><option value="custom">Custom</option></select></div></div>
+</div></div>
+<div class="load-selector"><div class="subheading">Telecom equipment load</div><div class="form-grid">
+<div class="field full"><label for="loadMode">Load input mode</label><div class="input-wrap no-unit"><select id="loadMode"><option value="equipment">Equipment current list</option><option value="current">Direct total current</option></select></div></div>
+<div class="field full" hidden="" id="currentField"><label for="loadCurrentA">Total telecom equipment current</label><div class="input-wrap"><input id="loadCurrentA" min="0" type="number" value="50"/><span>A</span></div></div>
+</div>
+<div class="equipment-wrap" id="equipmentSection"><div class="equipment-head"><h3>Equipment current list</h3><button id="addEquipmentBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 5v14M5 12h14"></path></svg> Add equipment</button></div><div class="table-scroll"><table class="equipment-table"><thead><tr><th>Equipment</th><th>Qty</th><th>Unit current</th><th>Total current</th><th></th></tr></thead><tbody id="equipmentBody"></tbody></table></div><div class="equipment-total"><span>Total</span><strong id="equipmentTotal">0 A</strong></div></div></div>
+<div class="subheading">Design and capacity corrections</div><div class="form-grid">
+<div class="field"><label for="loadMarginPct">Load growth/design margin</label><div class="input-wrap"><input id="loadMarginPct" min="0" step="1" type="number" value="15"/><span>%</span></div></div>
+<div class="field"><label for="pathEfficiencyPct">DC path efficiency</label><div class="input-wrap"><input id="pathEfficiencyPct" max="100" min="1" step=".1" type="number"/><span>%</span></div></div>
+<div class="field"><label for="dodPct">Allowed usable depth</label><div class="input-wrap"><input id="dodPct" max="100" min="1" step="1" type="number"/><span>%</span></div></div>
+<div class="field"><label for="agePct">Remaining capacity after envejecimiento</label><div class="input-wrap"><input id="agePct" max="100" min="1" step="1" type="number"/><span>%</span></div></div>
+<div class="field"><label for="tempPct">Temperature capacity factor</label><div class="input-wrap"><input id="tempPct" max="150" min="1" step="1" type="number"/><span>%</span></div></div>
+<div class="field"><label for="curvePct">Manufacturer-curve calibration</label><div class="input-wrap"><input id="curvePct" max="150" min="1" step="1" type="number"/><span>%</span></div></div>
+<div class="field full"><label for="targetEjecutartimeH">Target runtime</label><div class="input-wrap"><input id="targetEjecutartimeH" min="0" step=".5" type="number" value="8"/><span>h</span></div></div>
+</div><div class="input-actions"><button class="primary" id="calculateBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> Calcular runtime and capacity</button><button class="secondary" id="resetBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M20 11a8 8 0 1 0-2.3 5.7"></path><path d="M20 4v7h-7"></path></svg> Restablecer telecom preset</button></div>
+</section>
+<section aria-live="polite" class="result-panel card nel-tool-result"><div class="section-title"><span class="section-icon">RT</span><div><h2>Ejecutartime and capacity results</h2><p>Current runtime and reverse sizing for the target duration.</p></div></div>
+<div class="summary-card healthy" id="summaryCard"><div><p>Estimated runtime</p><strong id="runtimeValue">—</strong><small><span>Model:</span> <span id="runtimeModel">—</span></small></div><span class="status-badge" id="statusBadge">—</span></div>
+<div class="metric-grid">
+<article class="metric"><small>Nominal voltage</small><strong id="nominalVoltage">—</strong></article><article class="metric"><small>Reference float voltage</small><strong id="floatVoltage">—</strong></article>
+<article class="metric"><small>End voltage</small><strong id="cutdefVoltage">—</strong></article><article class="metric"><small>Design load</small><strong id="designLoad">—</strong></article>
+<article class="metric"><small>Average battery current</small><strong id="averageCurrent">—</strong></article><article class="metric"><small>Current at end voltage</small><strong id="cutdefCurrent">—</strong></article>
+<article class="metric"><small>Nameplate energy</small><strong id="nameplateEnergy">—</strong></article><article class="metric"><small>Estimated delivered energy</small><strong id="usableEnergy">—</strong></article>
+</div>
+<div class="bar-card"><div class="bar-head"><span>Target runtime coverage</span><strong id="targetCoverageGap">—</strong></div><div class="bar-track"><div class="bar-fill" id="targetBar" style="width:0"></div></div></div>
+<div class="result-grid"><article class="result-box"><span>Effective usable capacity</span><strong id="correctedCapacity">—</strong></article><article class="result-box"><span>Average C-rate/string</span><strong id="cRate">—</strong></article><article class="result-box"><span>Total cells/modules</span><strong id="cellCount">—</strong></article><article class="result-box"><span>Combined usable factor</span><strong id="usableFactor">—</strong></article></div>
+<div class="breakdown"><h3>Model comparison</h3><table><tbody><tr><th>Simple model</th><td id="simpleEjecutartime">—</td></tr><tr><th>Peukert estimate</th><td id="peukertEjecutartime">—</td></tr></tbody></table></div>
+<div class="breakdown"><h3>Reverse sizing for target runtime</h3><table><tbody><tr><th>Required total capacity</th><td id="requiredTotalAh">—</td></tr><tr><th>Capacity/string at current count</th><td id="requiredAhPerString">—</td></tr><tr><th>Parallel strings at current Ah</th><td id="requiredStrings">—</td></tr><tr><th>Current minus target</th><td id="targetGap">—</td></tr></tbody></table></div>
+<div class="breakdown"><h3>Calculation breakdown</h3><table><tbody id="breakdownBody"></tbody></table></div>
+<div class="warning-box"><h3>Engineering judgement</h3><ul id="warningList"></ul></div>
+<div class="result-actions"><button id="copyBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> Copiar result</button><button id="saveBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 5v14M5 12h14"></path></svg> Guardar record</button><button id="csvBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg> Exportar CSV</button><button id="printBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M6 9V3h12v6"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v7H6z"></path></svg> Print/PDF</button></div>
+</section></main><aside aria-label="PUBLICIDAD" class="ad-slot" data-ad-key="afterCalculator" hidden=""><div class="ad-label">PUBLICIDAD</div><div class="ad-body"></div></aside>
+<section class="content-section nel-tool-supporting-section" id="methodology"><p class="eyebrow">METODOLOGÍA</p><h2>Methodology and engineering boundaries</h2><div class="method-grid"><article><h3>DC load and power factor</h3><p>Equipment supplied from a -48 V DC bus does not use AC power factor. Enter an equipment DC-current list or the total DC current; power is derived from nominal bus voltage.</p></article><article><h3>Simplified energy model</h3><p>The model uses average discharge voltage and adjusts Ah capacity for usable depth, envejecimiento, temperature and manufacturer-curve calibration.</p></article><article><h3>Peukert estimate</h3><p>The rate effect is estimated from rated duration, per-string current and an editable Peukert exponent. Constant-power loads use average-current approximation.</p></article><article><h3>Reverse sizing</h3><p>The calculator derives total Ah, Ah/string and parallel-string count for the target runtime. Final design must also satisfy vendor parallel, protection, current-sharing and end-voltage limits.</p></article></div>
+<div class="sources"><strong>Engineering references:</strong> <a href="https://standards.ieee.org/ieee/485/6726/" rel="noopener">IEEE 485-2020</a> · <a href="https://webstore.iec.ch/en/publication/3851" rel="noopener">IEC 60896-22</a> · <a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=54059" rel="noopener">ETSI EN 300 132-2</a></div></section>
+<section class="content-section nel-tool-supporting-section" id="faq"><p class="eyebrow">Preguntas frecuentes</p><h2>Preguntas frecuentes</h2><div class="faq-grid"><details><summary>Why is there no power-factor input?</summary><p>Power factor applies to AC systems. During an outage, the battery supplies the DC bus, so use DC watts or amperes.</p></details><details><summary>Why not use only 48 V × Ah ÷ watts?</summary><p>Ejecutartime also depends on end voltage, discharge rate, envejecimiento, temperature, usable depth, DC losses and the manufacturer's discharge curve.</p></details><details><summary>¿Por qué the preset use 24 two-volt cells?</summary><p>Twenty-four 2 V cells form a nominal 48 V string. It is a common telecom arrangement, but the actual site and vendor configuration governs.</p></details><details><summary>What Peukert exponent should be used?</summary><p>Use manufacturer data whenever possible. Presets are editable engineering references; lithium and high-rate systems particularly require vendor curves or BMS data.</p></details><details><summary>¿Puede the result be used directly for procurement?</summary><p>No. It is for comparison and preliminary sizing. Procurement requires measured load, manufacturer tables, site temperature, end voltage and redundancy review.</p></details></div></section>
+<section class="content-section nel-tool-supporting-section" id="history"><div class="history-head"><div><p class="eyebrow">REGISTROS DEL PROYECTO</p><h2>Project history</h2></div><button class="text-button" id="clearHistoryBtn">Borrar historial</button></div><div class="history-list" id="historyList"></div></section>
+<!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="48v-battery-runtime" data-primary-workflow="poe-rack-power-design">
+<div class="section-heading"><div><p class="eyebrow">ENGINEERING WORKFLOW</p><h2 id="nel-tool-graph-title">Continuar el flujo de trabajo de ingeniería</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Flujo de trabajo actual</span><strong>PoE &amp; Rack Power Design Workflow</strong><p>Verify PoE source capacity, cable voltage delivery, rack power and cooling, then estimate telecom battery backup runtime.</p></div><div class="nel-workflow-step"><strong>Paso 4 de 4</strong><div class="nel-workflow-progress" aria-label="Paso 4 de 4"><span style="width:100%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="../../network-rack-power-cooling-calculator/es/"><span class="nel-tool-graph-label">Anterior</span><strong>Network Rack Power &amp; Cooling Calculator</strong><span class="nel-tool-graph-description">Calcular rack power, current, cooling load, energy and cost.</span></a><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Siguiente</span><strong>Workflow complete</strong></div></div>
+<h3 class="nel-tool-graph-subtitle">Herramientas relacionadas</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="../../telecom-solar-battery-sizing-calculator/es/"><strong>Telecom Solar Power &amp; Battery Sizing Calculator</strong><span class="nel-tool-graph-description">Size telecom solar PV, battery autonomy, energy balance, economics and emissions for grid-hybrid or def-grid sites.</span></a><a class="nel-tool-graph-card" href="../../network-rack-power-cooling-calculator/es/"><strong>Network Rack Power &amp; Cooling Calculator</strong><span class="nel-tool-graph-description">Calcular rack power, current, cooling load, energy and cost.</span></a><a class="nel-tool-graph-card" href="../../pue-data-center-energy-efficiency/es/"><strong>PUE &amp; Data Center Energy Efficiency Analyzer</strong><span class="nel-tool-graph-description">Analyze PUE, non-IT overhead, annual energy cost, target-PUE savings, WUE/CUE and monthly trends.</span></a><a class="nel-tool-graph-card" href="../../generator-fuel-runtime-calculator/es/"><strong>Generator Fuel Consumption &amp; Ejecutartime Calculator</strong><span class="nel-tool-graph-description">Estimate telecom generator fuel burn, usable-tank runtime, outage fuel requirement, refills and battery-assisted operation from a manufacturer load curve.</span></a></div><div class="nel-workflow-memberships"><span class="nel-workflow-memberships-label">Also used in</span><span class="nel-workflow-chip">Telecom Power &amp; Energy Workflow</span></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
+
+<section class="nel-tool-supporting-section" data-nel-moved-from-hero="true"><strong>Telecom DC system note</strong><p>-48 V describes telecom DC polarity; calculations use voltage magnitude. A DC load has no AC power-factor input.</p></section>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Herramientas profesionales en línea para ingenieros de telecomunicaciones y redes.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navegación del pie de página">
+      <a href="../../../es/about/">Acerca de</a><a href="../../../es/contact/">Contacto</a><a href="../../../es/privacy/">Privacidad</a><a href="../../../es/terms/">Términos</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<div class="toast" id="toast" role="status"></div>
+<script defer="" src="../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="data/battery-presets.js"></script><script defer="" src="js/engine.js"></script><script defer="" src="js/pwa.js"></script><script defer="" src="js/app.js?v=e38ff09939d5"></script>
+<script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script></body></html>
+
+
+
+
+
+
