@@ -1,0 +1,2 @@
+const {registry,validate,aggregate,sitemapRoutes}=require('../website/data/content-platform');
+if(require.main===module){const v=validate(); if(!v.ok){console.error(v.errors.join('\n')); process.exit(1);} for(const t of registry.topics){const a=aggregate(t.id); if(!a.items.length) throw Error(`thin topic ${t.id}`); console.log(`${t.slug}: ${a.items.length} resources`);} console.log(`INDEXABLE sitemap routes: ${sitemapRoutes().length}`);}

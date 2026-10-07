@@ -34,30 +34,55 @@
 
 ---
 
-## 0.1 长期工具规模路线图：200 Tools Master Roadmap
+## 0.1 长期工具规模与准入基线
 
-NetEngineerLab 将 **200 个工具**作为长期规划上限，以“**100 个高质量核心工具 + 100 个细分/长尾工具**”作为成熟站的规划结构。100 个左右代表成熟规模；200 个是长期容量上限，不是交付期限，也不是要求为了达标而新增工具。当前基线按本路线图确认时约 **37 个工具**，正式推进前仍须依据仓库工具注册表核实实际数量，并剔除重复或已废弃条目。
+长期战略目标约 **200 个高质量工程工具**，容量上限 **250**；250 不是配额。候选发现池保持开放，建议工作区间为 **250–450**；达到 450 前必须完成语义去重、跨站边界审查、低价值候选淘汰和 MERGE / RETIRE 审查。工具数量不能作为立项理由。
 
-运营检查节点为：
+分类必须遵循冻结的《NetEngineerLab Global Technology Radar & Tool Boundary V1.1》：6 个 Domain Groups、17 个 Core Primary Domains、3 个 Reserved Primary Domains；每个工具只能有一个 Primary Domain。未经重新审计和总工批准，不得新增 Active Primary Domain、激活 R18/R19/R20 或提高 250 容量上限。SDN 是 Architecture Tag，不是一级域；普通 RF、覆盖、MIMO 和频谱效率问题归 Wireless / RAN。
 
-```text
-37 → 50 → 75 → 100 → 150 → 200
-```
+新候选先走 **分类 → 去重 → Tool Admission Gate → 排序 → Roadmap**，不得从候选清单直接进入开发。准入必须全部满足：不重复、工程问题明确、输入输出明确、核心逻辑可定义、Source / Method / Validation 可验证、符合站点边界；并至少满足两项价值门槛：明确/高频用户需求、高工程价值、SEO 价值、Tutorial / Case / Diagram 联动价值、用户复访价值、商业化潜力。去重比较问题陈述、输入、输出、核心逻辑、目标用户和主域。任何 Mandatory Gate 失败均不得进入正式 Roadmap。
 
-每个节点都是一次组合审计和规划复核，不是数量配额或发布门槛。达到节点后，按实际工具清单检查重复工具、低价值工具、SEO价值、工程价值和维护成本；根据结果决定继续扩展、合并、重做或暂停。若新增候选无法通过质量判断，可以停留在当前节点。
+**当前执行规则（Phase 0 后）**：只对 `HYPOTHESIS / UNREVIEWED / PENDING` 的未决候选继续审计。旧的 `NEXT` 规则仅适用于已完成对账、通过全部 Mandatory Gate 和至少两项 Value Gate 的候选；未满足这些条件不得排入 `NEXT` 或 `READY`。已存在工具的需求统一登记为升级任务，不得重新生成独立路线图工具。升级任务必须保留 `existing_tool_id`、`canonical_problem_id`、现有 Source / Method / Validation 证据，明确升级范围和回归验证，并在现有工具任务下跟踪。
 
-200 个工具的目标组合按每个工具一个主要类别统计，避免重复计数：
+配套《NetEngineerLab 200 Tools Master Roadmap V1.0》当前状态为 **DRAFT FOR AUDIT / NOT FROZEN**，其条目均为待 Phase 0 核验的候选，不构成已批准开发队列。先把现有工具映射到 `canonical_problem_id`、Tool ID、Primary Domain、重复/合并决策及当前 Gate；Phase 0 完成后，未实现且通过准入的条目才能排队。Reserved / Emerging 条目需逐项复核，不因列入路线图而自动开发。
 
-| 主要类别 | 规划数量 |
-| --- | ---: |
-| 核心工程工具 | 60 |
-| 专业专项工具 | 40 |
-| 设计与规划工具 | 30 |
-| 诊断与验证工具 | 30 |
-| 长尾 SEO 工具 | 40 |
-| **合计** | **200** |
+### Phase 0 已有工具覆盖（开发排除清单）
 
-该规模路线图服从 V2.4“先深后广”的产品原则：优先把已有工具升级为完整工程任务流程，并复用共享 Engine；只有具备明确用户问题、工程价值或搜索需求，且通过重复性、维护成本及质量审查的候选，才进入开发队列。工具数量不构成独立立项理由；SEO 长尾工具也必须准确、可维护并解决具体问题。100 个和 200 个均为规划定位，不覆盖本文件“用户价值 > 工具数量；深度工具 > 普通计算器”的原则。
+以下路线图条目已在 Phase 0 明确判定为 `REJECT_DUPLICATE`，由对应现有工具作为唯一实现来源：
+
+`TOOL-001`, `TOOL-013` → `mtu-calculator`; `TOOL-017` → `subnet-calculator`; `TOOL-021` → `ospf-cost-calculator`; `TOOL-045` → `dns-ttl-propagation-calculator`; `TOOL-054` → `optical-power-budget`; `TOOL-056` → `pon-splitter-loss`; `TOOL-063` → `onu-rx-power`; `TOOL-064` → `pon-distance`; `TOOL-100`, `TOOL-104` → `data-center-network-convergence-fabric-capacity-planner`; `TOOL-177` → `pue-data-center-energy-efficiency`; `TOOL-179`, `TOOL-180` → `ups-capacity-battery-runtime-calculator`; `TOOL-181` → `48v-battery-runtime`; `TOOL-182` → `telecom-rectifier-dc-power-sizing`; `TOOL-184` → `generator-fuel-runtime-calculator`; `TOOL-185` → `data-center-cooling-load-calculator`; `TOOL-186` → `network-rack-power-cooling-calculator`.
+
+这些条目必须保持 `REJECT_DUPLICATE / FAIL`，不得重新排入 `NEXT`、`READY` 或开发任务。若需增强能力，应在现有工具上提交升级任务，并保留原 `existing_tool_id` 与审计证据。未列入本清单的 `HYPOTHESIS / UNREVIEWED` 条目仍不得视为已确认重复。
+
+此前记录的约 **37 个工具**及“100 个核心 + 100 个长尾”的规划口径仅作历史记录；新附件按约 40 个现有工具要求 Phase 0 对账，正式基线以实际注册表映射结果为准。旧的数量节点和类别配额不作为当前开发门槛。
+
+优先继续提升已有工具深度、工程可信度和工作流完成度；候选 roadmap 只有在通过上述门禁后才能影响 `NEXT` / `READY` 状态。
+
+---
+
+## 0.2 200 Tools 专项审计结论（2026-10-07）
+
+本轮依据附件中的 200 Tools Roadmap V1.0、Technology Radar V1.1，以及仓库当前 `src/registry/tool-registry.json` 执行只读审计。结论为 **HOLD / NOT PASS**：路线图仍可作为候选池，但不得把任何未完成对账的条目设置为 `NEXT`、`READY` 或开发任务。
+
+| 审计项 | 证据 | 结论 |
+| --- | --- | --- |
+| 现有工具基线 | 注册表有 40 个 `active` 工具；Phase 0 已覆盖全部 40 个工具，并确认 19 个路线图重复项 | 40→200 对账已部分关闭；其余候选仍需审计 |
+| 重复/低价值拆分 | 至少约 20 个高风险重叠族，含 PON Splitter、PON Distance、ONU RX、DNS TTL、OSPF Cost、PUE、Generator Runtime、Cooling Load、Transmission Ring、OLT Dual-Uplink、DC Fabric 等 | 必须逐项 KEEP / MERGE / REJECT_DUPLICATE |
+| Phase 排序 | Phase A/B/C/D = 51/53/41/55；P1/P2/P3/P4 同步对应 | 缺少依赖、用户价值和 Gate 证据，不能视为已排序 |
+| Reserved / Future | 三个 Reserved 域（Telecom Core、Space/NTN、6G）共 11 项；加上 Radar 中的 Quantum 活跃域 3 项，未来技术类合计 14/200（7%），全部 D/P4 | 总占比可控，但不得自动开发；Quantum 是 Core Primary Domain，不属于 Reserved 域；其 3 项仍需按成熟度与准入门槛逐项评估 |
+| 跨站边界 | Automation、Power/Cooling、Cloud/Cloud-Native、通用报告/批处理存在跨站风险 | 必须保留 network-specific 证据并完成跨站决策 |
+
+在 Phase 0 结束前，路线图审计矩阵至少必须逐条记录：`roadmap_id`、`existing_tool_id`、`canonical_problem_id`、problem fingerprint（problem / inputs / outputs / core_logic / target_user / primary_domain）、`overlap_decision`、`gate_status`、Source / Method / Validation 证据、`cross_site_decision`、审核责任人和版本日期。当前矩阵已形成可检查的 40→200 对账产物：19 个重复项已确认并排除新开发，其余候选仍需补齐证据；Tool Admission Gate 仍不是自动通过。
+
+Phase 0 矩阵现已建立：
+
+- [`docs/roadmap/PHASE0_AUDIT_MATRIX.csv`](docs/roadmap/PHASE0_AUDIT_MATRIX.csv)：200 条路线图候选主表。
+- [`docs/roadmap/PHASE0_EXISTING_TOOL_CROSSWALK.csv`](docs/roadmap/PHASE0_EXISTING_TOOL_CROSSWALK.csv)：40 个 active 工具覆盖表。
+- [`docs/roadmap/PHASE0_AUDIT_MATRIX_README.md`](docs/roadmap/PHASE0_AUDIT_MATRIX_README.md)：字段、状态和填表规则。
+
+矩阵建立不等于准入通过；已确认重复项按 `EXISTING / COVERED / REJECT_DUPLICATE` 管理并排除新开发，尚未完成审计的候选继续保持 `PENDING` / `UNREVIEWED` / `NOT_STARTED`。
+
+下一步顺序固定为：**完成 40 个现有工具映射 → 处理高风险重复族 → 补齐跨站决策与 Gate 证据 → 依据依赖/价值/成熟度重排 Phase → 才能重新评估 `NEXT`**。
 
 ---
 
