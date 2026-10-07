@@ -103,8 +103,8 @@ NetEngineerLab 将 **200 个工具**作为长期规划上限，以“**100 个�
 - 优先级：`P0`
 - 下一项深度升级：负载增长/回充峰值/模块故障场景，N-1/N-2、机框上限、环境降额与方案报告
 
-### [ ] Telecom Rectifier & DC Power Sizing — N-1/N-2 Scenario Upgrade
-- 状态：`NEXT`
+### [x] Telecom Rectifier & DC Power Sizing — N-1/N-2 Scenario Upgrade
+- 状态：`DONE`
 - 优先级：`P0`
 - 目标：加入负载增长、回充峰值、模块故障、N-1/N-2、机框上限和环境降额场景，并生成可追溯方案报告
 
