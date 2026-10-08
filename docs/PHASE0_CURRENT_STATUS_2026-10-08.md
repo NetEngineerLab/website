@@ -4,7 +4,7 @@
 
 ## 证据
 
-- 状态快照基准提交：`da01071e305911676805d5cc8c3f463f6ef30465`（`main`，2026-10-08 13:56:01 +08:00；本轮检查时的 HEAD）。
+- 状态快照基准提交：`e845a1c310ebedd0d78fa9dccf1abc2d4222fa3a`（`main`，2026-10-08 15:08:41 +08:00；本轮检查时的 HEAD）。
 - `docs/roadmap/PHASE0_AUDIT_MATRIX.csv`：200 条候选；`docs/roadmap/PHASE0_EXISTING_TOOL_CROSSWALK.csv`：40 行 active 工具覆盖表，其中 `mapping_status` 为 16 `CONFIRMED`、19 `HYPOTHESIS`、5 `NO_ROADMAP_MATCH`，40 行 `gate_status=NOT_STARTED`。
 - 当前计数：`REJECT_DUPLICATE / FAIL = 19`；`UNREVIEWED / NOT_STARTED = 181`；`gate_status=PASS = 0`。
 - `npm run validate:mib-governance`：PASS（5 份治理文档；无公开 MIB fact route）。
