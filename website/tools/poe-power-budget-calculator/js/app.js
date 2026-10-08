@@ -1,17 +1,22 @@
 (function(){
  "use strict";
- const zh=document.documentElement.lang.toLowerCase().startsWith("zh");
+ const locale=document.documentElement.lang.toLowerCase();
+ const zh=locale.startsWith("zh");
+ const es=locale.startsWith("es");
  const $=id=>document.getElementById(id);
  const E=window.PoeBudgetEngine;
  let last;
  const text=zh?{
-  pass:"容量充足",warning:"余量偏低",fail:"配置不满足",ports:"端口不足",budget:"功率预算不足",standard:"单端口等级不足",
+  pass:"容量充足",warning:"余量偏低",fail:"配置不满足要求",ports:"端口不足",budget:"功率预算不足",standard:"单端口等级不足",
   copied:"已复制",csv:"已导出",recommend:"建议升级到",unsupported:"超过 802.3bt Type 4 的标准 PD 功率"
+ }:es?{
+  pass:"Capacidad disponible",warning:"Margen reducido",fail:"La configuración no cumple los requisitos",ports:"Puertos insuficientes",budget:"Presupuesto de potencia insuficiente",standard:"Estándar por puerto insuficiente",
+  copied:"Copiado",csv:"Exportado",recommend:"Actualice a",unsupported:"Supera la potencia PD estándar de 802.3bt Tipo 4"
  }:{
-  pass:"Capacity available",warning:"Low headroom",fail:"Configuration fails",ports:"Not enough ports",budget:"Power budget exceeded",standard:"Per-port standard is insufficient",
+  pass:"Capacity available",warning:"Low headroom",fail:"Configuration does not meet requirements",ports:"Not enough ports",budget:"Power budget exceeded",standard:"Per-port standard is insufficient",
   copied:"Copied",csv:"Exported",recommend:"Upgrade to",unsupported:"Exceeds standard 802.3bt Type 4 PD power"
  };
- const fmt=(v,d=1)=>Number(v).toLocaleString(zh?"zh-CN":"en-US",{maximumFractionDigits:d});
+ const fmt=(v,d=1)=>Number(v).toLocaleString(zh?"zh-CN":es?"es-ES":"en-US",{maximumFractionDigits:d});
  function values(){return{
   switchBudget:$("switchBudget").value,switchPorts:$("switchPorts").value,deviceCount:$("deviceCount").value,
   deviceWatts:$("deviceWatts").value,cableLossPercent:$("cableLoss").value,headroomPercent:$("headroom").value,
@@ -37,7 +42,7 @@
   if(track&&typeof window.nelTrack==="function")window.nelTrack("poe_budget_calculate",{status:last.status,standard:last.inputStandard});
  }
  const presets={
-  cameras:[120,8,8,12.95,10,20,"af"],
+  cameras:[160,8,8,12.95,10,20,"af"],
   ptz:[370,16,8,30,12,20,"bt3"],
   wifi:[740,24,16,25.5,10,25,"at"],
   mixed:[370,24,12,18,12,25,"at"]
