@@ -74,7 +74,7 @@
 
 在 Phase 0 结束前，路线图审计矩阵至少必须逐条记录：`roadmap_id`、`existing_tool_id`、`canonical_problem_id`、problem fingerprint（problem / inputs / outputs / core_logic / target_user / primary_domain）、`overlap_decision`、`gate_status`、Source / Method / Validation 证据、`cross_site_decision`、审核责任人和版本日期。当前矩阵已形成可检查的 40→200 对账产物：19 个重复项已确认并排除新开发，其余候选仍需补齐证据；Tool Admission Gate 仍不是自动通过。
 
-Phase 0 矩阵现已建立：
+Phase 0 矩阵现已建立；2026-10-08 当前状态证据见 `docs/PHASE0_CURRENT_STATUS_2026-10-08.md`。该证据记录不授予新的开发授权：
 
 - [`docs/roadmap/PHASE0_AUDIT_MATRIX.csv`](docs/roadmap/PHASE0_AUDIT_MATRIX.csv)：200 条路线图候选主表。
 - [`docs/roadmap/PHASE0_EXISTING_TOOL_CROSSWALK.csv`](docs/roadmap/PHASE0_EXISTING_TOOL_CROSSWALK.csv)：40 个 active 工具覆盖表。
