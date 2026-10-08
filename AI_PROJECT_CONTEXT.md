@@ -27,6 +27,8 @@ NetEngineerLab 是面向网络工程师、运营商运维、规划、设计、�
 
 当前 200 Tools Roadmap 专项审计状态为 `HOLD / NOT PASS`。在逐条完成 40 个现有工具对账、重复指纹决策、跨站边界审查和 Tool Admission Gate 证据前，不得把路线图条目标记为 `NEXT` / `READY`，也不得依据 Phase D、Reserved 或 Emerging 条目开工。
 
+当前开发授权：没有获准的工具开发 `NEXT`。ROADMAP 中 PUE 已完成；旧默认顺序仅为历史规划，不构成授权。当前 MIB/OID 前置门禁仍未通过：候选来源集合的文档级 validator 已 PASS，但 8 个模块的逐文件 source/license/acquisition/redistribution review 尚未全部完成并独立审计；在完成前禁止采集/解析 MIB 正文、生成公开数据或开发 Engine/UI/Registry。只处理用户明确授权的阻断修复或既定前置审核任务，不得越 Gate。
+
 Phase 0 审计矩阵入口：`docs/roadmap/PHASE0_AUDIT_MATRIX.csv`（200 条候选）、`docs/roadmap/PHASE0_EXISTING_TOOL_CROSSWALK.csv`（40 个 active 工具）及 `docs/roadmap/PHASE0_AUDIT_MATRIX_README.md`。
 
 开发排除规则：Phase 0 中 `overlap_decision=REJECT_DUPLICATE` 的路线图条目属于已有工具覆盖项，必须保持 `gate_status=FAIL`，不得作为新工具开发；任何增强需求应修改对应 `existing_tool_id` 的现有工具任务。当前已确认覆盖的路线图 ID 为：`TOOL-001/013/017/021/045/054/056/063/064/100/104/177/179/180/181/182/184/185/186`。其余仍为 `HYPOTHESIS` 或 `UNREVIEWED` 的候选不能据此推断为重复或通过准入。
