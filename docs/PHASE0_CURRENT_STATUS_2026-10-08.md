@@ -4,10 +4,11 @@
 
 ## 证据
 
-- 复核提交：`deeefb80aa2576ee7ee7a267f8a93d52e90e35c7`（`main`，2026-10-08）。
-- `docs/roadmap/PHASE0_AUDIT_MATRIX.csv` 行数：200 条候选。
+- 状态快照基准提交：`742011cbb29ec61309397b730d20a31b28ed9c52`（`main`，2026-10-08 12:30:45 +08:00；与当前 HEAD 一致）。
+- `docs/roadmap/PHASE0_AUDIT_MATRIX.csv`：200 条候选；`docs/roadmap/PHASE0_EXISTING_TOOL_CROSSWALK.csv`：40 行 active 工具覆盖表，其中 `mapping_status` 为 16 `CONFIRMED`、19 `HYPOTHESIS`、5 `NO_ROADMAP_MATCH`，40 行 `gate_status=NOT_STARTED`。
 - 当前计数：`REJECT_DUPLICATE / FAIL = 19`；`UNREVIEWED / NOT_STARTED = 181`；`gate_status=PASS = 0`。
 - `npm run validate:mib-governance`：PASS（5 份治理文档；无公开 MIB fact route）。
+- 冻结基线：Technology Radar V1.1 为 `PASS / CLOSED / FROZEN`；Content Architecture Gate 0 为 `PASS / CLOSED / FROZEN`。两者均不授予新的工具开发授权。
 - MIB/OID 逐文件 source/license/acquisition/redistribution review：未完成；具名预授权与独立签署证据仍缺失。
 - 当前专项结论：`HOLD / NOT PASS`；当前没有获准的 `NEXT`。
 

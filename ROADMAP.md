@@ -66,7 +66,7 @@
 
 | 审计项 | 证据 | 结论 |
 | --- | --- | --- |
-| 现有工具基线 | 注册表有 40 个 `active` 工具；Phase 0 已覆盖全部 40 个工具，并确认 19 个路线图重复项 | 40→200 对账已部分关闭；其余候选仍需审计 |
+| 现有工具基线 | 注册表有 40 个 `active` 工具；Phase 0 已建立 40 行覆盖表，其中 16 个 `CONFIRMED`、19 个 `HYPOTHESIS`、5 个 `NO_ROADMAP_MATCH`，且覆盖表 40 行仍为 `gate_status=NOT_STARTED`；矩阵另有 19 个路线图重复项已确认 | 40→200 对账已部分关闭；工具映射与其余候选仍需审计 |
 | 重复/低价值拆分 | 至少约 20 个高风险重叠族，含 PON Splitter、PON Distance、ONU RX、DNS TTL、OSPF Cost、PUE、Generator Runtime、Cooling Load、Transmission Ring、OLT Dual-Uplink、DC Fabric 等 | 必须逐项 KEEP / MERGE / REJECT_DUPLICATE |
 | Phase 排序 | Phase A/B/C/D = 51/53/41/55；P1/P2/P3/P4 同步对应 | 缺少依赖、用户价值和 Gate 证据，不能视为已排序 |
 | Reserved / Future | 三个 Reserved 域（Telecom Core、Space/NTN、6G）共 11 项；加上 Radar 中的 Quantum 活跃域 3 项，未来技术类合计 14/200（7%），全部 D/P4 | 总占比可控，但不得自动开发；Quantum 是 Core Primary Domain，不属于 Reserved 域；其 3 项仍需按成熟度与准入门槛逐项评估 |
