@@ -38,7 +38,7 @@
 <!-- NEL_HEADER_END -->
 <nav class="guide-breadcrumb" aria-label="面包屑"><a href="../../">首页</a> / <span>指南</span> / <span aria-current="page">48口交换机超售比</span></nav>
 <main class="guide-shell" id="main"><section class="guide-hero"><p class="eyebrow">交换机规划指南</p><h1>48口交换机超售比怎么计算</h1><p class="guide-lead">通过48口交换机实例，对比2×10G、4×10G、2×25G上联，并检查N-1故障状态下的容量。</p><div class="guide-meta"><span>48口交换机</span><span>上联容量</span><span>N-1</span><span>工程案例</span></div></section>
-<div class="guide-tool-link"><strong>Related engineering tool</strong><p>Move from the article to a real capacity check with the NetEngineerLab calculator.</p><a href="../../../../tools/switch-uplink-oversubscription-calculator/zh/">打开交换机上联计算器 →</a></div><div class="guide-layout"><article class="guide-article">
+<div class="guide-tool-link"><strong>相关工程工具</strong><p>可使用 NetEngineerLab 计算器，根据实际参数校核容量。</p><a href="../../../../tools/switch-uplink-oversubscription-calculator/zh/">打开交换机上联计算器 →</a></div><div class="guide-layout"><article class="guide-article">
 <p>48口交换机的超售比，本质上就是“下联总带宽 ÷ 可用上联总带宽”。</p><div class="guide-formula"><strong>超售比 = 下联总带宽 ÷ 上联总带宽</strong></div>
 <h2 id="quick-answer">快速结论：48×1G + 2×10G</h2><div class="guide-example"><p>48 × 1 Gbps = <strong>48 Gbps</strong></p><p>2 × 10 Gbps = <strong>20 Gbps</strong></p><p>48 ÷ 20 = <strong>2.4:1</strong></p></div>
 <p>理论超售比为<strong>2.4:1</strong>。但工程上不能只看这个数字，还要继续检查忙时流量、链路聚合、N-1故障和未来增长。</p>

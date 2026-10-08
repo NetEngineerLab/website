@@ -62,7 +62,7 @@
 
 ## 0.2 200 Tools 专项审计结论（2026-10-07）
 
-本轮依据附件中的 200 Tools Roadmap V1.0、Technology Radar V1.1，以及仓库当前 `src/registry/tool-registry.json` 执行只读审计。结论为 **HOLD / NOT PASS**：路线图仍可作为候选池，但不得把任何未完成对账的条目设置为 `NEXT`、`READY` 或开发任务。
+本轮依据附件中的 200 Tools Roadmap V1.0、Technology Radar V1.1，以及仓库当前 `src/registry/tool-registry.json` 执行只读审计。结论为 **HOLD / NOT PASS**：路线图仍可作为候选池，但不得把任何未完成对账的条目设置为 `NEXT`、`READY` 或开发任务。当前矩阵计数为 200 条：19 条 `REJECT_DUPLICATE / FAIL`、181 条 `UNREVIEWED / NOT_STARTED`，没有准入 `PASS`。
 
 | 审计项 | 证据 | 结论 |
 | --- | --- | --- |
@@ -104,7 +104,7 @@ Phase 0 矩阵现已建立：
 
 ## 2. 当前开发授权状态
 
-**当前没有获准开发的 `NEXT` 工具。** 本文件旧版的默认顺序属于历史规划，不构成当前授权；不得据此启动 MIB/OID Engine、UI、Registry 或其他工具开发。当前可执行工作仅限本文件记录的 Phase 0 未决候选审计，以及 MIB/OID 来源/逐文件许可审核等已明确列出的前置门禁。新开发任务须待相关 Gate 证据通过、审核签署，并由用户明确授权后另行写入唯一 `NEXT`。
+**当前没有获准开发的 `NEXT` 工具。** 本文件旧版的默认顺序属于历史规划，不构成当前授权；不得据此启动 MIB/OID Engine、UI、Registry 或其他工具开发。当前可执行工作仅限本文件记录的 Phase 0 未决候选审计，以及 MIB/OID 文档级前置门禁与记录准备；实际逐文件 source/acquisition/license review、网络读取及 MIB 正文采集，须先具备有效具名预授权并完成相应审核，不能由本条文字自行授权。新开发任务须待相关 Gate 证据通过、审核签署，并由用户明确授权后另行写入唯一 `NEXT`。
 
 ### 已完成的历史 NEXT（非当前授权）
 
@@ -151,6 +151,18 @@ Phase 0 矩阵现已建立：
 - 状态：`DONE`
 - 优先级：`P0`
 - 下一项深度升级：冷热通道、风量/静压、机柜峰值、封闭率、旁路气流、失效场景、Before/After与工程报告
+
+### [ ] Power/Cooling 深度升级计划
+- 状态：`PLANNED`
+- 准入边界：仅作为现有工具升级任务登记，不新增重复的独立工具。
+- 目标：把热负荷、气流、环境降额、静压阻力、风机能耗和 TCO 串成可追溯的机房基础设施分析工作流。
+- 任务 1｜`network-rack-power-cooling-calculator`：扩展热负荷、机柜功率密度、制冷量、BTU/h、冷吨、成本和 N+1 场景联动。
+- 任务 2｜`data-center-cooling-load-calculator`：补充机房级 IT/非 IT 负载分层、峰值工况、冗余制冷和环境降额。
+- 任务 3｜`data-center-airflow-containment-planner`：补充风量平衡、温升（ΔT）、冷热通道、旁路气流、静压和风管阻力校核。
+- 任务 4｜跨工具环境修正模型：增加海拔、温度和空气密度修正，输出通信机房设备与制冷能力降额；必须补齐 Source / Method / Validation 证据。
+- 任务 5｜`pue-data-center-energy-efficiency` 联动：增加风机功率、静压、运行小时、电价、年度能耗/TCO 以及 Before/After 方案比较。
+- 排序建议：先完成任务 1–3 的现有工具升级，再做任务 4 的环境修正，最后做任务 5 的跨工具能效与 TCO 联动。
+- Gate 要求：每项升级必须保留 `existing_tool_id`、`canonical_problem_id`、升级范围、公式来源、验证用例和回归结果；未补齐证据前不得提升为 `NEXT` 或 `READY`。
 
 ### [x] Communication Solar Power & Battery Planner
 - 状态：`DONE`

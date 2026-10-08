@@ -1,6 +1,6 @@
 # MIB/OID 来源与许可台账（Phase 0）
 
-状态：`FROZEN FOR PROTOTYPE`  
+状态：`FROZEN FOR PROTOTYPE`（仅冻结 Phase 0 治理/设计基线；不表示逐文件许可、产品发布或公开数据 Gate 已通过）
 证据复核日期：2026-09-01  
 适用范围：MIB/OID Explorer Phase 0；本文件不是法律意见。
 

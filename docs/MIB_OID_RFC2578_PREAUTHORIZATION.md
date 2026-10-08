@@ -38,4 +38,4 @@
 
 ## 失败关闭结论
 
-当前草案缺少已审核的真实 `sourceId`、具名 `approvedBy`、真实 `approvedAt`、`preauthorizationId` 和 `recordHash`，因此状态必须保持 `DRAFT — NOT AUTHORIZED FOR NETWORK ACQUISITION`。在这些字段完成并经独立审计 PASS 前，不得访问 `.txt` 请求 URL，不得生成 acquisition，不得保存 RFC/MIB 字节，也不得把 RFC 2578 放入 parser lock、Fixture、索引或公开页面。
+当前草案缺少已审核的真实 `sourceId`、符合要求的具名 `approvedBy`、真实 `approvedAt`、`preauthorizationId` 和 `recordHash`；仓库现存 JSON 将 `approvedBy` 填为角色名 `NetEngineerLab release maintainer`，不符合具名责任审核人要求，因此只能视为待复核草案，不能作为有效预授权。状态必须保持 `DRAFT — NOT AUTHORIZED FOR NETWORK ACQUISITION`。在字段由责任审核人核实、记录重算并经独立审计 PASS 前，不得访问 `.txt` 请求 URL，不得生成 acquisition，不得保存 RFC/MIB 字节，也不得把 RFC 2578 放入 parser lock、Fixture、索引或公开页面。
