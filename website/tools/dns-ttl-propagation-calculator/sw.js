@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-dns-ttl-propagation-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-b051bc56ca01-19925cbe3ebf";
+const CACHE = "nel-dns-ttl-propagation-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-b051bc56ca01-1d0b0e7d6a7d";
 const CORE = [
   "./index.html",
   "./",

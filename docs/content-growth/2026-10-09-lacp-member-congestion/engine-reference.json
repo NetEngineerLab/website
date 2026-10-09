@@ -1,0 +1,233 @@
+{
+  "verifiedDate": "2026-10-09",
+  "input": {
+    "ports": 14,
+    "portMbps": 1000,
+    "util": 100,
+    "concurrency": 100,
+    "overhead": 0,
+    "uplinkMbps": 10000,
+    "uplinks": 2,
+    "target": 80,
+    "engineering": true,
+    "peakPorts": 14,
+    "growthPct": 0,
+    "burstPct": 0,
+    "failedUplinks": 1
+  },
+  "result": {
+    "ok": true,
+    "name": "baseline",
+    "ports": 14,
+    "activeUplinks": 2,
+    "offeredGbps": 14,
+    "demandGbps": 14,
+    "peakDemandGbps": 14,
+    "uplinkGbps": 20,
+    "safeGbps": 16,
+    "oversubscription": "0.7:1",
+    "demandUtil": 70,
+    "requiredUplinks": 2,
+    "spareGbps": 2,
+    "warnings": [
+      "capacityOverTarget",
+      "congestion",
+      "singlePath"
+    ],
+    "status": "pass",
+    "modelVersion": "switch-uplink-engine/2.0.0",
+    "risks": [
+      {
+        "code": "N1_CONGESTION",
+        "severity": "critical",
+        "message": "N-1 surviving uplinks fail peak demand",
+        "action": "Add diverse uplink capacity or reduce peak demand"
+      }
+    ],
+    "risk": "high",
+    "scenarios": {
+      "baseline": {
+        "name": "baseline",
+        "ports": 14,
+        "activeUplinks": 2,
+        "offeredGbps": 14,
+        "demandGbps": 14,
+        "peakDemandGbps": 14,
+        "uplinkGbps": 20,
+        "safeGbps": 16,
+        "oversubscription": "0.7:1",
+        "demandUtil": 70,
+        "requiredUplinks": 2,
+        "spareGbps": 2,
+        "warnings": [],
+        "status": "pass"
+      },
+      "peak": {
+        "name": "peak",
+        "ports": 14,
+        "activeUplinks": 2,
+        "offeredGbps": 14,
+        "demandGbps": 14,
+        "peakDemandGbps": 14,
+        "uplinkGbps": 20,
+        "safeGbps": 16,
+        "oversubscription": "0.7:1",
+        "demandUtil": 70,
+        "requiredUplinks": 2,
+        "spareGbps": 2,
+        "warnings": [],
+        "status": "pass"
+      },
+      "conservative": {
+        "name": "conservative",
+        "ports": 14,
+        "activeUplinks": 2,
+        "offeredGbps": 14,
+        "demandGbps": 14,
+        "peakDemandGbps": 14,
+        "uplinkGbps": 20,
+        "safeGbps": 16,
+        "oversubscription": "0.7:1",
+        "demandUtil": 70,
+        "requiredUplinks": 2,
+        "spareGbps": 2,
+        "warnings": [],
+        "status": "pass"
+      },
+      "nMinus1": {
+        "name": "N-1",
+        "ports": 14,
+        "activeUplinks": 1,
+        "offeredGbps": 14,
+        "demandGbps": 14,
+        "peakDemandGbps": 14,
+        "uplinkGbps": 10,
+        "safeGbps": 8,
+        "oversubscription": "1.4:1",
+        "demandUtil": 140,
+        "requiredUplinks": 2,
+        "spareGbps": -6,
+        "warnings": [
+          "capacityOverTarget",
+          "congestion",
+          "singlePath"
+        ],
+        "status": "fail"
+      }
+    },
+    "beforeAfter": {
+      "before": {
+        "name": "baseline",
+        "ports": 14,
+        "activeUplinks": 2,
+        "offeredGbps": 14,
+        "demandGbps": 14,
+        "peakDemandGbps": 14,
+        "uplinkGbps": 20,
+        "safeGbps": 16,
+        "oversubscription": "0.7:1",
+        "demandUtil": 70,
+        "requiredUplinks": 2,
+        "spareGbps": 2,
+        "warnings": [],
+        "status": "pass"
+      },
+      "after": {
+        "name": "conservative",
+        "ports": 14,
+        "activeUplinks": 2,
+        "offeredGbps": 14,
+        "demandGbps": 14,
+        "peakDemandGbps": 14,
+        "uplinkGbps": 20,
+        "safeGbps": 16,
+        "oversubscription": "0.7:1",
+        "demandUtil": 70,
+        "requiredUplinks": 2,
+        "spareGbps": 2,
+        "warnings": [],
+        "status": "pass"
+      },
+      "delta": {
+        "peakDemandGbps": 0,
+        "requiredUplinks": 0,
+        "spareGbps": 0
+      }
+    },
+    "checks": {
+      "n1": false
+    }
+  },
+  "localRoutes": [
+    {
+      "route": "tools/switch-uplink-oversubscription-calculator/",
+      "exists": true
+    },
+    {
+      "route": "tools/bandwidth-calculator/",
+      "exists": true
+    },
+    {
+      "route": "tools/network-capacity-forecast-planner/",
+      "exists": true
+    },
+    {
+      "route": "tools/sfp-qsfp-compatibility-calculator/",
+      "exists": true
+    },
+    {
+      "route": "topics/switch-oversubscription/",
+      "exists": true
+    },
+    {
+      "route": "guides/switch-oversubscription-ratio/",
+      "exists": true
+    },
+    {
+      "route": "guides/48-port-switch-2x10g-enough/",
+      "exists": true
+    },
+    {
+      "route": "guides/switch-oversubscription-n-1/",
+      "exists": true
+    }
+  ],
+  "liveHeadCheck": {
+    "method": "PowerShell Invoke-WebRequest HEAD",
+    "date": "2026-10-09",
+    "results": [
+      {
+        "url": "https://netengineerlab.com/tools/switch-uplink-oversubscription-calculator/",
+        "status": 200
+      },
+      {
+        "url": "https://netengineerlab.com/tools/bandwidth-calculator/",
+        "status": 200
+      },
+      {
+        "url": "https://netengineerlab.com/tools/network-capacity-forecast-planner/",
+        "status": 200
+      },
+      {
+        "url": "https://netengineerlab.com/tools/sfp-qsfp-compatibility-calculator/",
+        "status": 200
+      },
+      {
+        "url": "https://netengineerlab.com/topics/switch-oversubscription/",
+        "status": 200
+      },
+      {
+        "url": "https://netengineerlab.com/guides/switch-oversubscription-ratio/",
+        "status": 200
+      },
+      {
+        "url": "https://netengineerlab.com/guides/48-port-switch-2x10g-enough/",
+        "status": 200
+      },
+      {
+        "url": "https://netengineerlab.com/guides/switch-oversubscription-n-1/",
+        "status": 200
+      }
+    ]
+  }
+}

@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-poe-power-budget-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-b051bc56ca01-b822dff9a4b0";
+const CACHE = "nel-poe-power-budget-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-b051bc56ca01-1f81c129d31c";
 const CORE = [
   "./index.html",
   "./",
@@ -8,7 +8,7 @@ const CORE = [
   "./manifest.webmanifest",
   "./css/style.css?v=453c92b9af2f",
   "./js/engine.js",
-  "./js/app.js?v=c4c11d356b2f",
+  "./js/app.js?v=7d7872f22613",
   "./images/logo.svg",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",

@@ -476,6 +476,10 @@ function injectSiteShell(html,currentRel,currentInfo){
  const tokens={
   HOME_HREF:href(""),
   TOOLS_HREF:href("tools/"),
+  GUIDES_HREF:href("")+"#guides",
+  TOPICS_HREF:href("")+"#topics",
+  GUIDES_CURRENT:currentInfo.route.startsWith("guides/")?' aria-current="page"':"",
+  TOPICS_CURRENT:currentInfo.route.startsWith("topics/")?' aria-current="page"':"",
   ABOUT_HREF:href("about/"),
   CONTACT_HREF:href("contact/"),
   PRIVACY_HREF:href("privacy/"),
@@ -632,7 +636,11 @@ function build(){
  const groups=new Map();
  for(const file of htmlFiles){
   const rel=posix(path.relative(siteRoot,file));
-  const info=identifyPage(rel);
+  let info=identifyPage(rel);
+  if(!info){
+   const guide=rel.match(/^(?:(zh|es)\/)?guides\/([^/]+)\/index\.html$/);
+   if(guide)info={route:`guides/${guide[2]}/`,localeId:guide[1]||defaultLocale.id,kind:"guide",shellOnly:true};
+  }
   if(!info)continue;
   records.push({file,rel,info});
   if(!groups.has(info.route))groups.set(info.route,new Map());
@@ -643,6 +651,12 @@ function build(){
   const group=groups.get(record.info.route);
   if(!locale||!group)continue;
   let html=fs.readFileSync(record.file,"utf8");
+  if(record.info.shellOnly){
+   const shell=replaceLanguageMenu(injectSiteShell(html,record.rel,record.info),menuMarkup(record.info,group));
+   const header=/<!-- NEL_HEADER_START -->[\s\S]*?<!-- NEL_HEADER_END -->/;
+   fs.writeFileSync(record.file,html.replace(header,shell.match(header)[0]));
+   continue;
+  }
   html=removeInvalidVoidClosers(html);
   html=rewriteInternalAnchors(html,record.rel,record.info,groups);
   html=injectSiteShell(html,record.rel,record.info);
