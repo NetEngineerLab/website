@@ -5,6 +5,7 @@
 - `master/`：产品与工程规范（当前基线为 V2.3.1）
 - `DEVELOPMENT_LOG.md`：持续开发记录
 - `NEXT_DEVELOPMENT.md`：下一阶段开发计划
+- `COMPETITIVE_LANDSCAPE_NETWORK_TOOLS.md`：网络工具竞品线索、站点边界与“算 → 配 → 自动化 → 验证”产品线决策
 - `PRODUCTION_ACCEPTANCE_GUIDE.md`、`LAUNCH_CHECKLIST.md`：发布流程
 - `ARCHITECTURE_*.md`、`ENGINEERING_RULES_PLATFORM_ARCHITECTURE.md`：架构与工程规则
 - `I18N_ES_*.md`、`CONFIG_DRIVEN_MULTILINGUAL_GUIDE.md`：多语言规划与实施

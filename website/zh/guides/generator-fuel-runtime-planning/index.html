@@ -1,0 +1,48 @@
+<!doctype html><html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="guides/generator-fuel-runtime-planning/"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>通信油机一箱油能运行多久？计算负载曲线与可用油量 | NetEngineerLab</title><meta name="description" content="根据厂家油耗曲线、分时站点负载和油箱可用燃油估算通信油机续航，附计算示例与工程限制。"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1"><meta property="og:type" content="article"><meta property="og:site_name" content="NetEngineerLab"><meta property="og:title" content="通信油机一箱油能运行多久？计算负载曲线与可用油量 | NetEngineerLab"><meta property="og:description" content="根据厂家油耗曲线、分时站点负载和油箱可用燃油估算通信油机续航，附计算示例与工程限制。"><meta property="og:url" content="https://netengineerlab.com/zh/guides/generator-fuel-runtime-planning/"><meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/guide.css"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","url":"https://netengineerlab.com/zh/guides/generator-fuel-runtime-planning","name":"通信油机一箱油能运行多久？","inLanguage":"zh-CN"},{"@type":"Article","headline":"通信油机一箱油能运行多久？计算负载曲线与可用油量","datePublished":"2026-10-09","dateModified":"2026-10-09","inLanguage":"zh-CN"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"工程指南","item":"https://netengineerlab.com/zh/guides"},{"@type":"ListItem","position":3,"name":"油机续航规划","item":"https://netengineerlab.com/zh/guides/generator-fuel-runtime-planning"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"如何根据油箱容量计算油机续航？","acceptedAnswer":{"@type":"Answer","text":"用可用燃油除以实际分时负载曲线对应的平均油耗。设计时应使用具体机型的厂家油耗数据。"}},{"@type":"Question","name":"可以使用通用的升/小时数值吗？","acceptedAnswer":{"@type":"Answer","text":"通用值只能用于粗略筛查。发动机、发电机、排放配置和负载点都会影响油耗，工程设计应核对厂家数据。"}}]}]}</script><script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"通信油机一箱油能运行多久？计算负载曲线与可用油量 | NetEngineerLab","url":"https://netengineerlab.com/zh/guides/generator-fuel-runtime-planning/","description":"根据厂家油耗曲线、分时站点负载和油箱可用燃油估算通信油机续航，附计算示例与工程限制。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="zh">
+<meta name="nel-route" content="guides/generator-fuel-runtime-planning/">
+<meta name="nel-available-locales" content="en,zh">
+<link rel="canonical" href="https://netengineerlab.com/zh/guides/generator-fuel-runtime-planning/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/generator-fuel-runtime-planning/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/generator-fuel-runtime-planning/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/generator-fuel-runtime-planning/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=dc6c5cc9b8ad">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=58918fefbb35">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=0da39eabe820"></script>
+</head><body class="guide-page"><!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="打开导航菜单"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="主导航">
+      <a href="../../">首页</a>
+      <a href="../../../tools/zh/">工具中心</a>
+      <a href="../../#guides" aria-current="page">工程指南</a>
+      <a href="../../#topics">专题</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../../../guides/generator-fuel-runtime-planning/" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="./" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END --><main class="guide-content"><article><p class="eyebrow">工具教程 · 通信电源</p><h1>通信油机一箱油能运行多久？</h1><p class="lead">通信站点的油机续航不能只看油箱标称容积。应根据<strong>可用燃油量</strong>和站点分时负载对应的油耗估算。优先使用具体机型的厂家油耗曲线；下方算例用于展示方法，不代表通用柴油机油耗标准。</p><h2>要解决什么问题</h2><p>市电停电时，运维人员需要判断站内存油能否覆盖预计停电时长、何时需要补油以及应提前调度多少燃油。若直接用油箱容积除以某个固定升/小时数值，白天无线设备、空调和夜间负载的变化都会造成偏差。</p><h2>为什么负载曲线和可用油量重要</h2><p>油耗取决于具体发动机、发电机、控制配置和运行负载点。油箱标称容积也不等于全部可抽取燃油；运维预留、吸油口结构和站点管理规则都会减少本次可用量。</p><h2>计算方法</h2><p>先将每段站点负载换算为油机额定功率百分比，再在相邻厂家油耗点之间插值；每段油耗率乘以持续时间后求和。</p><p><code>耗油量 = Σ（第 i 段插值油耗率 × 第 i 段小时数）</code></p><p><code>可用油量 = 油箱容积 ×（1 − 预留比例）− 不可用油量</code></p><p><code>续航时间 ≈ 可用油量 ÷ 分时负载加权平均油耗率</code></p><p>加权平均油耗率等于整个周期耗油量除以周期小时数。若停电目标时间长于输入周期，按周期重复计算意味着假设负载循环保持不变。</p><h2>计算示例</h2><p><strong>假设值（仅用于示例）：</strong>30 kW油机；输入一组类似厂家曲线的演示点：0%=1.5、25%=2.5、50%=4.2、75%=5.8、100%=7.4 L/h；油箱120 L；预留10%；另计不可用油量为0。这不是厂商规格，也不是行业统一参数。</p><p>假设18 kW运行12小时，随后12 kW运行12小时。线性插值得到60%负载时4.84 L/h，40%负载时3.52 L/h。24小时耗油量为（4.84×12）+（3.52×12）=<strong>100.32 L</strong>。可用油量为120×（1−0.10）=<strong>108 L</strong>。若该负载周期重复，估算续航为108÷（100.32÷24）=<strong>约25.8小时</strong>。</p><p>相对一天停电，这个结果只留出有限余量。实际油耗、油箱抽取量、补油条件和负载变化都可能缩短续航，不应将25.8小时当作保证值。</p><h2>常见错误</h2><ul><li>把油机额定功率当成站点持续负载。</li><li>用标称油箱容积除以满载或空载油耗。</li><li>把预留油量当作可用油，或漏掉结构上不可抽取的油量。</li><li>假设白天负载整晚不变，或假定短周期能原样重复数日。</li><li>未校核电池放电曲线和切换顺序，就把电池过渡时间算成节油续航。</li></ul><h2>如何提高估算质量</h2><p>取得准确机型的厂家油耗表，并录入实测或有依据的站点分时负载。核实环境温度与海拔降额、最低允许负载、启动冲击、油箱可用容积、回油布置和补油物流。长时间停电还要分析供油间隔，并与油机厂家和站点规程确认运行顺序。</p><h2>用工具计算站点方案</h2><p>在<a href="../../../tools/generator-fuel-runtime-calculator/zh/">油机油耗与应急续航计算器</a>中输入厂家油耗曲线、分时负载、油箱容积和预留量，估算周期油耗、目标保障油量及补油次数，再用厂家资料和现场记录校验假设。</p><h2>常见问题</h2><details><summary>如何根据油箱容量计算油机续航？</summary><p>用可用燃油除以实际分时负载曲线对应的平均油耗。设计时应使用具体机型的厂家油耗数据。</p></details><details><summary>可以使用通用的升/小时数值吗？</summary><p>通用值只能用于粗略筛查。发动机、发电机、排放配置和负载点都会影响油耗，工程设计应核对厂家数据。</p></details><h2>下一步</h2><p>使用实际厂家油耗表运行同一负载周期，再测试更长停电和补油间隔。相关内容见<a href="../../topics/telecom-power-energy/">通信电源与能源专题</a>、<a href="../telecom-rectifier-dc-power-sizing/">整流器配置指南</a>及<a href="../../../tools/48v-battery-runtime/zh/">-48V蓄电池续航计算器</a>。</p></article></main><!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div>
+    <nav class="site-shell-footer-links" aria-label="页脚导航">
+      <a href="../../about/">关于</a><a href="../../contact/">联系</a><a href="../../privacy/">隐私政策</a><a href="../../terms/">使用条款</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END --></body></html>

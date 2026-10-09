@@ -237,6 +237,18 @@ Phase 0 矩阵现已建立；2026-10-08 当前状态证据见 `docs/PHASE0_CURRE
 - 作用：把多个工具结果统一生成工程报告、MOP、检查表和台账
 - 商业化价值：高
 
+### [ ] Network Calculator → Config → Automation → Validation 产品线
+- 状态：`PLANNED`（竞品线索已记录，尚未通过 Phase 0 与 Tool Admission Gate，不构成 `NEXT`）
+- 站点决策：不新建第 11 站；Subnet、Fiber、MikroTik 配置和网络自动化归 NetEngineerLab，RAID 留作 DevEngineerLab / 数据中心专题的跨站候选。
+- P1 升级线｜Fiber：以现有 `fiber-loss`、`optical-power-budget` 和 PON 工具为唯一实现来源，评审双向 Tx/Rx 预算、波长、PON 制式/等级、分光、Pass/Warning/Fail、报告导出与 Reopen → Verify；不得新建重复计算器。
+- P1 候选线｜MikroTik / 多厂商配置：按 Basic WAN/LAN、VLAN、NAT、DHCP、PPPoE、Firewall、Static Route、OSPF、BGP、QoS、Backup/Restore 及 Cisco IOS/Juniper JUNOS 分批准入；先审计并复用/按缺口扩展现有 V2 Shared Core、Schema/Validator/Vendor Renderer，以 `acl-generator-validator` 和 Interface/VLAN 域为参考实现。
+- P2 候选线｜Network Automation：在配置意图和验证器稳定后，再评审 Cisco IOS、MikroTik RouterOS、Juniper JUNOS 的 Python/Netmiko 脚本生成；默认只生成、预览和导出，不连接生产设备、不接收真实凭据。
+- P2 集成线｜连续工作流：`Subnet Calculator → VLAN Planner → Switch/Router Config Generator → Python/Netmiko Automation Generator → Configuration Validator`，形成“算 → 配 → 自动化 → 验证”的结构化数据链路。
+- Phase 0 对账：TOOL-141–145（NETCONF/RESTCONF/YANG/Config Diff）先做协议与既有能力边界审计；TOOL-146/147 复用 Interface/VLAN；TOOL-148/150 保持 BGP/SRv6 独立候选；TOOL-149 优先复用 `acl-generator-validator`；TOOL-151 优先复用 `network-change-planner-mop-generator` 的 Intent、Interface/VLAN、MOP 与 verification-output，不另建重复能力。
+- 依赖顺序：现有工具覆盖/去重与跨站决策 → Source/Method/Validation 和厂商版本范围 → 审计并复用/按缺口扩展 V2 Shared Core、Schema/Validator/Vendor Renderer → 单厂商生成器 → 自动化脚本层 → 跨工具工作流与报告。
+- 验收：每个升级/候选均有 `existing_tool_id` 或候选 Tool ID、`canonical_problem_id`、Primary Domain、跨站结论和 Gate 记录；Fiber 预设及边界用例通过；配置生成器对支持的厂商/版本通过 Golden Fixture、危险命令和幂等性检查；自动化输出不含明文凭据且可通过静态语法检查；工作流可完成一次保存、重开、逐阶段验证和报告导出。
+- 立项规则：上述验收证据未齐备前保持 `PLANNED`，不得提升为 `READY` 或 `NEXT`；具体规格见 `docs/COMPETITIVE_LANDSCAPE_NETWORK_TOOLS.md`。
+
 ---
 
 ## 5. 已完成 / 已存在能力

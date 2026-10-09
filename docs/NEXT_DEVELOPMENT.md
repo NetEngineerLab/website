@@ -24,6 +24,12 @@ V1.7.5生产性能自动巡检上线后，执行：
 
 V1.7.5不修改12个工具的计算公式。生产性能基线稳定后再进入下一阶段产品开发。
 
+## 产品线候选：Network Calculator → Config → Automation → Validation
+
+2026-10-09 的公开工具对标已写入 `COMPETITIVE_LANDSCAPE_NETWORK_TOOLS.md`。结论是不新建第 11 站：Subnet、Fiber、MikroTik 配置生成和 Python/Netmiko 网络自动化均由 NetEngineerLab 承接；RAID 暂留 DevEngineerLab / 数据中心专题做跨站评审。
+
+该方向当前为 `PLANNED`，不替代 ROADMAP 的“当前没有获准开发的 NEXT 工具”。执行顺序为：先完成现有 Subnet/Fiber 覆盖与升级边界审计，再完成 TOOL-141–151 Phase 0 对账，并审计、复用或按缺口扩展现有 V2 Shared Core、Schema/Validator/Vendor Renderer，以 `acl-generator-validator` 和 Interface/VLAN 为参考实现；随后评审单厂商 Golden Fixture 与 Python/Netmiko 生成层，最后验收 `Subnet → VLAN → Config → Automation → Validator` 的保存、重开、验证与报告链路。TOOL-146/147、149、151 必须分别优先复用 Interface/VLAN、`acl-generator-validator`、`network-change-planner-mop-generator` 及其 verification-output；TOOL-141–145、148、150 保持独立边界审计。任何阶段在 Phase 0 去重、跨站结论、Source / Method / Validation、危险命令防护、厂商版本范围和回归证据未通过前，不得进入开发。
+
 
 ## UI V1.2 mandatory Tool Detail template
 
