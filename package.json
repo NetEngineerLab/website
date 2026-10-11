@@ -130,7 +130,8 @@
     "audit9:ui-v1.3.1": "node scripts/ui-v1.3.1-audit9.js",
     "test:odf-odn-resource": "node website/tools/odf-odn-resource-planner/docs/engine-test.js",
     "audit2:odf-odn-resource": "node scripts/odf-odn-resource-audit2.js",
-    "test:report-center": "node website/tools/engineering-report-batch-export-center/docs/engine-test.js"
+    "test:report-center": "node website/tools/engineering-report-batch-export-center/docs/engine-test.js",
+    "deploy:production": "npm run prepare:launch && npx wrangler pages deploy website --project-name=netengineerlab"
   },
   "engines": {
     "node": ">=20"

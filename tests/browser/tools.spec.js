@@ -40,6 +40,8 @@ const calculationOutputs={
   ,"data-center-network-convergence-fabric-capacity-planner":["#designStatus","—"]
   ,"network-risk-hidden-hazard-assessment-generator":["#overall",null]
   ,"odf-odn-resource-planner":["#ponPorts","—"]
+  ,"ospf-cost-calculator":["#totalCost","—"]
+  ,"network-capacity-forecast-planner":["#headline","—"]
 };
 const contentContracts={
   "fiber-loss":{
@@ -234,6 +236,16 @@ test.describe("all configured tools",()=>{
         }
         const engineLoaded=await page.evaluate(()=>performance.getEntriesByType("resource").some(entry=>/\/js\/engine\.js(?:\?|$)/.test(entry.name)));
         expect(engineLoaded).toBe(true);
+        if(tool.id==="engineering-report-batch-export-center"){
+          await page.locator("#sample").click();
+          await expect(page.locator("#count")).toHaveText("2");
+          await expect(page.locator("#deliverables")).toBeVisible();
+          await expect(page.locator("#exportReport")).toBeVisible();
+          const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth+1);
+          expect(overflow).toBe(false);
+          expect(errors).toEqual([]);
+          return;
+        }
         const calculationOutput=calculationOutputs[tool.id];
         expect(calculationOutput,`${tool.id} must declare a calculation output`).toBeTruthy();
         const calculate=page.locator("#calculateBtn, #calculate, #analyzeBtn, #validate, #planBtn, button.primary-action, button[type=submit]").first();

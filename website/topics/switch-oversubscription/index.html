@@ -8,8 +8,9 @@
 <meta property="og:url" content="https://netengineerlab.com/topics/switch-oversubscription/"><meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/css/site.css">
-<link rel="stylesheet" href="../../assets/css/guide.css">
+<link rel="stylesheet" href="../../assets/css/guide.css?v=a80a8be9d93d">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://netengineerlab.com/topics/switch-oversubscription/#webpage","name":"Switch Oversubscription & Uplink Capacity Topic Hub","description":"Explore switch oversubscription formulas, 48-port worked examples, uplink sizing, LAG, N-1 resilience and the NetEngineerLab oversubscription calculator.","url":"https://netengineerlab.com/topics/switch-oversubscription","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}},{"@type":"CollectionPage","@id":"https://netengineerlab.com/topics/switch-oversubscription/#collection","name":"Switch Oversubscription & Uplink Capacity Topic Hub","description":"Explore switch oversubscription formulas, 48-port worked examples, uplink sizing, LAG, N-1 resilience and the NetEngineerLab oversubscription calculator.","url":"https://netengineerlab.com/topics/switch-oversubscription","inLanguage":"en","isPartOf":{"@id":"https://netengineerlab.com/topics/switch-oversubscription/#webpage"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Topics","item":"https://netengineerlab.com/topics/switch-oversubscription"},{"@type":"ListItem","position":3,"name":"Switch Oversubscription & Uplink Capacity Topic Hub","item":"https://netengineerlab.com/topics/switch-oversubscription"}]}]}</script>
+<link rel="stylesheet" href="../../assets/css/topic-hub.css?v=edd192763775">
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Switch Oversubscription & Uplink Capacity Topic Hub | NetEngineerLab","url":"https://netengineerlab.com/topics/switch-oversubscription/","description":"Explore switch oversubscription formulas, 48-port worked examples, uplink sizing, LAG, N-1 resilience and the NetEngineerLab oversubscription calculator.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="en">
@@ -20,14 +21,14 @@
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/topics/switch-oversubscription/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/topics/switch-oversubscription/">
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
-<link rel="stylesheet" href="../../assets/css/design-tokens.css?v=dc6c5cc9b8ad">
-<link rel="stylesheet" href="../../assets/css/site-shell.css?v=58918fefbb35">
+<link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=c6e622c573c4">
 <script defer src="../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../assets/js/site.js?v=0da39eabe820"></script>
-</head><body class="guide-page"><!-- NEL_HEADER_START -->
+</head><body class="guide-page topic-hub-page"><!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
   <div class="site-shell-header-inner">
     <a class="site-shell-brand brand" href="../../">
@@ -48,7 +49,7 @@
   </div>
 </header>
 <!-- NEL_HEADER_END -->
-<nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../../">Home</a> / <span>Topics</span> / <span aria-current="page">Switch Oversubscription</span></nav>
+<nav class="topic-hub-breadcrumb" aria-label="Breadcrumb"><a href="../../">Home</a><span aria-hidden="true">›</span><a href="../../#topics">Topics</a><span aria-hidden="true">›</span><span aria-current="page">Switch Oversubscription &amp; Uplink Capacity</span></nav>
 <main class="guide-shell" id="main">
 <section class="guide-hero">
 <p class="eyebrow">TOPIC HUB</p>
@@ -80,6 +81,7 @@
 <div class="guide-related-grid">
 <a href="../../guides/48-port-switch-oversubscription/"><strong>48-Port Switch Oversubscription</strong><br>Compare 2×10G, 4×10G, 2×25G and N-1 for a 48-port switch.</a>
 <a href="../../guides/48-port-switch-2x10g-enough/"><strong>Is 2×10G Enough for a 48-Port Gigabit Switch?</strong><br>Evaluate practical demand, LAG, N-1 and upgrade options.</a>
+<a href="../../guides/lacp-member-congestion/"><strong>Why Is One LACP Link Congested While the Other Is Idle?</strong><br>Diagnose member-level traffic imbalance when aggregate headroom looks healthy.</a>
 </div>
 <h2>Failure &amp; Resilience</h2>
 <p>Oversubscription should not be approved using normal-state bandwidth alone. A resilient design should also be checked after the loss of an uplink or other required N-1 component.</p>
@@ -119,6 +121,7 @@
 <tr><td>GitHub Cheat Sheet</td><td>Concise engineering reference</td><td>Project file ready</td></tr>
 <tr><td>GitHub 48-Port Example</td><td>Focused Markdown example</td><td>Project file ready</td></tr>
 <tr><td>2×10G Problem Page</td><td>Long-tail search question</td><td>Available</td></tr>
+<tr><td>LACP Member Congestion Guide</td><td>Member-level traffic diagnosis and N-1 example</td><td>Available</td></tr>
 <tr><td>N-1 Problem Page</td><td>Failure-state capacity analysis</td><td>Available</td></tr>
 </tbody>
 </table>

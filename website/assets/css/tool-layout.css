@@ -169,14 +169,14 @@ body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-he
   width:min(calc(100% - (var(--nel-tool-gutter) * 2)),var(--nel-tool-max-width)) !important;
   max-width:var(--nel-tool-max-width) !important;
   margin:0 auto !important;
-  min-height:300px !important;
-  padding:46px 52px 44px !important;
-  border:0 !important;
-  border-radius:28px !important;
-  color:#fff !important;
+  min-height:0 !important;
+  padding:34px 40px 32px !important;
+  border:1px solid #d7e3ef !important;
+  border-radius:16px !important;
+  color:#082f59 !important;
   overflow:hidden !important;
-  background:radial-gradient(circle at 88% 18%,rgba(92,210,255,.22),transparent 30%),linear-gradient(118deg,#0b3a6d 0%,#0b5fa8 58%,#0f86ea 100%) !important;
-  box-shadow:0 20px 48px rgba(8,54,99,.14) !important;
+  background:#fff !important;
+  box-shadow:none !important;
 }
 body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero > .hero-inner {
   width:100% !important;
@@ -186,7 +186,7 @@ body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-he
 }
 body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero .eyebrow {
   margin:0 0 14px !important;
-  color:#8fe5ff !important;
+  color:#0b5fb8 !important;
   font-size:13px !important;
   line-height:1.4 !important;
   letter-spacing:.13em !important;
@@ -196,7 +196,7 @@ body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-he
 body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero h1 {
   max-width:1220px !important;
   margin:0 !important;
-  color:#fff !important;
+  color:#082f59 !important;
   font-size:clamp(40px,3.65vw,62px) !important;
   line-height:1.12 !important;
   letter-spacing:-.035em !important;
@@ -208,7 +208,7 @@ body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-he
 body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero h1 + p {
   max-width:1080px !important;
   margin:18px 0 0 !important;
-  color:#eaf5ff !important;
+  color:#405c76 !important;
   font-size:17px !important;
   line-height:1.75 !important;
 }
@@ -216,19 +216,19 @@ body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-he
   display:flex !important;
   flex-wrap:wrap !important;
   gap:10px !important;
-  margin:24px 0 0 !important;
+  margin:18px 0 0 !important;
   padding:0 !important;
 }
 body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero .hero-tags > * {
-  min-height:38px !important;
-  padding:8px 14px !important;
-  border:1px solid rgba(255,255,255,.28) !important;
+  min-height:34px !important;
+  padding:7px 12px !important;
+  border:1px solid #cbdcf0 !important;
   border-radius:999px !important;
   display:inline-flex !important;
   align-items:center !important;
-  color:#fff !important;
-  background:rgba(255,255,255,.07) !important;
-  font-size:14px !important;
+  color:#245d92 !important;
+  background:#edf5ff !important;
+  font-size:13px !important;
   line-height:1.2 !important;
   font-weight:700 !important;
 }
@@ -344,15 +344,33 @@ body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-su
 @media (max-width:768px) {
   body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero {
     min-height:0 !important;
-    padding:30px 24px 32px !important;
-    border-radius:22px !important;
+    padding:18px 18px 20px !important;
+    border-radius:16px !important;
+  }
+  body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero .eyebrow {
+    margin-bottom:8px !important;
+    font-size:12px !important;
+    letter-spacing:.08em !important;
   }
   body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero h1 {
-    font-size:clamp(32px,9vw,44px) !important;
-    line-height:1.14 !important;
+    font-size:clamp(26px,7.5vw,34px) !important;
+    line-height:1.1 !important;
     word-break:normal !important;
   }
-  body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero h1 + p {font-size:15px !important;}
+  body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero h1 + p {
+    margin-top:12px !important;
+    font-size:15px !important;
+    line-height:1.55 !important;
+  }
+  body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero .hero-tags {
+    gap:7px !important;
+    margin-top:14px !important;
+  }
+  body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero .hero-tags > * {
+    min-height:30px !important;
+    padding:5px 10px !important;
+    font-size:12px !important;
+  }
   body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-main {padding:18px 0 26px !important;}
   body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid > .nel-tool-input,
   body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid > .nel-tool-result {padding:22px 20px 24px !important;}

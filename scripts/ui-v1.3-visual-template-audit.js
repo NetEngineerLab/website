@@ -31,7 +31,7 @@ for(const name of fs.readdirSync(toolsRoot)){
   const cssDir=path.join(dir,'css');if(fs.existsSync(cssDir))for(const fn of fs.readdirSync(cssDir).filter(x=>x.endsWith('.css'))){const f=path.join(cssDir,fn),s=read(f);if(/(^|[^\w-])\.(hero|tool-hero|hero-inner|hero-tags)\b/m.test(s))errors.push(`${path.relative(root,f)}: local platform Hero selector remains`)}
 }
 const shared=read(path.join(root,'website','assets','css','tool-layout.css'));
-for(const token of ['UI V1.3.1 — CANONICAL TOOL DETAIL BASELINE','data-nel-template="tool-detail-v1.3.1"','linear-gradient(118deg,#0b3a6d 0%,#0b5fa8 58%,#0f86ea 100%)','border-radius:28px'])if(!shared.includes(token))errors.push(`shared CSS missing current visual baseline token ${token}`);
+for(const token of ['UI V1.3.1 — CANONICAL TOOL DETAIL BASELINE','data-nel-template="tool-detail-v1.3.1"','background:#fff !important;','border-radius:16px !important;','box-shadow:none !important;'])if(!shared.includes(token))errors.push(`shared CSS missing current visual baseline token ${token}`);
 if(shared.includes('UI V1.3 — NETWORK CHANGE PLANNER VISUAL BASELINE')) errors.push('obsolete UI V1.3 compatibility block must not return');
 if(shared.includes('data-nel-template="tool-detail-v1.3"')) errors.push('obsolete tool-detail-v1.3 CSS selector must not return');
 const out={result:errors.length?'FAIL':'PASS',tools:tools.length,pages:pages.length,errors,warnings: warnings.slice(0,12),warningCount:warnings.length};

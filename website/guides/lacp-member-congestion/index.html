@@ -1,0 +1,82 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Why Is One LACP Link Congested While the Other Is Idle? | NetEngineerLab</title>
+<meta name="description" content="Diagnose uneven LACP traffic with member counters, a 2×10G example, hash checks and N-1 capacity. Separate aggregate headroom from actual forwarding.">
+<meta property="og:type" content="article"><meta property="og:site_name" content="NetEngineerLab"><meta property="og:title" content="Why Is One LACP Link Congested While the Other Is Idle? | NetEngineerLab"><meta property="og:description" content="Diagnose uneven LACP traffic with member counters, a 2×10G example, hash checks and N-1 capacity."><meta property="og:url" content="https://netengineerlab.com/guides/lacp-member-congestion/"><meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../assets/css/site.css"><link rel="stylesheet" href="../../assets/css/guide.css?v=a80a8be9d93d"><link rel="stylesheet" href="../../assets/css/locale-menu.css"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://netengineerlab.com/guides/lacp-member-congestion/#webpage","name":"Why Is One LACP Link Congested While the Other Is Idle?","description":"Diagnose uneven LACP traffic with member counters, a 2×10G example, hash checks and N-1 capacity.","url":"https://netengineerlab.com/guides/lacp-member-congestion/","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}},{"@type":"Article","@id":"https://netengineerlab.com/guides/lacp-member-congestion/#article","headline":"Why Is One LACP Link Congested While the Other Is Idle?","description":"Diagnose uneven LACP traffic with member counters, a 2×10G example, hash checks and N-1 capacity.","url":"https://netengineerlab.com/guides/lacp-member-congestion/","inLanguage":"en","mainEntityOfPage":{"@id":"https://netengineerlab.com/guides/lacp-member-congestion/#webpage"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/","logo":{"@type":"ImageObject","url":"https://netengineerlab.com/assets/images/logo.svg"}}}]}</script>
+<link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=c6e622c573c4">
+</head><body class="guide-page"><!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Primary navigation">
+      <a href="../../">Home</a>
+      <a href="../../tools/">Tools</a>
+      <a href="../../#guides" aria-current="page">Guides</a>
+      <a href="../../#topics">Topics</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="../../zh/guides/lacp-member-congestion/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END --><nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../../">Home</a><span aria-hidden="true">›</span><a href="../../#guides">Guides</a><span aria-hidden="true">›</span><span aria-current="page">Why Is One LACP Link Congested While the Other Is Idle?</span></nav>
+<main class="guide-content"><section class="guide-hero"><p class="eyebrow">LAG TROUBLESHOOTING</p><h1>Why Is One LACP Link Congested While the Other Is Idle?</h1><p class="guide-lead">One congested LACP member can coexist with spare capacity in the bundle because aggregate capacity does not describe where individual flows go. Check that both members actually forward, then compare member rates, drops, queues and flow distribution in the same direction and time window.</p><div class="guide-meta"><span>LACP</span><span>Member-level counters</span><span>2×10G example</span><span>N-1</span></div></section>
+<article class="guide-article">
+<h2 id="membership">LACP membership and traffic distribution are separate checks</h2>
+<p>Treat successful aggregation as the start of troubleshooting. Check the operational member set at both ends; a cable being up does not establish that it carries ordinary data in the bundle. Then inspect the transmitting device's distribution policy. The reverse direction needs its own inspection.</p>
+<p>Hash-based forwarding maps multiple flows to member links, and different flow rates can produce imbalance. This mechanism is described in the informational <a href="https://datatracker.ietf.org/doc/html/rfc7424#section-3" rel="noopener noreferrer">RFC 7424, section 3</a>; it is not a promise that a particular switch supports automatic rebalancing.</p>
+<p>A single throughput test with one connection cannot demonstrate how a production traffic mix will use the whole bundle. For conventional per-flow forwarding, increasing the number of physical members does not automatically increase that connection's throughput. Platform features and traffic classification vary; record what the actual device uses.</p>
+<h2 id="example">A 70% bundle can hide a congested member</h2>
+<p>This is a synthetic, sustained, one-direction example. Four independent flows offer 6, 5, 2 and 1 Gbps of estimated on-wire demand. Assume two forwarding 10 Gbps members:</p>
+<div class="guide-example"><table><thead><tr><th>Member</th><th>Assigned flows</th><th>Offered demand</th><th>Demand / line rate</th></tr></thead><tbody><tr><td>A</td><td>6 + 5 Gbps</td><td>11 Gbps</td><td>110%</td></tr><tr><td>B</td><td>2 + 1 Gbps</td><td>3 Gbps</td><td>30%</td></tr><tr><td>Bundle</td><td>All four</td><td>14 Gbps</td><td>70% of 20 Gbps</td></tr></tbody></table></div>
+<p>Eleven Gbps is demand aimed at A, not a claim that its 10 Gbps interface transmits at 110%. Persistent excess must accumulate, be dropped, or induce application backoff. Delivered rates can therefore be lower than the offered estimates. Real loss depends on buffering, scheduling, timing and transport response; this table predicts none of those quantities.</p>
+<p>Member B is lightly loaded, not literally idle. Balanced flow counts are insufficient: two flows on each member can still produce 11 versus 3 Gbps. Moving the 5 Gbps flow to B would produce 6 versus 8 Gbps, but that arithmetic is an illustration, not an available switch command or guaranteed hash outcome.</p>
+<p>The <a href="../switch-oversubscription-ratio/">oversubscription ratio guide</a> explains installed line-rate capacity. Keep that metric separate from measured demand and member assignment.</p>
+<h2 id="evidence">Collect evidence in five steps</h2>
+<ol><li><strong>Record the active forwarding set.</strong> Save member state, negotiated speed, partner identity and relevant configuration from both ends. Investigate suspended, standby, individual or incompatible members before attributing unevenness to hashing. Use documented commands; Cisco's <a href="https://www.cisco.com/c/en/us/td/docs/switches/lan/c9000/lyr2-fwd/etherchannel/etherchannel-configuration-guide/m_ethernetchannel.html" rel="noopener noreferrer">EtherChannel guide</a> provides an example inspection entry point.</li>
+<li><strong>Measure member rates over matching intervals.</strong> Record transmit and receive byte deltas independently, with timestamps and counter units. Compute rate as <code>8 × delta_bytes / delta_seconds</code>. Handle resets and wraparound; do not add both directions and divide by one direction's capacity.</li>
+<li><strong>Correlate congestion evidence.</strong> Collect egress drops, queue occupancy or supported watermarks, and application symptoms during the same interval. Errors or optical alarms point to a different investigation. A five-minute average can miss short overload; finer telemetry still may not capture every burst.</li>
+<li><strong>Identify dominant traffic and hash inputs.</strong> Use flow telemetry or an approved packet sample to list endpoints, protocols, ports, direction and estimated rates. Check whether tunnels hide useful inner fields; sampled records are estimates and may miss brief traffic.</li>
+<li><strong>Reproduce with a controlled workload.</strong> Compare a single connection with multiple independent connections while watching both members. Preserve endpoints, direction and duration between trials. Test intended changes in a lab or maintenance window, then compare drops and application completion time against baseline.</li></ol>
+<h2 id="interventions">Choose a change that matches the evidence</h2>
+<p>If a member is not forwarding, repair eligibility first. If both forward but large flows collide, evaluate supported distribution inputs against actual traffic diversity. A global policy can affect other bundles and move existing traffic; prepare rollback and watch ordering-sensitive applications. “Use more hash fields” is a hypothesis to test, not a universal fix.</p>
+<p>Workload scheduling or rate limiting can reduce coincident demand. Additional application connections may expose more diversity when supported, although they can still collide. More members may improve aggregate placement without fixing a flow larger than one member. Faster members address that particular limit more directly, subject to switch, peer, optics and topology support.</p>
+<p>Use the <a href="../../tools/bandwidth-calculator/">bandwidth calculator</a> to compare a transfer window with sustained rate. For hardware changes, check the <a href="../../tools/sfp-qsfp-compatibility-calculator/">SFP/QSFP compatibility tool</a> and manufacturer support. Track future demand with the <a href="../../tools/network-capacity-forecast-planner/">network capacity forecast planner</a>; it does not validate hash distribution.</p>
+<h2 id="capacity">Reproduce the aggregate capacity check</h2>
+<p>The <a href="../../tools/switch-uplink-oversubscription-calculator/">switch uplink calculator</a> models aggregate demand. Use this complete input set:</p>
+<pre><code>Active access ports = 14; Access port speed = 1000 Mbps
+Average busy-hour utilization = 100%; Concurrent active ports = 100%
+Protocol / burst allowance = 0%; Speed per uplink = 10000 Mbps
+Active forwarding uplinks = 2; Target uplink utilization = 80%
+Peak active ports = 14; Growth = 0%; Burst allowance = 0%
+Failed uplinks (N-1) = 1</code></pre>
+<p>The 14-port input is an equivalent demand proxy, not the topology of the four high-rate flows. It produces 14 Gbps demand, 20 Gbps aggregate capacity, 16 Gbps target usable capacity, 2 Gbps target headroom, 70% demand utilization and a displayed 0.7:1 line-rate ratio. Eighty percent is this example's planning target, not a standard. Set engineering fields explicitly because UI defaults otherwise change the scenario. The calculator does not simulate hash assignments, member queues or packet loss.</p>
+<h2 id="n1">N-1 can fail even after imbalance is fixed</h2>
+<p>If one 10 Gbps member remains forwarding, unchanged offered demand is <code>14 / 10 = 140%</code>; at the example's 80% target, usable capacity is 8 Gbps and target headroom is −6 Gbps. This is a capacity scenario, not a failover guarantee. Check minimum-member requirements and the actual surviving path. Cisco's documented min-links feature can make a port-channel inactive below its required member count.</p>
+<p>The <a href="../switch-oversubscription-n-1/">N-1 guide</a> develops failure sizing. For access-switch planning, see the separate <a href="../48-port-switch-2x10g-enough/">48-port 2×10G guide</a>; its access topology differs from this server-flow example. The <a href="../../topics/switch-oversubscription/">switch oversubscription hub</a> connects the planning sequence.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<h3>Does LACP guarantee equal bandwidth per member?</h3><p>No. Verify operational membership and observed distribution; equal link speeds do not establish equal demand.</p>
+<h3>Can one flow use the full 20 Gbps?</h3><p>Do not assume so with conventional per-flow distribution. Check the platform's forwarding behavior and any explicitly supported alternatives.</p>
+<h3>Is 70% utilization safe?</h3><p>A bundle average cannot answer that. Inspect the busiest member, queue drops, bursts and failure requirements.</p>
+<h3>Will changing the hash fix this?</h3><p>It may change placement. Confirm that the chosen fields vary in the real workload, and measure the result.</p>
+<h3>Should I add another 10 Gbps member?</h3><p>Compare placement, the largest flow and N-1 demand first. Aggregate expansion and faster members solve different constraints.</p>
+<p>Save a same-window snapshot of both members, reproduce the aggregate inputs, and attach the busiest-member and N-1 results to your change review. That evidence makes the capacity decision reviewable.</p>
+<section class="guide-related"><h2>Continue the Topic</h2><div class="guide-related-grid"><a href="../switch-oversubscription-ratio/"><strong>Switch oversubscription ratio</strong><br>Review the main formula and capacity plan.</a><a href="../switch-oversubscription-n-1/"><strong>N-1 failure check</strong><br>Verify surviving capacity after a failure.</a><a href="../../topics/switch-oversubscription/"><strong>Switch oversubscription topic hub</strong><br>Browse the complete topic set.</a></div></section>
+</article><aside class="guide-toc" aria-label="On this page"><strong>On this page</strong><a href="#membership">Membership and distribution</a><a href="#example">70% bundle example</a><a href="#evidence">Evidence workflow</a><a href="#interventions">Choosing changes</a><a href="#capacity">Capacity check</a><a href="#n1">N-1</a><a href="#faq">FAQ</a></aside></main><!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Footer navigation">
+      <a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END --></body></html>

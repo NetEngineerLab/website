@@ -1,0 +1,167 @@
+# NetEngineerLab — AI Project Context
+
+> 本文件是 AI / Codex / 开发 Agent 的最小项目上下文入口。
+> 日常开发默认先读取本文件，不得为了“了解项目”无目的扫描全仓库。
+
+## 1. 项目定位
+
+NetEngineerLab 是面向网络工程师、运营商运维、规划、设计、安全管理人员的专业网络工程工具平台。
+
+核心目标不是做普通资讯站，而是让用户通过工具完成：
+
+- 工程计算
+- 网络分析
+- 风险判断
+- 设计规划
+- 方案生成
+- MOP / 报告 / 台账生成
+- 工程决策辅助
+
+产品原则：
+
+**用户价值 > 工具数量；深度工具 > 简单计算器；完整工程工作流 > 单点功能。**
+
+规模与准入治理以以下附件基线为准：Technology Radar V1.1 的 `PASS / CLOSED / FROZEN` 结论来自外部附件声明，当前仓库未包含其可独立复核的签署记录；200 Tools Master Roadmap V1.0 仍为 `DRAFT FOR AUDIT / NOT FROZEN`，只提供候选顺序，不授予自动开发授权。开发前必须按 `分类 → 去重 → Tool Admission Gate → 排序 → Roadmap` 执行，且每个工具只能有一个 Primary Domain。
+
+附件中的审计流程、角色分工和冻结规则属于项目治理说明；只有用户明确要求的文件修改或开发任务才构成本轮执行授权。不得因路线图列出工具、Reserved / Emerging 技术或候选数量目标而自动创建开发任务。
+
+当前 200 Tools Roadmap 专项审计状态为 `HOLD / NOT PASS`。当前矩阵计数为 200 条：19 条 `REJECT_DUPLICATE / FAIL`、181 条 `UNREVIEWED / NOT_STARTED`，没有准入 `PASS`。在逐条完成 40 个现有工具对账、重复指纹决策、跨站边界审查和 Tool Admission Gate 证据前，不得把路线图条目标记为 `NEXT` / `READY`，也不得依据 Phase D、Reserved 或 Emerging 条目开工。
+
+当前开发授权：没有获准的工具开发 `NEXT`。ROADMAP 中 PUE 已完成；旧默认顺序仅为历史规划，不构成授权。当前 MIB/OID 前置门禁仍未通过：候选来源集合的文档级 validator 已 PASS，但 8 个模块的逐文件 source/license/acquisition/redistribution review 尚未全部完成并独立审计；在完成前禁止采集/解析 MIB 正文、生成公开数据或开发 Engine/UI/Registry。只处理用户明确授权的阻断修复或既定前置审核任务，不得越 Gate。
+
+Phase 0 审计矩阵入口：`docs/roadmap/PHASE0_AUDIT_MATRIX.csv`（200 条候选）、`docs/roadmap/PHASE0_EXISTING_TOOL_CROSSWALK.csv`（40 个 active 工具）及 `docs/roadmap/PHASE0_AUDIT_MATRIX_README.md`。当前状态证据见 `docs/PHASE0_CURRENT_STATUS_2026-10-08.md`；该记录不授予新的开发授权。
+
+开发排除规则：Phase 0 中 `overlap_decision=REJECT_DUPLICATE` 的路线图条目属于已有工具覆盖项，必须保持 `gate_status=FAIL`，不得作为新工具开发；任何增强需求应修改对应 `existing_tool_id` 的现有工具任务。当前已确认覆盖的路线图 ID 为：`TOOL-001/013/017/021/045/054/056/063/064/100/104/177/179/180/181/182/184/185/186`。其余仍为 `HYPOTHESIS` 或 `UNREVIEWED` 的候选不能据此推断为重复或通过准入。
+
+后续执行范围：只继续审计 `HYPOTHESIS / UNREVIEWED / PENDING` 的未决候选。只有完成对账、通过全部 Mandatory Gate 及至少两项 Value Gate 后，候选才可进入 `NEXT` / `READY`；旧的 NEXT 规则不构成自动开发授权。已存在工具的增强统一登记为升级任务，必须记录 `existing_tool_id`、`canonical_problem_id`、现有 Source / Method / Validation 证据、升级范围和回归验证结果；不得为同一问题重新生成独立路线图工具。
+
+免费基础工具负责搜索流量、拉新和建立信任；高级分析、批量处理、专业模板、报告导出及后续专家服务承担商业化。
+
+## 2. 技术与部署基线
+
+- 前端优先
+- 主要部署：Cloudflare
+- Mobile First / H5 友好
+- 多语言
+- SEO + GEO / AI Search 友好
+- 结构化数据
+- Lighthouse / 性能门禁
+- 后期按真实需求逐步加入后端能力
+
+不要为了增加技术复杂度而引入后端。
+
+## 3. 关键目录
+
+优先按实际仓库结构确认，当前主要关注：
+
+- `website/tools/`：工具及工具相关页面
+- `website/zh/`：中文站相关页面
+- `scripts/`：审计、自动检查和构建辅助脚本
+- `docs/`：产品、工程、UI、审计及版本规范
+- `package.json`：项目脚本入口（如存在）
+
+若实际目录与本文件不一致，以仓库当前结构为准，并在确认后更新本文件。
+
+## 4. UI / 工具页基准
+
+工具页统一模板优先参考：
+
+`/tools/network-change-planner-mop-generator/zh/`
+
+重点保持统一：
+
+- Header / Navigation
+- Breadcrumb
+- Hero
+- 输入区
+- 操作按钮
+- Result / Report
+- Card / Panel
+- Content Section
+- FAQ
+- Footer
+- Mobile layout
+
+禁止重新引入已淘汰的旧 DOM、旧 `.start-btn` 或历史模板。
+
+## 5. 工具开发要求
+
+每个新工具开发前必须回答：
+
+1. 用户是谁？
+2. 用户遇到什么真实工程问题？
+3. 用户输入什么？
+4. 系统计算/判断什么？
+5. 最终输出什么？
+6. 输出能否直接用于实际工作？
+7. 相比 Excel、人工计算、普通在线计算器节省了什么？
+8. 能否继续升级为报告、批处理、方案或工作流？
+
+禁止为了凑工具数量开发低价值重复计算器。
+
+## 6. Token 节约模式（默认）
+
+日常开发默认开启。
+
+1. 首先读取本文件。
+2. 禁止无必要的全项目扫描。
+3. 优先查看本次任务相关文件和 `git diff`。
+4. 只读取本次修改文件及直接依赖。
+5. 已 PASS 的模块不得无理由重复审计。
+6. 批量机械检查优先写/运行脚本，不让 AI 逐页阅读。
+7. 只有公共组件、架构、模板、多语言、SEO 等发生跨站影响时才扩大范围。
+8. 不因用户只说“继续”而重新扫描整个项目。
+9. 修改后先做局部测试和 Diff 审计。
+10. 大版本、架构级变更、最终上线验收才允许全量审计。
+
+## 7. Agent 审计分工
+
+- **1号开发**：完成本次任务，只检查修改范围和必要依赖。
+- **2号审计**：默认只审本轮 Git Diff、修改文件和直接依赖。
+- **3号复验**：只复验 2号 FAIL 和对应修复，不重新全量扫描。
+- **4号总工**：优先读取变更摘要、审计结果、测试结果和剩余风险。
+- **最终上线验收**：允许全量扫描，但应先运行自动化审计，再对 FAIL 深查。
+
+## 8. SEO / GEO / 多语言底线
+
+涉及页面新增或模板修改时检查必要项目：
+
+- Title / Description
+- Canonical
+- hreflang
+- Sitemap
+- robots / llms（涉及全局时）
+- Structured Data
+- Internal Links
+- FAQ（适用时）
+- 多语言内容完整性
+- 中文页避免无意义英文 UI 泄漏
+- Mobile / Accessibility / Performance
+
+不要在每个局部任务中重复全站 SEO 扫描。
+
+## 9. 当前发展方向
+
+优先发展具有工程深度和组合价值的工具，例如：
+
+- 网络设计与容量规划
+- 数据中心网络与收敛/Fabric分析
+- OLT / 接入网设计
+- 传输环优化与风险分析
+- 网络变更计划 / MOP
+- 电源、能耗、PUE、油机、光伏等通信基础设施工具
+- 风险检查、隐患判定、报告生成
+
+工具之间应逐渐形成“输入 → 分析 → 方案 → 报告/导出”的工作流，而不是孤立页面。
+
+## 10. AI 开工规则
+
+用户采用简写：
+
+`NetEngineerLab，节约模式，今天开发【任务】`
+
+AI 应自动理解为：
+
+**读取本文件 → 确定最小任务范围 → 读取必要文件/Diff → 开发 → 局部测试 → 2号 Diff 审计 → 修复 FAIL → 必要时复验。**
+
+除非用户明确说“最终上线全量验收”，否则不要默认进行全项目扫描。

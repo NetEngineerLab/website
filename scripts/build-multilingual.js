@@ -41,6 +41,18 @@ const assetVersionCache=new Map();
 function isRootDirectoryRoute(route){return rootDirectoryRoutes.has(route)}
 
 function posix(value){return value.split(path.sep).join("/")}
+function writeFileWithRetry(file,data,encoding){
+ const attempts=5;
+ for(let attempt=0;attempt<attempts;attempt++){
+  try{
+   fs.writeFileSync(file,data,encoding);
+   return;
+  }catch(error){
+   if(error.code!=="UNKNOWN"||attempt===attempts-1)throw error;
+   Atomics.wait(new Int32Array(new SharedArrayBuffer(4)),0,0,100*(attempt+1));
+  }
+ }
+}
 function walk(dir){
  const output=[];
  for(const entry of fs.readdirSync(dir,{withFileTypes:true})){
@@ -190,6 +202,7 @@ function identifyPage(rel){
   const locale=localized?folderMap.get(parts[0]):defaultLocale;
   const routeParts=parts.slice(localized?1:0,-1);
   const route=`${routeParts.join("/")}/`;
+  if(route.startsWith("guides/"))return{route,localeId:locale.id,kind:"guide",shellOnly:true};
   if(configuredRoutes.has(route))return{route,localeId:locale.id,kind:sitemapConfig.routes.find(item=>item.route===route)?.pageType||"rootPage"};
  }
  return null;
@@ -435,6 +448,30 @@ function ensureAsset(html,currentRel,targetRel,type){
  html=html.replace(new RegExp(`<script\\b[^>]*src\\s*=\\s*["'][^"']*${escaped}[^"']*["'][^>]*><\\/script>\\s*`,"gi"),"");
  return html.replace(/<\/head>/i,`<script defer src="${href}"></script>\n</head>`);
 }
+function addBodyClass(html,className){
+ const body=/<body\b([^>]*)>/i;
+ return html.replace(body,(tag,attrs)=>{
+  const existing=attrs.match(/\bclass\s*=\s*(["'])(.*?)\1/i);
+  if(existing){
+   if(existing[2].split(/\s+/).includes(className))return tag;
+   return tag.replace(existing[0],`class=${existing[1]}${existing[2]} ${className}${existing[1]}`);
+  }
+  return `<body${attrs} class="${className}">`;
+ });
+}
+function ensureTopicBreadcrumb(html,info,locale){
+ const homeHref=escapeHtml(relativeUrl(urlForRoute(info.route,locale),urlForRoute("",locale)));
+ const topicsHref=`${homeHref}#topics`;
+ const homeLabel=locale.id==="zh"?"首页":"Home";
+ const topicsLabel=locale.id==="zh"?"专题":"Topics";
+ const title=decodeEntities(html.match(/<main\b[^>]*>[\s\S]*?<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1]?.replace(/<[^>]+>/g,""))||topicsLabel;
+ const ariaLabel=locale.id==="zh"?"面包屑":"Breadcrumb";
+ const nav=`<nav class="topic-hub-breadcrumb" aria-label="${ariaLabel}"><a href="${homeHref}">${homeLabel}</a><span aria-hidden="true">›</span><a href="${topicsHref}">${topicsLabel}</a><span aria-hidden="true">›</span><span aria-current="page">${escapeHtml(title)}</span></nav>`;
+ const existing=/<nav\b[^>]*class=["'][^"']*\b(?:guide-)?breadcrumb\b[^"']*["'][^>]*>[\s\S]*?<\/nav>/i;
+ if(existing.test(html))return html.replace(existing,nav);
+ if(/<!-- NEL_HEADER_END -->/i.test(html))return html.replace(/<!-- NEL_HEADER_END -->/i,`<!-- NEL_HEADER_END -->\n${nav}`);
+ return html.replace(/<main\b/i,`${nav}\n<main`);
+}
 function menuMarkup(currentInfo,group){
  const currentLocale=localeMap.get(currentInfo.localeId);
  const available=activeLocales.filter(locale=>group.has(locale.id));
@@ -464,6 +501,10 @@ function renderShellTemplate(kind,locale,tokens){
  return template;
 }
 function injectSiteShell(html,currentRel,currentInfo){
+ html=ensureAsset(html,currentRel,"assets/css/design-tokens.css","css");
+ html=ensureAsset(html,currentRel,"assets/css/site-shell.css","css");
+ html=versionExistingAsset(html,"assets/css/design-tokens.css");
+ html=versionExistingAsset(html,"assets/css/site-shell.css");
  const locale=localeMap.get(currentInfo.localeId);
  const currentUrl=urlForRoute(currentInfo.route,locale);
  const href=route=>escapeHtml(relativeUrl(currentUrl,urlForRoute(route,locale)));
@@ -497,10 +538,12 @@ function injectSiteShell(html,currentRel,currentInfo){
  const footerMarkers=/<!-- NEL_FOOTER_START -->[\s\S]*?<!-- NEL_FOOTER_END -->/i;
  if(headerMarkers.test(html))html=html.replace(headerMarkers,header);
  else if(/<header\b[\s\S]*?<\/header>/i.test(html))html=html.replace(/<header\b[\s\S]*?<\/header>/i,header);
- else throw new Error(`${currentRel}: header missing`);
+ else if(/<body\b[^>]*>/i.test(html))html=html.replace(/<body\b[^>]*>/i,match=>`${match}\n${header}`);
+ else throw new Error(`${currentRel}: header missing and body insertion point unavailable`);
  if(footerMarkers.test(html))html=html.replace(footerMarkers,footer);
  else if(/<footer\b[\s\S]*?<\/footer>/i.test(html))html=html.replace(/<footer\b[\s\S]*?<\/footer>/i,footer);
- else throw new Error(`${currentRel}: footer missing`);
+ else if(/<\/body>/i.test(html))html=html.replace(/<\/body>/i,`${footer}\n</body>`);
+ else throw new Error(`${currentRel}: footer missing and body insertion point unavailable`);
  return html;
 }
 function injectToolReturnNavigation(html,currentRel,currentInfo){
@@ -531,8 +574,8 @@ function updateManifestLink(html,currentRel,info){
  return html.replace(/<\/head>/i,`<link rel="manifest" href="${href}">\n</head>`);
 }
 function generateRuntimeFiles(){
- fs.writeFileSync(path.join(dataDir,"locales.js"),`window.NEL_I18N=${JSON.stringify(localeConfig)};\nwindow.NEL_LOCALES=window.NEL_I18N.locales;\n`,"utf8");
- fs.writeFileSync(path.join(dataDir,"tools-catalog.js"),`window.NEL_TOOLS=${JSON.stringify(toolCatalog)};\n`,"utf8");
+ writeFileWithRetry(path.join(dataDir,"locales.js"),`window.NEL_I18N=${JSON.stringify(localeConfig)};\nwindow.NEL_LOCALES=window.NEL_I18N.locales;\n`,"utf8");
+ writeFileWithRetry(path.join(dataDir,"tools-catalog.js"),`window.NEL_TOOLS=${JSON.stringify(toolCatalog)};\n`,"utf8");
 }
 function generateManifests(groups){
  for(const tool of toolCatalog.filter(item=>item.status==="active")){
@@ -556,7 +599,7 @@ function generateManifests(groups){
     start_url:urlForRoute(route,locale)
    };
    const fileName=locale.id===defaultLocale.id?"manifest.webmanifest":`manifest-${locale.folder}.webmanifest`;
-   fs.writeFileSync(path.join(toolRoot,fileName),JSON.stringify(manifest,null,2)+"\n","utf8");
+   writeFileWithRetry(path.join(toolRoot,fileName),JSON.stringify(manifest,null,2)+"\n","utf8");
   }
   const swPath=path.join(toolRoot,"sw.js");
   if(fs.existsSync(swPath)){
@@ -597,7 +640,7 @@ function generateManifests(groups){
      ?`const C=${JSON.stringify(cacheName)},A=${JSON.stringify(assets)};`
      :`const CACHE = ${JSON.stringify(cacheName)};\nconst CORE = ${JSON.stringify(assets,null,2)};`;
     sw=sw.replace(compactMatch?compactHead:verboseHead,replacement);
-    fs.writeFileSync(swPath,sw,"utf8");
+    writeFileWithRetry(swPath,sw,"utf8");
    }
   }
  }
@@ -627,7 +670,24 @@ function generateSitemap(groups){
   }
  }
  lines.push("</urlset>","");
- fs.writeFileSync(path.join(siteRoot,"sitemap.xml"),lines.join("\n"),"utf8");
+ writeFileWithRetry(path.join(siteRoot,"sitemap.xml"),lines.join("\n"),"utf8");
+}
+function enhanceGuideContent(html,info,locale){
+ if(!/<main\b[^>]*class=["'][^"']*\bguide-content\b/i.test(html))return html;
+ const home=relativeUrl(urlForRoute(info.route,locale),urlForRoute("",locale));
+ const guideLabel=locale.id==="zh"?"指南":"Guides";
+ const homeLabel=locale.id==="zh"?"首页":"Home";
+ if(!/<nav\b[^>]*class=["'][^"']*\bguide-breadcrumb\b/i.test(html)){
+  const title=decodeEntities(html.match(/<main\b[^>]*class=["'][^"']*\bguide-content\b[^>]*>[\s\S]*?<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1]?.replace(/<[^>]+>/g,""))||guideLabel;
+  const nav=`<nav class="guide-breadcrumb" aria-label="${locale.id==="zh"?"面包屑":"Breadcrumb"}"><a href="${escapeHtml(home)}">${homeLabel}</a><span aria-hidden="true">›</span><a href="${escapeHtml(home)}#guides">${guideLabel}</a><span aria-hidden="true">›</span><span aria-current="page">${escapeHtml(title)}</span></nav>`;
+  html=html.replace(/<main\b[^>]*class=["'][^"']*\bguide-content\b[^>]*>/i,`${nav}\n$&`);
+ }
+ const toolAnchor=/<a\b[^>]*href=["'][^"']*generator-fuel-runtime-calculator[^"']*["'][^>]*>[\s\S]*?<\/a>/i.exec(html);
+ if(toolAnchor){
+  const pStart=html.lastIndexOf("<p",toolAnchor.index),pEnd=html.indexOf("</p>",toolAnchor.index);
+  if(pStart>=0&&pEnd>=0){const openEnd=html.indexOf(">",pStart);const opening=html.slice(pStart,openEnd+1);if(!/\bclass=/.test(opening))html=html.slice(0,pStart)+opening.replace(/>$/,` class="guide-primary-cta">`)+html.slice(openEnd+1);else if(!/guide-primary-cta/.test(opening))html=html.slice(0,pStart)+opening.replace(/class=["']([^"']*)["']/,`class="$1 guide-primary-cta"`)+html.slice(openEnd+1);}
+ }
+ return html;
 }
 function build(){
  generateRuntimeFiles();
@@ -652,16 +712,35 @@ function build(){
   if(!locale||!group)continue;
   let html=fs.readFileSync(record.file,"utf8");
   if(record.info.shellOnly){
-   const shell=replaceLanguageMenu(injectSiteShell(html,record.rel,record.info),menuMarkup(record.info,group));
+   html=ensureAsset(html,record.rel,"assets/css/design-tokens.css","css");
+   html=ensureAsset(html,record.rel,"assets/css/site-shell.css","css");
+   html=versionExistingAsset(html,"assets/css/guide.css");
+   html=versionExistingAsset(html,"assets/css/design-tokens.css");
+   html=versionExistingAsset(html,"assets/css/site-shell.css");
+   html=enhanceGuideContent(html,record.info,locale);
+   let shell=replaceLanguageMenu(injectSiteShell(html,record.rel,record.info),menuMarkup(record.info,group));
    const header=/<!-- NEL_HEADER_START -->[\s\S]*?<!-- NEL_HEADER_END -->/;
-   fs.writeFileSync(record.file,html.replace(header,shell.match(header)[0]));
+   const guideLabel=locale.id==="zh"?"指南":"Guides";
+   const guideHref=`${relativeUrl(urlForRoute(record.info.route,locale),urlForRoute("",locale))}#guides`;
+   const breadcrumb=shell.match(/<nav\b[^>]*class=["'][^"']*\bguide-breadcrumb\b[^"']*["'][^>]*>[\s\S]*?<\/nav>/i);
+   if(breadcrumb){
+    const guideCrumb=new RegExp(`<span>\\s*${guideLabel}\\s*<\\/span>`);
+    shell=shell.replace(breadcrumb[0],breadcrumb[0].replace(guideCrumb,`<a href="${escapeHtml(guideHref)}">${guideLabel}</a>`));
+   }
+   writeFileWithRetry(record.file,shell);
    continue;
+  }
+  if(record.info.route.startsWith("topics/")){
+   html=ensureAsset(html,record.rel,"assets/css/topic-hub.css","css");
+   html=versionExistingAsset(html,"assets/css/topic-hub.css");
+   html=addBodyClass(html,"topic-hub-page");
   }
   html=removeInvalidVoidClosers(html);
   html=rewriteInternalAnchors(html,record.rel,record.info,groups);
   html=injectSiteShell(html,record.rel,record.info);
   html=injectToolReturnNavigation(html,record.rel,record.info);
   html=replaceLanguageMenu(html,menuMarkup(record.info,group));
+  if(record.info.route.startsWith("topics/"))html=ensureTopicBreadcrumb(html,record.info,locale);
   if(record.info.kind==="home"||record.info.kind==="toolsDirectory")html=prerenderToolGrid(html,record.info,locale);
   html=updateToolCountMarkers(html,locale);
   if(record.info.kind==="toolsDirectory")html=ensureToolDirectoryItemList(html,locale);
@@ -700,6 +779,8 @@ function build(){
   if(record.info.kind==="home"||record.info.kind==="toolsDirectory")html=ensureAsset(html,record.rel,"data/tools-catalog.js","js");
   html=ensureAsset(html,record.rel,"assets/js/site.js","js");
   html=versionExistingAsset(html,"assets/css/home-mobile-layout.css");
+  html=versionExistingAsset(html,"assets/css/home-v2.css");
+  html=versionExistingAsset(html,"assets/css/guide.css");
   html=versionExistingAsset(html,"assets/css/tool-design-system.css");
   html=versionExistingAsset(html,"assets/js/tool-integration.js");
   html=versionExistingAsset(html,"assets/js/tool-shell-v1.9.9-04.js");
@@ -715,7 +796,7 @@ function build(){
   }
   html=updateManifestLink(html,record.rel,record.info);
   html=html.replace(/<head>([\s\S]*?)<\/head>/i,(whole,body)=>`<head>${body.replace(/(?:\r?\n[ \t]*){3,}/g,"\n\n")}</head>`);
-  fs.writeFileSync(record.file,html,"utf8");
+  writeFileWithRetry(record.file,html,"utf8");
  }
  generateManifests(groups);
  generateSitemap(groups);
@@ -727,7 +808,7 @@ function build(){
   localizedPages:records.length,
   sitemapUrls:(fs.readFileSync(path.join(siteRoot,"sitemap.xml"),"utf8").match(/<loc>/g)||[]).length
  };
- fs.writeFileSync(path.join(packageRoot,"docs","MULTILINGUAL_BUILD_REPORT.json"),JSON.stringify(report,null,2)+"\n","utf8");
+ writeFileWithRetry(path.join(packageRoot,"docs","MULTILINGUAL_BUILD_REPORT.json"),JSON.stringify(report,null,2)+"\n","utf8");
  console.log(JSON.stringify(report,null,2));
 }
 build();

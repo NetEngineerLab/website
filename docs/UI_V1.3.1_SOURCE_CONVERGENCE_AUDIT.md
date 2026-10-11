@@ -1,9 +1,11 @@
 # NetEngineerLab UI V1.3.1 Source Convergence Audit
 
-- Result: **PASS**
-- Tools: 39
-- Tool Detail pages: 117
-- Ordinary locale pages: 99
-- Errors: 0
+- Result: **FAIL**
+- Tools: 40
+- Tool Detail pages: 120
+- Ordinary locale pages: 102
+- Errors: 3
 
-All source-convergence blocking rules passed.
+- expected 39 tools, found 40
+- expected 117 Tool Detail pages, found 120
+- expected 99 ordinary locale pages, found 102

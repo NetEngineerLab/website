@@ -62,6 +62,18 @@ function replaceBlock(html,block){
  if(html.includes(marker))return html.replace(marker,`${block}\n${marker}`);
  return html.replace(/<footer\b/i,`${block}\n<footer`);
 }
+function writeFileWithRetry(file,data,encoding){
+ const attempts=5;
+ for(let attempt=0;attempt<attempts;attempt++){
+  try{
+   fs.writeFileSync(file,data,encoding);
+   return;
+  }catch(error){
+   if(error.code!=="UNKNOWN"||attempt===attempts-1)throw error;
+   Atomics.wait(new Int32Array(new SharedArrayBuffer(4)),0,0,100*(attempt+1));
+  }
+ }
+}
 
 let changed=0,checked=0;
 for(const toolId of Object.keys(graph.tools)){
@@ -74,7 +86,7 @@ for(const toolId of Object.keys(graph.tools)){
   const workflowLink=`<link rel="stylesheet" href="${WORKFLOW_CSS}?v=${workflowCssHash}" data-nel-workflow-style>`;
   if(/<link\b[^>]*data-nel-workflow-style[^>]*>/i.test(after))after=after.replace(/<link\b[^>]*data-nel-workflow-style[^>]*>/i,workflowLink);
   else if(/<\/head>/i.test(after))after=after.replace(/<\/head>/i,`${workflowLink}\n</head>`);
-  if(after!==before){fs.writeFileSync(file,after,"utf8");changed++;}
+  if(after!==before){writeFileWithRetry(file,after,"utf8");changed++;}
  }
 }
 console.log(`Tool navigation integration PASS (${checked} pages, ${changed} updated)`);
