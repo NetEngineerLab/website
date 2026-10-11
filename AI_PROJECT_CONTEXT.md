@@ -171,8 +171,9 @@ AI 应自动理解为：
 
 SITEOPS_DEVELOPMENT_AUTHORIZED=NO
 SITEOPS_RUN_DELEGATION=YES
+SITEOPS_TASK_MODE=REPAIR
 SITEOPS_AUTHORIZATION_VERSION=2
-AUTHORIZED_TASK=Inspect the current Phase 0 status and identify one locally permitted code/test task; implement and validate it without claiming external evidence.
+AUTHORIZED_TASK=Inspect the current Phase 0 status and repair one concrete code/test defect only if the active Gate explicitly permits that local repair; validate it and do not claim external evidence.
 AUTHORIZED_SCOPE=Only the selected Phase 0 code/test blocker, its directly related source/tests/fixtures/evidence/status updates, and generated validation artifacts.
 FORBIDDEN_SCOPE=Do not fabricate reviewer sign-off, MIB license/redistribution approval, production evidence, or audit approval. Do not start unrelated tools or deploy.
 READY_FOR_DEVELOPMENT=NO
