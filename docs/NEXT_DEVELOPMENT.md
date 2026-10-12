@@ -39,3 +39,11 @@ All new/refactored Tool Detail pages MUST follow `NETENGINEERLAB_UI_V1.2_TOOL_PA
 ## UI V1.3 强制基线
 
 Tool Detail 开发前必须读取 `docs/NETENGINEERLAB_WEB_UI_DESIGN_SYSTEM_V1.3.md`。视觉以 Network Change Planner & MOP Generator 为参考；发布前必须运行 `npm run audit:ui-v1.3` 与 `npm run audit2:ui-v1.3`。
+
+## 候选产品系统：Fault Library & Troubleshooting System V1.0
+
+状态：`PLANNED`。设计输入见 `docs/NETENGINEERLAB_FAULT_LIBRARY_TROUBLESHOOTING_SYSTEM_V1.0.md`。该候选不替代 ROADMAP 中唯一获准的 NEXT，也不构成开发授权。启动前需完成独立技术审计、仓库工具能力盘点及阶段门禁；当前没有实现或发布承诺。
+
+## 2026-10-11 自动开发队列
+
+用户已授权自动审核后逐项本地开发、独立验收通过后移出待开发清单，暂不自动上线。当前执行入口为 [自动开发流程](roadmap/AUTO_DEVELOPMENT_WORKFLOW.md)，从准入审核开始；禁止自动 push、合并和部署，候选不得跳过 Gate。历史 PLANNED 和 HOLD 描述不替代本流程的逐项准入。

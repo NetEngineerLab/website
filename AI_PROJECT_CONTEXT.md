@@ -27,15 +27,24 @@ NetEngineerLab 是面向网络工程师、运营商运维、规划、设计、�
 
 当前 200 Tools Roadmap 专项审计状态为 `HOLD / NOT PASS`。当前矩阵计数为 200 条：19 条 `REJECT_DUPLICATE / FAIL`、181 条 `UNREVIEWED / NOT_STARTED`，没有准入 `PASS`。在逐条完成 40 个现有工具对账、重复指纹决策、跨站边界审查和 Tool Admission Gate 证据前，不得把路线图条目标记为 `NEXT` / `READY`，也不得依据 Phase D、Reserved 或 Emerging 条目开工。
 
-当前开发授权：没有获准的工具开发 `NEXT`。ROADMAP 中 PUE 已完成；旧默认顺序仅为历史规划，不构成授权。当前 MIB/OID 前置门禁仍未通过：候选来源集合的文档级 validator 已 PASS，但 8 个模块的逐文件 source/license/acquisition/redistribution review 尚未全部完成并独立审计；在完成前禁止采集/解析 MIB 正文、生成公开数据或开发 Engine/UI/Registry。只处理用户明确授权的阻断修复或既定前置审核任务，不得越 Gate。
+截至 2026-10-11 新授权前：没有获准的工具开发 `NEXT`。ROADMAP 中 PUE 已完成；旧默认顺序仅为历史规划，不构成授权。当前 MIB/OID 前置门禁仍未通过：候选来源集合的文档级 validator 已 PASS，但 8 个模块的逐文件 source/license/acquisition/redistribution review 尚未全部完成并独立审计；在完成前禁止采集/解析 MIB 正文、生成公开数据或开发 Engine/UI/Registry。只处理用户明确授权的阻断修复或既定前置审核任务，不得越 Gate。
 
-Phase 0 审计矩阵入口：`docs/roadmap/PHASE0_AUDIT_MATRIX.csv`（200 条候选）、`docs/roadmap/PHASE0_EXISTING_TOOL_CROSSWALK.csv`（40 个 active 工具）及 `docs/roadmap/PHASE0_AUDIT_MATRIX_README.md`。当前状态证据见 `docs/PHASE0_CURRENT_STATUS_2026-10-08.md`；该记录不授予新的开发授权。
+新工具开发候选入口：`docs/roadmap/DEVELOPMENT_CANDIDATES.csv`（181 个未决候选，已排除 19 个重复项，尚非获批开发队列）；重复排除详情见 `docs/roadmap/REJECTED_DUPLICATES_ARCHIVE.md`。Phase 0 审计矩阵入口：`docs/roadmap/PHASE0_AUDIT_MATRIX.csv`（200 条候选）、`docs/roadmap/PHASE0_EXISTING_TOOL_CROSSWALK.csv`（40 个 active 工具）及 `docs/roadmap/PHASE0_AUDIT_MATRIX_README.md`。当前状态证据见 `docs/PHASE0_CURRENT_STATUS_2026-10-08.md`；该记录不授予新的开发授权。
 
 开发排除规则：Phase 0 中 `overlap_decision=REJECT_DUPLICATE` 的路线图条目属于已有工具覆盖项，必须保持 `gate_status=FAIL`，不得作为新工具开发；任何增强需求应修改对应 `existing_tool_id` 的现有工具任务。当前已确认覆盖的路线图 ID 为：`TOOL-001/013/017/021/045/054/056/063/064/100/104/177/179/180/181/182/184/185/186`。其余仍为 `HYPOTHESIS` 或 `UNREVIEWED` 的候选不能据此推断为重复或通过准入。
 
 后续执行范围：只继续审计 `HYPOTHESIS / UNREVIEWED / PENDING` 的未决候选。只有完成对账、通过全部 Mandatory Gate 及至少两项 Value Gate 后，候选才可进入 `NEXT` / `READY`；旧的 NEXT 规则不构成自动开发授权。已存在工具的增强统一登记为升级任务，必须记录 `existing_tool_id`、`canonical_problem_id`、现有 Source / Method / Validation 证据、升级范围和回归验证结果；不得为同一问题重新生成独立路线图工具。
 
 免费基础工具负责搜索流量、拉新和建立信任；高级分析、批量处理、专业模板、报告导出及后续专家服务承担商业化。
+
+## 2026-10-11 自动开发授权（当前队列）
+
+用户已明确授权“自动审核后逐项开发，验收通过移出清单，暂不自动上线”。执行入口为 `docs/roadmap/AUTO_DEVELOPMENT_WORKFLOW.md`。本队列不再逐项要求用户重复授权；先通过完整准入和独立审计，再进行本地开发，最终测试和独立验收通过后才移出 MD/CSV 待开发清单，历史证据保留。禁止自动 push、合并或生产部署。原始 Phase 0 未准入状态、MIB/OID 许可要求及冻结分类约束不会由此被伪造为 PASS。
+
+此授权适用于自动开发队列；下文 SiteOps V2 的 REPAIR 授权仅限定该旧 SiteOps 委派，不限制用户后续明确授权的本队列，也不授予 SiteOps 其他任务的许可。
+## 专题自动开发授权（2026-10-11）
+
+用户已授权 40 项专题工作包自动审核后逐项本地开发，验收通过移出待办，暂不自动上线。入口为 `docs/roadmap/TOPIC_AUTO_DEVELOPMENT_WORKFLOW.md`；执行前运行 `npm run topic:queue:status` 并核对工具队列进度。专题与工具共用单项实现约束，先恢复检查点，再选择依赖满足的任务。必须由未参与实现的独立 Agent 审核实际产物及验证证据，通过队列完成门禁才能移出；原始清单、完成历史和证据保留。禁止自动提交、push、合并或部署，不覆盖现有未提交修改。
 
 ## 2. 技术与部署基线
 

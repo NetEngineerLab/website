@@ -46,13 +46,11 @@
 
 配套《NetEngineerLab 200 Tools Master Roadmap V1.0》当前状态为 **DRAFT FOR AUDIT / NOT FROZEN**，其条目均为待 Phase 0 核验的候选，不构成已批准开发队列。先把现有工具映射到 `canonical_problem_id`、Tool ID、Primary Domain、重复/合并决策及当前 Gate；Phase 0 完成后，未实现且通过准入的条目才能排队。Reserved / Emerging 条目需逐项复核，不因列入路线图而自动开发。
 
-### Phase 0 已有工具覆盖（开发排除清单）
+### 新工具开发候选清单
 
-以下路线图条目已在 Phase 0 明确判定为 `REJECT_DUPLICATE`，由对应现有工具作为唯一实现来源：
+当前候选清单见 [DEVELOPMENT_CANDIDATES.csv](docs/roadmap/DEVELOPMENT_CANDIDATES.csv)，共 **181 个未决候选**，已移除 19 个已有工具覆盖项。181 个候选尚未通过准入，不构成开发授权。
 
-`TOOL-001`, `TOOL-013` → `mtu-calculator`; `TOOL-017` → `subnet-calculator`; `TOOL-021` → `ospf-cost-calculator`; `TOOL-045` → `dns-ttl-propagation-calculator`; `TOOL-054` → `optical-power-budget`; `TOOL-056` → `pon-splitter-loss`; `TOOL-063` → `onu-rx-power`; `TOOL-064` → `pon-distance`; `TOOL-100`, `TOOL-104` → `data-center-network-convergence-fabric-capacity-planner`; `TOOL-177` → `pue-data-center-energy-efficiency`; `TOOL-179`, `TOOL-180` → `ups-capacity-battery-runtime-calculator`; `TOOL-181` → `48v-battery-runtime`; `TOOL-182` → `telecom-rectifier-dc-power-sizing`; `TOOL-184` → `generator-fuel-runtime-calculator`; `TOOL-185` → `data-center-cooling-load-calculator`; `TOOL-186` → `network-rack-power-cooling-calculator`.
-
-这些条目必须保持 `REJECT_DUPLICATE / FAIL`，不得重新排入 `NEXT`、`READY` 或开发任务。若需增强能力，应在现有工具上提交升级任务，并保留原 `existing_tool_id` 与审计证据。未列入本清单的 `HYPOTHESIS / UNREVIEWED` 条目仍不得视为已确认重复。
+重复项的对应工具、排除原因与防止重复立项规则已移至 [审计归档](docs/roadmap/REJECTED_DUPLICATES_ARCHIVE.md)。原始 Phase 0 矩阵保留 200 条审计记录；后续审核后应同步更新候选清单，任何获批排期仍需完整 Gate 证据与独立审核。
 
 此前记录的约 **37 个工具**及“100 个核心 + 100 个长尾”的规划口径仅作历史记录；新附件按约 40 个现有工具要求 Phase 0 对账，正式基线以实际注册表映射结果为准。旧的数量节点和类别配额不作为当前开发门槛。
 
@@ -104,8 +102,9 @@ Phase 0 矩阵现已建立；2026-10-08 当前状态证据见 `docs/PHASE0_CURRE
 
 ## 2. 当前开发授权状态
 
-**当前没有获准开发的 `NEXT` 工具。** 本文件旧版的默认顺序属于历史规划，不构成当前授权；不得据此启动 MIB/OID Engine、UI、Registry 或其他工具开发。当前可执行工作仅限本文件记录的 Phase 0 未决候选审计，以及 MIB/OID 文档级前置门禁与记录准备；实际逐文件 source/acquisition/license review、网络读取及 MIB 正文采集，须先具备有效具名预授权并完成相应审核，不能由本条文字自行授权。新开发任务须待相关 Gate 证据通过、审核签署，并由用户明确授权后另行写入唯一 `NEXT`。
+专题工作包另按 [专题自动开发流程](docs/roadmap/TOPIC_AUTO_DEVELOPMENT_WORKFLOW.md) 自动审核、逐项本地开发及独立验收。专题与工具共用单项实现锁；专题通过完成门禁后从待办移出并保留归档，不自动提交、推送、合并或上线。
 
+**2026-10-11：用户已授权自动审核、通过后逐项本地开发，验收通过后移出待开发清单，暂不自动上线。** 执行规则见 [自动开发流程](docs/roadmap/AUTO_DEVELOPMENT_WORKFLOW.md)。当前尚无通过准入的 NEXT；自动流程从未决候选的准入审核开始，通过真实 Gate 和独立审计后可登记唯一 NEXT，无需逐项重新请用户授权。旧历史默认顺序不授予准入；MIB/OID 具名预授权与逐文件许可、采集和再分发门禁继续生效。禁止自动推送、合并和生产部署。
 ### 已完成的历史 NEXT（非当前授权）
 
 ### [x] PUE & Data Center Energy Efficiency Calculator
@@ -290,24 +289,8 @@ OLT双上联与传输资源
 
 ## 7. 完成一个工具后的操作
 
-完成并通过 2号/3号验收后：
-
-1. 将当前 `[ ]` 改为 `[x]`
-2. 状态改为 `DONE`
-3. 从 P1/P2 中选择最高价值的下一项
-4. 将其状态改为 `NEXT`
-5. 保证全文件始终只有一个 `NEXT`
-6. 不删除已完成历史
-7. 若实际仓库已有该工具，直接核验后标记 DONE，不重复开发
-
----
+依照 [自动开发流程](docs/roadmap/AUTO_DEVELOPMENT_WORKFLOW.md) 执行。必要测试及独立验收通过后，运行 `node scripts/development-queue.js complete TOOL-xxx --evidence docs/roadmap/evidence/TOOL-xxx.json`。从待开发 MD/CSV 视图移出，在完成记录中归档，并保留原始矩阵。清理当前 NEXT，下一候选通过准入后才能设置为唯一 NEXT。已有覆盖项不得当作新开发完成项，也不重复开发。
 
 ## 8. AI 调用方式
 
-用户：
-
-`NetEngineerLab，节约模式，开发下一个工具。`
-
-AI：
-
-**读 `AI_PROJECT_CONTEXT.md` → 读本 ROADMAP → 找唯一 `NEXT` → 检查仓库是否已存在 → 只读取必要文件和模板 → 开发 → 测试 → Diff 审计 → 更新 ROADMAP。**
+自动任务读取 Context → 自动开发流程 → 队列状态 → 单项进度，恢复已有工作或选择下一项。用户只需补充真实缺失资料或处理必须由用户完成的外部审批，不需每项重复给出工具名称。当前授权只含本地开发和验收，不含上线。

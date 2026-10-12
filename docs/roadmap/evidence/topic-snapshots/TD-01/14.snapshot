@@ -1,0 +1,11 @@
+TD-01 generation check (isolated copy)
+Command: node scripts/build-topic-hubs.js
+SKIP official route topics/telecom-power-energy
+SKIP official route topics/switch-oversubscription
+SKIP missing routes topic-pon-optical: /cases/pon-splitter-loss-margin/
+SKIP missing routes topic-data-center-capacity: /cases/data-center-capacity-review/
+OFFICIAL_HUB_HASH_UNCHANGED=True
+Official English Hub SHA256 before/after: A1D08384F5B144085E3E8123A1FA8C73647B5DE9EF8D4E2A5992D6EB76B49E9A
+PON stub output SHA256: 4B781EA4E793DDA4CB3D878256EF70629B1110E89C1FD277C2121552DC0F529B
+Data-center-capacity stub output SHA256: 1D6AF20B64B468621C633424C7797247B19A6C0B8637F7831EC122EA4A5CE311
+The switching legacy stub is not regenerated because the canonical route is owned by the bilingual Page Registry; Cloudflare 301 serves the legacy path.

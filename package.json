@@ -4,6 +4,12 @@
   "version": "1.9.9-04-p0-p1-correctness-consent-offline",
   "description": "Production launch, online availability, and Lighthouse performance monitoring for NetEngineerLab.",
   "scripts": {
+    "queue:status": "node scripts/development-queue.js status",
+    "topic:queue:status": "node scripts/topic-development-queue.js status",
+    "topic:queue:sync": "node scripts/topic-development-queue.js sync",
+    "test:topic-queue": "node scripts/topic-development-queue-test.js",
+    "queue:sync": "node scripts/development-queue.js sync",
+    "test:development-queue": "node scripts/development-queue-test.js",
     "version:sync": "node scripts/sync-version.js",
     "build:i18n": "npm run build:config && node scripts/build-multilingual.js && npm run build:tool-navigation",
     "validate:architecture": "node scripts/architecture-validate.js",

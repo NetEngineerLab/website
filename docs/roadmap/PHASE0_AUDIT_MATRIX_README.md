@@ -14,7 +14,7 @@ This directory contains the Phase 0 reconciliation ledger for the 200 Tools Mast
 The six fingerprint fields are problem, inputs, outputs, core logic, target user, and primary domain (the latter is supplied from the roadmap and must still be checked). Mandatory gate fields are explicit in the CSV: problem definition, inputs/outputs, core logic, source, method, and validation. Six value-evidence fields are provided; at least two must be evidenced before admission. `cross_site_decision` remains pending until network-specific boundary review. No status is inferred from roadmap phase, priority, maturity, Reserved, or Radar state.
 
 ## Lightweight active-tool mapping (2026-10-07)
-The crosswalk covers all 40 active registry tools. Candidate IDs are hypotheses from registry metadata unless confirmed in the matrix. Nineteen roadmap entries are now confirmed as `REJECT_DUPLICATE` and remain excluded from new development; the remaining hypotheses do not establish duplicate status or admission. Confidence is recorded in audit notes. `NO_ROADMAP_MATCH` records no sufficiently close candidate.
+The crosswalk covers all 40 active registry tools. Candidate IDs are hypotheses from registry metadata unless confirmed in the matrix. Twenty roadmap entries are now confirmed as `REJECT_DUPLICATE` and remain excluded from new development; the remaining hypotheses do not establish duplicate status or admission. Confidence is recorded in audit notes. `NO_ROADMAP_MATCH` records no sufficiently close candidate.
 
 confidence column: HIGH/MEDIUM/LOW/NO_MATCH; lightweight confidence is provisional and requires deep review for confirmation.
 
@@ -22,3 +22,13 @@ confidence column: HIGH/MEDIUM/LOW/NO_MATCH; lightweight confidence is provision
 Continue deep audit only for unresolved rows marked `HYPOTHESIS`, `UNREVIEWED`, or `PENDING`. A roadmap row may enter `NEXT`/`READY` only after reconciliation, all Mandatory Gates, and at least two Value Gates pass with reviewer evidence; roadmap phase or priority alone is not authorization.
 
 Rows mapped to an existing tool (`REJECT_DUPLICATE`) are excluded from standalone development. Any enhancement is an upgrade task on the existing tool and must retain `existing_tool_id`, `canonical_problem_id`, existing Source/Method/Validation evidence, a bounded upgrade scope, and explicit regression validation. Do not create a separate roadmap tool for an already covered problem.
+
+## Development candidate view (2026-10-11)
+
+- `DEVELOPMENT_CANDIDATES.csv` contains the 180 unresolved candidates, excluding all 20 confirmed `REJECT_DUPLICATE` rows. It is a filtered view, not an approved development queue; update it from the audit matrix when review decisions change.
+- `REJECTED_DUPLICATES_ARCHIVE.md` preserves the excluded IDs, existing-tool mappings, and exclusion rules.
+- The original 200-row audit matrix and 40-row crosswalk remain the evidence ledger. Duplicate admission FAIL does not mean the existing implementation failed its tests. No NEXT/READY admission is granted by this cleanup.
+
+## Automatic development queue
+
+Current workflow: [AUTO_DEVELOPMENT_WORKFLOW.md](AUTO_DEVELOPMENT_WORKFLOW.md). Candidate views exclude confirmed duplicates and locally accepted completed records in DEVELOPMENT_QUEUE_STATE.json. The 200-row matrix remains the source ledger. Use development-queue.js sync to regenerate views and complete with verified evidence to archive accepted local work. User authorization does not convert admission gates into PASS and excludes production deployment.

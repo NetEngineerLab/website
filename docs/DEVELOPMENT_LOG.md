@@ -18,6 +18,13 @@
 
 ## 已完成批次
 
+### 2026-10-11 — Fault Library & Troubleshooting System V1.0 设计提案
+
+- 状态：`PLANNED`（仅产品/工程规范草案；未实现、未发布，也未获准进入开发）。
+- 范围：根据产品/工程审计意见新增 `docs/NETENGINEERLAB_FAULT_LIBRARY_TROUBLESHOOTING_SYSTEM_V1.0.md`，定义症状优先入口、故障模式/排障指南/真实案例 Schema、证据链与决策路径、工具映射、可信度、隐私脱敏、AI 边界、首发域和阶段门禁。
+- 队列：在 `docs/NEXT_DEVELOPMENT.md` 登记为 `PLANNED` 候选；不替代 ROADMAP 唯一获准的 NEXT。
+- 验证范围：文档内容与路线边界待独立审阅；本条不代表技术审计通过或任何生产验收。
+
 ### 2026-09-07 — GitHub 网络工程工具竞品对标
 
 - 状态：`LOCAL PASS`。
@@ -806,3 +813,11 @@
 - 验证：OSPF engine PASS；architecture validation PASS（38 tools/127 pages/124 sitemap）；tool navigation PASS（76 bilingual pages）；page registry PASS（54 families/124 localized pages）；tool registry PASS；app/engine 语法检查 PASS。
 - 审计：等待未参与实现的独立审计 Agent 对最新产物复核后，再进入 Route Summarization Calculator。
 
+
+### 2026-10-11 — 自动审核与逐项本地开发配置
+
+- 用户一次性授权自动准入审核、通过后逐项本地开发、独立验收通过移出清单，暂不自动上线。
+- 新增自动流程、可续跑检查点与证据格式，队列提供 status/sync/complete，并生成待处理 MD/CSV 与完成归档；200 行原审计矩阵不删除。
+- 验证：npm run test:development-queue PASS；queue:sync / queue:status PASS（181 待处理、0 完成）；diff --check PASS。测试覆盖失败/跳过/缺失/空白证据、同人审计、准入指纹和签署缺失拒绝，以及完成幂等与同步不重入。
+- 独立审计：未参与实现的 /root/workflow_audit 对实际产物及复测证据 PASS。
+- 自动任务：netengineerlab，当前聊天每 30 分钟续跑，ACTIVE。先关闭 40 个现有工具共享映射对账，再逐项准入；禁止 npm run deploy、push、合并、生产部署，默认不创建提交。
