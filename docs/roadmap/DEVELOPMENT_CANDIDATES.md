@@ -1,6 +1,6 @@
 # 新工具开发候选清单
 
-共 **162 个待处理候选**。按准入审核后逐项开发；只有准入通过、测试通过及独立验收通过，才可移入完成记录。清单本身不授权开发或上线。
+共 **156 个待处理候选**。按准入审核后逐项开发；只有准入通过、测试通过及独立验收通过，才可移入完成记录。清单本身不授权开发或上线。
 
 原始字段见 [CSV 清单](DEVELOPMENT_CANDIDATES.csv)；重复项见 [审计归档](REJECTED_DUPLICATES_ARCHIVE.md)；已验收项见 [完成记录](DEVELOPMENT_COMPLETED.md)。
 
@@ -57,12 +57,10 @@
 | TOOL-139 | Gateway API Capacity Planner | P4 | NOT_STARTED |
 | TOOL-140 | eBPF Flow Capacity Estimator | P4 | NOT_STARTED |
 
-## Data Center Networking（10 项）
+## Data Center Networking（8 项）
 
 | 编号 | 工具名称 | 优先级 | 准入审核状态 |
 | --- | --- | --- | --- |
-| TOOL-101 | Leaf-Spine Oversubscription Calculator | P1 | NOT_STARTED |
-| TOOL-102 | Spine Count Calculator | P1 | NOT_STARTED |
 | TOOL-103 | Spine Failure Capacity Planner | P2 | NOT_STARTED |
 | TOOL-105 | TOR Uplink Capacity Planner | P2 | NOT_STARTED |
 | TOOL-106 | ECMP Fabric Capacity Calculator | P2 | NOT_STARTED |
@@ -72,12 +70,10 @@
 | TOOL-110 | Data Center Interconnect Bandwidth Planner | P4 | NOT_STARTED |
 | TOOL-111 | Fabric Growth Capacity Forecaster | P4 | NOT_STARTED |
 
-## Edge / IoT（8 项）
+## Edge / IoT（6 项）
 
 | 编号 | 工具名称 | 优先级 | 准入审核状态 |
 | --- | --- | --- | --- |
-| TOOL-092 | Edge Node Placement Planner | P1 | NOT_STARTED |
-| TOOL-093 | Edge Latency Budget Calculator | P1 | NOT_STARTED |
 | TOOL-094 | MEC Capacity Planner | P2 | NOT_STARTED |
 | TOOL-095 | IoT Device Density Calculator | P2 | NOT_STARTED |
 | TOOL-096 | IoT Message Bandwidth Calculator | P3 | NOT_STARTED |
@@ -251,12 +247,10 @@
 | TOOL-043 | SASE Edge Placement Planner | P4 | NOT_STARTED |
 | TOOL-044 | WAN Circuit Cost Comparator | P4 | NOT_STARTED |
 
-## Wireless / RAN（10 项）
+## Wireless / RAN（8 项）
 
 | 编号 | 工具名称 | 优先级 | 准入审核状态 |
 | --- | --- | --- | --- |
-| TOOL-080 | RF Free-Space Path Loss Calculator | P1 | NOT_STARTED |
-| TOOL-081 | Cellular Link Budget Calculator | P1 | NOT_STARTED |
 | TOOL-084 | Spectrum Efficiency Calculator | P2 | NOT_STARTED |
 | TOOL-085 | MIMO Throughput Estimator | P2 | NOT_STARTED |
 | TOOL-086 | Massive MIMO Capacity Planner | P2 | NOT_STARTED |

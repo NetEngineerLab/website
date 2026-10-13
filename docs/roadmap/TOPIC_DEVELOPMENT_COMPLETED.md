@@ -5,3 +5,4 @@
 | ID | 专题 | 时间 | 证据 |
 |---|---|---|---|
 | TD-01 | 规范专题 URL 治理 / topic-url-governance / 治理 | 2026-10-11T13:17:47.037Z | docs/roadmap/evidence/topic-snapshots/TD-01/acceptance.json |
+| TD-02 | PON 光网络设计与诊断 / pon-optical-network / Hub | 2026-10-13T08:27:08.937Z | docs/roadmap/evidence/topic-snapshots/TD-02/acceptance.json |

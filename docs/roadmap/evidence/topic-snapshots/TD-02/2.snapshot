@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-nel-locale="en" data-nel-route="topics/pon-optical/">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PON Optical Network Design &amp; Troubleshooting Hub | NetEngineerLab</title>
+<meta name="description" content="Design PON links and isolate weak ONU receive power with splitter, fiber-loss and optical-budget checks, OTDR evidence and field retesting.">
+<meta name="robots" content="index,follow">
+
+<link rel="stylesheet" href="../../assets/css/site.css"><script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"PON Optical Network Design & Troubleshooting Hub","url":"https://netengineerlab.com/topics/pon-optical/","description":"Design PON links and isolate weak ONU receive power with loss, budget and field evidence.","inLanguage":"en","hasPart":[{"@type":"WebPage","url":"https://netengineerlab.com/guides/pon-splitter-loss-guide"},{"@type":"WebApplication","url":"https://netengineerlab.com/tools/onu-rx-power/"},{"@type":"WebApplication","url":"https://netengineerlab.com/tools/otdr-event/"}]}</script>
+<meta property="og:url" content="https://netengineerlab.com/topics/pon-optical/">
+<meta property="og:title" content="PON Optical Network Design &amp; Troubleshooting Hub | NetEngineerLab">
+<meta property="og:description" content="Design PON links and isolate weak ONU receive power with splitter, fiber-loss and optical-budget checks, OTDR evidence and field retesting.">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<link rel="stylesheet" href="../../assets/css/topic-hub.css?v=edd192763775">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"PON Optical Network Design & Troubleshooting Hub | NetEngineerLab","url":"https://netengineerlab.com/topics/pon-optical/","description":"Design PON links and isolate weak ONU receive power with splitter, fiber-loss and optical-budget checks, OTDR evidence and field retesting.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="en">
+<meta name="nel-route" content="topics/pon-optical/">
+<meta name="nel-available-locales" content="en,zh">
+<link rel="canonical" href="https://netengineerlab.com/topics/pon-optical/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/topics/pon-optical/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/topics/pon-optical/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/topics/pon-optical/">
+<link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=c6e622c573c4">
+<script defer src="../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../assets/js/site.js?v=0da39eabe820"></script>
+</head>
+<body class="topic-hub-page">
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Primary navigation">
+      <a href="../../">Home</a>
+      <a href="../../tools/">Tools</a>
+      <a href="../../#guides">Guides</a>
+      <a href="../../#topics" aria-current="page">Topics</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="../../zh/topics/pon-optical/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<nav class="topic-hub-breadcrumb" aria-label="Breadcrumb"><a href="../../">Home</a><span aria-hidden="true">›</span><a href="../../#topics">Topics</a><span aria-hidden="true">›</span><span aria-current="page">PON Optical Network Design &amp; Troubleshooting</span></nav>
+<main id="main">
+<h1>PON Optical Network Design &amp; Troubleshooting</h1>
+<p>Plan passive optical distribution and diagnose field loss by connecting the design budget to measured ONU receive power and OTDR events. Use actual OLT/ONU specifications and field measurements for acceptance.</p>
+<h2>Start here</h2><p><a href="../../guides/pon-splitter-loss-guide/">PON splitter loss and ODN margin guide</a> explains the loss model and a worked 1:8 × 1:8 example. For general fiber loss and link budgets, continue with the <a href="../../guides/fiber-link-budget-guide/">fiber link budget guide</a>.</p>
+<h2>Choose a task</h2>
+<ul>
+<li><strong>Design a new PON link:</strong> estimate fiber and component loss, select split stages, compare receive limits, and verify reach.</li>
+<li><strong>Investigate weak ONU light:</strong> record ONU RX, check it with a calibrated power meter at the appropriate reference point, locate abnormal events with OTDR, compare against the design budget, then repeat measurements after repair.</li>
+<li><strong>Plan ODN resources:</strong> reconcile ODF ports, feeder/distribution fibers and splitter allocation before expansion.</li>
+</ul>
+<h2>Design and calculation tools</h2>
+<ul>
+<li><a href="../../tools/pon-splitter-loss/">PON splitter loss calculator</a> — split ratio, cascade and insertion-loss estimate.</li>
+<li><a href="../../tools/fiber-loss/">Fiber loss calculator</a> — attenuation, connector, splice and passive-loss breakdown.</li>
+<li><a href="../../tools/optical-power-budget/">Optical power budget calculator</a> — transmitter, sensitivity, overload, path loss and margin comparison.</li>
+<li><a href="../../tools/pon-distance/">PON maximum distance calculator</a> — estimate reach against entered loss and system limits.</li>
+<li><a href="../../tools/odf-odn-resource-planner/">ODF/ODN resource planner</a> — track port and fiber allocation for planning.</li>
+</ul>
+<h2>Fault isolation path</h2>
+<ol>
+<li>Capture the ONU-reported receive level, timestamp, wavelength/context and alarm state; compare with the specific ONU receiver range.</li>
+<li>Validate the reading with a calibrated optical power meter at the correct point. Clean and inspect connectors before disturbing the plant.</li>
+<li>When the loss is confirmed, use OTDR from a suitable test point and wavelength with launch/receive fibers as required. Correlate event distance to route records; an OTDR trace alone does not identify every root cause.</li>
+<li>Reconcile measured end-to-end loss with splitter, fiber, connectors, splices and design margin in the budget. Repair the identified segment, then repeat power and loss checks and record before/after results.</li>
+</ol>
+<ul>
+<li><a href="../../tools/onu-rx-power/">ONU RX power diagnosis</a> — classify measured receive power against entered limits.</li>
+<li><a href="../../tools/otdr-event/">OTDR event analyzer</a> — inspect event loss, reflectance and distance observations.</li>
+</ul>
+
+<h2>Standards and engineering limits</h2>
+<p>GPON physical-media specifications are in <a href="https://www.itu.int/rec/T-REC-G.984.2/en" rel="external">ITU-T G.984.2</a>; XGS-PON physical-media specifications are in <a href="https://www.itu.int/rec/T-REC-G.9807.1/en" rel="external">ITU-T G.9807.1</a>. Optical class ranges and receiver windows depend on the applicable edition, class, optics and deployed equipment. This hub does not prescribe universal transmitter, sensitivity, overload or splitter values. Do not transfer GPON B+/C+ limits to XGS-PON.</p>
+<h2>FAQ</h2>
+<details><summary>Does an ONU RX reading locate the fault?</summary><p>No. It indicates a receive condition at the ONU. Confirm with a calibrated power meter, compare with the budget, and use OTDR evidence and route records to narrow the fault location.</p></details>
+<details><summary>Can OTDR replace the optical power meter?</summary><p>No. OTDR estimates distributed and event loss from a reflected test signal; an end-to-end power measurement verifies received optical level under the measurement setup.</p></details>
+<details><summary>Are GPON and XGS-PON budgets interchangeable?</summary><p>No. Use the deployed technology, optical class, wavelength and OLT/ONU datasheets. The calculators require explicit inputs rather than supplying a universal XGS-PON preset.</p></details>
+<h2>Current topic resources</h2><ul>
+<li><a href="../../guides/pon-splitter-loss-guide/">PON splitter loss and ODN margin guide</a> (English)</li><li><a href="../../guides/pon-splitter-loss-guide/">PON分光损耗与ODN余量指南</a> (中文)</li><li><a href="../../guides/fiber-link-budget-guide/">Fiber link budget guide</a></li>
+<li><a href="../../tools/pon-splitter-loss/">PON splitter loss</a> · <a href="../../tools/fiber-loss/">Fiber loss</a> · <a href="../../tools/optical-power-budget/">Optical budget</a> · <a href="../../tools/pon-distance/">PON distance</a> · <a href="../../tools/onu-rx-power/">ONU RX</a> · <a href="../../tools/otdr-event/">OTDR</a> · <a href="../../tools/odf-odn-resource-planner/">ODF/ODN resources</a></li>
+
+</ul>
+<p>Related domain: <a href="../telecom-power-energy/">telecom power and energy</a> supports site power continuity; it does not replace optical-layer budget or fault isolation.</p>
+</main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Footer navigation">
+      <a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+</body></html>
+
+

@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-wireless-link-budget-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-2ae6d87735aa-c13e5dfca332";
+const CACHE = "nel-wireless-link-budget-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-2ae6d87735aa-7eb045ddaafd";
 const CORE = [
   "./index.html",
   "./",

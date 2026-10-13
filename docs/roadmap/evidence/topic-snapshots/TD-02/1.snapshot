@@ -1,0 +1,633 @@
+{
+  "schemaVersion": "1.0.0",
+  "lifecycle": [
+    "Calculate",
+    "Learn",
+    "Advanced",
+    "Design",
+    "Planning",
+    "Engineering",
+    "Build",
+    "O&M",
+    "Operations"
+  ],
+  "searchIntents": [
+    "Calculate",
+    "Learn",
+    "Compare",
+    "Design",
+    "Plan",
+    "Troubleshoot",
+    "Build",
+    "Optimize"
+  ],
+  "contentTypes": [
+    "tool",
+    "tutorial",
+    "advanced",
+    "design",
+    "planning",
+    "engineering",
+    "build",
+    "om",
+    "operations",
+    "case",
+    "diagram"
+  ],
+  "indexStates": [
+    "DRAFT",
+    "READY",
+    "INDEXABLE",
+    "NOINDEX",
+    "RETIRED"
+  ],
+  "videoStates": [
+    "RESERVED"
+  ],
+  "items": [
+    {
+      "id": "tutorial-switch-oversubscription-ratio",
+      "type": "tutorial",
+      "title": "Switch Oversubscription Ratio",
+      "route": "/guides/switch-oversubscription-ratio/",
+      "lifecycle": "Learn",
+      "searchIntent": "Learn",
+      "indexState": "INDEXABLE",
+      "valueEvidence": [
+        "worked-example",
+        "decision-guidance"
+      ],
+      "related_tools": [
+        "tool-switch-uplink-oversubscription"
+      ],
+      "related_cases": [],
+      "related_diagrams": [
+        "diagram-switch-oversubscription"
+      ],
+      "related_topics": [
+        "topic-switching-oversubscription"
+      ],
+      "video": "RESERVED"
+    },
+    {
+      "id": "tool-switch-uplink-oversubscription",
+      "type": "tool",
+      "title": "Switch Uplink Oversubscription Calculator",
+      "route": "/tools/switch-uplink-oversubscription-calculator/",
+      "lifecycle": "Calculate",
+      "searchIntent": "Calculate",
+      "indexState": "INDEXABLE",
+      "valueEvidence": [
+        "validated-calculation",
+        "assumptions"
+      ],
+      "related_tools": [],
+      "related_cases": [
+        "case-switch-oversubscription"
+      ],
+      "related_diagrams": [],
+      "related_topics": [
+        "topic-switching-oversubscription"
+      ],
+      "video": "RESERVED"
+    },
+    {
+      "id": "tutorial-pon-optical-budget",
+      "type": "tutorial",
+      "title": "PON Splitter Loss and ODN Margin Guide",
+      "route": "/guides/pon-splitter-loss-guide/",
+      "lifecycle": "Learn",
+      "searchIntent": "Calculate",
+      "indexState": "INDEXABLE",
+      "valueEvidence": [
+        "formula",
+        "design-checklist"
+      ],
+      "related_tools": [
+        "tool-pon-splitter-loss",
+        "tool-pon-fiber-loss",
+        "tool-pon-optical-budget"
+      ],
+      "related_cases": [],
+      "related_diagrams": [
+        "diagram-pon-link-budget"
+      ],
+      "related_topics": [
+        "topic-pon-optical"
+      ],
+      "video": "RESERVED"
+    },
+    {
+      "id": "tutorial-pon-fiber-link-budget",
+      "type": "tutorial",
+      "title": "Fiber Link Budget Calculation: Loss, Margin and Maximum Distance",
+      "route": "/guides/fiber-link-budget-guide/",
+      "lifecycle": "Learn",
+      "searchIntent": "Learn",
+      "indexState": "INDEXABLE",
+      "valueEvidence": [
+        "formula",
+        "worked-example"
+      ],
+      "related_tools": [
+        "tool-pon-fiber-loss",
+        "tool-pon-optical-budget"
+      ],
+      "related_cases": [],
+      "related_diagrams": [],
+      "related_topics": [
+        "topic-pon-optical"
+      ],
+      "video": "RESERVED"
+    },
+    {
+      "id": "tool-pon-splitter-loss",
+      "type": "tool",
+      "title": "PON Splitter Loss Calculator",
+      "route": "/tools/pon-splitter-loss/",
+      "lifecycle": "Calculate",
+      "searchIntent": "Calculate",
+      "indexState": "INDEXABLE",
+      "valueEvidence": [
+        "validated-calculation",
+        "engineering-range"
+      ],
+      "related_tools": [],
+      "related_cases": [],
+      "related_diagrams": [],
+      "related_topics": [
+        "topic-pon-optical"
+      ],
+      "video": "RESERVED"
+    },
+    {
+      "id": "tool-pon-fiber-loss",
+      "type": "tool",
+      "title": "Fiber Loss Calculator",
+      "route": "/tools/fiber-loss/",
+      "lifecycle": "Calculate",
+      "searchIntent": "Calculate",
+      "indexState": "INDEXABLE",
+      "valueEvidence": [
+        "validated-calculation",
+        "loss-breakdown"
+      ],
+      "related_tools": [
+        "tool-pon-optical-budget",
+        "tool-pon-splitter-loss"
+      ],
+      "related_cases": [],
+      "related_diagrams": [],
+      "related_topics": [
+        "topic-pon-optical"
+      ],
+      "video": "RESERVED"
+    },
+    {
+      "id": "tool-pon-optical-budget",
+      "type": "tool",
+      "title": "Optical Power Budget Calculator",
+      "route": "/tools/optical-power-budget/",
+      "lifecycle": "Calculate",
+      "searchIntent": "Calculate",
+      "indexState": "INDEXABLE",
+      "valueEvidence": [
+        "validated-calculation",
+        "receiver-window-check"
+      ],
+      "related_tools": [
+        "tool-pon-fiber-loss",
+        "tool-pon-splitter-loss"
+      ],
+      "related_cases": [],
+      "related_diagrams": [],
+      "related_topics": [
+        "topic-pon-optical"
+      ],
+      "video": "RESERVED"
+    },
+    {
+      "id": "tool-pon-distance",
+      "type": "tool",
+      "title": "PON Maximum Distance Calculator",
+      "route": "/tools/pon-distance/",
+      "lifecycle": "Calculate",
+      "searchIntent": "Calculate",
+      "indexState": "INDEXABLE",
+      "valueEvidence": [
+        "validated-calculation",
+        "reach-limit-check"
+      ],
+      "related_tools": [
+        "tool-pon-optical-budget",
+        "tool-pon-splitter-loss"
+      ],
+      "related_cases": [],
+      "related_diagrams": [],
+      "related_topics": [
+        "topic-pon-optical"
+      ],
+      "video": "RESERVED"
+    },
+    {
+      "id": "tool-onu-rx-power",
+      "type": "tool",
+      "title": "ONU RX Power Diagnosis Tool",
+      "route": "/tools/onu-rx-power/",
+      "lifecycle": "Operations",
+      "searchIntent": "Troubleshoot",
+      "indexState": "INDEXABLE",
+      "valueEvidence": [
+        "measured-power-diagnosis",
+        "threshold-check"
+      ],
+      "related_tools": [
+        "tool-otdr-event",
+        "tool-pon-optical-budget"
+      ],
+      "related_cases": [],
+      "related_diagrams": [],
+      "related_topics": [
+        "topic-pon-optical"
+      ],
+      "video": "RESERVED"
+    },
+    {
+      "id": "tool-otdr-event",
+      "type": "tool",
+      "title": "OTDR Event Analyzer",
+      "route": "/tools/otdr-event/",
+      "lifecycle": "Operations",
+      "searchIntent": "Troubleshoot",
+      "indexState": "INDEXABLE",
+      "valueEvidence": [
+        "event-analysis",
+        "wavelength-comparison"
+      ],
+      "related_tools": [
+        "tool-onu-rx-power",
+        "tool-pon-fiber-loss"
+      ],
+      "related_cases": [],
+      "related_diagrams": [],
+      "related_topics": [
+        "topic-pon-optical"
+      ],
+      "video": "RESERVED"
+    },
+    {
+      "id": "tool-odf-odn-resource",
+      "type": "tool",
+      "title": "ODF/ODN Resource Planner",
+      "route": "/tools/odf-odn-resource-planner/",
+      "lifecycle": "Planning",
+      "searchIntent": "Plan",
+      "indexState": "INDEXABLE",
+      "valueEvidence": [
+        "resource-inventory",
+        "capacity-planning"
+      ],
+      "related_tools": [
+        "tool-pon-splitter-loss"
+      ],
+      "related_cases": [],
+      "related_diagrams": [],
+      "related_topics": [
+        "topic-pon-optical"
+      ],
+      "video": "RESERVED"
+    },
+    {
+      "id": "tutorial-data-center-capacity",
+      "type": "tutorial",
+      "title": "Data Center Capacity Planning",
+      "route": "/guides/data-center-cooling-load-calculation/",
+      "lifecycle": "Planning",
+      "searchIntent": "Plan",
+      "indexState": "INDEXABLE",
+      "valueEvidence": [
+        "capacity-model",
+        "worked-example"
+      ],
+      "related_tools": [
+        "tool-data-center-capacity"
+      ],
+      "related_cases": [],
+      "related_diagrams": [
+        "diagram-data-center-capacity"
+      ],
+      "related_topics": [
+        "topic-data-center-capacity"
+      ],
+      "video": "RESERVED"
+    },
+    {
+      "id": "tool-data-center-capacity",
+      "type": "tool",
+      "title": "Data Center Capacity Calculator",
+      "route": "/tools/data-center-cooling-load-calculator/",
+      "lifecycle": "Calculate",
+      "searchIntent": "Calculate",
+      "indexState": "INDEXABLE",
+      "valueEvidence": [
+        "validated-calculation",
+        "assumptions"
+      ],
+      "related_tools": [],
+      "related_cases": [
+        "case-data-center-capacity"
+      ],
+      "related_diagrams": [],
+      "related_topics": [
+        "topic-data-center-capacity"
+      ],
+      "video": "RESERVED"
+    },
+    {
+      "id": "case-switch-oversubscription",
+      "type": "case",
+      "title": "Campus Switch Uplink Oversubscription Review",
+      "route": "/cases/campus-switch-oversubscription/",
+      "lifecycle": "Engineering",
+      "searchIntent": "Troubleshoot",
+      "indexState": "INDEXABLE",
+      "valueEvidence": [
+        "decision-guidance",
+        "worked-example"
+      ],
+      "related_tools": [
+        "tool-switch-uplink-oversubscription"
+      ],
+      "related_cases": [],
+      "related_diagrams": [],
+      "related_topics": [
+        "topic-switching-oversubscription"
+      ],
+      "video": "RESERVED"
+    },
+    {
+      "id": "case-data-center-capacity",
+      "type": "case",
+      "title": "Data Center Cooling Capacity Review",
+      "route": "/cases/data-center-capacity-review/",
+      "lifecycle": "Engineering",
+      "searchIntent": "Troubleshoot",
+      "indexState": "INDEXABLE",
+      "valueEvidence": [
+        "decision-guidance",
+        "worked-example"
+      ],
+      "related_tools": [
+        "tool-data-center-capacity"
+      ],
+      "related_cases": [],
+      "related_diagrams": [],
+      "related_topics": [
+        "topic-data-center-capacity"
+      ],
+      "video": "RESERVED"
+    },
+    {
+      "id": "tutorial-generator-fuel-runtime-planning",
+      "type": "tutorial",
+      "title": "Telecom Generator Runtime from One Tank",
+      "route": "/guides/generator-fuel-runtime-planning/",
+      "lifecycle": "Planning",
+      "searchIntent": "Plan",
+      "indexState": "INDEXABLE",
+      "valueEvidence": [
+        "fuel-curve-formula",
+        "worked-example",
+        "assumptions-and-limitations"
+      ],
+      "related_tools": [
+        "tool-generator-fuel-runtime",
+        "tool-48v-battery-runtime",
+        "tool-generator-ups-ride-through",
+        "tool-telecom-solar-battery",
+        "tool-telecom-rectifier-sizing"
+      ],
+      "related_cases": [],
+      "related_diagrams": [],
+      "related_topics": [
+        "topic-telecom-power-energy"
+      ],
+      "video": "RESERVED"
+    },
+    {
+      "id": "tool-generator-fuel-runtime",
+      "type": "tool",
+      "title": "Generator Fuel Consumption & Runtime Calculator",
+      "route": "/tools/generator-fuel-runtime-calculator/",
+      "lifecycle": "Calculate",
+      "searchIntent": "Calculate",
+      "indexState": "INDEXABLE",
+      "valueEvidence": [
+        "validated-calculation",
+        "manufacturer-curve-inputs"
+      ],
+      "related_tools": [
+        "tool-48v-battery-runtime",
+        "tool-generator-ups-ride-through",
+        "tool-telecom-solar-battery",
+        "tool-telecom-rectifier-sizing"
+      ],
+      "related_cases": [],
+      "related_diagrams": [],
+      "related_topics": [
+        "topic-telecom-power-energy"
+      ],
+      "video": "RESERVED"
+    },
+    {
+      "id": "tool-48v-battery-runtime",
+      "type": "tool",
+      "title": "-48 V Telecom Battery Runtime Calculator",
+      "route": "/tools/48v-battery-runtime/",
+      "lifecycle": "Calculate",
+      "searchIntent": "Calculate",
+      "indexState": "INDEXABLE",
+      "valueEvidence": [
+        "validated-calculation",
+        "assumptions"
+      ],
+      "related_tools": [
+        "tool-generator-fuel-runtime"
+      ],
+      "related_cases": [],
+      "related_diagrams": [],
+      "related_topics": [
+        "topic-telecom-power-energy"
+      ],
+      "video": "RESERVED"
+    },
+    {
+      "id": "tool-generator-ups-ride-through",
+      "type": "tool",
+      "title": "Generator & UPS Transfer Ride-Through Planner",
+      "route": "/tools/generator-ups-transfer-ride-through-planner/",
+      "lifecycle": "Calculate",
+      "searchIntent": "Plan",
+      "indexState": "INDEXABLE",
+      "valueEvidence": [
+        "transfer-sequence-model",
+        "scenario-comparison"
+      ],
+      "related_tools": [
+        "tool-generator-fuel-runtime",
+        "tool-48v-battery-runtime"
+      ],
+      "related_cases": [],
+      "related_diagrams": [],
+      "related_topics": [
+        "topic-telecom-power-energy"
+      ],
+      "video": "RESERVED"
+    },
+    {
+      "id": "tool-telecom-solar-battery",
+      "type": "tool",
+      "title": "Telecom Solar Power & Battery Sizing Calculator",
+      "route": "/tools/telecom-solar-battery-sizing-calculator/",
+      "lifecycle": "Calculate",
+      "searchIntent": "Plan",
+      "indexState": "INDEXABLE",
+      "valueEvidence": [
+        "energy-balance-model",
+        "scenario-comparison"
+      ],
+      "related_tools": [
+        "tool-generator-fuel-runtime",
+        "tool-48v-battery-runtime"
+      ],
+      "related_cases": [],
+      "related_diagrams": [],
+      "related_topics": [
+        "topic-telecom-power-energy"
+      ],
+      "video": "RESERVED"
+    },
+    {
+      "id": "tool-telecom-rectifier-sizing",
+      "type": "tool",
+      "title": "Telecom Rectifier & DC Power System Sizing Calculator",
+      "route": "/tools/telecom-rectifier-dc-power-sizing/",
+      "lifecycle": "Calculate",
+      "searchIntent": "Calculate",
+      "indexState": "INDEXABLE",
+      "valueEvidence": [
+        "validated-calculation",
+        "failure-check"
+      ],
+      "related_tools": [
+        "tool-generator-fuel-runtime",
+        "tool-48v-battery-runtime"
+      ],
+      "related_cases": [],
+      "related_diagrams": [],
+      "related_topics": [
+        "topic-telecom-power-energy"
+      ],
+      "video": "RESERVED"
+    },
+    {
+      "id": "tutorial-telecom-rectifier-dc-power-sizing",
+      "type": "tutorial",
+      "title": "Telecom Rectifier Sizing: Recharge and N-1 Checks",
+      "route": "/guides/telecom-rectifier-dc-power-sizing/",
+      "lifecycle": "Planning",
+      "searchIntent": "Plan",
+      "indexState": "INDEXABLE",
+      "valueEvidence": [
+        "capacity-method",
+        "failure-check-example"
+      ],
+      "related_tools": [
+        "tool-telecom-rectifier-sizing",
+        "tool-generator-fuel-runtime",
+        "tool-48v-battery-runtime"
+      ],
+      "related_cases": [],
+      "related_diagrams": [],
+      "related_topics": [
+        "topic-telecom-power-energy"
+      ],
+      "video": "RESERVED"
+    },
+    {
+      "id": "tool-ip-camera-network-planner",
+      "type": "tool",
+      "title": "IP Camera Network Bandwidth & PoE Planning Calculator",
+      "route": "/tools/ip-camera-network-planner/",
+      "lifecycle": "Calculate",
+      "searchIntent": "Calculate",
+      "indexState": "INDEXABLE",
+      "valueEvidence": [
+        "bandwidth-storage-model",
+        "n-1-uplink-check"
+      ],
+      "related_tools": [],
+      "related_cases": [],
+      "related_diagrams": [],
+      "related_topics": [
+        "topic-ip-camera-network-bandwidth-poe"
+      ],
+      "video": "RESERVED"
+    },
+    {
+      "id": "tutorial-ip-camera-network-bandwidth-poe",
+      "type": "tutorial",
+      "title": "IP Camera Network Bandwidth & PoE Planning",
+      "route": "/guides/ip-camera-network-bandwidth-poe/",
+      "lifecycle": "Planning",
+      "searchIntent": "Learn",
+      "indexState": "INDEXABLE",
+      "valueEvidence": [
+        "worked-example",
+        "decision-guidance",
+        "capacity-model"
+      ],
+      "related_tools": [
+        "tool-ip-camera-network-planner"
+      ],
+      "related_cases": [],
+      "related_diagrams": [],
+      "related_topics": [
+        "topic-ip-camera-network-bandwidth-poe"
+      ],
+      "video": "RESERVED"
+    }
+  ],
+  "topics": [
+    {
+      "id": "topic-telecom-power-energy",
+      "slug": "telecom-power-energy",
+      "title": "Telecom Power & Energy",
+      "definition": "Plan telecom site DC power, battery autonomy, generator fuel and solar support."
+    },
+    {
+      "id": "topic-switching-oversubscription",
+      "slug": "switch-oversubscription",
+      "title": "Switching & Oversubscription",
+      "definition": "Plan uplink capacity and oversubscription safely."
+    },
+    {
+      "id": "topic-pon-optical",
+      "slug": "pon-optical",
+      "title": "PON & Optical",
+      "definition": "Design and troubleshoot passive optical links."
+    },
+    {
+      "id": "topic-data-center-capacity",
+      "slug": "data-center-capacity",
+      "title": "Data Center Capacity",
+      "definition": "Plan compute, power and cooling capacity."
+    },
+    {
+      "id": "topic-ip-camera-network-bandwidth-poe",
+      "slug": "ip-camera-network-bandwidth-poe",
+      "title": "IP Camera Network Bandwidth & PoE Planning",
+      "definition": "Plan camera video bandwidth, PoE budget, switch uplinks, NVR storage and N-1 resilience."
+    }
+  ]
+}

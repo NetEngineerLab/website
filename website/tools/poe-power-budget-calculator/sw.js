@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-poe-power-budget-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-2ae6d87735aa-b929becd3e6e";
+const CACHE = "nel-poe-power-budget-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-2ae6d87735aa-8de300922812";
 const CORE = [
   "./index.html",
   "./",

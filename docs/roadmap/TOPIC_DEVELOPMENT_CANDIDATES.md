@@ -1,4 +1,4 @@
-<!-- 待办视图：39 项；完整原表保存在 TOPIC_DEVELOPMENT_BACKLOG.json。 -->
+<!-- 待办视图：38 项；完整原表保存在 TOPIC_DEVELOPMENT_BACKLOG.json。 -->
 # 专题开发候选清单：40 个可跟踪工作包
 
 更新时间：2026-10-11。状态：规划候选；清单独立审计 PASS（不代表专题开发或发布验收），见 [审计证据](evidence/TOPIC_DEVELOPMENT_CANDIDATES_AUDIT_2026-10-11.md)。
@@ -17,7 +17,6 @@
 
 | ID | 专题名 / 建议 slug / 形态 | 优先级 | 现状与依赖 | 工程任务与交付物 | 验收标准 |
 |---|---|---|---|---|---|
-| TD-02 | PON 光网络设计与诊断 / pon-optical-network / Hub | P0 | 现有 pon-optical 为 stub；fiber-loss、optical-power-budget、pon-splitter-loss、onu-rx-power、otdr-event；复用 optical-link-design 与 optical-troubleshooting 工作流 | 定义规范边界并串联设计/排障双路径，交付英中 Hub、资产清单和主指南 | 两条路径均完成理解→计算→校核；不并行发布重复 stub；G |
 | TD-03 | 通信电源与能源规划升级 / telecom-power-energy / 现有 Hub | P0 | Foundation；telecom-rectifier-dc-power-sizing、48v-battery-runtime、generator-fuel-runtime-calculator、telecom-solar-battery-sizing-calculator | 增补任务分流、推荐顺序、异常路径和资源归属，交付 Hub 增量及现场案例 | 整流、电池、油机、光伏任务各有起点和校核；与 UPS Hub 边界清楚；G |
 | TD-04 | 交换机超售比专题验收升级 / switch-oversubscription / 现有 Hub | P0 | 已有 Workflow 内容形态；switch-uplink-oversubscription-calculator；正式分级未验收 | 核对全部指南案例登记、N-1 路径和返回链接，交付修补与成熟度报告 | 48 口及故障案例可复算；Authority 只在证据达标后判定；G |
 | TD-05 | 数据中心制冷专题验收升级 / data-center-cooling-capacity / 现有 Hub | P0 | 已有 Workflow 内容形态；data-center-cooling-load-calculator；需核对故障路径与语言互链 | 校核 N+1、冷吨、热负荷指南和资产清单，交付修补与验收报告 | 正常/单机故障样例可复算；首页范围与制冷主题一致；G |

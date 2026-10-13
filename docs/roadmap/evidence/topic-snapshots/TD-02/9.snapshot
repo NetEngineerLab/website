@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr" data-nel-locale="en" data-nel-route="tools/pon-splitter-loss/"><head>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="./" name="app-base"/>
+<title>PON Splitter Loss Calculator | NetEngineerLab</title>
+<meta content="Professional PON splitter loss calculator for multi-stage cascades, total split ratio, theoretical loss, insertion loss, engineering margin, receive power and maximum distance." name="description"/>
+<meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
+<meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="PON Splitter Loss Calculator | NetEngineerLab" property="og:title"/><meta content="Professional PON splitter loss calculator for multi-stage cascades, total split ratio, theoretical loss, insertion loss, engineering margin, receive power and maximum distance." property="og:description"/><meta content="https://netengineerlab.com/tools/pon-splitter-loss/" property="og:url"/><meta content="https://netengineerlab.com/tools/pon-splitter-loss/images/og-pon-splitter-loss.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
+<link href="css/style.css?v=2699f8c79aa8" rel="stylesheet"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"PON Splitter Loss Calculator","url":"https://netengineerlab.com/tools/pon-splitter-loss/","description":"Calculate multi-stage PON split ratio, ideal split loss, insertion loss and optical budget.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Optical Engineering Calculator","operatingSystem":"Any","softwareVersion":"1.0.2","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"PON Splitter Loss Calculator","item":"https://netengineerlab.com/tools/pon-splitter-loss/"}]}</script><meta content="NetEngineerLab" name="author"/>
+<link href="/assets/css/cookie-consent.css?v=v180-hotfix03" rel="stylesheet"/>
+<link href="/assets/css/mobile-branding.css?v=1.9.5-06" rel="stylesheet"/>
+<script defer="" src="/data/seo-config.js"></script>
+<script defer="" src="/assets/js/seo-engine.js"></script>
+<script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why is GPON C+ the default for 1:8 × 1:8?","acceptedAnswer":{"@type":"Answer","text":"The splitter cascade alone contributes about 21 dB. After fiber, connectors, splices and engineering margin are added, a B+ budget can be insufficient, while C+ provides a 32 dB ODN class."}},{"@type":"Question","name":"Which has lower loss, one-stage or two-stage splitting?","acceptedAnswer":{"@type":"Answer","text":"For the same total split ratio, a multi-stage cascade normally adds excess insertion loss and connection points. One-stage splitting is usually easier to budget, although coverage and maintenance requirements also matter."}},{"@type":"Question","name":"Why does 1:4 × 1:8 equal 1:32?","acceptedAnswer":{"@type":"Answer","text":"The first stage creates 4 branches and each branch is split into 8 outputs, producing 4 × 8 = 32 outputs."}},{"@type":"Question","name":"Why is ideal split loss different from nominal insertion loss?","acceptedAnswer":{"@type":"Answer","text":"The ideal value reflects perfect power division only. Nominal insertion loss also includes manufacturing, coupling, packaging and uniformity losses."}},{"@type":"Question","name":"Are more splitter cascade stages always better?","acceptedAnswer":{"@type":"Answer","text":"No. Additional stages may improve design flexibility, but they also increase connection points, insertion loss and maintenance complexity."}},{"@type":"Question","name":"Can excessive receive power also cause problems?","acceptedAnswer":{"@type":"Answer","text":"Yes. Power above the receiver overload threshold can cause errors or receiver instability, so both sensitivity margin and overload margin must be checked."}},{"@type":"Question","name":"Can this calculator replace field testing?","acceptedAnswer":{"@type":"Answer","text":"No. It supports planning and review; final acceptance still requires a power meter, OTDR and actual equipment parameters."}}]}</script>
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"PON Splitter Loss Calculator | NetEngineerLab","url":"https://netengineerlab.com/tools/pon-splitter-loss/","description":"Professional PON splitter loss calculator for multi-stage cascades, total split ratio, theoretical loss, insertion loss, engineering margin, receive power and maximum distance.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="en">
+<meta name="nel-route" content="tools/pon-splitter-loss/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/tools/pon-splitter-loss/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/pon-splitter-loss/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/pon-splitter-loss/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/pon-splitter-loss/es/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/pon-splitter-loss/">
+<link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=8c488ab6e2be">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=c6e622c573c4">
+<script defer src="../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../assets/js/site.js?v=0da39eabe820"></script>
+<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=744ed63c3e27">
+<link rel="manifest" href="manifest.webmanifest">
+</head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<a class="skip-link" href="#calculator">Skip to calculator</a><noscript><div class="noscript">JavaScript is required.</div></noscript>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Primary navigation">
+      <a href="../../">Home</a>
+      <a href="../" aria-current="page">Tools</a>
+      <a href="../../#guides">Guides</a>
+      <a href="../../#topics">Topics</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a><a class="language-option" role="menuitem" href="es/" lang="es" hreflang="es"><span>Español</span><small>Spanish</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">Start calculating</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a class="tool-return-link" href="../">← Back to Tools</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">PON Splitter Loss Calculator</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END -->
+<section class="hero nel-tool-hero"><div class="hero-inner"><p class="eyebrow">PON ENGINEERING TOOL</p><h1>PON Splitter Loss Calculator</h1><p>Plan one-, two- or three-stage PON splitter cascades and calculate total ratio, insertion loss, ideal split loss, excess loss, optical budget and estimated ONU receive power.</p><div class="hero-tags"><span>Three-stage cascade</span><span>1:2–1:128</span><span>Budget diagnosis</span><span>Maximum distance</span></div></div></section>
+<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
+<section class="input-panel card nel-tool-input">
+<div class="section-title"><span class="section-icon">☷</span><div><h2>Splitter and link parameters</h2><p>Enter splitter cascade, passive losses and equipment power window.</p></div></div>
+<div class="preset-row"><label for="preset">Splitter preset</label><select id="preset"><option value="custom">Custom</option><option selected="" value="8x8">Two-stage 1:8 × 1:8</option><option value="1x16">One-stage 1:16</option><option value="1x32">One-stage 1:32</option><option value="1x64">One-stage 1:64</option><option value="2x8">Two-stage 1:2 × 1:8</option><option value="4x8">Two-stage 1:4 × 1:8</option><option value="4x4x4">Three-stage 1:4 × 1:4 × 1:4</option></select></div>
+<div class="form-grid">
+<div class="field full"><label for="projectName">Project name</label><div class="input-wrap no-unit"><input id="projectName" value="GPON C+ 1:64 Splitter Design"/></div></div><div class="field"><label for="systemProfile">System profile</label><div class="input-wrap no-unit"><select id="systemProfile"><option value="custom">Custom</option><option value="gpon-b">GPON B+ (28 dB)</option><option selected="" value="gpon-c">GPON C+ (32 dB)</option></select></div><small class="help">Default for the retained 1:8 × 1:8 cascade.</small></div>
+<div class="subheading">Splitter cascade</div>
+<div class="stage-card"><h3>Primary splitter</h3><div class="field"><label for="splitter1">Split ratio</label><div class="input-wrap no-unit"><select id="splitter1"><option value="0">None</option><option value="3.7">1:2 (3.7 dB)</option><option value="7.2">1:4 (7.2 dB)</option><option selected="" value="10.5">1:8 (10.5 dB)</option><option value="13.8">1:16 (13.8 dB)</option><option value="17">1:32 (17.0 dB)</option><option value="20.5">1:64 (20.5 dB)</option><option value="24">1:128 (24.0 dB)</option></select></div></div><div class="field"><label>Current loss</label><div class="input-wrap"><input disabled="" value="Defined by split ratio"/><span>dB</span></div></div></div>
+<div class="stage-card"><h3>Secondary splitter</h3><div class="field"><label for="splitter2">Split ratio</label><div class="input-wrap no-unit"><select id="splitter2"><option value="0">None</option><option value="3.7">1:2 (3.7 dB)</option><option value="7.2">1:4 (7.2 dB)</option><option selected="" value="10.5">1:8 (10.5 dB)</option><option value="13.8">1:16 (13.8 dB)</option><option value="17">1:32 (17.0 dB)</option></select></div></div><div class="field"><label>Current loss</label><div class="input-wrap"><input disabled="" value="Defined by split ratio"/><span>dB</span></div></div></div>
+<div class="stage-card"><h3>Third splitter</h3><div class="field"><label for="splitter3">Split ratio</label><div class="input-wrap no-unit"><select id="splitter3"><option selected="" value="0">None</option><option value="3.7">1:2 (3.7 dB)</option><option value="7.2">1:4 (7.2 dB)</option><option value="10.5">1:8 (10.5 dB)</option><option value="13.8">1:16 (13.8 dB)</option></select></div></div><div class="field"><label>Current loss</label><div class="input-wrap"><input disabled="" value="Defined by split ratio"/><span>dB</span></div></div></div>
+<div class="subheading">Link parameters</div>
+<div class="field"><label for="distance">Fiber distance</label><div class="input-wrap"><input id="distance" min="0" step="0.1" type="number" value="10"/><span>km</span></div></div>
+<div class="field"><label for="wavelength">Wavelength</label><div class="input-wrap no-unit"><select id="wavelength"><option value="1310">1310 nm</option><option selected="" value="1490">1490 nm</option><option value="1550">1550 nm</option><option value="custom">Custom</option></select></div></div><div class="field"><label for="attenuation">Attenuation</label><div class="input-wrap"><input id="attenuation" min="0" step="0.01" type="number" value="0.25"/><span>dB/km</span></div><small class="help">1490 nm default: 0.25 dB/km engineering typical value; editable for conservative design.</small></div>
+<div class="field"><label for="spliceCount">Number of splices</label><div class="input-wrap"><input id="spliceCount" min="0" step="1" type="number" value="6"/><span>pcs</span></div></div>
+<div class="field"><label for="spliceLoss">Loss per splice</label><div class="input-wrap"><input id="spliceLoss" min="0" step="0.01" type="number" value="0.10"/><span>dB</span></div></div>
+<div class="field"><label for="connectorCount">Number of connectors</label><div class="input-wrap"><input id="connectorCount" min="0" step="1" type="number" value="4"/><span>pcs</span></div></div>
+<div class="field"><label for="connectorLoss">Loss per connector</label><div class="input-wrap"><input id="connectorLoss" min="0" step="0.01" type="number" value="0.30"/><span>dB</span></div></div>
+<div class="field"><label for="otherLoss">Other passive loss</label><div class="input-wrap"><input id="otherLoss" min="0" step="0.01" type="number" value="0"/><span>dB</span></div></div>
+<div class="field"><label for="opticalPenalty">Optical path penalty</label><div class="input-wrap"><input id="opticalPenalty" min="0" step="0.1" type="number" value="1"/><span>dB</span></div><small class="help">C+ downstream reference value.</small></div><div class="field"><label for="margin">Engineering margin</label><div class="input-wrap"><input id="margin" min="0" step="0.1" type="number" value="3"/><span>dB</span></div></div><div class="field"><label for="aging">Aging allowance / 老化余量</label><div class="input-wrap"><input id="aging" type="number" step="0.1" value="0"><span>dB</span></div></div><div class="field"><label for="temperature">Temperature allowance / 温度余量</label><div class="input-wrap"><input id="temperature" type="number" step="0.1" value="0"><span>dB</span></div></div><div class="field"><label for="maintenance">Maintenance allowance / 维护余量</label><div class="input-wrap"><input id="maintenance" type="number" step="0.1" value="0"><span>dB</span></div></div><div class="field"><label for="protection">Protection PON allowance / 保护余量</label><div class="input-wrap"><input id="protection" type="number" step="0.1" value="0"><span>dB</span></div></div><div class="field"><label for="systemReach">System reach cap</label><div class="input-wrap"><input id="systemReach" min="0.1" step="0.1" type="number" value="20"/><span>km</span></div><small class="help">Effective reach will not exceed this value.</small></div>
+<div class="subheading">Equipment power window</div>
+<div class="field"><label for="txPower">Minimum transmit power</label><div class="input-wrap"><input id="txPower" step="0.1" type="number" value="3"/><span>dBm</span></div></div>
+<div class="field"><label for="txMaxPower">Maximum transmit power</label><div class="input-wrap"><input id="txMaxPower" step="0.1" type="number" value="7"/><span>dBm</span></div><small class="help">Used for the receiver-overload check; verify the exact equipment datasheet.</small></div>
+<div class="field"><label for="rxSensitivity">Receiver sensitivity</label><div class="input-wrap"><input id="rxSensitivity" step="0.1" type="number" value="-30"/><span>dBm</span></div></div>
+<div class="field"><label for="rxOverload">Receiver overload threshold</label><div class="input-wrap"><input id="rxOverload" step="0.1" type="number" value="-8"/><span>dBm</span></div></div>
+</div>
+<div class="input-actions"><button class="primary-action" id="calculateBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> Calculate splitter loss</button><button class="secondary-action" id="resetBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M20 11a8 8 0 1 0-2.3 5.7"></path><path d="M20 4v7h-7"></path></svg> Reset parameters</button></div><p class="validation" id="validation" role="alert"></p>
+</section>
+<section class="content-section" aria-label="Resilience reserves"><div class="field"><label for="agingLoss">Aging reserve</label><input id="agingLoss" min="0" step="0.1" type="number" value="0"/></div><div class="field"><label for="temperatureLoss">Temperature reserve</label><input id="temperatureLoss" min="0" step="0.1" type="number" value="0"/></div><div class="field"><label for="maintenanceLoss">Maintenance reserve</label><input id="maintenanceLoss" min="0" step="0.1" type="number" value="0"/></div><div class="field"><label for="protectionLoss">Protection PON reserve</label><input id="protectionLoss" min="0" step="0.1" type="number" value="0"/></div></section>
+<section aria-live="polite" class="result-panel card nel-tool-result">
+<div class="section-title"><span class="section-icon">▥</span><div><h2>Splitter and budget results</h2><p>Uses the standard ODN budget after optical path penalty and caps effective reach by system distance.</p></div></div>
+<div class="summary-card healthy" id="summaryCard"><div><p>Total split ratio</p><strong id="ratioResult">1:64</strong></div><div class="health-badge" id="healthBadge">✓ Healthy</div></div>
+<div class="metric-grid">
+<article class="metric-card"><span class="metric-icon">Σ</span><div><small>Total splitter loss</small><strong><span id="splitterLossResult">0.00</span> dB</strong></div></article>
+<article class="metric-card"><span class="metric-icon">P</span><div><small>Remaining budget</small><strong><span id="remaining">0.00</span> dB</strong></div></article>
+<article class="metric-card"><span class="metric-icon">RX</span><div><small>Estimated receive-power range</small><strong><span id="rxPower">0.00</span> dBm</strong></div></article>
+<article class="metric-card"><span class="metric-icon">↔</span><div><small>Effective maximum distance</small><strong><span id="maxDistance">0.00</span> km</strong></div></article>
+</div>
+<div class="topology">
+<div class="node endpoint"><b>OLT</b><span>Transmitter</span></div><div class="line"></div>
+<div class="node"><b id="stage1Ratio">1:8</b><span id="stage1Loss">10.50 dB</span></div><div class="line"></div>
+<div class="node"><b id="stage2Ratio">1:8</b><span id="stage2Loss">10.50 dB</span></div><div class="line"></div>
+<div class="node"><b id="stage3Ratio">1:1</b><span id="stage3Loss">0.00 dB</span></div><div class="line"></div>
+<div class="node endpoint"><b>ONU</b><span>Receiver</span></div>
+</div>
+<div class="result-grid"><article class="result-box"><span>Standard ODN budget</span><strong><span id="standardBudget">0.00</span> dB</strong></article><article class="result-box"><span>Optical-budget maximum distance</span><strong><span id="opticalMaxDistance">0.00</span> km</strong></article>
+<article class="result-box"><span>Ideal split loss</span><strong><span id="idealLoss">0.00</span> dB</strong></article>
+<article class="result-box"><span>Excess insertion loss</span><strong><span id="excessLoss">0.00</span> dB</strong></article>
+<article class="result-box"><span>Physical link loss</span><strong><span id="physicalLoss">0.00</span> dB</strong></article>
+<article class="result-box"><span>Total design loss</span><strong><span id="designLoss">0.00</span> dB</strong></article>
+<article class="result-box"><span>Sensitivity margin</span><strong><span id="sensMargin">0.00</span> dB</strong></article>
+<article class="result-box"><span>Overload margin</span><strong><span id="overMargin">0.00</span> dB</strong></article>
+</div>
+<div class="breakdown"><h3>ODN loss and budget breakdown</h3>
+<div class="breakdown-row"><span>Fiber loss</span><span><b id="fiberLoss">0.00</b> dB</span></div>
+<div class="breakdown-row"><span>Splice loss</span><span><b id="spliceTotal">0.00</b> dB</span></div>
+<div class="breakdown-row"><span>Connector loss</span><span><b id="connectorTotal">0.00</b> dB</span></div>
+<div class="breakdown-row"><span>Other passive loss</span><span><b id="otherResult">0.00</b> dB</span></div>
+<div class="breakdown-row"><span>Optical path penalty</span><span><b id="opticalPenaltyResult">0.00</b> dB</span></div><div class="breakdown-row"><span>Engineering margin</span><span><b id="marginResult">0.00</b> dB</span></div>
+</div>
+<div class="diagnosis healthy" id="diagnosis"><strong>Engineering diagnosis</strong><p id="diagnosisText">—</p></div>
+<div class="result-actions"><button id="copyBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> Copy result</button><button id="saveBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 5v14M5 12h14"></path></svg> Save record</button><button id="csvBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg> Export CSV</button><button id="printBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M6 9V3h12v6"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v7H6z"></path></svg> Print / PDF</button></div>
+</section>
+<section class="content-section" aria-labelledby="pon-topic-title"><h2 id="pon-topic-title">Continue the PON optical workflow</h2><p><a href="../../topics/pon-optical/">PON Optical Network Design &amp; Troubleshooting Hub</a> connects this calculation to design checks, ONU receive-power diagnosis and OTDR evidence.</p></section></main>
+<aside aria-label="ADVERTISEMENT" class="ad-slot" data-ad-key="afterCalculator" hidden=""><div class="ad-label">ADVERTISEMENT</div><div class="ad-body"></div></aside>
+<section class="content-section nel-tool-supporting-section" id="methodology"><div class="section-heading"><div><p class="eyebrow">METHODOLOGY</p><h2>Methodology and engineering notes</h2></div></div>
+<div class="method-grid">
+<article><h3>Total split ratio</h3><p>Multiply the ratio of each stage. Primary 1:8 and secondary 1:8 produce a total ratio of 1:64.</p></article>
+<article><h3>Actual splitter loss</h3><p>Add the nominal insertion loss of all splitter stages. The default 1:8 plus 1:8 cascade contributes 21.0 dB.</p></article>
+<article><h3>Standard ODN budget</h3><p>Minimum transmit power minus receiver sensitivity minus optical path penalty. The default C+ budget is 32 dB.</p></article>
+<article><h3>Effective maximum distance</h3><p>Calculate optical-budget reach first, then use the smaller of optical reach and the system reach cap.</p></article>
+</div>
+<div class="note"><strong>Engineering note: </strong>The 0.25 dB/km value at 1490 nm is an editable engineering typical value, not a universal acceptance limit. Final designs must use equipment, cable and enterprise specifications.<div class="example-box"><h3>Worked engineering case: 1:8 × 1:8 at 10 km</h3><p>Total split ratio = 8 × 8 = 64 (1:64). Using the page defaults, splitter insertion loss is 10.5 + 10.5 = 21.0 dB. With 10 km × 0.25 dB/km = 2.5 dB fiber loss, six 0.1 dB splices = 0.6 dB, four 0.3 dB connectors = 1.2 dB, 1 dB optical penalty and 3 dB engineering margin, design loss is 29.3 dB. The result must remain within the selected ODN class and the receive power must stay between sensitivity and overload.</p><p>Use the <a href="../fiber-loss/">fiber loss calculator</a> to validate the physical-loss breakdown, then verify the transmit/receive window in the <a href="../optical-power-budget/">optical power budget calculator</a>. These are planning values; replace them with vendor and measured values for acceptance.</p></div></div>
+</section>
+<section class="content-section nel-tool-supporting-section" id="faq"><div class="section-heading"><div><p class="eyebrow">FAQ</p><h2>Frequently asked questions</h2></div></div><div class="faq-grid"><details id="faqCplusDefault"><summary>Why is GPON C+ the default for 1:8 × 1:8?</summary><p>The splitter cascade alone contributes about 21 dB. After fiber, connectors, splices and engineering margin are added, a B+ budget can be insufficient, while C+ provides a 32 dB ODN class.</p></details>
+<details><summary>Which has lower loss, one-stage or two-stage splitting?</summary><p>For the same total split ratio, a multi-stage cascade normally adds excess insertion loss and connection points. One-stage splitting is usually easier to budget, although coverage and maintenance requirements also matter.</p></details>
+<details><summary>Why does 1:4 × 1:8 equal 1:32?</summary><p>The first stage creates 4 branches and each branch is split into 8 outputs, producing 4 × 8 = 32 outputs.</p></details>
+<details><summary>Why is ideal split loss different from nominal insertion loss?</summary><p>The ideal value reflects perfect power division only. Nominal insertion loss also includes manufacturing, coupling, packaging and uniformity losses.</p></details>
+<details><summary>Are more splitter cascade stages always better?</summary><p>No. Additional stages may improve design flexibility, but they also increase connection points, insertion loss and maintenance complexity.</p></details>
+<details><summary>Can excessive receive power also cause problems?</summary><p>Yes. Power above the receiver overload threshold can cause errors or receiver instability, so both sensitivity margin and overload margin must be checked.</p></details>
+<details><summary>Can this calculator replace field testing?</summary><p>No. It supports planning and review; final acceptance still requires a power meter, OTDR and actual equipment parameters.</p></details>
+</div></section>
+<section class="content-section nel-tool-supporting-section" id="history"><div class="section-heading"><div><p class="eyebrow">PROJECT RECORDS</p><h2>Recent calculations</h2></div><button class="text-button" id="clearHistoryBtn">Clear history</button></div><div class="history-list" id="historyList"></div></section>
+<section class="content-section nel-tool-supporting-section" id="references"><div class="section-heading"><div><p class="eyebrow">ENGINEERING EVIDENCE</p><h2>Splitter assumptions and official references</h2></div></div><div class="note"><p>Minimum transmit power is used for sensitivity and ODN-budget checks; maximum transmit power is checked separately against receiver overload. The selectable insertion losses are planning values, not universal limits: use the exact splitter grade, uniformity, return loss and equipment datasheets for final design. The 3 dB Healthy/Caution boundary is this tool's planning threshold, not a universal standards mandate.</p><p>Reviewed: 2026-08-31. Official sources: <a href="https://www.itu.int/rec/T-REC-G.984.2/en" rel="noopener noreferrer" target="_blank">ITU-T G.984.2 GPON PMD</a>, <a href="https://www.itu.int/rec/T-REC-G.671/en" rel="noopener noreferrer" target="_blank">ITU-T G.671 optical components and PON branching components</a>, and <a href="https://www.itu.int/rec/T-REC-G.652-202408-I/en" rel="noopener noreferrer" target="_blank">ITU-T G.652 single-mode fibre</a>.</p></div></section>
+<aside aria-label="ADVERTISEMENT" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">ADVERTISEMENT</div><div class="ad-body"></div></aside>
+<!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="pon-splitter-loss" data-primary-workflow="optical-link-design">
+<div class="section-heading"><div><p class="eyebrow">ENGINEERING WORKFLOW</p><h2 id="nel-tool-graph-title">Continue the engineering workflow</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>Optical Link Design Workflow</strong><p>Build an optical link from physical loss assumptions through split planning, power budget and maximum reach verification.</p></div><div class="nel-workflow-step"><strong>Step 2 of 5</strong><div class="nel-workflow-progress" aria-label="Step 2 of 5"><span style="width:40%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="../fiber-loss/"><span class="nel-tool-graph-label">Previous</span><strong>Fiber Loss Calculator</strong><span class="nel-tool-graph-description">Calculate fiber, splice, connector, splitter and engineering losses for an optical link.</span></a><a class="nel-tool-graph-card" href="../optical-power-budget/"><span class="nel-tool-graph-label">Next</span><strong>Optical Power Budget Calculator</strong><span class="nel-tool-graph-description">Verify an optical link using transmit power, receiver sensitivity, optical penalty and ODN loss.</span></a></div>
+<h3 class="nel-tool-graph-subtitle">Related tools</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="../fiber-loss/"><strong>Fiber Loss Calculator</strong><span class="nel-tool-graph-description">Calculate fiber, splice, connector, splitter and engineering losses for an optical link.</span></a><a class="nel-tool-graph-card" href="../optical-power-budget/"><strong>Optical Power Budget Calculator</strong><span class="nel-tool-graph-description">Verify an optical link using transmit power, receiver sensitivity, optical penalty and ODN loss.</span></a><a class="nel-tool-graph-card" href="../pon-distance/"><strong>PON Maximum Distance Calculator</strong><span class="nel-tool-graph-description">Calculate optical-budget reach, effective system reach and planned link margin.</span></a></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Footer navigation">
+      <a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script defer="" src="js/engine.js"></script><script defer="" src="js/pwa.js"></script><script defer="" src="../../data/optical-standards.js"></script><script defer="" src="../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="js/app.js?v=0573ead15182"></script>
+<script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script></body></html>
+
+

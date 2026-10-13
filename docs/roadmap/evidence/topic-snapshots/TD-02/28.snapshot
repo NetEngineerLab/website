@@ -1,0 +1,11 @@
+COMMAND: node docs/roadmap/evidence/TD-02/validation.js calculation
+EXIT_CODE: 0
+INPUT: repo working tree; mode=calculation
+RESULT:
+INPUT worked design: 1:8 x 1:8; 10 km x 0.30 dB/km; 6 x 0.1 dB splices; 4 x 0.3 dB connector pairs; 1 dB optical penalty; 3 dB margin
+RESULT split=1:64; splitter=21.0 dB; fiber=3.0 dB; splice=0.6 dB; connectors=1.2 dB; penalty=1.0 dB; margin=3.0 dB; designLoss=29.8 dB
+INPUT illustrative diagnosis (not field evidence): ONU=-27.0 dBm; budget expected=-24.5 dBm; OTDR observed event=2.2 dB; post-repair power meter=-24.8 dBm
+DECISION: initial discrepancy=2.5 dB; verify meter/reference plane, correlate OTDR event with route records, compare to actual ONU datasheet; repair only after field confirmation; post-repair discrepancy=0.3 dB; repeat end-to-end power/loss tests and document
+LIMIT: no receiver threshold or root cause inferred; use deployed OLT/ONU specifications and calibrated instruments
+PASS design and diagnostic example arithmetic
+

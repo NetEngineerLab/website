@@ -1,0 +1,67 @@
+<!doctype html><html lang="en" dir="ltr" data-nel-locale="en" data-nel-route="tools/ip-camera-network-planner/"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>IP 摄像头网络带宽与 PoE 规划计算器 | NetEngineerLab</title><meta name="description" content="根据摄像头分辨率、编码、帧率、数量、PoE功率和存储天数，计算监控网络带宽、交换机上联、PoE预算、NVR容量和N-1建议。"><style>
+body{background:#f5f8fc}.camera-tool{max-width:1100px;margin:2rem auto;padding:0 1rem}.hero{padding:2rem;border-radius:18px;background:linear-gradient(135deg,#0b2450,#176ff2);color:white}.hero h1{margin:.3rem 0;font-size:clamp(1.7rem,4vw,2.6rem)}.hero p{max-width:760px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}.card{background:#fff;border:1px solid #dbe4ef;border-radius:14px;padding:1.25rem;box-shadow:0 4px 18px #17365d0b}.form{margin-top:1rem}.field label{display:block;font-weight:650;margin-bottom:.35rem}.field input,.field select{width:100%;padding:.7rem;border:1px solid #bdcadb;border-radius:8px;font:inherit}.field small{display:block;color:#607086;margin-top:.3rem}.calculate{margin-top:1.25rem;padding:.8rem 1.2rem;border:0;border-radius:9px;background:#176ff2;color:white;font-weight:700;cursor:pointer}.metrics{margin-top:1rem}.metric{padding:1rem;border-radius:10px;background:#f3f7fc;border-left:4px solid #176ff2}.metric strong{display:block;font-size:1.35rem;margin-top:.25rem;color:#0b2450}.note{color:#556579;font-size:.9rem}.nav{padding:1rem max(1rem,calc((100% - 1100px)/2));background:white}.nav a{margin-right:1rem;color:#176ff2}.status{font-weight:700;color:#0b7044}.warning{color:#a04b00}.topic-link{display:inline-block;margin-top:1rem;padding:.65rem 1rem;border-radius:8px;background:#e8f1ff;color:#124b9b;text-decoration:none;font-weight:700}
+</style><meta property="og:url" content="https://netengineerlab.com/tools/ip-camera-network-planner/">
+<meta property="og:title" content="IP 摄像头网络带宽与 PoE 规划计算器 | NetEngineerLab">
+<meta property="og:description" content="根据摄像头分辨率、编码、帧率、数量、PoE功率和存储天数，计算监控网络带宽、交换机上联、PoE预算、NVR容量和N-1建议。">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"IP 摄像头网络带宽与 PoE 规划计算器 | NetEngineerLab","url":"https://netengineerlab.com/tools/ip-camera-network-planner/","description":"根据摄像头分辨率、编码、帧率、数量、PoE功率和存储天数，计算监控网络带宽、交换机上联、PoE预算、NVR容量和N-1建议。","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="en">
+<meta name="nel-route" content="tools/ip-camera-network-planner/">
+<meta name="nel-available-locales" content="en,zh">
+<link rel="canonical" href="https://netengineerlab.com/tools/ip-camera-network-planner/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/ip-camera-network-planner/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/ip-camera-network-planner/zh/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/ip-camera-network-planner/">
+<link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=8c488ab6e2be">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=c6e622c573c4">
+<script defer src="../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../assets/js/site.js?v=0da39eabe820"></script>
+<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=744ed63c3e27">
+<link rel="manifest" href="manifest.webmanifest">
+</head><body><!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Primary navigation">
+      <a href="../../">Home</a>
+      <a href="../" aria-current="page">Tools</a>
+      <a href="../../#guides">Guides</a>
+      <a href="../../#topics">Topics</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">Start calculating</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a class="tool-return-link" href="../">← Back to Tools</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">ip-camera-network-planner</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END --><main id="calculator" class="camera-tool"><section class="hero"><p>IP CAMERA NETWORK PLANNING</p><h1>IP 摄像头网络带宽与 PoE 规划计算器</h1><p>把视频码率、PoE 供电、交换机上联、NVR 存储和单链路故障放在同一个工程估算中。适用于 100、300、500 台摄像头的初步方案评审。</p></section><section class="card form" id="inputs"><h2>输入设计参数</h2><div class="grid"><div class="field"><label for="resolution">分辨率</label><select id="resolution"><option value="2">1080p（2 MP）</option><option value="4">4 MP</option><option value="8">4K（8 MP）</option><option value="12">12 MP</option></select></div><div class="field"><label for="encoding">编码</label><select id="encoding"><option value="h264">H.264</option><option value="h265" selected>H.265</option><option value="mjpeg">MJPEG</option></select></div><div class="field"><label for="fps">帧率（FPS）</label><input id="fps" type="number" min="1" max="60" step="1" value="15"></div><div class="field"><label for="count">摄像头数量</label><input id="count" type="number" min="1" max="10000" step="1" value="100"></div><div class="field"><label for="poe">单台 PoE 功率（W）</label><input id="poe" type="number" min="1" max="100" step="0.1" value="15"></div><div class="field"><label for="days">存储天数</label><input id="days" type="number" min="1" max="365" step="1" value="30"></div></div><p class="note">码率是基于分辨率、编码和帧率的工程估算，实际值应以摄像机峰值码率和场景复杂度校准。</p><button class="calculate" id="calculate">计算规划结果</button></section><section class="card metrics" aria-live="polite"><h2>规划结果</h2><div class="grid"><article class="metric"><span>总视频带宽（含 20% 协议余量）</span><strong id="bandwidth">—</strong></article><article class="metric"><span>建议交换机上联</span><strong id="uplink">—</strong></article><article class="metric"><span>PoE 预算（含 25% 余量）</span><strong id="poeBudget">—</strong></article><article class="metric"><span>NVR 原始容量</span><strong id="storageRaw">—</strong></article><article class="metric"><span>NVR 建议可用容量（含 15% 保留）</span><strong id="storageUsable">—</strong></article><article class="metric"><span>N-1 冗余建议</span><strong id="n1">—</strong></article></div><p class="note" id="assumption"></p></section><section class="card"><h2>计算口径</h2><p>基础码率按分辨率与编码档位估算，再按帧率线性缩放；总带宽增加 20% 协议与突发余量。NVR 原始容量使用 <code>Mbps × 天数 × 0.0108</code> 得到十进制 GB，再换算为 TB；建议可用容量额外预留 15%。上联按总带宽的 2 倍取整到 1/10/25/40/100G 档位。</p><p>N-1 检查按单台接入交换机或单条上联失效处理：建议采用双上联/堆叠或 MLAG，将摄像头分布到至少两条独立路径，并让任一剩余路径承载全部业务带宽；若仅有一条上联，结果会明确提示不满足 N-1。</p><a class="topic-link" href="../../../topics/ip-camera-network-bandwidth-poe/">进入专题：100/300/500 台摄像头规划教程 →</a></section></main><!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Footer navigation">
+      <a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END --><script>
+(function(){const $=id=>document.getElementById(id);const base={h264:0.075,h265:0.045,mjpeg:0.24};function fmt(n,u){return n>=1000?(n/1000).toFixed(2)+' '+u.replace('Mbps','Gbps'):n.toFixed(1)+' '+u}function calc(){const mp=+$('resolution').value,enc=$('encoding').value,fps=+$('fps').value,count=+$('count').value,poe=+$('poe').value,days=+$('days').value;if(![mp,fps,count,poe,days].every(Number.isFinite)||fps<1||count<1||poe<0||days<1){$('assumption').textContent='请输入有限且大于零的帧率、摄像头数量和存储天数；PoE功率不能为负。';return}const bitrate=mp*base[enc]*(fps/15)*8;const total=bitrate*count*1.2;const levels=[1,10,25,40,100];const requiredPath=total*2;const uplink=levels.find(x=>x*1000>=requiredPath)||100;const survivingCapacity=uplink*1000-total;const budget=count*poe*1.25;const raw=total*days*0.0108;const usable=raw/0.85;$('bandwidth').textContent=fmt(total,'Mbps');$('uplink').textContent=uplink+' Gbps/条（双上联聚合 '+(uplink*2)+' Gbps；单链路故障后 '+(survivingCapacity/1000).toFixed(2)+' Gbps）';$('poeBudget').textContent=budget.toFixed(1)+' W';$('storageRaw').textContent=(raw/1000).toFixed(2)+' TB';$('storageUsable').textContent=(usable/1000).toFixed(2)+' TB';$('n1').innerHTML= survivingCapacity>=total ? '<span class="status">建议双上联/MLAG；任一上联故障后仍可承载全部业务</span>' : '<span class="warning">不满足 N-1：故障后容量不足，请增加独立上联或降低单路径摄像头数</span>';$('assumption').textContent='单台估算码率 '+bitrate.toFixed(2)+' Mbps；总带宽含 20% 协议余量，PoE 含 25% 余量，存储建议容量含 15% 保留。请以设备峰值规格复核。'}$('calculate').addEventListener('click',calc);['resolution','encoding','fps','count','poe','days'].forEach(id=>$(id).addEventListener('input',calc));calc()})();
+</script></body></html>
+

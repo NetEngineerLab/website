@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr" data-nel-locale="en" data-nel-route="tools/fiber-loss/">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#0b6ffb" name="theme-color"/>
+<title>Fiber Loss Calculator &amp; Optical Link Budget | NetEngineerLab</title>
+<meta content="Free professional fiber loss calculator for optical link budgets, PON splitters, splices, connectors, engineering margin and receive power analysis." name="description"/>
+<link href="css/style.css?v=e27cbec8982c" rel="stylesheet"/>
+<meta content="./" name="app-base"/>
+<meta content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" name="robots"/>
+<meta content="website" property="og:type"/>
+<meta content="NetEngineerLab" property="og:site_name"/>
+<meta content="Fiber Loss Calculator &amp; Optical Link Budget | NetEngineerLab" property="og:title"/>
+<meta content="Free professional fiber loss calculator for optical link budgets, PON splitters, splices, connectors, engineering margin and receive power analysis." property="og:description"/>
+<meta content="https://netengineerlab.com/tools/fiber-loss/" property="og:url"/>
+<meta content="https://netengineerlab.com/tools/fiber-loss/images/og-fiber-loss.png" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="en_US" property="og:locale"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Fiber Loss Calculator | NetEngineerLab" name="twitter:title"/>
+<meta content="Calculate optical link loss, engineering margin, receive power and link health." name="twitter:description"/>
+<meta content="https://netengineerlab.com/tools/fiber-loss/images/og-fiber-loss.png" name="twitter:image"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://netengineerlab.com/tools/fiber-loss/#app","name":"Fiber Loss Calculator","alternateName":"Fiber Loss Calculator","url":"https://netengineerlab.com/tools/fiber-loss/","description":"Professional fiber loss, optical budget, PON margin and engineering diagnosis tool.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Network Engineering Calculator","operatingSystem":"Any","browserRequirements":"Requires JavaScript and a modern web browser","softwareVersion":"2.1.0","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/fiber-loss/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"NetEngineerLab","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"Fiber Loss Calculator","item":"https://netengineerlab.com/tools/fiber-loss/"}]}]}</script>
+<meta content="NetEngineerLab" name="author"/>
+<link href="/assets/css/cookie-consent.css?v=v180-hotfix03" rel="stylesheet"/>
+<link href="/assets/css/mobile-branding.css?v=1.9.5-06" rel="stylesheet"/>
+<script defer="" src="/data/seo-config.js"></script>
+<script defer="" src="/assets/js/seo-engine.js"></script>
+<script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the difference between physical loss and design loss?","acceptedAnswer":{"@type":"Answer","text":"Physical loss includes actual fiber and component losses. Design loss also includes engineering margin for ageing, temperature, maintenance connections and measurement variation."}},{"@type":"Question","name":"How should I choose 1310, 1490 or 1550 nm?","acceptedAnswer":{"@type":"Answer","text":"Select the actual service wavelength and direction. Common PON upstream uses 1310 nm, while downstream may use 1490 or 1550 nm. Follow the system specification."}},{"@type":"Question","name":"Why can splitter loss be adjusted?","acceptedAnswer":{"@type":"Answer","text":"The page uses typical nominal values. Actual loss varies by vendor, packaging and wavelength, so final designs should use specification or measured values."}},{"@type":"Question","name":"How much remaining budget is considered safe?","acceptedAnswer":{"@type":"Answer","text":"A minimum 3 dB engineering margin is commonly recommended. Smaller margins are more sensitive to contamination, bending, ageing and temperature changes."}},{"@type":"Question","name":"Why can receive power pass while the budget shows caution?","acceptedAnswer":{"@type":"Answer","text":"Receive threshold and design budget are separate checks. High transmit power may keep receive power acceptable while long-term design margin remains limited."}},{"@type":"Question","name":"Can this result be used for final acceptance?","acceptedAnswer":{"@type":"Answer","text":"This calculator supports planning, review and troubleshooting. Final acceptance should combine power meter and OTDR measurements, equipment specifications and enterprise standards."}}]}</script>
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Fiber Loss Calculator & Optical Link Budget | NetEngineerLab","url":"https://netengineerlab.com/tools/fiber-loss/","description":"Free professional fiber loss calculator for optical link budgets, PON splitters, splices, connectors, engineering margin and receive power analysis.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="en">
+<meta name="nel-route" content="tools/fiber-loss/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/tools/fiber-loss/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/fiber-loss/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/fiber-loss/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/fiber-loss/es/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/fiber-loss/">
+<link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=8c488ab6e2be">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=c6e622c573c4">
+<script defer src="../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../assets/js/site.js?v=0da39eabe820"></script>
+<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=744ed63c3e27">
+<link rel="manifest" href="manifest.webmanifest">
+</head>
+<body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<a class="skip-link" href="#calculator">Skip to calculator</a>
+<noscript><div class="noscript">JavaScript is required to run this calculator.</div></noscript>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Primary navigation">
+      <a href="../../">Home</a>
+      <a href="../" aria-current="page">Tools</a>
+      <a href="../../#guides">Guides</a>
+      <a href="../../#topics">Topics</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a><a class="language-option" role="menuitem" href="es/" lang="es" hreflang="es"><span>Español</span><small>Spanish</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">Start calculating</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a class="tool-return-link" href="../">← Back to Tools</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">Fiber Loss Calculator</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END -->
+<section class="hero nel-tool-hero"><div class="hero-inner">
+
+<p class="eyebrow" data-i18n="eyebrow">OPTICAL ENGINEERING TOOL</p>
+<h1 data-i18n="heroTitle">Fiber Loss Calculator</h1>
+<p>Calculate total optical loss from fiber, splices, connectors, splitters and passive components, then evaluate engineering margin, receive power and link health.</p><div class="hero-tags"><span>Fiber attenuation</span><span>Connector &amp; splice loss</span><span>Engineering margin</span><span>Pass / fail check</span></div></div></section>
+<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
+<section class="input-panel card nel-tool-input">
+<div class="section-title">
+<span class="section-icon">☷</span>
+<div>
+<h2 data-i18n="linkParams">Link parameters</h2>
+<p data-i18n="linkParamsHint">Enter real engineering parameters to calculate the link loss.</p>
+</div>
+</div>
+<div class="preset-row">
+<label data-i18n="scenarioPreset" for="preset">Scenario preset</label>
+<select id="preset">
+<option data-i18n="presetCustom" value="custom">Custom</option>
+<option value="gpon-b">GPON B+ (typical budget 28 dB)</option>
+<option value="gpon-c">GPON C+ (typical budget 32 dB)</option>
+<option value="epon">EPON (typical budget 30 dB)</option>
+<option data-i18n="presetDataCenter" value="datacenter">Data center short-reach</option>
+</select>
+</div>
+<div class="form-grid">
+<div class="field">
+<label data-i18n="projectName" for="projectName">Project name</label>
+<div class="input-wrap no-unit">
+<input id="projectName" type="text" value="FTTH Optical Link"/>
+</div>
+</div>
+<div class="field">
+<label data-i18n="distance" for="distance">Transmission distance</label>
+<div class="input-wrap">
+<input id="distance" min="0" step="0.1" type="number" value="20"/>
+<span>km</span>
+</div>
+</div>
+<div class="field">
+<label data-i18n="wavelength" for="wavelength">Wavelength</label>
+<div class="input-wrap no-unit">
+<select id="wavelength">
+<option value="1310">1310 nm</option>
+<option value="1490">1490 nm</option>
+<option selected="" value="1550">1550 nm</option>
+<option data-i18n="customWavelength" value="custom">Custom attenuation</option>
+</select>
+</div>
+</div>
+<div class="field">
+<label data-i18n="attenuation" for="attenuation">Fiber attenuation</label>
+<div class="input-wrap">
+<input id="attenuation" min="0" step="0.01" type="number" value="0.20"/>
+<span>dB/km</span>
+</div>
+</div>
+<div class="field">
+<label data-i18n="spliceCount" for="spliceCount">Number of splices</label>
+<div class="input-wrap">
+<input id="spliceCount" min="0" step="1" type="number" value="6"/>
+<span data-i18n="pcs">pcs</span>
+</div>
+</div>
+<div class="field">
+<label data-i18n="spliceLoss" for="spliceLoss">Loss per splice</label>
+<div class="input-wrap">
+<input id="spliceLoss" min="0" step="0.01" type="number" value="0.10"/>
+<span>dB</span>
+</div>
+</div>
+<div class="field">
+<label data-i18n="connectorCount" for="connectorCount">Number of connectors</label>
+<div class="input-wrap">
+<input id="connectorCount" min="0" step="1" type="number" value="4"/>
+<span data-i18n="pcs">pcs</span>
+</div>
+</div>
+<div class="field">
+<label data-i18n="connectorLoss" for="connectorLoss">Loss per connector</label>
+<div class="input-wrap">
+<input id="connectorLoss" min="0" step="0.01" type="number" value="0.30"/>
+<span>dB</span>
+</div>
+</div>
+<div class="field">
+<label data-i18n="splitter1" for="splitter1">Primary splitter</label>
+<div class="input-wrap no-unit">
+<select id="splitter1">
+<option data-i18n="none" value="0">None</option>
+<option value="3.7">1:2（3.7 dB）</option>
+<option value="7.2">1:4（7.2 dB）</option>
+<option value="10.5">1:8（10.5 dB）</option>
+<option value="13.8">1:16（13.8 dB）</option>
+<option value="17">1:32（17.0 dB）</option>
+<option value="20.5">1:64（20.5 dB）</option>
+</select>
+</div>
+</div>
+<div class="field">
+<label data-i18n="splitter2" for="splitter2">Secondary splitter</label>
+<div class="input-wrap no-unit">
+<select id="splitter2">
+<option data-i18n="none" value="0">None</option>
+<option value="3.7">1:2（3.7 dB）</option>
+<option value="7.2">1:4（7.2 dB）</option>
+<option value="10.5">1:8（10.5 dB）</option>
+<option value="13.8">1:16（13.8 dB）</option>
+<option value="17">1:32（17.0 dB）</option>
+<option value="20.5">1:64（20.5 dB）</option>
+</select>
+</div>
+</div>
+<div class="field">
+<label data-i18n="otherLoss" for="otherLoss">Other passive loss</label>
+<div class="input-wrap">
+<input id="otherLoss" min="0" step="0.01" type="number" value="0"/>
+<span>dB</span>
+</div>
+</div>
+<div class="field">
+<label data-i18n="engineeringMargin" for="engineeringMargin">Engineering margin</label>
+<div class="input-wrap">
+<input id="engineeringMargin" min="0" step="0.1" type="number" value="3"/>
+<span>dB</span>
+</div>
+</div>
+<div class="field">
+<label data-i18n="availableBudget" for="availableBudget">Available optical budget</label>
+<div class="input-wrap">
+<input id="availableBudget" min="0" step="0.1" type="number" value="28"/>
+<span>dB</span>
+</div>
+</div>
+<div class="field">
+<label data-i18n="txPower" for="txPower">Transmit power</label>
+<div class="input-wrap">
+<input id="txPower" step="0.1" type="number" value="3"/>
+<span>dBm</span>
+</div>
+</div>
+<div class="field">
+<label data-i18n="rxThreshold" for="rxThreshold">Receiver sensitivity</label>
+<div class="input-wrap">
+<input id="rxThreshold" step="0.1" type="number" value="-27"/>
+<span>dBm</span>
+</div>
+</div>
+</div>
+<div class="input-actions">
+<button class="primary-action" id="calculateBtn" type="button">
+<svg aria-hidden="true" class="action-icon" height="18" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg>
+<span data-i18n="calculateLink">Calculate link</span>
+</button>
+<button class="secondary-action" id="resetBtn" type="button">
+<svg aria-hidden="true" class="action-icon" height="18" viewbox="0 0 24 24" width="18"><path d="M20 11a8 8 0 1 0-2.3 5.7"></path><path d="M20 4v7h-7"></path></svg>
+<span data-i18n="reset">Reset</span>
+</button>
+</div>
+<p class="validation-message" id="validationMessage" role="alert"></p>
+</section>
+<section aria-live="polite" class="result-panel card nel-tool-result">
+<div class="section-title">
+<span class="section-icon">▥</span>
+<div>
+<h2 data-i18n="calculationResult">Calculation result</h2>
+<p data-i18n="resultHint">Design loss includes engineering margin; physical loss excludes it.</p>
+</div>
+</div>
+<div class="summary-card healthy" id="summaryCard">
+<div>
+<p data-i18n="totalDesignLoss">Total design loss</p>
+<strong><span id="designLoss">0.00</span><small>dB</small></strong>
+</div>
+<div class="health-badge" id="healthBadge">✓ Healthy</div>
+</div>
+<div class="metric-grid">
+<article class="metric-card">
+<span class="metric-icon blue">⌁</span>
+<div>
+<small data-i18n="fiberLoss">Fiber loss</small>
+<strong><span id="fiberLoss">0.00</span> dB</strong>
+</div>
+</article>
+<article class="metric-card">
+<span class="metric-icon cyan">⋈</span>
+<div>
+<small data-i18n="spliceTotal">Splice loss</small>
+<strong><span id="spliceTotal">0.00</span> dB</strong>
+</div>
+</article>
+<article class="metric-card">
+<span class="metric-icon violet">↝</span>
+<div>
+<small data-i18n="connectorTotal">Connector loss</small>
+<strong><span id="connectorTotal">0.00</span> dB</strong>
+</div>
+</article>
+<article class="metric-card">
+<span class="metric-icon gray">+</span>
+<div>
+<small data-i18n="splitterOtherLoss">Splitter &amp; other loss</small>
+<strong><span id="splitterOtherTotal">0.00</span> dB</strong>
+</div>
+</article>
+</div>
+<div aria-label="Optical link diagram" class="link-visual">
+<div class="endpoint tx"><span>✦</span><small data-i18n="transmitter">Transmitter</small></div>
+<div class="line-segment"></div>
+<div class="event-node"><span>⌁</span><small id="fiberLossDiagram">0.00 dB</small></div>
+<div class="line-segment"></div>
+<div class="event-node"><span>⋈</span><small id="spliceLossDiagram">0.00 dB</small></div>
+<div class="line-segment"></div>
+<div class="event-node"><span>↝</span><small id="connectorLossDiagram">0.00 dB</small></div>
+<div class="line-segment"></div>
+<div class="endpoint rx"><span>➤</span><small data-i18n="receiver">Receiver</small></div>
+</div>
+<div class="budget-row">
+<div>
+<span data-i18n="physicalLoss">Physical link loss</span>
+<strong><span id="physicalLoss">0.00</span> dB</strong>
+</div>
+<div>
+<span data-i18n="budgetRemaining">Budget remaining</span>
+<strong id="budgetRemainingText"><span id="budgetRemaining">0.00</span> dB</strong>
+</div>
+</div>
+<div class="power-row">
+<article>
+<span data-i18n="estimatedRxPower">Estimated receive power</span>
+<strong><span id="estimatedRxPower">0.00</span> dBm</strong>
+</article>
+<article>
+<span data-i18n="rxMargin">Receiver margin</span>
+<strong><span id="rxMargin">0.00</span> dB</strong>
+</article>
+</div>
+<div class="diagnosis-box healthy" id="diagnosisBox">
+<strong data-i18n="engineeringConclusion">Engineering conclusion</strong>
+<p id="diagnosisText">—</p>
+</div>
+<div class="result-actions">
+<button id="copyBtn" type="button"><svg aria-hidden="true" class="action-icon" height="18" viewbox="0 0 24 24" width="18"><rect height="13" rx="2" width="13" x="8" y="8"></rect><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"></path></svg><span data-i18n="copyResult">Copy result</span></button>
+<button id="saveBtn" type="button"><svg aria-hidden="true" class="action-icon" height="18" viewbox="0 0 24 24" width="18"><path d="M12 5v14M5 12h14"></path></svg><span data-i18n="saveHistory">Save record</span></button>
+<button id="printBtn" type="button"><svg aria-hidden="true" class="action-icon" height="18" viewbox="0 0 24 24" width="18"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg><span data-i18n="printReport">Print / Export PDF</span></button>
+</div>
+</section>
+<section class="content-section" aria-labelledby="pon-topic-title"><h2 id="pon-topic-title">Continue the PON optical workflow</h2><p><a href="../../topics/pon-optical/">PON Optical Network Design &amp; Troubleshooting Hub</a> connects this calculation to design checks, ONU receive-power diagnosis and OTDR evidence.</p></section></main>
+<aside aria-label="Advertisement" class="ad-slot" data-ad-key="afterCalculator" hidden="">
+<div class="ad-label">ADVERTISEMENT</div>
+<div class="ad-body"></div>
+</aside>
+<section class="content-section nel-tool-supporting-section" id="history">
+<div class="section-heading">
+<div>
+<p class="eyebrow" data-i18n="projectRecords">PROJECT RECORDS</p>
+<h2 data-i18n="historyTitle">Recent calculations</h2>
+</div>
+<button class="text-button" data-i18n="clearHistory" id="clearHistoryBtn" type="button">Clear history</button>
+</div>
+<div class="history-list" id="historyList"></div>
+</section>
+<section class="content-section methodology nel-tool-supporting-section" id="methodology">
+<div class="section-heading">
+<div>
+<p class="eyebrow" data-i18n="methodTag">METHODOLOGY</p>
+<h2 data-i18n="methodTitle">Methodology and engineering notes</h2>
+</div>
+</div>
+<div class="method-grid">
+<article>
+<h3 data-i18n="formulaPhysical">Physical link loss</h3>
+<p data-i18n="formulaPhysicalText">Fiber length × attenuation + splice loss + connector loss + splitter loss + other passive loss.</p>
+</article>
+<article>
+<h3 data-i18n="formulaDesign">Total design loss</h3>
+<p data-i18n="formulaDesignText">Physical link loss + engineering margin.</p>
+</article>
+<article>
+<h3 data-i18n="formulaPower">Receive power</h3>
+<p data-i18n="formulaPowerText">Transmit power − physical link loss.</p>
+</article>
+<article>
+<h3 data-i18n="healthRule">Health rules</h3>
+<p data-i18n="healthRuleText">Remaining ≥ 3 dB: healthy; 0–3 dB: caution; below 0 dB: failed.</p>
+</article>
+</div>
+<div class="engineering-note">
+<strong data-i18n="importantNote">Important note</strong>
+<p data-i18n="importantNoteText">Default attenuation and splitter values are common engineering references. Final designs should follow device specifications, enterprise standards and field measurements.</p>
+<div class="example-box"><h3>Worked case: 10 km PON feeder</h3><p>At 1490 nm, 10 km × 0.25 dB/km = 2.50 dB fiber loss. Add 6 splices × 0.10 dB = 0.60 dB, 4 connectors × 0.30 dB = 1.20 dB, and 1:8 × 1:8 splitter loss of 21.0 dB: physical link loss = 25.30 dB. With a 3 dB engineering margin, total design loss = 28.30 dB. Receive power is transmit power minus 25.30 dB; the margin is checked separately. Use the <a href="../pon-splitter-loss/">PON splitter loss calculator</a> and <a href="../optical-power-budget/">optical power budget calculator</a> to continue the workflow.</p></div>
+</section>
+<section aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">ENGINEERING REFERENCES</p><h2 id="references-title">Fiber loss standards and measurement references</h2></div></div>
+<ul>
+<li><a href="https://www.itu.int/rec/T-REC-G.652-202408-I/en">ITU-T G.652: characteristics of single-mode optical fibre and cable</a></li>
+<li><a href="https://www.itu.int/rec/T-REC-G.671/en">ITU-T G.671: transmission characteristics of optical components and subsystems</a></li>
+<li><a href="https://webstore.iec.ch/en/publication/77134">IEC 61280-4-2:2024: installed single-mode cabling attenuation and optical return loss measurements</a></li>
+</ul>
+<p>The 3 dB health threshold is a configurable planning rule used by this calculator, not a universal requirement from these standards. Confirm wavelength-specific fibre, connector, splice and splitter values from the deployed components, then use calibrated field measurements for acceptance. Last reviewed: 2026-08-31.</p>
+</section>
+<section aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
+<div class="section-heading">
+<div><p class="eyebrow">FAQ</p><h2 id="faq-title">Frequently asked questions</h2></div>
+</div>
+<div class="faq-grid">
+<details><summary>What is the difference between physical loss and design loss?</summary><p>Physical loss includes actual fiber and component losses. Design loss also includes engineering margin for ageing, temperature, maintenance connections and measurement variation.</p></details>
+<details><summary>How should I choose 1310, 1490 or 1550 nm?</summary><p>Select the actual service wavelength and direction. Common PON upstream uses 1310 nm, while downstream may use 1490 or 1550 nm. Follow the system specification.</p></details>
+<details><summary>Why can splitter loss be adjusted?</summary><p>The page uses typical nominal values. Actual loss varies by vendor, packaging and wavelength, so final designs should use specification or measured values.</p></details>
+<details><summary>How much remaining budget is considered safe?</summary><p>A minimum 3 dB engineering margin is commonly recommended. Smaller margins are more sensitive to contamination, bending, ageing and temperature changes.</p></details>
+<details><summary>Why can receive power pass while the budget shows caution?</summary><p>Receive threshold and design budget are separate checks. High transmit power may keep receive power acceptable while long-term design margin remains limited.</p></details>
+<details><summary>Can this result be used for final acceptance?</summary><p>This calculator supports planning, review and troubleshooting. Final acceptance should combine power meter and OTDR measurements, equipment specifications and enterprise standards.</p></details>
+</div>
+</section>
+<aside aria-label="Advertisement" class="ad-slot" data-ad-key="afterMethodology" hidden="">
+<div class="ad-label">ADVERTISEMENT</div>
+<div class="ad-body"></div>
+</aside>
+<!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="fiber-loss" data-primary-workflow="optical-link-design">
+<div class="section-heading"><div><p class="eyebrow">ENGINEERING WORKFLOW</p><h2 id="nel-tool-graph-title">Continue the engineering workflow</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>Optical Link Design Workflow</strong><p>Build an optical link from physical loss assumptions through split planning, power budget and maximum reach verification.</p></div><div class="nel-workflow-step"><strong>Step 1 of 5</strong><div class="nel-workflow-progress" aria-label="Step 1 of 5"><span style="width:20%"></span></div></div></div><div class="nel-tool-graph-nav"><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Previous</span><strong>Workflow start</strong></div><a class="nel-tool-graph-card" href="../pon-splitter-loss/"><span class="nel-tool-graph-label">Next</span><strong>PON Splitter Loss Calculator</strong><span class="nel-tool-graph-description">Plan multi-stage splitting and calculate total ratio, insertion loss and effective reach.</span></a></div>
+<h3 class="nel-tool-graph-subtitle">Related tools</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="../optical-power-budget/"><strong>Optical Power Budget Calculator</strong><span class="nel-tool-graph-description">Verify an optical link using transmit power, receiver sensitivity, optical penalty and ODN loss.</span></a><a class="nel-tool-graph-card" href="../pon-splitter-loss/"><strong>PON Splitter Loss Calculator</strong><span class="nel-tool-graph-description">Plan multi-stage splitting and calculate total ratio, insertion loss and effective reach.</span></a><a class="nel-tool-graph-card" href="../otdr-event/"><strong>OTDR Event Analyzer</strong><span class="nel-tool-graph-description">Analyze multiple events and dual wavelengths to identify splices, connectors, bends, breaks, ghosts and dead-zone effects.</span></a></div><div class="nel-workflow-memberships"><span class="nel-workflow-memberships-label">Also used in</span><span class="nel-workflow-chip">Optical Fault Isolation Workflow</span></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Footer navigation">
+      <a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script defer="" src="js/engine.js"></script><script defer="" src="js/pwa.js"></script>
+<script defer="" src="../../data/optical-standards.js"></script><script defer="" src="../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="js/app.js?v=b6b2f96549dc"></script>
+<script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script></body>
+</html>
+
+
