@@ -18,6 +18,7 @@ function initNetEngineerLabSite(){
  const folderPattern=locales.filter(item=>item.folder).map(item=>item.folder.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")).join("|");
  const isToolsDirectory=new RegExp(`/tools/(?:${folderPattern?`(?:${folderPattern})/`:""})?$`).test(normalizedPath);
  const directoryTools=tools.filter(tool=>locale?.id===config.defaultLocale||Boolean(tool.translations?.[catalogKey]||tool.translations?.[locale?.id]));
+ document.querySelectorAll("[data-localized-tool-count]").forEach(node=>{node.textContent=String(directoryTools.filter(tool=>tool.status==="active").length)});
  if(isToolsDirectory)document.querySelectorAll("[data-tool-count]").forEach(node=>{node.textContent=String(directoryTools.filter(tool=>tool.status==="active").length)});
  function copyFor(tool){
   const translations=tool.translations||{};

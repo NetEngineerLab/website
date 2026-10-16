@@ -1,0 +1,1913 @@
+{
+  "schemaVersion": 1,
+  "toolId": "data-center-architecture-decision-workshop",
+  "method": {
+    "id": "FIT-EQUAL-10",
+    "sourceIds": [
+      "S-LOCAL-RUBRIC"
+    ],
+    "formula": "FitScore = sum(10 integer ratings × weight 1) / 40 × 100"
+  },
+  "sources": [
+    {
+      "id": "S-LOCAL-RUBRIC",
+      "type": "local-policy",
+      "title": "Equal-weight editorial preference rubric",
+      "url": null,
+      "accessed": "2026-10-16",
+      "limits": {
+        "en": "Ratings and weights are local editorial choices, not a standard, benchmark or measured probability. Counts contribute zero; deployment feasibility remains unverified.",
+        "zh": "评分和权重是本站编辑规则，不是标准、基准或实测概率。数量仅作背景，不验证部署可行性。"
+      }
+    },
+    {
+      "id": "S-RFC7938",
+      "type": "primary",
+      "title": "RFC 7938 — Use of BGP for Routing in Large-Scale Data Centers",
+      "url": "https://www.rfc-editor.org/rfc/rfc7938.html",
+      "accessed": "2026-10-16",
+      "claim": {
+        "en": "Sections 3–4 discuss traditional and Clos designs, and L3-only networks with L2 domains confined toward the edge. Informational operational experience, not a universal size threshold.",
+        "zh": "第3–4节讨论传统与Clos设计，以及将二层域限制于边缘的纯三层网络。这是经验性信息文档，不是通用规模门槛。"
+      }
+    },
+    {
+      "id": "S-JUNIPER-EVPN",
+      "type": "primary",
+      "title": "Juniper — EVPN with VXLAN Data Plane Encapsulation",
+      "url": "https://www.juniper.net/documentation/us/en/software/junos/evpn/topics/concept/evpn-vxlan-data-plane-encapsulation.html",
+      "accessed": "2026-10-16",
+      "claim": {
+        "en": "EVPN provides control-plane learning; VXLAN supplies an L2 overlay over an IP network. Overlay segmentation may serve multitenancy and required L2 connectivity; platform support remains vendor-specific.",
+        "zh": "EVPN提供控制平面学习，VXLAN在IP网络上承载二层覆盖。覆盖分段可服务多租户和必要的二层连接；具体平台能力仍须核实。"
+      }
+    },
+    {
+      "id": "S-CISCO-ACI",
+      "type": "primary",
+      "title": "Cisco Application Centric Infrastructure Design Guide",
+      "url": "https://www.cisco.com/c/en/us/td/docs/dcn/whitepapers/cisco-application-centric-infrastructure-design-guide.html",
+      "accessed": "2026-10-16",
+      "claim": {
+        "en": "ACI illustrates controller-coordinated policy and tenant/VRF/bridge-domain constructs. It is a vendor-specific example, not a requirement for every controller fabric. Validate controller lifecycle, policy dependencies and licensing separately.",
+        "zh": "ACI展示控制器协调策略及租户、VRF、桥接域模型。这是特定厂商的示例，不代表所有控制器Fabric。须单独核实控制器生命周期、策略依赖和许可。"
+      }
+    }
+  ],
+  "profiles": {
+    "traditional": {
+      "name": {
+        "en": "Traditional L2/L3",
+        "zh": "传统二层/三层"
+      },
+      "strengths": {
+        "en": "Familiar VLAN/routing boundaries can suit stable, modest change requirements.",
+        "zh": "熟悉的VLAN与路由边界适合变化较少的需求。"
+      },
+      "weaknesses": {
+        "en": "Broad L2 domains and manual change processes need explicit loop, failure-domain and change-control review.",
+        "zh": "较大的二层域和人工变更需要明确审查环路、故障域与变更控制。"
+      },
+      "complexity": {
+        "en": "Lower overlay learning burden; physical redundancy and L2 behavior still need design.",
+        "zh": "覆盖网络学习负担较低，但物理冗余与二层行为仍须设计。"
+      },
+      "skillsRequired": {
+        "en": "VLAN, routing, loop prevention and failure testing.",
+        "zh": "VLAN、路由、防环与故障测试。"
+      },
+      "scalability": {
+        "en": "No device, MAC, VLAN or throughput capacity is inferred from inventory counts. Validate platform limits and topology.",
+        "zh": "不由资产数量推断设备、MAC、VLAN或吞吐上限。须核实平台限制和拓扑。"
+      },
+      "operationalRisk": {
+        "en": "Conditional risk: manual changes and wider L2 fault domains may increase troubleshooting scope.",
+        "zh": "条件风险：人工变更和较大二层故障域可能扩大排障范围。"
+      },
+      "migration": {
+        "en": "Map VLAN gateways and dependencies; test staged gateway moves and rollback before cutover.",
+        "zh": "梳理VLAN网关和依赖；切换前测试分阶段网关迁移与回退。"
+      }
+    },
+    "routed": {
+      "name": {
+        "en": "Routed Leaf-Spine (pure L3)",
+        "zh": "路由型Leaf-Spine（纯三层）"
+      },
+      "strengths": {
+        "en": "IP routing and ECMP can provide repeatable paths without introducing an L2 overlay.",
+        "zh": "IP路由和ECMP可提供可重复的路径，无须引入二层覆盖。"
+      },
+      "weaknesses": {
+        "en": "This defined candidate cannot meet an explicit cross-rack L2 requirement; adding overlay changes the candidate.",
+        "zh": "此候选定义无法满足明确的跨机架二层需求；加入覆盖后已是另一候选。"
+      },
+      "complexity": {
+        "en": "Requires routed underlay addressing, routing policy and ECMP operations.",
+        "zh": "需要底层地址规划、路由策略与ECMP运维。"
+      },
+      "skillsRequired": {
+        "en": "BGP or chosen IGP, addressing, ECMP and route convergence verification.",
+        "zh": "BGP或所选IGP、地址规划、ECMP与路由收敛验证。"
+      },
+      "scalability": {
+        "en": "No rack/server count proves forwarding table, oversubscription or link capacity.",
+        "zh": "机架或服务器数量不能证明转发表、超售比或链路容量充足。"
+      },
+      "operationalRisk": {
+        "en": "Conditional risk: routing policy and addressing mistakes can affect reachability; validate failure paths.",
+        "zh": "条件风险：路由策略和地址错误可能影响可达性；须验证故障路径。"
+      },
+      "migration": {
+        "en": "Confirm applications tolerate routed boundaries and renumbering; stage adjacency and gateway changes.",
+        "zh": "确认应用可接受路由边界及地址变更；分阶段迁移邻接与网关。"
+      }
+    },
+    "evpn": {
+      "name": {
+        "en": "VXLAN EVPN",
+        "zh": "VXLAN EVPN"
+      },
+      "strengths": {
+        "en": "Separates overlay services from routed transport where segmentation or within-fabric L2 extension is required.",
+        "zh": "在需要分段或Fabric内二层延伸时，将覆盖业务与路由传输分离。"
+      },
+      "weaknesses": {
+        "en": "Adds VTEP, VNI, control-plane and MTU dependencies that do not disappear with automation.",
+        "zh": "增加VTEP、VNI、控制平面和MTU依赖，自动化不会消除这些依赖。"
+      },
+      "complexity": {
+        "en": "Operate underlay and overlay together; distinguish control-plane state from actual forwarding evidence.",
+        "zh": "联合运维底层与覆盖；区分控制平面状态与真实转发证据。"
+      },
+      "skillsRequired": {
+        "en": "BGP EVPN routes, VXLAN encapsulation, tenant mapping and end-to-end MTU validation.",
+        "zh": "BGP EVPN路由、VXLAN封装、租户映射与端到端MTU验证。"
+      },
+      "scalability": {
+        "en": "Verify VNI/MAC/route limits and interoperability against exact platforms; no universal threshold is inferred.",
+        "zh": "按具体平台核实VNI、MAC、路由限制与互通，不推断通用门槛。"
+      },
+      "operationalRisk": {
+        "en": "Conditional risk: mapping drift and underlay/overlay interaction require correlated evidence.",
+        "zh": "条件风险：映射漂移及底层与覆盖交互需要关联证据。"
+      },
+      "migration": {
+        "en": "Inventory VLAN/VNI/VRF mapping, gateways and MTU; rehearse coexistence, rollback and forwarding checks.",
+        "zh": "盘点VLAN/VNI/VRF映射、网关与MTU；演练共存、回退和转发验证。"
+      }
+    },
+    "controller": {
+      "name": {
+        "en": "Controller-based Fabric (ACI-style example)",
+        "zh": "控制器Fabric（ACI风格示例）"
+      },
+      "strengths": {
+        "en": "Central policy coordination can suit a team prepared to adopt and govern its policy model.",
+        "zh": "集中策略协调适合愿意采用并治理其策略模型的团队。"
+      },
+      "weaknesses": {
+        "en": "Controller/platform lifecycle, licensing and ecosystem dependence need explicit review.",
+        "zh": "必须明确审查控制器与平台生命周期、许可及生态依赖。"
+      },
+      "complexity": {
+        "en": "Policy abstractions and controller lifecycle add learning and operating responsibilities.",
+        "zh": "策略抽象与控制器生命周期增加学习和运维责任。"
+      },
+      "skillsRequired": {
+        "en": "Chosen platform policy model, tenant/VRF segmentation, API/change governance and recovery practice.",
+        "zh": "所选平台策略模型、租户/VRF分段、API变更治理与恢复实践。"
+      },
+      "scalability": {
+        "en": "Check exact controller, fabric, endpoint and license limits; this is not an ACI sizing tool.",
+        "zh": "核实具体控制器、Fabric、终端与许可限制；此工具不是ACI容量规划器。"
+      },
+      "operationalRisk": {
+        "en": "Conditional risk: policy errors and platform coupling need governance; no data-plane outage is inferred from controller loss alone.",
+        "zh": "条件风险：策略错误与平台耦合需要治理；不能仅因控制器失联推断数据平面中断。"
+      },
+      "migration": {
+        "en": "Translate existing policy and dependencies into the target model; validate licensing, coexistence and rollback.",
+        "zh": "将现有策略与依赖转换至目标模型；验证许可、共存与回退。"
+      }
+    }
+  },
+  "discussions": [
+    {
+      "id": "why-not-vxlan",
+      "title": {
+        "en": "Why not VXLAN?",
+        "zh": "为什么不选VXLAN？"
+      },
+      "body": {
+        "en": "If applications accept routed boundaries and no overlay segmentation is required, VXLAN introduces VTEP/VNI/MTU and control-plane work without a declared requirement. First document the missing capability, then justify the added layer. Preference scores alone cannot establish cost or benefit.",
+        "zh": "如果应用接受路由边界且不需要覆盖分段，VXLAN会增加VTEP、VNI、MTU和控制平面工作，却没有明确需求支撑。先记录缺少的能力，再论证新增层次；偏好评分不能证明成本收益。"
+      },
+      "sourceIds": [
+        "S-JUNIPER-EVPN"
+      ]
+    },
+    {
+      "id": "simple-l3",
+      "title": {
+        "en": "When simple L3 is enough",
+        "zh": "何时简单三层足够"
+      },
+      "body": {
+        "en": "A routed fabric can be a candidate when applications tolerate subnet boundaries and no cross-rack L2 service is required. Verify addressing, ECMP behavior, failure paths and actual link capacity. Counts here do not validate any of those engineering properties.",
+        "zh": "当应用接受子网边界且不要求跨机架二层业务时，路由Fabric可以作为候选。须验证地址、ECMP行为、故障路径和真实链路容量；此处数量不能验证这些工程属性。"
+      },
+      "sourceIds": [
+        "S-RFC7938"
+      ]
+    },
+    {
+      "id": "evpn-value",
+      "title": {
+        "en": "When EVPN adds value",
+        "zh": "何时EVPN带来价值"
+      },
+      "body": {
+        "en": "Required overlay segmentation or within-fabric L2 extension can justify evaluating EVPN/VXLAN. Validate service-to-VNI/VRF mapping, supported routes, MTU and multivendor behavior. A positive rating is not evidence that a particular platform meets the requirement.",
+        "zh": "必要的覆盖分段或Fabric内二层延伸可以构成评估EVPN/VXLAN的理由。须验证业务到VNI/VRF映射、路由支持、MTU与跨厂商行为。正评分不是具体平台满足需求的证据。"
+      },
+      "sourceIds": [
+        "S-JUNIPER-EVPN"
+      ]
+    },
+    {
+      "id": "controller-value",
+      "title": {
+        "en": "When controller/fabric complexity is justified",
+        "zh": "何时控制器Fabric复杂度值得引入"
+      },
+      "body": {
+        "en": "Evaluate a controller fabric when consistent policy coordination and lifecycle governance are valuable and the team can operate the chosen model. ACI is one vendor-specific example. Compare licensing, APIs, recovery, ecosystem coupling and training before selecting; do not assume every controller fabric has identical behavior.",
+        "zh": "当一致的策略协调与生命周期治理具有价值，且团队能运维所选模型时，可评估控制器Fabric。ACI只是特定厂商示例。选择前比较许可、API、恢复、生态耦合与培训，不假设所有控制器Fabric行为相同。"
+      },
+      "sourceIds": [
+        "S-CISCO-ACI"
+      ]
+    },
+    {
+      "id": "migration",
+      "title": {
+        "en": "Migration considerations",
+        "zh": "迁移注意事项"
+      },
+      "body": {
+        "en": "Migration difficulty remains UNASSESSED: the current topology, maintenance windows and application dependencies were not collected. Inventory gateways, addressing and policy; test coexistence, failure recovery and rollback. Plan a pilot with measurable acceptance criteria and operational ownership before expanding.",
+        "zh": "迁移难度保持“未评估”：未收集现有拓扑、维护窗口与应用依赖。盘点网关、地址和策略，测试共存、故障恢复与回退。扩大范围前，制定具有可测验收条件和运维负责人的试点。"
+      },
+      "sourceIds": [
+        "S-LOCAL-RUBRIC"
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "FIT-eastWestTraffic",
+      "dimension": "eastWestTraffic",
+      "sourceIds": [
+        "S-LOCAL-RUBRIC"
+      ],
+      "weight": 1,
+      "max": 4,
+      "branches": [
+        {
+          "input": "low",
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 3,
+              "why": {
+                "en": "Declared low → 3/4. Traditional paths warrant review as cross-rack demand increases.",
+                "zh": "声明值 低 → 3/4。跨机架需求增加时须复核传统路径。"
+              },
+              "limits": {
+                "en": "Local preference judgement for eastWestTraffic only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "东西向流量仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 3,
+              "why": {
+                "en": "Declared low → 3/4. Routed Clos paths align with cross-rack traffic preferences.",
+                "zh": "声明值 低 → 3/4。路由Clos路径与跨机架流量偏好相符。"
+              },
+              "limits": {
+                "en": "Local preference judgement for eastWestTraffic only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "东西向流量仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 2,
+              "why": {
+                "en": "Declared low → 2/4. Overlay service separation can accompany high east-west demand, but adds operating work.",
+                "zh": "声明值 低 → 2/4。覆盖业务分离可配合高东西向需求，但增加运维工作。"
+              },
+              "limits": {
+                "en": "Local preference judgement for eastWestTraffic only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "东西向流量仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 2,
+              "why": {
+                "en": "Declared low → 2/4. Coordinated fabric policy may accompany east-west growth when its operating model is accepted.",
+                "zh": "声明值 低 → 2/4。接受其运维模型时，协调Fabric策略可配合东西向增长。"
+              },
+              "limits": {
+                "en": "Local preference judgement for eastWestTraffic only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "东西向流量仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        },
+        {
+          "input": "moderate",
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 2,
+              "why": {
+                "en": "Declared moderate → 2/4. Traditional paths warrant review as cross-rack demand increases.",
+                "zh": "声明值 中 → 2/4。跨机架需求增加时须复核传统路径。"
+              },
+              "limits": {
+                "en": "Local preference judgement for eastWestTraffic only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "东西向流量仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 4,
+              "why": {
+                "en": "Declared moderate → 4/4. Routed Clos paths align with cross-rack traffic preferences.",
+                "zh": "声明值 中 → 4/4。路由Clos路径与跨机架流量偏好相符。"
+              },
+              "limits": {
+                "en": "Local preference judgement for eastWestTraffic only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "东西向流量仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 3,
+              "why": {
+                "en": "Declared moderate → 3/4. Overlay service separation can accompany high east-west demand, but adds operating work.",
+                "zh": "声明值 中 → 3/4。覆盖业务分离可配合高东西向需求，但增加运维工作。"
+              },
+              "limits": {
+                "en": "Local preference judgement for eastWestTraffic only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "东西向流量仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 3,
+              "why": {
+                "en": "Declared moderate → 3/4. Coordinated fabric policy may accompany east-west growth when its operating model is accepted.",
+                "zh": "声明值 中 → 3/4。接受其运维模型时，协调Fabric策略可配合东西向增长。"
+              },
+              "limits": {
+                "en": "Local preference judgement for eastWestTraffic only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "东西向流量仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        },
+        {
+          "input": "high",
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 1,
+              "why": {
+                "en": "Declared high → 1/4. Traditional paths warrant review as cross-rack demand increases.",
+                "zh": "声明值 高 → 1/4。跨机架需求增加时须复核传统路径。"
+              },
+              "limits": {
+                "en": "Local preference judgement for eastWestTraffic only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "东西向流量仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 4,
+              "why": {
+                "en": "Declared high → 4/4. Routed Clos paths align with cross-rack traffic preferences.",
+                "zh": "声明值 高 → 4/4。路由Clos路径与跨机架流量偏好相符。"
+              },
+              "limits": {
+                "en": "Local preference judgement for eastWestTraffic only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "东西向流量仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 4,
+              "why": {
+                "en": "Declared high → 4/4. Overlay service separation can accompany high east-west demand, but adds operating work.",
+                "zh": "声明值 高 → 4/4。覆盖业务分离可配合高东西向需求，但增加运维工作。"
+              },
+              "limits": {
+                "en": "Local preference judgement for eastWestTraffic only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "东西向流量仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 4,
+              "why": {
+                "en": "Declared high → 4/4. Coordinated fabric policy may accompany east-west growth when its operating model is accepted.",
+                "zh": "声明值 高 → 4/4。接受其运维模型时，协调Fabric策略可配合东西向增长。"
+              },
+              "limits": {
+                "en": "Local preference judgement for eastWestTraffic only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "东西向流量仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FIT-northSouthTraffic",
+      "dimension": "northSouthTraffic",
+      "sourceIds": [
+        "S-LOCAL-RUBRIC"
+      ],
+      "weight": 1,
+      "max": 4,
+      "branches": [
+        {
+          "input": "low",
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 2,
+              "why": {
+                "en": "Declared low → 2/4. Conventional gateway boundaries can suit north-south-oriented requirements.",
+                "zh": "声明值 低 → 2/4。传统网关边界可适合南北向需求。"
+              },
+              "limits": {
+                "en": "Local preference judgement for northSouthTraffic only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "南北向流量仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 3,
+              "why": {
+                "en": "Declared low → 3/4. Routed paths are a candidate for north-south forwarding with verified egress design.",
+                "zh": "声明值 低 → 3/4。经验证出口设计后，路由路径可作为南北向转发候选。"
+              },
+              "limits": {
+                "en": "Local preference judgement for northSouthTraffic only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "南北向流量仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 3,
+              "why": {
+                "en": "Declared low → 3/4. Overlay value depends on service segmentation, not north-south demand alone.",
+                "zh": "声明值 低 → 3/4。覆盖价值取决于业务分段，而非仅南北向需求。"
+              },
+              "limits": {
+                "en": "Local preference judgement for northSouthTraffic only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "南北向流量仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 3,
+              "why": {
+                "en": "Declared low → 3/4. Controller policy value is not established by north-south demand alone.",
+                "zh": "声明值 低 → 3/4。仅南北向需求不能证明控制器策略价值。"
+              },
+              "limits": {
+                "en": "Local preference judgement for northSouthTraffic only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "南北向流量仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        },
+        {
+          "input": "moderate",
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 3,
+              "why": {
+                "en": "Declared moderate → 3/4. Conventional gateway boundaries can suit north-south-oriented requirements.",
+                "zh": "声明值 中 → 3/4。传统网关边界可适合南北向需求。"
+              },
+              "limits": {
+                "en": "Local preference judgement for northSouthTraffic only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "南北向流量仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 3,
+              "why": {
+                "en": "Declared moderate → 3/4. Routed paths are a candidate for north-south forwarding with verified egress design.",
+                "zh": "声明值 中 → 3/4。经验证出口设计后，路由路径可作为南北向转发候选。"
+              },
+              "limits": {
+                "en": "Local preference judgement for northSouthTraffic only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "南北向流量仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 3,
+              "why": {
+                "en": "Declared moderate → 3/4. Overlay value depends on service segmentation, not north-south demand alone.",
+                "zh": "声明值 中 → 3/4。覆盖价值取决于业务分段，而非仅南北向需求。"
+              },
+              "limits": {
+                "en": "Local preference judgement for northSouthTraffic only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "南北向流量仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 3,
+              "why": {
+                "en": "Declared moderate → 3/4. Controller policy value is not established by north-south demand alone.",
+                "zh": "声明值 中 → 3/4。仅南北向需求不能证明控制器策略价值。"
+              },
+              "limits": {
+                "en": "Local preference judgement for northSouthTraffic only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "南北向流量仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        },
+        {
+          "input": "high",
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 3,
+              "why": {
+                "en": "Declared high → 3/4. Conventional gateway boundaries can suit north-south-oriented requirements.",
+                "zh": "声明值 高 → 3/4。传统网关边界可适合南北向需求。"
+              },
+              "limits": {
+                "en": "Local preference judgement for northSouthTraffic only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "南北向流量仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 4,
+              "why": {
+                "en": "Declared high → 4/4. Routed paths are a candidate for north-south forwarding with verified egress design.",
+                "zh": "声明值 高 → 4/4。经验证出口设计后，路由路径可作为南北向转发候选。"
+              },
+              "limits": {
+                "en": "Local preference judgement for northSouthTraffic only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "南北向流量仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 3,
+              "why": {
+                "en": "Declared high → 3/4. Overlay value depends on service segmentation, not north-south demand alone.",
+                "zh": "声明值 高 → 3/4。覆盖价值取决于业务分段，而非仅南北向需求。"
+              },
+              "limits": {
+                "en": "Local preference judgement for northSouthTraffic only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "南北向流量仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 3,
+              "why": {
+                "en": "Declared high → 3/4. Controller policy value is not established by north-south demand alone.",
+                "zh": "声明值 高 → 3/4。仅南北向需求不能证明控制器策略价值。"
+              },
+              "limits": {
+                "en": "Local preference judgement for northSouthTraffic only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "南北向流量仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FIT-multiTenancy",
+      "dimension": "multiTenancy",
+      "sourceIds": [
+        "S-LOCAL-RUBRIC"
+      ],
+      "weight": 1,
+      "max": 4,
+      "branches": [
+        {
+          "input": false,
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 4,
+              "why": {
+                "en": "Declared false → 4/4. Explicit tenancy needs more segmentation review in a traditional design.",
+                "zh": "声明值 否 → 4/4。传统设计中明确的租户需求需要更多分段审查。"
+              },
+              "limits": {
+                "en": "Local preference judgement for multiTenancy only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "多租户仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 4,
+              "why": {
+                "en": "Declared false → 4/4. Pure routed separation requires tenant-aware routing design without the defined overlay.",
+                "zh": "声明值 否 → 4/4。纯路由隔离需要租户感知路由设计，此候选不含覆盖。"
+              },
+              "limits": {
+                "en": "Local preference judgement for multiTenancy only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "多租户仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 2,
+              "why": {
+                "en": "Declared false → 2/4. EVPN overlay segmentation can address declared tenancy needs.",
+                "zh": "声明值 否 → 2/4。EVPN覆盖分段可服务声明的租户需求。"
+              },
+              "limits": {
+                "en": "Local preference judgement for multiTenancy only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "多租户仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 2,
+              "why": {
+                "en": "Declared false → 2/4. Controller policy models can organize tenant boundaries if the team accepts that model.",
+                "zh": "声明值 否 → 2/4。团队接受其模型时，控制器策略可组织租户边界。"
+              },
+              "limits": {
+                "en": "Local preference judgement for multiTenancy only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "多租户仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        },
+        {
+          "input": true,
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 1,
+              "why": {
+                "en": "Declared true → 1/4. Explicit tenancy needs more segmentation review in a traditional design.",
+                "zh": "声明值 是 → 1/4。传统设计中明确的租户需求需要更多分段审查。"
+              },
+              "limits": {
+                "en": "Local preference judgement for multiTenancy only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "多租户仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 2,
+              "why": {
+                "en": "Declared true → 2/4. Pure routed separation requires tenant-aware routing design without the defined overlay.",
+                "zh": "声明值 是 → 2/4。纯路由隔离需要租户感知路由设计，此候选不含覆盖。"
+              },
+              "limits": {
+                "en": "Local preference judgement for multiTenancy only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "多租户仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 4,
+              "why": {
+                "en": "Declared true → 4/4. EVPN overlay segmentation can address declared tenancy needs.",
+                "zh": "声明值 是 → 4/4。EVPN覆盖分段可服务声明的租户需求。"
+              },
+              "limits": {
+                "en": "Local preference judgement for multiTenancy only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "多租户仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 4,
+              "why": {
+                "en": "Declared true → 4/4. Controller policy models can organize tenant boundaries if the team accepts that model.",
+                "zh": "声明值 是 → 4/4。团队接受其模型时，控制器策略可组织租户边界。"
+              },
+              "limits": {
+                "en": "Local preference judgement for multiTenancy only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "多租户仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FIT-l2Stretch",
+      "dimension": "l2Stretch",
+      "sourceIds": [
+        "S-LOCAL-RUBRIC"
+      ],
+      "weight": 1,
+      "max": 4,
+      "branches": [
+        {
+          "input": false,
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 4,
+              "why": {
+                "en": "Declared false → 4/4. Traditional L2 may extend adjacency, but fault-domain and loop scope still need review.",
+                "zh": "声明值 否 → 4/4。传统二层可延伸邻接，但仍须审查故障域与环路范围。"
+              },
+              "limits": {
+                "en": "Local preference judgement for l2Stretch only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "跨机架二层需求仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 4,
+              "why": {
+                "en": "Declared false → 4/4. Pure L3 cannot satisfy required cross-rack L2: this is an eligibility gap, not merely a low score.",
+                "zh": "声明值 否 → 4/4。纯三层不能满足跨机架二层需求：这是资格缺口，不只是低评分。"
+              },
+              "limits": {
+                "en": "Local preference judgement for l2Stretch only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "跨机架二层需求仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 2,
+              "why": {
+                "en": "Declared false → 2/4. Required L2 service within this fabric is an overlay use case; no inter-DC promise is made.",
+                "zh": "声明值 否 → 2/4。此Fabric内必要二层业务是覆盖应用场景，不承诺跨数据中心能力。"
+              },
+              "limits": {
+                "en": "Local preference judgement for l2Stretch only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "跨机架二层需求仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 2,
+              "why": {
+                "en": "Declared false → 2/4. The chosen controller fabric must explicitly support the requested L2 service.",
+                "zh": "声明值 否 → 2/4。所选控制器Fabric必须明确支持所需二层业务。"
+              },
+              "limits": {
+                "en": "Local preference judgement for l2Stretch only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "跨机架二层需求仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        },
+        {
+          "input": true,
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 3,
+              "why": {
+                "en": "Declared true → 3/4. Traditional L2 may extend adjacency, but fault-domain and loop scope still need review.",
+                "zh": "声明值 是 → 3/4。传统二层可延伸邻接，但仍须审查故障域与环路范围。"
+              },
+              "limits": {
+                "en": "Local preference judgement for l2Stretch only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "跨机架二层需求仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 0,
+              "why": {
+                "en": "Declared true → 0/4. Pure L3 cannot satisfy required cross-rack L2: this is an eligibility gap, not merely a low score.",
+                "zh": "声明值 是 → 0/4。纯三层不能满足跨机架二层需求：这是资格缺口，不只是低评分。"
+              },
+              "limits": {
+                "en": "Local preference judgement for l2Stretch only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "跨机架二层需求仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 4,
+              "why": {
+                "en": "Declared true → 4/4. Required L2 service within this fabric is an overlay use case; no inter-DC promise is made.",
+                "zh": "声明值 是 → 4/4。此Fabric内必要二层业务是覆盖应用场景，不承诺跨数据中心能力。"
+              },
+              "limits": {
+                "en": "Local preference judgement for l2Stretch only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "跨机架二层需求仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 4,
+              "why": {
+                "en": "Declared true → 4/4. The chosen controller fabric must explicitly support the requested L2 service.",
+                "zh": "声明值 是 → 4/4。所选控制器Fabric必须明确支持所需二层业务。"
+              },
+              "limits": {
+                "en": "Local preference judgement for l2Stretch only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "跨机架二层需求仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FIT-automation",
+      "dimension": "automation",
+      "sourceIds": [
+        "S-LOCAL-RUBRIC"
+      ],
+      "weight": 1,
+      "max": 4,
+      "branches": [
+        {
+          "input": "low",
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 4,
+              "why": {
+                "en": "Declared low → 4/4. A familiar traditional workflow may suit low automation readiness; manual change still needs governance.",
+                "zh": "声明值 低 → 4/4。熟悉的传统流程可适合较低自动化准备度，人工变更仍需治理。"
+              },
+              "limits": {
+                "en": "Local preference judgement for automation only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "自动化准备度仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 3,
+              "why": {
+                "en": "Declared low → 3/4. Routed operations can be manual or automated; automation alone does not require overlay.",
+                "zh": "声明值 低 → 3/4。路由运维可人工或自动化，仅自动化需求不要求覆盖。"
+              },
+              "limits": {
+                "en": "Local preference judgement for automation only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "自动化准备度仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 2,
+              "why": {
+                "en": "Declared low → 2/4. Overlay lifecycle benefits from repeatable mapping and configuration practices.",
+                "zh": "声明值 低 → 2/4。覆盖生命周期受益于可重复的映射与配置实践。"
+              },
+              "limits": {
+                "en": "Local preference judgement for automation only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "自动化准备度仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 1,
+              "why": {
+                "en": "Declared low → 1/4. Controller lifecycle and policy workflows require operating readiness beyond installing a controller.",
+                "zh": "声明值 低 → 1/4。控制器生命周期与策略流程要求运维准备，不能仅安装控制器。"
+              },
+              "limits": {
+                "en": "Local preference judgement for automation only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "自动化准备度仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        },
+        {
+          "input": "moderate",
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 3,
+              "why": {
+                "en": "Declared moderate → 3/4. A familiar traditional workflow may suit low automation readiness; manual change still needs governance.",
+                "zh": "声明值 中 → 3/4。熟悉的传统流程可适合较低自动化准备度，人工变更仍需治理。"
+              },
+              "limits": {
+                "en": "Local preference judgement for automation only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "自动化准备度仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 3,
+              "why": {
+                "en": "Declared moderate → 3/4. Routed operations can be manual or automated; automation alone does not require overlay.",
+                "zh": "声明值 中 → 3/4。路由运维可人工或自动化，仅自动化需求不要求覆盖。"
+              },
+              "limits": {
+                "en": "Local preference judgement for automation only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "自动化准备度仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 3,
+              "why": {
+                "en": "Declared moderate → 3/4. Overlay lifecycle benefits from repeatable mapping and configuration practices.",
+                "zh": "声明值 中 → 3/4。覆盖生命周期受益于可重复的映射与配置实践。"
+              },
+              "limits": {
+                "en": "Local preference judgement for automation only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "自动化准备度仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 3,
+              "why": {
+                "en": "Declared moderate → 3/4. Controller lifecycle and policy workflows require operating readiness beyond installing a controller.",
+                "zh": "声明值 中 → 3/4。控制器生命周期与策略流程要求运维准备，不能仅安装控制器。"
+              },
+              "limits": {
+                "en": "Local preference judgement for automation only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "自动化准备度仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        },
+        {
+          "input": "high",
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 1,
+              "why": {
+                "en": "Declared high → 1/4. A familiar traditional workflow may suit low automation readiness; manual change still needs governance.",
+                "zh": "声明值 高 → 1/4。熟悉的传统流程可适合较低自动化准备度，人工变更仍需治理。"
+              },
+              "limits": {
+                "en": "Local preference judgement for automation only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "自动化准备度仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 3,
+              "why": {
+                "en": "Declared high → 3/4. Routed operations can be manual or automated; automation alone does not require overlay.",
+                "zh": "声明值 高 → 3/4。路由运维可人工或自动化，仅自动化需求不要求覆盖。"
+              },
+              "limits": {
+                "en": "Local preference judgement for automation only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "自动化准备度仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 4,
+              "why": {
+                "en": "Declared high → 4/4. Overlay lifecycle benefits from repeatable mapping and configuration practices.",
+                "zh": "声明值 高 → 4/4。覆盖生命周期受益于可重复的映射与配置实践。"
+              },
+              "limits": {
+                "en": "Local preference judgement for automation only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "自动化准备度仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 4,
+              "why": {
+                "en": "Declared high → 4/4. Controller lifecycle and policy workflows require operating readiness beyond installing a controller.",
+                "zh": "声明值 高 → 4/4。控制器生命周期与策略流程要求运维准备，不能仅安装控制器。"
+              },
+              "limits": {
+                "en": "Local preference judgement for automation only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "自动化准备度仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FIT-teamSkill",
+      "dimension": "teamSkill",
+      "sourceIds": [
+        "S-LOCAL-RUBRIC"
+      ],
+      "weight": 1,
+      "max": 4,
+      "branches": [
+        {
+          "input": "foundation",
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 4,
+              "why": {
+                "en": "Declared foundation → 4/4. Familiar VLAN and routing operations lower learning burden, without removing engineering work.",
+                "zh": "声明值 基础 → 4/4。熟悉VLAN与路由可降低学习负担，但不消除工程工作。"
+              },
+              "limits": {
+                "en": "Local preference judgement for teamSkill only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "团队技能仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 2,
+              "why": {
+                "en": "Declared foundation → 2/4. Routed fabric operation requires routing policy, addressing and failure-analysis skills.",
+                "zh": "声明值 基础 → 2/4。路由Fabric运维需要路由策略、地址与故障分析技能。"
+              },
+              "limits": {
+                "en": "Local preference judgement for teamSkill only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "团队技能仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 1,
+              "why": {
+                "en": "Declared foundation → 1/4. EVPN adds overlay and control-plane concepts that need practiced operators.",
+                "zh": "声明值 基础 → 1/4。EVPN增加覆盖与控制平面概念，需要经过实践的运维人员。"
+              },
+              "limits": {
+                "en": "Local preference judgement for teamSkill only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "团队技能仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 1,
+              "why": {
+                "en": "Declared foundation → 1/4. Controller abstractions and recovery require platform-specific skills.",
+                "zh": "声明值 基础 → 1/4。控制器抽象与恢复需要具体平台技能。"
+              },
+              "limits": {
+                "en": "Local preference judgement for teamSkill only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "团队技能仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        },
+        {
+          "input": "intermediate",
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 3,
+              "why": {
+                "en": "Declared intermediate → 3/4. Familiar VLAN and routing operations lower learning burden, without removing engineering work.",
+                "zh": "声明值 中级 → 3/4。熟悉VLAN与路由可降低学习负担，但不消除工程工作。"
+              },
+              "limits": {
+                "en": "Local preference judgement for teamSkill only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "团队技能仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 4,
+              "why": {
+                "en": "Declared intermediate → 4/4. Routed fabric operation requires routing policy, addressing and failure-analysis skills.",
+                "zh": "声明值 中级 → 4/4。路由Fabric运维需要路由策略、地址与故障分析技能。"
+              },
+              "limits": {
+                "en": "Local preference judgement for teamSkill only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "团队技能仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 3,
+              "why": {
+                "en": "Declared intermediate → 3/4. EVPN adds overlay and control-plane concepts that need practiced operators.",
+                "zh": "声明值 中级 → 3/4。EVPN增加覆盖与控制平面概念，需要经过实践的运维人员。"
+              },
+              "limits": {
+                "en": "Local preference judgement for teamSkill only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "团队技能仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 2,
+              "why": {
+                "en": "Declared intermediate → 2/4. Controller abstractions and recovery require platform-specific skills.",
+                "zh": "声明值 中级 → 2/4。控制器抽象与恢复需要具体平台技能。"
+              },
+              "limits": {
+                "en": "Local preference judgement for teamSkill only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "团队技能仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        },
+        {
+          "input": "advanced",
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 3,
+              "why": {
+                "en": "Declared advanced → 3/4. Familiar VLAN and routing operations lower learning burden, without removing engineering work.",
+                "zh": "声明值 高级 → 3/4。熟悉VLAN与路由可降低学习负担，但不消除工程工作。"
+              },
+              "limits": {
+                "en": "Local preference judgement for teamSkill only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "团队技能仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 4,
+              "why": {
+                "en": "Declared advanced → 4/4. Routed fabric operation requires routing policy, addressing and failure-analysis skills.",
+                "zh": "声明值 高级 → 4/4。路由Fabric运维需要路由策略、地址与故障分析技能。"
+              },
+              "limits": {
+                "en": "Local preference judgement for teamSkill only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "团队技能仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 4,
+              "why": {
+                "en": "Declared advanced → 4/4. EVPN adds overlay and control-plane concepts that need practiced operators.",
+                "zh": "声明值 高级 → 4/4。EVPN增加覆盖与控制平面概念，需要经过实践的运维人员。"
+              },
+              "limits": {
+                "en": "Local preference judgement for teamSkill only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "团队技能仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 4,
+              "why": {
+                "en": "Declared advanced → 4/4. Controller abstractions and recovery require platform-specific skills.",
+                "zh": "声明值 高级 → 4/4。控制器抽象与恢复需要具体平台技能。"
+              },
+              "limits": {
+                "en": "Local preference judgement for teamSkill only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "团队技能仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FIT-vendorLockIn",
+      "dimension": "vendorLockIn",
+      "sourceIds": [
+        "S-LOCAL-RUBRIC"
+      ],
+      "weight": 1,
+      "max": 4,
+      "branches": [
+        {
+          "input": "minimize",
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 3,
+              "why": {
+                "en": "Declared minimize → 3/4. Traditional design still depends on actual platform capabilities and lifecycle.",
+                "zh": "声明值 减少依赖 → 3/4。传统设计仍依赖具体平台能力与生命周期。"
+              },
+              "limits": {
+                "en": "Local preference judgement for vendorLockIn only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "厂商生态偏好仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 4,
+              "why": {
+                "en": "Declared minimize → 4/4. Protocol-based routing can support ecosystem flexibility; interoperability must be tested.",
+                "zh": "声明值 减少依赖 → 4/4。协议化路由可支持生态灵活性，但必须测试互通。"
+              },
+              "limits": {
+                "en": "Local preference judgement for vendorLockIn only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "厂商生态偏好仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 4,
+              "why": {
+                "en": "Declared minimize → 4/4. Standardized EVPN principles do not guarantee feature interoperability across vendors.",
+                "zh": "声明值 减少依赖 → 4/4。标准化EVPN原理不保证跨厂商功能互通。"
+              },
+              "limits": {
+                "en": "Local preference judgement for vendorLockIn only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "厂商生态偏好仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 0,
+              "why": {
+                "en": "Declared minimize → 0/4. An ACI-style example introduces platform policy and ecosystem dependencies.",
+                "zh": "声明值 减少依赖 → 0/4。ACI风格示例引入平台策略与生态依赖。"
+              },
+              "limits": {
+                "en": "Local preference judgement for vendorLockIn only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "厂商生态偏好仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        },
+        {
+          "input": "balanced",
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 3,
+              "why": {
+                "en": "Declared balanced → 3/4. Traditional design still depends on actual platform capabilities and lifecycle.",
+                "zh": "声明值 平衡 → 3/4。传统设计仍依赖具体平台能力与生命周期。"
+              },
+              "limits": {
+                "en": "Local preference judgement for vendorLockIn only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "厂商生态偏好仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 4,
+              "why": {
+                "en": "Declared balanced → 4/4. Protocol-based routing can support ecosystem flexibility; interoperability must be tested.",
+                "zh": "声明值 平衡 → 4/4。协议化路由可支持生态灵活性，但必须测试互通。"
+              },
+              "limits": {
+                "en": "Local preference judgement for vendorLockIn only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "厂商生态偏好仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 4,
+              "why": {
+                "en": "Declared balanced → 4/4. Standardized EVPN principles do not guarantee feature interoperability across vendors.",
+                "zh": "声明值 平衡 → 4/4。标准化EVPN原理不保证跨厂商功能互通。"
+              },
+              "limits": {
+                "en": "Local preference judgement for vendorLockIn only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "厂商生态偏好仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 3,
+              "why": {
+                "en": "Declared balanced → 3/4. An ACI-style example introduces platform policy and ecosystem dependencies.",
+                "zh": "声明值 平衡 → 3/4。ACI风格示例引入平台策略与生态依赖。"
+              },
+              "limits": {
+                "en": "Local preference judgement for vendorLockIn only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "厂商生态偏好仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        },
+        {
+          "input": "accept",
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 3,
+              "why": {
+                "en": "Declared accept → 3/4. Traditional design still depends on actual platform capabilities and lifecycle.",
+                "zh": "声明值 接受依赖 → 3/4。传统设计仍依赖具体平台能力与生命周期。"
+              },
+              "limits": {
+                "en": "Local preference judgement for vendorLockIn only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "厂商生态偏好仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 4,
+              "why": {
+                "en": "Declared accept → 4/4. Protocol-based routing can support ecosystem flexibility; interoperability must be tested.",
+                "zh": "声明值 接受依赖 → 4/4。协议化路由可支持生态灵活性，但必须测试互通。"
+              },
+              "limits": {
+                "en": "Local preference judgement for vendorLockIn only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "厂商生态偏好仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 4,
+              "why": {
+                "en": "Declared accept → 4/4. Standardized EVPN principles do not guarantee feature interoperability across vendors.",
+                "zh": "声明值 接受依赖 → 4/4。标准化EVPN原理不保证跨厂商功能互通。"
+              },
+              "limits": {
+                "en": "Local preference judgement for vendorLockIn only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "厂商生态偏好仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 4,
+              "why": {
+                "en": "Declared accept → 4/4. An ACI-style example introduces platform policy and ecosystem dependencies.",
+                "zh": "声明值 接受依赖 → 4/4。ACI风格示例引入平台策略与生态依赖。"
+              },
+              "limits": {
+                "en": "Local preference judgement for vendorLockIn only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "厂商生态偏好仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FIT-growthHorizon",
+      "dimension": "growthHorizon",
+      "sourceIds": [
+        "S-LOCAL-RUBRIC"
+      ],
+      "weight": 1,
+      "max": 4,
+      "branches": [
+        {
+          "input": "near",
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 4,
+              "why": {
+                "en": "Declared near → 4/4. Longer horizons call for reviewing traditional fault domains and change practices.",
+                "zh": "声明值 1年以内 → 4/4。更长周期需要复核传统故障域与变更实践。"
+              },
+              "limits": {
+                "en": "Local preference judgement for growthHorizon only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "增长周期仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 3,
+              "why": {
+                "en": "Declared near → 3/4. Repeatable routed topology can support planned expansion, subject to verified resources.",
+                "zh": "声明值 1年以内 → 3/4。在资源经验证的条件下，可重复的路由拓扑可支持规划扩展。"
+              },
+              "limits": {
+                "en": "Local preference judgement for growthHorizon only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "增长周期仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 2,
+              "why": {
+                "en": "Declared near → 2/4. An overlay may separate evolving services from transport; future scale is not proven.",
+                "zh": "声明值 1年以内 → 2/4。覆盖可将演进业务与传输分离，但不证明未来规模。"
+              },
+              "limits": {
+                "en": "Local preference judgement for growthHorizon only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "增长周期仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 2,
+              "why": {
+                "en": "Declared near → 2/4. Coordinated lifecycle can support planned change if its platform constraints are accepted.",
+                "zh": "声明值 1年以内 → 2/4。接受平台约束时，协调生命周期可支持规划变更。"
+              },
+              "limits": {
+                "en": "Local preference judgement for growthHorizon only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "增长周期仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        },
+        {
+          "input": "medium",
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 3,
+              "why": {
+                "en": "Declared medium → 3/4. Longer horizons call for reviewing traditional fault domains and change practices.",
+                "zh": "声明值 2–3年 → 3/4。更长周期需要复核传统故障域与变更实践。"
+              },
+              "limits": {
+                "en": "Local preference judgement for growthHorizon only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "增长周期仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 4,
+              "why": {
+                "en": "Declared medium → 4/4. Repeatable routed topology can support planned expansion, subject to verified resources.",
+                "zh": "声明值 2–3年 → 4/4。在资源经验证的条件下，可重复的路由拓扑可支持规划扩展。"
+              },
+              "limits": {
+                "en": "Local preference judgement for growthHorizon only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "增长周期仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 3,
+              "why": {
+                "en": "Declared medium → 3/4. An overlay may separate evolving services from transport; future scale is not proven.",
+                "zh": "声明值 2–3年 → 3/4。覆盖可将演进业务与传输分离，但不证明未来规模。"
+              },
+              "limits": {
+                "en": "Local preference judgement for growthHorizon only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "增长周期仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 3,
+              "why": {
+                "en": "Declared medium → 3/4. Coordinated lifecycle can support planned change if its platform constraints are accepted.",
+                "zh": "声明值 2–3年 → 3/4。接受平台约束时，协调生命周期可支持规划变更。"
+              },
+              "limits": {
+                "en": "Local preference judgement for growthHorizon only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "增长周期仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        },
+        {
+          "input": "long",
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 2,
+              "why": {
+                "en": "Declared long → 2/4. Longer horizons call for reviewing traditional fault domains and change practices.",
+                "zh": "声明值 4–10年 → 2/4。更长周期需要复核传统故障域与变更实践。"
+              },
+              "limits": {
+                "en": "Local preference judgement for growthHorizon only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "增长周期仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 4,
+              "why": {
+                "en": "Declared long → 4/4. Repeatable routed topology can support planned expansion, subject to verified resources.",
+                "zh": "声明值 4–10年 → 4/4。在资源经验证的条件下，可重复的路由拓扑可支持规划扩展。"
+              },
+              "limits": {
+                "en": "Local preference judgement for growthHorizon only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "增长周期仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 4,
+              "why": {
+                "en": "Declared long → 4/4. An overlay may separate evolving services from transport; future scale is not proven.",
+                "zh": "声明值 4–10年 → 4/4。覆盖可将演进业务与传输分离，但不证明未来规模。"
+              },
+              "limits": {
+                "en": "Local preference judgement for growthHorizon only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "增长周期仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 4,
+              "why": {
+                "en": "Declared long → 4/4. Coordinated lifecycle can support planned change if its platform constraints are accepted.",
+                "zh": "声明值 4–10年 → 4/4。接受平台约束时，协调生命周期可支持规划变更。"
+              },
+              "limits": {
+                "en": "Local preference judgement for growthHorizon only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "增长周期仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FIT-availability",
+      "dimension": "availability",
+      "sourceIds": [
+        "S-LOCAL-RUBRIC"
+      ],
+      "weight": 1,
+      "max": 4,
+      "branches": [
+        {
+          "input": "standard",
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 3,
+              "why": {
+                "en": "Declared standard → 3/4. Higher expectations require explicit review of L2 failure domains and recovery.",
+                "zh": "声明值 标准 → 3/4。更高期望需要明确审查二层故障域与恢复。"
+              },
+              "limits": {
+                "en": "Local preference judgement for availability only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "可用性期望仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 3,
+              "why": {
+                "en": "Declared standard → 3/4. Routed redundant paths may fit stronger expectations when actual failure behavior is validated.",
+                "zh": "声明值 标准 → 3/4。验证真实故障行为后，路由冗余路径可适合更高期望。"
+              },
+              "limits": {
+                "en": "Local preference judgement for availability only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "可用性期望仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 3,
+              "why": {
+                "en": "Declared standard → 3/4. Overlay availability still depends on underlay, control-plane and forwarding verification.",
+                "zh": "声明值 标准 → 3/4。覆盖可用性仍依赖底层、控制平面与转发验证。"
+              },
+              "limits": {
+                "en": "Local preference judgement for availability only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "可用性期望仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 3,
+              "why": {
+                "en": "Declared standard → 3/4. Controller policy does not itself certify data-plane availability or recovery.",
+                "zh": "声明值 标准 → 3/4。控制器策略本身不证明数据平面可用性或恢复。"
+              },
+              "limits": {
+                "en": "Local preference judgement for availability only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "可用性期望仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        },
+        {
+          "input": "elevated",
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 2,
+              "why": {
+                "en": "Declared elevated → 2/4. Higher expectations require explicit review of L2 failure domains and recovery.",
+                "zh": "声明值 较高 → 2/4。更高期望需要明确审查二层故障域与恢复。"
+              },
+              "limits": {
+                "en": "Local preference judgement for availability only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "可用性期望仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 4,
+              "why": {
+                "en": "Declared elevated → 4/4. Routed redundant paths may fit stronger expectations when actual failure behavior is validated.",
+                "zh": "声明值 较高 → 4/4。验证真实故障行为后，路由冗余路径可适合更高期望。"
+              },
+              "limits": {
+                "en": "Local preference judgement for availability only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "可用性期望仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 4,
+              "why": {
+                "en": "Declared elevated → 4/4. Overlay availability still depends on underlay, control-plane and forwarding verification.",
+                "zh": "声明值 较高 → 4/4。覆盖可用性仍依赖底层、控制平面与转发验证。"
+              },
+              "limits": {
+                "en": "Local preference judgement for availability only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "可用性期望仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 4,
+              "why": {
+                "en": "Declared elevated → 4/4. Controller policy does not itself certify data-plane availability or recovery.",
+                "zh": "声明值 较高 → 4/4。控制器策略本身不证明数据平面可用性或恢复。"
+              },
+              "limits": {
+                "en": "Local preference judgement for availability only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "可用性期望仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        },
+        {
+          "input": "critical",
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 2,
+              "why": {
+                "en": "Declared critical → 2/4. Higher expectations require explicit review of L2 failure domains and recovery.",
+                "zh": "声明值 关键 → 2/4。更高期望需要明确审查二层故障域与恢复。"
+              },
+              "limits": {
+                "en": "Local preference judgement for availability only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "可用性期望仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 4,
+              "why": {
+                "en": "Declared critical → 4/4. Routed redundant paths may fit stronger expectations when actual failure behavior is validated.",
+                "zh": "声明值 关键 → 4/4。验证真实故障行为后，路由冗余路径可适合更高期望。"
+              },
+              "limits": {
+                "en": "Local preference judgement for availability only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "可用性期望仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 4,
+              "why": {
+                "en": "Declared critical → 4/4. Overlay availability still depends on underlay, control-plane and forwarding verification.",
+                "zh": "声明值 关键 → 4/4。覆盖可用性仍依赖底层、控制平面与转发验证。"
+              },
+              "limits": {
+                "en": "Local preference judgement for availability only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "可用性期望仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 4,
+              "why": {
+                "en": "Declared critical → 4/4. Controller policy does not itself certify data-plane availability or recovery.",
+                "zh": "声明值 关键 → 4/4。控制器策略本身不证明数据平面可用性或恢复。"
+              },
+              "limits": {
+                "en": "Local preference judgement for availability only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "可用性期望仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FIT-complexityTolerance",
+      "dimension": "complexityTolerance",
+      "sourceIds": [
+        "S-LOCAL-RUBRIC"
+      ],
+      "weight": 1,
+      "max": 4,
+      "branches": [
+        {
+          "input": "low",
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 4,
+              "why": {
+                "en": "Declared low → 4/4. Traditional operation avoids overlay concepts but retains physical and L2 complexity.",
+                "zh": "声明值 低 → 4/4。传统运维避免覆盖概念，但保留物理与二层复杂度。"
+              },
+              "limits": {
+                "en": "Local preference judgement for complexityTolerance only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "复杂度容忍度仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 3,
+              "why": {
+                "en": "Declared low → 3/4. Pure routing avoids an overlay while requiring routing operational discipline.",
+                "zh": "声明值 低 → 3/4。纯路由避免覆盖，但需要路由运维规范。"
+              },
+              "limits": {
+                "en": "Local preference judgement for complexityTolerance only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "复杂度容忍度仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 1,
+              "why": {
+                "en": "Declared low → 1/4. Overlay and underlay correlation require tolerance for additional operating concepts.",
+                "zh": "声明值 低 → 1/4。覆盖与底层关联需要接受额外运维概念。"
+              },
+              "limits": {
+                "en": "Local preference judgement for complexityTolerance only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "复杂度容忍度仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 1,
+              "why": {
+                "en": "Declared low → 1/4. Controller abstractions and lifecycle introduce additional operating responsibilities.",
+                "zh": "声明值 低 → 1/4。控制器抽象与生命周期增加运维责任。"
+              },
+              "limits": {
+                "en": "Local preference judgement for complexityTolerance only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "复杂度容忍度仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        },
+        {
+          "input": "moderate",
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 3,
+              "why": {
+                "en": "Declared moderate → 3/4. Traditional operation avoids overlay concepts but retains physical and L2 complexity.",
+                "zh": "声明值 中 → 3/4。传统运维避免覆盖概念，但保留物理与二层复杂度。"
+              },
+              "limits": {
+                "en": "Local preference judgement for complexityTolerance only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "复杂度容忍度仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 4,
+              "why": {
+                "en": "Declared moderate → 4/4. Pure routing avoids an overlay while requiring routing operational discipline.",
+                "zh": "声明值 中 → 4/4。纯路由避免覆盖，但需要路由运维规范。"
+              },
+              "limits": {
+                "en": "Local preference judgement for complexityTolerance only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "复杂度容忍度仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 3,
+              "why": {
+                "en": "Declared moderate → 3/4. Overlay and underlay correlation require tolerance for additional operating concepts.",
+                "zh": "声明值 中 → 3/4。覆盖与底层关联需要接受额外运维概念。"
+              },
+              "limits": {
+                "en": "Local preference judgement for complexityTolerance only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "复杂度容忍度仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 3,
+              "why": {
+                "en": "Declared moderate → 3/4. Controller abstractions and lifecycle introduce additional operating responsibilities.",
+                "zh": "声明值 中 → 3/4。控制器抽象与生命周期增加运维责任。"
+              },
+              "limits": {
+                "en": "Local preference judgement for complexityTolerance only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "复杂度容忍度仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        },
+        {
+          "input": "high",
+          "candidates": [
+            {
+              "id": "traditional",
+              "rating": 3,
+              "why": {
+                "en": "Declared high → 3/4. Traditional operation avoids overlay concepts but retains physical and L2 complexity.",
+                "zh": "声明值 高 → 3/4。传统运维避免覆盖概念，但保留物理与二层复杂度。"
+              },
+              "limits": {
+                "en": "Local preference judgement for complexityTolerance only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "复杂度容忍度仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "routed",
+              "rating": 4,
+              "why": {
+                "en": "Declared high → 4/4. Pure routing avoids an overlay while requiring routing operational discipline.",
+                "zh": "声明值 高 → 4/4。纯路由避免覆盖，但需要路由运维规范。"
+              },
+              "limits": {
+                "en": "Local preference judgement for complexityTolerance only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "复杂度容忍度仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "evpn",
+              "rating": 4,
+              "why": {
+                "en": "Declared high → 4/4. Overlay and underlay correlation require tolerance for additional operating concepts.",
+                "zh": "声明值 高 → 4/4。覆盖与底层关联需要接受额外运维概念。"
+              },
+              "limits": {
+                "en": "Local preference judgement for complexityTolerance only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "复杂度容忍度仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            },
+            {
+              "id": "controller",
+              "rating": 4,
+              "why": {
+                "en": "Declared high → 4/4. Controller abstractions and lifecycle introduce additional operating responsibilities.",
+                "zh": "声明值 高 → 4/4。控制器抽象与生命周期增加运维责任。"
+              },
+              "limits": {
+                "en": "Local preference judgement for complexityTolerance only; not measured capacity, availability, cost or deployment feasibility. Verify the candidate-specific profile constraints.",
+                "zh": "复杂度容忍度仅用于本地偏好判断，不代表实测容量、可用性、成本或部署可行性。须核实此候选的具体约束。"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "contextRules": [
+    {
+      "id": "CONTEXT-racks",
+      "dimension": "racks",
+      "points": 0,
+      "sourceIds": [
+        "S-LOCAL-RUBRIC"
+      ],
+      "why": {
+        "en": "Aggregate inventory context only; no capacity proof or universal threshold.",
+        "zh": "仅作汇总资产背景，不证明容量或通用门槛。"
+      }
+    },
+    {
+      "id": "CONTEXT-servers",
+      "dimension": "servers",
+      "points": 0,
+      "sourceIds": [
+        "S-LOCAL-RUBRIC"
+      ],
+      "why": {
+        "en": "Aggregate inventory context only; no capacity proof or universal threshold.",
+        "zh": "仅作汇总资产背景，不证明容量或通用门槛。"
+      }
+    },
+    {
+      "id": "CONTEXT-vlanCount",
+      "dimension": "vlanCount",
+      "points": 0,
+      "sourceIds": [
+        "S-LOCAL-RUBRIC"
+      ],
+      "why": {
+        "en": "Aggregate inventory context only; no capacity proof or universal threshold.",
+        "zh": "仅作汇总资产背景，不证明容量或通用门槛。"
+      }
+    },
+    {
+      "id": "CONTEXT-vrfCount",
+      "dimension": "vrfCount",
+      "points": 0,
+      "sourceIds": [
+        "S-LOCAL-RUBRIC"
+      ],
+      "why": {
+        "en": "Aggregate inventory context only; no capacity proof or universal threshold.",
+        "zh": "仅作汇总资产背景，不证明容量或通用门槛。"
+      }
+    }
+  ]
+}

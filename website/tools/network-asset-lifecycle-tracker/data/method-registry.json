@@ -1,0 +1,227 @@
+{
+  "schemaVersion": 1,
+  "toolId": "network-asset-lifecycle-tracker",
+  "sources": [
+    {
+      "id": "S-LOCAL-POLICY",
+      "type": "local-policy",
+      "title": "Lifecycle tracker V1 prioritization policy",
+      "url": null,
+      "claim": {
+        "en": "Risk, windows and recommendations are local planning rules, not vendor security severity, actual entitlement or a verified inventory.",
+        "zh": "风险、窗口与建议是本地规划规则，不是厂商安全等级、实际支持权益或已核实资产。"
+      }
+    },
+    {
+      "id": "S-USER-TARGET",
+      "type": "user-input",
+      "title": "User retirement planning target",
+      "url": null,
+      "claim": {
+        "en": "EOL input is a user retirement target, never a copied announcement date or inferred LDOS.",
+        "zh": "EOL输入是用户退役目标，不是公告日期，也不自动等同于LDOS。"
+      }
+    },
+    {
+      "id": "S-CISCO-POLICY",
+      "type": "primary",
+      "title": "Cisco End-of-Life Policy",
+      "url": "https://www.cisco.com/c/en/us/products/eos-eol-policy.html",
+      "accessed": "2026-10-16",
+      "claim": {
+        "en": "Defines EOL as a process, End of Sale as sale cutoff and LDOS as the last entitled support day. Specific notices and contracts govern actual scope.",
+        "zh": "将EOL定义为过程，End of Sale定义为停售节点，LDOS为最后支持日。实际范围以具体公告与合同为准。"
+      }
+    },
+    {
+      "id": "S-JUNIPER-POLICY",
+      "type": "primary",
+      "title": "Juniper Product End-of-Life Policy and Procedure",
+      "url": "https://support.juniper.net/support/pdf/eol/juniper-networks-end-of-life-policy-procedure.pdf",
+      "accessed": "2026-10-16",
+      "claim": {
+        "en": "Uses EOS for End of Support, demonstrating why acronyms must be mapped by meaning. Product notices may vary from general policy.",
+        "zh": "其EOS指End of Support，说明必须按含义映射缩写。产品公告可能不同于一般政策。"
+      }
+    },
+    {
+      "id": "S-CISCO-EOL13603",
+      "type": "primary",
+      "title": "Cisco Catalyst 2960X EOL13603 Amended notice",
+      "url": "https://www.cisco.com/c/en/us/products/collateral/switches/catalyst-2960-x-series-switches/eos-eol-notice-c51-744432.html",
+      "accessed": "2026-10-16",
+      "updated": "2022-11-26",
+      "scope": "hardware",
+      "claim": {
+        "en": "Table1 lists End of Sale2022-10-31 and LDOS2027-10-31; Table2 includes the two exact catalog PIDs. No user retirement target or current software entitlement is inferred.",
+        "zh": "表1列出停售2022-10-31与LDOS2027-10-31，表2包含本地目录的两个精确PID。不推断用户退役目标或当前软件支持权益。"
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "id": "FIX-CISCO-2960X-24TS-L",
+      "vendor": "Cisco",
+      "model": "WS-C2960X-24TS-L",
+      "eosDate": "2022-10-31",
+      "ldosDate": "2027-10-31",
+      "sourceScope": "hardware",
+      "sourceId": "S-CISCO-EOL13603",
+      "url": "https://www.cisco.com/c/en/us/products/collateral/switches/catalyst-2960-x-series-switches/eos-eol-notice-c51-744432.html"
+    },
+    {
+      "id": "FIX-CISCO-2960X-48TS-L",
+      "vendor": "Cisco",
+      "model": "WS-C2960X-48TS-L",
+      "eosDate": "2022-10-31",
+      "ldosDate": "2027-10-31",
+      "sourceScope": "hardware",
+      "sourceId": "S-CISCO-EOL13603",
+      "url": "https://www.cisco.com/c/en/us/products/collateral/switches/catalyst-2960-x-series-switches/eos-eol-notice-c51-744432.html"
+    }
+  ],
+  "rules": [
+    {
+      "id": "DATE-CIVIL-UTC",
+      "sourceIds": [
+        "S-LOCAL-POLICY"
+      ],
+      "why": {
+        "en": "Strict civil days, not local timestamps. Last sale/support date is inclusive; negative days mean past.",
+        "zh": "严格日历日，不是本地时间戳。停售及最后支持日期当日仍包含在内；负数表示已过。"
+      }
+    },
+    {
+      "id": "DEADLINE-EARLIEST",
+      "sourceIds": [
+        "S-LOCAL-POLICY"
+      ],
+      "why": {
+        "en": "Choose the earliest known user target/LDOS. Expose both when tied. EOS alone never becomes a replacement deadline.",
+        "zh": "选择已知用户目标与LDOS中的较早日期，并列时列出两者。仅停售不作为替换期限。"
+      }
+    },
+    {
+      "id": "WINDOWS-CALENDAR",
+      "sourceIds": [
+        "S-LOCAL-POLICY"
+      ],
+      "why": {
+        "en": "Calendar-year anniversaries clamp Feb29 to Feb28. Exclusive buckets sum once; cumulative cards overlap and must not be added.",
+        "zh": "按日历周年划分，非闰年将2月29日压至2月28日。互斥桶各计一次，累计卡片重叠，不可相加。"
+      }
+    },
+    {
+      "id": "COUNT-ONCE",
+      "sourceIds": [
+        "S-LOCAL-POLICY"
+      ],
+      "why": {
+        "en": "Quantity at Risk is known action dates due within3years including overdue/today. Unknown deadlines are separate; incomplete data can overlap known at-risk.",
+        "zh": "风险数量为3年内含逾期与今日的已知行动日期对应数量。未知期限单列，日期不完整数量可与已知风险数量重叠。"
+      }
+    },
+    {
+      "id": "RISK-LOCAL",
+      "sourceIds": [
+        "S-LOCAL-POLICY"
+      ],
+      "why": {
+        "en": "Local planning priority, not measured failure/security risk or entitlement.",
+        "zh": "本地规划优先级，不是实测故障、安全风险或支持权益。"
+      }
+    },
+    {
+      "id": "RISK-BASE",
+      "sourceIds": [
+        "S-LOCAL-POLICY"
+      ],
+      "why": {
+        "en": "Overdue/today/year1 HIGH; years2–3 MODERATE; beyond3 LOW; unknown UNKNOWN.",
+        "zh": "逾期、今日及第1年为高；第2–3年为中；3年后为低；未知为未知。"
+      }
+    },
+    {
+      "id": "RISK-CRITICALITY",
+      "sourceIds": [
+        "S-LOCAL-POLICY"
+      ],
+      "why": {
+        "en": "High criticality escalates HIGH to CRITICAL and MODERATE to HIGH; beyond3 stays LOW before missing-date review.",
+        "zh": "高关键性将高升级为严重、将中升级为高；3年后在缺失日期检查前仍为低。"
+      }
+    },
+    {
+      "id": "RISK-INCOMPLETE",
+      "sourceIds": [
+        "S-LOCAL-POLICY"
+      ],
+      "why": {
+        "en": "Any missing milestone replaces LOW/MODERATE with UNKNOWN, never downgrades known HIGH/CRITICAL urgency.",
+        "zh": "任一里程碑缺失将低或中改为未知，不降低已知的高或严重紧迫性。"
+      }
+    }
+  ],
+  "actions": {
+    "OVERDUE": {
+      "id": "ACTION-OVERDUE",
+      "sourceIds": [
+        "S-LOCAL-POLICY"
+      ],
+      "en": "Review the missed planning constraint urgently; verify source scope and entitlement, then agree a replacement or migration pilot, maintenance window and rollback owner.",
+      "zh": "尽快审查已错过的规划约束，核实来源范围与支持权益，再明确替换或迁移试点、维护窗口及回退负责人。"
+    },
+    "DUE_TODAY": {
+      "id": "ACTION-DUE_TODAY",
+      "sourceIds": [
+        "S-LOCAL-POLICY"
+      ],
+      "en": "Act on the constraint due today. Last support day is not yet past; confirm entitlement and execution readiness rather than assuming service stops at local midnight.",
+      "zh": "处理今日到期约束。最后支持日尚未过去；应确认权益与执行准备，不能假定本地午夜即停服。"
+    },
+    "YEAR_1": {
+      "id": "ACTION-YEAR_1",
+      "sourceIds": [
+        "S-LOCAL-POLICY"
+      ],
+      "en": "Prioritize a dated replacement/upgrade assessment within the first calendar year; validate compatibility, dependencies, pilot and rollback before change.",
+      "zh": "优先安排第1个日历年内有日期的替换或升级评估，变更前验证兼容性、依赖、试点与回退。"
+    },
+    "YEAR_2": {
+      "id": "ACTION-YEAR_2",
+      "sourceIds": [
+        "S-LOCAL-POLICY"
+      ],
+      "en": "Budget and validate a replacement/upgrade path for the second calendar-year band; recheck source notices and dependencies before commitment.",
+      "zh": "为第2日历年区间编列预算并验证替换或升级路径，承诺实施前复核公告与依赖。"
+    },
+    "YEAR_3": {
+      "id": "ACTION-YEAR_3",
+      "sourceIds": [
+        "S-LOCAL-POLICY"
+      ],
+      "en": "Place the third-year constraint in the capacity/budget roadmap; periodically revalidate the notice, dependencies and a migration pilot.",
+      "zh": "将第3年约束纳入容量与预算规划，定期复核公告、依赖和迁移试点。"
+    },
+    "BEYOND_3": {
+      "id": "ACTION-BEYOND_3",
+      "sourceIds": [
+        "S-LOCAL-POLICY"
+      ],
+      "en": "Periodically verify the dates, contract scope and software lifecycle; a distant known date does not prove the equipment is healthy or secure.",
+      "zh": "定期核实日期、合同范围及软件生命周期；已知期限较远不能证明设备健康或安全。"
+    },
+    "UNKNOWN": {
+      "id": "ACTION-UNKNOWN",
+      "sourceIds": [
+        "S-LOCAL-POLICY"
+      ],
+      "en": "Resolve the exact product/source and user retirement target before claiming a replacement deadline or low lifecycle risk. Do not infer support from sale status.",
+      "zh": "确认精确产品、来源与用户退役目标后再声明替换期限或低生命周期风险。不得由销售状态推断支持状态。"
+    }
+  },
+  "v2": {
+    "status": "RESERVED_NO_RUNTIME",
+    "adapters": []
+  }
+}

@@ -1,0 +1,681 @@
+{
+  "schemaVersion": 1,
+  "id": "network-monitoring-observability",
+  "locales": [
+    "en",
+    "zh"
+  ],
+  "reviewedAt": "2026-10-16",
+  "sources": [
+    {
+      "id": "S-SNMP",
+      "title": "RFC 3416 — SNMP operations",
+      "url": "https://www.rfc-editor.org/rfc/rfc3416",
+      "locator": "4.2.1, 4.2.3, 4.2.6, 4.2.7",
+      "supportedClaim": "Get/GetBulk retrieve objects; Trap has no confirmation; Inform requests a response.",
+      "type": "primary",
+      "retrievedAt": "2026-10-16",
+      "retrieval": "web.open/find successful; see task02-primary-source-retrieval.md"
+    },
+    {
+      "id": "S-IF",
+      "title": "RFC 2863 — Interfaces Group MIB",
+      "url": "https://www.rfc-editor.org/rfc/rfc2863",
+      "locator": "3.1.6; ifHCInOctets, ifHCOutOctets, ifCounterDiscontinuityTime",
+      "supportedClaim": "High capacity octet counters and discontinuity indication support comparable interval observations.",
+      "type": "primary",
+      "retrievedAt": "2026-10-16",
+      "retrieval": "web.open/find successful; see task02-primary-source-retrieval.md"
+    },
+    {
+      "id": "S-SYSLOG",
+      "title": "RFC 5424 — Syslog",
+      "url": "https://www.rfc-editor.org/rfc/rfc5424",
+      "locator": "4, 6, 8",
+      "supportedClaim": "Syslog separates message format and transport; severity, timestamp and structured data provide event context.",
+      "type": "primary",
+      "retrievedAt": "2026-10-16",
+      "retrieval": "web.open/find successful; see task02-primary-source-retrieval.md"
+    },
+    {
+      "id": "S-NETFLOW",
+      "title": "RFC 3954 — NetFlow v9",
+      "url": "https://www.rfc-editor.org/rfc/rfc3954",
+      "locator": "5–9",
+      "supportedClaim": "Template records describe data record layout; collector template state and sampling context matter.",
+      "type": "primary",
+      "retrievedAt": "2026-10-16",
+      "retrieval": "web.open/find successful; see task02-primary-source-retrieval.md"
+    },
+    {
+      "id": "S-SFLOW",
+      "title": "RFC 3176 — sFlow",
+      "url": "https://www.rfc-editor.org/rfc/rfc3176",
+      "locator": "2, 3",
+      "supportedClaim": "Packet sampling and counter sampling are distinct observations; packet samples are not a complete packet capture.",
+      "type": "primary",
+      "retrievedAt": "2026-10-16",
+      "retrieval": "web.open/find successful; see task02-primary-source-retrieval.md"
+    },
+    {
+      "id": "S-IPFIX",
+      "title": "RFC 7011 — IPFIX",
+      "url": "https://www.rfc-editor.org/rfc/rfc7011",
+      "locator": "2, 3, 8, 10",
+      "supportedClaim": "Exporting and Collecting Processes exchange template-described records scoped by Observation Domain.",
+      "type": "primary",
+      "retrievedAt": "2026-10-16",
+      "retrieval": "web.open/find successful; see task02-primary-source-retrieval.md"
+    },
+    {
+      "id": "S-GNMI",
+      "title": "OpenConfig gNMIc — subscriptions",
+      "url": "https://gnmic.openconfig.net/user_guide/subscriptions/",
+      "locator": "Subscription configuration and stream modes",
+      "supportedClaim": "STREAM supports sample, on-change and target-defined modes; sample interval is a configured attribute.",
+      "type": "primary",
+      "retrievedAt": "2026-10-16",
+      "retrieval": "web.open/find successful; see task02-primary-source-retrieval.md"
+    },
+    {
+      "id": "S-API",
+      "title": "RFC 8040 — RESTCONF",
+      "url": "https://www.rfc-editor.org/rfc/rfc8040",
+      "locator": "1, 2, 4.3, 7",
+      "supportedClaim": "RESTCONF exposes YANG-defined data over HTTP using HTTPS and authenticated access; errors are explicit responses.",
+      "type": "primary",
+      "retrievedAt": "2026-10-16",
+      "retrieval": "web.open/find successful; see task02-primary-source-retrieval.md"
+    },
+    {
+      "id": "S-ICMP",
+      "title": "RFC 792 — ICMP",
+      "url": "https://www.rfc-editor.org/rfc/rfc792",
+      "locator": "Echo or Echo Reply Message",
+      "supportedClaim": "Echo request/reply provides an IP-layer response signal, not application transaction evidence.",
+      "type": "primary",
+      "retrievedAt": "2026-10-16",
+      "retrieval": "web.open/find successful; see task02-primary-source-retrieval.md"
+    },
+    {
+      "id": "S-HOST",
+      "title": "RFC 2790 — Host Resources MIB",
+      "url": "https://www.rfc-editor.org/rfc/rfc2790",
+      "locator": "hrProcessorLoad; hrStorageTable",
+      "supportedClaim": "Processor load has a defined observation period; storage entries expose type, units, size and used values.",
+      "type": "primary",
+      "retrievedAt": "2026-10-16",
+      "retrieval": "web.open/find successful; see task02-primary-source-retrieval.md"
+    },
+    {
+      "id": "S-SENSOR",
+      "title": "RFC 3433 — Entity Sensor MIB",
+      "url": "https://www.rfc-editor.org/rfc/rfc3433",
+      "locator": "3: sensor type, scale, precision, status and update time",
+      "supportedClaim": "Physical sensor values have scale, precision, status and update context.",
+      "type": "primary",
+      "retrievedAt": "2026-10-16",
+      "retrieval": "web.open/find successful; see task02-primary-source-retrieval.md"
+    },
+    {
+      "id": "S-OPTICS",
+      "title": "Cisco ASR 900 — DOM for transceivers",
+      "url": "https://www.cisco.com/c/en/us/td/docs/routers/asr903/software/guide/chassis/17-1-1/b-config-guide-xe-17-1-1-asr900/digital_optical_monitoring_for_transceivers.html",
+      "locator": "Digital Optical Monitoring for Transceivers",
+      "supportedClaim": "Platform-specific DOM includes transmit/receive power, bias and voltage, compared with warning/alarm tables; availability has platform limits.",
+      "type": "primary",
+      "retrievedAt": "2026-10-16",
+      "retrieval": "web.open/find successful; see task02-primary-source-retrieval.md"
+    },
+    {
+      "id": "S-ALARM",
+      "title": "RFC 8632 — Alarm management",
+      "url": "https://www.rfc-editor.org/rfc/rfc8632",
+      "locator": "3, 4, 5",
+      "supportedClaim": "Alarm identity includes resource and type; state, severity and operator management are separate concerns.",
+      "type": "primary",
+      "retrievedAt": "2026-10-16",
+      "retrieval": "web.open/find successful; see task02-primary-source-retrieval.md"
+    },
+    {
+      "id": "S-SECURITY",
+      "title": "RFC 3414 — SNMPv3 USM",
+      "url": "https://www.rfc-editor.org/rfc/rfc3414",
+      "locator": "1.4, 1.5",
+      "supportedClaim": "USM supplies authentication/privacy mechanisms within its stated security scope.",
+      "type": "primary",
+      "retrievedAt": "2026-10-16",
+      "retrieval": "web.open/find successful; see task02-primary-source-retrieval.md"
+    },
+    {
+      "id": "S-EDITORIAL",
+      "type": "editorial-policy",
+      "title": "Explicit operator workflow choices",
+      "supportedClaim": "Question routing, architecture example, alert ownership and retention choices are editorial suggestions, not protocol mandates or numerical thresholds."
+    },
+    {
+      "id": "S-INVENTORY",
+      "type": "repository-inventory",
+      "title": "Verified local resources",
+      "supportedClaim": "Referenced EN/ZH guides/tools exist. No website/learn, website/troubleshoot or website/cases directory was present during this scoped inventory.",
+      "checkedAt": "2026-10-16"
+    }
+  ],
+  "sections": [
+    {
+      "id": "architecture",
+      "sourceIds": [
+        "S-SNMP",
+        "S-SYSLOG",
+        "S-IPFIX",
+        "S-EDITORIAL"
+      ],
+      "en": {
+        "title": "Monitoring Architecture Overview",
+        "purpose": "Start with a service question and an inventory of devices, interfaces and responsible teams. Collection feeds normalization, time-series/event/flow storage, correlation and a response workflow. These are proposed design stages, not a required product stack.",
+        "evidence": "Keep source identity, timestamps, observation direction and units alongside each signal. Pair state/counter observations with event context and flow attribution; one source alone is not a full service explanation.",
+        "boundary": "Operator checklist: define missing-data handling, collector ownership and credential boundaries before adding devices. Validate supported protocols on the actual platform; this hub deploys no collectors."
+      },
+      "zh": {
+        "title": "监控架构总览",
+        "purpose": "为服务问题建立设备、接口和责任团队清单。建议流程为采集、规范化、指标/事件/流量存储、关联及响应，不要求采用某个产品栈。",
+        "evidence": "为每条信号保留来源标识、时间戳、方向和单位。把状态/计数器、事件上下文与流量归属关联；单一来源不能完整解释服务。",
+        "boundary": "运维检查：纳管前定义缺失数据处理、采集器责任和凭据边界；在实际平台验证协议支持。本专题不部署采集器。"
+      }
+    },
+    {
+      "id": "snmp-polling",
+      "sourceIds": [
+        "S-SNMP",
+        "S-IF",
+        "S-SECURITY",
+        "S-EDITORIAL"
+      ],
+      "en": {
+        "title": "SNMP Polling",
+        "purpose": "Use request/response retrieval for named management objects. GetBulk can retrieve groups of values; object definitions determine what each value means. This suits repeated state/counter observations.",
+        "evidence": "Record object identity, response time and observation time, not only the numeric value. Pair interface octet counters with discontinuity context before treating differences as traffic.",
+        "boundary": "Choose intervals and retry budgets from device capacity and operational needs; no universal interval is supplied. Use a supported authenticated/private SNMPv3 policy and verify implementation/security settings, rather than treating a version label as sufficient."
+      },
+      "zh": {
+        "title": "SNMP 轮询",
+        "purpose": "通过请求/响应读取管理对象；GetBulk可读取多项值，对象定义决定含义，适合重复获取状态与计数器。",
+        "evidence": "除数值外保留对象标识、响应时间和观测时间；计算接口字节差值前检查计数器不连续信息。",
+        "boundary": "按设备能力和业务需要设定间隔与重试预算，不提供通用间隔。采用平台支持的SNMPv3认证/隐私策略并验证配置，不能只看版本标签。"
+      }
+    },
+    {
+      "id": "snmp-traps",
+      "sourceIds": [
+        "S-SNMP",
+        "S-EDITORIAL"
+      ],
+      "en": {
+        "title": "SNMP Trap",
+        "purpose": "Use notifications to learn about reported transitions without waiting for the next scheduled read. SNMPv2 Trap has no protocol confirmation; an Inform requests a response. They are distinct notification behaviors.",
+        "evidence": "Retain sender identity, notification object and received time; then check current device/interface state. A notification describes a reported event, not continuous health.",
+        "boundary": "Operator response: test receiver reachability and planned failure events, deduplicate repeats and reconcile with polling. Silence alone must not be interpreted as proof that nothing changed."
+      },
+      "zh": {
+        "title": "SNMP Trap 通知",
+        "purpose": "通知可报告状态变化，无需等待下一次定期读取。SNMPv2 Trap无协议确认，而Inform请求响应，两者通知行为不同。",
+        "evidence": "保留发送方、通知对象及接收时间，再核对当前设备/接口状态。通知是已报告事件，不代表连续健康观测。",
+        "boundary": "响应建议：测试接收路径和计划故障、去重，并用轮询对账；不能把没有通知直接当作没有变化。"
+      }
+    },
+    {
+      "id": "syslog",
+      "sourceIds": [
+        "S-SYSLOG",
+        "S-EDITORIAL"
+      ],
+      "en": {
+        "title": "Syslog",
+        "purpose": "Use structured device event messages to explain state changes and configuration activity. RFC5424 carries fields such as severity, timestamp and structured data; message format and transport are separate layers.",
+        "evidence": "Correlate origin and event time with interface state or flow changes. Preserve the original message for investigation while normalizing selected fields for search.",
+        "boundary": "Operator choices: validate clock quality, parser behavior, delivery transport and access to sensitive log fields. A severity number alone does not define service impact or the paging recipient."
+      },
+      "zh": {
+        "title": "Syslog 日志",
+        "purpose": "用设备事件消息解释状态与配置活动。RFC5424包含严重度、时间戳和结构化数据；消息格式与传输层相互独立。",
+        "evidence": "按来源与事件时间关联接口状态或流量变化；保留原消息供调查，并规范化必要字段供检索。",
+        "boundary": "运维决策：验证时钟、解析器、传输与敏感日志访问控制。严重度数字本身不能定义服务影响或通知责任人。"
+      }
+    },
+    {
+      "id": "netflow",
+      "sourceIds": [
+        "S-NETFLOW",
+        "S-EDITORIAL"
+      ],
+      "en": {
+        "title": "NetFlow",
+        "purpose": "Use flow records to attribute observed traffic by exported keys and counters. NetFlow v9 uses templates to describe record layout; this section concerns v9, not every NetFlow version or vendor extension.",
+        "evidence": "Check exporter identity, observation interface/direction, template availability and sampling metadata before comparing contributors. Record the exporter configuration with the report.",
+        "boundary": "Operator review: missing templates or observation coverage can change what a collector can interpret. Exported flow records are not a complete packet capture or proof of application payload semantics."
+      },
+      "zh": {
+        "title": "NetFlow 流记录",
+        "purpose": "通过导出的键与计数器归属流量。NetFlow v9使用模板描述记录结构；本节仅讨论v9，不涵盖全部版本或厂商扩展。",
+        "evidence": "比较贡献者前核对导出方、接口/方向、模板与采样元数据，并随报告保留导出配置。",
+        "boundary": "运维复核：模板或观测覆盖缺失会影响解析。流记录不是完整抓包，也不能证明应用负载语义。"
+      }
+    },
+    {
+      "id": "sflow",
+      "sourceIds": [
+        "S-SFLOW",
+        "S-EDITORIAL"
+      ],
+      "en": {
+        "title": "sFlow",
+        "purpose": "sFlow combines packet sampling with counter observations. A sampled packet view helps inspect traffic mix while counter samples describe monitored interfaces; keep these evidence types separate.",
+        "evidence": "Save sampling parameters, agent and interface identity. Label derived traffic estimates as sampled estimates and compare their measurement boundary with interface observations.",
+        "boundary": "Operator caveat: a missing sample is not evidence that a short flow never existed. Validate hardware support and sampling configuration; do not present a sample set as an exhaustive packet history."
+      },
+      "zh": {
+        "title": "sFlow 采样",
+        "purpose": "sFlow结合报文采样与计数器观测。报文样本用于观察流量构成，计数器样本描述受监控接口，应区分两类证据。",
+        "evidence": "保存采样参数、代理和接口标识；把派生流量标为采样估计，并核对其与接口观测的边界。",
+        "boundary": "运维限制：没有样本不能证明短流从未存在。应验证硬件与采样配置，不能把样本集当作完整报文历史。"
+      }
+    },
+    {
+      "id": "ipfix",
+      "sourceIds": [
+        "S-IPFIX",
+        "S-EDITORIAL"
+      ],
+      "en": {
+        "title": "IPFIX",
+        "purpose": "IPFIX standardizes exchange of flow information between Exporting and Collecting Processes. Templates define record fields and Observation Domain scopes their interpretation.",
+        "evidence": "Retain exporter/Observation Domain identity, templates and observation metadata together with records. Validate which Information Elements your exporter and collector actually support.",
+        "boundary": "Operator checks: inspect transport, sequence and template handling plus loss/collector health before calling a report complete. Standards-based export does not by itself ensure identical platform feature coverage."
+      },
+      "zh": {
+        "title": "IPFIX 流信息导出",
+        "purpose": "IPFIX规范导出进程与收集进程间的流信息交换，模板定义字段，观测域限定解释范围。",
+        "evidence": "随记录保留导出方/观测域、模板和观测元数据，确认两端实际支持的信息元素。",
+        "boundary": "运维检查：判断报告完整性前检查传输、序列、模板与收集器健康；标准化导出并不保证不同平台功能覆盖一致。"
+      }
+    },
+    {
+      "id": "streaming-telemetry",
+      "sourceIds": [
+        "S-GNMI",
+        "S-EDITORIAL"
+      ],
+      "en": {
+        "title": "Streaming Telemetry",
+        "purpose": "A subscription can deliver selected modeled paths repeatedly. OpenConfig gNMIc documents STREAM modes sample, on-change and target-defined; sample interval is a configured subscription attribute.",
+        "evidence": "Preserve target, path, timestamp and subscription settings with observations. Define how an initial state, later updates and stale streams appear in dashboards.",
+        "boundary": "Operator validation: negotiate supported paths/encodings and test reconnects, collector backpressure and missing updates. Streaming is not a guarantee of unlimited frequency or universal model support."
+      },
+      "zh": {
+        "title": "流式遥测",
+        "purpose": "订阅可持续传送指定模型路径。OpenConfig gNMIc文档提供STREAM的sample、on-change及target-defined模式，采样间隔是订阅配置属性。",
+        "evidence": "保留目标、路径、时间戳和订阅设置，明确初始状态、后续更新与过期流在看板上的展示。",
+        "boundary": "运维验证：核对路径/编码支持，测试重连、采集器背压与缺失更新。流式传送不保证无限频率或通用模型支持。"
+      }
+    },
+    {
+      "id": "api-monitoring",
+      "sourceIds": [
+        "S-API",
+        "S-EDITORIAL"
+      ],
+      "en": {
+        "title": "API Monitoring",
+        "purpose": "Use an authenticated data API when relevant operational objects are exposed. RESTCONF is an HTTP-based interface for YANG-defined data; read operations and error responses have explicit semantics.",
+        "evidence": "Retain endpoint identity, schema/version, HTTP outcome and data freshness. Distinguish an empty supported dataset from authorization errors or an unavailable endpoint.",
+        "boundary": "Operator policy: use supported read permissions, verify HTTPS identities and handle pagination/rate limits as documented by that API. A successful HTTP response is not automatically evidence that a monitored service works."
+      },
+      "zh": {
+        "title": "API 监控",
+        "purpose": "当平台通过认证数据API开放所需状态时可采用。RESTCONF是面向YANG数据的HTTP接口，读取与错误响应具有明确语义。",
+        "evidence": "保留端点、模型/版本、HTTP结果与数据新鲜度；区分合法空集、无权限和端点不可用。",
+        "boundary": "运维策略：使用支持的只读权限、验证HTTPS身份，按具体API文档处理分页/速率限制。HTTP成功并不自动证明被监控服务正常。"
+      }
+    },
+    {
+      "id": "icmp-latency",
+      "sourceIds": [
+        "S-ICMP",
+        "S-EDITORIAL"
+      ],
+      "en": {
+        "title": "ICMP / Latency",
+        "purpose": "ICMP Echo request/reply provides an IP-layer response signal. Track round-trip observations from a documented vantage point; this tests that exchange, not an application transaction.",
+        "evidence": "Keep target, source location, packet settings and timestamps with loss/round-trip summaries. Compare observations before and after a reported event using the same probe definition.",
+        "boundary": "Operator caveat: investigate probe reachability and policy when responses disappear; corroborate with service checks. A round trip alone does not isolate forward versus reverse path delay."
+      },
+      "zh": {
+        "title": "ICMP 与时延",
+        "purpose": "ICMP Echo请求/响应提供IP层响应信号。从固定观测点记录往返观测，它测试该交换而非应用事务。",
+        "evidence": "随丢失/往返摘要保存目标、源位置、报文设置与时间戳，事件前后使用相同探测定义比较。",
+        "boundary": "运维限制：响应消失时核查探测路径与策略，并用业务检查佐证。仅往返结果不能隔离正向与反向时延。"
+      }
+    },
+    {
+      "id": "interface-utilization",
+      "sourceIds": [
+        "S-IF",
+        "S-EDITORIAL"
+      ],
+      "en": {
+        "title": "Interface Utilization",
+        "purpose": "Interface counters describe a specific interface/sub-layer. RFC2863 defines high-capacity octet counters and discontinuity context; choose comparable successive observations before deriving rates.",
+        "evidence": "Arithmetic definition: rate bit/s = 8 × octet difference ÷ elapsed seconds; utilization % = rate ÷ documented capacity ×100. Handle resets/discontinuities before subtraction; preserve direction and actual elapsed time.",
+        "boundary": "Operator review: inspect errors/discards and member-level distribution alongside aggregate load. A long average can hide shorter changes; capacity and measurement layer must match. No universal safe utilization threshold is defined here."
+      },
+      "zh": {
+        "title": "接口利用率",
+        "purpose": "接口计数器对应特定接口/子层。RFC2863定义高容量字节计数器与不连续信息，应选择可比较的连续观测后再派生速率。",
+        "evidence": "算术定义：速率bit/s＝8×字节差÷经过秒数；利用率%＝速率÷已记录容量×100。相减前处理重置/不连续，并保留方向及真实间隔。",
+        "boundary": "运维复核：总负载之外查看错误/丢弃及成员分布。长平均可能掩盖短变化，容量与计量层必须匹配。本专题不定义通用安全利用率。"
+      }
+    },
+    {
+      "id": "cpu-memory",
+      "sourceIds": [
+        "S-HOST",
+        "S-EDITORIAL"
+      ],
+      "en": {
+        "title": "CPU / Memory",
+        "purpose": "Interpret resource values using their object definitions. HOST-RESOURCES-MIB defines processor load over a stated interval and storage entries with type, allocation units, size and used values.",
+        "evidence": "Capture object/vendor model and time window with each series. Distinguish memory pools and storage types before constructing a used percentage; avoid comparing unlike denominators.",
+        "boundary": "Operator response: correlate resource changes with routing churn, configuration activity and collector gaps, then follow platform diagnostics. Do not infer a universal fault percentage or treat every device as implementing this MIB."
+      },
+      "zh": {
+        "title": "CPU 与内存",
+        "purpose": "按对象定义解释资源数值。HOST-RESOURCES-MIB规定处理器负载的观测区间，以及存储条目的类型、分配单位、总量和已用量。",
+        "evidence": "随序列记录对象/厂商模型和时间窗口。计算已用百分比前区分内存池与存储类型，避免比较不同分母。",
+        "boundary": "运维响应：关联路由变化、配置活动及采集缺口，再按平台流程诊断。不能推定通用故障百分比，也不能假设所有设备实现该MIB。"
+      }
+    },
+    {
+      "id": "optical-power",
+      "sourceIds": [
+        "S-SENSOR",
+        "S-OPTICS",
+        "S-EDITORIAL"
+      ],
+      "en": {
+        "title": "Optical Power Monitoring",
+        "purpose": "Read optical values with units, scale, status and freshness. Cisco ASR900 DOM documentation is a vendor/platform-specific example exposing transmit/receive power and other transceiver parameters with warning/alarm tables.",
+        "evidence": "Record optic model, port/lane, supported sensor and both endpoints where available. Sensor identity and update context help distinguish unavailable readings from a low measured value.",
+        "boundary": "Operator review: use the actual optic/platform specifications and calibration context, then correlate with errors and link state. No fixed dBm limit is transferred across optics. Verify DOM support; the cited platform has documented operational limits."
+      },
+      "zh": {
+        "title": "光功率监控",
+        "purpose": "读取光学值时保留单位、缩放、状态和新鲜度。Cisco ASR900 DOM文档是厂商/平台特定示例，提供收发光功率等参数及预警/告警表。",
+        "evidence": "在可用时记录模块型号、端口/通道、受支持传感器及两端值。通过传感器标识和更新时间区分无法获取与实际低读数。",
+        "boundary": "运维复核：使用实际模块/平台规格与校准上下文，关联错误和链路状态。不能跨模块套用固定dBm阈值；应核对DOM支持及所引平台文档限制。"
+      }
+    },
+    {
+      "id": "alert-design",
+      "sourceIds": [
+        "S-ALARM",
+        "S-EDITORIAL"
+      ],
+      "en": {
+        "title": "Alert Design",
+        "purpose": "Separate event arrival from an actionable alarm lifecycle. RFC8632 identifies alarms by resource/type and distinguishes alarm state/severity from operator management; delivery alone is not the response process.",
+        "evidence": "Proposed runbook fields: resource, service impact evidence, owner, corroborating signal, acknowledgement, recovery check and escalation path. Keep maintenance suppression auditable and distinguish missing data from recovery.",
+        "boundary": "Operator policy: choose thresholds, persistence and hysteresis from your service objectives and observed baseline, then test detection and recovery. This hub provides no fixed paging threshold or automated severity score."
+      },
+      "zh": {
+        "title": "告警设计",
+        "purpose": "区分事件到达与可行动告警生命周期。RFC8632按资源/类型识别告警，并区分状态/严重度与人员管理；消息送达不等于响应闭环。",
+        "evidence": "建议流程字段：资源、业务影响证据、责任人、佐证信号、确认、恢复检查及升级路径。维护抑制须可追溯，区分无数据与恢复。",
+        "boundary": "运维策略：根据业务目标与观测基线选择阈值、持续时间和迟滞，测试触发及恢复。本专题不提供固定通知阈值或自动严重度评分。"
+      }
+    },
+    {
+      "id": "retention",
+      "sourceIds": [
+        "S-EDITORIAL",
+        "S-IPFIX",
+        "S-SYSLOG"
+      ],
+      "en": {
+        "title": "Monitoring Data Retention",
+        "purpose": "Retention is an operator/data-governance decision, not a universal protocol duration. Decide which questions require raw events/flow records and which can use aggregated trends before selecting storage tiers.",
+        "evidence": "Proposed worksheet: dataset, owner, resolution, access group, investigation/growth horizon, deletion rule and restore test. Keep exporter/schema context with retained records; avoid storing identifiers without a defined need.",
+        "boundary": "Operator trade-off: aggregation changes what later questions can be answered; document the transformation and validate representative queries. Choose duration from incident review, capacity planning, privacy obligations and actual storage budget; no fixed days are prescribed."
+      },
+      "zh": {
+        "title": "监控数据保留",
+        "purpose": "保留期限属于运维及数据治理决策，不是协议统一规定。选存储层前先区分哪些问题需要原始事件/流记录，哪些可使用聚合趋势。",
+        "evidence": "建议台账：数据集、责任人、分辨率、访问组、调查/增长时间范围、删除规则及恢复测试。随记录保留导出/模型上下文，避免无必要存储标识。",
+        "boundary": "运维权衡：聚合会改变后续可回答的问题，应记录变换并验证代表性查询。按事件复盘、容量规划、隐私要求及实际预算选择期限，不规定固定天数。"
+      }
+    },
+    {
+      "id": "related-tools",
+      "sourceIds": [
+        "S-INVENTORY"
+      ],
+      "en": {
+        "title": "Related Tools",
+        "purpose": "Use the Application Bandwidth Analyzer for a manual snapshot of mutually exclusive application rates against a supplied link capacity. It does not collect NetFlow, poll SNMP or discover applications.",
+        "evidence": "Use the existing capacity forecast planner after selecting a representative aggregate observation and explicit growth assumptions. Transfer-time planning is another existing workflow, not a substitute for measurement.",
+        "boundary": "Resource links below are verified existing pages. The five additional monitoring capabilities listed later are planned data only, without pages, tool IDs or production labels."
+      },
+      "zh": {
+        "title": "相关工具",
+        "purpose": "应用带宽分析器把互不重叠的手工应用速率与给定容量比较，不采集NetFlow、不轮询SNMP，也不发现应用。",
+        "evidence": "选择代表性总量与明确增长假设后可使用现有容量预测工具。现有传输时间规划是另一流程，不能替代测量。",
+        "boundary": "下方资源均为已核实页面。后列五项监控能力仅是计划数据，没有页面、工具ID或生产状态。"
+      }
+    },
+    {
+      "id": "related-courses",
+      "sourceIds": [
+        "S-INVENTORY",
+        "S-EDITORIAL"
+      ],
+      "en": {
+        "title": "Related Courses",
+        "purpose": "No appropriate published course was verified in this scoped repository inventory. The following is an in-hub learning sequence, not a course enrollment or a claim that a course exists.",
+        "evidence": "Learning route: define a service question; compare SNMP observations and notifications; add event/flow evidence; inspect units and gaps; build an alert runbook; then plan retention. Open the existing switching-capacity guide for a concrete related reading.",
+        "boundary": "Practice with the worked example on this page. Verify each signal and its failure mode on a permitted test device before applying a monitoring design to production."
+      },
+      "zh": {
+        "title": "相关课程",
+        "purpose": "本次定向仓库盘点未核实可用的对应课程。以下是专题内学习顺序，不是课程报名，也不声称已有课程。",
+        "evidence": "学习路线：定义服务问题、比较SNMP观测与通知、加入事件/流量证据、核对单位与缺口、编写告警流程、规划保留。现有交换机容量指南可作为相关阅读。",
+        "boundary": "可用本页示例练习。在获准的测试设备验证信号及其失效方式后，再将监控设计用于生产。"
+      }
+    },
+    {
+      "id": "related-troubleshooting",
+      "sourceIds": [
+        "S-INVENTORY",
+        "S-EDITORIAL"
+      ],
+      "en": {
+        "title": "Related Troubleshooting Cases",
+        "purpose": "No dedicated monitoring troubleshooting case or interactive lab was verified as an existing resource. The LACP member-congestion guide is an available related diagnostic guide, not a new Case or Lab.",
+        "evidence": "Suggested check sequence: confirm collection freshness and permissions; identify affected service/interface; compare current state with events; inspect member load/errors; use flow context to narrow contributors; verify recovery with the original service test.",
+        "boundary": "A missing signal can be a collection failure. Preserve evidence and separate observation from diagnosis; this hub does not assert a root cause for a live incident."
+      },
+      "zh": {
+        "title": "相关排障案例",
+        "purpose": "未核实已有专门监控排障案例或交互实验。LACP成员拥塞指南是可用的相关诊断指南，不是新建Case或Lab。",
+        "evidence": "建议检查顺序：确认数据新鲜度与权限、确定受影响业务/接口、对照状态与事件、检查成员负载/错误、通过流信息缩小贡献者范围、用原业务测试确认恢复。",
+        "boundary": "缺失信号可能源于采集故障。保留证据并区分观测与诊断；本专题不为实际事件断言根因。"
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "traffic-visibility",
+      "en": "Need traffic visibility?",
+      "zh": "需要流量可见性？",
+      "targets": [
+        "interface-utilization",
+        "netflow",
+        "sflow",
+        "ipfix"
+      ],
+      "sourceId": "S-EDITORIAL"
+    },
+    {
+      "id": "fault-alerts",
+      "en": "Need fault alerts?",
+      "zh": "需要故障告警？",
+      "targets": [
+        "snmp-traps",
+        "syslog",
+        "alert-design"
+      ],
+      "sourceId": "S-EDITORIAL"
+    },
+    {
+      "id": "interface-health",
+      "en": "Need interface health?",
+      "zh": "需要接口健康？",
+      "targets": [
+        "interface-utilization",
+        "optical-power"
+      ],
+      "sourceId": "S-EDITORIAL"
+    },
+    {
+      "id": "flow-analytics",
+      "en": "Need flow analytics?",
+      "zh": "需要流分析？",
+      "targets": [
+        "netflow",
+        "sflow",
+        "ipfix"
+      ],
+      "sourceId": "S-EDITORIAL"
+    },
+    {
+      "id": "telemetry",
+      "en": "Need telemetry?",
+      "zh": "需要遥测？",
+      "targets": [
+        "streaming-telemetry",
+        "api-monitoring"
+      ],
+      "sourceId": "S-EDITORIAL"
+    },
+    {
+      "id": "capacity-trend",
+      "en": "Need long-term capacity trend?",
+      "zh": "需要长期容量趋势？",
+      "targets": [
+        "retention",
+        "interface-utilization",
+        "related-tools"
+      ],
+      "sourceId": "S-EDITORIAL"
+    }
+  ],
+  "roadmap": [
+    {
+      "name": "SNMP Polling Load Calculator",
+      "zh": "SNMP轮询负载计算器",
+      "status": "planned",
+      "route": null,
+      "toolId": null
+    },
+    {
+      "name": "Telemetry Data Rate Calculator",
+      "zh": "遥测数据速率计算器",
+      "status": "planned",
+      "route": null,
+      "toolId": null
+    },
+    {
+      "name": "NetFlow Storage Estimator",
+      "zh": "NetFlow存储估算器",
+      "status": "planned",
+      "route": null,
+      "toolId": null
+    },
+    {
+      "name": "Monitoring Server Sizing",
+      "zh": "监控服务器规模规划",
+      "status": "planned",
+      "route": null,
+      "toolId": null
+    },
+    {
+      "name": "Alert Threshold Planner",
+      "zh": "告警阈值规划器",
+      "status": "planned",
+      "route": null,
+      "toolId": null
+    }
+  ],
+  "example": {
+    "sourceIds": [
+      "S-EDITORIAL",
+      "S-IF",
+      "S-NETFLOW",
+      "S-SYSLOG",
+      "S-ALARM"
+    ],
+    "en": {
+      "title": "Worked architecture: branch users report slow backups",
+      "steps": [
+        "Question: is the WAN busy, and which observed traffic contributes? Define one egress interface, service owner and common time window.",
+        "Signals: collect comparable interface counters/state; add configured flow export for contributor context and syslog/notifications for transitions. Record exporter, direction, units, clocks and collection gaps.",
+        "Correlation: align the slowdown window with utilization and top observed contributors. Check member distribution and errors before assuming aggregate load explains the symptom.",
+        "Response: an operator-owned runbook requests corroborating service evidence, assigns the link/service owner and repeats the same service test after remediation. No fixed trigger is implied.",
+        "Retention assumption: keep enough appropriate-resolution evidence for your incident review and capacity trend horizon under the approved privacy/access/deletion policy. Validate that queries survive aggregation.",
+        "Follow-up: copy compatible manually observed rates into the Application Bandwidth Analyzer; then use explicit growth assumptions in the existing forecast planner. The hub does not collect or calculate these observations."
+      ]
+    },
+    "zh": {
+      "title": "架构示例：分支用户反映备份变慢",
+      "steps": [
+        "问题：广域链路是否繁忙，哪些已观测流量有贡献？确定一个出方向接口、业务责任人及统一时间窗口。",
+        "信号：采集可比较的接口计数器/状态，加入已配置流导出以识别贡献者，用日志/通知记录变化。保留导出方、方向、单位、时钟及采集缺口。",
+        "关联：将变慢窗口与利用率、主要已观测贡献者对齐；检查成员分布和错误后再判断总负载能否解释症状。",
+        "响应：由运维定义流程，要求业务佐证、指定链路/业务责任人，并在处理后重复相同业务测试。不预设固定触发阈值。",
+        "保留假设：按批准的隐私、访问和删除策略，为事件复盘与容量趋势保留适当分辨率证据，验证聚合后查询仍有效。",
+        "后续：把兼容的手工观测速率输入应用带宽分析器，再以明确增长假设使用现有预测工具。本专题不采集或计算观测数据。"
+      ]
+    }
+  },
+  "inventory": {
+    "coursesAvailable": false,
+    "dedicatedCasesAvailable": false,
+    "tools": [
+      {
+        "id": "application-bandwidth-analyzer",
+        "en": "/tools/application-bandwidth-analyzer/",
+        "zh": "/tools/application-bandwidth-analyzer/zh/"
+      },
+      {
+        "id": "network-capacity-forecast-planner",
+        "en": "/tools/network-capacity-forecast-planner/",
+        "zh": "/tools/network-capacity-forecast-planner/zh/"
+      },
+      {
+        "id": "bandwidth-calculator",
+        "en": "/tools/bandwidth-calculator/",
+        "zh": "/tools/bandwidth-calculator/zh/"
+      }
+    ],
+    "guides": [
+      {
+        "id": "switch-oversubscription-ratio",
+        "en": "/guides/switch-oversubscription-ratio/",
+        "zh": "/zh/guides/switch-oversubscription-ratio/"
+      },
+      {
+        "id": "lacp-member-congestion",
+        "en": "/guides/lacp-member-congestion/",
+        "zh": "/zh/guides/lacp-member-congestion/"
+      }
+    ]
+  }
+}

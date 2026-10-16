@@ -1,16 +1,16 @@
 <!DOCTYPE html><html lang="en" dir="ltr" data-nel-locale="en" data-nel-route="guides/switch-oversubscription-n-1/"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>How to Calculate Switch Oversubscription Under N-1 Failure | NetEngineerLab</title><meta name="description" content="Learn how to calculate switch oversubscription under N-1 failure. Compare normal and surviving uplink capacity, traffic demand, headroom and upgrade options.">
+<title>How to Calculate Switch Uplink Capacity Under N-1 Failure | NetEngineerLab</title><meta name="description" content="Calculate normal and surviving switch uplink capacity, N-1 oversubscription and busy-hour headroom with practical link and device failure examples.">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 
 <meta property="og:type" content="article"><meta property="og:site_name" content="NetEngineerLab">
-<meta property="og:title" content="How to Calculate Switch Oversubscription Under N-1 Failure | NetEngineerLab"><meta property="og:description" content="Learn how to calculate switch oversubscription under N-1 failure. Compare normal and surviving uplink capacity, traffic demand, headroom and upgrade options.">
+<meta property="og:title" content="How to Calculate Switch Uplink Capacity Under N-1 Failure | NetEngineerLab"><meta property="og:description" content="Calculate normal and surviving switch uplink capacity, N-1 oversubscription and busy-hour headroom with practical link and device failure examples.">
 <meta property="og:url" content="https://netengineerlab.com/guides/switch-oversubscription-n-1/"><meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/css/site.css">
 <link rel="stylesheet" href="../../assets/css/guide.css?v=a80a8be9d93d">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://netengineerlab.com/guides/switch-oversubscription-n-1/#webpage","name":"How to Calculate Switch Oversubscription Under N-1 Failure","description":"Learn how to calculate switch oversubscription under N-1 failure. Compare normal and surviving uplink capacity, traffic demand, headroom and upgrade options.","url":"https://netengineerlab.com/guides/switch-oversubscription-n-1","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}},{"@type":"Article","@id":"https://netengineerlab.com/guides/switch-oversubscription-n-1/#article","headline":"How to Calculate Switch Oversubscription Under N-1 Failure","description":"Learn how to calculate switch oversubscription under N-1 failure. Compare normal and surviving uplink capacity, traffic demand, headroom and upgrade options.","url":"https://netengineerlab.com/guides/switch-oversubscription-n-1","inLanguage":"en","mainEntityOfPage":{"@id":"https://netengineerlab.com/guides/switch-oversubscription-n-1/#webpage"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/","logo":{"@type":"ImageObject","url":"https://netengineerlab.com/assets/images/logo.svg"}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://netengineerlab.com/topics/switch-oversubscription"},{"@type":"ListItem","position":3,"name":"How to Calculate Switch Oversubscription Under N-1 Failure","item":"https://netengineerlab.com/guides/switch-oversubscription-n-1"}]}]}</script>
-<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"How to Calculate Switch Oversubscription Under N-1 Failure | NetEngineerLab","url":"https://netengineerlab.com/guides/switch-oversubscription-n-1/","description":"Learn how to calculate switch oversubscription under N-1 failure. Compare normal and surviving uplink capacity, traffic demand, headroom and upgrade options.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://netengineerlab.com/guides/switch-oversubscription-n-1/#webpage","name":"How to Calculate Switch Uplink Capacity Under N-1 Failure","description":"Calculate normal and surviving switch uplink capacity, N-1 oversubscription and busy-hour headroom with practical link and device failure examples.","url":"https://netengineerlab.com/guides/switch-oversubscription-n-1/","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}},{"@type":"Article","@id":"https://netengineerlab.com/guides/switch-oversubscription-n-1/#article","headline":"How to Calculate Switch Uplink Capacity Under N-1 Failure","description":"Calculate normal and surviving switch uplink capacity, N-1 oversubscription and busy-hour headroom with practical link and device failure examples.","url":"https://netengineerlab.com/guides/switch-oversubscription-n-1/","inLanguage":"en","mainEntityOfPage":{"@id":"https://netengineerlab.com/guides/switch-oversubscription-n-1/#webpage"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/","logo":{"@type":"ImageObject","url":"https://netengineerlab.com/assets/images/logo.svg"}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://netengineerlab.com/guides/"},{"@type":"ListItem","position":3,"name":"How to Calculate Switch Uplink Capacity Under N-1 Failure","item":"https://netengineerlab.com/guides/switch-oversubscription-n-1/"}]}]}</script>
+
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="en">
 <meta name="nel-route" content="guides/switch-oversubscription-n-1/">
@@ -52,7 +52,7 @@
 <main class="guide-shell" id="main">
 <section class="guide-hero">
 <p class="eyebrow">FAILURE CAPACITY GUIDE</p>
-<h1>How to Calculate Switch Oversubscription Under N-1 Failure</h1>
+<h1>How to Calculate Switch Uplink Capacity Under N-1 Failure</h1>
 <p class="guide-lead">A switch design should not be approved only in its normal state. N-1 analysis asks whether the surviving uplink capacity can still carry expected traffic after one required component fails.</p>
 <div class="guide-meta"><span>N-1</span><span>Failure Capacity</span><span>Oversubscription</span><span>Headroom</span></div>
 </section>
@@ -62,7 +62,7 @@
 <h2 id="quick-answer">Quick Answer</h2>
 <p>Start with the normal-state formula:</p>
 <div class="guide-formula"><strong>Oversubscription Ratio = Total Downlink Capacity ÷ Total Uplink Capacity</strong></div>
-<p>Then remove one required uplink member and calculate again.</p>
+<p>For equal-rate uplinks, normal capacity is <strong>C<sub>normal</sub> = N × R</strong>; after one member fails, <strong>C<sub>N-1</sub> = (N − 1) × R</strong>. Calculate each line-rate ratio as access line rate ÷ uplink capacity, and calculate headroom as surviving capacity − busy-hour demand.</p>
 <div class="guide-example">
 <p>48 × 1G access = <strong>48 Gbps</strong></p>
 <p>Normal uplink: 2 × 10G = <strong>20 Gbps</strong> → <strong>2.4:1</strong></p>
@@ -72,7 +72,7 @@
 <div class="guide-cta"><strong>Model normal and N-1 capacity</strong><p>Use the NetEngineerLab calculator with your actual port count and uplink design.</p><a href="../../tools/switch-uplink-oversubscription-calculator/">Open the Calculator →</a></div>
 
 <h2 id="what-n1">What Does N-1 Mean?</h2>
-<p>N-1 means the network is evaluated after one required component is unavailable. In an uplink design, that may mean one physical member link, one LAG member, one upstream device path, or another single failure the design is expected to tolerate.</p>
+<p>N-1 means the network is evaluated with one specified failure event. State the failure domain before counting capacity: one cable/optic/member, one line card, one upstream switch, or one complete path are different scenarios. A single member failure removes that member rate; a device failure removes every link and forwarding resource attached to that device.</p>
 <p>The purpose is not to assume that every failure must preserve full performance. The purpose is to understand the surviving capacity and decide whether that result meets the business requirement.</p>
 
 <h2 id="normal-vs-failure">Normal vs. N-1 Oversubscription</h2>
@@ -82,16 +82,24 @@
 <tr><td>Normal</td><td>48 Gbps</td><td>20 Gbps</td><td>2.4:1</td></tr>
 <tr><td>N-1</td><td>48 Gbps</td><td>10 Gbps</td><td>4.8:1</td></tr>
 </tbody></table>
-<p>The ratio doubles because the available uplink capacity is cut in half while the installed access capacity remains unchanged.</p>
+<p>Use the same access-side numerator in both states; only count links that can forward traffic in the modeled state. The line-rate ratio is not a traffic forecast and does not promise per-flow throughput.</p>
 
-<h2 id="traffic">Now Compare Against Real Traffic Demand</h2>
+<h2 id="traffic">Three Worked Busy-Hour Examples</h2>
+<p>For each example, demand is an explicit planning input. Headroom equals surviving capacity minus demand; a negative result is a modeled shortfall. These examples are arithmetic illustrations, not industry utilization standards.</p>
+<h3>Example 1: 2×10G serving 48×1G access</h3>
 <p>Theoretical ratio is only the first step. Compare the surviving uplink with expected busy-hour traffic.</p>
 <div class="guide-example">
-<p>40 active ports × 1 Gbps × 30% busy-hour utilization = <strong>12 Gbps modeled demand</strong></p>
+<p>Planning assumption: 40 of 48 access ports are active at the modeled busy hour; 40 × 1 Gbps × 30% utilization = <strong>12 Gbps modeled demand</strong>.</p>
 <p>Normal capacity = <strong>20 Gbps</strong> → headroom = <strong>8 Gbps</strong></p>
 <p>N-1 capacity = <strong>10 Gbps</strong> → headroom = <strong>-2 Gbps</strong></p>
 </div>
-<p>This design looks comfortable in the normal state but becomes capacity-deficient after one uplink fails.</p>
+<p>Result: normal headroom is 8 Gbps; after one member fails, the 10 Gbps survivor is 2 Gbps below modeled demand. This design does not meet a no-congestion 12 Gbps failure-state objective.</p>
+<h3>Example 2: 2×25G with a 20 Gbps busy-hour requirement</h3>
+<div class="guide-example"><p>Normal capacity = 2 × 25 = <strong>50 Gbps</strong>; ratio = 48 ÷ 50 = <strong>0.96:1</strong>.</p><p>One member fails: 1 × 25 = <strong>25 Gbps</strong>; N-1 ratio = 48 ÷ 25 = <strong>1.92:1</strong>.</p><p>Failure-state headroom = 25 − 20 = <strong>5 Gbps</strong>.</p></div>
+<p>This meets the stated 20 Gbps model before any separately selected engineering reserve, burst allowance or equipment bottleneck.</p>
+<h3>Example 3: 4×10G with growth and a 25% capacity reserve</h3>
+<div class="guide-example"><p>Measured planning demand = 20 Gbps; forecast growth = 20%; future N-1 demand D = 20 × 1.20 = <strong>24 Gbps</strong>.</p><p>After one member failure, surviving nominal capacity = 3 × 10 = <strong>30 Gbps</strong>; N-1 ratio for 48×1G access = 48 ÷ 30 = <strong>1.6:1</strong>.</p><p>For capacity reserve r = 0.25, require D / C ≤ 1 − r = 0.75, where C is the surviving usable capacity. Required usable capacity C ≥ D / 0.75 = 24 / 0.75 = <strong>32 Gbps</strong>.</p><p>Even if usable capacity reaches the 30 Gbps nominal ceiling, utilization is 24 / 30 = <strong>80%</strong>, leaving only <strong>20% capacity reserve</strong>; capacity minus demand is <strong>6 Gbps</strong>, but the shortfall against the 32 Gbps design requirement is <strong>2 Gbps</strong>.</p></div>
+<p>The 20% growth and 25% capacity reserve are scenario inputs, not prescribed standards. This design fails the selected 25% reserve requirement even at nominal capacity. Verify actual usable capacity on the surviving platform; lower effective throughput cannot improve this result. Capacity reserve is a fraction of capacity, not a percentage added to demand.</p>
 
 <h2 id="good-design">What Makes an N-1 Result Acceptable?</h2>
 <p>There is no universal ratio. An acceptable failure state depends on:</p>
@@ -105,7 +113,8 @@
 </ul>
 
 <h2 id="lag">N-1 with LAG</h2>
-<p>If a LAG has two 10G members, losing one member leaves 10 Gbps aggregate capacity. If a LAG has four 10G members, losing one leaves 30 Gbps.</p>
+<p>If all members forward and carry equal nominal rates, surviving aggregate line rate is the sum of surviving members. A two-member 10 Gbps LAG therefore has 10 Gbps after one member failure; a four-member 10 Gbps LAG has 30 Gbps after one member failure. This assumes the peer device, control plane, remaining members and upstream path remain available.</p>
+<p>LAG capacity is shared across flows according to the platform hash. One flow is generally limited to one member rate, and a new hash distribution may leave some members busier than others. Validate hashing, convergence, buffers and measured utilization on the actual devices; do not treat aggregate line rate as guaranteed application throughput.</p>
 <table>
 <thead><tr><th>Design</th><th>Normal Capacity</th><th>N-1 Capacity</th><th>48×1G N-1 Ratio</th></tr></thead>
 <tbody>
@@ -114,7 +123,7 @@
 <tr><td>2×25G</td><td>50 Gbps</td><td>25 Gbps</td><td>1.92:1</td></tr>
 </tbody></table>
 
-<h2 id="growth">Add Growth to the Failure State</h2>
+<h2 id="growth">Busy-Hour Demand and Failure Risk</h2>
 <p>Suppose current busy-hour demand is 10 Gbps and traffic is expected to grow by 30%.</p>
 <div class="guide-example">
 <p>Future demand = 10 × 1.30 = <strong>13 Gbps</strong></p>
@@ -132,15 +141,19 @@
 <tr><td>2×25G</td><td>50 Gbps</td><td>25 Gbps</td><td>Higher-capacity dual-uplink design</td></tr>
 </tbody></table>
 
+<h2 id="design-recommendations">Engineering Design Recommendations</h2>
+<ul><li>Define one failure event at a time and map every link, device and shared path it can remove.</li><li>Check whether links share a device, power source, cable route, transport path or other critical failure domain; one event can interrupt several links, so link count alone does not prove independent redundancy.</li><li>Use measured busy-hour percentiles and application service objectives; document burst and growth assumptions separately.</li><li>After the capacity calculation passes, validate surviving-path effective throughput, latency, packet loss, traffic distribution and failover convergence against the required service objectives.</li><li>Check headroom after the modeled failure, then test correlated traffic, per-member load and device forwarding limits.</li><li>If demand exceeds survivor capacity, expect queueing, drops or reduced throughput until failover or repair; decide whether graceful degradation meets the service objective.</li><li>Increase link rate or member count only after checking device diversity, power, optics, LAG support and the next device-level failure domain.</li></ul>
 <h2 id="workflow">N-1 Capacity Planning Workflow</h2>
 <ol>
 <li>Calculate installed downlink capacity.</li>
 <li>Measure active busy-hour traffic.</li>
 <li>Calculate normal-state uplink capacity.</li>
 <li>Remove one required failure component.</li>
+<li>Verify whether that event can also remove links through a shared-risk device, power source, cable route or transport path.</li>
 <li>Calculate surviving uplink capacity.</li>
 <li>Recalculate oversubscription.</li>
 <li>Compare surviving capacity with busy-hour demand.</li>
+<li>Validate throughput, latency, packet loss, traffic distribution and convergence against the failure-state service objective.</li>
 <li>Add future growth.</li>
 <li>Decide whether congestion during failure is acceptable.</li>
 <li>Compare upgrade options if the failure state is insufficient.</li>

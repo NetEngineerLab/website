@@ -1,0 +1,478 @@
+{
+  "schemaVersion": 1,
+  "toolId": "oob-network-design-planner",
+  "modelVersion": "1.0.0",
+  "sources": [
+    {
+      "id": "S-CISCO-OOB",
+      "type": "primary-vendor-guidance",
+      "title": "Cisco — Out of band best practices",
+      "url": "https://www.cisco.com/c/en/us/solutions/collateral/service-provider/out-of-band-best-practices-wp.html",
+      "accessedAt": "2026-10-16",
+      "locator": "Out of Band Networks; Management Network Devices; Remote Access; Jumpserver",
+      "claim": "Separate management access, console connection compatibility, controlled administrative access and review of transport/power dependencies. High-level guidance explicitly not a validated universal design."
+    },
+    {
+      "id": "S-CISCO-DC",
+      "type": "primary-vendor-guidance",
+      "title": "Cisco — NextGen OOB Data Center Management",
+      "url": "https://www.cisco.com/c/en/us/td/docs/dcn/whitepapers/nextgen-oob-datacenter-mgmt-nw-with-evpn-vxlan.html",
+      "accessedAt": "2026-10-16",
+      "locator": "Out-of-band management and external console access",
+      "claim": "Dedicated management network and external console reachability are distinct; separate circuits or cellular are external-access examples, not verified coverage."
+    },
+    {
+      "id": "S-INVENTORY",
+      "type": "local-planning-assumption",
+      "title": "Declared inventory arithmetic",
+      "claim": "Fleet-wide required assumed ports equal listed console-capable device counts at one connection/device; no per-site allocation or product size inferred."
+    },
+    {
+      "id": "S-POLICY",
+      "type": "local-editorial-model",
+      "title": "Explicit repeatable conditional planning policy",
+      "claim": "Input booleans select candidate options and review actions, not proven independence. Critical verified sites remain null. Acknowledgments are user assertions; all site/vendor constraints remain to validate."
+    }
+  ],
+  "rules": [
+    {
+      "id": "F-CONSOLE",
+      "sourceIds": [
+        "S-INVENTORY"
+      ],
+      "en": {
+        "title": "Assumed fleet console-port inventory",
+        "recommendation": "One planned connection per listed console-capable device: routers + switches + firewalls + other devices. This is a planning inventory, not an appliance purchase quantity.",
+        "tradeoff": "Validate actual connectors, adapters, access methods and site allocation. No equal distribution, spare ratio or appliance port size is assumed."
+      },
+      "zh": {
+        "title": "假定全网控制台端口清单",
+        "recommendation": "每台已列控制台设备按一个连接规划：路由器＋交换机＋防火墙＋其他设备。这是规划清单，不是控制台服务器采购数量。",
+        "tradeoff": "核对实际接口、适配器、访问方式和站点分配；不假设均分、备用比例或设备端口规格。"
+      }
+    },
+    {
+      "id": "R-ISP-CELL",
+      "sourceIds": [
+        "S-CISCO-OOB",
+        "S-POLICY"
+      ],
+      "en": {
+        "title": "Reported separate ISP plus cellular candidate",
+        "recommendation": "Evaluate a dedicated management transport using the reported separate ISP, with cellular as a candidate alternate path. Neither availability flag verifies physical or provider independence.",
+        "tradeoff": "Potential recovery-path diversity adds carrier, firewall and operating dependencies. Verify actual last-mile routes, signal, service, power and outage access at every required site."
+      },
+      "zh": {
+        "title": "已报告独立ISP及蜂窝候选",
+        "recommendation": "评估使用已报告独立ISP的专用管理传输，并将蜂窝作为候选替代路径。可用标记不能验证物理或供应商独立性。",
+        "tradeoff": "候选恢复路径增加运营商、防火墙及运维依赖。逐站核实末端路由、信号、业务、电源和故障访问。"
+      }
+    },
+    {
+      "id": "R-ISP-ONLY",
+      "sourceIds": [
+        "S-CISCO-OOB",
+        "S-POLICY"
+      ],
+      "en": {
+        "title": "Reported separate ISP candidate",
+        "recommendation": "Evaluate the reported ISP circuit for management transport. A separate contract or provider name does not prove separate ducts, termination equipment or failure domains.",
+        "tradeoff": "Investigate a validated alternate recovery path. Carrier service and management-edge availability remain design dependencies, not verified redundancy."
+      },
+      "zh": {
+        "title": "已报告独立ISP候选",
+        "recommendation": "评估已报告ISP线路作为管理传输；独立合同或供应商名称不能证明管道、终端设备或故障域独立。",
+        "tradeoff": "评估已验证的替代恢复路径。运营商服务与管理边缘可用性仍是设计依赖，非已验证冗余。"
+      }
+    },
+    {
+      "id": "R-CELL-ONLY",
+      "sourceIds": [
+        "S-CISCO-DC",
+        "S-POLICY"
+      ],
+      "en": {
+        "title": "Cellular-only transport candidate",
+        "recommendation": "Evaluate the reported cellular service as an external access candidate because no separate ISP is reported. Its availability at critical sites is unverified.",
+        "tradeoff": "Validate local signal, coverage, data/service constraints, protected access path and power. Keep an on-site recovery procedure; this is not a guaranteed resilient OOB design."
+      },
+      "zh": {
+        "title": "仅蜂窝传输候选",
+        "recommendation": "未报告独立ISP时，可评估已报告蜂窝业务作为外部访问候选；关键站点可用性尚未验证。",
+        "tradeoff": "验证现场信号、覆盖、数据/业务限制、受控访问路径及电源，保留现场恢复流程；这不是已保证韧性的OOB设计。"
+      }
+    },
+    {
+      "id": "R-NO-TRANSPORT",
+      "sourceIds": [
+        "S-POLICY"
+      ],
+      "en": {
+        "title": "Independent transport unconfirmed",
+        "recommendation": "Neither separate ISP nor cellular is reported. Do not claim a working independent remote OOB path. Identify and validate an external transport or document local recovery requirements.",
+        "tradeoff": "Remote recovery may remain blocked by production-path failure. Confirm feasible provider/site options before accepting this architecture."
+      },
+      "zh": {
+        "title": "独立传输未确认",
+        "recommendation": "未报告独立ISP或蜂窝，不应声称已有独立远程OOB路径。需要确定并验证外部传输，或记录现场恢复要求。",
+        "tradeoff": "生产路径故障可能阻断远程恢复。接受架构前确认可行的运营商及现场方案。"
+      }
+    },
+    {
+      "id": "R-CELL-REVIEW",
+      "sourceIds": [
+        "S-CISCO-DC",
+        "S-POLICY"
+      ],
+      "en": {
+        "title": "Cellular backup needs site validation",
+        "recommendation": "Cellular is user-reported available, not measured coverage. Treat it as a candidate alternate or sole external transport according to the selected architecture.",
+        "tradeoff": "Record per-site signal/service/power and a production-outage access test; no coverage percentage or bandwidth guarantee is inferred."
+      },
+      "zh": {
+        "title": "蜂窝备份需要逐站验证",
+        "recommendation": "蜂窝可用由用户报告，并非实测覆盖。按所选架构将其视为候选替代或唯一外部传输。",
+        "tradeoff": "逐站记录信号、业务、电源及生产故障下访问测试；不推断覆盖百分比或带宽保证。"
+      }
+    },
+    {
+      "id": "R-NO-CELL",
+      "sourceIds": [
+        "S-POLICY"
+      ],
+      "en": {
+        "title": "No cellular candidate reported",
+        "recommendation": "Do not assume cellular recovery. Review another permitted transport or an on-site recovery process with the site owner.",
+        "tradeoff": "Adding cellular later requires site and service validation, not just changing a planning checkbox."
+      },
+      "zh": {
+        "title": "未报告蜂窝候选",
+        "recommendation": "不能假设蜂窝恢复能力。与站点责任人复核其他获准传输或现场恢复流程。",
+        "tradeoff": "后续增加蜂窝需要现场与业务验证，不能仅修改规划复选框。"
+      }
+    },
+    {
+      "id": "R-CONSOLE-REMOTE",
+      "sourceIds": [
+        "S-CISCO-OOB",
+        "S-INVENTORY"
+      ],
+      "en": {
+        "title": "Plan remote console rollout",
+        "recommendation": "Map required inventory connections to actual sites and console servers; validate supported console types and a recovery access procedure.",
+        "tradeoff": "Serial/console access and network management interfaces are different access methods. Inventory totals do not define site appliance counts or eliminate device/power dependencies."
+      },
+      "zh": {
+        "title": "规划远程控制台接入",
+        "recommendation": "将所需清单连接映射到实际站点及控制台服务器，验证控制台接口与恢复访问流程。",
+        "tradeoff": "串行/控制台与网络管理接口是不同访问方式。全网清单不能决定站点设备数量，也不能消除设备/电源依赖。"
+      }
+    },
+    {
+      "id": "R-CONSOLE-INVENTORY",
+      "sourceIds": [
+        "S-INVENTORY"
+      ],
+      "en": {
+        "title": "Console inventory retained; remote rollout not required",
+        "recommendation": "The assumed inventory-port count is still shown. Remote console rollout is not requested; document which local/vendor recovery method is acceptable.",
+        "tradeoff": "A lower rollout requirement does not reduce the listed device inventory or prove recovery will be available during a management outage."
+      },
+      "zh": {
+        "title": "保留控制台清单；未要求远程部署",
+        "recommendation": "仍显示假定控制台端口清单。用户未要求远程控制台部署，应记录可接受的现场/厂商恢复方式。",
+        "tradeoff": "降低部署需求不会减少已列设备清单，也不能证明管理故障时具备恢复能力。"
+      }
+    },
+    {
+      "id": "R-JUMP-REQUIRED",
+      "sourceIds": [
+        "S-CISCO-OOB",
+        "S-POLICY"
+      ],
+      "en": {
+        "title": "Controlled jump-host or access-broker path requested",
+        "recommendation": "Include a controlled administrative intermediary in the proposed design because the operator requires it. Review authenticated access, role restrictions and auditable sessions.",
+        "tradeoff": "The broker, authentication and logging path can become common dependencies. Validate recovery access during production and broker/identity failures; this planner configures nothing."
+      },
+      "zh": {
+        "title": "要求受控跳板机或访问代理路径",
+        "recommendation": "用户要求在候选设计中加入受控管理中介，应复核认证访问、角色限制及可审计会话。",
+        "tradeoff": "代理、认证和日志路径可能形成共同依赖。验证生产、代理及身份系统故障下的恢复访问；本工具不配置系统。"
+      }
+    },
+    {
+      "id": "R-BROKER-EVALUATE",
+      "sourceIds": [
+        "S-CISCO-OOB",
+        "S-POLICY"
+      ],
+      "en": {
+        "title": "Evaluate controlled remote administration",
+        "recommendation": "Remote console is requested without an explicit jump-host requirement. Evaluate a controlled broker/bastion or equivalent protected administrative path; record why the chosen access boundary is appropriate.",
+        "tradeoff": "An intermediary supports control but adds an outage dependency. Neither automatic direct access nor a universally mandatory jump-host topology is inferred."
+      },
+      "zh": {
+        "title": "评估受控远程管理",
+        "recommendation": "要求远程控制台但未明确要求跳板机，应评估受控代理/堡垒机或等效受保护管理路径，并记录访问边界的理由。",
+        "tradeoff": "中介有助于访问控制，但增加故障依赖。不自动推定直接访问，也不声称某跳板拓扑普遍强制。"
+      }
+    },
+    {
+      "id": "R-LOCAL-ACCESS",
+      "sourceIds": [
+        "S-POLICY"
+      ],
+      "en": {
+        "title": "Document local management access",
+        "recommendation": "Neither remote console nor jump host is requested. Keep a permitted local administrative/recovery procedure and validate the management boundary.",
+        "tradeoff": "This preference is not evidence of enforcement or a recommendation to expose management interfaces directly to untrusted networks."
+      },
+      "zh": {
+        "title": "记录本地管理访问",
+        "recommendation": "未要求远程控制台或跳板机，仍需记录获准的本地管理/恢复流程并验证管理边界。",
+        "tradeoff": "该偏好不是已实施控制的证据，也不建议向不可信网络直接开放管理接口。"
+      }
+    },
+    {
+      "id": "R-CRITICAL",
+      "sourceIds": [
+        "S-POLICY"
+      ],
+      "en": {
+        "title": "Prioritize critical-site verification",
+        "recommendation": "The entered critical-site count is a target. Verified sites remain unknown because site allocation, independent reachability and failure tests were not provided.",
+        "tradeoff": "Create a per-critical-site evidence list and validate recovery first. Do not present fleet totals as achieved coverage."
+      },
+      "zh": {
+        "title": "优先验证关键站点",
+        "recommendation": "输入关键站点数是目标。由于未提供站点分配、独立可达性与故障测试，已验证站点数保持未知。",
+        "tradeoff": "建立逐关键站点证据清单，优先验证恢复，不能把全网总量当作已实现覆盖。"
+      }
+    },
+    {
+      "id": "R-NO-CRITICAL",
+      "sourceIds": [
+        "S-POLICY"
+      ],
+      "en": {
+        "title": "No critical-site target supplied",
+        "recommendation": "Critical-site coverage is not applicable to the supplied count of zero. No sites are inferred verified, and no general resilience approval is given.",
+        "tradeoff": "Review criticality with the service owner before using this preference to prioritize deployment."
+      },
+      "zh": {
+        "title": "未指定关键站点目标",
+        "recommendation": "输入关键站点为零时，该覆盖项不适用。不推断任何站点已验证，也不授予整体韧性通过。",
+        "tradeoff": "将此偏好用于部署优先级前，应与业务责任人复核关键性。"
+      }
+    },
+    {
+      "id": "R-DEPENDENCIES",
+      "sourceIds": [
+        "S-CISCO-OOB",
+        "S-POLICY"
+      ],
+      "en": {
+        "title": "Review candidate common failure points",
+        "recommendation": "Trace management router/switch, console server, firewall/VPN, access broker, identity/DNS and power dependencies on the actual site diagram. These are candidate dependencies, not detected topology faults.",
+        "tradeoff": "Fleet counts cannot prove path, rack, carrier or authentication diversity. Test recovery with production connectivity unavailable."
+      },
+      "zh": {
+        "title": "复核候选共同故障点",
+        "recommendation": "在实际站点图上追踪管理路由/交换、控制台服务器、防火墙/VPN、访问代理、身份/DNS及电源依赖。这是候选依赖清单，不是已检测拓扑缺陷。",
+        "tradeoff": "全网数量不能证明路径、机架、运营商或认证多样性。应在生产连接不可用时测试恢复。"
+      }
+    },
+    {
+      "id": "R-DUALDC",
+      "sourceIds": [
+        "S-CISCO-OOB",
+        "S-POLICY"
+      ],
+      "en": {
+        "title": "Dual-DC preference needs failure-domain review",
+        "recommendation": "Two data centers are user-reported. Review independent management entry points and shared transport, identity, logging, power and inter-site dependencies.",
+        "tradeoff": "Two locations alone do not prove redundancy or guarantee either location can recover the other. Validate actual isolation/failover behavior."
+      },
+      "zh": {
+        "title": "双数据中心偏好需要故障域复核",
+        "recommendation": "用户报告双数据中心。应复核独立管理入口以及共享传输、身份、日志、电源和跨站依赖。",
+        "tradeoff": "两个地点本身不能证明冗余，也不能保证相互恢复，应验证实际隔离及故障切换行为。"
+      }
+    },
+    {
+      "id": "R-ONE-CENTER",
+      "sourceIds": [
+        "S-POLICY"
+      ],
+      "en": {
+        "title": "Management-center recovery remains unresolved",
+        "recommendation": "No dual-DC preference is reported. Review whether the management entry point or administrative location is a common dependency and document the recovery procedure.",
+        "tradeoff": "A single preference flag is not a topology audit; no exact single-point-of-failure count is produced."
+      },
+      "zh": {
+        "title": "管理中心恢复仍待确认",
+        "recommendation": "未报告双数据中心偏好，应复核管理入口或管理地点是否是共同依赖，并记录恢复流程。",
+        "tradeoff": "一个偏好标记不是拓扑审计，不输出精确单点故障数量。"
+      }
+    },
+    {
+      "id": "R-POWER-REPORTED",
+      "sourceIds": [
+        "S-CISCO-OOB",
+        "S-POLICY"
+      ],
+      "en": {
+        "title": "Independent power is reported, not verified",
+        "recommendation": "Trace power for console, management transport, firewall, broker and any cellular equipment. The flag does not verify runtime, feeds or all dependent equipment.",
+        "tradeoff": "Validate the power failure scenario with site constraints and equipment specifications; no autonomy duration or power capacity is sized here."
+      },
+      "zh": {
+        "title": "独立电源已报告但未验证",
+        "recommendation": "追踪控制台、管理传输、防火墙、代理及蜂窝设备的供电。该标记不能验证续航、馈电或全部依赖设备。",
+        "tradeoff": "按现场约束与设备规格验证电源故障场景；本工具不计算续航时长或电源容量。"
+      }
+    },
+    {
+      "id": "R-POWER-DEPENDENT",
+      "sourceIds": [
+        "S-CISCO-OOB",
+        "S-POLICY"
+      ],
+      "en": {
+        "title": "Power dependency requires resolution",
+        "recommendation": "Independent power is not reported. OOB equipment may share the outage affecting production; record the affected path and establish an appropriate site power/recovery plan.",
+        "tradeoff": "Network path diversity does not itself power equipment. No battery runtime or generator requirement can be inferred from these inputs."
+      },
+      "zh": {
+        "title": "电源依赖需要解决",
+        "recommendation": "未报告独立电源，OOB设备可能与生产共受电源故障影响。应记录受影响路径并制定适当的现场供电/恢复方案。",
+        "tradeoff": "路径多样性本身不能为设备供电，不能根据这些输入推定电池续航或油机需求。"
+      }
+    },
+    {
+      "id": "R-DISTRIBUTION",
+      "sourceIds": [
+        "S-INVENTORY"
+      ],
+      "en": {
+        "title": "Device-to-site distribution needs review",
+        "recommendation": "There are fewer listed devices than sites. This may reflect empty sites or incomplete inventory; review allocation rather than assigning fractional/equal device counts.",
+        "tradeoff": "No per-site console count or verified critical coverage is inferred."
+      },
+      "zh": {
+        "title": "设备与站点分布需复核",
+        "recommendation": "已列设备少于站点，可能存在空站或清单不全；应复核分配，而非按比例或均分设备。",
+        "tradeoff": "不推断逐站控制台数量或已验证关键覆盖。"
+      }
+    },
+    {
+      "id": "R-UNVERIFIED",
+      "sourceIds": [
+        "S-POLICY"
+      ],
+      "en": {
+        "title": "Planning result; vendor/site validation required",
+        "recommendation": "Recommendations, assumptions and trade-offs remain a repeatable planning model. User review marks are assertions only, not verified compliance, security or resilience.",
+        "tradeoff": "Validate actual device support, allocation, protected access, transport and power failures before approving implementation."
+      },
+      "zh": {
+        "title": "规划结果；需要厂商及现场验证",
+        "recommendation": "建议、假设及权衡属于可重复规划模型。用户复核标记仅是声明，不代表已验证合规、安全或韧性。",
+        "tradeoff": "批准实施前验证实际设备支持、分配、受保护访问及传输和电源故障场景。"
+      }
+    }
+  ],
+  "checklist": [
+    {
+      "id": "MGMT-REACHABILITY",
+      "sourceIds": [
+        "S-POLICY",
+        "S-CISCO-OOB"
+      ],
+      "en": {
+        "title": "Management reachability",
+        "review": "Review a dedicated management boundary and actual device paths."
+      },
+      "zh": {
+        "title": "管理可达性",
+        "review": "复核专用管理边界及实际设备路径。"
+      }
+    },
+    {
+      "id": "MGMT-RECOVERY",
+      "sourceIds": [
+        "S-POLICY",
+        "S-CISCO-OOB"
+      ],
+      "en": {
+        "title": "Recovery access",
+        "review": "Review production-outage access and identity/DNS dependencies."
+      },
+      "zh": {
+        "title": "恢复访问",
+        "review": "复核生产故障下的访问及身份/DNS依赖。"
+      }
+    },
+    {
+      "id": "SEC-LEAST",
+      "sourceIds": [
+        "S-POLICY",
+        "S-CISCO-OOB"
+      ],
+      "en": {
+        "title": "Least privilege",
+        "review": "Review permitted administrative roles and device access limits."
+      },
+      "zh": {
+        "title": "最小权限",
+        "review": "复核获准管理角色及设备访问限制。"
+      }
+    },
+    {
+      "id": "SEC-AUTH",
+      "sourceIds": [
+        "S-POLICY",
+        "S-CISCO-OOB"
+      ],
+      "en": {
+        "title": "Authenticated access",
+        "review": "Review authenticated protected sessions and MFA support/policy."
+      },
+      "zh": {
+        "title": "认证访问",
+        "review": "复核经认证的受保护会话及MFA支持/策略。"
+      }
+    },
+    {
+      "id": "SEC-LOG",
+      "sourceIds": [
+        "S-POLICY",
+        "S-CISCO-OOB"
+      ],
+      "en": {
+        "title": "Auditable access",
+        "review": "Review session/event logs, ownership and outage availability."
+      },
+      "zh": {
+        "title": "可审计访问",
+        "review": "复核会话/事件日志、责任及故障下可用性。"
+      }
+    },
+    {
+      "id": "VALIDATE-VENDOR",
+      "sourceIds": [
+        "S-POLICY",
+        "S-CISCO-OOB"
+      ],
+      "en": {
+        "title": "Vendor/site constraints",
+        "review": "Review console types, placement, power and recovery evidence."
+      },
+      "zh": {
+        "title": "厂商/现场约束",
+        "review": "复核控制台类型、位置、电源及恢复证据。"
+      }
+    }
+  ]
+}

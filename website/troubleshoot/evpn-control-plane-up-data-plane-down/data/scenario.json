@@ -1,0 +1,302 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "evpn-mtu-single-fault",
+  "scenarioVersion": 1,
+  "synthetic": true,
+  "fault": "underlay-egress-ip-mtu",
+  "model": {
+    "innerIPv4": 20,
+    "icmp": 8,
+    "innerEthernet": 14,
+    "vxlan": 8,
+    "udp": 8,
+    "outerIPv4": 20,
+    "beforePathIPMTU": 1500,
+    "afterPathIPMTU": 1600,
+    "outerDF": true,
+    "innerVlanTag": false,
+    "extraEncapsulation": false
+  },
+  "sources": [
+    {
+      "id": "S-VXLAN",
+      "url": "https://www.rfc-editor.org/rfc/rfc7348.html",
+      "title": "RFC7348 — VXLAN",
+      "locator": "§4.3 physical MTU/fragmentation; §5 frame format",
+      "type": "primary-protocol",
+      "accessedAt": "2026-10-16"
+    },
+    {
+      "id": "S-EVPN",
+      "url": "https://www.rfc-editor.org/rfc/rfc8365.html",
+      "title": "RFC8365 — EVPN network virtualization overlay",
+      "locator": "§5 EVPN with VXLAN; control-plane route interpretation",
+      "type": "primary-protocol",
+      "accessedAt": "2026-10-16"
+    },
+    {
+      "id": "S-ARP",
+      "url": "https://www.rfc-editor.org/rfc/rfc7432.html",
+      "title": "RFC7432 — EVPN",
+      "locator": "§10 ARP/ND; MAC-only versus MAC/IP routes",
+      "type": "primary-protocol",
+      "accessedAt": "2026-10-16"
+    },
+    {
+      "id": "S-IP",
+      "url": "https://www.rfc-editor.org/rfc/rfc791.html",
+      "title": "RFC791 — IPv4",
+      "locator": "§3.1 IHL, total length and DF",
+      "type": "primary-protocol",
+      "accessedAt": "2026-10-16"
+    },
+    {
+      "id": "S-ICMP",
+      "url": "https://www.rfc-editor.org/rfc/rfc792.html",
+      "title": "RFC792 — ICMP",
+      "locator": "Echo/Echo Reply format; fragmentation-needed message",
+      "type": "primary-protocol",
+      "accessedAt": "2026-10-16"
+    },
+    {
+      "id": "S-UDP",
+      "url": "https://www.rfc-editor.org/rfc/rfc768.html",
+      "title": "RFC768 — UDP",
+      "locator": "UDP header format",
+      "type": "primary-protocol",
+      "accessedAt": "2026-10-16"
+    },
+    {
+      "id": "S-FIXTURE",
+      "type": "local-synthetic-observations",
+      "title": "Explicit educational fixture",
+      "locator": "scenarioVersion1; not live captures or a reproduced customer incident"
+    },
+    {
+      "id": "S-MODEL",
+      "type": "local-arithmetic-and-teaching-policy",
+      "title": "Conditional arithmetic and learning gates",
+      "locator": "payload+28 inner IPv4; payload+78 outer IPv4; scenario only"
+    }
+  ],
+  "checks": [
+    {
+      "id": "bgp",
+      "sourceIds": [
+        "S-EVPN",
+        "S-FIXTURE"
+      ],
+      "en": {
+        "title": "BGP EVPN state",
+        "why": "Established sessions and installed EVPN routes establish signaling evidence, not packet delivery.",
+        "evidence": "Both leaves: EVPN BGP ESTABLISHED; expected Type2 MAC routes imported with correct remote VTEP next hops; VNI10100 operational up.",
+        "limit": "Rechecking is valid but cannot explain why only larger probes fail; resetting BGP is unsupported."
+      },
+      "zh": {
+        "title": "BGP EVPN状态",
+        "why": "会话建立和EVPN路由安装是信令证据，不是报文交付证明。",
+        "evidence": "两端Leaf：EVPN BGP已建立；预期Type2 MAC路由已导入，远端VTEP下一跳正确；VNI10100运行正常。",
+        "limit": "复查有效，但不能解释只有大包失败；没有证据支持重置BGP。"
+      }
+    },
+    {
+      "id": "mac",
+      "sourceIds": [
+        "S-EVPN",
+        "S-ARP",
+        "S-FIXTURE"
+      ],
+      "en": {
+        "title": "MAC learning and forwarding",
+        "why": "Compare local attachment, remote reachability and installed forwarding entries for the actual endpoints.",
+        "evidence": "CE-A 02:00:00:00:00:0a local on LeafA; CE-B 02:00:00:00:00:0b remote via VTEP192.0.2.12; LeafB has reciprocal entries in VNI10100.",
+        "limit": "A present MAC route alone is not enough; this fixture also checks installed forwarding and correct service context."
+      },
+      "zh": {
+        "title": "MAC学习与转发",
+        "why": "比较实际端点的本地接入、远端可达性和已安装转发表。",
+        "evidence": "CE-A的MAC 02:00:00:00:00:0a在LeafA本地；CE-B的MAC 02:00:00:00:00:0b经VTEP192.0.2.12远端可达；LeafB在VNI10100有对称条目。",
+        "limit": "仅存在MAC路由不够；此情景同时核查了已安装转发和正确业务上下文。"
+      }
+    },
+    {
+      "id": "arp-nd",
+      "sourceIds": [
+        "S-ARP",
+        "S-FIXTURE"
+      ],
+      "en": {
+        "title": "ARP / ND applicability",
+        "why": "Verify the destination neighbor, not merely that any MAC/IP route exists.",
+        "evidence": "CE-A198.51.100.10/24 resolves CE-B198.51.100.20 to02:00:00:00:00:0b; reverse ARP matches. Fresh32-byte ICMPv4 succeeds both ways. IPv6 ND is not exercised.",
+        "limit": "IPv4 observations do not establish IPv6 ND health or every possible neighbor."
+      },
+      "zh": {
+        "title": "ARP / ND适用性",
+        "why": "验证目标邻居，而不是仅看到任意MAC/IP路由。",
+        "evidence": "CE-A198.51.100.10/24将CE-B198.51.100.20解析为02:00:00:00:00:0b；反向ARP匹配。新发32字节ICMPv4双向成功。未测试IPv6 ND。",
+        "limit": "IPv4观测不能证明IPv6 ND健康或所有邻居均正常。"
+      }
+    },
+    {
+      "id": "mapping",
+      "sourceIds": [
+        "S-EVPN",
+        "S-VXLAN",
+        "S-FIXTURE"
+      ],
+      "en": {
+        "title": "VLAN / VNI mapping",
+        "why": "Match the tenant service on both ends before blaming transport.",
+        "evidence": "Both leaves: CE access VLAN100 maps to VNI10100; intended tenant/route-target import matches. No inner VLAN tag is carried in this fixture.",
+        "limit": "Matching numbers alone do not prove forwarding; installed bridge entries and captures corroborate the mapping."
+      },
+      "zh": {
+        "title": "VLAN / VNI映射",
+        "why": "归因传输前，先比较两端租户业务映射。",
+        "evidence": "两端Leaf：CE接入VLAN100映射VNI10100；目标租户与路由目标导入匹配。此情景不携带内层VLAN标签。",
+        "limit": "编号相同不能单独证明转发，桥接条目与抓包相互印证。"
+      }
+    },
+    {
+      "id": "bridge",
+      "sourceIds": [
+        "S-EVPN",
+        "S-FIXTURE"
+      ],
+      "en": {
+        "title": "Bridge domain membership",
+        "why": "Confirm both access and tunnel attachments belong to the intended L2 domain.",
+        "evidence": "BD100 contains the expected CE access attachment and VNI10100 tunnel attachment on each leaf; forwarding state active; endpoint MACs in this bridge domain.",
+        "limit": "This excludes the modeled wrong-bridge hypothesis; it is not a platform-wide health certification."
+      },
+      "zh": {
+        "title": "桥域成员关系",
+        "why": "确认接入与隧道归属目标二层桥域。",
+        "evidence": "两端BD100均包含预期CE接入和VNI10100隧道成员；转发状态激活，端点MAC位于此桥域。",
+        "limit": "此证据排除此模型的错误桥域假设，不是整个平台健康认证。"
+      }
+    },
+    {
+      "id": "interfaces",
+      "sourceIds": [
+        "S-VXLAN",
+        "S-FIXTURE"
+      ],
+      "en": {
+        "title": "Interface state and counters",
+        "why": "An up interface can still discard packets, so correlate packet class and counter changes.",
+        "evidence": "CE links and underlay links up; no link flaps or CRC increments. During10 large probes per direction, the relevant constrained path egress MTU-drop counter increases by10 each way; small probes do not increase it.",
+        "limit": "Counter names are semantic synthetic evidence, not vendor command output or a universal counter name."
+      },
+      "zh": {
+        "title": "接口状态与计数",
+        "why": "接口up仍可能丢包，需关联报文类型与计数变化。",
+        "evidence": "CE链路与底层链路up，无链路抖动或CRC增长。每方向10个大包探测时，相应受限路径出口MTU丢弃计数各增加10；小包不增加。",
+        "limit": "计数名称是合成语义证据，不是厂商命令输出或通用计数器名称。"
+      }
+    },
+    {
+      "id": "encapsulation",
+      "sourceIds": [
+        "S-VXLAN",
+        "S-IP",
+        "S-UDP",
+        "S-ICMP",
+        "S-MODEL",
+        "S-FIXTURE"
+      ],
+      "en": {
+        "title": "Data-plane encapsulation",
+        "why": "Compare the actual inner service and outer delivery envelope with the intended VTEP pair.",
+        "evidence": "Synthetic pre-drop capture: inner IPv4 ICMP payload1472, inner IP1500; untagged inner Ethernet14; VXLAN8/VNI10100; UDP8/dst4789; outer IPv420/no options, src192.0.2.11 dst192.0.2.12 (reverse swapped), outer DF set, total outer IP1550.",
+        "limit": "Outer Ethernet/FCS are excluded from IP MTU. IPv6, VLAN tags, options or extra tunnels change this model."
+      },
+      "zh": {
+        "title": "数据平面封装",
+        "why": "比较实际内层业务、外层传输与目标VTEP对。",
+        "evidence": "合成丢弃前抓包：内层ICMP载荷1472，内层IP1500；无标签内层以太网14；VXLAN8/VNI10100；UDP8/目标4789；外层IPv420/无选项，源192.0.2.11目标192.0.2.12（反向互换），外层DF置位，外层IP总长1550。",
+        "limit": "IP MTU不含外层以太网/FCS。IPv6、VLAN标签、选项或额外隧道会改变模型。"
+      }
+    },
+    {
+      "id": "mtu",
+      "sourceIds": [
+        "S-VXLAN",
+        "S-IP",
+        "S-ICMP",
+        "S-MODEL",
+        "S-FIXTURE"
+      ],
+      "en": {
+        "title": "MTU and size boundary",
+        "why": "Small-packet success does not test whether an encapsulated full-size frame fits.",
+        "evidence": "Both directions before repair: payload32 => outer110 PASS;1422 =>1500 PASS;1423 =>1501 DROP;1472 =>1550 DROP. Limiting forwarding egress IP MTU1500. Outer DF/drop behavior is explicitly modeled; no delivered fragments.",
+        "limit": "RFC7348 allows intermediate-router fragmentation in general; this fixture uses DF and explicit egress drop evidence.1600 is a later simulation profile, not a universal recommendation."
+      },
+      "zh": {
+        "title": "MTU与尺寸边界",
+        "why": "小包成功不能证明封装后的满尺寸帧可以通过。",
+        "evidence": "修复前双向：载荷32→外层110通过；1422→1500通过；1423→1501丢弃；1472→1550丢弃。限制出口IP MTU1500。明确建模外层DF/丢弃，无已交付分片。",
+        "limit": "RFC7348一般情况下允许中间路由器分片；此情景使用DF与明确出口丢弃证据。后续1600是模拟配置档，不是通用建议。"
+      }
+    },
+    {
+      "id": "underlay",
+      "sourceIds": [
+        "S-VXLAN",
+        "S-IP",
+        "S-FIXTURE"
+      ],
+      "en": {
+        "title": "Underlay reachability",
+        "why": "Test the same path/directions and packet envelope, not just a VTEP small ping.",
+        "evidence": "Both VTEP loopbacks reachable with small IP probes. Route/next-hop and small UDP4789 delivery are intact; oversized outer packets correlate with fragmentation-needed/MTU-drop evidence at the constrained egress in both directions. No ACL mismatch or second fault is modeled.",
+        "limit": "Small reachability excludes total path loss, not MTU or every ECMP path. Real validation must cover relevant links/paths and both directions."
+      },
+      "zh": {
+        "title": "底层可达性",
+        "why": "应测试相同路径、方向与报文尺寸，不能只看VTEP小ping。",
+        "evidence": "小IP探测双向可达VTEP环回。路由/下一跳及小UDP4789交付正常；超大外层报文与两个方向受限出口的需分片/MTU丢弃证据相关。模型不含ACL错误或第二故障。",
+        "limit": "小包可达排除完全路径中断，不排除MTU或所有ECMP路径。实际验证须覆盖相关链路、路径及双向。"
+      }
+    },
+    {
+      "id": "gateway",
+      "sourceIds": [
+        "S-ARP",
+        "S-EVPN",
+        "S-FIXTURE"
+      ],
+      "en": {
+        "title": "Anycast / gateway assumptions",
+        "why": "Decide whether the packet traverses a gateway before diagnosing one.",
+        "evidence": "CE-A and CE-B are in198.51.100.0/24 and the same bridged service; they resolve each other directly. No IRB/default-gateway hop is traversed. Anycast gateway behavior is not applicable to this path.",
+        "limit": "This does not claim routed inter-subnet or IPv6 gateway traffic is healthy; those cases require additional checks."
+      },
+      "zh": {
+        "title": "任播 / 网关假设",
+        "why": "诊断网关前，应判断报文是否经过网关。",
+        "evidence": "CE-A和CE-B位于198.51.100.0/24和同一桥接业务，直接解析对方；不经过IRB/默认网关。任播网关行为不适用于此路径。",
+        "limit": "此结论不代表跨子网路由或IPv6网关流量正常；那些情形需要额外检查。"
+      }
+    }
+  ],
+  "related": {
+    "course": {
+      "url": "https://learningportal.juniper.net/juniper/user_activity_info.aspx?id=EDU-JUN-WBT-OD-ADCX",
+      "title": "Implementing Data Center Fabric with EVPN and VXLAN On-Demand",
+      "type": "external-official-paid-vendor-specific",
+      "vendor": "Juniper/Junos",
+      "accessedAt": "2026-10-16"
+    },
+    "topic": {
+      "en": "/topics/network-monitoring-observability/",
+      "zh": "/zh/topics/network-monitoring-observability/"
+    },
+    "tool": {
+      "en": "/tools/mtu-calculator/",
+      "zh": "/tools/mtu-calculator/zh/"
+    }
+  }
+}

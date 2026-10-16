@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {"id":"S-UNITS","type":"repository","path":"website/tools/bandwidth-calculator/data/bandwidth-units.js","claim":"Decimal rate factors: Mbps=1000000 bit/s; Gbps=1000000000 bit/s."},
+    {"id":"S-IDENTITIES","type":"arithmetic-definition","claim":"Dimensionless ratio, addition and signed difference; not a queueing or traffic collection model."},
+    {"id":"S-USER-POLICY","type":"user-input","claim":"Threshold belongs to the operator; no universal utilization recommendation is supplied."}
+  ],
+  "formulas": [
+    {"id":"F-UNIT","sourceId":"S-UNITS","expression":"Mbps = value × rateUnits[unit].factor / rateUnits.Mbps.factor"},
+    {"id":"F-PERCENT","sourceId":"S-IDENTITIES","expression":"percent = Mbps / capacityMbps × 100"},
+    {"id":"F-SUM","sourceId":"S-IDENTITIES","expression":"observed sum = sum of supplied mutually exclusive application rates"},
+    {"id":"F-HEADROOM","sourceId":"S-IDENTITIES","expression":"headroom = capacity − current sum; percentage = 100 − current utilization"},
+    {"id":"R-THRESHOLD","sourceId":"S-USER-POLICY","expression":"No input => NOT_CONFIGURED; current percent >= threshold => AT_OR_ABOVE; otherwise BELOW"},
+    {"id":"R-COVERAGE","sourceId":"S-IDENTITIES","expression":"Missing optional values remain null; incomplete observed sums disclose supplied count / row count"},
+    {"id":"R-PEAK","sourceId":"S-IDENTITIES","expression":"Individual peak sum is an envelope; timestamps are not modeled"}
+  ]
+}

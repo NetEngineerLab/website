@@ -1,0 +1,18 @@
+/* Topic directory: token-based, responsive cards shared by English and Chinese routes. */
+.topic-directory main { width:min(calc(100% - 48px),1120px); margin:0 auto; padding:52px 0 80px; }
+.topic-directory .directory-hero { max-width:760px; margin-bottom:36px; }
+.topic-directory .eyebrow { margin:0 0 12px; color:var(--nel-color-primary); font-size:.78rem; font-weight:800; letter-spacing:.12em; }
+.topic-directory h1 { margin:0; color:var(--nel-color-text); font-size:clamp(2.2rem,5vw,3.6rem); letter-spacing:-.045em; line-height:1.08; }
+.topic-directory .directory-lead { margin:18px 0 0; color:var(--nel-color-muted); font-size:1.12rem; line-height:1.7; }
+.topic-directory .topic-group { margin-top:38px; }
+.topic-directory .topic-group h2 { margin:0 0 16px; color:var(--nel-color-text); font-size:1.35rem; }
+.topic-directory .topic-grid { display:grid; grid-template-columns:repeat( auto-fit,minmax(min(100%,270px),1fr)); gap:16px; }
+.topic-directory .topic-card { display:flex; min-height:190px; flex-direction:column; align-items:flex-start; padding:22px; border:1px solid var(--nel-color-border); border-radius:var(--nel-radius-card); background:var(--nel-color-surface); box-shadow:var(--nel-shadow-card); color:var(--nel-color-text); transition:transform .18s ease,border-color .18s ease; }
+.topic-directory .topic-card:hover { transform:translateY(-3px); border-color:var(--nel-color-primary); }
+.topic-directory .topic-card:focus-visible { outline:none; box-shadow:var(--nel-focus-ring),var(--nel-shadow-card); }
+.topic-directory .topic-card .topic-tag { margin-bottom:12px; color:var(--nel-color-primary); font-size:.72rem; font-weight:800; letter-spacing:.09em; text-transform:uppercase; }
+.topic-directory .topic-card strong { font-size:1.12rem; line-height:1.35; }
+.topic-directory .topic-card p { margin:10px 0 16px; color:var(--nel-color-muted); line-height:1.55; }
+.topic-directory .topic-card .topic-open { margin-top:auto; color:var(--nel-color-primary); font-weight:750; }
+@media(max-width:700px){.topic-directory main{width:calc(100% - 28px);padding:34px 0 56px}.topic-directory .topic-grid{grid-template-columns:1fr}.topic-directory .topic-card{min-height:0;padding:20px}}
+@media(prefers-reduced-motion:reduce){.topic-directory .topic-card{transition:none}.topic-directory .topic-card:hover{transform:none}}

@@ -1,0 +1,9 @@
+# Architecture Decision Workshop — local preference method v1
+
+The frozen matrix in engine.js assigns ten equal-weight integer ratings, each 0–4. FitScore=sum/40*100. S-LOCAL-RUBRIC owns every rating and weight; no cited standard endorses these values. Four inventory counts are context-only and contribute zero. A higher score is a preference match, not feasibility, capacity, cost, availability or probability. All top eligible ties remain visible.
+
+Pure-L3 Routed Leaf-Spine has an unmet requirement when within-fabric cross-rack L2 stretch is requested. Its raw score remains visible but it is excluded from recommendation. Counts are aggregate inventory, not VLAN IDs, forwarding-table proof or site allocation. Limits are software resource guards. Servers below racks triggers an unverified-distribution warning; multitenancy with zero VRFs leaves segmentation unresolved.
+
+All migrationDifficulty values are UNASSESSED because existing topology, windows and dependencies were not collected. Candidate-specific considerations are qualitative review prompts. Sources and bilingual claim limits are in ../data/method-registry.json; RFC7938 is informational, Juniper documents EVPN/VXLAN principles, Cisco ACI is one vendor-specific policy/controller example. Retrieved 2026-10-16. No universal architecture thresholds or external normative scores are claimed.
+
+Snapshot schema is version1/tool-bound/input-only, max128KiB UTF8. Integer syntax, exact booleans, enumerations and own keys are validated. Import is atomic, stale operations are canceled by edits/reset/reopen. Save is explicit browser-local only; storage failures are visible. No credentials, live probes or input-derived network analytics. CSV formula prefixes are neutralized and every cell quoted. All four profiles expose conditional strengths, weaknesses, complexity, skills, scalability limits, operational risk and migration considerations.

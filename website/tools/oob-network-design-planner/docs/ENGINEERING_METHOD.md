@@ -1,0 +1,11 @@
+# OOB Network Design Workshop method
+
+Version1.0.0 is an explainable conditional planning model, not topology discovery, a vendor validated design or an optimal architecture. Inputs are fleet-wide integer totals: sites1–10000; each device class0–1000000, total1–4000000; criticalSites0–sites; six exact booleans. Numeric bounds are browser resource guards, not hardware/site engineering thresholds. Integer strings must use plain decimal syntax. Acknowledgments are a unique subset of six fixed checklist IDs.
+
+F-CONSOLE assumes one console connection per listed console-capable device and sums four fleet totals exactly. It remains visible when remote console rollout is not required. No equal site distribution, appliance port size, spare ratio or guaranteed connector compatibility is modeled. Fewer devices than sites produces distribution review, not automatic failure.
+
+R-ISP-CELL/ISP-ONLY/CELL-ONLY/NO-TRANSPORT select reported candidate transport. Flags do not establish carrier/physical diversity, signal or service. Critical coverage requiredSites is the supplied target; verifiedSites and percent stay null, status NOT_VERIFIED or NOT_APPLICABLE for0. dualDc and independentPower flags create review obligations, never redundancy/runtime proof. Review acknowledgments do not alter physical coverage or certify enforcement.
+
+The source/rule ledger at ../data/method-registry.json maps every emitted rule and checklist. Cisco references are vendor high-level principles; this tool does not implement their full architecture or universal numeric requirements. Site allocation, transport reachability, protected remote access, dependencies and vendor constraints must be validated. Local source IDs explicitly distinguish arithmetic assumptions and editorial decisions.
+
+Snapshot input-only JSON is schema/version/tool bounded,128KiB UTF8 maximum; reject unknown/prototype-shaped keys, malformed counts, booleans and acknowledgments. No merge/eval/dynamic untrusted HTML. Results use fixed rule IDs resolved through the ledger. Local save is explicit; storage exceptions visible. Import is atomic and canceled by newer edits/reset/reopen. CSV preserves rule/source IDs and uncertainty, neutralizes spreadsheet-formula text prefixes, and is not a reopen format. No network collection, credentials or input-derived analytics is introduced.

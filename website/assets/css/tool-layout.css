@@ -378,3 +378,12 @@ body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-su
 @media print {
   body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] {background:#fff !important;}
 }
+
+/* PON analysis reading flow: keep long result tables below the settings,
+   rather than reserving an empty column beside the analysis. */
+body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid:has(> .content-section[aria-labelledby="pon-topic-title"]) {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid:has(> .content-section[aria-labelledby="pon-topic-title"]) > .content-section {
+  grid-column: 1 / -1;
+}
