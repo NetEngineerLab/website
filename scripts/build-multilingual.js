@@ -648,7 +648,7 @@ function generateManifests(groups){
 function generateSitemap(groups){
  const lines=['<?xml version="1.0" encoding="UTF-8"?>','<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">'];
  const toolRecords=activeTools.map(tool=>({route:`tools/${tool.id}/`,changefreq:"monthly",priority:"0.9"}));
- const records=[...sitemapConfig.routes,...toolRecords];
+ const records=[...sitemapConfig.routes.filter(record=>record.indexable!==false),...toolRecords];
  const seen=new Set();
  for(const record of records){
   if(seen.has(record.route))throw new Error(`Duplicate sitemap route: ${record.route}`);

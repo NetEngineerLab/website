@@ -145,6 +145,7 @@ function localizedRoute(family,locale,localeConfig){
   if(family.pageType==="home")return fillRoute(strategy.home,values);
   if(family.pageType==="directory"&&family.route==="tools/")return fillRoute(strategy.toolsDirectory,values);
   if(family.pageType==="tool")return fillRoute(strategy.toolPage,values);
+  if(family.pageType==="hub"&&family.route.startsWith("tools/")&&family.route.endsWith("-calculators/"))return fillRoute(strategy.toolPage,{...values,toolSlug:family.route.slice("tools/".length,-1)});
   return fillRoute(strategy.rootPage,values);
 }
 function jsonLdTypes(html){

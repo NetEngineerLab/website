@@ -31,7 +31,10 @@ assert.strictEqual(registry.pages.find(page=>page.familyId==="about"&&page.local
 assert(registry.pages.every(page=>page.title&&page.description&&page.url.startsWith("https://netengineerlab.com/")));
 assert(registry.pages.every(page=>page.canonical===page.url),"each localized page canonical must equal its URL");
 const aclZh=registry.pages.find(page=>page.familyId==="acl-generator-validator"&&page.locale==="zh");
-assert.deepStrictEqual(aclZh.hreflang,{en:"https://netengineerlab.com/tools/acl-generator-validator/","zh-CN":"https://netengineerlab.com/tools/acl-generator-validator/zh/","x-default":"https://netengineerlab.com/tools/acl-generator-validator/"});
+const expectedAclHreflang={en:"https://netengineerlab.com/tools/acl-generator-validator/","zh-CN":"https://netengineerlab.com/tools/acl-generator-validator/zh/",es:"https://netengineerlab.com/tools/acl-generator-validator/es/","x-default":"https://netengineerlab.com/tools/acl-generator-validator/"};
+const assertAclHreflang=value=>assert.deepStrictEqual(value,expectedAclHreflang);
+assertAclHreflang(aclZh.hreflang);
+for(const mutate of [value=>{delete value.es},value=>{value.es="https://netengineerlab.com/tools/acl-generator-validator/wrong/"},value=>{value.fr="https://netengineerlab.com/tools/acl-generator-validator/fr/"}]){const wrong=clone(expectedAclHreflang);mutate(wrong);assert.throws(()=>assertAclHreflang(wrong),assert.AssertionError,"strict locale equality must reject missing, wrong and unexpected locales");}
 
 const sitemap=fs.readFileSync(path.join(root,"website","sitemap.xml"),"utf8");
 const actual=[...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match=>match[1]).sort();
