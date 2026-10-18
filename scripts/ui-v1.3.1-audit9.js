@@ -10,7 +10,8 @@ function walk(d,cb){for(const e of fs.readdirSync(d,{withFileTypes:true})){if(['
 function attr(tag,name){const m=tag.match(new RegExp('\\b'+name+'\\s*=\\s*["\\\']([^"\\\']*)["\\\']','i'));return m?m[1]:'';}
 
 // 1) Tool Detail inventory + structural/runtime checks.
-const toolDirs=fs.readdirSync(TOOLS).filter(name=>!['zh','es'].includes(name)&&fs.statSync(path.join(TOOLS,name)).isDirectory());
+const hubSlugs=new Set(JSON.parse(fs.readFileSync(path.join(WEB,'data/sitemap-routes.json'),'utf8')).routes.filter(record=>record.pageType==='hub').map(record=>String(record.route||'').split('/')[1]).filter(Boolean));
+const toolDirs=fs.readdirSync(TOOLS).filter(name=>!['zh','es'].includes(name)&&!hubSlugs.has(name)&&fs.statSync(path.join(TOOLS,name)).isDirectory());
 const toolPages=[];
 for(const name of toolDirs){
   const dir=path.join(TOOLS,name);

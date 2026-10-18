@@ -2,7 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 const root = path.join(__dirname, '..', 'website', 'tools');
-const ignored = new Set(['es', 'zh']);
+const hubSlugs = new Set(JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'website', 'data', 'sitemap-routes.json'), 'utf8')).routes.filter((record) => record.pageType === 'hub').map((record) => String(record.route || '').split('/')[1]).filter(Boolean));
+const ignored = new Set(['es', 'zh', ...hubSlugs]);
 const toolDirs = fs.readdirSync(root, { withFileTypes: true })
   .filter((e) => e.isDirectory() && !ignored.has(e.name))
   .map((e) => e.name)

@@ -36,8 +36,9 @@ for(const file of htmlFiles){
   if(!has(html,/class=["'][^"']*site-shell-footer\b/i))issues.push(issue("error",r,"FOOTER","Shared site-shell footer missing."));
   if(!has(html,/site-shell\.css\?v=/i))issues.push(issue("error",r,"SHELL_CSS","Versioned shared site-shell.css missing."));
  }
+ const hubSlugs=new Set(JSON.parse(fs.readFileSync(path.join(site,"data/sitemap-routes.json"),"utf8")).routes.filter(record=>record.pageType==="hub").map(record=>String(record.route||"").split("/")[1]).filter(Boolean));
  const toolMatch=r.match(/^website\/tools\/([^/]+)\/(?:([^/]+)\/)?index\.html$/);
- if(toolMatch && !["zh","es"].includes(toolMatch[1])){
+ if(toolMatch && !["zh","es"].includes(toolMatch[1]) && !hubSlugs.has(toolMatch[1])){
   toolPages.push(r);
   if(!has(html,/tool-design-system\.css\?v=/i))issues.push(issue("error",r,"TOOL_DESIGN_CSS","tool-design-system.css missing."));
   if(!has(html,/tool-layout\.css\?v=/i))issues.push(issue("error",r,"TOOL_LAYOUT_CSS","tool-layout.css compliance layer missing or unversioned."));

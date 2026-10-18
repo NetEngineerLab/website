@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-switch-uplink-oversubscription-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-7a2d1d3c810a-f06a943d5ceb";
+const CACHE = "nel-switch-uplink-oversubscription-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-7a2d1d3c810a-efefbf32007c";
 const CORE = [
   "./index.html",
   "./",

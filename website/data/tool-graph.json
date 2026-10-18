@@ -26,7 +26,8 @@
       "related": [
         "optical-power-budget",
         "pon-splitter-loss",
-        "otdr-event"
+        "otdr-event",
+        "fiber-latency-calculator"
       ],
       "workflows": [
         {
@@ -42,6 +43,13 @@
           "total": 4,
           "previous": "otdr-event",
           "next": "optical-power-budget"
+        },
+        {
+          "workflowId": "fiber-latency-planning",
+          "step": 1,
+          "total": 2,
+          "previous": null,
+          "next": "fiber-latency-calculator"
         }
       ],
       "primaryWorkflow": "optical-link-design",
@@ -72,7 +80,8 @@
       "related": [
         "fiber-loss",
         "pon-distance",
-        "onu-rx-power"
+        "onu-rx-power",
+        "fiber-latency-calculator"
       ],
       "workflows": [
         {
@@ -1548,6 +1557,46 @@
       "primaryWorkflow": "engineering-deliverable-assembly",
       "previous": "network-risk-hidden-hazard-assessment-generator",
       "next": null
+    },
+    "fiber-latency-calculator": {
+      "id": "fiber-latency-calculator",
+      "routes": {
+        "en": "/tools/fiber-latency-calculator/",
+        "zh-CN": "/tools/fiber-latency-calculator/zh/",
+        "es": "/tools/fiber-latency-calculator/es/"
+      },
+      "translations": {
+        "en": {
+          "name": "Fiber Latency Calculator",
+          "description": "Calculate one-way and round-trip fiber latency from distance, group index, equipment and serialization delay."
+        },
+        "zh": {
+          "name": "光纤时延计算器",
+          "description": "根据距离、群折射率、设备时延和串行化时延计算光纤单向时延与往返 RTT。"
+        },
+        "es": {
+          "name": "Calculadora de latencia de fibra",
+          "description": "Calcula la latencia de ida y el RTT a partir de distancia, índice de grupo, equipos y serialización."
+        }
+      },
+      "related": [
+        "fiber-loss",
+        "optical-power-budget",
+        "otdr-event",
+        "bandwidth-calculator"
+      ],
+      "workflows": [
+        {
+          "workflowId": "fiber-latency-planning",
+          "step": 2,
+          "total": 2,
+          "previous": "fiber-loss",
+          "next": null
+        }
+      ],
+      "primaryWorkflow": "fiber-latency-planning",
+      "previous": "fiber-loss",
+      "next": null
     }
   },
   "workflows": {
@@ -2422,6 +2471,46 @@
             },
             "zh": {
               "action": "将导入结果汇总为工程交付文档"
+            }
+          }
+        }
+      ]
+    },
+    "fiber-latency-planning": {
+      "id": "fiber-latency-planning",
+      "domain": "optical",
+      "translations": {
+        "en": {
+          "name": "Fiber Latency Planning Workflow",
+          "description": "Confirm the route length and loss assumptions, then estimate one-way delay and round-trip time."
+        },
+        "zh": {
+          "name": "光纤时延规划工作流",
+          "description": "先确认路由长度与损耗假设，再估算单向时延和往返时间。"
+        }
+      },
+      "steps": [
+        {
+          "order": 1,
+          "toolId": "fiber-loss",
+          "translations": {
+            "en": {
+              "action": "Confirm route length and loss assumptions"
+            },
+            "zh": {
+              "action": "确认路由长度与损耗假设"
+            }
+          }
+        },
+        {
+          "order": 2,
+          "toolId": "fiber-latency-calculator",
+          "translations": {
+            "en": {
+              "action": "Estimate one-way delay and RTT"
+            },
+            "zh": {
+              "action": "估算单向时延与往返 RTT"
             }
           }
         }

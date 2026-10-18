@@ -1,0 +1,67 @@
+"use strict";
+const CACHE = "nel-fiber-latency-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-7a2d1d3c810a-5b18aa2943ee";
+const CORE = [
+  "./index.html",
+  "./",
+  "./zh/",
+  "./offline.html",
+  "./manifest.webmanifest",
+  "./css/style.css?v=29262603c7f6",
+  "./js/app.js?v=bc01d21e9fba",
+  "./js/engine.js",
+  "./images/logo.svg",
+  "../../data/locales.js?v=909e05076a50",
+  "../../data/site-config.js?v=b5072ad7fa47",
+  "../../assets/css/locale-menu.css?v=7804394246fb",
+  "../../assets/css/design-tokens.css?v=10e842cd32cf",
+  "../../assets/css/site-shell.css?v=c6e622c573c4",
+  "../../assets/css/tool-design-system.css?v=8c488ab6e2be",
+  "../../assets/css/tool-workflow.css?v=66c8998b2681",
+  "../../assets/js/analytics.js?v=1156b7864023",
+  "../../assets/js/adsense.js?v=f075c80ccc75",
+  "../../assets/js/site.js?v=f05b0a51ccda",
+  "../../assets/js/tool-integration.js?v=05f7934f4687",
+  "../../assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b",
+  "../../assets/js/rules-engine/normalize.js?v=9e2cb44bca10",
+  "../../assets/js/rules-engine/evidence.js?v=275bb87b037a",
+  "../../assets/js/rules-engine/evaluate.js?v=fdd7e0e551ef",
+  "../../assets/js/rules-engine/score.js?v=fce2240d4bb7",
+  "../../assets/js/rules-engine/report.js?v=01f2524dcdac",
+  "../../assets/generated/rules-engine/rules-bundle.9d06acb2a0ff.js?v=9d06acb2a0ff",
+  "./zh/index.html",
+  "./manifest-zh.webmanifest",
+  "./es/index.html",
+  "./manifest-es.webmanifest"
+];
+self.addEventListener("install", (event) => {
+  event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)));
+  self.skipWaiting();
+});
+self.addEventListener("activate", (event) => {
+  event.waitUntil(caches.keys().then((keys) => Promise.all(
+    keys.filter((key) => key.startsWith("nel-fiber-loss-") && key !== CACHE).map((key) => caches.delete(key))
+  )));
+  self.clients.claim();
+});
+self.addEventListener("fetch", (event) => {
+  const request = event.request;
+  const url = new URL(request.url);
+  if (request.method !== "GET" || url.origin !== location.origin) return;
+  if (request.mode === "navigate") {
+    event.respondWith(fetch(request).then((response) => {
+      const copy = response.clone();
+      caches.open(CACHE).then((cache) => cache.put(request, copy));
+      return response;
+    }).catch(() => caches.match(request, { ignoreSearch: true }).then(
+      (cached) => cached || caches.match("./offline.html")
+    )));
+    return;
+  }
+  event.respondWith(caches.match(request, { ignoreSearch: true }).then((cached) => cached || fetch(request).then((response) => {
+    if (response.ok) {
+      const copy = response.clone();
+      caches.open(CACHE).then((cache) => cache.put(request, copy));
+    }
+    return response;
+  })));
+});
