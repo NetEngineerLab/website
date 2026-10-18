@@ -7,6 +7,7 @@ const{execFileSync}=require("child_process");
 const{stableFileHash,stableHash}=require("./stable-text-hash");
 const{rulesRuntimeAssets}=require("./rules-runtime-assets");
 const{precachePathIssues,parsePrecacheArrayLiteral}=require("./service-worker-precache");
+const{repairJsonLdHtml}=require("./lib/jsonld-localize");
 
 const packageRoot=path.resolve(__dirname,"..");
 const siteRoot=path.join(packageRoot,"website");
@@ -801,7 +802,7 @@ function build(){
   const locale=localeMap.get(record.info.localeId);
   const group=groups.get(record.info.route);
   if(!locale||!group)continue;
-  let html=fs.readFileSync(record.file,"utf8");
+  let html=repairJsonLdHtml(fs.readFileSync(record.file,"utf8"));
   html=repairMisnestedRelativeUrls(html,record.rel,record.info);
   html=repairAppBase(html,record.info);
   if(record.info.shellOnly){
