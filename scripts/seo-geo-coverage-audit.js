@@ -48,7 +48,10 @@ const intentByTool=Object.freeze({
   "transmission-ring-optimization-risk-analyzer":"planning",
   "olt-dual-uplink-transport-mse-planner":"planning",
   "data-center-network-convergence-fabric-capacity-planner":"planning",
-  "network-risk-hidden-hazard-assessment-generator":"planning"
+  "network-risk-hidden-hazard-assessment-generator":"planning",
+  "ospf-cost-calculator":"calculation",
+  "network-capacity-forecast-planner":"planning",
+  "engineering-report-batch-export-center":"planning"
 });
 const intentLabels=Object.freeze({
   calculation:{en:"calculation",zh:"计算",es:"cálculo"},

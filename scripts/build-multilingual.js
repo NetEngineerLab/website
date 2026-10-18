@@ -926,6 +926,7 @@ function build(){
   html=repairMisnestedRelativeUrls(html,record.rel,record.info);
   html=repairAppBase(html,record.info);
   if(record.info.shellOnly){
+   html=ensureAsset(html,record.rel,"assets/css/locale-menu.css","css");
    html=ensureAsset(html,record.rel,"assets/css/design-tokens.css","css");
    html=ensureAsset(html,record.rel,"assets/css/site-shell.css","css");
    html=versionExistingAsset(html,"assets/css/guide.css");
@@ -943,12 +944,25 @@ function build(){
    }
    shell=finishSeo(shell,record,locale);
    shell=removeHeadLinks(shell);
+   shell=removeNelMeta(shell);
    const canonical=localeConfig.siteUrl+urlForRoute(record.info.route,locale);
    const available=activeLocales.filter(item=>group.has(item.id));
-   const seo=[`<link rel="canonical" href="${escapeHtml(canonical)}">`];
+   const seo=[
+    `<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V${localeConfig.version}">`,
+    `<meta name="nel-locale" content="${escapeHtml(locale.id)}">`,
+    `<meta name="nel-route" content="${escapeHtml(record.info.route)}">`,
+    `<meta name="nel-available-locales" content="${escapeHtml(available.map(item=>item.id).join(","))}">`,
+    `<link rel="canonical" href="${escapeHtml(canonical)}">`
+   ];
    seo.push(...available.map(item=>`<link rel="alternate" hreflang="${escapeHtml(item.hreflang)}" href="${escapeHtml(localeConfig.siteUrl+urlForRoute(record.info.route,item))}">`));
    if(group.has(defaultLocale.id))seo.push(`<link rel="alternate" hreflang="x-default" href="${escapeHtml(localeConfig.siteUrl+urlForRoute(record.info.route,defaultLocale))}">`);
    shell=shell.replace(/<\/head>/i,seo.join("\n")+"\n</head>");
+   shell=ensureAsset(shell,record.rel,"assets/css/locale-menu.css","css");
+   shell=ensureAsset(shell,record.rel,"data/locales.js","js");
+   shell=ensureAsset(shell,record.rel,"data/site-config.js","js");
+   shell=ensureAsset(shell,record.rel,"assets/js/analytics.js","js");
+   shell=ensureAsset(shell,record.rel,"assets/js/adsense.js","js");
+   shell=ensureAsset(shell,record.rel,"assets/js/site.js","js");
    shell=shell.replace(/<head>([\s\S]*?)<\/head>/i,(whole,body)=>`<head>${body.replace(/(?:\r?\n[ \t]*){3,}/g,"\n\n")}</head>`);
    writeFileWithRetry(record.file,shell);
    continue;

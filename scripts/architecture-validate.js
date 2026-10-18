@@ -200,6 +200,15 @@ function publicUrl(route,locale){
 // imply that every page family is translated into that locale.
 const pageRegistry=loadPageRegistry();
 const expectedSitemap=new Set(pageRegistry.pages.filter(page=>page.sitemapEligible).map(page=>page.url));
+// Published planners stay outside the Tool Registry (workflow coverage is required
+// there) but remain indexable sitemap URLs. See supplemental-tool-slugs.js.
+const supplementalSlugs=require("./lib/supplemental-tool-slugs");
+for(const slug of supplementalSlugs){
+  for(const locale of activeLocales){
+    const folder=locale.folder?`${locale.folder}/`:"";
+    if(fs.existsSync(path.join(site,"tools",slug,folder,"index.html")))expectedSitemap.add(publicUrl(`tools/${slug}/`,locale));
+  }
+}
 const sitemapText=read(path.join(site,"sitemap.xml"));
 const actualSitemap=[...sitemapText.matchAll(/<loc>(.*?)<\/loc>/g)].map(match=>match[1]);
 const actualSet=new Set(actualSitemap);

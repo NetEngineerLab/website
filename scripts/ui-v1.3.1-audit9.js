@@ -8,10 +8,22 @@ function rel(f){return path.relative(ROOT,f).replace(/\\/g,'/');}
 function read(f){return fs.readFileSync(f,'utf8');}
 function walk(d,cb){for(const e of fs.readdirSync(d,{withFileTypes:true})){if(['node_modules','.git'].includes(e.name))continue;const f=path.join(d,e.name);e.isDirectory()?walk(f,cb):cb(f);}}
 function attr(tag,name){const m=tag.match(new RegExp('\\b'+name+'\\s*=\\s*["\\\']([^"\\\']*)["\\\']','i'));return m?m[1]:'';}
+function decodeEntities(value){
+  return String(value||'')
+    .replace(/&nbsp;/gi,' ')
+    .replace(/&amp;/gi,'&')
+    .replace(/&lt;/gi,'<')
+    .replace(/&gt;/gi,'>')
+    .replace(/&quot;/gi,'"')
+    .replace(/&#39;|&apos;/gi,"'")
+    .replace(/&#(\d+);/g,(_,n)=>String.fromCodePoint(Number(n)))
+    .replace(/&#x([0-9a-f]+);/gi,(_,n)=>String.fromCodePoint(parseInt(n,16)));
+}
 
 // 1) Tool Detail inventory + structural/runtime checks.
 const hubSlugs=new Set(JSON.parse(fs.readFileSync(path.join(WEB,'data/sitemap-routes.json'),'utf8')).routes.filter(record=>record.pageType==='hub').map(record=>String(record.route||'').split('/')[1]).filter(Boolean));
-const toolDirs=fs.readdirSync(TOOLS).filter(name=>!['zh','es'].includes(name)&&!hubSlugs.has(name)&&fs.statSync(path.join(TOOLS,name)).isDirectory());
+const supplemental=require('./lib/supplemental-tool-slugs');
+const toolDirs=fs.readdirSync(TOOLS).filter(name=>!['zh','es'].includes(name)&&!hubSlugs.has(name)&&!supplemental.has(name)&&fs.statSync(path.join(TOOLS,name)).isDirectory());
 const toolPages=[];
 for(const name of toolDirs){
   const dir=path.join(TOOLS,name);
@@ -76,7 +88,7 @@ for(const f of [path.join(WEB,'404.html'),path.join(WEB,'zh','404.html'),path.jo
 for(const f of publicFiles){
   const s=read(f);
   if(/<\/(?:meta|link)>/i.test(s))errors.push(`${rel(f)}: invalid </meta> or </link>`);
-  const ids=new Map();for(const m of s.matchAll(/\bid=["']([^"']+)["']/g))ids.set(m[1],(ids.get(m[1])||0)+1);
+  const ids=new Map();for(const m of s.matchAll(/(?:^|[^-\w])id=["']([^"']+)["']/g))ids.set(m[1],(ids.get(m[1])||0)+1);
   for(const [id,n] of ids)if(n>1)errors.push(`${rel(f)}: duplicate id ${id} x${n}`);
   for(const m of s.matchAll(/\b(?:href|src)=["']([^"']+)["']/g)){
     const v=m[1];if(/^(?:https?:|mailto:|tel:|data:|javascript:|\/\/|#)/i.test(v))continue;
@@ -91,8 +103,8 @@ for(const f of publicFiles){
   const desc=attr(descTag,'content');
   const ogTitleTag=(s.match(/<meta\b[^>]*\bproperty=["']og:title["'][^>]*>/i)||[])[0]||'';
   const ogDescTag=(s.match(/<meta\b[^>]*\bproperty=["']og:description["'][^>]*>/i)||[])[0]||'';
-  if(title&&attr(ogTitleTag,'content')!==title)errors.push(`${rel(f)}: og:title differs from localized <title>`);
-  if(desc&&attr(ogDescTag,'content')!==desc)errors.push(`${rel(f)}: og:description differs from localized meta description`);
+  if(title&&decodeEntities(attr(ogTitleTag,'content'))!==decodeEntities(title))errors.push(`${rel(f)}: og:title differs from localized <title>`);
+  if(desc&&decodeEntities(attr(ogDescTag,'content'))!==decodeEntities(desc))errors.push(`${rel(f)}: og:description differs from localized meta description`);
 }
 
 // 4) Active locale menu must not leak English secondary labels into zh/es UI.

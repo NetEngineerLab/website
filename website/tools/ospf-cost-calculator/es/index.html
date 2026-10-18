@@ -59,7 +59,7 @@
   <span aria-hidden="true">/</span>
   <a class="tool-return-link" href="../../es/">Herramientas</a>
   <span aria-hidden="true">/</span>
-  <span aria-current="page">OSPF Cost Calculator</span>
+  <span aria-current="page">Calculadora de coste OSPF</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END --><section class="hero nel-tool-hero"><div class="hero-inner"><p class="eyebrow">HERRAMIENTA DE INGENIERÍA DE ENRUTAMIENTO</p><h1>Calculadora de coste OSPF</h1><p>Calcula métricas de interfaz a partir del ancho de banda de referencia, compara costes de ruta e identifica candidatos de múltiples caminos de igual coste. Todos los cálculos se ejecutan en local.</p><div class="hero-tags"><span>OSPF</span><span>Métricas de interfaz</span><span>Comparación de rutas</span><span>ECMP</span></div></div></section><main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator"><section class="input-panel card nel-tool-input"><h2>Entradas</h2><p class="note">Introduzca una interfaz por línea: <code>nombre, ancho de banda en Mbps, métrica manual opcional, disabled opcional</code>.</p><div class="field"><label for="reference">Ancho de banda de referencia (Mbps)</label><input id="reference" type="number" value="100000" min="1"></div><div class="field"><label for="mode">Modo de redondeo</label><select id="mode"><option value="ceil">Techo (habitual en Cisco/FRR)</option><option value="floor">Suelo</option><option value="round">Entero más próximo</option></select></div><div class="field"><label for="interfaces">Interfaces</label><textarea id="interfaces">Gi0/0, 1000
 Gi0/1, 10000

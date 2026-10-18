@@ -1,11 +1,11 @@
-"use strict";const CACHE = "nel-telecom-rectifier-dc-power-sizing-locale-v1.9.9-04-p0-p1-correctness-consent-offline-62c6ee4784c0-4564ce8538f5";
+"use strict";const CACHE = "nel-telecom-rectifier-dc-power-sizing-locale-v1.9.9-04-p0-p1-correctness-consent-offline-62c6ee4784c0-eb21481c0a36";
 const CORE = [
   "./",
   "./index.html",
   "./zh/",
   "./offline.html",
   "./manifest.webmanifest",
-  "./css/style.css?v=8033e7e400d3",
+  "./css/style.css?v=c62ad952a953",
   "./js/engine.js?v=3.0.0",
   "./js/app.js?v=14395e70e069",
   "./js/pwa.js",

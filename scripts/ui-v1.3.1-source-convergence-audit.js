@@ -8,9 +8,10 @@ const FORBIDDEN=['breadcrumbs','card','panel','input-panel','result-panel','cont
 const errors=[]; const pageRows=[]; const tools=new Set();
 function read(p){return fs.readFileSync(p,'utf8')}
 function esc(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}
+const supplemental=require('./lib/supplemental-tool-slugs');
 for(const name of fs.readdirSync(toolsRoot)){
   const dir=path.join(toolsRoot,name);
-  if(!fs.existsSync(dir)||!fs.statSync(dir).isDirectory()||name==='es')continue;
+  if(!fs.existsSync(dir)||!fs.statSync(dir).isDirectory()||name==='es'||supplemental.has(name))continue;
   for(const rel of ['index.html',path.join('zh','index.html'),path.join('es','index.html')]){
     const file=path.join(dir,rel); if(!fs.existsSync(file))continue;
     const html=read(file); if(!html.includes('nel-tool-detail-page'))continue;

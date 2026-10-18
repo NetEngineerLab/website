@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-01T16:43:32.989Z",
+  "generatedAt": "2026-10-18T16:53:23.998Z",
   "methodology": {
     "scope": "Active localized tool pages configured by locales.json and tools-catalog.json; partial locale rollouts are supported",
     "meaning": "Rule-based content-gap priority; not a ranking, traffic, or conversion forecast",
@@ -17,20 +17,20 @@
     ]
   },
   "summary": {
-    "activeTools": 37,
-    "localePages": 84,
+    "activeTools": 41,
+    "localePages": 123,
     "priorityCounts": {
-      "high": 6,
+      "high": 9,
       "medium": 4,
-      "maintain": 27
+      "maintain": 28
     }
   },
   "nextBatch": [
     "poe-power-budget-calculator",
     "wireless-link-budget-calculator",
     "vlan-ip-capacity-planner",
-    "pue-data-center-energy-efficiency",
-    "subnet-calculator"
+    "ospf-cost-calculator",
+    "engineering-report-batch-export-center"
   ],
   "tools": [
     {
@@ -56,8 +56,8 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 6022,
-          "sectionHeadings": 14,
+          "visibleCharacters": 7066,
+          "sectionHeadings": 17,
           "longTailQuestions": [
             "How many PoE cameras can a 120 W switch support?",
             "Does cable length change the PoE budget?",
@@ -75,12 +75,12 @@
             "https://www.flukenetworks.com/blog/cabling-chronicles/bundle-or-not-bundle"
           ],
           "externalReferenceCount": 5,
-          "internalLinkCount": 5,
+          "internalLinkCount": 7,
           "lastReviewedAt": "2026-08-31",
           "reviewMarker": true
         },
         "zh": {
-          "visibleCharacters": 2206,
+          "visibleCharacters": 2226,
           "sectionHeadings": 14,
           "longTailQuestions": [
             "120 W PoE交换机能带多少摄像头？",
@@ -99,19 +99,19 @@
             "https://www.flukenetworks.com/blog/cabling-chronicles/bundle-or-not-bundle"
           ],
           "externalReferenceCount": 5,
-          "internalLinkCount": 5,
+          "internalLinkCount": 6,
           "lastReviewedAt": "2026-08-31",
           "reviewMarker": true
         },
         "es": {
-          "visibleCharacters": 2913,
+          "visibleCharacters": 2974,
           "sectionHeadings": 7,
           "longTailQuestions": [],
           "faqCount": 0,
           "faqSchema": false,
           "externalReferences": [],
           "externalReferenceCount": 0,
-          "internalLinkCount": 3,
+          "internalLinkCount": 4,
           "lastReviewedAt": null,
           "reviewMarker": false
         }
@@ -148,8 +148,8 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 5552,
-          "sectionHeadings": 14,
+          "visibleCharacters": 6578,
+          "sectionHeadings": 17,
           "longTailQuestions": [
             "How much fade margin does a point-to-point wireless link need?",
             "Does additional loss automatically calculate rain, oxygen or foliage attenuation?",
@@ -166,7 +166,7 @@
             "https://www.itu.int/rec/R-REC-P.526-16-202511-I/en"
           ],
           "externalReferenceCount": 4,
-          "internalLinkCount": 3,
+          "internalLinkCount": 4,
           "lastReviewedAt": "2026-09-01",
           "reviewMarker": true
         },
@@ -238,7 +238,7 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 4666,
+          "visibleCharacters": 4720,
           "sectionHeadings": 15,
           "longTailQuestions": [
             "How many hosts should be placed in one VLAN?",
@@ -255,12 +255,12 @@
             "https://www.rfc-editor.org/rfc/rfc3021.html"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 4,
+          "internalLinkCount": 5,
           "lastReviewedAt": null,
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 1744,
+          "visibleCharacters": 1761,
           "sectionHeadings": 15,
           "longTailQuestions": [
             "一个VLAN放多少台主机合适？",
@@ -277,19 +277,19 @@
             "https://www.rfc-editor.org/rfc/rfc3021.html"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 4,
+          "internalLinkCount": 5,
           "lastReviewedAt": null,
           "reviewMarker": false
         },
         "es": {
-          "visibleCharacters": 2899,
+          "visibleCharacters": 2963,
           "sectionHeadings": 11,
           "longTailQuestions": [],
           "faqCount": 0,
           "faqSchema": false,
           "externalReferences": [],
           "externalReferenceCount": 0,
-          "internalLinkCount": 4,
+          "internalLinkCount": 5,
           "lastReviewedAt": null,
           "reviewMarker": false
         }
@@ -300,6 +300,159 @@
         "5 FAQ(s) below the five-question target",
         "FAQPage missing in at least one locale",
         "3 authoritative reference(s) below the three-source target",
+        "visible review/update marker missing"
+      ]
+    },
+    {
+      "id": "ospf-cost-calculator",
+      "catalogOrder": 38,
+      "category": "network",
+      "searchIntent": {
+        "id": "calculation",
+        "en": "calculation",
+        "zh": "计算",
+        "es": "cálculo"
+      },
+      "targetTopic": {
+        "en": "OSPF Cost Calculator",
+        "zh": "OSPF Cost计算器",
+        "es": "Calculadora de coste OSPF"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": null,
+        "zh": null,
+        "es": null
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 2372,
+          "sectionHeadings": 8,
+          "longTailQuestions": [
+            "How is OSPF cost calculated?"
+          ],
+          "faqCount": 1,
+          "faqSchema": true,
+          "externalReferences": [],
+          "externalReferenceCount": 0,
+          "internalLinkCount": 5,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        },
+        "zh": {
+          "visibleCharacters": 972,
+          "sectionHeadings": 8,
+          "longTailQuestions": [
+            "OSPF Cost如何计算？"
+          ],
+          "faqCount": 1,
+          "faqSchema": true,
+          "externalReferences": [],
+          "externalReferenceCount": 0,
+          "internalLinkCount": 5,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        },
+        "es": {
+          "visibleCharacters": 3169,
+          "sectionHeadings": 8,
+          "longTailQuestions": [
+            "¿Cómo se calcula el coste OSPF?",
+            "¿Qué datos debo introducir?",
+            "¿El resultado sustituye la validación de campo?"
+          ],
+          "faqCount": 3,
+          "faqSchema": true,
+          "externalReferences": [],
+          "externalReferenceCount": 0,
+          "internalLinkCount": 5,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        }
+      },
+      "score": 60,
+      "priority": "high",
+      "gaps": [
+        "4 FAQ(s) below the five-question target",
+        "3 authoritative reference(s) below the three-source target",
+        "thin visible explanatory content in at least one locale",
+        "visible review/update marker missing"
+      ]
+    },
+    {
+      "id": "engineering-report-batch-export-center",
+      "catalogOrder": 40,
+      "category": "operations",
+      "searchIntent": {
+        "id": "planning",
+        "en": "planning",
+        "zh": "规划",
+        "es": "planificación"
+      },
+      "targetTopic": {
+        "en": "Engineering Report & Batch Export Center",
+        "zh": "工程报告与批量导出中心",
+        "es": "Centro de exportación por lotes de informes de ingeniería"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": null,
+        "zh": null,
+        "es": null
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 2434,
+          "sectionHeadings": 8,
+          "longTailQuestions": [
+            "Are uploaded files sent to a server?",
+            "Does the center execute a generated MOP?"
+          ],
+          "faqCount": 2,
+          "faqSchema": true,
+          "externalReferences": [],
+          "externalReferenceCount": 0,
+          "internalLinkCount": 3,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        },
+        "zh": {
+          "visibleCharacters": 859,
+          "sectionHeadings": 8,
+          "longTailQuestions": [
+            "上传的文件会发送到服务器吗？",
+            "中心会执行生成的 MOP 吗？"
+          ],
+          "faqCount": 2,
+          "faqSchema": true,
+          "externalReferences": [],
+          "externalReferenceCount": 0,
+          "internalLinkCount": 3,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        },
+        "es": {
+          "visibleCharacters": 2975,
+          "sectionHeadings": 8,
+          "longTailQuestions": [
+            "¿Se envían los archivos cargados a un servidor?",
+            "¿El centro ejecuta un MOP generado?"
+          ],
+          "faqCount": 2,
+          "faqSchema": true,
+          "externalReferences": [],
+          "externalReferenceCount": 0,
+          "internalLinkCount": 3,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        }
+      },
+      "score": 52,
+      "priority": "high",
+      "gaps": [
+        "3 FAQ(s) below the five-question target",
+        "3 authoritative reference(s) below the three-source target",
+        "thin visible explanatory content in at least one locale",
         "visible review/update marker missing"
       ]
     },
@@ -326,8 +479,8 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 3792,
-          "sectionHeadings": 16,
+          "visibleCharacters": 4848,
+          "sectionHeadings": 19,
           "longTailQuestions": [
             "What measurement boundary should I use for PUE?",
             "Can instantaneous power be used for PUE?",
@@ -343,12 +496,12 @@
             "https://www.thegreengrid.org/system/files/store/WUE_v1.pdf"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 3,
+          "internalLinkCount": 6,
           "lastReviewedAt": "2026-09-10",
           "reviewMarker": true
         },
         "zh": {
-          "visibleCharacters": 1468,
+          "visibleCharacters": 1488,
           "sectionHeadings": 16,
           "longTailQuestions": [
             "PUE 应该采用什么计量边界？",
@@ -365,12 +518,12 @@
             "https://www.thegreengrid.org/system/files/store/WUE_v1.pdf"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 3,
+          "internalLinkCount": 4,
           "lastReviewedAt": "2026-09-10",
           "reviewMarker": true
         },
         "es": {
-          "visibleCharacters": 4072,
+          "visibleCharacters": 4153,
           "sectionHeadings": 14,
           "longTailQuestions": [
             "¿Qué límite de medida debo usar para PUE?",
@@ -381,7 +534,86 @@
           "faqSchema": true,
           "externalReferences": [],
           "externalReferenceCount": 0,
-          "internalLinkCount": 3,
+          "internalLinkCount": 4,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        }
+      },
+      "score": 38,
+      "priority": "high",
+      "gaps": [
+        "2 FAQ(s) below the five-question target",
+        "3 authoritative reference(s) below the three-source target",
+        "visible review/update marker missing"
+      ]
+    },
+    {
+      "id": "network-capacity-forecast-planner",
+      "catalogOrder": 39,
+      "category": "network",
+      "searchIntent": {
+        "id": "planning",
+        "en": "planning",
+        "zh": "规划",
+        "es": "planificación"
+      },
+      "targetTopic": {
+        "en": "Network Capacity Forecast Planner",
+        "zh": "网络容量增长预测规划器",
+        "es": "Planificador de previsión de capacidad de red"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": null,
+        "zh": null,
+        "es": null
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 5217,
+          "sectionHeadings": 16,
+          "longTailQuestions": [
+            "How should I choose the annual growth rate?",
+            "Does the expansion month guarantee there will be no congestion?",
+            "Why can required capacity exceed installed capacity well before the horizon?"
+          ],
+          "faqCount": 3,
+          "faqSchema": true,
+          "externalReferences": [],
+          "externalReferenceCount": 0,
+          "internalLinkCount": 7,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        },
+        "zh": {
+          "visibleCharacters": 1308,
+          "sectionHeadings": 13,
+          "longTailQuestions": [
+            "年增长率如何确定？",
+            "预测月份能保证届时不会拥塞吗？",
+            "为什么所需容量高于已安装容量？"
+          ],
+          "faqCount": 3,
+          "faqSchema": true,
+          "externalReferences": [],
+          "externalReferenceCount": 0,
+          "internalLinkCount": 6,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        },
+        "es": {
+          "visibleCharacters": 4682,
+          "sectionHeadings": 13,
+          "longTailQuestions": [
+            "¿Cómo debo elegir la tasa de crecimiento anual?",
+            "¿El mes de ampliación garantiza que no habrá congestión?",
+            "¿Por qué la capacidad requerida puede superar la instalada mucho antes del horizonte?"
+          ],
+          "faqCount": 3,
+          "faqSchema": true,
+          "externalReferences": [],
+          "externalReferenceCount": 0,
+          "internalLinkCount": 6,
           "lastReviewedAt": null,
           "reviewMarker": false
         }
@@ -417,8 +649,8 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 3738,
-          "sectionHeadings": 12,
+          "visibleCharacters": 4897,
+          "sectionHeadings": 15,
           "longTailQuestions": [
             "How many usable hosts are in a /24?",
             "Why does /31 show two usable addresses?",
@@ -437,13 +669,13 @@
             "https://www.rfc-editor.org/rfc/rfc4193"
           ],
           "externalReferenceCount": 5,
-          "internalLinkCount": 3,
+          "internalLinkCount": 6,
           "lastReviewedAt": null,
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 1579,
-          "sectionHeadings": 12,
+          "visibleCharacters": 1614,
+          "sectionHeadings": 13,
           "longTailQuestions": [
             "/24有多少可用主机？",
             "为什么/31显示2个可用地址？",
@@ -462,12 +694,12 @@
             "https://www.rfc-editor.org/rfc/rfc4193"
           ],
           "externalReferenceCount": 5,
-          "internalLinkCount": 3,
+          "internalLinkCount": 5,
           "lastReviewedAt": null,
           "reviewMarker": false
         },
         "es": {
-          "visibleCharacters": 3767,
+          "visibleCharacters": 3849,
           "sectionHeadings": 12,
           "longTailQuestions": [
             "¿Qué significa /24?",
@@ -479,7 +711,7 @@
           "faqSchema": true,
           "externalReferences": [],
           "externalReferenceCount": 0,
-          "internalLinkCount": 3,
+          "internalLinkCount": 4,
           "lastReviewedAt": null,
           "reviewMarker": false
         }
@@ -515,8 +747,8 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 4792,
-          "sectionHeadings": 12,
+          "visibleCharacters": 5786,
+          "sectionHeadings": 15,
           "longTailQuestions": [
             "Why does 100 Mbps not transfer 100 MB every second?",
             "Should file size use GB or GiB?",
@@ -533,13 +765,13 @@
             "https://www.rfc-editor.org/rfc/rfc6349"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 3,
+          "internalLinkCount": 6,
           "lastReviewedAt": null,
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 1912,
-          "sectionHeadings": 12,
+          "visibleCharacters": 1944,
+          "sectionHeadings": 13,
           "longTailQuestions": [
             "为什么100 Mbps不能每秒传100 MB？",
             "文件大小应该用GB还是GiB？",
@@ -556,12 +788,12 @@
             "https://www.rfc-editor.org/rfc/rfc6349"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 3,
+          "internalLinkCount": 5,
           "lastReviewedAt": null,
           "reviewMarker": false
         },
         "es": {
-          "visibleCharacters": 5362,
+          "visibleCharacters": 5563,
           "sectionHeadings": 12,
           "longTailQuestions": [
             "¿Debo usar Mbps o MB/s?",
@@ -573,7 +805,7 @@
           "faqSchema": true,
           "externalReferences": [],
           "externalReferenceCount": 0,
-          "internalLinkCount": 3,
+          "internalLinkCount": 4,
           "lastReviewedAt": null,
           "reviewMarker": false
         }
@@ -609,8 +841,8 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 4962,
-          "sectionHeadings": 12,
+          "visibleCharacters": 5849,
+          "sectionHeadings": 15,
           "longTailQuestions": [
             "What is the difference between physical loss and design loss?",
             "How should I choose 1310, 1490 or 1550 nm?",
@@ -627,13 +859,13 @@
             "https://webstore.iec.ch/en/publication/77134"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 3,
+          "internalLinkCount": 7,
           "lastReviewedAt": "2026-08-31",
           "reviewMarker": true
         },
         "zh": {
-          "visibleCharacters": 2000,
-          "sectionHeadings": 12,
+          "visibleCharacters": 2379,
+          "sectionHeadings": 15,
           "longTailQuestions": [
             "总设计损耗和物理链路损耗有什么区别？",
             "1310 nm、1490 nm、1550 nm该如何选择？",
@@ -650,12 +882,12 @@
             "https://webstore.iec.ch/en/publication/77134"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 3,
+          "internalLinkCount": 7,
           "lastReviewedAt": "2026-08-31",
           "reviewMarker": true
         },
         "es": {
-          "visibleCharacters": 5319,
+          "visibleCharacters": 5502,
           "sectionHeadings": 12,
           "longTailQuestions": [
             "¿Cuál es la diferencia entre pérdida física y pérdida de diseño?",
@@ -668,7 +900,7 @@
           "faqSchema": true,
           "externalReferences": [],
           "externalReferenceCount": 0,
-          "internalLinkCount": 3,
+          "internalLinkCount": 5,
           "lastReviewedAt": null,
           "reviewMarker": false
         }
@@ -703,8 +935,8 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 6416,
-          "sectionHeadings": 14,
+          "visibleCharacters": 7652,
+          "sectionHeadings": 15,
           "longTailQuestions": [
             "Why does the default change to GPON C+ when 1:8 × 1:8 is retained?",
             "How does a power budget differ from fiber loss?",
@@ -722,13 +954,13 @@
             "https://webstore.iec.ch/en/publication/77134"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 4,
+          "internalLinkCount": 7,
           "lastReviewedAt": null,
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 2589,
-          "sectionHeadings": 14,
+          "visibleCharacters": 3075,
+          "sectionHeadings": 15,
           "longTailQuestions": [
             "为什么保留1:8×1:8后默认改为GPON C+？",
             "光功率预算和光纤链路损耗有什么区别？",
@@ -746,12 +978,12 @@
             "https://webstore.iec.ch/en/publication/77134"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 4,
+          "internalLinkCount": 7,
           "lastReviewedAt": "2026-08-31",
           "reviewMarker": true
         },
         "es": {
-          "visibleCharacters": 6035,
+          "visibleCharacters": 6218,
           "sectionHeadings": 13,
           "longTailQuestions": [
             "¿Por qué usar la potencia mínima de transmisión?",
@@ -764,7 +996,7 @@
           "faqSchema": true,
           "externalReferences": [],
           "externalReferenceCount": 0,
-          "internalLinkCount": 4,
+          "internalLinkCount": 6,
           "lastReviewedAt": null,
           "reviewMarker": false
         }
@@ -799,8 +1031,8 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 6586,
-          "sectionHeadings": 16,
+          "visibleCharacters": 7538,
+          "sectionHeadings": 19,
           "longTailQuestions": [
             "Why is GPON C+ the default for 1:8 × 1:8?",
             "Which has lower loss, one-stage or two-stage splitting?",
@@ -818,13 +1050,13 @@
             "https://www.itu.int/rec/T-REC-G.652-202408-I/en"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 3,
+          "internalLinkCount": 6,
           "lastReviewedAt": null,
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 2726,
-          "sectionHeadings": 16,
+          "visibleCharacters": 3107,
+          "sectionHeadings": 19,
           "longTailQuestions": [
             "为什么1:8 × 1:8默认采用GPON C+？",
             "一级分光和二级分光哪个损耗更小？",
@@ -842,12 +1074,12 @@
             "https://www.itu.int/rec/T-REC-G.652-202408-I/en"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 3,
+          "internalLinkCount": 6,
           "lastReviewedAt": "2026-08-31",
           "reviewMarker": true
         },
         "es": {
-          "visibleCharacters": 6279,
+          "visibleCharacters": 6539,
           "sectionHeadings": 16,
           "longTailQuestions": [
             "¿Por qué GPON C+ es una referencia habitual para 1:8 × 1:8?",
@@ -860,7 +1092,7 @@
           "faqSchema": true,
           "externalReferences": [],
           "externalReferenceCount": 0,
-          "internalLinkCount": 3,
+          "internalLinkCount": 4,
           "lastReviewedAt": null,
           "reviewMarker": false
         }
@@ -895,8 +1127,8 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 3811,
-          "sectionHeadings": 10,
+          "visibleCharacters": 4926,
+          "sectionHeadings": 13,
           "longTailQuestions": [
             "Why size both kW and kVA?",
             "Why add headroom?",
@@ -911,12 +1143,12 @@
             "https://www.se.com/us/en/work/products/tools/ups-selector/"
           ],
           "externalReferenceCount": 2,
-          "internalLinkCount": 5,
+          "internalLinkCount": 8,
           "lastReviewedAt": "2026-09-10",
           "reviewMarker": true
         },
         "zh": {
-          "visibleCharacters": 1436,
+          "visibleCharacters": 1456,
           "sectionHeadings": 10,
           "longTailQuestions": [
             "为什么要同时核算 kW 和 kVA？",
@@ -932,12 +1164,12 @@
             "https://www.se.com/us/en/work/products/tools/ups-selector/"
           ],
           "externalReferenceCount": 2,
-          "internalLinkCount": 5,
+          "internalLinkCount": 6,
           "lastReviewedAt": "2026-09-10",
           "reviewMarker": true
         },
         "es": {
-          "visibleCharacters": 3816,
+          "visibleCharacters": 3877,
           "sectionHeadings": 8,
           "longTailQuestions": [
             "¿Por qué dimensionar tanto kW como kVA?",
@@ -950,7 +1182,7 @@
           "faqSchema": true,
           "externalReferences": [],
           "externalReferenceCount": 0,
-          "internalLinkCount": 5,
+          "internalLinkCount": 6,
           "lastReviewedAt": null,
           "reviewMarker": false
         }
@@ -974,16 +1206,18 @@
       },
       "targetTopic": {
         "en": "Data Center Cooling Load & Precision AC Capacity Calculator",
-        "zh": "数据中心制冷负荷与精密空调容量计算器"
+        "zh": "数据中心制冷负荷与精密空调容量计算器",
+        "es": "Calculadora de carga térmica y capacidad de climatización del centro de datos"
       },
       "contentOwner": "NetEngineerLab Editorial",
       "lastReviewedAt": {
         "en": "2026-09-10",
-        "zh": "2026-09-10"
+        "zh": "2026-09-10",
+        "es": null
       },
       "locales": {
         "en": {
-          "visibleCharacters": 4278,
+          "visibleCharacters": 4337,
           "sectionHeadings": 11,
           "longTailQuestions": [
             "Why is IT power approximately equal to IT heat?",
@@ -999,12 +1233,12 @@
             "https://www.ashrae.org/technical-resources/bookstore/datacom-series"
           ],
           "externalReferenceCount": 2,
-          "internalLinkCount": 7,
+          "internalLinkCount": 8,
           "lastReviewedAt": "2026-09-10",
           "reviewMarker": true
         },
         "zh": {
-          "visibleCharacters": 1520,
+          "visibleCharacters": 1540,
           "sectionHeadings": 11,
           "longTailQuestions": [
             "为什么 IT 功耗可以近似看作 IT 发热量？",
@@ -1020,15 +1254,37 @@
             "https://www.ashrae.org/technical-resources/bookstore/datacom-series"
           ],
           "externalReferenceCount": 2,
-          "internalLinkCount": 7,
+          "internalLinkCount": 8,
           "lastReviewedAt": "2026-09-10",
           "reviewMarker": true
+        },
+        "es": {
+          "visibleCharacters": 5395,
+          "sectionHeadings": 11,
+          "longTailQuestions": [
+            "¿Por qué la potencia IT es aproximadamente igual al calor IT?",
+            "¿Deben añadirse las pérdidas del UPS y de la PDU?",
+            "¿Qué es la refrigeración N+1?",
+            "¿Incluye la humedad y la carga latente?",
+            "¿Puede sustituir a una herramienta de selección de aire acondicionado de precisión?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.se.com/us/en/download/document/SPD_NRAN-5TE6HE_EN/",
+            "https://www.ashrae.org/technical-resources/bookstore/datacom-series"
+          ],
+          "externalReferenceCount": 2,
+          "internalLinkCount": 8,
+          "lastReviewedAt": null,
+          "reviewMarker": false
         }
       },
-      "score": 6,
+      "score": 10,
       "priority": "maintain",
       "gaps": [
-        "1 authoritative reference(s) below the three-source target"
+        "1 authoritative reference(s) below the three-source target",
+        "visible review/update marker missing"
       ]
     },
     {
@@ -1043,16 +1299,18 @@
       },
       "targetTopic": {
         "en": "DC Plant Efficiency & Rectifier Load-Sharing Analyzer",
-        "zh": "直流电源系统效率与整流模块均流分析器"
+        "zh": "直流电源系统效率与整流模块均流分析器",
+        "es": "Analizador de eficiencia y reparto de carga del sistema DC"
       },
       "contentOwner": "NetEngineerLab Editorial",
       "lastReviewedAt": {
         "en": "2026-09-10",
-        "zh": "2026-09-10"
+        "zh": "2026-09-10",
+        "es": null
       },
       "locales": {
         "en": {
-          "visibleCharacters": 5066,
+          "visibleCharacters": 5125,
           "sectionHeadings": 11,
           "longTailQuestions": [
             "What does rectifier load sharing mean?",
@@ -1068,12 +1326,12 @@
             "https://webstore.iec.ch/en/publication/6027"
           ],
           "externalReferenceCount": 2,
-          "internalLinkCount": 4,
+          "internalLinkCount": 5,
           "lastReviewedAt": "2026-09-10",
           "reviewMarker": true
         },
         "zh": {
-          "visibleCharacters": 1629,
+          "visibleCharacters": 1649,
           "sectionHeadings": 11,
           "longTailQuestions": [
             "什么是整流模块均流？",
@@ -1089,15 +1347,37 @@
             "https://webstore.iec.ch/en/publication/6027"
           ],
           "externalReferenceCount": 2,
-          "internalLinkCount": 4,
+          "internalLinkCount": 5,
           "lastReviewedAt": "2026-09-10",
           "reviewMarker": true
+        },
+        "es": {
+          "visibleCharacters": 6207,
+          "sectionHeadings": 11,
+          "longTailQuestions": [
+            "¿Qué significa el reparto de carga de los rectificadores?",
+            "¿Cómo se calcula la desviación de reparto de carga?",
+            "¿Una corriente baja demuestra que un módulo rectificador está averiado?",
+            "¿Cómo se calcula la eficiencia del sistema DC?",
+            "¿Qué significa el número recomendado de módulos en línea?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.etsi.org/deliver/etsi_en/300100_300199/30013202/",
+            "https://webstore.iec.ch/en/publication/6027"
+          ],
+          "externalReferenceCount": 2,
+          "internalLinkCount": 5,
+          "lastReviewedAt": null,
+          "reviewMarker": false
         }
       },
-      "score": 6,
+      "score": 10,
       "priority": "maintain",
       "gaps": [
-        "1 authoritative reference(s) below the three-source target"
+        "1 authoritative reference(s) below the three-source target",
+        "visible review/update marker missing"
       ]
     },
     {
@@ -1112,16 +1392,18 @@
       },
       "targetTopic": {
         "en": "Data Center Airflow & Hot-Aisle Containment Planner",
-        "zh": "数据中心气流组织与冷热通道规划工具"
+        "zh": "数据中心气流组织与冷热通道规划工具",
+        "es": "Planificador de flujo de aire y contención de pasillo caliente"
       },
       "contentOwner": "NetEngineerLab Editorial",
       "lastReviewedAt": {
         "en": "2026-09-10",
-        "zh": "2026-09-10"
+        "zh": "2026-09-10",
+        "es": null
       },
       "locales": {
         "en": {
-          "visibleCharacters": 4932,
+          "visibleCharacters": 4991,
           "sectionHeadings": 11,
           "longTailQuestions": [
             "Why is cooling kW alone not enough to size CRAH/CRAC?",
@@ -1137,12 +1419,12 @@
             "https://www.se.com/us/en/download/document/SPD_NRAN-5TE6HE_EN/"
           ],
           "externalReferenceCount": 2,
-          "internalLinkCount": 4,
+          "internalLinkCount": 5,
           "lastReviewedAt": "2026-09-10",
           "reviewMarker": true
         },
         "zh": {
-          "visibleCharacters": 1708,
+          "visibleCharacters": 1728,
           "sectionHeadings": 11,
           "longTailQuestions": [
             "为什么不能只按制冷量选CRAH/CRAC？",
@@ -1158,15 +1440,37 @@
             "https://www.se.com/us/en/download/document/SPD_NRAN-5TE6HE_EN/"
           ],
           "externalReferenceCount": 2,
-          "internalLinkCount": 4,
+          "internalLinkCount": 5,
           "lastReviewedAt": "2026-09-10",
           "reviewMarker": true
+        },
+        "es": {
+          "visibleCharacters": 6020,
+          "sectionHeadings": 11,
+          "longTailQuestions": [
+            "¿Por qué los kW de refrigeración no bastan para dimensionar CRAH/CRAC?",
+            "¿Cuál es la diferencia entre bypass y recirculación?",
+            "¿La contención de pasillo reduce siempre el caudal necesario?",
+            "¿Puede esta herramienta sustituir al CFD?",
+            "¿Qué incluye la comprobación N+1?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.ashrae.org/technical-resources/bookstore/datacom-series",
+            "https://www.se.com/us/en/download/document/SPD_NRAN-5TE6HE_EN/"
+          ],
+          "externalReferenceCount": 2,
+          "internalLinkCount": 5,
+          "lastReviewedAt": null,
+          "reviewMarker": false
         }
       },
-      "score": 6,
+      "score": 10,
       "priority": "maintain",
       "gaps": [
-        "1 authoritative reference(s) below the three-source target"
+        "1 authoritative reference(s) below the three-source target",
+        "visible review/update marker missing"
       ]
     },
     {
@@ -1181,16 +1485,18 @@
       },
       "targetTopic": {
         "en": "Generator + UPS Transfer & Ride-Through Planner",
-        "zh": "油机 + UPS 切换与不间断供电保障规划器"
+        "zh": "油机 + UPS 切换与不间断供电保障规划器",
+        "es": "Planificador de transferencia generador + UPS y ride-through"
       },
       "contentOwner": "NetEngineerLab Editorial",
       "lastReviewedAt": {
         "en": "2026-09-10",
-        "zh": "2026-09-10"
+        "zh": "2026-09-10",
+        "es": null
       },
       "locales": {
         "en": {
-          "visibleCharacters": 4646,
+          "visibleCharacters": 4705,
           "sectionHeadings": 13,
           "longTailQuestions": [
             "Why is UPS runtime entered at the current critical load?",
@@ -1206,12 +1512,12 @@
             "https://www.cummins.com/generators"
           ],
           "externalReferenceCount": 2,
-          "internalLinkCount": 5,
+          "internalLinkCount": 6,
           "lastReviewedAt": "2026-09-10",
           "reviewMarker": true
         },
         "zh": {
-          "visibleCharacters": 1644,
+          "visibleCharacters": 1664,
           "sectionHeadings": 13,
           "longTailQuestions": [
             "为什么直接输入当前关键负载下的UPS续航时间？",
@@ -1227,15 +1533,37 @@
             "https://www.cummins.com/generators"
           ],
           "externalReferenceCount": 2,
-          "internalLinkCount": 5,
+          "internalLinkCount": 6,
           "lastReviewedAt": "2026-09-10",
           "reviewMarker": true
+        },
+        "es": {
+          "visibleCharacters": 6041,
+          "sectionHeadings": 13,
+          "longTailQuestions": [
+            "¿Por qué se introduce la autonomía del UPS con la carga crítica actual?",
+            "¿Qué incluye la ventana de transferencia?",
+            "¿Por qué añadir una reserva de continuidad?",
+            "¿Superar los kW del generador garantiza que la transferencia tendrá éxito?",
+            "¿Puede sustituir una prueba de puesta en servicio de ATS/UPS/generador?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.se.com/us/en/work/solutions/for-business/data-centers-and-networks/",
+            "https://www.cummins.com/generators"
+          ],
+          "externalReferenceCount": 2,
+          "internalLinkCount": 6,
+          "lastReviewedAt": null,
+          "reviewMarker": false
         }
       },
-      "score": 6,
+      "score": 10,
       "priority": "maintain",
       "gaps": [
-        "1 authoritative reference(s) below the three-source target"
+        "1 authoritative reference(s) below the three-source target",
+        "visible review/update marker missing"
       ]
     },
     {
@@ -1250,17 +1578,19 @@
       },
       "targetTopic": {
         "en": "ONU RX Power Diagnosis",
-        "zh": "ONU接收光功率诊断"
+        "zh": "ONU接收光功率诊断",
+        "es": "Herramienta de diagnóstico de potencia RX de ONU"
       },
       "contentOwner": "NetEngineerLab Editorial",
       "lastReviewedAt": {
         "en": null,
-        "zh": "2026-08-31"
+        "zh": "2026-08-31",
+        "es": null
       },
       "locales": {
         "en": {
-          "visibleCharacters": 5764,
-          "sectionHeadings": 13,
+          "visibleCharacters": 5979,
+          "sectionHeadings": 14,
           "longTailQuestions": [
             "What ONU receive power is considered normal?",
             "Should a link close to sensitivity be maintained even when service works?",
@@ -1277,13 +1607,13 @@
             "https://www.itu.int/rec/T-REC-G.650.3/en"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 3,
+          "internalLinkCount": 5,
           "lastReviewedAt": null,
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 2147,
-          "sectionHeadings": 13,
+          "visibleCharacters": 2216,
+          "sectionHeadings": 14,
           "longTailQuestions": [
             "ONU接收光功率多少才算正常？",
             "光功率接近灵敏度但业务正常，需要处理吗？",
@@ -1300,9 +1630,32 @@
             "https://www.itu.int/rec/T-REC-G.650.3/en"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 3,
+          "internalLinkCount": 5,
           "lastReviewedAt": "2026-08-31",
           "reviewMarker": true
+        },
+        "es": {
+          "visibleCharacters": 6826,
+          "sectionHeadings": 13,
+          "longTailQuestions": [
+            "¿Qué potencia de recepción de ONU se considera normal?",
+            "¿Debe mantenerse un enlace próximo a la sensibilidad aunque el servicio funcione?",
+            "¿Qué indica una gran diferencia entre la potencia medida y la esperada?",
+            "¿Qué problemas puede causar una potencia de recepción excesiva?",
+            "¿Una posible ausencia de señal significa siempre una rotura de fibra?",
+            "¿Por qué se pueden editar todos los valores predeterminados?"
+          ],
+          "faqCount": 6,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.984.2/en",
+            "https://www.itu.int/rec/T-REC-G.671/en",
+            "https://www.itu.int/rec/T-REC-G.650.3/en"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 4,
+          "lastReviewedAt": null,
+          "reviewMarker": false
         }
       },
       "score": 4,
@@ -1323,17 +1676,19 @@
       },
       "targetTopic": {
         "en": "PON Maximum Distance Calculator",
-        "zh": "PON最大传输距离计算器"
+        "zh": "PON最大传输距离计算器",
+        "es": "Calculadora de distancia máxima PON"
       },
       "contentOwner": "NetEngineerLab Editorial",
       "lastReviewedAt": {
         "en": null,
-        "zh": "2026-08-31"
+        "zh": "2026-08-31",
+        "es": null
       },
       "locales": {
         "en": {
-          "visibleCharacters": 6026,
-          "sectionHeadings": 13,
+          "visibleCharacters": 6241,
+          "sectionHeadings": 14,
           "longTailQuestions": [
             "Why can the optical budget reach 30 km while the result shows only 20 km?",
             "Why does a primary 1:8 and secondary 1:8 produce a total ratio of 1:64?",
@@ -1350,13 +1705,13 @@
             "https://www.itu.int/rec/T-REC-G.650.3/en"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 4,
+          "internalLinkCount": 6,
           "lastReviewedAt": null,
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 2310,
-          "sectionHeadings": 13,
+          "visibleCharacters": 2379,
+          "sectionHeadings": 14,
           "longTailQuestions": [
             "为什么光预算能到30 km，结果却只显示20 km？",
             "一级1:8加二级1:8为什么总分光比是1:64？",
@@ -1373,9 +1728,130 @@
             "https://www.itu.int/rec/T-REC-G.650.3/en"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 4,
+          "internalLinkCount": 6,
           "lastReviewedAt": "2026-08-31",
           "reviewMarker": true
+        },
+        "es": {
+          "visibleCharacters": 7240,
+          "sectionHeadings": 13,
+          "longTailQuestions": [
+            "¿Por qué el presupuesto óptico puede alcanzar 30 km y el resultado mostrar solo 20 km?",
+            "¿Por qué un primario 1:8 y un secundario 1:8 producen una relación total de 1:64?",
+            "¿La distancia máxima del presupuesto óptico es la misma que la distancia construible?",
+            "¿Qué significa «solo alcance físico» para la distancia planificada?",
+            "¿Cuánto margen de ingeniería debe configurarse?",
+            "¿El cálculo de distancia máxima puede sustituir la prueba OTDR?"
+          ],
+          "faqCount": 6,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.984.2/en",
+            "https://www.itu.int/rec/T-REC-G.671/en",
+            "https://www.itu.int/rec/T-REC-G.650.3/en"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 5,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        }
+      },
+      "score": 4,
+      "priority": "maintain",
+      "gaps": [
+        "visible review/update marker missing"
+      ]
+    },
+    {
+      "id": "otdr-event",
+      "catalogOrder": 6,
+      "category": "maintenance",
+      "searchIntent": {
+        "id": "diagnosis",
+        "en": "diagnosis",
+        "zh": "故障诊断",
+        "es": "diagnóstico"
+      },
+      "targetTopic": {
+        "en": "OTDR Event Analyzer",
+        "zh": "OTDR事件分析工具",
+        "es": "Analizador de eventos OTDR"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-09-01",
+        "zh": "2026-09-01",
+        "es": null
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 5214,
+          "sectionHeadings": 17,
+          "longTailQuestions": [
+            "Are OTDR event thresholds universal?",
+            "Why compare 1310 nm and 1550 nm?",
+            "What is a ghost event?",
+            "Can this tool parse SOR files?",
+            "Why can nearby events be unreliable?",
+            "Should results replace field judgment?"
+          ],
+          "faqCount": 6,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.650.1/en",
+            "https://www.itu.int/rec/T-REC-G.650.3/en",
+            "https://www.itu.int/rec/T-REC-G.671/en"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 5,
+          "lastReviewedAt": "2026-09-01",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 1980,
+          "sectionHeadings": 17,
+          "longTailQuestions": [
+            "OTDR事件阈值是否是统一标准？",
+            "为什么要比较1310 nm和1550 nm？",
+            "什么是鬼影事件？",
+            "本工具能直接解析SOR文件吗？",
+            "为什么距离很近的事件可能不准确？",
+            "分析结果能否替代现场判断？"
+          ],
+          "faqCount": 6,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.650.1/en",
+            "https://www.itu.int/rec/T-REC-G.650.3/en",
+            "https://www.itu.int/rec/T-REC-G.671/en"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 5,
+          "lastReviewedAt": "2026-09-01",
+          "reviewMarker": true
+        },
+        "es": {
+          "visibleCharacters": 6048,
+          "sectionHeadings": 16,
+          "longTailQuestions": [
+            "¿Los umbrales de eventos OTDR son universales?",
+            "¿Por qué comparar 1310 nm y 1550 nm?",
+            "¿Qué es un evento fantasma?",
+            "¿Esta herramienta puede analizar archivos SOR?",
+            "¿Por qué los eventos cercanos pueden ser poco fiables?",
+            "¿Los resultados deben sustituir el criterio de campo?"
+          ],
+          "faqCount": 6,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.650.1/en",
+            "https://www.itu.int/rec/T-REC-G.650.3/en",
+            "https://www.itu.int/rec/T-REC-G.671/en"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 4,
+          "lastReviewedAt": null,
+          "reviewMarker": false
         }
       },
       "score": 4,
@@ -1396,16 +1872,18 @@
       },
       "targetTopic": {
         "en": "MTU & MSS Calculator",
-        "zh": "MTU与MSS计算器"
+        "zh": "MTU与MSS计算器",
+        "es": "Calculadora de MTU y MSS"
       },
       "contentOwner": "NetEngineerLab Editorial",
       "lastReviewedAt": {
         "en": null,
-        "zh": null
+        "zh": null,
+        "es": null
       },
       "locales": {
         "en": {
-          "visibleCharacters": 4656,
+          "visibleCharacters": 4710,
           "sectionHeadings": 16,
           "longTailQuestions": [
             "Why is PPPoE MTU usually 1492?",
@@ -1430,12 +1908,12 @@
             "https://www.wireguard.com/protocol/"
           ],
           "externalReferenceCount": 10,
-          "internalLinkCount": 4,
+          "internalLinkCount": 5,
           "lastReviewedAt": null,
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 2148,
+          "visibleCharacters": 2165,
           "sectionHeadings": 16,
           "longTailQuestions": [
             "为什么PPPoE通常是1492？",
@@ -1460,7 +1938,37 @@
             "https://www.wireguard.com/protocol/"
           ],
           "externalReferenceCount": 10,
-          "internalLinkCount": 4,
+          "internalLinkCount": 5,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        },
+        "es": {
+          "visibleCharacters": 5518,
+          "sectionHeadings": 16,
+          "longTailQuestions": [
+            "¿Por qué la MTU de PPPoE suele ser 1492?",
+            "¿VLAN siempre debe reducir la MTU IP en 4 bytes?",
+            "¿Por qué los valores de IPsec son estimaciones?",
+            "¿Cuál es el MSS TCP correcto para una MTU IPv6 de 1500?",
+            "¿Ping puede demostrar la MTU completa de la ruta?",
+            "¿Qué significa una MTU IPv6 inferior a 1280?"
+          ],
+          "faqCount": 6,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.rfc-editor.org/rfc/rfc2516",
+            "https://www.rfc-editor.org/rfc/rfc6691",
+            "https://www.rfc-editor.org/rfc/rfc2784",
+            "https://www.rfc-editor.org/rfc/rfc2890",
+            "https://www.rfc-editor.org/rfc/rfc7348",
+            "https://www.rfc-editor.org/rfc/rfc3032",
+            "https://www.rfc-editor.org/rfc/rfc4303",
+            "https://www.rfc-editor.org/rfc/rfc8200",
+            "https://www.rfc-editor.org/rfc/rfc8201",
+            "https://www.wireguard.com/protocol/"
+          ],
+          "externalReferenceCount": 10,
+          "internalLinkCount": 5,
           "lastReviewedAt": null,
           "reviewMarker": false
         }
@@ -1483,16 +1991,18 @@
       },
       "targetTopic": {
         "en": "-48V Telecom Battery Runtime Calculator",
-        "zh": "-48V通信机房蓄电池续航计算器"
+        "zh": "-48V通信机房蓄电池续航计算器",
+        "es": "Calculadora de autonomía de batería telecom -48 V"
       },
       "contentOwner": "NetEngineerLab Editorial",
       "lastReviewedAt": {
         "en": null,
-        "zh": null
+        "zh": null,
+        "es": null
       },
       "locales": {
         "en": {
-          "visibleCharacters": 5301,
+          "visibleCharacters": 5360,
           "sectionHeadings": 16,
           "longTailQuestions": [
             "Why is there no power-factor input?",
@@ -1509,12 +2019,12 @@
             "https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=54059"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 4,
+          "internalLinkCount": 5,
           "lastReviewedAt": null,
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 1942,
+          "visibleCharacters": 1962,
           "sectionHeadings": 16,
           "longTailQuestions": [
             "为什么没有功率因数输入？",
@@ -1531,7 +2041,29 @@
             "https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=54059"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 4,
+          "internalLinkCount": 5,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        },
+        "es": {
+          "visibleCharacters": 6753,
+          "sectionHeadings": 16,
+          "longTailQuestions": [
+            "¿Por qué no hay entrada de factor de potencia?",
+            "¿Por qué no basta con 48 V × Ah ÷ vatios?",
+            "¿Por qué el preajuste usa 24 elementos de 2 V?",
+            "¿Qué exponente de Peukert debe usarse?",
+            "¿Puede usarse el resultado directamente para la compra?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://standards.ieee.org/ieee/485/6726/",
+            "https://webstore.iec.ch/en/publication/3851",
+            "https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=54059"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 5,
           "lastReviewedAt": null,
           "reviewMarker": false
         }
@@ -1554,16 +2086,18 @@
       },
       "targetTopic": {
         "en": "IPv6 & NAT Planning Calculator",
-        "zh": "IPv6与NAT规划计算器"
+        "zh": "IPv6与NAT规划计算器",
+        "es": "Calculadora de planificación IPv6 y NAT"
       },
       "contentOwner": "NetEngineerLab Editorial",
       "lastReviewedAt": {
         "en": null,
-        "zh": null
+        "zh": null,
+        "es": null
       },
       "locales": {
         "en": {
-          "visibleCharacters": 6876,
+          "visibleCharacters": 6877,
           "sectionHeadings": 18,
           "longTailQuestions": [
             "Why are IPv6 subnet address counts so large?",
@@ -1590,7 +2124,7 @@
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 2854,
+          "visibleCharacters": 2855,
           "sectionHeadings": 18,
           "longTailQuestions": [
             "为什么IPv6子网地址数量非常大？",
@@ -1598,6 +2132,33 @@
             "TCP和UDP容量能直接相加吗？",
             "确定性端口块越小越好吗？",
             "知名NAT64前缀能映射私网IPv4吗？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.rfc-editor.org/rfc/rfc4291.html",
+            "https://www.rfc-editor.org/rfc/rfc5952.html",
+            "https://www.rfc-editor.org/rfc/rfc6177.html",
+            "https://www.rfc-editor.org/rfc/rfc6598.html",
+            "https://www.rfc-editor.org/rfc/rfc6888.html",
+            "https://www.rfc-editor.org/rfc/rfc6052.html",
+            "https://www.rfc-editor.org/rfc/rfc6147.html",
+            "https://www.rfc-editor.org/rfc/rfc8215.html"
+          ],
+          "externalReferenceCount": 8,
+          "internalLinkCount": 3,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        },
+        "es": {
+          "visibleCharacters": 8252,
+          "sectionHeadings": 18,
+          "longTailQuestions": [
+            "¿Por qué son tan grandes los conteos de direcciones de subred IPv6?",
+            "¿Por qué se puede editar el rango de puertos?",
+            "¿Se pueden sumar las capacidades TCP y UDP?",
+            "¿Un bloque determinista más pequeño siempre es mejor?",
+            "¿El prefijo conocido NAT64 puede representar IPv4 privada?"
           ],
           "faqCount": 5,
           "faqSchema": true,
@@ -1635,12 +2196,14 @@
       },
       "targetTopic": {
         "en": "Wi-Fi Coverage & Capacity Planner",
-        "zh": "Wi-Fi覆盖与容量规划计算器"
+        "zh": "Wi-Fi覆盖与容量规划计算器",
+        "es": "Planificador de cobertura y capacidad Wi‑Fi"
       },
       "contentOwner": "NetEngineerLab Editorial",
       "lastReviewedAt": {
         "en": null,
-        "zh": null
+        "zh": null,
+        "es": null
       },
       "locales": {
         "en": {
@@ -1686,6 +2249,126 @@
           "internalLinkCount": 3,
           "lastReviewedAt": null,
           "reviewMarker": false
+        },
+        "es": {
+          "visibleCharacters": 8289,
+          "sectionHeadings": 20,
+          "longTailQuestions": [
+            "¿Por qué usar el radio menor de subida/bajada?",
+            "¿Por qué no usar directamente la tasa PHY para la capacidad?",
+            "¿Son fiables las pérdidas de pared predeterminadas?",
+            "¿Wi‑Fi 7 debe usar 320 MHz?",
+            "¿Por qué se puede editar el inventario de canales?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://grouper.ieee.org/groups/802/11/overview.html",
+            "https://www.cisco.com/c/en/us/products/collateral/wireless/aironet-1850-series-access-points/datasheet-c78-734256.html",
+            "https://www.cisco.com/c/en/us/td/docs/wireless/controller/technotes/8-7/b_mesh_87/b_mesh_87_chapter_011.html"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 3,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        }
+      },
+      "score": 4,
+      "priority": "maintain",
+      "gaps": [
+        "visible review/update marker missing"
+      ]
+    },
+    {
+      "id": "sfp-qsfp-compatibility-calculator",
+      "catalogOrder": 14,
+      "category": "optical",
+      "searchIntent": {
+        "id": "validation",
+        "en": "validation",
+        "zh": "验证",
+        "es": "validación"
+      },
+      "targetTopic": {
+        "en": "SFP & QSFP Compatibility Checker",
+        "zh": "SFP与QSFP光模块兼容性查询",
+        "es": "Comprobador de compatibilidad SFP y QSFP"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-08-31",
+        "zh": "2026-08-31",
+        "es": null
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 6210,
+          "sectionHeadings": 14,
+          "longTailQuestions": [
+            "Can I connect 10G SFP+ to 25G SFP28?",
+            "Can single-mode and multimode optical modules communicate?",
+            "Why is receiver overload checked?",
+            "Does PASS guarantee a branded switch accepts the module?",
+            "Can I install a QSFP28 module in a QSFP-DD port?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://members.snia.org/document/dl/25916",
+            "https://www.snia.org/node/19611",
+            "https://www.cisco.com/c/en/us/products/collateral/interfaces-modules/gigabit-ethernet-gbic-sfp-modules/datasheet-c78-366584.html",
+            "https://www.juniper.net/documentation/us/en/hardware/800g-optics-cables-guide/optics/topics/concept/800g-optics-faqs.html"
+          ],
+          "externalReferenceCount": 4,
+          "internalLinkCount": 7,
+          "lastReviewedAt": "2026-08-31",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 2347,
+          "sectionHeadings": 14,
+          "longTailQuestions": [
+            "10G SFP+可以连接25G SFP28吗？",
+            "单模和多模光模块可以互通吗？",
+            "为什么还要检查接收过载？",
+            "显示“通过”是否代表交换机一定识别模块？",
+            "QSFP-DD端口可以安装QSFP28模块吗？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://members.snia.org/document/dl/25916",
+            "https://www.snia.org/node/19611",
+            "https://www.cisco.com/c/en/us/products/collateral/interfaces-modules/gigabit-ethernet-gbic-sfp-modules/datasheet-c78-366584.html",
+            "https://www.juniper.net/documentation/us/en/hardware/800g-optics-cables-guide/optics/topics/concept/800g-optics-faqs.html"
+          ],
+          "externalReferenceCount": 4,
+          "internalLinkCount": 7,
+          "lastReviewedAt": "2026-08-31",
+          "reviewMarker": true
+        },
+        "es": {
+          "visibleCharacters": 7322,
+          "sectionHeadings": 14,
+          "longTailQuestions": [
+            "¿Puedo conectar un SFP+ 10G a un SFP28 25G?",
+            "¿Pueden comunicarse módulos monomodo y multimodo?",
+            "¿Por qué se comprueba la sobrecarga del receptor?",
+            "¿PASS garantiza que un switch de marca acepte el módulo?",
+            "¿Puedo instalar un módulo QSFP28 en un puerto QSFP-DD?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://members.snia.org/document/dl/25916",
+            "https://www.snia.org/node/19611",
+            "https://www.cisco.com/c/en/us/products/collateral/interfaces-modules/gigabit-ethernet-gbic-sfp-modules/datasheet-c78-366584.html",
+            "https://www.juniper.net/documentation/us/en/hardware/800g-optics-cables-guide/optics/topics/concept/800g-optics-faqs.html"
+          ],
+          "externalReferenceCount": 4,
+          "internalLinkCount": 7,
+          "lastReviewedAt": null,
+          "reviewMarker": false
         }
       },
       "score": 4,
@@ -1706,16 +2389,18 @@
       },
       "targetTopic": {
         "en": "Ethernet Cable PoE Voltage Drop Calculator",
-        "zh": "网线PoE压降计算器"
+        "zh": "网线PoE压降计算器",
+        "es": "Calculadora de caída de tensión PoE en cable Ethernet"
       },
       "contentOwner": "NetEngineerLab Editorial",
       "lastReviewedAt": {
         "en": null,
-        "zh": null
+        "zh": null,
+        "es": null
       },
       "locales": {
         "en": {
-          "visibleCharacters": 5292,
+          "visibleCharacters": 5351,
           "sectionHeadings": 14,
           "longTailQuestions": [
             "What cable length should I enter for a PoE camera or access point?",
@@ -1733,12 +2418,12 @@
             "https://www.flukenetworks.com/blog/cabling-chronicles/upgrading-four-pair-poe-what-you-need-know"
           ],
           "externalReferenceCount": 4,
-          "internalLinkCount": 3,
+          "internalLinkCount": 4,
           "lastReviewedAt": null,
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 1938,
+          "visibleCharacters": 1958,
           "sectionHeadings": 14,
           "longTailQuestions": [
             "PoE 摄像头或无线 AP 应输入多长的网线距离？",
@@ -1756,7 +2441,30 @@
             "https://www.flukenetworks.com/blog/cabling-chronicles/upgrading-four-pair-poe-what-you-need-know"
           ],
           "externalReferenceCount": 4,
-          "internalLinkCount": 3,
+          "internalLinkCount": 4,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        },
+        "es": {
+          "visibleCharacters": 5942,
+          "sectionHeadings": 14,
+          "longTailQuestions": [
+            "¿Qué longitud de cable debo introducir para una cámara PoE o un punto de acceso?",
+            "¿Cómo cambian la caída de tensión el PoE de dos y cuatro pares?",
+            "¿La temperatura del cable es igual a la temperatura ambiente?",
+            "¿Un resultado estacionario correcto garantiza que arranque el dispositivo PoE?",
+            "¿Qué significan aquí la potencia del dispositivo y la eficiencia de conversión?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.ieee802.org/3/bt/",
+            "https://ethernetalliance.org/wp-content/uploads/2020/02/EthernetAlliance_Gen2PoECertProgram_techbrief-FINAL-19DEC19.pdf",
+            "https://www.ieee802.org/3/bt/public/may16/stover_02_0516_rev002.pdf",
+            "https://www.flukenetworks.com/blog/cabling-chronicles/upgrading-four-pair-poe-what-you-need-know"
+          ],
+          "externalReferenceCount": 4,
+          "internalLinkCount": 4,
           "lastReviewedAt": null,
           "reviewMarker": false
         }
@@ -1779,16 +2487,18 @@
       },
       "targetTopic": {
         "en": "Network Rack Power & Cooling Calculator",
-        "zh": "网络机柜功耗与制冷量计算器"
+        "zh": "网络机柜功耗与制冷量计算器",
+        "es": "Calculadora de potencia y refrigeración de rack de red"
       },
       "contentOwner": "NetEngineerLab Editorial",
       "lastReviewedAt": {
         "en": null,
-        "zh": null
+        "zh": null,
+        "es": null
       },
       "locales": {
         "en": {
-          "visibleCharacters": 5675,
+          "visibleCharacters": 5734,
           "sectionHeadings": 13,
           "longTailQuestions": [
             "Should rack sizing use nameplate power or measured power?",
@@ -1806,12 +2516,12 @@
             "https://www.thegreengrid.org/resources/glossary?combine=pue"
           ],
           "externalReferenceCount": 4,
-          "internalLinkCount": 4,
+          "internalLinkCount": 5,
           "lastReviewedAt": null,
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 2104,
+          "visibleCharacters": 2124,
           "sectionHeadings": 13,
           "longTailQuestions": [
             "机柜容量应使用铭牌功率还是实测功率？",
@@ -1829,7 +2539,30 @@
             "https://www.thegreengrid.org/resources/glossary?combine=pue"
           ],
           "externalReferenceCount": 4,
-          "internalLinkCount": 4,
+          "internalLinkCount": 5,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        },
+        "es": {
+          "visibleCharacters": 7073,
+          "sectionHeadings": 13,
+          "longTailQuestions": [
+            "¿El dimensionamiento del rack debe usar la potencia de placa o la medida?",
+            "¿La potencia de diseño incluye la electricidad de refrigeración?",
+            "¿Por qué la corriente trifásica difiere de la monofásica?",
+            "¿El margen de redundancia representa N+1, 2N o alimentaciones duales A/B?",
+            "¿El umbral del 80 % del interruptor o PDU es una regla eléctrica universal?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://handbook.ashrae.org/Handbooks/A23/IP/A23_Ch20/a23_ch20_ip.aspx",
+            "https://www.nist.gov/document/fs376-bpdf",
+            "https://www.energy.gov/cmei/femp/incorporate-minimum-efficiency-requirements-heating-and-cooling-products-federal",
+            "https://www.thegreengrid.org/resources/glossary?combine=pue"
+          ],
+          "externalReferenceCount": 4,
+          "internalLinkCount": 5,
           "lastReviewedAt": null,
           "reviewMarker": false
         }
@@ -1852,17 +2585,19 @@
       },
       "targetTopic": {
         "en": "Switch Uplink Bandwidth & Oversubscription Calculator",
-        "zh": "交换机上联带宽与超售比计算器"
+        "zh": "交换机上联带宽与超售比计算器",
+        "es": "Calculadora de ancho de banda y sobresuscripción de uplinks"
       },
       "contentOwner": "NetEngineerLab Editorial",
       "lastReviewedAt": {
         "en": null,
-        "zh": null
+        "zh": null,
+        "es": null
       },
       "locales": {
         "en": {
-          "visibleCharacters": 5738,
-          "sectionHeadings": 16,
+          "visibleCharacters": 7063,
+          "sectionHeadings": 17,
           "longTailQuestions": [
             "What switch uplink oversubscription ratio is acceptable?",
             "Do two 10 Gbps uplinks give one flow 20 Gbps?",
@@ -1878,13 +2613,13 @@
             "https://www.cisco.com/c/en/us/td/docs/solutions/CVD/Campus/cisco-campus-lan-wlan-design-guide.html"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 8,
+          "internalLinkCount": 10,
           "lastReviewedAt": null,
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 1954,
-          "sectionHeadings": 16,
+          "visibleCharacters": 2408,
+          "sectionHeadings": 17,
           "longTailQuestions": [
             "交换机上联超售比多少合适？",
             "两条10 Gbps上联能让单个流达到20 Gbps吗？",
@@ -1900,7 +2635,29 @@
             "https://www.cisco.com/c/en/us/td/docs/solutions/CVD/Campus/cisco-campus-lan-wlan-design-guide.html"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 8,
+          "internalLinkCount": 10,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        },
+        "es": {
+          "visibleCharacters": 7113,
+          "sectionHeadings": 16,
+          "longTailQuestions": [
+            "¿Qué relación de sobresuscripción de uplink de switch es aceptable?",
+            "¿Dos uplinks de 10 Gbps dan 20 Gbps a un flujo?",
+            "¿Los uplinks en reserva o bloqueados cuentan como capacidad activa?",
+            "¿Por qué una estimación baja de hora punta puede mostrar aun así una relación de sobresuscripción alta?",
+            "¿Esta calculadora puede sustituir la monitorización de tráfico y el diseño de QoS?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://standards.ieee.org/ieee/802.1AX/6768/",
+            "https://datatracker.ietf.org/doc/rfc7424/",
+            "https://www.cisco.com/c/en/us/td/docs/solutions/CVD/Campus/cisco-campus-lan-wlan-design-guide.html"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 10,
           "lastReviewedAt": null,
           "reviewMarker": false
         }
@@ -1923,16 +2680,18 @@
       },
       "targetTopic": {
         "en": "DNS TTL & Propagation Time Calculator",
-        "zh": "DNS TTL与传播时间计算器"
+        "zh": "DNS TTL与传播时间计算器",
+        "es": "Calculadora de TTL DNS y tiempo de propagación"
       },
       "contentOwner": "NetEngineerLab Editorial",
       "lastReviewedAt": {
         "en": null,
-        "zh": null
+        "zh": null,
+        "es": null
       },
       "locales": {
         "en": {
-          "visibleCharacters": 4912,
+          "visibleCharacters": 5027,
           "sectionHeadings": 15,
           "longTailQuestions": [
             "Does a DNS record change propagate instantly?",
@@ -1950,12 +2709,12 @@
             "https://www.rfc-editor.org/rfc/rfc9199.html"
           ],
           "externalReferenceCount": 4,
-          "internalLinkCount": 4,
+          "internalLinkCount": 5,
           "lastReviewedAt": null,
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 1914,
+          "visibleCharacters": 1948,
           "sectionHeadings": 15,
           "longTailQuestions": [
             "DNS记录修改后会立即全球生效吗？",
@@ -1973,7 +2732,30 @@
             "https://www.rfc-editor.org/rfc/rfc9199.html"
           ],
           "externalReferenceCount": 4,
-          "internalLinkCount": 4,
+          "internalLinkCount": 5,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        },
+        "es": {
+          "visibleCharacters": 5980,
+          "sectionHeadings": 15,
+          "longTailQuestions": [
+            "¿Un cambio de registro DNS se propaga al instante?",
+            "¿Cuándo debo bajar el TTL antes de una migración DNS?",
+            "¿Qué es la caché DNS negativa?",
+            "¿Pueden servirse datos DNS cacheados después de caducar el TTL?",
+            "¿Esta calculadora garantiza el tiempo de propagación DNS global?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.rfc-editor.org/rfc/rfc1035.html",
+            "https://www.rfc-editor.org/rfc/rfc2308.html",
+            "https://www.rfc-editor.org/rfc/rfc8767.html",
+            "https://www.rfc-editor.org/rfc/rfc9199.html"
+          ],
+          "externalReferenceCount": 4,
+          "internalLinkCount": 5,
           "lastReviewedAt": null,
           "reviewMarker": false
         }
@@ -1996,16 +2778,18 @@
       },
       "targetTopic": {
         "en": "Multi-Vendor ACL Generator & Validator",
-        "zh": "多厂商ACL生成与验证工具"
+        "zh": "多厂商ACL生成与验证工具",
+        "es": "Generador y validador de ACL multivendor"
       },
       "contentOwner": "NetEngineerLab Editorial",
       "lastReviewedAt": {
         "en": null,
-        "zh": null
+        "zh": null,
+        "es": null
       },
       "locales": {
         "en": {
-          "visibleCharacters": 5490,
+          "visibleCharacters": 5491,
           "sectionHeadings": 17,
           "longTailQuestions": [
             "Which ACL vendors and syntax does the validator support?",
@@ -2028,7 +2812,7 @@
           "reviewMarker": false
         },
         "zh": {
-          "visibleCharacters": 2179,
+          "visibleCharacters": 2180,
           "sectionHeadings": 17,
           "longTailQuestions": [
             "ACL 验证工具支持哪些厂商和语法？",
@@ -2049,6 +2833,29 @@
           "internalLinkCount": 5,
           "lastReviewedAt": null,
           "reviewMarker": false
+        },
+        "es": {
+          "visibleCharacters": 6461,
+          "sectionHeadings": 17,
+          "longTailQuestions": [
+            "¿Qué fabricantes y sintaxis de ACL admite el validador?",
+            "¿El validador de ACL envía mi configuración?",
+            "¿Puede esta herramienta demostrar que una ACL es segura?",
+            "¿Cómo funciona la conversión de ACL multivendor?",
+            "¿Qué ocurre con las líneas de ACL no soportadas?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-41r1.pdf",
+            "https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/sec_data_acl/configuration/15-sy/sec-data-acl-15-sy-book/sec-access-list-ov.html",
+            "https://www.juniper.net/documentation/us/en/sdetware/junos/routing-policy/topics/concept/firewall-filter-qfx-series-evaluation-understanding.html",
+            "https://www.iana.org/assignments/service-names-port-numbers/"
+          ],
+          "externalReferenceCount": 4,
+          "internalLinkCount": 5,
+          "lastReviewedAt": null,
+          "reviewMarker": false
         }
       },
       "score": 4,
@@ -2056,148 +2863,6 @@
       "gaps": [
         "visible review/update marker missing"
       ]
-    },
-    {
-      "id": "otdr-event",
-      "catalogOrder": 6,
-      "category": "maintenance",
-      "searchIntent": {
-        "id": "diagnosis",
-        "en": "diagnosis",
-        "zh": "故障诊断",
-        "es": "diagnóstico"
-      },
-      "targetTopic": {
-        "en": "OTDR Event Analyzer",
-        "zh": "OTDR事件分析工具"
-      },
-      "contentOwner": "NetEngineerLab Editorial",
-      "lastReviewedAt": {
-        "en": "2026-09-01",
-        "zh": "2026-09-01"
-      },
-      "locales": {
-        "en": {
-          "visibleCharacters": 4999,
-          "sectionHeadings": 16,
-          "longTailQuestions": [
-            "Are OTDR event thresholds universal?",
-            "Why compare 1310 nm and 1550 nm?",
-            "What is a ghost event?",
-            "Can this tool parse SOR files?",
-            "Why can nearby events be unreliable?",
-            "Should results replace field judgment?"
-          ],
-          "faqCount": 6,
-          "faqSchema": true,
-          "externalReferences": [
-            "https://www.itu.int/rec/T-REC-G.650.1/en",
-            "https://www.itu.int/rec/T-REC-G.650.3/en",
-            "https://www.itu.int/rec/T-REC-G.671/en"
-          ],
-          "externalReferenceCount": 3,
-          "internalLinkCount": 3,
-          "lastReviewedAt": "2026-09-01",
-          "reviewMarker": true
-        },
-        "zh": {
-          "visibleCharacters": 1911,
-          "sectionHeadings": 16,
-          "longTailQuestions": [
-            "OTDR事件阈值是否是统一标准？",
-            "为什么要比较1310 nm和1550 nm？",
-            "什么是鬼影事件？",
-            "本工具能直接解析SOR文件吗？",
-            "为什么距离很近的事件可能不准确？",
-            "分析结果能否替代现场判断？"
-          ],
-          "faqCount": 6,
-          "faqSchema": true,
-          "externalReferences": [
-            "https://www.itu.int/rec/T-REC-G.650.1/en",
-            "https://www.itu.int/rec/T-REC-G.650.3/en",
-            "https://www.itu.int/rec/T-REC-G.671/en"
-          ],
-          "externalReferenceCount": 3,
-          "internalLinkCount": 3,
-          "lastReviewedAt": "2026-09-01",
-          "reviewMarker": true
-        }
-      },
-      "score": 0,
-      "priority": "maintain",
-      "gaps": []
-    },
-    {
-      "id": "sfp-qsfp-compatibility-calculator",
-      "catalogOrder": 14,
-      "category": "optical",
-      "searchIntent": {
-        "id": "validation",
-        "en": "validation",
-        "zh": "验证",
-        "es": "validación"
-      },
-      "targetTopic": {
-        "en": "SFP & QSFP Compatibility Checker",
-        "zh": "SFP与QSFP光模块兼容性查询"
-      },
-      "contentOwner": "NetEngineerLab Editorial",
-      "lastReviewedAt": {
-        "en": "2026-08-31",
-        "zh": "2026-08-31"
-      },
-      "locales": {
-        "en": {
-          "visibleCharacters": 6175,
-          "sectionHeadings": 14,
-          "longTailQuestions": [
-            "Can I connect 10G SFP+ to 25G SFP28?",
-            "Can single-mode and multimode optical modules communicate?",
-            "Why is receiver overload checked?",
-            "Does PASS guarantee a branded switch accepts the module?",
-            "Can I install a QSFP28 module in a QSFP-DD port?"
-          ],
-          "faqCount": 5,
-          "faqSchema": true,
-          "externalReferences": [
-            "https://members.snia.org/document/dl/25916",
-            "https://www.snia.org/node/19611",
-            "https://www.cisco.com/c/en/us/products/collateral/interfaces-modules/gigabit-ethernet-gbic-sfp-modules/datasheet-c78-366584.html",
-            "https://www.juniper.net/documentation/us/en/hardware/800g-optics-cables-guide/optics/topics/concept/800g-optics-faqs.html"
-          ],
-          "externalReferenceCount": 4,
-          "internalLinkCount": 5,
-          "lastReviewedAt": "2026-08-31",
-          "reviewMarker": true
-        },
-        "zh": {
-          "visibleCharacters": 2323,
-          "sectionHeadings": 14,
-          "longTailQuestions": [
-            "10G SFP+可以连接25G SFP28吗？",
-            "单模和多模光模块可以互通吗？",
-            "为什么还要检查接收过载？",
-            "显示“通过”是否代表交换机一定识别模块？",
-            "QSFP-DD端口可以安装QSFP28模块吗？"
-          ],
-          "faqCount": 5,
-          "faqSchema": true,
-          "externalReferences": [
-            "https://members.snia.org/document/dl/25916",
-            "https://www.snia.org/node/19611",
-            "https://www.cisco.com/c/en/us/products/collateral/interfaces-modules/gigabit-ethernet-gbic-sfp-modules/datasheet-c78-366584.html",
-            "https://www.juniper.net/documentation/us/en/hardware/800g-optics-cables-guide/optics/topics/concept/800g-optics-faqs.html"
-          ],
-          "externalReferenceCount": 4,
-          "internalLinkCount": 5,
-          "lastReviewedAt": "2026-08-31",
-          "reviewMarker": true
-        }
-      },
-      "score": 0,
-      "priority": "maintain",
-      "gaps": []
     },
     {
       "id": "network-change-planner-mop-generator",
@@ -2211,12 +2876,14 @@
       },
       "targetTopic": {
         "en": "Network Change Planner & MOP Generator",
-        "zh": "网络变更规划与MOP生成器"
+        "zh": "网络变更规划与MOP生成器",
+        "es": "Planificador de cambios de red y generador MOP"
       },
       "contentOwner": "NetEngineerLab Editorial",
       "lastReviewedAt": {
         "en": "2026-09-05",
-        "zh": "2026-09-05"
+        "zh": "2026-09-05",
+        "es": null
       },
       "locales": {
         "en": {
@@ -2262,80 +2929,35 @@
           "internalLinkCount": 4,
           "lastReviewedAt": "2026-09-05",
           "reviewMarker": true
-        }
-      },
-      "score": 0,
-      "priority": "maintain",
-      "gaps": []
-    },
-    {
-      "id": "telecom-solar-battery-sizing-calculator",
-      "catalogOrder": 24,
-      "category": "power",
-      "searchIntent": {
-        "id": "sizing",
-        "en": "sizing and selection",
-        "zh": "选型",
-        "es": "dimensionamiento y selección"
-      },
-      "targetTopic": {
-        "en": "Telecom Solar Power & Battery Sizing Calculator",
-        "zh": "通信站点光伏发电与储能配置计算器"
-      },
-      "contentOwner": "NetEngineerLab Editorial",
-      "lastReviewedAt": {
-        "en": "2026-09-10",
-        "zh": "2026-09-10"
-      },
-      "locales": {
-        "en": {
-          "visibleCharacters": 4704,
-          "sectionHeadings": 16,
-          "longTailQuestions": [
-            "How is required PV capacity estimated?",
-            "How should peak-sun hours be chosen?",
-            "How are cloudy days reflected in battery sizing?",
-            "Can I reuse an existing -48 V battery bank?",
-            "Does this replace detailed PV electrical design?"
-          ],
-          "faqCount": 5,
-          "faqSchema": true,
-          "externalReferences": [
-            "https://pvwatts.nrel.gov/",
-            "https://sam.nrel.gov/",
-            "https://nsrdb.nrel.gov/"
-          ],
-          "externalReferenceCount": 3,
-          "internalLinkCount": 4,
-          "lastReviewedAt": "2026-09-10",
-          "reviewMarker": true
         },
-        "zh": {
-          "visibleCharacters": 1816,
-          "sectionHeadings": 16,
+        "es": {
+          "visibleCharacters": 7539,
+          "sectionHeadings": 24,
           "longTailQuestions": [
-            "所需光伏容量是怎样估算的？",
-            "峰值日照小时应该怎么选？",
-            "连续阴雨天怎样影响储能配置？",
-            "现有 -48V 电池组可以复用吗？",
-            "这个工具能替代详细光伏电气设计吗？"
+            "¿Por qué la herramienta genera un delta mínimo en lugar de un reemplazo completo?",
+            "¿Puedo pegar cualquier configuración en ejecución?",
+            "¿Qué puede disparar ROLLBACK_REQUIRED?",
+            "¿Esta herramienta se conecta a los equipos y ejecuta comandos?",
+            "¿Por qué los modelos de equipo y los rangos de puerto están limitados a propósito?"
           ],
           "faqCount": 5,
           "faqSchema": true,
           "externalReferences": [
-            "https://pvwatts.nrel.gov/",
-            "https://sam.nrel.gov/",
-            "https://nsrdb.nrel.gov/"
+            "https://www.cisco.com/c/en/us/support/switches/catalyst-9200-series-switches/series.html",
+            "https://support.huawei.com/enterprise/en/switches/index.html",
+            "https://www.juniper.net/documentation/product/us/en/ex-series/"
           ],
           "externalReferenceCount": 3,
           "internalLinkCount": 4,
-          "lastReviewedAt": "2026-09-10",
-          "reviewMarker": true
+          "lastReviewedAt": null,
+          "reviewMarker": false
         }
       },
-      "score": 0,
+      "score": 4,
       "priority": "maintain",
-      "gaps": []
+      "gaps": [
+        "visible review/update marker missing"
+      ]
     },
     {
       "id": "generator-fuel-runtime-calculator",
@@ -2349,17 +2971,19 @@
       },
       "targetTopic": {
         "en": "Generator Fuel Consumption & Runtime Calculator",
-        "zh": "油机油耗与应急续航计算器"
+        "zh": "油机油耗与应急续航计算器",
+        "es": "Calculadora de consumo de combustible y autonomía del generador"
       },
       "contentOwner": "NetEngineerLab Editorial",
       "lastReviewedAt": {
         "en": "2026-09-10",
-        "zh": "2026-09-10"
+        "zh": "2026-09-10",
+        "es": null
       },
       "locales": {
         "en": {
-          "visibleCharacters": 4815,
-          "sectionHeadings": 19,
+          "visibleCharacters": 5993,
+          "sectionHeadings": 22,
           "longTailQuestions": [
             "Why use a manufacturer fuel curve instead of a generic fuel-rate formula?",
             "How is fuel consumption between load points calculated?",
@@ -2375,12 +2999,12 @@
             "https://www.epa.gov/energy/greenhouse-gas-equivalencies-calculator"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 3,
+          "internalLinkCount": 6,
           "lastReviewedAt": "2026-09-10",
           "reviewMarker": true
         },
         "zh": {
-          "visibleCharacters": 1850,
+          "visibleCharacters": 1844,
           "sectionHeadings": 19,
           "longTailQuestions": [
             "为什么必须优先使用厂家油耗曲线，而不是通用油耗公式？",
@@ -2397,14 +3021,38 @@
             "https://www.epa.gov/energy/greenhouse-gas-equivalencies-calculator"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 3,
+          "internalLinkCount": 4,
           "lastReviewedAt": "2026-09-10",
           "reviewMarker": true
+        },
+        "es": {
+          "visibleCharacters": 6110,
+          "sectionHeadings": 19,
+          "longTailQuestions": [
+            "¿Por qué usar la curva de combustible del fabricante en lugar de una fórmula genérica?",
+            "¿Cómo se calcula el consumo entre puntos de carga?",
+            "¿Qué significa la reserva de combustible?",
+            "¿Cómo afecta la asistencia de batería al resultado?",
+            "¿Puede sustituir el dimensionamiento del fabricante y el diseño del sistema de combustible?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.cat.com/en_US/by-industry/electric-power/Articles/White-papers.html",
+            "https://www.cummins.com/generators",
+            "https://www.epa.gov/energy/greenhouse-gas-equivalencies-calculator"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 4,
+          "lastReviewedAt": null,
+          "reviewMarker": false
         }
       },
-      "score": 0,
+      "score": 4,
       "priority": "maintain",
-      "gaps": []
+      "gaps": [
+        "visible review/update marker missing"
+      ]
     },
     {
       "id": "telecom-rectifier-dc-power-sizing",
@@ -2418,16 +3066,18 @@
       },
       "targetTopic": {
         "en": "Telecom Rectifier & DC Power System Sizing Calculator",
-        "zh": "通信开关电源与整流模块容量配置计算器"
+        "zh": "通信开关电源与整流模块容量配置计算器",
+        "es": "Calculadora de dimensionamiento de rectificador y sistema de potencia DC de telecomunicaciones"
       },
       "contentOwner": "NetEngineerLab Editorial",
       "lastReviewedAt": {
         "en": "2026-09-10",
-        "zh": "2026-09-10"
+        "zh": "2026-09-10",
+        "es": null
       },
       "locales": {
         "en": {
-          "visibleCharacters": 4370,
+          "visibleCharacters": 4429,
           "sectionHeadings": 11,
           "longTailQuestions": [
             "Why include battery recharge current in rectifier sizing?",
@@ -2444,12 +3094,12 @@
             "https://www.etsi.org/"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 5,
+          "internalLinkCount": 6,
           "lastReviewedAt": "2026-09-10",
           "reviewMarker": true
         },
         "zh": {
-          "visibleCharacters": 1493,
+          "visibleCharacters": 1513,
           "sectionHeadings": 11,
           "longTailQuestions": [
             "为什么整流容量要计入电池回充电流？",
@@ -2466,14 +3116,38 @@
             "https://www.etsi.org/"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 5,
+          "internalLinkCount": 6,
           "lastReviewedAt": "2026-09-10",
           "reviewMarker": true
+        },
+        "es": {
+          "visibleCharacters": 5067,
+          "sectionHeadings": 11,
+          "longTailQuestions": [
+            "¿Por qué incluir la corriente de recarga de batería al dimensionar el rectificador?",
+            "¿Cómo se aplica la redundancia N+1 o N+2?",
+            "¿Qué significa la comprobación de fallo de un módulo?",
+            "¿Puedo usar el resultado para dimensionar el interruptor de CA?",
+            "¿La herramienta sustituye el diseño del sistema DC del fabricante?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-L.1200",
+            "https://www.iec.ch/",
+            "https://www.etsi.org/"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 6,
+          "lastReviewedAt": null,
+          "reviewMarker": false
         }
       },
-      "score": 0,
+      "score": 4,
       "priority": "maintain",
-      "gaps": []
+      "gaps": [
+        "visible review/update marker missing"
+      ]
     },
     {
       "id": "telecom-ac-dc-breaker-sizing",
@@ -2487,16 +3161,18 @@
       },
       "targetTopic": {
         "en": "Telecom AC/DC Power Capacity & Breaker Sizing Calculator",
-        "zh": "通信站点 AC/DC 电源容量与空开配置工具"
+        "zh": "通信站点 AC/DC 电源容量与空开配置工具",
+        "es": "Calculadora de capacidad eléctrica y dimensionamiento de interruptores AC/DC"
       },
       "contentOwner": "NetEngineerLab Editorial",
       "lastReviewedAt": {
         "en": "2026-09-10",
-        "zh": "2026-09-10"
+        "zh": "2026-09-10",
+        "es": null
       },
       "locales": {
         "en": {
-          "visibleCharacters": 3987,
+          "visibleCharacters": 4293,
           "sectionHeadings": 12,
           "longTailQuestions": [
             "Why does the tool use power factor and conversion efficiency?",
@@ -2513,12 +3189,12 @@
             "https://www.etsi.org/"
           ],
           "externalReferenceCount": 3,
-          "internalLinkCount": 4,
+          "internalLinkCount": 5,
           "lastReviewedAt": "2026-09-10",
           "reviewMarker": true
         },
         "zh": {
-          "visibleCharacters": 1336,
+          "visibleCharacters": 1465,
           "sectionHeadings": 12,
           "longTailQuestions": [
             "为什么要输入功率因数和转换效率？",
@@ -2535,7 +3211,614 @@
             "https://www.etsi.org/"
           ],
           "externalReferenceCount": 3,
+          "internalLinkCount": 5,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        },
+        "es": {
+          "visibleCharacters": 5256,
+          "sectionHeadings": 12,
+          "longTailQuestions": [
+            "¿Por qué la herramienta usa el factor de potencia y la eficiencia de conversión?",
+            "¿Para qué sirve la entrada de margen de ingeniería?",
+            "¿El calibre de interruptor sugerido es un valor final de diseño?",
+            "¿Cómo debe usarse el factor de reducción combinado?",
+            "¿Por qué se incluye un cálculo de ramal DC?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-L.1200",
+            "https://www.iec.ch/",
+            "https://www.etsi.org/"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 5,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        }
+      },
+      "score": 4,
+      "priority": "maintain",
+      "gaps": [
+        "visible review/update marker missing"
+      ]
+    },
+    {
+      "id": "olt-dual-uplink-transport-mse-planner",
+      "catalogOrder": 34,
+      "category": "transport",
+      "searchIntent": {
+        "id": "planning",
+        "en": "planning",
+        "zh": "规划",
+        "es": "planificación"
+      },
+      "targetTopic": {
+        "en": "OLT Dual-Uplink Capacity, Transport Channel & MSE Port Planner",
+        "zh": "OLT双上联容量、传输波道与MSE端口规划工具",
+        "es": "Planificador de doble uplink OLT, canales de transporte y puertos MSE"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-09-10",
+        "zh": "2026-09-10",
+        "es": null
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 5068,
+          "sectionHeadings": 18,
+          "longTailQuestions": [
+            "Why size each side for the full protected traffic?",
+            "Can a 100G transport channel carry multiple 10G OLT uplinks?",
+            "What is a false dual-uplink risk?",
+            "How are MSE line cards calculated?",
+            "Does this replace detailed OTN/MSE vendor planning?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.9807.1/en",
+            "https://www.itu.int/rec/T-REC-G.709/en",
+            "https://www.broadband-forum.org/"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 5,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 1800,
+          "sectionHeadings": 18,
+          "longTailQuestions": [
+            "为什么每一侧都按全部保护业务规划？",
+            "100G波道可以承载多个10G OLT吗？",
+            "什么是“假双上联”？",
+            "MSE板卡数量如何计算？",
+            "能代替厂家OTN/MSE详细规划吗？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.9807.1/en",
+            "https://www.itu.int/rec/T-REC-G.709/en",
+            "https://www.broadband-forum.org/"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 5,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        },
+        "es": {
+          "visibleCharacters": 6051,
+          "sectionHeadings": 18,
+          "longTailQuestions": [
+            "¿Por qué dimensionar cada lado para todo el tráfico protegido?",
+            "¿Un canal de transporte de 100G puede cursar varios uplinks de OLT de 10G?",
+            "¿Qué es un riesgo de doble uplink falso?",
+            "¿Cómo se calculan las tarjetas de línea MSE?",
+            "¿Esto sustituye la planificación detallada del fabricante de OTN/MSE?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.9807.1/en",
+            "https://www.itu.int/rec/T-REC-G.709/en",
+            "https://www.broadband-forum.org/"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 5,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        }
+      },
+      "score": 4,
+      "priority": "maintain",
+      "gaps": [
+        "visible review/update marker missing"
+      ]
+    },
+    {
+      "id": "data-center-network-convergence-fabric-capacity-planner",
+      "catalogOrder": 35,
+      "category": "network",
+      "searchIntent": {
+        "id": "planning",
+        "en": "planning",
+        "zh": "规划",
+        "es": "planificación"
+      },
+      "targetTopic": {
+        "en": "Data Center Network Convergence & Fabric Capacity Planner",
+        "zh": "数据中心网络收敛比与 Fabric 容量规划器",
+        "es": "Planificador de convergencia y capacidad de fabric de red del centro de datos"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-09-11",
+        "zh": "2026-09-11",
+        "es": null
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 4719,
+          "sectionHeadings": 14,
+          "longTailQuestions": [
+            "What is a data center network convergence ratio?",
+            "Is convergence ratio the same as oversubscription ratio?",
+            "How does Spine N-1 change available capacity?",
+            "Why does cross-Leaf east-west traffic count twice?",
+            "Can this replace telemetry or a fabric simulator?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://datatracker.ietf.org/doc/html/rfc7938",
+            "https://datatracker.ietf.org/doc/html/rfc7424",
+            "https://standards.ieee.org/ieee/802.1AX/6768/"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 5,
+          "lastReviewedAt": "2026-09-11",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 1966,
+          "sectionHeadings": 14,
+          "longTailQuestions": [
+            "什么是数据中心网络收敛比？",
+            "收敛比和超售比是同一个概念吗？",
+            "Spine N-1 会如何影响容量？",
+            "为什么跨 Leaf 的东西向流量按两次计算？",
+            "这个工具能替代流量监控或 Fabric 仿真吗？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://datatracker.ietf.org/doc/html/rfc7938",
+            "https://datatracker.ietf.org/doc/html/rfc7424",
+            "https://standards.ieee.org/ieee/802.1AX/6768/"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 5,
+          "lastReviewedAt": "2026-09-11",
+          "reviewMarker": true
+        },
+        "es": {
+          "visibleCharacters": 5697,
+          "sectionHeadings": 14,
+          "longTailQuestions": [
+            "¿Qué es la relación de convergencia de una red de centro de datos?",
+            "¿La relación de convergencia es lo mismo que la de sobresuscripción?",
+            "¿Cómo cambia la capacidad disponible el N-1 del spine?",
+            "¿Por qué el tráfico este-oeste entre Leaf se cuenta dos veces?",
+            "¿Puede sustituir la telemetría o un simulador de fabric?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://datatracker.ietf.org/doc/html/rfc7938",
+            "https://datatracker.ietf.org/doc/html/rfc7424",
+            "https://standards.ieee.org/ieee/802.1AX/6768/"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 5,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        }
+      },
+      "score": 4,
+      "priority": "maintain",
+      "gaps": [
+        "visible review/update marker missing"
+      ]
+    },
+    {
+      "id": "network-risk-hidden-hazard-assessment-generator",
+      "catalogOrder": 36,
+      "category": "network",
+      "searchIntent": {
+        "id": "planning",
+        "en": "planning",
+        "zh": "规划",
+        "es": "planificación"
+      },
+      "targetTopic": {
+        "en": "Network Risk & Hidden-Hazard Assessment Generator",
+        "zh": "网络风险与隐患评估报告生成器",
+        "es": "Generador de evaluación de riesgos y peligros ocultos de red"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-09-30",
+        "zh": "2026-09-30",
+        "es": null
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 3633,
+          "sectionHeadings": 8,
+          "longTailQuestions": [
+            "Does an unverified item count as safe?",
+            "How is the risk score calculated?",
+            "What is a critical-rule override?",
+            "Can the report show remediation progress?",
+            "Does the result prove compliance?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.iso.org/standard/65694.html",
+            "https://csrc.nist.gov/pubs/sp/800/30/r1/final",
+            "https://www.osha.gov/safety-management/hazard-identification",
+            "https://www.osha.gov/electrical/",
+            "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.335"
+          ],
+          "externalReferenceCount": 5,
           "internalLinkCount": 4,
+          "lastReviewedAt": "2026-09-30",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 1350,
+          "sectionHeadings": 8,
+          "longTailQuestions": [
+            "未核验项可以判定为安全吗？",
+            "风险分数如何计算？",
+            "什么是关键规则覆盖？",
+            "报告可以跟踪整改吗？",
+            "结果能证明合规吗？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.iso.org/standard/65694.html",
+            "https://csrc.nist.gov/pubs/sp/800/30/r1/final",
+            "https://www.osha.gov/safety-management/hazard-identification",
+            "https://www.osha.gov/electrical/",
+            "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.335"
+          ],
+          "externalReferenceCount": 5,
+          "internalLinkCount": 4,
+          "lastReviewedAt": "2026-09-30",
+          "reviewMarker": true
+        },
+        "es": {
+          "visibleCharacters": 4242,
+          "sectionHeadings": 8,
+          "longTailQuestions": [
+            "¿Un ítem no verificado cuenta como seguro?",
+            "¿Cómo se calcula la puntuación de riesgo?",
+            "¿Qué es una anulación por regla crítica?",
+            "¿El informe puede mostrar el avance de la remediación?",
+            "¿El resultado acredita el cumplimiento?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.iso.org/standard/65694.html",
+            "https://csrc.nist.gov/pubs/sp/800/30/r1/final",
+            "https://www.osha.gov/safety-management/hazard-identification",
+            "https://www.osha.gov/electrical/",
+            "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.335"
+          ],
+          "externalReferenceCount": 5,
+          "internalLinkCount": 4,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        }
+      },
+      "score": 4,
+      "priority": "maintain",
+      "gaps": [
+        "visible review/update marker missing"
+      ]
+    },
+    {
+      "id": "odf-odn-resource-planner",
+      "catalogOrder": 37,
+      "category": "optical",
+      "searchIntent": {
+        "id": "planning",
+        "en": "planning",
+        "zh": "规划",
+        "es": "planificación"
+      },
+      "targetTopic": {
+        "en": "ODF / ODN Fiber Resource & Split Planning Planner",
+        "zh": "ODF / ODN 光纤资源与分光规划器",
+        "es": "Planificador de recursos de fibra y división ODF/ODN"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-09-30",
+        "zh": "2026-09-30",
+        "es": null
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 3552,
+          "sectionHeadings": 10,
+          "longTailQuestions": [
+            "How are PON ports calculated?",
+            "How is fibre reserve applied?",
+            "Why can a plan be inconclusive?",
+            "Does the BOM provide a purchase quantity?",
+            "Is the 3 dB warning threshold mandatory?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.984.2/en",
+            "https://www.itu.int/rec/T-REC-G.9807.1/en",
+            "https://www.itu.int/rec/T-REC-G.652/en",
+            "https://www.itu.int/rec/T-REC-G.657/en",
+            "https://www.itu.int/rec/T-REC-G.671/en"
+          ],
+          "externalReferenceCount": 5,
+          "internalLinkCount": 6,
+          "lastReviewedAt": "2026-09-30",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 1410,
+          "sectionHeadings": 10,
+          "longTailQuestions": [
+            "PON 端口数量如何计算？",
+            "如何计算纤芯预留？",
+            "为什么方案会显示无法判定？",
+            "规划 BOM 可以直接采购吗？",
+            "3 dB 警告阈值是标准强制值吗？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.984.2/en",
+            "https://www.itu.int/rec/T-REC-G.9807.1/en",
+            "https://www.itu.int/rec/T-REC-G.652/en",
+            "https://www.itu.int/rec/T-REC-G.657/en",
+            "https://www.itu.int/rec/T-REC-G.671/en"
+          ],
+          "externalReferenceCount": 5,
+          "internalLinkCount": 6,
+          "lastReviewedAt": "2026-09-30",
+          "reviewMarker": true
+        },
+        "es": {
+          "visibleCharacters": 4136,
+          "sectionHeadings": 9,
+          "longTailQuestions": [
+            "¿Cómo se calculan los puertos PON?",
+            "¿Cómo se aplica la reserva de fibra?",
+            "¿Por qué un plan puede ser no concluyente?",
+            "¿La BOM indica una cantidad de compra?",
+            "¿El umbral de aviso de 3 dB es obligatorio?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.984.2/en",
+            "https://www.itu.int/rec/T-REC-G.9807.1/en",
+            "https://www.itu.int/rec/T-REC-G.652/en",
+            "https://www.itu.int/rec/T-REC-G.657/en",
+            "https://www.itu.int/rec/T-REC-G.671/en"
+          ],
+          "externalReferenceCount": 5,
+          "internalLinkCount": 5,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        }
+      },
+      "score": 4,
+      "priority": "maintain",
+      "gaps": [
+        "visible review/update marker missing"
+      ]
+    },
+    {
+      "id": "fiber-latency-calculator",
+      "catalogOrder": 41,
+      "category": "optical",
+      "searchIntent": {
+        "id": "calculation",
+        "en": "calculation",
+        "zh": "计算",
+        "es": "cálculo"
+      },
+      "targetTopic": {
+        "en": "Fiber Latency Calculator",
+        "zh": "光纤时延计算器",
+        "es": "Calculadora de latencia de fibra"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-10-18",
+        "zh": "2026-10-18",
+        "es": null
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 7027,
+          "sectionHeadings": 15,
+          "longTailQuestions": [
+            "What is the latency of fiber per km?",
+            "How do I calculate RTT over fiber?",
+            "Why is my measured ping higher than the calculator?",
+            "Is microwave faster than fiber?",
+            "Does wavelength change fiber latency?",
+            "Is copper faster than fiber?"
+          ],
+          "faqCount": 6,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.652/en",
+            "https://physics.nist.gov/cgi-bin/cuu/Value?c",
+            "https://www.bipm.org/en/si-base-units/second"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 8,
+          "lastReviewedAt": "2026-10-18",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 3009,
+          "sectionHeadings": 15,
+          "longTailQuestions": [
+            "光纤每公里时延是多少？",
+            "如何计算光纤上的 RTT？",
+            "为什么实测 ping 比计算器更高？",
+            "微波比光纤更快吗？",
+            "波长（1310 与 1550 nm）会改变时延吗？",
+            "铜缆比光纤更快吗？"
+          ],
+          "faqCount": 6,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.652/en",
+            "https://physics.nist.gov/cgi-bin/cuu/Value?c",
+            "https://www.bipm.org/en/si-base-units/second"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 8,
+          "lastReviewedAt": "2026-10-18",
+          "reviewMarker": true
+        },
+        "es": {
+          "visibleCharacters": 6774,
+          "sectionHeadings": 13,
+          "longTailQuestions": [
+            "¿Cuál es la latencia de la fibra por km?",
+            "¿Cómo calculo el RTT sobre fibra?",
+            "¿Por qué mi ping medido es mayor que la calculadora?",
+            "¿Las microondas son más rápidas que la fibra?",
+            "¿La longitud de onda cambia la latencia de la fibra?",
+            "¿El cobre es más rápido que la fibra?"
+          ],
+          "faqCount": 6,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.652/en",
+            "https://physics.nist.gov/cgi-bin/cuu/Value?c",
+            "https://www.bipm.org/en/si-base-units/second"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 8,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        }
+      },
+      "score": 4,
+      "priority": "maintain",
+      "gaps": [
+        "visible review/update marker missing"
+      ]
+    },
+    {
+      "id": "telecom-solar-battery-sizing-calculator",
+      "catalogOrder": 24,
+      "category": "power",
+      "searchIntent": {
+        "id": "sizing",
+        "en": "sizing and selection",
+        "zh": "选型",
+        "es": "dimensionamiento y selección"
+      },
+      "targetTopic": {
+        "en": "Telecom Solar Power & Battery Sizing Calculator",
+        "zh": "通信站点光伏发电与储能配置计算器",
+        "es": "Calculadora solar y de baterías para telecomunicaciones"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-09-10",
+        "zh": "2026-09-10",
+        "es": "2026-09-10"
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 4763,
+          "sectionHeadings": 16,
+          "longTailQuestions": [
+            "How is required PV capacity estimated?",
+            "How should peak-sun hours be chosen?",
+            "How are cloudy days reflected in battery sizing?",
+            "Can I reuse an existing -48 V battery bank?",
+            "Does this replace detailed PV electrical design?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://pvwatts.nrel.gov/",
+            "https://sam.nrel.gov/",
+            "https://nsrdb.nrel.gov/"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 5,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 1836,
+          "sectionHeadings": 16,
+          "longTailQuestions": [
+            "所需光伏容量是怎样估算的？",
+            "峰值日照小时应该怎么选？",
+            "连续阴雨天怎样影响储能配置？",
+            "现有 -48V 电池组可以复用吗？",
+            "这个工具能替代详细光伏电气设计吗？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://pvwatts.nrel.gov/",
+            "https://sam.nrel.gov/",
+            "https://nsrdb.nrel.gov/"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 5,
+          "lastReviewedAt": "2026-09-10",
+          "reviewMarker": true
+        },
+        "es": {
+          "visibleCharacters": 5813,
+          "sectionHeadings": 16,
+          "longTailQuestions": [
+            "¿Cómo se estima la capacidad FV requerida?",
+            "¿Cómo deben elegirse las horas de sol pico?",
+            "¿Cómo se reflejan los días nublados en el dimensionamiento de la batería?",
+            "¿Puedo reutilizar un banco de baterías de -48 V existente?",
+            "¿Sustituye esto al diseño eléctrico FV detallado?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://pvwatts.nrel.gov/",
+            "https://sam.nrel.gov/",
+            "https://nsrdb.nrel.gov/"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 5,
           "lastReviewedAt": "2026-09-10",
           "reviewMarker": true
         }
@@ -2556,12 +3839,14 @@
       },
       "targetTopic": {
         "en": "Transmission Ring Optimization & Protection Risk Analyzer",
-        "zh": "传输环优化与保护风险分析器"
+        "zh": "传输环优化与保护风险分析器",
+        "es": "Analizador de optimización y riesgo de protección de anillo de transmisión"
       },
       "contentOwner": "NetEngineerLab Editorial",
       "lastReviewedAt": {
         "en": "2026-09-10",
-        "zh": "2026-09-10"
+        "zh": "2026-09-10",
+        "es": "2026-09-10"
       },
       "locales": {
         "en": {
@@ -2607,289 +3892,27 @@
           "internalLinkCount": 4,
           "lastReviewedAt": "2026-09-10",
           "reviewMarker": true
-        }
-      },
-      "score": 0,
-      "priority": "maintain",
-      "gaps": []
-    },
-    {
-      "id": "olt-dual-uplink-transport-mse-planner",
-      "catalogOrder": 34,
-      "category": "transport",
-      "searchIntent": {
-        "id": "planning",
-        "en": "planning",
-        "zh": "规划",
-        "es": "planificación"
-      },
-      "targetTopic": {
-        "en": "OLT Dual-Uplink Capacity, Transport Channel & MSE Port Planner",
-        "zh": "OLT双上联容量、传输波道与MSE端口规划工具"
-      },
-      "contentOwner": "NetEngineerLab Editorial",
-      "lastReviewedAt": {
-        "en": "2026-09-10",
-        "zh": "2026-09-10"
-      },
-      "locales": {
-        "en": {
-          "visibleCharacters": 5027,
-          "sectionHeadings": 18,
+        },
+        "es": {
+          "visibleCharacters": 5120,
+          "sectionHeadings": 14,
           "longTailQuestions": [
-            "Why size each side for the full protected traffic?",
-            "Can a 100G transport channel carry multiple 10G OLT uplinks?",
-            "What is a false dual-uplink risk?",
-            "How are MSE line cards calculated?",
-            "Does this replace detailed OTN/MSE vendor planning?"
+            "¿Simula todos los fallos de un solo enlace?",
+            "¿Cómo se gestionan las rutas con igual número de saltos?",
+            "¿Puede sustituir a una simulación del controlador OTN/PTN?",
+            "¿Qué significa la puntuación de riesgo?",
+            "¿Qué optimiza el resultado antes/después?"
           ],
           "faqCount": 5,
           "faqSchema": true,
           "externalReferences": [
-            "https://www.itu.int/rec/T-REC-G.9807.1/en",
             "https://www.itu.int/rec/T-REC-G.709/en",
-            "https://www.broadband-forum.org/"
+            "https://www.itu.int/rec/T-REC-G.872/en",
+            "https://www.itu.int/rec/T-REC-G.808.1/en"
           ],
           "externalReferenceCount": 3,
           "internalLinkCount": 4,
           "lastReviewedAt": "2026-09-10",
-          "reviewMarker": true
-        },
-        "zh": {
-          "visibleCharacters": 1782,
-          "sectionHeadings": 18,
-          "longTailQuestions": [
-            "为什么每一侧都按全部保护业务规划？",
-            "100G波道可以承载多个10G OLT吗？",
-            "什么是“假双上联”？",
-            "MSE板卡数量如何计算？",
-            "能代替厂家OTN/MSE详细规划吗？"
-          ],
-          "faqCount": 5,
-          "faqSchema": true,
-          "externalReferences": [
-            "https://www.itu.int/rec/T-REC-G.9807.1/en",
-            "https://www.itu.int/rec/T-REC-G.709/en",
-            "https://www.broadband-forum.org/"
-          ],
-          "externalReferenceCount": 3,
-          "internalLinkCount": 4,
-          "lastReviewedAt": "2026-09-10",
-          "reviewMarker": true
-        }
-      },
-      "score": 0,
-      "priority": "maintain",
-      "gaps": []
-    },
-    {
-      "id": "data-center-network-convergence-fabric-capacity-planner",
-      "catalogOrder": 35,
-      "category": "network",
-      "searchIntent": {
-        "id": "planning",
-        "en": "planning",
-        "zh": "规划",
-        "es": "planificación"
-      },
-      "targetTopic": {
-        "en": "Data Center Network Convergence & Fabric Capacity Planner",
-        "zh": "数据中心网络收敛比与 Fabric 容量规划器"
-      },
-      "contentOwner": "NetEngineerLab Editorial",
-      "lastReviewedAt": {
-        "en": "2026-09-11",
-        "zh": "2026-09-11"
-      },
-      "locales": {
-        "en": {
-          "visibleCharacters": 4666,
-          "sectionHeadings": 14,
-          "longTailQuestions": [
-            "What is a data center network convergence ratio?",
-            "Is convergence ratio the same as oversubscription ratio?",
-            "How does Spine N-1 change available capacity?",
-            "Why does cross-Leaf east-west traffic count twice?",
-            "Can this replace telemetry or a fabric simulator?"
-          ],
-          "faqCount": 5,
-          "faqSchema": true,
-          "externalReferences": [
-            "https://datatracker.ietf.org/doc/html/rfc7938",
-            "https://datatracker.ietf.org/doc/html/rfc7424",
-            "https://standards.ieee.org/ieee/802.1AX/6768/"
-          ],
-          "externalReferenceCount": 3,
-          "internalLinkCount": 4,
-          "lastReviewedAt": "2026-09-11",
-          "reviewMarker": true
-        },
-        "zh": {
-          "visibleCharacters": 1950,
-          "sectionHeadings": 14,
-          "longTailQuestions": [
-            "什么是数据中心网络收敛比？",
-            "收敛比和超售比是同一个概念吗？",
-            "Spine N-1 会如何影响容量？",
-            "为什么跨 Leaf 的东西向流量按两次计算？",
-            "这个工具能替代流量监控或 Fabric 仿真吗？"
-          ],
-          "faqCount": 5,
-          "faqSchema": true,
-          "externalReferences": [
-            "https://datatracker.ietf.org/doc/html/rfc7938",
-            "https://datatracker.ietf.org/doc/html/rfc7424",
-            "https://standards.ieee.org/ieee/802.1AX/6768/"
-          ],
-          "externalReferenceCount": 3,
-          "internalLinkCount": 4,
-          "lastReviewedAt": "2026-09-11",
-          "reviewMarker": true
-        }
-      },
-      "score": 0,
-      "priority": "maintain",
-      "gaps": []
-    },
-    {
-      "id": "network-risk-hidden-hazard-assessment-generator",
-      "catalogOrder": 36,
-      "category": "network",
-      "searchIntent": {
-        "id": "planning",
-        "en": "planning",
-        "zh": "规划",
-        "es": "planificación"
-      },
-      "targetTopic": {
-        "en": "Network Risk & Hidden-Hazard Assessment Generator",
-        "zh": "网络风险与隐患评估报告生成器"
-      },
-      "contentOwner": "NetEngineerLab Editorial",
-      "lastReviewedAt": {
-        "en": "2026-09-30",
-        "zh": "2026-09-30"
-      },
-      "locales": {
-        "en": {
-          "visibleCharacters": 3578,
-          "sectionHeadings": 8,
-          "longTailQuestions": [
-            "Does an unverified item count as safe?",
-            "How is the risk score calculated?",
-            "What is a critical-rule override?",
-            "Can the report show remediation progress?",
-            "Does the result prove compliance?"
-          ],
-          "faqCount": 5,
-          "faqSchema": true,
-          "externalReferences": [
-            "https://www.iso.org/standard/65694.html",
-            "https://csrc.nist.gov/pubs/sp/800/30/r1/final",
-            "https://www.osha.gov/safety-management/hazard-identification",
-            "https://www.osha.gov/electrical/",
-            "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.335"
-          ],
-          "externalReferenceCount": 5,
-          "internalLinkCount": 4,
-          "lastReviewedAt": "2026-09-30",
-          "reviewMarker": true
-        },
-        "zh": {
-          "visibleCharacters": 1333,
-          "sectionHeadings": 8,
-          "longTailQuestions": [
-            "未核验项可以判定为安全吗？",
-            "风险分数如何计算？",
-            "什么是关键规则覆盖？",
-            "报告可以跟踪整改吗？",
-            "结果能证明合规吗？"
-          ],
-          "faqCount": 5,
-          "faqSchema": true,
-          "externalReferences": [
-            "https://www.iso.org/standard/65694.html",
-            "https://csrc.nist.gov/pubs/sp/800/30/r1/final",
-            "https://www.osha.gov/safety-management/hazard-identification",
-            "https://www.osha.gov/electrical/",
-            "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.335"
-          ],
-          "externalReferenceCount": 5,
-          "internalLinkCount": 4,
-          "lastReviewedAt": "2026-09-30",
-          "reviewMarker": true
-        }
-      },
-      "score": 0,
-      "priority": "maintain",
-      "gaps": []
-    },
-    {
-      "id": "odf-odn-resource-planner",
-      "catalogOrder": 37,
-      "category": "optical",
-      "searchIntent": {
-        "id": "planning",
-        "en": "planning",
-        "zh": "规划",
-        "es": "planificación"
-      },
-      "targetTopic": {
-        "en": "ODF / ODN Fiber Resource & Split Planning Planner",
-        "zh": "ODF / ODN 光纤资源与分光规划器"
-      },
-      "contentOwner": "NetEngineerLab Editorial",
-      "lastReviewedAt": {
-        "en": "2026-09-30",
-        "zh": "2026-09-30"
-      },
-      "locales": {
-        "en": {
-          "visibleCharacters": 3337,
-          "sectionHeadings": 9,
-          "longTailQuestions": [
-            "How are PON ports calculated?",
-            "How is fibre reserve applied?",
-            "Why can a plan be inconclusive?",
-            "Does the BOM provide a purchase quantity?",
-            "Is the 3 dB warning threshold mandatory?"
-          ],
-          "faqCount": 5,
-          "faqSchema": true,
-          "externalReferences": [
-            "https://www.itu.int/rec/T-REC-G.984.2/en",
-            "https://www.itu.int/rec/T-REC-G.9807.1/en",
-            "https://www.itu.int/rec/T-REC-G.652/en",
-            "https://www.itu.int/rec/T-REC-G.657/en",
-            "https://www.itu.int/rec/T-REC-G.671/en"
-          ],
-          "externalReferenceCount": 5,
-          "internalLinkCount": 4,
-          "lastReviewedAt": "2026-09-30",
-          "reviewMarker": true
-        },
-        "zh": {
-          "visibleCharacters": 1341,
-          "sectionHeadings": 9,
-          "longTailQuestions": [
-            "PON 端口数量如何计算？",
-            "如何计算纤芯预留？",
-            "为什么方案会显示无法判定？",
-            "规划 BOM 可以直接采购吗？",
-            "3 dB 警告阈值是标准强制值吗？"
-          ],
-          "faqCount": 5,
-          "faqSchema": true,
-          "externalReferences": [
-            "https://www.itu.int/rec/T-REC-G.984.2/en",
-            "https://www.itu.int/rec/T-REC-G.9807.1/en",
-            "https://www.itu.int/rec/T-REC-G.652/en",
-            "https://www.itu.int/rec/T-REC-G.657/en",
-            "https://www.itu.int/rec/T-REC-G.671/en"
-          ],
-          "externalReferenceCount": 5,
-          "internalLinkCount": 4,
-          "lastReviewedAt": "2026-09-30",
           "reviewMarker": true
         }
       },

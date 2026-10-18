@@ -58,7 +58,7 @@ for(const file of htmlFiles){
   if(!/assets\/js\/adsense\.js/i.test(html))errors.push(`${rel}: ads loader missing`);
   if(!new RegExp(`NetEngineerLab Config-Driven Multilingual V${expectedVersion.replaceAll(".","\\.")}`).test(html))errors.push(`${rel}: framework version meta mismatch`);
   if(/href\s*=\s*["']#["']/i.test(html))errors.push(`${rel}: placeholder href=#`);
-  const ids=[...html.matchAll(/\bid\s*=\s*["']([^"']+)["']/gi)].map(match=>match[1]);
+  const ids=[...html.matchAll(/(?:^|[^-\w])id\s*=\s*["']([^"']+)["']/gi)].map(match=>match[1]);
   if(new Set(ids).size!==ids.length)errors.push(`${rel}: duplicate HTML id`);
   if(!/<meta\b[^>]*(?:property=["']og:title["']|name=["']twitter:card["'])/i.test(html))warnings.push(`${rel}: social metadata incomplete`);
   for(const block of html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)){

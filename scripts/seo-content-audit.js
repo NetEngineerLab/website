@@ -57,6 +57,15 @@ const expectedRecords=pageRegistry.pages.filter(page=>page.sitemapEligible).map(
   expectedHreflang:page.hreflang
 }));
 const expectedByUrl=new Map(expectedRecords.map(record=>[record.url,record]));
+const supplementalSlugs=require("./lib/supplemental-tool-slugs");
+for(const slug of supplementalSlugs){
+  for(const locale of activeLocales){
+    const folder=locale.folder?`${locale.folder}/`:"";
+    if(!fs.existsSync(path.join(site,"tools",slug,folder,"index.html")))continue;
+    const url=locale.folder?`${origin}/tools/${slug}/${locale.folder}/`:`${origin}/tools/${slug}/`;
+    expectedByUrl.set(url,{supplemental:true,url,locale,familyId:`supplemental-${slug}`});
+  }
+}
 
 const sitemap=read(path.join(site,"sitemap.xml"));
 const urls=[...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match=>decode(match[1]));
@@ -69,7 +78,7 @@ for(const url of actualSet)if(!expectedSet.has(url))errors.push(`sitemap contain
 
 for(const url of urls){
   const record=expectedByUrl.get(url);
-  if(!record)continue;
+  if(!record||record.supplemental)continue;
   const file=routeToFile(url);
   const rel=path.relative(site,file).split(path.sep).join("/");
   if(!fs.existsSync(file)){errors.push(`${url}: file missing (${rel})`);continue}
@@ -179,6 +188,8 @@ for(const url of urls){
 }
 
 for(const page of pages.filter(item=>item.locale===defaultLocale.id)){
+  const family=familyById.get(page.familyId);
+  if(!family?.translations?.zh)continue;
   const pair=pages.find(item=>item.familyId===page.familyId&&item.locale==="zh");
   if(!pair){errors.push(`${page.rel}: Chinese pair missing`);continue}
   if(page.title===pair.title)warnings.push(`${page.rel}: EN/ZH title is identical`);

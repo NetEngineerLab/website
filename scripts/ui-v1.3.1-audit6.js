@@ -14,8 +14,9 @@ for(const r of mustExist) if(!fs.existsSync(path.join(root,r))) errors.push(`mis
 const COMPLEX=inventory.complexTools;
 let tools=0,pages=0,ordinary=0; const domSigs=new Set();
 function walk(d,out=[]){for(const n of fs.readdirSync(d)){const p=path.join(d,n),s=fs.statSync(p); if(s.isDirectory())walk(p,out); else out.push(p);} return out;}
+const supplemental=require('./lib/supplemental-tool-slugs');
 for(const tool of fs.readdirSync(toolsRoot)){
- const dir=path.join(toolsRoot,tool); if(!fs.existsSync(dir)||!fs.statSync(dir).isDirectory()||tool==='es') continue;
+ const dir=path.join(toolsRoot,tool); if(!fs.existsSync(dir)||!fs.statSync(dir).isDirectory()||tool==='es'||supplemental.has(tool)) continue;
  let counted=false;
  for(const r of ['index.html','zh/index.html','es/index.html']){
    const f=path.join(dir,r); if(!fs.existsSync(f)) continue; const h=read(f); if(!h.includes('nel-tool-detail-page')) continue;

@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-otdr-event-locale-v1.9.9-04-p0-p1-correctness-consent-offline-62c6ee4784c0-68d41a835894";
+const CACHE = "nel-otdr-event-locale-v1.9.9-04-p0-p1-correctness-consent-offline-62c6ee4784c0-83bc06db72fe";
 const CORE = [
   "./index.html",
   "./",

@@ -8,7 +8,12 @@ function walk(dir,pred,out=[]){for(const e of fs.readdirSync(dir,{withFileTypes:
 function count(s,re){return (s.match(re)||[]).length;}
 function classTokens(s){const out=[]; for(const m of s.matchAll(/class="([^"]*)"/g)) out.push(...m[1].trim().split(/\s+/).filter(Boolean)); return out;}
 const COMPLEX=inventory.complexTools;
-const pages=walk(toolsRoot,p=>p.endsWith('index.html')).filter(p=>fs.readFileSync(p,'utf8').includes('data-nel-template="tool-detail-v1.3.1"'));
+const supplemental=require('./lib/supplemental-tool-slugs');
+const pages=walk(toolsRoot,p=>p.endsWith('index.html')).filter(p=>{
+ const rel=path.relative(root,p).replaceAll('\\','/');
+ const tool=(rel.match(/^website\/tools\/([^/]+)\//)||[])[1];
+ return tool&&!supplemental.has(tool)&&fs.readFileSync(p,'utf8').includes('data-nel-template="tool-detail-v1.3.1"');
+});
 const tools=new Set(); let ordinary=0; const domSigs=new Set();
 for(const p of pages){
  const h=fs.readFileSync(p,'utf8'), rel=path.relative(root,p).replaceAll('\\','/'); const mm=rel.match(/^website\/tools\/([^/]+)\//); const tool=mm&&mm[1]; if(tool)tools.add(tool);

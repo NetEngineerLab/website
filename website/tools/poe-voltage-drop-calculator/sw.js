@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-poe-voltage-drop-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-62c6ee4784c0-e8a31536eae1";
+const CACHE = "nel-poe-voltage-drop-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-62c6ee4784c0-500ffe933f63";
 const CORE = [
   "./index.html",
   "./",

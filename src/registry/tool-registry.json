@@ -233,6 +233,16 @@
           "弱光",
           "故障诊断"
         ]
+      },
+      "es": {
+        "name": "Herramienta de diagnóstico de potencia RX de ONU",
+        "description": "Diagnostica la potencia recibida de la ONU: sensibilidad, sobrecarga, aviso de luz débil, potencia esperada, pérdida extra y fallos PON.",
+        "tags": [
+          "Weak-light diagnosis",
+          "Overload detection",
+          "Pérdida extra",
+          "Maintenance guidance"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -244,7 +254,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/onu-rx-power/",
-      "zh-CN": "/tools/onu-rx-power/zh/"
+      "zh-CN": "/tools/onu-rx-power/zh/",
+      "es": "/tools/onu-rx-power/es/"
     },
     "relationships": {
       "related": [
@@ -279,6 +290,16 @@
           "最大距离",
           "规划"
         ]
+      },
+      "es": {
+        "name": "Calculadora de distancia máxima PON",
+        "description": "Calcula la distancia máxima PON a partir de la potencia de transmisión, la sensibilidad, la atenuación, el divisor, los conectores y el margen.",
+        "tags": [
+          "Alcance por presupuesto óptico",
+          "Tope de alcance del sistema",
+          "Verificación del enlace planificado",
+          "Análisis del factor limitante"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -290,7 +311,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/pon-distance/",
-      "zh-CN": "/tools/pon-distance/zh/"
+      "zh-CN": "/tools/pon-distance/zh/",
+      "es": "/tools/pon-distance/es/"
     },
     "relationships": {
       "related": [
@@ -325,6 +347,16 @@
           "双波长",
           "维护诊断"
         ]
+      },
+      "es": {
+        "name": "Analizador de eventos OTDR",
+        "description": "Analiza eventos OTDR de empalmes, conectores, curvaturas, roturas, fantasmas y efectos de zona muerta.",
+        "tags": [
+          "Multievento",
+          "Doble longitud de onda",
+          "Comprobación de zona muerta",
+          "CSV import"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -336,7 +368,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/otdr-event/",
-      "zh-CN": "/tools/otdr-event/zh/"
+      "zh-CN": "/tools/otdr-event/zh/",
+      "es": "/tools/otdr-event/es/"
     },
     "relationships": {
       "related": [
@@ -371,6 +404,16 @@
           "MSS",
           "封装"
         ]
+      },
+      "es": {
+        "name": "Calculadora de MTU y MSS",
+        "description": "Calculadora profesional de MTU y MSS TCP para encapsulación PPPoE, VLAN, GRE, VXLAN, MPLS, IPsec y WireGuard.",
+        "tags": [
+          "PPPoE",
+          "GRE / VXLAN",
+          "IPsec / WireGuard",
+          "MPLS"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -382,7 +425,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/mtu-calculator/",
-      "zh-CN": "/tools/mtu-calculator/zh/"
+      "zh-CN": "/tools/mtu-calculator/zh/",
+      "es": "/tools/mtu-calculator/es/"
     },
     "relationships": {
       "related": [
@@ -555,6 +599,16 @@
           "蓄电池",
           "续航"
         ]
+      },
+      "es": {
+        "name": "Calculadora de autonomía de batería telecom -48 V",
+        "description": "Calcula la autonomía, la capacidad y las cadenas en paralelo de baterías de -48 V para OLT, BBU, transporte y equipos de núcleo.",
+        "tags": [
+          "Elementos de 2 V × 24",
+          "Potencia/corriente constante",
+          "Temperatura y envejecimiento",
+          "Dimensionamiento inverso"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -566,7 +620,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/48v-battery-runtime/",
-      "zh-CN": "/tools/48v-battery-runtime/zh/"
+      "zh-CN": "/tools/48v-battery-runtime/zh/",
+      "es": "/tools/48v-battery-runtime/es/"
     },
     "relationships": {
       "related": [
@@ -602,6 +657,16 @@
           "CGNAT",
           "NAT64"
         ]
+      },
+      "es": {
+        "name": "Calculadora de planificación IPv6 y NAT",
+        "description": "Planifique prefijos IPv6, capacidad NAT44, bloques CGNAT deterministas y direccionamiento NAT64 y DNS64.",
+        "tags": [
+          "Planificación de prefijos IPv6",
+          "Capacidad NAT44/PAT",
+          "Bloques de puertos CGNAT",
+          "NAT64/DNS64"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -613,7 +678,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/ipv6-nat-planner/",
-      "zh-CN": "/tools/ipv6-nat-planner/zh/"
+      "zh-CN": "/tools/ipv6-nat-planner/zh/",
+      "es": "/tools/ipv6-nat-planner/es/"
     },
     "relationships": {
       "related": [
@@ -648,6 +714,16 @@
           "覆盖",
           "容量"
         ]
+      },
+      "es": {
+        "name": "Planificador de cobertura y capacidad Wi‑Fi",
+        "description": "Planifica el radio de cobertura Wi-Fi, el número de AP, la capacidad de usuarios, el caudal y la reutilización de canales en Wi-Fi 5, 6, 6E y 7.",
+        "tags": [
+          "2.4 / 5 / 6 GHz",
+          "Wi-Fi 5 / 6 / 6E / 7",
+          "Limitaciones de cobertura y capacidad",
+          "Riesgo de reutilización de canales"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -659,7 +735,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/wifi-coverage-capacity-planner/",
-      "zh-CN": "/tools/wifi-coverage-capacity-planner/zh/"
+      "zh-CN": "/tools/wifi-coverage-capacity-planner/zh/",
+      "es": "/tools/wifi-coverage-capacity-planner/es/"
     },
     "relationships": {
       "related": [
@@ -763,6 +840,16 @@
           "QSFP28",
           "光链路预算"
         ]
+      },
+      "es": {
+        "name": "Comprobador de compatibilidad SFP y QSFP",
+        "description": "Comprobador gratuito de compatibilidad SFP y QSFP. Compara velocidad, carriles, fibra, longitud de onda, conectores y presupuesto óptico de SFP+, SFP28, QSFP+, QSFP28 y QSFP-DD.",
+        "tags": [
+          "SFP+ vs SFP28",
+          "QSFP+ vs QSFP28",
+          "Presupuesto de enlace óptico",
+          "Compatibilidad de fibra"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -774,7 +861,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/sfp-qsfp-compatibility-calculator/",
-      "zh-CN": "/tools/sfp-qsfp-compatibility-calculator/zh/"
+      "zh-CN": "/tools/sfp-qsfp-compatibility-calculator/zh/",
+      "es": "/tools/sfp-qsfp-compatibility-calculator/es/"
     },
     "relationships": {
       "related": [
@@ -878,6 +966,16 @@
           "压降",
           "线规"
         ]
+      },
+      "es": {
+        "name": "Calculadora de caída de tensión PoE en cable Ethernet",
+        "description": "Calcular Resistencia de bucle del cable PoE, caída de tensión, tensión remota, corriente y pérdida de potencia del cable.",
+        "tags": [
+          "802.3af/at/bt",
+          "Caída de tensión",
+          "Pérdida del cable",
+          "AWG"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -889,7 +987,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/poe-voltage-drop-calculator/",
-      "zh-CN": "/tools/poe-voltage-drop-calculator/zh/"
+      "zh-CN": "/tools/poe-voltage-drop-calculator/zh/",
+      "es": "/tools/poe-voltage-drop-calculator/es/"
     },
     "relationships": {
       "related": [
@@ -924,6 +1023,16 @@
           "制冷",
           "BTU"
         ]
+      },
+      "es": {
+        "name": "Calculadora de potencia y refrigeración de rack de red",
+        "description": "Calcula la potencia del rack de red, la corriente, la carga térmica en BTU, la energía y el coste de operación.",
+        "tags": [
+          "kW / VA",
+          "BTU/h",
+          "Corriente",
+          "Coste energético"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -935,7 +1044,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/network-rack-power-cooling-calculator/",
-      "zh-CN": "/tools/network-rack-power-cooling-calculator/zh/"
+      "zh-CN": "/tools/network-rack-power-cooling-calculator/zh/",
+      "es": "/tools/network-rack-power-cooling-calculator/es/"
     },
     "relationships": {
       "related": [
@@ -1039,6 +1149,16 @@
           "Oversubscription",
           "Switch"
         ]
+      },
+      "es": {
+        "name": "Calculadora de ancho de banda y sobresuscripción de uplinks",
+        "description": "Dimensiona los uplinks del switch según puertos de acceso, utilización, concurrencia y redundancia.",
+        "tags": [
+          "Uplink",
+          "Sobresuscripción",
+          "Switch",
+          "Resiliencia N-1"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -1050,7 +1170,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/switch-uplink-oversubscription-calculator/",
-      "zh-CN": "/tools/switch-uplink-oversubscription-calculator/zh/"
+      "zh-CN": "/tools/switch-uplink-oversubscription-calculator/zh/",
+      "es": "/tools/switch-uplink-oversubscription-calculator/es/"
     },
     "relationships": {
       "related": [
@@ -1085,6 +1206,16 @@
           "TTL",
           "Propagation"
         ]
+      },
+      "es": {
+        "name": "Calculadora de TTL DNS y tiempo de propagación",
+        "description": "Estima el vencimiento de la caché DNS, la ventana de propagación y el calendario para cambiar el TTL.",
+        "tags": [
+          "DNS",
+          "TTL",
+          "Propagación",
+          "Caché"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -1096,7 +1227,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/dns-ttl-propagation-calculator/",
-      "zh-CN": "/tools/dns-ttl-propagation-calculator/zh/"
+      "zh-CN": "/tools/dns-ttl-propagation-calculator/zh/",
+      "es": "/tools/dns-ttl-propagation-calculator/es/"
     },
     "relationships": {
       "related": [
@@ -1131,6 +1263,16 @@
           "Firewall",
           "Configuration"
         ]
+      },
+      "es": {
+        "name": "Generador y validador de ACL multivendor",
+        "description": "Genera, convierte y valida ACL IPv4 para Cisco IOS, Huawei VRP, H3C Comware y Juniper Junos con comprobaciones locales deterministas.",
+        "tags": [
+          "IPv4 ACL",
+          "4 fabricantes",
+          "Procesamiento local",
+          "Validación de sintaxis"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -1142,7 +1284,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/acl-generator-validator/",
-      "zh-CN": "/tools/acl-generator-validator/zh/"
+      "zh-CN": "/tools/acl-generator-validator/zh/",
+      "es": "/tools/acl-generator-validator/es/"
     },
     "relationships": {
       "related": [
@@ -1177,6 +1320,16 @@
           "MOP",
           "Automation"
         ]
+      },
+      "es": {
+        "name": "Planificador de cambios de red y generador MOP",
+        "description": "Pega la configuración en ejecución y la intención LAG/VLAN para generar el diff mínimo, el riesgo, el MOP, el rollback y la verificación.",
+        "tags": [
+          "5 fabricantes",
+          "Delta mínimo",
+          "Riesgo + MOP",
+          "Verificación en bucle cerrado"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -1190,7 +1343,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/network-change-planner-mop-generator/",
-      "zh-CN": "/tools/network-change-planner-mop-generator/zh/"
+      "zh-CN": "/tools/network-change-planner-mop-generator/zh/",
+      "es": "/tools/network-change-planner-mop-generator/es/"
     },
     "relationships": {
       "related": [
@@ -1296,6 +1450,16 @@
           "储能",
           "通信电源"
         ]
+      },
+      "es": {
+        "name": "Calculadora solar y de baterías para telecomunicaciones",
+        "description": "Dimensiona la fotovoltaica y las baterías de un sitio telecom según la carga, las horas solares pico, las pérdidas, la autonomía y el coste.",
+        "tags": [
+          "Campo solar",
+          "Autonomía de batería",
+          "Balance energético diario",
+          "Ahorro y emisiones"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -1308,7 +1472,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/telecom-solar-battery-sizing-calculator/",
-      "zh-CN": "/tools/telecom-solar-battery-sizing-calculator/zh/"
+      "zh-CN": "/tools/telecom-solar-battery-sizing-calculator/zh/",
+      "es": "/tools/telecom-solar-battery-sizing-calculator/es/"
     },
     "relationships": {
       "related": [
@@ -1344,6 +1509,16 @@
           "柴油",
           "通信电源"
         ]
+      },
+      "es": {
+        "name": "Calculadora de consumo de combustible y autonomía del generador",
+        "description": "Estima el consumo de combustible, la autonomía del depósito, el combustible para la interrupción y la operación asistida por baterías.",
+        "tags": [
+          "Carga del generador",
+          "Depósito de combustible",
+          "Curva de consumo",
+          "Reserva de autonomía"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -1356,7 +1531,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/generator-fuel-runtime-calculator/",
-      "zh-CN": "/tools/generator-fuel-runtime-calculator/zh/"
+      "zh-CN": "/tools/generator-fuel-runtime-calculator/zh/",
+      "es": "/tools/generator-fuel-runtime-calculator/es/"
     },
     "relationships": {
       "related": [
@@ -1391,6 +1567,16 @@
           "-48V",
           "N+1"
         ]
+      },
+      "es": {
+        "name": "Calculadora de dimensionamiento de rectificador y sistema de potencia DC de telecomunicaciones",
+        "description": "Dimensiona módulos rectificadores, corriente de recarga, redundancia N+1 o N+2, demanda de entrada AC y margen de expansión.",
+        "tags": [
+          "Planta DC de -48 V",
+          "Dimensionamiento de rectificadores",
+          "Redundancia N+1",
+          "Recarga de batería"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -1403,7 +1589,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/telecom-rectifier-dc-power-sizing/",
-      "zh-CN": "/tools/telecom-rectifier-dc-power-sizing/zh/"
+      "zh-CN": "/tools/telecom-rectifier-dc-power-sizing/zh/",
+      "es": "/tools/telecom-rectifier-dc-power-sizing/es/"
     },
     "relationships": {
       "related": [
@@ -1440,6 +1627,16 @@
           "空开",
           "直流支路"
         ]
+      },
+      "es": {
+        "name": "Calculadora de capacidad eléctrica y dimensionamiento de interruptores AC/DC",
+        "description": "Estima la corriente de acometida AC, del interruptor y de la derivación DC según carga, tensión, fase, factor de potencia y desclasificación.",
+        "tags": [
+          "Interruptor AC",
+          "Interruptor DC",
+          "Cable ampacity",
+          "Margen de protección"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -1452,7 +1649,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/telecom-ac-dc-breaker-sizing/",
-      "zh-CN": "/tools/telecom-ac-dc-breaker-sizing/zh/"
+      "zh-CN": "/tools/telecom-ac-dc-breaker-sizing/zh/",
+      "es": "/tools/telecom-ac-dc-breaker-sizing/es/"
     },
     "relationships": {
       "related": [
@@ -1559,6 +1757,16 @@
           "精密空调",
           "N+1"
         ]
+      },
+      "es": {
+        "name": "Calculadora de carga térmica y capacidad de climatización del centro de datos",
+        "description": "Calcula el calor sensible, la carga de diseño, la capacidad N+1 de aire de precisión, BTU/h, toneladas de refrigeración y el caudal de aire.",
+        "tags": [
+          "Carga térmica IT",
+          "Capacidad de refrigeración",
+          "Redundancia",
+          "Margen ambiental"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -1571,7 +1779,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/data-center-cooling-load-calculator/",
-      "zh-CN": "/tools/data-center-cooling-load-calculator/zh/"
+      "zh-CN": "/tools/data-center-cooling-load-calculator/zh/",
+      "es": "/tools/data-center-cooling-load-calculator/es/"
     },
     "relationships": {
       "related": [
@@ -1607,6 +1816,16 @@
           "均流",
           "直流效率"
         ]
+      },
+      "es": {
+        "name": "Analizador de eficiencia y reparto de carga del sistema DC",
+        "description": "Analiza el reparto de carga de los rectificadores, el desequilibrio de corriente, la resiliencia N+1, la eficiencia de conversión y las pérdidas.",
+        "tags": [
+          "Eficiencia del rectificador",
+          "Reparto de carga",
+          "Cantidad de módulos",
+          "Pérdida de energía"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -1619,7 +1838,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/dc-plant-efficiency-load-sharing/",
-      "zh-CN": "/tools/dc-plant-efficiency-load-sharing/zh/"
+      "zh-CN": "/tools/dc-plant-efficiency-load-sharing/zh/",
+      "es": "/tools/dc-plant-efficiency-load-sharing/es/"
     },
     "relationships": {
       "related": [
@@ -1655,6 +1875,16 @@
           "冷热通道",
           "CRAH"
         ]
+      },
+      "es": {
+        "name": "Planificador de flujo de aire y contención de pasillo caliente",
+        "description": "Planifica el flujo de aire y la contención de pasillos a partir del calor del rack, el delta T, el bypass, la recirculación y la capacidad sensible N+1.",
+        "tags": [
+          "Balance de caudal",
+          "Pasillo caliente / frío",
+          "Contención",
+          "Eficiencia de refrigeración"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -1667,7 +1897,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/data-center-airflow-containment-planner/",
-      "zh-CN": "/tools/data-center-airflow-containment-planner/zh/"
+      "zh-CN": "/tools/data-center-airflow-containment-planner/zh/",
+      "es": "/tools/data-center-airflow-containment-planner/es/"
     },
     "relationships": {
       "related": [
@@ -1703,6 +1934,16 @@
           "油机切换",
           "ATS"
         ]
+      },
+      "es": {
+        "name": "Planificador de transferencia generador + UPS y ride-through",
+        "description": "Planifica la autonomía del UPS, los reintentos de arranque del generador, la transferencia ATS y la continuidad de la carga crítica.",
+        "tags": [
+          "Fallo de red",
+          "Autonomía del UPS",
+          "Arranque del generador",
+          "Transferencia ATS"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -1715,7 +1956,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/generator-ups-transfer-ride-through-planner/",
-      "zh-CN": "/tools/generator-ups-transfer-ride-through-planner/zh/"
+      "zh-CN": "/tools/generator-ups-transfer-ride-through-planner/zh/",
+      "es": "/tools/generator-ups-transfer-ride-through-planner/es/"
     },
     "relationships": {
       "related": [
@@ -1751,6 +1993,16 @@
           "N-1保护",
           "容量优化"
         ]
+      },
+      "es": {
+        "name": "Analizador de optimización y riesgo de protección de anillo de transmisión",
+        "description": "Modela el tráfico del anillo, simula fallos de enlace N-1, localiza cuellos de botella tras la protección y compara ampliaciones.",
+        "tags": [
+          "Utilización del anillo",
+          "N-1 simulation",
+          "Análisis de cuellos de botella",
+          "Planificación de ampliación"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -1764,7 +2016,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/transmission-ring-optimization-risk-analyzer/",
-      "zh-CN": "/tools/transmission-ring-optimization-risk-analyzer/zh/"
+      "zh-CN": "/tools/transmission-ring-optimization-risk-analyzer/zh/",
+      "es": "/tools/transmission-ring-optimization-risk-analyzer/es/"
     },
     "relationships": {
       "related": [
@@ -1800,6 +2053,16 @@
           "传输波道",
           "MSE端口"
         ]
+      },
+      "es": {
+        "name": "Planificador de doble uplink OLT, canales de transporte y puertos MSE",
+        "description": "Calcula puertos de doble uplink de OLT, canales de transporte, puertos y tarjetas MSE, y verifica la capacidad ante un fallo lateral.",
+        "tags": [
+          "Doble uplink de OLT",
+          "Transport channels",
+          "Puertos MSE",
+          "Protección N-1"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -1813,7 +2076,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/olt-dual-uplink-transport-mse-planner/",
-      "zh-CN": "/tools/olt-dual-uplink-transport-mse-planner/zh/"
+      "zh-CN": "/tools/olt-dual-uplink-transport-mse-planner/zh/",
+      "es": "/tools/olt-dual-uplink-transport-mse-planner/es/"
     },
     "relationships": {
       "related": [
@@ -1849,6 +2113,16 @@
           "收敛比",
           "Leaf-Spine"
         ]
+      },
+      "es": {
+        "name": "Planificador de convergencia y capacidad de fabric de red del centro de datos",
+        "description": "Planifica la convergencia Leaf-Spine y de tres niveles, el tráfico este-oeste y norte-sur, la resiliencia N-1 del spine y el crecimiento.",
+        "tags": [
+          "Leaf-Spine",
+          "Acceso-agregación-núcleo",
+          "Spine N-1",
+          "Este-oeste / norte-sur"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -1863,7 +2137,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/data-center-network-convergence-fabric-capacity-planner/",
-      "zh-CN": "/tools/data-center-network-convergence-fabric-capacity-planner/zh/"
+      "zh-CN": "/tools/data-center-network-convergence-fabric-capacity-planner/zh/",
+      "es": "/tools/data-center-network-convergence-fabric-capacity-planner/es/"
     },
     "relationships": {
       "related": [
@@ -1899,6 +2174,16 @@
           "隐患排查",
           "整改闭环"
         ]
+      },
+      "es": {
+        "name": "Generador de evaluación de riesgos y peligros ocultos de red",
+        "description": "Lista de comprobación de peligros de energía, fibra, puertos y monitorización, con puntuación de riesgo local.",
+        "tags": [
+          "Basado en evidencia",
+          "Cinco categorías",
+          "Antes / después",
+          "Responsables asignados"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -1912,7 +2197,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/network-risk-hidden-hazard-assessment-generator/",
-      "zh-CN": "/tools/network-risk-hidden-hazard-assessment-generator/zh/"
+      "zh-CN": "/tools/network-risk-hidden-hazard-assessment-generator/zh/",
+      "es": "/tools/network-risk-hidden-hazard-assessment-generator/es/"
     },
     "relationships": {
       "related": [
@@ -1976,6 +2262,16 @@
           "ODN",
           "光纤资源"
         ]
+      },
+      "es": {
+        "name": "Planificador de recursos de fibra y división ODF/ODN",
+        "description": "Planifica puertos ODF/ODN, etapas de divisores y protección para un número objetivo de ONU.",
+        "tags": [
+          "Planes A / B / C",
+          "Capacidad PON",
+          "Recursos ODF",
+          "BOM de planificación"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -1990,7 +2286,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/odf-odn-resource-planner/",
-      "zh-CN": "/tools/odf-odn-resource-planner/zh/"
+      "zh-CN": "/tools/odf-odn-resource-planner/zh/",
+      "es": "/tools/odf-odn-resource-planner/es/"
     },
     "relationships": {
       "related": [
@@ -2056,6 +2353,16 @@
           "路由",
           "ECMP"
         ]
+      },
+      "es": {
+        "name": "Calculadora de coste OSPF",
+        "description": "Calcula el coste OSPF de la interfaz a partir del ancho de banda de referencia y la velocidad del enlace.",
+        "tags": [
+          "OSPF",
+          "Métricas de interfaz",
+          "Comparación de rutas",
+          "ECMP"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -2068,7 +2375,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/ospf-cost-calculator/",
-      "zh-CN": "/tools/ospf-cost-calculator/zh/"
+      "zh-CN": "/tools/ospf-cost-calculator/zh/",
+      "es": "/tools/ospf-cost-calculator/es/"
     },
     "relationships": {
       "related": [
@@ -2081,11 +2389,13 @@
     "pageContent": {
       "searchIntent": {
         "en": "OSPF interface cost and ECMP path calculation",
-        "zh": "OSPF接口Cost与ECMP路径计算"
+        "zh": "OSPF接口Cost与ECMP路径计算",
+        "es": "Calcula el coste OSPF de la interfaz a partir del ancho de banda de referencia y la velocidad del enlace."
       },
       "reviewedAt": {
         "en": "2026-10-02",
-        "zh": "2026-10-02"
+        "zh": "2026-10-02",
+        "es": null
       },
       "longTailQuestions": {
         "en": [
@@ -2093,6 +2403,11 @@
         ],
         "zh": [
           "如何根据参考带宽计算OSPF Cost？"
+        ],
+        "es": [
+          "¿Cómo se calcula el coste OSPF?",
+          "¿Qué datos debo introducir?",
+          "¿El resultado sustituye la validación de campo?"
         ]
       },
       "structuredData": [
@@ -2130,6 +2445,15 @@
           "预测",
           "规划"
         ]
+      },
+      "es": {
+        "name": "Planificador de previsión de capacidad de red",
+        "description": "Estima el crecimiento en hora punta, el umbral de utilización y el horizonte de ampliación.",
+        "tags": [
+          "Previsión de crecimiento",
+          "Momento de ampliación",
+          "Capacidad objetivo"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -2142,7 +2466,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/network-capacity-forecast-planner/",
-      "zh-CN": "/tools/network-capacity-forecast-planner/zh/"
+      "zh-CN": "/tools/network-capacity-forecast-planner/zh/",
+      "es": "/tools/network-capacity-forecast-planner/es/"
     },
     "relationships": {
       "related": [
@@ -2154,11 +2479,13 @@
     "pageContent": {
       "searchIntent": {
         "en": "network capacity growth forecast and expansion planning",
-        "zh": "网络容量增长预测与扩容规划"
+        "zh": "网络容量增长预测与扩容规划",
+        "es": "Estima el crecimiento en hora punta, el umbral de utilización y el horizonte de ampliación."
       },
       "reviewedAt": {
         "en": "2026-10-02",
-        "zh": "2026-10-02"
+        "zh": "2026-10-02",
+        "es": null
       },
       "longTailQuestions": {
         "en": [
@@ -2166,6 +2493,11 @@
         ],
         "zh": [
           "网络容量什么时候需要扩容？"
+        ],
+        "es": [
+          "¿Cómo debo elegir la tasa de crecimiento anual?",
+          "¿El mes de ampliación garantiza que no habrá congestión?",
+          "¿Por qué la capacidad requerida puede superar la instalada mucho antes del horizonte?"
         ]
       },
       "structuredData": [
@@ -2199,6 +2531,15 @@
           "MOP",
           "批量导出"
         ]
+      },
+      "es": {
+        "name": "Centro de exportación por lotes de informes de ingeniería",
+        "description": "Importa por lotes resultados locales JSON o CSV de las calculadoras y los compila en un informe de ingeniería.",
+        "tags": [
+          "Paquete de varias herramientas",
+          "MOP y lista de comprobación",
+          "Exportación local"
+        ]
       }
     },
     "schemaVersion": "2.1.0",
@@ -2211,7 +2552,8 @@
     "maturity": "production",
     "routes": {
       "en": "/tools/engineering-report-batch-export-center/",
-      "zh-CN": "/tools/engineering-report-batch-export-center/zh/"
+      "zh-CN": "/tools/engineering-report-batch-export-center/zh/",
+      "es": "/tools/engineering-report-batch-export-center/es/"
     },
     "relationships": {
       "related": [
@@ -2223,11 +2565,13 @@
     "pageContent": {
       "searchIntent": {
         "en": "combine network engineering tool results into reports and MOPs",
-        "zh": "汇总网络工程工具结果并生成报告和MOP"
+        "zh": "汇总网络工程工具结果并生成报告和MOP",
+        "es": "Importa por lotes resultados locales JSON o CSV de las calculadoras y los compila en un informe de ingeniería."
       },
       "reviewedAt": {
         "en": "2026-10-02",
-        "zh": "2026-10-02"
+        "zh": "2026-10-02",
+        "es": null
       },
       "longTailQuestions": {
         "en": [
@@ -2235,6 +2579,10 @@
         ],
         "zh": [
           "如何汇总多个网络工具结果并生成工程报告？"
+        ],
+        "es": [
+          "¿Se envían los archivos cargados a un servidor?",
+          "¿El centro ejecuta un MOP generado?"
         ]
       },
       "structuredData": [

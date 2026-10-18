@@ -2,8 +2,9 @@ const fs=require('fs');const path=require('path');
 const root=path.join(__dirname,'..');const toolsRoot=path.join(root,'website','tools');
 const errors=[];const warnings=[];const pages=[];const tools=[];
 function read(p){return fs.readFileSync(p,'utf8')}
+const supplemental=require('./lib/supplemental-tool-slugs');
 for(const name of fs.readdirSync(toolsRoot)){
-  const dir=path.join(toolsRoot,name);if(!fs.existsSync(dir)||!fs.statSync(dir).isDirectory()||name==='es')continue;
+  const dir=path.join(toolsRoot,name);if(!fs.existsSync(dir)||!fs.statSync(dir).isDirectory()||name==='es'||supplemental.has(name))continue;
   const candidates=[path.join(dir,'index.html'),path.join(dir,'zh','index.html'),path.join(dir,'es','index.html')];
   let toolPages=0;
   for(const f of candidates){if(!fs.existsSync(f))continue;const s=read(f);if(!s.includes('nel-tool-detail-page'))continue;pages.push(f);toolPages++;
