@@ -72,9 +72,9 @@
 <ol class="hub-workflow"><li><a href="../../bandwidth-calculator/zh/">带宽与传输时间计算器</a></li><li><a href="../../application-bandwidth-analyzer/zh/">应用带宽分析器</a></li><li><a href="../../switch-uplink-oversubscription-calculator/zh/">交换机上联带宽与超售比计算器</a></li><li><a href="../../subnet-calculator/zh/">IP子网计算器</a></li><li><a href="../../vlan-ip-capacity-planner/zh/">VLAN与IP子网容量规划器</a></li><li><a href="../../mtu-calculator/zh/">MTU与MSS计算器</a></li><li><a href="../../network-capacity-forecast-planner/zh/">网络容量增长预测规划器</a></li><li><a href="../../data-center-network-convergence-fabric-capacity-planner/zh/">数据中心网络收敛比与 Fabric 容量规划器</a></li></ol>
 <h2>常见问题</h2>
 <div class="hub-faq"><details><summary>应该先算超售还是先算带宽？</summary><p>先估算提供的负载，再检验拟定上联在你愿意签字的并发和故障条件下是否扛得住。</p></details><details><summary>VLAN 规划器是 VLSM 工具吗？</summary><p>它根据前缀和预留计算每个 VLAN 的可用主机容量。前缀边界还没画出来时，先用子网计算器。</p></details><details><summary>为什么带宽专题里有 MTU？</summary><p>放不进路径的帧会被丢弃或分片。即使上联算术是对的，现网也会表现为吞吐失败。</p></details><details><summary>什么时候打开 Fabric 容量规划？</summary><p>当问题从一台接入交换机变成叶、脊或汇聚层在同样的流量和故障假设下如何收敛时。</p></details></div>
-</main>
-<section class="content-section" data-nel-editorial-links><h2>相关页面</h2><p><a href="../../../zh/guides/lacp-member-congestion/">为什么一条 LACP 成员链路拥塞</a></p></section>
 <p class="hub-return" data-nel-cluster-link><a href="../../../zh/topics/switch-oversubscription/">本页汇总上联、带宽和编址计算。案例、LAG 行为与 N-1 方法在交换机超售比专题。</a></p>
+<section class="content-section" data-nel-editorial-links><h2>相关页面</h2><p><a href="../../../zh/guides/lacp-member-congestion/">为什么一条 LACP 成员链路拥塞</a></p></section>
+</main>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">
