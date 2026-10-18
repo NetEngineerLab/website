@@ -13,6 +13,7 @@ const owner="NetEngineerLab Editorial";
 const intentByTool=Object.freeze({
   "odf-odn-resource-planner":"planning",
   "fiber-loss":"calculation",
+  "fiber-latency-calculator":"calculation",
   "optical-power-budget":"validation",
   "pon-splitter-loss":"planning",
   "onu-rx-power":"diagnosis",
