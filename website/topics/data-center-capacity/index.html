@@ -1,1 +1,143 @@
-<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>Data Center Capacity</title></head><body><main><h1>Data Center Capacity</h1><p>Plan compute, power and cooling capacity.</p><h2>What are you trying to do?</h2><nav aria-label="Task entry points"><ul><li><a href="#task-calculate">Calculate</a></li><li><a href="#task-understand">Understand</a></li><li><a href="#task-design">Design</a></li><li><a href="#task-plan">Plan</a></li><li><a href="#task-troubleshoot">Troubleshoot</a></li><li><a href="#task-build">Build</a></li><li><a href="#task-optimize">Optimize</a></li></ul></nav><h2>Core Tools</h2><ul><li><a href="/tools/data-center-cooling-load-calculator/">Data Center Capacity Calculator</a></li></ul><h2>Learn</h2><ul></ul><h2>Advanced</h2><ul></ul><h2>Design & Planning</h2><ul><li><a href="/guides/data-center-cooling-load-calculation/">Data Center Capacity Planning</a></li></ul><h2>Build & Operate</h2><ul></ul><h2>Cases</h2><ul></ul><h2>Diagrams</h2><ul></ul><h2>Related Technical / GitHub Resources</h2><ul><li><a href="/guides/data-center-cooling-load-calculation/">Data Center Capacity Planning</a> <small>Planning</small></li><li><a href="/tools/data-center-cooling-load-calculator/">Data Center Capacity Calculator</a> <small>Calculate</small></li></ul><h2>FAQ</h2><p>How do I choose a safe engineering value? Start with the linked calculator and verify assumptions.</p><h2>Related Topics</h2><ul><li><a href="/topics/telecom-power-energy/">Telecom Power & Energy</a></li><li><a href="/topics/switch-oversubscription/">Switching & Oversubscription</a></li><li><a href="/topics/pon-optical/">PON & Optical</a></li></ul><section id="architecture-decision-workshop" class="card"><h2>Network architecture decisions within overall capacity planning</h2><p>Infrastructure capacity includes rack, space, power and network dependencies. Choose a network architecture by explicit requirements, team readiness and operating trade-offs before separately checking link capacity. Preference scores do not certify hardware capacity or redundancy.</p><p><a href="/tools/data-center-architecture-decision-workshop/">Data Center Architecture Decision Workshop</a> · <a href="/tools/data-center-network-convergence-fabric-capacity-planner/">Fabric Capacity Planner — bandwidth and ECMP</a></p></section></main></body></html>
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-nel-locale="en" data-nel-route="topics/data-center-capacity/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Data Center Capacity Planning | NetEngineerLab</title>
+<meta name="description" content="Compare IT load, rack space, power redundancy, network uplinks and cooling limits before an expansion, and find the first shared bottleneck.">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NetEngineerLab">
+<meta property="og:title" content="Data Center Capacity Planning | NetEngineerLab">
+<meta property="og:description" content="Compare IT load, rack space, power redundancy, network uplinks and cooling limits before an expansion, and find the first shared bottleneck.">
+<meta property="og:url" content="https://netengineerlab.com/topics/data-center-capacity/">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<link rel="stylesheet" href="../../assets/css/guide.css?v=a80a8be9d93d">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I find the bottleneck in a data center capacity plan?","acceptedAnswer":{"@type":"Answer","text":"Check space, power, network and cooling against the same load and time boundary, including the failure case. The shared load all four can still carry is the plan limit."}}]}</script>
+<link rel="stylesheet" href="../../assets/css/topic-hub.css?v=46b22865264c">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Data Center Capacity Planning | NetEngineerLab","url":"https://netengineerlab.com/topics/data-center-capacity/","description":"Compare IT load, rack space, power redundancy, network uplinks and cooling limits before an expansion, and find the first shared bottleneck.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="en">
+<meta name="nel-route" content="topics/data-center-capacity/">
+<meta name="nel-available-locales" content="en,zh">
+<link rel="canonical" href="https://netengineerlab.com/topics/data-center-capacity/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/topics/data-center-capacity/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/topics/data-center-capacity/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/topics/data-center-capacity/">
+<link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=c6e622c573c4">
+<script defer src="../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../assets/js/site.js?v=f05b0a51ccda"></script>
+</head>
+<body class="guide-page topic-hub-page">
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Primary navigation">
+      <a href="../../">Home</a>
+      <a href="../../tools/">Tools</a>
+      <a href="../../#guides">Guides</a>
+      <a href="../../#topics" aria-current="page">Topics</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="../../zh/topics/data-center-capacity/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<nav class="topic-hub-breadcrumb" aria-label="Breadcrumb"><a href="../../">Home</a><span aria-hidden="true">›</span><a href="../../#topics">Topics</a><span aria-hidden="true">›</span><span aria-current="page">Data Center Capacity Planning</span></nav>
+<main class="guide-shell" id="main">
+<section class="guide-hero">
+  <p class="eyebrow">DATA CENTER PLANNING</p>
+  <h1>Data Center Capacity Planning</h1>
+  <p class="guide-lead">Put IT load, rack space, power, network uplinks and heat on one capacity view before you add equipment. This hub finds the cross-system bottleneck. Cooling load, precision-air selection and N+1 checks stay in the <a href="../data-center-cooling-capacity/">data center cooling capacity topic</a>.</p>
+  <div class="guide-meta"><span>IT load</span><span>Space</span><span>Power</span><span>Network</span><span>Cooling</span></div>
+</section>
+<section class="topic-tools" aria-label="Related tools">
+  <div><span class="eyebrow">RELATED TOOL</span><strong>Rack power and cooling</strong><p>Turn a rack equipment list into power, current and heat.</p></div>
+  <a href="../../tools/network-rack-power-cooling-calculator/">Open tool →</a>
+</section>
+<div class="guide-layout">
+<article class="guide-article">
+  <h2>What a capacity plan has to check together</h2>
+  <p><strong>IT load.</strong> Separate installed nameplate power, measured busy-hour load, committed additions and the growth assumption. Do not treat a nameplate as measured demand.</p>
+  <p><strong>Racks and space.</strong> Count usable racks, power density per rack, floor loading, service clearance and aisle space. Spare floor area does not mean the target row has a place to install.</p>
+  <p><strong>Power and redundancy.</strong> Check available capacity in normal state and after one path or one module is removed. Record A/B feeds, UPS, distribution and any upstream feeder that both paths share.</p>
+  <p><strong>Network uplinks.</strong> Check the fabric and uplinks with busy-hour traffic and a growth forecast. The sum of port rates does not replace concurrent demand, and an aggregate does not guarantee the rate of one flow.</p>
+  <p><strong>Cooling constraint.</strong> Hand the heat from IT and electrical loss to the cooling topic. A rated cooling tonnage does not by itself prove the rack inlet temperature.</p>
+  <h2>How to name the bottleneck</h2>
+  <ol>
+    <li>Define the boundary: room or row, racks, power unit, design interval and availability target.</li>
+    <li>Write the current case and the growth case. Mark each number as measured, design or assumption.</li>
+    <li>Calculate remaining space, power, network and cooling, including the failure state.</li>
+    <li>Express each limit as the same planned load and record which system hits its limit first.</li>
+    <li>Size the expansion for that bottleneck, then recheck the systems next to it.</li>
+  </ol>
+  <p>Overall capacity is not the sum of ratings in different units. It is the largest load that still satisfies every constraint.</p>
+  <h2>Worked example: power is short after growth</h2>
+  <p>This is a planning example, not a site test or a procurement result. Twenty racks are planned at 8 kW each, so the current IT plan is 160 kW. Growth is 20 percent. Two independent power paths can each deliver 120 kW.</p>
+  <p>The growth case is 160 kW × 1.20 = 192 kW. If both paths share the load, each carries about 96 kW, which is under its 120 kW rating. That still leaves switching, balance and any shared upstream feeder to verify.</p>
+  <p>After one path is removed, 120 kW remains. The gap is 192 − 120 = 72 kW. If the rule is that one surviving path must carry the whole grown load, power redundancy is the bottleneck. Confirm that path before adding racks or servers. Cooling still needs its own check of the matching heat load and N+1 sensible capacity.</p>
+  <p>The example does not model power factor, UPS efficiency, derating, inrush, a feeder that both paths share, network traffic or the thermal environment. A real project should recheck with equipment curves and field measurements.</p>
+  <h2>Continue with a specialist check</h2>
+  <div class="guide-related-grid">
+    <a href="../data-center-cooling-capacity/"><strong>Cooling load and N+1</strong><br>Sensible capacity, airflow and redundancy.</a>
+    <a href="../../guides/data-center-cooling-load-calculation/"><strong>Cooling load guide</strong><br>Heat sources, the formula and a worked room example.</a>
+    <a href="../../tools/data-center-cooling-load-calculator/"><strong>Cooling load calculator</strong><br>IT and room heat, unit count and N+1.</a>
+    <a href="../../tools/network-capacity-forecast-planner/"><strong>Network capacity forecast</strong><br>Busy-hour growth and an expansion trigger.</a>
+    <a href="../../tools/data-center-network-convergence-fabric-capacity-planner/"><strong>Fabric capacity planner</strong><br>Leaf-spine bandwidth and ECMP.</a>
+    <a href="../../tools/data-center-architecture-decision-workshop/"><strong>Architecture decision workshop</strong><br>Compare candidates before a separate capacity check.</a>
+    <a href="../switch-oversubscription/"><strong>Switch oversubscription</strong><br>Uplink ratio, LAG and N-1.</a>
+    <a href="../../tools/pue-data-center-energy-efficiency/"><strong>PUE calculator</strong><br>IT load against facility energy.</a>
+  </div>
+  <h2 id="architecture-decision-workshop">Network architecture inside the capacity plan</h2>
+  <p>Infrastructure capacity includes racks, space, power and network dependencies. Choose an architecture from explicit requirements, team readiness and operating trade-offs, then check link capacity separately. A preference score does not certify hardware capacity or redundancy.</p>
+  <h2>Engineering boundary</h2>
+  <p>Use this page to screen a plan. It is not a certified design, a construction approval or a site acceptance. Distribution protection, structural loading, airflow, equipment derating and the redundancy topology have to be confirmed by a qualified engineer against the applicable standard and the site.</p>
+  <h2>FAQ</h2>
+  <details>
+    <summary>How do I find the bottleneck in a data center capacity plan?</summary>
+    <p>Check space, power, network and cooling against the same load and time boundary, including the failure case. The shared load all four can still carry is the plan limit.</p>
+  </details>
+  <details>
+    <summary>Does spare cooling mean I can add servers?</summary>
+    <p>Only if power, rack space and uplinks can carry the same addition. A surplus in one system does not move the limit set by another.</p>
+  </details>
+</article>
+<aside class="guide-toc" aria-label="On this page">
+  <strong>Topic contents</strong>
+  <a href="#main">Overview</a>
+  <a href="../data-center-cooling-capacity/">Cooling topic</a>
+  <a href="../../tools/network-rack-power-cooling-calculator/">Rack calculator</a>
+  <a href="#architecture-decision-workshop">Architecture</a>
+</aside>
+</div>
+</main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Footer navigation">
+      <a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script>
+</body>
+</html>

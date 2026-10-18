@@ -3,6 +3,7 @@
 
 const fs=require("fs");
 const path=require("path");
+const{execFileSync}=require("child_process");
 const{stableFileHash,stableHash}=require("./stable-text-hash");
 const{rulesRuntimeAssets}=require("./rules-runtime-assets");
 const{precachePathIssues,parsePrecacheArrayLiteral}=require("./service-worker-precache");
@@ -569,8 +570,13 @@ function updateManifestLink(html,currentRel,info){
  const locale=localeMap.get(info.localeId);
  const fileName=locale.id===defaultLocale.id?"manifest.webmanifest":`manifest-${locale.folder}.webmanifest`;
  const manifestRel=`tools/${info.toolSlug}/${fileName}`;
- const href=relativeFile(currentRel,manifestRel);
+ const baseRel=`tools/${info.toolSlug}/manifest.webmanifest`;
+ // Locale manifests are written later from the English file. Skip the link
+ // when neither file exists so the page does not advertise a 404.
+ const manifestExists=fs.existsSync(path.join(siteRoot,...manifestRel.split("/")))||fs.existsSync(path.join(siteRoot,...baseRel.split("/")));
  html=html.replace(/<link\b[^>]*\brel\s*=\s*["'][^"']*\bmanifest\b[^"']*["'][^>]*>\s*/gi,"");
+ if(!manifestExists)return html;
+ const href=relativeFile(currentRel,manifestRel);
  return html.replace(/<\/head>/i,`<link rel="manifest" href="${href}">\n</head>`);
 }
 function generateRuntimeFiles(){
@@ -648,7 +654,16 @@ function generateManifests(groups){
 function generateSitemap(groups){
  const lines=['<?xml version="1.0" encoding="UTF-8"?>','<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">'];
  const toolRecords=activeTools.map(tool=>({route:`tools/${tool.id}/`,changefreq:"monthly",priority:"0.9"}));
- const records=[...sitemapConfig.routes.filter(record=>record.indexable!==false),...toolRecords];
+ // Published tool pages that are not Tool Registry entries. Registry tools must
+ // belong to a workflow, so these planners stay supplemental sitemap routes.
+ const supplementalRecords=[
+  "tools/ip-camera-network-planner/",
+  "tools/application-bandwidth-analyzer/",
+  "tools/data-center-architecture-decision-workshop/",
+  "tools/network-asset-lifecycle-tracker/",
+  "tools/oob-network-design-planner/"
+ ].map(route=>({route,changefreq:"monthly",priority:"0.8"}));
+ const records=[...sitemapConfig.routes.filter(record=>record.indexable!==false),...toolRecords,...supplementalRecords];
  const seen=new Set();
  for(const record of records){
   if(seen.has(record.route))throw new Error(`Duplicate sitemap route: ${record.route}`);
@@ -657,8 +672,10 @@ function generateSitemap(groups){
   if(!group)continue;
   for(const locale of activeLocales){
    if(!group.has(locale.id))continue;
+   const pageFile=path.join(siteRoot,...fileForRoute(record.route,locale).split("/"));
    lines.push("  <url>");
    lines.push(`    <loc>${localeConfig.siteUrl}${urlForRoute(record.route,locale)}</loc>`);
+   lines.push(`    <lastmod>${gitLastmod(pageFile)}</lastmod>`);
    for(const alternate of activeLocales){
     if(!group.has(alternate.id))continue;
     lines.push(`    <xhtml:link rel="alternate" hreflang="${alternate.hreflang}" href="${localeConfig.siteUrl}${urlForRoute(record.route,alternate)}"/>`);
@@ -671,6 +688,80 @@ function generateSitemap(groups){
  }
  lines.push("</urlset>","");
  writeFileWithRetry(path.join(siteRoot,"sitemap.xml"),lines.join("\n"),"utf8");
+}
+function siteFileExists(urlPath){
+ const clean=String(urlPath||"").split(/[?#]/)[0];
+ if(clean===""||clean==="/")return fs.existsSync(path.join(siteRoot,"index.html"));
+ const parts=clean.replace(/^\/+/,"").split("/").filter(Boolean);
+ if(!parts.length)return fs.existsSync(path.join(siteRoot,"index.html"));
+ const target=path.join(siteRoot,...parts);
+ if(clean.endsWith("/"))return fs.existsSync(path.join(target,"index.html"));
+ if(fs.existsSync(target)&&fs.statSync(target).isFile())return true;
+ return fs.existsSync(path.join(target,"index.html"));
+}
+function repairMisnestedRelativeUrls(html,currentRel,currentInfo){
+ // Locale copies such as /tools/<slug>/es/ were rolled out from the English
+ // page without adding a ../ for the extra directory. Repair only URLs that
+ // miss from the locale page and hit a real file when resolved from the
+ // default-locale page, so a second build leaves already-correct links alone.
+ if(!currentInfo||currentInfo.localeId===defaultLocale.id)return html;
+ const defaultRel=fileForRoute(currentInfo.route,defaultLocale);
+ const currentDir=path.posix.dirname(currentRel);
+ const defaultDir=path.posix.dirname(defaultRel);
+ if(currentDir===defaultDir)return html;
+ const locale=localeMap.get(currentInfo.localeId);
+ const currentUrl=urlForRoute(currentInfo.route,locale);
+ return html.replace(/<[^>]+>/g,tag=>tag.replace(/(\b(?:href|src)\s*=\s*)(["'])([^"']+)\2/gi,(whole,prefix,quote,href)=>{
+  if(!href||/^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i.test(href)||href.startsWith("/"))return whole;
+  const split=href.match(/^([^?#]*)([?#].*)?$/);
+  const pathPart=split?split[1]:href;
+  const suffix=split&&split[2]?split[2]:"";
+  if(!pathPart)return whole;
+  const currentTarget=path.posix.normalize(path.posix.join(currentDir,pathPart));
+  if(siteFileExists(pathPart.endsWith("/")?`${currentTarget}/`:currentTarget))return whole;
+  const fallbackTarget=path.posix.normalize(path.posix.join(defaultDir,pathPart));
+  const fallbackPath=pathPart.endsWith("/")?`${fallbackTarget}/`:fallbackTarget;
+  if(!siteFileExists(fallbackPath))return whole;
+  const pageRel=pathPart.endsWith("/")||!path.posix.basename(fallbackTarget).includes(".")
+   ?path.posix.join(fallbackTarget,"index.html")
+   :fallbackTarget;
+  const targetInfo=identifyPage(pageRel);
+  if(targetInfo){
+   const localizedFile=fileForRoute(targetInfo.route,locale);
+   const destLocale=fs.existsSync(path.join(siteRoot,...localizedFile.split("/")))?locale:defaultLocale;
+   return `${prefix}${quote}${relativeUrl(currentUrl,urlForRoute(targetInfo.route,destLocale))}${suffix}${quote}`;
+  }
+  let rel=path.posix.relative(currentDir,fallbackTarget);
+  if(!rel)rel=".";
+  if(pathPart.endsWith("/")&&!rel.endsWith("/"))rel+="/";
+  if(!rel.startsWith(".")&&!rel.startsWith("/"))rel=`./${rel}`;
+  return `${prefix}${quote}${rel}${suffix}${quote}`;
+ }));
+}
+function repairAppBase(html,currentInfo){
+ if(!currentInfo||currentInfo.kind!=="tool"||currentInfo.localeId===defaultLocale.id)return html;
+ const locale=localeMap.get(currentInfo.localeId);
+ const base=relativeUrl(urlForRoute(currentInfo.route,locale),urlForRoute(currentInfo.route,defaultLocale));
+ return html.replace(/<meta\b[^>]*\bname\s*=\s*["']app-base["'][^>]*>/i,tag=>{
+  if(/\bcontent\s*=\s*["'][^"']*["']/i.test(tag))return tag.replace(/\bcontent\s*=\s*["'][^"']*["']/i,`content="${base}"`);
+  return tag.replace(/\s*\/?>$/,` content="${base}">`);
+ });
+}
+function ensureCanonicalLink(html,canonical){
+ if(/<link\b[^>]*\brel\s*=\s*["'][^"']*\bcanonical\b[^"']*["'][^>]*>/i.test(html))return html;
+ return html.replace(/<\/head>/i,`<link rel="canonical" href="${escapeHtml(canonical)}">\n</head>`);
+}
+function gitLastmod(absPath){
+ let committed="";
+ try{
+  committed=execFileSync("git",["log","-1","--format=%cs","--",absPath],{cwd:packageRoot,encoding:"utf8",stdio:["ignore","pipe","ignore"]}).trim();
+ }catch{}
+ let dirty=false;
+ try{
+  dirty=Boolean(execFileSync("git",["status","--porcelain","--",absPath],{cwd:packageRoot,encoding:"utf8",stdio:["ignore","pipe","ignore"]}).trim());
+ }catch{dirty=true}
+ if(dirty||!/^\d{4}-\d{2}-\d{2}$/.test(committed))return new Date().toISOString().slice(0,10);
+ return committed;
 }
 function enhanceGuideContent(html,info,locale){
  if(!/<main\b[^>]*class=["'][^"']*\bguide-content\b/i.test(html))return html;
@@ -711,6 +802,8 @@ function build(){
   const group=groups.get(record.info.route);
   if(!locale||!group)continue;
   let html=fs.readFileSync(record.file,"utf8");
+  html=repairMisnestedRelativeUrls(html,record.rel,record.info);
+  html=repairAppBase(html,record.info);
   if(record.info.shellOnly){
    html=ensureAsset(html,record.rel,"assets/css/design-tokens.css","css");
    html=ensureAsset(html,record.rel,"assets/css/site-shell.css","css");
@@ -727,6 +820,7 @@ function build(){
     const guideCrumb=new RegExp(`<span>\\s*${guideLabel}\\s*<\\/span>`);
     shell=shell.replace(breadcrumb[0],breadcrumb[0].replace(guideCrumb,`<a href="${escapeHtml(guideHref)}">${guideLabel}</a>`));
    }
+   shell=ensureCanonicalLink(shell,localeConfig.siteUrl+urlForRoute(record.info.route,locale));
    writeFileWithRetry(record.file,shell);
    continue;
   }

@@ -35,27 +35,31 @@ const systemProfiles={
 };
 const attenuationMap={"1310":0.35,"1490":0.25,"1550":0.20};
 let last=null;
-const num=id=>Number.parseFloat($(id).value);
+function readValue(id,fallback=""){const el=$(id);return el?el.value:fallback}
+function writeValue(id,value){const el=$(id);if(el)el.value=value}
+const num=id=>{const el=$(id);return el?Number.parseFloat(el.value):0};
 
 function setAttenuation(){
- const wave=$("wavelength").value;
+ const wave=readValue("wavelength");
+ const attenuation=$("attenuation");
+ if(!attenuation)return;
  if(attenuationMap[wave]!==undefined){
-  $("attenuation").value=attenuationMap[wave].toFixed(2);
-  $("attenuation").readOnly=true;
+  attenuation.value=attenuationMap[wave].toFixed(2);
+  attenuation.readOnly=true;
  }else{
-  $("attenuation").readOnly=false;
+  attenuation.readOnly=false;
  }
 }
 function applySplitterPreset(){
- const p=splitterPresets[$("preset").value];
+ const p=splitterPresets[readValue("preset")];
  if(!p)return;
- $("splitter1").value=p.s1;$("splitter2").value=p.s2;$("splitter3").value=p.s3;
+ writeValue("splitter1",p.s1);writeValue("splitter2",p.s2);writeValue("splitter3",p.s3);
  calculate();
 }
 function applySystemProfile(){
- const p=systemProfiles[$("systemProfile").value];
+ const p=systemProfiles[readValue("systemProfile")];
  if(!p)return;
- $("txPower").value=p.tx;$("txMaxPower").value=p.txMax;$("rxSensitivity").value=p.sens;$("rxOverload").value=p.over;$("opticalPenalty").value=p.penalty;
+ writeValue("txPower",p.tx);writeValue("txMaxPower",p.txMax);writeValue("rxSensitivity",p.sens);writeValue("rxOverload",p.over);writeValue("opticalPenalty",p.penalty);
  calculate();
 }
 function invalidate(){
@@ -69,14 +73,14 @@ function invalidate(){
 }
 function calculate(){
  const v={
-  project:$("projectName").value.trim()||"Untitled",
+  project:readValue("projectName").trim()||"Untitled",
   distance:num("distance"),attenuation:num("attenuation"),
   spliceCount:num("spliceCount"),spliceLoss:num("spliceLoss"),
   connectorCount:num("connectorCount"),connectorLoss:num("connectorLoss"),
   s1:num("splitter1"),s2:num("splitter2"),s3:num("splitter3"),
   other:num("otherLoss"),penalty:num("opticalPenalty"),margin:num("margin"),
   tx:num("txPower"),txMax:num("txMaxPower"),sens:num("rxSensitivity"),over:num("rxOverload"),
-  systemReach:num("systemReach"),aging:num("aging"),temperature:num("temperature"),maintenance:num("maintenance"),protection:num("protection"),wavelength:$("wavelength").value
+  systemReach:num("systemReach"),aging:num("aging"),temperature:num("temperature"),maintenance:num("maintenance"),protection:num("protection"),wavelength:readValue("wavelength","1490")
  };
  const result=window.NELPonSplitterLossEngine.calculate(v);
  if(!result.ok){invalidate();$("validation").textContent=T[LANG].invalid;return}
@@ -108,13 +112,14 @@ function calculate(){
  }
 }
 function reset(){
- $("preset").value="8x8";$("systemProfile").value="gpon-c";
- $("projectName").value="GPON C+ 1:64 Splitter Design";
- $("distance").value=10;$("wavelength").value="1490";setAttenuation();
- $("spliceCount").value=6;$("spliceLoss").value=.10;$("connectorCount").value=4;$("connectorLoss").value=.30;
- $("splitter1").value="10.5";$("splitter2").value="10.5";$("splitter3").value="0";
- $("aging").value=0;$("temperature").value=0;$("maintenance").value=0;$("protection").value=0;$("otherLoss").value=0;$("opticalPenalty").value=1;$("margin").value=3;$("systemReach").value=20;
- $("txPower").value=3;$("txMaxPower").value=7;$("rxSensitivity").value=-30;$("rxOverload").value=-8;
+ writeValue("preset","8x8");writeValue("systemProfile","gpon-c");
+ writeValue("projectName","GPON C+ 1:64 Splitter Design");
+ writeValue("distance",10);writeValue("wavelength","1490");setAttenuation();
+ writeValue("spliceCount",6);writeValue("spliceLoss",.10);writeValue("connectorCount",4);writeValue("connectorLoss",.30);
+ writeValue("splitter1","10.5");writeValue("splitter2","10.5");writeValue("splitter3","0");
+ writeValue("aging",0);writeValue("temperature",0);writeValue("maintenance",0);writeValue("protection",0);writeValue("otherLoss",0);writeValue("opticalPenalty",1);writeValue("margin",3);writeValue("systemReach",20);
+ writeValue("agingLoss",0);writeValue("temperatureLoss",0);writeValue("maintenanceLoss",0);writeValue("protectionLoss",0);
+ writeValue("txPower",3);writeValue("txMaxPower",7);writeValue("rxSensitivity",-30);writeValue("rxOverload",-8);
  calculate();
 }
 function report(){
@@ -161,14 +166,14 @@ function exportCsv(){
  a.href=URL.createObjectURL(blob);a.download="pon_splitter_loss_report.csv";a.click();URL.revokeObjectURL(a.href);temp($("csvBtn"),T[LANG].csv);
 }
 ["projectName","distance","attenuation","spliceCount","spliceLoss","connectorCount","connectorLoss","splitter1","splitter2","splitter3","otherLoss","opticalPenalty","margin","aging","temperature","maintenance","protection","systemReach","txPower","txMaxPower","rxSensitivity","rxOverload"].forEach(id=>$(id)?.addEventListener("input",()=>{invalidate();clearTimeout(window.__pon);window.__pon=setTimeout(calculate,160)}));
-$("wavelength").addEventListener("change",()=>{setAttenuation();calculate()});
-$("preset").addEventListener("change",applySplitterPreset);
-$("systemProfile").addEventListener("change",applySystemProfile);
-$("calculateBtn").addEventListener("click",calculate);
-$("resetBtn").addEventListener("click",reset);
-$("copyBtn").addEventListener("click",copyResult);
-$("saveBtn").addEventListener("click",save);
-$("csvBtn").addEventListener("click",exportCsv);
-$("printBtn").addEventListener("click",()=>window.print());
-$("clearHistoryBtn").addEventListener("click",clearHistory);
+$("wavelength")?.addEventListener("change",()=>{setAttenuation();calculate()});
+$("preset")?.addEventListener("change",applySplitterPreset);
+$("systemProfile")?.addEventListener("change",applySystemProfile);
+$("calculateBtn")?.addEventListener("click",calculate);
+$("resetBtn")?.addEventListener("click",reset);
+$("copyBtn")?.addEventListener("click",copyResult);
+$("saveBtn")?.addEventListener("click",save);
+$("csvBtn")?.addEventListener("click",exportCsv);
+$("printBtn")?.addEventListener("click",()=>window.print());
+$("clearHistoryBtn")?.addEventListener("click",clearHistory);
 setAttenuation();calculate();renderHistory();

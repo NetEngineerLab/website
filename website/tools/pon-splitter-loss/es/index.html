@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="es" dir="ltr" data-nel-locale="es" data-nel-route="tools/pon-splitter-loss/"><head>
-<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="./" name="app-base"/>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="../" name="app-base"/>
 <title>Calculadora de pérdidas de divisores PON | NetEngineerLab</title>
 <meta content="Planifica divisores PON de una o varias etapas, relación total, pérdida de inserción, presupuesto ODN, potencia recibida y alcance efectivo." name="description"/>
 <meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
@@ -35,8 +35,8 @@
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../../assets/js/site.js?v=0da39eabe820"></script>
-<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=744ed63c3e27">
+<script defer src="../../../assets/js/site.js?v=f05b0a51ccda"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=3490f5449c71">
 <link rel="manifest" href="../manifest-es.webmanifest">
 </head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
 <a class="skip-link" href="#calculator">Saltar a la calculadora</a><noscript><div class="noscript">Se requiere JavaScript.</div></noscript>
@@ -87,13 +87,14 @@
 <div class="field"><label for="connectorCount">Número de conectores</label><div class="input-wrap"><input id="connectorCount" min="0" step="1" type="number" value="4"/><span>pcs</span></div></div>
 <div class="field"><label for="connectorLoss">Pérdida por conector</label><div class="input-wrap"><input id="connectorLoss" min="0" step="0.01" type="number" value="0.30"/><span>dB</span></div></div>
 <div class="field"><label for="otherLoss">Otras pérdidas pasivas</label><div class="input-wrap"><input id="otherLoss" min="0" step="0.01" type="number" value="0"/><span>dB</span></div></div>
-<div class="field"><label for="opticalPenalty">Penalización de trayecto óptico</label><div class="input-wrap"><input id="opticalPenalty" min="0" step="0.1" type="number" value="1"/><span>dB</span></div><small class="help">Valor de referencia C+ en sentido descendente.</small></div><div class="field"><label for="margin">Margen de ingeniería</label><div class="input-wrap"><input id="margin" min="0" step="0.1" type="number" value="3"/><span>dB</span></div></div><div class="field"><label for="systemReach">Límite de alcance del sistema</label><div class="input-wrap"><input id="systemReach" min="0.1" step="0.1" type="number" value="20"/><span>km</span></div><small class="help">El alcance efectivo no superará este valor.</small></div>
+<div class="field"><label for="opticalPenalty">Penalización de trayecto óptico</label><div class="input-wrap"><input id="opticalPenalty" min="0" step="0.1" type="number" value="1"/><span>dB</span></div><small class="help">Valor de referencia C+ en sentido descendente.</small></div><div class="field"><label for="margin">Margen de ingeniería</label><div class="input-wrap"><input id="margin" min="0" step="0.1" type="number" value="3"/><span>dB</span></div></div><div class="field"><label for="aging">Margen de envejecimiento</label><div class="input-wrap"><input id="aging" step="0.1" type="number" value="0"/><span>dB</span></div></div><div class="field"><label for="temperature">Margen de temperatura</label><div class="input-wrap"><input id="temperature" step="0.1" type="number" value="0"/><span>dB</span></div></div><div class="field"><label for="maintenance">Margen de mantenimiento</label><div class="input-wrap"><input id="maintenance" step="0.1" type="number" value="0"/><span>dB</span></div></div><div class="field"><label for="protection">Margen de protección PON</label><div class="input-wrap"><input id="protection" step="0.1" type="number" value="0"/><span>dB</span></div></div><div class="field"><label for="systemReach">Límite de alcance del sistema</label><div class="input-wrap"><input id="systemReach" min="0.1" step="0.1" type="number" value="20"/><span>km</span></div><small class="help">El alcance efectivo no superará este valor.</small></div>
 <div class="subheading">Ventana de potencia del equipo</div>
 <div class="field"><label for="txPower">Potencia mínima de transmisión</label><div class="input-wrap"><input id="txPower" step="0.1" type="number" value="3"/><span>dBm</span></div></div>
 <div class="field"><label for="txMaxPower">Potencia máxima de transmisión</label><div class="input-wrap"><input id="txMaxPower" step="0.1" type="number" value="7"/><span>dBm</span></div><small class="help">Se usa para comprobar la sobrecarga del receptor; verifica la ficha técnica exacta del equipo.</small></div>
 <div class="field"><label for="rxSensitivity">Sensibilidad del receptor</label><div class="input-wrap"><input id="rxSensitivity" step="0.1" type="number" value="-30"/><span>dBm</span></div></div>
 <div class="field"><label for="rxOverload">Umbral de sobrecarga del receptor</label><div class="input-wrap"><input id="rxOverload" step="0.1" type="number" value="-8"/><span>dBm</span></div></div>
 </div>
+<section class="content-section" aria-label="Reservas de resiliencia"><div class="field"><label for="agingLoss">Reserva de envejecimiento</label><input id="agingLoss" min="0" step="0.1" type="number" value="0"/></div><div class="field"><label for="temperatureLoss">Reserva de temperatura</label><input id="temperatureLoss" min="0" step="0.1" type="number" value="0"/></div><div class="field"><label for="maintenanceLoss">Reserva de mantenimiento</label><input id="maintenanceLoss" min="0" step="0.1" type="number" value="0"/></div><div class="field"><label for="protectionLoss">Reserva de PON de protección</label><input id="protectionLoss" min="0" step="0.1" type="number" value="0"/></div></section>
 <div class="input-actions"><button class="primary-action" id="calculateBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> Calcular pérdida de divisores</button><button class="secondary-action" id="resetBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M20 11a8 8 0 1 0-2.3 5.7"></path><path d="M20 4v7h-7"></path></svg> Restablecer parámetros</button></div><p class="validation" id="validation" role="alert"></p>
 </section>
 <section aria-live="polite" class="result-panel card nel-tool-result">
@@ -155,6 +156,6 @@
   </div>
 </footer>
 <!-- NEL_FOOTER_END -->
-<script defer="" src="../js/engine.js"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=0573ead15182"></script>
+<script defer="" src="../js/engine.js"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=7a1a6f7fbc32"></script>
 <script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script>
 <script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script><script defer="" src="/assets/js/es-launch-runtime.js?v=1.3.0"></script></body></html>
