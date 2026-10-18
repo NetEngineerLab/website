@@ -35,7 +35,7 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Puedo conectar un SFP+ 10G a un SFP28 25G?","acceptedAnswer":{"@type":"Answer","text":"No a distintas velocidades de línea. Solo funciona si ambos hosts y módulos operan a la misma velocidad admitida, normalmente 10G en una jaula SFP28 con compatibilidad descendente explícita."}},{"@type":"Question","name":"¿Pueden comunicarse módulos monomodo y multimodo?","acceptedAnswer":{"@type":"Answer","text":"No. Las ópticas, el tipo de fibra y el plan de longitudes de onda deben formar un enlace compatible. Mezclar módulos SMF y MMF no es un diseño de producción válido."}},{"@type":"Question","name":"¿Por qué se comprueba la sobrecarga del receptor?","acceptedAnswer":{"@type":"Answer","text":"Un enlace muy corto con potencia máxima de transmisión puede superar la entrada máxima del receptor. La herramienta comprueba ambas direcciones con Tx máximo; puede requerirse un atenuador cuando el margen frente a sobrecarga es negativo."}},{"@type":"Question","name":"¿PASS garantiza que un switch de marca acepte el módulo?","acceptedAnswer":{"@type":"Answer","text":"No. La codificación del proveedor y las políticas del firmware del host quedan fuera del presupuesto óptico. Confirma el número de pieza en la lista de compatibilidad del switch o NIC."}},{"@type":"Question","name":"¿Puedo instalar un módulo QSFP28 en un puerto QSFP-DD?","acceptedAnswer":{"@type":"Answer","text":"Solo cuando el proveedor del host documenta compatibilidad descendente y el puerto está configurado para la velocidad y el modo de carriles del módulo. Una jaula mecánicamente compatible no demuestra compatibilidad de firmware, FEC, breakout o interfaz óptica."}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=8c488ab6e2be">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=2f6d3d828c10">
 <link rel="stylesheet" href="../../../assets/css/site-shell.css?v=c6e622c573c4">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
@@ -74,7 +74,7 @@
   <span aria-hidden="true">/</span>
   <a class="tool-return-link" href="../../es/">Herramientas</a>
   <span aria-hidden="true">/</span>
-  <span aria-current="page">SFP &amp; QSFP Compatibility Checker</span>
+  <span aria-current="page">Comprobador de compatibilidad SFP y QSFP</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
 <section class="hero nel-tool-hero"><div class="hero-inner"><p class="eyebrow">HERRAMIENTA DE PLANIFICACIÓN DE TRANSCEPTORES ÓPTICOS</p><h1>Comprobador de compatibilidad SFP y QSFP</h1><p>Compare dos módulos SFP, SFP+, SFP28, QSFP+, QSFP28 o QSFP-DD. Compruebe la velocidad Ethernet, el número de carriles, la fibra monomodo o multimodo, la longitud de onda, el conector y el margen de potencia óptica recibida antes del despliegue.</p><div class="hero-tags"><span>SFP+ vs SFP28</span><span>QSFP+ vs QSFP28</span><span>Presupuesto de enlace óptico</span><span>Compatibilidad de fibra</span></div></div></section>

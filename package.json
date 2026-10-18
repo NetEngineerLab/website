@@ -60,7 +60,7 @@
     "test:browser:edge": "node scripts/run-browser-tests.js --project=edge-desktop --project=edge-android --project=edge-iphone",
     "check:ga4": "node scripts/ga4-online-check.js",
     "test:layout": "node scripts/layout-regression-test.js",
-    "test": "npm run test:mib-oid && npm run test:rules-contract && npm run test:subnet && npm run check:links && npm run test:jsonld && npm run test:layout",
+    "test": "npm run test:mib-oid && npm run test:rules-contract && npm run test:subnet && npm run check:links && npm run test:jsonld && npm run test:layout && node scripts/tool-input-result-contract-test.js",
     "test:subnet": "node website/tools/subnet-calculator/docs/engine-test.js",
     "verify": "npm run test && npm run build && npm run gate:release",
     "deploy": "git push origin main",

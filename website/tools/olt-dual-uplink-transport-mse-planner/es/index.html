@@ -21,7 +21,7 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Por qué dimensionar cada lado para todo el tráfico protegido?","acceptedAnswer":{"@type":"Answer","text":"Porque un diseño de doble uplink debe comprobarse en el estado de fallo de un solo lado, no solo en el reparto de carga normal 50/50."}},{"@type":"Question","name":"¿Un canal de transporte de 100G puede cursar varios uplinks de OLT de 10G?","acceptedAnswer":{"@type":"Answer","text":"Sí en un modelo de capacidad, siempre que la tecnología de transporte admita el mapeo de cliente requerido y el agregado se mantenga dentro del límite de planificación configurado."}},{"@type":"Question","name":"¿Qué es un riesgo de doble uplink falso?","acceptedAnswer":{"@type":"Answer","text":"Significa que dos uplinks lógicos siguen compartiendo una ruta física, un anillo o un sistema de transporte, de modo que un fallo puede derribar ambos caminos."}},{"@type":"Question","name":"¿Cómo se calculan las tarjetas de línea MSE?","acceptedAnswer":{"@type":"Answer","text":"El motor calcula primero los puertos MSE por lado protegido en estado de fallo, multiplica por la cantidad de nodos MSE y redondea al alza según los puertos configurados por tarjeta."}},{"@type":"Question","name":"¿Esto sustituye la planificación detallada del fabricante de OTN/MSE?","acceptedAnswer":{"@type":"Answer","text":"No. El mapeo de clientes, los límites de slot y tarjeta, la conmutación de protección y la sobresuscripción propia del hardware deben verificarse con las reglas de diseño del fabricante."}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=8c488ab6e2be">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=2f6d3d828c10">
 <link rel="stylesheet" href="../../../assets/css/site-shell.css?v=c6e622c573c4">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
@@ -57,7 +57,7 @@
   <span aria-hidden="true">/</span>
   <a class="tool-return-link" href="../../es/">Herramientas</a>
   <span aria-hidden="true">/</span>
-  <span aria-current="page">OLT Dual-Uplink Capacity, Transport Channel &amp; MSE Port Planner</span>
+  <span aria-current="page">Planificador de doble uplink OLT, canales de transporte y puertos MSE</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END --><section class="hero nel-tool-hero"><div class="hero-inner">
 <p class="eyebrow">CAPACIDAD DE ACCESO × TRANSPORTE × MSE</p>

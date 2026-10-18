@@ -342,6 +342,22 @@ body > main textarea {
   background: #fff !important;
 }
 
+/* Tool stylesheets zero every input because the border is meant to live on
+   .input / .input-wrap. Unitless fields have no wrapper, so restore a real
+   border on the control itself. Nested controls keep the wrapper border. */
+body.nel-tool-detail-page input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="range"]):not([type="file"]):not([type="button"]):not([type="submit"]):not([type="reset"]),
+body.nel-tool-detail-page select,
+body.nel-tool-detail-page textarea {
+  border-width: 1px !important;
+  border-style: solid !important;
+  border-color: #c7d8e8 !important;
+}
+body.nel-tool-detail-page :is(.input, .input-wrap) :is(input, select, textarea) {
+  border-width: 0 !important;
+  border-style: none !important;
+  border-radius: 0 !important;
+}
+
 body > main .input-wrap {
   min-height: 44px;
   border-color: #c7d8e8 !important;

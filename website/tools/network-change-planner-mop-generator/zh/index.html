@@ -23,7 +23,7 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么不是直接生成完整配置？","acceptedAnswer":{"@type":"Answer","text":"因为真实变更更需要最小影响面。工具先解析当前受管状态，只生成实现目标意图所需的最小差异，并同时生成对应回退操作。"}},{"@type":"Question","name":"支持任意 running-config 吗？","acceptedAnswer":{"@type":"Answer","text":"当前旗舰 V1.1 只管理已经平台化并通过测试的 LAG 与 Trunk/VLAN 领域。其他配置保留为未受管上下文，不会被自动改写。"}},{"@type":"Question","name":"什么时候会要求回退？","acceptedAnswer":{"@type":"Answer","text":"聚合口 Down、有效成员不足、Trunk VLAN/PVID 与目标不一致、出现意外成员或新增接口错误等证据，会触发 ROLLBACK_REQUIRED。"}},{"@type":"Question","name":"这个工具会直接连接设备执行命令吗？","acceptedAnswer":{"@type":"Answer","text":"不会。当前V1.1是本地浏览器中的规划、生成与验证工具，不主动登录设备，不保存凭据，也不会自动推送配置。"}},{"@type":"Question","name":"为什么设备型号和端口范围是有限的？","acceptedAnswer":{"@type":"Answer","text":"自动接口解析只对已进入Device Platform Catalog并具有明确命名规则的基线型号开放。超出已验证范围时应由工程师人工确认，而不是让系统猜测端口名称。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=8c488ab6e2be">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=2f6d3d828c10">
 <link rel="stylesheet" href="../../../assets/css/site-shell.css?v=c6e622c573c4">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>

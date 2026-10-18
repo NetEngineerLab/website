@@ -38,7 +38,16 @@ for(const mutate of [value=>{delete value.es},value=>{value.es="https://netengin
 
 const sitemap=fs.readFileSync(path.join(root,"website","sitemap.xml"),"utf8");
 const actual=[...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match=>match[1]).sort();
-const expected=registry.pages.filter(page=>page.sitemapEligible).map(page=>page.url).sort();
+// These published planners stay outside the Tool Registry because workflow
+// coverage is required there. They remain indexable sitemap URLs.
+const supplementalSitemapUrls=[
+  "tools/ip-camera-network-planner/",
+  "tools/application-bandwidth-analyzer/",
+  "tools/data-center-architecture-decision-workshop/",
+  "tools/network-asset-lifecycle-tracker/",
+  "tools/oob-network-design-planner/"
+].flatMap(route=>["", "zh/"].map(locale=>`https://netengineerlab.com/${route}${locale}`));
+const expected=[...registry.pages.filter(page=>page.sitemapEligible).map(page=>page.url),...supplementalSitemapUrls].sort();
 assert.deepStrictEqual(actual,expected,"Page Registry eligible URLs must equal sitemap.xml exactly");
 
 function publicHtml(pathname){

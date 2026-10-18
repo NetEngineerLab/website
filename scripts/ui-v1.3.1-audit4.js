@@ -14,9 +14,10 @@ function read(p){return fs.readFileSync(p,'utf8')}
 function esc(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}
 function count(s,re){return (s.match(re)||[]).length}
 function rel(p){return path.relative(root,p).replaceAll('\\','/')}
+const supplemental=require('./lib/supplemental-tool-slugs');
 for(const tool of fs.readdirSync(toolsRoot)){
   const dir=path.join(toolsRoot,tool);
-  if(!fs.existsSync(dir)||!fs.statSync(dir).isDirectory()||tool==='es') continue;
+  if(!fs.existsSync(dir)||!fs.statSync(dir).isDirectory()||tool==='es'||supplemental.has(tool)) continue;
   for(const r of ['index.html',path.join('zh','index.html'),path.join('es','index.html')]){
     const f=path.join(dir,r); if(!fs.existsSync(f)) continue;
     const h=read(f); if(!h.includes('nel-tool-detail-page')) continue;

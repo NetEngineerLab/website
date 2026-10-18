@@ -18,7 +18,7 @@ concurrency:
 jobs:
   monitor-production:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 75
     steps:
       - name: Check out repository
         uses: actions/checkout@v6
@@ -29,8 +29,21 @@ jobs:
           node-version-file: .node-version
           cache: npm
 
+      - name: Resolve Playwright version
+        id: playwright
+        run: echo "version=$(node -p "require('./package-lock.json').packages['node_modules/playwright'].version")" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-ms-playwright-${{ steps.playwright.outputs.version }}
+
       - name: Install locked dependencies
         run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium msedge
 
       - name: Build and run local quality gate
         run: npm run prepare:launch

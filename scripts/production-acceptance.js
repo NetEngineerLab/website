@@ -77,8 +77,9 @@ function linkAudit(){
   for(const file of htmlFiles){
     const html=read(file);
     const rel=path.relative(site,file).split(path.sep).join("/");
-    const ids=new Set([...html.matchAll(/\bid\s*=\s*["']([^"']+)["']/gi)].map(match=>match[1]));
-    const allIds=[...html.matchAll(/\bid\s*=\s*["']([^"']+)["']/gi)].map(match=>match[1]);
+    const idPattern=/(?:^|[^-\w])id\s*=\s*["']([^"']+)["']/gi;
+    const ids=new Set([...html.matchAll(idPattern)].map(match=>match[1]));
+    const allIds=[...html.matchAll(idPattern)].map(match=>match[1]);
     if(new Set(allIds).size!==allIds.length)errors.push(`${rel}: duplicate HTML id`);
     for(const match of html.matchAll(/\b(?:href|src)\s*=\s*["']([^"']*)["']/gi)){
       const raw=match[1].trim();linkCount++;
@@ -360,6 +361,15 @@ async function httpAudit(sitemapUrls){
   // locale does not imply that every page family is translated/published in that locale.
   const pageRegistry=loadPageRegistry();
   const expectedSitemap=new Set(pageRegistry.pages.filter(page=>page.sitemapEligible).map(page=>page.url));
+  const supplementalSlugs=require("./lib/supplemental-tool-slugs");
+  for(const slug of supplementalSlugs){
+    for(const locale of activeLocales){
+      const folder=locale.folder?`${locale.folder}/`:"";
+      if(fs.existsSync(path.join(site,"tools",slug,folder,"index.html"))){
+        expectedSitemap.add(locale.folder?`${expectedOrigin}/tools/${slug}/${locale.folder}/`:`${expectedOrigin}/tools/${slug}/`);
+      }
+    }
+  }
   const actualSitemap=new Set(sitemapUrls);
   const missingSitemap=[...expectedSitemap].filter(url=>!actualSitemap.has(url));
   const extraSitemap=[...actualSitemap].filter(url=>!expectedSitemap.has(url));

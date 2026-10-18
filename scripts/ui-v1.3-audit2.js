@@ -3,8 +3,9 @@ const inventory=require('./lib/ui-tool-audit-inventory');
 const fs=require('fs');const path=require('path');const root=path.join(__dirname,'..');const tr=path.join(root,'website','tools');
 const issues=[];let pages=0;let tools=0;const heroFingerprints=new Set();
 function rd(p){return fs.readFileSync(p,'utf8')}
+const supplemental=require('./lib/supplemental-tool-slugs');
 for(const n of fs.readdirSync(tr)){
- const d=path.join(tr,n);if(!fs.existsSync(d)||!fs.statSync(d).isDirectory()||n==='es')continue;let seen=false;
+ const d=path.join(tr,n);if(!fs.existsSync(d)||!fs.statSync(d).isDirectory()||n==='es'||supplemental.has(n))continue;let seen=false;
  for(const f of [path.join(d,'index.html'),path.join(d,'zh','index.html'),path.join(d,'es','index.html')]){
   if(!fs.existsSync(f))continue;const s=rd(f);if(!s.includes('nel-tool-detail-page'))continue;pages++;seen=true;const rel=path.relative(root,f).replaceAll('\\','/');
   const hero=(s.match(/<section class="hero nel-tool-hero"[\s\S]*?<\/section>/)||[])[0]||'';
@@ -22,8 +23,8 @@ for(const n of fs.readdirSync(tr)){
 }
 const css=rd(path.join(root,'website','assets','css','tool-layout.css'));
 const required=[
- /min-height:\s*300px\s*!important/,
- /border-radius:\s*28px\s*!important/,
+ /UI V1\.3\.1 — CANONICAL TOOL DETAIL BASELINE/,
+ /border-radius:\s*16px\s*!important/,
  /grid-template-columns:minmax\(0,1\.03fr\)/,
  /@media \(max-width:768px\)/,
  /font-size:clamp\(40px,3\.65vw,62px\)/

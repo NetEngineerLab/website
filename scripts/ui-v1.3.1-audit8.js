@@ -5,8 +5,9 @@ const WEB = path.join(ROOT, 'website');
 const TOOLS = path.join(WEB, 'tools');
 const errors = [];
 const toolPages = [];
+const supplemental=require('./lib/supplemental-tool-slugs');
 const toolDirs = fs.readdirSync(TOOLS).filter(name => {
-  const d=path.join(TOOLS,name); return !['zh','es'].includes(name) && fs.statSync(d).isDirectory();
+  const d=path.join(TOOLS,name); return !['zh','es'].includes(name) && !supplemental.has(name) && fs.statSync(d).isDirectory();
 });
 for (const name of toolDirs) {
   const dir=path.join(TOOLS,name);
@@ -47,7 +48,7 @@ for(const m of sitemap.matchAll(/<loc>https:\/\/netengineerlab\.com([^<]*)<\/loc
 for(const f of [path.join(WEB,'404.html'),path.join(WEB,'zh','404.html'),path.join(WEB,'es','404.html')])if(fs.existsSync(f))publicFiles.push(f);
 for(const f of publicFiles){
   const s=fs.readFileSync(f,'utf8'); const ids=new Map();
-  for(const m of s.matchAll(/\bid="([^"]+)"/g))ids.set(m[1],(ids.get(m[1])||0)+1);
+  for(const m of s.matchAll(/(?:^|[^-\w])id="([^"]+)"/g))ids.set(m[1],(ids.get(m[1])||0)+1);
   for(const [id,n] of ids)if(n>1)errors.push(`${rel(f)}: duplicate id ${id} x${n}`);
   for(const m of s.matchAll(/\b(?:href|src)="([^"]+)"/g)){
     const v=m[1]; if(/^(?:https?:|mailto:|tel:|data:|javascript:|\/\/|#)/.test(v))continue;

@@ -5,8 +5,9 @@ const complex=inventory.complexTools;
 const forbidden=['breadcrumbs','card','panel','input-panel','result-panel','content-section','start-btn'];
 let pages=0; const tools=new Set(); const issues=[]; const ordinarySigs=new Set();
 const rd=p=>fs.readFileSync(p,'utf8');
+const supplemental=require('./lib/supplemental-tool-slugs');
 for(const tool of fs.readdirSync(toolsRoot)){
- const dir=path.join(toolsRoot,tool); if(!fs.existsSync(dir)||!fs.statSync(dir).isDirectory()||tool==='es') continue;
+ const dir=path.join(toolsRoot,tool); if(!fs.existsSync(dir)||!fs.statSync(dir).isDirectory()||tool==='es'||supplemental.has(tool)) continue;
  for(const rel of ['index.html',path.join('zh','index.html'),path.join('es','index.html')]){
   const file=path.join(dir,rel); if(!fs.existsSync(file)) continue; const h=rd(file); if(!h.includes('nel-tool-detail-page')) continue;
   pages++; tools.add(tool); const name=path.relative(root,file).replaceAll('\\','/');

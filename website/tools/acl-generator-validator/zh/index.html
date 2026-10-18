@@ -27,7 +27,7 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"ACL 验证工具支持哪些厂商和语法？","acceptedAnswer":{"@type":"Answer","text":"V1 支持 Cisco IOS 命名扩展 ACL、华为 VRP 高级命名 ACL、H3C Comware 高级命名 ACL，以及 Juniper Junos set firewall family inet filter 的已说明 IPv4 子集。"}},{"@type":"Question","name":"ACL 验证工具会上传我的配置吗？","acceptedAnswer":{"@type":"Answer","text":"不会。V1 的解析、生成、确定性检查和评分全部在浏览器本地运行，原始配置与检查结果不会发送给 AI 或分析服务。"}},{"@type":"Question","name":"这个工具能证明 ACL 安全吗？","acceptedAnswer":{"@type":"Answer","text":"不能。它是确定性筛查工具。方向、挂载点、拓扑、对象组、真实应用、命中计数以及 ACL 外部控制都会影响工程结论。"}},{"@type":"Question","name":"多厂商 ACL 转换如何工作？","acceptedAnswer":{"@type":"Answer","text":"源配置先解析为带版本的厂商无关 IPv4 ACL 模型，再生成目标语法、重新解析，并在支持范围内比较语义等价性。"}},{"@type":"Question","name":"不支持的 ACL 行如何处理？","acceptedAnswer":{"@type":"Answer","text":"页面会统计不支持的行并明确显示解析覆盖不完整，不会把它们静默视为已验证；检查结果只适用于成功解析的规则。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=8c488ab6e2be">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=2f6d3d828c10">
 <link rel="stylesheet" href="../../../assets/css/site-shell.css?v=c6e622c573c4">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>

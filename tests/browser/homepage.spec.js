@@ -45,7 +45,7 @@ for(const route of ["/","/zh/","/es/"]){
 for(const route of ["/","/zh/","/es/"]){test(route+" search respects locale and empty input",async({page})=>{
  await page.goto(route,{waitUntil:"networkidle"});await page.locator('[data-home-search] button').click();await page.waitForLoadState("networkidle");await expect(page).toHaveURL(new RegExp("/tools/"+(route==="/"?"":route.slice(1))+"$"));
  await page.goto(route,{waitUntil:"networkidle"});await page.locator('[data-home-search] input').fill('fiber-loss');await page.locator('[data-home-search] button').click();await expect(page).toHaveURL(new RegExp("/tools/fiber-loss/"+(route==="/"?"":route.slice(1))+"$"));
- if(route==="/es/"){await page.goto(route,{waitUntil:"networkidle"});await page.locator('[data-home-search] input').fill('data-center-network-convergence-fabric-capacity-planner');await page.locator('[data-home-search] button').click();await expect(page).toHaveURL(/\/tools\/data-center-network-convergence-fabric-capacity-planner\/$/);}
+ if(route==="/es/"){await page.goto(route,{waitUntil:"networkidle"});await page.locator('[data-home-search] input').fill('data-center-network-convergence-fabric-capacity-planner');await page.locator('[data-home-search] button').click();await expect(page).toHaveURL(/\/tools\/data-center-network-convergence-fabric-capacity-planner\/es\/$/);}
 });}
 
 for(const route of ['/tools/','/tools/zh/','/tools/es/']){test(route+' only renders translated tools',async({page,request})=>{
