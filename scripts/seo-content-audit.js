@@ -168,6 +168,10 @@ for(const page of pages.filter(item=>item.locale===defaultLocale.id)){
   if(!pair){errors.push(`${page.rel}: Chinese pair missing`);continue}
   if(page.title===pair.title)warnings.push(`${page.rel}: EN/ZH title is identical`);
   if(page.description===pair.description)warnings.push(`${page.rel}: EN/ZH description is identical`);
+  const spanish=pages.find(item=>item.familyId===page.familyId&&item.locale==="es");
+  if(!spanish)continue;
+  if(page.title===spanish.title)warnings.push(`${page.rel}: EN/ES title is identical`);
+  if(page.description===spanish.description)warnings.push(`${page.rel}: EN/ES description is identical`);
 }
 
 const duplicateDescriptions=new Map();

@@ -33,7 +33,7 @@ Page Registry / Engineering Data
 
 ## 3. 页面类型与最小内容契约
 
-规划页面类型为 `home`、`directory`、`tool`、`guide`、`reference`、`vendor`、`compare`、`glossary`、`hub`、`learn`、`about`、`contact`、`legal`。现有 `/tools/` 与 `/tools/zh/` 映射为 `directory`，`/privacy/`、`/terms/` 及语言对应页映射为 `legal`；未来其他静态公共页面必须先增加无歧义类型或显式映射。只有实际建立页面模板、目录映射和审计规则的类型才可启用；枚举不能被当作批量生成页面的任务清单。所有 `sitemap-routes.json` 公共路由和 active 工具 page-family 都必须能展开为唯一页面记录，未知类型或未映射路由必须阻止 Sitemap 生成。
+规划页面类型为 `home`、`directory`、`tool`、`guide`、`reference`、`vendor`、`compare`、`glossary`、`hub`、`learn`、`about`、`contact`、`legal`。现有 `/tools/`、`/tools/zh/` 与 `/tools/es/` 映射为 `directory`，`/privacy/`、`/terms/` 及语言对应页映射为 `legal`。`/tools/<name>-calculators/`（PON/光纤、交换/带宽、数据中心电源与制冷）登记为计算器入口：注册表 `pageType` 仍为 `hub`，路由落在 `tools/` 下并沿用工具页的语言目录（`/tools/<name>-calculators/`、`/zh/`、`/es/`）。它和 `/topics/` 专题 hub 分工不同，不得共用标题或搜索意图：计算器入口只承接“打开哪一组计算器”，专题 hub 承接设计、案例和排障。两边必须互相链接。结构化数据用 `CollectionPage` + `ItemList` + `BreadcrumbList`，不用 `WebApplication`。未来其他静态公共页面必须先增加无歧义类型或显式映射。只有实际建立页面模板、目录映射和审计规则的类型才可启用；枚举不能被当作批量生成页面的任务清单。所有 `sitemap-routes.json` 公共路由和 active 工具 page-family 都必须能展开为唯一页面记录，未知类型或未映射路由必须阻止 Sitemap 生成。
 
 工具页保持现行内容顺序：
 
@@ -52,13 +52,19 @@ H1 → 问题定义/适用场景 → 输入或操作 → 核心结果
 ```text
 English tool: /tools/<slug>/
 Chinese tool: /tools/<slug>/zh/
+Spanish tool: /tools/<slug>/es/
 English catalog: /tools/
 Chinese catalog: /tools/zh/
+Spanish catalog: /tools/es/
+English home: /
+Chinese home: /zh/
+Spanish home: /es/
+Calculator hub: /tools/<name>-calculators/ and the same /zh/ and /es/ suffixes
 ```
 
 分析稿中的 `/zh/tools/<slug>/` 不适用于当前站点，不得作为本轮 URL 冻结结果。未来若统一为语言前缀路由，必须先完成配置驱动目录策略、旧 URL 逐条 301、canonical/hreflang、站内链接、Sitemap、Manifest、Service Worker、PWA 安装、离线缓存、搜索索引影响和正式站浏览器验收；缺少任一门禁不得迁移。
 
-可索引页必须使用自引用 canonical；同一基础页面必须具有精确的 `en`、`zh-CN`、`x-default` 双向 hreflang 集合。查询参数只表示当前页计算状态时，canonical 指向无参数基础页；只有在产品明确实现可分享且具有独立长期价值的页面时，才能另行设计索引策略。测试页、集成页、离线页、错误页和重复状态页不得进入 Sitemap。
+可索引页必须使用自引用 canonical。hreflang 集合等于该页面族已发布的语言，再加上 `x-default`（指向英文规范 URL）。三种语言都已发布时，集合必须是 `en`、`zh-CN`、`es`、`x-default`。没有西语版本的指南或专题不要输出 `es`。查询参数只表示当前页计算状态时，canonical 指向无参数基础页；只有在产品明确实现可分享且具有独立长期价值的页面时，才能另行设计索引策略。测试页、集成页、离线页、错误页和重复状态页不得进入 Sitemap。
 
 ## 5. Metadata、JSON-LD 与可见内容
 
@@ -80,7 +86,9 @@ JSON-LD 必须描述页面真实可见的主内容，并与 title、description�
 
 GEO 的执行目标是让工程结论易于理解、核验和引用：提供直接答案、确定性计算过程、可见来源、明确假设/限制、复核日期和稳定锚点。当前不要求所谓“AI 专用 Schema”，也不把额外文件作为搜索展示保证；基础技术 SEO、可访问的文本内容、语义化 HTML、内链和与可见内容一致的结构化数据仍是共同门禁。
 
-`OAI-SearchBot` 用于 ChatGPT 搜索发现，应在公开内容策略允许时保持可访问并纳入 robots 审计；`GPTBot` 是独立的训练抓取控制，是否允许必须单独决策，不能与搜索可见性绑定。`ChatGPT-User`、Googlebot 及其他爬虫同样按各自用途和公开内容边界配置。当前 `website/robots.txt` 已明确允许 OAI-SearchBot，后续修改必须通过自动化回归检查。
+2026-10-18 决定：`website/robots.txt` 对所有爬虫 `User-agent: *` / `Allow: /`，并公布 Sitemap。百度爬虫和 AI 爬虫（含 `OAI-SearchBot`、`GPTBot`、`ChatGPT-User`）与其他公开爬虫一并允许，不按机器人名单独封禁。以后若要单独拒绝某个训练爬虫，必须另作记录，不能把这次放行理解成“只允许 OAI-SearchBot”。百度站长验证写在英文首页：`<meta name="baidu-site-verification" content="codeva-Jpja3edy8E">`（PR #4）。后续修改 robots 或验证 meta 必须通过自动化回归检查。
+
+TD-01 曾经给 `/topics/pon-optical/` 和 `/topics/data-center-capacity/` 加过临时 `X-Robots-Tag: noindex`，等完整 Hub 后再复核。这两个专题已经是可索引正式页。PR #5 删除了这两条 noindex，不得再加回去。
 
 ## 8. Sitemap 与发布门禁
 
@@ -92,7 +100,7 @@ Sitemap 只收录发布、可索引、返回 200、使用生产 HTTPS 绝对地�
 2. title、description、H1、canonical、hreflang、robots、OG/Twitter 和 JSON-LD 与可见内容一致。
 3. Sitemap 仅含 canonical 可索引 200 页，且内链无断链、自链接滥用或孤儿页。
 4. 工程内容、公式、单位、来源、FAQ、日期和双语表达经人工准确性复核。
-5. `npm run verify`、浏览器验收、2 号验证官 `PASS` 和 `docs/DEVELOPMENT_LOG.md` 证据齐全后才可发布。
+5. `npm run verify`、浏览器验收和 `docs/DEVELOPMENT_LOG.md` 证据齐全后才可发布。审核由用户在 PR 上完成；云端开发不再单设 2 号验证官。未获用户审核时，日志状态保持 `LOCAL PASS`。
 
 ## 9. 渐进实施顺序
 

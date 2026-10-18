@@ -2,7 +2,7 @@
 
 ## 目标
 
-V1.7.5在V1.7.4在线可用性巡检之后运行Lighthouse CI，持续检查正式网站的速度、可访问性、最佳实践、SEO、关键加载指标和资源体积。它不修改12个工具的计算公式。
+V1.7.5在V1.7.4在线可用性巡检之后运行Lighthouse CI，持续检查正式网站的速度、可访问性、最佳实践、SEO、关键加载指标和资源体积。它不修改任何工具的计算公式。工具集合以 `website/data/tools-catalog.json` 为准，不写死个数。
 
 ## 代表页面
 
@@ -13,7 +13,7 @@ V1.7.5在V1.7.4在线可用性巡检之后运行Lighthouse CI，持续检查正�
 3. `https://netengineerlab.com/tools/`
 4. `https://netengineerlab.com/tools/wifi-coverage-capacity-planner/zh/`
 
-这4个页面分别覆盖英文首页、中文首页、工具目录和资源最多的复杂工具页面。
+这 4 个 URL 是巡检样本，不是站点页面总数。它们覆盖英文首页、中文首页、工具目录和资源较多的复杂工具页。西语首页 `/es/`、专题页和 `/tools/*-calculators/` 入口不在这组样本里；扩大样本时改巡检配置，不要在本文写死全站数量。
 
 ## 初始生产预算
 

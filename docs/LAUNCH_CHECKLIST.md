@@ -6,8 +6,8 @@
 - [ ] 多语言验证为PASS。
 - [ ] 上线审核为PASS。
 - [ ] 生产验收为PASS。
-- [ ] 7个计算引擎全部PASS。
-- [ ] 36个正式页面全部通过本地HTTP检查。
+- [ ] `npm test` 中的计算引擎与契约测试全部 PASS。引擎列表以 `package.json` 为准，不写死个数。
+- [ ] Sitemap 中的全部正式页面通过本地 HTTP 检查。页面数以 `website/sitemap.xml` 为准。
 - [ ] 8条旧地址301检查通过。
 - [ ] 中英文404检查通过。
 
@@ -18,7 +18,7 @@
 - [ ] 英文工具中心。
 - [ ] 中文工具中心。
 - [ ] 六个分类筛选。
-- [ ] 12个工具均可打开。
+- [ ] `website/data/tools-catalog.json` 里每个 `active` 工具均可打开。不写死工具个数。
 - [ ] 语言切换正常。
 - [ ] Wi-Fi顶部配置区对齐。
 - [ ] 手机端无横向溢出。
@@ -46,7 +46,7 @@
 ## 正式域名
 
 - [ ] `npm run accept:remote -- --base=https://netengineerlab.com`为PASS。
-- [ ] 36个Sitemap页面返回200。
+- [ ] Sitemap 中的每个 URL 返回 200。数量以 `website/sitemap.xml` 为准。
 - [ ] 旧`.html`地址返回301或308。
 - [ ] 不存在地址返回404。
 - [ ] `robots.txt`可访问。

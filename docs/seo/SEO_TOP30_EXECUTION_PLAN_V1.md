@@ -1,5 +1,7 @@
 # SEO Top 30 Execution Plan V1
 
+状态：`CURRENT`（2026-10-18）。fiber latency 计算器已建成（PR #2）。下列 Gate 文字保留为 2026-10-13 计划，不再表示 fiber latency 缺失。
+
 ## Gate SEO-0（当前）
 
 - 固定30词到真实URL；UNKNOWN保留UNKNOWN。

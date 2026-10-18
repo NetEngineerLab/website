@@ -11,8 +11,12 @@
 <link href="/assets/css/mobile-branding.css?v=1.9.5-06" rel="stylesheet"/>
 <script defer="" src="/data/seo-config.js"></script>
 <script defer="" src="/assets/js/seo-engine.js"></script>
-<script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Los umbrales de eventos OTDR son universales?","acceptedAnswer":{"@type":"Answer","text":"No. Los umbrales varían según el operador, el fabricante, el tipo de enlace, la longitud de onda, el ancho de pulso y las reglas de aceptación. Esta herramienta los mantiene editables."}},{"@type":"Question","name":"¿Por qué comparar 1310 nm y 1550 nm?","acceptedAnswer":{"@type":"Answer","text":"La pérdida por curvatura suele aumentar más en longitudes de onda más largas. Una diferencia entre longitudes de onda puede apoyar el diagnóstico de curvatura, pero no es una conclusión por sí sola."}},{"@type":"Question","name":"¿Qué es un evento fantasma?","acceptedAnswer":{"@type":"Answer","text":"Un fantasma puede aparecer a un múltiplo de la distancia hasta un reflector fuerte y mostrar poca pérdida de inserción real. Cambie el ancho de pulso y el alcance para verificarlo."}},{"@type":"Question","name":"¿Esta herramienta puede analizar archivos SOR?","acceptedAnswer":{"@type":"Answer","text":"La versión 1.0 analiza datos de la tabla de eventos e importaciones CSV. El análisis directo de SOR queda para una versión posterior."}},{"@type":"Question","name":"¿Por qué los eventos cercanos pueden ser poco fiables?","acceptedAnswer":{"@type":"Answer","text":"Los eventos dentro de la zona muerta de evento o de atenuación pueden solaparse, y entonces es difícil separar la reflectancia o la pérdida."}},{"@type":"Question","name":"¿Los resultados deben sustituir el criterio de campo?","acceptedAnswer":{"@type":"Answer","text":"No. Use la traza original, pruebas bidireccionales, registros de ruta, mediciones de potencia e inspección de campo."}}]}</script>
+
 <link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+
+<meta name="twitter:title" content="Analizador de eventos OTDR | NetEngineerLab">
+<meta name="twitter:description" content="Analiza eventos OTDR de empalmes, conectores, curvaturas, roturas, fantasmas y efectos de zona muerta.">
+<meta name="twitter:image" content="https://netengineerlab.com/tools/otdr-event/images/og-otdr-event-analyzer.png">
 
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Analizador de eventos OTDR | NetEngineerLab","url":"https://netengineerlab.com/tools/otdr-event/es/","description":"Analiza eventos OTDR de empalmes, conectores, curvaturas, roturas, fantasmas y efectos de zona muerta.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
@@ -24,6 +28,7 @@
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/otdr-event/zh/">
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/otdr-event/es/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/otdr-event/">
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Los umbrales de eventos OTDR son universales?","acceptedAnswer":{"@type":"Answer","text":"No. Los umbrales varían según el operador, el fabricante, el tipo de enlace, la longitud de onda, el ancho de pulso y las reglas de aceptación. Esta herramienta los mantiene editables."}},{"@type":"Question","name":"¿Por qué comparar 1310 nm y 1550 nm?","acceptedAnswer":{"@type":"Answer","text":"La pérdida por curvatura suele aumentar más en longitudes de onda más largas. Una diferencia entre longitudes de onda puede apoyar el diagnóstico de curvatura, pero no es una conclusión por sí sola."}},{"@type":"Question","name":"¿Qué es un evento fantasma?","acceptedAnswer":{"@type":"Answer","text":"Un fantasma puede aparecer a un múltiplo de la distancia hasta un reflector fuerte y mostrar poca pérdida de inserción real. Cambie el ancho de pulso y el alcance para verificarlo."}},{"@type":"Question","name":"¿Esta herramienta puede analizar archivos SOR?","acceptedAnswer":{"@type":"Answer","text":"La versión 1.0 analiza datos de la tabla de eventos e importaciones CSV. El análisis directo de SOR queda para una versión posterior."}},{"@type":"Question","name":"¿Por qué los eventos cercanos pueden ser poco fiables?","acceptedAnswer":{"@type":"Answer","text":"Los eventos dentro de la zona muerta de evento o de atenuación pueden solaparse, y entonces es difícil separar la reflectancia o la pérdida."}},{"@type":"Question","name":"¿Los resultados deben sustituir el criterio de campo?","acceptedAnswer":{"@type":"Answer","text":"No. Use la traza original, pruebas bidireccionales, registros de ruta, mediciones de potencia e inspección de campo."}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=8c488ab6e2be">
@@ -49,7 +54,7 @@
       <a href="../../../es/">Inicio</a>
       <a href="../../es/" aria-current="page">Herramientas</a>
       <a href="../../../es/#guides">Guías</a>
-      <a href="../../../es/#topics">Temas</a>
+      <a href="../../../topics/">Temas</a>
     </nav>
     <div class="site-shell-actions">
       <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Español"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Español</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../" lang="en" hreflang="en"><span>English</span><small>Inglés</small></a><a class="language-option" role="menuitem" href="../zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chino simplificado</small></a><a class="language-option" role="menuitem" href="./" lang="es" hreflang="es" aria-current="page"><span>Español</span><small>Español</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
@@ -60,9 +65,11 @@
 <!-- NEL_HEADER_END -->
 <!-- NEL_TOOL_RETURN_START -->
 <nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
-  <a class="tool-return-link" href="../../es/">← Volver a herramientas</a>
+  <a href="../../../es/">Inicio</a>
   <span aria-hidden="true">/</span>
-  <span aria-current="page">Analizador de eventos OTDR</span>
+  <a class="tool-return-link" href="../../es/">Herramientas</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">OTDR Event Analyzer</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
 <section class="hero nel-tool-hero"><div class="hero-inner"><p class="eyebrow">HERRAMIENTA DE MANTENIMIENTO OTDR</p><h1>Analizador de eventos OTDR</h1><p>Introduzca o importe varios eventos OTDR, compare dos longitudes de onda, identifique el tipo de evento y genere prioridades de mantenimiento. La versión 1.0 se centra en el diagnóstico de la tabla de eventos y no analiza archivos SOR de forma directa.</p><div class="hero-tags"><span>Multievento</span><span>Doble longitud de onda</span><span>Comprobación de zona muerta</span><span>CSV import</span></div></div></section>

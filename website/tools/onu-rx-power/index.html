@@ -13,8 +13,12 @@
 <link href="/assets/css/mobile-branding.css?v=1.9.5-06" rel="stylesheet"/>
 <script defer="" src="/data/seo-config.js"></script>
 <script defer="" src="/assets/js/seo-engine.js"></script>
-<script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What ONU receive power is considered normal?","acceptedAnswer":{"@type":"Answer","text":"There is no universal fixed value. Use the sensitivity and overload limits of the specific ONU or optical module and retain suitable engineering margin."}},{"@type":"Question","name":"Should a link close to sensitivity be maintained even when service works?","acceptedAnswer":{"@type":"Answer","text":"Yes. Treat it as a weak-light risk because minor contamination, bending or temperature variation may push the link below the receiver threshold."}},{"@type":"Question","name":"What does a large difference between measured and expected power indicate?","acceptedAnswer":{"@type":"Answer","text":"Possible causes include unmodeled connector loss, dirty interfaces, patch-cord bending, poor splices, splitter faults or increased route attenuation."}},{"@type":"Question","name":"What problems can excessive receive power cause?","acceptedAnswer":{"@type":"Answer","text":"It may saturate the receiver and cause errors, registration problems or unstable service. Verify optical class compatibility and whether attenuation is required."}},{"@type":"Question","name":"Does possible no signal always mean a fiber break?","acceptedAnswer":{"@type":"Answer","text":"No. It may also result from a disconnected patch cord, incorrect port mapping, an inactive OLT laser, splitter failure or severe bending."}},{"@type":"Question","name":"Why are all preset values editable?","acceptedAnswer":{"@type":"Answer","text":"Vendors, optical classes and network designs differ. Presets are demonstrations only; production diagnosis must use real equipment and field data."}}]}</script>
+
 <link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+
+<meta name="twitter:title" content="ONU RX Power Diagnosis Tool | NetEngineerLab">
+<meta name="twitter:description" content="Professional ONU receive power diagnosis for measured power, sensitivity, overload, weak-light warning, expected power, excess loss and PON fault analysis.">
+<meta name="twitter:image" content="https://netengineerlab.com/tools/onu-rx-power/images/og-onu-rx-power.png">
 
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"ONU RX Power Diagnosis Tool | NetEngineerLab","url":"https://netengineerlab.com/tools/onu-rx-power/","description":"Professional ONU receive power diagnosis for measured power, sensitivity, overload, weak-light warning, expected power, excess loss and PON fault analysis.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
@@ -26,6 +30,7 @@
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/onu-rx-power/zh/">
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/onu-rx-power/es/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/onu-rx-power/">
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What ONU receive power is considered normal?","acceptedAnswer":{"@type":"Answer","text":"There is no universal fixed value. Use the sensitivity and overload limits of the specific ONU or optical module and retain suitable engineering margin."}},{"@type":"Question","name":"Should a link close to sensitivity be maintained even when service works?","acceptedAnswer":{"@type":"Answer","text":"Yes. Treat it as a weak-light risk because minor contamination, bending or temperature variation may push the link below the receiver threshold."}},{"@type":"Question","name":"What does a large difference between measured and expected power indicate?","acceptedAnswer":{"@type":"Answer","text":"Possible causes include unmodeled connector loss, dirty interfaces, patch-cord bending, poor splices, splitter faults or increased route attenuation."}},{"@type":"Question","name":"What problems can excessive receive power cause?","acceptedAnswer":{"@type":"Answer","text":"It may saturate the receiver and cause errors, registration problems or unstable service. Verify optical class compatibility and whether attenuation is required."}},{"@type":"Question","name":"Does possible no signal always mean a fiber break?","acceptedAnswer":{"@type":"Answer","text":"No. It may also result from a disconnected patch cord, incorrect port mapping, an inactive OLT laser, splitter failure or severe bending."}},{"@type":"Question","name":"Why are all preset values editable?","acceptedAnswer":{"@type":"Answer","text":"Vendors, optical classes and network designs differ. Presets are demonstrations only; production diagnosis must use real equipment and field data."}}]}</script>
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=8c488ab6e2be">
@@ -51,7 +56,7 @@
       <a href="../../">Home</a>
       <a href="../" aria-current="page">Tools</a>
       <a href="../../#guides">Guides</a>
-      <a href="../../#topics">Topics</a>
+      <a href="../../topics/">Topics</a>
     </nav>
     <div class="site-shell-actions">
       <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a><a class="language-option" role="menuitem" href="es/" lang="es" hreflang="es"><span>Español</span><small>Spanish</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
@@ -62,7 +67,9 @@
 <!-- NEL_HEADER_END -->
 <!-- NEL_TOOL_RETURN_START -->
 <nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
-  <a class="tool-return-link" href="../">← Back to Tools</a>
+  <a href="../../">Home</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../">Tools</a>
   <span aria-hidden="true">/</span>
   <span aria-current="page">ONU RX Power Diagnosis</span>
 </nav>

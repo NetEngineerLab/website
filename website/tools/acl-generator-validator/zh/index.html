@@ -4,8 +4,14 @@
 <title>多厂商 ACL 生成与验证工具 | NetEngineerLab</title><meta content="在浏览器本地生成、转换并验证 Cisco IOS、华为 VRP、H3C Comware 和 Juniper Junos IPv4 ACL，提供确定性检查与行号证据。" name="description"/>
 <meta content="website" property="og:type"/><meta content="多厂商 ACL 生成与验证工具 | NetEngineerLab" property="og:title"/><meta content="在浏览器本地生成、转换并验证 Cisco IOS、华为 VRP、H3C Comware 和 Juniper Junos IPv4 ACL，提供确定性检查与行号证据。" property="og:description"/><meta content="https://netengineerlab.com/tools/acl-generator-validator/zh/" property="og:url"/><meta content="https://netengineerlab.com/assets/images/og-netengineerlab.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
 <link href="../css/style.css?v=55a2491be4e0" rel="stylesheet"/><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"多厂商 ACL 生成与验证工具","url":"https://netengineerlab.com/tools/acl-generator-validator/zh/","applicationCategory":"DeveloperApplication","operatingSystem":"Any","isAccessibleForFree":true,"description":"生成、转换并验证 Cisco IOS、华为 VRP、H3C Comware 和 Juniper Junos IPv4 ACL。"}</script>
-<script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"ACL 验证工具支持哪些厂商和语法？","acceptedAnswer":{"@type":"Answer","text":"V1 支持 Cisco IOS 命名扩展 ACL、华为 VRP 高级命名 ACL、H3C Comware 高级命名 ACL，以及 Juniper Junos set firewall family inet filter 的已说明 IPv4 子集。"}},{"@type":"Question","name":"ACL 验证工具会上传我的配置吗？","acceptedAnswer":{"@type":"Answer","text":"不会。V1 的解析、生成、确定性检查和评分全部在浏览器本地运行，原始配置与检查结果不会发送给 AI 或分析服务。"}},{"@type":"Question","name":"这个工具能证明 ACL 安全吗？","acceptedAnswer":{"@type":"Answer","text":"不能。它是确定性筛查工具。方向、挂载点、拓扑、对象组、真实应用、命中计数以及 ACL 外部控制都会影响工程结论。"}},{"@type":"Question","name":"多厂商 ACL 转换如何工作？","acceptedAnswer":{"@type":"Answer","text":"源配置先解析为带版本的厂商无关 IPv4 ACL 模型，再生成目标语法、重新解析，并在支持范围内比较语义等价性。"}},{"@type":"Question","name":"不支持的 ACL 行如何处理？","acceptedAnswer":{"@type":"Answer","text":"页面会统计不支持的行并明确显示解析覆盖不完整，不会把它们静默视为已验证；检查结果只适用于成功解析的规则。"}}]}</script>
+
 <link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+
+<meta name="twitter:title" content="多厂商 ACL 生成与验证工具 | NetEngineerLab">
+<meta name="twitter:description" content="在浏览器本地生成、转换并验证 Cisco IOS、华为 VRP、H3C Comware 和 Juniper Junos IPv4 ACL，提供确定性检查与行号证据。">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"工具","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"多厂商 ACL 生成与验证工具","item":"https://netengineerlab.com/tools/acl-generator-validator/zh/"}]}</script>
 
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"多厂商 ACL 生成与验证工具 | NetEngineerLab","url":"https://netengineerlab.com/tools/acl-generator-validator/zh/","description":"在浏览器本地生成、转换并验证 Cisco IOS、华为 VRP、H3C Comware 和 Juniper Junos IPv4 ACL，提供确定性检查与行号证据。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
@@ -17,6 +23,7 @@
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/acl-generator-validator/zh/">
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/acl-generator-validator/es/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/acl-generator-validator/">
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"ACL 验证工具支持哪些厂商和语法？","acceptedAnswer":{"@type":"Answer","text":"V1 支持 Cisco IOS 命名扩展 ACL、华为 VRP 高级命名 ACL、H3C Comware 高级命名 ACL，以及 Juniper Junos set firewall family inet filter 的已说明 IPv4 子集。"}},{"@type":"Question","name":"ACL 验证工具会上传我的配置吗？","acceptedAnswer":{"@type":"Answer","text":"不会。V1 的解析、生成、确定性检查和评分全部在浏览器本地运行，原始配置与检查结果不会发送给 AI 或分析服务。"}},{"@type":"Question","name":"这个工具能证明 ACL 安全吗？","acceptedAnswer":{"@type":"Answer","text":"不能。它是确定性筛查工具。方向、挂载点、拓扑、对象组、真实应用、命中计数以及 ACL 外部控制都会影响工程结论。"}},{"@type":"Question","name":"多厂商 ACL 转换如何工作？","acceptedAnswer":{"@type":"Answer","text":"源配置先解析为带版本的厂商无关 IPv4 ACL 模型，再生成目标语法、重新解析，并在支持范围内比较语义等价性。"}},{"@type":"Question","name":"不支持的 ACL 行如何处理？","acceptedAnswer":{"@type":"Answer","text":"页面会统计不支持的行并明确显示解析覆盖不完整，不会把它们静默视为已验证；检查结果只适用于成功解析的规则。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=8c488ab6e2be">
@@ -40,7 +47,7 @@
       <a href="../../../zh/">首页</a>
       <a href="../../zh/" aria-current="page">工具中心</a>
       <a href="../../../zh/#guides">工程指南</a>
-      <a href="../../../zh/#topics">专题</a>
+      <a href="../../../zh/topics/">专题</a>
     </nav>
     <div class="site-shell-actions">
       <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="./" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a><a class="language-option" role="menuitem" href="../es/" lang="es" hreflang="es"><span>Español</span><small>西班牙语</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
@@ -51,7 +58,9 @@
 <!-- NEL_HEADER_END -->
 <!-- NEL_TOOL_RETURN_START -->
 <nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
-  <a class="tool-return-link" href="../../zh/">← 返回工具中心</a>
+  <a href="../../../zh/">首页</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../../zh/">工具</a>
   <span aria-hidden="true">/</span>
   <span aria-current="page">多厂商ACL生成与验证工具</span>
 </nav>

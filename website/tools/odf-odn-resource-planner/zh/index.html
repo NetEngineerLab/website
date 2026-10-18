@@ -1,6 +1,12 @@
-<!doctype html><html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="tools/odf-odn-resource-planner/"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ODF / ODN 光纤资源与分光规划器 | NetEngineerLab</title><meta name="description" content="比较 A/B/C 分光资源方案，计算 PON 端口、分光器、纤芯、ODF 容量、资源缺口与规划 BOM。"><meta property="og:title" content="ODF / ODN 光纤资源与分光规划器 | NetEngineerLab"><meta property="og:description" content="比较 A/B/C 分光资源方案，计算 PON 端口、分光器、纤芯、ODF 容量、资源缺口与规划 BOM。"><meta property="og:url" content="https://netengineerlab.com/tools/odf-odn-resource-planner/zh/"><meta name="twitter:card" content="summary_large_image"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"ODF / ODN 光纤资源与分光规划器","url":"https://netengineerlab.com/tools/odf-odn-resource-planner/zh/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"PON 端口数量如何计算？","acceptedAnswer":{"@type":"Answer","text":"目标 ONU 数除以总分光比与运营上限中的较小值，再向上取整。"}},{"@type":"Question","name":"如何计算纤芯预留？","acceptedAnswer":{"@type":"Answer","text":"工作纤芯除以一减预留率并向上取整，再组合一个或多个标准光缆芯数档位。"}},{"@type":"Question","name":"为什么方案会显示无法判定？","acceptedAnswer":{"@type":"Answer","text":"必要的拓扑、容量、损耗、距离或光接口参数缺失或无效。"}},{"@type":"Question","name":"规划 BOM 可以直接采购吗？","acceptedAnswer":{"@type":"Answer","text":"不可以。它不包含实测路由长度、施工余量、厂商料号和报价。"}},{"@type":"Question","name":"3 dB 警告阈值是标准强制值吗？","acceptedAnswer":{"@type":"Answer","text":"不是。这是 NetEngineerLab 的规划阈值，最终应按项目规则和设备规格书复核。"}}]}</script><link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+<!doctype html><html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="tools/odf-odn-resource-planner/"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ODF / ODN 光纤资源与分光规划器 | NetEngineerLab</title><meta name="description" content="比较 A/B/C 分光资源方案，计算 PON 端口、分光器、纤芯、ODF 容量、资源缺口与规划 BOM。"><meta property="og:title" content="ODF / ODN 光纤资源与分光规划器 | NetEngineerLab"><meta property="og:description" content="比较 A/B/C 分光资源方案，计算 PON 端口、分光器、纤芯、ODF 容量、资源缺口与规划 BOM。"><meta property="og:url" content="https://netengineerlab.com/tools/odf-odn-resource-planner/zh/"><meta name="twitter:card" content="summary_large_image"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"ODF / ODN 光纤资源与分光规划器","url":"https://netengineerlab.com/tools/odf-odn-resource-planner/zh/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true}</script><link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
 <meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 <link rel="stylesheet" href="../css/style.css?v=c0eecf203a62">
+<meta name="twitter:title" content="ODF / ODN 光纤资源与分光规划器 | NetEngineerLab">
+<meta name="twitter:description" content="比较 A/B/C 分光资源方案，计算 PON 端口、分光器、纤芯、ODF 容量、资源缺口与规划 BOM。">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"工具","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"ODF / ODN 光纤资源与分光规划器","item":"https://netengineerlab.com/tools/odf-odn-resource-planner/zh/"}]}</script>
+
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"ODF / ODN 光纤资源与分光规划器 | NetEngineerLab","url":"https://netengineerlab.com/tools/odf-odn-resource-planner/zh/","description":"比较 A/B/C 分光资源方案，计算 PON 端口、分光器、纤芯、ODF 容量、资源缺口与规划 BOM。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
@@ -11,6 +17,7 @@
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/odf-odn-resource-planner/zh/">
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/odf-odn-resource-planner/es/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/odf-odn-resource-planner/">
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"PON 端口数量如何计算？","acceptedAnswer":{"@type":"Answer","text":"目标 ONU 数除以总分光比与运营上限中的较小值，再向上取整。"}},{"@type":"Question","name":"如何计算纤芯预留？","acceptedAnswer":{"@type":"Answer","text":"工作纤芯除以一减预留率并向上取整，再组合一个或多个标准光缆芯数档位。"}},{"@type":"Question","name":"为什么方案会显示无法判定？","acceptedAnswer":{"@type":"Answer","text":"必要的拓扑、容量、损耗、距离或光接口参数缺失或无效。"}},{"@type":"Question","name":"规划 BOM 可以直接采购吗？","acceptedAnswer":{"@type":"Answer","text":"不可以。它不包含实测路由长度、施工余量、厂商料号和报价。"}},{"@type":"Question","name":"3 dB 警告阈值是标准强制值吗？","acceptedAnswer":{"@type":"Answer","text":"不是。这是 NetEngineerLab 的规划阈值，最终应按项目规则和设备规格书复核。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=8c488ab6e2be">
@@ -34,7 +41,7 @@
       <a href="../../../zh/">首页</a>
       <a href="../../zh/" aria-current="page">工具中心</a>
       <a href="../../../zh/#guides">工程指南</a>
-      <a href="../../../zh/#topics">专题</a>
+      <a href="../../../zh/topics/">专题</a>
     </nav>
     <div class="site-shell-actions">
       <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="./" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a><a class="language-option" role="menuitem" href="../es/" lang="es" hreflang="es"><span>Español</span><small>西班牙语</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
@@ -45,7 +52,9 @@
 <!-- NEL_HEADER_END -->
 <!-- NEL_TOOL_RETURN_START -->
 <nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
-  <a class="tool-return-link" href="../../zh/">← 返回工具中心</a>
+  <a href="../../../zh/">首页</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../../zh/">工具</a>
   <span aria-hidden="true">/</span>
   <span aria-current="page">ODF / ODN 光纤资源与分光规划器</span>
 </nav>

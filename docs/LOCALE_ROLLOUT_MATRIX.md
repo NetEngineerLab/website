@@ -4,7 +4,7 @@
 |---|---|---|---|---|---|
 | English | root | en | en | LTR | Active |
 | 简体中文 | zh | zh-CN | zh-CN | LTR | Active |
-| Español | es | es | es | LTR | Planned |
+| Español | es | es | es | LTR | Active |
 | Português do Brasil | pt-br | pt-BR | pt-BR | LTR | Planned |
 | 日本語 | jp | ja | ja | LTR | Planned |
 | Deutsch | de | de | de | LTR | Planned |

@@ -11,6 +11,12 @@
 <meta property="og:title" content="PON光网络设计与故障诊断专题 | NetEngineerLab">
 <meta property="og:description" content="串联PON分光、光纤损耗、光功率预算、ONU收光检查、OTDR定位和现场复测，支持设计校核与故障排查。">
 <meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PON光网络设计与故障诊断专题 | NetEngineerLab">
+<meta name="twitter:description" content="串联PON分光、光纤损耗、光功率预算、ONU收光检查、OTDR定位和现场复测，支持设计校核与故障排查。">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"专题","item":"https://netengineerlab.com/zh/topics/"},{"@type":"ListItem","position":3,"name":"PON光网络设计与故障诊断","item":"https://netengineerlab.com/zh/topics/pon-optical/"}]}</script>
+
 <link rel="stylesheet" href="../../../assets/css/topic-hub.css?v=46b22865264c">
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"PON光网络设计与故障诊断专题 | NetEngineerLab","url":"https://netengineerlab.com/zh/topics/pon-optical/","description":"串联PON分光、光纤损耗、光功率预算、ONU收光检查、OTDR定位和现场复测，支持设计校核与故障排查。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
@@ -21,6 +27,7 @@
 <link rel="alternate" hreflang="en" href="https://netengineerlab.com/topics/pon-optical/">
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/topics/pon-optical/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/topics/pon-optical/">
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"ONU收光读数能直接定位故障吗？","acceptedAnswer":{"@type":"Answer","text":"不能。它反映ONU端的接收状态。应使用校准光功率计复核、对照预算，并结合OTDR证据与路由记录缩小位置范围。"}},{"@type":"Question","name":"OTDR能否代替光功率计？","acceptedAnswer":{"@type":"Answer","text":"不能。OTDR根据回波估算分布及事件损耗；端到端功率测量用于核验当前测试条件下的接收光功率。"}},{"@type":"Question","name":"GPON与XGS-PON的预算可以通用吗？","acceptedAnswer":{"@type":"Answer","text":"不可以。应按部署技术、光功率等级、波长及OLT/ONU数据表输入。本专题工具不预设通用XGS-PON参数。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../../assets/css/site-shell.css?v=c6e622c573c4">
@@ -43,7 +50,7 @@
       <a href="../../">首页</a>
       <a href="../../../tools/zh/">工具中心</a>
       <a href="../../#guides">工程指南</a>
-      <a href="../../#topics" aria-current="page">专题</a>
+      <a href="../" aria-current="page">专题</a>
     </nav>
     <div class="site-shell-actions">
       <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../../../topics/pon-optical/" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="./" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
@@ -52,7 +59,7 @@
   </div>
 </header>
 <!-- NEL_HEADER_END -->
-<nav class="topic-hub-breadcrumb" aria-label="面包屑"><a href="../../">首页</a><span aria-hidden="true">›</span><a href="../../#topics">专题</a><span aria-hidden="true">›</span><span aria-current="page">PON光网络设计与故障诊断</span></nav>
+<nav class="topic-hub-breadcrumb" aria-label="面包屑"><a href="../../">首页</a><span aria-hidden="true">›</span><a href="../">专题</a><span aria-hidden="true">›</span><span aria-current="page">PON光网络设计与故障诊断</span></nav>
 <main id="main">
 <h1>PON光网络设计与故障诊断</h1>
 <p>把无源光分配设计与现场ONU接收功率、OTDR事件及复测结果关联起来。设计验收必须使用实际OLT/ONU规格和现场测量值。</p>
@@ -91,6 +98,7 @@
 </ul>
 <p>相关领域：<a href="../telecom-power-energy/">通信电源与能源</a>关注站点供电连续性，不能代替光层预算和故障定位。</p>
 </main>
+<p class="hub-return" data-nel-cluster-link><a href="../../../tools/pon-fiber-calculators/zh/">若要成套使用分光、光功率预算、距离、时延和 OTDR 计算器，请打开 PON 与光纤计算器入口。</a></p>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">

@@ -9,14 +9,27 @@
 
 1. 明确目标、文件、影响范围与风险。
 2. 完成修改及本地测试。
-3. 由 2 号验证官独立复核；未获得 `PASS` 不得继续发布。
+3. 打开 PR，由用户审核。2026-10-18 起不再单设 2 号验证官；历史条目中的验证官结论保持不变。未获用户审核不得写成 `VALIDATOR PASS`。
 4. 提交实现，取得不可变的 Git commit SHA。
 5. 在本文件登记日期、范围、关键决策、测试、验证结论、实现提交和线上验收。
 6. 提交本记录，并与实现提交一起推送。
 
-记录状态只使用：`LOCAL PASS`、`VALIDATOR PASS`、`ONLINE PASS`。没有证据时不得提前登记为完成。
+记录状态只使用：`LOCAL PASS`、`VALIDATOR PASS`、`ONLINE PASS`。没有证据时不得提前登记为完成。用户尚未审核的云端 PR 只记 `LOCAL PASS`。
 
 ## 已完成批次
+
+### 2026-10-18 — SEO 合规剩余项（PR #1–#5 与本次）
+
+- 状态：`LOCAL PASS`（本地构建、单元测试、链接检查和浏览器套件通过后填写；用户尚未审核，不是 `VALIDATOR PASS`，也不是线上验收）。
+- 已合并：
+  - PR #1 `Fix live audit bugs for Spanish tools, sitemap, and checkers`
+  - PR #2 `Add fiber latency calculator and calculator hub pages`（fiber latency 计算器与 `/tools/*-calculators/` 入口）
+  - PR #3 `Fix Playwright shell footer and Spanish category title reads`
+  - PR #4 `Add Baidu site verification to the homepage`（`baidu-site-verification` = `codeva-Jpja3edy8E`）
+- 未合并、作为本次基线：PR #5 `Fix P0 topic noindex headers and translated JSON-LD keys`（删除 `/topics/pon-optical/` 与 `/topics/data-center-capacity/` 的 `_headers` noindex，并加上 JSON-LD 翻译守卫）。
+- 本次范围：修 shell 页脚嵌套；补齐西语工具正文和 5 条占位 description；可见 FAQ 与 FAQPage 对齐；工具页 BreadcrumbList / WebApplication；面包屑 URL 改为绝对尾斜杠且必须出现在 sitemap；孤儿页和单入链页的上下文内链；计算器入口与专题 hub 分工互链；英文 IP 摄像头专题 title/description；6 个超长 title；指南 og/hreflang/robots/twitter；去掉公开页上的原始 `.md` 链接；`llms.txt` 改为按目录生成；sitemap `lastmod` 跟内容指纹而不是构建日期。URL 冻结保持 `/tools/<slug>/zh/` 与 `/tools/<slug>/es/`。
+- 文档：hreflang 规则纳入 `es`；robots.txt 于 2026-10-18 起对百度和 AI 爬虫与其他爬虫一并 `Allow: /`；审核流程改为云端 PR 加用户审核。
+- 明确未做：HSTS/CSP、Cloudflare 缓存头、about/contact/terms 薄页、www/http 旧地址、Search Console 收录、Lighthouse 三次中位数。这些不在本次实现范围。
 
 ### 2026-10-11 — Fault Library & Troubleshooting System V1.0 设计提案
 

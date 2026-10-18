@@ -1,7 +1,58 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PON分光损耗计算：级联分光比、插入损耗与ODN余量 | NetEngineerLab</title><meta name="description" content="说明PON一级和级联分光的总分光比、插入损耗、ODN设计余量，并提供10 km可复算工程案例。"><meta name="robots" content="index,follow"><link rel="canonical" href="https://netengineerlab.com/zh/guides/pon-splitter-loss-guide/"><link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/pon-splitter-loss-guide/"><link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/pon-splitter-loss-guide/"><link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/pon-splitter-loss-guide/"><link rel="stylesheet" href="../../../assets/css/site.css">
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PON分光损耗计算：级联分光比、插入损耗与ODN余量 | NetEngineerLab</title><meta name="description" content="说明PON一级和级联分光的总分光比、插入损耗、ODN设计余量，并提供10 km可复算工程案例。"><meta name="robots" content="index,follow"><link rel="stylesheet" href="../../../assets/css/site.css">
 <link rel="stylesheet" href="../../../assets/css/guide.css?v=a80a8be9d93d">
+<meta property="og:url" content="https://netengineerlab.com/zh/guides/pon-splitter-loss-guide/">
+<meta property="og:title" content="PON分光损耗计算：级联分光比、插入损耗与ODN余量 | NetEngineerLab">
+<meta property="og:description" content="说明PON一级和级联分光的总分光比、插入损耗、ODN设计余量，并提供10 km可复算工程案例。">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PON分光损耗计算：级联分光比、插入损耗与ODN余量 | NetEngineerLab">
+<meta name="twitter:description" content="说明PON一级和级联分光的总分光比、插入损耗、ODN设计余量，并提供10 km可复算工程案例。">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"PON分光损耗计算：级联分光比、插入损耗与ODN余量","name":"PON分光损耗计算：级联分光比、插入损耗与ODN余量","description":"说明PON一级和级联分光的总分光比、插入损耗、ODN设计余量，并提供10 km可复算工程案例。","url":"https://netengineerlab.com/zh/guides/pon-splitter-loss-guide/","inLanguage":"zh-CN","mainEntityOfPage":"https://netengineerlab.com/zh/guides/pon-splitter-loss-guide/","author":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"PON分光损耗计算：级联分光比、插入损耗与ODN余量","item":"https://netengineerlab.com/zh/guides/pon-splitter-loss-guide/"}]}</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../../assets/css/site-shell.css?v=c6e622c573c4">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"PON分光损耗计算：级联分光比、插入损耗与ODN余量 | NetEngineerLab","url":"https://netengineerlab.com/zh/guides/pon-splitter-loss-guide/","description":"说明PON一级和级联分光的总分光比、插入损耗、ODN设计余量，并提供10 km可复算工程案例。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
+<link rel="canonical" href="https://netengineerlab.com/zh/guides/pon-splitter-loss-guide/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/pon-splitter-loss-guide/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/pon-splitter-loss-guide/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/pon-splitter-loss-guide/">
 </head><body class="guide-page">
 <!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
@@ -15,7 +66,7 @@
       <a href="../../">首页</a>
       <a href="../../../tools/zh/">工具中心</a>
       <a href="../../#guides" aria-current="page">工程指南</a>
-      <a href="../../#topics">专题</a>
+      <a href="../../topics/">专题</a>
     </nav>
     <div class="site-shell-actions">
       <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../../../guides/pon-splitter-loss-guide/" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="./" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->

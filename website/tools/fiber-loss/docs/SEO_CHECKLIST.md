@@ -12,8 +12,10 @@
 - 语义化 heading、main、nav、footer；
 - 移动端响应式布局。
 
+现行发布方式是仓库根目录的静态站点（`website/`），由 `npm run build` 生成 canonical、hreflang、sitemap 和 JSON-LD。不再使用把 `site-root/` 手工复制到网站根目录的流程。
+
 上线前仍需：
-1. 把 `site-root/` 内文件复制到网站根目录；
+1. 跑 `npm run build`，确认本工具的 en/zh/es 页面都在 `website/sitemap.xml`；
 2. 在 Google Search Console 验证域名并提交 sitemap；
 3. 使用 Rich Results Test 检查结构化数据；
 4. 确认生产 URL、canonical 和 hreflang 均可访问；

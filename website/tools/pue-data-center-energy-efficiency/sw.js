@@ -1,4 +1,4 @@
-"use strict";const CACHE = "nel-pue-data-center-energy-efficiency-locale-v1.9.9-04-p0-p1-correctness-consent-offline-7a2d1d3c810a-e8da9b04c5d7";
+"use strict";const CACHE = "nel-pue-data-center-energy-efficiency-locale-v1.9.9-04-p0-p1-correctness-consent-offline-7a2d1d3c810a-274e5ef73ed2";
 const CORE = [
   "./",
   "./index.html",

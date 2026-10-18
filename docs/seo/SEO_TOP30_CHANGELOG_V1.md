@@ -1,5 +1,7 @@
 # SEO Top 30 Changelog V1
 
+状态：`CURRENT`（2026-10-18）。2026-10-13 记录的是文档初稿。fiber latency 行已改为“已建设，PR #2”。
+
 日期：2026-10-13
 
 - 新增 `SEO_TOP30_KEYWORD_URL_MAP_V1.md`：30词静态URL映射、共享页元数据、证据和优先级。

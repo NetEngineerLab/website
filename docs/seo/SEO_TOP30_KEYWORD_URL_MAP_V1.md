@@ -1,5 +1,7 @@
 # SEO Top 30 URL Mapping V1
 
+状态：`CURRENT`（2026-10-18）。fiber latency 行已按已上线页面更新。其余 title 快照仍是 2026-10-13 的静态摘录，现行 title 以各页 HTML 和 `website/data/sitemap-routes.json` 为准。
+
 统计区间：2026-01-01 至 2026-10-13。输入展示/点击/CTR来自用户提供基线；Average Position、GSC Actual URL 未提供，统一为 `UNKNOWN`。
 
 | Keyword | Impr. | Clicks | CTR | Average Position | Actual URL | Proposed Primary URL | Type | Issue / Evidence | Priority | Proposed Fix |
@@ -10,7 +12,7 @@
 | bandwidth oversubscription calculator |70|UNKNOWN|UNKNOWN|UNKNOWN|UNKNOWN|/tools/switch-uplink-oversubscription-calculator/|Tool|已有公式、N-1 FAQ、48-port guide；需覆盖指定4×48口场景|P0|加入双汇聚、双10G/25G、堆叠和N-1案例|
 | optical budget calculator |58|UNKNOWN|UNKNOWN|UNKNOWN|UNKNOWN|/tools/optical-power-budget/|Tool|已有发射、接收、分光、余量字段；来源/适用范围需显式化|P0|补充预算公式、参数来源、案例|
 | optical link budget calculator |56|UNKNOWN|UNKNOWN|UNKNOWN|UNKNOWN|/tools/optical-power-budget/|Tool|同一工具可承接；避免新URL竞争|P0|完善链路损耗分项和解释|
-| fiber latency calculator |64|UNKNOWN|UNKNOWN|UNKNOWN|UNKNOWN|/tools/fiber-latency-calculator/|Tool|仓库未发现该精确页面|P0|BLOCKED：先确认真实现有URL，不新建工具|
+| fiber latency calculator |64|UNKNOWN|UNKNOWN|UNKNOWN|UNKNOWN|/tools/fiber-latency-calculator/|Tool|已上线，PR #2；en/zh/es 均在 sitemap|P0|已建设。保留 µs/km、单向时延与 RTT 关键词|
 | pon calculator |48|UNKNOWN|UNKNOWN|UNKNOWN|UNKNOWN|/topics/pon-optical/|Topic|PON topic hub存在注册记录；工具页承接具体损耗意图|P0|补充hub摘要和工具入口|
 | fiber loss calculator |27|UNKNOWN|UNKNOWN|UNKNOWN|UNKNOWN|/tools/fiber-loss/|Tool|页面存在SEO checklist、FAQ/工程内容；需与PON loss区分|P0|明确通用链路损耗意图与PON交叉链接|
 | optical power budget calculator |15|UNKNOWN|UNKNOWN|UNKNOWN|UNKNOWN|/tools/optical-power-budget/|Tool|页面存在canonical/FAQ/结构化数据|P0|补充发射、接收灵敏度、过载阈值说明|
@@ -55,4 +57,4 @@ Canonical/robots/sitemap：目标页面逐页核验应以最终HTML和注册源�
 | `/tools/wireless-link-budget-calculator/` | Wireless Link Budget Calculator / NetEngineerLab | Wireless Link Budget Calculator | Calculate EIRP, free-space path loss, received signal, fade margin and Fresnel-zone clearance for a point-to-point wireless link. | https://netengineerlab.com/tools/wireless-link-budget-calculator/ | MISSING | YES |
 | `/tools/poe-power-budget-calculator/` | PoE Power Budget Calculator – Switch Sizing & Device Capacity | PoE Power Budget Calculator | Free PoE power budget calculator for switches, IP cameras, Wi-Fi access points and phones. Size ports, watts, cable loss and headroom for 802.3af, PoE+, and PoE++. | https://netengineerlab.com/tools/poe-power-budget-calculator/ | index,follow,max-image-preview:large,max-snippet:-1 | YES |
 | `/tools/ups-capacity-battery-runtime-calculator/` | UPS Capacity & Battery Backup Runtime Calculator / NetEngineerLab | UPS Capacity & Battery Backup Runtime Calculator | Size UPS kW/kVA capacity, N+1 redundancy, battery autonomy, aging/temperature margin, recharge demand and bypass current for data-center critical loads. | https://netengineerlab.com/tools/ups-capacity-battery-runtime-calculator/ | index,follow,max-image-preview:large | YES |
-| `/tools/fiber-latency-calculator/` | UNKNOWN | UNKNOWN | UNKNOWN | UNKNOWN | UNKNOWN | NO |
+| `/tools/fiber-latency-calculator/` | Fiber Latency Calculator – µs per km, One-Way & RTT | Fiber Latency Calculator | present on the English page | https://netengineerlab.com/tools/fiber-latency-calculator/ | index,follow | YES |
