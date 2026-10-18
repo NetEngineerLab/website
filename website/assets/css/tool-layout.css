@@ -307,6 +307,16 @@ body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-su
 /* Legacy tool pages may emit topic and guide CTAs as direct body children.
    Keep them in the same reading column instead of leaving unstyled links
    against the page gutter. */
+body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid > .hub-return {
+  grid-column:1 / -1;
+  margin:0 !important;
+  padding:14px 20px !important;
+  border:1px solid #dbe6f1;
+  border-radius:14px;
+  background:#fff;
+  box-sizing:border-box;
+  line-height:1.5;
+}
 body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-topic-hub,
 body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-guide-secondary {
   display:block !important;

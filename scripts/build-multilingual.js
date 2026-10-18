@@ -23,6 +23,7 @@ const{
  renderLlmsTxt,
  syncVisibleFaq
 }=require("./lib/seo-resolver");
+const{repairPageLayout}=require("./lib/page-layout");
 
 const packageRoot=path.resolve(__dirname,"..");
 const siteRoot=path.join(packageRoot,"website");
@@ -1023,6 +1024,19 @@ function build(){
  }
  generateManifests(groups);
  generateSitemap(groups);
+ const cookieCssHref=`/assets/css/cookie-consent.css?v=${assetVersion("assets/css/cookie-consent.css")}`;
+ let layoutRepairs=0;
+ for(const file of walk(siteRoot)){
+  if(!file.endsWith(".html"))continue;
+  const rel=posix(path.relative(siteRoot,file));
+  const before=fs.readFileSync(file,"utf8");
+  const after=repairPageLayout(before,rel,{cookieCssHref});
+  if(after!==before){
+   writeFileWithRetry(file,after,"utf8");
+   layoutRepairs++;
+  }
+ }
+ if(layoutRepairs)console.log(`Page layout repairs updated ${layoutRepairs} HTML files`);
  const report={
   version:localeConfig.version,
   activeLocales:activeLocales.map(item=>item.id),

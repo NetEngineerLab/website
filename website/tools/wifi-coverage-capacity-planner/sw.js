@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-wifi-coverage-capacity-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-7a2d1d3c810a-a75fa8f58f5b";
+const CACHE = "nel-wifi-coverage-capacity-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-7a2d1d3c810a-c8d7398767e3";
 const CORE = [
   "./index.html",
   "./",
