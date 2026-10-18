@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-nel-locale="en" data-nel-route="tools/fiber-latency-calculator/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b6ffb">
+<title>Fiber Latency Calculator – µs per km, One-Way &amp; RTT</title>
+<meta name="description" content="Calculate fiber optic latency: about 4.9 µs/km one-way and 9.8 µs RTT. Add route factor, equipment and serialization delay, then compare vacuum, copper and microwave.">
+<link rel="stylesheet" href="css/style.css?v=29262603c7f6">
+<meta name="app-base" content="./">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NetEngineerLab">
+<meta property="og:title" content="Fiber Latency Calculator – µs per km, One-Way &amp; RTT">
+<meta property="og:description" content="Calculate fiber optic latency: about 4.9 µs/km one-way and 9.8 µs RTT. Add route factor, equipment and serialization delay, then compare vacuum, copper and microwave.">
+<meta property="og:url" content="https://netengineerlab.com/tools/fiber-latency-calculator/">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fiber Latency Calculator – µs per km, One-Way &amp; RTT">
+<meta name="twitter:description" content="Calculate fiber optic latency: about 4.9 µs/km one-way and 9.8 µs RTT. Add route factor, equipment and serialization delay, then compare vacuum, copper and microwave.">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://netengineerlab.com/tools/fiber-latency-calculator/#app","name":"Fiber Latency Calculator","url":"https://netengineerlab.com/tools/fiber-latency-calculator/","description":"Calculate one-way and round-trip latency over optical fiber from distance, group index, route factor, equipment and serialization delay.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Network Engineering Calculator","operatingSystem":"Any","browserRequirements":"Requires JavaScript and a modern web browser","softwareVersion":"1.0.0","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/fiber-latency-calculator/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"NetEngineerLab","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"Fiber Latency Calculator","item":"https://netengineerlab.com/tools/fiber-latency-calculator/"}]}]}</script>
+<script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the latency of fiber per km?","acceptedAnswer":{"@type":"Answer","text":"About 4.9 µs one-way per km in standard single-mode fiber (group index about 1.468), or about 9.8 µs round trip — roughly 5 ms per 1,000 km one-way."}},{"@type":"Question","name":"How do I calculate RTT over fiber?","acceptedAnswer":{"@type":"Answer","text":"RTT is about 2 × fiber length × 4.9 µs/km, plus equipment and serialization delay in each direction. 100 km of fiber gives about 0.98 ms RTT from propagation alone."}},{"@type":"Question","name":"Why is my measured ping higher than the calculator?","acceptedAnswer":{"@type":"Answer","text":"Ping includes routing detours, equipment processing, queuing and host delay, and fiber routes are often longer than the straight-line distance. Use measured fiber length or a route factor."}},{"@type":"Question","name":"Is microwave faster than fiber?","acceptedAnswer":{"@type":"Answer","text":"For propagation, yes. Radio through air travels at almost the speed of light in vacuum (about 3.34 µs/km), roughly 32% less delay than glass fiber."}},{"@type":"Question","name":"Does wavelength change fiber latency?","acceptedAnswer":{"@type":"Answer","text":"Only marginally. The group index of G.652 fiber at 1310 nm and 1550 nm differs by about 0.0005, which is under 0.05% of the delay."}},{"@type":"Question","name":"Is copper faster than fiber?","acceptedAnswer":{"@type":"Answer","text":"Not meaningfully. Twisted-pair copper propagates at about 0.65–0.70 c (about 4.8–5.1 µs/km), similar to fiber, but copper Ethernet is limited to 100 m."}}]}</script>
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Fiber Latency Calculator – µs per km, One-Way & RTT","url":"https://netengineerlab.com/tools/fiber-latency-calculator/","description":"Calculate fiber optic latency: about 4.9 µs/km one-way and 9.8 µs RTT. Add route factor, equipment and serialization delay, then compare vacuum, copper and microwave.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="en">
+<meta name="nel-route" content="tools/fiber-latency-calculator/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/tools/fiber-latency-calculator/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/fiber-latency-calculator/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/fiber-latency-calculator/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/fiber-latency-calculator/es/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/fiber-latency-calculator/">
+<link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=8c488ab6e2be">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=c6e622c573c4">
+<script defer src="../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../assets/js/site.js?v=f05b0a51ccda"></script>
+<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=3490f5449c71">
+<link rel="manifest" href="manifest.webmanifest">
+</head>
+<body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<a class="skip-link" href="#calculator">Skip to calculator</a>
+<noscript><div class="noscript">JavaScript is required to run this calculator.</div></noscript>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Primary navigation">
+      <a href="../../">Home</a>
+      <a href="../" aria-current="page">Tools</a>
+      <a href="../../#guides">Guides</a>
+      <a href="../../#topics">Topics</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a><a class="language-option" role="menuitem" href="es/" lang="es" hreflang="es"><span>Español</span><small>Spanish</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">Start calculating</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a class="tool-return-link" href="../">← Back to Tools</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">Fiber Latency Calculator</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END -->
+<section class="hero nel-tool-hero"><div class="hero-inner">
+<p class="eyebrow">OPTICAL ENGINEERING TOOL</p>
+<h1>Fiber Latency Calculator</h1>
+<p>Light in optical fiber travels at roughly two-thirds of its speed in vacuum, so every kilometre of single-mode fiber adds about 4.9 µs of one-way delay (about 9.8 µs round trip). Use this fiber latency calculator to estimate one-way and round-trip time (RTT) for metro, DCI and long-haul links, including route detours, active equipment and packet serialization.</p>
+<div class="hero-tags"><span>One-way &amp; RTT</span><span>4.9 µs per km</span><span>Route factor</span><span>Serialization</span></div></div></section>
+<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
+<section class="input-panel card nel-tool-input">
+<div class="section-title"><span class="section-icon">☷</span><div>
+<h2>Link parameters</h2>
+<p>Enter route distance, fiber group index and any equipment or serialization delay.</p>
+</div></div>
+<div class="form-grid">
+<div class="field"><label for="projectName">Project name</label><div class="input-wrap no-unit"><input id="projectName" type="text" value="DCI Fiber Link"></div></div>
+<div class="field"><label for="distance">Route distance</label><div class="input-wrap wide-unit"><input id="distance" min="0" step="0.001" type="number" value="100"><select id="distanceUnit" aria-label="Distance unit"><option value="km">km</option><option value="mi">mi</option><option value="m">m</option></select></div></div>
+<div class="field"><label for="routeFactor">Route factor (fiber path ÷ straight-line)</label><div class="input-wrap no-unit"><input id="routeFactor" min="1" step="0.01" type="number" value="1.0"></div><p class="hint">Terrestrial routes are often longer than straight-line distance; use measured/OTDR length when known.</p></div>
+<div class="field"><label for="groupIndexPreset">Group index preset</label><div class="input-wrap no-unit"><select id="groupIndexPreset"><option value="1.468">Generic single-mode 1.468</option><option value="1.4677">G.652 SMF @1310 nm 1.4677</option><option value="1.4682">G.652 SMF @1550 nm 1.4682</option><option value="1.003">Hollow-core ≈1.003</option><option value="custom">Custom</option></select></div></div>
+<div class="field"><label for="groupIndex">Group index n_g</label><div class="input-wrap no-unit"><input id="groupIndex" min="1" max="1.6" step="0.0001" type="number" value="1.468" readonly></div></div>
+<div class="field"><label for="equipmentCount">Active devices in path (one-way)</label><div class="input-wrap no-unit"><input id="equipmentCount" min="0" step="1" type="number" value="0"></div></div>
+<div class="field"><label for="equipmentDelay">Delay per device</label><div class="input-wrap"><input id="equipmentDelay" min="0" step="0.01" type="number" value="0"><span>µs</span></div><p class="hint">Vendor datasheet; transponders and switches vary from sub-µs to tens of µs.</p></div>
+<div class="field"><label for="packetSize">Packet size for serialization</label><div class="input-wrap"><input id="packetSize" min="0" step="1" type="number" value="1500"><span>B</span></div><p class="hint">Set 0 to ignore serialization.</p></div>
+<div class="field"><label for="linkRate">Line rate</label><div class="input-wrap"><input id="linkRate" min="0.001" step="0.001" type="number" value="10"><span>Gbps</span></div></div>
+<div class="field"><label for="serializationHops">Store-and-forward hops</label><div class="input-wrap no-unit"><input id="serializationHops" min="0" step="1" type="number" value="1"></div></div>
+</div>
+<div class="actions">
+<button class="primary-action" id="calculateBtn" type="button">Calculate latency</button>
+<button class="secondary-action" id="resetBtn" type="button">Reset</button>
+</div>
+<p class="validation-message" id="validationMessage" role="alert"></p>
+</section>
+<section aria-live="polite" class="result-panel card nel-tool-result">
+<div class="section-title"><span class="section-icon">▥</span><div>
+<h2>Calculation result</h2>
+<p>RTT is twice the one-way total. The path is assumed symmetric.</p>
+</div></div>
+<div class="summary-card healthy" id="summaryCard"><div><p>One-way latency</p><strong><span id="oneWay">—</span></strong></div><div><p>Round-trip time (RTT)</p><strong><span id="rtt">—</span></strong></div></div>
+<div class="metric-grid">
+<article class="metric-card"><div><small>Fiber length</small><strong id="fiberLength">—</strong></div></article>
+<article class="metric-card"><div><small>Propagation</small><strong id="propagation">—</strong></div></article>
+<article class="metric-card"><div><small>Equipment</small><strong id="equipment">—</strong></div></article>
+<article class="metric-card"><div><small>Serialization</small><strong id="serialization">—</strong></div></article>
+</div>
+<div class="budget-row">
+<div><span>Propagation per km</span><strong id="usPerKm">—</strong></div>
+<div><span>Speed in fiber</span><strong id="speed">—</strong></div>
+</div>
+<div class="power-row">
+<article><span>Fraction of c</span><strong id="fractionC">—</strong></article>
+<article><span>Delay vs vacuum</span><strong id="versusVacuum">—</strong></article>
+</div>
+<h3>Propagation comparison</h3>
+<table class="compare-table"><thead><tr><th>Medium</th><th>Delay</th></tr></thead><tbody id="comparisonBody"></tbody></table>
+<p class="hint">Asymmetric paths, queuing and host-stack delay are not included. Add them from measurement when the two directions differ.</p>
+<div class="result-actions">
+<button id="copyBtn" type="button">Copy result</button>
+<button id="saveBtn" type="button">Save record</button>
+<button id="printBtn" type="button">Print / Export PDF</button>
+</div>
+</section>
+<section class="content-section" aria-labelledby="latency-workflow-title"><h2 id="latency-workflow-title">Continue the fiber latency workflow</h2><p>Use the measured route or an OTDR length, then check loss and power before you treat the delay number as a budget. Open the PON and fiber hub when you want the full planning sequence.</p><ol><li><a href="../otdr-event/">OTDR event analyzer</a> — measure the real fiber length</li><li><a href="../fiber-loss/">fiber loss calculator</a> — check attenuation on the same route</li><li><a href="../optical-power-budget/">optical power budget</a> — confirm the transceiver window</li><li><a href="../bandwidth-calculator/">bandwidth calculator</a> — size the line rate used for serialization</li><li><a href="../mtu-calculator/">MTU calculator</a> — choose the frame size</li><li><a href="../wireless-link-budget-calculator/">wireless link budget</a> — compare a microwave hop</li><li><a href="../../topics/pon-optical/">PON optical topic</a> — continue into access design</li><li><a href="../pon-fiber-calculators/">PON &amp; fiber calculators</a> — open the planning hub</li></ol></section>
+</main>
+<section class="content-section nel-tool-supporting-section" id="history">
+<div class="section-heading"><div><p class="eyebrow">PROJECT RECORDS</p><h2>Recent calculations</h2></div>
+<button class="text-button" id="clearHistoryBtn" type="button">Clear history</button></div>
+<div class="history-list" id="historyList"></div>
+</section>
+<section class="content-section methodology nel-tool-supporting-section" id="methodology">
+<div class="section-heading"><div><p class="eyebrow">METHODOLOGY</p><h2>Methodology and engineering notes</h2></div></div>
+<div class="method-grid">
+<article><h3>How to use</h3><ol><li>Enter the route distance in km or miles, or the measured fiber length (then keep route factor 1.0).</li><li>Set a route factor if you only know the straight-line distance.</li><li>Choose the fiber group index (1.468 is a good default for standard single-mode fiber).</li><li>Optionally add active devices and their per-device delay from datasheets.</li><li>Optionally set packet size and line rate to include serialization delay.</li><li>Read one-way latency, RTT and the comparison with vacuum, microwave and copper.</li></ol></article>
+<article><h3>Propagation delay</h3><p>Propagation delay = fiber length × group index ÷ c. With c = 299,792.458 km/s and n_g = 1.468, light covers about 204,000 km/s in glass, i.e. 4.897 µs per km. The group index (not the phase refractive index) governs how fast data pulses travel; for G.652 fiber it is about 1.4677 at 1310 nm and 1.4682 at 1550 nm, so wavelength choice changes latency by less than 0.05%. Real routes are rarely straight; ducts follow roads and rail, so the fiber path is usually longer than the map distance.</p></article>
+<article><h3>Equipment and serialization</h3><p>Serialization delay is the time to clock a frame onto the wire (bits ÷ line rate) and is added at each store-and-forward hop. 1500 bytes is 1.2 µs at 10 Gbps, 12 µs at 1 Gbps and 0.12 µs at 100 Gbps. Queuing and processing delays depend on load and are not modelled.</p></article>
+</div>
+<h3>Latency per distance (n_g = 1.468, propagation only)</h3>
+<table class="compare-table"><thead><tr><th>Distance</th><th>One-way</th><th>RTT</th><th>Vacuum one-way</th></tr></thead><tbody><tr><td>1 km</td><td>4.90 µs</td><td>9.79 µs</td><td>3.34 µs</td></tr><tr><td>10 km</td><td>48.97 µs</td><td>97.93 µs</td><td>33.36 µs</td></tr><tr><td>100 km</td><td>489.67 µs</td><td>979.34 µs</td><td>333.56 µs</td></tr><tr><td>1,000 km</td><td>4.897 ms</td><td>9.793 ms</td><td>3.336 ms</td></tr><tr><td>5,000 km</td><td>24.484 ms</td><td>48.967 ms</td><td>16.678 ms</td></tr></tbody></table>
+<div class="example-box"><h3>Worked case: 80 km DCI and 1,000 km × 1.3</h3><p>80 km, n_g 1.468, factor 1.0, 2 devices × 5 µs and 1500 bytes at 10 Gbps × 1 hop: propagation 391.74 µs, equipment 10 µs, serialization 1.2 µs, one-way 402.94 µs, RTT 805.88 µs. A 1,000 km city pair with route factor 1.3 is 1,300 km of fiber: 6.366 ms one-way and 12.731 ms RTT from propagation alone. Straight-line vacuum over 1,000 km would be 3.336 ms one-way. Rule of thumb: a 1 ms RTT budget is about 102 km of fiber (1000 µs ÷ 9.793 µs/km).</p></div>
+</section>
+<section aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">ENGINEERING REFERENCES</p><h2 id="references-title">Standards and references</h2></div></div>
+<ul><li><a href="https://www.itu.int/rec/T-REC-G.652/en">ITU-T G.652: characteristics of a single-mode optical fibre and cable</a></li><li><a href="https://physics.nist.gov/cgi-bin/cuu/Value?c">CODATA / NIST speed of light in vacuum</a></li><li><a href="https://www.bipm.org/en/si-base-units/second">SI second and the defined speed of light used for c</a></li></ul>
+<p>Vendor fiber datasheets, including Corning SMF-28 effective group index 1.4677 at 1310 nm and 1.4682 at 1550 nm, should override the generic 1.468 preset when the cable is known. Copper Ethernet remains limited to 100 m even when its delay per kilometre looks similar. Last reviewed: 2026-10-18.</p>
+</section>
+<section aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">FAQ</p><h2 id="faq-title">Frequently asked questions</h2></div></div>
+<div class="faq-grid"><details><summary>What is the latency of fiber per km?</summary><p>About 4.9 µs one-way per km in standard single-mode fiber (group index about 1.468), or about 9.8 µs round trip — roughly 5 ms per 1,000 km one-way.</p></details><details><summary>How do I calculate RTT over fiber?</summary><p>RTT is about 2 × fiber length × 4.9 µs/km, plus equipment and serialization delay in each direction. 100 km of fiber gives about 0.98 ms RTT from propagation alone.</p></details><details><summary>Why is my measured ping higher than the calculator?</summary><p>Ping includes routing detours, equipment processing, queuing and host delay, and fiber routes are often longer than the straight-line distance. Use measured fiber length or a route factor.</p></details><details><summary>Is microwave faster than fiber?</summary><p>For propagation, yes. Radio through air travels at almost the speed of light in vacuum (about 3.34 µs/km), roughly 32% less delay than glass fiber.</p></details><details><summary>Does wavelength change fiber latency?</summary><p>Only marginally. The group index of G.652 fiber at 1310 nm and 1550 nm differs by about 0.0005, which is under 0.05% of the delay.</p></details><details><summary>Is copper faster than fiber?</summary><p>Not meaningfully. Twisted-pair copper propagates at about 0.65–0.70 c (about 4.8–5.1 µs/km), similar to fiber, but copper Ethernet is limited to 100 m.</p></details></div>
+</section>
+<!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="fiber-latency-calculator" data-primary-workflow="fiber-latency-planning">
+<div class="section-heading"><div><p class="eyebrow">ENGINEERING WORKFLOW</p><h2 id="nel-tool-graph-title">Continue the engineering workflow</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>Fiber Latency Planning Workflow</strong><p>Confirm the route length and loss assumptions, then estimate one-way delay and round-trip time.</p></div><div class="nel-workflow-step"><strong>Step 2 of 2</strong><div class="nel-workflow-progress" aria-label="Step 2 of 2"><span style="width:100%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/fiber-loss/"><span class="nel-tool-graph-label">Previous</span><strong>Fiber Loss Calculator</strong><span class="nel-tool-graph-description">Calculate fiber, splice, connector, splitter and engineering losses for an optical link.</span></a><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Next</span><strong>Workflow complete</strong></div></div>
+<h3 class="nel-tool-graph-subtitle">Related tools</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/fiber-loss/"><strong>Fiber Loss Calculator</strong><span class="nel-tool-graph-description">Calculate fiber, splice, connector, splitter and engineering losses for an optical link.</span></a><a class="nel-tool-graph-card" href="/tools/optical-power-budget/"><strong>Optical Power Budget Calculator</strong><span class="nel-tool-graph-description">Verify an optical link using transmit power, receiver sensitivity, optical penalty and ODN loss.</span></a><a class="nel-tool-graph-card" href="/tools/otdr-event/"><strong>OTDR Event Analyzer</strong><span class="nel-tool-graph-description">Analyze multiple events and dual wavelengths to identify splices, connectors, bends, breaks, ghosts and dead-zone effects.</span></a><a class="nel-tool-graph-card" href="/tools/bandwidth-calculator/"><strong>Bandwidth &amp; Transfer Time Calculator</strong><span class="nel-tool-graph-description">Calculate file transfer time, required link rate, concurrent-user capacity and sustained-rate data volume.</span></a></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Footer navigation">
+      <a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script defer src="js/engine.js"></script>
+<script defer src="js/pwa.js"></script>
+<script defer src="../../assets/js/tool-integration.js?v=05f7934f4687"></script>
+<script defer src="js/app.js?v=bc01d21e9fba"></script>
+<script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script>
+<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script>
+</body>
+</html>

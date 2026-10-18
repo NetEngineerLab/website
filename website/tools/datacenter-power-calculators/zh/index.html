@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="tools/datacenter-power-calculators/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>数据中心电力与制冷计算器 – PoE、UPS、PUE</title>
+<meta name="description" content="用计算器规划 PoE 预算、机柜电力、制冷负荷、UPS 续航、发电机燃油、整流器和 PUE。">
+<meta property="og:title" content="数据中心电力与制冷计算器 – PoE、UPS、PUE">
+<meta property="og:description" content="用计算器规划 PoE 预算、机柜电力、制冷负荷、UPS 续航、发电机燃油、整流器和 PUE。">
+<meta property="og:url" content="https://netengineerlab.com/tools/datacenter-power-calculators/zh/">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="../../../assets/css/calculator-hub.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://netengineerlab.com/tools/datacenter-power-calculators/zh/#collection","name":"数据中心电力与制冷计算器 – PoE、UPS、PUE","url":"https://netengineerlab.com/tools/datacenter-power-calculators/zh/","description":"用计算器规划 PoE 预算、机柜电力、制冷负荷、UPS 续航、发电机燃油、整流器和 PUE。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}},{"@type":"ItemList","@id":"https://netengineerlab.com/tools/datacenter-power-calculators/zh/#calculators","name":"本专题中的计算器","numberOfItems":14,"itemListElement":[{"@type":"ListItem","position":1,"name":"PoE功率预算计算器","url":"https://netengineerlab.com/tools/poe-power-budget-calculator/zh/"},{"@type":"ListItem","position":2,"name":"网线PoE压降计算器","url":"https://netengineerlab.com/tools/poe-voltage-drop-calculator/zh/"},{"@type":"ListItem","position":3,"name":"网络机柜功耗与制冷量计算器","url":"https://netengineerlab.com/tools/network-rack-power-cooling-calculator/zh/"},{"@type":"ListItem","position":4,"name":"数据中心PUE与能效分析器","url":"https://netengineerlab.com/tools/pue-data-center-energy-efficiency/zh/"},{"@type":"ListItem","position":5,"name":"数据中心制冷负荷与精密空调容量计算器","url":"https://netengineerlab.com/tools/data-center-cooling-load-calculator/zh/"},{"@type":"ListItem","position":6,"name":"数据中心气流组织与冷热通道规划工具","url":"https://netengineerlab.com/tools/data-center-airflow-containment-planner/zh/"},{"@type":"ListItem","position":7,"name":"UPS容量与电池后备时间计算器","url":"https://netengineerlab.com/tools/ups-capacity-battery-runtime-calculator/zh/"},{"@type":"ListItem","position":8,"name":"油机油耗与应急续航计算器","url":"https://netengineerlab.com/tools/generator-fuel-runtime-calculator/zh/"},{"@type":"ListItem","position":9,"name":"油机 + UPS 切换与不间断供电保障规划器","url":"https://netengineerlab.com/tools/generator-ups-transfer-ride-through-planner/zh/"},{"@type":"ListItem","position":10,"name":"-48V通信机房蓄电池续航计算器","url":"https://netengineerlab.com/tools/48v-battery-runtime/zh/"},{"@type":"ListItem","position":11,"name":"通信站点光伏发电与储能配置计算器","url":"https://netengineerlab.com/tools/telecom-solar-battery-sizing-calculator/zh/"},{"@type":"ListItem","position":12,"name":"通信开关电源与整流模块容量配置计算器","url":"https://netengineerlab.com/tools/telecom-rectifier-dc-power-sizing/zh/"},{"@type":"ListItem","position":13,"name":"通信站点 AC/DC 电源容量与空开配置工具","url":"https://netengineerlab.com/tools/telecom-ac-dc-breaker-sizing/zh/"},{"@type":"ListItem","position":14,"name":"直流电源系统效率与整流模块均流分析器","url":"https://netengineerlab.com/tools/dc-plant-efficiency-load-sharing/zh/"}]},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/datacenter-power-calculators/zh/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"工具","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"数据中心电力与制冷计算器","item":"https://netengineerlab.com/tools/datacenter-power-calculators/zh/"}]}]}</script>
+<script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么 PoE 和 PUE 在同一个专题？","acceptedAnswer":{"@type":"Answer","text":"PoE 往往是 PUE 所乘的 IT 负载的一部分。把它漏掉会同时低估机柜和设施用电。"}},{"@type":"Question","name":"能否直接按 UPS 额定容量选发电机？","acceptedAnswer":{"@type":"Answer","text":"不能只凭这一点。先核对 UPS 续航和切换支撑时间，再按实际接入负载和停电时长计算发电机燃油。"}},{"@type":"Question","name":"机柜制冷和房间制冷的分界在哪里？","acceptedAnswer":{"@type":"Answer","text":"机柜用机柜计算器。问题变成房间、机列以及封闭是否改变机组必须送出的风量时，使用制冷负荷和气流工具。"}},{"@type":"Question","name":"通信机房该用哪一个电池计算器？","acceptedAnswer":{"@type":"Answer","text":"直流系统用 −48 V 续航工具，交流 UPS 用 UPS 续航工具。整流器和断路器选型与直流系统并列，而不是取代它。"}}]}</script>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"数据中心电力与制冷计算器 – PoE、UPS、PUE","url":"https://netengineerlab.com/tools/datacenter-power-calculators/zh/","description":"用计算器规划 PoE 预算、机柜电力、制冷负荷、UPS 续航、发电机燃油、整流器和 PUE。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="zh">
+<meta name="nel-route" content="tools/datacenter-power-calculators/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/tools/datacenter-power-calculators/zh/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/datacenter-power-calculators/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/datacenter-power-calculators/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/datacenter-power-calculators/es/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/datacenter-power-calculators/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=c6e622c573c4">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=f05b0a51ccda"></script>
+</head>
+<body>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../zh/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="打开导航菜单"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="主导航">
+      <a href="../../../zh/">首页</a>
+      <a href="../../zh/" aria-current="page">工具中心</a>
+      <a href="../../../zh/#guides">工程指南</a>
+      <a href="../../../zh/#topics">专题</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="./" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a><a class="language-option" role="menuitem" href="../es/" lang="es" hreflang="es"><span>Español</span><small>西班牙语</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<nav class="calculator-hub-breadcrumb" aria-label="Breadcrumb"><a href="../../../zh/">首页</a><span aria-hidden="true">/</span><a href="../../zh/">工具</a><span aria-hidden="true">/</span><span aria-current="page">数据中心电力与制冷计算器</span></nav>
+<main class="calculator-hub" id="main">
+<h1>数据中心电力与制冷计算器</h1>
+<p class="lede">电力和制冷工作常常被拆成 PoE、机柜、机房和后备电源，于是方案能通过一张表，却在下一张表失败。本专题集中了 NetEngineerLab 已有的 PoE、发电机、PUE、机柜、制冷、整流器和电池计算器。从负载产生的地方开始。忽略线缆压降的 PoE 预算在交换机上看起来足够，到设备端却失败，所以要同时检查电源容量和末端电压。把同样的瓦数放进机柜电力和制冷，再扩大到房间。PUE 说明设施在你刚算过的 IT 负载之上还要增加多少电负荷。制冷负荷和气流封闭用来检验这些热量能否真正离开机列。后备电源放在最后并且分层：UPS 续航覆盖切换窗口，发电机燃油覆盖你要设计的停电时长，两者之间还要核对切换间隔。当站点是通信机房而不只是 IT 大厅时，−48 V 电池、太阳能辅助、整流器容量、断路器选型以及直流系统负荷分担都属于同一次后备讨论。这些工具都不能代替签章电气设计。它们合在一起，是为了避免用一个没计入 PoE、制冷或 PUE 的机柜数字去选发电机。</p>
+<h2>本专题中的计算器</h2>
+<div class="hub-card-grid"><a class="hub-tool-card" href="../../poe-power-budget-calculator/zh/"><strong>PoE功率预算计算器</strong><span>按总功率、端口、网线损耗、工程余量和802.3af/at/bt等级规划PoE交换机。</span></a><a class="hub-tool-card" href="../../poe-voltage-drop-calculator/zh/"><strong>网线PoE压降计算器</strong><span>计算PoE网线回路电阻、压降、远端电压、电流和功率损耗。</span></a><a class="hub-tool-card" href="../../network-rack-power-cooling-calculator/zh/"><strong>网络机柜功耗与制冷量计算器</strong><span>计算机柜功耗、电流、制冷量、耗电量和电费。</span></a><a class="hub-tool-card" href="../../pue-data-center-energy-efficiency/zh/"><strong>数据中心PUE与能效分析器</strong><span>分析PUE、非IT能耗、年度电费、目标PUE节能潜力、WUE/CUE和月度趋势。</span></a><a class="hub-tool-card" href="../../data-center-cooling-load-calculator/zh/"><strong>数据中心制冷负荷与精密空调容量计算器</strong><span>根据IT及设施热源计算数据中心显热负荷、N+1精密空调容量、BTU/h、冷吨和风量。</span></a><a class="hub-tool-card" href="../../data-center-airflow-containment-planner/zh/"><strong>数据中心气流组织与冷热通道规划工具</strong><span>规划机柜风量、旁路风与热回流控制、CRAH/CRAC风量、显冷量、冷热通道封闭效果和N+1冗余。</span></a><a class="hub-tool-card" href="../../ups-capacity-battery-runtime-calculator/zh/"><strong>UPS容量与电池后备时间计算器</strong><span>计算UPS kW/kVA容量、模块冗余、电池后备时间、老化/温度修正、回充需求与旁路电流。</span></a><a class="hub-tool-card" href="../../generator-fuel-runtime-calculator/zh/"><strong>油机油耗与应急续航计算器</strong><span>根据油机厂家负载油耗曲线，计算通信站点分时油耗、油箱续航、保障油量、补油次数及电池协同。</span></a><a class="hub-tool-card" href="../../generator-ups-transfer-ride-through-planner/zh/"><strong>油机 + UPS 切换与不间断供电保障规划器</strong><span>规划市电故障后的UPS跨越、油机启动重试、ATS切换、容量冗余与关键负载供电连续性。</span></a><a class="hub-tool-card" href="../../48v-battery-runtime/zh/"><strong>-48V通信机房蓄电池续航计算器</strong><span>计算通信直流电池续航、所需容量、并联组数及恒功率负载电流变化。</span></a><a class="hub-tool-card" href="../../telecom-solar-battery-sizing-calculator/zh/"><strong>通信站点光伏发电与储能配置计算器</strong><span>面向并网混合或离网站点计算通信负载、光伏阵列、储能续航、供电平衡、经济性和减排。</span></a><a class="hub-tool-card" href="../../telecom-rectifier-dc-power-sizing/zh/"><strong>通信开关电源与整流模块容量配置计算器</strong><span>计算通信开关电源整流模块数量、电池回充电流、N+1/N+2冗余、故障余量、交流输入需求与扩容空间。</span></a><a class="hub-tool-card" href="../../telecom-ac-dc-breaker-sizing/zh/"><strong>通信站点 AC/DC 电源容量与空开配置工具</strong><span>根据负载、电压、相制、功率因数、效率、工程余量和降额条件估算通信站点交流馈电、空开、直流支路及导体电流。</span></a><a class="hub-tool-card" href="../../dc-plant-efficiency-load-sharing/zh/"><strong>直流电源系统效率与整流模块均流分析器</strong><span>分析通信直流电源整流模块均流偏差、模块负载、冗余、实测转换效率与在线模块运行质量。</span></a></div>
+<h2>规划流程</h2>
+<p>先给定负载，再定后备电源。</p>
+<ol class="hub-workflow"><li><a href="../../poe-power-budget-calculator/zh/">PoE功率预算计算器</a></li><li><a href="../../poe-voltage-drop-calculator/zh/">网线PoE压降计算器</a></li><li><a href="../../network-rack-power-cooling-calculator/zh/">网络机柜功耗与制冷量计算器</a></li><li><a href="../../pue-data-center-energy-efficiency/zh/">数据中心PUE与能效分析器</a></li><li><a href="../../data-center-cooling-load-calculator/zh/">数据中心制冷负荷与精密空调容量计算器</a></li><li><a href="../../data-center-airflow-containment-planner/zh/">数据中心气流组织与冷热通道规划工具</a></li><li><a href="../../ups-capacity-battery-runtime-calculator/zh/">UPS容量与电池后备时间计算器</a></li><li><a href="../../generator-fuel-runtime-calculator/zh/">油机油耗与应急续航计算器</a></li><li><a href="../../generator-ups-transfer-ride-through-planner/zh/">油机 + UPS 切换与不间断供电保障规划器</a></li><li><a href="../../48v-battery-runtime/zh/">-48V通信机房蓄电池续航计算器</a></li><li><a href="../../telecom-solar-battery-sizing-calculator/zh/">通信站点光伏发电与储能配置计算器</a></li><li><a href="../../telecom-rectifier-dc-power-sizing/zh/">通信开关电源与整流模块容量配置计算器</a></li><li><a href="../../telecom-ac-dc-breaker-sizing/zh/">通信站点 AC/DC 电源容量与空开配置工具</a></li><li><a href="../../dc-plant-efficiency-load-sharing/zh/">直流电源系统效率与整流模块均流分析器</a></li></ol>
+<h2>常见问题</h2>
+<div class="hub-faq"><details><summary>为什么 PoE 和 PUE 在同一个专题？</summary><p>PoE 往往是 PUE 所乘的 IT 负载的一部分。把它漏掉会同时低估机柜和设施用电。</p></details><details><summary>能否直接按 UPS 额定容量选发电机？</summary><p>不能只凭这一点。先核对 UPS 续航和切换支撑时间，再按实际接入负载和停电时长计算发电机燃油。</p></details><details><summary>机柜制冷和房间制冷的分界在哪里？</summary><p>机柜用机柜计算器。问题变成房间、机列以及封闭是否改变机组必须送出的风量时，使用制冷负荷和气流工具。</p></details><details><summary>通信机房该用哪一个电池计算器？</summary><p>直流系统用 −48 V 续航工具，交流 UPS 用 UPS 续航工具。整流器和断路器选型与直流系统并列，而不是取代它。</p></details></div>
+</main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div>
+    <nav class="site-shell-footer-links" aria-label="页脚导航">
+      <a href="../../../zh/about/">关于</a><a href="../../../zh/contact/">联系</a><a href="../../../zh/privacy/">隐私政策</a><a href="../../../zh/terms/">使用条款</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+</body>
+</html>

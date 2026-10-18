@@ -4,6 +4,7 @@ const catalog=require("../../website/data/tools-catalog.json");
 const tools=catalog.filter(tool=>tool.status==="active");
 const calculationOutputs={
   "fiber-loss":["#designLoss","0.00"],
+  "fiber-latency-calculator":["#oneWay","—"],
   "optical-power-budget":["#remainingBudget","0.00"],
   "pon-splitter-loss":["#remaining","0.00"],
   "onu-rx-power":["#measuredResult","0.00"],

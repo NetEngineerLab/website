@@ -354,7 +354,7 @@ async function httpAudit(sitemapUrls){
   record("sitemap URL count",Number.isInteger(buildReport.sitemapUrls)&&sitemapUrls.length===buildReport.sitemapUrls,`${sitemapUrls.length}/${buildReport.sitemapUrls||"missing"}`);
   record("sitemap URLs unique",new Set(sitemapUrls).size===sitemapUrls.length);
   record("sitemap HTTPS production origin",sitemapUrls.every(url=>url.startsWith(expectedOrigin+"/")));
-  const invalidBaseRoutes=(sitemapConfig.routes||[]).filter(record=>/^tools\/[^/]+\/$/.test(record.route||""));
+  const invalidBaseRoutes=(sitemapConfig.routes||[]).filter(record=>record.pageType!=="hub"&&/^tools\/[^/]+\/$/.test(record.route||""));
   record("sitemap config contains only base routes",invalidBaseRoutes.length===0,invalidBaseRoutes.map(item=>item.route).join(", "));
   // Page Registry is the production source of truth for partial-locale rollout. An active
   // locale does not imply that every page family is translated/published in that locale.

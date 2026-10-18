@@ -910,5 +910,48 @@
         }
       }
     ]
+  },
+  {
+    "id": "fiber-latency-planning",
+    "schemaVersion": "2.1.0",
+    "status": "active",
+    "domain": "optical",
+    "primary": true,
+    "translations": {
+      "en": {
+        "name": "Fiber Latency Planning Workflow",
+        "description": "Confirm the route length and loss assumptions, then estimate one-way delay and round-trip time."
+      },
+      "zh": {
+        "name": "光纤时延规划工作流",
+        "description": "先确认路由长度与损耗假设，再估算单向时延和往返时间。"
+      }
+    },
+    "steps": [
+      {
+        "order": 1,
+        "toolId": "fiber-loss",
+        "translations": {
+          "en": {
+            "action": "Confirm route length and loss assumptions"
+          },
+          "zh": {
+            "action": "确认路由长度与损耗假设"
+          }
+        }
+      },
+      {
+        "order": 2,
+        "toolId": "fiber-latency-calculator",
+        "translations": {
+          "en": {
+            "action": "Estimate one-way delay and RTT"
+          },
+          "zh": {
+            "action": "估算单向时延与往返 RTT"
+          }
+        }
+      }
+    ]
   }
 ]

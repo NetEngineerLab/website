@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-network-capacity-forecast-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-7a2d1d3c810a-f08ff7479a12";
+const CACHE = "nel-network-capacity-forecast-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-7a2d1d3c810a-e1d3a7c998c1";
 const CORE = [
   "./index.html",
   "./",
