@@ -1,4 +1,4 @@
-"use strict";const CACHE = "nel-onu-rx-power-locale-v1.9.9-04-p0-p1-correctness-consent-offline-62c6ee4784c0-7d048ca43460";
+"use strict";const CACHE = "nel-onu-rx-power-locale-v1.9.9-04-p0-p1-correctness-consent-offline-62c6ee4784c0-1f7806d7e2d8";
 const CORE = [
   "./index.html",
   "./",
