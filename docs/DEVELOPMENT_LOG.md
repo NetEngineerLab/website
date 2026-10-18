@@ -21,6 +21,7 @@
 ### 2026-10-18 — 去掉重复的可见 FAQ
 
 - 状态：`LOCAL PASS`（本地构建、`npm test` 和浏览器套件已通过；用户尚未审核，不是 `VALIDATOR PASS`，也不是线上验收）。
+- 实现提交：`bf2caa6`。lastmod 缓存改为 `history`：`2f40b18`。Draft PR：https://github.com/NetEngineerLab/website/pull/7 （base `main`，未合并）。
 - 范围：PR #6 合并后，FAQ 同步把第二段「Frequently asked questions / 常见问题 / Preguntas frecuentes」写到 `</main>` 之后。指南页因此在文章卡片外多出一段未套样式的折叠问题。西语工具页在已有 FAQ 后再追加两道通用问题。
 - 修复：`syncVisibleFaq` 在页面已有 FAQ 标题或 `<details>` 时删除 `data-nel-faq="visible"` 注入段，并且不把仅存在于该段的问题写回正文或 FAQPage。指南的 h2 + h3/p 仍留在文章内，JSON-LD 与这段问答一致。计算器页的唯一 FAQ 继续作为 `body > section.content-section`，避免被放进双列网格。专题和计算器入口上的 cluster / related 链接改回非计算器 `<main>` 内。
 - 测试：JSON-LD 测试在同一页出现多个 FAQ 标题，或非计算器页面的 FAQ / cluster / related 块位于 `<main>` 外时失败。
