@@ -184,7 +184,7 @@ for(const file of publicHtml){
 if(headerSignatures.size!==1)errors.push(`generated Header DOM signatures differ: ${headerSignatures.size}`);
 if(footerSignatures.size!==1)errors.push(`generated Footer DOM signatures differ: ${footerSignatures.size}`);
 
-const invalidBaseRoutes=(sitemapConfig.routes||[]).filter(record=>/^tools\/[^/]+\/$/.test(record.route||""));
+const invalidBaseRoutes=(sitemapConfig.routes||[]).filter(record=>record.pageType!=="hub"&&/^tools\/[^/]+\/$/.test(record.route||""));
 if(invalidBaseRoutes.length)errors.push(`website/data/sitemap-routes.json: tool routes are not allowed: ${invalidBaseRoutes.map(item=>item.route).join(", ")}`);
 function publicUrl(route,locale){
   const folder=locale.folder?`${locale.folder}/`:"";

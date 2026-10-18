@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-nel-locale="en" data-nel-route="tools/switching-bandwidth-calculators/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Switch &amp; Bandwidth Calculators – Oversubscription, Subnet, VLSM</title>
+<meta name="description" content="Plan switch uplinks, oversubscription, bandwidth, subnet capacity, VLSM and fabric growth with practical network calculators.">
+<meta property="og:title" content="Switch &amp; Bandwidth Calculators – Oversubscription, Subnet, VLSM">
+<meta property="og:description" content="Plan switch uplinks, oversubscription, bandwidth, subnet capacity, VLSM and fabric growth with practical network calculators.">
+<meta property="og:url" content="https://netengineerlab.com/tools/switching-bandwidth-calculators/">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="../../assets/css/calculator-hub.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://netengineerlab.com/tools/switching-bandwidth-calculators/#collection","name":"Switch & Bandwidth Calculators – Oversubscription, Subnet, VLSM","url":"https://netengineerlab.com/tools/switching-bandwidth-calculators/","description":"Plan switch uplinks, oversubscription, bandwidth, subnet capacity, VLSM and fabric growth with practical network calculators.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}},{"@type":"ItemList","@id":"https://netengineerlab.com/tools/switching-bandwidth-calculators/#calculators","name":"Calculators in this hub","numberOfItems":8,"itemListElement":[{"@type":"ListItem","position":1,"name":"Bandwidth & Transfer Time Calculator","url":"https://netengineerlab.com/tools/bandwidth-calculator/"},{"@type":"ListItem","position":2,"name":"Application Bandwidth Analyzer","url":"https://netengineerlab.com/tools/application-bandwidth-analyzer/"},{"@type":"ListItem","position":3,"name":"Switch Uplink Bandwidth & Oversubscription Calculator","url":"https://netengineerlab.com/tools/switch-uplink-oversubscription-calculator/"},{"@type":"ListItem","position":4,"name":"IP Subnet Calculator","url":"https://netengineerlab.com/tools/subnet-calculator/"},{"@type":"ListItem","position":5,"name":"VLAN & IP Subnet Capacity Planner","url":"https://netengineerlab.com/tools/vlan-ip-capacity-planner/"},{"@type":"ListItem","position":6,"name":"MTU & MSS Calculator","url":"https://netengineerlab.com/tools/mtu-calculator/"},{"@type":"ListItem","position":7,"name":"Network Capacity Forecast Planner","url":"https://netengineerlab.com/tools/network-capacity-forecast-planner/"},{"@type":"ListItem","position":8,"name":"Data Center Network Convergence & Fabric Capacity Planner","url":"https://netengineerlab.com/tools/data-center-network-convergence-fabric-capacity-planner/"}]},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/switching-bandwidth-calculators/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"Switching & Bandwidth Calculators","item":"https://netengineerlab.com/tools/switching-bandwidth-calculators/"}]}]}</script>
+<script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Should oversubscription or bandwidth come first?","acceptedAnswer":{"@type":"Answer","text":"Estimate the offered load first, then test whether the proposed uplinks carry it with the concurrency and failure case you are willing to sign."}},{"@type":"Question","name":"Is the VLAN planner a VLSM tool?","acceptedAnswer":{"@type":"Answer","text":"It plans usable host capacity per VLAN from a prefix and reservations. Use the subnet calculator first when you still need to draw the prefix boundaries."}},{"@type":"Question","name":"Why is MTU in a bandwidth hub?","acceptedAnswer":{"@type":"Answer","text":"A frame that does not fit the path is dropped or fragmented. That shows up as a throughput failure even when the uplink arithmetic was correct."}},{"@type":"Question","name":"When do I open the fabric capacity planner?","acceptedAnswer":{"@type":"Answer","text":"When the question moves from one access switch to how leaf, spine or aggregation tiers converge under the same traffic and failure assumptions."}}]}</script>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Switch & Bandwidth Calculators – Oversubscription, Subnet, VLSM","url":"https://netengineerlab.com/tools/switching-bandwidth-calculators/","description":"Plan switch uplinks, oversubscription, bandwidth, subnet capacity, VLSM and fabric growth with practical network calculators.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="en">
+<meta name="nel-route" content="tools/switching-bandwidth-calculators/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/tools/switching-bandwidth-calculators/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/switching-bandwidth-calculators/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/switching-bandwidth-calculators/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/switching-bandwidth-calculators/es/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/switching-bandwidth-calculators/">
+<link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=c6e622c573c4">
+<script defer src="../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../assets/js/site.js?v=f05b0a51ccda"></script>
+</head>
+<body>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Primary navigation">
+      <a href="../../">Home</a>
+      <a href="../" aria-current="page">Tools</a>
+      <a href="../../#guides">Guides</a>
+      <a href="../../#topics">Topics</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a><a class="language-option" role="menuitem" href="es/" lang="es" hreflang="es"><span>Español</span><small>Spanish</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<nav class="calculator-hub-breadcrumb" aria-label="Breadcrumb"><a href="../../">Home</a><span aria-hidden="true">/</span><a href="../">Tools</a><span aria-hidden="true">/</span><span aria-current="page">Switching &amp; Bandwidth Calculators</span></nav>
+<main class="calculator-hub" id="main">
+<h1>Switching &amp; Bandwidth Calculators</h1>
+<p class="lede">Switch and bandwidth planning fails when uplink math, address space and frame size are checked by different people with different spreadsheets. This hub lines up the switching, bandwidth, subnet and capacity calculators that already exist on NetEngineerLab. Begin with traffic you can defend: application rates or a transfer-time estimate, not a round number copied from a previous site. Turn that load into an access-port and uplink plan, including concurrency, utilization and what remains when one uplink fails. Only then cut the address plan. A subnet calculator defines the boundaries, and the VLAN capacity planner checks whether each VLAN still has hosts left after reservations. MTU belongs in the same pass, because a frame that does not fit the path looks like a capacity problem in production. Forecasting comes after the current design is explicit, so growth is applied to a known baseline. Fabric planning closes the sequence when the access switch is one tier of a larger network.</p>
+<h2>Calculators in this hub</h2>
+<div class="hub-card-grid"><a class="hub-tool-card" href="../bandwidth-calculator/"><strong>Bandwidth &amp; Transfer Time Calculator</strong><span>Calculate file transfer time, required link rate, concurrent-user capacity and sustained-rate data volume.</span></a><a class="hub-tool-card" href="../application-bandwidth-analyzer/"><strong>Application Bandwidth Analyzer</strong><span>Analyze per-application bandwidth, link utilization and headroom from supplied rates.</span></a><a class="hub-tool-card" href="../switch-uplink-oversubscription-calculator/"><strong>Switch Uplink Bandwidth &amp; Oversubscription Calculator</strong><span>Size switch uplinks from access ports, utilization, concurrency and redundancy.</span></a><a class="hub-tool-card" href="../subnet-calculator/"><strong>IP Subnet Calculator</strong><span>Calculate IPv4, IPv6, CIDR, masks, broadcast ranges and host capacity, with VLSM planning.</span></a><a class="hub-tool-card" href="../vlan-ip-capacity-planner/"><strong>VLAN &amp; IP Subnet Capacity Planner</strong><span>Plan VLAN count, IPv4 prefix, address capacity and growth headroom.</span></a><a class="hub-tool-card" href="../mtu-calculator/"><strong>MTU &amp; MSS Calculator</strong><span>Calculate effective MTU, TCP MSS and fragmentation risk for PPPoE, GRE, VXLAN, MPLS, IPsec and WireGuard.</span></a><a class="hub-tool-card" href="../network-capacity-forecast-planner/"><strong>Network Capacity Forecast Planner</strong><span>Forecast network demand growth, expansion timing and capacity targets from measured utilization.</span></a><a class="hub-tool-card" href="../data-center-network-convergence-fabric-capacity-planner/"><strong>Data Center Network Convergence &amp; Fabric Capacity Planner</strong><span>Plan Leaf-Spine and three-tier data center convergence, east-west/north-south demand, Spine N-1 resilience, bottlenecks and growth.</span></a></div>
+<h2>Planning workflow</h2>
+<p>Follow this order for an access or aggregation design.</p>
+<ol class="hub-workflow"><li><a href="../bandwidth-calculator/">Bandwidth &amp; Transfer Time Calculator</a></li><li><a href="../application-bandwidth-analyzer/">Application Bandwidth Analyzer</a></li><li><a href="../switch-uplink-oversubscription-calculator/">Switch Uplink Bandwidth &amp; Oversubscription Calculator</a></li><li><a href="../subnet-calculator/">IP Subnet Calculator</a></li><li><a href="../vlan-ip-capacity-planner/">VLAN &amp; IP Subnet Capacity Planner</a></li><li><a href="../mtu-calculator/">MTU &amp; MSS Calculator</a></li><li><a href="../network-capacity-forecast-planner/">Network Capacity Forecast Planner</a></li><li><a href="../data-center-network-convergence-fabric-capacity-planner/">Data Center Network Convergence &amp; Fabric Capacity Planner</a></li></ol>
+<h2>Frequently asked questions</h2>
+<div class="hub-faq"><details><summary>Should oversubscription or bandwidth come first?</summary><p>Estimate the offered load first, then test whether the proposed uplinks carry it with the concurrency and failure case you are willing to sign.</p></details><details><summary>Is the VLAN planner a VLSM tool?</summary><p>It plans usable host capacity per VLAN from a prefix and reservations. Use the subnet calculator first when you still need to draw the prefix boundaries.</p></details><details><summary>Why is MTU in a bandwidth hub?</summary><p>A frame that does not fit the path is dropped or fragmented. That shows up as a throughput failure even when the uplink arithmetic was correct.</p></details><details><summary>When do I open the fabric capacity planner?</summary><p>When the question moves from one access switch to how leaf, spine or aggregation tiers converge under the same traffic and failure assumptions.</p></details></div>
+</main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Footer navigation">
+      <a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+</body>
+</html>

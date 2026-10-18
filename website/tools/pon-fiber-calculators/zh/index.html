@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="tools/pon-fiber-calculators/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PON 与光纤计算器 – 分光损耗、光功率预算与时延</title>
+<meta name="description" content="用分光损耗、光纤损耗、光功率预算、距离、时延、OTDR 和 ODN 资源计算器规划 PON 与光纤链路。">
+<meta property="og:title" content="PON 与光纤计算器 – 分光损耗、光功率预算与时延">
+<meta property="og:description" content="用分光损耗、光纤损耗、光功率预算、距离、时延、OTDR 和 ODN 资源计算器规划 PON 与光纤链路。">
+<meta property="og:url" content="https://netengineerlab.com/tools/pon-fiber-calculators/zh/">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="../../../assets/css/calculator-hub.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://netengineerlab.com/tools/pon-fiber-calculators/zh/#collection","name":"PON 与光纤计算器 – 分光损耗、光功率预算与时延","url":"https://netengineerlab.com/tools/pon-fiber-calculators/zh/","description":"用分光损耗、光纤损耗、光功率预算、距离、时延、OTDR 和 ODN 资源计算器规划 PON 与光纤链路。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}},{"@type":"ItemList","@id":"https://netengineerlab.com/tools/pon-fiber-calculators/zh/#calculators","name":"本专题中的计算器","numberOfItems":10,"itemListElement":[{"@type":"ListItem","position":1,"name":"PON分光器损耗计算器","url":"https://netengineerlab.com/tools/pon-splitter-loss/zh/"},{"@type":"ListItem","position":2,"name":"光纤链路损耗计算器","url":"https://netengineerlab.com/tools/fiber-loss/zh/"},{"@type":"ListItem","position":3,"name":"光功率预算计算器","url":"https://netengineerlab.com/tools/optical-power-budget/zh/"},{"@type":"ListItem","position":4,"name":"PON最大传输距离计算器","url":"https://netengineerlab.com/tools/pon-distance/zh/"},{"@type":"ListItem","position":5,"name":"光纤时延计算器","url":"https://netengineerlab.com/tools/fiber-latency-calculator/zh/"},{"@type":"ListItem","position":6,"name":"ONU接收光功率诊断","url":"https://netengineerlab.com/tools/onu-rx-power/zh/"},{"@type":"ListItem","position":7,"name":"OTDR事件分析工具","url":"https://netengineerlab.com/tools/otdr-event/zh/"},{"@type":"ListItem","position":8,"name":"SFP与QSFP光模块兼容性查询","url":"https://netengineerlab.com/tools/sfp-qsfp-compatibility-calculator/zh/"},{"@type":"ListItem","position":9,"name":"ODF / ODN 光纤资源与分光规划器","url":"https://netengineerlab.com/tools/odf-odn-resource-planner/zh/"},{"@type":"ListItem","position":10,"name":"OLT双上联容量、传输波道与MSE端口规划工具","url":"https://netengineerlab.com/tools/olt-dual-uplink-transport-mse-planner/zh/"}]},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/pon-fiber-calculators/zh/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"工具","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"PON 与光纤计算器","item":"https://netengineerlab.com/tools/pon-fiber-calculators/zh/"}]}]}</script>
+<script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"应该先打开哪个计算器？","acceptedAnswer":{"@type":"Answer","text":"分光比还没定时先算分光损耗；未知的是路由长度和熔接方案时先算光纤损耗。光功率预算放在两者之后。"}},{"@type":"Question","name":"光纤时延会改变光功率预算吗？","acceptedAnswer":{"@type":"Answer","text":"不会。时延和损耗是不同限制。一条链路可以通过光功率预算，仍然达不到时延目标，路由较长时两者都要算。"}},{"@type":"Question","name":"什么时候用 OTDR 而不是损耗计算器？","acceptedAnswer":{"@type":"Answer","text":"损耗计算器用来预测设计。已经有测试曲线、需要解释熔接、连接器、弯曲或中断时，使用 OTDR 事件工具。"}},{"@type":"Question","name":"ODF 和 ODN 资源放在哪一步？","acceptedAnswer":{"@type":"Answer","text":"放在光功率预算和分光可以接受之后。资源规划器把该设计转换成端口、盘片和规划物料。"}}]}</script>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"PON 与光纤计算器 – 分光损耗、光功率预算与时延","url":"https://netengineerlab.com/tools/pon-fiber-calculators/zh/","description":"用分光损耗、光纤损耗、光功率预算、距离、时延、OTDR 和 ODN 资源计算器规划 PON 与光纤链路。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="zh">
+<meta name="nel-route" content="tools/pon-fiber-calculators/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/tools/pon-fiber-calculators/zh/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/pon-fiber-calculators/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/pon-fiber-calculators/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/pon-fiber-calculators/es/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/pon-fiber-calculators/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=c6e622c573c4">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=f05b0a51ccda"></script>
+</head>
+<body>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../zh/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="打开导航菜单"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="主导航">
+      <a href="../../../zh/">首页</a>
+      <a href="../../zh/" aria-current="page">工具中心</a>
+      <a href="../../../zh/#guides">工程指南</a>
+      <a href="../../../zh/#topics">专题</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="./" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a><a class="language-option" role="menuitem" href="../es/" lang="es" hreflang="es"><span>Español</span><small>西班牙语</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<nav class="calculator-hub-breadcrumb" aria-label="Breadcrumb"><a href="../../../zh/">首页</a><span aria-hidden="true">/</span><a href="../../zh/">工具</a><span aria-hidden="true">/</span><span aria-current="page">PON 与光纤计算器</span></nav>
+<main class="calculator-hub" id="main">
+<h1>PON 与光纤计算器</h1>
+<p class="lede">PON 或城域光纤设计是一串必须放在一起看的小决策。分光比决定损耗底数，光缆路由决定衰减和时延，光模块等级决定剩余预算是否成立。本专题把 NetEngineerLab 已经发布的光纤与 PON 计算器集中在一起，避免把每一页当成互不相干的产品。先确定分光，再计入光纤、熔接和连接器损耗，然后检验端到端光功率预算以及该等级还能支持的距离。当路由长到传播时间不能忽略时，用光纤时延计算器估算单向时延和往返时间，并计入路由系数与设备时延。如果现场读数偏弱，先用 ONU 接收光功率和 OTDR 事件对照设计，再决定是否改分光。光模块选型、ODF/ODN 资源以及 OLT 双上联放在同一路径的后段，等光功率数字稳定到可以变成施工清单。每个计算器保留自己的输入、限制和参考资料。本页只帮助你选择下一项检查，不替代工具页上的方法。</p>
+<h2>本专题中的计算器</h2>
+<div class="hub-card-grid"><a class="hub-tool-card" href="../../pon-splitter-loss/zh/"><strong>PON分光器损耗计算器</strong><span>支持一级、二级、三级分光级联，并计算总分光比、实际插入损耗和有效距离。</span></a><a class="hub-tool-card" href="../../fiber-loss/zh/"><strong>光纤链路损耗计算器</strong><span>计算光纤、熔接、连接器、分光器及工程余量，输出物理损耗与设计损耗。</span></a><a class="hub-tool-card" href="../../optical-power-budget/zh/"><strong>光功率预算计算器</strong><span>结合发送功率、接收灵敏度、光学代价和ODN损耗验证完整光链路预算。</span></a><a class="hub-tool-card" href="../../pon-distance/zh/"><strong>PON最大传输距离计算器</strong><span>区分光预算最大距离和系统有效距离，并验证规划链路是否保留工程余量。</span></a><a class="hub-tool-card" href="../../fiber-latency-calculator/zh/"><strong>光纤时延计算器</strong><span>根据距离、群折射率、设备时延和串行化时延计算光纤单向时延与往返 RTT。</span></a><a class="hub-tool-card" href="../../onu-rx-power/zh/"><strong>ONU接收光功率诊断</strong><span>根据实测光功率、灵敏度和过载门限判断正常、弱光、过载或疑似无光。</span></a><a class="hub-tool-card" href="../../otdr-event/zh/"><strong>OTDR事件分析工具</strong><span>支持多事件录入、双波长对比，识别熔接、连接器、弯曲、断纤、鬼影及盲区影响。</span></a><a class="hub-tool-card" href="../../sfp-qsfp-compatibility-calculator/zh/"><strong>SFP与QSFP光模块兼容性查询</strong><span>检查SFP、SFP28、QSFP和QSFP28速率、通道、光纤、波长及光链路预算。</span></a><a class="hub-tool-card" href="../../odf-odn-resource-planner/zh/"><strong>ODF / ODN 光纤资源与分光规划器</strong><span>比较 ODF/ODN 资源方案，计算 PON 端口、分光器、纤芯、ODF 容量、资源缺口与规划 BOM。</span></a><a class="hub-tool-card" href="../../olt-dual-uplink-transport-mse-planner/zh/"><strong>OLT双上联容量、传输波道与MSE端口规划工具</strong><span>计算OLT双上联端口、传输波道、MSE端口和板卡资源，并校验单边故障承载与双路由独立性。</span></a></div>
+<h2>规划流程</h2>
+<p>把一条路由变成光链路方案时，按这个顺序使用工具。</p>
+<ol class="hub-workflow"><li><a href="../../pon-splitter-loss/zh/">PON分光器损耗计算器</a></li><li><a href="../../fiber-loss/zh/">光纤链路损耗计算器</a></li><li><a href="../../optical-power-budget/zh/">光功率预算计算器</a></li><li><a href="../../pon-distance/zh/">PON最大传输距离计算器</a></li><li><a href="../../fiber-latency-calculator/zh/">光纤时延计算器</a></li><li><a href="../../onu-rx-power/zh/">ONU接收光功率诊断</a></li><li><a href="../../otdr-event/zh/">OTDR事件分析工具</a></li><li><a href="../../sfp-qsfp-compatibility-calculator/zh/">SFP与QSFP光模块兼容性查询</a></li><li><a href="../../odf-odn-resource-planner/zh/">ODF / ODN 光纤资源与分光规划器</a></li><li><a href="../../olt-dual-uplink-transport-mse-planner/zh/">OLT双上联容量、传输波道与MSE端口规划工具</a></li></ol>
+<h2>常见问题</h2>
+<div class="hub-faq"><details><summary>应该先打开哪个计算器？</summary><p>分光比还没定时先算分光损耗；未知的是路由长度和熔接方案时先算光纤损耗。光功率预算放在两者之后。</p></details><details><summary>光纤时延会改变光功率预算吗？</summary><p>不会。时延和损耗是不同限制。一条链路可以通过光功率预算，仍然达不到时延目标，路由较长时两者都要算。</p></details><details><summary>什么时候用 OTDR 而不是损耗计算器？</summary><p>损耗计算器用来预测设计。已经有测试曲线、需要解释熔接、连接器、弯曲或中断时，使用 OTDR 事件工具。</p></details><details><summary>ODF 和 ODN 资源放在哪一步？</summary><p>放在光功率预算和分光可以接受之后。资源规划器把该设计转换成端口、盘片和规划物料。</p></details></div>
+</main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div>
+    <nav class="site-shell-footer-links" aria-label="页脚导航">
+      <a href="../../../zh/about/">关于</a><a href="../../../zh/contact/">联系</a><a href="../../../zh/privacy/">隐私政策</a><a href="../../../zh/terms/">使用条款</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+</body>
+</html>

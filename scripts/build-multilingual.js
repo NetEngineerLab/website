@@ -180,10 +180,14 @@ function identifyPage(rel){
    return{route:"tools/",localeId:folderMap.get(parts[1]).id,kind:"toolsDirectory"};
   }
   if(parts.length===3&&parts[2]==="index.html"){
-   return{route:`tools/${parts[1]}/`,localeId:defaultLocale.id,kind:"tool",toolSlug:parts[1]};
+   const route=`tools/${parts[1]}/`;
+   const kind=sitemapConfig.routes.find(item=>item.route===route)?.pageType==="hub"?"hub":"tool";
+   return{route,localeId:defaultLocale.id,kind,toolSlug:parts[1]};
   }
   if(parts.length===4&&folderMap.has(parts[2])&&parts[3]==="index.html"){
-   return{route:`tools/${parts[1]}/`,localeId:folderMap.get(parts[2]).id,kind:"tool",toolSlug:parts[1]};
+   const route=`tools/${parts[1]}/`;
+   const kind=sitemapConfig.routes.find(item=>item.route===route)?.pageType==="hub"?"hub":"tool";
+   return{route,localeId:folderMap.get(parts[2]).id,kind,toolSlug:parts[1]};
   }
   return null;
  }
@@ -529,7 +533,7 @@ function injectSiteShell(html,currentRel,currentInfo){
   TERMS_HREF:href("terms/"),
   LOGO_HREF:escapeHtml(relativeFile(currentRel,"assets/images/logo.svg")),
   HOME_CURRENT:current(""),
-  TOOLS_CURRENT:currentInfo.route==="tools/"||currentInfo.kind==="tool"?' aria-current="page"':"",
+  TOOLS_CURRENT:currentInfo.route==="tools/"||currentInfo.kind==="tool"||(currentInfo.kind==="hub"&&currentInfo.route.startsWith("tools/"))?' aria-current="page"':"",
   ABOUT_CURRENT:current("about/"),
   CONTACT_CURRENT:current("contact/"),
   CONTEXT_ACTION:contextAction
