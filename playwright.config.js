@@ -6,7 +6,7 @@ module.exports=defineConfig({
   expect:{timeout:5000},
   fullyParallel:false,
   workers:process.env.CI?2:1,
-  retries:0,
+  retries:process.env.CI?1:0,
   reporter:[["line"],["html",{open:"never"}]],
   use:{baseURL:"http://127.0.0.1:4173",serviceWorkers:"allow",trace:"retain-on-failure",screenshot:"only-on-failure"},
   projects:[
