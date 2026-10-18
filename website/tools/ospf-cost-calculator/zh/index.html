@@ -1,8 +1,15 @@
-<!doctype html><html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="tools/ospf-cost-calculator/"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="app-base" content="../"><title>OSPF Cost 计算器 | NetEngineerLab</title><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"OSPF Cost计算器","url":"https://netengineerlab.com/tools/ospf-cost-calculator/zh/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"description":"根据参考带宽计算OSPF接口Cost、路径Cost与ECMP候选。"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"OSPF Cost如何计算？","acceptedAnswer":{"@type":"Answer","text":"OSPF Cost等于参考带宽除以接口带宽，取整后限制在1到65535。"}}]}</script><meta name="description" content="根据参考带宽计算OSPF接口Cost，比较路径成本并识别ECMP候选。所有计算在浏览器本地完成。"><link rel="stylesheet" href="../css/ospf.css?v=ospf2"><meta property="og:url" content="https://netengineerlab.com/tools/ospf-cost-calculator/zh/">
+<!doctype html><html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="tools/ospf-cost-calculator/"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="app-base" content="../"><title>OSPF Cost 计算器 | NetEngineerLab</title><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"OSPF Cost计算器","url":"https://netengineerlab.com/tools/ospf-cost-calculator/zh/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"description":"根据参考带宽计算OSPF接口Cost、路径Cost与ECMP候选。"}</script><meta name="description" content="根据参考带宽计算OSPF接口Cost，比较路径成本并识别ECMP候选。所有计算在浏览器本地完成。"><link rel="stylesheet" href="../css/ospf.css?v=ospf2"><meta property="og:url" content="https://netengineerlab.com/tools/ospf-cost-calculator/zh/">
 <meta property="og:title" content="OSPF Cost 计算器 | NetEngineerLab">
 <meta property="og:description" content="根据参考带宽计算OSPF接口Cost，比较路径成本并识别ECMP候选。所有计算在浏览器本地完成。">
 <meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 <link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OSPF Cost 计算器 | NetEngineerLab">
+<meta name="twitter:description" content="根据参考带宽计算OSPF接口Cost，比较路径成本并识别ECMP候选。所有计算在浏览器本地完成。">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"工具","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"OSPF Cost 计算器","item":"https://netengineerlab.com/tools/ospf-cost-calculator/zh/"}]}</script>
+
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"OSPF Cost 计算器 | NetEngineerLab","url":"https://netengineerlab.com/tools/ospf-cost-calculator/zh/","description":"根据参考带宽计算OSPF接口Cost，比较路径成本并识别ECMP候选。所有计算在浏览器本地完成。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
@@ -13,6 +20,7 @@
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/ospf-cost-calculator/zh/">
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/ospf-cost-calculator/es/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/ospf-cost-calculator/">
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"OSPF Cost如何计算？","acceptedAnswer":{"@type":"Answer","text":"OSPF Cost等于参考带宽除以接口带宽，取整后限制在1到65535。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=8c488ab6e2be">
@@ -36,7 +44,7 @@
       <a href="../../../zh/">首页</a>
       <a href="../../zh/" aria-current="page">工具中心</a>
       <a href="../../../zh/#guides">工程指南</a>
-      <a href="../../../zh/#topics">专题</a>
+      <a href="../../../zh/topics/">专题</a>
     </nav>
     <div class="site-shell-actions">
       <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="./" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a><a class="language-option" role="menuitem" href="../es/" lang="es" hreflang="es"><span>Español</span><small>西班牙语</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
@@ -47,7 +55,9 @@
 <!-- NEL_HEADER_END -->
 <!-- NEL_TOOL_RETURN_START -->
 <nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
-  <a class="tool-return-link" href="../../zh/">← 返回工具中心</a>
+  <a href="../../../zh/">首页</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../../zh/">工具</a>
   <span aria-hidden="true">/</span>
   <span aria-current="page">OSPF Cost计算器</span>
 </nav>
@@ -61,6 +71,7 @@ C,10000;D,1000</textarea></div><div class="actions"><button class="primary" id="
 <h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/subnet-calculator/zh/"><strong>IP子网计算器</strong><span class="nel-tool-graph-description">计算IPv4、IPv6、CIDR、掩码、广播地址、主机容量，并支持VLSM地址规划。</span></a><a class="nel-tool-graph-card" href="/tools/vlan-ip-capacity-planner/zh/"><strong>VLAN与IP子网容量规划器</strong><span class="nel-tool-graph-description">规划VLAN数量、IPv4前缀、地址容量与扩容余量。</span></a><a class="nel-tool-graph-card" href="/tools/switch-uplink-oversubscription-calculator/zh/"><strong>交换机上联带宽与超售比计算器</strong><span class="nel-tool-graph-description">根据接入端口、利用率、并发率与冗余方式规划交换机上联带宽。</span></a><a class="nel-tool-graph-card" href="/tools/acl-generator-validator/zh/"><strong>多厂商ACL生成与验证工具</strong><span class="nel-tool-graph-description">生成、转换并验证Cisco IOS、华为VRP、H3C Comware和Juniper Junos IPv4 ACL。</span></a></div>
 </section>
 <!-- NEL_TOOL_GRAPH_END -->
+<section class="content-section faq-section" id="faq" data-nel-faq="visible"><h2>常见问题</h2><div class="faq-grid"><details><summary>OSPF Cost如何计算？</summary><p>OSPF Cost等于参考带宽除以接口带宽，取整后限制在1到65535。</p></details></div></section>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">

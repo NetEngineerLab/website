@@ -13,7 +13,10 @@
 <script defer="" src="/assets/js/seo-engine.js"></script>
 <link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link data-nel-workflow-style="" href="/assets/css/tool-workflow.css?v=66c8998b2681" rel="stylesheet"/>
 <meta content="launch" name="nel-translation-status"/>
-<script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Qué significa /24?","acceptedAnswer":{"@type":"Answer","text":"Indica que 24 bits pertenecen al prefijo de red. En IPv4 quedan 8 bits para direcciones dentro de la subred."}},{"@type":"Question","name":"¿La capacidad útil siempre es total menos dos?","acceptedAnswer":{"@type":"Answer","text":"En subredes IPv4 multiacceso convencionales se reservan red y broadcast; existen excepciones como /31 para enlaces punto a punto."}},{"@type":"Question","name":"¿Qué hace VLSM?","acceptedAnswer":{"@type":"Answer","text":"Permite asignar prefijos de diferentes tamaños según la demanda de cada segmento, reduciendo desperdicio."}},{"@type":"Question","name":"¿Puede sustituir a un plan IPAM?","acceptedAnswer":{"@type":"Answer","text":"No. Ayuda a calcular y asignar bloques, pero la gobernanza de direcciones, reservas y documentación debe mantenerse en IPAM."}}]}</script>
+
+<meta name="twitter:title" content="Calculadora de subredes IPv4, IPv6 y VLSM | NetEngineerLab">
+<meta name="twitter:description" content="Calcula CIDR, máscaras, broadcast, rango de hosts, capacidad IPv4/IPv6 y planes VLSM para redes empresariales.">
+<meta name="twitter:image" content="https://netengineerlab.com/tools/subnet-calculator/images/og-ip-subnet-calculator.png">
 
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Calculadora de subredes IPv4, IPv6 y VLSM | NetEngineerLab","url":"https://netengineerlab.com/tools/subnet-calculator/es/","description":"Calcula CIDR, máscaras, broadcast, rango de hosts, capacidad IPv4/IPv6 y planes VLSM para redes empresariales.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
@@ -25,6 +28,7 @@
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/subnet-calculator/zh/">
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/subnet-calculator/es/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/subnet-calculator/">
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Qué significa /24?","acceptedAnswer":{"@type":"Answer","text":"Indica que 24 bits pertenecen al prefijo de red. En IPv4 quedan 8 bits para direcciones dentro de la subred."}},{"@type":"Question","name":"¿La capacidad útil siempre es total menos dos?","acceptedAnswer":{"@type":"Answer","text":"En subredes IPv4 multiacceso convencionales se reservan red y broadcast; existen excepciones como /31 para enlaces punto a punto."}},{"@type":"Question","name":"¿Qué hace VLSM?","acceptedAnswer":{"@type":"Answer","text":"Permite asignar prefijos de diferentes tamaños según la demanda de cada segmento, reduciendo desperdicio."}},{"@type":"Question","name":"¿Puede sustituir a un plan IPAM?","acceptedAnswer":{"@type":"Answer","text":"No. Ayuda a calcular y asignar bloques, pero la gobernanza de direcciones, reservas y documentación debe mantenerse en IPAM."}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=8c488ab6e2be">
@@ -50,7 +54,7 @@
       <a href="../../../es/">Inicio</a>
       <a href="../../es/" aria-current="page">Herramientas</a>
       <a href="../../../es/#guides">Guías</a>
-      <a href="../../../es/#topics">Temas</a>
+      <a href="../../../topics/">Temas</a>
     </nav>
     <div class="site-shell-actions">
       <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Español"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Español</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../" lang="en" hreflang="en"><span>English</span><small>Inglés</small></a><a class="language-option" role="menuitem" href="../zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chino simplificado</small></a><a class="language-option" role="menuitem" href="./" lang="es" hreflang="es" aria-current="page"><span>Español</span><small>Español</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
@@ -61,7 +65,9 @@
 <!-- NEL_HEADER_END -->
 <!-- NEL_TOOL_RETURN_START -->
 <nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
-  <a class="tool-return-link" href="../../es/">← Volver a herramientas</a>
+  <a href="../../../es/">Inicio</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../../es/">Herramientas</a>
   <span aria-hidden="true">/</span>
   <span aria-current="page">Calculadora de subredes IP</span>
 </nav>
@@ -113,7 +119,7 @@
 <article class="metric"><small>Ámbito de dirección</small><strong id="ipv4Scope"></strong></article>
 <article class="metric"><small>Subred anterior</small><strong id="ipv4Anterior"></strong></article>
 <article class="metric"><small>Subred siguiente</small><strong id="ipv4Siguiente"></strong></article>
-<article class="metric"><small>Reverse DNS zone</small><strong id="ipv4Reverse"></strong></article>
+<article class="metric"><small>Zona DNS inversa</small><strong id="ipv4Reverse"></strong></article>
 </div>
 <div class="bitbar" id="ipv4BitBar"></div>
 <div class="binary-grid">
@@ -139,7 +145,7 @@
 <article class="metric"><small>Base CIDR</small><strong id="vlsmBaseCidr"></strong></article>
 <article class="metric"><small>Direcciones usadas</small><strong id="vlsmUsed"></strong></article>
 <article class="metric"><small>Direcciones restantes</small><strong id="vlsmRemaining"></strong></article>
-<article class="metric"><small>Utilization</small><strong id="vlsmUtilization"></strong></article>
+<article class="metric"><small>Utilización</small><strong id="vlsmUtilization"></strong></article>
 </div><div class="vlsm-progress"><span id="vlsmBar"></span></div>
 <div class="table-scroll"><table class="data-table allocation-table"><thead><tr><th>#</th><th>Name</th><th>Hosts</th><th>Reserve</th><th>CIDR</th><th>Primer host</th><th>Último host</th><th>Broadcast</th><th>Usable</th></tr></thead><tbody id="vlsmAllocationBody"></tbody></table></div>
 </div>

@@ -5,6 +5,7 @@ const assert = require("node:assert/strict");
 const fs = require("fs");
 const path = require("path");
 const { applyGlossaryToHtml, repairJsonLdHtml } = require("./lib/jsonld-localize");
+const { normalizeBreadcrumbs } = require("./lib/seo-resolver");
 
 const siteRoot = path.join(__dirname, "..", "website");
 
@@ -103,6 +104,7 @@ function checkNode(node, file, errors) {
   }
 }
 
+const sitemapLocs = new Set([...fs.readFileSync(path.join(siteRoot, "sitemap.xml"), "utf8").matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1]));
 const errors = [];
 let blocks = 0;
 let pages = 0;
@@ -122,10 +124,35 @@ for (const file of walk(siteRoot)) {
       continue;
     }
     checkNode(data, rel, errors);
+    checkBreadcrumbs(data, rel, errors);
   }
 }
 assert.ok(pages > 0 && blocks > 0, "built HTML should contain JSON-LD blocks");
 assert.deepEqual(errors, [], errors.slice(0, 20).join("\n"));
+
+const droppedGuides = normalizeBreadcrumbs(
+  '<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://netengineerlab.com/guides"},{"@type":"ListItem","position":3,"name":"Page","item":"https://netengineerlab.com/guides/pon-splitter-loss-guide"}]}</script>',
+  { canonical: "https://netengineerlab.com/guides/pon-splitter-loss-guide/", siteUrl: "https://netengineerlab.com", sitemapPaths: sitemapLocs }
+);
+assert.ok(!droppedGuides.includes("/guides\""), "breadcrumb JSON-LD must drop the /guides index");
+assert.ok(droppedGuides.includes("https://netengineerlab.com/guides/pon-splitter-loss-guide/"), "breadcrumb JSON-LD must keep the canonical trailing-slash URL");
+
+function checkBreadcrumbs(node, file, sink) {
+  if (!node || typeof node !== "object") return;
+  if (Array.isArray(node)) {
+    node.forEach(item => checkBreadcrumbs(item, file, sink));
+    return;
+  }
+  if (node["@type"] === "BreadcrumbList" && Array.isArray(node.itemListElement)) {
+    for (const item of node.itemListElement) {
+      const url = item && item.item;
+      if (typeof url !== "string" || !sitemapLocs.has(url)) {
+        sink.push(`${file}: breadcrumb item URL ${JSON.stringify(url)} is not a sitemap loc`);
+      }
+    }
+  }
+  for (const value of Object.values(node)) checkBreadcrumbs(value, file, sink);
+}
 
 const glossary = [
   ["FAQ", "Preguntas frecuentes"],

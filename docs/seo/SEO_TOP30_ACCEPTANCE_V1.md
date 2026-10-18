@@ -1,6 +1,6 @@
 # SEO Top 30 Acceptance V1
 
-状态：`BLOCKED`
+状态：`CURRENT`（2026-10-18）。下面的 2026-10-13 门禁表是当时的历史记录。fiber latency 计算器已由 PR #2 上线，不再因为“页面不存在”而 BLOCKED。`data migration calculator` 和 `network infrastructure load calculation` 仍没有对应 URL，保持未映射。GSC 展示数据没有在本次更新。
 
 | Gate | 结果 | 证据 |
 |---|---|---|

@@ -1,4 +1,5 @@
-"use strict";const CACHE = "nel-data-center-cooling-load-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-7a2d1d3c810a-aae919c2cab8";
+"use strict";
+const CACHE = "nel-data-center-cooling-load-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-7a2d1d3c810a-acd07eccb38d";
 const CORE = [
   "./",
   "./index.html",

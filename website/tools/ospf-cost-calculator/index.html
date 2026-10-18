@@ -1,8 +1,15 @@
-<!doctype html><html lang="en" dir="ltr" data-nel-locale="en" data-nel-route="tools/ospf-cost-calculator/"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="app-base" content="./"><title>OSPF Cost Calculator | NetEngineerLab</title><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"OSPF Cost Calculator","url":"https://netengineerlab.com/tools/ospf-cost-calculator/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"description":"Calculate OSPF interface costs, path costs and ECMP candidates locally."}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is OSPF cost calculated?","acceptedAnswer":{"@type":"Answer","text":"OSPF cost is reference bandwidth divided by interface bandwidth, rounded to an integer and bounded to 1 through 65535."}}]}</script><meta name="description" content="Calculate OSPF interface costs, path cost, reference bandwidth impact and ECMP candidates locally in your browser."><link rel="stylesheet" href="css/ospf.css?v=ospf2"><meta property="og:url" content="https://netengineerlab.com/tools/ospf-cost-calculator/">
+<!doctype html><html lang="en" dir="ltr" data-nel-locale="en" data-nel-route="tools/ospf-cost-calculator/"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="app-base" content="./"><title>OSPF Cost Calculator | NetEngineerLab</title><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"OSPF Cost Calculator","url":"https://netengineerlab.com/tools/ospf-cost-calculator/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"description":"Calculate OSPF interface costs, path costs and ECMP candidates locally."}</script><meta name="description" content="Calculate OSPF interface costs, path cost, reference bandwidth impact and ECMP candidates locally in your browser."><link rel="stylesheet" href="css/ospf.css?v=ospf2"><meta property="og:url" content="https://netengineerlab.com/tools/ospf-cost-calculator/">
 <meta property="og:title" content="OSPF Cost Calculator | NetEngineerLab">
 <meta property="og:description" content="Calculate OSPF interface costs, path cost, reference bandwidth impact and ECMP candidates locally in your browser.">
 <meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 <link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OSPF Cost Calculator | NetEngineerLab">
+<meta name="twitter:description" content="Calculate OSPF interface costs, path cost, reference bandwidth impact and ECMP candidates locally in your browser.">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"OSPF Cost Calculator","item":"https://netengineerlab.com/tools/ospf-cost-calculator/"}]}</script>
+
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"OSPF Cost Calculator | NetEngineerLab","url":"https://netengineerlab.com/tools/ospf-cost-calculator/","description":"Calculate OSPF interface costs, path cost, reference bandwidth impact and ECMP candidates locally in your browser.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="en">
@@ -13,6 +20,7 @@
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/ospf-cost-calculator/zh/">
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/ospf-cost-calculator/es/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/ospf-cost-calculator/">
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is OSPF cost calculated?","acceptedAnswer":{"@type":"Answer","text":"OSPF cost is reference bandwidth divided by interface bandwidth, rounded to an integer and bounded to 1 through 65535."}}]}</script>
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=8c488ab6e2be">
@@ -36,7 +44,7 @@
       <a href="../../">Home</a>
       <a href="../" aria-current="page">Tools</a>
       <a href="../../#guides">Guides</a>
-      <a href="../../#topics">Topics</a>
+      <a href="../../topics/">Topics</a>
     </nav>
     <div class="site-shell-actions">
       <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a><a class="language-option" role="menuitem" href="es/" lang="es" hreflang="es"><span>Español</span><small>Spanish</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
@@ -47,7 +55,9 @@
 <!-- NEL_HEADER_END -->
 <!-- NEL_TOOL_RETURN_START -->
 <nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
-  <a class="tool-return-link" href="../">← Back to Tools</a>
+  <a href="../../">Home</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../">Tools</a>
   <span aria-hidden="true">/</span>
   <span aria-current="page">OSPF Cost Calculator</span>
 </nav>
@@ -61,6 +71,7 @@ C,10000;D,1000</textarea></div><div class="actions"><button class="primary" id="
 <h3 class="nel-tool-graph-subtitle">Related tools</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/subnet-calculator/"><strong>IP Subnet Calculator</strong><span class="nel-tool-graph-description">Calculate IPv4, IPv6, CIDR, masks, broadcast ranges and host capacity, with VLSM planning.</span></a><a class="nel-tool-graph-card" href="/tools/vlan-ip-capacity-planner/"><strong>VLAN &amp; IP Subnet Capacity Planner</strong><span class="nel-tool-graph-description">Plan VLAN count, IPv4 prefix, address capacity and growth headroom.</span></a><a class="nel-tool-graph-card" href="/tools/switch-uplink-oversubscription-calculator/"><strong>Switch Uplink Bandwidth &amp; Oversubscription Calculator</strong><span class="nel-tool-graph-description">Size switch uplinks from access ports, utilization, concurrency and redundancy.</span></a><a class="nel-tool-graph-card" href="/tools/acl-generator-validator/"><strong>Multi-Vendor ACL Generator &amp; Validator</strong><span class="nel-tool-graph-description">Generate, convert and validate IPv4 ACLs for Cisco IOS, Huawei VRP, H3C Comware and Juniper Junos.</span></a></div>
 </section>
 <!-- NEL_TOOL_GRAPH_END -->
+<section class="content-section faq-section" id="faq" data-nel-faq="visible"><h2>Frequently asked questions</h2><div class="faq-grid"><details><summary>How is OSPF cost calculated?</summary><p>OSPF cost is reference bandwidth divided by interface bandwidth, rounded to an integer and bounded to 1 through 65535.</p></details></div></section>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">

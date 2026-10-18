@@ -303,9 +303,17 @@ Structured Data:
 
 支持：
 
+- WebPage
 - WebApplication
 - SoftwareApplication
+- BreadcrumbList
 - FAQPage
+- Article
+- CollectionPage
+- ItemList
+- DefinedTerm
+
+工具页至少包含 WebPage、WebApplication（或 SoftwareApplication）和 BreadcrumbList。指南页使用 Article。术语页使用 DefinedTerm。计算器入口页（`/tools/*-calculators/`）使用 CollectionPage 与 ItemList，不使用 WebApplication。以 `docs/NETENGINEERLAB_V2_SEO_GEO_ARCHITECTURE_SPEC.md` 第 3 节和第 5 节为准。
 
 
 
@@ -841,8 +849,10 @@ NetEngineerLab高级软件工程师。
 - 唯一 Title
 - 唯一 Description
 - 正确 Canonical
-- `en`、`zh-CN` 和 `x-default` hreflang
+- 该页面族已发布语言的 hreflang，以及 `x-default`
 - 与页面类型匹配的结构化数据
+
+已发布英、中、西三种语言的页面，hreflang 必须且只能是 `en`、`zh-CN`、`es` 和 `x-default`。尚未发布西班牙语的页面族只输出已存在的语言加上 `x-default`，不得编造 `/es/` 链接，也不得因为旧的三语言规则删掉已经上线的 `es`。`x-default` 指向英文规范 URL。
 
 
 404、Offline等系统页面：
@@ -1056,15 +1066,13 @@ Header 比较 `position`、`height`、`min-height`、四向 `padding`、`backgro
 Sitemap 必须由公开基础路由与全部启用工具动态合并生成：
 
 - `website/data/sitemap-routes.json` 只管理基础页面，禁止包含 `tools/{toolSlug}/` 工具路由。
-- `website/data/tools-catalog.json` 中每个 `active` 工具必须生成全部启用语言 URL。
+- `website/data/tools-catalog.json` 中每个 `active` 工具必须生成该工具已发布语言的 URL。`es` 按 page-family 分批上线，不得为未翻译工具生成 `/es/`。
 - Sitemap 中每个 URL 必须唯一、使用生产 HTTPS 域名，并对应可索引页面。
-- 每个启用工具缺少任一启用语言 URL 时，架构验证和发布验收必须失败。
+- 已发布语言版本缺少对应 URL 时，架构验证和发布验收必须失败。
 - 404、Offline、测试文档和内部集成页面不得进入 Sitemap。
 
 
-期望 Sitemap 集合必须精确等于：
-
-`基础路由 × active locales + active tools × active locales`
+期望 Sitemap 集合必须精确等于页面注册表展开结果：基础路由和 active tools，各自只乘上该 page-family 实际发布的 active locale。禁止用“语言数 × 工具数”写死数量。
 
 
 实际集合与期望集合必须做双向集合比较；任何缺失 URL、重复 URL或多余 URL都必须失败。
@@ -1092,7 +1100,7 @@ Sitemap 必须由公开基础路由与全部启用工具动态合并生成：
 
 
 共享主体 CSS 和增强脚本必须使用内容哈希 URL，并进入所有工具 Service Worker 的共享缓存版本；
-修改任一共享主体资源后，构建必须更新40个启用语言工具页引用和20个工具缓存名。
+修改任一共享主体资源后，构建必须更新每个 active 工具已发布语言页面上的引用，以及这些工具的 Service Worker 缓存名。页面数和缓存名数量以 `website/data/tools-catalog.json` 与当次构建产物为准，禁止写死。
 
 
 运行时增强不得复制模板已提供的元素。特别是 Header 已有 `.site-shell-context-action`
@@ -1126,9 +1134,11 @@ SEO 元数据必须由构建系统统一维护。每个 Sitemap 页面必须且�
 meta description、canonical 与 h1；canonical 必须精确等于 Sitemap URL。
 
 
-每个页面必须具有且仅具有 `en`、`zh-CN`、`x-default` 三条 hreflang，链接到同一基础路由的
-正确语言版本。首页、根目录信息页、工具目录和工具详情页使用各自既定的本地化路由形式，
-禁止用字符串猜测取代构建配置。
+每个页面的 hreflang 集合等于该 page-family 已发布的 active locale，再加 `x-default`。
+三种语言都已发布时，集合必须且只能是 `en`、`zh-CN`、`es`、`x-default`。西班牙语按工具分批上线：
+没有西语页面的家族不得出现 `es`，已有西语页面不得被旧的“仅中英”规则删掉。
+链接必须指向同一基础路由的正确语言版本。首页、根目录信息页、工具目录和工具详情页使用各自既定的本地化路由形式，
+禁止用字符串猜测取代构建配置。`npm run audit:seo` 在西语页面存在时，还要检查它的 title 和 description 不与英文完全相同。
 
 
 每个可索引页面必须具有 `og:title`、`og:description`、生产域绝对 `og:image` 和与 canonical
@@ -1200,17 +1210,17 @@ GEO 内容必须便于搜索与生成式系统理解、核验和引用：
 - 日期、目标页面与影响范围。
 - 已完成内容和关键工程边界。
 - 本地验证命令与结果。
-- 2 号验证官的最终 PASS 结论。
+- 审核结论。当前流程是云端开发代理提交 PR，由用户审核；不再单独安排“2 号验证官”。历史批次里已经写下的 2 号验证官 PASS 保持原样。没有用户审核证据时，状态只能是 `LOCAL PASS`，不得写成 `VALIDATOR PASS`。
 - 实现提交的完整 Git SHA。
 - GitHub 工作流与正式网站验收结果。
 
 
 推荐提交顺序：
 
-1. 完成实现、本地验证和 2 号验证。
+1. 完成实现和本地验证。
 2. 提交实现并取得 Git SHA。
 3. 更新 `docs/DEVELOPMENT_LOG.md` 并提交记录。
-4. 将实现提交和记录提交一起推送。
+4. 将实现提交和记录提交一起推送，并打开 PR 供用户审核。
 5. 线上验收后，如状态或结果发生变化，立即补充记录。
 
 

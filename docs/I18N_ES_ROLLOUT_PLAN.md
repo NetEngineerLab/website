@@ -25,13 +25,14 @@
 9. `ups-capacity-battery-runtime-calculator`
 10. `wireless-link-budget-calculator`
 
-## V1.3 发布状态
+## 当前发布状态（2026-10-18）
 
-- `es.status = active`
-- 10 个旗舰工具标记 `nel-translation-status=launch`
-- sitemap 中包含 16 个西语正式 URL
-- 首批工具 hreflang 已包含 `en / zh-CN / es / x-default`
-- 其余 25 个 active tools 暂无 `/es/` 发布页，不进入西语 sitemap/hreflang
+V1.3 的“sitemap 16 个西语 URL、其余 25 个工具没有 `/es/`”已经过时，不要再当作配额。
+
+- `es.status = active`（见 `website/data/locales.json` 和 `docs/LOCALE_ROLLOUT_MATRIX.md`）
+- 西语 URL 数量以 `website/sitemap.xml` 里路径包含 `/es/` 的 `<loc>` 为准，并由页面注册表生成。2026-10-18 合规审计时该集合为 50 个 URL（首页、工具目录和已翻译工具），不是固定上限
+- 已发布西语页的 hreflang 为 `en`、`zh-CN`、`es`、`x-default`
+- 仍无西语正文的指南和专题不进入西语 sitemap，也不输出 `es` hreflang
 - `es/404.html` 保持 noindex
 
 ## 发布门禁

@@ -8,6 +8,21 @@ const{stableFileHash,stableHash}=require("./stable-text-hash");
 const{rulesRuntimeAssets}=require("./rules-runtime-assets");
 const{precachePathIssues,parsePrecacheArrayLiteral}=require("./service-worker-precache");
 const{repairJsonLdHtml}=require("./lib/jsonld-localize");
+const{
+ contentFingerprint,
+ ensureClusterLinks,
+ ensureEditorialLinks,
+ ensureGuideSchemas,
+ ensureRobots,
+ ensureToolSchemas,
+ ensureTwitter,
+ normalizeBreadcrumbs,
+ pageDescription,
+ pageTitle,
+ replaceMarkdownLinks,
+ renderLlmsTxt,
+ syncVisibleFaq
+}=require("./lib/seo-resolver");
 
 const packageRoot=path.resolve(__dirname,"..");
 const siteRoot=path.join(packageRoot,"website");
@@ -287,7 +302,7 @@ function removeInvalidVoidClosers(html){
  return html.replace(/<\/(?:meta|link)>/gi,"");
 }
 function removeHeadLinks(html){
- return html.replace(/<link\b[^>]*>/gi,tag=>{
+ return html.replace(/<link\b[^>]*>\s*/gi,tag=>{
   const isCanonical=/\brel\s*=\s*["'][^"']*\bcanonical\b[^"']*["']/i.test(tag);
   const isAlternate=/\brel\s*=\s*["'][^"']*\balternate\b[^"']*["']/i.test(tag)&&/\bhreflang\s*=/i.test(tag);
   return isCanonical||isAlternate?"":tag;
@@ -467,11 +482,11 @@ function addBodyClass(html,className){
 }
 function ensureTopicBreadcrumb(html,info,locale){
  const homeHref=escapeHtml(relativeUrl(urlForRoute(info.route,locale),urlForRoute("",locale)));
- const topicsHref=`${homeHref}#topics`;
- const homeLabel=locale.id==="zh"?"首页":"Home";
- const topicsLabel=locale.id==="zh"?"专题":"Topics";
+ const topicsHref=escapeHtml(relativeUrl(urlForRoute(info.route,locale),urlForRoute("topics/",locale)));
+ const homeLabel=locale.id==="zh"?"首页":locale.id==="es"?"Inicio":"Home";
+ const topicsLabel=locale.id==="zh"?"专题":locale.id==="es"?"Temas":"Topics";
  const title=decodeEntities(html.match(/<main\b[^>]*>[\s\S]*?<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1]?.replace(/<[^>]+>/g,""))||topicsLabel;
- const ariaLabel=locale.id==="zh"?"面包屑":"Breadcrumb";
+ const ariaLabel=locale.id==="zh"?"面包屑":locale.id==="es"?"Migas de pan":"Breadcrumb";
  const nav=`<nav class="topic-hub-breadcrumb" aria-label="${ariaLabel}"><a href="${homeHref}">${homeLabel}</a><span aria-hidden="true">›</span><a href="${topicsHref}">${topicsLabel}</a><span aria-hidden="true">›</span><span aria-current="page">${escapeHtml(title)}</span></nav>`;
  const existing=/<nav\b[^>]*class=["'][^"']*\b(?:guide-)?breadcrumb\b[^"']*["'][^>]*>[\s\S]*?<\/nav>/i;
  if(existing.test(html))return html.replace(existing,nav);
@@ -524,7 +539,7 @@ function injectSiteShell(html,currentRel,currentInfo){
   HOME_HREF:href(""),
   TOOLS_HREF:href("tools/"),
   GUIDES_HREF:href("")+"#guides",
-  TOPICS_HREF:href("")+"#topics",
+  TOPICS_HREF:escapeHtml(relativeUrl(currentUrl,urlForRoute("topics/",fs.existsSync(path.join(siteRoot,...fileForRoute("topics/",locale).split("/")))?locale:defaultLocale))),
   GUIDES_CURRENT:currentInfo.route.startsWith("guides/")?' aria-current="page"':"",
   TOPICS_CURRENT:currentInfo.route.startsWith("topics/")?' aria-current="page"':"",
   ABOUT_HREF:href("about/"),
@@ -560,8 +575,11 @@ function injectToolReturnNavigation(html,currentRel,currentInfo){
  const tool=toolCatalog.find(item=>item.id===currentInfo.toolSlug);
  const copy=tool?toolCopy(tool,locale):{};
  const toolName=escapeHtml(copy.name||currentInfo.toolSlug);
- const backLabel=locale.id===defaultLocale.id?"Back to Tools":locale.id==="es"?"Volver a herramientas":"返回工具中心";
- const nav=`<!-- NEL_TOOL_RETURN_START -->\n<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">\n  <a class="tool-return-link" href="${toolsHref}">← ${escapeHtml(backLabel)}</a>\n  <span aria-hidden="true">/</span>\n  <span aria-current="page">${toolName}</span>\n</nav>\n<!-- NEL_TOOL_RETURN_END -->`;
+ if(/calculator-hub-breadcrumb/i.test(html))return html;
+ const homeHref=escapeHtml(relativeUrl(currentUrl,urlForRoute("",locale)));
+ const homeLabel=locale.id==="zh"?"首页":locale.id==="es"?"Inicio":"Home";
+ const toolsLabel=locale.id==="zh"?"工具":locale.id==="es"?"Herramientas":"Tools";
+ const nav=`<!-- NEL_TOOL_RETURN_START -->\n<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">\n  <a href="${homeHref}">${homeLabel}</a>\n  <span aria-hidden="true">/</span>\n  <a class="tool-return-link" href="${toolsHref}">${toolsLabel}</a>\n  <span aria-hidden="true">/</span>\n  <span aria-current="page">${toolName}</span>\n</nav>\n<!-- NEL_TOOL_RETURN_END -->`;
  const markers=/<!-- NEL_TOOL_RETURN_START -->[\s\S]*?<!-- NEL_TOOL_RETURN_END -->/i;
  if(markers.test(html))return html.replace(markers,nav);
  const existing=/<nav\b[^>]*class\s*=\s*["'][^"']*\bbreadcrumbs\b[^"']*["'][^>]*>[\s\S]*?<\/nav>/i;
@@ -656,8 +674,7 @@ function generateManifests(groups){
   }
  }
 }
-function generateSitemap(groups){
- const lines=['<?xml version="1.0" encoding="UTF-8"?>','<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">'];
+function indexableSitemapRecords(){
  const toolRecords=activeTools.map(tool=>({route:`tools/${tool.id}/`,changefreq:"monthly",priority:"0.9"}));
  // Published tool pages that are not Tool Registry entries. Registry tools must
  // belong to a workflow, so these planners stay supplemental sitemap routes.
@@ -668,7 +685,11 @@ function generateSitemap(groups){
   "tools/network-asset-lifecycle-tracker/",
   "tools/oob-network-design-planner/"
  ].map(route=>({route,changefreq:"monthly",priority:"0.8"}));
- const records=[...sitemapConfig.routes.filter(record=>record.indexable!==false),...toolRecords,...supplementalRecords];
+ return [...sitemapConfig.routes.filter(record=>record.indexable!==false),...toolRecords,...supplementalRecords];
+}
+function generateSitemap(groups){
+ const lines=['<?xml version="1.0" encoding="UTF-8"?>','<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">'];
+ const records=indexableSitemapRecords();
  const seen=new Set();
  for(const record of records){
   if(seen.has(record.route))throw new Error(`Duplicate sitemap route: ${record.route}`);
@@ -677,7 +698,10 @@ function generateSitemap(groups){
   if(!group)continue;
   for(const locale of activeLocales){
    if(!group.has(locale.id))continue;
-   const pageFile=path.join(siteRoot,...fileForRoute(record.route,locale).split("/"));
+   let pageRel=fileForRoute(record.route,locale);
+   if(pageRel.endsWith("/"))pageRel+=`index.html`;
+   else if(!pageRel.endsWith(".html"))pageRel=`${pageRel}/index.html`;
+   const pageFile=path.join(siteRoot,...pageRel.split("/"));
    lines.push("  <url>");
    lines.push(`    <loc>${localeConfig.siteUrl}${urlForRoute(record.route,locale)}</loc>`);
    lines.push(`    <lastmod>${gitLastmod(pageFile)}</lastmod>`);
@@ -693,6 +717,9 @@ function generateSitemap(groups){
  }
  lines.push("</urlset>","");
  writeFileWithRetry(path.join(siteRoot,"sitemap.xml"),lines.join("\n"),"utf8");
+ if(lastmodCacheDirty)writeFileWithRetry(lastmodCachePath,JSON.stringify(lastmodCache,null,2)+"\n","utf8");
+ const llms=renderLlmsTxt({siteUrl:localeConfig.siteUrl,toolCatalog,routes:sitemapConfig.routes,activeLocales});
+ writeFileWithRetry(path.join(siteRoot,"llms.txt"),llms,"utf8");
 }
 function siteFileExists(urlPath){
  const clean=String(urlPath||"").split(/[?#]/)[0];
@@ -756,17 +783,47 @@ function ensureCanonicalLink(html,canonical){
  if(/<link\b[^>]*\brel\s*=\s*["'][^"']*\bcanonical\b[^"']*["'][^>]*>/i.test(html))return html;
  return html.replace(/<\/head>/i,`<link rel="canonical" href="${escapeHtml(canonical)}">\n</head>`);
 }
+const lastmodCachePath=path.join(dataDir,"content-lastmod.json");
+let lastmodCache={};
+try{lastmodCache=JSON.parse(fs.readFileSync(lastmodCachePath,"utf8"));}catch{lastmodCache={};}
+let lastmodCacheDirty=false;
+function contentIntroducedDate(rel,hash){
+ // The file's latest commit can be a shell or script rewrite. lastmod is the
+ // date of the oldest commit in the current run of identical visible content.
+ let log="";
+ try{log=execFileSync("git",["log","--format=%H%x09%cs","--",rel],{cwd:packageRoot,encoding:"utf8",stdio:["ignore","pipe","ignore"]});}catch{log="";}
+ let date="";
+ for(const line of log.split("\n")){
+  const [commit,commitDate]=line.split("\t");
+  if(!commit||!/^\d{4}-\d{2}-\d{2}$/.test(commitDate||""))continue;
+  let historical="";
+  try{historical=execFileSync("git",["show",`${commit}:${rel}`],{cwd:packageRoot,encoding:"utf8",stdio:["ignore","pipe","ignore"]});}catch{break;}
+  if(stableHash(contentFingerprint(historical),20)!==hash)break;
+  date=commitDate;
+ }
+ return date;
+}
 function gitLastmod(absPath){
- let committed="";
- try{
-  committed=execFileSync("git",["log","-1","--format=%cs","--",absPath],{cwd:packageRoot,encoding:"utf8",stdio:["ignore","pipe","ignore"]}).trim();
- }catch{}
- let dirty=false;
- try{
-  dirty=Boolean(execFileSync("git",["status","--porcelain","--",absPath],{cwd:packageRoot,encoding:"utf8",stdio:["ignore","pipe","ignore"]}).trim());
- }catch{dirty=true}
- if(dirty||!/^\d{4}-\d{2}-\d{2}$/.test(committed))return new Date().toISOString().slice(0,10);
- return committed;
+ // lastmod follows visible title, description and body text. Header, footer
+ // and JSON-LD/script rewrites do not move the date. A content change does.
+ const rel=posix(path.relative(packageRoot,absPath));
+ let html="";
+ try{html=fs.readFileSync(absPath,"utf8");}catch{return new Date().toISOString().slice(0,10);}
+ const hash=stableHash(contentFingerprint(html),20);
+ let head="";
+ try{head=execFileSync("git",["show",`HEAD:${rel}`],{cwd:packageRoot,encoding:"utf8",stdio:["ignore","pipe","ignore"]});}catch{head="";}
+ const unchanged=Boolean(head)&&stableHash(contentFingerprint(head),20)===hash;
+ if(unchanged){
+  if(lastmodCache[rel]&&lastmodCache[rel].hash===hash&&lastmodCache[rel].source==="history"&&/^\d{4}-\d{2}-\d{2}$/.test(lastmodCache[rel].date))return lastmodCache[rel].date;
+  const date=contentIntroducedDate(rel,hash)||new Date().toISOString().slice(0,10);
+  if(!lastmodCache[rel]||lastmodCache[rel].hash!==hash||lastmodCache[rel].date!==date||lastmodCache[rel].source!=="history"){lastmodCache[rel]={hash,date,source:"history"};lastmodCacheDirty=true;}
+  return date;
+ }
+ if(lastmodCache[rel]&&lastmodCache[rel].hash===hash&&/^\d{4}-\d{2}-\d{2}$/.test(lastmodCache[rel].date))return lastmodCache[rel].date;
+ const date=new Date().toISOString().slice(0,10);
+ lastmodCache[rel]={hash,date,source:"edit"};
+ lastmodCacheDirty=true;
+ return date;
 }
 function enhanceGuideContent(html,info,locale){
  if(!/<main\b[^>]*class=["'][^"']*\bguide-content\b/i.test(html))return html;
@@ -802,11 +859,69 @@ function build(){
   if(!groups.has(info.route))groups.set(info.route,new Map());
   groups.get(info.route).set(info.localeId,rel);
  }
+ const sitemapUrls=new Set();
+ for(const record of indexableSitemapRecords()){
+  const group=groups.get(record.route);
+  if(!group)continue;
+  for(const locale of activeLocales){
+   if(group.has(locale.id))sitemapUrls.add(localeConfig.siteUrl+urlForRoute(record.route,locale));
+  }
+ }
+ function pageExists(route,locale){return Boolean(groups.get(route)?.has(locale.id));}
+ function finishSeo(html,record,locale){
+  const canonical=localeConfig.siteUrl+urlForRoute(record.info.route,locale);
+  const indexable=record.info.route!=="404.html"&&locale.status==="active";
+  if(!indexable)return html;
+  html=ensureOpenGraphMeta(html,canonical);
+  html=ensureTwitter(html,`${localeConfig.siteUrl}/assets/images/og-netengineerlab.png`);
+  html=ensureRobots(html,{indexable:true});
+  const h1=decodeEntities((html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)||[])[1]?.replace(/<[^>]+>/g,"")||"");
+  const name=h1||pageTitle(html).replace(/\s*\|\s*NetEngineerLab\s*$/,"");
+  const description=pageDescription(html);
+  const linkHelpers={locale,urlForRoute,relativeUrl,route:record.info.route,pageExists};
+  html=normalizeBreadcrumbs(html,{canonical,siteUrl:localeConfig.siteUrl,sitemapPaths:sitemapUrls});
+  if(record.info.kind==="tool"||/-calculators\/$/.test(record.info.route)){
+   html=ensureToolSchemas(html,{
+    canonical,
+    localeId:locale.id,
+    homeUrl:localeConfig.siteUrl+urlForRoute("",locale),
+    toolsUrl:localeConfig.siteUrl+urlForRoute("tools/",locale),
+    name,
+    description,
+    calculatorHub:/-calculators\/$/.test(record.info.route),
+    siteUrl:localeConfig.siteUrl
+   });
+  }
+  if(record.info.kind==="hub"&&record.info.route.startsWith("topics/")){
+   html=ensureToolSchemas(html,{
+    canonical,
+    localeId:locale.id,
+    homeUrl:localeConfig.siteUrl+urlForRoute("",locale),
+    toolsUrl:localeConfig.siteUrl+urlForRoute("topics/",locale),
+    middleLabel:locale.id==="zh"?"专题":locale.id==="es"?"Temas":"Topics",
+    name,
+    description,
+    calculatorHub:true,
+    siteUrl:localeConfig.siteUrl
+   });
+  }
+  if(record.info.kind==="guide"||record.info.shellOnly){
+   if(sitemapUrls.has(canonical)){
+    html=ensureGuideSchemas(html,{canonical,localeId:locale.id,homeUrl:localeConfig.siteUrl+urlForRoute("",locale),name,description,inLanguage:locale.htmlLang,siteUrl:localeConfig.siteUrl});
+   }
+   html=ensureWebPageSchema(html,canonical,locale);
+  }
+  html=syncVisibleFaq(html,locale.id);
+  html=ensureClusterLinks(html,{...linkHelpers,fallbackLocale:defaultLocale});
+  html=ensureEditorialLinks(html,linkHelpers);
+  return html;
+ }
  for(const record of records){
   const locale=localeMap.get(record.info.localeId);
   const group=groups.get(record.info.route);
   if(!locale||!group)continue;
   let html=repairJsonLdHtml(fs.readFileSync(record.file,"utf8"));
+  html=replaceMarkdownLinks(html,{locale,urlForRoute,relativeUrl,route:record.info.route});
   html=repairMisnestedRelativeUrls(html,record.rel,record.info);
   html=repairAppBase(html,record.info);
   if(record.info.shellOnly){
@@ -825,7 +940,15 @@ function build(){
     const guideCrumb=new RegExp(`<span>\\s*${guideLabel}\\s*<\\/span>`);
     shell=shell.replace(breadcrumb[0],breadcrumb[0].replace(guideCrumb,`<a href="${escapeHtml(guideHref)}">${guideLabel}</a>`));
    }
-   shell=ensureCanonicalLink(shell,localeConfig.siteUrl+urlForRoute(record.info.route,locale));
+   shell=finishSeo(shell,record,locale);
+   shell=removeHeadLinks(shell);
+   const canonical=localeConfig.siteUrl+urlForRoute(record.info.route,locale);
+   const available=activeLocales.filter(item=>group.has(item.id));
+   const seo=[`<link rel="canonical" href="${escapeHtml(canonical)}">`];
+   seo.push(...available.map(item=>`<link rel="alternate" hreflang="${escapeHtml(item.hreflang)}" href="${escapeHtml(localeConfig.siteUrl+urlForRoute(record.info.route,item))}">`));
+   if(group.has(defaultLocale.id))seo.push(`<link rel="alternate" hreflang="x-default" href="${escapeHtml(localeConfig.siteUrl+urlForRoute(record.info.route,defaultLocale))}">`);
+   shell=shell.replace(/<\/head>/i,seo.join("\n")+"\n</head>");
+   shell=shell.replace(/<head>([\s\S]*?)<\/head>/i,(whole,body)=>`<head>${body.replace(/(?:\r?\n[ \t]*){3,}/g,"\n\n")}</head>`);
    writeFileWithRetry(record.file,shell);
    continue;
   }
@@ -864,6 +987,7 @@ function build(){
   if(record.info.route!=="404.html")html=ensureWebPageSchema(html,canonical,locale);
   html=html.replace(/<\/head>/i,seo.join("\n")+"\n</head>");
   html=updateJsonLd(html,locale,canonical);
+  html=finishSeo(html,record,locale);
   html=ensureAsset(html,record.rel,"assets/css/locale-menu.css","css");
   html=ensureAsset(html,record.rel,"assets/css/design-tokens.css","css");
   // Every Tool Detail page must use the shared tool design system. Place it

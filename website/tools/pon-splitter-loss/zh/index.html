@@ -13,8 +13,12 @@
 <link href="/assets/css/mobile-branding.css?v=1.9.5-06" rel="stylesheet"/>
 <script defer="" src="/data/seo-config.js"></script>
 <script defer="" src="/assets/js/seo-engine.js"></script>
-<script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么1:8 × 1:8默认采用GPON C+？","acceptedAnswer":{"@type":"Answer","text":"两级分光器本身约21 dB，再叠加光纤、连接器、熔接点和工程余量后，B+预算容易不足；C+提供32 dB ODN等级，更适合该默认1:64方案。"}},{"@type":"Question","name":"一级分光和二级分光哪个损耗更小？","acceptedAnswer":{"@type":"Answer","text":"在总分光比相同的情况下，多级级联通常会增加额外插入损耗和连接点，因此一级分光一般更容易控制预算，但实际部署还要考虑覆盖范围和维护便利性。"}},{"@type":"Question","name":"1:4 × 1:8为什么等于1:32？","acceptedAnswer":{"@type":"Answer","text":"一级产生4个分支，每个分支再分成8路，总分支数量为4×8=32。"}},{"@type":"Question","name":"理论分光损耗和标称损耗为什么不同？","acceptedAnswer":{"@type":"Answer","text":"理论值只反映理想能量均分；标称插入损耗还包含器件制造、耦合、封装和均匀性等损耗。"}},{"@type":"Question","name":"分光器级联越多越好吗？","acceptedAnswer":{"@type":"Answer","text":"不是。级联越多，设计灵活性可能提高，但连接点、插入损耗和维护复杂度也会增加。"}},{"@type":"Question","name":"接收光功率过高也会有问题吗？","acceptedAnswer":{"@type":"Answer","text":"会。若超过接收机过载门限，可能导致误码或接收异常，因此需要同时检查灵敏度余量和过载余量。"}},{"@type":"Question","name":"本工具能否直接替代现场测试？","acceptedAnswer":{"@type":"Answer","text":"不能。它用于规划和复核，正式验收仍需光功率计、OTDR和设备实际参数。"}}]}</script>
+
 <link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+
+<meta name="twitter:title" content="PON分光器损耗计算器 | PON Splitter Loss Calculator | NetEngineerLab">
+<meta name="twitter:description" content="专业PON分光器损耗计算器，支持一级、二级、三级分光级联、总分光比、理论分光损耗、插入损耗、工程余量、预计接收光功率与最大距离分析。">
+<meta name="twitter:image" content="https://netengineerlab.com/tools/pon-splitter-loss/images/og-pon-splitter-loss.png">
 
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"PON分光器损耗计算器 | PON Splitter Loss Calculator | NetEngineerLab","url":"https://netengineerlab.com/tools/pon-splitter-loss/zh/","description":"专业PON分光器损耗计算器，支持一级、二级、三级分光级联、总分光比、理论分光损耗、插入损耗、工程余量、预计接收光功率与最大距离分析。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
@@ -26,6 +30,7 @@
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/pon-splitter-loss/zh/">
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/pon-splitter-loss/es/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/pon-splitter-loss/">
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么1:8 × 1:8默认采用GPON C+？","acceptedAnswer":{"@type":"Answer","text":"两级分光器本身约21 dB，再叠加光纤、连接器、熔接点和工程余量后，B+预算容易不足；C+提供32 dB ODN等级，更适合该默认1:64方案。"}},{"@type":"Question","name":"一级分光和二级分光哪个损耗更小？","acceptedAnswer":{"@type":"Answer","text":"在总分光比相同的情况下，多级级联通常会增加额外插入损耗和连接点，因此一级分光一般更容易控制预算，但实际部署还要考虑覆盖范围和维护便利性。"}},{"@type":"Question","name":"1:4 × 1:8为什么等于1:32？","acceptedAnswer":{"@type":"Answer","text":"一级产生4个分支，每个分支再分成8路，总分支数量为4×8=32。"}},{"@type":"Question","name":"理论分光损耗和标称损耗为什么不同？","acceptedAnswer":{"@type":"Answer","text":"理论值只反映理想能量均分；标称插入损耗还包含器件制造、耦合、封装和均匀性等损耗。"}},{"@type":"Question","name":"分光器级联越多越好吗？","acceptedAnswer":{"@type":"Answer","text":"不是。级联越多，设计灵活性可能提高，但连接点、插入损耗和维护复杂度也会增加。"}},{"@type":"Question","name":"接收光功率过高也会有问题吗？","acceptedAnswer":{"@type":"Answer","text":"会。若超过接收机过载门限，可能导致误码或接收异常，因此需要同时检查灵敏度余量和过载余量。"}},{"@type":"Question","name":"本工具能否直接替代现场测试？","acceptedAnswer":{"@type":"Answer","text":"不能。它用于规划和复核，正式验收仍需光功率计、OTDR和设备实际参数。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=8c488ab6e2be">
@@ -51,7 +56,7 @@
       <a href="../../../zh/">首页</a>
       <a href="../../zh/" aria-current="page">工具中心</a>
       <a href="../../../zh/#guides">工程指南</a>
-      <a href="../../../zh/#topics">专题</a>
+      <a href="../../../zh/topics/">专题</a>
     </nav>
     <div class="site-shell-actions">
       <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="./" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a><a class="language-option" role="menuitem" href="../es/" lang="es" hreflang="es"><span>Español</span><small>西班牙语</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
@@ -62,7 +67,9 @@
 <!-- NEL_HEADER_END -->
 <!-- NEL_TOOL_RETURN_START -->
 <nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
-  <a class="tool-return-link" href="../../zh/">← 返回工具中心</a>
+  <a href="../../../zh/">首页</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../../zh/">工具</a>
   <span aria-hidden="true">/</span>
   <span aria-current="page">PON分光器损耗计算器</span>
 </nav>
@@ -159,6 +166,7 @@
 <h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/fiber-loss/zh/"><strong>光纤链路损耗计算器</strong><span class="nel-tool-graph-description">计算光纤、熔接、连接器、分光器及工程余量，输出物理损耗与设计损耗。</span></a><a class="nel-tool-graph-card" href="/tools/optical-power-budget/zh/"><strong>光功率预算计算器</strong><span class="nel-tool-graph-description">结合发送功率、接收灵敏度、光学代价和ODN损耗验证完整光链路预算。</span></a><a class="nel-tool-graph-card" href="/tools/pon-distance/zh/"><strong>PON最大传输距离计算器</strong><span class="nel-tool-graph-description">区分光预算最大距离和系统有效距离，并验证规划链路是否保留工程余量。</span></a></div>
 </section>
 <!-- NEL_TOOL_GRAPH_END -->
+<section class="content-section" data-nel-editorial-links><h2>相关页面</h2><p><a href="../../../zh/guides/pon-splitter-loss-guide/">PON 分光损耗方法</a></p></section>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">
