@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-telecom-ac-dc-breaker-sizing-locale-v1.9.9-04-p0-p1-correctness-consent-offline-7a2d1d3c810a-81f33de38d31";
+const CACHE = "nel-telecom-ac-dc-breaker-sizing-locale-v1.9.9-04-p0-p1-correctness-consent-offline-62c6ee4784c0-0e83a9be7c38";
 const CORE = [
   "./",
   "./index.html",
@@ -8,14 +8,14 @@ const CORE = [
   "./manifest.webmanifest",
   "./css/style.css?v=5075f2bc42fd",
   "./js/engine.js?v=2.0.0",
-  "./js/app.js?v=874ac5691514",
+  "./js/app.js?v=18ed45b5f97a",
   "./js/pwa.js",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",
   "../../assets/css/site-shell.css?v=c6e622c573c4",
-  "../../assets/css/tool-design-system.css?v=8c488ab6e2be",
+  "../../assets/css/tool-design-system.css?v=2f6d3d828c10",
   "../../assets/css/tool-workflow.css?v=66c8998b2681",
   "../../assets/js/analytics.js?v=1156b7864023",
   "../../assets/js/adsense.js?v=f075c80ccc75",

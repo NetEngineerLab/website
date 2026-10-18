@@ -12,7 +12,7 @@ permissions:
 jobs:
   verify-production-build:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 60
     steps:
       - name: Check out repository
         uses: actions/checkout@v6
@@ -23,8 +23,21 @@ jobs:
           node-version-file: .node-version
           cache: npm
 
+      - name: Resolve Playwright version
+        id: playwright
+        run: echo "version=$(node -p "require('./package-lock.json').packages['node_modules/playwright'].version")" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-ms-playwright-${{ steps.playwright.outputs.version }}
+
       - name: Install locked dependencies
         run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium msedge
 
       - name: Run NetEngineerLab production acceptance
         run: npm run prepare:launch
