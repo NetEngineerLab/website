@@ -15,6 +15,11 @@ function update(ok){
  if(ok && typeof window.NEL_LOAD_ANALYTICS==="function") window.NEL_LOAD_ANALYTICS();
  window.dispatchEvent(new CustomEvent("nel:consent-updated",{detail:{analytics:ok}}));
 }
+function focusWithoutScroll(node){
+ if(!node||typeof node.focus!=="function")return;
+ try{node.focus({preventScroll:true});}
+ catch(error){node.focus();}
+}
 function show(){
  if(document.querySelector(".nel-cookie-banner"))return;
  const isZh=(document.documentElement.lang||"").toLowerCase().startsWith("zh");
@@ -36,7 +41,7 @@ function show(){
  lastFocus=document.activeElement;
  const close=(value)=>{
   localStorage.setItem(KEY,String(value));update(value);e.remove();
-  if(lastFocus&&typeof lastFocus.focus==="function")lastFocus.focus();
+  focusWithoutScroll(lastFocus);
  };
  e.querySelector(".nel-cookie-accept").onclick=()=>close(true);
  e.querySelector(".nel-cookie-reject").onclick=()=>close(false);
@@ -44,10 +49,10 @@ function show(){
   if(event.key!=="Tab")return;
   const buttons=[...e.querySelectorAll("button")];
   const first=buttons[0],last=buttons[buttons.length-1];
-  if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}
-  else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
+  if(event.shiftKey&&document.activeElement===first){event.preventDefault();focusWithoutScroll(last)}
+  else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();focusWithoutScroll(first)}
  });
- e.querySelector(".nel-cookie-reject").focus();
+ focusWithoutScroll(e.querySelector(".nel-cookie-reject"));
 }
 document.addEventListener("DOMContentLoaded",()=>{
  const v=localStorage.getItem(KEY);
