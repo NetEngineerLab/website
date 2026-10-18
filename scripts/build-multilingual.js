@@ -302,7 +302,7 @@ function removeInvalidVoidClosers(html){
  return html.replace(/<\/(?:meta|link)>/gi,"");
 }
 function removeHeadLinks(html){
- return html.replace(/<link\b[^>]*>/gi,tag=>{
+ return html.replace(/<link\b[^>]*>\s*/gi,tag=>{
   const isCanonical=/\brel\s*=\s*["'][^"']*\bcanonical\b[^"']*["']/i.test(tag);
   const isAlternate=/\brel\s*=\s*["'][^"']*\balternate\b[^"']*["']/i.test(tag)&&/\bhreflang\s*=/i.test(tag);
   return isCanonical||isAlternate?"":tag;
@@ -933,6 +933,7 @@ function build(){
    seo.push(...available.map(item=>`<link rel="alternate" hreflang="${escapeHtml(item.hreflang)}" href="${escapeHtml(localeConfig.siteUrl+urlForRoute(record.info.route,item))}">`));
    if(group.has(defaultLocale.id))seo.push(`<link rel="alternate" hreflang="x-default" href="${escapeHtml(localeConfig.siteUrl+urlForRoute(record.info.route,defaultLocale))}">`);
    shell=shell.replace(/<\/head>/i,seo.join("\n")+"\n</head>");
+   shell=shell.replace(/<head>([\s\S]*?)<\/head>/i,(whole,body)=>`<head>${body.replace(/(?:\r?\n[ \t]*){3,}/g,"\n\n")}</head>`);
    writeFileWithRetry(record.file,shell);
    continue;
   }
