@@ -122,8 +122,23 @@ for(const url of urls){
   if(schemaCount&&!schemaEntities.some(entity=>entity.url===url&&entity.inLanguage===expectedLang)){
     errors.push(`${rel}: JSON-LD must contain a primary entity with canonical url and language`);
   }
-  const visibleFaq=[...html.matchAll(/<details\b[^>]*>[\s\S]*?<summary\b[^>]*>([\s\S]*?)<\/summary>[\s\S]*?<p\b[^>]*>([\s\S]*?)<\/p>[\s\S]*?<\/details>/gi)]
+  const detailFaq=[...html.matchAll(/<details\b[^>]*>[\s\S]*?<summary\b[^>]*>([\s\S]*?)<\/summary>[\s\S]*?<p\b[^>]*>([\s\S]*?)<\/p>[\s\S]*?<\/details>/gi)]
     .map(match=>({question:textContent(match[1]),answer:textContent(match[2])}));
+  let headingFaq=[];
+  const faqText=value=>decode(String(value||"").replace(/<br\s*\/?>/gi," ").replace(/<[^>]+>/g,""));
+  const heading=/<h([1-3])\b[^>]*>\s*(?:Frequently asked questions|常见问题|Preguntas frecuentes)(?:\s+[^<]{0,40})?\s*<\/h\1>/i.exec(html);
+  if(heading){
+    const rest=html.slice(heading.index+heading[0].length);
+    const nextHeading=rest.search(/<h2\b/i);
+    const region=nextHeading>=0?rest.slice(0,nextHeading):rest;
+    const regionDetails=[...region.matchAll(/<details\b[^>]*>[\s\S]*?<summary\b[^>]*>([\s\S]*?)<\/summary>[\s\S]*?<p\b[^>]*>([\s\S]*?)<\/p>[\s\S]*?<\/details>/gi)]
+      .map(match=>({question:faqText(match[1]),answer:faqText(match[2])}))
+      .filter(item=>item.question&&item.answer);
+    headingFaq=regionDetails.length?regionDetails:[...region.matchAll(/<h3\b[^>]*>([\s\S]*?)<\/h3>\s*<p\b[^>]*>([\s\S]*?)<\/p>/gi)]
+      .map(match=>({question:faqText(match[1]),answer:faqText(match[2])}))
+      .filter(item=>item.question&&item.answer);
+  }
+  const visibleFaq=headingFaq.length?headingFaq:detailFaq;
   const faqMarkerPresent=/\bdata-nel-faq(?:\s|=|>)/i.test(html);
   if(faqMarkerPresent&&faqSchemas.length!==1)errors.push(`${rel}: data-nel-faq requires exactly one FAQPage schema`);
   if(faqSchemas.length>1)errors.push(`${rel}: expected at most one FAQPage schema`);
