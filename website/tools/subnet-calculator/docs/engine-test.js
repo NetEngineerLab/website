@@ -8,4 +8,13 @@ r=e.analyzeIPv4("10.0.0.1","255.255.255.252",ref);assert("mask prefix",r.prefix,
 const plan=e.planVlsm("10.10.0.0",20,[{name:"A",hosts:500,reserve:10},{name:"B",hosts:200,reserve:10},{name:"C",hosts:50,reserve:5}],0,ref);
 assert("vlsm count",plan.allocations.length,3);assert("A cidr",plan.allocations[0].cidr,"10.10.0.0/23");assert("B cidr",plan.allocations[1].cidr,"10.10.2.0/24");assert("C cidr",plan.allocations[2].cidr,"10.10.3.0/26");
 const v6=e.analyzeIPv6("2001:db8:1234:5678::1",64,48);assert("ipv6 network",v6.network,"2001:db8:1234:5678::");assert("ipv6 hostbits",v6.hostBits,64);assert("ipv6 subnets",v6.subnetCountFromBase,"65536");
+const omitted=e.analyzeIPv4("192.168.1.130",26);
+assert("omitted scope",omitted.scope.type,"private");
+assert("192.168.1.130/26 network",omitted.network,"192.168.1.128");
+assert("192.168.1.130/26 broadcast",omitted.broadcast,"192.168.1.191");
+assert("192.168.1.130/26 hosts",omitted.usableHosts,62);
+const vlsm24=e.planVlsm("192.168.10.0",24,[{name:"A",hosts:100},{name:"B",hosts:50},{name:"C",hosts:20},{name:"D",hosts:10}]);
+assert("vlsm prefixes",vlsm24.allocations.map(item=>item.prefix).join(" "),"25 26 27 28");
+assert("vlsm cidrs",vlsm24.allocations.map(item=>item.cidr).join(" "),"192.168.10.0/25 192.168.10.128/26 192.168.10.192/27 192.168.10.224/28");
+assert("scope without reference",e.scopeIPv4("192.168.1.130").type,"private");
 console.log(JSON.stringify({status:"PASS",ipv4:r.cidr,vlsm:plan.allocations.map(x=>x.cidr),ipv6:v6.cidr},null,2));
