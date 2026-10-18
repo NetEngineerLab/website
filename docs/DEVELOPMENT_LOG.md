@@ -20,13 +20,15 @@
 
 ### 2026-10-18 — SEO 合规剩余项（PR #1–#5 与本次）
 
-- 状态：`LOCAL PASS`（本地构建、单元测试、链接检查和浏览器套件通过后填写；用户尚未审核，不是 `VALIDATOR PASS`，也不是线上验收）。
+- 状态：`LOCAL PASS`（本地构建、单元测试、链接检查和浏览器套件已通过；用户尚未审核，不是 `VALIDATOR PASS`，也不是线上验收）。
+- 实现提交：`12b62c8`。合并 PR #5 分支 `77ceebe` 后的提交：`6191a92`。sitemap `lastmod` 按可见内容首次引入的提交日期计算，而不是按最后一次改到该文件的提交。
+- 本地验证：`npm run build` PASS（258 个 HTML，内部链接 PASS）；`npm test` PASS（MIB/OID、rules contract 7 operators / 10 rules、subnet、links、JSON-LD 214 pages / 747 blocks）；`npm run test:browser` 512 passed、4 skipped、0 failed（516 条，chrome-desktop / edge-desktop / edge-android / edge-iphone）。
 - 已合并：
   - PR #1 `Fix live audit bugs for Spanish tools, sitemap, and checkers`
   - PR #2 `Add fiber latency calculator and calculator hub pages`（fiber latency 计算器与 `/tools/*-calculators/` 入口）
   - PR #3 `Fix Playwright shell footer and Spanish category title reads`
   - PR #4 `Add Baidu site verification to the homepage`（`baidu-site-verification` = `codeva-Jpja3edy8E`）
-- 未合并、作为本次基线：PR #5 `Fix P0 topic noindex headers and translated JSON-LD keys`（删除 `/topics/pon-optical/` 与 `/topics/data-center-capacity/` 的 `_headers` noindex，并加上 JSON-LD 翻译守卫）。
+- 未合并、作为本次基线：PR #5 `Fix P0 topic noindex headers and translated JSON-LD keys`（删除 `/topics/pon-optical/` 与 `/topics/data-center-capacity/` 的 `_headers` noindex，并加上 JSON-LD 翻译守卫）。本分支已合并该分支最新提交 `77ceebe`（其中包含 main `bd993fb`）。打开 PR 时 PR #5 仍未合并，因此本 PR 的 base 是 `cursor/fix-p0-seo-jsonld-noindex-84ca`。
 - 本次范围：修 shell 页脚嵌套；补齐西语工具正文和 5 条占位 description；可见 FAQ 与 FAQPage 对齐；工具页 BreadcrumbList / WebApplication；面包屑 URL 改为绝对尾斜杠且必须出现在 sitemap；孤儿页和单入链页的上下文内链；计算器入口与专题 hub 分工互链；英文 IP 摄像头专题 title/description；6 个超长 title；指南 og/hreflang/robots/twitter；去掉公开页上的原始 `.md` 链接；`llms.txt` 改为按目录生成；sitemap `lastmod` 跟内容指纹而不是构建日期。URL 冻结保持 `/tools/<slug>/zh/` 与 `/tools/<slug>/es/`。
 - 文档：hreflang 规则纳入 `es`；robots.txt 于 2026-10-18 起对百度和 AI 爬虫与其他爬虫一并 `Allow: /`；审核流程改为云端 PR 加用户审核。
 - 明确未做：HSTS/CSP、Cloudflare 缓存头、about/contact/terms 薄页、www/http 旧地址、Search Console 收录、Lighthouse 三次中位数。这些不在本次实现范围。

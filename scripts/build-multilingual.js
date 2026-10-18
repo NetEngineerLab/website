@@ -787,6 +787,22 @@ const lastmodCachePath=path.join(dataDir,"content-lastmod.json");
 let lastmodCache={};
 try{lastmodCache=JSON.parse(fs.readFileSync(lastmodCachePath,"utf8"));}catch{lastmodCache={};}
 let lastmodCacheDirty=false;
+function contentIntroducedDate(rel,hash){
+ // The file's latest commit can be a shell or script rewrite. lastmod is the
+ // date of the oldest commit in the current run of identical visible content.
+ let log="";
+ try{log=execFileSync("git",["log","--format=%H%x09%cs","--",rel],{cwd:packageRoot,encoding:"utf8",stdio:["ignore","pipe","ignore"]});}catch{log="";}
+ let date="";
+ for(const line of log.split("\n")){
+  const [commit,commitDate]=line.split("\t");
+  if(!commit||!/^\d{4}-\d{2}-\d{2}$/.test(commitDate||""))continue;
+  let historical="";
+  try{historical=execFileSync("git",["show",`${commit}:${rel}`],{cwd:packageRoot,encoding:"utf8",stdio:["ignore","pipe","ignore"]});}catch{break;}
+  if(stableHash(contentFingerprint(historical),20)!==hash)break;
+  date=commitDate;
+ }
+ return date;
+}
 function gitLastmod(absPath){
  // lastmod follows visible title, description and body text. Header, footer
  // and JSON-LD/script rewrites do not move the date. A content change does.
@@ -798,15 +814,14 @@ function gitLastmod(absPath){
  try{head=execFileSync("git",["show",`HEAD:${rel}`],{cwd:packageRoot,encoding:"utf8",stdio:["ignore","pipe","ignore"]});}catch{head="";}
  const unchanged=Boolean(head)&&stableHash(contentFingerprint(head),20)===hash;
  if(unchanged){
-  let date="";
-  try{date=execFileSync("git",["log","-1","--format=%cs","--",absPath],{cwd:packageRoot,encoding:"utf8",stdio:["ignore","pipe","ignore"]}).trim();}catch{date="";}
-  if(!/^\d{4}-\d{2}-\d{2}$/.test(date))date=new Date().toISOString().slice(0,10);
-  if(!lastmodCache[rel]||lastmodCache[rel].hash!==hash||lastmodCache[rel].date!==date){lastmodCache[rel]={hash,date};lastmodCacheDirty=true;}
+  if(lastmodCache[rel]&&lastmodCache[rel].hash===hash&&lastmodCache[rel].source==="history"&&/^\d{4}-\d{2}-\d{2}$/.test(lastmodCache[rel].date))return lastmodCache[rel].date;
+  const date=contentIntroducedDate(rel,hash)||new Date().toISOString().slice(0,10);
+  if(!lastmodCache[rel]||lastmodCache[rel].hash!==hash||lastmodCache[rel].date!==date||lastmodCache[rel].source!=="history"){lastmodCache[rel]={hash,date,source:"history"};lastmodCacheDirty=true;}
   return date;
  }
  if(lastmodCache[rel]&&lastmodCache[rel].hash===hash&&/^\d{4}-\d{2}-\d{2}$/.test(lastmodCache[rel].date))return lastmodCache[rel].date;
  const date=new Date().toISOString().slice(0,10);
- lastmodCache[rel]={hash,date};
+ lastmodCache[rel]={hash,date,source:"edit"};
  lastmodCacheDirty=true;
  return date;
 }
