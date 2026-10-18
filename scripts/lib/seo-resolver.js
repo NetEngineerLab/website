@@ -282,7 +282,8 @@ function stripFaqNodes(node) {
 }
 
 const DETAILS_RE = /<details\b[^>]*>[\s\S]*?<summary\b[^>]*>([\s\S]*?)<\/summary>[\s\S]*?<p\b[^>]*>([\s\S]*?)<\/p>[\s\S]*?<\/details>/gi;
-const INJECTED_FAQ_RE = /<section class="content-section faq-section"(?: data-nel-faq="visible")?>[\s\S]*?<\/section>\s*/gi;
+const FAQ_HEADING_SOURCE = "<h([1-3])\\b[^>]*>\\s*(Frequently asked questions|常见问题|Preguntas frecuentes)(?:\\s+[^<]{0,40})?\\s*<\\/h\\1>";
+const INJECTED_FAQ_RE = /<section\b[^>]*\bdata-nel-faq\s*=\s*["']visible["'][^>]*>[\s\S]*?<\/section>\s*/gi;
 
 function browserText(html) {
   return decodeEntities(String(html || "").replace(/<br\s*\/?>/gi, " ").replace(/<[^>]+>/g, "")).replace(/\u00a0/g, " ").trim();
@@ -325,13 +326,84 @@ function elementBounds(html, tag, openEnd) {
   return null;
 }
 
-function removeInjectedFaq(html) {
-  const injected = [...html.matchAll(new RegExp(INJECTED_FAQ_RE.source, "gi"))];
-  if (!injected.length) return html;
-  let remainder = html;
-  for (const match of injected) remainder = remainder.replace(match[0], "");
-  if (!/<details\b/i.test(remainder)) return html;
-  return remainder;
+function mainBounds(html) {
+  const open = html.match(/<main\b[^>]*>/i);
+  if (!open) return null;
+  const innerStart = open.index + open[0].length;
+  const bounds = elementBounds(html, "main", innerStart);
+  if (!bounds) return null;
+  // Calculator mains are a two-column grid. Supporting FAQ and related-link
+  // sections stay body children so tool CSS can center them; nesting those
+  // sections puts them in the grid. Every other main is the page column.
+  const tool = /\b(?:tool-shell|nel-tool-grid|nel-tool-main|calculator-shell)\b/.test(open[0])
+    || /\bid\s*=\s*["']calculator["']/i.test(open[0]);
+  return {
+    innerStart,
+    innerEnd: bounds.innerEnd,
+    end: bounds.end,
+    tool,
+    shell: !tool
+  };
+}
+
+function faqHeadings(html) {
+  return [...html.matchAll(new RegExp(FAQ_HEADING_SOURCE, "gi"))];
+}
+
+function injectedSections(html) {
+  const sections = [];
+  const pattern = new RegExp(INJECTED_FAQ_RE.source, "gi");
+  let match;
+  while ((match = pattern.exec(html))) {
+    sections.push({ index: match.index, html: match[0], questions: visibleFaq(match[0]) });
+  }
+  return sections;
+}
+
+function dropInjectedFaq(html) {
+  const injected = injectedSections(html);
+  if (!injected.length) return { html, droppedQuestions: [] };
+  let without = html;
+  for (const section of injected.slice().sort((left, right) => right.index - left.index)) {
+    without = without.slice(0, section.index) + without.slice(section.index + section.html.length);
+  }
+  const droppedQuestions = injected.flatMap(section => section.questions);
+  // Another heading or an authored details list means this section is the
+  // duplicate. Questions that existed only inside it must not be copied back.
+  if (faqHeadings(without).length || /<details\b/i.test(without)) return { html: without, droppedQuestions };
+  const main = mainBounds(without);
+  if (!main || main.tool) return { html, droppedQuestions: [] };
+  const block = injected[0].html.trim() + "\n";
+  return {
+    html: without.slice(0, main.innerEnd) + block + without.slice(main.innerEnd),
+    droppedQuestions: []
+  };
+}
+
+function authoredFaq(html) {
+  const heading = new RegExp(FAQ_HEADING_SOURCE, "i").exec(html);
+  if (!heading) return null;
+  const headingEnd = heading.index + heading[0].length;
+  const rest = html.slice(headingEnd);
+  const nextHeading = rest.search(/<h2\b/i);
+  const region = nextHeading >= 0 ? rest.slice(0, nextHeading) : rest;
+  const details = visibleFaq(region).map(item => ({ name: item.name, answer: item.answer, end: headingEnd + item.end }));
+  if (details.length) {
+    return { kind: "details", questions: details.map(item => ({ name: item.name, answer: item.answer })), insertAt: details[details.length - 1].end };
+  }
+  const pairs = [];
+  const pattern = /<h3\b[^>]*>([\s\S]*?)<\/h3>\s*<p\b[^>]*>([\s\S]*?)<\/p>/gi;
+  let match;
+  let end = headingEnd;
+  while ((match = pattern.exec(region))) {
+    const name = browserText(match[1]);
+    const answer = browserText(match[2]);
+    if (!name || !answer) continue;
+    pairs.push({ name, answer });
+    end = headingEnd + pattern.lastIndex;
+  }
+  if (!pairs.length) return null;
+  return { kind: "headings", questions: pairs, insertAt: end };
 }
 
 function unwrapSupplementalFaq(html) {
@@ -385,8 +457,18 @@ function stripFaqScripts(html) {
   });
 }
 
+function insertInContent(html, block) {
+  const main = mainBounds(html);
+  if (main && main.shell) return html.slice(0, main.innerEnd) + block + html.slice(main.innerEnd);
+  if (/<!-- NEL_FOOTER_START -->/i.test(html)) return html.replace(/<!-- NEL_FOOTER_START -->/i, `${block}<!-- NEL_FOOTER_START -->`);
+  if (main) return html.slice(0, main.innerEnd) + block + html.slice(main.innerEnd);
+  return html.replace(/<\/body>/i, `${block}</body>`);
+}
+
 function syncVisibleFaq(html, localeId) {
-  html = dedupeFaqId(removeInjectedFaq(dedupeFaqId(html)));
+  const dropped = dropInjectedFaq(dedupeFaqId(html));
+  html = dedupeFaqId(dropped.html);
+  const droppedNames = new Set(dropped.droppedQuestions.map(item => item.name));
   const unwrapped = unwrapSupplementalFaq(html);
   html = unwrapped.html;
   const supplemental = unwrapped.removed;
@@ -394,15 +476,22 @@ function syncVisibleFaq(html, localeId) {
   for (const script of jsonLdScripts(html)) {
     if (script.data) collectFaq(script.data, fromSchema);
   }
-  const visible = visibleFaq(html);
-  const visibleNames = visible.map(item => item.name);
-  if (new Set(visibleNames).size !== visibleNames.length) return fromSchema.length ? stripFaqScripts(html) : html;
+  let faq = authoredFaq(html);
+  let visible = faq ? faq.questions : [];
+  if (!visible.length) {
+    const details = visibleFaq(html);
+    if (details.length) {
+      visible = details.map(item => ({ name: item.name, answer: item.answer }));
+      faq = { kind: "details", questions: visible, insertAt: details[details.length - 1].end };
+    }
+  }
+  if (new Set(visible.map(item => item.name)).size !== visible.length) return fromSchema.length ? stripFaqScripts(html) : html;
   const additions = [];
   for (const question of fromSchema) {
     if (!question.name || !question.answer) continue;
-    if (visible.some(item => item.name === question.name)) continue;
+    if (droppedNames.has(question.name)) continue;
+    if (visible.some(item => item.name === question.name || faqSimilar(item.name, question.name) >= 0.6)) continue;
     if (supplemental.some(item => item.name === question.name || faqSimilar(item.name, question.name) >= 0.6)) continue;
-    if (visible.some(item => faqSimilar(item.name, question.name) >= 0.6)) continue;
     if (additions.some(item => item.name === question.name || faqSimilar(item.name, question.name) >= 0.6)) continue;
     additions.push(question);
   }
@@ -411,14 +500,14 @@ function syncVisibleFaq(html, localeId) {
   if (!visible.length) {
     const labels = labelsFor(localeId);
     const block = `<section class="content-section faq-section" data-nel-faq="visible"><h2>${escapeHtml(labels.faq)}</h2><div class="faq-grid">${additions.map(detailMarkup).join("")}</div></section>\n`;
-    if (/<!-- NEL_FOOTER_START -->/i.test(next)) next = next.replace(/<!-- NEL_FOOTER_START -->/i, `${block}<!-- NEL_FOOTER_START -->`);
-    else next = next.replace(/<\/body>/i, `${block}</body>`);
+    next = insertInContent(next, block);
   } else if (additions.length) {
-    const last = visible[visible.length - 1];
-    const markup = additions.map(detailMarkup).join("");
-    next = next.slice(0, last.end) + markup + next.slice(last.end);
+    const markup = faq.kind === "headings"
+      ? additions.map(question => `<h3>${escapeHtml(question.name)}</h3><p>${escapeHtml(question.answer)}</p>`).join("")
+      : additions.map(detailMarkup).join("");
+    next = next.slice(0, faq.insertAt) + markup + next.slice(faq.insertAt);
   }
-  const questions = [...visible.map(item => ({ name: item.name, answer: item.answer })), ...additions];
+  const questions = [...visible, ...additions];
   next = next.replace(/\n?<script\b[^>]*\bdata-nel-schema\s*=\s*["']faq["'][^>]*>[\s\S]*?<\/script>/i, "");
   next = stripFaqScripts(next);
   next = insertJsonLd(next, faqSchema(questions), 'data-nel-schema="faq"');
@@ -547,8 +636,7 @@ function ensureClusterLinks(html, { route, locale, urlForRoute, relativeUrl, pag
   }
   if (!links.length) return html;
   const block = `<p class="hub-return" data-nel-cluster-link>${links.join(" ")}</p>\n`;
-  if (/<!-- NEL_FOOTER_START -->/i.test(html)) return html.replace(/<!-- NEL_FOOTER_START -->/i, `${block}<!-- NEL_FOOTER_START -->`);
-  return html.replace(/<\/main>/i, match => `${block}${match}`);
+  return insertInContent(html, block);
 }
 
 const EDITORIAL_LINKS = [
@@ -572,6 +660,7 @@ const EDITORIAL_LINKS = [
 ];
 
 function ensureEditorialLinks(html, { route, locale, urlForRoute, relativeUrl, pageExists }) {
+  html = html.replace(/<section\b[^>]*\bdata-nel-editorial-links\b[^>]*>[\s\S]*?<\/section>\s*/gi, "");
   const additions = EDITORIAL_LINKS.filter(link => link.source === route && (link[locale.id] || link.en));
   if (!additions.length && route !== "tools/") return html;
   const currentUrl = urlForRoute(route, locale);
@@ -598,12 +687,10 @@ function ensureEditorialLinks(html, { route, locale, urlForRoute, relativeUrl, p
     const href = relativeUrl(currentUrl, urlForRoute("tools/engineering-report-batch-export-center/", locale));
     if (!html.includes(href)) items.push(`<a href="${escapeHtml(href)}">${escapeHtml("Centro de exportación de informes")}</a>`);
   }
-  if (!items.length || html.includes("data-nel-editorial-links")) return html;
+  if (!items.length) return html;
   const heading = locale.id === "zh" ? "相关页面" : locale.id === "es" ? "Páginas relacionadas" : "Related pages";
   const block = `<section class="content-section" data-nel-editorial-links><h2>${heading}</h2><p>${items.join(" · ")}</p></section>\n`;
-  if (/<!-- NEL_FOOTER_START -->/i.test(html)) return html.replace(/<!-- NEL_FOOTER_START -->/i, `${block}<!-- NEL_FOOTER_START -->`);
-  if (/<\/main>/i.test(html)) return html.replace(/<\/main>/i, match => `${block}${match}`);
-  return html.replace(/<\/body>/i, `${block}</body>`);
+  return insertInContent(html, block);
 }
 
 function renderLlmsTxt({ siteUrl, toolCatalog, routes, activeLocales }) {
