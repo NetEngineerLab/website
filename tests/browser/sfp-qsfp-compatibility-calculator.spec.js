@@ -25,7 +25,8 @@ for(const locale of ["en","zh"]){
     await page.locator("#preset").selectOption("10glr");
     await page.locator("#aTx").fill("");
     await page.locator("#calculate").click();
-    await expect(page.locator("#status")).toHaveText(locale==="zh"?"不兼容":"Not compatible");
+    // A blank required value is an input error, not a compatibility verdict.
+    await expect(page.locator("#status")).toHaveText(locale==="zh"?"输入无效":"Invalid input");
     await expect(page.locator("#checks")).toContainText(locale==="zh"?"输入有效性":"Input validity");
 
     await page.locator("#preset").selectOption("10glr");
