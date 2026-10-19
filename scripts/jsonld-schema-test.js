@@ -12,6 +12,7 @@ const siteRoot = path.join(__dirname, "..", "website");
 // schema.org types and properties this site actually emits. @-keywords are included.
 const SCHEMA_TYPES = new Set([
   "Answer",
+  "AboutPage",
   "Article",
   "BreadcrumbList",
   "CollectionPage",

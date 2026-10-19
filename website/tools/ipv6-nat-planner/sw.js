@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-ipv6-nat-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-62c6ee4784c0-9b52c16afeb1";
+const CACHE = "nel-ipv6-nat-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-8d6d9e1419c2-654f41c9109c";
 const CORE = [
   "./index.html",
   "./",
@@ -15,12 +15,12 @@ const CORE = [
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",
-  "../../assets/css/site-shell.css?v=c6e622c573c4",
-  "../../assets/css/tool-design-system.css?v=2f6d3d828c10",
-  "../../assets/css/tool-workflow.css?v=66c8998b2681",
+  "../../assets/css/site-shell.css?v=75d18aad9a2c",
+  "../../assets/css/tool-design-system.css?v=6c0b1c4ee1f1",
+  "../../assets/css/tool-workflow.css?v=8c74b394ef2c",
   "../../assets/js/analytics.js?v=1156b7864023",
   "../../assets/js/adsense.js?v=f075c80ccc75",
-  "../../assets/js/site.js?v=f05b0a51ccda",
+  "../../assets/js/site.js?v=2864f2fdd798",
   "../../assets/js/tool-integration.js?v=05f7934f4687",
   "../../assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b",
   "../../assets/js/rules-engine/normalize.js?v=9e2cb44bca10",

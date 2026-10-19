@@ -5,7 +5,7 @@
 <meta content="website" property="og:type"/><meta content="多厂商 ACL 生成与验证工具 | NetEngineerLab" property="og:title"/><meta content="在浏览器本地生成、转换并验证 Cisco IOS、华为 VRP、H3C Comware 和 Juniper Junos IPv4 ACL，提供确定性检查与行号证据。" property="og:description"/><meta content="https://netengineerlab.com/tools/acl-generator-validator/zh/" property="og:url"/><meta content="https://netengineerlab.com/assets/images/og-netengineerlab.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
 <link href="../css/style.css?v=55a2491be4e0" rel="stylesheet"/><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"多厂商 ACL 生成与验证工具","url":"https://netengineerlab.com/tools/acl-generator-validator/zh/","applicationCategory":"DeveloperApplication","operatingSystem":"Any","isAccessibleForFree":true,"description":"生成、转换并验证 Cisco IOS、华为 VRP、H3C Comware 和 Juniper Junos IPv4 ACL。"}</script>
 
-<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
 
 <meta name="twitter:title" content="多厂商 ACL 生成与验证工具 | NetEngineerLab">
 <meta name="twitter:description" content="在浏览器本地生成、转换并验证 Cisco IOS、华为 VRP、H3C Comware 和 Juniper Junos IPv4 ACL，提供确定性检查与行号证据。">
@@ -27,14 +27,14 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"ACL 验证工具支持哪些厂商和语法？","acceptedAnswer":{"@type":"Answer","text":"V1 支持 Cisco IOS 命名扩展 ACL、华为 VRP 高级命名 ACL、H3C Comware 高级命名 ACL，以及 Juniper Junos set firewall family inet filter 的已说明 IPv4 子集。"}},{"@type":"Question","name":"ACL 验证工具会上传我的配置吗？","acceptedAnswer":{"@type":"Answer","text":"不会。V1 的解析、生成、确定性检查和评分全部在浏览器本地运行，原始配置与检查结果不会发送给 AI 或分析服务。"}},{"@type":"Question","name":"这个工具能证明 ACL 安全吗？","acceptedAnswer":{"@type":"Answer","text":"不能。它是确定性筛查工具。方向、挂载点、拓扑、对象组、真实应用、命中计数以及 ACL 外部控制都会影响工程结论。"}},{"@type":"Question","name":"多厂商 ACL 转换如何工作？","acceptedAnswer":{"@type":"Answer","text":"源配置先解析为带版本的厂商无关 IPv4 ACL 模型，再生成目标语法、重新解析，并在支持范围内比较语义等价性。"}},{"@type":"Question","name":"不支持的 ACL 行如何处理？","acceptedAnswer":{"@type":"Answer","text":"页面会统计不支持的行并明确显示解析覆盖不完整，不会把它们静默视为已验证；检查结果只适用于成功解析的规则。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=2f6d3d828c10">
-<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=c6e622c573c4">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=6c0b1c4ee1f1">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=75d18aad9a2c">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../../assets/js/site.js?v=f05b0a51ccda"></script>
-<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=42281f151bab">
+<script defer src="../../../assets/js/site.js?v=2864f2fdd798"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=e555c56c70ec">
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference"><!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
@@ -76,7 +76,7 @@
 <!-- NEL_TOOL_GRAPH_START -->
 <section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="acl-generator-validator" data-primary-workflow="enterprise-lan-ip-planning">
 <div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
-<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">当前流程</span><strong>企业 LAN 与 IP 规划工作流</strong><p>把地址规划、VLAN 容量、MTU、上联、光模块、访问策略和 DNS 行为串成完整局域网设计流程。</p></div><div class="nel-workflow-step"><strong>步骤 9 / 11</strong><div class="nel-workflow-progress" aria-label="步骤 9 / 11"><span style="width:82%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/sfp-qsfp-compatibility-calculator/zh/"><span class="nel-tool-graph-label">上一步</span><strong>SFP与QSFP光模块兼容性查询</strong><span class="nel-tool-graph-description">检查SFP、SFP28、QSFP和QSFP28速率、通道、光纤、波长及光链路预算。</span></a><a class="nel-tool-graph-card" href="/tools/dns-ttl-propagation-calculator/zh/"><span class="nel-tool-graph-label">下一步</span><strong>DNS TTL与传播时间计算器</strong><span class="nel-tool-graph-description">估算DNS缓存到期、传播窗口与TTL变更时间表。</span></a></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">当前流程</span><strong>企业 LAN 与 IP 规划工作流</strong><p>把地址规划、VLAN 容量、MTU、上联、光模块、访问策略和 DNS 行为串成完整局域网设计流程。</p></div><div class="nel-workflow-step"><strong>步骤 9 / 11</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="11" aria-valuenow="9" aria-valuetext="步骤 9 / 11" aria-label="步骤 9 / 11"><span style="width:82%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/sfp-qsfp-compatibility-calculator/zh/"><span class="nel-tool-graph-label">上一步</span><strong>SFP与QSFP光模块兼容性查询</strong><span class="nel-tool-graph-description">检查SFP、SFP28、QSFP和QSFP28速率、通道、光纤、波长及光链路预算。</span></a><a class="nel-tool-graph-card" href="/tools/dns-ttl-propagation-calculator/zh/"><span class="nel-tool-graph-label">下一步</span><strong>DNS TTL与传播时间计算器</strong><span class="nel-tool-graph-description">估算DNS缓存到期、传播窗口与TTL变更时间表。</span></a></div>
 <h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/subnet-calculator/zh/"><strong>IP子网计算器</strong><span class="nel-tool-graph-description">计算IPv4、IPv6、CIDR、掩码、广播地址、主机容量，并支持VLSM地址规划。</span></a><a class="nel-tool-graph-card" href="/tools/ipv6-nat-planner/zh/"><strong>IPv6与NAT规划计算器</strong><span class="nel-tool-graph-description">规划IPv6前缀、NAT44容量、CGNAT确定性端口块、NAT64及DNS64地址。</span></a><a class="nel-tool-graph-card" href="/tools/mtu-calculator/zh/"><strong>MTU与MSS计算器</strong><span class="nel-tool-graph-description">计算PPPoE、GRE、VXLAN、MPLS、IPsec和WireGuard封装后的有效MTU、TCP MSS与分片风险。</span></a></div><div class="nel-workflow-memberships"><span class="nel-workflow-memberships-label">同时用于</span><span class="nel-workflow-chip">网络变更自动化工作流</span></div>
 </section>
 <!-- NEL_TOOL_GRAPH_END -->

@@ -229,3 +229,46 @@ body > footer.site-shell-footer {
 @media print {
   body > .site-shell-header, body > footer.site-shell-footer { display: none !important; }
 }
+
+/* Shared reading column for hub-return lines and in-text links.
+   Navigation and card controls stay undecorated. */
+body {
+  font-family: var(--nel-font-family);
+  color: var(--nel-color-text);
+  background: var(--nel-color-page);
+}
+.hub-return {
+  width: min(calc(100% - (2 * var(--nel-content-gutter, 24px))), var(--nel-content-max, 1120px));
+  max-width: var(--nel-content-max, 1120px);
+  margin: 16px auto;
+  padding: 12px 18px;
+  border: 1px solid var(--nel-color-border);
+  border-radius: 999px;
+  background: #f4f8fd;
+  color: var(--nel-color-text);
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+main p a[href],
+main li a[href],
+.content-section p a[href],
+.content-section li a[href],
+.nel-tool-supporting-section p a[href],
+.nel-tool-supporting-section li a[href],
+.policy p a[href],
+.policy li a[href],
+.hub-return a[href],
+.guide-article p a[href],
+.guide-article li a[href],
+.calculator-hub p a[href],
+.calculator-hub li a[href] {
+  color: #0b5fb8;
+  text-decoration: underline !important;
+  text-underline-offset: 0.16em;
+}
+body:has(> main.policy) {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+body:has(> main.policy) > main.policy { flex: 1 0 auto; }

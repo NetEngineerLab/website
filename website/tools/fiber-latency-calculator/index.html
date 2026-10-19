@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#0b6ffb">
 <title>Fiber Latency Calculator – µs per km, One-Way &amp; RTT</title>
 <meta name="description" content="Calculate fiber optic latency: about 4.9 µs/km one-way and 9.8 µs RTT. Add route factor, equipment and serialization delay, then compare vacuum, copper and microwave.">
-<link rel="stylesheet" href="css/style.css?v=29262603c7f6">
+<link rel="stylesheet" href="css/style.css?v=48c7b72aa30f">
 <meta name="app-base" content="./">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <meta property="og:type" content="website">
@@ -20,7 +20,7 @@
 <meta name="twitter:description" content="Calculate fiber optic latency: about 4.9 µs/km one-way and 9.8 µs RTT. Add route factor, equipment and serialization delay, then compare vacuum, copper and microwave.">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://netengineerlab.com/tools/fiber-latency-calculator/#app","name":"Fiber Latency Calculator","url":"https://netengineerlab.com/tools/fiber-latency-calculator/","description":"Calculate one-way and round-trip latency over optical fiber from distance, group index, route factor, equipment and serialization delay.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Network Engineering Calculator","operatingSystem":"Any","browserRequirements":"Requires JavaScript and a modern web browser","softwareVersion":"1.0.0","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/fiber-latency-calculator/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"NetEngineerLab","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"Fiber Latency Calculator","item":"https://netengineerlab.com/tools/fiber-latency-calculator/"}]}]}</script>
 
-<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
 <meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 
 <link rel="stylesheet" href="/assets/css/cookie-consent.css?v=6f4ca1024fed">
@@ -37,14 +37,14 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the latency of fiber per km?","acceptedAnswer":{"@type":"Answer","text":"About 4.9 µs one-way per km in standard single-mode fiber (group index about 1.468), or about 9.8 µs round trip — roughly 5 ms per 1,000 km one-way."}},{"@type":"Question","name":"How do I calculate RTT over fiber?","acceptedAnswer":{"@type":"Answer","text":"RTT is about 2 × fiber length × 4.9 µs/km, plus equipment and serialization delay in each direction. 100 km of fiber gives about 0.98 ms RTT from propagation alone."}},{"@type":"Question","name":"Why is my measured ping higher than the calculator?","acceptedAnswer":{"@type":"Answer","text":"Ping includes routing detours, equipment processing, queuing and host delay, and fiber routes are often longer than the straight-line distance. Use measured fiber length or a route factor."}},{"@type":"Question","name":"Is microwave faster than fiber?","acceptedAnswer":{"@type":"Answer","text":"For propagation, yes. Radio through air travels at almost the speed of light in vacuum (about 3.34 µs/km), roughly 32% less delay than glass fiber."}},{"@type":"Question","name":"Does wavelength change fiber latency?","acceptedAnswer":{"@type":"Answer","text":"Only marginally. The group index of G.652 fiber at 1310 nm and 1550 nm differs by about 0.0005, which is under 0.05% of the delay."}},{"@type":"Question","name":"Is copper faster than fiber?","acceptedAnswer":{"@type":"Answer","text":"Not meaningfully. Twisted-pair copper propagates at about 0.65–0.70 c (about 4.8–5.1 µs/km), similar to fiber, but copper Ethernet is limited to 100 m."}}]}</script>
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=2f6d3d828c10">
-<link rel="stylesheet" href="../../assets/css/site-shell.css?v=c6e622c573c4">
+<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=6c0b1c4ee1f1">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=75d18aad9a2c">
 <script defer src="../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../assets/js/site.js?v=f05b0a51ccda"></script>
-<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=42281f151bab">
+<script defer src="../../assets/js/site.js?v=2864f2fdd798"></script>
+<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=e555c56c70ec">
 <link rel="manifest" href="manifest.webmanifest">
 </head>
 <body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
@@ -138,7 +138,7 @@
 <button id="printBtn" type="button">Print / Export PDF</button>
 </div>
 </section>
-<section class="content-section" aria-labelledby="latency-workflow-title"><h2 id="latency-workflow-title">Continue the fiber latency workflow</h2><p>Use the measured route or an OTDR length, then check loss and power before you treat the delay number as a budget. Open the PON and fiber hub when you want the full planning sequence.</p><ol><li><a href="../otdr-event/">OTDR event analyzer</a> — measure the real fiber length</li><li><a href="../fiber-loss/">fiber loss calculator</a> — check attenuation on the same route</li><li><a href="../optical-power-budget/">optical power budget</a> — confirm the transceiver window</li><li><a href="../bandwidth-calculator/">bandwidth calculator</a> — size the line rate used for serialization</li><li><a href="../mtu-calculator/">MTU calculator</a> — choose the frame size</li><li><a href="../wireless-link-budget-calculator/">wireless link budget</a> — compare a microwave hop</li><li><a href="../../topics/pon-optical/">PON optical topic</a> — continue into access design</li><li><a href="../pon-fiber-calculators/">PON &amp; fiber calculators</a> — open the planning hub</li></ol></section>
+
 </main>
 <section class="content-section nel-tool-supporting-section" id="history">
 <div class="section-heading"><div><p class="eyebrow">PROJECT RECORDS</p><h2>Recent calculations</h2></div>
@@ -168,7 +168,7 @@
 <!-- NEL_TOOL_GRAPH_START -->
 <section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="fiber-latency-calculator" data-primary-workflow="fiber-latency-planning">
 <div class="section-heading"><div><p class="eyebrow">ENGINEERING WORKFLOW</p><h2 id="nel-tool-graph-title">Continue the engineering workflow</h2></div></div>
-<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>Fiber Latency Planning Workflow</strong><p>Confirm the route length and loss assumptions, then estimate one-way delay and round-trip time.</p></div><div class="nel-workflow-step"><strong>Step 2 of 2</strong><div class="nel-workflow-progress" aria-label="Step 2 of 2"><span style="width:100%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/fiber-loss/"><span class="nel-tool-graph-label">Previous</span><strong>Fiber Loss Calculator</strong><span class="nel-tool-graph-description">Calculate fiber, splice, connector, splitter and engineering losses for an optical link.</span></a><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Next</span><strong>Workflow complete</strong></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>Fiber Latency Planning Workflow</strong><p>Confirm the route length and loss assumptions, then estimate one-way delay and round-trip time.</p></div><div class="nel-workflow-step"><strong>Step 2 of 2</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="2" aria-valuenow="2" aria-valuetext="Step 2 of 2" aria-label="Step 2 of 2"><span style="width:100%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/fiber-loss/"><span class="nel-tool-graph-label">Previous</span><strong>Fiber Loss Calculator</strong><span class="nel-tool-graph-description">Calculate fiber, splice, connector, splitter and engineering losses for an optical link.</span></a><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Next</span><strong>Workflow complete</strong></div></div>
 <h3 class="nel-tool-graph-subtitle">Related tools</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/fiber-loss/"><strong>Fiber Loss Calculator</strong><span class="nel-tool-graph-description">Calculate fiber, splice, connector, splitter and engineering losses for an optical link.</span></a><a class="nel-tool-graph-card" href="/tools/optical-power-budget/"><strong>Optical Power Budget Calculator</strong><span class="nel-tool-graph-description">Verify an optical link using transmit power, receiver sensitivity, optical penalty and ODN loss.</span></a><a class="nel-tool-graph-card" href="/tools/otdr-event/"><strong>OTDR Event Analyzer</strong><span class="nel-tool-graph-description">Analyze multiple events and dual wavelengths to identify splices, connectors, bends, breaks, ghosts and dead-zone effects.</span></a><a class="nel-tool-graph-card" href="/tools/bandwidth-calculator/"><strong>Bandwidth &amp; Transfer Time Calculator</strong><span class="nel-tool-graph-description">Calculate file transfer time, required link rate, concurrent-user capacity and sustained-rate data volume.</span></a></div>
 </section>
 <!-- NEL_TOOL_GRAPH_END -->
@@ -186,7 +186,7 @@
 <script defer src="js/engine.js"></script>
 <script defer src="js/pwa.js"></script>
 <script defer src="../../assets/js/tool-integration.js?v=05f7934f4687"></script>
-<script defer src="js/app.js?v=bc01d21e9fba"></script>
+<script defer src="js/app.js?v=222f61ecf3b6"></script>
 <script src="/assets/js/cookie-consent.js?v=1.9.9-04"></script>
 <script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script>
 </body>

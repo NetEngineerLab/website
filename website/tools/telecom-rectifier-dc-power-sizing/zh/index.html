@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="tools/telecom-rectifier-dc-power-sizing/"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>通信开关电源与整流模块容量配置计算器 | NetEngineerLab</title><meta content="计算通信开关电源整流模块、电池回充峰值、N+1/N+2冗余、故障余量、交流输入需求与扩容空间。" name="description"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="通信开关电源与整流模块容量配置计算器 | NetEngineerLab" property="og:title"/><meta content="计算通信开关电源整流模块、电池回充峰值、N+1/N+2冗余、故障余量、交流输入需求与扩容空间。" property="og:description"/><meta content="https://netengineerlab.com/tools/telecom-rectifier-dc-power-sizing/zh/" property="og:url"/><meta content="https://netengineerlab.com/tools/telecom-rectifier-dc-power-sizing/images/og-telecom-rectifier-dc-power-sizing.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><link href="../css/style.css?v=c62ad952a953" rel="stylesheet"/><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"通信开关电源与整流模块容量配置计算器","description":"通信直流电源容量、冗余与故障余量工程计算。","inLanguage":"zh-CN"}</script>
-<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
 
 <meta name="twitter:title" content="通信开关电源与整流模块容量配置计算器 | NetEngineerLab">
 <meta name="twitter:description" content="计算通信开关电源整流模块、电池回充峰值、N+1/N+2冗余、故障余量、交流输入需求与扩容空间。">
@@ -22,14 +22,14 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么整流容量要计入电池回充电流？","acceptedAnswer":{"@type":"Answer","text":"市电恢复后，开关电源既要承担在线通信负载，又可能需要给蓄电池回充，因此回充阶段往往是直流系统的高负荷场景。"}},{"@type":"Question","name":"N+1和N+2冗余如何计算？","acceptedAnswer":{"@type":"Answer","text":"工具先根据通信负载、电池回充和工程余量向上取整得到工作模块数，再按策略增加1块或2块冗余模块。"}},{"@type":"Question","name":"掉一块模块校验是什么意思？","acceptedAnswer":{"@type":"Answer","text":"把设计所需电流与少一块整流模块后的剩余容量比较，用于判断单模块故障时是否仍能满足目标负载。"}},{"@type":"Question","name":"能直接用这个结果选择交流空开吗？","acceptedAnswer":{"@type":"Answer","text":"不能。交流输入估算只作为上游规划输入，最终保护器件还要核对厂家数据、导线载流量、短路电流、分断能力及当地电气规范。"}},{"@type":"Question","name":"这个工具能替代厂家开关电源设计吗？","acceptedAnswer":{"@type":"Answer","text":"不能。最终应核对控制器与机框容量、模块降额、电池回充策略、环境温度、布线接地以及具体厂家的冗余要求。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=2f6d3d828c10">
-<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=c6e622c573c4">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=6c0b1c4ee1f1">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=75d18aad9a2c">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../../assets/js/site.js?v=f05b0a51ccda"></script>
-<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=42281f151bab">
+<script defer src="../../../assets/js/site.js?v=2864f2fdd798"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=e555c56c70ec">
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference"><!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
@@ -64,7 +64,7 @@
 <!-- NEL_TOOL_GRAPH_START -->
 <section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="telecom-rectifier-dc-power-sizing" data-primary-workflow="telecom-power-energy">
 <div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
-<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">当前流程</span><strong>通信电源与能源工作流</strong><p>把站点负载、AC/DC配电、整流容量与运行诊断、后备电池、油机保障、光伏供能与设施能效串成完整能源工程流程。</p></div><div class="nel-workflow-step"><strong>步骤 3 / 8</strong><div class="nel-workflow-progress" aria-label="步骤 3 / 8"><span style="width:38%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/telecom-ac-dc-breaker-sizing/zh/"><span class="nel-tool-graph-label">上一步</span><strong>通信站点 AC/DC 电源容量与空开配置工具</strong><span class="nel-tool-graph-description">根据负载、电压、相制、功率因数、效率、工程余量和降额条件估算通信站点交流馈电、空开、直流支路及导体电流。</span></a><a class="nel-tool-graph-card" href="/tools/dc-plant-efficiency-load-sharing/zh/"><span class="nel-tool-graph-label">下一步</span><strong>直流电源系统效率与整流模块均流分析器</strong><span class="nel-tool-graph-description">分析通信直流电源整流模块均流偏差、模块负载、冗余、实测转换效率与在线模块运行质量。</span></a></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">当前流程</span><strong>通信电源与能源工作流</strong><p>把站点负载、AC/DC配电、整流容量与运行诊断、后备电池、油机保障、光伏供能与设施能效串成完整能源工程流程。</p></div><div class="nel-workflow-step"><strong>步骤 3 / 8</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="8" aria-valuenow="3" aria-valuetext="步骤 3 / 8" aria-label="步骤 3 / 8"><span style="width:38%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/telecom-ac-dc-breaker-sizing/zh/"><span class="nel-tool-graph-label">上一步</span><strong>通信站点 AC/DC 电源容量与空开配置工具</strong><span class="nel-tool-graph-description">根据负载、电压、相制、功率因数、效率、工程余量和降额条件估算通信站点交流馈电、空开、直流支路及导体电流。</span></a><a class="nel-tool-graph-card" href="/tools/dc-plant-efficiency-load-sharing/zh/"><span class="nel-tool-graph-label">下一步</span><strong>直流电源系统效率与整流模块均流分析器</strong><span class="nel-tool-graph-description">分析通信直流电源整流模块均流偏差、模块负载、冗余、实测转换效率与在线模块运行质量。</span></a></div>
 <h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/dc-plant-efficiency-load-sharing/zh/"><strong>直流电源系统效率与整流模块均流分析器</strong><span class="nel-tool-graph-description">分析通信直流电源整流模块均流偏差、模块负载、冗余、实测转换效率与在线模块运行质量。</span></a><a class="nel-tool-graph-card" href="/tools/48v-battery-runtime/zh/"><strong>-48V通信机房蓄电池续航计算器</strong><span class="nel-tool-graph-description">计算通信直流电池续航、所需容量、并联组数及恒功率负载电流变化。</span></a><a class="nel-tool-graph-card" href="/tools/network-rack-power-cooling-calculator/zh/"><strong>网络机柜功耗与制冷量计算器</strong><span class="nel-tool-graph-description">计算机柜功耗、电流、制冷量、耗电量和电费。</span></a><a class="nel-tool-graph-card" href="/tools/generator-fuel-runtime-calculator/zh/"><strong>油机油耗与应急续航计算器</strong><span class="nel-tool-graph-description">根据油机厂家负载油耗曲线，计算通信站点分时油耗、油箱续航、保障油量、补油次数及电池协同。</span></a></div>
 </section>
 <!-- NEL_TOOL_GRAPH_END -->

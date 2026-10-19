@@ -2,7 +2,7 @@
 
 <html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="tools/pue-data-center-energy-efficiency/"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="../" name="app-base"/><title>数据中心PUE与能效分析器｜IT负载与节能</title><meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="数据中心PUE与能效分析器｜IT负载与节能" property="og:title"/><meta content="根据IT能耗和设施总能耗计算PUE、非IT开销、年度成本及目标PUE节能。" property="og:description"/><meta content="https://netengineerlab.com/tools/pue-data-center-energy-efficiency/zh/" property="og:url"/><meta content="https://netengineerlab.com/tools/pue-data-center-energy-efficiency/images/og-pue-data-center-energy-efficiency.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://netengineerlab.com/tools/pue-data-center-energy-efficiency/images/og-pue-data-center-energy-efficiency.png" name="twitter:image"/><meta content="根据IT能耗和设施总能耗计算PUE、非IT开销、年度成本及目标PUE节能。" name="description"/><meta content="index,follow,max-image-preview:large" name="robots"/><link href="../css/style.css?v=a89d47ef923a" rel="stylesheet"/><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"数据中心 PUE 与能效分析器","description":"分析数据中心PUE、非IT能耗、年度电费、目标PUE节能潜力、WUE/CUE与月度趋势。","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"url":"https://netengineerlab.com/tools/pue-data-center-energy-efficiency/zh/"}</script>
 
-<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
 
 <meta name="twitter:title" content="数据中心PUE与能效分析器｜IT负载与节能">
 <meta name="twitter:description" content="根据IT能耗和设施总能耗计算PUE、非IT开销、年度成本及目标PUE节能。">
@@ -21,14 +21,14 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"PUE 应该采用什么计量边界？","acceptedAnswer":{"@type":"Answer","text":"应在整个统计周期保持数据中心总能耗边界和 IT 能耗计量边界一致，并记录边界变化后再做跨期比较。"}},{"@type":"Question","name":"瞬时功率可以计算 PUE 吗？","acceptedAnswer":{"@type":"Answer","text":"可以用于运行快照；正式趋势和年度比较更适合采用完整周期的能耗数据。"}},{"@type":"Question","name":"为什么 IT 负载上升后 PUE 可能下降？","acceptedAnswer":{"@type":"Answer","text":"如果设施层固定开销变化不大，而有效 IT 负载提高，非 IT 开销被更多 IT 能耗分摊，PUE 可能下降。"}},{"@type":"Question","name":"WUE 相比 PUE 多看了什么？","acceptedAnswer":{"@type":"Answer","text":"WUE 衡量每单位 IT 能耗对应的运营用水量，可同时观察节能方案是否带来额外水资源影响。"}},{"@type":"Question","name":"PUE 越低就一定越好吗？","acceptedAnswer":{"@type":"Answer","text":"较低的设施开销通常更有利，但必须同时考虑可靠性、气候、冗余、业务负载以及计量边界。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=2f6d3d828c10">
-<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=c6e622c573c4">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=6c0b1c4ee1f1">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=75d18aad9a2c">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../../assets/js/site.js?v=f05b0a51ccda"></script>
-<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=42281f151bab">
+<script defer src="../../../assets/js/site.js?v=2864f2fdd798"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=e555c56c70ec">
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference"><!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
@@ -62,7 +62,7 @@
 <!-- NEL_TOOL_GRAPH_START -->
 <section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="pue-data-center-energy-efficiency" data-primary-workflow="telecom-power-energy">
 <div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
-<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">当前流程</span><strong>通信电源与能源工作流</strong><p>把站点负载、AC/DC配电、整流容量与运行诊断、后备电池、油机保障、光伏供能与设施能效串成完整能源工程流程。</p></div><div class="nel-workflow-step"><strong>步骤 8 / 8</strong><div class="nel-workflow-progress" aria-label="步骤 8 / 8"><span style="width:100%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/telecom-solar-battery-sizing-calculator/zh/"><span class="nel-tool-graph-label">上一步</span><strong>通信站点光伏发电与储能配置计算器</strong><span class="nel-tool-graph-description">面向并网混合或离网站点计算通信负载、光伏阵列、储能续航、供电平衡、经济性和减排。</span></a><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">下一步</span><strong>流程终点</strong></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">当前流程</span><strong>通信电源与能源工作流</strong><p>把站点负载、AC/DC配电、整流容量与运行诊断、后备电池、油机保障、光伏供能与设施能效串成完整能源工程流程。</p></div><div class="nel-workflow-step"><strong>步骤 8 / 8</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="8" aria-valuenow="8" aria-valuetext="步骤 8 / 8" aria-label="步骤 8 / 8"><span style="width:100%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/telecom-solar-battery-sizing-calculator/zh/"><span class="nel-tool-graph-label">上一步</span><strong>通信站点光伏发电与储能配置计算器</strong><span class="nel-tool-graph-description">面向并网混合或离网站点计算通信负载、光伏阵列、储能续航、供电平衡、经济性和减排。</span></a><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">下一步</span><strong>流程终点</strong></div></div>
 <h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/network-rack-power-cooling-calculator/zh/"><strong>网络机柜功耗与制冷量计算器</strong><span class="nel-tool-graph-description">计算机柜功耗、电流、制冷量、耗电量和电费。</span></a><a class="nel-tool-graph-card" href="/tools/48v-battery-runtime/zh/"><strong>-48V通信机房蓄电池续航计算器</strong><span class="nel-tool-graph-description">计算通信直流电池续航、所需容量、并联组数及恒功率负载电流变化。</span></a><a class="nel-tool-graph-card" href="/tools/telecom-solar-battery-sizing-calculator/zh/"><strong>通信站点光伏发电与储能配置计算器</strong><span class="nel-tool-graph-description">面向并网混合或离网站点计算通信负载、光伏阵列、储能续航、供电平衡、经济性和减排。</span></a></div><div class="nel-workflow-memberships"><span class="nel-workflow-memberships-label">同时用于</span><span class="nel-workflow-chip">数据中心关键电源与制冷工作流</span></div>
 </section>
 <!-- NEL_TOOL_GRAPH_END -->

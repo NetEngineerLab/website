@@ -125,7 +125,31 @@ function localizedActiveTools(locale){
 }
 function updateToolCountMarkers(html,locale){
  const count=localizedActiveTools(locale).length;
- return html.replace(/(<(?:strong|span)\b[^>]*\bdata-(?:tool-count|localized-tool-count)(?:\s*=\s*(?:"[^"]*"|\'[^\']*\'|[^\s>]+))?[^>]*>)[\s\S]*?(<\/(?:strong|span)>)/gi,(whole,open,close)=>`${open}${count}${close}`);
+ return html.replace(/(<(?:strong|span|b)\b[^>]*\bdata-(?:tool-count|localized-tool-count)(?:\s*=\s*(?:"[^"]*"|\'[^\']*\'|[^\s>]+))?[^>]*>)[\s\S]*?(<\/(?:strong|span|b)>)/gi,(whole,open,close)=>`${open}${count}${close}`);
+}
+function dedupeContinueWorkflow(html){
+ if(!/id=["']nel-tool-graph["']/.test(html))return html;
+ return html.replace(/<section\b(?![^>]*\bid=["']nel-tool-graph["'])[^>]*>[\s\S]*?<\/section>/gi,section=>{
+  const heading=section.match(/<h2\b[^>]*>([\s\S]*?)<\/h2>/i);
+  const text=heading?heading[1].replace(/<[^>]+>/g,""):"";
+  if(/Continue the .+ workflow/i.test(text)||/继续.+工作流/.test(text)||/Continuar el flujo/i.test(text))return "";
+  return section;
+ });
+}
+function ensureProgressRole(html){
+ return html.replace(/<div\b([^>]*\bclass=["'][^"']*\bnel-workflow-progress\b[^"']*["'][^>]*)>/gi,(whole,attrs)=>{
+  let next=attrs;
+  if(!/\brole\s*=/.test(next)){
+   const width=next.match(/width\s*:\s*(\d+(?:\.\d+)?)%/);
+   const now=width?String(Math.round(Number(width[1]))):"0";
+   next+=` role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${now}"`;
+  }
+  if(!/\baria-label\s*=/.test(next)){
+   const text=next.match(/aria-valuetext\s*=\s*(["'])([\s\S]*?)\1/i)?.[2]||"Progress";
+   next+=` aria-label="${text.replace(/"/g,"&quot;")}"`;
+  }
+  return next===attrs?whole:`<div${next}>`;
+ });
 }
 function prerenderToolGrid(html,currentInfo,locale){
  const grid=html.match(/<div\b(?=[^>]*\bdata-(?:tool-grid|home-quick-grid)(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+))?)[^>]*>/i);
@@ -975,6 +999,9 @@ function build(){
   if(record.info.route.startsWith("topics/"))html=ensureTopicBreadcrumb(html,record.info,locale);
   if(record.info.kind==="home"||record.info.kind==="toolsDirectory")html=prerenderToolGrid(html,record.info,locale);
   html=updateToolCountMarkers(html,locale);
+  html=dedupeContinueWorkflow(html);
+  html=ensureProgressRole(html);
+  if(/-calculators\/$/.test(record.info.route))html=ensureAsset(html,record.rel,"assets/css/site.css","css");
   if(record.info.kind==="toolsDirectory")html=ensureToolDirectoryItemList(html,locale);
   html=normalizeBrandLogoAlt(html);
   html=removeHeadLinks(removeNelMeta(html));

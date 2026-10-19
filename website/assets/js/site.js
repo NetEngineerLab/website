@@ -13,12 +13,14 @@ function initNetEngineerLabSite(){
  const catalogKey=locale?.catalogKey||locale?.id||"en";
  const fallbackKey=fallback?.catalogKey||fallback?.id||"en";
  const tools=(window.NEL_TOOLS||[]).slice().sort((a,b)=>a.order-b.order);
- document.querySelectorAll("[data-tool-count]").forEach(node=>{node.textContent=String(tools.filter(tool=>tool.status==="active").length)});
+ const activeCount=tools.filter(tool=>tool.status==="active").length;
+ if(activeCount>0)document.querySelectorAll("[data-tool-count]").forEach(node=>{node.textContent=String(activeCount)});
  const normalizedPath=location.pathname.replace(/\/+$/,"/");
  const folderPattern=locales.filter(item=>item.folder).map(item=>item.folder.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")).join("|");
  const isToolsDirectory=new RegExp(`/tools/(?:${folderPattern?`(?:${folderPattern})/`:""})?$`).test(normalizedPath);
  const directoryTools=tools.filter(tool=>locale?.id===config.defaultLocale||Boolean(tool.translations?.[catalogKey]||tool.translations?.[locale?.id]));
- document.querySelectorAll("[data-localized-tool-count]").forEach(node=>{node.textContent=String(directoryTools.filter(tool=>tool.status==="active").length)});
+ const localizedActive=directoryTools.filter(tool=>tool.status==="active").length;
+ if(localizedActive>0)document.querySelectorAll("[data-localized-tool-count]").forEach(node=>{node.textContent=String(localizedActive)});
  if(isToolsDirectory)document.querySelectorAll("[data-tool-count]").forEach(node=>{node.textContent=String(directoryTools.filter(tool=>tool.status==="active").length)});
  function copyFor(tool){
   const translations=tool.translations||{};

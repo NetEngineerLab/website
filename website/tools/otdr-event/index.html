@@ -12,7 +12,7 @@
 <script defer="" src="/data/seo-config.js"></script>
 <script defer="" src="/assets/js/seo-engine.js"></script>
 
-<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
 
 <meta name="twitter:title" content="OTDR Event Analyzer | NetEngineerLab">
 <meta name="twitter:description" content="Professional OTDR event analysis for splices, connectors, bends, breaks, ghost events and dead-zone effects.">
@@ -31,14 +31,14 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Are OTDR event thresholds universal?","acceptedAnswer":{"@type":"Answer","text":"No. Thresholds vary by operator, vendor, link type, wavelength, pulse width and acceptance rules. This tool keeps them editable."}},{"@type":"Question","name":"Why compare 1310 nm and 1550 nm?","acceptedAnswer":{"@type":"Answer","text":"Bending loss often increases more at longer wavelengths. A wavelength difference can support bend diagnosis, but it is not a standalone conclusion."}},{"@type":"Question","name":"What is a ghost event?","acceptedAnswer":{"@type":"Answer","text":"A ghost can appear at a multiple of the distance to a strong reflector and may show little real insertion loss. Change pulse width and range to verify it."}},{"@type":"Question","name":"Can this tool parse SOR files?","acceptedAnswer":{"@type":"Answer","text":"Version 1.0 analyzes event-table data and CSV imports. Direct SOR parsing is reserved for a later version."}},{"@type":"Question","name":"Why can nearby events be unreliable?","acceptedAnswer":{"@type":"Answer","text":"Events inside the event or attenuation dead zone can overlap, making reflectance or loss difficult to separate."}},{"@type":"Question","name":"Should results replace field judgment?","acceptedAnswer":{"@type":"Answer","text":"No. Use the original trace, bidirectional tests, route records, power measurements and field inspection."}}]}</script>
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=2f6d3d828c10">
-<link rel="stylesheet" href="../../assets/css/site-shell.css?v=c6e622c573c4">
+<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=6c0b1c4ee1f1">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=75d18aad9a2c">
 <script defer src="../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../assets/js/site.js?v=f05b0a51ccda"></script>
-<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=42281f151bab">
+<script defer src="../../assets/js/site.js?v=2864f2fdd798"></script>
+<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=e555c56c70ec">
 <link rel="manifest" href="manifest.webmanifest">
 </head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
 <a class="skip" href="#analyzer">Skip to analyzer</a><noscript><div class="noscript">JavaScript is required.</div></noscript>
@@ -140,7 +140,7 @@
 </tr></thead><tbody id="resultBody"></tbody></table></div></div>
 <h3 style="margin-top:18px">Priority diagnosis and actions</h3><div class="diagnosis-grid" id="diagnosisList"></div>
 </section>
-<section class="content-section" aria-labelledby="pon-topic-title"><h2 id="pon-topic-title">Continue the PON optical workflow</h2><p><a href="../../topics/pon-optical/">PON Optical Network Design &amp; Troubleshooting Hub</a> connects this calculation to design checks, ONU receive-power diagnosis and OTDR evidence.</p></section></main>
+</main>
 <aside aria-label="Advertisement" class="ad-slot" data-ad-key="afterAnalyzer" hidden=""><div class="ad-label">ADVERTISEMENT</div><div class="ad-body"></div></aside>
 <section class="content-section nel-tool-supporting-section" id="methodology"><p class="eyebrow">METHODOLOGY</p><h2>Methodology</h2><div class="method-grid">
 <article><h3>Non-reflective events</h3><p>Low-loss events are normally treated as splices. Higher loss increases severity according to editable thresholds.</p></article><article><h3>Reflective events</h3><p>Reflectance above the configured threshold indicates a connector, mechanical joint or strong reflective fault.</p></article><article><h3>Bend comparison</h3><p>A larger loss at the secondary wavelength can indicate macro- or micro-bending when the event is non-reflective.</p></article><article><h3>Dead-zone check</h3><p>Spacing from the previous event is compared with event and attenuation dead-zone defaults.</p></article>
@@ -155,7 +155,7 @@
 <!-- NEL_TOOL_GRAPH_START -->
 <section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="otdr-event" data-primary-workflow="optical-troubleshooting">
 <div class="section-heading"><div><p class="eyebrow">ENGINEERING WORKFLOW</p><h2 id="nel-tool-graph-title">Continue the engineering workflow</h2></div></div>
-<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>Optical Fault Isolation Workflow</strong><p>Start from measured ONU receive power, locate abnormal events, then compare field loss with the design budget.</p></div><div class="nel-workflow-step"><strong>Step 2 of 4</strong><div class="nel-workflow-progress" aria-label="Step 2 of 4"><span style="width:50%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/onu-rx-power/"><span class="nel-tool-graph-label">Previous</span><strong>ONU RX Power Diagnosis</strong><span class="nel-tool-graph-description">Diagnose normal, weak-light, overload or possible no-signal conditions from measured power.</span></a><a class="nel-tool-graph-card" href="/tools/fiber-loss/"><span class="nel-tool-graph-label">Next</span><strong>Fiber Loss Calculator</strong><span class="nel-tool-graph-description">Calculate fiber, splice, connector, splitter and engineering losses for an optical link.</span></a></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>Optical Fault Isolation Workflow</strong><p>Start from measured ONU receive power, locate abnormal events, then compare field loss with the design budget.</p></div><div class="nel-workflow-step"><strong>Step 2 of 4</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="4" aria-valuenow="2" aria-valuetext="Step 2 of 4" aria-label="Step 2 of 4"><span style="width:50%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/onu-rx-power/"><span class="nel-tool-graph-label">Previous</span><strong>ONU RX Power Diagnosis</strong><span class="nel-tool-graph-description">Diagnose normal, weak-light, overload or possible no-signal conditions from measured power.</span></a><a class="nel-tool-graph-card" href="/tools/fiber-loss/"><span class="nel-tool-graph-label">Next</span><strong>Fiber Loss Calculator</strong><span class="nel-tool-graph-description">Calculate fiber, splice, connector, splitter and engineering losses for an optical link.</span></a></div>
 <h3 class="nel-tool-graph-subtitle">Related tools</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/fiber-loss/"><strong>Fiber Loss Calculator</strong><span class="nel-tool-graph-description">Calculate fiber, splice, connector, splitter and engineering losses for an optical link.</span></a><a class="nel-tool-graph-card" href="/tools/onu-rx-power/"><strong>ONU RX Power Diagnosis</strong><span class="nel-tool-graph-description">Diagnose normal, weak-light, overload or possible no-signal conditions from measured power.</span></a><a class="nel-tool-graph-card" href="/tools/optical-power-budget/"><strong>Optical Power Budget Calculator</strong><span class="nel-tool-graph-description">Verify an optical link using transmit power, receiver sensitivity, optical penalty and ODN loss.</span></a></div>
 </section>
 <!-- NEL_TOOL_GRAPH_END -->

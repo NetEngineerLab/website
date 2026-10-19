@@ -52,6 +52,32 @@ for(const [locale,route] of calculatorLocales){
   });
 }
 
+test("invalid fiber latency input clears the previous result", async ({page}) => {
+  const {errors, failed} = watchPage(page);
+  await page.goto("/tools/fiber-latency-calculator/", {waitUntil: "networkidle"});
+  await page.locator("#serializationHops").fill("0");
+  await page.locator("#calculateBtn").click();
+  await expect(page.locator("#oneWay")).toHaveText("489.67 µs");
+  await page.locator("#distance").fill("-50");
+  await page.locator("#calculateBtn").click();
+  await expect(page.locator("#oneWay")).toHaveText("—");
+  await expect(page.locator("#rtt")).toHaveText("—");
+  await expect(page.locator("#validationMessage")).not.toHaveText("");
+  expect(failed).toEqual([]);
+  expect(errors).toEqual([]);
+});
+
+test("invalid fiber loss input clears the previous result", async ({page}) => {
+  await page.goto("/tools/fiber-loss/", {waitUntil: "networkidle"});
+  await page.locator("#calculateBtn").click();
+  const before = await page.locator("#designLoss").innerText();
+  expect(before).not.toBe("—");
+  await page.locator("#distance").fill("-5");
+  await page.locator("#calculateBtn").click();
+  await expect(page.locator("#designLoss")).toHaveText("—");
+  await expect(page.locator("#fiberLoss")).toHaveText("—");
+});
+
 for(const slug of hubSlugs){
   for(const locale of hubLocales){
     const route=`/tools/${slug}/${locale}`;
@@ -73,6 +99,10 @@ for(const slug of hubSlugs){
       }
       expect(failed,route).toEqual([]);
       expect(errors,route).toEqual([]);
+      const styles = await page.locator('link[rel="stylesheet"]').evaluateAll(nodes => nodes.map(node => node.getAttribute("href") || ""));
+      expect(styles.some(href => href.includes("site.css")), route).toBe(true);
+      const font = await page.evaluate(() => getComputedStyle(document.body).fontFamily);
+      expect(font.toLowerCase(), route).not.toContain("times");
     });
   }
 }

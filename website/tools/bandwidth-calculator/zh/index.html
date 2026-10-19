@@ -12,7 +12,7 @@
 <script defer="" src="/data/seo-config.js"></script>
 <script defer="" src="/assets/js/seo-engine.js"></script>
 
-<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
 
 <meta name="twitter:title" content="带宽计算器｜文件传输时间、下载时间与所需带宽计算">
 <meta name="twitter:description" content="输入文件大小和带宽（Mbps/Gbps），立即算出传输/下载时间；也可反算所需链路带宽。支持 MB/GB/TB、比特与字节换算。">
@@ -31,14 +31,14 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么100 Mbps不能每秒传100 MB？","acceptedAnswer":{"@type":"Answer","text":"100 Mbps表示每秒100兆比特，理论上等于12.5 MB/s，尚未扣除协议开销和链路利用率。"}},{"@type":"Question","name":"文件大小应该用GB还是GiB？","acceptedAnswer":{"@type":"Answer","text":"存储厂商通常使用十进制GB，操作系统或工具可能使用二进制GiB。"}},{"@type":"Question","name":"效率应该填多少？","acceptedAnswer":{"@type":"Answer","text":"优先使用实测应用吞吐率；没有实测数据时可从预设开始，并保留工程余量。"}},{"@type":"Question","name":"RTT对大文件传输重要吗？","acceptedAnswer":{"@type":"Answer","text":"本工具直接计入建立时延，但真实TCP中RTT还会影响窗口增长和丢包恢复。"}},{"@type":"Question","name":"最大并发用户数如何计算？","acceptedAnswer":{"@type":"Answer","text":"先计算链路可用业务带宽，再除以突发系数修正后的单用户带宽。"}},{"@type":"Question","name":"能代替完整流量工程模型吗？","acceptedAnswer":{"@type":"Answer","text":"不能。队列、QoS、报文长度、重传、流量分布和忙时特征仍需验证。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=2f6d3d828c10">
-<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=c6e622c573c4">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=6c0b1c4ee1f1">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=75d18aad9a2c">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../../assets/js/site.js?v=f05b0a51ccda"></script>
-<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=42281f151bab">
+<script defer src="../../../assets/js/site.js?v=2864f2fdd798"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=e555c56c70ec">
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
 <a class="skip" href="#calculator">跳到计算器</a>
@@ -170,7 +170,7 @@
 <!-- NEL_TOOL_GRAPH_START -->
 <section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="bandwidth-calculator" data-primary-workflow="enterprise-lan-ip-planning">
 <div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
-<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">当前流程</span><strong>企业 LAN 与 IP 规划工作流</strong><p>把地址规划、VLAN 容量、MTU、上联、光模块、访问策略和 DNS 行为串成完整局域网设计流程。</p></div><div class="nel-workflow-step"><strong>步骤 5 / 11</strong><div class="nel-workflow-progress" aria-label="步骤 5 / 11"><span style="width:45%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/mtu-calculator/zh/"><span class="nel-tool-graph-label">上一步</span><strong>MTU与MSS计算器</strong><span class="nel-tool-graph-description">计算PPPoE、GRE、VXLAN、MPLS、IPsec和WireGuard封装后的有效MTU、TCP MSS与分片风险。</span></a><a class="nel-tool-graph-card" href="/tools/switch-uplink-oversubscription-calculator/zh/"><span class="nel-tool-graph-label">下一步</span><strong>交换机上联带宽与超售比计算器</strong><span class="nel-tool-graph-description">根据接入端口、利用率、并发率与冗余方式规划交换机上联带宽。</span></a></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">当前流程</span><strong>企业 LAN 与 IP 规划工作流</strong><p>把地址规划、VLAN 容量、MTU、上联、光模块、访问策略和 DNS 行为串成完整局域网设计流程。</p></div><div class="nel-workflow-step"><strong>步骤 5 / 11</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="11" aria-valuenow="5" aria-valuetext="步骤 5 / 11" aria-label="步骤 5 / 11"><span style="width:45%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/mtu-calculator/zh/"><span class="nel-tool-graph-label">上一步</span><strong>MTU与MSS计算器</strong><span class="nel-tool-graph-description">计算PPPoE、GRE、VXLAN、MPLS、IPsec和WireGuard封装后的有效MTU、TCP MSS与分片风险。</span></a><a class="nel-tool-graph-card" href="/tools/switch-uplink-oversubscription-calculator/zh/"><span class="nel-tool-graph-label">下一步</span><strong>交换机上联带宽与超售比计算器</strong><span class="nel-tool-graph-description">根据接入端口、利用率、并发率与冗余方式规划交换机上联带宽。</span></a></div>
 <h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/switch-uplink-oversubscription-calculator/zh/"><strong>交换机上联带宽与超售比计算器</strong><span class="nel-tool-graph-description">根据接入端口、利用率、并发率与冗余方式规划交换机上联带宽。</span></a><a class="nel-tool-graph-card" href="/tools/wifi-coverage-capacity-planner/zh/"><strong>Wi-Fi覆盖与容量规划计算器</strong><span class="nel-tool-graph-description">估算双向射频覆盖、AP数量、用户容量、吞吐量及信道复用压力。</span></a><a class="nel-tool-graph-card" href="/tools/mtu-calculator/zh/"><strong>MTU与MSS计算器</strong><span class="nel-tool-graph-description">计算PPPoE、GRE、VXLAN、MPLS、IPsec和WireGuard封装后的有效MTU、TCP MSS与分片风险。</span></a></div><div class="nel-workflow-memberships"><span class="nel-workflow-memberships-label">同时用于</span><span class="nel-workflow-chip">数据中心网络 Fabric 规划工作流</span></div>
 </section>
 <!-- NEL_TOOL_GRAPH_END -->

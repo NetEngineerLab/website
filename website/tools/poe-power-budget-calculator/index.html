@@ -14,7 +14,7 @@
 <script defer="" src="/assets/js/seo-engine.js"></script>
 
 <link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><meta content="https://netengineerlab.com/assets/images/og-netengineerlab.png" property="og:image"/>
-<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="PoE Power Budget Calculator | Switch Watts, Ports and Headroom">
@@ -34,14 +34,14 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many PoE cameras can a 120 W switch support?","acceptedAnswer":{"@type":"Answer","text":"It depends on maximum camera watts, cable loss, reserve and ports. Eight 10 W fixed cameras may fit comfortably, while eight 15 W cameras can exhaust the budget after loss and headroom."}},{"@type":"Question","name":"Does cable length change the PoE budget?","acceptedAnswer":{"@type":"Answer","text":"Yes. Longer or higher-resistance cabling increases I²R loss. This calculator models loss as a planning percentage; verify conductor gauge, category, bundle temperature and run length for final design."}},{"@type":"Question","name":"Should I use average or maximum device consumption?","acceptedAnswer":{"@type":"Answer","text":"Use maximum rated or measured demand for capacity planning. Average values can hide boot surges, IR activation, PTZ motors and high radio utilization."}},{"@type":"Question","name":"What does a PASS result mean?","acceptedAnswer":{"@type":"Answer","text":"PASS means the entered design meets total watts, available ports and per-port power class with the selected assumptions. It is an engineering estimate, not a substitute for manufacturer requirements or electrical safety review."}},{"@type":"Question","name":"Is 20% PoE headroom required by IEEE?","acceptedAnswer":{"@type":"Answer","text":"No. Headroom is a project planning choice, not a universal IEEE requirement. Select it from measured peak load, startup behavior, cable conditions, expansion plans, power-supply configuration and the availability target."}}]}</script>
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=2f6d3d828c10">
-<link rel="stylesheet" href="../../assets/css/site-shell.css?v=c6e622c573c4">
+<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=6c0b1c4ee1f1">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=75d18aad9a2c">
 <script defer src="../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../assets/js/site.js?v=f05b0a51ccda"></script>
-<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=42281f151bab">
+<script defer src="../../assets/js/site.js?v=2864f2fdd798"></script>
+<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=e555c56c70ec">
 <link rel="manifest" href="manifest.webmanifest">
 </head>
 <body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
@@ -104,7 +104,7 @@
 <!-- NEL_TOOL_GRAPH_START -->
 <section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="poe-power-budget-calculator" data-primary-workflow="poe-rack-power-design">
 <div class="section-heading"><div><p class="eyebrow">ENGINEERING WORKFLOW</p><h2 id="nel-tool-graph-title">Continue the engineering workflow</h2></div></div>
-<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>PoE &amp; Rack Power Design Workflow</strong><p>Verify PoE source capacity, cable voltage delivery, rack power and cooling, then estimate telecom battery backup runtime.</p></div><div class="nel-workflow-step"><strong>Step 1 of 4</strong><div class="nel-workflow-progress" aria-label="Step 1 of 4"><span style="width:25%"></span></div></div></div><div class="nel-tool-graph-nav"><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Previous</span><strong>Workflow start</strong></div><a class="nel-tool-graph-card" href="/tools/poe-voltage-drop-calculator/"><span class="nel-tool-graph-label">Next</span><strong>Ethernet Cable PoE Voltage Drop Calculator</strong><span class="nel-tool-graph-description">Calculate PoE cable resistance, voltage drop, remote voltage, current and power loss.</span></a></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>PoE &amp; Rack Power Design Workflow</strong><p>Verify PoE source capacity, cable voltage delivery, rack power and cooling, then estimate telecom battery backup runtime.</p></div><div class="nel-workflow-step"><strong>Step 1 of 4</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1" aria-valuetext="Step 1 of 4" aria-label="Step 1 of 4"><span style="width:25%"></span></div></div></div><div class="nel-tool-graph-nav"><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Previous</span><strong>Workflow start</strong></div><a class="nel-tool-graph-card" href="/tools/poe-voltage-drop-calculator/"><span class="nel-tool-graph-label">Next</span><strong>Ethernet Cable PoE Voltage Drop Calculator</strong><span class="nel-tool-graph-description">Calculate PoE cable resistance, voltage drop, remote voltage, current and power loss.</span></a></div>
 <h3 class="nel-tool-graph-subtitle">Related tools</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/poe-voltage-drop-calculator/"><strong>Ethernet Cable PoE Voltage Drop Calculator</strong><span class="nel-tool-graph-description">Calculate PoE cable resistance, voltage drop, remote voltage, current and power loss.</span></a><a class="nel-tool-graph-card" href="/tools/network-rack-power-cooling-calculator/"><strong>Network Rack Power &amp; Cooling Calculator</strong><span class="nel-tool-graph-description">Calculate rack power, current, cooling load, energy and cost.</span></a><a class="nel-tool-graph-card" href="/tools/wifi-coverage-capacity-planner/"><strong>Wi-Fi Coverage &amp; Capacity Planner</strong><span class="nel-tool-graph-description">Estimate bidirectional RF coverage, AP count, user capacity, throughput and channel reuse.</span></a></div><div class="nel-workflow-memberships"><span class="nel-workflow-memberships-label">Also used in</span><span class="nel-workflow-chip">Wireless Access Deployment Workflow</span></div>
 </section>
 <!-- NEL_TOOL_GRAPH_END -->

@@ -138,6 +138,41 @@ function applyPreset(){
   calculate();
 }
 
+const LOSS_RESULT_IDS = ["fiberLoss","spliceTotal","connectorTotal","splitterOtherTotal","fiberLossDiagram","spliceLossDiagram","connectorLossDiagram","physicalLoss","designLoss","budgetRemaining","estimatedRxPower","rxMargin","budgetRemainingText","healthBadge","diagnosisText"];
+const LOSS_INPUT_IDS = ["distance","attenuation","spliceCount","spliceLoss","connectorCount","connectorLoss","splitter1","splitter2","otherLoss","engineeringMargin","availableBudget","txPower","rxThreshold"];
+
+function clearInvalidMarks(){
+  for (const id of LOSS_INPUT_IDS){
+    const field = $(id);
+    if (!field) continue;
+    field.setAttribute("aria-invalid", "false");
+    field.style.outline = "";
+  }
+}
+
+function clearInvalidResult(values){
+  lastResult = null;
+  for (const id of LOSS_RESULT_IDS){
+    const node = $(id);
+    if (node) node.textContent = "—";
+  }
+  const summary = $("summaryCard");
+  if (summary) summary.className = "summary-card";
+  const diagnosis = $("diagnosisBox");
+  if (diagnosis) diagnosis.className = "diagnosis-box";
+  const counts = new Set(["spliceCount","connectorCount"]);
+  for (const id of LOSS_INPUT_IDS){
+    const field = $(id);
+    if (!field) continue;
+    const value = values[id];
+    const invalid = id === "txPower" || id === "rxThreshold"
+      ? !Number.isFinite(value)
+      : !Number.isFinite(value) || value < 0 || (counts.has(id) && !Number.isSafeInteger(value));
+    field.setAttribute("aria-invalid", invalid ? "true" : "false");
+    field.style.outline = invalid ? "2px solid #b42318" : "";
+  }
+}
+
 function calculate(){
   const values = {
     distance:numberValue("distance"),
@@ -157,9 +192,11 @@ function calculate(){
 
   const calculation = window.NELFiberLossEngine.calculate(values);
   if (!calculation.ok){
+    clearInvalidResult(values);
     $("validationMessage").textContent = translations[currentLang].validation;
     return;
   }
+  clearInvalidMarks();
   $("validationMessage").textContent = "";
 
   const {

@@ -2,7 +2,7 @@
 
 <html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="tools/telecom-solar-battery-sizing-calculator/"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="../" name="app-base"/><title>通信站点光伏发电与储能配置计算器 | NetEngineerLab</title><meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="通信站点光伏发电与储能配置计算器 | NetEngineerLab" property="og:title"/><meta content="根据通信站点负载、峰值日照、系统损耗、备电目标和经济参数，计算光伏阵列、储能、发电平衡与节能减排。" property="og:description"/><meta content="https://netengineerlab.com/tools/telecom-solar-battery-sizing-calculator/zh/" property="og:url"/><meta content="https://netengineerlab.com/tools/telecom-solar-battery-sizing-calculator/images/og-telecom-solar-battery-sizing-calculator.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://netengineerlab.com/tools/telecom-solar-battery-sizing-calculator/images/og-telecom-solar-battery-sizing-calculator.png" name="twitter:image"/><meta content="根据通信站点负载、峰值日照、系统损耗、备电目标和经济参数，计算光伏阵列、储能、发电平衡与节能减排。" name="description"/><meta content="index,follow,max-image-preview:large" name="robots"/><link href="../css/style.css?v=a76c3280645c" rel="stylesheet"/>
 
-<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=66c8998b2681" data-nel-workflow-style>
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
 
 <meta name="twitter:title" content="通信站点光伏发电与储能配置计算器 | NetEngineerLab">
 <meta name="twitter:description" content="根据通信站点负载、峰值日照、系统损耗、备电目标和经济参数，计算光伏阵列、储能、发电平衡与节能减排。">
@@ -22,14 +22,14 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"所需光伏容量是怎样估算的？","acceptedAnswer":{"@type":"Answer","text":"工具把包含设计余量的站点日耗电量除以峰值日照小时和综合光伏降额系数，得到所需装机容量。"}},{"@type":"Question","name":"峰值日照小时应该怎么选？","acceptedAnswer":{"@type":"Answer","text":"应使用站点所在地的逐月或年度太阳能资源数据。关键通信站点应重点校核弱光季节，而不是只采用全年平均值。"}},{"@type":"Question","name":"连续阴雨天怎样影响储能配置？","acceptedAnswer":{"@type":"Answer","text":"每一个连续阴雨天按 24 小时平均站点负载叠加到基础备电时长，再结合 DOD、电池效率和安全余量修正。"}},{"@type":"Question","name":"现有 -48V 电池组可以复用吗？","acceptedAnswer":{"@type":"Answer","text":"可以录入现有容量并计算缺口，但必须保证容量口径与设计假设一致，最终仍应以厂家放电曲线和现场状态为准。"}},{"@type":"Question","name":"这个工具能替代详细光伏电气设计吗？","acceptedAnswer":{"@type":"Answer","text":"不能。详细设计仍需校核组件串电压、控制器输入范围、温度、保护、线损、电池放电曲线和站点冗余。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=2f6d3d828c10">
-<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=c6e622c573c4">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=6c0b1c4ee1f1">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=75d18aad9a2c">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../../assets/js/site.js?v=f05b0a51ccda"></script>
-<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=42281f151bab">
+<script defer src="../../../assets/js/site.js?v=2864f2fdd798"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=e555c56c70ec">
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference"><!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
@@ -63,7 +63,7 @@
 <!-- NEL_TOOL_GRAPH_START -->
 <section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="telecom-solar-battery-sizing-calculator" data-primary-workflow="telecom-power-energy">
 <div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
-<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">当前流程</span><strong>通信电源与能源工作流</strong><p>把站点负载、AC/DC配电、整流容量与运行诊断、后备电池、油机保障、光伏供能与设施能效串成完整能源工程流程。</p></div><div class="nel-workflow-step"><strong>步骤 7 / 8</strong><div class="nel-workflow-progress" aria-label="步骤 7 / 8"><span style="width:88%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/generator-fuel-runtime-calculator/zh/"><span class="nel-tool-graph-label">上一步</span><strong>油机油耗与应急续航计算器</strong><span class="nel-tool-graph-description">根据油机厂家负载油耗曲线，计算通信站点分时油耗、油箱续航、保障油量、补油次数及电池协同。</span></a><a class="nel-tool-graph-card" href="/tools/pue-data-center-energy-efficiency/zh/"><span class="nel-tool-graph-label">下一步</span><strong>数据中心PUE与能效分析器</strong><span class="nel-tool-graph-description">分析PUE、非IT能耗、年度电费、目标PUE节能潜力、WUE/CUE和月度趋势。</span></a></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">当前流程</span><strong>通信电源与能源工作流</strong><p>把站点负载、AC/DC配电、整流容量与运行诊断、后备电池、油机保障、光伏供能与设施能效串成完整能源工程流程。</p></div><div class="nel-workflow-step"><strong>步骤 7 / 8</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="8" aria-valuenow="7" aria-valuetext="步骤 7 / 8" aria-label="步骤 7 / 8"><span style="width:88%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/generator-fuel-runtime-calculator/zh/"><span class="nel-tool-graph-label">上一步</span><strong>油机油耗与应急续航计算器</strong><span class="nel-tool-graph-description">根据油机厂家负载油耗曲线，计算通信站点分时油耗、油箱续航、保障油量、补油次数及电池协同。</span></a><a class="nel-tool-graph-card" href="/tools/pue-data-center-energy-efficiency/zh/"><span class="nel-tool-graph-label">下一步</span><strong>数据中心PUE与能效分析器</strong><span class="nel-tool-graph-description">分析PUE、非IT能耗、年度电费、目标PUE节能潜力、WUE/CUE和月度趋势。</span></a></div>
 <h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/48v-battery-runtime/zh/"><strong>-48V通信机房蓄电池续航计算器</strong><span class="nel-tool-graph-description">计算通信直流电池续航、所需容量、并联组数及恒功率负载电流变化。</span></a><a class="nel-tool-graph-card" href="/tools/pue-data-center-energy-efficiency/zh/"><strong>数据中心PUE与能效分析器</strong><span class="nel-tool-graph-description">分析PUE、非IT能耗、年度电费、目标PUE节能潜力、WUE/CUE和月度趋势。</span></a><a class="nel-tool-graph-card" href="/tools/network-rack-power-cooling-calculator/zh/"><strong>网络机柜功耗与制冷量计算器</strong><span class="nel-tool-graph-description">计算机柜功耗、电流、制冷量、耗电量和电费。</span></a><a class="nel-tool-graph-card" href="/tools/generator-fuel-runtime-calculator/zh/"><strong>油机油耗与应急续航计算器</strong><span class="nel-tool-graph-description">根据油机厂家负载油耗曲线，计算通信站点分时油耗、油箱续航、保障油量、补油次数及电池协同。</span></a></div>
 </section>
 <!-- NEL_TOOL_GRAPH_END -->
