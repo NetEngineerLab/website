@@ -1042,6 +1042,9 @@ function build(){
   html=ensureAsset(html,record.rel,"assets/js/adsense.js","js");
   if(record.info.kind==="home"||record.info.kind==="toolsDirectory")html=ensureAsset(html,record.rel,"data/tools-catalog.js","js");
   html=ensureAsset(html,record.rel,"assets/js/site.js","js");
+  // Shared calculator scripts render English copy on Spanish pages; the
+  // Spanish runtime translates that copy, so every es tool page needs it.
+  if(record.info.kind==="tool"&&record.info.localeId==="es")html=ensureAsset(html,record.rel,"assets/js/es-launch-runtime.js","js");
   html=versionExistingAsset(html,"assets/css/home-mobile-layout.css");
   html=versionExistingAsset(html,"assets/css/home-v2.css");
   html=versionExistingAsset(html,"assets/css/guide.css");
@@ -1064,12 +1067,13 @@ function build(){
  }
  generateSitemap(groups);
  const cookieCssHref=`/assets/css/cookie-consent.css?v=${assetVersion("assets/css/cookie-consent.css")}`;
+ const cookieJsSrc=`/assets/js/cookie-consent.js?v=${assetVersion("assets/js/cookie-consent.js")}`;
  let layoutRepairs=0;
  for(const file of walk(siteRoot)){
   if(!file.endsWith(".html"))continue;
   const rel=posix(path.relative(siteRoot,file));
   const before=fs.readFileSync(file,"utf8");
-  let after=repairPageLayout(before,rel,{cookieCssHref});
+  let after=repairPageLayout(before,rel,{cookieCssHref,cookieJsSrc});
   after=versionExistingAsset(after,"assets/css/cookie-consent.css");
   after=versionExistingAsset(after,"assets/js/cookie-consent.js");
   if(after!==before){

@@ -38,10 +38,12 @@ function get(url){
 
 async function checkGa4({origin,expectedId},request=get){
  const stamp=Date.now();
- const [home,config,analytics]=await Promise.all([
+ const consentSamples=["/tools/ospf-cost-calculator/","/guides/lacp-member-congestion/","/tools/pon-fiber-calculators/zh/"];
+ const [home,config,analytics,...samples]=await Promise.all([
   request(`${origin}/?ga4-check=${stamp}`),
   request(`${origin}/data/site-config.js?ga4-check=${stamp}`),
-  request(`${origin}/assets/js/analytics.js?ga4-check=${stamp}`)
+  request(`${origin}/assets/js/analytics.js?ga4-check=${stamp}`),
+  ...consentSamples.map(page=>request(`${origin}${page}?ga4-check=${stamp}`))
  ]);
  const errors=[];
  if(home.status!==200)errors.push(`home HTTP ${home.status}`);
@@ -54,6 +56,14 @@ async function checkGa4({origin,expectedId},request=get){
  if(analytics.body.includes("document.currentScript"))errors.push("production analytics loader still uses document.currentScript");
  if(!analytics.body.includes("script[data-nel-analytics]"))errors.push("production duplicate-loader guard is missing");
  if(!home.body.includes("assets/js/analytics.js"))errors.push("home page does not reference the shared analytics loader");
+ if(!home.body.includes("cookie-consent.js"))errors.push("home page does not load the consent banner");
+ // Pages that load the consent-gated analytics loader must also load the
+ // banner, or accepted visitors are never measured on those pages.
+ samples.forEach((sample,index)=>{
+  const page=consentSamples[index];
+  if(sample.status!==200)errors.push(`${page} HTTP ${sample.status}`);
+  else if(sample.body.includes("assets/js/analytics.js")&&!sample.body.includes("cookie-consent.js"))errors.push(`${page} loads analytics.js without the consent banner`);
+ });
 
  return{status:errors.length?"FAIL":"PASS",origin,measurementId:expectedId,errors};
 }

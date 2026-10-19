@@ -40,6 +40,7 @@
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../../assets/js/site.js?v=2864f2fdd798"></script>
+<script defer src="../../../assets/js/es-launch-runtime.js?v=4dc071a687db"></script>
 <link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=e4c5b5c2101a">
 <link rel="manifest" href="../manifest-es.webmanifest">
 </head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
@@ -86,7 +87,7 @@
 <div class="field"><label for="rxSensitivity">Sensibilidad del receptor</label><div class="input-wrap"><input id="rxSensitivity" step="0.1" type="number" value="-27"/><span>dBm</span></div></div>
 <div class="field"><label for="rxOverload">Umbral de sobrecarga del receptor</label><div class="input-wrap"><input id="rxOverload" step="0.1" type="number" value="-8"/><span>dBm</span></div></div>
 <div class="field"><label for="systemReach">Tope de alcance del sistema / protocolo</label><div class="input-wrap"><input id="systemReach" min="0.1" step="0.1" type="number" value="20"/><span>km</span></div><small class="help">Edítelo según el OLT, la ONU, la capacidad de ranging o las reglas de planificación.</small></div>
-<div class="field"><label for="plannedDistancia">Distancia de enlace planificada</label><div class="input-wrap"><input id="plannedDistancia" min="0" step="0.1" type="number" value="5"/><span>km</span></div></div>
+<div class="field"><label for="plannedDistance">Distancia de enlace planificada</label><div class="input-wrap"><input id="plannedDistance" min="0" step="0.1" type="number" value="5"/><span>km</span></div></div>
 <div class="field"><label for="margin">Margen de ingeniería</label><div class="input-wrap"><input id="margin" min="0" step="0.1" type="number" value="3"/><span>dB</span></div></div>
 <div class="subheading">Fibra y pérdidas pasivas fijas</div>
 <div class="field"><label for="wavelength">Longitud de onda</label><div class="input-wrap no-unit"><select id="wavelength"><option value="1310">1310 nm</option><option selected="" value="1490">1490 nm</option><option value="1550">1550 nm</option><option value="custom">Personalizado</option></select></div></div>
@@ -106,8 +107,8 @@
 <div class="summary-card healthy" id="summaryCard"><div><p>Distancia máxima efectiva</p><strong><span id="effectiveMax">0.00</span><small>km</small></strong></div><div class="health-badge" id="healthBadge">✓ El diseño cumple</div></div>
 <div class="metric-grid">
 <article class="metric-card"><span class="metric-icon">OPT</span><div><small>Distancia óptica máxima</small><strong><span id="opticalMax">0.00</span> km</strong></div></article>
-<article class="metric-card"><span class="metric-icon">SYS</span><div><small>Tope de alcance del sistema</small><strong><span id="systemReachResultado">0.00</span> km</strong></div></article>
-<article class="metric-card"><span class="metric-icon">PLAN</span><div><small>Distancia de enlace planificada</small><strong><span id="plannedDistanciaResultado">0.00</span> km</strong></div></article>
+<article class="metric-card"><span class="metric-icon">SYS</span><div><small>Tope de alcance del sistema</small><strong><span id="systemReachResult">0.00</span> km</strong></div></article>
+<article class="metric-card"><span class="metric-icon">PLAN</span><div><small>Distancia de enlace planificada</small><strong><span id="plannedDistanceResult">0.00</span> km</strong></div></article>
 <article class="metric-card"><span class="metric-icon">PON</span><div><small>Total split ratio</small><strong id="splitRatio">1:64</strong></div></article>
 </div>
 <div class="distance-visual"><div class="distance-head"><span>Distancia planificada frente a la efectiva</span><strong id="distanceScaleMax">20.0 km</strong></div><div class="distance-track"><div class="distance-effective" id="effectiveBar"></div><div class="distance-plan" id="plannedMarker"></div></div><div class="distance-labels"><span>0 km</span><span>Alcance efectivo</span><span>Máximo de la escala</span></div></div>
@@ -125,8 +126,8 @@
 <div class="breakdown-row"><span>Pérdida de empalmes</span><span><b id="spliceTotal">0.00</b> dB</span></div>
 <div class="breakdown-row"><span>Pérdida de conectores</span><span><b id="connectorTotal">0.00</b> dB</span></div>
 <div class="breakdown-row"><span>Pérdida de divisores</span><span><b id="splitterTotal">0.00</b> dB</span></div>
-<div class="breakdown-row"><span>Otras pérdidas pasivas</span><span><b id="otherResultado">0.00</b> dB</span></div>
-<div class="breakdown-row"><span>Margen de ingeniería</span><span><b id="marginResultado">0.00</b> dB</span></div>
+<div class="breakdown-row"><span>Otras pérdidas pasivas</span><span><b id="otherResult">0.00</b> dB</span></div>
+<div class="breakdown-row"><span>Margen de ingeniería</span><span><b id="marginResult">0.00</b> dB</span></div>
 <div class="breakdown-row"><span>Margen del presupuesto físico</span><span><b id="physicalHeadroom">0.00</b> dB</span></div>
 </div>
 <div class="limiter"><strong>Factor limitante principal</strong><span id="limiterText">—</span></div>
@@ -174,7 +175,7 @@
   </div>
 </footer>
 <!-- NEL_FOOTER_END -->
-<script defer="" src="../js/engine.js"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=b97cad384381"></script>
+<script defer="" src="../js/engine.js"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=f3180701a06e"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
 <script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script></body></html>
 

@@ -6,7 +6,8 @@
   if (!engine || typeof engine.calculate !== 'function') return;
   const style = document.createElement('link');
   style.rel = 'stylesheet';
-  style.href = new URL(zh ? '../css/deep-workflow.css' : 'css/deep-workflow.css', location.href).href;
+  const scriptSrc = (document.currentScript && document.currentScript.src) || new URL('/tools/telecom-solar-battery-sizing-calculator/js/deep-workflow.js', location.href).href;
+  style.href = new URL('../css/deep-workflow.css', scriptSrc).href;
   document.head.appendChild(style);
 
   const fields = [...document.querySelectorAll('main input, main select, main textarea')].filter((field) => field.id);

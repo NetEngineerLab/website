@@ -1,5 +1,5 @@
 const $=id=>document.getElementById(id);
-const LANG=document.documentElement.lang.toLowerCase().startsWith("en")?"en":"zh";
+const LANG=(document.documentElement.lang||"en").toLowerCase().startsWith("zh")?"zh":"en";
 const T={
  zh:{
   healthy:"✓ 正常",warning:"⚠ 弱光预警",failed:"✕ 严重弱光",overload:"⚡ 光功率过高",nosignal:"○ 疑似无光",
@@ -90,7 +90,8 @@ function calculate(){
  }
  const summary=$("summaryCard"),diag=$("diagnosis"),badge=$("healthBadge");summary.className="summary-card "+status;diag.className="diagnosis "+status;badge.textContent=T[LANG][status];
  $("diagnosisText").textContent=T[LANG][status+"Text"];
- const causes=T[LANG]["causes"+status[0].toUpperCase()+status.slice(1)];
+ const causeKey={healthy:"causesHealthy",warning:"causesWarning",failed:"causesFailed",overload:"causesOverload",nosignal:"causesNoSignal"}[status];
+ const causes=T[LANG][causeKey]||[];
  $("causeList").innerHTML=causes.map((x,i)=>`<li><b>${i+1}.</b> ${x}</li>`).join("");
  const min=v.noSignal,max=v.over+5,clamped=Math.max(min,Math.min(max,v.measured)),pos=(clamped-min)/(max-min)*100;$("gaugeMarker").style.left=`calc(${pos}% - 2px)`;
  $("gaugePower").textContent=v.measured.toFixed(2)+" dBm";

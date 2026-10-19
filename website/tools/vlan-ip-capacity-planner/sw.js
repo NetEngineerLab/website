@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-vlan-ip-capacity-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-02fc16bbd49f-5e30bd15c94f";
+const CACHE = "nel-vlan-ip-capacity-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-02fc16bbd49f-32ab8927c9dc";
 const CORE = [
   "./index.html",
   "./",
@@ -8,7 +8,7 @@ const CORE = [
   "./manifest.webmanifest",
   "./css/style.css?v=9850477ac6fc",
   "./js/engine.js?v=20260919-v2",
-  "./js/app.js?v=75b8a82a21b6",
+  "./js/app.js?v=18e92986f86a",
   "./images/logo.svg",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",

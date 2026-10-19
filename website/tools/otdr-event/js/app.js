@@ -1,5 +1,5 @@
 const $=id=>document.getElementById(id);
-const LANG=document.documentElement.lang.toLowerCase().startsWith("en")?"en":"zh";
+const LANG=(document.documentElement.lang||"en").toLowerCase().startsWith("zh")?"zh":"en";
 const RULES=window.NEL_OTDR_RULES;
 const ENGINE=window.OTDREngine;
 let rows=[];

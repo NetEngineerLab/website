@@ -54,6 +54,10 @@ assert(calculateAt > repairedMain.indexOf('id="before-after-inputs"'), "fixture:
 const untouched = repairPageLayout(repaired, "tools/generator-fuel-runtime-calculator/es/index.html", {cookieCssHref: "/assets/css/cookie-consent.css?v=test"});
 assert(untouched === repaired, "layout repair must be idempotent");
 const noScript = repairPageLayout("<html><head></head><body><main></main></body></html>", "index.html", {cookieCssHref: "/assets/css/cookie-consent.css?v=test"});
+const analyticsOnly = repairPageLayout('<html><head><script defer src="../../assets/js/analytics.js?v=1"></script></head><body><main></main></body></html>', "guides/example/index.html", {cookieCssHref: "/assets/css/cookie-consent.css?v=test", cookieJsSrc: "/assets/js/cookie-consent.js?v=test"});
+assert(loadsConsentScript(analyticsOnly), "pages loading analytics.js must gain the consent banner script");
+assert(linksConsentStylesheet(analyticsOnly), "pages gaining the consent script must also gain its stylesheet");
+assert(repairPageLayout(analyticsOnly, "guides/example/index.html", {cookieCssHref: "/assets/css/cookie-consent.css?v=test", cookieJsSrc: "/assets/js/cookie-consent.js?v=test"}) === analyticsOnly, "consent script injection must be idempotent");
 assert(!linksConsentStylesheet(noScript), "pages without the consent script must not gain the stylesheet");
 
 const consentSource = fs.readFileSync(path.join(siteRoot, "assets/js/cookie-consent.js"), "utf8");

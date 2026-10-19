@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-subnet-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-02fc16bbd49f-2a9286bc12f5";
+const CACHE = "nel-subnet-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-02fc16bbd49f-8b4232cd1744";
 const CORE = [
   "./index.html",
   "./",
