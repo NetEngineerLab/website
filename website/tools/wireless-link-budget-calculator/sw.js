@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-wireless-link-budget-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-02fc16bbd49f-9e4a5baf034c";
+const CACHE = "nel-wireless-link-budget-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-8d6b87f70344";
 const CORE = [
   "./index.html",
   "./",
@@ -8,7 +8,7 @@ const CORE = [
   "./manifest.webmanifest",
   "./css/style.css?v=e8f05b00423f",
   "./js/engine.js?v=20260919-v2",
-  "./js/app.js?v=a40046005b94",
+  "./js/app.js?v=cb6dc92cee52",
   "./images/logo.svg",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",
@@ -19,7 +19,7 @@ const CORE = [
   "../../assets/css/tool-workflow.css?v=8c74b394ef2c",
   "../../assets/js/analytics.js?v=1156b7864023",
   "../../assets/js/adsense.js?v=f075c80ccc75",
-  "../../assets/js/site.js?v=2864f2fdd798",
+  "../../assets/js/site.js?v=b563dd0297f5",
   "../../assets/js/tool-integration.js?v=05f7934f4687",
   "../../assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b",
   "../../assets/css/cookie-consent.css?v=8dd1728bf5eb",

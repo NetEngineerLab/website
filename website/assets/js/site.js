@@ -69,7 +69,8 @@ function initNetEngineerLabSite(){
   const status=document.querySelector("[data-filter-status]");
   if(status){
    const label=filterButtons.find(button=>button.dataset.filter===selected)?.dataset.filterLabel||selected;
-   status.textContent=status.dataset.template?.replace("{count}",String(visible)).replace("{category}",label)||`${visible} tools`;
+   const template=(visible===1&&status.dataset.templateOne)||status.dataset.template;
+   status.textContent=template?.replace("{count}",String(visible)).replace("{category}",label)||`${visible} tools`;
   }
   if(updateUrl&&isToolsDirectory){
    const url=new URL(location.href);

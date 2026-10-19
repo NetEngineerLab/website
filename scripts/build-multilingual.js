@@ -177,7 +177,9 @@ function prerenderToolGrid(html,currentInfo,locale){
   html=html.slice(0,contentStart)+rendered+tail.slice(emptyClose[1].length);
  }
  if(currentInfo.kind==="home"){
-  if(locale.id==="es")html=html.replace(/(<a\b[^>]*data-category-link="([^"]+)"[^>]*href=")[^"]+("[^>]*><strong>)([^<]+)(<\/strong>)/g,(whole,before,category,after,title,close)=>before+"../tools/?category="+category+after+title.replace(/(?: \(English\))+/g,"")+" (English)"+close);
+  // The Spanish directory now carries every category filter, so Spanish
+  // category cards open /tools/es/?category=… rather than the English list.
+  if(locale.id==="es")html=html.replace(/(<a\b[^>]*data-category-link="([^"]+)"[^>]*href=")[^"]+("[^>]*><strong>)([^<]+)(<\/strong>)/g,(whole,before,category,after,title,close)=>before+"../tools/es/?category="+category+after+title.replace(/(?: \(English\))+/g,"")+close);
   const counts=activeTools.reduce((map,tool)=>{map[tool.category]=(map[tool.category]||0)+1;return map},{});
   html=html.replace(/<(b|span)\b([^>]*\bdata-category-count\s*=\s*["']([^"']+)["'][^>]*)>[\s\S]*?<\/\1>/gi,(whole,tag,attrs,category)=>`<${tag}${attrs}>${counts[category]||0}</${tag}>`);
  }
@@ -1076,6 +1078,9 @@ function build(){
   let after=repairPageLayout(before,rel,{cookieCssHref,cookieJsSrc});
   after=versionExistingAsset(after,"assets/css/cookie-consent.css");
   after=versionExistingAsset(after,"assets/js/cookie-consent.js");
+  // seo-engine.js is served from /assets/* with a one-day edge cache, so give
+  // it a content hash like every other shared asset.
+  after=versionExistingAsset(after,"assets/js/seo-engine.js");
   if(after!==before){
    writeFileWithRetry(file,after,"utf8");
    layoutRepairs++;
