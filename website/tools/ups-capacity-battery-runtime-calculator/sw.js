@@ -1,4 +1,4 @@
-"use strict";const CACHE = "nel-ups-capacity-battery-runtime-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-8d6d9e1419c2-da8cb0d465d2";
+"use strict";const CACHE = "nel-ups-capacity-battery-runtime-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-8d6d9e1419c2-2c2bd6a44b35";
 const CORE = [
   "./",
   "./index.html",

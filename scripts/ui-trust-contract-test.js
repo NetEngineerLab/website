@@ -81,6 +81,9 @@ for (const rel of [
 }
 const esLatency = read("website/tools/fiber-latency-calculator/es/index.html");
 assert.match(esLatency, /Continuar el flujo de latencia de fibra/, "Spanish fiber latency keeps its only workflow section");
+const esLoss = read("website/tools/fiber-loss/es/index.html");
+assert.match(esLoss, /aria-label="Paso \d+ de \d+"/, "Spanish workflow progress keeps its step label");
+assert.doesNotMatch(esLoss, /aria-label="Progress"/, "Spanish workflow progress must not fall back to Progress");
 
 const progressPages = [
   "website/tools/fiber-latency-calculator/index.html",

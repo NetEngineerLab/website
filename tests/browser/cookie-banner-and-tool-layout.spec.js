@@ -14,7 +14,7 @@ test("cookie banner stays within a quarter of a phone viewport", async ({page}) 
   expect(box.position).toBe("fixed");
   expect(box.top).toBeGreaterThanOrEqual(0);
   expect(box.bottom).toBeLessThanOrEqual(844 + 1);
-  expect(box.height).toBeLessThanOrEqual(844 * 0.25 + 1);
+  expect(box.height).toBeLessThanOrEqual(110);
   expect(await page.evaluate(() => window.scrollY)).toBe(0);
   await banner.locator(".nel-cookie-reject").focus();
   expect(await page.evaluate(() => window.scrollY)).toBe(0);

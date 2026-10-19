@@ -137,16 +137,25 @@ function dedupeContinueWorkflow(html){
  });
 }
 function ensureProgressRole(html){
- return html.replace(/<div\b([^>]*\bclass=["'][^"']*\bnel-workflow-progress\b[^"']*["'][^>]*)>/gi,(whole,attrs)=>{
+ return html.replace(/(<strong>\s*([^<]*?(?:Paso|Step|步骤)\s+\d+\s+(?:de|of|\/)\s+\d+[^<]*)\s*<\/strong>\s*)?<div\b([^>]*\bclass=["'][^"']*\bnel-workflow-progress\b[^"']*["'][^>]*)>/gi,(whole,strongBlock,labelText,attrs)=>{
+  const label=(labelText||"").replace(/\s+/g," ").trim();
+  const step=label.match(/(\d+)\s+(?:de|of|\/)\s+(\d+)/i);
   let next=attrs;
+  if(label&&step){
+   next=next
+    .replace(/\s(?:role|aria-valuemin|aria-valuemax|aria-valuenow|aria-valuetext|aria-label)\s*=\s*(["'])[\s\S]*?\1/gi,"");
+   const escaped=label.replace(/"/g,"&quot;");
+   next+=` role="progressbar" aria-valuemin="1" aria-valuemax="${step[2]}" aria-valuenow="${step[1]}" aria-valuetext="${escaped}" aria-label="${escaped}"`;
+   return `${strongBlock||""}<div${next}>`;
+  }
   if(!/\brole\s*=/.test(next)){
    const width=next.match(/width\s*:\s*(\d+(?:\.\d+)?)%/);
    const now=width?String(Math.round(Number(width[1]))):"0";
    next+=` role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${now}"`;
   }
   if(!/\baria-label\s*=/.test(next)){
-   const text=next.match(/aria-valuetext\s*=\s*(["'])([\s\S]*?)\1/i)?.[2]||"Progress";
-   next+=` aria-label="${text.replace(/"/g,"&quot;")}"`;
+   const text=next.match(/aria-valuetext\s*=\s*(["'])([\s\S]*?)\1/i)?.[2]||"";
+   if(text)next+=` aria-label="${text.replace(/"/g,"&quot;")}"`;
   }
   return next===attrs?whole:`<div${next}>`;
  });

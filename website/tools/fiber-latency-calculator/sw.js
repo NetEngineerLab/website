@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-fiber-latency-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-8d6d9e1419c2-0d72043fdc42";
+const CACHE = "nel-fiber-latency-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-8d6d9e1419c2-af033e7f27c1";
 const CORE = [
   "./index.html",
   "./",

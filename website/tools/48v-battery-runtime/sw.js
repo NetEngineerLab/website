@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-48v-battery-runtime-locale-v1.9.9-04-p0-p1-correctness-consent-offline-8d6d9e1419c2-b333b1cd23a8";
+const CACHE = "nel-48v-battery-runtime-locale-v1.9.9-04-p0-p1-correctness-consent-offline-8d6d9e1419c2-94f29649a048";
 const CORE = [
   "./index.html",
   "./",

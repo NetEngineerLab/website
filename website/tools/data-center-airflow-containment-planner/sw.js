@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-data-center-airflow-containment-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-8d6d9e1419c2-a9b4cfb0928b";
+const CACHE = "nel-data-center-airflow-containment-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-8d6d9e1419c2-4e69ff27b97d";
 const CORE = [
   "./",
   "./index.html",
