@@ -35,7 +35,7 @@ function passingRequest(url){
  if(url.includes("/assets/js/analytics.js")){
   return Promise.resolve({status:200,body:'window.NEL_LOAD_ANALYTICS=()=>{};document.querySelector("script[data-nel-analytics]");'});
  }
- return Promise.resolve({status:200,body:'<script src="assets/js/analytics.js"></script>'});
+ return Promise.resolve({status:200,body:'<script src="assets/js/analytics.js"></script><script src="/assets/js/cookie-consent.js"></script>'});
 }
 
 (async()=>{
@@ -56,6 +56,7 @@ function passingRequest(url){
   ["loader missing",async url=>url.includes("analytics.js")?{status:200,body:'document.querySelector("script[data-nel-analytics]");'}:passingRequest(url),"production analytics loader is missing"],
   ["legacy loader",async url=>url.includes("analytics.js")?{status:200,body:'window.NEL_LOAD_ANALYTICS=()=>document.currentScript;document.querySelector("script[data-nel-analytics]");'}:passingRequest(url),"production analytics loader still uses document.currentScript"],
   ["duplicate guard missing",async url=>url.includes("analytics.js")?{status:200,body:'window.NEL_LOAD_ANALYTICS=()=>{};'}:passingRequest(url),"production duplicate-loader guard is missing"],
+  ["consent banner missing",async url=>url.includes("ospf-cost-calculator")?{status:200,body:'<script src="assets/js/analytics.js"></script>'}:passingRequest(url),"/tools/ospf-cost-calculator/ loads analytics.js without the consent banner"],
   ["home reference missing",async url=>(!url.includes("site-config.js")&&!url.includes("analytics.js"))?{status:200,body:"<main>home</main>"}:passingRequest(url),"home page does not reference the shared analytics loader"]
  ];
  for(const [name,request,expectedError] of cases){

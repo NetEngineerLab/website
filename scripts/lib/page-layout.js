@@ -17,6 +17,17 @@ function repairGeneratorInputIds(html) {
     .replace(/\bid=(["'])startFalloPct\1/g, 'id="startFailurePct"');
 }
 
+// Every page that ships the consent-gated analytics loader must also ship the
+// consent banner; otherwise accepted visitors are never measured there and the
+// visitor cannot revisit the choice on that page.
+function ensureCookieConsentScript(html, cookieJsSrc) {
+  if (!/<script\b[^>]*\bsrc\s*=\s*["'][^"']*assets\/js\/analytics\.js/i.test(html)) return html;
+  if (/<script\b[^>]*\bsrc\s*=\s*["'][^"']*cookie-consent\.js/i.test(html)) return html;
+  if (!cookieJsSrc) throw new Error("cookieJsSrc is required when analytics.js is present without cookie-consent.js");
+  if (!/<\/body>/i.test(html)) throw new Error("Page loads analytics.js but has no </body> for the consent script");
+  return html.replace(/<\/body>(?![\s\S]*<\/body>)/i, `<script src="${cookieJsSrc}"></script>\n</body>`);
+}
+
 function ensureCookieConsentStyles(html, cookieCssHref) {
   if (!/<script\b[^>]*\bsrc\s*=\s*["'][^"']*cookie-consent\.js/i.test(html)) return html;
   if (/<link\b[^>]*\bhref\s*=\s*["'][^"']*cookie-consent\.css/i.test(html)) return html;
@@ -106,6 +117,7 @@ function relocateStrayToolSections(html) {
 
 function repairPageLayout(html, rel, options = {}) {
   let next = repairGeneratorInputIds(html);
+  next = ensureCookieConsentScript(next, options.cookieJsSrc);
   next = ensureCookieConsentStyles(next, options.cookieCssHref);
   if (TARGET_TOOL.test(String(rel || "").replace(/\\/g, "/"))) next = relocateStrayToolSections(next);
   return next;
@@ -114,6 +126,7 @@ function repairPageLayout(html, rel, options = {}) {
 module.exports = {
   repairPageLayout,
   repairGeneratorInputIds,
+  ensureCookieConsentScript,
   ensureCookieConsentStyles,
   relocateStrayToolSections
 };

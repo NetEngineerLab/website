@@ -38,6 +38,7 @@
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../../assets/js/site.js?v=2864f2fdd798"></script>
+<script defer src="../../../assets/js/es-launch-runtime.js?v=4dc071a687db"></script>
 <link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=e4c5b5c2101a">
 <link rel="manifest" href="../manifest-es.webmanifest">
 </head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
@@ -83,7 +84,7 @@
 <div class="field"><label for="nominalCellV">Tensión nominal del elemento</label><div class="input-wrap"><input id="nominalCellV" min="0.1" step="0.01" type="number"/><span>V</span></div></div>
 <div class="field"><label for="floatCellV">Tensión de flotación de referencia por elemento</label><div class="input-wrap"><input id="floatCellV" min="0.1" step="0.01" type="number"/><span>V</span></div></div>
 <div class="field"><label for="startCellV">Tensión de inicio de descarga por elemento</label><div class="input-wrap"><input id="startCellV" min="0.1" step="0.01" type="number"/><span>V</span></div></div>
-<div class="field"><label for="cutdefCellV">Tensión final por elemento</label><div class="input-wrap"><input id="cutdefCellV" min="0.1" step="0.01" type="number"/><span>V</span></div></div>
+<div class="field"><label for="cutoffCellV">Tensión final por elemento</label><div class="input-wrap"><input id="cutoffCellV" min="0.1" step="0.01" type="number"/><span>V</span></div></div>
 <div class="field"><label for="seriesCells">Elementos en serie por cadena</label><div class="input-wrap"><input id="seriesCells" min="1" step="1" type="number"/><span>elementos</span></div></div>
 <div class="field"><label for="parallelStrings">Cadenas en paralelo</label><div class="input-wrap"><input id="parallelStrings" min="1" step="1" type="number" value="2"/><span>cadenas</span></div></div>
 <div class="field"><label for="capacityAh">Capacidad nominal por cadena</label><div class="input-wrap"><input id="capacityAh" min="1" step="1" type="number"/><span>Ah</span></div></div>
@@ -106,20 +107,20 @@
 <div class="field"><label for="agePct">Capacidad restante tras el envejecimiento</label><div class="input-wrap"><input id="agePct" max="100" min="1" step="1" type="number"/><span>%</span></div></div>
 <div class="field"><label for="tempPct">Factor de capacidad por temperatura</label><div class="input-wrap"><input id="tempPct" max="150" min="1" step="1" type="number"/><span>%</span></div></div>
 <div class="field"><label for="curvePct">Calibración con la curva del fabricante</label><div class="input-wrap"><input id="curvePct" max="150" min="1" step="1" type="number"/><span>%</span></div></div>
-<div class="field full"><label for="targetEjecutartimeH">Autonomía objetivo</label><div class="input-wrap"><input id="targetEjecutartimeH" min="0" step=".5" type="number" value="8"/><span>h</span></div></div>
+<div class="field full"><label for="targetRuntimeH">Autonomía objetivo</label><div class="input-wrap"><input id="targetRuntimeH" min="0" step=".5" type="number" value="8"/><span>h</span></div></div>
 </div><div class="input-actions"><button class="primary" id="calculateBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> Calcular autonomía y capacidad</button><button class="secondary" id="resetBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M20 11a8 8 0 1 0-2.3 5.7"></path><path d="M20 4v7h-7"></path></svg> Restablecer preajuste de telecom</button></div>
 </section>
 <section aria-live="polite" class="result-panel card nel-tool-result"><div class="section-title"><span class="section-icon">RT</span><div><h2>Resultados de autonomía y capacidad</h2><p>Autonomía actual y dimensionamiento inverso para la duración objetivo.</p></div></div>
 <div class="summary-card healthy" id="summaryCard"><div><p>Autonomía estimada</p><strong id="runtimeValue">—</strong><small><span>Modelo:</span> <span id="runtimeModel">—</span></small></div><span class="status-badge" id="statusBadge">—</span></div>
 <div class="metric-grid">
 <article class="metric"><small>Tensión nominal</small><strong id="nominalVoltage">—</strong></article><article class="metric"><small>Tensión de flotación de referencia</small><strong id="floatVoltage">—</strong></article>
-<article class="metric"><small>Tensión final</small><strong id="cutdefVoltage">—</strong></article><article class="metric"><small>Carga de diseño</small><strong id="designLoad">—</strong></article>
-<article class="metric"><small>Corriente media de la batería</small><strong id="averageCurrent">—</strong></article><article class="metric"><small>Corriente a la tensión final</small><strong id="cutdefCurrent">—</strong></article>
+<article class="metric"><small>Tensión final</small><strong id="cutoffVoltage">—</strong></article><article class="metric"><small>Carga de diseño</small><strong id="designLoad">—</strong></article>
+<article class="metric"><small>Corriente media de la batería</small><strong id="averageCurrent">—</strong></article><article class="metric"><small>Corriente a la tensión final</small><strong id="cutoffCurrent">—</strong></article>
 <article class="metric"><small>Energía de placa</small><strong id="nameplateEnergy">—</strong></article><article class="metric"><small>Energía entregada estimada</small><strong id="usableEnergy">—</strong></article>
 </div>
 <div class="bar-card"><div class="bar-head"><span>Cobertura de la autonomía objetivo</span><strong id="targetCoverageGap">—</strong></div><div class="bar-track"><div class="bar-fill" id="targetBar" style="width:0"></div></div></div>
 <div class="result-grid"><article class="result-box"><span>Capacidad útil efectiva</span><strong id="correctedCapacity">—</strong></article><article class="result-box"><span>Tasa C media por cadena</span><strong id="cRate">—</strong></article><article class="result-box"><span>Total de elementos/módulos</span><strong id="cellCount">—</strong></article><article class="result-box"><span>Factor útil combinado</span><strong id="usableFactor">—</strong></article></div>
-<div class="breakdown"><h3>Comparación de modelos</h3><table><tbody><tr><th>Modelo simple</th><td id="simpleEjecutartime">—</td></tr><tr><th>Estimación de Peukert</th><td id="peukertEjecutartime">—</td></tr></tbody></table></div>
+<div class="breakdown"><h3>Comparación de modelos</h3><table><tbody><tr><th>Modelo simple</th><td id="simpleRuntime">—</td></tr><tr><th>Estimación de Peukert</th><td id="peukertRuntime">—</td></tr></tbody></table></div>
 <div class="breakdown"><h3>Dimensionamiento inverso para la autonomía objetivo</h3><table><tbody><tr><th>Capacidad total necesaria</th><td id="requiredTotalAh">—</td></tr><tr><th>Capacidad por cadena con el número actual</th><td id="requiredAhPerString">—</td></tr><tr><th>Cadenas en paralelo con los Ah actuales</th><td id="requiredStrings">—</td></tr><tr><th>Autonomía actual menos objetivo</th><td id="targetGap">—</td></tr></tbody></table></div>
 <div class="breakdown"><h3>Desglose del cálculo</h3><table><tbody id="breakdownBody"></tbody></table></div>
 <div class="warning-box"><h3>Criterio de ingeniería</h3><ul id="warningList"></ul></div>

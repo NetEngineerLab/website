@@ -22,6 +22,21 @@ const generated=read("website/data/site-config.js");
 const analytics=read("website/assets/js/analytics.js");
 const consent=read("website/assets/js/cookie-consent.js");
 
+// Every published page that loads the consent-gated analytics loader must also
+// load the consent banner and its stylesheet.
+{
+ const walk=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(entry=>{const full=path.join(dir,entry.name);return entry.isDirectory()?(entry.name==="templates"||entry.name==="node_modules"?[]:walk(full)):[full]});
+ let analyticsPages=0;const missingConsent=[];
+ for(const file of walk(path.join(root,"website"))){
+  if(!file.endsWith(".html"))continue;
+  const html=fs.readFileSync(file,"utf8");
+  if(!/<script\b[^>]*src=["'][^"']*assets\/js\/analytics\.js/i.test(html))continue;
+  analyticsPages++;
+  if(!/<script\b[^>]*src=["'][^"']*cookie-consent\.js/i.test(html)||!/<link\b[^>]*href=["'][^"']*cookie-consent\.css/i.test(html))missingConsent.push(path.relative(root,file));
+ }
+ assert(analyticsPages>=200,`expected the analytics loader on the published page set, found ${analyticsPages}`);
+ assert(missingConsent.length===0,`pages load analytics.js without the consent banner: ${missingConsent.slice(0,10).join(", ")}${missingConsent.length>10?` (+${missingConsent.length-10} more)`:""}`);
+}
 assert(config.analytics&&config.analytics.enabled===true,"analytics.enabled must be true");
 assert(config.analytics&&config.analytics.measurementId===expectedId,`measurementId must be ${expectedId}`);
 assert(generated.includes(`"enabled":true`),"generated site-config.js must enable analytics");

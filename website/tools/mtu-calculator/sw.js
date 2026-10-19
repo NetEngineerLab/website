@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-mtu-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-02fc16bbd49f-5d9ee9418498";
+const CACHE = "nel-mtu-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-02fc16bbd49f-46c63253db25";
 const CORE = [
   "./index.html",
   "./",

@@ -1,5 +1,5 @@
 const $=id=>document.getElementById(id);
-const LANG=document.documentElement.lang.toLowerCase().startsWith("en")?"en":"zh";
+const LANG=(document.documentElement.lang||"en").toLowerCase().startsWith("zh")?"zh":"en";
 const T={
  zh:{
   healthy:"✓ 满足设计",warning:"⚠ 仅物理可达",failed:"✕ 预算不足",limited:"◇ 系统距离受限",
