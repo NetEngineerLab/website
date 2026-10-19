@@ -1,4 +1,4 @@
-"use strict";const CACHE = "nel-pue-data-center-energy-efficiency-locale-v1.9.9-04-p0-p1-correctness-consent-offline-8d6d9e1419c2-d1736bf8ff1d";
+"use strict";const CACHE = "nel-pue-data-center-energy-efficiency-locale-v1.9.9-04-p0-p1-correctness-consent-offline-a15cc319ec0b-3998c0c8126b";
 const CORE = [
   "./",
   "./index.html",
@@ -13,7 +13,7 @@ const CORE = [
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",
-  "../../assets/css/site-shell.css?v=75d18aad9a2c",
+  "../../assets/css/site-shell.css?v=b2e4bd32626d",
   "../../assets/css/tool-design-system.css?v=6c0b1c4ee1f1",
   "../../assets/css/tool-workflow.css?v=8c74b394ef2c",
   "../../assets/js/analytics.js?v=1156b7864023",
@@ -21,6 +21,8 @@ const CORE = [
   "../../assets/js/site.js?v=2864f2fdd798",
   "../../assets/js/tool-integration.js?v=05f7934f4687",
   "../../assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b",
+  "../../assets/css/cookie-consent.css?v=8dd1728bf5eb",
+  "../../assets/js/cookie-consent.js?v=5e6d1af21a6a",
   "../../assets/js/rules-engine/normalize.js?v=9e2cb44bca10",
   "../../assets/js/rules-engine/evidence.js?v=275bb87b037a",
   "../../assets/js/rules-engine/evaluate.js?v=fdd7e0e551ef",
