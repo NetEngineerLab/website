@@ -262,7 +262,7 @@ function identifyPage(rel){
   const locale=localized?folderMap.get(parts[0]):defaultLocale;
   const routeParts=parts.slice(localized?1:0,-1);
   const route=`${routeParts.join("/")}/`;
-  if(route.startsWith("guides/"))return{route,localeId:locale.id,kind:"guide",shellOnly:true};
+  if(route.startsWith("guides/")&&route!=="guides/")return{route,localeId:locale.id,kind:"guide",shellOnly:true};
   if(configuredRoutes.has(route))return{route,localeId:locale.id,kind:sitemapConfig.routes.find(item=>item.route===route)?.pageType||"rootPage"};
  }
  return null;
@@ -570,7 +570,7 @@ function injectSiteShell(html,currentRel,currentInfo){
  const tokens={
   HOME_HREF:href(""),
   TOOLS_HREF:href("tools/"),
-  GUIDES_HREF:href("")+"#guides",
+  GUIDES_HREF:escapeHtml(relativeUrl(currentUrl,urlForRoute("guides/",fs.existsSync(path.join(siteRoot,...fileForRoute("guides/",locale).split("/")))?locale:defaultLocale))),
   TOPICS_HREF:escapeHtml(relativeUrl(currentUrl,urlForRoute("topics/",fs.existsSync(path.join(siteRoot,...fileForRoute("topics/",locale).split("/")))?locale:defaultLocale))),
   GUIDES_CURRENT:currentInfo.route.startsWith("guides/")?' aria-current="page"':"",
   TOPICS_CURRENT:currentInfo.route.startsWith("topics/")?' aria-current="page"':"",
@@ -858,7 +858,7 @@ function enhanceGuideContent(html,info,locale){
  const homeLabel=locale.id==="zh"?"首页":"Home";
  if(!/<nav\b[^>]*class=["'][^"']*\bguide-breadcrumb\b/i.test(html)){
   const title=decodeEntities(html.match(/<main\b[^>]*class=["'][^"']*\bguide-content\b[^>]*>[\s\S]*?<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1]?.replace(/<[^>]+>/g,""))||guideLabel;
-  const nav=`<nav class="guide-breadcrumb" aria-label="${locale.id==="zh"?"面包屑":"Breadcrumb"}"><a href="${escapeHtml(home)}">${homeLabel}</a><span aria-hidden="true">›</span><a href="${escapeHtml(home)}#guides">${guideLabel}</a><span aria-hidden="true">›</span><span aria-current="page">${escapeHtml(title)}</span></nav>`;
+  const nav=`<nav class="guide-breadcrumb" aria-label="${locale.id==="zh"?"面包屑":"Breadcrumb"}"><a href="${escapeHtml(home)}">${homeLabel}</a><span aria-hidden="true">›</span><a href="${escapeHtml(relativeUrl(urlForRoute(info.route,locale),urlForRoute("guides/",locale)))}">${guideLabel}</a><span aria-hidden="true">›</span><span aria-current="page">${escapeHtml(title)}</span></nav>`;
   html=html.replace(/<main\b[^>]*class=["'][^"']*\bguide-content\b[^>]*>/i,`${nav}\n$&`);
  }
  const toolAnchor=/<a\b[^>]*href=["'][^"']*generator-fuel-runtime-calculator[^"']*["'][^>]*>[\s\S]*?<\/a>/i.exec(html);
@@ -961,11 +961,11 @@ function build(){
    let shell=replaceLanguageMenu(injectSiteShell(html,record.rel,record.info),menuMarkup(record.info,group));
    const header=/<!-- NEL_HEADER_START -->[\s\S]*?<!-- NEL_HEADER_END -->/;
    const guideLabel=locale.id==="zh"?"指南":"Guides";
-   const guideHref=`${relativeUrl(urlForRoute(record.info.route,locale),urlForRoute("",locale))}#guides`;
+   const guideHref=relativeUrl(urlForRoute(record.info.route,locale),urlForRoute("guides/",locale));
    const breadcrumb=shell.match(/<nav\b[^>]*class=["'][^"']*\bguide-breadcrumb\b[^"']*["'][^>]*>[\s\S]*?<\/nav>/i);
    if(breadcrumb){
     const guideCrumb=new RegExp(`<span>\\s*${guideLabel}\\s*<\\/span>`);
-    shell=shell.replace(breadcrumb[0],breadcrumb[0].replace(guideCrumb,`<a href="${escapeHtml(guideHref)}">${guideLabel}</a>`));
+    shell=shell.replace(breadcrumb[0],breadcrumb[0].replace(guideCrumb,`<a href="${escapeHtml(guideHref)}">${guideLabel}</a>`).replace(/href="[^"]*#guides"/g,`href="${escapeHtml(guideHref)}"`));
    }
    shell=finishSeo(shell,record,locale);
    shell=removeHeadLinks(shell);

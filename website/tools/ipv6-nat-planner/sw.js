@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-ipv6-nat-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-bf76d1d02ed3";
+const CACHE = "nel-ipv6-nat-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-ea30b2b2cf30";
 const CORE = [
   "./index.html",
   "./",

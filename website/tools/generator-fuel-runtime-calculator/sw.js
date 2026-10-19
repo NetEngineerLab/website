@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-generator-fuel-runtime-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-5a6194d6adb5";
+const CACHE = "nel-generator-fuel-runtime-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-e3e1677ba305";
 const CORE = [
   "./",
   "./index.html",
