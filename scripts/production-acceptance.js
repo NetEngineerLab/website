@@ -27,6 +27,8 @@ const sharedRuntimeAssets=[
   {sitePath:"assets/js/site.js",cachePath:"../../assets/js/site.js"},
   {sitePath:"assets/js/tool-integration.js",cachePath:"../../assets/js/tool-integration.js"},
   {sitePath:"assets/js/tool-shell-v1.9.9-04.js",cachePath:"../../assets/js/tool-shell-v1.9.9-04.js"},
+  {sitePath:"assets/css/cookie-consent.css",cachePath:"../../assets/css/cookie-consent.css"},
+  {sitePath:"assets/js/cookie-consent.js",cachePath:"../../assets/js/cookie-consent.js"},
   ...rulesRuntimeAssets(site)
 ];
 const managedHtmlAssets=[...sharedRuntimeAssets.map(item=>item.sitePath),"data/tools-catalog.js"];

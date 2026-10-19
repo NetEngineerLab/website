@@ -319,12 +319,13 @@ body.nel-tool-detail-page .hub-return {
   box-sizing:border-box;
   line-height:1.5;
 }
-@media (max-width:768px){
-  body.nel-tool-detail-page > .hub-return{
-    width:min(calc(100% - (var(--nel-tool-gutter, 14px) * 2)), var(--nel-tool-max-width, 1120px)) !important;
-    margin-left:auto !important;
-    margin-right:auto !important;
-  }
+/* Direct body children are outside the guttered main. Use the same column as
+   the neighbouring cards at every breakpoint, including desktop. */
+body.nel-tool-detail-page > .hub-return{
+  width:min(calc(100% - (var(--nel-tool-gutter) * 2)), var(--nel-tool-max-width)) !important;
+  max-width:var(--nel-tool-max-width) !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
 }
 body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid > .content-section {
   grid-column:1 / -1;

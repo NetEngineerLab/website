@@ -48,6 +48,52 @@ test("fresh guide load keeps the cookie banner in view without scrolling", async
   expect(await page.evaluate(() => window.scrollY)).toBe(0);
 });
 
+const hubReturnSamples = [
+  "/tools/optical-power-budget/zh/",
+  "/tools/subnet-calculator/",
+  "/tools/pon-fiber-calculators/",
+  "/topics/switch-oversubscription/"
+];
+
+async function hubReturnAlignment(page) {
+  return page.evaluate(() => {
+    const hub = document.querySelector(".hub-return");
+    if (!hub) return {error: "missing hub-return"};
+    const hubBox = hub.getBoundingClientRect();
+    const selectors = [
+      "body > .content-section",
+      "main.calculator-hub .hub-faq details",
+      "main .topic-tools",
+      "main.nel-tool-grid > .card"
+    ];
+    const cards = selectors
+      .flatMap(selector => [...document.querySelectorAll(selector)])
+      .filter(node => node !== hub && !hub.contains(node));
+    cards.sort((a, b) => b.getBoundingClientRect().width - a.getBoundingClientRect().width);
+    const card = cards[0];
+    if (!card) return {error: "missing neighbouring card"};
+    const cardBox = card.getBoundingClientRect();
+    return {
+      left: Math.abs(hubBox.left - cardBox.left),
+      right: Math.abs(hubBox.right - cardBox.right)
+    };
+  });
+}
+
+for (const width of [1280, 390]) {
+  test(`hub return lines up with the neighbouring card at ${width}px`, async ({page}) => {
+    await page.addInitScript(() => localStorage.setItem("nel_cookie_consent_v1", "false"));
+    await page.setViewportSize({width, height: 900});
+    for (const url of hubReturnSamples) {
+      await page.goto(url, {waitUntil: "load"});
+      const alignment = await hubReturnAlignment(page);
+      expect(alignment.error, url).toBeUndefined();
+      expect(alignment.left, `${url} left`).toBeLessThanOrEqual(1);
+      expect(alignment.right, `${url} right`).toBeLessThanOrEqual(1);
+    }
+  });
+}
+
 test("generator and breaker calculator inputs stay inside main and calculate", async ({page}) => {
   await page.addInitScript(() => localStorage.setItem("nel_cookie_consent_v1", "false"));
   await page.goto("/tools/generator-fuel-runtime-calculator/es/", {waitUntil: "load"});

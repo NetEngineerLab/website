@@ -54,6 +54,8 @@ const sharedRuntimeAssets=[
  {sitePath:"assets/js/site.js",cachePath:"../../assets/js/site.js"},
  {sitePath:"assets/js/tool-integration.js",cachePath:"../../assets/js/tool-integration.js"},
  {sitePath:"assets/js/tool-shell-v1.9.9-04.js",cachePath:"../../assets/js/tool-shell-v1.9.9-04.js"},
+ {sitePath:"assets/css/cookie-consent.css",cachePath:"../../assets/css/cookie-consent.css"},
+ {sitePath:"assets/js/cookie-consent.js",cachePath:"../../assets/js/cookie-consent.js"},
  ...rulesRuntimeAssets(siteRoot)
 ];
 const assetVersionCache=new Map();
@@ -1075,7 +1077,9 @@ function build(){
   if(!file.endsWith(".html"))continue;
   const rel=posix(path.relative(siteRoot,file));
   const before=fs.readFileSync(file,"utf8");
-  const after=repairPageLayout(before,rel,{cookieCssHref});
+  let after=repairPageLayout(before,rel,{cookieCssHref});
+  after=versionExistingAsset(after,"assets/css/cookie-consent.css");
+  after=versionExistingAsset(after,"assets/js/cookie-consent.js");
   if(after!==before){
    writeFileWithRetry(file,after,"utf8");
    layoutRepairs++;

@@ -4,6 +4,7 @@
 const fs = require("fs");
 const path = require("path");
 const {repairPageLayout} = require("./lib/page-layout");
+const {stableFileHash} = require("./stable-text-hash");
 
 const root = path.resolve(__dirname, "..");
 const siteRoot = path.join(root, "website");
@@ -82,16 +83,25 @@ for (const rel of toolPages) {
   }
 }
 
+const consentCssHash = stableFileHash(path.join(siteRoot, "assets/css/cookie-consent.css"), 12);
+const consentJsHash = stableFileHash(path.join(siteRoot, "assets/js/cookie-consent.js"), 12);
 let consentPages = 0;
 for (const file of walk(siteRoot)) {
-  if (!file.endsWith(".html")) continue;
+  if (!file.endsWith(".html") || file.includes(`${path.sep}templates${path.sep}`)) continue;
   const html = fs.readFileSync(file, "utf8");
-  if (!loadsConsentScript(html)) continue;
-  consentPages += 1;
   const rel = path.relative(root, file);
-  assert(linksConsentStylesheet(html), `${rel}: cookie-consent.js without cookie-consent.css`);
+  const cssVersions = [...html.matchAll(/cookie-consent\.css(?:\?v=([^"'#\s]*))?/gi)].map(match => match[1] || "");
+  const jsVersions = [...html.matchAll(/cookie-consent\.js(?:\?v=([^"'#\s]*))?/gi)].map(match => match[1] || "");
+  if (!cssVersions.length && !jsVersions.length) continue;
+  consentPages += 1;
+  assert(cssVersions.length > 0 && jsVersions.length > 0, `${rel}: cookie consent css and js must be referenced together`);
+  assert(cssVersions.every(version => version === consentCssHash), `${rel}: cookie-consent.css must use content hash ${consentCssHash}`);
+  assert(jsVersions.every(version => version === consentJsHash), `${rel}: cookie-consent.js must use content hash ${consentJsHash}`);
 }
-assert(consentPages > 40, `expected the consent script on the published page set, found ${consentPages}`);
+assert(consentPages > 40, `expected the consent assets on the published page set, found ${consentPages}`);
+const sampleWorker = fs.readFileSync(path.join(siteRoot, "tools/subnet-calculator/sw.js"), "utf8");
+assert(sampleWorker.includes(`../../assets/css/cookie-consent.css?v=${consentCssHash}`), "service worker cache must name cookie-consent.css by content hash");
+assert(sampleWorker.includes(`../../assets/js/cookie-consent.js?v=${consentJsHash}`), "service worker cache must name cookie-consent.js by content hash");
 
 if (errors.length) {
   console.error(errors.join("\n"));
