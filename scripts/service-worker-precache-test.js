@@ -5,7 +5,7 @@ const assert = require("node:assert/strict");
 const path = require("node:path");
 const fs = require("node:fs");
 const os = require("node:os");
-const { parsePrecacheAssets, parsePrecacheArrayLiteral, hasPrecacheAsset, precachePathIssues } = require("./service-worker-precache");
+const { parsePrecacheAssets, parsePrecacheArrayLiteral, hasPrecacheAsset, precachePathIssues, refreshServiceWorkerCacheName } = require("./service-worker-precache");
 
 assert.deepEqual(parsePrecacheArrayLiteral("['./index.html', './js/engine.js',]"), ["./index.html", "./js/engine.js"]);
 assert.deepEqual(parsePrecacheArrayLiteral('["./index.html", "./js/engine.js"]'), ["./index.html", "./js/engine.js"]);
@@ -77,6 +77,23 @@ try {
   assert(precachePathIssues(["./linked/secret.txt"], fixtureTool, fixtureSite).length > 0);
 } finally {
   fs.rmSync(fixtureRoot, { recursive: true, force: true });
+}
+
+const refreshRoot = fs.mkdtempSync(path.join(os.tmpdir(), "nel-sw-refresh-"));
+try {
+  const refreshSite = path.join(refreshRoot, "website");
+  const refreshTool = path.join(refreshSite, "tools", "demo");
+  fs.mkdirSync(refreshTool, { recursive: true });
+  fs.writeFileSync(path.join(refreshTool, "index.html"), "<p>one</p>\n");
+  const source = 'const CACHE = "nel-demo-locale-v1-aaaaaaaaaaaa-bbbbbbbbbbbb";\nconst CORE = [\n  "./index.html"\n];\n';
+  const first = refreshServiceWorkerCacheName(source, refreshTool, refreshSite);
+  assert(first !== source, "cache name must follow precached bytes");
+  assert.equal(refreshServiceWorkerCacheName(first, refreshTool, refreshSite), first);
+  fs.writeFileSync(path.join(refreshTool, "index.html"), "<p>two</p>\n");
+  const second = refreshServiceWorkerCacheName(first, refreshTool, refreshSite);
+  assert(second !== first, "cache name must change when a precached asset is rewritten");
+} finally {
+  fs.rmSync(refreshRoot, { recursive: true, force: true });
 }
 
 console.log("Service Worker precache parser tests: PASS");

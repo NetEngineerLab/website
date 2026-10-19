@@ -6,7 +6,7 @@ const path=require("path");
 const{execFileSync}=require("child_process");
 const{stableFileHash,stableHash}=require("./stable-text-hash");
 const{rulesRuntimeAssets}=require("./rules-runtime-assets");
-const{precachePathIssues,parsePrecacheArrayLiteral}=require("./service-worker-precache");
+const{parsePrecacheArrayLiteral,serviceWorkerCacheVersion}=require("./service-worker-precache");
 const{repairJsonLdHtml}=require("./lib/jsonld-localize");
 const{
  contentFingerprint,
@@ -323,14 +323,7 @@ function sharedRuntimeVersion(){
  return stableHash(sharedRuntimeAssets.map(item=>assetVersion(item.sitePath)).join(":"),12);
 }
 function toolCacheVersion(toolRoot,assets){
- const issues=precachePathIssues(assets,toolRoot,siteRoot);
- if(issues.length)throw new Error(`Invalid Service Worker precache assets for ${path.relative(siteRoot,toolRoot)}: ${issues.join("; ")}`);
- return stableHash(assets.map(item=>{
-  const clean=String(item).split(/[?#]/)[0];
-  const target=path.resolve(toolRoot,clean);
-  if(fs.existsSync(target)&&fs.statSync(target).isFile())return`${item}:${stableFileHash(target,12)}`;
-  return item;
- }).join("\n"),12);
+ return serviceWorkerCacheVersion(assets,toolRoot,siteRoot);
 }
 function removeInvalidVoidClosers(html){
  // HTML void elements never have end tags. Historical Spanish rollout files
@@ -1069,7 +1062,6 @@ function build(){
   html=html.replace(/<head>([\s\S]*?)<\/head>/i,(whole,body)=>`<head>${body.replace(/(?:\r?\n[ \t]*){3,}/g,"\n\n")}</head>`);
   writeFileWithRetry(record.file,html,"utf8");
  }
- generateManifests(groups);
  generateSitemap(groups);
  const cookieCssHref=`/assets/css/cookie-consent.css?v=${assetVersion("assets/css/cookie-consent.css")}`;
  let layoutRepairs=0;
@@ -1086,6 +1078,10 @@ function build(){
   }
  }
  if(layoutRepairs)console.log(`Page layout repairs updated ${layoutRepairs} HTML files`);
+ // Precached HTML must be final before the cache hash is computed. Layout
+ // repair runs above; tool navigation rewrites graph links afterwards and
+ // refreshes these cache names once those bytes are stable.
+ generateManifests(groups);
  const report={
   version:localeConfig.version,
   activeLocales:activeLocales.map(item=>item.id),

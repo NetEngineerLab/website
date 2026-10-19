@@ -4,6 +4,7 @@ let acorn = null;
 try { acorn = require("acorn"); } catch {}
 const fs = require("fs");
 const path = require("path");
+const { stableFileHash, stableHash } = require("./stable-text-hash");
 
 function walk(node, visitor, ancestors = []) {
   if (!node || typeof node !== "object") return;
@@ -453,4 +454,36 @@ function precachePathIssues(assets, toolRoot, siteRoot) {
   return issues;
 }
 
-module.exports = { parsePrecacheAssets, parsePrecacheArrayLiteral, hasPrecacheAsset, precachePathIssues };
+function serviceWorkerCacheVersion(assets, toolRoot, siteRoot) {
+  const issues = precachePathIssues(assets, toolRoot, siteRoot);
+  if (issues.length) throw new Error(`Invalid Service Worker precache assets for ${path.relative(siteRoot, toolRoot)}: ${issues.join("; ")}`);
+  return stableHash(assets.map(item => {
+    const clean = String(item).split(/[?#]/)[0];
+    const target = path.resolve(toolRoot, clean);
+    if (fs.existsSync(target) && fs.statSync(target).isFile()) return `${item}:${stableFileHash(target, 12)}`;
+    return item;
+  }).join("\n"), 12);
+}
+
+function refreshServiceWorkerCacheName(source, toolRoot, siteRoot) {
+  const compactHead = /const C=(["'])(.*?)\1,A=(\[[\s\S]*?\]);/;
+  const verboseHead = /const CACHE\s*=\s*(["'])(.*?)\1;\s*const CORE\s*=\s*(\[[\s\S]*?\]);/;
+  const match = source.match(compactHead) || source.match(verboseHead);
+  if (!match) return source;
+  const assets = parsePrecacheArrayLiteral(match[3]);
+  if (!assets) throw new Error(`Invalid Service Worker asset array: ${path.relative(siteRoot, toolRoot)}`);
+  const cacheName = match[2];
+  if (!/-[a-f0-9]{12}$/.test(cacheName)) throw new Error(`Service Worker cache name has no tool hash: ${path.relative(siteRoot, toolRoot)}`);
+  const updated = cacheName.replace(/-[a-f0-9]{12}$/, `-${serviceWorkerCacheVersion(assets, toolRoot, siteRoot)}`);
+  if (updated === cacheName) return source;
+  return source.replace(cacheName, updated);
+}
+
+module.exports = {
+  parsePrecacheAssets,
+  parsePrecacheArrayLiteral,
+  hasPrecacheAsset,
+  precachePathIssues,
+  serviceWorkerCacheVersion,
+  refreshServiceWorkerCacheName
+};

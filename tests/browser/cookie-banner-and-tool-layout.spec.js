@@ -52,7 +52,9 @@ const hubReturnSamples = [
   "/tools/optical-power-budget/zh/",
   "/tools/subnet-calculator/",
   "/tools/pon-fiber-calculators/",
-  "/topics/switch-oversubscription/"
+  "/topics/switch-oversubscription/",
+  "/topics/data-center-capacity/",
+  "/zh/topics/data-center-capacity/"
 ];
 
 async function hubReturnAlignment(page) {
@@ -73,9 +75,13 @@ async function hubReturnAlignment(page) {
     const card = cards[0];
     if (!card) return {error: "missing neighbouring card"};
     const cardBox = card.getBoundingClientRect();
+    const next = hub.nextElementSibling;
+    const gap = next ? next.getBoundingClientRect().top - hubBox.bottom : null;
     return {
       left: Math.abs(hubBox.left - cardBox.left),
-      right: Math.abs(hubBox.right - cardBox.right)
+      right: Math.abs(hubBox.right - cardBox.right),
+      gap,
+      toolPage: document.body.classList.contains("nel-tool-detail-page")
     };
   });
 }
@@ -90,6 +96,7 @@ for (const width of [1280, 390]) {
       expect(alignment.error, url).toBeUndefined();
       expect(alignment.left, `${url} left`).toBeLessThanOrEqual(1);
       expect(alignment.right, `${url} right`).toBeLessThanOrEqual(1);
+      if (alignment.toolPage) expect(alignment.gap, `${url} gap below hub return`).toBeGreaterThanOrEqual(20);
     }
   });
 }
