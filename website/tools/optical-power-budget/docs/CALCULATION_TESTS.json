@@ -1,21 +1,30 @@
 {
-  "default_input": {
-    "tx_dBm": 1.5,
-    "sensitivity_dBm": -27,
-    "distance_km": 10,
-    "attenuation_dB_per_km": 0.30,
-    "splice_count": 6,
-    "splice_loss_dB": 0.10,
-    "connector_count": 4,
-    "connector_loss_dB": 0.30,
-    "splitter_loss_dB": 13.8,
-    "engineering_margin_dB": 3
-  },
-  "expected_output": {
-    "maximum_channel_loss_dB": 28.5,
-    "physical_link_loss_dB": 18.6,
-    "design_loss_dB": 21.6,
-    "remaining_budget_dB": 6.9,
-    "estimated_receive_power_dBm": -17.1
-  }
+  "version": "1.1.0",
+  "engine": "js/engine.js",
+  "standardsSource": "website/data/optical-standards.js@1.1.0",
+  "statusPolicy": "OPB-STATUS-1.0",
+  "executedBy": "docs/engine-test.js",
+  "note": "Replaces the retired B+ 1:16 example (Tx 1.5 dBm, 13.8 dB splitter, 0.30 dB/km) that no longer matched the page default.",
+  "cases": [
+    {
+      "id": "default-gpon-c-1x64",
+      "input": {"tx": 3, "txMax": 7, "sens": -30, "over": -8, "penalty": 1, "d": 10, "a": 0.25, "sc": 6, "sl": 0.1, "cc": 4, "cl": 0.3, "s1": 10.5, "s2": 10.5, "s3": 0, "other": 0, "margin": 3, "reach": 20},
+      "expected": {"standard": 32, "physical": 25.3, "design": 28.3, "remain": 3.7, "rx": -22.3, "rxMax": -18.3, "sensM": 7.7, "overM": 10.3, "maxDOptical": 24.8, "maxD": 20, "reachLimited": true, "usage": 88.4375, "st": "healthy"}
+    },
+    {
+      "id": "policy-example-margin-4",
+      "input": {"tx": 3, "txMax": 7, "sens": -30, "over": -8, "penalty": 1, "d": 10, "a": 0.3, "sc": 6, "sl": 0.1, "cc": 4, "cl": 0.3, "s1": 10.5, "s2": 10.5, "s3": 0, "other": 0, "margin": 4},
+      "expected": {"physical": 25.8, "design": 29.8, "remain": 2.2, "rx": -22.8, "sensM": 7.2, "usage": 93.125, "st": "warning"}
+    },
+    {
+      "id": "preset-epon-px20-1x16",
+      "input": {"tx": 2, "txMax": 7, "sens": -24, "over": -3, "penalty": 2, "d": 10, "a": 0.25, "sc": 6, "sl": 0.1, "cc": 4, "cl": 0.3, "s1": 13.8, "s2": 0, "s3": 0, "other": 0, "margin": 3, "reach": 20},
+      "expected": {"standard": 24, "physical": 18.1, "design": 21.1, "remain": 2.9, "rx": -16.1, "sensM": 7.9, "overM": 8.1, "maxDOptical": 21.6, "maxD": 20, "st": "warning"}
+    },
+    {
+      "id": "preset-10gbase-lr-2km",
+      "input": {"tx": -8.2, "txMax": 0.5, "sens": -14.4, "over": 0.5, "penalty": 0, "d": 2, "a": 0.35, "sc": 0, "sl": 0.1, "cc": 2, "cl": 0.75, "s1": 0, "s2": 0, "s3": 0, "other": 0, "margin": 0.5, "reach": 10, "thresholds": {"remaining": 3, "sensitivity": 3, "overload": 0}},
+      "expected": {"standard": 6.2, "physical": 2.2, "design": 2.7, "remain": 3.5, "rx": -10.4, "rxMax": -1.7, "sensM": 4, "overM": 2.2, "maxDOptical": 12, "maxD": 10, "st": "healthy"}
+    }
+  ]
 }

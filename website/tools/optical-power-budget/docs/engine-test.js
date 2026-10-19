@@ -60,4 +60,49 @@ const exactZeroWithFloatNoise=engine.calculate({
 assert.equal(exactZeroWithFloatNoise.sensM,0);
 assert.equal(exactZeroWithFloatNoise.st,"warning");
 
+// --- V1.1: reach cap, versioned thresholds, documented cases, single source of truth ---
+assert.equal(engine.STATUS_POLICY,"OPB-STATUS-1.0");
+assert.equal(result.reachLimited,false);
+close(result.maxDOptical,48.5);
+const capped=engine.calculate({...base,reach:20});
+close(capped.maxD,20);close(capped.maxDOptical,48.5);assert.equal(capped.reachLimited,true);
+assert.equal(engine.calculate({...base,reach:60}).reachLimited,false);
+for(const bad of [0,-1,Number.NaN,"20"])assert.equal(engine.calculate({...base,reach:bad}).ok,false);
+assert.equal(engine.calculate({...base,over:-13}).st,"warning");
+assert.equal(engine.calculate({...base,over:-13,thresholds:{overload:0}}).st,"healthy");
+assert.equal(engine.calculate({...base,over:-16,thresholds:{overload:0}}).st,"failed");
+assert.equal(engine.calculate({...base,thresholds:{overload:-1}}).ok,false);
+assert.equal(engine.calculate({...base,thresholds:{remaining:Number.NaN}}).ok,false);
+
+const fs=require("fs"),path=require("path"),vm=require("vm");
+const doc=JSON.parse(fs.readFileSync(path.join(__dirname,"CALCULATION_TESTS.json"),"utf8"));
+assert.ok(doc.cases.length>=4);
+for(const c of doc.cases){
+  const r=engine.calculate(c.input);
+  assert.equal(r.ok,true,c.id);
+  for(const [k,v] of Object.entries(c.expected)){
+    if(typeof v==="number")assert.ok(Math.abs(r[k]-v)<1e-9,`${c.id}.${k}: ${r[k]} != ${v}`);
+    else assert.equal(r[k],v,`${c.id}.${k}`);
+  }
+}
+
+const sandbox={window:{}};
+vm.runInNewContext(fs.readFileSync(path.join(__dirname,"..","..","..","data","optical-standards.js"),"utf8"),sandbox);
+const std=sandbox.window.NEL_OPTICAL_STANDARDS;
+assert.equal(std.version,"1.1.0");
+assert.equal(std.fiberAttenuationDbPerKm["1490"],0.25);
+const app=fs.readFileSync(path.join(__dirname,"..","js","app.js"),"utf8");
+assert.ok(!/'1490'\s*:\s*\.?\d/.test(app),"app.js must not carry its own attenuation table");
+assert.ok(app.includes("NEL_OPTICAL_STANDARDS"),"app.js must read data/optical-standards.js");
+for(const key of ["gpon-b","gpon-c","epon-reference","ethernet-10gbase-lr"]){
+  const s=std.systems[key];
+  assert.ok(s&&s.source,`standards system ${key} needs a source`);
+  for(const f of ["minimumTxDbm","maximumTxDbm","receiverSensitivityDbm","receiverOverloadDbm","opticalPathPenaltyDb","maximumOdnLossDb","systemReachKm"])assert.ok(Number.isFinite(s[f]),`${key}.${f}`);
+  assert.ok(Math.abs((s.minimumTxDbm-s.receiverSensitivityDbm-s.opticalPathPenaltyDb)-s.maximumOdnLossDb)<1e-9,`${key}: standard budget must equal its class loss`);
+}
+const docMap=Object.fromEntries(doc.cases.map(c=>[c.id,c.input]));
+const epon=std.systems["epon-reference"],lr=std.systems["ethernet-10gbase-lr"];
+assert.deepEqual([docMap["preset-epon-px20-1x16"].tx,docMap["preset-epon-px20-1x16"].sens,docMap["preset-epon-px20-1x16"].penalty],[epon.minimumTxDbm,epon.receiverSensitivityDbm,epon.opticalPathPenaltyDb]);
+assert.deepEqual([docMap["preset-10gbase-lr-2km"].tx,docMap["preset-10gbase-lr-2km"].sens,docMap["preset-10gbase-lr-2km"].over],[lr.minimumTxDbm,lr.receiverSensitivityDbm,lr.receiverOverloadDbm]);
+
 console.log("Optical power budget engine tests: PASS");
