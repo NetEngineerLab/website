@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-switch-uplink-oversubscription-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-a15cc319ec0b-003a546050f5";
+const CACHE = "nel-switch-uplink-oversubscription-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-02fc16bbd49f-d5da2c197d67";
 const CORE = [
   "./index.html",
   "./",
@@ -14,7 +14,7 @@ const CORE = [
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",
-  "../../assets/css/site-shell.css?v=b2e4bd32626d",
+  "../../assets/css/site-shell.css?v=d998a53add89",
   "../../assets/css/tool-design-system.css?v=6c0b1c4ee1f1",
   "../../assets/css/tool-workflow.css?v=8c74b394ef2c",
   "../../assets/js/analytics.js?v=1156b7864023",

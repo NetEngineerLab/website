@@ -39,8 +39,14 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium msedge
 
+      - name: Build the site
+        run: npm run build:i18n
+
+      - name: Require a clean worktree after the build
+        run: node scripts/assert-clean-worktree.js
+
       - name: Run NetEngineerLab production acceptance
-        run: npm run prepare:launch
+        run: npm run gate:release
 
       - name: Upload acceptance reports
         if: always()

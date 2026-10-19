@@ -8,6 +8,7 @@
  */
 const fs=require("fs");const path=require("path");
 const {stableFileHash}=require("./stable-text-hash");
+const {refreshServiceWorkerCacheName}=require("./service-worker-precache");
 const {deriveToolGraph,validateWorkflowRegistry}=require("./workflow-registry");
 const root=path.resolve(__dirname,"..");const site=path.join(root,"website");
 const errors=validateWorkflowRegistry();if(errors.length){console.error(errors.join("\n"));process.exit(1)}
@@ -90,3 +91,15 @@ for(const toolId of Object.keys(graph.tools)){
  }
 }
 console.log(`Tool navigation integration PASS (${checked} pages, ${changed} updated)`);
+// Tool pages are precached. Multilingual build rewrites graph links to relative
+// URLs and hashes sw.js before this step restores the shipped absolute links.
+// Refresh the cache name only after those HTML bytes are final.
+let refreshed=0;
+for(const toolId of Object.keys(graph.tools)){
+ const swPath=path.join(site,"tools",toolId,"sw.js");
+ if(!fs.existsSync(swPath))continue;
+ const before=fs.readFileSync(swPath,"utf8");
+ const after=refreshServiceWorkerCacheName(before,path.join(site,"tools",toolId),site);
+ if(after!==before){writeFileWithRetry(swPath,after,"utf8");refreshed++;}
+}
+if(refreshed)console.log(`Service worker cache names refreshed after tool navigation (${refreshed})`);
