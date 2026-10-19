@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-ospf-cost-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-02fc16bbd49f-89d1a7a580a0";
+const CACHE = "nel-ospf-cost-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-0a1f260e10da";
 const CORE = [
   "./index.html",
   "./",
@@ -7,7 +7,7 @@ const CORE = [
   "./manifest.webmanifest",
   "./css/ospf.css?v=ospf1",
   "./js/engine.js",
-  "./js/app.js?v=28de5c5753db",
+  "./js/app.js?v=80782d266575",
   "./images/logo.svg",
   "./images/icons/icon-192.png",
   "./images/icons/icon-512.png",
@@ -20,7 +20,7 @@ const CORE = [
   "../../assets/css/tool-workflow.css?v=8c74b394ef2c",
   "../../assets/js/analytics.js?v=1156b7864023",
   "../../assets/js/adsense.js?v=f075c80ccc75",
-  "../../assets/js/site.js?v=2864f2fdd798",
+  "../../assets/js/site.js?v=b563dd0297f5",
   "../../assets/js/tool-integration.js?v=05f7934f4687",
   "../../assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b",
   "../../assets/css/cookie-consent.css?v=8dd1728bf5eb",

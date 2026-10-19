@@ -1,5 +1,7 @@
 (function () {
   "use strict";
+function nelInputError(ok){const l=(document.documentElement.lang||"en").toLowerCase();const msg=l.startsWith("zh")?"请检查输入：数值不能为负，必填负载与容量必须大于 0。":l.startsWith("es")?"Revise las entradas: los valores no pueden ser negativos y las cargas y capacidades obligatorias deben ser mayores que cero.":"Check the inputs: values cannot be negative, and required loads and capacities must be greater than zero.";let el=document.getElementById("nelInputError");if(ok){if(el)el.hidden=true;return;}if(!el){el=document.createElement("p");el.id="nelInputError";el.className="nel-input-error";el.setAttribute("role","alert");el.style.cssText="color:#b42318;font-weight:700;background:#fdecec;border:1px solid #f4c7c3;border-radius:10px;padding:10px 12px;margin:10px 0";const anchor=document.getElementById("calculate");if(anchor&&anchor.parentNode)anchor.parentNode.insertBefore(el,anchor);else(document.querySelector("main")||document.body).prepend(el);}el.textContent=msg;el.hidden=false;}
+
 
   const $ = (id) => document.getElementById(id);
   const numberValue = (id) => Number($(id)?.value || 0);
@@ -128,6 +130,7 @@
     if (["itKW", "peakITKW"].includes(event?.target?.id)) updateAutomaticPlaceholders();
     const result = window.NELCoolingSizingEngine.calculate(collect());
     if ($("result")) $("result").hidden = !result.ok;
+    nelInputError(result.ok);
     if (!result.ok) return;
 
     [

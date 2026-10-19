@@ -12,6 +12,8 @@
   const periodRaw=n(input.periodDays);
   const periodDays=Number.isFinite(periodRaw)?Math.max(1,periodRaw):30;
   const errors=[];
+  if(Number.isFinite(periodRaw)&&periodRaw<=0)errors.push("periodDays");
+  ["itGrowthPct","tariff","cooling","ups","lighting","distribution","other","targetPUE"].forEach(key=>{if(input[key]!==undefined&&input[key]!==null&&String(input[key]).trim()!==""&&Number(input[key])<0)errors.push(key);});
   if(!(Number.isFinite(total)&&total>0))errors.push("total");
   if(!(Number.isFinite(it)&&it>0))errors.push("it");
   if(total>0&&it>total)errors.push("it_gt_total");

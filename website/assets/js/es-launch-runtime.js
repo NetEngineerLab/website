@@ -1,6 +1,6 @@
 (function(){"use strict";
 if((document.documentElement.dataset.nelLocale||"")!=="es"&&document.documentElement.lang!=="es")return;
-const exact=new Map(Object.entries({
+const exact=new Map(Object.entries({"reference bandwidth invalid":"ancho de banda de referencia no válido","interfaces required":"se requiere al menos una interfaz","input type invalid":"tipo de entrada no válido",
 "✓ Healthy":"✓ Correcto","⚠ Caution":"⚠ Precaución","✕ Failed":"✕ No cumple","Excellent":"Excelente","Good":"Bueno","Marginal":"Marginal","Not viable":"No viable","Invalid input":"Entrada no válida","Pass":"Cumple","Review":"Revisar","Insufficient":"Insuficiente","PASS":"CUMPLE","FAIL":"NO CUMPLE",
 "Result copied":"Resultado copiado","Record saved":"Registro guardado","CSV exported":"CSV exportado","Clear all saved records?":"¿Borrar todos los registros guardados?","Clear all saved history?":"¿Borrar todo el historial guardado?","No saved records yet. Calculate and click “Save record”.":"Todavía no hay registros guardados. Calcula y pulsa «Guardar registro».","No saved calculations yet. Calculate and click “Save record”.":"Todavía no hay cálculos guardados. Calcula y pulsa «Guardar registro».",
 "Check the input values and units.":"Comprueba los valores y las unidades introducidas.","Invalid input. Check all fields.":"Entrada no válida. Comprueba todos los campos.","Verify against actual traffic peaks and redundancy requirements.":"Verifica el resultado frente a los picos reales de tráfico y los requisitos de redundancia.",

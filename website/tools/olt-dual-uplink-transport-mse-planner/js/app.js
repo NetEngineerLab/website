@@ -2,7 +2,7 @@
 (function(){
 'use strict';
 const $=id=>document.getElementById(id);
-const n=id=>Number($(id).value||0);
+const n=id=>{const raw=String($(id).value).trim();return raw===''?NaN:Number(raw);};
 const b=id=>$(id).checked;
 const fmt=(v,d=1)=>Number(v).toLocaleString(undefined,{maximumFractionDigits:d});
 const zh=document.documentElement.lang.toLowerCase().startsWith('zh');
@@ -47,12 +47,17 @@ function run(){
     separateRing:b('ring'),
     separateSystem:b('system')
   });
-  if(!r.ok){
+  const blankInput=['boardPorts','channelLimit','channelRate','mseCount','mseLimit','mseRate','oltCount','reserve','traffic','uplinkRate'].some(id=>$(id)&&!Number.isFinite(n(id)));
+  if(blankInput||!r.ok){
     $('result').hidden=true;
-    $('inputState').textContent=zh?'请检查 OLT 数量与容量输入。':'Check OLT count and capacity inputs.';
+    $('inputState').textContent=zh?'请检查 OLT 数量与容量输入：所有数值必须为正数，利用率上限须在 1–100% 之间。':'Check OLT count and capacity inputs: every value must be positive and planning limits must be 1–100%.';
+    $('inputState').classList.add('is-error');
+    $('inputState').setAttribute('role','alert');
     return;
   }
   $('result').hidden=false;
+  $('inputState').classList.remove('is-error');
+  $('inputState').removeAttribute('role');
   $('inputState').textContent=zh?'双上联、波道与 MSE 故障态容量已更新。':'Dual-uplink, channel and MSE failure-state capacity updated.';
   [
     ['oltPorts',r.oltPhysicalUplinkPorts,''],

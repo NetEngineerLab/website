@@ -1,4 +1,6 @@
 (function(){"use strict";
+function nelInputError(ok){const l=(document.documentElement.lang||"en").toLowerCase();const msg=l.startsWith("zh")?"请检查输入：数值不能为负，必填负载与容量必须大于 0。":l.startsWith("es")?"Revise las entradas: los valores no pueden ser negativos y las cargas y capacidades obligatorias deben ser mayores que cero.":"Check the inputs: values cannot be negative, and required loads and capacities must be greater than zero.";let el=document.getElementById("nelInputError");if(ok){if(el)el.hidden=true;return;}if(!el){el=document.createElement("p");el.id="nelInputError";el.className="nel-input-error";el.setAttribute("role","alert");el.style.cssText="color:#b42318;font-weight:700;background:#fdecec;border:1px solid #f4c7c3;border-radius:10px;padding:10px 12px;margin:10px 0";const anchor=document.getElementById("calculate");if(anchor&&anchor.parentNode)anchor.parentNode.insertBefore(el,anchor);else(document.querySelector("main")||document.body).prepend(el);}el.textContent=msg;el.hidden=false;}
+
 const $=id=>document.getElementById(id), n=id=>Number($(id)?.value||0), fmt=(v,d=1)=>Number(v).toLocaleString(undefined,{maximumFractionDigits:d});
 const htmlLang=(document.documentElement.lang||"").toLowerCase();
 const lang=htmlLang.startsWith("zh")?"zh":htmlLang.startsWith("es")?"es":"en";
@@ -81,7 +83,8 @@ function riskLine(item){
 }
 function run(){
   const r=window.NELACDCBreakerEngine.calculate(collect());
-  if(!r.ok)return;
+  nelInputError(r.ok);
+  if(!r.ok){["acbase","acdesign","breaker","kva","dcd","dcb"].forEach(id=>{if($(id))$(id).textContent="—";});if($("warn"))$("warn").textContent="";const extras=$("engineeringExtras");if(extras)extras.replaceChildren();return;}
   [["acbase",r.baseA," A"],["acdesign",r.designA," A"],["breaker",r.suggestedBreakerA," A"],["kva",r.apparentKVA," kVA"],["dcd",r.dcDesignA," A"],["dcb",r.suggestedDCBreakerA||"—",r.suggestedDCBreakerA?" A":""]].forEach(([id,v,u])=>{if($(id))$(id).textContent=(typeof v==="number"?fmt(v):v)+u;});
   if($("warn")){
     const lines=(r.risks||[]).map(riskLine);
