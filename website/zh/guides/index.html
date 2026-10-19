@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="guides/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>网络工程指南：计算公式与工程实例 | NetEngineerLab</title>
+<meta name="description" content="覆盖交换机超售比、IPv4 子网划分、光纤链路预算、PON 分光损耗、数据中心制冷与通信电源的工程指南，每篇包含计算公式、工程实例和配套计算器。">
+<meta name="robots" content="index,follow">
+<link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<link rel="stylesheet" href="../../assets/css/topic-directory.css">
+<link rel="stylesheet" href="../../assets/css/topic-hub.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"网络工程指南","url":"https://netengineerlab.com/zh/guides/","inLanguage":"zh-CN","description":"覆盖交换机超售比、IPv4 子网划分、光纤链路预算、PON 分光损耗、数据中心制冷与通信电源的工程指南，每篇包含计算公式、工程实例和配套计算器。","mainEntity":{"@type":"ItemList","numberOfItems":16,"itemListElement":[{"@type":"ListItem","position":1,"name":"交换机上联超售比计算：公式、案例与N-1容量规划","url":"https://netengineerlab.com/zh/guides/switch-oversubscription-ratio"},{"@type":"ListItem","position":2,"name":"48口交换机超售比怎么计算：1G接入、10G/25G上联与N-1案例","url":"https://netengineerlab.com/zh/guides/48-port-switch-oversubscription"},{"@type":"ListItem","position":3,"name":"48口千兆交换机2×10G上联够不够？","url":"https://netengineerlab.com/zh/guides/48-port-switch-2x10g-enough"},{"@type":"ListItem","position":4,"name":"N-1故障下交换机超售比怎么计算？","url":"https://netengineerlab.com/zh/guides/switch-oversubscription-n-1"},{"@type":"ListItem","position":5,"name":"聚合口总带宽够，为什么一条LACP成员链路还在丢包？","url":"https://netengineerlab.com/zh/guides/lacp-member-congestion"},{"@type":"ListItem","position":6,"name":"如何计算 IPv4 子网：CIDR、主机数与可用地址范围","url":"https://netengineerlab.com/zh/guides/subnet-calculator-guide"},{"@type":"ListItem","position":7,"name":"如何计算带宽与文件传输时间","url":"https://netengineerlab.com/zh/guides/bandwidth-transfer-time-guide"},{"@type":"ListItem","position":8,"name":"IP 摄像头网络带宽与 PoE 规划深度指南","url":"https://netengineerlab.com/zh/guides/ip-camera-network-bandwidth-poe"},{"@type":"ListItem","position":9,"name":"光纤链路预算计算：损耗、余量与最大距离","url":"https://netengineerlab.com/zh/guides/fiber-link-budget-guide"},{"@type":"ListItem","position":10,"name":"PON分光损耗计算：级联分光比、插入损耗与ODN余量","url":"https://netengineerlab.com/zh/guides/pon-splitter-loss-guide"},{"@type":"ListItem","position":11,"name":"数据中心制冷负荷计算：公式、实例与精密空调选型指南","url":"https://netengineerlab.com/zh/guides/data-center-cooling-load-calculation"},{"@type":"ListItem","position":12,"name":"服务器机房热负荷计算：应计入哪些热源？","url":"https://netengineerlab.com/zh/guides/server-room-heat-load-calculation"},{"@type":"ListItem","position":13,"name":"服务器机房需要多少冷吨？kW、BTU/h与冷吨换算","url":"https://netengineerlab.com/zh/guides/how-many-tons-of-cooling-for-server-room"},{"@type":"ListItem","position":14,"name":"数据中心制冷N+1：容量公式、台数与故障校核","url":"https://netengineerlab.com/zh/guides/data-center-cooling-n-plus-one"},{"@type":"ListItem","position":15,"name":"通信整流器容量配置：N+1/N+2、回充与故障校核","url":"https://netengineerlab.com/zh/guides/telecom-rectifier-dc-power-sizing"},{"@type":"ListItem","position":16,"name":"通信油机一箱油能运行多久？计算负载曲线与可用油量","url":"https://netengineerlab.com/zh/guides/generator-fuel-runtime-planning"}]}}</script>
+
+<meta property="og:url" content="https://netengineerlab.com/zh/guides/">
+<meta property="og:title" content="网络工程指南：计算公式与工程实例 | NetEngineerLab">
+<meta property="og:description" content="覆盖交换机超售比、IPv4 子网划分、光纤链路预算、PON 分光损耗、数据中心制冷与通信电源的工程指南，每篇包含计算公式、工程实例和配套计算器。">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="网络工程指南：计算公式与工程实例 | NetEngineerLab">
+<meta name="twitter:description" content="覆盖交换机超售比、IPv4 子网划分、光纤链路预算、PON 分光损耗、数据中心制冷与通信电源的工程指南，每篇包含计算公式、工程实例和配套计算器。">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=8dd1728bf5eb">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"网络工程指南：计算公式与工程实例 | NetEngineerLab","url":"https://netengineerlab.com/zh/guides/","description":"覆盖交换机超售比、IPv4 子网划分、光纤链路预算、PON 分光损耗、数据中心制冷与通信电源的工程指南，每篇包含计算公式、工程实例和配套计算器。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="zh">
+<meta name="nel-route" content="guides/">
+<meta name="nel-available-locales" content="en,zh">
+<link rel="canonical" href="https://netengineerlab.com/zh/guides/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/">
+<link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=d998a53add89">
+<script defer src="../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../assets/js/site.js?v=b563dd0297f5"></script>
+</head>
+<body class="topic-directory topic-hub-page guides-directory">
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../">
+      <img src="../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="打开导航菜单"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="主导航">
+      <a href="../">首页</a>
+      <a href="../../tools/zh/">工具中心</a>
+      <a href="./" aria-current="page">工程指南</a>
+      <a href="../topics/">专题</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../../guides/" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="./" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<nav class="topic-hub-breadcrumb" aria-label="面包屑"><a href="../">首页</a><span aria-hidden="true">›</span><span aria-current="page">工程指南</span></nav>
+<main id="main">
+<section class="directory-hero"><p class="eyebrow">工程指南</p><h1>网络工程指南</h1><p class="directory-lead">每篇指南回答一个具体的设计问题：给出计算公式、前提假设、工程实例和需要校核的故障场景，并链接到完成计算的对应工具。</p><p class="directory-lead"><strong>16 篇指南</strong></p></section>
+<section class="topic-group" aria-labelledby="guides-switching"><h2 id="guides-switching">交换与上联容量</h2><p class="directory-lead">超售比、N-1 故障容量、LACP 哈希与上联升级决策。</p><div class="topic-grid"><a class="topic-card" href="switch-oversubscription-ratio/"><span class="topic-tag">交换与上联容量</span><strong>交换机上联超售比计算：公式、案例与N-1容量规划</strong><p>用48口交换机实例学习上联超售比计算，并结合LAG、忙时利用率、N-1故障和增长余量进行容量规划。</p><span class="topic-open">阅读指南 →</span></a><a class="topic-card" href="48-port-switch-oversubscription/"><span class="topic-tag">交换与上联容量</span><strong>48口交换机超售比怎么计算：1G接入、10G/25G上联与N-1案例</strong><p>用48口交换机实例计算超售比，对比2×10G、4×10G、2×25G上联，并分析N-1故障、实际利用率和扩容余量。</p><span class="topic-open">阅读指南 →</span></a><a class="topic-card" href="48-port-switch-2x10g-enough/"><span class="topic-tag">交换与上联容量</span><strong>48口千兆交换机2×10G上联够不够？</strong><p>分析48口千兆交换机使用2×10G上联是否足够，对比理论超售比、忙时流量、LAG、N-1故障和升级方案。</p><span class="topic-open">阅读指南 →</span></a><a class="topic-card" href="switch-oversubscription-n-1/"><span class="topic-tag">交换与上联容量</span><strong>N-1故障下交换机超售比怎么计算？</strong><p>学习如何计算N-1故障状态下的交换机超售比，对比正常与故障后的上联容量、业务需求、余量和升级方案。</p><span class="topic-open">阅读指南 →</span></a><a class="topic-card" href="lacp-member-congestion/"><span class="topic-tag">交换与上联容量</span><strong>聚合口总带宽够，为什么一条LACP成员链路还在丢包？</strong><p>通过成员计数器、2×10G算例、哈希分配检查和N-1容量校核，诊断LACP成员流量不均与单口拥塞。</p><span class="topic-open">阅读指南 →</span></a></div></section><section class="topic-group" aria-labelledby="guides-ip"><h2 id="guides-ip">IP 网络与带宽</h2><p class="directory-lead">子网划分、传输时间窗口，以及摄像机网络带宽与 PoE 预算。</p><div class="topic-grid"><a class="topic-card" href="subnet-calculator-guide/"><span class="topic-tag">IP 网络与带宽</span><strong>如何计算 IPv4 子网：CIDR、主机数与可用地址范围</strong><p>根据 CIDR 表示法计算 IPv4 子网，确定网络地址和广播地址，并用可重复的工程方法验证可用主机容量。</p><span class="topic-open">阅读指南 →</span></a><a class="topic-card" href="bandwidth-transfer-time-guide/"><span class="topic-tag">IP 网络与带宽</span><strong>如何计算带宽与文件传输时间</strong><p>根据链路速率、有效载荷大小和协议开销估算文件传输时间，并提供 WAN 备份、云上传和 NOC 规划示例。</p><span class="topic-open">阅读指南 →</span></a><a class="topic-card" href="ip-camera-network-bandwidth-poe/"><span class="topic-tag">IP 网络与带宽</span><strong>IP 摄像头网络带宽与 PoE 规划深度指南</strong><p>深度讲解摄像头带宽、交换机上联、PoE预算、NVR存储和N-1冗余规划。</p><span class="topic-open">阅读指南 →</span></a></div></section><section class="topic-group" aria-labelledby="guides-optical"><h2 id="guides-optical">光纤与 PON</h2><p class="directory-lead">光纤链路预算、分光级联与 ODN 余量。</p><div class="topic-grid"><a class="topic-card" href="fiber-link-budget-guide/"><span class="topic-tag">光纤与 PON</span><strong>光纤链路预算计算：损耗、余量与最大距离</strong><p>通过汇总连接器、熔接点和光纤衰减损耗规划光纤链路，在与收发器功率上限比较前预留工程余量。</p><span class="topic-open">阅读指南 →</span></a><a class="topic-card" href="pon-splitter-loss-guide/"><span class="topic-tag">光纤与 PON</span><strong>PON分光损耗计算：级联分光比、插入损耗与ODN余量</strong><p>说明PON一级和级联分光的总分光比、插入损耗、ODN设计余量，并提供10 km可复算工程案例。</p><span class="topic-open">阅读指南 →</span></a></div></section><section class="topic-group" aria-labelledby="guides-cooling"><h2 id="guides-cooling">数据中心制冷</h2><p class="directory-lead">热负荷、制冷容量、冷吨换算与 N+1 冗余。</p><div class="topic-grid"><a class="topic-card" href="data-center-cooling-load-calculation/"><span class="topic-tag">数据中心制冷</span><strong>数据中心制冷负荷计算：公式、实例与精密空调选型指南</strong><p>汇总IT功耗、UPS/PDU损耗、照明、人员和围护结构得热，计算数据中心显热制冷负荷，并校核精密空调N+1容量。</p><span class="topic-open">阅读指南 →</span></a><a class="topic-card" href="server-room-heat-load-calculation/"><span class="topic-tag">数据中心制冷</span><strong>服务器机房热负荷计算：应计入哪些热源？</strong><p>汇总IT设备、电气损耗、照明、人员、围护结构和工程余量，计算服务器机房热负荷，并提供120 kW完整实例。</p><span class="topic-open">阅读指南 →</span></a><a class="topic-card" href="how-many-tons-of-cooling-for-server-room/"><span class="topic-tag">数据中心制冷</span><strong>服务器机房需要多少冷吨？kW、BTU/h与冷吨换算</strong><p>从服务器机房显热负荷计算所需冷吨，汇总IT及房间得热、工程余量，并校核精密空调容量和冗余。</p><span class="topic-open">阅读指南 →</span></a><a class="topic-card" href="data-center-cooling-n-plus-one/"><span class="topic-tag">数据中心制冷</span><strong>数据中心制冷N+1：容量公式、台数与故障校核</strong><p>计算数据中心精密空调N+1配置，确定运行与安装台数，并校核任意1台退出后的剩余显冷量。</p><span class="topic-open">阅读指南 →</span></a></div></section><section class="topic-group" aria-labelledby="guides-power"><h2 id="guides-power">通信电源与能源</h2><p class="directory-lead">整流器配置、回充电流与油机燃油续航。</p><div class="topic-grid"><a class="topic-card" href="telecom-rectifier-dc-power-sizing/"><span class="topic-tag">通信电源与能源</span><strong>通信整流器容量配置：N+1/N+2、回充与故障校核</strong><p>结合负载增长、电池回充峰值、N+1/N+2冗余、降额和N-1/N-2故障校核配置通信整流模块。</p><span class="topic-open">阅读指南 →</span></a><a class="topic-card" href="generator-fuel-runtime-planning/"><span class="topic-tag">通信电源与能源</span><strong>通信油机一箱油能运行多久？计算负载曲线与可用油量</strong><p>根据厂家油耗曲线、分时站点负载和油箱可用燃油估算通信油机续航，附计算示例与工程限制。</p><span class="topic-open">阅读指南 →</span></a></div></section>
+</main><!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div>
+    <nav class="site-shell-footer-links" aria-label="页脚导航">
+      <a href="../about/">关于</a><a href="../contact/">联系</a><a href="../privacy/">隐私政策</a><a href="../terms/">使用条款</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+</body>
+</html>
