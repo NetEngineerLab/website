@@ -24,6 +24,7 @@ const{
  syncVisibleFaq
 }=require("./lib/seo-resolver");
 const{repairPageLayout}=require("./lib/page-layout");
+const supplementalSlugs=require("./lib/supplemental-tool-slugs");
 
 const packageRoot=path.resolve(__dirname,"..");
 const siteRoot=path.join(packageRoot,"website");
@@ -679,13 +680,7 @@ function indexableSitemapRecords(){
  const toolRecords=activeTools.map(tool=>({route:`tools/${tool.id}/`,changefreq:"monthly",priority:"0.9"}));
  // Published tool pages that are not Tool Registry entries. Registry tools must
  // belong to a workflow, so these planners stay supplemental sitemap routes.
- const supplementalRecords=[
-  "tools/ip-camera-network-planner/",
-  "tools/application-bandwidth-analyzer/",
-  "tools/data-center-architecture-decision-workshop/",
-  "tools/network-asset-lifecycle-tracker/",
-  "tools/oob-network-design-planner/"
- ].map(route=>({route,changefreq:"monthly",priority:"0.8"}));
+ const supplementalRecords=[...supplementalSlugs].map(slug=>({route:`tools/${slug}/`,changefreq:"monthly",priority:"0.8"}));
  return [...sitemapConfig.routes.filter(record=>record.indexable!==false),...toolRecords,...supplementalRecords];
 }
 function generateSitemap(groups){
