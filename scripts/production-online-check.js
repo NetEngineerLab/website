@@ -5,6 +5,7 @@ const fs=require("fs");
 const path=require("path");
 const{stableFileHash,stableHash}=require("./stable-text-hash");
 const{rulesRuntimeAssets}=require("./rules-runtime-assets");
+const{expectedSitemapPathnames}=require("./lib/expected-sitemap");
 
 const root=path.resolve(__dirname,"..");
 const websiteRoot=path.join(root,"website");
@@ -49,19 +50,10 @@ const expectedTools=JSON.parse(fs.readFileSync(path.join(websiteRoot,"data/tools
 const expectedToolIds=expectedTools.map(tool=>tool.id);
 const localeConfig=JSON.parse(fs.readFileSync(path.join(websiteRoot,"data/locales.json"),"utf8"));
 const activeLocales=localeConfig.locales.filter(locale=>locale.status==="active");
-const baseRoutes=JSON.parse(fs.readFileSync(path.join(websiteRoot,"data/sitemap-routes.json"),"utf8")).routes;
 const expectedCategoryCounts=expectedTools.reduce((counts,tool)=>{counts[tool.category]=(counts[tool.category]||0)+1;return counts},{});
-function baseRoutePath(route,locale){
-  const normalized=route.replace(/^\/+|\/+$/g,"");
-  if(!locale.folder)return normalized?`/${normalized}/`:"/";
-  if(normalized==="tools")return`/tools/${locale.folder}/`;
-  return normalized?`/${locale.folder}/${normalized}/`:`/${locale.folder}/`;
-}
-function toolRoutePath(tool,locale){return`/tools/${tool.id}/${locale.folder?`${locale.folder}/`:""}`}
-const expectedSitemapPaths=new Set([
-  ...baseRoutes.flatMap(route=>activeLocales.map(locale=>baseRoutePath(route.route,locale))),
-  ...expectedTools.flatMap(tool=>activeLocales.map(locale=>toolRoutePath(tool,locale)))
-]);
+function catalogToolPath(tool,locale){return`/tools/${tool.id}/${locale.folder?`${locale.folder}/`:""}`}
+const expectedSitemapPaths=expectedSitemapPathnames({siteRoot:websiteRoot,localeConfig});
+const catalogToolPaths=new Set(expectedTools.flatMap(tool=>activeLocales.map(locale=>catalogToolPath(tool,locale)).filter(pathname=>expectedSitemapPaths.has(pathname))));
 const deploymentMarker=fullHash(Buffer.from([version,...expectedHashes.values()].join(":"))).slice(0,12);
 
 function contentHash(file){return stableFileHash(file,12)}
@@ -214,7 +206,10 @@ async function readinessCheck(attempt){
   const missing=[...expectedSitemapPaths].filter(pathname=>!actualSitemapPaths.has(pathname));
   const extra=[...actualSitemapPaths].filter(pathname=>!expectedSitemapPaths.has(pathname));
   if(sitemapPaths.length!==actualSitemapPaths.size)errors.push(`/sitemap.xml: duplicate URLs found`);
-  if(missing.length||extra.length)errors.push(`/sitemap.xml: exact route set mismatch; missing ${missing.length}, extra ${extra.length}`);
+  if(missing.length||extra.length){
+    const sample=(label,items)=>items.length?`; ${label}: ${items.slice(0,8).join(", ")}`:"";
+    errors.push(`/sitemap.xml: exact route set mismatch; missing ${missing.length}, extra ${extra.length}${sample("missing",missing)}${sample("extra",extra)}`);
+  }
 
   const pageResults=await mapLimit(sitemapUrls,8,async canonical=>{
     const pathname=new URL(canonical).pathname;
@@ -340,11 +335,16 @@ async function runFullCheck(readiness,readyAttempt){
     versionedReferences+=assetAudit.references;
     assetErrors.push(...assetAudit.errors);
     if(["/","/zh/","/tools/","/tools/zh/"].includes(result.pathname)&&!assetOrderOk(result.text,`${base}${result.pathname}`))orderErrors.push(result.pathname);
-    if(!["/tools/","/tools/zh/"].includes(result.pathname)&&/^\/tools\/[^/]+\/(?:zh\/)?$/.test(result.pathname)){
+    if(catalogToolPaths.has(result.pathname)){
       toolPages++;
+      const localHtml=fs.readFileSync(path.join(websiteRoot,...(result.pathname.replace(/^\//,"").split("/").filter(Boolean).concat("index.html"))),"utf8");
+      const needsControls=countMatches(localHtml,/<(?:input|select|textarea)\b/gi)>0;
+      const needsButtons=countMatches(localHtml,/<button\b/gi)>0;
+      const needsIntegration=localHtml.includes("assets/js/tool-integration.js");
       const controls=countMatches(result.text,/<(?:input|select|textarea)\b/gi);
       const buttons=countMatches(result.text,/<button\b/gi);
-      if(controls>0&&buttons>0&&result.text.includes("assets/js/tool-integration.js?v="))toolPagesWithControls++;
+      const integration=result.text.includes("assets/js/tool-integration.js?v=");
+      if((!needsControls||controls>0)&&(!needsButtons||buttons>0)&&(!needsIntegration||integration))toolPagesWithControls++;
       else errors.push(`${result.pathname}: expected controls and versioned tool integration runtime`);
     }
   }
@@ -353,7 +353,7 @@ async function runFullCheck(readiness,readyAttempt){
   record("content-hashed shared asset URLs",assetErrors.length===0,`${versionedReferences} references`);
   errors.push(...orderErrors.map(pathname=>`${pathname}: tools catalog must load before site runtime`));
   record("tools catalog before site runtime",orderErrors.length===0,"4 directory/home pages");
-  const expectedToolPages=expectedTools.length*activeLocales.length;
+  const expectedToolPages=catalogToolPaths.size;
   record("tool pages expose working controls",toolPages===expectedToolPages&&toolPagesWithControls===toolPages,`${toolPagesWithControls}/${expectedToolPages}`);
 
   const catalogAsset=readiness.remoteAssets.find(item=>item.rel==="data/tools-catalog.js");

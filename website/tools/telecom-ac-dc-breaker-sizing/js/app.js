@@ -83,7 +83,15 @@ function run(){
   const r=window.NELACDCBreakerEngine.calculate(collect());
   if(!r.ok)return;
   [["acbase",r.baseA," A"],["acdesign",r.designA," A"],["breaker",r.suggestedBreakerA," A"],["kva",r.apparentKVA," kVA"],["dcd",r.dcDesignA," A"],["dcb",r.suggestedDCBreakerA||"—",r.suggestedDCBreakerA?" A":""]].forEach(([id,v,u])=>{if($(id))$(id).textContent=(typeof v==="number"?fmt(v):v)+u;});
-  if($("warn"))$("warn").textContent=(r.risks||[]).map(riskLine).join(" ")||copy.fallback;
+  if($("warn")){
+    const lines=(r.risks||[]).map(riskLine);
+    $("warn").replaceChildren();
+    if(!lines.length)$("warn").textContent=copy.fallback;
+    else lines.forEach((line,index)=>{
+      if(index)$("warn").appendChild(document.createElement("br"));
+      $("warn").appendChild(document.createTextNode(line));
+    });
+  }
   let box=$("engineeringExtras");
   if(!box){box=document.createElement("section");box.id="engineeringExtras";box.className="content-section";document.querySelector(".result-panel")?.appendChild(box);}
   const riskValue=r.riskLevel||r.summary?.riskLevel;
