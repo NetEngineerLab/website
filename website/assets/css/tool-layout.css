@@ -307,8 +307,10 @@ body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-su
 /* Legacy tool pages may emit topic and guide CTAs as direct body children.
    Keep them in the same reading column instead of leaving unstyled links
    against the page gutter. */
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid > .hub-return {
+body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid > .hub-return,
+body.nel-tool-detail-page .hub-return {
   grid-column:1 / -1;
+  width:auto;
   margin:0 !important;
   padding:14px 20px !important;
   border:1px solid #dbe6f1;
@@ -316,6 +318,19 @@ body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main.tool-sh
   background:#fff;
   box-sizing:border-box;
   line-height:1.5;
+}
+@media (max-width:768px){
+  body.nel-tool-detail-page > .hub-return{
+    width:min(calc(100% - (var(--nel-tool-gutter, 14px) * 2)), var(--nel-tool-max-width, 1120px)) !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+}
+body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid > .content-section {
+  grid-column:1 / -1;
+  width:auto !important;
+  max-width:none !important;
+  margin:0 !important;
 }
 body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-topic-hub,
 body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-guide-secondary {
@@ -340,7 +355,7 @@ body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-guide-s
 body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .content-section .section-heading > div > .eyebrow,
 body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-supporting-section .eyebrow {
   margin:0 0 8px !important;
-  color:#4e89ce !important;
+  color:#2f6db5 !important;
   font-size:12px !important;
   line-height:1.4 !important;
   letter-spacing:.13em !important;

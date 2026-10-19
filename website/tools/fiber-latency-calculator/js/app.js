@@ -116,13 +116,46 @@ function renderComparison(result){
   }).join("");
 }
 
+const RESULT_IDS = ["oneWay","rtt","fiberLength","propagation","equipment","serialization","usPerKm","speed","fractionC","versusVacuum"];
+const INPUT_IDS = ["distance","routeFactor","groupIndex","equipmentCount","equipmentDelay","packetSize","linkRate","serializationHops"];
+
+function markInvalidFields(values){
+  const checks = {
+    distance: Number.isFinite(values.distance) && values.distance > 0,
+    routeFactor: Number.isFinite(values.routeFactor) && values.routeFactor >= 1,
+    groupIndex: Number.isFinite(values.groupIndex) && values.groupIndex >= 1 && values.groupIndex <= 1.6,
+    equipmentCount: Number.isSafeInteger(values.equipmentCount) && values.equipmentCount >= 0,
+    equipmentDelay: Number.isFinite(values.equipmentDelay) && values.equipmentDelay >= 0,
+    packetSize: Number.isFinite(values.packetSize) && values.packetSize >= 0,
+    linkRate: Number.isFinite(values.linkRate) && values.linkRate > 0,
+    serializationHops: Number.isSafeInteger(values.serializationHops) && values.serializationHops >= 0
+  };
+  for (const id of INPUT_IDS){
+    const field = $(id);
+    if (!field) continue;
+    const invalid = checks[id] === false;
+    field.setAttribute("aria-invalid", invalid ? "true" : "false");
+    field.style.outline = invalid ? "2px solid #b42318" : "";
+  }
+}
+
+function clearResults(){
+  lastResult = null;
+  for (const id of RESULT_IDS) setText(id, "—");
+  const body = $("comparisonBody");
+  if (body) body.replaceChildren();
+}
+
 function calculate(){
   const values = readInputs();
   const result = window.NELFiberLatencyEngine.calculate(values);
   if (!result.ok){
+    clearResults();
+    markInvalidFields(values);
     $("validationMessage").textContent = text.validation;
     return;
   }
+  markInvalidFields(values);
   $("validationMessage").textContent = "";
   lastResult = {...values, ...result, timestamp: new Date().toISOString()};
   setText("oneWay", result.oneWayText);

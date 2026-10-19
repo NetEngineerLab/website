@@ -1,5 +1,25 @@
 const {test, expect} = require("@playwright/test");
 
+test("cookie banner stays within a quarter of a phone viewport", async ({page}) => {
+  await page.setViewportSize({width: 390, height: 844});
+  await page.addInitScript(() => localStorage.removeItem("nel_cookie_consent_v1"));
+  await page.goto("/", {waitUntil: "load"});
+  const banner = page.locator(".nel-cookie-banner");
+  await expect(banner).toBeVisible();
+  const box = await banner.evaluate(element => {
+    const style = getComputedStyle(element);
+    const rect = element.getBoundingClientRect();
+    return {position: style.position, top: rect.top, height: rect.height, bottom: rect.bottom};
+  });
+  expect(box.position).toBe("fixed");
+  expect(box.top).toBeGreaterThanOrEqual(0);
+  expect(box.bottom).toBeLessThanOrEqual(844 + 1);
+  expect(box.height).toBeLessThanOrEqual(110);
+  expect(await page.evaluate(() => window.scrollY)).toBe(0);
+  await banner.locator(".nel-cookie-reject").focus();
+  expect(await page.evaluate(() => window.scrollY)).toBe(0);
+});
+
 test("fresh guide load keeps the cookie banner in view without scrolling", async ({page}) => {
   await page.addInitScript(() => localStorage.removeItem("nel_cookie_consent_v1"));
   await page.goto("/guides/fiber-link-budget-guide/", {waitUntil: "load"});
