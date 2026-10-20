@@ -1,4 +1,4 @@
-'use strict';const CACHE = "nel-network-risk-hidden-hazard-assessment-generator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-7f58073cbe8f";
+'use strict';const CACHE = "nel-network-risk-hidden-hazard-assessment-generator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-60d36febff55";
 const CORE = [
   "./index.html",
   "./manifest.webmanifest",
