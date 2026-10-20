@@ -338,6 +338,17 @@
 </div>
 </section>
 </main>
+<!-- NEL_SCENARIOS_START -->
+<section class="content-section nel-tool-supporting-section" id="scenarios" aria-labelledby="scenarios-title">
+<div class="section-heading"><div><p class="eyebrow">工程算例</p><h2 id="scenarios-title">典型工程场景</h2></div></div>
+<p>点击场景即可一键填入计算器。下方预期结果由同一计算引擎得出，并有自动化测试覆盖。</p>
+<div class="metric-grid nel-scenario-grid">
+<article class="metric-card nel-scenario-card" data-scenario-id="gpon-bplus-20km-1x32"><div><h3>GPON B+ 类 FTTH：20 km、1:32 分光（上行 1310 nm）</h3><p>按上行最差 0.35 dB/km、8 个熔接点、4 个连接器和一级 1:32 分光，对比 B+ 类 28 dB 预算。</p><p><small>预期结果</small><br><strong data-scenario-expected>设计损耗 29.00 dB · 剩余 -1.00 dB（不通过）</strong></p><p><a class="nel-scenario-link" href="?scenario=gpon-bplus-20km-1x32#calculator">载入此场景 →</a></p></div></article>
+<article class="metric-card nel-scenario-card" data-scenario-id="gpon-cplus-20km-1x32"><div><h3>同一 FTTH 链路改用 GPON C+ 类光模块（32 dB）</h3><p>光纤线路不变，OLT 改为 32 dB 的 C+ 类：说明决定预算能否闭合的是光模块等级而非光纤。</p><p><small>预期结果</small><br><strong data-scenario-expected>设计损耗 29.00 dB · 剩余 3.00 dB（正常）</strong></p><p><a class="nel-scenario-link" href="?scenario=gpon-cplus-20km-1x32#calculator">载入此场景 →</a></p></div></article>
+<article class="metric-card nel-scenario-card" data-scenario-id="p2p-10km-1310"><div><h3>10 km 点对点 1310 nm 链路（6.2 dB 通道）</h3><p>10GBASE-LR 类预算：4 个熔接点、2 个 0.5 dB 连接器、1 dB 余量。</p><p><small>预期结果</small><br><strong data-scenario-expected>设计损耗 5.90 dB · 剩余 0.30 dB（预警）</strong></p><p><a class="nel-scenario-link" href="?scenario=p2p-10km-1310#calculator">载入此场景 →</a></p></div></article>
+</div>
+</section>
+<!-- NEL_SCENARIOS_END -->
 <aside aria-label="广告" class="ad-slot" data-ad-key="afterCalculator" hidden="">
 <div class="ad-label">广告</div>
 <div class="ad-body"></div>
@@ -389,6 +400,13 @@
 </div>
 <div class="example-box"><h3>可复算案例：10 km PON馈线</h3><p>1490 nm下，10 km × 0.25 dB/km = 2.50 dB光纤损耗；加6个熔接点 × 0.10 dB = 0.60 dB、4个连接器 × 0.30 dB = 1.20 dB、1:8 × 1:8分光器21.0 dB，物理链路损耗 = 25.30 dB。加入3 dB工程余量后，总设计损耗 = 28.30 dB。接收光功率按发送功率减去25.30 dB计算，余量单独校核。可继续使用<a href="../../pon-splitter-loss/zh/">PON分光器损耗计算器</a>和<a href="../../optical-power-budget/zh/">光功率预算计算器</a>。</p></div>
 </section>
+<!-- NEL_STANDARDS_START -->
+<section class="content-section nel-tool-supporting-section" id="standards" aria-labelledby="standards-title">
+<div class="section-heading"><div><p class="eyebrow">标准依据</p><h2 id="standards-title">标准引用</h2></div></div>
+<p>上述公式与默认值所依据的权威文件。</p>
+<ul class="nel-standards-list"><li><a href="https://www.itu.int/rec/T-REC-G.652/en" rel="noopener">ITU-T G.652</a> — 单模光纤衰减；本工具默认 0.35 / 0.30 / 0.20 dB/km 为低于 G.652 上限的典型成缆值。 <small>[已核对]</small></li><li><a href="https://www.itu.int/rec/T-REC-G.984.2/en" rel="noopener">ITU-T G.984.2</a> — GPON 物理层与 ODN 等级：B+ 28 dB、C+ 32 dB 损耗预算。 <small>[UNVERIFIED（未核实）: 数值来自二手资料，未逐条核对付费标准原文。]</small></li><li><a href="https://www.itu.int/rec/T-REC-G.671/en" rel="noopener">ITU-T G.671</a> — 无源光器件（含分光器）传输特性。 <small>[已核对]</small></li><li><a href="https://standards.ieee.org/ieee/802.3/10422/" rel="noopener">IEEE 802.3 Clause 52</a> — 10GBASE-LR：6.2 dB 通道插入损耗，最小平均发射功率 −8.2 dBm。 <small>[UNVERIFIED（未核实）: 数值来自二手资料，未逐条核对付费标准原文。]</small></li></ul>
+</section>
+<!-- NEL_STANDARDS_END -->
 <section aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
 <div class="section-heading"><div><p class="eyebrow">工程参考资料</p><h2 id="references-title">光纤损耗标准与测量参考</h2></div></div>
 <ul>
@@ -436,7 +454,7 @@
 </footer>
 <!-- NEL_FOOTER_END -->
 <script defer="" src="../js/engine.js"></script><script defer="" src="../js/pwa.js"></script>
-<script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=0f9b750fb0e5"></script>
+<script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=0f9b750fb0e5"></script><script defer="" src="../js/scenarios.js"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
 <script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script></body>
 </html>

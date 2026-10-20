@@ -152,6 +152,17 @@
 <div class="result-actions"><button id="copyBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> 复制结果</button><button id="saveBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 5v14M5 12h14"></path></svg> 保存记录</button><button id="csvBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg> 导出CSV</button><button id="printBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M6 9V3h12v6"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v7H6z"></path></svg> 打印/PDF</button></div>
 </section>
 </main>
+<!-- NEL_SCENARIOS_START -->
+<section class="content-section nel-tool-supporting-section" id="scenarios" aria-labelledby="scenarios-title">
+<div class="section-heading"><div><p class="eyebrow">工程算例</p><h2 id="scenarios-title">典型工程场景</h2></div></div>
+<p>点击场景即可一键填入计算器。下方预期结果由同一计算引擎得出，并有自动化测试覆盖。</p>
+<div class="metric-grid nel-scenario-grid">
+<article class="metric-card nel-scenario-card" data-scenario-id="office-vlan-26"><div><h3>办公 VLAN：192.168.10.130/26</h3><p>求 62 主机用户 VLAN 的网络地址、广播地址和可用范围。</p><p><small>预期结果</small><br><strong data-scenario-expected>192.168.10.128/26 · 192.168.10.129 – 192.168.10.190 · 可用 62 个</strong></p><p><a class="nel-scenario-link" href="?scenario=office-vlan-26#calculator">载入此场景 →</a></p></div></article>
+<article class="metric-card nel-scenario-card" data-scenario-id="p2p-link-31"><div><h3>路由器点对点链路：10.0.0.0/31（RFC 3021）</h3><p>/31 提供两个可用地址，不保留网络和广播地址。</p><p><small>预期结果</small><br><strong data-scenario-expected>10.0.0.0/31 · 10.0.0.0 – 10.0.0.1 · 可用 2 个</strong></p><p><a class="nel-scenario-link" href="?scenario=p2p-link-31#calculator">载入此场景 →</a></p></div></article>
+<article class="metric-card nel-scenario-card" data-scenario-id="summary-22"><div><h3>路由汇总：172.16.0.0/22 聚合（RFC 4632）</h3><p>把 4 个连续 /24 站点汇总为一个 CIDR 块。</p><p><small>预期结果</small><br><strong data-scenario-expected>172.16.0.0/22 · 172.16.0.1 – 172.16.3.254 · 可用 1022 个</strong></p><p><a class="nel-scenario-link" href="?scenario=summary-22#calculator">载入此场景 →</a></p></div></article>
+</div>
+</section>
+<!-- NEL_SCENARIOS_END -->
 <aside aria-label="广告" class="ad-slot" data-ad-key="afterCalculator" hidden=""><div class="ad-label">广告</div><div class="ad-body"></div></aside>
 <section class="content-section nel-tool-supporting-section" id="methodology"><p class="eyebrow">METHODOLOGY</p><h2>计算方法</h2><div class="method-grid"><article><h3>CIDR计算</h3><p>前缀长度生成连续子网掩码，网络地址通过按位与计算，广播地址通过网络地址与反掩码组合计算。</p></article><article><h3>/31与/32</h3><p>/31按两地址点到点链路处理，/32表示单一主机路由。</p></article><article><h3>VLSM分配</h3><p>子网需求按容量从大到小排序，并对齐到下一合法网络边界后依次分配。</p></article><article><h3>IPv6前缀</h3><p>IPv6使用128位整数运算，输出网络地址、最后地址、主机位以及相对上级前缀的子网数量。</p></article></div>
 <div class="sources"><strong>主要标准来源：</strong>
@@ -161,6 +172,13 @@
 <a href="https://www.rfc-editor.org/rfc/rfc4291" rel="noopener">RFC 4291</a> ·
 <a href="https://www.rfc-editor.org/rfc/rfc4193" rel="noopener">RFC 4193</a>
 </div></section>
+<!-- NEL_STANDARDS_START -->
+<section class="content-section nel-tool-supporting-section" id="standards" aria-labelledby="standards-title">
+<div class="section-heading"><div><p class="eyebrow">标准依据</p><h2 id="standards-title">标准引用</h2></div></div>
+<p>上述公式与默认值所依据的权威文件。</p>
+<ul class="nel-standards-list"><li><a href="https://www.rfc-editor.org/rfc/rfc4632" rel="noopener">RFC 4632</a> — 无类域间路由（CIDR）前缀与路由汇总。 <small>[已核对]</small></li><li><a href="https://www.rfc-editor.org/rfc/rfc950" rel="noopener">RFC 950</a> — Internet 标准子网划分程序与子网掩码。 <small>[已核对]</small></li><li><a href="https://www.rfc-editor.org/rfc/rfc3021" rel="noopener">RFC 3021</a> — IPv4 点对点链路使用 /31 前缀。 <small>[已核对]</small></li><li><a href="https://www.rfc-editor.org/rfc/rfc1918" rel="noopener">RFC 1918</a> — 私有网络地址分配（10/8、172.16/12、192.168/16）。 <small>[已核对]</small></li><li><a href="https://www.rfc-editor.org/rfc/rfc4291" rel="noopener">RFC 4291</a> — IPv6 地址架构。 <small>[已核对]</small></li></ul>
+</section>
+<!-- NEL_STANDARDS_END -->
 <section class="content-section nel-tool-supporting-section" id="faq"><p class="eyebrow">FAQ</p><h2>常见问题</h2><div class="faq-grid"><details><summary>/24有多少可用主机？</summary><p>/24共有256个地址，通常可用主机地址为254个。</p></details><details><summary>为什么/31显示2个可用地址？</summary><p>RFC 3021允许点到点链路使用两个地址，不再保留传统网络地址和广播地址。</p></details><details><summary>什么是反掩码？</summary><p>反掩码是子网掩码的按位取反，常用于ACL和路由配置。</p></details><details><summary>VLSM是否自动预留网关地址？</summary><p>每个子网都有可编辑预留字段，可用于网关、冗余地址、基础设施和后续扩容。</p></details><details><summary>IPv6地址数量能否精确计算？</summary><p>可以。本工具使用BigInt整数运算，并显示完整十进制地址数量。</p></details><details><summary>只要地址够用就应该使用大广播域吗？</summary><p>不应只看地址容量，还要考虑故障域、广播流量、安全区域、路由汇总和运维边界。</p></details></div></section>
 <section class="content-section nel-tool-supporting-section" id="history"><div class="history-head"><div><p class="eyebrow">PROJECT RECORDS</p><h2>历史记录</h2></div><button class="text-button" id="clearHistoryBtn">清空记录</button></div><div class="history-list" id="historyList"></div></section>
 <aside aria-label="广告" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">广告</div><div class="ad-body"></div></aside>
@@ -184,6 +202,6 @@
   </div>
 </footer>
 <!-- NEL_FOOTER_END -->
-<script defer="" src="../data/ip-reference.js"></script><script defer="" src="../js/engine.js?v=1.9.9-04"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=0a012c60e19c"></script>
+<script defer="" src="../data/ip-reference.js"></script><script defer="" src="../js/engine.js?v=1.9.9-04"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=0a012c60e19c"></script><script defer="" src="../js/scenarios.js"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
 <script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script></body></html>

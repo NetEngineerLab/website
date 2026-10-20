@@ -1,0 +1,92 @@
+[
+  {
+    "id": "gpon-bplus-20km-1x32",
+    "inputs": {
+      "wavelength": "1310",
+      "distance": 20,
+      "attenuation": 0.35,
+      "spliceCount": 8,
+      "spliceLoss": 0.1,
+      "connectorCount": 4,
+      "connectorLoss": 0.3,
+      "splitter1": "17",
+      "splitter2": "0",
+      "otherLoss": 0,
+      "engineeringMargin": 3,
+      "availableBudget": 28,
+      "txPower": 0.5,
+      "rxThreshold": -28
+    },
+    "checks": {
+      "designLoss": "29.00",
+      "budgetRemaining": "-1.00",
+      "estimatedRxPower": "-25.50"
+    },
+    "status": "failed",
+    "headline": {
+      "en": "Design loss 29.00 dB · remaining -1.00 dB (failed)",
+      "zh": "设计损耗 29.00 dB · 剩余 -1.00 dB（不通过）",
+      "es": "Pérdida de diseño 29.00 dB · restante -1.00 dB (no cumple)"
+    }
+  },
+  {
+    "id": "gpon-cplus-20km-1x32",
+    "inputs": {
+      "wavelength": "1310",
+      "distance": 20,
+      "attenuation": 0.35,
+      "spliceCount": 8,
+      "spliceLoss": 0.1,
+      "connectorCount": 4,
+      "connectorLoss": 0.3,
+      "splitter1": "17",
+      "splitter2": "0",
+      "otherLoss": 0,
+      "engineeringMargin": 3,
+      "availableBudget": 32,
+      "txPower": 0.5,
+      "rxThreshold": -32
+    },
+    "checks": {
+      "designLoss": "29.00",
+      "budgetRemaining": "3.00",
+      "estimatedRxPower": "-25.50"
+    },
+    "status": "healthy",
+    "headline": {
+      "en": "Design loss 29.00 dB · remaining 3.00 dB (healthy)",
+      "zh": "设计损耗 29.00 dB · 剩余 3.00 dB（正常）",
+      "es": "Pérdida de diseño 29.00 dB · restante 3.00 dB (correcto)"
+    }
+  },
+  {
+    "id": "p2p-10km-1310",
+    "inputs": {
+      "wavelength": "1310",
+      "distance": 10,
+      "attenuation": 0.35,
+      "spliceCount": 4,
+      "spliceLoss": 0.1,
+      "connectorCount": 2,
+      "connectorLoss": 0.5,
+      "splitter1": "0",
+      "splitter2": "0",
+      "otherLoss": 0,
+      "engineeringMargin": 1,
+      "availableBudget": 6.2,
+      "txPower": -8.2,
+      "rxThreshold": -14.4
+    },
+    "checks": {
+      "designLoss": "5.90",
+      "budgetRemaining": "0.30",
+      "estimatedRxPower": "-13.10"
+    },
+    "status": "warning",
+    "headline": {
+      "en": "Design loss 5.90 dB · remaining 0.30 dB (warning)",
+      "zh": "设计损耗 5.90 dB · 剩余 0.30 dB（预警）",
+      "es": "Pérdida de diseño 5.90 dB · restante 0.30 dB (aviso)"
+    }
+  }
+]

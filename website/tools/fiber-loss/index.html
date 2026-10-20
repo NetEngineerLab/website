@@ -335,6 +335,17 @@
 </div>
 </section>
 </main>
+<!-- NEL_SCENARIOS_START -->
+<section class="content-section nel-tool-supporting-section" id="scenarios" aria-labelledby="scenarios-title">
+<div class="section-heading"><div><p class="eyebrow">WORKED EXAMPLES</p><h2 id="scenarios-title">Typical engineering scenarios</h2></div></div>
+<p>Each scenario pre-fills the calculator. The expected result below was computed by the same engine and is covered by automated tests.</p>
+<div class="metric-grid nel-scenario-grid">
+<article class="metric-card nel-scenario-card" data-scenario-id="gpon-bplus-20km-1x32"><div><h3>GPON Class B+ FTTH: 20 km, 1:32 split (upstream 1310 nm)</h3><p>Worst-case upstream at 0.35 dB/km, 8 splices, 4 connectors and one 1:32 splitter against a 28 dB B+ budget.</p><p><small>Expected result</small><br><strong data-scenario-expected>Design loss 29.00 dB · remaining -1.00 dB (failed)</strong></p><p><a class="nel-scenario-link" href="?scenario=gpon-bplus-20km-1x32#calculator">Load this scenario →</a></p></div></article>
+<article class="metric-card nel-scenario-card" data-scenario-id="gpon-cplus-20km-1x32"><div><h3>Same FTTH link on GPON Class C+ optics (32 dB)</h3><p>Identical plant with a 32 dB C+ OLT budget: shows how the optics class, not the fiber, closes the budget.</p><p><small>Expected result</small><br><strong data-scenario-expected>Design loss 29.00 dB · remaining 3.00 dB (healthy)</strong></p><p><a class="nel-scenario-link" href="?scenario=gpon-cplus-20km-1x32#calculator">Load this scenario →</a></p></div></article>
+<article class="metric-card nel-scenario-card" data-scenario-id="p2p-10km-1310"><div><h3>10 km point-to-point link at 1310 nm (6.2 dB channel)</h3><p>10GBASE-LR-style budget: 4 splices, 2 connectors at 0.5 dB, 1 dB margin.</p><p><small>Expected result</small><br><strong data-scenario-expected>Design loss 5.90 dB · remaining 0.30 dB (warning)</strong></p><p><a class="nel-scenario-link" href="?scenario=p2p-10km-1310#calculator">Load this scenario →</a></p></div></article>
+</div>
+</section>
+<!-- NEL_SCENARIOS_END -->
 <aside aria-label="Advertisement" class="ad-slot" data-ad-key="afterCalculator" hidden="">
 <div class="ad-label">ADVERTISEMENT</div>
 <div class="ad-body"></div>
@@ -380,6 +391,13 @@
 </div>
 <div class="example-box"><h3>Worked case: 10 km PON feeder</h3><p>At 1490 nm, 10 km × 0.25 dB/km = 2.50 dB fiber loss. Add 6 splices × 0.10 dB = 0.60 dB, 4 connectors × 0.30 dB = 1.20 dB, and 1:8 × 1:8 splitter loss of 21.0 dB: physical link loss = 25.30 dB. With a 3 dB engineering margin, total design loss = 28.30 dB. Receive power is transmit power minus 25.30 dB; the margin is checked separately. Use the <a href="../pon-splitter-loss/">PON splitter loss calculator</a> and <a href="../optical-power-budget/">optical power budget calculator</a> to continue the workflow.</p></div>
 </section>
+<!-- NEL_STANDARDS_START -->
+<section class="content-section nel-tool-supporting-section" id="standards" aria-labelledby="standards-title">
+<div class="section-heading"><div><p class="eyebrow">STANDARDS</p><h2 id="standards-title">Standards citations</h2></div></div>
+<p>Authoritative documents behind the formulas and default values above.</p>
+<ul class="nel-standards-list"><li><a href="https://www.itu.int/rec/T-REC-G.652/en" rel="noopener">ITU-T G.652</a> — Single-mode fibre attenuation; the tool's 0.35 / 0.30 / 0.20 dB/km defaults are typical cabled values below the G.652 maxima. <small>[Checked]</small></li><li><a href="https://www.itu.int/rec/T-REC-G.984.2/en" rel="noopener">ITU-T G.984.2</a> — GPON physical layer and ODN classes: B+ 28 dB and C+ 32 dB loss budgets. <small>[UNVERIFIED: Value taken from secondary sources; the paywalled standard text was not checked line by line.]</small></li><li><a href="https://www.itu.int/rec/T-REC-G.671/en" rel="noopener">ITU-T G.671</a> — Transmission characteristics of passive optical components, including splitters. <small>[Checked]</small></li><li><a href="https://standards.ieee.org/ieee/802.3/10422/" rel="noopener">IEEE 802.3 Clause 52</a> — 10GBASE-LR: 6.2 dB channel insertion loss, −8.2 dBm minimum average launch power. <small>[UNVERIFIED: Value taken from secondary sources; the paywalled standard text was not checked line by line.]</small></li></ul>
+</section>
+<!-- NEL_STANDARDS_END -->
 <section aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
 <div class="section-heading"><div><p class="eyebrow">ENGINEERING REFERENCES</p><h2 id="references-title">Fiber loss standards and measurement references</h2></div></div>
 <ul>
@@ -427,7 +445,7 @@
 </footer>
 <!-- NEL_FOOTER_END -->
 <script defer="" src="js/engine.js"></script><script defer="" src="js/pwa.js"></script>
-<script defer="" src="../../data/optical-standards.js"></script><script defer="" src="../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="js/app.js?v=0f9b750fb0e5"></script>
+<script defer="" src="../../data/optical-standards.js"></script><script defer="" src="../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="js/app.js?v=0f9b750fb0e5"></script><script defer src="js/scenarios.js"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
 <script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script></body>
 </html>
