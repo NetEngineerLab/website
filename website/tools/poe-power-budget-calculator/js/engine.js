@@ -4,7 +4,7 @@
   af:{label:"IEEE 802.3af (PoE)",pse:15.4,pd:12.95},
   at:{label:"IEEE 802.3at (PoE+)",pse:30,pd:25.5},
   bt3:{label:"IEEE 802.3bt Type 3 (PoE++)",pse:60,pd:51},
-  bt4:{label:"IEEE 802.3bt Type 4 (PoE++)",pse:90,pd:71}
+  bt4:{label:"IEEE 802.3bt Type 4 (PoE++)",pse:90,pd:71.3}
  };
  const n=(v,d=0)=>Number.isFinite(Number(v))?Number(v):d;
  const clamp=(v,a,b)=>Math.min(b,Math.max(a,n(v)));
