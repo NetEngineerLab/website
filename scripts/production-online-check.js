@@ -390,7 +390,8 @@ async function runFullCheck(readiness,readyAttempt){
 
   for(const [source,target] of [
     ["/about.html","/about/"],["/contact.html","/contact/"],["/privacy.html","/privacy/"],["/terms.html","/terms/"],
-    ["/zh/about.html","/zh/about/"],["/zh/contact.html","/zh/contact/"],["/zh/privacy.html","/zh/privacy/"],["/zh/terms.html","/zh/terms/"]
+    ["/zh/about.html","/zh/about/"],["/zh/contact.html","/zh/contact/"],["/zh/privacy.html","/zh/privacy/"],["/zh/terms.html","/zh/terms/"],
+      ["/guides/onu-rx-power-range/","/guides/fiber-link-budget-guide/"]
   ]){
     const result=await requestPath(source);
     const location=result.response.headers.get("location")||"";

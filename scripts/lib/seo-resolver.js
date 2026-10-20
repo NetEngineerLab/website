@@ -654,6 +654,8 @@ const EDITORIAL_LINKS = [
   { source: "topics/network-monitoring-observability/", target: "cases/evpn-ce-ping-failure/", en: "EVPN CE ping failure case", zh: "EVPN CE ping 失败案例" },
   { source: "topics/data-center-capacity/", target: "tools/engineering-report-batch-export-center/", en: "Batch engineering report export", zh: "工程报告批量导出" },
   { source: "tools/fiber-loss/", target: "guides/fiber-link-budget-guide/", en: "Fiber link budget method", zh: "光纤链路预算方法" },
+  { source: "tools/optical-power-budget/", target: "guides/fiber-link-budget-guide/", en: "Fiber link budget method: loss, margin and maximum distance", zh: "光纤链路预算方法：损耗、余量与最大距离" },
+  { source: "guides/fiber-link-budget-guide/", target: "tools/optical-power-budget/", en: "Check the full power window with the Optical Power Budget Calculator", zh: "用光功率预算计算器核对完整收发功率窗口" },
   { source: "topics/telecom-power-energy/", target: "tools/network-asset-lifecycle-tracker/", en: "Network asset lifecycle tracker", zh: "网络资产生命周期跟踪" },
   { source: "topics/telecom-power-energy/", target: "tools/oob-network-design-planner/", en: "Out-of-band network design workshop", zh: "带外网络设计工作坊" },
   { source: "tools/engineering-report-batch-export-center/", target: "tools/network-capacity-forecast-planner/", en: "Capacity forecast planner", zh: "容量预测规划", es: "Planificador de previsión de capacidad" }
