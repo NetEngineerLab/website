@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-20T01:32:40.178Z",
+  "generatedAt": "2026-10-20T05:43:59.737Z",
   "methodology": {
     "scope": "Active localized tool pages configured by locales.json and tools-catalog.json; partial locale rollouts are supported",
     "meaning": "Rule-based content-gap priority; not a ranking, traffic, or conversion forecast",
@@ -17,12 +17,12 @@
     ]
   },
   "summary": {
-    "activeTools": 41,
-    "localePages": 123,
+    "activeTools": 46,
+    "localePages": 138,
     "priorityCounts": {
       "high": 9,
-      "medium": 4,
-      "maintain": 28
+      "medium": 5,
+      "maintain": 32
     }
   },
   "nextBatch": [
@@ -841,7 +841,7 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 5675,
+          "visibleCharacters": 5712,
           "sectionHeadings": 14,
           "longTailQuestions": [
             "What is the difference between physical loss and design loss?",
@@ -864,7 +864,7 @@
           "reviewMarker": true
         },
         "zh": {
-          "visibleCharacters": 2328,
+          "visibleCharacters": 2338,
           "sectionHeadings": 14,
           "longTailQuestions": [
             "总设计损耗和物理链路损耗有什么区别？",
@@ -1191,6 +1191,100 @@
       "priority": "medium",
       "gaps": [
         "3 authoritative reference(s) below the three-source target",
+        "visible review/update marker missing"
+      ]
+    },
+    {
+      "id": "all-reduce-traffic-estimator",
+      "catalogOrder": 46,
+      "category": "network",
+      "searchIntent": {
+        "id": "planning",
+        "en": "planning",
+        "zh": "规划",
+        "es": "planificación"
+      },
+      "targetTopic": {
+        "en": "All-Reduce Traffic Estimator",
+        "zh": "All-Reduce 流量估算器",
+        "es": "Estimador de tráfico All-Reduce"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-10-20",
+        "zh": null,
+        "es": null
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 5264,
+          "sectionHeadings": 12,
+          "longTailQuestions": [
+            "How much data does ring all-reduce send per GPU?",
+            "What is bus bandwidth in NCCL?",
+            "How long does gradient all-reduce take?",
+            "Does adding GPUs increase per-GPU traffic?",
+            "Is ring the only all-reduce algorithm?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://doi.org/10.1016/j.jpdc.2008.09.002",
+            "https://doi.org/10.1177/1094342005051521"
+          ],
+          "externalReferenceCount": 2,
+          "internalLinkCount": 4,
+          "lastReviewedAt": "2026-10-20",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 2336,
+          "sectionHeadings": 12,
+          "longTailQuestions": [
+            "环形 All-Reduce 每卡发送多少数据？",
+            "NCCL 中的总线带宽是什么？",
+            "梯度 All-Reduce 需要多长时间？",
+            "增加 GPU 会增加每卡流量吗？",
+            "环形是唯一的 All-Reduce 算法吗？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://doi.org/10.1016/j.jpdc.2008.09.002",
+            "https://doi.org/10.1177/1094342005051521"
+          ],
+          "externalReferenceCount": 2,
+          "internalLinkCount": 4,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        },
+        "es": {
+          "visibleCharacters": 4317,
+          "sectionHeadings": 10,
+          "longTailQuestions": [
+            "¿Cuántos datos envía cada GPU en un all-reduce en anillo?",
+            "¿Qué es el ancho de banda de bus en NCCL?",
+            "¿Cuánto tarda el all-reduce de gradientes?",
+            "¿Añadir GPU aumenta el tráfico por GPU?",
+            "¿El anillo es el único algoritmo all-reduce?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://doi.org/10.1016/j.jpdc.2008.09.002",
+            "https://doi.org/10.1177/1094342005051521"
+          ],
+          "externalReferenceCount": 2,
+          "internalLinkCount": 0,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        }
+      },
+      "score": 16,
+      "priority": "medium",
+      "gaps": [
+        "1 authoritative reference(s) below the three-source target",
+        "fewer than two contextual internal links",
         "visible review/update marker missing"
       ]
     },
@@ -1563,6 +1657,390 @@
       "priority": "maintain",
       "gaps": [
         "1 authoritative reference(s) below the three-source target",
+        "visible review/update marker missing"
+      ]
+    },
+    {
+      "id": "chromatic-dispersion-calculator",
+      "catalogOrder": 42,
+      "category": "optical",
+      "searchIntent": {
+        "id": "validation",
+        "en": "validation",
+        "zh": "验证",
+        "es": "validación"
+      },
+      "targetTopic": {
+        "en": "Chromatic Dispersion Calculator",
+        "zh": "色散计算器",
+        "es": "Calculadora de dispersión cromática"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-10-20",
+        "zh": null,
+        "es": null
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 5348,
+          "sectionHeadings": 12,
+          "longTailQuestions": [
+            "What is the chromatic dispersion of G.652 fiber at 1550 nm?",
+            "How do I calculate total chromatic dispersion?",
+            "What is a typical CD tolerance for 10G optics?",
+            "Does chromatic dispersion matter at 1310 nm?",
+            "Do coherent optics need dispersion compensation?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.652/en",
+            "https://www.itu.int/rec/T-REC-G.650.1/en",
+            "https://www.itu.int/rec/T-REC-G.655/en"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 4,
+          "lastReviewedAt": "2026-10-20",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 2331,
+          "sectionHeadings": 12,
+          "longTailQuestions": [
+            "G.652 光纤在 1550 nm 的色散是多少？",
+            "如何计算累积色散？",
+            "10G 光模块的色散容限一般是多少？",
+            "1310 nm 需要考虑色散吗？",
+            "相干光模块需要色散补偿吗？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.652/en",
+            "https://www.itu.int/rec/T-REC-G.650.1/en",
+            "https://www.itu.int/rec/T-REC-G.655/en"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 4,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        },
+        "es": {
+          "visibleCharacters": 4263,
+          "sectionHeadings": 10,
+          "longTailQuestions": [
+            "¿Cuál es la dispersión de la fibra G.652 a 1550 nm?",
+            "¿Cómo se calcula la dispersión cromática total?",
+            "¿Qué tolerancia de CD tienen los módulos de 10G?",
+            "¿Importa la dispersión a 1310 nm?",
+            "¿Los módulos coherentes necesitan compensación de dispersión?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.652/en",
+            "https://www.itu.int/rec/T-REC-G.650.1/en",
+            "https://www.itu.int/rec/T-REC-G.655/en"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 0,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        }
+      },
+      "score": 10,
+      "priority": "maintain",
+      "gaps": [
+        "fewer than two contextual internal links",
+        "visible review/update marker missing"
+      ]
+    },
+    {
+      "id": "pmd-budget-calculator",
+      "catalogOrder": 43,
+      "category": "optical",
+      "searchIntent": {
+        "id": "validation",
+        "en": "validation",
+        "zh": "验证",
+        "es": "validación"
+      },
+      "targetTopic": {
+        "en": "PMD Budget Calculator",
+        "zh": "偏振模色散（PMD）预算计算器",
+        "es": "Calculadora de presupuesto PMD"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-10-20",
+        "zh": null,
+        "es": null
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 5081,
+          "sectionHeadings": 12,
+          "longTailQuestions": [
+            "How do I calculate PMD for a fiber link?",
+            "What is the PMD limit for 10G?",
+            "Why does PMD grow with the square root of length?",
+            "What is the difference between PMD and DGD?",
+            "Does PMD matter for coherent 100G or 400G?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.652/en",
+            "https://www.itu.int/rec/T-REC-G.650.2/en",
+            "https://webstore.iec.ch/en/publication/5878"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 4,
+          "lastReviewedAt": "2026-10-20",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 2181,
+          "sectionHeadings": 12,
+          "longTailQuestions": [
+            "如何计算光纤链路的 PMD？",
+            "10G 的 PMD 限值是多少？",
+            "为什么 PMD 随长度平方根增长？",
+            "PMD 和 DGD 有什么区别？",
+            "相干 100G/400G 还要关注 PMD 吗？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.652/en",
+            "https://www.itu.int/rec/T-REC-G.650.2/en",
+            "https://webstore.iec.ch/en/publication/5878"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 4,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        },
+        "es": {
+          "visibleCharacters": 4256,
+          "sectionHeadings": 10,
+          "longTailQuestions": [
+            "¿Cómo se calcula la PMD de un enlace?",
+            "¿Cuál es el límite de PMD para 10G?",
+            "¿Por qué la PMD crece con la raíz de la longitud?",
+            "¿Qué diferencia hay entre PMD y DGD?",
+            "¿Importa la PMD en 100G o 400G coherente?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://www.itu.int/rec/T-REC-G.652/en",
+            "https://www.itu.int/rec/T-REC-G.650.2/en",
+            "https://webstore.iec.ch/en/publication/5878"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 0,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        }
+      },
+      "score": 10,
+      "priority": "maintain",
+      "gaps": [
+        "fewer than two contextual internal links",
+        "visible review/update marker missing"
+      ]
+    },
+    {
+      "id": "ethernet-serialization-delay-calculator",
+      "catalogOrder": 44,
+      "category": "network",
+      "searchIntent": {
+        "id": "calculation",
+        "en": "calculation",
+        "zh": "计算",
+        "es": "cálculo"
+      },
+      "targetTopic": {
+        "en": "Ethernet Serialization Delay Calculator",
+        "zh": "以太网串行化时延计算器",
+        "es": "Calculadora de retardo de serialización Ethernet"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-10-20",
+        "zh": null,
+        "es": null
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 4971,
+          "sectionHeadings": 12,
+          "longTailQuestions": [
+            "How do I calculate serialization delay?",
+            "Why is 10G line rate 14.88 Mpps?",
+            "Does serialization delay depend on cable length?",
+            "What is the overhead of an Ethernet frame on the wire?",
+            "Do jumbo frames reduce latency?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://standards.ieee.org/ieee/802.3/10422/",
+            "https://www.rfc-editor.org/rfc/rfc2544",
+            "https://www.rfc-editor.org/rfc/rfc1242"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 5,
+          "lastReviewedAt": "2026-10-20",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 2147,
+          "sectionHeadings": 12,
+          "longTailQuestions": [
+            "如何计算串行化时延？",
+            "为什么 10G 线速是 14.88 Mpps？",
+            "串行化时延与线缆长度有关吗？",
+            "以太网帧在线路上的开销是多少？",
+            "巨型帧能降低时延吗？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://standards.ieee.org/ieee/802.3/10422/",
+            "https://www.rfc-editor.org/rfc/rfc2544",
+            "https://www.rfc-editor.org/rfc/rfc1242"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 5,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        },
+        "es": {
+          "visibleCharacters": 4113,
+          "sectionHeadings": 10,
+          "longTailQuestions": [
+            "¿Cómo se calcula el retardo de serialización?",
+            "¿Por qué la tasa de línea de 10G es 14,88 Mpps?",
+            "¿Depende la serialización de la longitud del cable?",
+            "¿Cuál es la sobrecarga de una trama Ethernet en la línea?",
+            "¿Las tramas jumbo reducen la latencia?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://standards.ieee.org/ieee/802.3/10422/",
+            "https://www.rfc-editor.org/rfc/rfc2544",
+            "https://www.rfc-editor.org/rfc/rfc1242"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 0,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        }
+      },
+      "score": 10,
+      "priority": "maintain",
+      "gaps": [
+        "fewer than two contextual internal links",
+        "visible review/update marker missing"
+      ]
+    },
+    {
+      "id": "stp-path-cost-calculator",
+      "catalogOrder": 45,
+      "category": "network",
+      "searchIntent": {
+        "id": "calculation",
+        "en": "calculation",
+        "zh": "计算",
+        "es": "cálculo"
+      },
+      "targetTopic": {
+        "en": "STP Path Cost Calculator",
+        "zh": "STP 路径开销计算器",
+        "es": "Calculadora de coste de ruta STP"
+      },
+      "contentOwner": "NetEngineerLab Editorial",
+      "lastReviewedAt": {
+        "en": "2026-10-20",
+        "zh": null,
+        "es": null
+      },
+      "locales": {
+        "en": {
+          "visibleCharacters": 4791,
+          "sectionHeadings": 12,
+          "longTailQuestions": [
+            "How is STP path cost calculated?",
+            "What is the STP cost of a 10G link?",
+            "What is the STP cost of 100G?",
+            "Why did IEEE change to long path costs?",
+            "What happens when two paths have equal cost?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://standards.ieee.org/ieee/802.1D/3387/",
+            "https://standards.ieee.org/ieee/802.1Q/10323/",
+            "https://www.cisco.com/c/en/us/support/docs/lan-switching/spanning-tree-protocol/5234-5.html"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 4,
+          "lastReviewedAt": "2026-10-20",
+          "reviewMarker": true
+        },
+        "zh": {
+          "visibleCharacters": 2172,
+          "sectionHeadings": 12,
+          "longTailQuestions": [
+            "STP 路径开销如何计算？",
+            "10G 链路的 STP 开销是多少？",
+            "100G 的 STP 开销是多少？",
+            "IEEE 为什么改用长开销？",
+            "两条路径开销相同时怎么办？"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://standards.ieee.org/ieee/802.1D/3387/",
+            "https://standards.ieee.org/ieee/802.1Q/10323/",
+            "https://www.cisco.com/c/en/us/support/docs/lan-switching/spanning-tree-protocol/5234-5.html"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 4,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        },
+        "es": {
+          "visibleCharacters": 3992,
+          "sectionHeadings": 10,
+          "longTailQuestions": [
+            "¿Cómo se calcula el coste de ruta STP?",
+            "¿Qué coste STP tiene un enlace de 10G?",
+            "¿Qué coste STP tiene 100G?",
+            "¿Por qué IEEE pasó a costes largos?",
+            "¿Qué ocurre si dos rutas tienen el mismo coste?"
+          ],
+          "faqCount": 5,
+          "faqSchema": true,
+          "externalReferences": [
+            "https://standards.ieee.org/ieee/802.1D/3387/",
+            "https://standards.ieee.org/ieee/802.1Q/10323/",
+            "https://www.cisco.com/c/en/us/support/docs/lan-switching/spanning-tree-protocol/5234-5.html"
+          ],
+          "externalReferenceCount": 3,
+          "internalLinkCount": 0,
+          "lastReviewedAt": null,
+          "reviewMarker": false
+        }
+      },
+      "score": 10,
+      "priority": "maintain",
+      "gaps": [
+        "fewer than two contextual internal links",
         "visible review/update marker missing"
       ]
     },
@@ -3362,7 +3840,7 @@
       },
       "locales": {
         "en": {
-          "visibleCharacters": 4719,
+          "visibleCharacters": 4769,
           "sectionHeadings": 14,
           "longTailQuestions": [
             "What is a data center network convergence ratio?",
@@ -3384,7 +3862,7 @@
           "reviewMarker": true
         },
         "zh": {
-          "visibleCharacters": 1966,
+          "visibleCharacters": 1984,
           "sectionHeadings": 14,
           "longTailQuestions": [
             "什么是数据中心网络收敛比？",
