@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-optical-power-budget-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-a2134ad65f38";
+const CACHE = "nel-optical-power-budget-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-872c7374100d";
 const CORE = [
   "./index.html",
   "./",

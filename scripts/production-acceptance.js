@@ -265,7 +265,8 @@ async function httpAudit(sitemapUrls){
     }
     for(const [source,target] of [
       ["/about.html","/about/"],["/contact.html","/contact/"],["/privacy.html","/privacy/"],["/terms.html","/terms/"],
-      ["/zh/about.html","/zh/about/"],["/zh/contact.html","/zh/contact/"],["/zh/privacy.html","/zh/privacy/"],["/zh/terms.html","/zh/terms/"]
+      ["/zh/about.html","/zh/about/"],["/zh/contact.html","/zh/contact/"],["/zh/privacy.html","/zh/privacy/"],["/zh/terms.html","/zh/terms/"],
+      ["/guides/onu-rx-power-range/","/guides/fiber-link-budget-guide/"]
     ]){
       const {response}=await get(base+source);
       if(response.status!==301)errors.push(`${source}: expected 301, got ${response.status}`);

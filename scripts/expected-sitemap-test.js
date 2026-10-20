@@ -22,6 +22,8 @@ assert.equal(expected.size, actualSet.size);
 assert.equal(expected.has("/es/guides/10g-vs-25g-uplinks/"), false);
 assert.equal(expected.has("/es/topics/switch-oversubscription/"), false);
 assert.equal(expected.has("/zh/guides/10g-vs-25g-uplinks/"), false);
+assert.equal(expected.has("/guides/onu-rx-power-range/"), false, "duplicate guide is a 301 to the fiber link budget guide");
+assert.equal(actualSet.has("/guides/onu-rx-power-range/"), false);
 assert.equal(expected.has("/zh/tools/pon-fiber-calculators/"), false);
 assert.equal(expected.has("/tools/pon-fiber-calculators/zh/"), true);
 assert.equal(expected.has("/tools/pon-fiber-calculators/es/"), true);
