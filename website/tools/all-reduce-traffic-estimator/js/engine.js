@@ -11,7 +11,9 @@
   function fmtBytes(b){
     if(b>=1e12)return `${r(b/1e12,3).toFixed(3)} TB`;
     if(b>=1e9)return `${r(b/1e9,3).toFixed(3)} GB`;
-    return `${r(b/1e6,3).toFixed(3)} MB`;
+    if(b>=1e6)return `${r(b/1e6,3).toFixed(3)} MB`;
+    if(b>=1e3)return `${r(b/1e3,3).toFixed(3)} kB`;
+    return `${r(b,0).toFixed(0)} B`;
   }
   function fmtTime(s){
     if(s>=1)return `${r(s,3).toFixed(3)} s`;

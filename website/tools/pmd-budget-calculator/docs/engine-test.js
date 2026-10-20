@@ -38,3 +38,13 @@ assert.equal(engine.calculate({...base,componentCount:1.5}).ok,false);
 assert.equal(engine.calculate({...base,maxRatio:0.5}).ok,false);
 assert.equal(engine.calculate(null).ok,false);
 console.log("PMD budget engine tests: PASS");
+
+// Audit PMD-1: components alone exceed the budget -> explicit note instead of "0 km".
+{
+  const c=engine.calculate({...base,componentCount:2,componentPmd:8});
+  assert.equal(c.ok,true);
+  assert.equal(c.componentsExceed,true);
+  assert.equal(c.display.maxLength,"@pmd-components-exceed");
+  assert.equal(engine.calculate(base).componentsExceed,false);
+}
+console.log("PMD components-exceed note OK");

@@ -99,7 +99,7 @@
 <div class="field"><label for="s0">零色散斜率 S0</label><div class="input-wrap wide-unit"><input id="s0" type="number" min="0.001" max="0.2" step="0.001" value="0.092"><span>ps/(nm²·km)</span></div><p class="hint">G.652 上限为 0.092。</p></div>
 <div class="field"><label for="manualD">厂家色散系数 D</label><div class="input-wrap wide-unit"><input id="manualD" type="number" min="-50" max="50" step="0.01" value="17"><span>ps/(nm·km)</span></div><p class="hint">仅在选择“厂家数据”时使用。</p></div>
 <div class="field"><label for="lengthKm">光纤长度</label><div class="input-wrap"><input id="lengthKm" type="number" min="0.001" step="0.001" value="80"><span>km</span></div></div>
-<div class="field"><label for="compensation">色散补偿量（DCM/FBG）</label><div class="input-wrap"><input id="compensation" type="number" step="1" value="0"><span>ps/nm</span></div><p class="hint">正值抵消正色散。</p></div>
+<div class="field"><label for="compensation">色散补偿量（DCM/FBG） <span class="required-mark">(必填)</span></label><div class="input-wrap"><input id="compensation" type="number" required aria-required="true" step="1" value="0"><span>ps/nm</span></div><p class="hint">必填——无补偿时填 0。正值抵消正色散。</p></div>
 <div class="field"><label for="tolerance">接收端色散容限</label><div class="input-wrap"><input id="tolerance" type="number" min="1" step="1" value="1600"><span>ps/nm</span></div><p class="hint">取自光模块规格书。</p></div>
 <div class="field"><label for="spectralWidth">光源谱宽 Δλ</label><div class="input-wrap"><input id="spectralWidth" type="number" min="0" step="0.01" value="0.1"><span>nm</span></div></div>
 </div>
@@ -118,7 +118,7 @@
 <div class="metric-grid">
 <article class="metric-card"><div><small>色散系数 D</small><strong id="dCoef">—</strong></div></article>
 <article class="metric-card"><div><small>光纤累积色散</small><strong id="fiberCd">—</strong></div></article>
-<article class="metric-card"><div><small>色散受限距离</small><strong id="maxLength">—</strong></div></article>
+<article class="metric-card"><div><small>满足容限的长度范围</small><strong id="maxLength">—</strong></div></article>
 <article class="metric-card"><div><small>脉冲展宽 |CD|·Δλ</small><strong id="broadening">—</strong></div></article>
 <article class="metric-card"><div><small>容限占用</small><strong id="usedPct">—</strong></div></article>
 </div>
@@ -139,13 +139,13 @@
 <section class="content-section methodology nel-tool-supporting-section" id="methodology">
 <div class="section-heading"><div><p class="eyebrow">计算方法</p><h2>计算方法与工程说明</h2></div></div>
 <div class="method-grid">
-<article><h3>使用方法</h3><ol><li>保留 G.652 模型，或选择“厂家数据”并输入光缆规格书中的 D 值。</li><li>输入工作波长、光纤长度以及 DCM/FBG 补偿量。</li><li>输入光模块规格书给出的接收端色散容限。</li><li>查看残余色散、余量和色散受限距离。</li></ol></article><article><h3>色散公式</h3><p>ITU-T G.652 给出色散系数 D(λ) = (S0/4)·(λ − λ0⁴/λ³) ps/(nm·km)，λ0 在 1300–1324 nm，S0 ≤ 0.092 ps/(nm²·km)。在 1550 nm、λ0 = 1310 nm、S0 = 0.092 时 D = 17.461 ps/(nm·km)。累积色散 = D × L；残余色散 = D × L − 补偿量。</p></article><article><h3>受限距离与展宽</h3><p>色散受限距离是使 |D × L − C| 不超过容限 T 的最大长度：L = (T + C·sign(D)) / |D|。脉冲展宽按 |残余色散| × Δλ 估算（ps）。80% 预警阈值是本工具的筛查规则，不是标准值。</p></article>
+<article><h3>使用方法</h3><ol><li>保留 G.652 模型，或选择“厂家数据”并输入光缆规格书中的 D 值。</li><li>输入工作波长、光纤长度以及 DCM/FBG 补偿量。</li><li>输入光模块规格书给出的接收端色散容限。</li><li>查看残余色散、余量和色散受限距离。</li></ol></article><article><h3>色散公式</h3><p>ITU-T G.652 给出色散系数 D(λ) = (S0/4)·(λ − λ0⁴/λ³) ps/(nm·km)，λ0 在 1300–1324 nm，S0 ≤ 0.092 ps/(nm²·km)。在 1550 nm、λ0 = 1310 nm、S0 = 0.092 时 D = 17.461 ps/(nm·km)。累积色散 = D × L；残余色散 = D × L − 补偿量。</p></article><article><h3>受限距离与展宽</h3><p>满足 |D × L − C| ≤ 容限 T 的长度位于 (C·sign(D) − T) / |D| 与 (C·sign(D) + T) / |D| 之间。无补偿时下限为 0，只显示最大长度；过补偿链路（例如 D = 17、C = 2,000、T = 400）会显示完整区间 94.12–141.18 km。脉冲展宽按 |残余色散| × Δλ 估算（ps）。80% 预警阈值是本工具的筛查规则，不是标准值。</p></article>
 </div>
 <div class="example-box"><h3>算例：1550 nm、80 km</h3><p>G.652 模型，λ0 1310 nm、S0 0.092：D = 17.461 ps/(nm·km)。80 km 累积 1,396.8 ps/nm。对 1,600 ps/nm 的接收端余量为 203.2 ps/nm（占用 87.3%，预警），色散受限距离 91.63 km。Δλ = 0.1 nm 时脉冲展宽 139.68 ps。加 680 ps/nm 补偿后残余 716.8 ps/nm。</p></div>
 </section>
 <section aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
 <div class="section-heading"><div><p class="eyebrow">工程参考</p><h2 id="references-title">标准与参考资料</h2></div></div>
-<ul><li><a href="https://www.itu.int/rec/T-REC-G.652/en" rel="noopener">ITU-T G.652：单模光纤和光缆特性</a></li><li><a href="https://www.itu.int/rec/T-REC-G.650.1/en" rel="noopener">ITU-T G.650.1：线性参数（含色散）测试方法</a></li><li><a href="https://www.itu.int/rec/T-REC-G.655/en" rel="noopener">ITU-T G.655：非零色散位移光纤</a></li></ul>
+<ul><li><a href="https://www.itu.int/rec/T-REC-G.652/en" rel="noopener">ITU-T G.652 (08/2024)：单模光纤和光缆——色散系数 D(λ) = (S0/4)(λ − λ0⁴/λ³)，λ0 1300–1324 nm，S0 ≤ 0.092 ps/(nm²·km)，见 G.652.A–D 属性表 [条款号 UNVERIFIED（未核实）]</a></li><li><a href="https://www.itu.int/rec/T-REC-G.650.1/en" rel="noopener">ITU-T G.650.1 (01/2024)：线性参数测试方法——色散测量与拟合 [条款号 UNVERIFIED（未核实）]</a></li><li><a href="https://www.itu.int/rec/T-REC-G.691/en" rel="noopener">ITU-T G.691 (03/2006)：带光放大器的单通道 STM-64 等 SDH 系统光接口——各应用代码的最大色散 [条款号 UNVERIFIED（未核实）]</a></li><li><a href="https://www.itu.int/rec/T-REC-G.655/en" rel="noopener">ITU-T G.655 (11/2009)：非零色散位移光纤——此类光纤请使用厂家 D 值</a></li></ul>
 <p>G.655、G.654 或特定厂家光纤请使用厂家色散系数；G.652 模型仅适用于标准单模光纤。 最后审核: 2026-10-20.</p>
 </section>
 <section aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
@@ -173,7 +173,7 @@
 <script defer src="../js/engine.js"></script>
 <script defer src="../js/pwa.js"></script>
 <script defer src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script>
-<script defer src="../js/app.js?v=05ecf2f43658"></script>
+<script defer src="../js/app.js?v=70c8758449b5"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
 <script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script>
 </body>

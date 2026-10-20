@@ -32,7 +32,7 @@
     const maxKm=v.pmdCoef>0?(remainingSq>0?remainingSq/(v.pmdCoef*v.pmdCoef):0):Infinity;
     const usedPct=meanDgd/allowedMean*100;
     const status=margin<0?"failed":usedPct>80?"warning":"healthy";
-    return{ok:true,fiberDgd,meanDgd,symbolPeriodPs,allowedMean,margin,maxDgd,maxKm,usedPct,status,
+    return{ok:true,componentsExceed:remainingSq<=0,fiberDgd,meanDgd,symbolPeriodPs,allowedMean,margin,maxDgd,maxKm,usedPct,status,
       display:{
         fiberDgd:`${r(fiberDgd,3).toFixed(3)} ps`,
         meanDgd:`${r(meanDgd,3).toFixed(3)} ps`,
@@ -40,7 +40,8 @@
         allowedDgd:`${r(allowedMean,2).toFixed(2)} ps`,
         dgdMargin:`${r(margin,3).toFixed(3)} ps`,
         maxDgd:`${r(maxDgd,2).toFixed(2)} ps`,
-        maxLength:Number.isFinite(maxKm)?`${r(maxKm,0).toFixed(0)} km`:"∞",
+        // When fixed components alone use up the budget no fiber length fits.
+        maxLength:remainingSq<=0?"@pmd-components-exceed":Number.isFinite(maxKm)?`${r(maxKm,0).toFixed(0)} km`:"∞",
         usedPct:`${r(usedPct,1).toFixed(1)}%`
       }};
   }

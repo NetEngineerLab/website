@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-pmd-budget-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-93c319e5bf3e";
+const CACHE = "nel-pmd-budget-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-32f9a817c221";
 const CORE = [
   "./index.html",
   "./",
@@ -7,7 +7,7 @@ const CORE = [
   "./offline.html",
   "./manifest.webmanifest",
   "./css/style.css?v=48c7b72aa30f",
-  "./js/app.js?v=ac3be228077b",
+  "./js/app.js?v=4b7d55cfc706",
   "./js/engine.js",
   "./images/logo.svg",
   "../../data/locales.js?v=909e05076a50",
