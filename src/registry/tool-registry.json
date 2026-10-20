@@ -2670,5 +2670,405 @@
         ]
       }
     }
+  },
+  {
+    "id": "chromatic-dispersion-calculator",
+    "publishedAt": "2026-10-20",
+    "order": 42,
+    "status": "active",
+    "category": "optical",
+    "icon": "CD",
+    "translations": {
+      "en": {
+        "name": "Chromatic Dispersion Calculator",
+        "description": "Calculate G.652 dispersion coefficient, accumulated and residual chromatic dispersion, and the CD-limited link length.",
+        "tags": [
+          "Fiber",
+          "Dispersion",
+          "DWDM"
+        ]
+      },
+      "zh": {
+        "name": "色散计算器",
+        "description": "计算 G.652 色散系数、累积与残余色散以及色散受限链路长度。",
+        "tags": [
+          "光纤",
+          "色散",
+          "DWDM"
+        ]
+      },
+      "es": {
+        "name": "Calculadora de dispersión cromática",
+        "description": "Calcula el coeficiente de dispersión G.652, la dispersión cromática acumulada y residual, y la longitud limitada por CD.",
+        "tags": [
+          "Fibra",
+          "Dispersión",
+          "DWDM"
+        ]
+      }
+    },
+    "schemaVersion": "2.1.0",
+    "domain": "optical",
+    "capabilities": [
+      "calculate",
+      "validate"
+    ],
+    "maturity": "production",
+    "routes": {
+      "en": "/tools/chromatic-dispersion-calculator/",
+      "zh-CN": "/tools/chromatic-dispersion-calculator/zh/",
+      "es": "/tools/chromatic-dispersion-calculator/es/"
+    },
+    "relationships": {
+      "related": [
+        "fiber-loss",
+        "pmd-budget-calculator",
+        "optical-power-budget",
+        "sfp-qsfp-compatibility-calculator"
+      ]
+    },
+    "pageContent": {
+      "searchIntent": {
+        "en": "calculate fiber chromatic dispersion in ps/nm",
+        "zh": "计算光纤累积色散 ps/nm",
+        "es": "calcular la dispersión cromática de la fibra en ps/nm"
+      },
+      "reviewedAt": {
+        "en": "2026-10-20",
+        "zh": "2026-10-20",
+        "es": "2026-10-20"
+      },
+      "longTailQuestions": {
+        "en": [
+          "What is the chromatic dispersion of G.652 fiber at 1550 nm?"
+        ],
+        "zh": [
+          "G.652 光纤在 1550 nm 的色散是多少？"
+        ],
+        "es": [
+          "¿Cuál es la dispersión de la fibra G.652 a 1550 nm?"
+        ]
+      }
+    }
+  },
+  {
+    "id": "pmd-budget-calculator",
+    "publishedAt": "2026-10-20",
+    "order": 43,
+    "status": "active",
+    "category": "optical",
+    "icon": "PM",
+    "translations": {
+      "en": {
+        "name": "PMD Budget Calculator",
+        "description": "Calculate fiber and link mean DGD from the PMD coefficient, compare it with the symbol-period tolerance and find the PMD-limited length.",
+        "tags": [
+          "Fiber",
+          "PMD",
+          "DGD"
+        ]
+      },
+      "zh": {
+        "name": "偏振模色散（PMD）预算计算器",
+        "description": "根据 PMD 系数计算光纤与链路平均 DGD，对比码元周期容限并求 PMD 受限距离。",
+        "tags": [
+          "光纤",
+          "PMD",
+          "DGD"
+        ]
+      },
+      "es": {
+        "name": "Calculadora de presupuesto PMD",
+        "description": "Calcula el DGD medio de fibra y enlace con el coeficiente PMD, lo compara con la tolerancia por periodo de símbolo y halla la longitud límite.",
+        "tags": [
+          "Fibra",
+          "PMD",
+          "DGD"
+        ]
+      }
+    },
+    "schemaVersion": "2.1.0",
+    "domain": "optical",
+    "capabilities": [
+      "calculate",
+      "validate"
+    ],
+    "maturity": "production",
+    "routes": {
+      "en": "/tools/pmd-budget-calculator/",
+      "zh-CN": "/tools/pmd-budget-calculator/zh/",
+      "es": "/tools/pmd-budget-calculator/es/"
+    },
+    "relationships": {
+      "related": [
+        "chromatic-dispersion-calculator",
+        "fiber-loss",
+        "optical-power-budget",
+        "otdr-event"
+      ]
+    },
+    "pageContent": {
+      "searchIntent": {
+        "en": "calculate PMD and mean DGD for a fiber link",
+        "zh": "计算光纤链路 PMD 与平均 DGD",
+        "es": "calcular la PMD y el DGD medio de un enlace de fibra"
+      },
+      "reviewedAt": {
+        "en": "2026-10-20",
+        "zh": "2026-10-20",
+        "es": "2026-10-20"
+      },
+      "longTailQuestions": {
+        "en": [
+          "How do I calculate PMD for a fiber link?"
+        ],
+        "zh": [
+          "如何计算光纤链路的 PMD？"
+        ],
+        "es": [
+          "¿Cómo se calcula la PMD de un enlace?"
+        ]
+      }
+    }
+  },
+  {
+    "id": "ethernet-serialization-delay-calculator",
+    "publishedAt": "2026-10-20",
+    "order": 44,
+    "status": "active",
+    "category": "network",
+    "icon": "SD",
+    "translations": {
+      "en": {
+        "name": "Ethernet Serialization Delay Calculator",
+        "description": "Calculate per-hop and multi-hop serialization delay, wire time, maximum frame rate and L2 efficiency for an Ethernet link.",
+        "tags": [
+          "Ethernet",
+          "Latency",
+          "PPS"
+        ]
+      },
+      "zh": {
+        "name": "以太网串行化时延计算器",
+        "description": "计算以太网链路的单跳与多跳串行化时延、线路占用时间、最大帧速率和二层效率。",
+        "tags": [
+          "以太网",
+          "时延",
+          "包速率"
+        ]
+      },
+      "es": {
+        "name": "Calculadora de retardo de serialización Ethernet",
+        "description": "Calcula el retardo de serialización por salto y total, el tiempo en línea, la tasa máxima de tramas y la eficiencia L2.",
+        "tags": [
+          "Ethernet",
+          "Latencia",
+          "PPS"
+        ]
+      }
+    },
+    "schemaVersion": "2.1.0",
+    "domain": "switching",
+    "capabilities": [
+      "calculate",
+      "analyze"
+    ],
+    "maturity": "production",
+    "routes": {
+      "en": "/tools/ethernet-serialization-delay-calculator/",
+      "zh-CN": "/tools/ethernet-serialization-delay-calculator/zh/",
+      "es": "/tools/ethernet-serialization-delay-calculator/es/"
+    },
+    "relationships": {
+      "related": [
+        "fiber-latency-calculator",
+        "mtu-calculator",
+        "bandwidth-calculator",
+        "switch-uplink-oversubscription-calculator"
+      ]
+    },
+    "pageContent": {
+      "searchIntent": {
+        "en": "calculate Ethernet serialization delay and packets per second",
+        "zh": "计算以太网串行化时延和包速率",
+        "es": "calcular el retardo de serialización Ethernet y los paquetes por segundo"
+      },
+      "reviewedAt": {
+        "en": "2026-10-20",
+        "zh": "2026-10-20",
+        "es": "2026-10-20"
+      },
+      "longTailQuestions": {
+        "en": [
+          "How do I calculate serialization delay?"
+        ],
+        "zh": [
+          "如何计算串行化时延？"
+        ],
+        "es": [
+          "¿Cómo se calcula el retardo de serialización?"
+        ]
+      }
+    }
+  },
+  {
+    "id": "stp-path-cost-calculator",
+    "publishedAt": "2026-10-20",
+    "order": 45,
+    "status": "active",
+    "category": "network",
+    "icon": "ST",
+    "translations": {
+      "en": {
+        "name": "STP Path Cost Calculator",
+        "description": "Calculate 802.1D/802.1Q port costs and root path cost for two candidate paths and see which one Spanning Tree prefers.",
+        "tags": [
+          "STP",
+          "Switching",
+          "Path cost"
+        ]
+      },
+      "zh": {
+        "name": "STP 路径开销计算器",
+        "description": "计算两条候选路径的 802.1D/802.1Q 端口开销与根路径开销，判断生成树优选路径。",
+        "tags": [
+          "STP",
+          "交换",
+          "路径开销"
+        ]
+      },
+      "es": {
+        "name": "Calculadora de coste de ruta STP",
+        "description": "Calcula costes de puerto 802.1D/802.1Q y el coste de ruta raíz de dos rutas y muestra cuál prefiere Spanning Tree.",
+        "tags": [
+          "STP",
+          "Conmutación",
+          "Coste de ruta"
+        ]
+      }
+    },
+    "schemaVersion": "2.1.0",
+    "domain": "switching",
+    "capabilities": [
+      "calculate",
+      "analyze"
+    ],
+    "maturity": "production",
+    "routes": {
+      "en": "/tools/stp-path-cost-calculator/",
+      "zh-CN": "/tools/stp-path-cost-calculator/zh/",
+      "es": "/tools/stp-path-cost-calculator/es/"
+    },
+    "relationships": {
+      "related": [
+        "switch-uplink-oversubscription-calculator",
+        "vlan-ip-capacity-planner",
+        "ospf-cost-calculator",
+        "ethernet-serialization-delay-calculator"
+      ]
+    },
+    "pageContent": {
+      "searchIntent": {
+        "en": "calculate spanning tree path cost",
+        "zh": "计算生成树路径开销",
+        "es": "calcular el coste de ruta de spanning tree"
+      },
+      "reviewedAt": {
+        "en": "2026-10-20",
+        "zh": "2026-10-20",
+        "es": "2026-10-20"
+      },
+      "longTailQuestions": {
+        "en": [
+          "How is STP path cost calculated?"
+        ],
+        "zh": [
+          "STP 路径开销如何计算？"
+        ],
+        "es": [
+          "¿Cómo se calcula el coste de ruta STP?"
+        ]
+      }
+    }
+  },
+  {
+    "id": "all-reduce-traffic-estimator",
+    "publishedAt": "2026-10-20",
+    "order": 46,
+    "status": "active",
+    "category": "network",
+    "icon": "AR",
+    "translations": {
+      "en": {
+        "name": "All-Reduce Traffic Estimator",
+        "description": "Estimate per-GPU and fabric traffic, step time and bus bandwidth for a ring all-reduce of model gradients.",
+        "tags": [
+          "AI",
+          "GPU",
+          "All-Reduce"
+        ]
+      },
+      "zh": {
+        "name": "All-Reduce 流量估算器",
+        "description": "估算模型梯度环形 All-Reduce 的每卡与全网流量、单次耗时和总线带宽。",
+        "tags": [
+          "AI",
+          "GPU",
+          "All-Reduce"
+        ]
+      },
+      "es": {
+        "name": "Estimador de tráfico All-Reduce",
+        "description": "Estima el tráfico por GPU y total, el tiempo y el ancho de banda de bus de un all-reduce en anillo de gradientes.",
+        "tags": [
+          "IA",
+          "GPU",
+          "All-Reduce"
+        ]
+      }
+    },
+    "schemaVersion": "2.1.0",
+    "domain": "switching",
+    "capabilities": [
+      "calculate",
+      "plan"
+    ],
+    "maturity": "production",
+    "routes": {
+      "en": "/tools/all-reduce-traffic-estimator/",
+      "zh-CN": "/tools/all-reduce-traffic-estimator/zh/",
+      "es": "/tools/all-reduce-traffic-estimator/es/"
+    },
+    "relationships": {
+      "related": [
+        "data-center-network-convergence-fabric-capacity-planner",
+        "switch-uplink-oversubscription-calculator",
+        "bandwidth-calculator",
+        "network-capacity-forecast-planner"
+      ]
+    },
+    "pageContent": {
+      "searchIntent": {
+        "en": "estimate all-reduce traffic for GPU training",
+        "zh": "估算 GPU 训练 All-Reduce 流量",
+        "es": "estimar el tráfico all-reduce del entrenamiento con GPU"
+      },
+      "reviewedAt": {
+        "en": "2026-10-20",
+        "zh": "2026-10-20",
+        "es": "2026-10-20"
+      },
+      "longTailQuestions": {
+        "en": [
+          "How much data does ring all-reduce send per GPU?"
+        ],
+        "zh": [
+          "环形 All-Reduce 每卡发送多少数据？"
+        ],
+        "es": [
+          "¿Cuántos datos envía cada GPU en un all-reduce en anillo?"
+        ]
+      }
+    }
   }
 ]

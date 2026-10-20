@@ -532,6 +532,66 @@
       ],
       "inputContext": [],
       "outputContext": []
+    },
+    "chromatic-dispersion-calculator": {
+      "id": "chromatic-dispersion-calculator",
+      "toolLevel": "calculator",
+      "supportedJobs": [],
+      "nextTools": [
+        "fiber-loss",
+        "pmd-budget-calculator",
+        "optical-power-budget"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "pmd-budget-calculator": {
+      "id": "pmd-budget-calculator",
+      "toolLevel": "calculator",
+      "supportedJobs": [],
+      "nextTools": [
+        "chromatic-dispersion-calculator",
+        "fiber-loss",
+        "optical-power-budget"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "ethernet-serialization-delay-calculator": {
+      "id": "ethernet-serialization-delay-calculator",
+      "toolLevel": "analyzer",
+      "supportedJobs": [],
+      "nextTools": [
+        "fiber-latency-calculator",
+        "mtu-calculator",
+        "bandwidth-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "stp-path-cost-calculator": {
+      "id": "stp-path-cost-calculator",
+      "toolLevel": "analyzer",
+      "supportedJobs": [],
+      "nextTools": [
+        "switch-uplink-oversubscription-calculator",
+        "vlan-ip-capacity-planner",
+        "ospf-cost-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "all-reduce-traffic-estimator": {
+      "id": "all-reduce-traffic-estimator",
+      "toolLevel": "planner",
+      "supportedJobs": [],
+      "nextTools": [
+        "data-center-network-convergence-fabric-capacity-planner",
+        "switch-uplink-oversubscription-calculator",
+        "bandwidth-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
     }
   }
 }

@@ -953,5 +953,146 @@
         }
       }
     ]
+  },
+  {
+    "id": "optical-dispersion-planning",
+    "schemaVersion": "2.1.0",
+    "status": "active",
+    "domain": "optical",
+    "primary": true,
+    "translations": {
+      "en": {
+        "name": "Optical Dispersion Planning Workflow",
+        "description": "Confirm span length and loss, then check chromatic dispersion and PMD against the transceiver limits."
+      },
+      "zh": {
+        "name": "光纤色散规划工作流",
+        "description": "先确认跨段长度与损耗，再校核色散和偏振模色散是否满足光模块容限。"
+      }
+    },
+    "steps": [
+      {
+        "order": 1,
+        "toolId": "fiber-loss",
+        "translations": {
+          "en": {
+            "action": "Confirm span length and loss"
+          },
+          "zh": {
+            "action": "确认跨段长度与损耗"
+          }
+        }
+      },
+      {
+        "order": 2,
+        "toolId": "chromatic-dispersion-calculator",
+        "translations": {
+          "en": {
+            "action": "Check residual chromatic dispersion"
+          },
+          "zh": {
+            "action": "校核残余色散"
+          }
+        }
+      },
+      {
+        "order": 3,
+        "toolId": "pmd-budget-calculator",
+        "translations": {
+          "en": {
+            "action": "Check the PMD / DGD budget"
+          },
+          "zh": {
+            "action": "校核 PMD / DGD 预算"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "layer2-path-design",
+    "schemaVersion": "2.1.0",
+    "status": "active",
+    "domain": "switching",
+    "primary": true,
+    "translations": {
+      "en": {
+        "name": "Layer 2 Path Design Workflow",
+        "description": "Pick the Spanning Tree forwarding path, then estimate the per-hop serialization delay along it."
+      },
+      "zh": {
+        "name": "二层路径设计工作流",
+        "description": "先确定生成树转发路径，再估算沿途每跳串行化时延。"
+      }
+    },
+    "steps": [
+      {
+        "order": 1,
+        "toolId": "stp-path-cost-calculator",
+        "translations": {
+          "en": {
+            "action": "Compare STP root path costs"
+          },
+          "zh": {
+            "action": "比较 STP 根路径开销"
+          }
+        }
+      },
+      {
+        "order": 2,
+        "toolId": "ethernet-serialization-delay-calculator",
+        "translations": {
+          "en": {
+            "action": "Estimate serialization delay per hop"
+          },
+          "zh": {
+            "action": "估算每跳串行化时延"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "ai-training-fabric-planning",
+    "schemaVersion": "2.1.0",
+    "status": "active",
+    "domain": "switching",
+    "primary": true,
+    "translations": {
+      "en": {
+        "name": "AI Training Fabric Planning Workflow",
+        "description": "Estimate gradient all-reduce traffic, then size the leaf-spine fabric that carries it."
+      },
+      "zh": {
+        "name": "AI 训练网络规划工作流",
+        "description": "先估算梯度 All-Reduce 流量，再规划承载它的 Leaf-Spine 网络。"
+      }
+    },
+    "steps": [
+      {
+        "order": 1,
+        "toolId": "all-reduce-traffic-estimator",
+        "translations": {
+          "en": {
+            "action": "Estimate all-reduce traffic and time"
+          },
+          "zh": {
+            "action": "估算 All-Reduce 流量与耗时"
+          }
+        }
+      },
+      {
+        "order": 2,
+        "toolId": "data-center-network-convergence-fabric-capacity-planner",
+        "translations": {
+          "en": {
+            "action": "Size the leaf-spine fabric"
+          },
+          "zh": {
+            "action": "规划 Leaf-Spine 网络容量"
+          }
+        }
+      }
+    ]
   }
 ]

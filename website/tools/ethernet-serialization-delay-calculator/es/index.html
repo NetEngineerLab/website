@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr" data-nel-locale="es" data-nel-route="tools/ethernet-serialization-delay-calculator/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b6ffb">
+<title>Calculadora de serialización Ethernet – tiempo de trama, PPS y tasa</title>
+<meta name="description" content="Calcula el retardo de serialización Ethernet para cualquier trama y velocidad, el tiempo en línea con preámbulo e IFG, las tramas por segundo (64 B a 10G = 14,88 Mpps) y la eficiencia L2.">
+<link rel="stylesheet" href="../css/style.css?v=48c7b72aa30f">
+<meta name="app-base" content="../">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NetEngineerLab">
+<meta property="og:title" content="Calculadora de serialización Ethernet – tiempo de trama, PPS y tasa">
+<meta property="og:description" content="Calcula el retardo de serialización Ethernet para cualquier trama y velocidad, el tiempo en línea con preámbulo e IFG, las tramas por segundo (64 B a 10G = 14,88 Mpps) y la eficiencia L2.">
+<meta property="og:url" content="https://netengineerlab.com/tools/ethernet-serialization-delay-calculator/es/">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Calculadora de serialización Ethernet – tiempo de trama, PPS y tasa">
+<meta name="twitter:description" content="Calcula el retardo de serialización Ethernet para cualquier trama y velocidad, el tiempo en línea con preámbulo e IFG, las tramas por segundo (64 B a 10G = 14,88 Mpps) y la eficiencia L2.">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://netengineerlab.com/tools/ethernet-serialization-delay-calculator/es/#app","name":"Calculadora de retardo de serialización Ethernet","url":"https://netengineerlab.com/tools/ethernet-serialization-delay-calculator/es/","description":"Calcula el retardo de serialización por salto y total, el tiempo en línea, la tasa máxima de tramas y la eficiencia L2.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Network Engineering Calculator","operatingSystem":"Any","browserRequirements":"Requires JavaScript and a modern web browser","softwareVersion":"1.0.0","inLanguage":"es","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/ethernet-serialization-delay-calculator/es/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"NetEngineerLab","item":"https://netengineerlab.com/es/"},{"@type":"ListItem","position":2,"name":"Herramientas","item":"https://netengineerlab.com/tools/es/"},{"@type":"ListItem","position":3,"name":"Calculadora de retardo de serialización Ethernet","item":"https://netengineerlab.com/tools/ethernet-serialization-delay-calculator/es/"}]}]}</script>
+
+<link rel="stylesheet" href="../../../assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=8dd1728bf5eb">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Calculadora de serialización Ethernet – tiempo de trama, PPS y tasa","url":"https://netengineerlab.com/tools/ethernet-serialization-delay-calculator/es/","description":"Calcula el retardo de serialización Ethernet para cualquier trama y velocidad, el tiempo en línea con preámbulo e IFG, las tramas por segundo (64 B a 10G = 14,88 Mpps) y la eficiencia L2.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="es">
+<meta name="nel-route" content="tools/ethernet-serialization-delay-calculator/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/tools/ethernet-serialization-delay-calculator/es/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/ethernet-serialization-delay-calculator/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/ethernet-serialization-delay-calculator/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/ethernet-serialization-delay-calculator/es/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/ethernet-serialization-delay-calculator/">
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cómo se calcula el retardo de serialización?","acceptedAnswer":{"@type":"Answer","text":"Divida el tamaño de la trama en bits entre la velocidad. 1500 bytes × 8 = 12.000 bits; a 10 Gbps son 1,2 µs y a 1 Gbps 12 µs."}},{"@type":"Question","name":"¿Por qué la tasa de línea de 10G es 14,88 Mpps?","acceptedAnswer":{"@type":"Answer","text":"Una trama mínima de 64 bytes ocupa 84 bytes con preámbulo, SFD e IFG. 10.000.000.000 ÷ (84 × 8) = 14.880.952 tramas por segundo."}},{"@type":"Question","name":"¿Depende la serialización de la longitud del cable?","acceptedAnswer":{"@type":"Answer","text":"No. Solo depende del tamaño de trama y la velocidad. La longitud añade retardo de propagación, unos 5 µs por km de fibra."}},{"@type":"Question","name":"¿Cuál es la sobrecarga de una trama Ethernet en la línea?","acceptedAnswer":{"@type":"Answer","text":"20 bytes por trama: 7 de preámbulo, 1 de SFD y 12 de IFG mínimo, además de los 18 bytes de cabecera MAC y FCS dentro de la trama."}},{"@type":"Question","name":"¿Las tramas jumbo reducen la latencia?","acceptedAnswer":{"@type":"Answer","text":"Mejoran la eficiencia pero aumentan la serialización por trama: 9018 bytes tardan 7,2 µs a 10 Gbps frente a 1,2 µs con 1518 bytes."}}]}</script>
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=6c0b1c4ee1f1">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=d998a53add89">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=b563dd0297f5"></script>
+<script defer src="../../../assets/js/es-launch-runtime.js?v=26766a85d049"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=e4c5b5c2101a">
+<link rel="manifest" href="../manifest-es.webmanifest">
+</head>
+<body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<a class="skip-link" href="#calculator">Saltar a la calculadora</a>
+<noscript><div class="noscript">Se necesita JavaScript para ejecutar esta calculadora.</div></noscript>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../es/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Plataforma de inteligencia para ingeniería de redes</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Abrir navegación"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navegación principal">
+      <a href="../../../es/">Inicio</a>
+      <a href="../../es/" aria-current="page">Herramientas</a>
+      <a href="../../../guides/">Guías</a>
+      <a href="../../../topics/">Temas</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Español"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Español</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../" lang="en" hreflang="en"><span>English</span><small>Inglés</small></a><a class="language-option" role="menuitem" href="../zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chino simplificado</small></a><a class="language-option" role="menuitem" href="./" lang="es" hreflang="es" aria-current="page"><span>Español</span><small>Español</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">Empezar a calcular</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a href="../../../es/">Inicio</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../../es/">Herramientas</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">Calculadora de retardo de serialización Ethernet</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END -->
+<section class="hero nel-tool-hero"><div class="hero-inner">
+<p class="eyebrow">HERRAMIENTA DE INGENIERÍA DE REDES</p>
+<h1>Calculadora de retardo de serialización Ethernet</h1>
+<p>El retardo de serialización es el tiempo que tarda un puerto en poner una trama en la línea: bits ÷ velocidad. Una trama de 1.518 bytes tarda 12,14 µs a 1 Gbps y 121,4 ns a 100 Gbps. Cada trama ocupa además 20 bytes de preámbulo, SFD e IFG, lo que fija los 14,88 Mpps a 10 Gbps con tramas de 64 bytes. Esta calculadora da el retardo por salto y total, el tiempo en línea, las tramas por segundo y la eficiencia L2.</p>
+<div class="hero-tags"><span>Tiempo de trama</span><span>Preámbulo + IFG</span><span>Mpps</span><span>Eficiencia L2</span></div></div></section>
+<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
+<section class="input-panel card nel-tool-input">
+<div class="section-title"><span class="section-icon">☷</span><div>
+<h2>Trama y enlace</h2>
+<p>Introduzca el tamaño de trama Ethernet con los 4 bytes de FCS, la velocidad y el número de saltos store-and-forward.</p>
+</div></div>
+<div class="form-grid">
+<div class="field"><label for="projectName">Nombre del proyecto</label><div class="input-wrap no-unit"><input id="projectName" type="text" value="Ruta de acceso a núcleo"></div></div>
+<div class="field"><label for="frameBytes">Tamaño de trama (con FCS)</label><div class="input-wrap"><input id="frameBytes" type="number" min="64" max="16000" step="1" value="1518"><span>B</span></div><p class="hint">Mínimo 64, 1518 sin etiqueta, 1522 con 802.1Q, jumbo 9018+.</p></div>
+<div class="field"><label for="ratePreset">Velocidad predefinida</label><div class="input-wrap no-unit"><select id="ratePreset"><option value="0.01">10 Mbps</option><option value="0.1">100 Mbps</option><option value="1">1 Gbps</option><option value="2.5">2,5 Gbps</option><option value="10" selected>10 Gbps</option><option value="25">25 Gbps</option><option value="40">40 Gbps</option><option value="100">100 Gbps</option><option value="400">400 Gbps</option><option value="800">800 Gbps</option><option value="custom">Personalizada</option></select></div></div>
+<div class="field"><label for="rateGbps">Velocidad de línea</label><div class="input-wrap"><input id="rateGbps" type="number" min="0.001" max="1600" step="0.001" value="10"><span>Gbps</span></div></div>
+<div class="field"><label for="hops">Saltos store-and-forward</label><div class="input-wrap no-unit"><input id="hops" type="number" min="1" max="64" step="1" value="3"></div><p class="hint">Cada salto store-and-forward añade un tiempo de trama.</p></div>
+</div>
+<div class="actions">
+<button class="primary-action" id="calculateBtn" type="button">Calcular</button>
+<button class="secondary-action" id="resetBtn" type="button">Restablecer</button>
+</div>
+<p class="validation-message" id="validationMessage" role="alert"></p>
+</section>
+<section aria-live="polite" class="result-panel card nel-tool-result">
+<div class="section-title"><span class="section-icon">▥</span><div>
+<h2>Resultado del cálculo</h2>
+<p>Retardo = bytes × 8 ÷ velocidad. Tasa = velocidad ÷ ((trama + 20) × 8).</p>
+</div></div>
+<div class="summary-card" id="summaryCard"><div><p>Serialización por salto</p><strong><span id="perHop">—</span></strong></div><div><p>Total en todos los saltos</p><strong><span id="totalDelay">—</span></strong></div></div>
+<div class="metric-grid">
+<article class="metric-card"><div><small>Tiempo en línea con preámbulo + IFG</small><strong id="wireTime">—</strong></div></article>
+<article class="metric-card"><div><small>Bytes en línea por trama</small><strong id="wireBytes">—</strong></div></article>
+<article class="metric-card"><div><small>Tasa máxima de tramas</small><strong id="frameRate">—</strong></div></article>
+<article class="metric-card"><div><small>Caudal L2 a velocidad de línea</small><strong id="l2Throughput">—</strong></div></article>
+<article class="metric-card"><div><small>Eficiencia L2</small><strong id="efficiency">—</strong></div></article>
+</div>
+<p class="hint">Los conmutadores cut-through reenvían antes de recibir toda la trama y añaden menos de un tiempo de trama. No incluye propagación, colas ni procesamiento.</p>
+<div class="result-actions">
+<button id="copyBtn" type="button">Copiar resultado</button>
+<button id="saveBtn" type="button">Guardar registro</button>
+<button id="printBtn" type="button">Imprimir / Exportar PDF</button>
+</div>
+</section>
+
+</main>
+<section class="content-section nel-tool-supporting-section" id="history">
+<div class="section-heading"><div><p class="eyebrow">REGISTROS DEL PROYECTO</p><h2>Cálculos recientes</h2></div>
+<button class="text-button" id="clearHistoryBtn" type="button">Borrar historial</button></div>
+<div class="history-list" id="historyList"></div>
+</section>
+<section class="content-section methodology nel-tool-supporting-section" id="methodology">
+<div class="section-heading"><div><p class="eyebrow">METODOLOGÍA</p><h2>Metodología y notas de ingeniería</h2></div></div>
+<div class="method-grid">
+<article><h3>Cómo usar</h3><ol><li>Introduzca el tamaño de trama desde la MAC de destino hasta la FCS (64–1518 bytes en tramas estándar).</li><li>Elija una velocidad o Personalizada.</li><li>Introduzca cuántos equipos store-and-forward atraviesa la trama.</li><li>Lea el retardo por salto y total, el tiempo en línea, las tramas por segundo y la eficiencia L2.</li></ol></article><article><h3>Fórmula de serialización</h3><p>Retardo de serialización = bytes de trama × 8 ÷ velocidad. En la línea cada trama lleva antes 7 bytes de preámbulo y 1 de SFD, y después un IFG mínimo de 96 bits (12 bytes), así que ocupa trama + 20 bytes. Tiempo en línea = (trama + 20) × 8 ÷ velocidad.</p></article><article><h3>Tasa y eficiencia</h3><p>Tramas por segundo máximas = velocidad ÷ ((trama + 20) × 8). Eficiencia L2 = trama ÷ (trama + 20); caudal L2 = eficiencia × velocidad. A 10 Gbps, 64 bytes dan 14.880.952 fps y 76,19 %; 1518 bytes dan 812.743 fps y 98,70 %.</p></article>
+</div>
+<div class="example-box"><h3>Caso práctico: 64 B y 1518 B a 10 Gbps</h3><p>Una trama de 64 bytes tarda 51,20 ns por salto, 153,60 ns en tres saltos y ocupa 84 bytes (67,20 ns) en la línea: 14.880.952 fps. Una de 1518 bytes tarda 1,214 µs por salto y 3,643 µs en tres; a 1 Gbps la misma trama tarda 12,144 µs por salto.</p></div>
+</section>
+<section aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">REFERENCIAS DE INGENIERÍA</p><h2 id="references-title">Normas y referencias</h2></div></div>
+<ul><li><a href="https://standards.ieee.org/ieee/802.3/10422/" rel="noopener">IEEE 802.3: formato de trama, preámbulo, SFD e IFG</a></li><li><a href="https://www.rfc-editor.org/rfc/rfc2544" rel="noopener">RFC 2544: metodología de evaluación y tamaños de trama</a></li><li><a href="https://www.rfc-editor.org/rfc/rfc1242" rel="noopener">RFC 1242: terminología (latencia, caudal)</a></li></ul>
+<p>La sobrecarga de 20 bytes usa el IFG mínimo; algunos PHY y la adaptación de velocidad (por ejemplo WAN PHY) cambian la tasa útil. Última revisión: 2026-10-20.</p>
+</section>
+<section aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">PREGUNTAS FRECUENTES</p><h2 id="faq-title">Preguntas frecuentes</h2></div></div>
+<div class="faq-grid"><details><summary>¿Cómo se calcula el retardo de serialización?</summary><p>Divida el tamaño de la trama en bits entre la velocidad. 1500 bytes × 8 = 12.000 bits; a 10 Gbps son 1,2 µs y a 1 Gbps 12 µs.</p></details><details><summary>¿Por qué la tasa de línea de 10G es 14,88 Mpps?</summary><p>Una trama mínima de 64 bytes ocupa 84 bytes con preámbulo, SFD e IFG. 10.000.000.000 ÷ (84 × 8) = 14.880.952 tramas por segundo.</p></details><details><summary>¿Depende la serialización de la longitud del cable?</summary><p>No. Solo depende del tamaño de trama y la velocidad. La longitud añade retardo de propagación, unos 5 µs por km de fibra.</p></details><details><summary>¿Cuál es la sobrecarga de una trama Ethernet en la línea?</summary><p>20 bytes por trama: 7 de preámbulo, 1 de SFD y 12 de IFG mínimo, además de los 18 bytes de cabecera MAC y FCS dentro de la trama.</p></details><details><summary>¿Las tramas jumbo reducen la latencia?</summary><p>Mejoran la eficiencia pero aumentan la serialización por trama: 9018 bytes tardan 7,2 µs a 10 Gbps frente a 1,2 µs con 1518 bytes.</p></details></div>
+</section>
+<!-- NEL_TOOL_GRAPH_START -->
+<!-- NEL_TOOL_GRAPH_END -->
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Herramientas profesionales en línea para ingenieros de telecomunicaciones y redes.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navegación del pie de página">
+      <a href="../../../es/about/">Acerca de</a><a href="../../../es/contact/">Contacto</a><a href="../../../es/privacy/">Privacidad</a><a href="../../../es/terms/">Términos</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script defer src="../js/engine.js"></script>
+<script defer src="../js/pwa.js"></script>
+<script defer src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script>
+<script defer src="../js/app.js?v=588ee07b633e"></script>
+<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script>
+</body>
+</html>

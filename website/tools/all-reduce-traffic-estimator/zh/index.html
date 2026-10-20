@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="tools/all-reduce-traffic-estimator/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b6ffb">
+<title>All-Reduce 流量估算器｜环形 2(N−1)/N 流量、耗时与总线带宽</title>
+<meta name="description" content="估算分布式 GPU 训练的环形 All-Reduce 流量：每卡发送字节（2(N−1)/N × 缓冲区）、全网流量、带宽与时延耗时、算法带宽和 NCCL 总线带宽。">
+<link rel="stylesheet" href="../css/style.css?v=48c7b72aa30f">
+<meta name="app-base" content="../">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NetEngineerLab">
+<meta property="og:title" content="All-Reduce 流量估算器｜环形 2(N−1)/N 流量、耗时与总线带宽">
+<meta property="og:description" content="估算分布式 GPU 训练的环形 All-Reduce 流量：每卡发送字节（2(N−1)/N × 缓冲区）、全网流量、带宽与时延耗时、算法带宽和 NCCL 总线带宽。">
+<meta property="og:url" content="https://netengineerlab.com/tools/all-reduce-traffic-estimator/zh/">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="All-Reduce 流量估算器｜环形 2(N−1)/N 流量、耗时与总线带宽">
+<meta name="twitter:description" content="估算分布式 GPU 训练的环形 All-Reduce 流量：每卡发送字节（2(N−1)/N × 缓冲区）、全网流量、带宽与时延耗时、算法带宽和 NCCL 总线带宽。">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://netengineerlab.com/tools/all-reduce-traffic-estimator/zh/#app","name":"All-Reduce 流量估算器","url":"https://netengineerlab.com/tools/all-reduce-traffic-estimator/zh/","description":"估算模型梯度环形 All-Reduce 的每卡与全网流量、单次耗时和总线带宽。","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Network Engineering Calculator","operatingSystem":"Any","browserRequirements":"Requires JavaScript and a modern web browser","softwareVersion":"1.0.0","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/all-reduce-traffic-estimator/zh/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"NetEngineerLab","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"工具","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"All-Reduce 流量估算器","item":"https://netengineerlab.com/tools/all-reduce-traffic-estimator/zh/"}]}]}</script>
+
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=8dd1728bf5eb">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"All-Reduce 流量估算器｜环形 2(N−1)/N 流量、耗时与总线带宽","url":"https://netengineerlab.com/tools/all-reduce-traffic-estimator/zh/","description":"估算分布式 GPU 训练的环形 All-Reduce 流量：每卡发送字节（2(N−1)/N × 缓冲区）、全网流量、带宽与时延耗时、算法带宽和 NCCL 总线带宽。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="zh">
+<meta name="nel-route" content="tools/all-reduce-traffic-estimator/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/tools/all-reduce-traffic-estimator/zh/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/all-reduce-traffic-estimator/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/all-reduce-traffic-estimator/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/all-reduce-traffic-estimator/es/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/all-reduce-traffic-estimator/">
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"环形 All-Reduce 每卡发送多少数据？","acceptedAnswer":{"@type":"Answer","text":"缓冲区的 2(N−1)/N 倍。8 卡为 1.75 × S，N 越大越接近 2 × S。"}},{"@type":"Question","name":"NCCL 中的总线带宽是什么？","acceptedAnswer":{"@type":"Answer","text":"对 All-Reduce，busBW = algBW × 2(N−1)/N，用于消除 GPU 数量的影响，以便与硬件链路速率比较。"}},{"@type":"Question","name":"梯度 All-Reduce 需要多长时间？","acceptedAnswer":{"@type":"Answer","text":"约为 2(N−1)/N × S ÷ 链路带宽，加上 2(N−1) × 每步时延。8 卡、14 GB、50 GB/s 约 0.49 s。"}},{"@type":"Question","name":"增加 GPU 会增加每卡流量吗？","acceptedAnswer":{"@type":"Answer","text":"只略微增加：系数从 4 卡的 1.5 到 8 卡的 1.75、128 卡的 1.98；时延项随 N 线性增长。"}},{"@type":"Question","name":"环形是唯一的 All-Reduce 算法吗？","acceptedAnswer":{"@type":"Answer","text":"不是。Tree、双二叉树、分层以及网内归约（SHARP）在大规模下可降低时延；本工具以带宽最优的环形为基线。"}}]}</script>
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=6c0b1c4ee1f1">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=d998a53add89">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=b563dd0297f5"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=e4c5b5c2101a">
+<link rel="manifest" href="../manifest-zh.webmanifest">
+</head>
+<body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<a class="skip-link" href="#calculator">跳到计算器</a>
+<noscript><div class="noscript">运行此计算器需要 JavaScript。</div></noscript>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../zh/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="打开导航菜单"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="主导航">
+      <a href="../../../zh/">首页</a>
+      <a href="../../zh/" aria-current="page">工具中心</a>
+      <a href="../../../zh/guides/">工程指南</a>
+      <a href="../../../zh/topics/">专题</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="../" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="./" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a><a class="language-option" role="menuitem" href="../es/" lang="es" hreflang="es"><span>Español</span><small>西班牙语</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">开始计算</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a href="../../../zh/">首页</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../../zh/">工具</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">All-Reduce 流量估算器</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END -->
+<section class="hero nel-tool-hero"><div class="hero-inner">
+<p class="eyebrow">AI 网络工程工具</p>
+<h1>All-Reduce 流量估算器</h1>
+<p>数据并行训练每一步都用 All-Reduce 同步梯度。在带宽最优的环形算法中，每张 GPU 发送和接收的数据量均为梯度缓冲区的 2(N−1)/N 倍：8 卡同步 70 亿个 FP16 梯度（14 GB），每卡每步传输 24.5 GB。本估算器把模型规模、GPU 数量和网卡速率换算成每卡流量、全网流量、单次耗时、算法带宽和 NCCL 口径的总线带宽。</p>
+<div class="hero-tags"><span>环形 All-Reduce</span><span>2(N−1)/N</span><span>总线带宽</span><span>单次耗时</span></div></div></section>
+<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
+<section class="input-panel card nel-tool-input">
+<div class="section-title"><span class="section-icon">☷</span><div>
+<h2>训练任务与网络</h2>
+<p>输入环中 GPU 数量、梯度规模和每卡网络带宽。</p>
+</div></div>
+<div class="form-grid">
+<div class="field"><label for="projectName">工程名称</label><div class="input-wrap no-unit"><input id="projectName" type="text" value="7B 数据并行任务"></div></div>
+<div class="field"><label for="ranks">环中 GPU 数量 N</label><div class="input-wrap no-unit"><input id="ranks" type="number" min="2" step="1" value="8"></div></div>
+<div class="field"><label for="paramsBillion">梯度元素数（十亿）</label><div class="input-wrap"><input id="paramsBillion" type="number" min="0.001" step="0.001" value="7"><span>×10⁹</span></div><p class="hint">通常等于可训练参数量。</p></div>
+<div class="field"><label for="bytesPerParam">梯度数据类型</label><div class="input-wrap no-unit"><select id="bytesPerParam"><option value="4">FP32（4 字节）</option><option value="2" selected>FP16 / BF16（2 字节）</option><option value="1">FP8（1 字节）</option></select></div></div>
+<div class="field"><label for="linkGbps">每卡网络带宽</label><div class="input-wrap"><input id="linkGbps" type="number" min="0.001" step="1" value="400"><span>Gbps</span></div><p class="hint">每卡网卡单向线速。</p></div>
+<div class="field"><label for="efficiencyPct">可达链路效率</label><div class="input-wrap"><input id="efficiencyPct" type="number" min="1" max="100" step="1" value="80"><span>%</span></div><p class="hint">协议开销与拥塞，建议用 nccl-tests 实测。</p></div>
+<div class="field"><label for="latencyUs">每步时延 α</label><div class="input-wrap"><input id="latencyUs" type="number" min="0" step="0.1" value="5"><span>µs</span></div><p class="hint">环形 All-Reduce 共 2(N−1) 步。</p></div>
+</div>
+<div class="actions">
+<button class="primary-action" id="calculateBtn" type="button">计算</button>
+<button class="secondary-action" id="resetBtn" type="button">重置</button>
+</div>
+<p class="validation-message" id="validationMessage" role="alert"></p>
+</section>
+<section aria-live="polite" class="result-panel card nel-tool-result">
+<div class="section-title"><span class="section-icon">▥</span><div>
+<h2>计算结果</h2>
+<p>每卡字节 = 2(N−1)/N × S；耗时 = 2(N−1)·α + 每卡字节 ÷ 有效带宽。</p>
+</div></div>
+<div class="summary-card" id="summaryCard"><div><p>每卡发送数据量</p><strong><span id="perRank">—</span></strong></div><div><p>估算 All-Reduce 耗时</p><strong><span id="totalTime">—</span></strong></div></div>
+<div class="metric-grid">
+<article class="metric-card"><div><small>梯度缓冲区 S</small><strong id="bufferSize">—</strong></div></article>
+<article class="metric-card"><div><small>环形系数 2(N−1)/N</small><strong id="busFactor">—</strong></div></article>
+<article class="metric-card"><div><small>全网流量</small><strong id="fabricTraffic">—</strong></div></article>
+<article class="metric-card"><div><small>带宽项耗时</small><strong id="bwTime">—</strong></div></article>
+<article class="metric-card"><div><small>时延项耗时</small><strong id="latTime">—</strong></div></article>
+<article class="metric-card"><div><small>算法带宽 S/t</small><strong id="algBw">—</strong></div></article>
+<article class="metric-card"><div><small>总线带宽（NCCL）</small><strong id="busBw">—</strong></div></article>
+</div>
+<p class="hint">假设单一扁平环、计算与通信不重叠、无网内归约。Tree、分层和 SHARP 算法会改变时延项和流量模式。</p>
+<div class="result-actions">
+<button id="copyBtn" type="button">复制结果</button>
+<button id="saveBtn" type="button">保存记录</button>
+<button id="printBtn" type="button">打印 / 导出 PDF</button>
+</div>
+</section>
+
+</main>
+<section class="content-section nel-tool-supporting-section" id="history">
+<div class="section-heading"><div><p class="eyebrow">工程记录</p><h2>最近计算记录</h2></div>
+<button class="text-button" id="clearHistoryBtn" type="button">清空记录</button></div>
+<div class="history-list" id="historyList"></div>
+</section>
+<section class="content-section methodology nel-tool-supporting-section" id="methodology">
+<div class="section-heading"><div><p class="eyebrow">计算方法</p><h2>计算方法与工程说明</h2></div></div>
+<div class="method-grid">
+<article><h3>使用方法</h3><ol><li>输入环中的 GPU（rank）数量。</li><li>输入梯度元素数（通常为可训练参数量）和数据类型。</li><li>输入每卡网卡带宽、可达效率和每步时延。</li><li>查看每卡与全网流量、耗时和总线带宽。</li></ol></article><article><h3>环形 All-Reduce</h3><p>环形 All-Reduce 由 Reduce-Scatter 和 All-Gather 组成，各需 N−1 步，每步每个 rank 发送 S/N 字节，因此每个 rank 发送 2(N−1)/N × S，接收同样多。全网流量为 N × 2(N−1)/N × S = 2(N−1) × S。该算法带宽最优（Patarasuk &amp; Yuan, 2009）。</p></article><article><h3>耗时与带宽</h3><p>耗时 ≈ 2(N−1)·α + 2(N−1)/N × S ÷ B，B 为每卡带宽 × 效率（字节/秒）。算法带宽 = S ÷ 耗时；NCCL 总线带宽 = 算法带宽 × 2(N−1)/N，可与链路速率直接比较。</p></article>
+</div>
+<div class="example-box"><h3>算例：8 卡、7B FP16、400 Gbps</h3><p>S = 7 × 10⁹ × 2 B = 14 GB。环形系数 2 × 7 / 8 = 1.75，每卡发送 24.5 GB，全网 196 GB。400 Gbps（50 GB/s）、效率 100% 时带宽项 490 ms；效率 80% 时 612.5 ms，再加 14 × 5 µs = 70 µs 时延。此时总线带宽略低于有效链路速率 40 GB/s。</p></div>
+</section>
+<section aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">工程参考</p><h2 id="references-title">标准与参考资料</h2></div></div>
+<ul><li>NVIDIA nccl-tests：性能说明、算法带宽与总线带宽</li><li><a href="https://doi.org/10.1016/j.jpdc.2008.09.002" rel="noopener">Patarasuk &amp; Yuan（2009）：工作站集群的带宽最优 All-Reduce 算法</a></li><li><a href="https://doi.org/10.1177/1094342005051521" rel="noopener">Thakur、Rabenseifner、Gropp（2005）：MPICH 集合通信优化</a></li></ul>
+<p>效率和每步时延为用户假设，做容量决策前请在目标网络上用 nccl-tests 校准。 最后审核: 2026-10-20.</p>
+</section>
+<section aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">常见问题</p><h2 id="faq-title">常见问题</h2></div></div>
+<div class="faq-grid"><details><summary>环形 All-Reduce 每卡发送多少数据？</summary><p>缓冲区的 2(N−1)/N 倍。8 卡为 1.75 × S，N 越大越接近 2 × S。</p></details><details><summary>NCCL 中的总线带宽是什么？</summary><p>对 All-Reduce，busBW = algBW × 2(N−1)/N，用于消除 GPU 数量的影响，以便与硬件链路速率比较。</p></details><details><summary>梯度 All-Reduce 需要多长时间？</summary><p>约为 2(N−1)/N × S ÷ 链路带宽，加上 2(N−1) × 每步时延。8 卡、14 GB、50 GB/s 约 0.49 s。</p></details><details><summary>增加 GPU 会增加每卡流量吗？</summary><p>只略微增加：系数从 4 卡的 1.5 到 8 卡的 1.75、128 卡的 1.98；时延项随 N 线性增长。</p></details><details><summary>环形是唯一的 All-Reduce 算法吗？</summary><p>不是。Tree、双二叉树、分层以及网内归约（SHARP）在大规模下可降低时延；本工具以带宽最优的环形为基线。</p></details></div>
+</section>
+<!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="all-reduce-traffic-estimator" data-primary-workflow="ai-training-fabric-planning">
+<div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">当前流程</span><strong>AI 训练网络规划工作流</strong><p>先估算梯度 All-Reduce 流量，再规划承载它的 Leaf-Spine 网络。</p></div><div class="nel-workflow-step"><strong>步骤 1 / 2</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="2" aria-valuenow="1" aria-valuetext="步骤 1 / 2" aria-label="步骤 1 / 2"><span style="width:50%"></span></div></div></div><div class="nel-tool-graph-nav"><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">上一步</span><strong>流程起点</strong></div><a class="nel-tool-graph-card" href="/tools/data-center-network-convergence-fabric-capacity-planner/zh/"><span class="nel-tool-graph-label">下一步</span><strong>数据中心网络收敛比与 Fabric 容量规划器</strong><span class="nel-tool-graph-description">规划 Leaf-Spine 和三层数据中心的收敛比、东西向/南北向业务、Spine N-1、瓶颈与增长容量。</span></a></div>
+<h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/data-center-network-convergence-fabric-capacity-planner/zh/"><strong>数据中心网络收敛比与 Fabric 容量规划器</strong><span class="nel-tool-graph-description">规划 Leaf-Spine 和三层数据中心的收敛比、东西向/南北向业务、Spine N-1、瓶颈与增长容量。</span></a><a class="nel-tool-graph-card" href="/tools/switch-uplink-oversubscription-calculator/zh/"><strong>交换机上联带宽与超售比计算器</strong><span class="nel-tool-graph-description">根据接入端口、利用率、并发率与冗余方式规划交换机上联带宽。</span></a><a class="nel-tool-graph-card" href="/tools/bandwidth-calculator/zh/"><strong>带宽与传输时间计算器</strong><span class="nel-tool-graph-description">计算文件传输时间、所需链路速率、并发用户容量和持续速率对应的数据量。</span></a><a class="nel-tool-graph-card" href="/tools/network-capacity-forecast-planner/zh/"><strong>网络容量增长预测规划器</strong><span class="nel-tool-graph-description">根据实测利用率预测网络增长、扩容时机和目标容量。</span></a></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div>
+    <nav class="site-shell-footer-links" aria-label="页脚导航">
+      <a href="../../../zh/about/">关于</a><a href="../../../zh/contact/">联系</a><a href="../../../zh/privacy/">隐私政策</a><a href="../../../zh/terms/">使用条款</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script defer src="../js/engine.js"></script>
+<script defer src="../js/pwa.js"></script>
+<script defer src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script>
+<script defer src="../js/app.js?v=302364b1cc9f"></script>
+<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script>
+</body>
+</html>

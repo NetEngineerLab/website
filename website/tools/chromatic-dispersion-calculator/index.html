@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-nel-locale="en" data-nel-route="tools/chromatic-dispersion-calculator/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b6ffb">
+<title>Chromatic Dispersion Calculator – ps/nm, G.652 D(λ) &amp; CD Limit</title>
+<meta name="description" content="Calculate fiber chromatic dispersion with the ITU-T G.652 formula: D(λ) in ps/(nm·km), accumulated CD in ps/nm, residual after compensation, pulse broadening and CD-limited distance.">
+<link rel="stylesheet" href="css/style.css?v=48c7b72aa30f">
+<meta name="app-base" content="./">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NetEngineerLab">
+<meta property="og:title" content="Chromatic Dispersion Calculator – ps/nm, G.652 D(λ) &amp; CD Limit">
+<meta property="og:description" content="Calculate fiber chromatic dispersion with the ITU-T G.652 formula: D(λ) in ps/(nm·km), accumulated CD in ps/nm, residual after compensation, pulse broadening and CD-limited distance.">
+<meta property="og:url" content="https://netengineerlab.com/tools/chromatic-dispersion-calculator/">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Chromatic Dispersion Calculator – ps/nm, G.652 D(λ) &amp; CD Limit">
+<meta name="twitter:description" content="Calculate fiber chromatic dispersion with the ITU-T G.652 formula: D(λ) in ps/(nm·km), accumulated CD in ps/nm, residual after compensation, pulse broadening and CD-limited distance.">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://netengineerlab.com/tools/chromatic-dispersion-calculator/#app","name":"Chromatic Dispersion Calculator","url":"https://netengineerlab.com/tools/chromatic-dispersion-calculator/","description":"Calculate G.652 dispersion coefficient, accumulated and residual chromatic dispersion, and the CD-limited link length.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Network Engineering Calculator","operatingSystem":"Any","browserRequirements":"Requires JavaScript and a modern web browser","softwareVersion":"1.0.0","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/chromatic-dispersion-calculator/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"NetEngineerLab","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"Chromatic Dispersion Calculator","item":"https://netengineerlab.com/tools/chromatic-dispersion-calculator/"}]}]}</script>
+
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=8dd1728bf5eb">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Chromatic Dispersion Calculator – ps/nm, G.652 D(λ) & CD Limit","url":"https://netengineerlab.com/tools/chromatic-dispersion-calculator/","description":"Calculate fiber chromatic dispersion with the ITU-T G.652 formula: D(λ) in ps/(nm·km), accumulated CD in ps/nm, residual after compensation, pulse broadening and CD-limited distance.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="en">
+<meta name="nel-route" content="tools/chromatic-dispersion-calculator/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/tools/chromatic-dispersion-calculator/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/chromatic-dispersion-calculator/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/chromatic-dispersion-calculator/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/chromatic-dispersion-calculator/es/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/chromatic-dispersion-calculator/">
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the chromatic dispersion of G.652 fiber at 1550 nm?","acceptedAnswer":{"@type":"Answer","text":"About 17 ps/(nm·km). The ITU-T G.652 model with λ0 = 1310 nm and S0 = 0.092 gives 17.46 ps/(nm·km); typical cables measure 16.5–18."}},{"@type":"Question","name":"How do I calculate total chromatic dispersion?","acceptedAnswer":{"@type":"Answer","text":"Multiply the coefficient by the length: CD = D × L. 80 km × 17.46 ps/(nm·km) ≈ 1,397 ps/nm. Subtract any DCM or FBG compensation to get the residual."}},{"@type":"Question","name":"What is a typical CD tolerance for 10G optics?","acceptedAnswer":{"@type":"Answer","text":"It depends on the module. Directly modulated 10G optics are often specified around 800 ps/nm, while 10G ER/ZR-class optics are often specified around 1,600 ps/nm. Always use the datasheet."}},{"@type":"Question","name":"Does chromatic dispersion matter at 1310 nm?","acceptedAnswer":{"@type":"Answer","text":"Very little. 1310 nm is close to the zero-dispersion wavelength of G.652 fiber, so D is near 0 there."}},{"@type":"Question","name":"Do coherent optics need dispersion compensation?","acceptedAnswer":{"@type":"Answer","text":"Usually not. Coherent receivers compensate CD electronically in the DSP and tolerate tens of thousands of ps/nm."}}]}</script>
+<link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=6c0b1c4ee1f1">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=d998a53add89">
+<script defer src="../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../assets/js/site.js?v=b563dd0297f5"></script>
+<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=e4c5b5c2101a">
+<link rel="manifest" href="manifest.webmanifest">
+</head>
+<body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<a class="skip-link" href="#calculator">Skip to calculator</a>
+<noscript><div class="noscript">JavaScript is required to run this calculator.</div></noscript>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Primary navigation">
+      <a href="../../">Home</a>
+      <a href="../" aria-current="page">Tools</a>
+      <a href="../../guides/">Guides</a>
+      <a href="../../topics/">Topics</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a><a class="language-option" role="menuitem" href="es/" lang="es" hreflang="es"><span>Español</span><small>Spanish</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">Start calculating</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a href="../../">Home</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../">Tools</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">Chromatic Dispersion Calculator</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END -->
+<section class="hero nel-tool-hero"><div class="hero-inner">
+<p class="eyebrow">OPTICAL ENGINEERING TOOL</p>
+<h1>Chromatic Dispersion Calculator</h1>
+<p>Chromatic dispersion (CD) spreads each optical pulse because different wavelengths travel at different speeds. Standard G.652 single-mode fiber has about 17 ps/(nm·km) at 1550 nm, so an 80 km span accumulates roughly 1,400 ps/nm. Use this chromatic dispersion calculator to compute D(λ) from the ITU-T G.652 model, total and residual CD, pulse broadening and the longest span your transceiver tolerates.</p>
+<div class="hero-tags"><span>D(λ) G.652</span><span>ps/nm</span><span>Residual CD</span><span>CD-limited length</span></div></div></section>
+<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
+<section class="input-panel card nel-tool-input">
+<div class="section-title"><span class="section-icon">☷</span><div>
+<h2>Fiber and transceiver</h2>
+<p>Use the G.652 model or enter a datasheet coefficient, then set length, compensation and the receiver CD tolerance.</p>
+</div></div>
+<div class="form-grid">
+<div class="field"><label for="projectName">Project name</label><div class="input-wrap no-unit"><input id="projectName" type="text" value="Metro DWDM span"></div></div>
+<div class="field"><label for="mode">Coefficient source</label><div class="input-wrap no-unit"><select id="mode"><option value="model" selected>ITU-T G.652 model D(λ)</option><option value="manual">Datasheet value</option></select></div></div>
+<div class="field"><label for="wavelength">Wavelength λ</label><div class="input-wrap"><input id="wavelength" type="number" min="1200" max="1700" step="0.1" value="1550"><span>nm</span></div></div>
+<div class="field"><label for="lambda0">Zero-dispersion wavelength λ0</label><div class="input-wrap"><input id="lambda0" type="number" min="1200" max="1700" step="0.1" value="1310"><span>nm</span></div><p class="hint">G.652: 1300–1324 nm.</p></div>
+<div class="field"><label for="s0">Zero-dispersion slope S0</label><div class="input-wrap wide-unit"><input id="s0" type="number" min="0.001" max="0.2" step="0.001" value="0.092"><span>ps/(nm²·km)</span></div><p class="hint">G.652 maximum is 0.092.</p></div>
+<div class="field"><label for="manualD">Datasheet coefficient D</label><div class="input-wrap wide-unit"><input id="manualD" type="number" min="-50" max="50" step="0.01" value="17"><span>ps/(nm·km)</span></div><p class="hint">Used only with “Datasheet value”.</p></div>
+<div class="field"><label for="lengthKm">Fiber length</label><div class="input-wrap"><input id="lengthKm" type="number" min="0.001" step="0.001" value="80"><span>km</span></div></div>
+<div class="field"><label for="compensation">Compensation (DCM/FBG)</label><div class="input-wrap"><input id="compensation" type="number" step="1" value="0"><span>ps/nm</span></div><p class="hint">Positive value removes positive CD.</p></div>
+<div class="field"><label for="tolerance">Receiver CD tolerance</label><div class="input-wrap"><input id="tolerance" type="number" min="1" step="1" value="1600"><span>ps/nm</span></div><p class="hint">From the transceiver datasheet.</p></div>
+<div class="field"><label for="spectralWidth">Source spectral width Δλ</label><div class="input-wrap"><input id="spectralWidth" type="number" min="0" step="0.01" value="0.1"><span>nm</span></div></div>
+</div>
+<div class="actions">
+<button class="primary-action" id="calculateBtn" type="button">Calculate</button>
+<button class="secondary-action" id="resetBtn" type="button">Reset</button>
+</div>
+<p class="validation-message" id="validationMessage" role="alert"></p>
+</section>
+<section aria-live="polite" class="result-panel card nel-tool-result">
+<div class="section-title"><span class="section-icon">▥</span><div>
+<h2>Calculation result</h2>
+<p>Residual CD = D × L − compensation. Status fails when |residual| exceeds the tolerance and warns above 80% of it.</p>
+</div></div>
+<div class="summary-card" id="summaryCard"><div><p>Residual CD</p><strong><span id="residualCd">—</span></strong></div><div><p>Margin to tolerance</p><strong><span id="cdMargin">—</span></strong></div><div class="health-badge" id="healthBadge">—</div></div>
+<div class="metric-grid">
+<article class="metric-card"><div><small>Dispersion coefficient D</small><strong id="dCoef">—</strong></div></article>
+<article class="metric-card"><div><small>Accumulated fiber CD</small><strong id="fiberCd">—</strong></div></article>
+<article class="metric-card"><div><small>CD-limited length</small><strong id="maxLength">—</strong></div></article>
+<article class="metric-card"><div><small>Pulse broadening |CD|·Δλ</small><strong id="broadening">—</strong></div></article>
+<article class="metric-card"><div><small>Tolerance used</small><strong id="usedPct">—</strong></div></article>
+</div>
+<p class="hint">PMD, nonlinear effects and OSNR are not included. Coherent DSP receivers usually tolerate tens of thousands of ps/nm; use the module datasheet.</p>
+<div class="result-actions">
+<button id="copyBtn" type="button">Copy result</button>
+<button id="saveBtn" type="button">Save record</button>
+<button id="printBtn" type="button">Print / Export PDF</button>
+</div>
+</section>
+
+</main>
+<section class="content-section nel-tool-supporting-section" id="history">
+<div class="section-heading"><div><p class="eyebrow">PROJECT RECORDS</p><h2>Recent calculations</h2></div>
+<button class="text-button" id="clearHistoryBtn" type="button">Clear history</button></div>
+<div class="history-list" id="historyList"></div>
+</section>
+<section class="content-section methodology nel-tool-supporting-section" id="methodology">
+<div class="section-heading"><div><p class="eyebrow">METHODOLOGY</p><h2>Methodology and engineering notes</h2></div></div>
+<div class="method-grid">
+<article><h3>How to use</h3><ol><li>Keep the G.652 model or pick “Datasheet value” and enter D from the cable datasheet.</li><li>Enter the wavelength, fiber length and any DCM or FBG compensation.</li><li>Enter the receiver CD tolerance from the transceiver datasheet.</li><li>Read residual CD, margin and the CD-limited length.</li></ol></article><article><h3>Dispersion formula</h3><p>ITU-T G.652 defines the chromatic dispersion coefficient as D(λ) = (S0/4)·(λ − λ0⁴/λ³) ps/(nm·km), with λ0 between 1300 and 1324 nm and S0 ≤ 0.092 ps/(nm²·km). At 1550 nm with λ0 = 1310 nm and S0 = 0.092 this gives 17.461 ps/(nm·km). Accumulated CD = D × L; residual CD = D × L − compensation.</p></article><article><h3>Limits and broadening</h3><p>The CD-limited length is the longest L that keeps |D × L − C| within the tolerance T: L = (T + C·sign(D)) / |D|. Pulse broadening is estimated as |residual CD| × Δλ in ps. The 80% warning threshold is this tool's screening rule, not a standard value.</p></article>
+</div>
+<div class="example-box"><h3>Worked case: 80 km at 1550 nm</h3><p>G.652 model, λ0 1310 nm, S0 0.092: D = 17.461 ps/(nm·km). 80 km gives 1,396.8 ps/nm. Against a 1,600 ps/nm receiver the margin is 203.2 ps/nm (87.3% used, warning) and the CD-limited length is 91.63 km. With Δλ = 0.1 nm the broadening is 139.68 ps. Adding 680 ps/nm of compensation leaves 716.8 ps/nm residual.</p></div>
+</section>
+<section aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">ENGINEERING REFERENCES</p><h2 id="references-title">Standards and references</h2></div></div>
+<ul><li><a href="https://www.itu.int/rec/T-REC-G.652/en" rel="noopener">ITU-T G.652: characteristics of a single-mode optical fibre and cable</a></li><li><a href="https://www.itu.int/rec/T-REC-G.650.1/en" rel="noopener">ITU-T G.650.1: test methods for linear attributes, including chromatic dispersion</a></li><li><a href="https://www.itu.int/rec/T-REC-G.655/en" rel="noopener">ITU-T G.655: non-zero dispersion-shifted fibre</a></li></ul>
+<p>Use the datasheet coefficient for G.655, G.654 or vendor fibers; the G.652 model applies to standard single-mode fiber. Last reviewed: 2026-10-20.</p>
+</section>
+<section aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">FAQ</p><h2 id="faq-title">Frequently asked questions</h2></div></div>
+<div class="faq-grid"><details><summary>What is the chromatic dispersion of G.652 fiber at 1550 nm?</summary><p>About 17 ps/(nm·km). The ITU-T G.652 model with λ0 = 1310 nm and S0 = 0.092 gives 17.46 ps/(nm·km); typical cables measure 16.5–18.</p></details><details><summary>How do I calculate total chromatic dispersion?</summary><p>Multiply the coefficient by the length: CD = D × L. 80 km × 17.46 ps/(nm·km) ≈ 1,397 ps/nm. Subtract any DCM or FBG compensation to get the residual.</p></details><details><summary>What is a typical CD tolerance for 10G optics?</summary><p>It depends on the module. Directly modulated 10G optics are often specified around 800 ps/nm, while 10G ER/ZR-class optics are often specified around 1,600 ps/nm. Always use the datasheet.</p></details><details><summary>Does chromatic dispersion matter at 1310 nm?</summary><p>Very little. 1310 nm is close to the zero-dispersion wavelength of G.652 fiber, so D is near 0 there.</p></details><details><summary>Do coherent optics need dispersion compensation?</summary><p>Usually not. Coherent receivers compensate CD electronically in the DSP and tolerate tens of thousands of ps/nm.</p></details></div>
+</section>
+<!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="chromatic-dispersion-calculator" data-primary-workflow="optical-dispersion-planning">
+<div class="section-heading"><div><p class="eyebrow">ENGINEERING WORKFLOW</p><h2 id="nel-tool-graph-title">Continue the engineering workflow</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>Optical Dispersion Planning Workflow</strong><p>Confirm span length and loss, then check chromatic dispersion and PMD against the transceiver limits.</p></div><div class="nel-workflow-step"><strong>Step 2 of 3</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="2" aria-valuetext="Step 2 of 3" aria-label="Step 2 of 3"><span style="width:67%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/fiber-loss/"><span class="nel-tool-graph-label">Previous</span><strong>Fiber Loss Calculator</strong><span class="nel-tool-graph-description">Calculate fiber, splice, connector, splitter and engineering losses for an optical link.</span></a><a class="nel-tool-graph-card" href="/tools/pmd-budget-calculator/"><span class="nel-tool-graph-label">Next</span><strong>PMD Budget Calculator</strong><span class="nel-tool-graph-description">Calculate fiber and link mean DGD from the PMD coefficient, compare it with the symbol-period tolerance and find the PMD-limited length.</span></a></div>
+<h3 class="nel-tool-graph-subtitle">Related tools</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/fiber-loss/"><strong>Fiber Loss Calculator</strong><span class="nel-tool-graph-description">Calculate fiber, splice, connector, splitter and engineering losses for an optical link.</span></a><a class="nel-tool-graph-card" href="/tools/pmd-budget-calculator/"><strong>PMD Budget Calculator</strong><span class="nel-tool-graph-description">Calculate fiber and link mean DGD from the PMD coefficient, compare it with the symbol-period tolerance and find the PMD-limited length.</span></a><a class="nel-tool-graph-card" href="/tools/optical-power-budget/"><strong>Optical Power Budget Calculator</strong><span class="nel-tool-graph-description">Verify an optical link using transmit power, receiver sensitivity, optical penalty and ODN loss.</span></a><a class="nel-tool-graph-card" href="/tools/sfp-qsfp-compatibility-calculator/"><strong>SFP &amp; QSFP Compatibility Checker</strong><span class="nel-tool-graph-description">Check SFP, SFP28, QSFP and QSFP28 speed, lanes, fiber, wavelength and optical link budget.</span></a></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Footer navigation">
+      <a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script defer src="js/engine.js"></script>
+<script defer src="js/pwa.js"></script>
+<script defer src="../../assets/js/tool-integration.js?v=05f7934f4687"></script>
+<script defer src="js/app.js?v=05ecf2f43658"></script>
+<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script>
+</body>
+</html>
