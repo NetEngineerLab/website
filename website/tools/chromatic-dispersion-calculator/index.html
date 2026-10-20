@@ -99,7 +99,7 @@
 <div class="field"><label for="s0">Zero-dispersion slope S0</label><div class="input-wrap wide-unit"><input id="s0" type="number" min="0.001" max="0.2" step="0.001" value="0.092"><span>ps/(nm²·km)</span></div><p class="hint">G.652 maximum is 0.092.</p></div>
 <div class="field"><label for="manualD">Datasheet coefficient D</label><div class="input-wrap wide-unit"><input id="manualD" type="number" min="-50" max="50" step="0.01" value="17"><span>ps/(nm·km)</span></div><p class="hint">Used only with “Datasheet value”.</p></div>
 <div class="field"><label for="lengthKm">Fiber length</label><div class="input-wrap"><input id="lengthKm" type="number" min="0.001" step="0.001" value="80"><span>km</span></div></div>
-<div class="field"><label for="compensation">Compensation (DCM/FBG)</label><div class="input-wrap"><input id="compensation" type="number" step="1" value="0"><span>ps/nm</span></div><p class="hint">Positive value removes positive CD.</p></div>
+<div class="field"><label for="compensation">Compensation (DCM/FBG) <span class="required-mark">(Required)</span></label><div class="input-wrap"><input id="compensation" type="number" required aria-required="true" step="1" value="0"><span>ps/nm</span></div><p class="hint">Required – enter 0 when the link has no compensation. A positive value removes positive CD.</p></div>
 <div class="field"><label for="tolerance">Receiver CD tolerance</label><div class="input-wrap"><input id="tolerance" type="number" min="1" step="1" value="1600"><span>ps/nm</span></div><p class="hint">From the transceiver datasheet.</p></div>
 <div class="field"><label for="spectralWidth">Source spectral width Δλ</label><div class="input-wrap"><input id="spectralWidth" type="number" min="0" step="0.01" value="0.1"><span>nm</span></div></div>
 </div>
@@ -118,7 +118,7 @@
 <div class="metric-grid">
 <article class="metric-card"><div><small>Dispersion coefficient D</small><strong id="dCoef">—</strong></div></article>
 <article class="metric-card"><div><small>Accumulated fiber CD</small><strong id="fiberCd">—</strong></div></article>
-<article class="metric-card"><div><small>CD-limited length</small><strong id="maxLength">—</strong></div></article>
+<article class="metric-card"><div><small>Length range within tolerance</small><strong id="maxLength">—</strong></div></article>
 <article class="metric-card"><div><small>Pulse broadening |CD|·Δλ</small><strong id="broadening">—</strong></div></article>
 <article class="metric-card"><div><small>Tolerance used</small><strong id="usedPct">—</strong></div></article>
 </div>
@@ -139,13 +139,13 @@
 <section class="content-section methodology nel-tool-supporting-section" id="methodology">
 <div class="section-heading"><div><p class="eyebrow">METHODOLOGY</p><h2>Methodology and engineering notes</h2></div></div>
 <div class="method-grid">
-<article><h3>How to use</h3><ol><li>Keep the G.652 model or pick “Datasheet value” and enter D from the cable datasheet.</li><li>Enter the wavelength, fiber length and any DCM or FBG compensation.</li><li>Enter the receiver CD tolerance from the transceiver datasheet.</li><li>Read residual CD, margin and the CD-limited length.</li></ol></article><article><h3>Dispersion formula</h3><p>ITU-T G.652 defines the chromatic dispersion coefficient as D(λ) = (S0/4)·(λ − λ0⁴/λ³) ps/(nm·km), with λ0 between 1300 and 1324 nm and S0 ≤ 0.092 ps/(nm²·km). At 1550 nm with λ0 = 1310 nm and S0 = 0.092 this gives 17.461 ps/(nm·km). Accumulated CD = D × L; residual CD = D × L − compensation.</p></article><article><h3>Limits and broadening</h3><p>The CD-limited length is the longest L that keeps |D × L − C| within the tolerance T: L = (T + C·sign(D)) / |D|. Pulse broadening is estimated as |residual CD| × Δλ in ps. The 80% warning threshold is this tool's screening rule, not a standard value.</p></article>
+<article><h3>How to use</h3><ol><li>Keep the G.652 model or pick “Datasheet value” and enter D from the cable datasheet.</li><li>Enter the wavelength, fiber length and any DCM or FBG compensation.</li><li>Enter the receiver CD tolerance from the transceiver datasheet.</li><li>Read residual CD, margin and the CD-limited length.</li></ol></article><article><h3>Dispersion formula</h3><p>ITU-T G.652 defines the chromatic dispersion coefficient as D(λ) = (S0/4)·(λ − λ0⁴/λ³) ps/(nm·km), with λ0 between 1300 and 1324 nm and S0 ≤ 0.092 ps/(nm²·km). At 1550 nm with λ0 = 1310 nm and S0 = 0.092 this gives 17.461 ps/(nm·km). Accumulated CD = D × L; residual CD = D × L − compensation.</p></article><article><h3>Limits and broadening</h3><p>Lengths that keep |D × L − C| within the tolerance T lie between (C·sign(D) − T) / |D| and (C·sign(D) + T) / |D|. Without compensation the lower bound is 0, so only the maximum is shown; an over-compensated link (for example D = 17, C = 2,000, T = 400) shows the full window 94.12–141.18 km. Pulse broadening is estimated as |residual CD| × Δλ in ps. The 80% warning threshold is this tool's screening rule, not a standard value.</p></article>
 </div>
 <div class="example-box"><h3>Worked case: 80 km at 1550 nm</h3><p>G.652 model, λ0 1310 nm, S0 0.092: D = 17.461 ps/(nm·km). 80 km gives 1,396.8 ps/nm. Against a 1,600 ps/nm receiver the margin is 203.2 ps/nm (87.3% used, warning) and the CD-limited length is 91.63 km. With Δλ = 0.1 nm the broadening is 139.68 ps. Adding 680 ps/nm of compensation leaves 716.8 ps/nm residual.</p></div>
 </section>
 <section aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
 <div class="section-heading"><div><p class="eyebrow">ENGINEERING REFERENCES</p><h2 id="references-title">Standards and references</h2></div></div>
-<ul><li><a href="https://www.itu.int/rec/T-REC-G.652/en" rel="noopener">ITU-T G.652: characteristics of a single-mode optical fibre and cable</a></li><li><a href="https://www.itu.int/rec/T-REC-G.650.1/en" rel="noopener">ITU-T G.650.1: test methods for linear attributes, including chromatic dispersion</a></li><li><a href="https://www.itu.int/rec/T-REC-G.655/en" rel="noopener">ITU-T G.655: non-zero dispersion-shifted fibre</a></li></ul>
+<ul><li><a href="https://www.itu.int/rec/T-REC-G.652/en" rel="noopener">ITU-T G.652 (08/2024): single-mode fibre and cable – chromatic dispersion coefficient D(λ) = (S0/4)(λ − λ0⁴/λ³), λ0 1300–1324 nm, S0 ≤ 0.092 ps/(nm²·km), attribute tables for G.652.A–D [clause number UNVERIFIED]</a></li><li><a href="https://www.itu.int/rec/T-REC-G.650.1/en" rel="noopener">ITU-T G.650.1 (01/2024): test methods for linear attributes – chromatic dispersion measurement and fitting [clause number UNVERIFIED]</a></li><li><a href="https://www.itu.int/rec/T-REC-G.691/en" rel="noopener">ITU-T G.691 (03/2006): optical interfaces for single-channel STM-64 and other SDH systems with optical amplifiers – maximum chromatic dispersion per application code [clause number UNVERIFIED]</a></li><li><a href="https://www.itu.int/rec/T-REC-G.655/en" rel="noopener">ITU-T G.655 (11/2009): non-zero dispersion-shifted fibre – use the datasheet D for these fibres</a></li></ul>
 <p>Use the datasheet coefficient for G.655, G.654 or vendor fibers; the G.652 model applies to standard single-mode fiber. Last reviewed: 2026-10-20.</p>
 </section>
 <section aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
@@ -173,7 +173,7 @@
 <script defer src="js/engine.js"></script>
 <script defer src="js/pwa.js"></script>
 <script defer src="../../assets/js/tool-integration.js?v=05f7934f4687"></script>
-<script defer src="js/app.js?v=05ecf2f43658"></script>
+<script defer src="js/app.js?v=70c8758449b5"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
 <script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script>
 </body>

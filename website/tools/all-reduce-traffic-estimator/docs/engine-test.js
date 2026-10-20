@@ -35,3 +35,13 @@ assert.equal(engine.calculate({...base,efficiencyPct:0}).ok,false);
 assert.equal(engine.calculate({...base,latencyUs:-1}).ok,false);
 assert.equal(engine.calculate(null).ok,false);
 console.log("All-reduce engine tests: PASS");
+
+// Audit AR-1: sub-megabyte buffers must not round to 0.000 MB.
+{
+  const small=engine.calculate({ranks:2,paramsBillion:1e-7,bytesPerParam:4,linkGbps:100,efficiencyPct:100,latencyUs:0});
+  assert.equal(small.display.bufferSize,"400 B");
+  const kb=engine.calculate({ranks:2,paramsBillion:1e-4,bytesPerParam:2,linkGbps:100,efficiencyPct:100,latencyUs:0});
+  assert.equal(kb.display.bufferSize,"200.000 kB");
+  for(const v of [small,kb])assert.ok(!/^0\.000 MB$/.test(v.display.bufferSize));
+}
+console.log("AR small-size formatting OK");

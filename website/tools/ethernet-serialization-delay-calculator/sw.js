@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-ethernet-serialization-delay-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-524e5f26bb5d";
+const CACHE = "nel-ethernet-serialization-delay-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-10e3146ff8b6";
 const CORE = [
   "./index.html",
   "./",
@@ -7,7 +7,7 @@ const CORE = [
   "./offline.html",
   "./manifest.webmanifest",
   "./css/style.css?v=48c7b72aa30f",
-  "./js/app.js?v=588ee07b633e",
+  "./js/app.js?v=000ca16d8141",
   "./js/engine.js",
   "./images/logo.svg",
   "../../data/locales.js?v=909e05076a50",
