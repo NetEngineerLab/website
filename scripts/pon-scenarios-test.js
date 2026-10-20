@@ -49,7 +49,7 @@ for(const slug of CLUSTER)for(const folder of ["","zh/","es/"]){
  const html=fs.readFileSync(path.join(ROOT,slug,folder,"index.html"),"utf8");
  const block=(html.match(/<!-- NEL_PON_LINKS_START -->([\s\S]*?)<!-- NEL_PON_LINKS_END -->/)||[])[1];
  assert.ok(block,`${slug} ${folder}: PON links block`);
- for(const other of CLUSTER.filter(s=>s!==slug))assert.ok(block.includes(`href="/tools/${other}/${folder}"`),`${slug} ${folder} -> ${other}`);
+ for(const other of CLUSTER.filter(s=>s!==slug))assert.ok(new RegExp(`href="(?:/tools/|(?:\\.\\./)+)${other}/${folder}"`).test(block),`${slug} ${folder} -> ${other}`);
  assert.ok(block.includes("pon-splitter-loss-guide")&&block.includes("fiber-link-budget-guide"),`${slug} ${folder}: guides`);
 }
 // CTR meta: within the SEO audit limits and distinct per page.
