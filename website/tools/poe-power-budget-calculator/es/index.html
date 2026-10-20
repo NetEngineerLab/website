@@ -92,7 +92,25 @@
 <article class="metric"><small>Carga del dispositivo en el PSE</small><strong id="load">—</strong></article><article class="metric"><small>Potencia de origen por dispositivo</small><strong id="perDevice">—</strong></article><article class="metric"><small>Presupuesto restante</small><strong id="remaining">—</strong></article><article class="metric"><small>Utilización del presupuesto</small><strong id="utilization">—</strong></article><article class="metric"><small>Máximo de dispositivos compatibles</small><strong id="maximum">—</strong></article><article class="metric"><small>Puertos utilizados</small><strong id="portsUsed">—</strong></article>
 </div><div class="progress"><span id="bar"></span></div><p class="advice" id="advice"></p><div class="result-actions"><button id="copy" type="button">Copiar resultado</button><button id="csv" type="button">Exportar CSV</button></div></section>
 </main>
+<!-- NEL_SCENARIOS_START -->
+<section class="content-section nel-tool-supporting-section" id="scenarios" aria-labelledby="scenarios-title">
+<div class="section-heading"><div><p class="eyebrow">EJEMPLOS RESUELTOS</p><h2 id="scenarios-title">Escenarios de ingeniería típicos</h2></div></div>
+<p>Cada escenario rellena la calculadora con un clic. El resultado esperado lo calcula el mismo motor y está cubierto por pruebas automáticas.</p>
+<div class="metric-grid nel-scenario-grid">
+<article class="metric-card nel-scenario-card" data-scenario-id="bt-24-ptz-cameras"><div><h3>Presupuesto PoE++ 802.3bt para 24 cámaras PTZ</h3><p>24 cámaras PTZ de 40 W en un switch 802.3bt Tipo 3 de 24 puertos con 1.440 W, 10 % de pérdida y 20 % de reserva.</p><p><small>Resultado esperado</small><br><strong data-scenario-expected>Necesario 1,280 W de 1440 W (88.9 %) · aviso</strong></p><p><a class="nel-scenario-link" href="?scenario=bt-24-ptz-cameras#calculator">Cargar este escenario →</a></p></div></article>
+<article class="metric-card nel-scenario-card" data-scenario-id="af-24-fixed-cameras"><div><h3>PoE 802.3af para 24 cámaras IP fijas</h3><p>24 cámaras fijas de 6,5 W en un switch PoE de 24 puertos y 370 W.</p><p><small>Resultado esperado</small><br><strong data-scenario-expected>Necesario 208 W de 370 W (56.2 %) · cumple</strong></p><p><a class="nel-scenario-link" href="?scenario=af-24-fixed-cameras#calculator">Cargar este escenario →</a></p></div></article>
+<article class="metric-card nel-scenario-card" data-scenario-id="at-16-wifi6-aps"><div><h3>PoE+ 802.3at para 16 puntos de acceso Wi-Fi 6</h3><p>16 AP a la clase PoE+ completa de 25,5 W en un switch de 740 W con 25 % de reserva.</p><p><small>Resultado esperado</small><br><strong data-scenario-expected>Necesario 566.7 W de 740 W (76.6 %) · cumple</strong></p><p><a class="nel-scenario-link" href="?scenario=at-16-wifi6-aps#calculator">Cargar este escenario →</a></p></div></article>
+</div>
+</section>
+<!-- NEL_SCENARIOS_END -->
 <section class="content nel-tool-supporting-section"><h2>Cómo dimensionar el presupuesto de potencia de un switch PoE</h2><ol><li><strong>Cuenta todos los dispositivos simultáneos.</strong> Incluye cámaras, AP, teléfonos, interfonos y controladores.</li><li><strong>Usa la potencia máxima.</strong> Considera IR, motores PTZ, calefactores, radios y accesorios USB.</li><li><strong>Añade pérdida y margen.</strong> El cable disipa potencia y el proyecto necesita reserva para arranque, temperatura, ampliaciones y envejecimiento.</li></ol></section>
+<!-- NEL_STANDARDS_START -->
+<section class="content-section nel-tool-supporting-section" id="standards" aria-labelledby="standards-title">
+<div class="section-heading"><div><p class="eyebrow">NORMAS</p><h2 id="standards-title">Referencias normativas</h2></div></div>
+<p>Documentos de referencia de las fórmulas y valores por defecto anteriores.</p>
+<ul class="nel-standards-list"><li><a href="https://standards.ieee.org/ieee/802.3x/1090/" rel="noopener">IEEE 802.3af-2003</a> — PoE: 15,4 W en el PSE y 12,95 W en el dispositivo (hoy IEEE 802.3 cláusula 33). <small>[UNVERIFIED (sin verificar): Valor tomado de fuentes secundarias; no se revisó el texto de pago de la norma línea por línea.]</small></li><li><a href="https://standards.ieee.org/ieee/802.3at/4553/" rel="noopener">IEEE 802.3at-2009</a> — PoE+: 30 W en el PSE y 25,5 W en el dispositivo. <small>[UNVERIFIED (sin verificar): Valor tomado de fuentes secundarias; no se revisó el texto de pago de la norma línea por línea.]</small></li><li><a href="https://standards.ieee.org/ieee/802.3bt/6749/" rel="noopener">IEEE 802.3bt-2018</a> — PoE++ a cuatro pares: Tipo 3 60 W / 51 W, Tipo 4 90 W / 71,3 W (la herramienta usa 71 W). <small>[UNVERIFIED (sin verificar): Valor tomado de fuentes secundarias; no se revisó el texto de pago de la norma línea por línea.]</small></li></ul>
+</section>
+<!-- NEL_STANDARDS_END -->
 <p class="hub-return">Forma parte de las <a href="../../datacenter-power-calculators/es/">calculadoras de energía y refrigeración</a>.</p>
 <!-- NEL_TOOL_GRAPH_START -->
 <section aria-labelledby="nel-tool-graph-title" class="content-section nel-tool-graph nel-tool-supporting-section" data-primary-workflow="poe-rack-power-design" data-tool-id="poe-power-budget-calculator" id="nel-tool-graph">
@@ -112,5 +130,5 @@
   </div>
 </footer>
 <!-- NEL_FOOTER_END -->
-<script src="../js/engine.js"></script><script src="../js/app.js?v=7d7872f22613"></script><script src="../js/pwa.js"></script>
+<script src="../js/engine.js"></script><script src="../js/app.js?v=7d7872f22613"></script><script src="../js/scenarios.js"></script><script src="../js/pwa.js"></script>
 <script defer="" src="/assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script><script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script></body></html>
