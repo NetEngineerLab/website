@@ -24,8 +24,8 @@ module.exports = {
   // legacy locale variants that are not represented in the registry's
   // translation count. Keep these baselines aligned with the filesystem
   // inventory used by the audit itself.
-  activeToolCount: 41,
-  pageCount: 123,
-  ordinaryPageCount: 105,
+  activeToolCount: 46,
+  pageCount: 138,
+  ordinaryPageCount: 120,
   complexTools
 };

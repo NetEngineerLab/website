@@ -5,6 +5,11 @@ const tools=catalog.filter(tool=>tool.status==="active");
 const calculationOutputs={
   "fiber-loss":["#designLoss","0.00"],
   "fiber-latency-calculator":["#oneWay","—"],
+  "chromatic-dispersion-calculator":["#residualCd","—"],
+  "pmd-budget-calculator":["#meanDgd","—"],
+  "ethernet-serialization-delay-calculator":["#perHop","—"],
+  "stp-path-cost-calculator":["#totalA","—"],
+  "all-reduce-traffic-estimator":["#perRank","—"],
   "optical-power-budget":["#remainingBudget","0.00"],
   "pon-splitter-loss":["#remaining","0.00"],
   "onu-rx-power":["#measuredResult","0.00"],

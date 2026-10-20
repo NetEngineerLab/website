@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-nel-locale="en" data-nel-route="tools/ethernet-serialization-delay-calculator/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b6ffb">
+<title>Ethernet Serialization Delay Calculator – Frame Time, PPS &amp; Line Rate</title>
+<meta name="description" content="Calculate Ethernet serialization delay for any frame size and link speed, plus wire time with preamble and IFG, maximum frames per second (64 B at 10G = 14.88 Mpps) and L2 throughput efficiency.">
+<link rel="stylesheet" href="css/style.css?v=48c7b72aa30f">
+<meta name="app-base" content="./">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NetEngineerLab">
+<meta property="og:title" content="Ethernet Serialization Delay Calculator – Frame Time, PPS &amp; Line Rate">
+<meta property="og:description" content="Calculate Ethernet serialization delay for any frame size and link speed, plus wire time with preamble and IFG, maximum frames per second (64 B at 10G = 14.88 Mpps) and L2 throughput efficiency.">
+<meta property="og:url" content="https://netengineerlab.com/tools/ethernet-serialization-delay-calculator/">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ethernet Serialization Delay Calculator – Frame Time, PPS &amp; Line Rate">
+<meta name="twitter:description" content="Calculate Ethernet serialization delay for any frame size and link speed, plus wire time with preamble and IFG, maximum frames per second (64 B at 10G = 14.88 Mpps) and L2 throughput efficiency.">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://netengineerlab.com/tools/ethernet-serialization-delay-calculator/#app","name":"Ethernet Serialization Delay Calculator","url":"https://netengineerlab.com/tools/ethernet-serialization-delay-calculator/","description":"Calculate per-hop and multi-hop serialization delay, wire time, maximum frame rate and L2 efficiency for an Ethernet link.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Network Engineering Calculator","operatingSystem":"Any","browserRequirements":"Requires JavaScript and a modern web browser","softwareVersion":"1.0.0","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/ethernet-serialization-delay-calculator/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"NetEngineerLab","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"Ethernet Serialization Delay Calculator","item":"https://netengineerlab.com/tools/ethernet-serialization-delay-calculator/"}]}]}</script>
+
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=8dd1728bf5eb">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Ethernet Serialization Delay Calculator – Frame Time, PPS & Line Rate","url":"https://netengineerlab.com/tools/ethernet-serialization-delay-calculator/","description":"Calculate Ethernet serialization delay for any frame size and link speed, plus wire time with preamble and IFG, maximum frames per second (64 B at 10G = 14.88 Mpps) and L2 throughput efficiency.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="en">
+<meta name="nel-route" content="tools/ethernet-serialization-delay-calculator/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/tools/ethernet-serialization-delay-calculator/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/ethernet-serialization-delay-calculator/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/ethernet-serialization-delay-calculator/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/ethernet-serialization-delay-calculator/es/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/ethernet-serialization-delay-calculator/">
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I calculate serialization delay?","acceptedAnswer":{"@type":"Answer","text":"Divide the frame size in bits by the line rate. 1500 bytes × 8 = 12,000 bits; at 10 Gbps that is 1.2 µs, at 1 Gbps 12 µs."}},{"@type":"Question","name":"Why is 10G line rate 14.88 Mpps?","acceptedAnswer":{"@type":"Answer","text":"A minimum 64-byte frame occupies 84 bytes with preamble, SFD and IFG. 10,000,000,000 ÷ (84 × 8) = 14,880,952 frames per second."}},{"@type":"Question","name":"Does serialization delay depend on cable length?","acceptedAnswer":{"@type":"Answer","text":"No. It depends only on frame size and line rate. Cable length adds propagation delay, about 5 µs per km of fiber."}},{"@type":"Question","name":"What is the overhead of an Ethernet frame on the wire?","acceptedAnswer":{"@type":"Answer","text":"20 bytes per frame: 7 bytes preamble, 1 byte SFD and 12 bytes minimum inter-packet gap, in addition to the 18-byte MAC header and FCS inside the frame."}},{"@type":"Question","name":"Do jumbo frames reduce latency?","acceptedAnswer":{"@type":"Answer","text":"They raise efficiency but increase per-frame serialization delay: a 9018-byte frame takes 7.2 µs at 10 Gbps versus 1.2 µs for 1518 bytes."}}]}</script>
+<link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=6c0b1c4ee1f1">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=d998a53add89">
+<script defer src="../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../assets/js/site.js?v=b563dd0297f5"></script>
+<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=e4c5b5c2101a">
+<link rel="manifest" href="manifest.webmanifest">
+</head>
+<body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<a class="skip-link" href="#calculator">Skip to calculator</a>
+<noscript><div class="noscript">JavaScript is required to run this calculator.</div></noscript>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Primary navigation">
+      <a href="../../">Home</a>
+      <a href="../" aria-current="page">Tools</a>
+      <a href="../../guides/">Guides</a>
+      <a href="../../topics/">Topics</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="./" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a><a class="language-option" role="menuitem" href="es/" lang="es" hreflang="es"><span>Español</span><small>Spanish</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">Start calculating</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a href="../../">Home</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../">Tools</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">Ethernet Serialization Delay Calculator</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END -->
+<section class="hero nel-tool-hero"><div class="hero-inner">
+<p class="eyebrow">NETWORK ENGINEERING TOOL</p>
+<h1>Ethernet Serialization Delay Calculator</h1>
+<p>Serialization delay is the time a port needs to clock a frame onto the wire: frame bits ÷ line rate. A 1,518-byte frame takes 12.14 µs at 1 Gbps but 121.4 ns at 100 Gbps. Each frame also occupies 20 extra bytes of preamble, SFD and inter-frame gap, which sets the famous 14.88 Mpps line rate for 64-byte frames at 10 Gbps. This calculator gives per-hop and multi-hop delay, wire time, frames per second and L2 efficiency.</p>
+<div class="hero-tags"><span>Frame time</span><span>Preamble + IFG</span><span>Mpps</span><span>L2 efficiency</span></div></div></section>
+<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
+<section class="input-panel card nel-tool-input">
+<div class="section-title"><span class="section-icon">☷</span><div>
+<h2>Frame and link</h2>
+<p>Enter the Ethernet frame size including the 4-byte FCS, the line rate and the number of store-and-forward hops.</p>
+</div></div>
+<div class="form-grid">
+<div class="field"><label for="projectName">Project name</label><div class="input-wrap no-unit"><input id="projectName" type="text" value="Access to core path"></div></div>
+<div class="field"><label for="frameBytes">Frame size (incl. FCS)</label><div class="input-wrap"><input id="frameBytes" type="number" min="64" max="16000" step="1" value="1518"><span>B</span></div><p class="hint">64 minimum, 1518 untagged, 1522 with 802.1Q, 9018+ jumbo.</p></div>
+<div class="field"><label for="ratePreset">Line rate preset</label><div class="input-wrap no-unit"><select id="ratePreset"><option value="0.01">10 Mbps</option><option value="0.1">100 Mbps</option><option value="1">1 Gbps</option><option value="2.5">2.5 Gbps</option><option value="10" selected>10 Gbps</option><option value="25">25 Gbps</option><option value="40">40 Gbps</option><option value="100">100 Gbps</option><option value="400">400 Gbps</option><option value="800">800 Gbps</option><option value="custom">Custom</option></select></div></div>
+<div class="field"><label for="rateGbps">Line rate</label><div class="input-wrap"><input id="rateGbps" type="number" min="0.001" max="1600" step="0.001" value="10"><span>Gbps</span></div></div>
+<div class="field"><label for="hops">Store-and-forward hops</label><div class="input-wrap no-unit"><input id="hops" type="number" min="1" max="64" step="1" value="3"></div><p class="hint">Each store-and-forward hop adds one frame time.</p></div>
+</div>
+<div class="actions">
+<button class="primary-action" id="calculateBtn" type="button">Calculate</button>
+<button class="secondary-action" id="resetBtn" type="button">Reset</button>
+</div>
+<p class="validation-message" id="validationMessage" role="alert"></p>
+</section>
+<section aria-live="polite" class="result-panel card nel-tool-result">
+<div class="section-title"><span class="section-icon">▥</span><div>
+<h2>Calculation result</h2>
+<p>Delay = frame bytes × 8 ÷ rate. Frame rate = rate ÷ ((frame + 20) × 8).</p>
+</div></div>
+<div class="summary-card" id="summaryCard"><div><p>Serialization delay per hop</p><strong><span id="perHop">—</span></strong></div><div><p>Total over all hops</p><strong><span id="totalDelay">—</span></strong></div></div>
+<div class="metric-grid">
+<article class="metric-card"><div><small>Wire time incl. preamble + IFG</small><strong id="wireTime">—</strong></div></article>
+<article class="metric-card"><div><small>Bytes on the wire per frame</small><strong id="wireBytes">—</strong></div></article>
+<article class="metric-card"><div><small>Maximum frame rate</small><strong id="frameRate">—</strong></div></article>
+<article class="metric-card"><div><small>L2 throughput at line rate</small><strong id="l2Throughput">—</strong></div></article>
+<article class="metric-card"><div><small>L2 efficiency</small><strong id="efficiency">—</strong></div></article>
+</div>
+<p class="hint">Cut-through switches start forwarding before the whole frame arrives, so they add less than one frame time. Propagation, queuing and processing delay are not included.</p>
+<div class="result-actions">
+<button id="copyBtn" type="button">Copy result</button>
+<button id="saveBtn" type="button">Save record</button>
+<button id="printBtn" type="button">Print / Export PDF</button>
+</div>
+</section>
+
+</main>
+<section class="content-section nel-tool-supporting-section" id="history">
+<div class="section-heading"><div><p class="eyebrow">PROJECT RECORDS</p><h2>Recent calculations</h2></div>
+<button class="text-button" id="clearHistoryBtn" type="button">Clear history</button></div>
+<div class="history-list" id="historyList"></div>
+</section>
+<section class="content-section methodology nel-tool-supporting-section" id="methodology">
+<div class="section-heading"><div><p class="eyebrow">METHODOLOGY</p><h2>Methodology and engineering notes</h2></div></div>
+<div class="method-grid">
+<article><h3>How to use</h3><ol><li>Enter the frame size from destination MAC to FCS (64–1518 bytes for standard frames).</li><li>Pick a line rate or choose Custom.</li><li>Enter how many store-and-forward devices the frame crosses.</li><li>Read per-hop and total delay, wire time, frames per second and L2 efficiency.</li></ol></article><article><h3>Serialization formula</h3><p>Serialization delay = frame bytes × 8 ÷ line rate. On the wire every frame is preceded by a 7-byte preamble and 1-byte SFD and followed by a minimum 96-bit (12-byte) inter-packet gap, so it occupies frame + 20 bytes. Wire time = (frame + 20) × 8 ÷ rate.</p></article><article><h3>Frame rate and efficiency</h3><p>Maximum frames per second = rate ÷ ((frame + 20) × 8). L2 efficiency = frame ÷ (frame + 20); L2 throughput = efficiency × rate. 64-byte frames at 10 Gbps give 14,880,952 fps and 76.19% efficiency; 1518-byte frames give 812,743 fps and 98.70%.</p></article>
+</div>
+<div class="example-box"><h3>Worked case: 64 B and 1518 B at 10 Gbps</h3><p>A 64-byte frame takes 51.20 ns per hop, 153.60 ns over three store-and-forward hops, and occupies 84 bytes (67.20 ns) on the wire: 14,880,952 fps. A 1518-byte frame takes 1.214 µs per hop and 3.643 µs over three hops; at 1 Gbps the same frame takes 12.144 µs per hop.</p></div>
+</section>
+<section aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">ENGINEERING REFERENCES</p><h2 id="references-title">Standards and references</h2></div></div>
+<ul><li><a href="https://standards.ieee.org/ieee/802.3/10422/" rel="noopener">IEEE 802.3: Ethernet frame format, preamble, SFD and inter-packet gap</a></li><li><a href="https://www.rfc-editor.org/rfc/rfc2544" rel="noopener">RFC 2544: benchmarking methodology and standard frame sizes</a></li><li><a href="https://www.rfc-editor.org/rfc/rfc1242" rel="noopener">RFC 1242: benchmarking terminology (latency, throughput)</a></li></ul>
+<p>The 20-byte per-frame overhead uses the minimum IFG; some PHYs and rate adaptation (for example WAN PHY) change the effective payload rate. Last reviewed: 2026-10-20.</p>
+</section>
+<section aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">FAQ</p><h2 id="faq-title">Frequently asked questions</h2></div></div>
+<div class="faq-grid"><details><summary>How do I calculate serialization delay?</summary><p>Divide the frame size in bits by the line rate. 1500 bytes × 8 = 12,000 bits; at 10 Gbps that is 1.2 µs, at 1 Gbps 12 µs.</p></details><details><summary>Why is 10G line rate 14.88 Mpps?</summary><p>A minimum 64-byte frame occupies 84 bytes with preamble, SFD and IFG. 10,000,000,000 ÷ (84 × 8) = 14,880,952 frames per second.</p></details><details><summary>Does serialization delay depend on cable length?</summary><p>No. It depends only on frame size and line rate. Cable length adds propagation delay, about 5 µs per km of fiber.</p></details><details><summary>What is the overhead of an Ethernet frame on the wire?</summary><p>20 bytes per frame: 7 bytes preamble, 1 byte SFD and 12 bytes minimum inter-packet gap, in addition to the 18-byte MAC header and FCS inside the frame.</p></details><details><summary>Do jumbo frames reduce latency?</summary><p>They raise efficiency but increase per-frame serialization delay: a 9018-byte frame takes 7.2 µs at 10 Gbps versus 1.2 µs for 1518 bytes.</p></details></div>
+</section>
+<!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="ethernet-serialization-delay-calculator" data-primary-workflow="layer2-path-design">
+<div class="section-heading"><div><p class="eyebrow">ENGINEERING WORKFLOW</p><h2 id="nel-tool-graph-title">Continue the engineering workflow</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>Layer 2 Path Design Workflow</strong><p>Pick the Spanning Tree forwarding path, then estimate the per-hop serialization delay along it.</p></div><div class="nel-workflow-step"><strong>Step 2 of 2</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="2" aria-valuenow="2" aria-valuetext="Step 2 of 2" aria-label="Step 2 of 2"><span style="width:100%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/stp-path-cost-calculator/"><span class="nel-tool-graph-label">Previous</span><strong>STP Path Cost Calculator</strong><span class="nel-tool-graph-description">Calculate 802.1D/802.1Q port costs and root path cost for two candidate paths and see which one Spanning Tree prefers.</span></a><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Next</span><strong>Workflow complete</strong></div></div>
+<h3 class="nel-tool-graph-subtitle">Related tools</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/fiber-latency-calculator/"><strong>Fiber Latency Calculator</strong><span class="nel-tool-graph-description">Calculate one-way and round-trip fiber latency from distance, group index, equipment and serialization delay.</span></a><a class="nel-tool-graph-card" href="/tools/mtu-calculator/"><strong>MTU &amp; MSS Calculator</strong><span class="nel-tool-graph-description">Calculate effective MTU, TCP MSS and fragmentation risk for PPPoE, GRE, VXLAN, MPLS, IPsec and WireGuard.</span></a><a class="nel-tool-graph-card" href="/tools/bandwidth-calculator/"><strong>Bandwidth &amp; Transfer Time Calculator</strong><span class="nel-tool-graph-description">Calculate file transfer time, required link rate, concurrent-user capacity and sustained-rate data volume.</span></a><a class="nel-tool-graph-card" href="/tools/switch-uplink-oversubscription-calculator/"><strong>Switch Uplink Bandwidth &amp; Oversubscription Calculator</strong><span class="nel-tool-graph-description">Size switch uplinks from access ports, utilization, concurrency and redundancy.</span></a></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Footer navigation">
+      <a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script defer src="js/engine.js"></script>
+<script defer src="js/pwa.js"></script>
+<script defer src="../../assets/js/tool-integration.js?v=05f7934f4687"></script>
+<script defer src="js/app.js?v=588ee07b633e"></script>
+<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script>
+</body>
+</html>

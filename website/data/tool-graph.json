@@ -50,6 +50,13 @@
           "total": 2,
           "previous": null,
           "next": "fiber-latency-calculator"
+        },
+        {
+          "workflowId": "optical-dispersion-planning",
+          "step": 1,
+          "total": 3,
+          "previous": null,
+          "next": "chromatic-dispersion-calculator"
         }
       ],
       "primaryWorkflow": "optical-link-design",
@@ -1489,6 +1496,13 @@
           "total": 5,
           "previous": "switch-uplink-oversubscription-calculator",
           "next": "sfp-qsfp-compatibility-calculator"
+        },
+        {
+          "workflowId": "ai-training-fabric-planning",
+          "step": 2,
+          "total": 2,
+          "previous": "all-reduce-traffic-estimator",
+          "next": null
         }
       ],
       "primaryWorkflow": "data-center-network-fabric-planning",
@@ -1747,6 +1761,206 @@
       "primaryWorkflow": "fiber-latency-planning",
       "previous": "fiber-loss",
       "next": null
+    },
+    "chromatic-dispersion-calculator": {
+      "id": "chromatic-dispersion-calculator",
+      "routes": {
+        "en": "/tools/chromatic-dispersion-calculator/",
+        "zh-CN": "/tools/chromatic-dispersion-calculator/zh/",
+        "es": "/tools/chromatic-dispersion-calculator/es/"
+      },
+      "translations": {
+        "en": {
+          "name": "Chromatic Dispersion Calculator",
+          "description": "Calculate G.652 dispersion coefficient, accumulated and residual chromatic dispersion, and the CD-limited link length."
+        },
+        "zh": {
+          "name": "色散计算器",
+          "description": "计算 G.652 色散系数、累积与残余色散以及色散受限链路长度。"
+        },
+        "es": {
+          "name": "Calculadora de dispersión cromática",
+          "description": "Calcula el coeficiente de dispersión G.652, la dispersión cromática acumulada y residual, y la longitud limitada por CD."
+        }
+      },
+      "related": [
+        "fiber-loss",
+        "pmd-budget-calculator",
+        "optical-power-budget",
+        "sfp-qsfp-compatibility-calculator"
+      ],
+      "workflows": [
+        {
+          "workflowId": "optical-dispersion-planning",
+          "step": 2,
+          "total": 3,
+          "previous": "fiber-loss",
+          "next": "pmd-budget-calculator"
+        }
+      ],
+      "primaryWorkflow": "optical-dispersion-planning",
+      "previous": "fiber-loss",
+      "next": "pmd-budget-calculator"
+    },
+    "pmd-budget-calculator": {
+      "id": "pmd-budget-calculator",
+      "routes": {
+        "en": "/tools/pmd-budget-calculator/",
+        "zh-CN": "/tools/pmd-budget-calculator/zh/",
+        "es": "/tools/pmd-budget-calculator/es/"
+      },
+      "translations": {
+        "en": {
+          "name": "PMD Budget Calculator",
+          "description": "Calculate fiber and link mean DGD from the PMD coefficient, compare it with the symbol-period tolerance and find the PMD-limited length."
+        },
+        "zh": {
+          "name": "偏振模色散（PMD）预算计算器",
+          "description": "根据 PMD 系数计算光纤与链路平均 DGD，对比码元周期容限并求 PMD 受限距离。"
+        },
+        "es": {
+          "name": "Calculadora de presupuesto PMD",
+          "description": "Calcula el DGD medio de fibra y enlace con el coeficiente PMD, lo compara con la tolerancia por periodo de símbolo y halla la longitud límite."
+        }
+      },
+      "related": [
+        "chromatic-dispersion-calculator",
+        "fiber-loss",
+        "optical-power-budget",
+        "otdr-event"
+      ],
+      "workflows": [
+        {
+          "workflowId": "optical-dispersion-planning",
+          "step": 3,
+          "total": 3,
+          "previous": "chromatic-dispersion-calculator",
+          "next": null
+        }
+      ],
+      "primaryWorkflow": "optical-dispersion-planning",
+      "previous": "chromatic-dispersion-calculator",
+      "next": null
+    },
+    "ethernet-serialization-delay-calculator": {
+      "id": "ethernet-serialization-delay-calculator",
+      "routes": {
+        "en": "/tools/ethernet-serialization-delay-calculator/",
+        "zh-CN": "/tools/ethernet-serialization-delay-calculator/zh/",
+        "es": "/tools/ethernet-serialization-delay-calculator/es/"
+      },
+      "translations": {
+        "en": {
+          "name": "Ethernet Serialization Delay Calculator",
+          "description": "Calculate per-hop and multi-hop serialization delay, wire time, maximum frame rate and L2 efficiency for an Ethernet link."
+        },
+        "zh": {
+          "name": "以太网串行化时延计算器",
+          "description": "计算以太网链路的单跳与多跳串行化时延、线路占用时间、最大帧速率和二层效率。"
+        },
+        "es": {
+          "name": "Calculadora de retardo de serialización Ethernet",
+          "description": "Calcula el retardo de serialización por salto y total, el tiempo en línea, la tasa máxima de tramas y la eficiencia L2."
+        }
+      },
+      "related": [
+        "fiber-latency-calculator",
+        "mtu-calculator",
+        "bandwidth-calculator",
+        "switch-uplink-oversubscription-calculator"
+      ],
+      "workflows": [
+        {
+          "workflowId": "layer2-path-design",
+          "step": 2,
+          "total": 2,
+          "previous": "stp-path-cost-calculator",
+          "next": null
+        }
+      ],
+      "primaryWorkflow": "layer2-path-design",
+      "previous": "stp-path-cost-calculator",
+      "next": null
+    },
+    "stp-path-cost-calculator": {
+      "id": "stp-path-cost-calculator",
+      "routes": {
+        "en": "/tools/stp-path-cost-calculator/",
+        "zh-CN": "/tools/stp-path-cost-calculator/zh/",
+        "es": "/tools/stp-path-cost-calculator/es/"
+      },
+      "translations": {
+        "en": {
+          "name": "STP Path Cost Calculator",
+          "description": "Calculate 802.1D/802.1Q port costs and root path cost for two candidate paths and see which one Spanning Tree prefers."
+        },
+        "zh": {
+          "name": "STP 路径开销计算器",
+          "description": "计算两条候选路径的 802.1D/802.1Q 端口开销与根路径开销，判断生成树优选路径。"
+        },
+        "es": {
+          "name": "Calculadora de coste de ruta STP",
+          "description": "Calcula costes de puerto 802.1D/802.1Q y el coste de ruta raíz de dos rutas y muestra cuál prefiere Spanning Tree."
+        }
+      },
+      "related": [
+        "switch-uplink-oversubscription-calculator",
+        "vlan-ip-capacity-planner",
+        "ospf-cost-calculator",
+        "ethernet-serialization-delay-calculator"
+      ],
+      "workflows": [
+        {
+          "workflowId": "layer2-path-design",
+          "step": 1,
+          "total": 2,
+          "previous": null,
+          "next": "ethernet-serialization-delay-calculator"
+        }
+      ],
+      "primaryWorkflow": "layer2-path-design",
+      "previous": null,
+      "next": "ethernet-serialization-delay-calculator"
+    },
+    "all-reduce-traffic-estimator": {
+      "id": "all-reduce-traffic-estimator",
+      "routes": {
+        "en": "/tools/all-reduce-traffic-estimator/",
+        "zh-CN": "/tools/all-reduce-traffic-estimator/zh/",
+        "es": "/tools/all-reduce-traffic-estimator/es/"
+      },
+      "translations": {
+        "en": {
+          "name": "All-Reduce Traffic Estimator",
+          "description": "Estimate per-GPU and fabric traffic, step time and bus bandwidth for a ring all-reduce of model gradients."
+        },
+        "zh": {
+          "name": "All-Reduce 流量估算器",
+          "description": "估算模型梯度环形 All-Reduce 的每卡与全网流量、单次耗时和总线带宽。"
+        },
+        "es": {
+          "name": "Estimador de tráfico All-Reduce",
+          "description": "Estima el tráfico por GPU y total, el tiempo y el ancho de banda de bus de un all-reduce en anillo de gradientes."
+        }
+      },
+      "related": [
+        "data-center-network-convergence-fabric-capacity-planner",
+        "switch-uplink-oversubscription-calculator",
+        "bandwidth-calculator",
+        "network-capacity-forecast-planner"
+      ],
+      "workflows": [
+        {
+          "workflowId": "ai-training-fabric-planning",
+          "step": 1,
+          "total": 2,
+          "previous": null,
+          "next": "data-center-network-convergence-fabric-capacity-planner"
+        }
+      ],
+      "primaryWorkflow": "ai-training-fabric-planning",
+      "previous": null,
+      "next": "data-center-network-convergence-fabric-capacity-planner"
     }
   },
   "workflows": {
@@ -2661,6 +2875,138 @@
             },
             "zh": {
               "action": "估算单向时延与往返 RTT"
+            }
+          }
+        }
+      ]
+    },
+    "optical-dispersion-planning": {
+      "id": "optical-dispersion-planning",
+      "domain": "optical",
+      "translations": {
+        "en": {
+          "name": "Optical Dispersion Planning Workflow",
+          "description": "Confirm span length and loss, then check chromatic dispersion and PMD against the transceiver limits."
+        },
+        "zh": {
+          "name": "光纤色散规划工作流",
+          "description": "先确认跨段长度与损耗，再校核色散和偏振模色散是否满足光模块容限。"
+        }
+      },
+      "steps": [
+        {
+          "order": 1,
+          "toolId": "fiber-loss",
+          "translations": {
+            "en": {
+              "action": "Confirm span length and loss"
+            },
+            "zh": {
+              "action": "确认跨段长度与损耗"
+            }
+          }
+        },
+        {
+          "order": 2,
+          "toolId": "chromatic-dispersion-calculator",
+          "translations": {
+            "en": {
+              "action": "Check residual chromatic dispersion"
+            },
+            "zh": {
+              "action": "校核残余色散"
+            }
+          }
+        },
+        {
+          "order": 3,
+          "toolId": "pmd-budget-calculator",
+          "translations": {
+            "en": {
+              "action": "Check the PMD / DGD budget"
+            },
+            "zh": {
+              "action": "校核 PMD / DGD 预算"
+            }
+          }
+        }
+      ]
+    },
+    "layer2-path-design": {
+      "id": "layer2-path-design",
+      "domain": "switching",
+      "translations": {
+        "en": {
+          "name": "Layer 2 Path Design Workflow",
+          "description": "Pick the Spanning Tree forwarding path, then estimate the per-hop serialization delay along it."
+        },
+        "zh": {
+          "name": "二层路径设计工作流",
+          "description": "先确定生成树转发路径，再估算沿途每跳串行化时延。"
+        }
+      },
+      "steps": [
+        {
+          "order": 1,
+          "toolId": "stp-path-cost-calculator",
+          "translations": {
+            "en": {
+              "action": "Compare STP root path costs"
+            },
+            "zh": {
+              "action": "比较 STP 根路径开销"
+            }
+          }
+        },
+        {
+          "order": 2,
+          "toolId": "ethernet-serialization-delay-calculator",
+          "translations": {
+            "en": {
+              "action": "Estimate serialization delay per hop"
+            },
+            "zh": {
+              "action": "估算每跳串行化时延"
+            }
+          }
+        }
+      ]
+    },
+    "ai-training-fabric-planning": {
+      "id": "ai-training-fabric-planning",
+      "domain": "switching",
+      "translations": {
+        "en": {
+          "name": "AI Training Fabric Planning Workflow",
+          "description": "Estimate gradient all-reduce traffic, then size the leaf-spine fabric that carries it."
+        },
+        "zh": {
+          "name": "AI 训练网络规划工作流",
+          "description": "先估算梯度 All-Reduce 流量，再规划承载它的 Leaf-Spine 网络。"
+        }
+      },
+      "steps": [
+        {
+          "order": 1,
+          "toolId": "all-reduce-traffic-estimator",
+          "translations": {
+            "en": {
+              "action": "Estimate all-reduce traffic and time"
+            },
+            "zh": {
+              "action": "估算 All-Reduce 流量与耗时"
+            }
+          }
+        },
+        {
+          "order": 2,
+          "toolId": "data-center-network-convergence-fabric-capacity-planner",
+          "translations": {
+            "en": {
+              "action": "Size the leaf-spine fabric"
+            },
+            "zh": {
+              "action": "规划 Leaf-Spine 网络容量"
             }
           }
         }
