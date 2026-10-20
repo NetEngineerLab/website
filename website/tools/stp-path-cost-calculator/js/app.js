@@ -41,6 +41,14 @@ const CONFIG = {
  "text": {
   "en": {
    "validation": "Check the highlighted inputs: values must be numbers within the allowed range.",
+   "validationField": "Check {fields}: enter a number within the allowed range.",
+   "listSeparator": ", ",
+   "fieldLabels": {
+    "method": "Path cost method",
+    "pathA": "Path A link speeds (Mbps, comma-separated)",
+    "pathB": "Path B link speeds (Mbps, comma-separated)"
+   },
+   "notes": {},
    "copied": "Result copied",
    "saved": "Record saved",
    "noHistory": "No saved calculations yet. Calculate and click “Save record”.",
@@ -89,6 +97,14 @@ const CONFIG = {
   },
   "zh": {
    "validation": "请检查标出的输入：数值必须在允许范围内。",
+   "validationField": "请检查{fields}：需要填写允许范围内的数值。",
+   "listSeparator": "、",
+   "fieldLabels": {
+    "method": "开销方法",
+    "pathA": "路径 A 各跳速率（Mbps，逗号分隔）",
+    "pathB": "路径 B 各跳速率（Mbps，逗号分隔）"
+   },
+   "notes": {},
    "copied": "结果已复制",
    "saved": "记录已保存",
    "noHistory": "暂无计算记录。完成计算后点击“保存记录”。",
@@ -137,6 +153,14 @@ const CONFIG = {
   },
   "es": {
    "validation": "Revise los datos marcados: deben ser números dentro del rango permitido.",
+   "validationField": "Revise {fields}: introduzca un número dentro del rango permitido.",
+   "listSeparator": ", ",
+   "fieldLabels": {
+    "method": "Método de coste",
+    "pathA": "Velocidades de la ruta A (Mbps, separadas por comas)",
+    "pathB": "Velocidades de la ruta B (Mbps, separadas por comas)"
+   },
+   "notes": {},
    "copied": "Resultado copiado",
    "saved": "Registro guardado",
    "noHistory": "Aún no hay cálculos guardados. Calcule y pulse “Guardar registro”.",
@@ -226,12 +250,41 @@ function clearResults(){
   if (card) card.className = "summary-card";
 }
 
-function markInvalid(invalid){
+function markInvalid(ids){
   for (const field of CONFIG.inputs){
     const node = $(field.id);
     if (!node || field.type === "select") continue;
-    node.setAttribute("aria-invalid", invalid ? "true" : "false");
+    node.setAttribute("aria-invalid", ids.includes(field.id) ? "true" : "false");
   }
+}
+
+// Find which visible fields make the input invalid: a field is to blame when
+// putting its default value back makes the engine accept the input.
+function invalidFields(values){
+  const ids = [];
+  for (const field of CONFIG.inputs){
+    if (field.type !== "number" && field.type !== "int" && field.type !== "text") continue;
+    const node = $(field.id);
+    if (!node) continue;
+    const wrap = node.closest(".field");
+    if (wrap && wrap.hidden) continue;
+    const value = values[field.id];
+    const blank = field.type === "text" ? String(value).trim() === "" : !Number.isFinite(value);
+    const fallback = field.type === "text" ? field.default : Number(field.default);
+    if (blank || engine.calculate({...values, [field.id]: fallback}).ok) ids.push(field.id);
+  }
+  return ids;
+}
+
+function validationText(ids){
+  if (!ids.length) return text.validation;
+  const names = ids.map((id) => `“${text.fieldLabels[id] || id}”`).join(text.listSeparator);
+  return text.validationField.replace("{fields}", names);
+}
+
+function displayValue(value){
+  if (typeof value === "string" && value.startsWith("@")) return (text.notes && text.notes[value.slice(1)]) || "—";
+  return value;
 }
 
 function calculate(){
@@ -239,13 +292,16 @@ function calculate(){
   const result = engine.calculate(values);
   if (!result.ok){
     clearResults();
-    markInvalid(true);
-    $("validationMessage").textContent = (result.error && text.errors && text.errors[result.error]) || text.validation;
+    const custom = result.error && text.errors && text.errors[result.error];
+    const ids = custom ? [] : invalidFields(values);
+    markInvalid(ids);
+    $("validationMessage").textContent = custom || validationText(ids);
     return;
   }
-  markInvalid(false);
+  markInvalid([]);
   $("validationMessage").textContent = "";
-  const display = {...result.display};
+  const display = {};
+  for (const [key, value] of Object.entries(result.display)) display[key] = displayValue(value);
   if (result.winner && text.winner) display.winnerText = text.winner[result.winner];
   lastResult = {projectName: ($("projectName").value || "").trim() || "Untitled", display, timestamp: new Date().toISOString()};
   for (const id of CONFIG.outputs) setText(id, display[id] ?? "—");
@@ -253,14 +309,24 @@ function calculate(){
   if (typeof window.nelTrack === "function") window.nelTrack(CONFIG.track, {status: result.status || "ok"});
 }
 
+// Picking a preset fills the field; the field stays editable.
 function applyPresets(){
   for (const preset of CONFIG.presets){
     const select = $(preset.select), target = $(preset.target);
     if (!select || !target) continue;
-    if (select.value === "custom"){ target.readOnly = false; continue; }
-    target.value = select.value;
-    target.readOnly = true;
+    target.readOnly = false;
+    if (select.value !== "custom") target.value = select.value;
   }
+}
+
+// Typing a value selects the matching preset, or Custom when none matches.
+function syncPresetFromTarget(preset){
+  const select = $(preset.select), target = $(preset.target);
+  const typed = Number(target.value);
+  const match = target.value.trim() !== "" && Number.isFinite(typed)
+    ? [...select.options].find((option) => option.value !== "custom" && Number(option.value) === typed)
+    : null;
+  select.value = match ? match.value : "custom";
 }
 
 function applyModes(){
@@ -363,7 +429,7 @@ function clearHistory(){
 
 for (const preset of CONFIG.presets){
   $(preset.select).addEventListener("change", () => { applyPresets(); calculate(); });
-  $(preset.target).addEventListener("input", () => { $(preset.select).value = "custom"; $(preset.target).readOnly = false; });
+  $(preset.target).addEventListener("input", () => syncPresetFromTarget(preset));
 }
 for (const mode of CONFIG.modes){
   $(mode.select).addEventListener("change", () => { applyModes(); calculate(); });

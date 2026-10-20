@@ -31,19 +31,21 @@
     const fiberCd=D*v.lengthKm;
     const residualCd=fiberCd-v.compensation;
     const margin=v.tolerance-Math.abs(residualCd);
-    // Longest length that keeps |D·L − C| within the tolerance T: L = (T + C·sign(D)) / |D|
+    // Lengths that keep |D·L − C| ≤ T: (C·sign(D) − T)/|D| ≤ L ≤ (C·sign(D) + T)/|D|
     const maxKm=Math.abs(D)>0?(v.tolerance+v.compensation*Math.sign(D))/Math.abs(D):Infinity;
+    const minKm=Math.abs(D)>0?Math.max((v.compensation*Math.sign(D)-v.tolerance)/Math.abs(D),0):0;
     const broadening=Math.abs(residualCd)*v.spectralWidth;
     const usedPct=Math.abs(residualCd)/v.tolerance*100;
     const status=margin<0?"failed":usedPct>80?"warning":"healthy";
     return{
-      ok:true,D,fiberCd,residualCd,margin,maxKm,broadening,usedPct,status,
+      ok:true,D,fiberCd,residualCd,margin,maxKm,minKm,broadening,usedPct,status,
       display:{
         dCoef:`${r(D,3).toFixed(3)} ps/(nm·km)`,
         fiberCd:`${r(fiberCd,1).toFixed(1)} ps/nm`,
         residualCd:`${r(residualCd,1).toFixed(1)} ps/nm`,
         cdMargin:`${r(margin,1).toFixed(1)} ps/nm`,
-        maxLength:Number.isFinite(maxKm)?`${r(Math.max(maxKm,0),2).toFixed(2)} km`:"∞",
+        // Over-compensated links have a minimum length too, so show the whole window.
+        maxLength:!Number.isFinite(maxKm)?(Math.abs(v.compensation)<=v.tolerance?"∞":"@cd-no-length"):maxKm<=0?"@cd-no-length":minKm>0?`${r(minKm,2).toFixed(2)}–${r(maxKm,2).toFixed(2)} km`:`${r(maxKm,2).toFixed(2)} km`,
         broadening:`${r(broadening,2).toFixed(2)} ps`,
         usedPct:`${r(usedPct,1).toFixed(1)}%`
       }

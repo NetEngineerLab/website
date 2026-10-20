@@ -100,7 +100,7 @@
 <div class="field"><label for="s0">Pendiente de dispersión nula S0</label><div class="input-wrap wide-unit"><input id="s0" type="number" min="0.001" max="0.2" step="0.001" value="0.092"><span>ps/(nm²·km)</span></div><p class="hint">El máximo G.652 es 0,092.</p></div>
 <div class="field"><label for="manualD">Coeficiente D de hoja de datos</label><div class="input-wrap wide-unit"><input id="manualD" type="number" min="-50" max="50" step="0.01" value="17"><span>ps/(nm·km)</span></div><p class="hint">Solo con “Valor de hoja de datos”.</p></div>
 <div class="field"><label for="lengthKm">Longitud de fibra</label><div class="input-wrap"><input id="lengthKm" type="number" min="0.001" step="0.001" value="80"><span>km</span></div></div>
-<div class="field"><label for="compensation">Compensación (DCM/FBG)</label><div class="input-wrap"><input id="compensation" type="number" step="1" value="0"><span>ps/nm</span></div><p class="hint">Un valor positivo resta CD positiva.</p></div>
+<div class="field"><label for="compensation">Compensación (DCM/FBG) <span class="required-mark">(Obligatorio)</span></label><div class="input-wrap"><input id="compensation" type="number" required aria-required="true" step="1" value="0"><span>ps/nm</span></div><p class="hint">Obligatorio: introduzca 0 si no hay compensación. Un valor positivo resta CD positiva.</p></div>
 <div class="field"><label for="tolerance">Tolerancia de CD del receptor</label><div class="input-wrap"><input id="tolerance" type="number" min="1" step="1" value="1600"><span>ps/nm</span></div><p class="hint">De la hoja de datos del transceptor.</p></div>
 <div class="field"><label for="spectralWidth">Ancho espectral Δλ</label><div class="input-wrap"><input id="spectralWidth" type="number" min="0" step="0.01" value="0.1"><span>nm</span></div></div>
 </div>
@@ -119,7 +119,7 @@
 <div class="metric-grid">
 <article class="metric-card"><div><small>Coeficiente D</small><strong id="dCoef">—</strong></div></article>
 <article class="metric-card"><div><small>CD acumulada</small><strong id="fiberCd">—</strong></div></article>
-<article class="metric-card"><div><small>Longitud limitada por CD</small><strong id="maxLength">—</strong></div></article>
+<article class="metric-card"><div><small>Rango de longitud dentro de la tolerancia</small><strong id="maxLength">—</strong></div></article>
 <article class="metric-card"><div><small>Ensanchamiento |CD|·Δλ</small><strong id="broadening">—</strong></div></article>
 <article class="metric-card"><div><small>Tolerancia usada</small><strong id="usedPct">—</strong></div></article>
 </div>
@@ -140,13 +140,13 @@
 <section class="content-section methodology nel-tool-supporting-section" id="methodology">
 <div class="section-heading"><div><p class="eyebrow">METODOLOGÍA</p><h2>Metodología y notas de ingeniería</h2></div></div>
 <div class="method-grid">
-<article><h3>Cómo usar</h3><ol><li>Mantenga el modelo G.652 o elija “Valor de hoja de datos” e introduzca D del cable.</li><li>Introduzca la longitud de onda, la longitud y la compensación DCM o FBG.</li><li>Introduzca la tolerancia de CD del transceptor.</li><li>Lea la CD residual, el margen y la longitud limitada por CD.</li></ol></article><article><h3>Fórmula de dispersión</h3><p>ITU-T G.652 define D(λ) = (S0/4)·(λ − λ0⁴/λ³) ps/(nm·km), con λ0 entre 1300 y 1324 nm y S0 ≤ 0,092 ps/(nm²·km). A 1550 nm con λ0 = 1310 nm y S0 = 0,092 resulta 17,461 ps/(nm·km). CD acumulada = D × L; CD residual = D × L − compensación.</p></article><article><h3>Límites y ensanchamiento</h3><p>La longitud limitada por CD es la mayor L que mantiene |D × L − C| dentro de la tolerancia T: L = (T + C·sign(D)) / |D|. El ensanchamiento se estima como |CD residual| × Δλ en ps. El aviso del 80 % es una regla de esta herramienta, no un valor normativo.</p></article>
+<article><h3>Cómo usar</h3><ol><li>Mantenga el modelo G.652 o elija “Valor de hoja de datos” e introduzca D del cable.</li><li>Introduzca la longitud de onda, la longitud y la compensación DCM o FBG.</li><li>Introduzca la tolerancia de CD del transceptor.</li><li>Lea la CD residual, el margen y la longitud limitada por CD.</li></ol></article><article><h3>Fórmula de dispersión</h3><p>ITU-T G.652 define D(λ) = (S0/4)·(λ − λ0⁴/λ³) ps/(nm·km), con λ0 entre 1300 y 1324 nm y S0 ≤ 0,092 ps/(nm²·km). A 1550 nm con λ0 = 1310 nm y S0 = 0,092 resulta 17,461 ps/(nm·km). CD acumulada = D × L; CD residual = D × L − compensación.</p></article><article><h3>Límites y ensanchamiento</h3><p>Las longitudes que mantienen |D × L − C| dentro de la tolerancia T están entre (C·sign(D) − T) / |D| y (C·sign(D) + T) / |D|. Sin compensación el mínimo es 0 y solo se muestra el máximo; un enlace sobrecompensado (por ejemplo D = 17, C = 2.000, T = 400) muestra el intervalo 94,12–141,18 km. El ensanchamiento se estima como |CD residual| × Δλ en ps. El aviso del 80 % es una regla de esta herramienta, no un valor normativo.</p></article>
 </div>
 <div class="example-box"><h3>Caso práctico: 80 km a 1550 nm</h3><p>Modelo G.652, λ0 1310 nm, S0 0,092: D = 17,461 ps/(nm·km). 80 km dan 1.396,8 ps/nm. Con un receptor de 1.600 ps/nm el margen es 203,2 ps/nm (87,3 % usado, aviso) y la longitud límite 91,63 km. Con Δλ = 0,1 nm el ensanchamiento es 139,68 ps. Con 680 ps/nm de compensación quedan 716,8 ps/nm.</p></div>
 </section>
 <section aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
 <div class="section-heading"><div><p class="eyebrow">REFERENCIAS DE INGENIERÍA</p><h2 id="references-title">Normas y referencias</h2></div></div>
-<ul><li><a href="https://www.itu.int/rec/T-REC-G.652/en" rel="noopener">ITU-T G.652: características de la fibra y el cable monomodo</a></li><li><a href="https://www.itu.int/rec/T-REC-G.650.1/en" rel="noopener">ITU-T G.650.1: métodos de prueba de atributos lineales, incluida la CD</a></li><li><a href="https://www.itu.int/rec/T-REC-G.655/en" rel="noopener">ITU-T G.655: fibra de dispersión desplazada no nula</a></li></ul>
+<ul><li><a href="https://www.itu.int/rec/T-REC-G.652/en" rel="noopener">ITU-T G.652 (08/2024): fibra y cable monomodo – coeficiente D(λ) = (S0/4)(λ − λ0⁴/λ³), λ0 1300–1324 nm, S0 ≤ 0,092 ps/(nm²·km), tablas de atributos G.652.A–D [número de cláusula UNVERIFIED (sin verificar)]</a></li><li><a href="https://www.itu.int/rec/T-REC-G.650.1/en" rel="noopener">ITU-T G.650.1 (01/2024): métodos de prueba de atributos lineales – medida y ajuste de la CD [número de cláusula UNVERIFIED (sin verificar)]</a></li><li><a href="https://www.itu.int/rec/T-REC-G.691/en" rel="noopener">ITU-T G.691 (03/2006): interfaces ópticas STM-64 monocanal y otros sistemas SDH con amplificadores – dispersión máxima por código de aplicación [número de cláusula UNVERIFIED (sin verificar)]</a></li><li><a href="https://www.itu.int/rec/T-REC-G.655/en" rel="noopener">ITU-T G.655 (11/2009): fibra de dispersión desplazada no nula – use D de la hoja de datos</a></li></ul>
 <p>Para G.655, G.654 o fibras de fabricante use el coeficiente de hoja de datos; el modelo G.652 es para fibra monomodo estándar. Última revisión: 2026-10-20.</p>
 </section>
 <section aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
@@ -169,7 +169,7 @@
 <script defer src="../js/engine.js"></script>
 <script defer src="../js/pwa.js"></script>
 <script defer src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script>
-<script defer src="../js/app.js?v=05ecf2f43658"></script>
+<script defer src="../js/app.js?v=70c8758449b5"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
 <script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script>
 </body>

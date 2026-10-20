@@ -42,3 +42,20 @@ assert.equal(engine.calculate({...base,s0:Number.NaN}).ok,false);
 assert.equal(engine.calculate({...base,mode:"x"}).ok,false);
 assert.equal(engine.calculate(null).ok,false);
 console.log("Chromatic dispersion engine tests: PASS");
+
+// Audit CD-1: an over-compensated link has a minimum length as well as a maximum.
+{
+  const over={mode:"manual",manualD:17,lengthKm:80,compensation:2000,tolerance:400,spectralWidth:0.1,wavelength:1550,lambda0:1310,s0:0.092};
+  const o=engine.calculate(over);
+  assert.equal(o.ok,true);
+  assert.equal(o.status,"failed");
+  near(o.minKm,1600/17,1e-9);
+  near(o.maxKm,2400/17,1e-9);
+  assert.equal(o.display.maxLength,"94.12–141.18 km");
+  assert.equal(engine.calculate({...over,lengthKm:100}).status!=="failed",true);
+  assert.equal(engine.calculate({...over,compensation:-1000}).display.maxLength,"@cd-no-length");
+  assert.equal(engine.calculate({...over,manualD:0,compensation:0}).display.maxLength,"∞");
+  // Audit CD-2: compensation is required (blank is not treated as 0).
+  assert.equal(engine.calculate({...over,compensation:Number.NaN}).ok,false);
+}
+console.log("CD over-compensation window OK");

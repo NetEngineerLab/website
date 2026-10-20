@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-all-reduce-traffic-estimator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-4f85b5aa9e5d";
+const CACHE = "nel-all-reduce-traffic-estimator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-68989ccf9324";
 const CORE = [
   "./index.html",
   "./",
@@ -7,7 +7,7 @@ const CORE = [
   "./offline.html",
   "./manifest.webmanifest",
   "./css/style.css?v=48c7b72aa30f",
-  "./js/app.js?v=302364b1cc9f",
+  "./js/app.js?v=a95f034779c1",
   "./js/engine.js",
   "./images/logo.svg",
   "../../data/locales.js?v=909e05076a50",
