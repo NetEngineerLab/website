@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-chromatic-dispersion-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-23dc04d607ae";
+const CACHE = "nel-chromatic-dispersion-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-dbfc75994602";
 const CORE = [
   "./index.html",
   "./",

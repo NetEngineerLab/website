@@ -23,6 +23,7 @@ const SCHEMA_TYPES = new Set([
   "ListItem",
   "Offer",
   "Organization",
+  "Person",
   "Question",
   "WebApplication",
   "WebPage",
@@ -63,6 +64,7 @@ const SCHEMA_KEYS = new Set([
   "price",
   "priceCurrency",
   "publisher",
+  "sameAs",
   "softwareVersion",
   "text",
   "url"
