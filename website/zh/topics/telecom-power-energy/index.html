@@ -5,7 +5,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"专题","item":"https://netengineerlab.com/zh/topics/"},{"@type":"ListItem","position":3,"name":"通信电源与能源规划","item":"https://netengineerlab.com/zh/topics/telecom-power-energy/"}]}</script>
 
 <link rel="stylesheet" href="/assets/css/cookie-consent.css?v=8dd1728bf5eb">
-<link rel="stylesheet" href="../../../assets/css/topic-hub.css?v=46b22865264c">
+<link rel="stylesheet" href="../../../assets/css/topic-hub.css?v=a0ef38e4a84e">
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"通信电源与能源规划专题 | NetEngineerLab","url":"https://netengineerlab.com/zh/topics/telecom-power-energy/","description":"通过工程指南与计算工具规划通信直流电源、电池续航、油机燃油、太阳能及站点能源效率。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
@@ -44,7 +44,44 @@
     </div>
   </div>
 </header>
-<!-- NEL_HEADER_END --><nav class="topic-hub-breadcrumb" aria-label="面包屑"><a href="../../">首页</a><span aria-hidden="true">›</span><a href="../">专题</a><span aria-hidden="true">›</span><span aria-current="page">通信电源与能源规划</span></nav><main><h1>通信电源与能源规划</h1><p>把站点负载、整流器容量、电池续航、油机燃油和太阳能保障作为同一套通信电源系统规划。</p><h2>从这里开始</h2><p>先确定实测直流负载边界，再依次核算整流器、蓄电池、油机和太阳能。每一步都要记录单位、设备限制和设计余量。</p><ol><li><a href="../../guides/telecom-rectifier-dc-power-sizing/">阅读通信整流器容量配置指南</a>，确定负载、回充和 N-1 假设。</li><li><a href="../../../tools/telecom-rectifier-dc-power-sizing/zh/">计算整流器容量</a>，再检查电池续航和备用燃油。</li><li>结合设备数据、蓄电池状态和站点运维规则复核结果。</li></ol><h2>计算与规划</h2><ul><li><a href="../../../tools/telecom-rectifier-dc-power-sizing/zh/">通信整流器容量计算</a> — 容量、回充和 N-1 校核。</li><li><a href="../../../tools/48v-battery-runtime/zh/">-48V 蓄电池续航计算器</a> — 按设定负载估算自治时间。</li><li><a href="../../../tools/generator-fuel-runtime-calculator/zh/">油机油耗与应急续航计算器</a> — 备用时间与油耗。</li><li><a href="../../../tools/telecom-solar-battery-sizing-calculator/zh/">通信太阳能与蓄电池配置</a> — 太阳能贡献和储能配置。</li></ul><h2>常见工程场景</h2><ul><li><a href="../../guides/telecom-rectifier-dc-power-sizing/">整流器容量、回充与 N-1</a> — 校核正常和单台退出状态。</li><li><a href="../../guides/generator-fuel-runtime-planning/">通信油机一箱油能运行多久？</a> — 结合负载、油耗曲线和自治要求。</li><li>站点扩容 — 同时重新核算直流负载、整流余量、电池续航和油机容量。</li></ul><h2>故障、冗余与运维</h2><p>需要检查单台整流器退出、电池容量衰减、油机降额和太阳能不足。额定容量通过不代表老化电池或故障期间的备用能力满足要求。</p><h2>工程资源</h2><p>使用链接中的指南和计算器方法，并结合设备数据表、电池放电曲线和站点运维规则。每次计算都记录负载边界、单位、环境条件和设计余量。</p><h2>推荐使用顺序</h2><ol><li>测量并明确直流负载边界。</li><li>配置整流器并校核回充/N-1。</li><li>按设计负载计算蓄电池自治时间。</li><li>估算油机油耗和太阳能贡献。</li><li>复核故障、降额和维护约束。</li></ol><h2>工程边界与常见问题</h2><p>浏览器计算器不能替代厂家放电曲线、油机测试数据、温度降额或运维计划。结果须与现场设备和站点规则复核。</p><details><summary>为什么先算整流器再算电池？</summary><p>整流器余量和回充能力决定正常及恢复状态下电池需要承担的负载。</p></details><details><summary>续航时间就是保证的服务时间吗？</summary><p>不是。续航是基于输入负载、电池和燃油假设的估算，老化、温度、油机负载和故障都会缩短时间。</p></details><h2>相关专题</h2><ul><li><a href="../data-center-cooling-capacity/">数据中心制冷负荷与容量</a></li><li><a href="../switch-oversubscription/">交换机上联与容量规划</a></li></ul><section class="content-section" data-nel-editorial-links><h2>相关页面</h2><p><a href="../../../tools/network-asset-lifecycle-tracker/zh/">网络资产生命周期跟踪</a> · <a href="../../../tools/oob-network-design-planner/zh/">带外网络设计工作坊</a></p></section>
+<!-- NEL_HEADER_END --><nav class="topic-hub-breadcrumb" aria-label="面包屑"><a href="../../">首页</a><span aria-hidden="true">›</span><a href="../">专题</a><span aria-hidden="true">›</span><span aria-current="page">通信电源与能源规划</span></nav><main><h1>通信电源与能源规划</h1><p>把站点负载、整流器容量、电池续航、油机燃油和太阳能保障作为同一套通信电源系统规划。</p><h2>从这里开始</h2><p>先确定实测直流负载边界，再依次核算整流器、蓄电池、油机和太阳能。每一步都要记录单位、设备限制和设计余量。</p><ol><li><a href="../../guides/telecom-rectifier-dc-power-sizing/">阅读通信整流器容量配置指南</a>，确定负载、回充和 N-1 假设。</li><li><a href="../../../tools/telecom-rectifier-dc-power-sizing/zh/">计算整流器容量</a>，再检查电池续航和备用燃油。</li><li>结合设备数据、蓄电池状态和站点运维规则复核结果。</li></ol><h2>计算与规划</h2><ul><li><a href="../../../tools/telecom-rectifier-dc-power-sizing/zh/">通信整流器容量计算</a> — 容量、回充和 N-1 校核。</li><li><a href="../../../tools/48v-battery-runtime/zh/">-48V 蓄电池续航计算器</a> — 按设定负载估算自治时间。</li><li><a href="../../../tools/generator-fuel-runtime-calculator/zh/">油机油耗与应急续航计算器</a> — 备用时间与油耗。</li><li><a href="../../../tools/telecom-solar-battery-sizing-calculator/zh/">通信太阳能与蓄电池配置</a> — 太阳能贡献和储能配置。</li></ul>
+<!-- NEL_WORKED_EXAMPLE_START -->
+<section class="nel-worked-example" id="worked-example" aria-labelledby="worked-example-title">
+<h2 id="worked-example-title">算例：先算整流电流，再算 4 小时蓄电池</h2>
+<p>可与<a href="../../../tools/telecom-rectifier-dc-power-sizing/zh/">通信整流器容量计算器</a>和<a href="../../../tools/48v-battery-runtime/zh/">-48V 蓄电池续航计算器</a>交叉核对。整流数值沿用已发布的 180 A 指南算例。</p>
+<h3>1. 输入与假设</h3>
+<table>
+<thead><tr><th>输入</th><th>取值</th><th>假设</th></tr></thead>
+<tbody>
+<tr><td>直流负载</td><td>180 A @ −48 V</td><td>站点已界定的负载边界</td></tr>
+<tr><td>蓄电池充电</td><td>60 A</td><td>市电恢复后的稳态充电电流</td></tr>
+<tr><td>余量 / 增长 / 充电峰值</td><td>15% / 15% / 25%</td><td>整流器指南中的规划系数</td></tr>
+<tr><td>蓄电池续航目标</td><td>4 小时</td><td>按 180 A 设计负载</td></tr>
+<tr><td>放电深度 × 老化系数</td><td>0.8 × 0.9</td><td>标称 Ah 的可用比例</td></tr>
+</tbody>
+</table>
+<h3>2. 公式与单位</h3>
+<div class="nel-worked-formula">
+<p><strong>综合电流 I（A）</strong> = (I<sub>负载</sub> × (1 + 增长) + I<sub>充电</sub> × (1 + 充电峰值)) × (1 + 余量)</p>
+<p><strong>所需 Ah</strong> = (I<sub>负载</sub> × 小时) ÷ (放电深度 × 老化)</p>
+<p>单位：安培（A）、安时（Ah）、小时（h）。</p>
+</div>
+<h3>3. 计算过程</h3>
+<table>
+<thead><tr><th>步骤</th><th>计算</th><th>结果</th></tr></thead>
+<tbody>
+<tr><td>含增长的负载</td><td>180 × 1.15</td><td>207.0 A</td></tr>
+<tr><td>含峰值的充电</td><td>60 × 1.25</td><td>75.0 A</td></tr>
+<tr><td>含余量的综合电流</td><td>(207 + 75) × 1.15</td><td class="nel-worked-result">324.3 A</td></tr>
+<tr><td>4 小时所需 Ah</td><td>(180 × 4) ÷ (0.8 × 0.9)</td><td class="nel-worked-result">1,000 Ah</td></tr>
+</tbody>
+</table>
+<h3>4. 结论与边界</h3>
+<p class="nel-worked-result">整流规划应围绕约 324.3 A 的综合场景（再在计算器中做模块容量、降额、N+1 与 N-1 检查）。在所述 DoD/老化系数下，180 A 维持 4 小时约需 1,000 Ah 标称蓄电池容量。</p>
+<p><strong>边界：</strong>不能替代厂家放电曲线、温度降额、油机试验数据或维护规程。老化、温度和故障会缩短续航。可继续阅读<a href="../../guides/telecom-rectifier-dc-power-sizing/">整流器选型指南</a>与<a href="../../guides/generator-fuel-runtime-planning/">油机油耗规划</a>。</p>
+</section>
+<!-- NEL_WORKED_EXAMPLE_END -->
+<h2>常见工程场景</h2><ul><li><a href="../../guides/telecom-rectifier-dc-power-sizing/">整流器容量、回充与 N-1</a> — 校核正常和单台退出状态。</li><li><a href="../../guides/generator-fuel-runtime-planning/">通信油机一箱油能运行多久？</a> — 结合负载、油耗曲线和自治要求。</li><li>站点扩容 — 同时重新核算直流负载、整流余量、电池续航和油机容量。</li></ul><h2>故障、冗余与运维</h2><p>需要检查单台整流器退出、电池容量衰减、油机降额和太阳能不足。额定容量通过不代表老化电池或故障期间的备用能力满足要求。</p><h2>工程资源</h2><p>使用链接中的指南和计算器方法，并结合设备数据表、电池放电曲线和站点运维规则。每次计算都记录负载边界、单位、环境条件和设计余量。</p><h2>推荐使用顺序</h2><ol><li>测量并明确直流负载边界。</li><li>配置整流器并校核回充/N-1。</li><li>按设计负载计算蓄电池自治时间。</li><li>估算油机油耗和太阳能贡献。</li><li>复核故障、降额和维护约束。</li></ol><h2>工程边界与常见问题</h2><p>浏览器计算器不能替代厂家放电曲线、油机测试数据、温度降额或运维计划。结果须与现场设备和站点规则复核。</p><details><summary>为什么先算整流器再算电池？</summary><p>整流器余量和回充能力决定正常及恢复状态下电池需要承担的负载。</p></details><details><summary>续航时间就是保证的服务时间吗？</summary><p>不是。续航是基于输入负载、电池和燃油假设的估算，老化、温度、油机负载和故障都会缩短时间。</p></details><h2>相关专题</h2><ul><li><a href="../data-center-cooling-capacity/">数据中心制冷负荷与容量</a></li><li><a href="../switch-oversubscription/">交换机上联与容量规划</a></li></ul><section class="content-section" data-nel-editorial-links><h2>相关页面</h2><p><a href="../../../tools/network-asset-lifecycle-tracker/zh/">网络资产生命周期跟踪</a> · <a href="../../../tools/oob-network-design-planner/zh/">带外网络设计工作坊</a></p></section>
 </main><!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">
