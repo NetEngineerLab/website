@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-all-reduce-traffic-estimator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-68989ccf9324";
+const CACHE = "nel-all-reduce-traffic-estimator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-f87c2fff78d6";
 const CORE = [
   "./index.html",
   "./",

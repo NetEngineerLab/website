@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-vlan-ip-capacity-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-d1e8c10b4677";
+const CACHE = "nel-vlan-ip-capacity-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-1b7136b982fc";
 const CORE = [
   "./index.html",
   "./",
