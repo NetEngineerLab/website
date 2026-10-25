@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-pmd-budget-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-d56b343de2f8";
+const CACHE = "nel-pmd-budget-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-f6b7d48c3fb6";
 const CORE = [
   "./index.html",
   "./",

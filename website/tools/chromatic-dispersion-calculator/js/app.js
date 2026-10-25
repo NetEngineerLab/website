@@ -117,7 +117,7 @@ const CONFIG = {
    "status": {
     "healthy": "✓ Within limit",
     "warning": "! Near limit",
-    "failed": "✕ Exceeds limit"
+    "failed": "✕ Outside the tolerance range"
    },
    "outputLabels": [
     [
@@ -177,7 +177,7 @@ const CONFIG = {
    "status": {
     "healthy": "✓ 满足要求",
     "warning": "! 接近上限",
-    "failed": "✕ 超出上限"
+    "failed": "✕ 不在容限范围内"
    },
    "outputLabels": [
     [
@@ -237,7 +237,7 @@ const CONFIG = {
    "status": {
     "healthy": "✓ Dentro del límite",
     "warning": "! Cerca del límite",
-    "failed": "✕ Supera el límite"
+    "failed": "✕ Fuera del rango de tolerancia"
    },
    "outputLabels": [
     [

@@ -59,3 +59,10 @@ console.log("Chromatic dispersion engine tests: PASS");
   assert.equal(engine.calculate({...over,compensation:Number.NaN}).ok,false);
 }
 console.log("CD over-compensation window OK");
+// Audit P3-22a: a link shorter than the window is failed (shown as "outside the tolerance range").
+{
+  const below=engine.calculate({mode:"manual",manualD:17,lengthKm:80,compensation:2000,tolerance:400,spectralWidth:0.1,wavelength:1550,lambda0:1310,s0:0.092});
+  assert.equal(below.status,"failed");
+  assert.ok(80<below.minKm);
+}
+console.log("CD below-window status OK");

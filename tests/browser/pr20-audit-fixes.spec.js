@@ -71,7 +71,8 @@ for(const folder of ["","zh/","es/"]){
       const refs=await page.locator("#references-title").locator("xpath=ancestor::section[1]").innerText();
       for(const n of needles)expect(refs).toContain(n);
     }
-    await page.goto(`/tools/chromatic-dispersion-calculator/${folder}`,{waitUntil:"domcontentloaded"});
+    // CD clauses were verified in the PR21-22 audit; the 802.3-2022 clause numbers are still unverified.
+    await page.goto(`/tools/ethernet-serialization-delay-calculator/${folder}`,{waitUntil:"domcontentloaded"});
     expect(await page.locator("#references-title").locator("xpath=ancestor::section[1]").innerText()).toMatch(UNVERIFIED);
   });
 }
