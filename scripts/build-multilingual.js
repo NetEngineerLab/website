@@ -528,14 +528,15 @@ function ensureTopicBreadcrumb(html,info,locale){
 function menuMarkup(currentInfo,group){
  const currentLocale=localeMap.get(currentInfo.localeId);
  const available=activeLocales.filter(locale=>group.has(locale.id));
- const currentUrl=urlForRoute(currentInfo.route,currentLocale);
  const languageNames={
   en:{en:"English",zh:"Chinese",es:"Spanish"},
   zh:{en:"英语",zh:"简体中文",es:"西班牙语"},
   es:{en:"Inglés",zh:"Chino simplificado",es:"Español"}
  };
+ // Root-relative absolute paths: relative hrefs like ../zh/ were mis-resolved by
+ // some crawlers into doubled locales (/tools/.../es/zh/, /zh/es/).
  const options=available.map(locale=>{
-  const href=relativeUrl(currentUrl,urlForRoute(currentInfo.route,locale));
+  const href=urlForRoute(currentInfo.route,locale);
   const current=locale.id===currentLocale.id;
   const secondary=languageNames[currentLocale.id]?.[locale.id]||locale.label;
   return `<a class="language-option" role="menuitem" href="${escapeHtml(href)}" lang="${escapeHtml(locale.htmlLang)}" hreflang="${escapeHtml(locale.hreflang)}"${current?' aria-current="page"':""}><span>${escapeHtml(locale.nativeLabel)}</span><small>${escapeHtml(secondary)}</small></a>`;

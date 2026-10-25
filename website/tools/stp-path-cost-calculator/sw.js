@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-stp-path-cost-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-6871f101fdc7";
+const CACHE = "nel-stp-path-cost-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-54a5f62c581a";
 const CORE = [
   "./index.html",
   "./",

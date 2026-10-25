@@ -1,4 +1,4 @@
-"use strict";const CACHE = "nel-transmission-ring-optimization-risk-analyzer-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-a6a365abacc0";
+"use strict";const CACHE = "nel-transmission-ring-optimization-risk-analyzer-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-d80ebb3d5a15";
 const CORE = [
   "./",
   "./index.html",
