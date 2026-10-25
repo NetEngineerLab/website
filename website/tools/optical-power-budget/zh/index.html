@@ -33,7 +33,7 @@
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../../assets/js/site.js?v=b563dd0297f5"></script>
-<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=56922e9ea6ff">
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=7dea79f8c287">
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
 <a class="skip-link" href="#calculator">跳到计算器</a><noscript><div class="noscript">本工具需要启用 JavaScript。</div></noscript>
@@ -90,6 +90,17 @@
 <section class="content-section nel-tool-supporting-section" id="history"><div class="section-heading"><div><p class="eyebrow">PROJECT RECORDS</p><h2>最近计算记录</h2></div><button class="text-button" id="clearHistoryBtn">清空记录</button></div><div class="history-list" id="historyList"></div></section>
 <section class="content-section nel-tool-supporting-section" id="references"><div class="section-heading"><div><p class="eyebrow">工程证据</p><h2>收发功率窗口与官方依据</h2></div></div><div class="example-box"><p>接收灵敏度与损耗预算按最小发送功率校核；接收过载必须单独使用最大发送功率。只使用最小值会漏报短链路过载风险。预设仅用于规划参考，不能替代具体 OLT、ONU 或光模块规格书。3 dB 的健康/风险分界是本工具规划门槛，不是标准统一强制值。</p><p>复核日期：2026-08-31。官方来源：<a href="https://www.itu.int/rec/T-REC-G.984.2/en" rel="noopener noreferrer" target="_blank">ITU-T G.984.2 GPON PMD</a>、<a href="https://www.itu.int/rec/T-REC-G.652-202408-I/en" rel="noopener noreferrer" target="_blank">ITU-T G.652 单模光纤</a>、<a href="https://webstore.iec.ch/en/publication/77134" rel="noopener noreferrer" target="_blank">IEC 61280-4-2:2024 衰减测量</a>。</p></div></section>
 <aside aria-label="广告" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">广告</div><div class="ad-body"></div></aside>
+<!-- NEL_CONTENT_REVIEW_START -->
+<section class="content-section nel-tool-supporting-section nel-content-review" id="content-review" aria-labelledby="content-review-title">
+<div class="section-heading"><div><p class="eyebrow">内容复核</p><h2 id="content-review-title">内容复核</h2></div></div>
+<dl class="nel-content-review-grid">
+<div><dt>复核日期</dt><dd><time datetime="2026-10-25">2026-10-25</time>（结构化复核区块）。本页此前编辑说明：2026-08-31。</dd></div>
+<div><dt>公式依据</dt><dd>标准 ODN 预算 = 最小发送光功率 − 接收灵敏度 − 系统光学代价。物理 ODN 损耗 = 光纤 + 熔接 + 连接器 + 分光器 + 其他无源损耗。设计损耗 = 物理损耗 + 工程余量。预估接收光功率只扣物理损耗。GPON B+/C+ 等级限值按本页引用的 ITU-T G.984.2 规划范围。</dd></div>
+<div><dt>适用边界</dt><dd>用于光 / PON 链路预算的规划与排障辅助。预设是参考等级，不保证每一对 OLT/ONU。不能替代光功率计或 OTDR 验收、设备手册和企业规范。无 XGS-PON 预设；G.9807.1 设计请填入设备实测值。</dd></div>
+<div><dt>更新记录</dt><dd><ul><li>2026-08-31 — 复核功率窗口说明与官方引用。</li><li>2026-10-25 — 增加结构化内容复核元数据（日期、公式依据、适用边界、更新记录），对应 GEO 第 1 周。</li></ul></dd></div>
+</dl>
+</section>
+<!-- NEL_CONTENT_REVIEW_END -->
 <p class="hub-return">属于 <a href="../../pon-fiber-calculators/zh/">PON 与光纤计算器</a> 专题。</p>
 <!-- NEL_TOOL_GRAPH_START -->
 <section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="optical-power-budget" data-primary-workflow="optical-link-design">

@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-sfp-qsfp-compatibility-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-129b11efe11f";
+const CACHE = "nel-sfp-qsfp-compatibility-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-862da942f1f3";
 const CORE = [
   "./index.html",
   "./",

@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-network-rack-power-cooling-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-f207967b03df";
+const CACHE = "nel-network-rack-power-cooling-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-a985e1448865";
 const CORE = [
   "./index.html",
   "./",

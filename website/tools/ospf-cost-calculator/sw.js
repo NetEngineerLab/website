@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-ospf-cost-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-f23aa6982bc1";
+const CACHE = "nel-ospf-cost-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-4fb4fa211a71";
 const CORE = [
   "./index.html",
   "./",
