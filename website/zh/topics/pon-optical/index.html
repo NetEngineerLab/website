@@ -6,7 +6,7 @@
 <meta name="description" content="串联PON分光、光纤损耗、光功率预算、ONU收光检查、OTDR定位和现场复测，支持设计校核与故障排查。">
 <meta name="robots" content="index,follow">
 
-<link rel="stylesheet" href="../../../assets/css/site.css"><script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"PON光网络设计与故障诊断专题","url":"https://netengineerlab.com/zh/topics/pon-optical/","description":"串联PON设计预算、ONU收光检查、OTDR定位和现场复测。","inLanguage":"zh-CN","hasPart":[{"@type":"WebPage","url":"https://netengineerlab.com/zh/guides/pon-splitter-loss-guide"},{"@type":"WebApplication","url":"https://netengineerlab.com/tools/onu-rx-power/zh/"},{"@type":"WebApplication","url":"https://netengineerlab.com/tools/otdr-event/zh/"}]}</script>
+<link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/guide.css?v=f69c3b2daf49"><script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"PON光网络设计与故障诊断专题","url":"https://netengineerlab.com/zh/topics/pon-optical/","description":"串联PON设计预算、ONU收光检查、OTDR定位和现场复测。","inLanguage":"zh-CN","hasPart":[{"@type":"WebPage","url":"https://netengineerlab.com/zh/guides/pon-splitter-loss-guide"},{"@type":"WebApplication","url":"https://netengineerlab.com/tools/onu-rx-power/zh/"},{"@type":"WebApplication","url":"https://netengineerlab.com/tools/otdr-event/zh/"}]}</script>
 <meta property="og:url" content="https://netengineerlab.com/zh/topics/pon-optical/">
 <meta property="og:title" content="PON光网络设计与故障诊断专题 | NetEngineerLab">
 <meta property="og:description" content="串联PON分光、光纤损耗、光功率预算、ONU收光检查、OTDR定位和现场复测，支持设计校核与故障排查。">
@@ -70,6 +70,47 @@
 <li><strong>排查ONU收光偏低：</strong>记录ONU RX，使用校准的光功率计在正确参考点复核，利用OTDR定位异常事件，对照设计预算，修复后复测并记录前后结果。</li>
 <li><strong>规划ODN资源：</strong>扩容前核对ODF端口、馈线/配线光纤和分光器分配。</li>
 </ul>
+
+<!-- NEL_WORKED_EXAMPLE_START -->
+<section class="nel-worked-example" id="worked-example" aria-labelledby="worked-example-title">
+<h2 id="worked-example-title">算例：GPON C+ ODN，1:8 × 1:8</h2>
+<p>可在<a href="../../../tools/optical-power-budget/zh/">光功率预算计算器</a>中复算，数值与工具默认 GPON C+ 说明一致。</p>
+<h3>1. 输入与假设</h3>
+<table>
+<thead><tr><th>输入</th><th>取值</th><th>假设</th></tr></thead>
+<tbody>
+<tr><td>OLT 最小 / 最大发送</td><td>+3 / +7 dBm</td><td>GPON C+ 规划等级</td></tr>
+<tr><td>ONU 灵敏度 / 过载</td><td>−30 / −8 dBm</td><td>下行接收窗口</td></tr>
+<tr><td>系统光学代价</td><td>1 dB</td><td>预算项，不是物理线路损耗</td></tr>
+<tr><td>光纤</td><td>10 km @ 0.30 dB/km（1490 nm）</td><td>3.0 dB 光纤</td></tr>
+<tr><td>分光</td><td>1:8 + 1:8</td><td>约 21.0 dB 分光损耗</td></tr>
+<tr><td>连接器 / 熔接</td><td>4 × 0.3 dB / 6 × 0.1 dB</td><td>1.2 dB + 0.6 dB</td></tr>
+<tr><td>工程余量</td><td>3 dB</td><td>老化、温度、维护</td></tr>
+</tbody>
+</table>
+<h3>2. 公式与单位</h3>
+<div class="nel-worked-formula">
+<p><strong>标准 ODN 预算（dB）</strong> = 最小发送 − 灵敏度 − 光学代价</p>
+<p><strong>物理 ODN 损耗（dB）</strong> = 光纤 + 分光 + 连接器 + 熔接（+ 其他）</p>
+<p><strong>设计 ODN 损耗（dB）</strong> = 物理损耗 + 工程余量</p>
+<p><strong>剩余（dB）</strong> = 标准预算 − 设计损耗</p>
+</div>
+<h3>3. 计算过程</h3>
+<table>
+<thead><tr><th>步骤</th><th>计算</th><th>结果</th></tr></thead>
+<tbody>
+<tr><td>标准预算</td><td>+3 − (−30) − 1</td><td class="nel-worked-result">32.0 dB</td></tr>
+<tr><td>物理损耗</td><td>3.0 + 21.0 + 1.2 + 0.6</td><td class="nel-worked-result">25.8 dB</td></tr>
+<tr><td>设计损耗</td><td>25.8 + 3.0</td><td class="nel-worked-result">28.8 dB</td></tr>
+<tr><td>剩余</td><td>32.0 − 28.8</td><td class="nel-worked-result">3.2 dB（约用掉预算的 90%）</td></tr>
+<tr><td>最小发送下预估接收</td><td>+3 − 25.8</td><td class="nel-worked-result">−22.8 dBm（高于灵敏度 7.2 dB）</td></tr>
+</tbody>
+</table>
+<h3>4. 结论与边界</h3>
+<p class="nel-worked-result">该级联可落在 32 dB C+ 规划等级内并剩 3.2 dB；同一线路对 28 dB B+ 则超限。验收前核对设备手册的发送/接收、波长与 ODN 等级。</p>
+<p><strong>边界：</strong>预设是参考等级，不保证每一对 OLT/ONU。不能替代光功率计或 OTDR 验收。可继续使用<a href="../../../tools/pon-splitter-loss/zh/">分光损耗</a>、<a href="../../../tools/onu-rx-power/zh/">ONU 收光诊断</a>和<a href="../../../tools/otdr-event/zh/">OTDR 事件</a>工具。</p>
+</section>
+<!-- NEL_WORKED_EXAMPLE_END -->
 <h2>设计与计算工具</h2><ul>
 <li><a href="../../../tools/pon-splitter-loss/zh/">PON分光损耗计算器</a>：分光比、级联与插入损耗估算。</li>
 <li><a href="../../../tools/fiber-loss/zh/">光纤损耗计算器</a>：光纤衰减、连接器、熔接点及无源损耗拆分。</li>

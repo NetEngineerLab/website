@@ -6,7 +6,7 @@
 <meta name="description" content="Design PON links and isolate weak ONU receive power with splitter, fiber-loss and optical-budget checks, OTDR evidence and field retesting.">
 <meta name="robots" content="index,follow">
 
-<link rel="stylesheet" href="../../assets/css/site.css"><script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"PON Optical Network Design & Troubleshooting Hub","url":"https://netengineerlab.com/topics/pon-optical/","description":"Design PON links and isolate weak ONU receive power with loss, budget and field evidence.","inLanguage":"en","hasPart":[{"@type":"WebPage","url":"https://netengineerlab.com/guides/pon-splitter-loss-guide"},{"@type":"WebApplication","url":"https://netengineerlab.com/tools/onu-rx-power/"},{"@type":"WebApplication","url":"https://netengineerlab.com/tools/otdr-event/"}]}</script>
+<link rel="stylesheet" href="../../assets/css/site.css"><link rel="stylesheet" href="../../assets/css/guide.css?v=f69c3b2daf49"><script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"PON Optical Network Design & Troubleshooting Hub","url":"https://netengineerlab.com/topics/pon-optical/","description":"Design PON links and isolate weak ONU receive power with loss, budget and field evidence.","inLanguage":"en","hasPart":[{"@type":"WebPage","url":"https://netengineerlab.com/guides/pon-splitter-loss-guide"},{"@type":"WebApplication","url":"https://netengineerlab.com/tools/onu-rx-power/"},{"@type":"WebApplication","url":"https://netengineerlab.com/tools/otdr-event/"}]}</script>
 <meta property="og:url" content="https://netengineerlab.com/topics/pon-optical/">
 <meta property="og:title" content="PON Optical Network Design &amp; Troubleshooting Hub | NetEngineerLab">
 <meta property="og:description" content="Design PON links and isolate weak ONU receive power with splitter, fiber-loss and optical-budget checks, OTDR evidence and field retesting.">
@@ -65,6 +65,47 @@
 <h1>PON Optical Network Design &amp; Troubleshooting</h1>
 <p>Plan passive optical distribution and diagnose field loss by connecting the design budget to measured ONU receive power and OTDR events. Use actual OLT/ONU specifications and field measurements for acceptance.</p>
 <h2>Start here</h2><p><a href="../../guides/pon-splitter-loss-guide/">PON splitter loss and ODN margin guide</a> explains the loss model and a worked 1:8 × 1:8 example. For general fiber loss and link budgets, continue with the <a href="../../guides/fiber-link-budget-guide/">fiber link budget guide</a>.</p>
+
+<!-- NEL_WORKED_EXAMPLE_START -->
+<section class="nel-worked-example" id="worked-example" aria-labelledby="worked-example-title">
+<h2 id="worked-example-title">Worked example: GPON C+ ODN with 1:8 × 1:8</h2>
+<p>Re-enter these values in the <a href="../../tools/optical-power-budget/">optical power budget calculator</a>. Figures align with the tool’s default GPON C+ notes.</p>
+<h3>1. Inputs and assumptions</h3>
+<table>
+<thead><tr><th>Input</th><th>Value</th><th>Assumption</th></tr></thead>
+<tbody>
+<tr><td>OLT min / max Tx</td><td>+3 / +7 dBm</td><td>GPON C+ class planning values</td></tr>
+<tr><td>ONU sensitivity / overload</td><td>−30 / −8 dBm</td><td>Downstream receive window</td></tr>
+<tr><td>Optical path penalty</td><td>1 dB</td><td>Budget term, not a physical plant loss</td></tr>
+<tr><td>Fiber</td><td>10 km @ 0.30 dB/km (1490 nm)</td><td>3.0 dB fiber</td></tr>
+<tr><td>Split</td><td>1:8 + 1:8</td><td>~21.0 dB splitter loss</td></tr>
+<tr><td>Connectors / splices</td><td>4 × 0.3 dB / 6 × 0.1 dB</td><td>1.2 dB + 0.6 dB</td></tr>
+<tr><td>Engineering margin</td><td>3 dB</td><td>Ageing, temperature, maintenance</td></tr>
+</tbody>
+</table>
+<h3>2. Formula and units</h3>
+<div class="nel-worked-formula">
+<p><strong>Standard ODN budget (dB)</strong> = P<sub>Tx,min</sub> − P<sub>sensitivity</sub> − OPP</p>
+<p><strong>Physical ODN loss (dB)</strong> = fiber + splitter + connector + splice (+ other)</p>
+<p><strong>Design ODN loss (dB)</strong> = physical loss + engineering margin</p>
+<p><strong>Remaining (dB)</strong> = standard budget − design loss</p>
+</div>
+<h3>3. Calculation</h3>
+<table>
+<thead><tr><th>Step</th><th>Calculation</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>Standard budget</td><td>+3 − (−30) − 1</td><td class="nel-worked-result">32.0 dB</td></tr>
+<tr><td>Physical loss</td><td>3.0 + 21.0 + 1.2 + 0.6</td><td class="nel-worked-result">25.8 dB</td></tr>
+<tr><td>Design loss</td><td>25.8 + 3.0</td><td class="nel-worked-result">28.8 dB</td></tr>
+<tr><td>Remaining</td><td>32.0 − 28.8</td><td class="nel-worked-result">3.2 dB (~90% of budget)</td></tr>
+<tr><td>Est. RX @ min Tx</td><td>+3 − 25.8</td><td class="nel-worked-result">−22.8 dBm (7.2 dB above sensitivity)</td></tr>
+</tbody>
+</table>
+<h3>4. Result and limits</h3>
+<p class="nel-worked-result">The cascade fits a 32 dB C+ planning class with 3.2 dB remaining; the same plant is above a 28 dB B+ class. Confirm datasheet Tx/Rx, wavelength and ODN class before acceptance.</p>
+<p><strong>Boundaries:</strong> presets are reference classes, not a guarantee for every OLT/ONU pair. Not a substitute for power-meter or OTDR acceptance. Continue with <a href="../../tools/pon-splitter-loss/">splitter loss</a>, <a href="../../tools/onu-rx-power/">ONU RX diagnosis</a> and <a href="../../tools/otdr-event/">OTDR event</a> tools.</p>
+</section>
+<!-- NEL_WORKED_EXAMPLE_END -->
 <h2>Choose a task</h2>
 <ul>
 <li><strong>Design a new PON link:</strong> estimate fiber and component loss, select split stages, compare receive limits, and verify reach.</li>
