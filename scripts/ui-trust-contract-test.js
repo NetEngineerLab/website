@@ -29,6 +29,15 @@ for (const rel of ["website/about/index.html", "website/zh/about/index.html", "w
   assert.doesNotMatch(html, /\b20\s+(?:bilingual\s+)?tools\b/i, `${rel}: stale tool count`);
 }
 
+
+for (const [rel, locale] of [["website/tools/index.html","en"],["website/tools/zh/index.html","zh"],["website/tools/es/index.html","es"]]) {
+  const html = read(rel);
+  assert.match(html, /data-tool-count/, `${rel}: tools directory count marker`);
+  const found = [...html.matchAll(/<(?:strong|span|b)\b[^>]*\bdata-tool-count\b[^>]*>\s*(\d+)\s*</gi)].map(m => m[1]);
+  assert.ok(found.length > 0, `${rel}: tool count value`);
+  for (const value of found) assert.equal(value, String(countFor(locale)), `${rel}: directory count ${value}`);
+}
+
 const marker = /<(?:strong|span|b)\b[^>]*\bdata-(?:tool-count|localized-tool-count)\b[^>]*>\s*(\d+)\s*</gi;
 const countPages = [
   ["website/index.html", "en"],
