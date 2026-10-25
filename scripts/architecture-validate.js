@@ -163,7 +163,7 @@ function shellSignature(fragment,isHeader){
   return value;
 }
 
-const publicHtml=walk(site).filter(file=>file.endsWith(".html")&&!file.endsWith(`${path.sep}offline.html`)&&!file.includes(`${path.sep}templates${path.sep}`)&&!isSearchEngineVerificationFile(file));
+const publicHtml=walk(site).filter(file=>file.endsWith(".html")&&!file.endsWith(`${path.sep}offline.html`)&&!file.includes(`${path.sep}templates${path.sep}`)&&!file.includes(`${path.sep}design${path.sep}`)&&!isSearchEngineVerificationFile(file));
 const headerSignatures=new Set();
 const footerSignatures=new Set();
 for(const file of publicHtml){

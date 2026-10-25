@@ -68,7 +68,7 @@ for(const tool of tools){
  }
 }
 const records=[],groups=new Map();
-for(const file of walk(site).filter(x=>x.endsWith(".html")&&!isSearchEngineVerificationFile(x))){
+for(const file of walk(site).filter(x=>x.endsWith(".html")&&!x.includes(`${path.sep}design${path.sep}`)&&!isSearchEngineVerificationFile(x))){
  const rel=posix(path.relative(site,file)),info=identify(rel);if(!info)continue;
  records.push({file,rel,info});
  if(!groups.has(info.route))groups.set(info.route,new Map());
