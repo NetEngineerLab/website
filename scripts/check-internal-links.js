@@ -7,7 +7,7 @@ const path=require("path");
 const root=path.resolve(__dirname,"..");
 const site=path.join(root,"website");
 const origin="https://netengineerlab.com";
-const skipDirs=new Set(["templates","node_modules"]);
+const skipDirs=new Set(["templates","node_modules","design"]);
 
 function walk(dir){
  const output=[];

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Fieldbook 设计说明（预览）— NetEngineerLab</title>
+<link rel="stylesheet" href="fb.css">
+<style>
+body{margin:0;background:var(--paper);color:var(--ink);font:400 15.5px/1.7 var(--sans)}
+.preview-banner{background:var(--graphite);color:var(--readout);padding:10px 16px;font:500 12.5px/1.4 var(--mono)}
+.preview-banner a{color:var(--signal)}
+.wrap{max-width:820px;margin:0 auto;padding:36px 24px 80px}
+h1{font-size:30px} h2{font-size:22px;margin-top:28px} h3{font-size:18px}
+pre{overflow:auto;background:var(--paper-2);padding:12px;border-radius:10px;font:12.5px/1.45 var(--mono)}
+blockquote{margin:12px 0;padding:10px 14px;border-left:3px solid var(--amber);background:var(--amber-soft)}
+li{margin-left:1.2em}
+</style>
+</head>
+<body>
+<div class="preview-banner">仅设计预览 · <a href="index.html">返回索引</a> · <a href="/">线上站点</a></div>
+<div class="wrap">
+<h1>NetEngineerLab UI v4 设计提案：「Fieldbook 工程手记」（仅预览，未上线）</h1>
+<p></p>
+<blockquote>2026-10-19（北京时间）。所有文件都在 /workspace/ui-saas-v4/，没有改仓库，没有开 PR，没有推送，线上站点没有任何变化。</blockquote>
+<blockquote>页面：home.html、home-zh.html、tools.html、tool-optical-power-budget.html、guide-fiber-link-budget.html，共用一份样式 fb.css（gen.py 生成）。截图在 shots/。</blockquote>
+<blockquote>内容全部取自线上站点：工具名、描述、标签、41 个工具及各分类数量、方法说明、FAQ、指南正文。没有编造用户数、评价或统计数字。</blockquote>
+<p></p>
+<h2>一、设计理念</h2>
+<p><b>Fieldbook（工程手记）</b>：像一位资深工程师的笔记本。暖白纸面配石墨黑字，只用一种「信号橙」做强调。计算结果放在深色的「仪表读数」面板里。标题偶尔用一句斜体衬线点睛，所有数字都用等宽字体。参考 Linear 的克制、Vercel 的黑白对比、Raycast 的 ⌘K 命令面板，以及 Stripe 的「把公式摆出来」，给人的感觉是：这是一个认真、可信的工程产品，而不是模板站。</p>
+<p></p>
+<h2>二、和前几套的区别</h2>
+<pre class="table">
+| 套别 | 配色 | 字体 | 布局 | v4 的区别 |
+|---|---|---|---|---|
+| 现网（docs/DESIGN_SYSTEM V1.3） | 冷蓝 #0B6FF2、深海军蓝 #082F59、浅蓝底 #F5F9FE、深蓝页脚 | Inter | hero 搜索框加拓扑插图，蓝色圆角卡片，&quot;Open tool&quot; 按钮 | 去掉蓝色，改为暖中性色加单一橙色；卡片改成细线分隔的网格；页脚改成浅色 |
+| PR #12 / ui-round2 / ui-round3（姊妹站 PowerEngineerLab 的「美式 SaaS」浅色改版） | 靛蓝紫 indigo、薰衣草浅底、点阵底纹 | 系统无衬线 | 左文右「Live model」插图卡，三个统计小卡片 | 没有紫色，也没有右侧插图卡；首屏主角换成 ⌘K 命令面板；统计改成一条细线数据带 |
+| ui-compare 报告 | 结论是「同骨架换肤」，层次感不足 | — | — | v4 用深色读数面板、深色方法区块和深色工作流卡片做明暗节奏，真正拉开层次 |
+</pre>
+<p></p>
+<h2>三、审计结论（基于 /workspace/ui-review 实拍，1280 和 390 两种宽度）</h2>
+<p><b>P0</b></p>
+<p>1. 合集页（3 个 hub × 3 种语言）的字体回退成 Times New Roman，链接是浏览器默认蓝。</p>
+<p>2. 全站工具数前后不一致（37/40/41/20），首页插图里的 &quot;37&quot; 是烙在图片里的。PR #11 已经改成构建时生成，插图和中文区块还需要复核。</p>
+<p>3. 关于页内容单薄（PR #11 已重写）。</p>
+<p>4. 输入出错后旧结果仍然显示（PR #11 已清除陈旧结果，其他模板还要逐个排查）。</p>
+<p></p>
+<p><b>P1</b></p>
+<p>1. 结果数字溢出或被拆断（子网地址、时延数值）。</p>
+<p>2. 手机上结果离输入区 1256–5114px，没有快捷入口。v4 加了底部固定的结果摘要条。</p>
+<p>3. 页面类型之间至少有 6 套模板，看起来不像同一个产品。</p>
+<p>4. 首页没有清晰的主行动入口：搜索、Quick tools 和分类重复出现 3 次。</p>
+<p>5. 首屏被大面积 Cookie 弹窗挡住。v4 改成左下角的小卡片。</p>
+<p></p>
+<p><b>P2</b></p>
+<p>1. /tools/ 没有搜索。</p>
+<p>2. 指南没有作者和日期。</p>
+<p>3. 点击区域偏小。</p>
+<p>4. 页脚太简单。</p>
+<p>5. 暗色模式没有生效（截图和浅色一样）。</p>
+<p>6. 广告位没有预留尺寸。</p>
+<p>7. 工具名 &quot;ODF / ODN Fiber Resource &amp; Split Planning Planner&quot; 里 Planning Planner 重复了（线上原文如此）。</p>
+<p></p>
+<h2>四、设计令牌</h2>
+<li>**颜色**</li>
+<p>  - 纸面 #FBFAF7、次级纸面 #F4F2EC、卡片 #FFFFFF、分隔线 #E7E3DA / #D9D4C8</p>
+<p>  - 文字 #16140F（17.6:1）、次级 #3D3A33、弱化 #6B665C（5.5:1）、最弱 #776F62（4.75:1）</p>
+<p>  - 强调色：信号橙 #E8590C，仅用于装饰、焦点环和圆点；文字用橙 #B8440A（在 #FFF1E6 上 4.9:1）；按钮底色 #C2410C（白字 5.2:1）</p>
+<p>  - 读数面板：石墨 #121212，正文 #F5F3EE，弱化 #A8A398（7.5:1），信号 #FF8A3D（8:1），正常状态绿 #5BD69A</p>
+<p>  - 状态色：成功 #1F7A4D、警告 #A15C00、错误 #B42318</p>
+<li>**字体**（都是免费的 Google Fonts）</li>
+<p>  - Geist 400/500/600 用于界面</p>
+<p>  - Geist Mono 用于数字、标签、面包屑和公式</p>
+<p>  - Instrument Serif Italic 只用于标题里的一句点睛</p>
+<p>  - 中文回退：PingFang SC / Noto Sans SC；中文页不用斜体，改为橙色加粗</p>
+<li>**字号**</li>
+<p>  - H1：68 / 52 / 44px（首页 / 目录 / 工具页），手机 42 / 36 / 32px</p>
+<p>  - H2：38px（手机 30px）</p>
+<p>  - 正文 15.5–16px，行高 1.6（中文 1.7）</p>
+<p>  - 标签 11.5–12.5px 等宽，字距 .06–.08em</p>
+<li>**间距**：4 / 8 / 12 / 16 / 20 / 24 / 32 / 44 / 56 / 84px；区块上下间距 84px（手机 56px）</li>
+<li>**圆角**：6（标签）、8（输入框）、10（按钮）、14（卡片和面板）、20（大区块）</li>
+<li>**阴影**</li>
+<p>  - sh-1：1px 细线投影</p>
+<p>  - sh-2：0 8px 24px -12px，用于命令面板</p>
+<p>  - sh-3：0 24px 60px -24px，只用于读数面板和 Cookie 卡片</p>
+<li>**组件**</li>
+<p>  - 半透明吸顶导航，带 ⌘K 搜索</p>
+<p>  - 首屏 ⌘K 命令面板</p>
+<p>  - 细线网格工具卡：等宽字母标识、分类标签、3 个标签</p>
+<p>  - 计算器：左侧分组输入（预设胶囊、单位内嵌、橙色焦点环）；右侧深色读数（主数值 56px 等宽、预算占用条、关键值 2×2、损耗瀑布图、诊断、复制/保存/CSV/打印）</p>
+<p>  - 手机底部结果摘要条</p>
+<p>  - 等宽表头表格</p>
+<p>  - 带 +/– 的 FAQ</p>
+<p>  - 带左侧橙线的公式块</p>
+<p>  - 指南作者行和&quot;打开计算器&quot;深色引导条</p>
+<p>  - 四列浅色页脚</p>
+<p>  - 左下角小 Cookie 卡片</p>
+<li>**性能**：纯 CSS，没有框架，没有图片。字体可以自托管 woff2 并加 font-display:swap，3 个字族大约 120KB，也可以只保留 Geist 和 Geist Mono。</li>
+<li>**暗色模式**：读数面板本身就是深色。整站暗色可以作为第 4 阶段，直接把令牌反转。这次没有做稿。</li>
+<p></p>
+<h2>五、上线计划（每个阶段单独开 PR，单独验证）</h2>
+<p>1. <b>令牌层</b>：新增 tokens-v4.css，替换 design-tokens.css 里的 --nel-color-* 和 --nel-font-family。不动 HTML 结构。风险低，先在预览分支截图对比。</p>
+<p>2. <b>外壳</b>：导航、页脚、Cookie 卡片，同时修掉合集页字体问题（P0-1）。只改模板，不改正文。</p>
+<p>3. <b>工具页模板</b>：深色读数面板、手机结果条、等宽数字。要逐个工具跑 npm test、test:browser 和 Lighthouse，确保 CLS 保持 0，结果选择器（JS 绑定的 id）不变。</p>
+<p>4. <b>首页、目录、指南版式</b>，以及暗色模式。</p>
+<p></p>
+<p><b>SEO 风险控制</b></p>
+<li>URL、canonical、hreflang、标题、正文、FAQ 结构化数据、GA4 和同意逻辑全部不动，只换样式和外壳标记。</li>
+<li>每个阶段合并后都跑全站 213 个 URL 的爬取对比，并跑 monitor-production 和 lighthouse-production。</li>
+<li>FAQ 改用 details/summary 时，FAQPage JSON-LD 保持不变。</li>
+<p></p>
+<p>---</p>
+<p></p>
+<h2>v2 修改记录（2026-10-19 晚，北京时间）</h2>
+<p>仍然只是设计稿：没有改仓库、没有 PR、没有部署。旧版保存在 v1-backup/，新截图在 shots/v2/。</p>
+<p></p>
+<p><b>重要更正：v1 的数字算错了。</b> 我对照了真实计算代码 website/tools/optical-power-budget/js/engine.js，并用 Node 实际运行过。代码里：</p>
+<li>设计损耗 = 物理损耗 + 工程余量</li>
+<li>光通道代价从预算一侧扣掉：等级预算 = 最小发光 − 灵敏度 − 代价</li>
+<p></p>
+<p>所以 GPON C+ 默认值的正确结果是：设计损耗 <b>28.80</b>（v1 错写成 29.80），剩余 <b>3.20 dB</b>（v1 错写成 2.20），预算占用 <b>90%</b>（v1 错写成 93%）。首页公式区也一起改了。</p>
+<p></p>
+<p>另外，线上页面的方法说明和 FAQ 写的是&quot;设计损耗 29.8 dB、高于 B+ 的 28 dB&quot;。那是把代价放在损耗一侧，再和 33 dB 原始窗口比较，剩余同样是 3.2 dB，但和代码的口径不一致。建议以后统一文案（这次没改线上）。</p>
+<p></p>
+<pre class="table">
+| 问题 | 改了什么 |
+|---|---|
+| P1-1 深色面板灰字太暗太小 | 次要文字改为 #CFCAC0（在 #121212 上 11.5:1），公式行 #B3AEA3（8.5:1）。正文和标签 14–14.5px，只有分组小标题是 12.5px 大写（11.5:1）。 |
+| P1-2 &quot;Healthy&quot;太简单 | 状态规则**直接来自真实代码** engine.js 第 47–49 行。检查三项：剩余等级预算、灵敏度余量、过载余量（过载余量按最大发光算）。任一项小于 0 判为 Fail（代码 failed，界面文案&quot;✕ Failed / 超限&quot;）；任一项小于 3 dB 判为 Marginal（代码 warning，界面文案&quot;⚠ Caution / 风险&quot;）；否则判为 Pass（代码 healthy，&quot;✓ Healthy / 健康&quot;）。**唯一属于提议的是显示名称 Pass / Marginal / Fail（中文建议&quot;通过 / 警戒 / 不通过&quot;），阈值本身不是提议。**面板顶部有一句原因，&quot;状态检查&quot;列出三项数值；方法区有状态规则图例。三种状态的截图：默认 10 km 为 Pass，17 km 为 Marginal（剩余 1.10），25 km 为 Fail（剩余 −1.30）。 |
+| P1-3 结果含义混乱 | 分成三组：&quot;剩余 vs 32 dB 等级预算&quot;（大数字加公式）、&quot;链路损耗&quot;（物理损耗、设计损耗）、&quot;接收窗口&quot;（收光功率、灵敏度余量、过载余量）。每一行下面都有一行公式，代入的是真实数值。 |
+| P1-4 手机结果条 | 用真正的 input 元素测试了 390、375、320 宽度，以及键盘模拟（375×420、320×400，输入框获得焦点）。结果条高 53px；输入框获得焦点时，或高度 ≤ 520px 时自动隐藏，不会挡住输入框。页面底部留了 72px，避免内容被盖住。三种宽度都没有横向滚动（修掉了 320 下&quot;How it&#x27;s calculated&quot;链接和页脚的溢出）。 |
+| P2-5 等宽字体滥用 | 面包屑、分组标签、导航、表头、Cookie、目录、页脚标题都改回 Geist 无衬线。等宽只用于数字、单位、输入值和公式。 |
+| P2-6 橙色规则 | 橙色只用于：选中状态（预设）、焦点环、主按钮（#C2410C，白字 5.2:1）。风险状态改用独立的语义色。深色面板：通过 #5BD69A、警戒 #F5C451、不通过 #FF8A80（都 ≥ 8:1）。浅色背景：#1F7A4D/#E8F5EE（4.7:1）、#8A5A00/#FDF3DC（5.4:1）、#B42318/#FDECEA（5.8:1）。状态同时用文字和圆点表达，不只靠颜色。瀑布图、公式块左边线、编号也去掉了橙色。 |
+| P2-7 新手太难 | 每个设备参数下面加了一行提示，例如&quot;最小发光：OLT 规格书里的最差值&quot;。预设下面有一行说明，参数来自 data/optical-standards.js：C+ 是 +3/−30/−8 dBm、1 dB 代价、32 dB。顶部和按钮旁各有一个&quot;How it&#x27;s calculated&quot;入口，跳到方法区的 5 行公式。布局没有变长。 |
+</pre>
+<p></p>
+<p><b>验算</b>：Python 实现和 engine.js 的 Node 输出逐项一致。</p>
+<li>10 km：物理 25.80，设计 28.80，剩余 3.20，收光 −22.80 dBm，灵敏度余量 7.20，过载余量 10.80，占用 90%，状态 healthy</li>
+<li>17 km：27.90 / 30.90 / 1.10 / −24.90 / 5.10 / 12.90，状态 warning</li>
+<li>25 km：30.30 / 33.30 / −1.30 / −27.30 / 2.70 / 15.30，状态 failed</li>
+<p></p>
+<p><b>说明</b>：参数提示的文字和 &quot;Pass/Marginal/Fail&quot; 显示名称是新写的（属于提议）。v2 工具稿暂时没放 FAQ 区（v1 有），正式实施时保留线上 FAQ 和它的结构化数据。</p>
+</div>
+</body>
+</html>

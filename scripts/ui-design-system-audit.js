@@ -22,7 +22,7 @@ function stripComments(s){return s.replace(/\/\*[\s\S]*?\*\//g,"").trim()}
 function splitSelectors(s){return stripComments(s).split(",").map(x=>x.trim()).filter(Boolean)}
 
 const issues=[];
-const htmlFiles=walk(site).filter(f=>f.endsWith(".html")&&!f.includes(`${path.sep}templates${path.sep}`));
+const htmlFiles=walk(site).filter(f=>f.endsWith(".html")&&!f.includes(`${path.sep}templates${path.sep}`)&&!f.includes(`${path.sep}design${path.sep}`));
 const publicPages=[];
 const toolPages=[];
 for(const file of htmlFiles){

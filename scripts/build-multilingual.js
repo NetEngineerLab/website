@@ -1075,6 +1075,7 @@ function build(){
  for(const file of walk(siteRoot)){
   if(!file.endsWith(".html"))continue;
   const rel=posix(path.relative(siteRoot,file));
+  if(rel==="design"||rel.startsWith("design/"))continue;
   const before=fs.readFileSync(file,"utf8");
   let after=repairPageLayout(before,rel,{cookieCssHref,cookieJsSrc});
   after=versionExistingAsset(after,"assets/css/cookie-consent.css");

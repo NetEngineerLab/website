@@ -54,7 +54,7 @@ function isSearchEngineVerificationFile(file){
   return !relative.includes("/")&&/^(?:google[a-z0-9_-]+|yandex_[a-z0-9_-]+|baidu_verify_[a-z0-9_-]+|sogou_site_verification_[a-z0-9_-]+)\.html$/i.test(relative);
 }
 function publicHtmlFiles(){
-  return walk(site).filter(file=>file.endsWith(".html")&&!file.endsWith(`${path.sep}offline.html`)&&!file.includes(`${path.sep}templates${path.sep}`)&&!isSearchEngineVerificationFile(file));
+  return walk(site).filter(file=>file.endsWith(".html")&&!file.endsWith(`${path.sep}offline.html`)&&!file.includes(`${path.sep}templates${path.sep}`)&&!file.includes(`${path.sep}design${path.sep}`)&&!isSearchEngineVerificationFile(file));
 }
 function resolveSiteTarget(fromFile,raw){
   const clean=raw.split("#")[0].split("?")[0];
