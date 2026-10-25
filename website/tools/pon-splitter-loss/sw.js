@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-pon-splitter-loss-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-8c10dbd135f8";
+const CACHE = "nel-pon-splitter-loss-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-289260d207a6";
 const CORE = [
   "./index.html",
   "./",
