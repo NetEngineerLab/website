@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-chromatic-dispersion-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-a62c79719ac1";
+const CACHE = "nel-chromatic-dispersion-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-23dc04d607ae";
 const CORE = [
   "./index.html",
   "./",
@@ -7,7 +7,7 @@ const CORE = [
   "./offline.html",
   "./manifest.webmanifest",
   "./css/style.css?v=48c7b72aa30f",
-  "./js/app.js?v=70c8758449b5",
+  "./js/app.js?v=dd824fd802c6",
   "./js/engine.js",
   "./images/logo.svg",
   "../../data/locales.js?v=909e05076a50",

@@ -43,4 +43,18 @@ for(const slug of Object.keys(RUN)){
   assert.ok(/src="(\.\.\/)?js\/scenarios\.js/.test(html),`${slug} ${lang}: loader script`);
  }
 }
+// Audit P3-21c: 802.3bt Type 4 PD power is 71.3 W.
+{
+ const poe=require(path.join(ROOT,"poe-power-budget-calculator/js/engine.js"));
+ assert.strictEqual(poe.STANDARDS.bt4.pd,71.3);
+ assert.strictEqual(poe.recommendedStandard(71.2),"bt4");
+ assert.strictEqual(poe.recommendedStandard(71.4),"unsupported");
+}
+// Audit P3-21a/b: G.984.2 and 802.3 Clause 52 citations carry table numbers and are no longer UNVERIFIED.
+{
+ const html=fs.readFileSync(path.join(ROOT,"fiber-loss/index.html"),"utf8");
+ const std=html.match(/<!-- NEL_STANDARDS_START -->([\s\S]*?)<!-- NEL_STANDARDS_END -->/)[1];
+ for(const needle of ["Table A.2","Table V.3","informative appendix","Table 52-12","Table 52-14"])assert.ok(std.includes(needle),"fiber standards: "+needle);
+ assert.ok(!/UNVERIFIED/.test(std),"fiber standards should be verified");
+}
 console.log(`tool scenarios: ${n} scenarios x 3 locales OK`);
