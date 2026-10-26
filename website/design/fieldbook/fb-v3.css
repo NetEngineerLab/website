@@ -489,3 +489,12 @@ body.v3 .adv summary:focus-visible{
   outline-offset:2px;
 }
 body.v3 .f.has-error label{color:#B91C1C}
+
+
+/* Export actions disabled while inputs are invalid */
+[data-ro-act]:disabled,
+button[data-ro-act][disabled]{
+  opacity:.45;
+  cursor:not-allowed;
+  pointer-events:none;
+}
