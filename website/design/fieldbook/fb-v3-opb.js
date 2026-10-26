@@ -23,18 +23,24 @@
     epon: "EPON reference planning window. Confirm OLT/ONU datasheet before design sign-off.",
     datacenter: "Short-reach data-center style window (planning demo). Confirm transceiver datasheet."
   };
+  const MODE_HELP = {
+    verify: "Verify whether an existing link meets the equipment power budget.",
+    distance: "Estimate maximum fiber distance from equipment budget and fixed losses."
+  };
+  const HISTORY_KEY = "nel-fieldbook-opb-v3c-history";
 
   const $ = (id) => document.getElementById(id);
   const fmt = (n, d = 2) => (Number.isFinite(n) ? n.toFixed(d) : "—");
   let activePreset = "gpon-c";
+  let activeMode = "verify";
   let applying = false;
   let shareTimer = null;
+  let last = null;
 
   function num(id) {
     const el = $(id);
     if (!el) return NaN;
-    const v = parseFloat(String(el.value).replace(/[−–]/g, "-").replace(/,/g, ""));
-    return v;
+    return parseFloat(String(el.value).replace(/[−–]/g, "-").replace(/,/g, ""));
   }
 
   function int(id) {
@@ -108,6 +114,19 @@
     if (activePreset !== "custom") setPresetUI("custom");
   }
 
+  function setMode(mode) {
+    activeMode = mode === "distance" ? "distance" : "verify";
+    document.querySelectorAll(".tabs [data-mode]").forEach((el) => {
+      const on = el.getAttribute("data-mode") === activeMode;
+      el.classList.toggle("on", on);
+      el.setAttribute("aria-selected", on ? "true" : "false");
+    });
+    const help = $("mode-help");
+    if (help) help.textContent = MODE_HELP[activeMode];
+    document.body.dataset.opbMode = activeMode;
+    calc();
+  }
+
   function statusMeta(st) {
     if (st === "healthy") return { cls: "st-pass", label: "Pass", icon: "✓" };
     if (st === "warning") return { cls: "st-marginal", label: "Marginal", icon: "!" };
@@ -136,6 +155,7 @@
   }
 
   function showInvalid(msg) {
+    last = null;
     const meta = statusMeta("failed");
     document.querySelectorAll("[data-status]").forEach((el) => {
       el.className = "status " + meta.cls;
@@ -145,7 +165,7 @@
     setText("ro-main-lbl", "Cannot compute");
     setHTML("ro-main-big", "—<small>dB</small>");
     setText("ro-main-eqn", "");
-    $("ro-meter-bar").style.width = "0%";
+    if ($("ro-meter-bar")) $("ro-meter-bar").style.width = "0%";
     setText("ro-meter-left", "—");
     setText("ro-meter-right", "—");
     ["ro-rx", "ro-physical", "ro-design", "ro-sensM", "ro-overM", "ro-ck-remain", "ro-ck-sens", "ro-ck-over"].forEach((id) => setText(id, "—"));
@@ -161,7 +181,8 @@
       markFieldErrors(v);
       return null;
     }
-    const { standard, physical, design, remain, rx, sensM, overM, fiber, splice, conn, split, st, usage } = result;
+    const { standard, physical, design, remain, rx, sensM, overM, fiber, splice, conn, split, st, usage, maxD } = result;
+    last = Object.assign({ wave: $("f-wave").value, mode: activeMode }, v, result);
     const meta = statusMeta(st);
     const tight = tightest(remain, sensM, overM);
     const tone =
@@ -178,33 +199,63 @@
         : st === "warning"
           ? "At least one check is between 0 and 3 dB."
           : "At least one check is below 0 dB.";
-    setHTML(
-      "ro-reason",
-      "<b>" +
-        reasonLead +
-        "</b> Tightest is " +
-        tight.label.toLowerCase() +
-        " at " +
-        fmt(tight.value) +
-        " dB."
-    );
 
-    setText("ro-main-lbl", "Tightest margin · " + tight.label);
-    setHTML("ro-main-big", fmt(tight.value) + "<small>dB</small>");
-    $("ro-main-big").style.color = tone;
-    setText(
-      "ro-main-eqn",
-      "= class " +
-        fmt(standard) +
-        " − design " +
-        fmt(design) +
-        " · remain " +
-        fmt(remain) +
-        " · sens " +
-        fmt(sensM) +
-        " · overload " +
-        fmt(overM)
-    );
+    if (activeMode === "distance") {
+      setHTML(
+        "ro-reason",
+        "<b>" +
+          reasonLead +
+          "</b> Estimated maximum reach is " +
+          fmt(maxD) +
+          " km for the current fixed losses and margins."
+      );
+      setText("ro-main-lbl", "Estimated maximum distance");
+      setHTML("ro-main-big", fmt(maxD) + "<small>km</small>");
+      $("ro-main-big").style.color = tone;
+      setText(
+        "ro-main-eqn",
+        "= (class " +
+          fmt(standard) +
+          " − margin " +
+          fmt(v.margin) +
+          " − fixed " +
+          fmt(result.fixed) +
+          ") / attenuation " +
+          fmt(v.a) +
+          " · entered distance " +
+          fmt(v.d) +
+          " km"
+      );
+      setText("mbar-val", fmt(maxD) + " km");
+    } else {
+      setHTML(
+        "ro-reason",
+        "<b>" +
+          reasonLead +
+          "</b> Tightest is " +
+          tight.label.toLowerCase() +
+          " at " +
+          fmt(tight.value) +
+          " dB."
+      );
+      setText("ro-main-lbl", "Tightest margin · " + tight.label);
+      setHTML("ro-main-big", fmt(tight.value) + "<small>dB</small>");
+      $("ro-main-big").style.color = tone;
+      setText(
+        "ro-main-eqn",
+        "= class " +
+          fmt(standard) +
+          " − design " +
+          fmt(design) +
+          " · remain " +
+          fmt(remain) +
+          " · sens " +
+          fmt(sensM) +
+          " · overload " +
+          fmt(overM)
+      );
+      setText("mbar-val", fmt(tight.value) + " dB");
+    }
 
     const u = Math.max(0, Math.min(130, usage));
     $("ro-meter-bar").style.width = Math.min(100, u) + "%";
@@ -239,7 +290,6 @@
     setBar("wf-conn", conn, maxPart, "Connectors " + v.cc + " × " + fmt(v.cl));
     setBar("wf-splice", splice, maxPart, "Splices " + v.sc + " × " + fmt(v.sl));
 
-    setText("mbar-val", fmt(tight.value) + " dB");
     return result;
   }
 
@@ -297,23 +347,70 @@
   }
 
   function reset() {
+    setMode("verify");
     applyPreset("gpon-c");
-    flash($("btn-reset"), "Reset");
+    flash($("btn-reset"), "Reset done");
   }
 
-  function flash(el, restore) {
+  function flash(el, msg) {
     if (!el) return;
-    const prev = el.textContent;
-    el.textContent = restore || prev;
-    setTimeout(() => {
-      el.textContent = prev;
-    }, 1200);
+    const prev = el.getAttribute("data-label") || el.textContent;
+    if (!el.getAttribute("data-label")) el.setAttribute("data-label", prev);
+    el.textContent = msg;
+    clearTimeout(el.__flashT);
+    el.__flashT = setTimeout(() => {
+      el.textContent = el.getAttribute("data-label") || prev;
+    }, 1400);
+  }
+
+  async function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (_) {}
+    }
+    try {
+      const a = document.createElement("textarea");
+      a.value = text;
+      a.setAttribute("readonly", "");
+      a.style.position = "fixed";
+      a.style.left = "-9999px";
+      document.body.appendChild(a);
+      a.select();
+      const ok = document.execCommand("copy");
+      a.remove();
+      return ok;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function buildReport() {
+    if (!last) calc();
+    if (!last) return null;
+    const r = last;
+    return [
+      "NetEngineerLab — Optical Power Budget Calculator",
+      "Mode: " + (r.mode === "distance" ? "Maximum distance estimation" : "Link budget verification"),
+      "Status: " + statusMeta(r.st).label,
+      "Class budget: " + fmt(r.standard) + " dB",
+      "Physical loss: " + fmt(r.physical) + " dB",
+      "Design loss: " + fmt(r.design) + " dB",
+      "Remaining: " + fmt(r.remain) + " dB",
+      "Est. Rx: " + fmt(r.rx) + " to " + fmt(r.rxMax) + " dBm",
+      "Sensitivity margin: " + fmt(r.sensM) + " dB",
+      "Overload margin: " + fmt(r.overM) + " dB",
+      "Estimated maximum distance: " + fmt(r.maxD) + " km",
+      "Wavelength: " + r.wave + " nm"
+    ].join("\n");
   }
 
   async function shareInputs() {
     const v = readValues();
     const q = new URLSearchParams({
       preview: "fieldbook-v3c",
+      mode: activeMode,
       tx: v.tx,
       txMax: v.txMax,
       sens: v.sens,
@@ -335,24 +432,85 @@
     const url = location.pathname + "?" + q.toString() + "#result";
     const absolute = location.origin + url;
     const btn = $("btn-share");
-    const prev = btn ? btn.textContent : "Share inputs";
-    function feedback(msg) {
-      if (!btn) return;
-      btn.textContent = msg;
-      clearTimeout(shareTimer);
-      shareTimer = setTimeout(() => { btn.textContent = prev; }, 1400);
-    }
     history.replaceState(null, "", url);
+    const ok = await copyText(absolute);
+    if (ok) flash(btn, "Link copied");
+    else flash(btn, "URL updated — copy address bar");
+  }
+
+  function loadHistory() {
     try {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        await navigator.clipboard.writeText(absolute);
-        feedback("Link copied");
-        return;
-      }
-      throw new Error("no-clipboard");
-    } catch (e) {
-      feedback("Link ready in address bar");
+      return JSON.parse(localStorage.getItem(HISTORY_KEY) || "[]");
+    } catch (_) {
+      return [];
     }
+  }
+
+  function saveRecord(btn) {
+    if (!last) calc();
+    if (!last) {
+      flash(btn, "Fix inputs first");
+      return;
+    }
+    const row = Object.assign({}, last, { savedAt: new Date().toISOString() });
+    const h = loadHistory();
+    h.unshift(row);
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(h.slice(0, 12)));
+    flash(btn, "Record saved");
+  }
+
+  function exportCsv(btn) {
+    if (!last) calc();
+    if (!last) {
+      flash(btn, "Fix inputs first");
+      return;
+    }
+    const r = last;
+    const rows = [
+      ["Field", "Value"],
+      ["Mode", r.mode],
+      ["Minimum Tx Power dBm", r.tx],
+      ["Maximum Tx Power dBm", r.txMax],
+      ["Receiver Sensitivity dBm", r.sens],
+      ["Overload Threshold dBm", r.over],
+      ["Optical Path Penalty dB", r.penalty],
+      ["Engineering Margin dB", r.margin],
+      ["Fiber Distance km", r.d],
+      ["Fiber Attenuation dB/km", r.a],
+      ["Wavelength nm", r.wave],
+      ["Standard ODN Budget dB", Number(r.standard).toFixed(2)],
+      ["Physical Loss dB", Number(r.physical).toFixed(2)],
+      ["Design Loss dB", Number(r.design).toFixed(2)],
+      ["Remaining Budget dB", Number(r.remain).toFixed(2)],
+      ["Estimated Minimum RX dBm", Number(r.rx).toFixed(2)],
+      ["Estimated Maximum RX dBm", Number(r.rxMax).toFixed(2)],
+      ["Sensitivity Margin dB", Number(r.sensM).toFixed(2)],
+      ["Overload Margin dB", Number(r.overM).toFixed(2)],
+      ["Maximum Distance km", Number(r.maxD).toFixed(2)],
+      ["Status", statusMeta(r.st).label]
+    ];
+    const text =
+      "\uFEFF" +
+      rows
+        .map((row) => row.map((x) => '"' + String(x).replaceAll('"', '""') + '"').join(","))
+        .join("\n");
+    const blob = new Blob([text], { type: "text/csv;charset=utf-8" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "optical_power_budget_report.csv";
+    a.click();
+    URL.revokeObjectURL(a.href);
+    flash(btn, "CSV exported");
+  }
+
+  async function copyResult(btn) {
+    const t = buildReport();
+    if (!t) {
+      flash(btn, "Fix inputs first");
+      return;
+    }
+    const ok = await copyText(t);
+    flash(btn, ok ? "Copied" : "Copy failed");
   }
 
   function loadFromQuery() {
@@ -381,6 +539,17 @@
     pick("wave", "f-wave");
     applying = false;
     setPresetUI("custom");
+    if (q.get("mode") === "distance") {
+      activeMode = "distance";
+      document.querySelectorAll(".tabs [data-mode]").forEach((el) => {
+        const on = el.getAttribute("data-mode") === "distance";
+        el.classList.toggle("on", on);
+        el.setAttribute("aria-selected", on ? "true" : "false");
+      });
+      const help = $("mode-help");
+      if (help) help.textContent = MODE_HELP.distance;
+      document.body.dataset.opbMode = "distance";
+    }
     return true;
   }
 
@@ -400,6 +569,10 @@
           applyPreset(el.getAttribute("data-preset"));
         }
       });
+    });
+
+    document.querySelectorAll(".tabs [data-mode]").forEach((el) => {
+      el.addEventListener("click", () => setMode(el.getAttribute("data-mode")));
     });
 
     const ids = [
@@ -428,24 +601,10 @@
     document.querySelectorAll("[data-ro-act]").forEach((el) => {
       el.addEventListener("click", () => {
         const act = el.getAttribute("data-ro-act");
-        if (act === "copy") {
-          const r = calc();
-          if (!r) return;
-          const text = [
-            "Optical Power Budget (Fieldbook preview)",
-            "Status: " + statusMeta(r.st).label,
-            "Class budget: " + fmt(r.standard) + " dB",
-            "Physical loss: " + fmt(r.physical) + " dB",
-            "Design loss: " + fmt(r.design) + " dB",
-            "Remaining: " + fmt(r.remain) + " dB",
-            "Est. Rx: " + fmt(r.rx) + " dBm"
-          ].join("\n");
-          navigator.clipboard.writeText(text).then(() => flash(el, "Copied"));
-        } else if (act === "print") {
-          window.print();
-        } else {
-          flash(el, "Preview only");
-        }
+        if (act === "copy") copyResult(el);
+        else if (act === "save") saveRecord(el);
+        else if (act === "csv") exportCsv(el);
+        else if (act === "print") window.print();
       });
     });
 
