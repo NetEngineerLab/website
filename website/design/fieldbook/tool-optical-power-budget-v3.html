@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="DESIGN PREVIEW — Fieldbook v3 Optical Power Budget Calculator mock. Merges workbench UX with live SEO/GEO content structure. Not production.">
+<title>Optical Power Budget Calculator — Fieldbook v3 preview | NetEngineerLab</title>
+<link rel="canonical" href="https://netengineerlab.com/tools/optical-power-budget/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fb.css">
+<link rel="stylesheet" href="fb-v3.css">
+</head>
+<body class="has-mbar v3">
+<div class="preview-banner">DESIGN PREVIEW · Fieldbook OPB <b>v3</b> (soft frames + live SEO/GEO sections) — not production.
+<a href="index.html">← Preview index</a> ·
+<a href="/tools/optical-power-budget/">Live calculator</a> ·
+<a href="tool-optical-power-budget.html">v1 mock</a>
+</div>
+<header class="nav"><div class="wrap">
+<a class="logo" href="home.html"><span class="logo-mark"><i></i></span>NetEngineerLab</a>
+<nav class="nav-links"><a class="on" href="tools.html">Tools</a><a href="#">Guides</a><a href="#">Topics</a><a href="#">Methods</a><a href="/about/">About</a></nav>
+<div class="nav-right">
+<div class="kbd-search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Search tools<kbd>⌘K</kbd></div>
+<span class="lang">EN ▾</span>
+<span class="menu-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span>
+</div></div></header>
+
+<div class="wrap">
+<div class="tool-head">
+<div>
+<div class="crumbs"><a href="/">Home</a>/<a href="/tools/">Tools</a>/<a href="/topics/pon-optical/">Optical</a>/<span>Optical Power Budget</span></div>
+<h1>Optical Power Budget Calculator</h1>
+<p>Verify optical power budgets from transmit power, receiver sensitivity and passive losses, then calculate receive power, engineering margin and maximum distance.</p>
+<p class="lang-pill">Language versions (live): <a href="/tools/optical-power-budget/">EN</a> · <a href="/tools/optical-power-budget/zh/">中文</a> · <a href="/tools/optical-power-budget/es/">ES</a></p>
+</div>
+<div class="acts">
+<span class="btn btn-ghost btn-sm">Share inputs</span>
+<a class="btn btn-ghost btn-sm" href="#methodology">How it’s calculated</a>
+</div>
+</div>
+
+<!-- Scenario cards (mirror live scenario area) -->
+<section aria-label="Scenario presets" style="margin-bottom:18px">
+<p class="fs-t" style="margin:0 0 10px">Engineering scenarios</p>
+<div class="scenario-grid">
+<article class="scenario-card"><b>GPON C+ reference</b><span>Tx min +3 dBm · sensitivity −30 dBm · overload −8 dBm · path penalty 1 dB · 32 dB class budget</span></article>
+<article class="scenario-card"><b>GPON B+ reference</b><span>28 dB ODN class · confirm OLT/ONU datasheet before design sign-off</span></article>
+<article class="scenario-card"><b>Default ODN example</b><span>10 km @ 1490 nm · 1:8 + 1:8 · 6 splices · 4 connectors · 3 dB engineering margin</span></article>
+</div>
+</section>
+
+<div class="ws">
+<div class="panel">
+<div class="panel-h">
+<h2>Equipment and link parameters</h2>
+<div class="tabs"><span class="on">Link budget verification</span><span>Maximum distance estimation</span></div>
+</div>
+<div class="fs">
+<p class="fs-t">Scenario preset</p>
+<div class="presets">
+<span>Custom</span><span>GPON B+ (28 dB)</span><span class="on" aria-pressed="true">GPON C+ (32 dB)</span><span>EPON</span><span>Data center</span>
+</div>
+<p class="preset-desc">GPON C+ reference: Tx min <b>+3 dBm</b>, sensitivity <b>−30 dBm</b>, overload <b>−8 dBm</b>, path penalty <b>1 dB</b>, class budget <b>32 dB</b>. Confirm against the datasheet.</p>
+
+<p class="fs-t">Equipment power window</p>
+<div class="fields">
+<div class="f"><label>Minimum transmit power</label><div class="inp"><input value="3.00" inputmode="decimal" aria-label="Minimum transmit power" readonly><u>dBm</u></div><small>Worst-case Tx from the OLT datasheet</small></div>
+<div class="f"><label>Maximum transmit power</label><div class="inp"><input value="7.00" inputmode="decimal" aria-label="Maximum transmit power" readonly><u>dBm</u></div><small>Maximum-power overload boundary</small></div>
+<div class="f"><label>Receiver sensitivity</label><div class="inp"><input value="−30.00" inputmode="decimal" aria-label="Receiver sensitivity" readonly><u>dBm</u></div><small>Weakest signal the ONU can decode</small></div>
+<div class="f"><label>Receiver overload threshold</label><div class="inp"><input value="−8.00" inputmode="decimal" aria-label="Receiver overload" readonly><u>dBm</u></div><small>Strongest signal before saturation</small></div>
+<div class="f"><label>Optical path penalty</label><div class="inp"><input value="1.00" inputmode="decimal" aria-label="Optical path penalty" readonly><u>dB</u></div><small>C+ downstream reference: 1.0 dB; B+: 0.5 dB</small></div>
+<div class="f"><label>Engineering margin</label><div class="inp"><input value="3.00" inputmode="decimal" aria-label="Engineering margin" readonly><u>dB</u></div><small>Reserve for ageing, repairs, temperature</small></div>
+</div>
+
+<p class="fs-t">Fiber and passive components</p>
+<div class="fields">
+<div class="f"><label>Fiber distance</label><div class="inp"><input value="10.00" inputmode="decimal" aria-label="Fiber distance" readonly><u>km</u></div></div>
+<div class="f"><label>Wavelength</label><div class="inp sel"><input value="1490 nm" aria-label="Wavelength" readonly></div></div>
+<div class="f"><label>Fiber attenuation</label><div class="inp"><input value="0.30" inputmode="decimal" aria-label="Fiber attenuation" readonly><u>dB/km</u></div><small>Typical G.652 at 1490 nm; use your spec</small></div>
+<div class="f"><label>Number of splices</label><div class="inp"><input value="6" inputmode="decimal" aria-label="Number of splices" readonly><u>pcs</u></div></div>
+<div class="f"><label>Loss per splice</label><div class="inp"><input value="0.10" inputmode="decimal" aria-label="Loss per splice" readonly><u>dB</u></div><small>Fusion splice</small></div>
+<div class="f"><label>Number of connectors</label><div class="inp"><input value="4" inputmode="decimal" aria-label="Number of connectors" readonly><u>pcs</u></div><small>Count mated pairs</small></div>
+<div class="f"><label>Loss per connector</label><div class="inp"><input value="0.30" inputmode="decimal" aria-label="Loss per connector" readonly><u>dB</u></div></div>
+<div class="f"><label>Primary splitter</label><div class="inp sel"><input value="1:8 (10.5 dB)" aria-label="Primary splitter" readonly></div></div>
+<div class="f"><label>Secondary splitter</label><div class="inp sel"><input value="1:8 (10.5 dB)" aria-label="Secondary splitter" readonly></div></div>
+</div>
+<p class="adv-note">Advanced (folded on live): third splitter · other passive loss — kept available so GEO/SEO methodology stays complete.</p>
+<div class="fields">
+<div class="f"><label>Third splitter</label><div class="inp sel"><input value="None (0 dB)" aria-label="Third splitter" readonly></div></div>
+<div class="f"><label>Other passive loss</label><div class="inp"><input value="0.00" inputmode="decimal" aria-label="Other passive loss" readonly><u>dB</u></div><small>WDM, attenuators, patch panels</small></div>
+</div>
+</div>
+<div class="panel-f">
+<span class="btn btn-primary">Calculate power budget</span>
+<span class="btn btn-ghost">Reset</span>
+<a class="how" href="#methodology">How it’s calculated →</a>
+</div>
+</div>
+
+<aside class="readout" id="result" aria-live="polite">
+<div class="ro-h">Budget analysis <span class="status st-pass">Pass</span></div>
+<div class="reason"><b>All three checks ≥ 3 dB.</b> Tightest is remaining class budget at 3.20 dB.</div>
+<div class="ro-main" style="color:var(--pass)">
+<div class="lbl">Remaining vs 32.00 dB class budget</div>
+<div class="big">3.20<small>dB</small></div>
+<div class="eqn">= 32.00 class budget − 28.80 design loss</div>
+<div class="meter"><div class="bar"><i style="width:90%"></i></div>
+<div class="scale"><span>Budget used 90%</span><span>28.80 / 32.00 dB</span></div></div>
+</div>
+<div class="grp"><h3>Link loss</h3>
+<div class="row"><span>Physical link loss</span><b>25.80<small>dB</small></b><div class="eqn">fiber + splices + connectors + splitters + other</div></div>
+<div class="row"><span>Total design loss</span><b>28.80<small>dB</small></b><div class="eqn">= physical 25.80 + margin 3.00 (penalty is taken off the budget)</div></div>
+</div>
+<div class="grp"><h3>Receiver window</h3>
+<div class="row"><span>Estimated receive power</span><b>−22.80<small>dBm</small></b><div class="eqn">= Tx min 3.00 − physical 25.80</div></div>
+<div class="row"><span>Margin above sensitivity</span><b>7.20<small>dB</small></b><div class="eqn">= Rx −22.80 − sensitivity −30.00</div></div>
+<div class="row"><span>Margin below overload</span><b>10.80<small>dB</small></b><div class="eqn">= overload −8.00 − (Tx max 7.00 − physical)</div></div>
+</div>
+<div class="checks"><h3>Status checks</h3>
+<div class="ck"><i></i><span>Remaining class budget</span><b>3.20 dB</b></div>
+<div class="ck"><i></i><span>Receiver sensitivity margin</span><b>7.20 dB</b></div>
+<div class="ck"><i></i><span>Overload margin</span><b>10.80 dB</b></div>
+<p>Pass: all ≥ 3 dB · Marginal: any 0–3 dB · Fail: any &lt; 0 dB</p>
+</div>
+<div class="wf">
+<div class="r"><span>Fiber 10 km × 0.30</span><i style="width:14%"></i><em>3.00 dB</em></div>
+<div class="r"><span>Splitters 1:8 + 1:8</span><i style="width:100%"></i><em>21.00 dB</em></div>
+<div class="r"><span>Connectors 4 × 0.30</span><i style="width:6%"></i><em>1.20 dB</em></div>
+<div class="r"><span>Splices 6 × 0.10</span><i style="width:3%"></i><em>0.60 dB</em></div>
+</div>
+<div class="ro-acts"><span>Copy</span><span>Save</span><span>CSV</span><span>Print</span></div>
+</aside>
+</div>
+
+<div class="mbar"><div><div class="ml">Remaining budget</div><b>3.20 dB</b></div><span class="status st-pass">Pass</span><em style="margin-left:auto">Details ↓</em></div>
+
+<div class="below">
+<nav class="toc">
+<h4>On this page</h4>
+<a class="on" href="#methodology">How it’s calculated</a>
+<a href="#status-rules">Status rules</a>
+<a href="#component-check">Component check</a>
+<a href="#faq">FAQ</a>
+<a href="#references">Official references</a>
+<a href="#content-review">Content review</a>
+<a href="#related">Related tools</a>
+</nav>
+
+<div class="prose">
+<div class="blk" id="methodology">
+<span class="eyebrow">Methodology</span>
+<h2 style="margin-top:12px">How it’s calculated</h2>
+<div class="eq">class budget = Tx_min − Rx_sensitivity − path_penalty<br>
+physical loss = fiber + splices + connectors + splitters + other<br>
+design loss = physical loss + engineering margin<br>
+remaining = class budget − design loss<br>
+Rx = Tx_min − physical loss</div>
+<p>Optical path penalty and engineering margin are budget terms, not present physical component losses, so receive power uses physical loss only.</p>
+
+<div class="method-defs">
+<article><h3>Standard ODN budget</h3><p>Minimum transmit power minus receiver sensitivity minus optical path penalty. GPON B+ allows up to 28 dB ODN loss, while C+ allows up to 32 dB.</p></article>
+<article><h3>Physical ODN loss</h3><p>Fiber loss + splice loss + connector loss + multi-stage splitter loss + other passive loss.</p></article>
+<article><h3>Total design ODN loss</h3><p>Physical ODN loss + engineering margin. The margin covers ageing, temperature, maintenance connections and measurement variation.</p></article>
+<article><h3>Estimated receive power</h3><p>Minimum transmit power minus physical ODN loss. Optical path penalty and engineering margin are budget terms, not present physical component losses.</p></article>
+<article><h3>Default standards example</h3><p>GPON C+ downstream reference: +3 dBm minimum transmit power, −30 dBm ONU sensitivity, −8 dBm overload and 1 dB optical path penalty; 10 km at 1490 nm, primary 1:8 plus secondary 1:8, 6 splices, 4 connectors and 3 dB engineering margin.</p></article>
+</div>
+<p>ITU-T defines system optical classes and ODN loss ranges. For XGS-PON (ITU-T G.9807.1), enter transmit power, receiver sensitivity, overload threshold and optical penalty from the deployed equipment; this tool has no XGS preset and must not infer XGS values from GPON B+/C+. Splice, connector and fiber attenuation assumptions must still be adjusted to enterprise rules, component specifications and field data.</p>
+</div>
+
+<div class="blk" id="status-rules">
+<h2>Status rules</h2>
+<p>The verdict takes the tightest of three checks: remaining class budget, margin above receiver sensitivity, and margin below overload (using maximum transmit power).</p>
+<div class="legend">
+<div class="lg-p"><b>Pass</b>All three ≥ 3 dB</div>
+<div class="lg-m"><b>Marginal</b>Any check between 0 and 3 dB</div>
+<div class="lg-f"><b>Fail</b>Any check below 0 dB</div>
+</div>
+</div>
+
+<div class="blk" id="component-check">
+<h2>Component-by-component check</h2>
+<p>Physical ODN loss = fiber attenuation × length + splitter loss + connector loss + splice loss + other passive loss. For the default case: 3.0 dB fiber + 21.0 dB splitters + 1.2 dB connectors + 0.6 dB splices = 25.8 dB physical ODN loss, and the 3 dB engineering margin brings design loss to 28.8 dB. The 1 dB optical path penalty is not added to the loss; it is deducted from the budget: +3 dBm − (−30 dBm) − 1 dB = 32 dB standard ODN budget, leaving 3.2 dB remaining (90% of the budget used).</p>
+<table class="t">
+<tr><th>Item</th><th>Default case</th><th>Loss</th></tr>
+<tr><td>Fiber</td><td>10 km at 1490 nm</td><td class="n">3.0 dB</td></tr>
+<tr><td>Splitters</td><td>1:8 + 1:8</td><td class="n">21.0 dB</td></tr>
+<tr><td>Connectors</td><td>4 mated pairs</td><td class="n">1.2 dB</td></tr>
+<tr><td>Splices</td><td>6 fusion splices</td><td class="n">0.6 dB</td></tr>
+<tr><td><b>Physical ODN loss</b></td><td></td><td class="n"><b>25.8 dB</b></td></tr>
+</table>
+</div>
+
+<div class="blk faq" id="faq">
+<h2>Frequently asked questions</h2>
+<details open><summary>Why does the default change to GPON C+ when 1:8 × 1:8 is retained?</summary>
+<p>A 1:8 × 1:8 cascade contributes about 21 dB of splitter loss. With 10 km of fiber, connectors and splices, physical ODN loss is 25.8 dB; adding the 3 dB engineering margin gives a design ODN loss of 28.8 dB. That is above the 28 dB B+ limit but within the 32 dB C+ budget (33 dB transmit-to-sensitivity window minus the 1 dB optical path penalty), leaving 3.2 dB.</p></details>
+<details><summary>How does a power budget differ from fiber loss?</summary>
+<p>Fiber loss measures route and component losses. A power budget also combines transmit power, receiver sensitivity and overload limits to determine whether equipment can operate reliably.</p></details>
+<details><summary>Why use minimum transmit power?</summary>
+<p>Designs are checked under worst-case conditions to avoid an optimistic result caused by equipment variation, ageing and temperature.</p></details>
+<details><summary>Is higher receive power always better?</summary>
+<p>No. Low power can fall below sensitivity, while excessive power can exceed the overload limit. Receive power should remain inside the allowed window.</p></details>
+<details><summary>Why is engineering margin not deducted from receive power?</summary>
+<p>Engineering margin is a design reserve, not a current physical loss. It is used for budget verification while receive power uses physical loss.</p></details>
+<details><summary>Why is maximum distance only an estimate?</summary>
+<p>Actual distance also depends on cable type, temperature, splice quality, route and equipment parameters.</p></details>
+<details><summary>Can this result be used for final acceptance?</summary>
+<p>The tool supports planning and troubleshooting. Final acceptance should use power meter and OTDR measurements, specifications and enterprise standards.</p></details>
+</div>
+
+<div class="blk" id="references">
+<h2>Power-window correctness and official references</h2>
+<div class="ref-card">
+<p>The minimum transmit power is used for sensitivity and loss-budget checks. Maximum transmit power is checked separately against receiver overload; using only the minimum value can hide a short-link overload risk. Presets are planning references, not substitutes for the exact OLT/ONU or transceiver datasheet. The 3 dB Healthy/Caution boundary is this tool’s planning threshold, not a universal standards mandate.</p>
+<p><b>Reviewed:</b> 2026-08-31. Official sources: ITU-T G.984.2 GPON PMD, ITU-T G.652 single-mode fibre, and IEC 61280-4-2:2024 attenuation measurement.</p>
+</div>
+</div>
+
+<div class="blk" id="content-review">
+<h2>Content review</h2>
+<div class="review-grid">
+<div class="review-card"><h3>Reviewed</h3><p>2026-10-25 (structured review block). Prior editorial note on this page: 2026-08-31.</p></div>
+<div class="review-card"><h3>Formula basis</h3><p>Standard ODN budget = minimum Tx − receiver sensitivity − optical path penalty. Physical ODN loss = fiber + splice + connector + splitter + other passive loss. Design loss = physical loss + engineering margin. Estimated receive power uses physical loss only. GPON B+/C+ class limits follow ITU-T G.984.2 planning ranges cited on this page.</p></div>
+<div class="review-card"><h3>Applicability limits</h3><p>Planning and troubleshooting aid for optical / PON link budgets. Presets are reference classes, not a guarantee for every OLT/ONU pair. Not a substitute for power-meter or OTDR acceptance, datasheet values, or enterprise standards. No XGS-PON preset; enter equipment values for G.9807.1 designs.</p></div>
+<div class="review-card"><h3>Update log</h3><ul>
+<li>2026-08-31 — Editorial review of power-window notes and official references.</li>
+<li>2026-10-25 — Added structured content-review metadata for GEO week 1.</li>
+<li>2026-10-26 — Fieldbook v3 design draft (preview only): soft frames + retained SEO/GEO sections.</li>
+</ul></div>
+</div>
+</div>
+
+<div class="blk" id="related">
+<h2>Continue the workflow</h2>
+<p>Build an optical link from physical loss assumptions through split planning, power budget and maximum reach verification.</p>
+<div class="next">
+<a href="/tools/fiber-loss/"><span>Calculator</span><b>Fiber Loss Calculator →</b></a>
+<a href="/tools/pon-distance/"><span>Calculator</span><b>PON Maximum Distance →</b></a>
+<a href="/topics/pon-optical/"><span>Topic hub</span><b>PON &amp; Optical →</b></a>
+<a href="/guides/"><span>Guides</span><b>Engineering guides →</b></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<footer><div class="wrap">
+<div class="fgrid">
+<div><a class="logo"><span class="logo-mark"><i></i></span>NetEngineerLab</a>
+<p style="max-width:300px;margin:14px 0 0">Professional online tools for telecom and network engineers. Calculations run in your browser.</p>
+<p class="mono" style="font-size:12.5px;margin-top:14px">netengineerlab@outlook.com</p></div>
+<div><h4>Tools</h4><a href="/tools/">Optical</a><a href="/tools/">IP networking</a><a href="/tools/">Wireless</a><a href="/tools/">Power &amp; data center</a></div>
+<div><h4>Resources</h4><a href="/guides/">Guides</a><a href="/topics/">Topics</a><a href="#">Methods &amp; validation</a></div>
+<div><h4>Company</h4><a href="/about/">About</a><a href="#">Contact</a><a href="#">Privacy</a><a href="#">Terms</a></div>
+</div>
+<div class="fbot"><span>© 2026 NetEngineerLab.com · Fieldbook v3 preview (noindex)</span><span>EN · 中文 · ES</span></div>
+</div></footer>
+</body>
+</html>
