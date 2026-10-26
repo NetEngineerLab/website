@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="fb.css?v=717f9e1bd77a">
-<link rel="stylesheet" href="fb-v3.css?v=23f18ccd095d">
+<link rel="stylesheet" href="fb-v3.css?v=5626e0723274">
 </head>
 <body class="has-mbar v3">
 <a class="skip-link" href="#f-tx">Skip to parameters</a>
@@ -296,30 +296,60 @@ Rx = Tx_min − physical loss</div>
 <li>2026-10-25 — Added structured content-review metadata (review date, formula basis, limits, log).</li>
 <li>2026-10-26 — Interactive Fieldbook preview: editable parameters, scenario presets, Save/CSV export, verify and maximum-distance modes (still noindex).</li>
 <li>2026-10-26 — Blocker fixes: integer count validation (no pre-truncation), CSS/JS cache-bust query hashes, formal nav routes (preview remains noindex).</li>
+<li>2026-10-26 — Restored Engineering Workflow parity from production (progress bar, step markers, secondary membership) in Fieldbook style.</li>
 </ul></div>
 </div>
 </div>
 
-<div class="blk" id="related">
-<span class="eyebrow">Workflow</span>
-<h2 style="margin-top:8px">Continue the engineering workflow</h2>
-<p>Build an optical link from physical loss assumptions through split planning, power budget and maximum reach verification. Current step: <b>Optical power budget</b> (step 3 of 5 in Optical Link Design Workflow).</p>
-<div class="wf-grid">
-<a class="wf-step" href="/tools/pon-splitter-loss/"><span>Previous</span><b>PON Splitter Loss Calculator</b><em>Plan multi-stage splitting and calculate total ratio, insertion loss and effective reach.</em></a>
-<a class="wf-step" href="/tools/pon-distance/"><span>Next</span><b>PON Maximum Distance Calculator</b><em>Calculate optical-budget reach, effective system reach and planned link margin.</em></a>
+<section class="blk fb-wf" id="related" aria-labelledby="fb-wf-title" data-tool-id="optical-power-budget" data-primary-workflow="optical-link-design">
+<span class="eyebrow">Engineering workflow</span>
+<h2 id="fb-wf-title" style="margin-top:8px">Continue the engineering workflow</h2>
+
+<div class="fb-wf-context">
+  <div class="fb-wf-context-main">
+    <span class="fb-wf-kicker">Current workflow</span>
+    <strong class="fb-wf-name">Optical Link Design Workflow</strong>
+    <p>Build an optical link from physical loss assumptions through split planning, power budget and maximum reach verification.</p>
+  </div>
+  <div class="fb-wf-step">
+    <strong>Step 3 of 5</strong>
+    <ol class="fb-wf-markers" aria-label="Optical Link Design Workflow steps">
+      <li><a href="/tools/fiber-loss/" title="Model physical and engineering loss">1</a></li>
+      <li><a href="/tools/pon-splitter-loss/" title="Plan splitter stages and insertion loss">2</a></li>
+      <li class="is-current" aria-current="step"><span title="Validate end-to-end optical margin">3</span></li>
+      <li><a href="/tools/pon-distance/" title="Check effective system reach">4</a></li>
+      <li><a href="/tools/odf-odn-resource-planner/" title="Convert the validated link into ODF/ODN resources and a planning BOM">5</a></li>
+    </ol>
+    <div class="fb-wf-progress" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="3" aria-valuetext="Step 3 of 5" aria-label="Step 3 of 5"><span style="width:60%"></span></div>
+  </div>
 </div>
-<h3 style="margin:18px 0 8px;font-size:15px">Related tools</h3>
-<div class="related-grid next">
-<a href="/tools/fiber-loss/"><span>Calculator</span><b>Fiber Loss Calculator →</b></a>
-<a href="/tools/pon-distance/"><span>Calculator</span><b>PON Maximum Distance →</b></a>
-<a href="/tools/onu-rx-power/"><span>Calculator</span><b>ONU RX Power Diagnosis →</b></a>
-<a href="/tools/fiber-latency-calculator/"><span>Calculator</span><b>Fiber Latency Calculator →</b></a>
-<a href="/topics/pon-optical/"><span>Topic hub</span><b>PON &amp; Optical →</b></a>
-<a href="/guides/fiber-link-budget-guide/"><span>Guide</span><b>Fiber link budget guide →</b></a>
-<a href="/guides/pon-splitter-loss-guide/"><span>Guide</span><b>PON splitter loss guide →</b></a>
-<a href="/guides/"><span>Guides</span><b>Engineering guides →</b></a>
+
+<div class="fb-wf-nav">
+  <a class="fb-wf-card" href="/tools/pon-splitter-loss/"><span class="fb-wf-label">Previous</span><strong>PON Splitter Loss Calculator</strong><span class="fb-wf-desc">Plan multi-stage splitting and calculate total ratio, insertion loss and effective reach.</span></a>
+  <a class="fb-wf-card" href="/tools/pon-distance/"><span class="fb-wf-label">Next</span><strong>PON Maximum Distance Calculator</strong><span class="fb-wf-desc">Calculate optical-budget reach, effective system reach and planned link margin.</span></a>
 </div>
+
+<h3 class="fb-wf-subtitle">Related tools</h3>
+<div class="fb-wf-related">
+  <a class="fb-wf-card" href="/tools/fiber-loss/"><strong>Fiber Loss Calculator</strong><span class="fb-wf-desc">Calculate fiber, splice, connector, splitter and engineering losses for an optical link.</span></a>
+  <a class="fb-wf-card" href="/tools/pon-distance/"><strong>PON Maximum Distance Calculator</strong><span class="fb-wf-desc">Calculate optical-budget reach, effective system reach and planned link margin.</span></a>
+  <a class="fb-wf-card" href="/tools/onu-rx-power/"><strong>ONU RX Power Diagnosis</strong><span class="fb-wf-desc">Diagnose normal, weak-light, overload or possible no-signal conditions from measured power.</span></a>
+  <a class="fb-wf-card" href="/tools/fiber-latency-calculator/"><strong>Fiber Latency Calculator</strong><span class="fb-wf-desc">Calculate one-way and round-trip fiber latency from distance, group index, equipment and serialization delay.</span></a>
 </div>
+
+<div class="fb-wf-memberships">
+  <span class="fb-wf-memberships-label">Also used in</span>
+  <span class="fb-wf-chip" title="Secondary workflow: step 4 of 4 — Confirm remaining optical margin">Optical Fault Isolation Workflow</span>
+</div>
+
+<h3 class="fb-wf-subtitle fb-wf-more-title">More resources</h3>
+<div class="related-grid next fb-wf-more">
+  <a href="/topics/pon-optical/"><span>Topic hub</span><b>PON &amp; Optical →</b></a>
+  <a href="/guides/fiber-link-budget-guide/"><span>Guide</span><b>Fiber link budget guide →</b></a>
+  <a href="/guides/pon-splitter-loss-guide/"><span>Guide</span><b>PON splitter loss guide →</b></a>
+  <a href="/guides/"><span>Guides</span><b>Engineering guides →</b></a>
+</div>
+</section>
 </div>
 </div>
 </div>
