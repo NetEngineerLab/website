@@ -8,6 +8,43 @@ Preview URL (must stay non-indexable):
 Production URL (keep as sole canonical):  
 `https://netengineerlab.com/tools/optical-power-budget/`
 
+
+## Locked migration principle（老版不丢，新版管布局）
+
+> **老版内容与功能不丢失，新版负责布局与视觉升级。**
+
+Cutover must preserve **all** legacy engineering content and features; Fieldbook only upgrades layout/visual hierarchy.
+
+### Content to keep (no loss)
+- Formulas, defaults, default GPON C+ case numbers
+- FAQ, standards links, applicability / review info
+- Engineering Workflow
+- Method / examples sections (merge duplicates; do not delete)
+
+### Features to keep (parity with old page)
+- Rx power **range**, maximum distance mode
+- Project notes, Save / Share / CSV export / Print / Reset
+- **Old-page-strict invalid input**: reject decimals like `1.5` **before** any trunc; disable export while invalid (already fixed on preview in #37)
+
+### URL / SEO (production only at cutover)
+- Keep production URL `/tools/optical-power-budget/`
+- Keep canonical, hreflang (`en` / `zh-CN` / `es` / `x-default`), JSON-LD, sitemap entries
+
+### Layout order when merging into production
+1. Short intro  
+2. Params + results  
+3. Method / examples  
+4. FAQ  
+5. Standards / review  
+6. Engineering Workflow  
+7. Long About **after** the calculator; merge duplicate copy
+
+### Go-live gate
+Content parity alone is **not** enough — retest functions + mobile/keyboard before replacing live `/tools/`.
+
+This prep PR / checklist does **not** authorize go-live replace.
+
+
 ## Preview protections to keep until cutover
 
 - [x] `<meta name="robots" content="noindex,nofollow">` on design HTML
@@ -44,10 +81,12 @@ Production URL (keep as sole canonical):
    - Content-hash or `?v=<hash>` on CSS/JS (site convention).
    - After deploy: hard-reload; confirm HTML query hashes match live body; CSSOM rule count matches HTTP CSS.
 
-6. **QA gates**
+6. **QA gates (required before go-live replace)**
    - Mobile 320/375/390 + desktop 768/1280/1440; keyboard focus; no horizontal overflow.
-   - Share / Save / CSV / Print / Reset.
-   - Search Console / CrUX not required for this prep PR.
+   - Share / Save / CSV / Print / Reset; invalid `1.5` / empty / negative counts.
+   - Feature parity checklist vs old page (Rx range, max distance, notes, exports).
+   - Content parity checklist (FAQ, standards, workflow, method).
+   - Search Console / CrUX not required for prep PRs.
 
 ## Out of scope for prep PRs
 
