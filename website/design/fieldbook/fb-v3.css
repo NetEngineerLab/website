@@ -442,3 +442,50 @@ body.v3 .tool-head h1{
   body.v3 .kbd-search{display:none}
   body.v3 .nav .wrap{gap:12px}
 }
+
+
+/* Mode tabs as real buttons + keyboard focus */
+body.v3 .tabs button{
+  font:500 13px var(--sans);
+  padding:5px 10px;
+  border-radius:6px;
+  border:0;
+  background:transparent;
+  color:var(--v3-muted);
+  cursor:pointer;
+  flex:1;
+  text-align:center;
+}
+body.v3 .tabs button.on{
+  background:#fff;
+  color:var(--v3-ink);
+  box-shadow:0 1px 0 rgba(15,23,42,.04);
+  font-weight:600;
+}
+body.v3 .mode-help{
+  margin:0 0 12px;
+  font-size:13px;
+  color:var(--v3-muted);
+  line-height:1.45;
+}
+body.v3 .skip-link{
+  position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;
+}
+body.v3 .skip-link:focus{
+  position:fixed;left:12px;top:12px;z-index:100;
+  width:auto;height:auto;overflow:visible;
+  background:#fff;color:var(--v3-ink);
+  border:2px solid var(--v3-blue);
+  border-radius:8px;padding:10px 14px;
+  font:600 14px var(--sans);
+}
+body.v3 .btn:focus-visible,
+body.v3 .scenario-card:focus-visible,
+body.v3 .presets button:focus-visible,
+body.v3 .tabs button:focus-visible,
+body.v3 .ro-acts button:focus-visible,
+body.v3 .adv summary:focus-visible{
+  outline:3px solid rgba(59,130,246,.45);
+  outline-offset:2px;
+}
+body.v3 .f.has-error label{color:#B91C1C}

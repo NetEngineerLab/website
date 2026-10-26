@@ -4,9 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<meta name="description" content="DESIGN PREVIEW — Fieldbook v3c Optical Power Budget Calculator. Light indigo-slate Budget Analysis + live SEO/GEO FAQ, methodology, standards and related tools. Not production; canonical points to the live calculator.">
+<meta name="description" content="DESIGN PREVIEW — Fieldbook optical power budget calculator. Not production. Canonical and Open Graph point to the live calculator at /tools/optical-power-budget/.">
 <title>Optical Power Budget Calculator — Fieldbook v3c preview | NetEngineerLab</title>
 <link rel="canonical" href="https://netengineerlab.com/tools/optical-power-budget/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NetEngineerLab">
+<meta property="og:title" content="Optical Power Budget Calculator | NetEngineerLab">
+<meta property="og:description" content="Professional optical power budget calculator for transmit power, receiver sensitivity, overload threshold, splitters, engineering margin, receive power and maximum distance.">
+<meta property="og:url" content="https://netengineerlab.com/tools/optical-power-budget/">
+<meta property="og:image" content="https://netengineerlab.com/tools/optical-power-budget/images/og-optical-power-budget.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Optical Power Budget Calculator | NetEngineerLab">
+<meta name="twitter:description" content="Professional optical power budget calculator for transmit power, receiver sensitivity, overload threshold, splitters, engineering margin, receive power and maximum distance.">
+<meta name="twitter:image" content="https://netengineerlab.com/tools/optical-power-budget/images/og-optical-power-budget.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
@@ -14,10 +24,10 @@
 <link rel="stylesheet" href="fb-v3.css">
 </head>
 <body class="has-mbar v3">
-<div class="preview-banner">DESIGN PREVIEW · Fieldbook OPB <b>v3c</b> (interactive polish · light indigo-slate readout + enriched SEO/GEO) — not production · noindex.
+<a class="skip-link" href="#f-tx">Skip to parameters</a>
+<div class="preview-banner">DESIGN PREVIEW · Fieldbook OPB <b>v3c</b> — not production · noindex.
 <a href="index.html">← Preview index</a> ·
-<a href="/tools/optical-power-budget/">Live calculator</a> ·
-<a href="tool-optical-power-budget.html">v1 mock</a>
+<a href="/tools/optical-power-budget/">Live calculator</a>
 </div>
 <header class="nav"><div class="wrap">
 <a class="logo" href="home.html"><span class="logo-mark"><i></i></span>NetEngineerLab</a>
@@ -58,7 +68,7 @@
 <section class="scenario-section" aria-label="Engineering scenarios">
 <div class="scenario-head">
 <p class="fs-t" style="margin:0">Engineering scenarios</p>
-<p class="scenario-hint">One control set — cards on desktop, compact chips on small screens. Selecting a scenario fills editable fields (same as the live tool).</p>
+<p class="scenario-hint">Choose a standards profile to fill equipment and ODN defaults. Edit any field to switch to Custom.</p>
 </div>
 <div class="scenario-grid" role="listbox" aria-label="Scenario cards">
 <button type="button" class="scenario-card on" data-preset="gpon-c" aria-pressed="true" role="option"><b>GPON C+ (32 dB)</b><span>Tx min +3 dBm · sensitivity −30 dBm · overload −8 dBm · path penalty 1 dB</span></button>
@@ -81,12 +91,13 @@
 <div class="panel">
 <div class="panel-h">
 <h2>Equipment and link parameters</h2>
-<div class="tabs" role="tablist" aria-label="Mode">
-<span class="on" role="tab" aria-selected="true">Link budget verification</span>
-<span role="tab" aria-selected="false" title="Preview focuses on verification layout">Maximum distance estimation</span>
+<div class="tabs" role="tablist" aria-label="Calculation mode">
+<button type="button" class="on" role="tab" id="mode-verify" data-mode="verify" aria-selected="true">Link budget verification</button>
+<button type="button" role="tab" id="mode-distance" data-mode="distance" aria-selected="false">Maximum distance estimation</button>
 </div>
 </div>
 <div class="fs">
+<p class="mode-help" id="mode-help">Verify whether an existing link meets the equipment power budget.</p>
 <p id="form-error" class="form-error" hidden></p>
 
 <div class="fg">
@@ -120,7 +131,7 @@
 
 <details class="adv">
 <summary>Advanced · third splitter &amp; other passive loss</summary>
-<p class="adv-note">Kept available so GEO/SEO methodology stays complete. Same fields as the live calculator.</p>
+<p class="adv-note">Optional third splitter and extra passive loss for complex ODN plants.</p>
 <div class="fields">
 <div class="f"><label for="f-s3">Third splitter</label><div class="inp sel"><select id="f-s3" aria-label="Third splitter"><option value="0" selected>None (0 dB)</option><option value="3.5">1:2 (3.5 dB)</option><option value="7.0">1:4 (7.0 dB)</option><option value="10.5">1:8 (10.5 dB)</option><option value="13.8">1:16 (13.8 dB)</option><option value="17.0">1:32 (17.0 dB)</option><option value="20.5">1:64 (20.5 dB)</option></select></div></div>
 <div class="f"><label for="f-other">Other passive loss</label><div class="inp"><input id="f-other" value="0" inputmode="decimal" aria-label="Other passive loss"><u>dB</u></div><small>WDM, attenuators, patch panels</small></div>
@@ -283,10 +294,8 @@ Rx = Tx_min − physical loss</div>
 <div class="review-card"><h3>Applicability limits</h3><p>Planning and troubleshooting aid for optical / PON link budgets. Presets are reference classes, not a guarantee for every OLT/ONU pair. Not a substitute for power-meter or OTDR acceptance, datasheet values, or enterprise standards. No XGS-PON preset; enter equipment values for G.9807.1 designs.</p></div>
 <div class="review-card"><h3>Update log</h3><ul>
 <li>2026-08-31 — Editorial review of power-window notes and official references.</li>
-<li>2026-10-25 — Added structured content-review metadata for GEO week 1.</li>
-<li>2026-10-26 — Fieldbook v3 design draft (preview only).</li>
-<li>2026-10-26 — Fieldbook v3b/v3c: light indigo-slate readout + enriched SEO/GEO (still noindex).</li>
-<li>2026-10-26 — Fieldbook v3c polish: interactive fields, scenario dedupe, L1–L3 result hierarchy (still noindex).</li>
+<li>2026-10-25 — Added structured content-review metadata (review date, formula basis, limits, log).</li>
+<li>2026-10-26 — Interactive Fieldbook preview: editable parameters, scenario presets, Save/CSV export, verify and maximum-distance modes (still noindex).</li>
 </ul></div>
 </div>
 </div>
@@ -324,7 +333,7 @@ Rx = Tx_min − physical loss</div>
 <div><h4>Resources</h4><a href="/guides/">Guides</a><a href="/topics/">Topics</a><a href="/about/">About</a></div>
 <div><h4>Company</h4><a href="/about/">About</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div>
 </div>
-<div class="fbot"><span>© 2026 NetEngineerLab.com · Fieldbook v3c preview (noindex)</span><span>EN · 中文 · ES</span></div>
+<div class="fbot"><span>© 2026 NetEngineerLab.com · Design preview (noindex)</span><span>EN · 中文 · ES</span></div>
 </div></footer>
 <script src="opb-engine-copy.js"></script>
 <script src="fb-v3-opb.js"></script>
