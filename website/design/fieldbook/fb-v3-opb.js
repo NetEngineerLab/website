@@ -43,9 +43,11 @@
     return parseFloat(String(el.value).replace(/[−–]/g, "-").replace(/,/g, ""));
   }
 
-  function int(id) {
-    const v = num(id);
-    return Number.isFinite(v) ? Math.trunc(v) : NaN;
+  // Count fields: pass the raw parsed number to the engine.
+  // Do NOT Math.trunc first — truncating hid decimals (e.g. 1.5 → 1) and
+  // defeated Number.isSafeInteger checks in the engine and markFieldErrors.
+  function count(id) {
+    return num(id);
   }
 
   function readValues() {
@@ -57,9 +59,9 @@
       penalty: num("f-penalty"),
       d: num("f-d"),
       a: num("f-a"),
-      sc: int("f-sc"),
+      sc: count("f-sc"),
       sl: num("f-sl"),
-      cc: int("f-cc"),
+      cc: count("f-cc"),
       cl: num("f-cl"),
       s1: num("f-s1"),
       s2: num("f-s2"),
@@ -67,6 +69,13 @@
       other: num("f-other"),
       margin: num("f-margin")
     };
+  }
+
+  function setExportEnabled(on) {
+    document.querySelectorAll("[data-ro-act=\"copy\"], [data-ro-act=\"save\"], [data-ro-act=\"csv\"]").forEach((el) => {
+      el.disabled = !on;
+      el.setAttribute("aria-disabled", on ? "false" : "true");
+    });
   }
 
   function setFields(p) {
@@ -156,14 +165,15 @@
 
   function showInvalid(msg) {
     last = null;
-    const meta = statusMeta("failed");
+    setExportEnabled(false);
     document.querySelectorAll("[data-status]").forEach((el) => {
-      el.className = "status " + meta.cls;
-      el.textContent = meta.label;
+      el.className = "status st-fail";
+      el.innerHTML = '<span class="st-ico" aria-hidden="true">?</span> Invalid input';
     });
-    setHTML("ro-reason", "<b>Check inputs.</b> " + msg);
+    setHTML("ro-reason", "<b>Invalid input.</b> " + msg);
     setText("ro-main-lbl", "Cannot compute");
     setHTML("ro-main-big", "—<small>dB</small>");
+    $("ro-main-big") && ($("ro-main-big").style.color = "");
     setText("ro-main-eqn", "");
     if ($("ro-meter-bar")) $("ro-meter-bar").style.width = "0%";
     setText("ro-meter-left", "—");
@@ -183,6 +193,7 @@
     }
     const { standard, physical, design, remain, rx, sensM, overM, fiber, splice, conn, split, st, usage, maxD } = result;
     last = Object.assign({ wave: $("f-wave").value, mode: activeMode }, v, result);
+    setExportEnabled(true);
     const meta = statusMeta(st);
     const tight = tightest(remain, sensM, overM);
     const tone =
