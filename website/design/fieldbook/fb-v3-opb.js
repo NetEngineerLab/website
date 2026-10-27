@@ -714,6 +714,7 @@
 
     syncExplainFolds();
     bindExplainAnchors();
+    bindTocScrollSpy();
     if (window.matchMedia) {
       const mq = window.matchMedia("(min-width: 769px)");
       const onChange = () => syncExplainFolds();
@@ -736,6 +737,76 @@
       details.open = true;
       details.dataset.userToggled = "1";
     }
+    const target = details || el;
+    requestAnimationFrame(() => {
+      try { target.scrollIntoView({ behavior: "smooth", block: "start" }); }
+      catch (_) { target.scrollIntoView(true); }
+    });
+  }
+
+
+  function bindTocScrollSpy() {
+    const toc = document.querySelector("nav.toc");
+    if (!toc) return;
+    const links = Array.prototype.slice.call(toc.querySelectorAll('a[href^="#"]'));
+    if (!links.length) return;
+    const items = links.map(function (a) {
+      const href = a.getAttribute("href") || "";
+      if (!/^#[A-Za-z][\w:-]*$/.test(href)) return null;
+      const id = href.slice(1);
+      const el = document.getElementById(id);
+      return el ? { id: id, el: el, a: a } : null;
+    }).filter(Boolean);
+    if (!items.length) return;
+
+    function setActive(id) {
+      links.forEach(function (a) {
+        const on = (a.getAttribute("href") || "") === "#" + id;
+        a.classList.toggle("on", on);
+        if (on) a.setAttribute("aria-current", "location");
+        else a.removeAttribute("aria-current");
+      });
+    }
+
+    function currentId() {
+      // Match sticky header + TOC top offset (~90–110px)
+      const probe = window.scrollY + 120;
+      let active = items[0].id;
+      for (let i = 0; i < items.length; i++) {
+        const top = items[i].el.getBoundingClientRect().top + window.scrollY;
+        if (top <= probe + 1) active = items[i].id;
+      }
+      // Near page bottom: force last section
+      const doc = document.documentElement;
+      if (window.innerHeight + window.scrollY >= doc.scrollHeight - 8) {
+        active = items[items.length - 1].id;
+      }
+      return active;
+    }
+
+    let ticking = false;
+    function update() {
+      ticking = false;
+      setActive(currentId());
+    }
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    links.forEach(function (a) {
+      a.addEventListener("click", function () {
+        const href = a.getAttribute("href") || "";
+        if (href.charAt(0) === "#") setActive(href.slice(1));
+      });
+    });
+    // Initial + after fold open/layout
+    update();
+    setTimeout(update, 100);
+    setTimeout(update, 400);
   }
 
   function bindExplainAnchors() {
