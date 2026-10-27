@@ -710,6 +710,27 @@ body.v3 details.fb-fold{
   }
   body.v3 .faq details:last-child{margin-bottom:0}
   body.v3 .below{gap:16px}
+  /* Last content → footer: kill stacked hole under related-tool cards */
+  body.v3 .prose > .blk:last-child,
+  body.v3 .prose > section.blk.fb-wf,
+  body.v3 .prose > section.blk.fb-wf .fb-wf-more-fold{
+    margin-bottom:0;
+  }
+  body.v3 .fb-wf-more,
+  body.v3 .related-grid{
+    margin-bottom:0;
+  }
+  body.v3 .fb-wf-more-fold > .fb-fold-body{
+    padding-bottom:12px;
+  }
+  body.v3 footer{
+    margin-top:12px;
+    padding:24px 0 28px;
+  }
+  body.v3 .fbot{
+    margin-top:20px;
+    padding-top:14px;
+  }
 }
 
 /* —— Mobile content strategy: params/results always open; explain folds —— */
