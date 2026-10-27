@@ -753,11 +753,13 @@ body.v3 details.fb-fold > .fb-fold-sum{
   list-style:none;
   display:flex;
   flex-wrap:wrap;
-  align-items:baseline;
+  align-items:center;
   gap:8px 12px;
   cursor:pointer;
-  padding:14px 16px;
-  font:600 15px/1.35 var(--sans);
+  padding:16px 16px;
+  min-height:52px;
+  box-sizing:border-box;
+  font:600 15px/1.4 var(--sans);
   color:var(--v3-ink);
 }
 body.v3 details.fb-fold > .fb-fold-sum::-webkit-details-marker{display:none}
@@ -771,7 +773,11 @@ body.v3 details.fb-fold[open] > .fb-fold-sum::after{content:"−"}
 body.v3 details.fb-fold > .fb-fold-sum .eyebrow{
   margin:0;
 }
-body.v3 details.fb-fold > .fb-fold-sum .fb-fold-title{flex:1 1 12rem}
+body.v3 details.fb-fold > .fb-fold-sum .fb-fold-title{
+  flex:1 1 12rem;
+  line-height:1.4;
+  padding:2px 0;
+}
 body.v3 details.fb-fold > .fb-fold-body{
   padding:0 16px 16px;
   border-top:1px solid var(--v3-border-soft);
