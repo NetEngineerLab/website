@@ -164,7 +164,7 @@ footer:not(.site-shell-footer){border-top:1px solid var(--line);margin-top:40px;
 .inp{display:flex;align-items:center;height:40px;border:1px solid var(--line-2);border-radius:8px;background:var(--surface);padding:0 10px 0 12px;font:500 14.5px var(--mono);color:var(--ink)}
 .inp.focus{border-color:var(--amber);box-shadow:0 0 0 3px rgba(232,89,12,.15)}
 .inp u{text-decoration:none;margin-left:auto;font:12px var(--mono);color:var(--faint)}
-.inp.sel:after{content:"⌄";margin-left:auto;color:var(--faint);font-size:14px;transform:translateY(-3px)}
+.inp.sel:after{content:"⌄";margin-left:8px;color:var(--faint);font-size:14px;transform:translateY(-3px);pointer-events:none;flex:0 0 auto}
 .f small{display:block;margin-top:5px;font-size:12px;color:var(--faint);line-height:1.4}
 .panel-f{display:flex;gap:10px;padding:14px 18px;border-top:1px solid var(--line);background:var(--paper);border-radius:0 0 var(--r-lg) var(--r-lg);align-items:center}
 .panel-f .note{margin-left:auto;font:12px var(--mono);color:var(--faint)}
@@ -304,6 +304,7 @@ section.sec{padding:56px 0}.sec-head{flex-direction:column;align-items:start}.se
 .eyebrow .dot{background:var(--ink-2)}
 /* inputs as real inputs */
 .inp input{all:unset;flex:1;min-width:0;font:500 15px var(--mono);color:var(--ink)}
+.inp select{all:unset;flex:1;min-width:0;width:100%;font:500 15px var(--mono);color:var(--ink);cursor:pointer;-webkit-appearance:none;appearance:none;background:transparent}
 .inp:focus-within{border-color:#E8590C;box-shadow:0 0 0 3px rgba(232,89,12,.18)}
 .f small{font-size:13px;color:var(--muted)}
 .f label{font-size:14px}
@@ -365,3 +366,29 @@ body:has(input:focus) .mbar{display:none}
 .wf .r{grid-template-columns:150px 1fr 76px}.wf .r em{white-space:nowrap}
 .wf .r em{min-width:76px}
 .eq{border-left-color:var(--ink-2)}.check li:before{color:var(--ink-2)}.ex div.hl{background:var(--paper-2)}.ex div.hl b{color:var(--ink)}
+
+/* Gate4B: OPB V3 keeps Fieldbook workspace; neutralize canonical grid crush */
+body.nel-opb-v3 main.tool-shell.nel-tool-main.nel-tool-grid.nel-tool-primary-grid{
+  display:block !important;
+  grid-template-columns:none !important;
+  max-width:none !important;
+  width:100% !important;
+  padding:0 !important;
+  gap:0 !important;
+}
+body.nel-opb-v3 main.tool-shell.nel-tool-grid > .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+body.nel-opb-v3 .ws{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:20px;align-items:start}
+body.nel-opb-v3 .input-panel.card.nel-tool-input,
+body.nel-opb-v3 .result-panel.card.nel-tool-result{
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+body.nel-opb-v3 .fields{grid-template-columns:repeat(3,minmax(0,1fr))}
+body.nel-opb-v3 .inp{min-width:0}
+body.nel-opb-v3 .inp select{min-width:3ch}
+@media (max-width:960px){
+  body.nel-opb-v3 .ws{grid-template-columns:1fr}
+}
+
