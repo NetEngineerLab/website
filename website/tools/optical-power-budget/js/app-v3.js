@@ -23,7 +23,18 @@
       recordSaved: "Record saved",
       fixFirst: "Fix inputs first",
       emptyHist: "No saved records yet. Calculate and click Save.",
-      clearHist: "Clear all saved records?"
+      clearHist: "Clear all saved records?",
+      tightestIs: "Tightest is ",
+      tightestAt: " at ",
+      tightestLbl: "Tightest margin · ",
+      maxDistReason: "Estimated maximum reach is ",
+      maxDistReasonTail: " km for the current fixed losses and margins.",
+      maxDistLbl: "Estimated maximum distance",
+      budgetUsed: "Budget used ",
+      fiberLbl: "Fiber ",
+      splittersLbl: "Splitters",
+      connectorsLbl: "Connectors ",
+      splicesLbl: "Splices "
     },
     zh: {
       pass: "✓ 健康", marginal: "⚠ 风险", fail: "✕ 超限", invalid: "无效",
@@ -42,7 +53,18 @@
       recordSaved: "记录已保存",
       fixFirst: "请先修正输入",
       emptyHist: "暂无记录。完成计算后点击“保存”。",
-      clearHist: "确定清空全部记录吗？"
+      clearHist: "确定清空全部记录吗？",
+      tightestIs: "最紧项为",
+      tightestAt: "，",
+      tightestLbl: "最紧余量 · ",
+      maxDistReason: "按当前固定损耗与余量，估算最大传输距离为 ",
+      maxDistReasonTail: " km。",
+      maxDistLbl: "估算最大距离",
+      budgetUsed: "预算使用 ",
+      fiberLbl: "光纤 ",
+      splittersLbl: "分光器",
+      connectorsLbl: "连接器 ",
+      splicesLbl: "熔接 "
     },
     es: {
       pass: "✓ Correcto", marginal: "⚠ Marginal", fail: "✕ Fallo", invalid: "Inválido",
@@ -61,7 +83,18 @@
       recordSaved: "Registro guardado",
       fixFirst: "Corrija las entradas primero",
       emptyHist: "Aún no hay registros. Calcule y pulse Guardar.",
-      clearHist: "¿Borrar todos los registros guardados?"
+      clearHist: "¿Borrar todos los registros guardados?",
+      tightestIs: "El más ajustado es ",
+      tightestAt: " a ",
+      tightestLbl: "Margen más ajustado · ",
+      maxDistReason: "El alcance máximo estimado es ",
+      maxDistReasonTail: " km con las pérdidas fijas y márgenes actuales.",
+      maxDistLbl: "Distancia máxima estimada",
+      budgetUsed: "Presupuesto usado ",
+      fiberLbl: "Fibra ",
+      splittersLbl: "Divisores",
+      connectorsLbl: "Conectores ",
+      splicesLbl: "Empalmes "
     }
   };
   const T = I18N[LOCALE] || I18N.en;
@@ -324,11 +357,12 @@
         "ro-reason",
         "<b>" +
           reasonLead +
-          "</b> Estimated maximum reach is " +
+          "</b> " +
+          T.maxDistReason +
           fmt(maxD) +
-          " km for the current fixed losses and margins."
+          T.maxDistReasonTail
       );
-      setText("ro-main-lbl", "Estimated maximum distance");
+      setText("ro-main-lbl", T.maxDistLbl);
       setHTML("ro-main-big", fmt(maxD) + "<small>km</small>");
       $("ro-main-big").style.color = tone;
       setText(
@@ -351,13 +385,14 @@
         "ro-reason",
         "<b>" +
           reasonLead +
-          "</b> Tightest is " +
-          tight.label.toLowerCase() +
-          " at " +
+          "</b> " +
+          T.tightestIs +
+          tight.label +
+          T.tightestAt +
           fmt(tight.value) +
           " dB."
       );
-      setText("ro-main-lbl", "Tightest margin · " + tight.label);
+      setText("ro-main-lbl", T.tightestLbl + tight.label);
       setHTML("ro-main-big", fmt(tight.value) + "<small>dB</small>");
       $("ro-main-big").style.color = tone;
       setText(
@@ -378,7 +413,7 @@
 
     const u = Math.max(0, Math.min(130, usage));
     $("ro-meter-bar").style.width = Math.min(100, u) + "%";
-    setText("ro-meter-left", "Budget used " + Math.round(u) + "%");
+    setText("ro-meter-left", T.budgetUsed + Math.round(u) + "%");
     setText("ro-meter-right", fmt(design) + " / " + fmt(standard) + " dB");
 
     setHTML("ro-rx", fmt(rx) + "<small>dBm</small>");
@@ -407,10 +442,10 @@
     setText("ro-ck-over", fmt(overM) + " dB");
 
     const maxPart = Math.max(fiber, splice, conn, split, 0.001);
-    setBar("wf-fiber", fiber, maxPart, "Fiber " + fmt(v.d, 2) + " km × " + fmt(v.a));
-    setBar("wf-split", split, maxPart, "Splitters");
-    setBar("wf-conn", conn, maxPart, "Connectors " + v.cc + " × " + fmt(v.cl));
-    setBar("wf-splice", splice, maxPart, "Splices " + v.sc + " × " + fmt(v.sl));
+    setBar("wf-fiber", fiber, maxPart, T.fiberLbl + fmt(v.d, 2) + " km × " + fmt(v.a));
+    setBar("wf-split", split, maxPart, T.splittersLbl);
+    setBar("wf-conn", conn, maxPart, T.connectorsLbl + v.cc + " × " + fmt(v.cl));
+    setBar("wf-splice", splice, maxPart, T.splicesLbl + v.sc + " × " + fmt(v.sl));
 
     return result;
   }

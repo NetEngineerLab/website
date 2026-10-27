@@ -1,5 +1,88 @@
-/* V3 production bridge */
-body.nel-opb-v3 .preview-banner { display: none !important; }
+/* V3 production bridge — keep CI DOM (input-panel/result-panel) + Fieldbook look */
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap");
+
+body.nel-opb-v3{
+  --sans:"Geist",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+body.nel-opb-v3.v3,
+body.nel-tool-detail-page.nel-opb-v3{
+  background:
+    radial-gradient(1200px 480px at 12% -10%, rgba(59,130,246,.05), transparent 60%),
+    radial-gradient(900px 420px at 88% 0%, rgba(232,89,12,.04), transparent 55%),
+    #F6F4EF !important;
+  color:#0F172A;
+}
+body.nel-opb-v3 .preview-banner{display:none !important}
+
+/* Alias CI panel classes → Fieldbook panel chrome */
+body.nel-opb-v3 .input-panel,
+body.nel-opb-v3 .result-panel,
+body.nel-opb-v3 .nel-tool-input,
+body.nel-opb-v3 .nel-tool-result,
+body.nel-opb-v3 .fb-panel{
+  background:#fff !important;
+  border:1px solid #D8DEE8 !important;
+  border-radius:16px !important;
+  box-shadow:0 1px 0 rgba(15,23,42,.03) !important;
+  position:relative;
+}
+body.nel-opb-v3 .input-panel:before,
+body.nel-opb-v3 .result-panel:before,
+body.nel-opb-v3 .nel-tool-input:before,
+body.nel-opb-v3 .nel-tool-result:before,
+body.nel-opb-v3 .fb-panel:before{
+  content:"";
+  position:absolute;left:0;right:0;top:0;height:2px;
+  border-radius:16px 16px 0 0;
+  background:linear-gradient(90deg,#3B82F6,#0891B2,#E8590C);
+  opacity:.7;
+  pointer-events:none;
+}
+body.nel-opb-v3 .nel-tool-primary-grid,
+body.nel-opb-v3 main.nel-tool-primary-grid{
+  align-items:start !important;
+}
+
+/* Table alignment (override display:block from fb.css mobile) */
+body.nel-opb-v3 .fb-fold-body,
+body.nel-opb-v3 #component-check .fb-fold-body{
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+body.nel-opb-v3 table.t{
+  display:table !important;
+  width:100% !important;
+  max-width:100%;
+  table-layout:fixed;
+  border-collapse:collapse;
+  margin:12px 0 8px;
+  background:#fff;
+  border:1px solid #D8DEE8;
+  border-radius:10px;
+  overflow:hidden;
+}
+body.nel-opb-v3 table.t th,
+body.nel-opb-v3 table.t td{
+  padding:10px 12px;
+  text-align:left;
+  vertical-align:top;
+  border-bottom:1px solid #E8ECF2;
+  word-break:break-word;
+}
+body.nel-opb-v3 table.t tr:last-child th,
+body.nel-opb-v3 table.t tr:last-child td{border-bottom:0}
+body.nel-opb-v3 table.t th:last-child,
+body.nel-opb-v3 table.t td:last-child,
+body.nel-opb-v3 table.t td.n{
+  text-align:right;
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap;
+  width:7.5rem;
+}
+body.nel-opb-v3 table.t th:first-child{width:28%}
+body.nel-opb-v3 table.t th:nth-child(2){width:auto}
+
 body.nel-opb-v3 details.fb-fold,
 body.nel-opb-v3 #component-check,
 body.nel-opb-v3 #methodology,
@@ -10,8 +93,34 @@ body.nel-opb-v3 #history,
 body.nel-opb-v3 #references,
 body.nel-opb-v3 #content-review,
 body.nel-opb-v3 #nel-tool-graph,
-body.nel-opb-v3 #calculator {
-  scroll-margin-top: 88px;
+body.nel-opb-v3 #calculator{
+  scroll-margin-top:88px;
 }
-body.nel-opb-v3 .tool-lede { max-width: 52rem; }
-body.nel-opb-v3 .crumbs { display: none; } /* site shell breadcrumbs already present */
+body.nel-opb-v3 .tool-lede{max-width:52rem}
+body.nel-opb-v3 .crumbs{display:none}
+
+/* Mobile: fold full workflow details; keep step bar + prev/next */
+@media (max-width:768px){
+  body.nel-opb-v3 .nel-tool-graph-related,
+  body.nel-opb-v3 .nel-workflow-memberships,
+  body.nel-opb-v3 .nel-tool-graph .nel-tool-graph-description,
+  body.nel-opb-v3 .nel-tool-graph > p,
+  body.nel-opb-v3 details.fb-wf-more-fold:not([open]) .fb-fold-body{
+    /* handled via details when present */
+  }
+  body.nel-opb-v3 .nel-wf-extra{display:none}
+  body.nel-opb-v3 details.nel-wf-fold > summary{
+    list-style:none;
+    cursor:pointer;
+    font:600 13px/1.4 var(--sans);
+    color:#334155;
+    padding:10px 0 4px;
+  }
+  body.nel-opb-v3 details.nel-wf-fold > summary::-webkit-details-marker{display:none}
+  body.nel-opb-v3 details.nel-wf-fold:not([open]) .nel-wf-extra{display:none}
+  body.nel-opb-v3 details.nel-wf-fold[open] .nel-wf-extra{display:block}
+}
+@media (min-width:769px){
+  body.nel-opb-v3 details.nel-wf-fold > summary{display:none}
+  body.nel-opb-v3 .nel-wf-extra{display:block !important}
+}
