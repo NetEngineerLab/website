@@ -409,8 +409,9 @@ body.v3 .faq details{
   border:1px solid var(--v3-border-soft);
   border-radius:12px;
   padding:12px 14px;
-  margin:0 0 8px;
+  margin:0 0 12px;
 }
+body.v3 .faq details:last-child{margin-bottom:0}
 body.v3 .faq summary{font-weight:600;color:var(--v3-ink);cursor:pointer}
 body.v3 .faq details p{margin:8px 0 0;color:var(--v3-ink-2);font-size:14.5px;line-height:1.55}
 body.v3 .tool-head h1{
@@ -677,6 +678,39 @@ body.v3 .fb-wf-more{margin-top:10px}
   body.v3 .fb-wf{display:none !important}
 }
 
+
+/* —— Vertical rhythm: kill .prose .blk 56px hole between FAQ and next fold —— */
+body.v3 .prose > .blk,
+body.v3 .prose > details.fb-fold.blk,
+body.v3 .prose > section.blk{
+  margin-bottom:12px;
+}
+body.v3 .prose > .blk.faq{
+  margin-bottom:12px;
+  margin-top:0;
+}
+body.v3 .prose > .blk.faq > h2{
+  margin:8px 0 12px;
+  font-size:22px;
+  letter-spacing:-.02em;
+}
+body.v3 .prose > .blk.faq > .eyebrow{display:inline-block;margin:0 0 0}
+/* Keep fold-to-fold / FAQ-to-fold gaps equal on all viewports */
+body.v3 details.fb-fold{
+  margin:0 0 12px;
+}
+@media (max-width:768px){
+  body.v3 .prose > .blk,
+  body.v3 .prose > details.fb-fold.blk,
+  body.v3 .prose > section.blk,
+  body.v3 .prose > .blk.faq,
+  body.v3 details.fb-fold,
+  body.v3 .faq details{
+    margin-bottom:12px;
+  }
+  body.v3 .faq details:last-child{margin-bottom:0}
+  body.v3 .below{gap:16px}
+}
 
 /* —— Mobile content strategy: params/results always open; explain folds —— */
 body.v3 .tool-lede{
