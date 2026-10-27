@@ -939,3 +939,30 @@ body.v3 .ro-how .how-ro-inline:hover{border-bottom-color:currentColor}
 @media (max-width:768px){
   body.v3 .readout .how-ro{margin-left:0}
 }
+
+
+/* Layout polish: top-align workbench; fill docs column (less right dead space) */
+body.v3 .ws{
+  align-items:start;
+}
+body.v3 .ws > .panel{
+  align-self:start;
+  height:max-content;
+}
+body.v3 .ws > .readout{
+  align-self:start;
+}
+body.v3 .below{
+  grid-template-columns:minmax(160px,200px) minmax(0,1fr);
+  gap:36px;
+}
+body.v3 .below > .prose{
+  max-width:none; /* fill remaining track; was 720px leaving a wide right gutter */
+}
+@media (min-width:1180px){
+  body.v3 .below{
+    grid-template-columns:minmax(180px,220px) minmax(0,1fr);
+    gap:40px;
+  }
+}
+
