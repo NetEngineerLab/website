@@ -621,6 +621,32 @@
 
     if (!loadFromQuery()) applyPreset("gpon-c");
     else calc();
+
+    syncExplainFolds();
+    if (window.matchMedia) {
+      const mq = window.matchMedia("(min-width: 769px)");
+      const onChange = () => syncExplainFolds();
+      if (mq.addEventListener) mq.addEventListener("change", onChange);
+      else if (mq.addListener) mq.addListener(onChange);
+    }
+  }
+
+  function syncExplainFolds() {
+    const desktop = window.matchMedia ? window.matchMedia("(min-width: 769px)").matches : true;
+    document.querySelectorAll("details.fb-fold").forEach((el) => {
+      el.classList.toggle("fb-desktop-open", desktop);
+      if (desktop) {
+        el.open = true;
+      } else if (el.dataset.userToggled !== "1") {
+        el.open = false;
+      }
+      if (el.dataset.foldBound) return;
+      el.dataset.foldBound = "1";
+      el.addEventListener("toggle", () => {
+        const isDesktop = window.matchMedia ? window.matchMedia("(min-width: 769px)").matches : true;
+        if (!isDesktop) el.dataset.userToggled = "1";
+      });
+    });
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bind);
