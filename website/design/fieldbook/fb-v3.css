@@ -856,29 +856,39 @@ body.v3 .fb-wf-card--nav{padding:12px 14px}
 }
 
 
-/* Desktop docs grid: keep TOC and prose in separate tracks (no overlap) */
-body.v3 .below{
-  display:grid;
-  grid-template-columns:minmax(0,220px) minmax(0,1fr);
-  gap:48px;
+/* Docs grid + TOC: desktop two-col; mobile NEVER dual-column with empty TOC track */
+body.v3 .ws{
   align-items:start;
 }
-body.v3 .below > .toc{
-  position:sticky;
-  top:90px;
+body.v3 .ws > .panel{
   align-self:start;
-  z-index:2;
-  background:var(--paper, #F6F4EF);
-  padding-bottom:8px;
+  height:max-content;
+}
+body.v3 .ws > .readout{
+  align-self:start;
+}
+
+/* Default (mobile-first): single column, TOC hidden — empty sticky track must not reserve width */
+body.v3 .below{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:16px;
+  align-items:start;
+  margin-top:28px;
+}
+body.v3 .below > .toc{
+  display:none;
 }
 body.v3 .below > .prose{
   min-width:0;
-  max-width:720px;
+  max-width:none;
   position:relative;
   z-index:1;
+  grid-column:1 / -1;
 }
 body.v3 .below > .prose > *{min-width:0}
 body.v3 .f-wide{grid-column:1 / -1}
+
 body.v3 .history-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:0 0 12px}
 body.v3 .history-hint{margin:0;color:var(--v3-muted);font-size:13.5px}
 body.v3 .history-list{display:grid;gap:8px}
@@ -900,11 +910,88 @@ body.v3 .history-item:hover{border-color:#c7d2fe}
 body.v3 .history-item b{display:block;font-size:14.5px}
 body.v3 .history-item span{display:block;font-size:12.5px;color:var(--v3-muted);margin-top:2px}
 body.v3 .history-item .history-meta{font:12px var(--mono);color:var(--v3-muted);white-space:nowrap}
-@media (max-width:960px){
-  body.v3 .below{grid-template-columns:minmax(0,1fr);gap:24px}
-  body.v3 .below > .toc{display:none}
+
+/* Desktop (≥961): sticky TOC + prose, top-aligned, TOC more prominent */
+@media (min-width:961px){
+  body.v3 .below{
+    grid-template-columns:minmax(180px,228px) minmax(0,1fr);
+    gap:36px;
+    margin-top:48px;
+  }
+  body.v3 .below > .toc{
+    display:block;
+    position:sticky;
+    top:90px;
+    align-self:start;
+    z-index:2;
+    background:rgba(255,255,255,.72);
+    border:1px solid var(--v3-border-soft, #E2E8F0);
+    border-radius:14px;
+    padding:14px 12px 16px;
+    box-shadow:0 1px 0 rgba(15,23,42,.04);
+  }
+  body.v3 .below > .toc h4{
+    margin:0 0 12px;
+    padding:0 8px;
+    font:600 12px var(--sans) !important;
+    letter-spacing:.08em !important;
+    text-transform:uppercase;
+    color:var(--v3-ink, #0F172A) !important;
+    opacity:1;
+  }
+  body.v3 .below > .toc a{
+    display:block;
+    margin:0;
+    padding:8px 10px 8px 12px;
+    border-left:3px solid transparent;
+    border-radius:0 8px 8px 0;
+    color:var(--v3-ink-2, #334155);
+    font:500 13.5px/1.35 var(--sans);
+    text-decoration:none;
+  }
+  body.v3 .below > .toc a:hover{
+    background:rgba(238,242,255,.7);
+    color:var(--v3-ink, #0F172A);
+  }
+  body.v3 .below > .toc a.on{
+    border-left-color:var(--amber, #E8590C);
+    background:rgba(255,247,237,.95);
+    color:var(--v3-ink, #0F172A);
+    font-weight:600;
+  }
+  body.v3 .below > .prose{
+    grid-column:auto;
+  }
+}
+@media (min-width:1180px){
+  body.v3 .below{
+    grid-template-columns:minmax(200px,240px) minmax(0,1fr);
+    gap:40px;
+  }
 }
 
+/* Phone: keep single column + tighter result→fold rhythm (overrides any base .below margin) */
+@media (max-width:768px){
+  body.v3 .below{
+    grid-template-columns:minmax(0,1fr) !important;
+    gap:12px;
+    margin-top:20px;
+  }
+  body.v3 .below > .toc{
+    display:none !important;
+  }
+  body.v3 .below > .prose{
+    grid-column:1 / -1;
+    width:100%;
+    max-width:none;
+  }
+  body.v3 .ws{
+    gap:16px;
+  }
+  body.v3 .prose > details.fb-fold.blk:first-child{
+    margin-top:0;
+  }
+}
 
 /* lag-fix: how calculated in readout */
 body.v3 .readout .ro-h{
@@ -938,31 +1025,5 @@ body.v3 .ro-how .how-ro-inline{
 body.v3 .ro-how .how-ro-inline:hover{border-bottom-color:currentColor}
 @media (max-width:768px){
   body.v3 .readout .how-ro{margin-left:0}
-}
-
-
-/* Layout polish: top-align workbench; fill docs column (less right dead space) */
-body.v3 .ws{
-  align-items:start;
-}
-body.v3 .ws > .panel{
-  align-self:start;
-  height:max-content;
-}
-body.v3 .ws > .readout{
-  align-self:start;
-}
-body.v3 .below{
-  grid-template-columns:minmax(160px,200px) minmax(0,1fr);
-  gap:36px;
-}
-body.v3 .below > .prose{
-  max-width:none; /* fill remaining track; was 720px leaving a wide right gutter */
-}
-@media (min-width:1180px){
-  body.v3 .below{
-    grid-template-columns:minmax(180px,220px) minmax(0,1fr);
-    gap:40px;
-  }
 }
 
