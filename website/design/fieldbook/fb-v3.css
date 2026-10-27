@@ -676,3 +676,120 @@ body.v3 .fb-wf-more{margin-top:10px}
 @media print{
   body.v3 .fb-wf{display:none !important}
 }
+
+
+/* —— Mobile content strategy: params/results always open; explain folds —— */
+body.v3 .tool-lede{
+  max-width:62ch;
+  margin:8px 0 0;
+  font-size:15.5px;
+  line-height:1.55;
+  color:var(--v3-ink-2);
+}
+body.v3 details.fb-fold{
+  background:#fff;
+  border:1px solid var(--v3-border-soft);
+  border-radius:14px;
+  padding:0;
+  margin:0 0 12px;
+  overflow:clip;
+}
+body.v3 details.fb-fold > .fb-fold-sum{
+  list-style:none;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  gap:8px 12px;
+  cursor:pointer;
+  padding:14px 16px;
+  font:600 15px/1.35 var(--sans);
+  color:var(--v3-ink);
+}
+body.v3 details.fb-fold > .fb-fold-sum::-webkit-details-marker{display:none}
+body.v3 details.fb-fold > .fb-fold-sum::after{
+  content:"+";
+  margin-left:auto;
+  font:700 18px/1 var(--mono);
+  color:var(--v3-muted);
+}
+body.v3 details.fb-fold[open] > .fb-fold-sum::after{content:"−"}
+body.v3 details.fb-fold > .fb-fold-sum .eyebrow{
+  margin:0;
+}
+body.v3 details.fb-fold > .fb-fold-sum .fb-fold-title{flex:1 1 12rem}
+body.v3 details.fb-fold > .fb-fold-body{
+  padding:0 16px 16px;
+  border-top:1px solid var(--v3-border-soft);
+  padding-top:14px;
+}
+body.v3 details.fb-fold.about-card,
+body.v3 .about-card-inline{
+  box-shadow:none;
+}
+body.v3 .about-card-inline .about-meta{margin-top:10px}
+body.v3 details.fb-fold:focus-within > .fb-fold-sum{
+  outline:3px solid rgba(59,130,246,.35);
+  outline-offset:-3px;
+  border-radius:14px;
+}
+body.v3 .fb-wf-more-fold{margin-top:12px}
+body.v3 .fb-wf-blurb{
+  margin:0 0 12px;
+  color:var(--v3-ink-2);
+  font-size:14.5px;
+  line-height:1.6;
+  max-width:70ch;
+}
+
+/* Compact workflow always visible */
+body.v3 .fb-wf-compact{margin-top:10px}
+body.v3 .fb-wf-context--compact{
+  /* single-column friendly base; desktop restores 2-col below */
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:14px;
+  align-items:start;
+}
+body.v3 .fb-wf-nav--compact .fb-wf-card--nav .fb-wf-desc{display:none}
+body.v3 .fb-wf-card--nav{padding:12px 14px}
+
+/* Fix mobile double-column crush on workflow (before fold) */
+@media (max-width:768px){
+  body.v3 .fb-wf-context,
+  body.v3 .fb-wf-context--compact,
+  body.v3 .fb-wf-nav,
+  body.v3 .fb-wf-nav--compact,
+  body.v3 .fb-wf-related,
+  body.v3 .related-grid{
+    grid-template-columns:minmax(0,1fr) !important;
+  }
+  body.v3 .fb-wf-step{text-align:left}
+  body.v3 .fb-wf-markers{
+    justify-content:flex-start;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  body.v3 .fb-wf-markers a,
+  body.v3 .fb-wf-markers span{
+    width:28px;height:28px;
+  }
+  body.v3 .fb-wf-card,
+  body.v3 .fb-wf-card--nav{min-width:0;max-width:100%}
+  body.v3 .fb-wf-name{overflow-wrap:anywhere}
+  /* FAQ items stay collapsed by HTML; ensure no forced open */
+  body.v3 .faq details[open]{/* user may open */}
+}
+
+/* Desktop: keep explain folds expanded (content already in HTML for SEO/GEO) */
+@media (min-width:769px){
+  body.v3 .fb-wf-context--compact{
+    grid-template-columns:minmax(0,1fr) minmax(200px,280px);
+    align-items:center;
+  }
+  body.v3 .fb-wf-step{text-align:right}
+  body.v3 .fb-wf-markers{justify-content:flex-end}
+  /* Force-open appearance even if attribute lags JS */
+  body.v3 details.fb-fold.fb-desktop-open > .fb-fold-body,
+  body.v3 details.fb-fold[open] > .fb-fold-body{display:block}
+  body.v3 details.fb-fold.fb-desktop-open > .fb-fold-sum::after{content:"−"}
+}
