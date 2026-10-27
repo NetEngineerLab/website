@@ -233,7 +233,7 @@
 <a href="#history">Recent calculations</a>
 <a href="#references">Official references</a>
 <a href="#content-review">Content review</a>
-<a href="#related">Engineering workflow</a>
+<a href="#nel-tool-graph">Engineering workflow</a>
 </nav>
 
 <div class="prose">
@@ -362,59 +362,22 @@ Rx = Tx_min − physical loss</div>
 </div>
 </details>
 
-<section class="blk fb-wf" id="related" aria-labelledby="fb-wf-title" data-tool-id="optical-power-budget" data-primary-workflow="optical-link-design">
-<span class="eyebrow">Engineering workflow</span>
-<h2 id="fb-wf-title" style="margin-top:8px">Continue the engineering workflow</h2>
-
-<div class="fb-wf-compact" aria-label="Workflow summary">
-  <div class="fb-wf-context fb-wf-context--compact">
-    <div class="fb-wf-context-main">
-      <span class="fb-wf-kicker">Current workflow</span>
-      <strong class="fb-wf-name">Optical Link Design Workflow</strong>
-    </div>
-    <div class="fb-wf-step">
-      <strong>Step 3 of 5</strong>
-      <ol class="fb-wf-markers" aria-label="Optical Link Design Workflow steps">
-        <li><a href="/tools/fiber-loss/" title="Model physical and engineering loss">1</a></li>
-        <li><a href="/tools/pon-splitter-loss/" title="Plan splitter stages and insertion loss">2</a></li>
-        <li class="is-current" aria-current="step"><span title="Validate end-to-end optical margin">3</span></li>
-        <li><a href="/tools/pon-distance/" title="Check effective system reach">4</a></li>
-        <li><a href="/tools/odf-odn-resource-planner/" title="Convert the validated link into ODF/ODN resources and a planning BOM">5</a></li>
-      </ol>
-      <div class="fb-wf-progress" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="3" aria-valuetext="Step 3 of 5" aria-label="Step 3 of 5"><span style="width:60%"></span></div>
-    </div>
-  </div>
-  <div class="fb-wf-nav fb-wf-nav--compact">
-    <a class="fb-wf-card fb-wf-card--nav" href="/tools/pon-splitter-loss/"><span class="fb-wf-label">Previous</span><strong>PON Splitter Loss Calculator</strong></a>
-    <a class="fb-wf-card fb-wf-card--nav" href="/tools/pon-distance/"><span class="fb-wf-label">Next</span><strong>PON Maximum Distance Calculator</strong></a>
-  </div>
-</div>
-
-<details class="fb-fold fb-wf-more-fold">
-<summary class="fb-fold-sum"><span class="fb-fold-title">Show full workflow</span></summary>
-<div class="fb-fold-body">
-  <p class="fb-wf-blurb">Build an optical link from physical loss assumptions through split planning, power budget and maximum reach verification.</p>
-  <h3 class="fb-wf-subtitle">Related tools</h3>
-  <div class="fb-wf-related">
-    <a class="fb-wf-card" href="/tools/fiber-loss/"><strong>Fiber Loss Calculator</strong><span class="fb-wf-desc">Calculate fiber, splice, connector, splitter and engineering losses for an optical link.</span></a>
-    <a class="fb-wf-card" href="/tools/pon-distance/"><strong>PON Maximum Distance Calculator</strong><span class="fb-wf-desc">Calculate optical-budget reach, effective system reach and planned link margin.</span></a>
-    <a class="fb-wf-card" href="/tools/onu-rx-power/"><strong>ONU RX Power Diagnosis</strong><span class="fb-wf-desc">Diagnose normal, weak-light, overload or possible no-signal conditions from measured power.</span></a>
-    <a class="fb-wf-card" href="/tools/fiber-latency-calculator/"><strong>Fiber Latency Calculator</strong><span class="fb-wf-desc">Calculate one-way and round-trip fiber latency from distance, group index, equipment and serialization delay.</span></a>
-  </div>
-  <div class="fb-wf-memberships">
-    <span class="fb-wf-memberships-label">Also used in</span>
-    <span class="fb-wf-chip" title="Secondary workflow: step 4 of 4 — Confirm remaining optical margin">Optical Fault Isolation Workflow</span>
-  </div>
-  <h3 class="fb-wf-subtitle fb-wf-more-title">More resources</h3>
-  <div class="related-grid next fb-wf-more">
-    <a href="/topics/pon-optical/"><span>Topic hub</span><b>PON &amp; Optical →</b></a>
-    <a href="/guides/fiber-link-budget-guide/"><span>Guide</span><b>Fiber link budget guide →</b></a>
-    <a href="/guides/pon-splitter-loss-guide/"><span>Guide</span><b>PON splitter loss guide →</b></a>
-    <a href="/guides/"><span>Guides</span><b>Engineering guides →</b></a>
-  </div>
-</div>
-</details>
+<!-- NEL_PON_LINKS_START -->
+<section class="content-section nel-tool-supporting-section" id="pon-toolkit" aria-labelledby="pon-toolkit-title">
+<div class="section-heading"><div><p class="eyebrow">PON PLANNING TOOLKIT</p><h2 id="pon-toolkit-title">Related PON and fiber tools</h2></div></div>
+<p>Work through a PON design in order: split ratio, distance, receive power, then the full link budget.</p>
+<ul class="nel-pon-toolkit"><li><a href="../pon-splitter-loss/">PON splitter loss – dB per split ratio and cascades</a></li><li><a href="../pon-distance/">PON maximum distance – optical budget vs. 20 km reach</a></li><li><a href="../onu-rx-power/">ONU receive power – is the dBm reading normal?</a></li><li><a href="../fiber-loss/">Fiber loss – attenuation, splices and connectors</a></li><li><a href="../pon-fiber-calculators/">All PON and fiber calculators</a></li></ul>
+<h3>Guides</h3>
+<ul class="nel-pon-guides"><li><a href="../../guides/pon-splitter-loss-guide/">PON splitter loss guide</a></li><li><a href="../../guides/fiber-link-budget-guide/">Fiber link budget guide</a></li><li><a href="../../topics/pon-optical/">PON and optical topic hub</a></li></ul>
 </section>
+<!-- NEL_PON_LINKS_END -->
+<!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="optical-power-budget" data-primary-workflow="optical-link-design">
+<div class="section-heading"><div><p class="eyebrow">ENGINEERING WORKFLOW</p><h2 id="nel-tool-graph-title">Continue the engineering workflow</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>Optical Link Design Workflow</strong><p>Build an optical link from physical loss assumptions through split planning, power budget and maximum reach verification.</p></div><div class="nel-workflow-step"><strong>Step 3 of 5</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="3" aria-valuetext="Step 3 of 5" aria-label="Step 3 of 5"><span style="width:60%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/pon-splitter-loss/"><span class="nel-tool-graph-label">Previous</span><strong>PON Splitter Loss Calculator</strong><span class="nel-tool-graph-description">Plan multi-stage splitting and calculate total ratio, insertion loss and effective reach.</span></a><a class="nel-tool-graph-card" href="/tools/pon-distance/"><span class="nel-tool-graph-label">Next</span><strong>PON Maximum Distance Calculator</strong><span class="nel-tool-graph-description">Calculate optical-budget reach, effective system reach and planned link margin.</span></a></div>
+<h3 class="nel-tool-graph-subtitle">Related tools</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/fiber-loss/"><strong>Fiber Loss Calculator</strong><span class="nel-tool-graph-description">Calculate fiber, splice, connector, splitter and engineering losses for an optical link.</span></a><a class="nel-tool-graph-card" href="/tools/pon-distance/"><strong>PON Maximum Distance Calculator</strong><span class="nel-tool-graph-description">Calculate optical-budget reach, effective system reach and planned link margin.</span></a><a class="nel-tool-graph-card" href="/tools/onu-rx-power/"><strong>ONU RX Power Diagnosis</strong><span class="nel-tool-graph-description">Diagnose normal, weak-light, overload or possible no-signal conditions from measured power.</span></a><a class="nel-tool-graph-card" href="/tools/fiber-latency-calculator/"><strong>Fiber Latency Calculator</strong><span class="nel-tool-graph-description">Calculate one-way and round-trip fiber latency from distance, group index, equipment and serialization delay.</span></a></div><div class="nel-workflow-memberships"><span class="nel-workflow-memberships-label">Also used in</span><span class="nel-workflow-chip">Optical Fault Isolation Workflow</span></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
 </div>
 </div>
 </div>
