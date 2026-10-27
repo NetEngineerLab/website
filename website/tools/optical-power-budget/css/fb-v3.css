@@ -35,7 +35,7 @@ body.v3 .preview-banner{
 body.v3 .preview-banner a{color:var(--v3-blue);text-decoration:underline;text-underline-offset:2px}
 
 /* Soft light surfaces — hierarchy via spacing, not nested cards */
-body.v3 .panel,
+body.v3 .fb-panel,
 body.v3 .next a,
 body.v3 table.t,
 body.v3 .eq,
@@ -51,12 +51,12 @@ body.v3 .fb-wf-context{
   border:1px solid var(--v3-border-soft) !important;
   box-shadow:0 1px 0 rgba(15,23,42,.03) !important;
 }
-body.v3 .panel{
+body.v3 .fb-panel{
   background:#fff;
   border-radius:16px;
   position:relative;
 }
-body.v3 .panel:before{
+body.v3 .fb-panel:before{
   content:"";
   position:absolute;left:0;right:0;top:0;height:2px;
   border-radius:16px 16px 0 0;
@@ -723,7 +723,7 @@ body.v3 details.fb-fold{
   body.v3 .fb-wf-more-fold > .fb-fold-body{
     padding-bottom:12px;
   }
-  body.v3 footer:not(.site-shell-footer){
+  body.v3 footer.fb-local-footer{
     margin-top:12px;
     padding:24px 0 28px;
   }
@@ -860,7 +860,7 @@ body.v3 .fb-wf-card--nav{padding:12px 14px}
 body.v3 .ws{
   align-items:start;
 }
-body.v3 .ws > .panel{
+body.v3 .ws > .fb-panel{
   align-self:start;
   height:max-content;
 }

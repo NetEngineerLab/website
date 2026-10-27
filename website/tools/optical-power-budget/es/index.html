@@ -13,8 +13,8 @@
 <meta name="twitter:description" content="Verifica el presupuesto óptico con potencia Tx, sensibilidad Rx, pérdidas ODN, penalización óptica, margen de ingeniería y distancia máxima estimada.">
 <meta name="twitter:image" content="https://netengineerlab.com/tools/optical-power-budget/images/og-optical-power-budget.png">
 
-<link rel="stylesheet" href="../css/fb.css?v=b20b44d49975">
-<link rel="stylesheet" href="../css/fb-v3.css?v=59d4c1fe7c6e">
+<link rel="stylesheet" href="../css/fb.css?v=441b298c3d2a">
+<link rel="stylesheet" href="../css/fb-v3.css?v=5fd220292d91">
 <link rel="stylesheet" href="../css/fb-v3-prod.css?v=b26114adcab0">
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Calculadora de presupuesto de potencia óptica | NetEngineerLab","url":"https://netengineerlab.com/tools/optical-power-budget/es/","description":"Verifica el presupuesto óptico con potencia Tx, sensibilidad Rx, pérdidas ODN, penalización óptica, margen de ingeniería y distancia máxima estimada.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
@@ -74,9 +74,7 @@
 <!-- NEL_TOOL_RETURN_END -->
 <section class="hero nel-tool-hero"><div class="hero-inner"><p class="eyebrow">HERRAMIENTA DE INGENIERÍA ÓPTICA</p><h1>Calculadora de presupuesto de potencia óptica</h1><p>Verifica el presupuesto de potencia óptica a partir de la potencia de transmisión, la sensibilidad del receptor y las pérdidas pasivas; calcula la potencia recibida, el margen de ingeniería y la distancia máxima.</p><div class="hero-tags"><span>Verificación del presupuesto</span><span>Distancia máxima</span><span>Divisores multietapa</span><span>Diagnóstico de ingeniería</span></div></div></section>
 <main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
-
-
-<div class="wrap">
+<section class="input-panel card nel-tool-input">
 <div class="tool-head">
 <div>
 <div class="crumbs"><a href="../../../es/">Home</a>/<a href="../../es/">Tools</a>/<a href="/topics/pon-optical/">Optical</a>/<span>Optical Power Budget</span></div>
@@ -110,8 +108,8 @@
 <p class="preset-desc" id="preset-desc">GPON C+ reference: Tx min <b>+3 dBm</b>, sensitivity <b>−30 dBm</b>, overload <b>−8 dBm</b>, path penalty <b>1 dB</b>, class budget <b>32 dB</b>. Confirm against the datasheet.</p>
 </section>
 
-<div class="ws">
-<section class="input-panel card nel-tool-input">
+
+
 <div class="panel-h">
 <h2>Parámetros de equipo y enlace</h2>
 <div class="tabs" role="tablist" aria-label="Calculation mode">
@@ -173,7 +171,6 @@
 <button type="button" class="btn btn-ghost" id="resetBtn">Reset</button>
 </div>
 </section>
-
 <section class="result-panel card nel-tool-result" id="result" aria-live="polite">
 <div class="ro-h">Análisis de presupuesto <span class="status st-pass" data-status id="healthBadge">✓ Correcto</span><a class="how how-ro" href="#methodology">Cómo se calcula</a></div>
 
@@ -222,13 +219,7 @@
 <button type="button" id="printBtn" data-ro-act="print">Print</button>
 </div>
 </section>
-</div>
-
 <div class="mbar"><div><div class="ml">Tightest margin</div><b id="mbar-val">3.20 dB</b></div><span class="status st-pass" data-status>Pass</span><a href="#result" style="margin-left:auto;color:inherit;font-style:normal;text-decoration:none">Details ↓</a></div>
-
-
-
-</div>
 </main>
 <!-- NEL_PON_LINKS_START -->
 <section class="content-section nel-tool-supporting-section" id="pon-toolkit" aria-labelledby="pon-toolkit-title">
