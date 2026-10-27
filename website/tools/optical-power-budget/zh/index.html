@@ -119,12 +119,12 @@
 </div>
 <div class="fs">
 <p class="mode-help" id="mode-help">Verify whether an existing link meets the equipment power budget.</p>
-<p id="form-error" class="form-error" hidden></p>
+<p id="validation" class="form-error" hidden></p>
 
 <div class="fg">
 <p class="fs-t">Project</p>
 <div class="fields">
-<div class="f f-wide"><label for="f-project">工程名称</label><div class="inp sel"><input id="f-project" value="GPON C+ 1:64 Optical Budget" aria-label="工程名称" autocomplete="off"></div><small>与分享 / 保存 / CSV 一并记录</small></div>
+<div class="f f-wide"><label for="projectName">工程名称</label><div class="inp input-wrap sel"><input id="projectName" value="GPON C+ 1:64 Optical Budget" aria-label="工程名称" autocomplete="off"></div><small>与分享 / 保存 / CSV 一并记录</small></div>
 </div>
 </div>
 
@@ -132,12 +132,12 @@
 <p class="fs-t">Equipment power window</p>
 <p class="fg-note">Editable. Presets fill these from the selected standards profile; change any value to switch to 自定义.</p>
 <div class="fields">
-<div class="f"><label for="f-tx">最小发送光功率</label><div class="inp"><input id="f-tx" value="3" inputmode="decimal" aria-label="最小发送光功率"><u>dBm</u></div><small>Worst-case Tx from the OLT datasheet</small></div>
-<div class="f"><label for="f-txMax">最大发送光功率</label><div class="inp"><input id="f-txMax" value="7" inputmode="decimal" aria-label="最大发送光功率"><u>dBm</u></div><small>Maximum-power overload boundary</small></div>
-<div class="f"><label for="f-sens">接收灵敏度</label><div class="inp"><input id="f-sens" value="-30" inputmode="decimal" aria-label="接收灵敏度"><u>dBm</u></div><small>Weakest signal the ONU can decode</small></div>
-<div class="f"><label for="f-over">接收过载门限</label><div class="inp"><input id="f-over" value="-8" inputmode="decimal" aria-label="Receiver overload"><u>dBm</u></div><small>Strongest signal before saturation</small></div>
-<div class="f"><label for="f-penalty">系统光学代价</label><div class="inp"><input id="f-penalty" value="1" inputmode="decimal" aria-label="系统光学代价"><u>dB</u></div><small>C+ downstream reference: 1.0 dB; B+: 0.5 dB</small></div>
-<div class="f"><label for="f-margin">工程余量</label><div class="inp"><input id="f-margin" value="3" inputmode="decimal" aria-label="工程余量"><u>dB</u></div><small>Reserve for ageing, repairs, temperature</small></div>
+<div class="f"><label for="txPower">最小发送光功率</label><div class="inp input-wrap"><input id="txPower" value="3" inputmode="decimal" aria-label="最小发送光功率"><u>dBm</u></div><small>Worst-case Tx from the OLT datasheet</small></div>
+<div class="f"><label for="txMaxPower">最大发送光功率</label><div class="inp input-wrap"><input id="txMaxPower" value="7" inputmode="decimal" aria-label="最大发送光功率"><u>dBm</u></div><small>Maximum-power overload boundary</small></div>
+<div class="f"><label for="rxSensitivity">接收灵敏度</label><div class="inp input-wrap"><input id="rxSensitivity" value="-30" inputmode="decimal" aria-label="接收灵敏度"><u>dBm</u></div><small>Weakest signal the ONU can decode</small></div>
+<div class="f"><label for="rxOverload">接收过载门限</label><div class="inp input-wrap"><input id="rxOverload" value="-8" inputmode="decimal" aria-label="Receiver overload"><u>dBm</u></div><small>Strongest signal before saturation</small></div>
+<div class="f"><label for="opticalPenalty">系统光学代价</label><div class="inp input-wrap"><input id="opticalPenalty" value="1" inputmode="decimal" aria-label="系统光学代价"><u>dB</u></div><small>C+ downstream reference: 1.0 dB; B+: 0.5 dB</small></div>
+<div class="f"><label for="engineeringMargin">工程余量</label><div class="inp input-wrap"><input id="engineeringMargin" value="3" inputmode="decimal" aria-label="工程余量"><u>dB</u></div><small>Reserve for ageing, repairs, temperature</small></div>
 </div>
 </div>
 
@@ -145,35 +145,35 @@
 <p class="fs-t">Fiber and passive components</p>
 <p class="fg-note">Editable ODN path. 工作波长 updates typical fiber attenuation; override attenuation if your cable plant differs.</p>
 <div class="fields">
-<div class="f"><label for="f-d">光纤距离</label><div class="inp"><input id="f-d" value="10" inputmode="decimal" aria-label="光纤距离"><u>km</u></div></div>
-<div class="f"><label for="f-wave">工作波长</label><div class="inp sel"><select id="f-wave" aria-label="工作波长"><option value="1310">1310 nm</option><option value="1490" selected>1490 nm</option><option value="1550">1550 nm</option><option value="1625">1625 nm</option></select></div></div>
-<div class="f"><label for="f-a">光纤衰减系数</label><div class="inp"><input id="f-a" value="0.30" inputmode="decimal" aria-label="光纤衰减系数"><u>dB/km</u></div><small>Typical G.652 at 1490 nm; use your spec</small></div>
-<div class="f"><label for="f-sc">熔接点数量</label><div class="inp"><input id="f-sc" value="6" inputmode="numeric" aria-label="熔接点数量"><u>pcs</u></div></div>
-<div class="f"><label for="f-sl">单个熔接损耗</label><div class="inp"><input id="f-sl" value="0.10" inputmode="decimal" aria-label="单个熔接损耗"><u>dB</u></div><small>Fusion splice</small></div>
-<div class="f"><label for="f-cc">连接器数量</label><div class="inp"><input id="f-cc" value="4" inputmode="numeric" aria-label="连接器数量"><u>pcs</u></div><small>Count mated pairs</small></div>
-<div class="f"><label for="f-cl">单个连接器损耗</label><div class="inp"><input id="f-cl" value="0.30" inputmode="decimal" aria-label="单个连接器损耗"><u>dB</u></div></div>
-<div class="f"><label for="f-s1">一级分光器</label><div class="inp sel"><select id="f-s1" aria-label="一级分光器"><option value="0">None (0 dB)</option><option value="3.5">1:2 (3.5 dB)</option><option value="7.0">1:4 (7.0 dB)</option><option value="10.5" selected>1:8 (10.5 dB)</option><option value="13.8">1:16 (13.8 dB)</option><option value="17.0">1:32 (17.0 dB)</option><option value="20.5">1:64 (20.5 dB)</option></select></div></div>
-<div class="f"><label for="f-s2">二级分光器</label><div class="inp sel"><select id="f-s2" aria-label="二级分光器"><option value="0">None (0 dB)</option><option value="3.5">1:2 (3.5 dB)</option><option value="7.0">1:4 (7.0 dB)</option><option value="10.5" selected>1:8 (10.5 dB)</option><option value="13.8">1:16 (13.8 dB)</option><option value="17.0">1:32 (17.0 dB)</option><option value="20.5">1:64 (20.5 dB)</option></select></div></div>
+<div class="f"><label for="distance">光纤距离</label><div class="inp input-wrap"><input id="distance" value="10" inputmode="decimal" aria-label="光纤距离"><u>km</u></div></div>
+<div class="f"><label for="wavelength">工作波长</label><div class="inp input-wrap sel"><select id="wavelength" aria-label="工作波长"><option value="1310">1310 nm</option><option value="1490" selected>1490 nm</option><option value="1550">1550 nm</option><option value="1625">1625 nm</option></select></div></div>
+<div class="f"><label for="attenuation">光纤衰减系数</label><div class="inp input-wrap"><input id="attenuation" value="0.30" inputmode="decimal" aria-label="光纤衰减系数"><u>dB/km</u></div><small>Typical G.652 at 1490 nm; use your spec</small></div>
+<div class="f"><label for="spliceCount">熔接点数量</label><div class="inp input-wrap"><input id="spliceCount" value="6" inputmode="numeric" aria-label="熔接点数量"><u>pcs</u></div></div>
+<div class="f"><label for="spliceLoss">单个熔接损耗</label><div class="inp input-wrap"><input id="spliceLoss" value="0.10" inputmode="decimal" aria-label="单个熔接损耗"><u>dB</u></div><small>Fusion splice</small></div>
+<div class="f"><label for="connectorCount">连接器数量</label><div class="inp input-wrap"><input id="connectorCount" value="4" inputmode="numeric" aria-label="连接器数量"><u>pcs</u></div><small>Count mated pairs</small></div>
+<div class="f"><label for="connectorLoss">单个连接器损耗</label><div class="inp input-wrap"><input id="connectorLoss" value="0.30" inputmode="decimal" aria-label="单个连接器损耗"><u>dB</u></div></div>
+<div class="f"><label for="splitter1">一级分光器</label><div class="inp input-wrap sel"><select id="splitter1" aria-label="一级分光器"><option value="0">None (0 dB)</option><option value="3.5">1:2 (3.5 dB)</option><option value="7.0">1:4 (7.0 dB)</option><option value="10.5" selected>1:8 (10.5 dB)</option><option value="13.8">1:16 (13.8 dB)</option><option value="17.0">1:32 (17.0 dB)</option><option value="20.5">1:64 (20.5 dB)</option></select></div></div>
+<div class="f"><label for="splitter2">二级分光器</label><div class="inp input-wrap sel"><select id="splitter2" aria-label="二级分光器"><option value="0">None (0 dB)</option><option value="3.5">1:2 (3.5 dB)</option><option value="7.0">1:4 (7.0 dB)</option><option value="10.5" selected>1:8 (10.5 dB)</option><option value="13.8">1:16 (13.8 dB)</option><option value="17.0">1:32 (17.0 dB)</option><option value="20.5">1:64 (20.5 dB)</option></select></div></div>
 </div>
 </div>
 
-<details class="adv">
+<details class="adv" open>
 <summary>Advanced · third splitter &amp; other passive loss</summary>
 <p class="adv-note">Optional third splitter and extra passive loss for complex ODN plants.</p>
 <div class="fields">
-<div class="f"><label for="f-s3">三级分光器</label><div class="inp sel"><select id="f-s3" aria-label="三级分光器"><option value="0" selected>None (0 dB)</option><option value="3.5">1:2 (3.5 dB)</option><option value="7.0">1:4 (7.0 dB)</option><option value="10.5">1:8 (10.5 dB)</option><option value="13.8">1:16 (13.8 dB)</option><option value="17.0">1:32 (17.0 dB)</option><option value="20.5">1:64 (20.5 dB)</option></select></div></div>
-<div class="f"><label for="f-other">其他无源损耗</label><div class="inp"><input id="f-other" value="0" inputmode="decimal" aria-label="其他无源损耗"><u>dB</u></div><small>WDM, attenuators, patch panels</small></div>
+<div class="f"><label for="splitter3">三级分光器</label><div class="inp input-wrap sel"><select id="splitter3" aria-label="三级分光器"><option value="0" selected>None (0 dB)</option><option value="3.5">1:2 (3.5 dB)</option><option value="7.0">1:4 (7.0 dB)</option><option value="10.5">1:8 (10.5 dB)</option><option value="13.8">1:16 (13.8 dB)</option><option value="17.0">1:32 (17.0 dB)</option><option value="20.5">1:64 (20.5 dB)</option></select></div></div>
+<div class="f"><label for="otherLoss">其他无源损耗</label><div class="inp input-wrap"><input id="otherLoss" value="0" inputmode="decimal" aria-label="其他无源损耗"><u>dB</u></div><small>WDM, attenuators, patch panels</small></div>
 </div>
 </details>
 </div>
 <div class="panel-f">
-<button type="button" class="btn btn-primary" id="btn-calc">计算光功率预算</button>
-<button type="button" class="btn btn-ghost" id="btn-reset">Reset</button>
+<button type="button" class="btn btn-primary" id="calculateBtn">计算光功率预算</button>
+<button type="button" class="btn btn-ghost" id="resetBtn">Reset</button>
 </div>
 </div>
 
 <aside class="readout" id="result" aria-live="polite">
-<div class="ro-h">预算分析 <span class="status st-pass" data-status>Pass</span><a class="how how-ro" href="#methodology">如何计算</a></div>
+<div class="ro-h">预算分析 <span class="status st-pass" data-status id="healthBadge">✓ 健康</span><a class="how how-ro" href="#methodology">如何计算</a></div>
 
 <!-- L1: status + tightest margin -->
 <div class="ro-l1">
@@ -190,8 +190,8 @@
 <!-- L2: key engineering results -->
 <div class="grp ro-l2"><h3>Key results</h3>
 <div class="row"><span>预计接收光功率</span><b id="ro-rx">−22.80<small>dBm</small></b><div class="eqn" id="ro-rx-eqn">= Tx min 3.00 − physical 25.80</div></div>
-<div class="row"><span>Receive power window</span><b id="ro-rx-window">−22.80 … −18.80<small>dBm</small></b><div class="eqn" id="ro-rx-window-eqn">= Tx min…max − physical (min −22.80 · max −18.80)</div></div>
-<div class="row"><span>物理 ODN 损耗</span><b id="ro-physical">25.80<small>dB</small></b><div class="eqn" id="ro-physical-eqn">fiber + splices + connectors + splitters + other</div></div>
+<div class="row"><span>Receive power window</span><b><span id="estimatedRx">0.00</span> <small>dBm</small></b><div class="eqn" id="ro-rx-window-eqn">= Tx min…max − physical (min −22.80 · max −18.80)</div></div>
+<div class="row"><span>物理 ODN 损耗</span><b id="physicalLoss">25.80<small>dB</small></b><div class="eqn" id="ro-physical-eqn">fiber + splices + connectors + splitters + other</div></div>
 <div class="row"><span>总设计损耗</span><b id="ro-design">28.80<small>dB</small></b><div class="eqn" id="ro-design-eqn">= physical 25.80 + margin 3.00 (penalty is taken off the budget)</div></div>
 </div>
 
@@ -202,7 +202,7 @@
 </div>
 
 <div class="checks"><h3>Status checks</h3>
-<div class="ck"><i></i><span>Remaining class budget</span><b id="ro-ck-remain">3.20 dB</b></div>
+<div class="ck"><i></i><span>Remaining class budget</span><b id="remainingBudget">0.00</b></div>
 <div class="ck"><i></i><span>接收灵敏度余量</span><b id="ro-ck-sens">7.20 dB</b></div>
 <div class="ck"><i></i><span>过载余量</span><b id="ro-ck-over">10.80 dB</b></div>
 <p>Pass: all ≥ 3 dB · Marginal: any 0–3 dB · Fail: any &lt; 0 dB</p>
@@ -214,10 +214,10 @@
 <div class="r" id="wf-splice"><span>Splices 6 × 0.10</span><i style="width:3%"></i><em>0.60 dB</em></div>
 </div>
 <div class="ro-acts">
-<button type="button" data-ro-act="copy">Copy</button>
-<button type="button" data-ro-act="save">Save</button>
-<button type="button" data-ro-act="csv">CSV</button>
-<button type="button" data-ro-act="print">Print</button>
+<button type="button" id="copyBtn" data-ro-act="copy">Copy</button>
+<button type="button" id="saveBtn" data-ro-act="save">Save</button>
+<button type="button" id="csvBtn" data-ro-act="csv">CSV</button>
+<button type="button" id="printBtn" data-ro-act="print">Print</button>
 </div>
 </aside>
 </div>

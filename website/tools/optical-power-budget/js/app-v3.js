@@ -7,7 +7,7 @@
     || "en");
   const I18N = {
     en: {
-      pass: "Pass", marginal: "Marginal", fail: "Fail", invalid: "Invalid",
+      pass: "✓ Healthy", marginal: "⚠ Caution", fail: "✕ Failed", invalid: "Invalid",
       invalidInput: "Invalid input",
       invalidMsg: "Counts must be non-negative integers; losses/distance finite and ≥ 0; attenuation > 0; Tx max ≥ Tx min; overload above sensitivity.",
       cannotCompute: "Cannot compute",
@@ -26,7 +26,7 @@
       clearHist: "Clear all saved records?"
     },
     zh: {
-      pass: "通过", marginal: "临界", fail: "超限", invalid: "无效",
+      pass: "✓ 健康", marginal: "⚠ 风险", fail: "✕ 超限", invalid: "无效",
       invalidInput: "输入无效",
       invalidMsg: "请检查输入：数量须为非负整数；距离与损耗须为有效非负数；衰减系数须大于 0；最大发送功率不得低于最小发送功率；过载门限须高于灵敏度。",
       cannotCompute: "无法计算",
@@ -45,7 +45,7 @@
       clearHist: "确定清空全部记录吗？"
     },
     es: {
-      pass: "Correcto", marginal: "Marginal", fail: "Fallo", invalid: "Inválido",
+      pass: "✓ Correcto", marginal: "⚠ Marginal", fail: "✕ Fallo", invalid: "Inválido",
       invalidInput: "Entrada inválida",
       invalidMsg: "Revise las entradas: los recuentos deben ser enteros no negativos; distancia y pérdidas finitas y ≥ 0; atenuación > 0; Tx máx ≥ Tx mín; sobrecarga por encima de la sensibilidad.",
       cannotCompute: "No se puede calcular",
@@ -116,23 +116,23 @@
 
   function readValues() {
     return {
-      project: ($("f-project") && $("f-project").value.trim()) || "Untitled project",
-      tx: num("f-tx"),
-      txMax: num("f-txMax"),
-      sens: num("f-sens"),
-      over: num("f-over"),
-      penalty: num("f-penalty"),
-      d: num("f-d"),
-      a: num("f-a"),
-      sc: count("f-sc"),
-      sl: num("f-sl"),
-      cc: count("f-cc"),
-      cl: num("f-cl"),
-      s1: num("f-s1"),
-      s2: num("f-s2"),
-      s3: num("f-s3"),
-      other: num("f-other"),
-      margin: num("f-margin")
+      project: ($("projectName") && $("projectName").value.trim()) || "Untitled project",
+      tx: num("txPower"),
+      txMax: num("txMaxPower"),
+      sens: num("rxSensitivity"),
+      over: num("rxOverload"),
+      penalty: num("opticalPenalty"),
+      d: num("distance"),
+      a: num("attenuation"),
+      sc: count("spliceCount"),
+      sl: num("spliceLoss"),
+      cc: count("connectorCount"),
+      cl: num("connectorLoss"),
+      s1: num("splitter1"),
+      s2: num("splitter2"),
+      s3: num("splitter3"),
+      other: num("otherLoss"),
+      margin: num("engineeringMargin")
     };
   }
 
@@ -145,24 +145,24 @@
 
   function setFields(p) {
     applying = true;
-    if ($("f-project") && p.project != null) $("f-project").value = p.project;
-    $("f-tx").value = p.tx;
-    $("f-txMax").value = p.txMax;
-    $("f-sens").value = p.sens;
-    $("f-over").value = p.over;
-    $("f-penalty").value = p.penalty;
-    $("f-margin").value = p.margin;
-    $("f-wave").value = p.wave;
-    $("f-d").value = p.d;
-    $("f-a").value = p.a;
-    $("f-sc").value = p.sc;
-    $("f-sl").value = p.sl;
-    $("f-cc").value = p.cc;
-    $("f-cl").value = p.cl;
-    $("f-s1").value = String(p.s1);
-    $("f-s2").value = String(p.s2);
-    $("f-s3").value = String(p.s3);
-    $("f-other").value = p.other;
+    if ($("projectName") && p.project != null) $("projectName").value = p.project;
+    $("txPower").value = p.tx;
+    $("txMaxPower").value = p.txMax;
+    $("rxSensitivity").value = p.sens;
+    $("rxOverload").value = p.over;
+    $("opticalPenalty").value = p.penalty;
+    $("engineeringMargin").value = p.margin;
+    $("wavelength").value = p.wave;
+    $("distance").value = p.d;
+    $("attenuation").value = p.a;
+    $("spliceCount").value = p.sc;
+    $("spliceLoss").value = p.sl;
+    $("connectorCount").value = p.cc;
+    $("connectorLoss").value = p.cl;
+    $("splitter1").value = String(p.s1);
+    $("splitter2").value = String(p.s2);
+    $("splitter3").value = String(p.s3);
+    $("otherLoss").value = p.other;
     applying = false;
   }
 
@@ -206,7 +206,34 @@
     if (st === "healthy") return { cls: "st-pass", label: T.pass, icon: "✓" };
     if (st === "warning") return { cls: "st-marginal", label: T.marginal, icon: "!" };
     if (st === "failed") return { cls: "st-fail", label: T.fail, icon: "✕" };
-    return { cls: "st-fail", label: T.invalid, icon: "?" };
+    return { cls: "st-fail", label: T.invalidInput, icon: "?" };
+  }
+
+  function syncHealthBadge(stOrInvalid) {
+    const badge = $("healthBadge");
+    if (!badge) return;
+    if (stOrInvalid === "invalid") {
+      badge.className = "status st-fail";
+      badge.textContent = T.invalidInput;
+      return;
+    }
+    const meta = statusMeta(stOrInvalid);
+    badge.className = "status " + meta.cls;
+    badge.textContent = meta.label;
+  }
+
+  function invalidate() {
+    last = null;
+    setExportEnabled(false);
+    syncHealthBadge("invalid");
+    setText("remainingBudget", "—");
+    setText("estimatedRx", "—");
+    setText("physicalLoss", "—");
+    const v = $("validation");
+    if (v) {
+      v.hidden = true;
+      v.textContent = "";
+    }
   }
 
   function tightest(remain, sensM, overM) {
@@ -233,9 +260,11 @@
     last = null;
     setExportEnabled(false);
     document.querySelectorAll("[data-status]").forEach((el) => {
+      if (el.id === "healthBadge") return;
       el.className = "status st-fail";
       el.innerHTML = '<span class="st-ico" aria-hidden="true">?</span> ' + T.invalidInput;
     });
+    syncHealthBadge("invalid");
     setHTML("ro-reason", "<b>" + T.invalidInput + ".</b> " + msg);
     setText("ro-main-lbl", T.cannotCompute);
     setHTML("ro-main-big", "—<small>dB</small>");
@@ -244,8 +273,14 @@
     if ($("ro-meter-bar")) $("ro-meter-bar").style.width = "0%";
     setText("ro-meter-left", "—");
     setText("ro-meter-right", "—");
-    ["ro-rx", "ro-physical", "ro-design", "ro-sensM", "ro-overM", "ro-ck-remain", "ro-ck-sens", "ro-ck-over"].forEach((id) => setText(id, "—"));
+    ["ro-rx", "physicalLoss", "ro-design", "ro-sensM", "ro-overM", "remainingBudget", "ro-ck-sens", "ro-ck-over"].forEach((id) => setText(id, "—"));
+    setText("estimatedRx", "—");
     setText("mbar-val", "—");
+    const box = $("validation");
+    if (box) {
+      box.hidden = false;
+      box.textContent = msg || T.invalidMsg;
+    }
   }
 
   function calc() {
@@ -258,7 +293,7 @@
       return null;
     }
     const { standard, physical, design, remain, rx, sensM, overM, fiber, splice, conn, split, st, usage, maxD } = result;
-    last = Object.assign({ wave: $("f-wave").value, mode: activeMode }, v, result);
+    last = Object.assign({ wave: $("wavelength").value, mode: activeMode }, v, result);
     setExportEnabled(true);
     const meta = statusMeta(st);
     const tight = tightest(remain, sensM, overM);
@@ -266,9 +301,16 @@
       st === "healthy" ? "#059669" : st === "warning" ? "#B45309" : "#DC2626";
 
     document.querySelectorAll("[data-status]").forEach((el) => {
+      if (el.id === "healthBadge") return;
       el.className = "status " + meta.cls;
       el.innerHTML = '<span class="st-ico" aria-hidden="true">' + meta.icon + "</span> " + meta.label;
     });
+    syncHealthBadge(st);
+    const vbox = $("validation");
+    if (vbox) {
+      vbox.hidden = true;
+      vbox.textContent = "";
+    }
 
     const reasonLead =
       st === "healthy"
@@ -341,9 +383,9 @@
 
     setHTML("ro-rx", fmt(rx) + "<small>dBm</small>");
     const rxMax = result.rxMax;
-    setHTML("ro-rx-window", fmt(rx) + " … " + fmt(rxMax) + "<small>dBm</small>");
+    setText("estimatedRx", fmt(rx) + " to " + fmt(rxMax));
     setText("ro-rx-window-eqn", "= Tx min…max − physical (min " + fmt(rx) + " · max " + fmt(rxMax) + ")");
-    setHTML("ro-physical", fmt(physical) + "<small>dB</small>");
+    setHTML("physicalLoss", fmt(physical) + "<small>dB</small>");
     setHTML("ro-design", fmt(design) + "<small>dB</small>");
     setText("ro-rx-eqn", "= Tx min " + fmt(v.tx) + " − physical " + fmt(physical));
     setText("ro-physical-eqn", "fiber + splices + connectors + splitters + other");
@@ -360,7 +402,7 @@
       "= overload " + fmt(v.over) + " − (Tx max " + fmt(v.txMax) + " − physical)"
     );
 
-    setText("ro-ck-remain", fmt(remain) + " dB");
+    setText("remainingBudget", fmt(remain));
     setText("ro-ck-sens", fmt(sensM) + " dB");
     setText("ro-ck-over", fmt(overM) + " dB");
 
@@ -386,7 +428,7 @@
 
   function clearErrors() {
     document.querySelectorAll(".f.has-error").forEach((el) => el.classList.remove("has-error"));
-    const box = $("form-error");
+    const box = $("validation");
     if (box) {
       box.hidden = true;
       box.textContent = "";
@@ -394,29 +436,29 @@
   }
 
   function markFieldErrors(v) {
-    const box = $("form-error");
+    const box = $("validation");
     if (box) {
       box.hidden = false;
       box.textContent =
         "Invalid input: check non-negative losses, integer splice/connector counts, Tx max ≥ Tx min, and overload above sensitivity.";
     }
     const map = {
-      "f-tx": Number.isFinite(v.tx),
-      "f-txMax": Number.isFinite(v.txMax) && v.txMax >= v.tx,
-      "f-sens": Number.isFinite(v.sens),
-      "f-over": Number.isFinite(v.over) && v.over > v.sens,
-      "f-penalty": Number.isFinite(v.penalty) && v.penalty >= 0,
-      "f-margin": Number.isFinite(v.margin) && v.margin >= 0,
-      "f-d": Number.isFinite(v.d) && v.d >= 0,
-      "f-a": Number.isFinite(v.a) && v.a > 0,
-      "f-sc": Number.isSafeInteger(v.sc) && v.sc >= 0,
-      "f-sl": Number.isFinite(v.sl) && v.sl >= 0,
-      "f-cc": Number.isSafeInteger(v.cc) && v.cc >= 0,
-      "f-cl": Number.isFinite(v.cl) && v.cl >= 0,
-      "f-s1": Number.isFinite(v.s1) && v.s1 >= 0,
-      "f-s2": Number.isFinite(v.s2) && v.s2 >= 0,
-      "f-s3": Number.isFinite(v.s3) && v.s3 >= 0,
-      "f-other": Number.isFinite(v.other) && v.other >= 0
+      "txPower": Number.isFinite(v.tx),
+      "txMaxPower": Number.isFinite(v.txMax) && v.txMax >= v.tx,
+      "rxSensitivity": Number.isFinite(v.sens),
+      "rxOverload": Number.isFinite(v.over) && v.over > v.sens,
+      "opticalPenalty": Number.isFinite(v.penalty) && v.penalty >= 0,
+      "engineeringMargin": Number.isFinite(v.margin) && v.margin >= 0,
+      "distance": Number.isFinite(v.d) && v.d >= 0,
+      "attenuation": Number.isFinite(v.a) && v.a > 0,
+      "spliceCount": Number.isSafeInteger(v.sc) && v.sc >= 0,
+      "spliceLoss": Number.isFinite(v.sl) && v.sl >= 0,
+      "connectorCount": Number.isSafeInteger(v.cc) && v.cc >= 0,
+      "connectorLoss": Number.isFinite(v.cl) && v.cl >= 0,
+      "splitter1": Number.isFinite(v.s1) && v.s1 >= 0,
+      "splitter2": Number.isFinite(v.s2) && v.s2 >= 0,
+      "splitter3": Number.isFinite(v.s3) && v.s3 >= 0,
+      "otherLoss": Number.isFinite(v.other) && v.other >= 0
     };
     Object.keys(map).forEach((id) => {
       if (!map[id]) {
@@ -429,7 +471,7 @@
   function reset() {
     setMode("verify");
     applyPreset("gpon-c");
-    flash($("btn-reset"), "Reset done");
+    flash($("resetBtn"), "Reset done");
   }
 
   function flash(el, msg) {
@@ -507,7 +549,7 @@
       s2: v.s2,
       s3: v.s3,
       other: v.other,
-      wave: $("f-wave").value
+      wave: $("wavelength").value
     });
     const url = location.pathname + "?" + q.toString() + "#result";
     const absolute = location.origin + url;
@@ -613,7 +655,7 @@
     const r = last;
     const rows = [
       ["Field", "Value"],
-      ["Project", r.project || (($("f-project") && $("f-project").value) || "")],
+      ["Project", r.project || (($("projectName") && $("projectName").value) || "")],
       ["Mode", r.mode],
       ["Minimum Tx Power dBm", r.tx],
       ["Maximum Tx Power dBm", r.txMax],
@@ -666,23 +708,23 @@
       if (q.has(k) && $(id)) $(id).value = q.get(k);
     };
     applying = true;
-    pick("tx", "f-tx");
-    pick("txMax", "f-txMax");
-    pick("sens", "f-sens");
-    pick("over", "f-over");
-    pick("penalty", "f-penalty");
-    pick("margin", "f-margin");
-    pick("d", "f-d");
-    pick("a", "f-a");
-    pick("sc", "f-sc");
-    pick("sl", "f-sl");
-    pick("cc", "f-cc");
-    pick("cl", "f-cl");
-    pick("s1", "f-s1");
-    pick("s2", "f-s2");
-    pick("s3", "f-s3");
-    pick("other", "f-other");
-    pick("wave", "f-wave");
+    pick("tx", "txPower");
+    pick("txMax", "txMaxPower");
+    pick("sens", "rxSensitivity");
+    pick("over", "rxOverload");
+    pick("penalty", "opticalPenalty");
+    pick("margin", "engineeringMargin");
+    pick("d", "distance");
+    pick("a", "attenuation");
+    pick("sc", "spliceCount");
+    pick("sl", "spliceLoss");
+    pick("cc", "connectorCount");
+    pick("cl", "connectorLoss");
+    pick("s1", "splitter1");
+    pick("s2", "splitter2");
+    pick("s3", "splitter3");
+    pick("other", "otherLoss");
+    pick("wave", "wavelength");
     applying = false;
     setPresetUI("custom");
     if (q.get("mode") === "distance") {
@@ -700,8 +742,8 @@
   }
 
   function onWaveChange() {
-    const w = $("f-wave").value;
-    if (ATT[w] != null) $("f-a").value = ATT[w];
+    const w = $("wavelength").value;
+    if (ATT[w] != null) $("attenuation").value = ATT[w];
     markCustomIfEdited();
     calc();
   }
@@ -722,32 +764,35 @@
     });
 
     const ids = [
-      "f-tx", "f-txMax", "f-sens", "f-over", "f-penalty", "f-margin",
-      "f-d", "f-a", "f-sc", "f-sl", "f-cc", "f-cl", "f-s1", "f-s2", "f-s3", "f-other"
+      "txPower", "txMaxPower", "rxSensitivity", "rxOverload", "opticalPenalty", "engineeringMargin",
+      "distance", "attenuation", "spliceCount", "spliceLoss", "connectorCount", "connectorLoss", "splitter1", "splitter2", "splitter3", "otherLoss"
     ];
     ids.forEach((id) => {
       const el = $(id);
       if (!el) return;
       el.addEventListener("input", () => {
         markCustomIfEdited();
+        invalidate();
         clearTimeout(window.__opbT);
-        window.__opbT = setTimeout(calc, 120);
+        window.__opbT = setTimeout(calc, 150);
       });
       el.addEventListener("change", () => {
         markCustomIfEdited();
         calc();
       });
     });
-    $("f-wave").addEventListener("change", onWaveChange);
-    const proj = $("f-project");
+    $("wavelength").addEventListener("change", onWaveChange);
+    const proj = $("projectName");
     if (proj) {
       proj.addEventListener("input", () => {
-        if (last) last.project = proj.value.trim() || "Untitled project";
+        invalidate();
+        clearTimeout(window.__opbT);
+        window.__opbT = setTimeout(calc, 150);
       });
     }
 
-    $("btn-calc").addEventListener("click", calc);
-    $("btn-reset").addEventListener("click", reset);
+    $("calculateBtn").addEventListener("click", calc);
+    $("resetBtn").addEventListener("click", reset);
     $("btn-share").addEventListener("click", shareInputs);
 
     const clearH = $("btn-clear-history");
