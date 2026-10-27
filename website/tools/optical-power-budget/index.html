@@ -15,7 +15,7 @@
 
 <link rel="stylesheet" href="css/fb.css?v=441b298c3d2a">
 <link rel="stylesheet" href="css/fb-v3.css?v=5fd220292d91">
-<link rel="stylesheet" href="css/fb-v3-prod.css?v=b26114adcab0">
+<link rel="stylesheet" href="css/fb-v3-prod.css?v=d70ef9fcee1b">
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Optical Power Budget Calculator | NetEngineerLab","url":"https://netengineerlab.com/tools/optical-power-budget/","description":"Professional optical power budget calculator for transmit power, receiver sensitivity, overload threshold, splitters, engineering margin, receive power and maximum distance.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="en">
@@ -243,16 +243,16 @@
 <p>Free planning calculator for telecom and network engineers. Runs entirely in the browser: enter OLT/ONU power windows and ODN losses to estimate class budget remaining, receive power, sensitivity margin, overload margin and maximum reach. Application category: engineering utility / optical link design. No account required.</p>
 <p>Use for GPON/EPON ODN planning, receive-window checks and troubleshooting. Results are planning aids — not a substitute for datasheet values, power-meter or OTDR acceptance, or enterprise standards.</p>
 <div class="about-meta">
-<span>Type · Engineering calculator</span>
-<span>Runs · Client-side</span>
-<span>Locales · EN / 中文 / ES</span>
-<span>Canonical · /tools/optical-power-budget/</span>
+<span>Type: Engineering calculator</span>
+<span>Runs: Client-side</span>
+<span>Languages: EN / ZH / ES</span>
+<span>Canonical: /tools/optical-power-budget/</span>
 </div>
 </div>
 </details>
 
 <details class="fb-fold blk" id="methodology">
-<summary class="fb-fold-sum"><span class="fb-fold-title">How it’s calculated · methods &amp; formulas</span></summary>
+<summary class="fb-fold-sum"><span class="fb-fold-title">How it’s calculated</span></summary>
 <div class="fb-fold-body">
 <div class="eq">class budget = Tx_min − Rx_sensitivity − path_penalty<br>
 physical loss = fiber + splices + connectors + splitters + other<br>
@@ -273,7 +273,7 @@ Rx = Tx_min − physical loss</div>
 </details>
 
 <details class="fb-fold blk" id="status-rules">
-<summary class="fb-fold-sum"><span class="fb-fold-title">Status rules · Pass / Marginal / Fail</span></summary>
+<summary class="fb-fold-sum"><span class="fb-fold-title">Status rules</span></summary>
 <div class="fb-fold-body">
 <p>The verdict takes the tightest of three checks: remaining class budget, margin above receiver sensitivity, and margin below overload (using maximum transmit power).</p>
 <div class="legend">
@@ -286,7 +286,7 @@ Rx = Tx_min − physical loss</div>
 </details>
 
 <details class="fb-fold blk" id="component-check">
-<summary class="fb-fold-sum"><span class="fb-fold-title">Component check · default loss breakdown</span></summary>
+<summary class="fb-fold-sum"><span class="fb-fold-title">Component check</span></summary>
 <div class="fb-fold-body">
 <p>Physical ODN loss = fiber attenuation × length + splitter loss + connector loss + splice loss + other passive loss. For the default case: 3.0 dB fiber + 21.0 dB splitters + 1.2 dB connectors + 0.6 dB splices = 25.8 dB physical ODN loss, and the 3 dB engineering margin brings design loss to 28.8 dB. The 1 dB optical path penalty is not added to the loss; it is deducted from the budget: +3 dBm − (−30 dBm) − 1 dB = 32 dB standard ODN budget, leaving 3.2 dB remaining (90% of the budget used). The +3 dBm minimum transmit power therefore predicts −22.8 dBm receive power, 7.2 dB above sensitivity; at the +7 dBm maximum transmit power the receiver stays 10.8 dB below the −8 dBm overload threshold. The engineering margin is not deducted from receive power.</p>
 <p>GPON B+ (28 dB) and C+ (32 dB) labels are reference classes from the selected standards profile, not a guarantee for every OLT/ONU pair. Confirm the actual transmitter, receiver sensitivity, overload, wavelength and ODN class in the equipment datasheet. Continue to <a href="../fiber-loss/">fiber loss</a> for route accounting or the <a href="../../topics/pon-optical/">PON &amp; Optical topic hub</a> for the design workflow.</p>
@@ -333,7 +333,7 @@ Rx = Tx_min − physical loss</div>
 </section>
 
 <section class="blk" id="references">
-<h2>Official references · standards &amp; power window</h2>
+<h2>Official references</h2>
 <div class="fb-fold-body">
 <div class="ref-card">
 <p>The minimum transmit power is used for sensitivity and loss-budget checks. Maximum transmit power is checked separately against receiver overload; using only the minimum value can hide a short-link overload risk. Presets are planning references, not substitutes for the exact OLT/ONU or transceiver datasheet. The 3 dB Healthy/Caution boundary is this tool’s planning threshold, not a universal standards mandate.</p>
@@ -348,7 +348,7 @@ Rx = Tx_min − physical loss</div>
 </section>
 
 <section class="blk" id="content-review">
-<h2>Content review · formula basis &amp; limits</h2>
+<h2>Content review</h2>
 <div class="fb-fold-body">
 <div class="review-grid">
 <div class="review-card"><h3>Reviewed</h3><p>2026-10-25 (structured review block). Prior editorial note on this page: 2026-08-31.</p></div>
@@ -399,5 +399,5 @@ Rx = Tx_min − physical loss</div>
     <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
   </div>
 </footer>
-<!-- NEL_FOOTER_END --><script defer="" src="js/engine.js?v=5e03675c092d"></script><script defer="" src="js/pwa.js"></script><script defer="" src="../../data/optical-standards.js"></script><script defer="" src="../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer src="js/app-v3.js?v=054bbe350c16"></script><script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+<!-- NEL_FOOTER_END --><script defer="" src="js/engine.js?v=5e03675c092d"></script><script defer="" src="js/pwa.js"></script><script defer="" src="../../data/optical-standards.js"></script><script defer="" src="../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer src="js/app-v3.js?v=4b732124144a"></script><script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
 <script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script></body></html>
