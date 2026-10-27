@@ -15,11 +15,11 @@ body.nel-opb-v3.v3.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"]{
 }
 body.nel-opb-v3 .preview-banner{display:none !important}
 
-/* Fieldbook panel chrome — attribute selectors avoid platform-class ownership audits */
-body.nel-opb-v3.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main [class~="nel-tool-input"],
-body.nel-opb-v3.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main [class~="nel-tool-result"],
-body.nel-opb-v3.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main [class~="input-panel"],
-body.nel-opb-v3.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main [class~="result-panel"],
+/* Fieldbook panel chrome — #calculator ID beats tool-layout without platform class selectors */
+body.nel-opb-v3 #calculator > [class~="nel-tool-input"],
+body.nel-opb-v3 #calculator > [class~="nel-tool-result"],
+body.nel-opb-v3 #calculator > [class~="input-panel"],
+body.nel-opb-v3 #calculator > [class~="result-panel"],
 body.nel-opb-v3 .fb-panel{
   background:#fff !important;
   border:1px solid #D8DEE8 !important;
@@ -27,10 +27,10 @@ body.nel-opb-v3 .fb-panel{
   box-shadow:0 1px 0 rgba(15,23,42,.03) !important;
   position:relative;
 }
-body.nel-opb-v3.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main [class~="nel-tool-input"]:before,
-body.nel-opb-v3.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main [class~="nel-tool-result"]:before,
-body.nel-opb-v3.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main [class~="input-panel"]:before,
-body.nel-opb-v3.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main [class~="result-panel"]:before,
+body.nel-opb-v3 #calculator > [class~="nel-tool-input"]:before,
+body.nel-opb-v3 #calculator > [class~="nel-tool-result"]:before,
+body.nel-opb-v3 #calculator > [class~="input-panel"]:before,
+body.nel-opb-v3 #calculator > [class~="result-panel"]:before,
 body.nel-opb-v3 .fb-panel:before{
   content:"";
   position:absolute;left:0;right:0;top:0;height:2px;
