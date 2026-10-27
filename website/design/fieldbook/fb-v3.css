@@ -904,3 +904,38 @@ body.v3 .history-item .history-meta{font:12px var(--mono);color:var(--v3-muted);
   body.v3 .below{grid-template-columns:minmax(0,1fr);gap:24px}
   body.v3 .below > .toc{display:none}
 }
+
+
+/* lag-fix: how calculated in readout */
+body.v3 .readout .ro-h{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+body.v3 .readout .how-ro{
+  margin-left:auto;
+  font:500 12px var(--sans);
+  letter-spacing:.02em;
+  text-transform:none;
+  color:var(--v3-blue, #3730A3);
+  border-bottom:1px solid rgba(55,48,163,.28);
+  text-decoration:none;
+}
+body.v3 .readout .how-ro:hover{border-bottom-color:currentColor}
+body.v3 .ro-how{
+  margin:0;
+  padding:10px 14px 0;
+  border-top:1px solid var(--v3-navy-line);
+  background:rgba(255,255,255,.45);
+}
+body.v3 .ro-how .how-ro-inline{
+  font:500 13px var(--sans);
+  color:var(--v3-blue, #3730A3);
+  text-decoration:none;
+  border-bottom:1px solid rgba(55,48,163,.28);
+}
+body.v3 .ro-how .how-ro-inline:hover{border-bottom-color:currentColor}
+@media (max-width:768px){
+  body.v3 .readout .how-ro{margin-left:0}
+}
