@@ -858,7 +858,9 @@
 
     syncExplainFolds();
     bindExplainAnchors();
+
     bindTocScrollSpy();
+    foldWorkflowExtras();
     if (window.matchMedia) {
       const mq = window.matchMedia("(min-width: 769px)");
       const onChange = () => syncExplainFolds();
@@ -892,6 +894,30 @@
     });
   }
 
+
+
+  function foldWorkflowExtras() {
+    const graph = document.getElementById("nel-tool-graph");
+    if (!graph || graph.querySelector("details.nel-wf-fold")) return;
+    const sub = graph.querySelector("h3.nel-tool-graph-subtitle");
+    const related = graph.querySelector(".nel-tool-graph-related");
+    const mem = graph.querySelector(".nel-workflow-memberships");
+    if (!sub || !related) return;
+    const details = document.createElement("details");
+    details.className = "nel-wf-fold";
+    const sum = document.createElement("summary");
+    sum.textContent =
+      LOCALE === "zh" ? "展开完整流程" : LOCALE === "es" ? "Mostrar flujo completo" : "Show full workflow";
+    const wrap = document.createElement("div");
+    wrap.className = "nel-wf-extra";
+    const parent = sub.parentNode;
+    wrap.appendChild(sub);
+    wrap.appendChild(related);
+    if (mem) wrap.appendChild(mem);
+    details.appendChild(sum);
+    details.appendChild(wrap);
+    parent.appendChild(details);
+  }
 
   function bindTocScrollSpy() {
     const toc = document.querySelector("nav.toc");
