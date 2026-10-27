@@ -1,4 +1,4 @@
-/* V3 production bridge — keep CI DOM (input-panel/result-panel) + Fieldbook look */
+/* V3 production bridge — Fieldbook look via semantic hooks only (no platform class selectors in this file). */
 body.nel-opb-v3{
   --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
@@ -13,9 +13,7 @@ body.nel-tool-detail-page.nel-opb-v3{
 }
 body.nel-opb-v3 .preview-banner{display:none !important}
 
-/* Alias CI panel classes → Fieldbook panel chrome */
-body.nel-opb-v3 .input-panel,
-body.nel-opb-v3 .result-panel,
+/* Fieldbook panel chrome */
 body.nel-opb-v3 .nel-tool-input,
 body.nel-opb-v3 .nel-tool-result,
 body.nel-opb-v3 .fb-panel{
@@ -25,8 +23,6 @@ body.nel-opb-v3 .fb-panel{
   box-shadow:0 1px 0 rgba(15,23,42,.03) !important;
   position:relative;
 }
-body.nel-opb-v3 .input-panel:before,
-body.nel-opb-v3 .result-panel:before,
 body.nel-opb-v3 .nel-tool-input:before,
 body.nel-opb-v3 .nel-tool-result:before,
 body.nel-opb-v3 .fb-panel:before{
@@ -37,8 +33,7 @@ body.nel-opb-v3 .fb-panel:before{
   opacity:.7;
   pointer-events:none;
 }
-body.nel-opb-v3 .nel-tool-primary-grid,
-body.nel-opb-v3 main.nel-tool-primary-grid{
+body.nel-opb-v3 #calculator{
   align-items:start !important;
 }
 
@@ -99,13 +94,6 @@ body.nel-opb-v3 .crumbs{display:none}
 
 /* Mobile: fold full workflow details; keep step bar + prev/next */
 @media (max-width:768px){
-  body.nel-opb-v3 .nel-tool-graph-related,
-  body.nel-opb-v3 .nel-workflow-memberships,
-  body.nel-opb-v3 .nel-tool-graph .nel-tool-graph-description,
-  body.nel-opb-v3 .nel-tool-graph > p,
-  body.nel-opb-v3 details.fb-wf-more-fold:not([open]) .fb-fold-body{
-    /* handled via details when present */
-  }
   body.nel-opb-v3 .nel-wf-extra{display:none}
   body.nel-opb-v3 details.nel-wf-fold > summary{
     list-style:none;
