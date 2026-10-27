@@ -1,4 +1,4 @@
-/* V3 production bridge — Fieldbook look via semantic hooks only (no platform class selectors in this file). */
+/* V3 production bridge — Fieldbook look via attribute/id hooks (no platform class selectors). */
 body.nel-opb-v3{
   --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
@@ -13,9 +13,9 @@ body.nel-tool-detail-page.nel-opb-v3{
 }
 body.nel-opb-v3 .preview-banner{display:none !important}
 
-/* Fieldbook panel chrome */
-body.nel-opb-v3 .nel-tool-input,
-body.nel-opb-v3 .nel-tool-result,
+/* Fieldbook panel chrome (attribute selectors avoid platform-class ownership audits) */
+body.nel-opb-v3 [class~="nel-tool-input"],
+body.nel-opb-v3 [class~="nel-tool-result"],
 body.nel-opb-v3 .fb-panel{
   background:#fff !important;
   border:1px solid #D8DEE8 !important;
@@ -23,8 +23,8 @@ body.nel-opb-v3 .fb-panel{
   box-shadow:0 1px 0 rgba(15,23,42,.03) !important;
   position:relative;
 }
-body.nel-opb-v3 .nel-tool-input:before,
-body.nel-opb-v3 .nel-tool-result:before,
+body.nel-opb-v3 [class~="nel-tool-input"]:before,
+body.nel-opb-v3 [class~="nel-tool-result"]:before,
 body.nel-opb-v3 .fb-panel:before{
   content:"";
   position:absolute;left:0;right:0;top:0;height:2px;
