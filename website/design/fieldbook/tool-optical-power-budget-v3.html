@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="fb.css?v=524a7ca22df5">
-<link rel="stylesheet" href="fb-v3.css?v=ed518a6e9c37">
+<link rel="stylesheet" href="fb-v3.css?v=24363f4bb383">
 </head>
 <body class="has-mbar v3">
 <a class="skip-link" href="#f-tx">Skip to parameters</a>
@@ -87,6 +87,13 @@
 <p id="form-error" class="form-error" hidden></p>
 
 <div class="fg">
+<p class="fs-t">Project</p>
+<div class="fields">
+<div class="f f-wide"><label for="f-project">Project name</label><div class="inp sel"><input id="f-project" value="GPON C+ 1:64 Optical Budget" aria-label="Project name" autocomplete="off"></div><small>Saved with Share / Save / CSV for your records</small></div>
+</div>
+</div>
+
+<div class="fg">
 <p class="fs-t">Equipment power window</p>
 <p class="fg-note">Editable. Presets fill these from the selected standards profile; change any value to switch to Custom.</p>
 <div class="fields">
@@ -149,6 +156,7 @@
 <!-- L2: key engineering results -->
 <div class="grp ro-l2"><h3>Key results</h3>
 <div class="row"><span>Estimated receive power</span><b id="ro-rx">−22.80<small>dBm</small></b><div class="eqn" id="ro-rx-eqn">= Tx min 3.00 − physical 25.80</div></div>
+<div class="row"><span>Receive power window</span><b id="ro-rx-window">−22.80 … −18.80<small>dBm</small></b><div class="eqn" id="ro-rx-window-eqn">= Tx min…max − physical (min −22.80 · max −18.80)</div></div>
 <div class="row"><span>Physical ODN loss</span><b id="ro-physical">25.80<small>dB</small></b><div class="eqn" id="ro-physical-eqn">fiber + splices + connectors + splitters + other</div></div>
 <div class="row"><span>Total design loss</span><b id="ro-design">28.80<small>dB</small></b><div class="eqn" id="ro-design-eqn">= physical 25.80 + margin 3.00 (penalty is taken off the budget)</div></div>
 </div>
@@ -190,6 +198,7 @@
 <a href="#status-rules">Status rules</a>
 <a href="#component-check">Component check</a>
 <a href="#faq">FAQ</a>
+<a href="#history">Recent calculations</a>
 <a href="#references">Official references</a>
 <a href="#content-review">Content review</a>
 <a href="#related">Engineering workflow</a>
@@ -231,8 +240,6 @@ Rx = Tx_min − physical loss</div>
 </div>
 </details>
 
-</div>
-
 <details class="fb-fold blk" id="status-rules">
 <summary class="fb-fold-sum"><span class="fb-fold-title">Status rules · Pass / Marginal / Fail</span></summary>
 <div class="fb-fold-body">
@@ -245,8 +252,6 @@ Rx = Tx_min − physical loss</div>
 <p>The 3 dB Healthy/Caution boundary is this tool’s planning threshold, not a universal standards mandate.</p>
 </div>
 </details>
-
-</div>
 
 <details class="fb-fold blk" id="component-check">
 <summary class="fb-fold-sum"><span class="fb-fold-title">Component check · default loss breakdown</span></summary>
@@ -263,8 +268,6 @@ Rx = Tx_min − physical loss</div>
 </table>
 </div>
 </details>
-
-</div>
 
 <div class="blk faq" id="faq">
 <span class="eyebrow">FAQ</span>
@@ -285,6 +288,18 @@ Rx = Tx_min − physical loss</div>
 <p>The tool supports planning and troubleshooting. Final acceptance should use power meter and OTDR measurements, specifications and enterprise standards.</p></details>
 </div>
 
+
+<details class="fb-fold blk" id="history">
+<summary class="fb-fold-sum"><span class="eyebrow">Project records</span><span class="fb-fold-title">Recent calculations</span></summary>
+<div class="fb-fold-body">
+<div class="history-toolbar">
+<p class="history-hint">Saved locally in this browser (up to 12). Not uploaded.</p>
+<button type="button" class="btn btn-ghost btn-sm" id="btn-clear-history">Clear history</button>
+</div>
+<div class="history-list" id="history-list" role="list"></div>
+</div>
+</details>
+
 <details class="fb-fold blk" id="references">
 <summary class="fb-fold-sum"><span class="fb-fold-title">Official references · standards &amp; power window</span></summary>
 <div class="fb-fold-body">
@@ -299,8 +314,6 @@ Rx = Tx_min − physical loss</div>
 </div>
 </div>
 </details>
-
-</div>
 
 <details class="fb-fold blk" id="content-review">
 <summary class="fb-fold-sum"><span class="fb-fold-title">Content review · formula basis &amp; limits</span></summary>
@@ -318,8 +331,6 @@ Rx = Tx_min − physical loss</div>
 </div>
 </div>
 </details>
-
-</div>
 
 <section class="blk fb-wf" id="related" aria-labelledby="fb-wf-title" data-tool-id="optical-power-budget" data-primary-workflow="optical-link-design">
 <span class="eyebrow">Engineering workflow</span>
@@ -390,6 +401,6 @@ Rx = Tx_min − physical loss</div>
 <div class="fbot"><span>© 2026 NetEngineerLab.com · Design preview (noindex)</span><span>EN · 中文 · ES</span></div>
 </div></footer>
 <script src="opb-engine-copy.js?v=5085856f23dd"></script>
-<script src="fb-v3-opb.js?v=1ffe4cbcb4ef"></script>
+<script src="fb-v3-opb.js?v=8e753441a4a4"></script>
 </body>
 </html>

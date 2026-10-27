@@ -52,6 +52,7 @@
 
   function readValues() {
     return {
+      project: ($("f-project") && $("f-project").value.trim()) || "Untitled project",
       tx: num("f-tx"),
       txMax: num("f-txMax"),
       sens: num("f-sens"),
@@ -80,6 +81,7 @@
 
   function setFields(p) {
     applying = true;
+    if ($("f-project") && p.project != null) $("f-project").value = p.project;
     $("f-tx").value = p.tx;
     $("f-txMax").value = p.txMax;
     $("f-sens").value = p.sens;
@@ -274,6 +276,9 @@
     setText("ro-meter-right", fmt(design) + " / " + fmt(standard) + " dB");
 
     setHTML("ro-rx", fmt(rx) + "<small>dBm</small>");
+    const rxMax = result.rxMax;
+    setHTML("ro-rx-window", fmt(rx) + " … " + fmt(rxMax) + "<small>dBm</small>");
+    setText("ro-rx-window-eqn", "= Tx min…max − physical (min " + fmt(rx) + " · max " + fmt(rxMax) + ")");
     setHTML("ro-physical", fmt(physical) + "<small>dB</small>");
     setHTML("ro-design", fmt(design) + "<small>dB</small>");
     setText("ro-rx-eqn", "= Tx min " + fmt(v.tx) + " − physical " + fmt(physical));
@@ -449,6 +454,69 @@
     else flash(btn, "URL updated — copy address bar");
   }
 
+  
+  function renderHistory() {
+    const list = $("history-list");
+    if (!list) return;
+    const h = loadHistory();
+    if (!h.length) {
+      list.innerHTML = '<p class="history-hint">No saved calculations yet. Use Save in Budget analysis.</p>';
+      return;
+    }
+    list.innerHTML = h
+      .map((row, idx) => {
+        const when = row.savedAt ? new Date(row.savedAt).toLocaleString() : "";
+        const title = (row.project || "Untitled").replace(/[<>&]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;" }[c]));
+        const st = statusMeta(row.st || "pass").label;
+        return (
+          '<button type="button" class="history-item" data-history-idx="' +
+          idx +
+          '" role="listitem">' +
+          "<div><b>" +
+          title +
+          "</b><span>" +
+          st +
+          " · remain " +
+          fmt(row.remain) +
+          " dB · Rx " +
+          fmt(row.rx) +
+          " dBm</span></div>" +
+          '<div class="history-meta">' +
+          when +
+          "</div></button>"
+        );
+      })
+      .join("");
+  }
+
+  function restoreHistory(idx) {
+    const h = loadHistory();
+    const row = h[idx];
+    if (!row) return;
+    setFields({
+      project: row.project || "Untitled project",
+      tx: row.tx,
+      txMax: row.txMax,
+      sens: row.sens,
+      over: row.over,
+      penalty: row.penalty,
+      margin: row.margin,
+      wave: row.wave || "1490",
+      d: row.d,
+      a: row.a,
+      sc: row.sc,
+      sl: row.sl,
+      cc: row.cc,
+      cl: row.cl,
+      s1: row.s1,
+      s2: row.s2,
+      s3: row.s3,
+      other: row.other
+    });
+    setPresetUI("custom");
+    calc();
+  }
+
   function loadHistory() {
     try {
       return JSON.parse(localStorage.getItem(HISTORY_KEY) || "[]");
@@ -463,10 +531,12 @@
       flash(btn, "Fix inputs first");
       return;
     }
-    const row = Object.assign({}, last, { savedAt: new Date().toISOString() });
+    const v = readValues();
+    const row = Object.assign({}, last, { project: v.project, savedAt: new Date().toISOString() });
     const h = loadHistory();
     h.unshift(row);
     localStorage.setItem(HISTORY_KEY, JSON.stringify(h.slice(0, 12)));
+    renderHistory();
     flash(btn, "Record saved");
   }
 
@@ -479,6 +549,7 @@
     const r = last;
     const rows = [
       ["Field", "Value"],
+      ["Project", r.project || (($("f-project") && $("f-project").value) || "")],
       ["Mode", r.mode],
       ["Minimum Tx Power dBm", r.tx],
       ["Maximum Tx Power dBm", r.txMax],
@@ -604,10 +675,29 @@
       });
     });
     $("f-wave").addEventListener("change", onWaveChange);
+    const proj = $("f-project");
+    if (proj) {
+      proj.addEventListener("input", () => {
+        if (last) last.project = proj.value.trim() || "Untitled project";
+      });
+    }
 
     $("btn-calc").addEventListener("click", calc);
     $("btn-reset").addEventListener("click", reset);
     $("btn-share").addEventListener("click", shareInputs);
+
+    const clearH = $("btn-clear-history");
+    if (clearH) clearH.addEventListener("click", () => {
+      localStorage.removeItem(HISTORY_KEY);
+      renderHistory();
+    });
+    const histList = $("history-list");
+    if (histList) histList.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-history-idx]");
+      if (!btn) return;
+      restoreHistory(Number(btn.getAttribute("data-history-idx")));
+    });
+    renderHistory();
 
     document.querySelectorAll("[data-ro-act]").forEach((el) => {
       el.addEventListener("click", () => {
