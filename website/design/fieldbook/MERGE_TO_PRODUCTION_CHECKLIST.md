@@ -1,6 +1,6 @@
 # Fieldbook OPB v3c → production merge checklist
 
-**Status:** PREP only. Do **not** replace `/tools/optical-power-budget/` until this checklist is completed and the user authorizes go-live.
+**Status:** READY IN PR (await user 「上线」 before merge to main / production deploy). Do **not** replace `/tools/optical-power-budget/` until this checklist is completed and the user authorizes go-live.
 
 Preview URL (must stay non-indexable):  
 `https://netengineerlab.com/design/fieldbook/tool-optical-power-budget-v3`

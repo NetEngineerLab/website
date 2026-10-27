@@ -1,6 +1,6 @@
 # Fieldbook OPB → `/tools/optical-power-budget/` SEO merge checklist
 
-**Status:** PREP only. Preview stays `noindex,nofollow`. Do **not** replace production until the user authorizes go-live and this list is checked.
+**Status:** READY IN PR (await user 「上线」 before merge to main / production deploy). Preview stays `noindex,nofollow`. Do **not** replace production until the user authorizes go-live and this list is checked.
 
 | | URL |
 |---|---|
@@ -23,43 +23,43 @@ Paste / verify these from the current live EN tool page (and locale siblings), t
 
 ### Document meta
 
-- [ ] `title` — production wording (no “DESIGN PREVIEW” / “Fieldbook v3c preview”)
-- [ ] `meta name="description"`
-- [ ] `meta name="robots"` → `index,follow` (or site default); **remove** preview noindex
-- [ ] Canonical → `https://netengineerlab.com/tools/optical-power-budget/` (EN) and locale-specific canonicals for zh/es
+- [x] `title` — production wording (no “DESIGN PREVIEW” / “Fieldbook v3c preview”)
+- [x] `meta name="description"`
+- [x] `meta name="robots"` → `index,follow` (or site default); **remove** preview noindex
+- [x] Canonical → `https://netengineerlab.com/tools/optical-power-budget/` (EN) and locale-specific canonicals for zh/es
 
 ### Open Graph / Twitter
 
-- [ ] `og:type`, `og:site_name`, `og:title`, `og:description`
-- [ ] `og:url` = production tool URL
-- [ ] `og:image` (existing OPB OG asset)
-- [ ] `twitter:card`, `twitter:title`, `twitter:description`, `twitter:image`
+- [x] `og:type`, `og:site_name`, `og:title`, `og:description`
+- [x] `og:url` = production tool URL
+- [x] `og:image` (existing OPB OG asset)
+- [x] `twitter:card`, `twitter:title`, `twitter:description`, `twitter:image`
 
 ### JSON-LD (do not invent a second indexable URL)
 
-- [ ] `WebApplication`
-- [ ] `FAQPage` (answers must match on-page FAQ)
-- [ ] `BreadcrumbList`
-- [ ] `WebPage` (if present on live today)
+- [x] `WebApplication`
+- [x] `FAQPage` (answers must match on-page FAQ)
+- [x] `BreadcrumbList`
+- [x] `WebPage` (if present on live today)
 
 ### hreflang
 
-- [ ] `en` → `/tools/optical-power-budget/`
-- [ ] `zh-CN` → `/tools/optical-power-budget/zh/`
-- [ ] `es` → `/tools/optical-power-budget/es/`
-- [ ] `x-default` → EN production URL
+- [x] `en` → `/tools/optical-power-budget/`
+- [x] `zh-CN` → `/tools/optical-power-budget/zh/`
+- [x] `es` → `/tools/optical-power-budget/es/`
+- [x] `x-default` → EN production URL
 
 ### Sitemap
 
-- [ ] Keep EN / zh / es under `/tools/optical-power-budget/` only
-- [ ] Never add `/design/fieldbook/...`
+- [x] Keep EN / zh / es under `/tools/optical-power-budget/` only
+- [x] Never add `/design/fieldbook/...`
 
 ### Site navigation shell
 
-- [ ] Formal routes: `/`, `/tools/`, `/guides/`, `/topics/`, `/about/`
-- [ ] Production search + language controls (not preview decorative placeholders)
-- [ ] Remove preview banner / “Design preview (noindex)” footer line
-- [ ] Confirm EN / 中文 / ES locale pages resolve after UI swap
+- [x] Formal routes: `/`, `/tools/`, `/guides/`, `/topics/`, `/about/`
+- [x] Production search + language controls (not preview decorative placeholders)
+- [x] Remove preview banner / “Design preview (noindex)” footer line
+- [x] Confirm EN / 中文 / ES locale pages resolve after UI swap
 
 ## Cutover order (SEO-safe)
 

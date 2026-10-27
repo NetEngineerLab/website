@@ -736,6 +736,11 @@
       details.open = true;
       details.dataset.userToggled = "1";
     }
+    const target = details || el;
+    requestAnimationFrame(() => {
+      try { target.scrollIntoView({ behavior: "smooth", block: "start" }); }
+      catch (_) { target.scrollIntoView(true); }
+    });
   }
 
   function bindExplainAnchors() {
