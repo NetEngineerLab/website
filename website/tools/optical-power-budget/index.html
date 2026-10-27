@@ -13,7 +13,7 @@
 <meta name="twitter:description" content="Professional optical power budget calculator for transmit power, receiver sensitivity, overload threshold, splitters, engineering margin, receive power and maximum distance.">
 <meta name="twitter:image" content="https://netengineerlab.com/tools/optical-power-budget/images/og-optical-power-budget.png">
 
-<link rel="stylesheet" href="css/fb.css?v=524a7ca22df5">
+<link rel="stylesheet" href="css/fb.css?v=562b9b84b06d">
 <link rel="stylesheet" href="css/fb-v3.css?v=59d4c1fe7c6e">
 <link rel="stylesheet" href="css/fb-v3-prod.css?v=b26114adcab0">
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Optical Power Budget Calculator | NetEngineerLab","url":"https://netengineerlab.com/tools/optical-power-budget/","description":"Professional optical power budget calculator for transmit power, receiver sensitivity, overload threshold, splitters, engineering margin, receive power and maximum distance.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
@@ -71,13 +71,14 @@
   <span aria-current="page">Optical Power Budget Calculator</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
-<main class="nel-tool-main" id="calculator">
+<section class="hero nel-tool-hero"><div class="hero-inner"><p class="eyebrow">OPTICAL ENGINEERING TOOL</p><h1>Optical Power Budget Calculator</h1><p>Verify optical power budgets from transmit power, receiver sensitivity and passive losses, then calculate receive power, engineering margin and maximum distance.</p><div class="hero-tags"><span>Budget verification</span><span>Maximum distance</span><span>Multi-stage splitters</span><span>Engineering diagnosis</span></div></div></section>
+<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
 
 <div class="wrap">
 <div class="tool-head">
 <div>
 <div class="crumbs"><a href="../../">Home</a>/<a href="../">Tools</a>/<a href="../../topics/pon-optical/">Optical</a>/<span>Optical Power Budget</span></div>
-<h1>Optical Power Budget Calculator</h1>
+<p class="tool-page-label">Optical Power Budget Calculator</p>
 <p class="tool-lede">Verify optical power budgets from transmit power, receiver sensitivity and ODN losses — then read receive power, remaining margin and maximum distance.</p>
 </div>
 <div class="acts">
@@ -108,7 +109,7 @@
 </section>
 
 <div class="ws">
-<div class="panel">
+<section class="input-panel card nel-tool-input">
 <div class="panel-h">
 <h2>Equipment and link parameters</h2>
 <div class="tabs" role="tablist" aria-label="Calculation mode">
@@ -169,9 +170,9 @@
 <button type="button" class="btn btn-primary" id="calculateBtn">Calculate power budget</button>
 <button type="button" class="btn btn-ghost" id="resetBtn">Reset</button>
 </div>
-</div>
+</section>
 
-<aside class="readout" id="result" aria-live="polite">
+<section class="result-panel card nel-tool-result" id="result" aria-live="polite">
 <div class="ro-h">Budget analysis <span class="status st-pass" data-status id="healthBadge">✓ Healthy</span><a class="how how-ro" href="#methodology">How calculated</a></div>
 
 <!-- L1: status + tightest margin -->
@@ -218,7 +219,7 @@
 <button type="button" id="csvBtn" data-ro-act="csv">CSV</button>
 <button type="button" id="printBtn" data-ro-act="print">Print</button>
 </div>
-</aside>
+</section>
 </div>
 
 <div class="mbar"><div><div class="ml">Tightest margin</div><b id="mbar-val">3.20 dB</b></div><span class="status st-pass" data-status>Pass</span><a href="#result" style="margin-left:auto;color:inherit;font-style:normal;text-decoration:none">Details ↓</a></div>

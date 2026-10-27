@@ -13,7 +13,7 @@
 <meta name="twitter:description" content="Verifica el presupuesto óptico con potencia Tx, sensibilidad Rx, pérdidas ODN, penalización óptica, margen de ingeniería y distancia máxima estimada.">
 <meta name="twitter:image" content="https://netengineerlab.com/tools/optical-power-budget/images/og-optical-power-budget.png">
 
-<link rel="stylesheet" href="../css/fb.css?v=524a7ca22df5">
+<link rel="stylesheet" href="../css/fb.css?v=562b9b84b06d">
 <link rel="stylesheet" href="../css/fb-v3.css?v=59d4c1fe7c6e">
 <link rel="stylesheet" href="../css/fb-v3-prod.css?v=b26114adcab0">
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Calculadora de presupuesto de potencia óptica | NetEngineerLab","url":"https://netengineerlab.com/tools/optical-power-budget/es/","description":"Verifica el presupuesto óptico con potencia Tx, sensibilidad Rx, pérdidas ODN, penalización óptica, margen de ingeniería y distancia máxima estimada.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
@@ -72,14 +72,15 @@
   <span aria-current="page">Calculadora de presupuesto óptico</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
-<main class="nel-tool-main" id="calculator">
+<section class="hero nel-tool-hero"><div class="hero-inner"><p class="eyebrow">HERRAMIENTA DE INGENIERÍA ÓPTICA</p><h1>Calculadora de presupuesto de potencia óptica</h1><p>Verifica el presupuesto de potencia óptica a partir de la potencia de transmisión, la sensibilidad del receptor y las pérdidas pasivas; calcula la potencia recibida, el margen de ingeniería y la distancia máxima.</p><div class="hero-tags"><span>Verificación del presupuesto</span><span>Distancia máxima</span><span>Divisores multietapa</span><span>Diagnóstico de ingeniería</span></div></div></section>
+<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
 
 
 <div class="wrap">
 <div class="tool-head">
 <div>
 <div class="crumbs"><a href="../../../es/">Home</a>/<a href="../../es/">Tools</a>/<a href="/topics/pon-optical/">Optical</a>/<span>Optical Power Budget</span></div>
-<h1>Calculadora de presupuesto de potencia óptica</h1>
+<p class="tool-page-label">Calculadora de presupuesto de potencia óptica</p>
 <p class="tool-lede">Verifique presupuestos ópticos a partir de potencia de transmisión, sensibilidad y pérdidas ODN; obtenga potencia recibida, margen restante y distancia máxima.</p>
 </div>
 <div class="acts">
@@ -110,7 +111,7 @@
 </section>
 
 <div class="ws">
-<div class="panel">
+<section class="input-panel card nel-tool-input">
 <div class="panel-h">
 <h2>Parámetros de equipo y enlace</h2>
 <div class="tabs" role="tablist" aria-label="Calculation mode">
@@ -171,9 +172,9 @@
 <button type="button" class="btn btn-primary" id="calculateBtn">Calcular presupuesto</button>
 <button type="button" class="btn btn-ghost" id="resetBtn">Reset</button>
 </div>
-</div>
+</section>
 
-<aside class="readout" id="result" aria-live="polite">
+<section class="result-panel card nel-tool-result" id="result" aria-live="polite">
 <div class="ro-h">Análisis de presupuesto <span class="status st-pass" data-status id="healthBadge">✓ Correcto</span><a class="how how-ro" href="#methodology">Cómo se calcula</a></div>
 
 <!-- L1: status + tightest margin -->
@@ -220,7 +221,7 @@
 <button type="button" id="csvBtn" data-ro-act="csv">CSV</button>
 <button type="button" id="printBtn" data-ro-act="print">Print</button>
 </div>
-</aside>
+</section>
 </div>
 
 <div class="mbar"><div><div class="ml">Tightest margin</div><b id="mbar-val">3.20 dB</b></div><span class="status st-pass" data-status>Pass</span><a href="#result" style="margin-left:auto;color:inherit;font-style:normal;text-decoration:none">Details ↓</a></div>
