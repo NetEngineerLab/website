@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="fb.css?v=524a7ca22df5">
-<link rel="stylesheet" href="fb-v3.css?v=0f514db88c56">
+<link rel="stylesheet" href="fb-v3.css?v=8e0ab94a157e">
 </head>
 <body class="has-mbar v3">
 <a class="skip-link" href="#f-tx">Skip to parameters</a>
@@ -139,7 +139,7 @@
 </div>
 
 <aside class="readout" id="result" aria-live="polite">
-<div class="ro-h">Budget analysis <span class="status st-pass" data-status>Pass</span></div>
+<div class="ro-h">Budget analysis <span class="status st-pass" data-status>Pass</span><a class="how how-ro" href="#methodology">How calculated</a></div>
 
 <!-- L1: status + tightest margin -->
 <div class="ro-l1">
@@ -179,6 +179,7 @@
 <div class="r" id="wf-conn"><span>Connectors 4 × 0.30</span><i style="width:6%"></i><em>1.20 dB</em></div>
 <div class="r" id="wf-splice"><span>Splices 6 × 0.10</span><i style="width:3%"></i><em>0.60 dB</em></div>
 </div>
+<p class="ro-how"><a class="how how-ro-inline" href="#methodology">How calculated →</a></p>
 <div class="ro-acts">
 <button type="button" data-ro-act="copy">Copy</button>
 <button type="button" data-ro-act="save">Save</button>
@@ -206,7 +207,7 @@
 
 <div class="prose">
 <details class="fb-fold blk" id="about-scope">
-<summary class="fb-fold-sum"><span class="eyebrow">About</span><span class="fb-fold-title">About &amp; applicability</span></summary>
+<summary class="fb-fold-sum"><span class="fb-fold-title">About &amp; applicability</span></summary>
 <div class="fb-fold-body about-card about-card-inline">
 <p>Free planning calculator for telecom and network engineers. Runs entirely in the browser: enter OLT/ONU power windows and ODN losses to estimate class budget remaining, receive power, sensitivity margin, overload margin and maximum reach. Application category: engineering utility / optical link design. No account required.</p>
 <p>Use for GPON/EPON ODN planning, receive-window checks and troubleshooting. Results are planning aids — not a substitute for datasheet values, power-meter or OTDR acceptance, or enterprise standards.</p>
@@ -220,7 +221,7 @@
 </details>
 
 <details class="fb-fold blk" id="methodology">
-<summary class="fb-fold-sum"><span class="eyebrow">Methodology</span><span class="fb-fold-title">How it’s calculated · methods &amp; formulas</span></summary>
+<summary class="fb-fold-sum"><span class="fb-fold-title">How it’s calculated · methods &amp; formulas</span></summary>
 <div class="fb-fold-body">
 <div class="eq">class budget = Tx_min − Rx_sensitivity − path_penalty<br>
 physical loss = fiber + splices + connectors + splitters + other<br>
@@ -324,8 +325,7 @@ Rx = Tx_min − physical loss</div>
 <div class="review-card"><h3>Update log</h3><ul>
 <li>2026-08-31 — Editorial review of power-window notes and official references.</li>
 <li>2026-10-25 — Added structured content-review metadata (review date, formula basis, limits, log).</li>
-<li>2026-10-26 — Interactive Fieldbook preview: editable parameters, scenario presets, Save/CSV export, verify and maximum-distance modes.</li>
-<li>2026-10-27 — Mobile reading order: parameters and results stay open; About, methods and full workflow collapse by default on small screens.</li>
+<li>2026-10-27 — Calculator layout: clearer result hierarchy; Save, Share and CSV export; mobile keeps parameters and results open with supporting sections collapsed by default.</li>
 </ul></div>
 </div>
 </div>
@@ -400,6 +400,6 @@ Rx = Tx_min − physical loss</div>
 <div class="fbot"><span>© 2026 NetEngineerLab.com · Design preview (noindex)</span><span>EN · 中文 · ES</span></div>
 </div></footer>
 <script src="opb-engine-copy.js?v=5085856f23dd"></script>
-<script src="fb-v3-opb.js?v=8e753441a4a4"></script>
+<script src="fb-v3-opb.js?v=f78eea55e342"></script>
 </body>
 </html>

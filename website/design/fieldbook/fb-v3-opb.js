@@ -713,12 +713,46 @@
     else calc();
 
     syncExplainFolds();
+    bindExplainAnchors();
     if (window.matchMedia) {
       const mq = window.matchMedia("(min-width: 769px)");
       const onChange = () => syncExplainFolds();
       if (mq.addEventListener) mq.addEventListener("change", onChange);
       else if (mq.addListener) mq.addListener(onChange);
     }
+  }
+
+
+  function openExplainTarget(id) {
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (el.matches("details.fb-fold")) {
+      el.open = true;
+      el.dataset.userToggled = "1";
+    }
+    const details = el.closest && el.closest("details.fb-fold");
+    if (details) {
+      details.open = true;
+      details.dataset.userToggled = "1";
+    }
+  }
+
+  function bindExplainAnchors() {
+    document.querySelectorAll('a[href^="#methodology"], a[href="#methodology"]').forEach((a) => {
+      if (a.dataset.explainBound) return;
+      a.dataset.explainBound = "1";
+      a.addEventListener("click", () => {
+        // Open after navigation so mobile collapsed fold becomes readable
+        setTimeout(() => openExplainTarget("methodology"), 0);
+      });
+    });
+    if (location.hash === "#methodology" || location.hash === "#about-scope" || location.hash === "#status-rules" || location.hash === "#component-check") {
+      openExplainTarget(location.hash.slice(1));
+    }
+    window.addEventListener("hashchange", () => {
+      if (location.hash) openExplainTarget(location.hash.slice(1));
+    });
   }
 
   function syncExplainFolds() {
