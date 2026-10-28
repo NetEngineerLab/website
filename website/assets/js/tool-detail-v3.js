@@ -101,11 +101,15 @@
     });
   }
 
+  function foldStaysOpen(el) {
+    return el.hasAttribute("data-fold-pinned") || !!el.querySelector("#standards, #references");
+  }
+
   function syncExplainFolds() {
     const desktop = window.matchMedia ? window.matchMedia("(min-width: 769px)").matches : true;
     document.querySelectorAll("body.nel-tool-v3 details.fb-fold").forEach(function (el) {
       el.classList.toggle("fb-desktop-open", desktop);
-      if (desktop) {
+      if (desktop || foldStaysOpen(el)) {
         el.open = true;
       } else if (el.dataset.userToggled !== "1") {
         el.open = false;
