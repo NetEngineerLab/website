@@ -612,7 +612,13 @@ function injectToolReturnNavigation(html,currentRel,currentInfo){
  const homeHref=escapeHtml(relativeUrl(currentUrl,urlForRoute("",locale)));
  const homeLabel=locale.id==="zh"?"首页":locale.id==="es"?"Inicio":"Home";
  const toolsLabel=locale.id==="zh"?"工具":locale.id==="es"?"Herramientas":"Tools";
- const nav=`<!-- NEL_TOOL_RETURN_START -->\n<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">\n  <a href="${homeHref}">${homeLabel}</a>\n  <span aria-hidden="true">/</span>\n  <a class="tool-return-link" href="${toolsHref}">${toolsLabel}</a>\n  <span aria-hidden="true">/</span>\n  <span aria-current="page">${toolName}</span>\n</nav>\n<!-- NEL_TOOL_RETURN_END -->`;
+ // Keep a page's existing breadcrumb name. The default stays "Breadcrumb";
+ // localized names (for example 面包屑 / Ruta de navegación) are authored in
+ // the page and must survive every rebuild.
+ const existingNav=html.match(/<!-- NEL_TOOL_RETURN_START -->[\s\S]*?<!-- NEL_TOOL_RETURN_END -->/i);
+ const existingLabel=existingNav&&existingNav[0].match(/\baria-label\s*=\s*"([^"]*)"/i);
+ const breadcrumbLabel=escapeHtml(existingLabel?existingLabel[1]:"Breadcrumb");
+ const nav=`<!-- NEL_TOOL_RETURN_START -->\n<nav class="breadcrumbs tool-return-nav" aria-label="${breadcrumbLabel}">\n  <a href="${homeHref}">${homeLabel}</a>\n  <span aria-hidden="true">/</span>\n  <a class="tool-return-link" href="${toolsHref}">${toolsLabel}</a>\n  <span aria-hidden="true">/</span>\n  <span aria-current="page">${toolName}</span>\n</nav>\n<!-- NEL_TOOL_RETURN_END -->`;
  const markers=/<!-- NEL_TOOL_RETURN_START -->[\s\S]*?<!-- NEL_TOOL_RETURN_END -->/i;
  if(markers.test(html))return html.replace(markers,nav);
  const existing=/<nav\b[^>]*class\s*=\s*["'][^"']*\bbreadcrumbs\b[^"']*["'][^>]*>[\s\S]*?<\/nav>/i;
