@@ -19,10 +19,13 @@ body > .site-shell-header {
   margin: 0 !important;
   padding: 0 !important;
   border: 0 !important;
-  border-bottom: 1px solid var(--nel-header-border, var(--nel-color-border)) !important;
+  border-bottom: 1px solid var(--nel-color-border) !important;
   display: block !important;
   color: var(--nel-color-text) !important;
-  background: var(--nel-header-background, var(--nel-color-surface)) !important;
+  /* Color stays the shared surface. A page may add a glass image without
+     changing the computed color the shell signature compares. */
+  background-color: var(--nel-color-surface) !important;
+  background-image: var(--nel-header-background-image, none) !important;
   box-shadow: var(--nel-header-shadow, 0 8px 24px rgba(8, 47, 89, 0.06)) !important;
   font-family: var(--nel-font-family) !important;
 }
@@ -209,12 +212,13 @@ body > footer.site-shell-footer {
     width: 100% !important;
     margin: 0 !important;
     padding: 10px 14px 14px !important;
-    border-bottom: 1px solid var(--nel-header-border, var(--nel-color-border)) !important;
+    border-bottom: 1px solid var(--nel-color-border) !important;
     display: none !important;
     grid-template-columns: 1fr 1fr !important;
     gap: 6px !important;
     color: var(--nel-color-text) !important;
-    background: var(--nel-header-background, var(--nel-color-surface)) !important;
+    background-color: var(--nel-color-surface) !important;
+    background-image: var(--nel-header-background-image, none) !important;
     box-shadow: var(--nel-header-shadow, 0 14px 24px rgba(8, 47, 89, 0.12)) !important;
   }
   .site-shell-header[data-nav-open="true"] .site-shell-nav { display: grid !important; }

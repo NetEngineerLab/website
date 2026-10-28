@@ -3,11 +3,10 @@
    does not restate backgrounds, borders, or type with !important. */
 
 body.nel-opb-v3 .preview-banner{display:none}
-/* Site-shell reads these tokens. Other pages keep the fallback white bar.
-   The blur sits on the header itself because a gradient cannot carry it. */
+/* Glass sits in the image layer. The shared surface color and border stay
+   so the site-shell signature still matches every other page. */
 body.nel-opb-v3{
-  --nel-header-background:linear-gradient(180deg,rgba(255,253,250,.96),rgba(251,250,247,.84));
-  --nel-header-border:#E7E3DA;
+  --nel-header-background-image:linear-gradient(180deg,rgba(255,253,250,.96),rgba(251,250,247,.84));
   --nel-header-shadow:inset 0 1px 0 rgba(255,255,255,.72),0 10px 28px rgba(22,20,15,.045);
 }
 body.nel-opb-v3 > .site-shell-header{
