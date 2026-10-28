@@ -1026,14 +1026,12 @@
     }
 
     function currentId() {
-      // Match sticky header + TOC top offset (~90–110px)
-      const probe = window.scrollY + 120;
+      // Same line as the Fieldbook preview: heading has passed the sticky offset.
+      const marker = 120;
       let active = items[0].id;
       for (let i = 0; i < items.length; i++) {
-        const top = items[i].el.getBoundingClientRect().top + window.scrollY;
-        if (top <= probe + 1) active = items[i].id;
+        if (items[i].el.getBoundingClientRect().top <= marker) active = items[i].id;
       }
-      // Near page bottom: force last section
       const doc = document.documentElement;
       if (window.innerHeight + window.scrollY >= doc.scrollHeight - 8) {
         active = items[items.length - 1].id;
@@ -1053,6 +1051,7 @@
     }
 
     window.addEventListener("scroll", onScroll, { passive: true });
+    document.addEventListener("scroll", onScroll, { passive: true, capture: true });
     window.addEventListener("resize", onScroll, { passive: true });
     links.forEach(function (a) {
       a.addEventListener("click", function () {
