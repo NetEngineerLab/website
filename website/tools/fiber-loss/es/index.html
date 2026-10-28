@@ -56,7 +56,8 @@
 <link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=dfdd771763d6">
 <link rel="manifest" href="../manifest-es.webmanifest">
 </head>
-<body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<body class="nel-tool-detail-page nel-tool-v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<link rel="stylesheet" href="../../../assets/css/tool-detail-v3.css?v=a51258f43a34">
 <a class="skip-link" href="#calculator">Saltar a la calculadora</a>
 <noscript><div class="noscript">Se requiere JavaScript para ejecutar esta calculadora.</div></noscript>
 <!-- NEL_HEADER_START -->
@@ -336,7 +337,24 @@
 </div>
 </section>
 </main>
+<div class="below">
+<nav class="toc" aria-label="En esta página">
+<h4>En esta página</h4>
+<a href="#scenarios">Escenarios de ingeniería típicos</a>
+<a href="#pon-toolkit">Herramientas PON y de fibra relacionadas</a>
+<a href="#history">Cálculos recientes</a>
+<a href="#methodology">Metodología y notas de ingeniería</a>
+<a href="#standards">Referencias normativas</a>
+<a href="#references">Normas y referencias de medida de pérdidas ópticas</a>
+<a href="#faq">Preguntas frecuentes</a>
+<a href="#nel-tool-graph">Continuar el flujo de trabajo de ingeniería</a>
+</nav>
+<div class="prose">
+
 <!-- NEL_SCENARIOS_START -->
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Escenarios de ingeniería típicos</span></summary>
+<div class="fb-fold-body">
 <section class="content-section nel-tool-supporting-section" id="scenarios" aria-labelledby="scenarios-title">
 <div class="section-heading"><div><p class="eyebrow">EJEMPLOS RESUELTOS</p><h2 id="scenarios-title">Escenarios de ingeniería típicos</h2></div></div>
 <p>Cada escenario rellena la calculadora con un clic. El resultado esperado lo calcula el mismo motor y está cubierto por pruebas automáticas.</p>
@@ -346,8 +364,13 @@
 <article class="metric-card nel-scenario-card" data-scenario-id="p2p-10km-1310"><div><h3>Enlace punto a punto de 10 km a 1310 nm (canal de 6,2 dB)</h3><p>Presupuesto tipo 10GBASE-LR: 4 empalmes, 2 conectores de 0,5 dB y 1 dB de margen.</p><p><small>Resultado esperado</small><br><strong data-scenario-expected>Pérdida de diseño 5.90 dB · restante 0.30 dB (aviso)</strong></p><p><a class="nel-scenario-link" href="?scenario=p2p-10km-1310#calculator">Cargar este escenario →</a></p></div></article>
 </div>
 </section>
+</div>
+</details>
 <!-- NEL_SCENARIOS_END -->
 <!-- NEL_PON_LINKS_START -->
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Herramientas PON y de fibra relacionadas</span></summary>
+<div class="fb-fold-body">
 <section class="content-section nel-tool-supporting-section" id="pon-toolkit" aria-labelledby="pon-toolkit-title">
 <div class="section-heading"><div><p class="eyebrow">KIT DE PLANIFICACIÓN PON</p><h2 id="pon-toolkit-title">Herramientas PON y de fibra relacionadas</h2></div></div>
 <p>Siga el diseño PON en orden: relación de división, distancia, potencia recibida y presupuesto completo del enlace.</p>
@@ -355,11 +378,16 @@
 <h3>Guías (en inglés)</h3>
 <ul class="nel-pon-guides"><li><a href="/guides/pon-splitter-loss-guide/">Guía de pérdida del divisor PON</a></li><li><a href="/guides/fiber-link-budget-guide/">Guía de presupuesto de enlace de fibra</a></li><li><a href="/topics/pon-optical/">Tema PON y óptica</a></li></ul>
 </section>
+</div>
+</details>
 <!-- NEL_PON_LINKS_END -->
 <aside aria-label="Publicidad" class="ad-slot" data-ad-key="afterCalculator" hidden="">
 <div class="ad-label">PUBLICIDAD</div>
 <div class="ad-body"></div>
 </aside>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Cálculos recientes</span></summary>
+<div class="fb-fold-body">
 <section class="content-section nel-tool-supporting-section" id="history">
 <div class="section-heading">
 <div>
@@ -370,21 +398,46 @@
 </div>
 <div class="history-list" id="historyList"></div>
 </section>
+</div>
+</details>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Metodología y notas de ingeniería</span></summary>
+<div class="fb-fold-body">
 <section class="content-section methodology nel-tool-supporting-section" id="methodology"><span class="section-kicker">METODOLOGÍA</span><h2>Metodología y notas de ingeniería</h2><div class="grid"><article><h3>Pérdida física del enlace</h3><p>Suma la atenuación de la fibra, empalmes, conectores, divisores y otras pérdidas pasivas.</p><div class="formula">Lfis = distancia × α + Lempalmes + Lconectores + Ldivisores + Lotras</div></article><article><h3>Pérdida de diseño</h3><p>Añade el margen de ingeniería a la pérdida física para cubrir envejecimiento, temperatura, mantenimiento y variación de medida.</p><div class="formula">Ldiseño = Lfis + margen</div></article><article><h3>Potencia recibida</h3><p>La potencia recibida estimada se calcula con la potencia Tx y la pérdida física actual; el margen de diseño se evalúa por separado.</p><div class="formula">Prx = Ptx − Lfis</div></article><article><h3>Criterio de planificación</h3><p>El umbral de 3 dB es una regla configurable de planificación del sitio, no un requisito universal. Confirma los valores con fichas técnicas y mediciones de campo.</p></article></div></section>
+</div>
+</details>
 <!-- NEL_STANDARDS_START -->
+<details class="fb-fold blk" open data-fold-pinned>
+<summary class="fb-fold-sum"><span class="fb-fold-title">Referencias normativas</span></summary>
+<div class="fb-fold-body">
 <section class="content-section nel-tool-supporting-section" id="standards" aria-labelledby="standards-title">
 <div class="section-heading"><div><p class="eyebrow">NORMAS</p><h2 id="standards-title">Referencias normativas</h2></div></div>
 <p>Documentos de referencia de las fórmulas y valores por defecto anteriores.</p>
 <ul class="nel-standards-list"><li><a href="https://www.itu.int/rec/T-REC-G.652/en" rel="noopener">ITU-T G.652</a> — Atenuación de fibra monomodo; los valores por defecto 0,35 / 0,30 / 0,20 dB/km son típicos y están por debajo de los máximos G.652. <small>[Comprobado]</small></li><li><a href="https://www.itu.int/rec/T-REC-G.984.2/en" rel="noopener">ITU-T G.984.2 (08/2019)</a> — Capa física GPON: clase B+ 13–28 dB en el anexo A, tabla A.2; clase C+ 17–32 dB (60 km máx.) en el apéndice V, tabla V.3, apéndice informativo y no clase normativa. Sensibilidad OLT −28 dBm (B+) / −32 dBm (C+). <small>[Comprobado]</small></li><li><a href="https://www.itu.int/rec/T-REC-G.671/en" rel="noopener">ITU-T G.671</a> — Características de transmisión de componentes ópticos pasivos, incluidos los divisores. <small>[Comprobado]</small></li><li><a href="https://standards.ieee.org/ieee/802.3/10422/" rel="noopener">IEEE 802.3 Clause 52 (10GBASE-LR)</a> — Tabla 52-12 potencia media mínima de −8,2 dBm (informativa según la nota); tabla 52-13 potencia recibida mínima −14,4 dBm; tabla 52-14 presupuesto 9,4 dB, pérdida de inserción del canal 6,2 dB, penalizaciones 3,2 dB. <small>[Comprobado]</small></li></ul>
 </section>
+</div>
+</details>
 <!-- NEL_STANDARDS_END -->
-<section class="content-section nel-tool-supporting-section"><span class="section-kicker">REFERENCIAS DE INGENIERÍA</span><h2>Normas y referencias de medida de pérdidas ópticas</h2><ul><li>ITU‑T G.652: características de fibra y cable óptico monomodo.</li><li>ITU‑T G.671: características de transmisión de componentes y subsistemas ópticos.</li><li>IEC 61280‑4‑2:2024: medidas de atenuación y pérdida de retorno en cableado monomodo instalado.</li></ul><p>Los valores de fibra, conectores, empalmes y divisores deben corresponder a la longitud de onda y componentes realmente desplegados. La aceptación final debe utilizar instrumentación calibrada. Revisado: 2026-08-31.</p></section>
-<section class="content-section faq-section nel-tool-supporting-section"><span class="section-kicker">PREGUNTAS FRECUENTES</span><h2>Preguntas frecuentes</h2><div data-nel-faq=""><details><summary>¿Cuál es la diferencia entre pérdida física y pérdida de diseño?</summary><p>La pérdida física representa la pérdida actual de la ruta y sus componentes. La pérdida de diseño añade un margen para envejecimiento, temperatura, mantenimiento y variación de medida.</p></details><details><summary>¿Cómo elijo entre 1310, 1490 y 1550 nm?</summary><p>Usa la longitud de onda real del servicio y del sentido de transmisión. En PON es habitual 1310 nm en subida y 1490/1550 nm en bajada, pero debe prevalecer la especificación del sistema.</p></details><details><summary>¿Por qué se puede ajustar la pérdida del divisor?</summary><p>Los valores mostrados son referencias nominales. La pérdida real depende del fabricante, encapsulado y longitud de onda.</p></details><details><summary>¿Cuánto margen restante es razonable?</summary><p>3 dB puede utilizarse como punto de partida de planificación, pero el margen final debe definirse según disponibilidad, entorno, política de mantenimiento y requisitos del proyecto.</p></details><details><summary>¿Puede usarse este resultado para la aceptación final?</summary><p>No por sí solo. Combina el cálculo con medidor de potencia, OTDR, fichas técnicas y normas internas.</p></details></div></section>
+<details class="fb-fold blk" open data-fold-pinned>
+<summary class="fb-fold-sum"><span class="fb-fold-title">Normas y referencias de medida de pérdidas ópticas</span></summary>
+<div class="fb-fold-body">
+<section id="references" aria-labelledby="references-title" class="content-section nel-tool-supporting-section"><span class="section-kicker">REFERENCIAS DE INGENIERÍA</span><h2 id="references-title">Normas y referencias de medida de pérdidas ópticas</h2><ul><li>ITU‑T G.652: características de fibra y cable óptico monomodo.</li><li>ITU‑T G.671: características de transmisión de componentes y subsistemas ópticos.</li><li>IEC 61280‑4‑2:2024: medidas de atenuación y pérdida de retorno en cableado monomodo instalado.</li></ul><p>Los valores de fibra, conectores, empalmes y divisores deben corresponder a la longitud de onda y componentes realmente desplegados. La aceptación final debe utilizar instrumentación calibrada. Revisado: 2026-08-31.</p></section>
+</div>
+</details>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Preguntas frecuentes</span></summary>
+<div class="fb-fold-body">
+<section id="faq" aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section"><span class="section-kicker">PREGUNTAS FRECUENTES</span><h2 id="faq-title">Preguntas frecuentes</h2><div data-nel-faq=""><details><summary>¿Cuál es la diferencia entre pérdida física y pérdida de diseño?</summary><p>La pérdida física representa la pérdida actual de la ruta y sus componentes. La pérdida de diseño añade un margen para envejecimiento, temperatura, mantenimiento y variación de medida.</p></details><details><summary>¿Cómo elijo entre 1310, 1490 y 1550 nm?</summary><p>Usa la longitud de onda real del servicio y del sentido de transmisión. En PON es habitual 1310 nm en subida y 1490/1550 nm en bajada, pero debe prevalecer la especificación del sistema.</p></details><details><summary>¿Por qué se puede ajustar la pérdida del divisor?</summary><p>Los valores mostrados son referencias nominales. La pérdida real depende del fabricante, encapsulado y longitud de onda.</p></details><details><summary>¿Cuánto margen restante es razonable?</summary><p>3 dB puede utilizarse como punto de partida de planificación, pero el margen final debe definirse según disponibilidad, entorno, política de mantenimiento y requisitos del proyecto.</p></details><details><summary>¿Puede usarse este resultado para la aceptación final?</summary><p>No por sí solo. Combina el cálculo con medidor de potencia, OTDR, fichas técnicas y normas internas.</p></details></div></section>
+</div>
+</details>
 <aside aria-label="Publicidad" class="ad-slot" data-ad-key="afterMethodology" hidden="">
 <div class="ad-label">PUBLICIDAD</div>
 <div class="ad-body"></div>
 </aside>
 <p class="hub-return">Forma parte de las <a href="../../pon-fiber-calculators/es/">calculadoras PON y de fibra</a>.</p>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Continuar el flujo de trabajo de ingeniería</span></summary>
+<div class="fb-fold-body">
 <!-- NEL_TOOL_GRAPH_START -->
 <section aria-labelledby="nel-tool-graph-title" class="content-section nel-tool-graph nel-tool-supporting-section" data-primary-workflow="optical-link-design" data-tool-id="fiber-loss" id="nel-tool-graph">
 <div class="section-heading"><div><p class="eyebrow">FLUJO DE TRABAJO DE INGENIERÍA</p><h2 id="nel-tool-graph-title">Continuar el flujo de trabajo de ingeniería</h2></div></div>
@@ -392,6 +445,11 @@
 <h3 class="nel-tool-graph-subtitle">Herramientas relacionadas</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="../../fiber-latency-calculator/es/"><strong>Calculadora de latencia de fibra</strong><span class="nel-tool-graph-description">Calcula la latencia de ida y el RTT a partir de distancia, índice de grupo, equipos y serialización.</span></a><a class="nel-tool-graph-card" href="../../optical-power-budget/es/"><strong>Calculadora de presupuesto de potencia óptica</strong><span class="nel-tool-graph-description">Verifica un enlace óptico con potencia de transmisión, sensibilidad del receptor, penalización óptica y pérdida ODN.</span></a><a class="nel-tool-graph-card" href="../../pon-splitter-loss/es/"><strong>Calculadora de pérdidas de divisores PON</strong><span class="nel-tool-graph-description">Planifica divisores multietapa y calcula relación total, pérdida de inserción y alcance efectivo.</span></a><a class="nel-tool-graph-card" href="../../otdr-event/es/"><strong>Analizador de eventos OTDR</strong><span class="nel-tool-graph-description">Analiza eventos y dos longitudes de onda para identificar empalmes, conectores, curvaturas, roturas, ecos y efectos de zona muerta.</span></a></div><div class="nel-workflow-memberships"><span class="nel-workflow-memberships-label">También se utiliza en</span><span class="nel-workflow-chip">Flujo de aislamiento de fallos ópticos</span></div>
 </section>
 <!-- NEL_TOOL_GRAPH_END -->
+</div>
+</details>
+
+</div>
+</div>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">
@@ -404,7 +462,8 @@
 </footer>
 <!-- NEL_FOOTER_END -->
 <script defer="" src="../js/engine.js"></script><script defer="" src="../js/pwa.js"></script>
-<script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=0f9b750fb0e5"></script><script defer="" src="../js/scenarios.js"></script>
+<script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=19302e6b5783"></script><script defer="" src="../js/scenarios.js"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
-<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script></body>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script><script defer src="../../../assets/js/tool-detail-v3.js?v=66984b67ff65"></script>
+</body>
 </html>
