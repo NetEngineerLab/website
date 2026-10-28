@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-ethernet-serialization-delay-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-057938175f49-82f497a818af";
+const CACHE = "nel-ethernet-serialization-delay-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-057938175f49-a8a6fcf7be6d";
 const CORE = [
   "./index.html",
   "./",

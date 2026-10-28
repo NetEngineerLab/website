@@ -482,6 +482,14 @@ body.nel-opb-v3 > .ad-slot{
   padding-right:28px;
   box-sizing:border-box;
 }
+/* The platform hub-return column is !important. Match the 1180px workbench
+   so the return line shares the supporting section's left and right edges. */
+body.nel-opb-v3 > .hub-return{
+  width:min(100%,1180px) !important;
+  max-width:1180px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
 @media (max-width:960px){
   body.nel-opb-v3 > main.nel-tool-grid{grid-template-columns:minmax(0,1fr)}
 }

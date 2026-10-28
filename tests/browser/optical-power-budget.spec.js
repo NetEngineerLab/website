@@ -14,11 +14,12 @@ for(const locale of ["en","zh"]){
     await page.locator("#distance").fill("0");
     await page.locator("#spliceCount").fill("0");
     await page.locator("#connectorCount").fill("0");
+    await page.locator("details.adv > summary").click();
     await page.locator("#splitter1").selectOption("0");
     await page.locator("#splitter2").selectOption("0");
     await page.locator("#splitter3").selectOption("0");
     await page.locator("#calculateBtn").click();
-    await expect(page.locator("#healthBadge")).toHaveText(locale==="zh"?"✓ 健康":"✓ Healthy");
+    await expect(page.locator("#healthBadge")).toHaveText(locale==="zh"?"✓ 健康":"✓ Pass");
 
     const projectName=`Boundary project ${locale}`;
     const disabledImmediately=await page.evaluate(name=>{
@@ -35,8 +36,8 @@ for(const locale of ["en","zh"]){
 
     await page.locator("#txMaxPower").fill("7");
     await page.locator("#calculateBtn").click();
-    await expect(page.locator("#healthBadge")).toHaveText(locale==="zh"?"✕ 超限":"✕ Failed");
-    await expect(page.locator("#estimatedRx")).toHaveText("-20.00 to 7.00");
+    await expect(page.locator("#healthBadge")).toHaveText(locale==="zh"?"✕ 超限":"✕ Fail");
+    await expect(page.locator("#estimatedRx")).toHaveText("-20.00 … 7.00");
 
     await page.locator("#spliceCount").fill("1.5");
     await expect(page.locator("#saveBtn")).toBeDisabled();
@@ -48,7 +49,7 @@ for(const locale of ["en","zh"]){
     expect(await page.evaluate(()=>localStorage.getItem("opticalBudgetHistory"))).toBeNull();
     await page.locator("#calculateBtn").click();
     await expect(page.locator("#validation")).not.toBeEmpty();
-    await expect(page.locator("#healthBadge")).toHaveText(locale==="zh"?"输入无效":"Invalid input");
+    await expect(page.locator("#healthBadge")).toHaveText(locale==="zh"?"? 输入无效":"? Invalid input");
     await expect(page.locator("#remainingBudget")).toHaveText("—");
     await expect(page.locator("#estimatedRx")).toHaveText("—");
     await expect(page.locator("#copyBtn")).toBeDisabled();
