@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-stp-path-cost-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-30e58369aeab-3ced963b2574";
+const CACHE = "nel-stp-path-cost-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-49da2452839c-d0ab06c14ef2";
 const CORE = [
   "./index.html",
   "./",
@@ -14,7 +14,7 @@ const CORE = [
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",
-  "../../assets/css/site-shell.css?v=26d7336ebb92",
+  "../../assets/css/site-shell.css?v=989edb3b4d77",
   "../../assets/css/tool-design-system.css?v=1040076f7555",
   "../../assets/css/tool-workflow.css?v=8c74b394ef2c",
   "../../assets/js/analytics.js?v=1156b7864023",
