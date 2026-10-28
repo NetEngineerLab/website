@@ -122,6 +122,8 @@ const contentContracts={
   },
   "sfp-qsfp-compatibility-calculator":{
     faqCount:5,
+    contentRoot:"body",
+    faqRoot:"#faq",
     references:[
       "https://members.snia.org/document/dl/25916",
       "https://www.snia.org/node/19611",
