@@ -31,15 +31,15 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Por qué la MTU de PPPoE suele ser 1492?","acceptedAnswer":{"@type":"Answer","text":"Una carga Ethernet de 1500 bytes menos 8 bytes de sobrecarga PPPoE y del protocolo PPP deja 1492 bytes."}},{"@type":"Question","name":"¿VLAN siempre debe reducir la MTU IP en 4 bytes?","acceptedAnswer":{"@type":"Answer","text":"No. La mayoría de dispositivos Ethernet admiten la trama etiquetada ligeramente mayor y mantienen la MTU IP en 1500. Use el modo estricto solo cuando el límite físico de trama no se amplíe."}},{"@type":"Question","name":"¿Por qué los valores de IPsec son estimaciones?","acceptedAnswer":{"@type":"Answer","text":"La sobrecarga ESP depende de IP exterior, NAT-T, IV, etiqueta de integridad y relleno variable. Verifique el conjunto de cifrado y la implementación del proveedor."}},{"@type":"Question","name":"¿Cuál es el MSS TCP correcto para una MTU IPv6 de 1500?","acceptedAnswer":{"@type":"Answer","text":"Con solo cabeceras fijas, 1500 - cabecera IPv6 de 40 bytes - cabecera TCP de 20 bytes = 1440 bytes."}},{"@type":"Question","name":"¿Ping puede demostrar la MTU completa de la ruta?","acceptedAnswer":{"@type":"Answer","text":"Es útil, pero no concluyente. El filtrado ICMP, ECMP, los túneles y el enrutamiento asimétrico pueden afectar el resultado. Combínelo con PMTUD, capturas y contadores de dispositivos."}},{"@type":"Question","name":"¿Qué significa una MTU IPv6 inferior a 1280?","acceptedAnswer":{"@type":"Answer","text":"IPv6 define 1280 bytes como MTU mínima del enlace. Los diseños inferiores requieren fragmentación/reensamblaje en capas inferiores o adaptación y deben revisarse."}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=6c0b1c4ee1f1">
-<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=d998a53add89">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=1040076f7555">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=989edb3b4d77">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../../assets/js/site.js?v=b563dd0297f5"></script>
 <script defer src="../../../assets/js/es-launch-runtime.js?v=26766a85d049"></script>
-<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=7dea79f8c287">
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=dfdd771763d6">
 <link rel="manifest" href="../manifest-es.webmanifest">
 </head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
 <a class="skip" href="#calculator">Saltar a la calculadora</a><noscript><div class="noscript">Se requiere JavaScript.</div></noscript>

@@ -18,15 +18,15 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Un cambio de registro DNS se propaga al instante?","acceptedAnswer":{"@type":"Answer","text":"La respuesta autoritativa puede cambiar enseguida, pero los resolvers recursivos pueden seguir devolviendo una respuesta cacheada que no ha caducado. El TTL anterior y la antigüedad de cada entrada de caché determinan cuándo los clientes ven el registro nuevo."}},{"@type":"Question","name":"¿Cuándo debo bajar el TTL antes de una migración DNS?","acceptedAnswer":{"@type":"Answer","text":"Bájelo con la antelación suficiente para que caduquen los registros cacheados con el TTL anterior antes del cambio previsto. Como mínimo, espere el TTL anterior; añada margen operativo y verifique el TTL reducido en los servidores autoritativos."}},{"@type":"Question","name":"¿Qué es la caché DNS negativa?","acceptedAnswer":{"@type":"Answer","text":"Los resolvers pueden cachear respuestas NXDOMAIN o NODATA. RFC 2308 obtiene el TTL de la respuesta negativa del menor entre el campo MINIMUM del SOA y el TTL del registro SOA, así que un nombre recién creado puede seguir sin estar disponible hasta que caduque esa caché."}},{"@type":"Question","name":"¿Pueden servirse datos DNS cacheados después de caducar el TTL?","acceptedAnswer":{"@type":"Answer","text":"Sí, en condiciones excepcionales. RFC 8767 permite que un resolver sirva datos obsoletos cuando no puede refrescarlos desde los servidores autoritativos, así que el TTL por sí solo no garantiza un corte global exacto."}},{"@type":"Question","name":"¿Esta calculadora garantiza el tiempo de propagación DNS global?","acceptedAnswer":{"@type":"Answer","text":"No. Ofrece una ventana de planificación. Las políticas del resolver, la antigüedad de la caché, las cachés de cliente y de aplicación, la disponibilidad autoritativa, DNSSEC, los cambios de delegación y los retrasos operativos pueden cambiar el tiempo observado."}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=6c0b1c4ee1f1">
-<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=d998a53add89">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=1040076f7555">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=989edb3b4d77">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../../assets/js/site.js?v=b563dd0297f5"></script>
 <script defer src="../../../assets/js/es-launch-runtime.js?v=26766a85d049"></script>
-<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=7dea79f8c287">
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=dfdd771763d6">
 <link rel="manifest" href="../manifest-es.webmanifest">
 </head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference"><!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">

@@ -18,14 +18,14 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many hosts should be placed in one VLAN?","acceptedAnswer":{"@type":"Answer","text":"There is no universal limit. Choose a target that balances broadcast scope, failure isolation, security policy, gateway capacity and operational simplicity; then validate it against measured traffic and platform limits."}},{"@type":"Question","name":"How much IP address growth headroom should I reserve?","acceptedAnswer":{"@type":"Answer","text":"Use a planning period and evidence such as hiring, device refresh and IoT rollout forecasts. A percentage is an initial model, not a fixed standard; revisit the plan when actual utilization or business assumptions change."}},{"@type":"Question","name":"Does the calculator assign actual subnet addresses?","acceptedAnswer":{"@type":"Answer","text":"No. It estimates VLAN count, prefix size and capacity. Allocate non-overlapping CIDR blocks separately and preserve room for route summarization, future VLANs and any address-management policy."}},{"@type":"Question","name":"Can a /31 subnet be used for a user VLAN?","acceptedAnswer":{"@type":"Answer","text":"No. RFC 3021 defines /31 use for point-to-point links. This planner selects conventional multi-access IPv4 subnets and reserves network and broadcast addresses."}},{"@type":"Question","name":"Can the result be used as the final network design?","acceptedAnswer":{"@type":"Answer","text":"No. It supports preliminary capacity planning. Final design must also verify DHCP reservations, gateway redundancy, security zones, broadcast behavior, hardware scale, route aggregation and site-specific standards."}}]}</script>
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=6c0b1c4ee1f1">
-<link rel="stylesheet" href="../../assets/css/site-shell.css?v=d998a53add89">
+<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=1040076f7555">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=989edb3b4d77">
 <script defer src="../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../assets/js/site.js?v=b563dd0297f5"></script>
-<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=7dea79f8c287">
+<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=dfdd771763d6">
 <link rel="manifest" href="manifest.webmanifest">
 </head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference"><!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">

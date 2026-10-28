@@ -23,14 +23,14 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does the tool generate a minimal delta instead of a full replacement?","acceptedAnswer":{"@type":"Answer","text":"Production changes should minimize blast radius. The planner parses the managed current state and emits only the actions needed to reach the desired intent, plus the inverse rollback actions."}},{"@type":"Question","name":"Can I paste any running configuration?","acceptedAnswer":{"@type":"Answer","text":"Flagship V1.1 manages the LAG and trunk/VLAN domains already implemented and tested in the V2 shared core. Other lines remain unmanaged context and are not automatically rewritten."}},{"@type":"Question","name":"What can trigger ROLLBACK_REQUIRED?","acceptedAnswer":{"@type":"Answer","text":"An aggregate that stays down, insufficient bundled members, trunk/native VLAN mismatch, unexpected aggregate members or new interface errors can trigger an automatic rollback recommendation."}},{"@type":"Question","name":"Does this tool connect to devices and execute commands?","acceptedAnswer":{"@type":"Answer","text":"No. Flagship V1.1 is a local browser-based planning, generation and verification tool. It does not log into devices, store credentials or automatically push configuration."}},{"@type":"Question","name":"Why are device models and port ranges deliberately limited?","acceptedAnswer":{"@type":"Answer","text":"Automatic interface resolution is enabled only for baseline models in the Device Platform Catalog with explicit naming contracts. Outside verified scope, an engineer should confirm the interface rather than let the system guess."}}]}</script>
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=6c0b1c4ee1f1">
-<link rel="stylesheet" href="../../assets/css/site-shell.css?v=d998a53add89">
+<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=1040076f7555">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=989edb3b4d77">
 <script defer src="../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../assets/js/site.js?v=b563dd0297f5"></script>
-<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=7dea79f8c287">
+<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=dfdd771763d6">
 <link rel="manifest" href="manifest.webmanifest">
 </head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference"><!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">

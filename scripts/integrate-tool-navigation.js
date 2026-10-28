@@ -84,6 +84,13 @@ for(const toolId of Object.keys(graph.tools)){
   checked++;
   const before=fs.readFileSync(file,"utf8");
   let after=replaceBlock(before,markup(toolId,zh));
+  // The workflow step list on the Optical Power Budget page is authored
+  // markup (ol.fb-wf-markers). Regenerating the graph block must keep it,
+  // or every production build dirties those pages and drops the steps.
+  const marker=before.match(/<ol class="fb-wf-markers"[\s\S]*?<\/ol>/);
+  if(marker&&!after.includes("fb-wf-markers")){
+   after=after.replace(/(<div class="nel-workflow-step"><strong>[^<]*<\/strong>)/,`$1\n      ${marker[0]}`);
+  }
   const workflowLink=`<link rel="stylesheet" href="${WORKFLOW_CSS}?v=${workflowCssHash}" data-nel-workflow-style>`;
   if(/<link\b[^>]*data-nel-workflow-style[^>]*>/i.test(after))after=after.replace(/<link\b[^>]*data-nel-workflow-style[^>]*>/i,workflowLink);
   else if(/<\/head>/i.test(after))after=after.replace(/<\/head>/i,`${workflowLink}\n</head>`);

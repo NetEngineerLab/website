@@ -15,18 +15,19 @@
   --nel-tool-focus: #176ff2;
 }
 
-/* One horizontal reference system: breadcrumb, hero, workspace and content. */
-body > .breadcrumbs,
-body > nav.breadcrumbs,
-body > .hero,
-body > .tool-hero,
-body > main.workspace,
-body > main.calculator-shell,
-body > main.tool-shell,
-body > main.shell,
-body > main,
-body > .content,
-body > .content-section {
+/* One horizontal reference system: breadcrumb, hero, workspace and content.
+   Optical Power Budget opts out: its tool body is the Fieldbook V3 workbench. */
+body:not(.nel-opb-v3) > .breadcrumbs,
+body:not(.nel-opb-v3) > nav.breadcrumbs,
+body:not(.nel-opb-v3) > .hero,
+body:not(.nel-opb-v3) > .tool-hero,
+body:not(.nel-opb-v3) > main.workspace,
+body:not(.nel-opb-v3) > main.calculator-shell,
+body:not(.nel-opb-v3) > main.tool-shell,
+body:not(.nel-opb-v3) > main.shell,
+body:not(.nel-opb-v3) > main,
+body:not(.nel-opb-v3) > .content,
+body:not(.nel-opb-v3) > .content-section {
   width: min(calc(100% - (var(--nel-tool-gutter) * 2)), var(--nel-tool-max-width)) !important;
   max-width: var(--nel-tool-max-width) !important;
   margin-left: auto !important;
@@ -80,17 +81,17 @@ main > .content-section {
 
 /* Standard calculator pages opt into nel-tool-grid; keep both columns aligned. */
 @media (min-width: 1101px) {
-  main.nel-tool-grid {
+  body:not(.nel-opb-v3) main.nel-tool-grid {
     display: grid !important;
     grid-template-columns: minmax(0, 1.05fr) minmax(420px, .95fr) !important;
     gap: var(--nel-tool-column-gap) !important;
     align-items: stretch !important;
   }
-  main.nel-tool-grid > .card,
-  main.nel-tool-grid > .input-panel,
-  main.nel-tool-grid > .result-panel,
-  main.nel-tool-grid > .config-panel,
-  main.nel-tool-grid > .analysis-panel {
+  body:not(.nel-opb-v3) main.nel-tool-grid > .card,
+  body:not(.nel-opb-v3) main.nel-tool-grid > .input-panel,
+  body:not(.nel-opb-v3) main.nel-tool-grid > .result-panel,
+  body:not(.nel-opb-v3) main.nel-tool-grid > .config-panel,
+  body:not(.nel-opb-v3) main.nel-tool-grid > .analysis-panel {
     min-width: 0;
     height: 100%;
     margin-bottom: 0 !important;
@@ -104,23 +105,23 @@ main table, .content table, .content-section table { max-width: 100%; }
 
 @media (max-width: 1100px) {
   :root { --nel-tool-gutter: 20px; }
-  main.nel-tool-grid { display: grid !important; grid-template-columns: minmax(0, 1fr) !important; align-items: start !important; }
-  .result-card, .result-panel, .analysis-panel { position: static !important; top: auto !important; }
+  body:not(.nel-opb-v3) main.nel-tool-grid { display: grid !important; grid-template-columns: minmax(0, 1fr) !important; align-items: start !important; }
+  body:not(.nel-opb-v3) :is(.result-card, .result-panel, .analysis-panel) { position: static !important; top: auto !important; }
 }
 
 @media (max-width: 768px) {
   :root { --nel-tool-gutter: 16px; }
-  body > .breadcrumbs,
-  body > nav.breadcrumbs,
-  body > .hero,
-  body > .tool-hero,
-  body > main,
-  body > main.workspace,
-  body > main.calculator-shell,
-  body > main.tool-shell,
-  body > main.shell,
-  body > .content,
-  body > .content-section {
+  body:not(.nel-opb-v3) > .breadcrumbs,
+  body:not(.nel-opb-v3) > nav.breadcrumbs,
+  body:not(.nel-opb-v3) > .hero,
+  body:not(.nel-opb-v3) > .tool-hero,
+  body:not(.nel-opb-v3) > main,
+  body:not(.nel-opb-v3) > main.workspace,
+  body:not(.nel-opb-v3) > main.calculator-shell,
+  body:not(.nel-opb-v3) > main.tool-shell,
+  body:not(.nel-opb-v3) > main.shell,
+  body:not(.nel-opb-v3) > .content,
+  body:not(.nel-opb-v3) > .content-section {
     width: calc(100% - (var(--nel-tool-gutter) * 2)) !important;
     max-width: none !important;
   }
@@ -148,7 +149,7 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] {
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] {
   margin: 0 !important;
   min-width: 320px;
   max-width: 100%;
@@ -159,13 +160,13 @@ body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] {
   line-height: 1.58;
 }
 
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .tool-return-nav {
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > .tool-return-nav {
   width:min(calc(100% - (var(--nel-tool-gutter) * 2)),var(--nel-tool-max-width)) !important;
   max-width:var(--nel-tool-max-width) !important;
   margin-inline:auto !important;
 }
 
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero {
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero {
   width:min(calc(100% - (var(--nel-tool-gutter) * 2)),var(--nel-tool-max-width)) !important;
   max-width:var(--nel-tool-max-width) !important;
   margin:0 auto !important;
@@ -178,13 +179,13 @@ body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-he
   background:#fff !important;
   box-shadow:none !important;
 }
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero > .hero-inner {
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero > .hero-inner {
   width:100% !important;
   max-width:1240px !important;
   margin:0 !important;
   padding:0 !important;
 }
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero .eyebrow {
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero .eyebrow {
   margin:0 0 14px !important;
   color:#0b5fb8 !important;
   font-size:13px !important;
@@ -193,7 +194,7 @@ body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-he
   font-weight:900 !important;
   text-transform:uppercase !important;
 }
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero h1 {
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero h1 {
   max-width:1220px !important;
   margin:0 !important;
   color:#082f59 !important;
@@ -205,21 +206,21 @@ body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-he
   overflow-wrap:normal !important;
   text-wrap:balance;
 }
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero h1 + p {
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero h1 + p {
   max-width:1080px !important;
   margin:18px 0 0 !important;
   color:#405c76 !important;
   font-size:17px !important;
   line-height:1.75 !important;
 }
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero .hero-tags {
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero .hero-tags {
   display:flex !important;
   flex-wrap:wrap !important;
   gap:10px !important;
   margin:18px 0 0 !important;
   padding:0 !important;
 }
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero .hero-tags > * {
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero .hero-tags > * {
   min-height:34px !important;
   padding:7px 12px !important;
   border:1px solid #cbdcf0 !important;
@@ -233,7 +234,7 @@ body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-he
   font-weight:700 !important;
 }
 
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-main {
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-main {
   width:min(calc(100% - (var(--nel-tool-gutter) * 2)),var(--nel-tool-max-width)) !important;
   max-width:var(--nel-tool-max-width) !important;
   margin:0 auto !important;
@@ -241,15 +242,15 @@ body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main.tool-sh
   box-sizing:border-box !important;
 }
 @media (min-width:1101px) {
-  body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid {
+  body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid {
     display:grid !important;
     grid-template-columns:minmax(0,1.03fr) minmax(420px,.97fr) !important;
     gap:24px !important;
     align-items:start !important;
   }
 }
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid > .nel-tool-input,
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid > .nel-tool-result {
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid > .nel-tool-input,
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid > .nel-tool-result {
   min-width:0 !important;
   margin:0 !important;
   padding:28px 30px 30px !important;
@@ -260,25 +261,25 @@ body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main.tool-sh
   overflow:visible !important;
 }
 
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] .nel-generated-section-title {
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] .nel-generated-section-title {
   padding:0 0 20px !important;
   margin:0 0 20px !important;
   border-bottom:1px solid #e8eff7 !important;
 }
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] .nel-generated-section-title h2 {
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] .nel-generated-section-title h2 {
   margin:1px 0 4px !important;
   font-size:26px !important;
   color:#0d3159 !important;
 }
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] .nel-generated-section-title p {
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] .nel-generated-section-title p {
   margin:0 !important;
   color:#6d8096 !important;
   font-size:14px !important;
 }
 
 /* Historical nested panels are content only; platform geometry lives above. */
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] .nel-tool-input > .panel,
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] .nel-tool-result > .panel {
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] .nel-tool-input > .panel,
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] .nel-tool-result > .panel {
   margin:0 !important;
   padding:20px 0 !important;
   border:0 !important;
@@ -286,13 +287,13 @@ body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] .nel-tool-resu
   background:transparent !important;
   box-shadow:none !important;
 }
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] .nel-tool-input > .panel:first-of-type,
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] .nel-tool-result > .panel:first-of-type { padding-top:0 !important; }
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] .nel-tool-input > .panel + .panel,
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] .nel-tool-result > .panel + .panel { border-top:1px solid #e8eff7 !important; }
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] .nel-tool-input > .panel:first-of-type,
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] .nel-tool-result > .panel:first-of-type { padding-top:0 !important; }
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] .nel-tool-input > .panel + .panel,
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] .nel-tool-result > .panel + .panel { border-top:1px solid #e8eff7 !important; }
 
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .content-section,
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-supporting-section {
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > .content-section,
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-supporting-section {
   width:min(calc(100% - (var(--nel-tool-gutter) * 2)),var(--nel-tool-max-width)) !important;
   max-width:var(--nel-tool-max-width) !important;
   margin:0 auto 28px !important;
@@ -307,7 +308,7 @@ body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-su
 /* Legacy tool pages may emit topic and guide CTAs as direct body children.
    Keep them in the same reading column instead of leaving unstyled links
    against the page gutter. */
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid > .hub-return,
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid > .hub-return,
 body.nel-tool-detail-page .hub-return {
   grid-column:1 / -1;
   width:auto;
@@ -327,14 +328,14 @@ body.nel-tool-detail-page > .hub-return{
   margin-left:auto !important;
   margin-right:auto !important;
 }
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid > .content-section {
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid > .content-section {
   grid-column:1 / -1;
   width:auto !important;
   max-width:none !important;
   margin:0 !important;
 }
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-topic-hub,
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-guide-secondary {
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > .nel-topic-hub,
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > .nel-guide-secondary {
   display:block !important;
   width:min(calc(100% - (var(--nel-tool-gutter) * 2)),var(--nel-tool-max-width)) !important;
   max-width:var(--nel-tool-max-width) !important;
@@ -347,14 +348,14 @@ body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-guide-s
   box-shadow:0 8px 22px rgba(24,68,112,.05) !important;
   line-height:1.5 !important;
 }
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-topic-hub a,
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-guide-secondary a {
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > .nel-topic-hub a,
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > .nel-guide-secondary a {
   display:block !important;
   color:#1558c0 !important;
   text-decoration:none !important;
 }
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .content-section .section-heading > div > .eyebrow,
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-supporting-section .eyebrow {
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > .content-section .section-heading > div > .eyebrow,
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-supporting-section .eyebrow {
   margin:0 0 8px !important;
   color:#2f6db5 !important;
   font-size:12px !important;
@@ -365,52 +366,52 @@ body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-su
 }
 
 @media (max-width:1100px) {
-  body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid {grid-template-columns:1fr !important;}
+  body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid {grid-template-columns:1fr !important;}
 }
 @media (max-width:768px) {
-  body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero {
+  body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero {
     min-height:0 !important;
     padding:18px 18px 20px !important;
     border-radius:16px !important;
   }
-  body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero .eyebrow {
+  body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero .eyebrow {
     margin-bottom:8px !important;
     font-size:12px !important;
     letter-spacing:.08em !important;
   }
-  body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero h1 {
+  body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero h1 {
     font-size:clamp(26px,7.5vw,34px) !important;
     line-height:1.1 !important;
     word-break:normal !important;
   }
-  body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero h1 + p {
+  body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero h1 + p {
     margin-top:12px !important;
     font-size:15px !important;
     line-height:1.55 !important;
   }
-  body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero .hero-tags {
+  body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero .hero-tags {
     gap:7px !important;
     margin-top:14px !important;
   }
-  body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero .hero-tags > * {
+  body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > .nel-tool-hero .hero-tags > * {
     min-height:30px !important;
     padding:5px 10px !important;
     font-size:12px !important;
   }
-  body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-main {padding:18px 0 26px !important;}
-  body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid > .nel-tool-input,
-  body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid > .nel-tool-result {padding:22px 20px 24px !important;}
+  body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-main {padding:18px 0 26px !important;}
+  body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid > .nel-tool-input,
+  body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid > .nel-tool-result {padding:22px 20px 24px !important;}
 }
 @media print {
-  body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] {background:#fff !important;}
+  body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] {background:#fff !important;}
 }
 
 /* PON analysis reading flow: keep long result tables below the settings,
    rather than reserving an empty column beside the analysis. */
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid:has(> .content-section[aria-labelledby="pon-topic-title"]) {
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid:has(> .content-section[aria-labelledby="pon-topic-title"]) {
   grid-template-columns: minmax(0, 1fr) !important;
 }
-body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid:has(> .content-section[aria-labelledby="pon-topic-title"]) > .content-section {
+body.nel-tool-detail-page:not(.nel-opb-v3)[data-nel-template="tool-detail-v1.3.1"] > main.tool-shell.nel-tool-grid:has(> .content-section[aria-labelledby="pon-topic-title"]) > .content-section {
   grid-column: 1 / -1;
 }
 
@@ -435,3 +436,67 @@ body.nel-tool-detail-page[data-nel-template="tool-detail-v1.3.1"] > main.tool-sh
 .nel-content-review dd ul{margin:6px 0 0;padding-left:1.2em}
 .nel-content-review dd li{margin:4px 0}
 @media (min-width:720px){.nel-content-review-grid{grid-template-columns:1fr 1fr}}
+
+/* Fieldbook V3 workbench for Optical Power Budget only.
+   Ordinary calculator geometry is excluded above; these rules set the
+   preview's 1180px column and param|result proportions without restating
+   platform card chrome. */
+body.nel-opb-v3 > .nel-tool-hero{display:none}
+body.nel-opb-v3 > nav.breadcrumbs{display:none !important}
+body.nel-opb-v3 > nav.breadcrumbs,
+body.nel-opb-v3 > main.tool-shell{
+  width:min(100%,1180px);
+  max-width:1180px;
+  margin-left:auto;
+  margin-right:auto;
+  box-sizing:border-box;
+}
+body.nel-opb-v3 > nav.breadcrumbs{padding-left:28px;padding-right:28px}
+body.nel-opb-v3 > main.tool-shell{
+  padding:0 28px 40px;
+}
+body.nel-opb-v3 > main.nel-tool-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 440px;
+  gap:20px;
+  align-items:start;
+  background:transparent;
+}
+body.nel-opb-v3 > main > .tool-head,
+body.nel-opb-v3 > main > .scenario-section,
+body.nel-opb-v3 > main > .mbar,
+body.nel-opb-v3 > main > .ad-slot,
+body.nel-opb-v3 > main > .below{grid-column:1 / -1}
+body.nel-opb-v3 > main > .tool-head{order:-3}
+body.nel-opb-v3 > main > .scenario-section{order:-2}
+body.nel-opb-v3 > main > .nel-tool-input,
+body.nel-opb-v3 > main > .nel-tool-result{min-width:0}
+body.nel-opb-v3 > .content-section,
+body.nel-opb-v3 > .hub-return,
+body.nel-opb-v3 > .ad-slot{
+  width:min(100%,1180px);
+  max-width:1180px;
+  margin-left:auto;
+  margin-right:auto;
+  padding-left:28px;
+  padding-right:28px;
+  box-sizing:border-box;
+}
+/* The platform hub-return column is !important. Match the 1180px workbench
+   so the return line shares the supporting section's left and right edges. */
+body.nel-opb-v3 > .hub-return{
+  width:min(100%,1180px) !important;
+  max-width:1180px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+@media (max-width:960px){
+  body.nel-opb-v3 > main.nel-tool-grid{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:640px){
+  body.nel-opb-v3 > nav.breadcrumbs{padding-left:18px;padding-right:18px}
+  body.nel-opb-v3 > main.tool-shell{padding-left:18px;padding-right:18px}
+  body.nel-opb-v3 > .content-section,
+  body.nel-opb-v3 > .hub-return,
+  body.nel-opb-v3 > .ad-slot{padding-left:18px;padding-right:18px}
+}

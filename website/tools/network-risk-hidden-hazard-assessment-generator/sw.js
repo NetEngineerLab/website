@@ -1,4 +1,4 @@
-'use strict';const CACHE = "nel-network-risk-hidden-hazard-assessment-generator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-f35f72672fee";
+'use strict';const CACHE = "nel-network-risk-hidden-hazard-assessment-generator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-49da2452839c-dd0076ed94f6";
 const CORE = [
   "./index.html",
   "./manifest.webmanifest",
@@ -11,8 +11,8 @@ const CORE = [
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",
-  "../../assets/css/site-shell.css?v=d998a53add89",
-  "../../assets/css/tool-design-system.css?v=6c0b1c4ee1f1",
+  "../../assets/css/site-shell.css?v=989edb3b4d77",
+  "../../assets/css/tool-design-system.css?v=1040076f7555",
   "../../assets/css/tool-workflow.css?v=8c74b394ef2c",
   "../../assets/js/analytics.js?v=1156b7864023",
   "../../assets/js/adsense.js?v=f075c80ccc75",

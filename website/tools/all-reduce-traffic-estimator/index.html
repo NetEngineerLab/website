@@ -37,14 +37,14 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much data does ring all-reduce send per GPU?","acceptedAnswer":{"@type":"Answer","text":"2(N−1)/N times the buffer. For 8 GPUs that is 1.75 × S; as N grows it approaches 2 × S."}},{"@type":"Question","name":"What is bus bandwidth in NCCL?","acceptedAnswer":{"@type":"Answer","text":"busBW = algBW × 2(N−1)/N for all-reduce. It normalizes for the number of GPUs so it can be compared with the hardware link speed."}},{"@type":"Question","name":"How long does gradient all-reduce take?","acceptedAnswer":{"@type":"Answer","text":"Roughly 2(N−1)/N × S ÷ link bandwidth plus 2(N−1) × per-step latency. 14 GB over 8 GPUs at 50 GB/s takes about 0.49 s."}},{"@type":"Question","name":"Does adding GPUs increase per-GPU traffic?","acceptedAnswer":{"@type":"Answer","text":"Only slightly: the factor goes from 1.5 at 4 GPUs to 1.75 at 8 and 1.98 at 128. The latency term grows linearly with N."}},{"@type":"Question","name":"Is ring the only all-reduce algorithm?","acceptedAnswer":{"@type":"Answer","text":"No. Tree, double binary tree, hierarchical and in-network (SHARP) algorithms reduce latency at scale; ring is the bandwidth-optimal baseline used here."}}]}</script>
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=6c0b1c4ee1f1">
-<link rel="stylesheet" href="../../assets/css/site-shell.css?v=d998a53add89">
+<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=1040076f7555">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=989edb3b4d77">
 <script defer src="../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../assets/js/site.js?v=b563dd0297f5"></script>
-<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=7dea79f8c287">
+<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=dfdd771763d6">
 <link rel="manifest" href="manifest.webmanifest">
 </head>
 <body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">

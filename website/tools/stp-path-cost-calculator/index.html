@@ -37,14 +37,14 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is STP path cost calculated?","acceptedAnswer":{"@type":"Answer","text":"Root path cost is the sum of the port costs from the switch to the root bridge. With the long method each port cost is 20,000,000,000 ÷ link speed in kb/s."}},{"@type":"Question","name":"What is the STP cost of a 10G link?","acceptedAnswer":{"@type":"Answer","text":"2,000 with the long method (802.1D-2004/802.1Q) and 2 with the legacy short method."}},{"@type":"Question","name":"What is the STP cost of 100G?","acceptedAnswer":{"@type":"Answer","text":"200 with the long method. The 802.1D-1998 short table stops at 10 Gbps, so 100G has no standard short value."}},{"@type":"Question","name":"Why did IEEE change to long path costs?","acceptedAnswer":{"@type":"Answer","text":"16-bit short costs could not separate links faster than 10 Gbps, causing ties. The 32-bit long method scales to 10 Tb/s."}},{"@type":"Question","name":"What happens when two paths have equal cost?","acceptedAnswer":{"@type":"Answer","text":"STP compares the sender bridge ID, then the sender port ID, and the lower value wins."}}]}</script>
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=6c0b1c4ee1f1">
-<link rel="stylesheet" href="../../assets/css/site-shell.css?v=d998a53add89">
+<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=1040076f7555">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=989edb3b4d77">
 <script defer src="../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../assets/js/site.js?v=b563dd0297f5"></script>
-<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=7dea79f8c287">
+<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=dfdd771763d6">
 <link rel="manifest" href="manifest.webmanifest">
 </head>
 <body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">

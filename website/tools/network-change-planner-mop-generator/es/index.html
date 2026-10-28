@@ -23,15 +23,15 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Por qué la herramienta genera un delta mínimo en lugar de un reemplazo completo?","acceptedAnswer":{"@type":"Answer","text":"Los cambios en producción deben minimizar el radio de impacto. El planificador analiza el estado gestionado actual y emite solo las acciones necesarias para alcanzar la intención deseada, más las acciones inversas de reversión."}},{"@type":"Question","name":"¿Puedo pegar cualquier configuración en ejecución?","acceptedAnswer":{"@type":"Answer","text":"La versión principal V1.1 gestiona los dominios LAG y trunk/VLAN ya implementados y probados en el núcleo compartido V2. El resto de líneas permanece como contexto no gestionado y no se reescribe de forma automática."}},{"@type":"Question","name":"¿Qué puede disparar ROLLBACK_REQUIRED?","acceptedAnswer":{"@type":"Answer","text":"Un agregado que permanece caído, miembros agrupados insuficientes, un desajuste de VLAN de trunk o nativa, miembros inesperados del agregado o errores nuevos de interfaz pueden disparar una recomendación automática de reversión."}},{"@type":"Question","name":"¿Esta herramienta se conecta a los equipos y ejecuta comandos?","acceptedAnswer":{"@type":"Answer","text":"No. La versión principal V1.1 es una herramienta local de planificación, generación y verificación en el navegador. No inicia sesión en los equipos, no guarda credenciales ni envía la configuración de forma automática."}},{"@type":"Question","name":"¿Por qué los modelos de equipo y los rangos de puerto están limitados a propósito?","acceptedAnswer":{"@type":"Answer","text":"La resolución automática de interfaces solo está habilitada para los modelos de línea base del catálogo de plataformas con un contrato de nombres explícito. Fuera del alcance verificado, el ingeniero debe confirmar la interfaz en lugar de dejar que el sistema la adivine."}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=6c0b1c4ee1f1">
-<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=d998a53add89">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=1040076f7555">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=989edb3b4d77">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../../assets/js/site.js?v=b563dd0297f5"></script>
 <script defer src="../../../assets/js/es-launch-runtime.js?v=26766a85d049"></script>
-<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=7dea79f8c287">
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=dfdd771763d6">
 <link rel="manifest" href="../manifest-es.webmanifest">
 </head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference"><!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
