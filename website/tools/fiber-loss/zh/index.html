@@ -59,7 +59,7 @@
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head>
 <body class="nel-tool-detail-page nel-opb-v3 nel-fieldbook nel-tool-v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
-<link rel="stylesheet" href="../../../assets/css/fieldbook.css?v=0f2f72588170">
+<link rel="stylesheet" href="../../../assets/css/fieldbook.css?v=a3bb21511014">
 <a class="skip-link" href="#calculator">跳到计算器</a>
 <noscript><div class="noscript">本工具需要启用 JavaScript 才能完成计算。</div></noscript>
 <!-- NEL_HEADER_START -->
@@ -104,18 +104,18 @@
 <section class="input-panel card nel-tool-input"><div class="fb-panel">
 <div class="panel-h"><h2 data-i18n="linkParams">链路参数</h2></div>
 <div class="fs">
-<div class="fg"><p class="fs-t">工程场景</p><div class="fields"><div class="f f-wide"><label data-i18n="scenarioPreset" for="preset">工程场景预设</label><div class="inp sel"><select id="preset">
+<div class="fg"><p class="fs-t">工程场景</p><div class="fields"><div class="f f-wide"><label data-i18n="scenarioPreset" for="preset">工程场景预设</label><div class="inp input-wrap sel"><select id="preset">
 <option data-i18n="presetCustom" value="custom">自定义</option>
 <option value="gpon-b">GPON B+（常用预算 28 dB）</option>
 <option value="gpon-c">GPON C+（常用预算 32 dB）</option>
 <option value="epon">EPON（常用预算 30 dB）</option>
 <option data-i18n="presetDataCenter" value="datacenter">数据中心短距链路</option>
-</select></div></div><div class="f f-wide"><label data-i18n="projectName" for="projectName">工程名称</label><div class="inp"><input id="projectName" type="text" value="FTTH Optical Link"/></div></div></div></div><div class="fg"><p class="fs-t">链路</p><p class="fg-note">输入实际工程参数，系统将自动计算链路损耗。</p><div class="fields"><div class="f"><label data-i18n="distance" for="distance">传输距离</label><div class="inp"><input id="distance" min="0" step="0.1" type="number" value="20"/><u>km</u></div></div><div class="f"><label data-i18n="wavelength" for="wavelength">工作波长</label><div class="inp sel"><select id="wavelength">
+</select></div></div><div class="f f-wide"><label data-i18n="projectName" for="projectName">工程名称</label><div class="inp input-wrap"><input id="projectName" type="text" value="FTTH Optical Link"/></div></div></div></div><div class="fg"><p class="fs-t">链路</p><p class="fg-note">输入实际工程参数，系统将自动计算链路损耗。</p><div class="fields"><div class="f"><label data-i18n="distance" for="distance">传输距离</label><div class="inp input-wrap"><input id="distance" min="0" step="0.1" type="number" value="20"/><u>km</u></div></div><div class="f"><label data-i18n="wavelength" for="wavelength">工作波长</label><div class="inp input-wrap sel"><select id="wavelength">
 <option value="1310">1310 nm</option>
 <option value="1490">1490 nm</option>
 <option selected="" value="1550">1550 nm</option>
 <option data-i18n="customWavelength" value="custom">自定义衰减</option>
-</select></div></div><div class="f"><label data-i18n="attenuation" for="attenuation">光纤衰减系数</label><div class="inp"><input id="attenuation" min="0" step="0.01" type="number" value="0.20"/><u>dB/km</u></div></div></div></div><div class="fg"><p class="fs-t">无源器件</p><div class="fields"><div class="f"><label data-i18n="spliceCount" for="spliceCount">熔接点数量</label><div class="inp"><input id="spliceCount" min="0" step="1" type="number" value="6"/><u data-i18n="pcs">个</u></div></div><div class="f"><label data-i18n="spliceLoss" for="spliceLoss">单个熔接损耗</label><div class="inp"><input id="spliceLoss" min="0" step="0.01" type="number" value="0.10"/><u>dB</u></div></div><div class="f"><label data-i18n="connectorCount" for="connectorCount">连接器数量</label><div class="inp"><input id="connectorCount" min="0" step="1" type="number" value="4"/><u data-i18n="pcs">个</u></div></div><div class="f"><label data-i18n="connectorLoss" for="connectorLoss">单个连接器损耗</label><div class="inp"><input id="connectorLoss" min="0" step="0.01" type="number" value="0.30"/><u>dB</u></div></div><div class="f"><label data-i18n="splitter1" for="splitter1">一级分光器</label><div class="inp sel"><select id="splitter1">
+</select></div></div><div class="f"><label data-i18n="attenuation" for="attenuation">光纤衰减系数</label><div class="inp input-wrap"><input id="attenuation" min="0" step="0.01" type="number" value="0.20"/><u>dB/km</u></div></div></div></div><div class="fg"><p class="fs-t">无源器件</p><div class="fields"><div class="f"><label data-i18n="spliceCount" for="spliceCount">熔接点数量</label><div class="inp input-wrap"><input id="spliceCount" min="0" step="1" type="number" value="6"/><u data-i18n="pcs">个</u></div></div><div class="f"><label data-i18n="spliceLoss" for="spliceLoss">单个熔接损耗</label><div class="inp input-wrap"><input id="spliceLoss" min="0" step="0.01" type="number" value="0.10"/><u>dB</u></div></div><div class="f"><label data-i18n="connectorCount" for="connectorCount">连接器数量</label><div class="inp input-wrap"><input id="connectorCount" min="0" step="1" type="number" value="4"/><u data-i18n="pcs">个</u></div></div><div class="f"><label data-i18n="connectorLoss" for="connectorLoss">单个连接器损耗</label><div class="inp input-wrap"><input id="connectorLoss" min="0" step="0.01" type="number" value="0.30"/><u>dB</u></div></div><div class="f"><label data-i18n="splitter1" for="splitter1">一级分光器</label><div class="inp input-wrap sel"><select id="splitter1">
 <option data-i18n="none" value="0">无</option>
 <option value="3.7">1:2（3.7 dB）</option>
 <option value="7.2">1:4（7.2 dB）</option>
@@ -123,7 +123,7 @@
 <option value="13.8">1:16（13.8 dB）</option>
 <option value="17">1:32（17.0 dB）</option>
 <option value="20.5">1:64（20.5 dB）</option>
-</select></div></div><div class="f"><label data-i18n="splitter2" for="splitter2">二级分光器</label><div class="inp sel"><select id="splitter2">
+</select></div></div><div class="f"><label data-i18n="splitter2" for="splitter2">二级分光器</label><div class="inp input-wrap sel"><select id="splitter2">
 <option data-i18n="none" value="0">无</option>
 <option value="3.7">1:2（3.7 dB）</option>
 <option value="7.2">1:4（7.2 dB）</option>
@@ -131,7 +131,7 @@
 <option value="13.8">1:16（13.8 dB）</option>
 <option value="17">1:32（17.0 dB）</option>
 <option value="20.5">1:64（20.5 dB）</option>
-</select></div></div><div class="f"><label data-i18n="otherLoss" for="otherLoss">其他无源损耗</label><div class="inp"><input id="otherLoss" min="0" step="0.01" type="number" value="0"/><u>dB</u></div></div></div></div><div class="fg"><p class="fs-t">功率窗口</p><p class="fg-note">设计损耗包含工程余量；物理损耗不包含工程余量。</p><div class="fields"><div class="f"><label data-i18n="engineeringMargin" for="engineeringMargin">工程余量</label><div class="inp"><input id="engineeringMargin" min="0" step="0.1" type="number" value="3"/><u>dB</u></div></div><div class="f"><label data-i18n="availableBudget" for="availableBudget">可用光功率预算</label><div class="inp"><input id="availableBudget" min="0" step="0.1" type="number" value="28"/><u>dB</u></div></div><div class="f"><label data-i18n="txPower" for="txPower">发送光功率</label><div class="inp"><input id="txPower" step="0.1" type="number" value="3"/><u>dBm</u></div></div><div class="f"><label data-i18n="rxThreshold" for="rxThreshold">接收灵敏度门限</label><div class="inp"><input id="rxThreshold" step="0.1" type="number" value="-27"/><u>dBm</u></div></div></div></div>
+</select></div></div><div class="f"><label data-i18n="otherLoss" for="otherLoss">其他无源损耗</label><div class="inp input-wrap"><input id="otherLoss" min="0" step="0.01" type="number" value="0"/><u>dB</u></div></div></div></div><div class="fg"><p class="fs-t">功率窗口</p><p class="fg-note">设计损耗包含工程余量；物理损耗不包含工程余量。</p><div class="fields"><div class="f"><label data-i18n="engineeringMargin" for="engineeringMargin">工程余量</label><div class="inp input-wrap"><input id="engineeringMargin" min="0" step="0.1" type="number" value="3"/><u>dB</u></div></div><div class="f"><label data-i18n="availableBudget" for="availableBudget">可用光功率预算</label><div class="inp input-wrap"><input id="availableBudget" min="0" step="0.1" type="number" value="28"/><u>dB</u></div></div><div class="f"><label data-i18n="txPower" for="txPower">发送光功率</label><div class="inp input-wrap"><input id="txPower" step="0.1" type="number" value="3"/><u>dBm</u></div></div><div class="f"><label data-i18n="rxThreshold" for="rxThreshold">接收灵敏度门限</label><div class="inp input-wrap"><input id="rxThreshold" step="0.1" type="number" value="-27"/><u>dBm</u></div></div></div></div>
 </div>
 <div class="panel-f">
 <button class="btn btn-primary" id="calculateBtn" type="button"><span data-i18n="calculateLink">计算链路</span></button>

@@ -59,7 +59,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 </head>
 <body class="nel-tool-detail-page nel-opb-v3 nel-fieldbook nel-tool-v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
-<link rel="stylesheet" href="../../assets/css/fieldbook.css?v=0f2f72588170">
+<link rel="stylesheet" href="../../assets/css/fieldbook.css?v=a3bb21511014">
 <a class="skip-link" href="#calculator">Skip to calculator</a>
 <noscript><div class="noscript">JavaScript is required to run this calculator.</div></noscript>
 <!-- NEL_HEADER_START -->
@@ -101,18 +101,18 @@
 <section class="input-panel card nel-tool-input"><div class="fb-panel">
 <div class="panel-h"><h2 data-i18n="linkParams">Link parameters</h2></div>
 <div class="fs">
-<div class="fg"><p class="fs-t">Scenario</p><div class="fields"><div class="f f-wide"><label data-i18n="scenarioPreset" for="preset">Scenario preset</label><div class="inp sel"><select id="preset">
+<div class="fg"><p class="fs-t">Scenario</p><div class="fields"><div class="f f-wide"><label data-i18n="scenarioPreset" for="preset">Scenario preset</label><div class="inp input-wrap sel"><select id="preset">
 <option data-i18n="presetCustom" value="custom">Custom</option>
 <option value="gpon-b">GPON B+ (typical budget 28 dB)</option>
 <option value="gpon-c">GPON C+ (typical budget 32 dB)</option>
 <option value="epon">EPON (typical budget 30 dB)</option>
 <option data-i18n="presetDataCenter" value="datacenter">Data center short-reach</option>
-</select></div></div><div class="f f-wide"><label data-i18n="projectName" for="projectName">Project name</label><div class="inp"><input id="projectName" type="text" value="FTTH Optical Link"/></div></div></div></div><div class="fg"><p class="fs-t">Link</p><p class="fg-note">Enter real engineering parameters to calculate the link loss.</p><div class="fields"><div class="f"><label data-i18n="distance" for="distance">Transmission distance</label><div class="inp"><input id="distance" min="0" step="0.1" type="number" value="20"/><u>km</u></div></div><div class="f"><label data-i18n="wavelength" for="wavelength">Wavelength</label><div class="inp sel"><select id="wavelength">
+</select></div></div><div class="f f-wide"><label data-i18n="projectName" for="projectName">Project name</label><div class="inp input-wrap"><input id="projectName" type="text" value="FTTH Optical Link"/></div></div></div></div><div class="fg"><p class="fs-t">Link</p><p class="fg-note">Enter real engineering parameters to calculate the link loss.</p><div class="fields"><div class="f"><label data-i18n="distance" for="distance">Transmission distance</label><div class="inp input-wrap"><input id="distance" min="0" step="0.1" type="number" value="20"/><u>km</u></div></div><div class="f"><label data-i18n="wavelength" for="wavelength">Wavelength</label><div class="inp input-wrap sel"><select id="wavelength">
 <option value="1310">1310 nm</option>
 <option value="1490">1490 nm</option>
 <option selected="" value="1550">1550 nm</option>
 <option data-i18n="customWavelength" value="custom">Custom attenuation</option>
-</select></div></div><div class="f"><label data-i18n="attenuation" for="attenuation">Fiber attenuation</label><div class="inp"><input id="attenuation" min="0" step="0.01" type="number" value="0.20"/><u>dB/km</u></div></div></div></div><div class="fg"><p class="fs-t">Components</p><div class="fields"><div class="f"><label data-i18n="spliceCount" for="spliceCount">Number of splices</label><div class="inp"><input id="spliceCount" min="0" step="1" type="number" value="6"/><u data-i18n="pcs">pcs</u></div></div><div class="f"><label data-i18n="spliceLoss" for="spliceLoss">Loss per splice</label><div class="inp"><input id="spliceLoss" min="0" step="0.01" type="number" value="0.10"/><u>dB</u></div></div><div class="f"><label data-i18n="connectorCount" for="connectorCount">Number of connectors</label><div class="inp"><input id="connectorCount" min="0" step="1" type="number" value="4"/><u data-i18n="pcs">pcs</u></div></div><div class="f"><label data-i18n="connectorLoss" for="connectorLoss">Loss per connector</label><div class="inp"><input id="connectorLoss" min="0" step="0.01" type="number" value="0.30"/><u>dB</u></div></div><div class="f"><label data-i18n="splitter1" for="splitter1">Primary splitter</label><div class="inp sel"><select id="splitter1">
+</select></div></div><div class="f"><label data-i18n="attenuation" for="attenuation">Fiber attenuation</label><div class="inp input-wrap"><input id="attenuation" min="0" step="0.01" type="number" value="0.20"/><u>dB/km</u></div></div></div></div><div class="fg"><p class="fs-t">Components</p><div class="fields"><div class="f"><label data-i18n="spliceCount" for="spliceCount">Number of splices</label><div class="inp input-wrap"><input id="spliceCount" min="0" step="1" type="number" value="6"/><u data-i18n="pcs">pcs</u></div></div><div class="f"><label data-i18n="spliceLoss" for="spliceLoss">Loss per splice</label><div class="inp input-wrap"><input id="spliceLoss" min="0" step="0.01" type="number" value="0.10"/><u>dB</u></div></div><div class="f"><label data-i18n="connectorCount" for="connectorCount">Number of connectors</label><div class="inp input-wrap"><input id="connectorCount" min="0" step="1" type="number" value="4"/><u data-i18n="pcs">pcs</u></div></div><div class="f"><label data-i18n="connectorLoss" for="connectorLoss">Loss per connector</label><div class="inp input-wrap"><input id="connectorLoss" min="0" step="0.01" type="number" value="0.30"/><u>dB</u></div></div><div class="f"><label data-i18n="splitter1" for="splitter1">Primary splitter</label><div class="inp input-wrap sel"><select id="splitter1">
 <option data-i18n="none" value="0">None</option>
 <option value="3.7">1:2（3.7 dB）</option>
 <option value="7.2">1:4（7.2 dB）</option>
@@ -120,7 +120,7 @@
 <option value="13.8">1:16（13.8 dB）</option>
 <option value="17">1:32（17.0 dB）</option>
 <option value="20.5">1:64（20.5 dB）</option>
-</select></div></div><div class="f"><label data-i18n="splitter2" for="splitter2">Secondary splitter</label><div class="inp sel"><select id="splitter2">
+</select></div></div><div class="f"><label data-i18n="splitter2" for="splitter2">Secondary splitter</label><div class="inp input-wrap sel"><select id="splitter2">
 <option data-i18n="none" value="0">None</option>
 <option value="3.7">1:2（3.7 dB）</option>
 <option value="7.2">1:4（7.2 dB）</option>
@@ -128,7 +128,7 @@
 <option value="13.8">1:16（13.8 dB）</option>
 <option value="17">1:32（17.0 dB）</option>
 <option value="20.5">1:64（20.5 dB）</option>
-</select></div></div><div class="f"><label data-i18n="otherLoss" for="otherLoss">Other passive loss</label><div class="inp"><input id="otherLoss" min="0" step="0.01" type="number" value="0"/><u>dB</u></div></div></div></div><div class="fg"><p class="fs-t">Power window</p><p class="fg-note">Design loss includes engineering margin; physical loss excludes it.</p><div class="fields"><div class="f"><label data-i18n="engineeringMargin" for="engineeringMargin">Engineering margin</label><div class="inp"><input id="engineeringMargin" min="0" step="0.1" type="number" value="3"/><u>dB</u></div></div><div class="f"><label data-i18n="availableBudget" for="availableBudget">Available optical budget</label><div class="inp"><input id="availableBudget" min="0" step="0.1" type="number" value="28"/><u>dB</u></div></div><div class="f"><label data-i18n="txPower" for="txPower">Transmit power</label><div class="inp"><input id="txPower" step="0.1" type="number" value="3"/><u>dBm</u></div></div><div class="f"><label data-i18n="rxThreshold" for="rxThreshold">Receiver sensitivity</label><div class="inp"><input id="rxThreshold" step="0.1" type="number" value="-27"/><u>dBm</u></div></div></div></div>
+</select></div></div><div class="f"><label data-i18n="otherLoss" for="otherLoss">Other passive loss</label><div class="inp input-wrap"><input id="otherLoss" min="0" step="0.01" type="number" value="0"/><u>dB</u></div></div></div></div><div class="fg"><p class="fs-t">Power window</p><p class="fg-note">Design loss includes engineering margin; physical loss excludes it.</p><div class="fields"><div class="f"><label data-i18n="engineeringMargin" for="engineeringMargin">Engineering margin</label><div class="inp input-wrap"><input id="engineeringMargin" min="0" step="0.1" type="number" value="3"/><u>dB</u></div></div><div class="f"><label data-i18n="availableBudget" for="availableBudget">Available optical budget</label><div class="inp input-wrap"><input id="availableBudget" min="0" step="0.1" type="number" value="28"/><u>dB</u></div></div><div class="f"><label data-i18n="txPower" for="txPower">Transmit power</label><div class="inp input-wrap"><input id="txPower" step="0.1" type="number" value="3"/><u>dBm</u></div></div><div class="f"><label data-i18n="rxThreshold" for="rxThreshold">Receiver sensitivity</label><div class="inp input-wrap"><input id="rxThreshold" step="0.1" type="number" value="-27"/><u>dBm</u></div></div></div></div>
 </div>
 <div class="panel-f">
 <button class="btn btn-primary" id="calculateBtn" type="button"><span data-i18n="calculateLink">Calculate link</span></button>
