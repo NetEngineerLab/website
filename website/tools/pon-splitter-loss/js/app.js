@@ -68,7 +68,7 @@ function invalidate(){
  ["splitterLossResult","remaining","rxPower","maxDistance","standardBudget","opticalMaxDistance","idealLoss","excessLoss","physicalLoss","designLoss","sensMargin","overMargin","fiberLoss","spliceTotal","connectorTotal","otherResult","opticalPenaltyResult","marginResult"].forEach(id=>$(id).textContent="—");
  ["stage1Ratio","stage2Ratio","stage3Ratio","stage1Loss","stage2Loss","stage3Loss"].forEach(id=>$(id).textContent="—");
  $("summaryCard").className="summary-card";$("healthBadge").textContent=LANG==="zh"?"输入无效":"Invalid input";
- $("diagnosis").className="diagnosis";$("diagnosisText").textContent=T[LANG].invalid;
+ $("diagnosis").className="diagnosis diagnosis-box";$("diagnosisText").textContent=T[LANG].invalid;
  ["copyBtn","saveBtn","csvBtn"].forEach(id=>$(id).disabled=true);
 }
 function calculate(){
@@ -102,7 +102,7 @@ function calculate(){
  if($("designDelta"))$("designDelta").textContent=resilienceLoss.toFixed(2);
  ["copyBtn","saveBtn","csvBtn"].forEach(id=>$(id).disabled=false);
  const card=$("summaryCard"),diag=$("diagnosis");
- card.className="summary-card "+status;diag.className="diagnosis "+status;
+ card.className="summary-card "+status;diag.className="diagnosis diagnosis-box "+status;
  $("healthBadge").textContent=T[LANG][status];
  $("diagnosisText").textContent=status==="healthy"?T[LANG].good:status==="warning"?T[LANG].warn:T[LANG].bad;
  ["stage1Ratio","stage2Ratio","stage3Ratio"].forEach((id,i)=>$(id).textContent="1:"+[r1,r2,r3][i]);

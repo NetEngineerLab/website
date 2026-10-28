@@ -48,7 +48,7 @@ function invalidate(){
  last=null;
  ["effectiveMax","opticalMax","systemReachResult","plannedDistanceResult","maxChannelLoss","fixedPhysical","fiberAllowance","plannedFiber","plannedPhysical","plannedDesign","designRemaining","estimatedRx","physicalHeadroom","spliceTotal","connectorTotal","splitterTotal","otherResult","marginResult"].forEach(id=>$(id).textContent="—");
  $("splitRatio").textContent="—";$("distanceScaleMax").textContent="—";$("effectiveBar").style.width="0";$("plannedMarker").style.left="0";
- $("healthBadge").textContent=LANG==="zh"?"输入无效":"Invalid input";$("summaryCard").className="summary-card";$("diagnosis").className="diagnosis";$("diagnosisText").textContent=T[LANG].invalid;$("limiterText").textContent="";$("causeList").innerHTML="";$("validation").textContent=T[LANG].invalid;
+ $("healthBadge").textContent=LANG==="zh"?"输入无效":"Invalid input";$("summaryCard").className="summary-card";$("diagnosis").className="diagnosis diagnosis-box";$("diagnosisText").textContent=T[LANG].invalid;$("limiterText").textContent="";$("causeList").innerHTML="";$("validation").textContent=T[LANG].invalid;
  ["copyBtn","saveBtn","csvBtn","printBtn","jsonBtn"].forEach(id=>{if($(id))$(id).disabled=true});
 }
 function setAttenuation(){
@@ -81,7 +81,7 @@ function calculate(){
  set("plannedPhysical",plannedPhysical);set("plannedDesign",plannedDesign);set("designRemaining",designRemaining);set("estimatedRx",estimatedRx);set("physicalHeadroom",physicalHeadroom);
  set("spliceTotal",spliceTotal);set("connectorTotal",connectorTotal);set("splitterTotal",splitterTotal);set("otherResult",v.other);set("marginResult",v.margin);
  $("splitRatio").textContent="1:"+ratio;
- const summary=$("summaryCard"),diag=$("diagnosis");summary.className="summary-card "+status;diag.className="diagnosis "+status;$("healthBadge").textContent=T[LANG][status];
+ const summary=$("summaryCard"),diag=$("diagnosis");summary.className="summary-card "+status;diag.className="diagnosis diagnosis-box "+status;$("healthBadge").textContent=T[LANG][status];
  $("diagnosisText").textContent=T[LANG][status+"Text"];
  $("limiterText").textContent=limiter==="optical"?T[LANG].opticalLimiter:limiter==="system"?T[LANG].systemLimiter:T[LANG].equalLimiter;
  const causes=T[LANG]["causes"+status[0].toUpperCase()+status.slice(1)];
@@ -116,8 +116,8 @@ function csv(){
 function jsonReport(){if(!last)calculate();if(!last)return;const payload={reportType:"pon-distance-construction-acceptance",version:"2.0",generatedAt:new Date().toISOString(),locale:LANG,before:last.before,after:last.after,inputs:last,result:last,acceptance:{status:last.status,riskLevel:last.riskLevel,constraintFailures:last.constraintFailures}};const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json;charset=utf-8"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="pon-distance-construction-acceptance.json";a.click();URL.revokeObjectURL(a.href)}
 function installDeepControls(){
  const host=document.querySelector(".input-panel .form-grid");if(!host||$("agingLoss"))return;
- const wrap=document.createElement("div");wrap.className="subheading";wrap.textContent=LANG==="zh"?"深度风险与冗余约束":"Deep risk and redundancy constraints";host.append(wrap);
- [["agingLoss",LANG==="zh"?"老化预留":"Ageing reserve","0.5"],["temperatureLoss",LANG==="zh"?"温度预留":"Temperature reserve","0.3"],["maintenanceLoss",LANG==="zh"?"维护预留":"Maintenance reserve","0.2"]].forEach(([id,label,value])=>{const d=document.createElement("div");d.className="field";d.innerHTML=`<label for="${id}">${label}</label><div class="input-wrap"><input id="${id}" min="0" step="0.1" type="number" value="${value}"><span>dB</span></div>`;host.append(d)});
+ const wrap=document.createElement("div");wrap.className="fs-t subheading";wrap.textContent=LANG==="zh"?"深度风险与冗余约束":"Deep risk and redundancy constraints";host.append(wrap);
+ [["agingLoss",LANG==="zh"?"老化预留":"Ageing reserve","0.5"],["temperatureLoss",LANG==="zh"?"温度预留":"Temperature reserve","0.3"],["maintenanceLoss",LANG==="zh"?"维护预留":"Maintenance reserve","0.2"]].forEach(([id,label,value])=>{const d=document.createElement("div");d.className="f field";d.innerHTML=`<label for="${id}">${label}</label><div class="inp input-wrap"><input id="${id}" min="0" step="0.1" type="number" value="${value}"><u>dB</u></div>`;host.append(d)});
  [["protectionRequired",LANG==="zh"?"要求保护链路":"Protection chain required"],["protectionPresent",LANG==="zh"?"保护链路已具备":"Protection chain present"],["dualUplinkRequired",LANG==="zh"?"要求双上联":"Dual uplink required"],["dualUplinkPresent",LANG==="zh"?"双上联已具备":"Dual uplink present"]].forEach(([id,label])=>{const d=document.createElement("div");d.className="field";d.innerHTML=`<label><input id="${id}" type="checkbox"> ${label}</label>`;host.append(d)});
  const actions=document.querySelector(".result-actions");if(actions&&!$("jsonBtn")){const b=document.createElement("button");b.id="jsonBtn";b.textContent=LANG==="zh"?"导出验收 JSON":"Export acceptance JSON";b.disabled=true;b.addEventListener("click",jsonReport);actions.append(b)}
  ["agingLoss","temperatureLoss","maintenanceLoss"].forEach(id=>$(id).addEventListener("input",()=>{invalidate();calculate()}));["protectionRequired","protectionPresent","dualUplinkRequired","dualUplinkPresent"].forEach(id=>$(id).addEventListener("change",calculate));
