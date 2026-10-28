@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-fiber-loss-locale-v1.9.9-04-p0-p1-correctness-consent-offline-49da2452839c-d76ca44672b7";
+const CACHE = "nel-fiber-loss-locale-v1.9.9-04-p0-p1-correctness-consent-offline-49da2452839c-ad34115f3198";
 const CORE = [
   "./index.html",
   "./",
@@ -7,11 +7,11 @@ const CORE = [
   "./offline.html",
   "./manifest.webmanifest",
   "./css/style.css?v=e27cbec8982c",
-  "./js/app.js?v=19302e6b5783",
+  "../../assets/css/fieldbook.css?v=a3bb21511014",
+  "./js/app.js?v=29c0ad48f471",
   "./js/engine.js",
   "./images/logo.svg",
   "../../assets/css/tool-layout.css?v=dfdd771763d6",
-  "../../assets/css/tool-detail-v3.css?v=a51258f43a34",
   "../../assets/js/tool-detail-v3.js?v=66984b67ff65",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",

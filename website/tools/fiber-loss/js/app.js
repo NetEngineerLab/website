@@ -186,6 +186,7 @@ function clearInvalidResult(values){
   if (summary) summary.className = "summary-card";
   const diagnosis = $("diagnosisBox");
   if (diagnosis) diagnosis.className = "diagnosis-box";
+  paintLossDashboard(null, null);
   const counts = new Set(["spliceCount","connectorCount"]);
   for (const id of LOSS_INPUT_IDS){
     const field = $(id);
@@ -196,6 +197,25 @@ function clearInvalidResult(values){
       : !Number.isFinite(value) || value < 0 || (counts.has(id) && !Number.isSafeInteger(value));
     field.setAttribute("aria-invalid", invalid ? "true" : "false");
     field.style.outline = invalid ? "2px solid #b42318" : "";
+  }
+}
+
+function paintLossDashboard(values, result){
+  const meter = $("lossMeter");
+  if (meter) {
+    const budget = values && values.availableBudget;
+    const used = result && budget > 0 ? Math.max(0, Math.min(100, (result.designLoss / budget) * 100)) : 0;
+    meter.style.width = used.toFixed(1) + "%";
+  }
+  const parts = result ? [
+    ["wfFiber", result.fiberLoss],
+    ["wfSplice", result.spliceTotal],
+    ["wfConnector", result.connectorTotal]
+  ] : [["wfFiber", 0], ["wfSplice", 0], ["wfConnector", 0]];
+  const max = result ? Math.max(result.physicalLoss, result.fiberLoss, result.spliceTotal, result.connectorTotal, result.splitterOtherTotal, 0.01) : 1;
+  for (const [id, value] of parts) {
+    const bar = $(id);
+    if (bar) bar.style.width = Math.max(0, Math.min(100, (value / max) * 100)).toFixed(1) + "%";
   }
 }
 
@@ -262,6 +282,7 @@ function calculate(){
 
   badge.textContent = translations[currentLang][status];
   $("diagnosisText").textContent = translations[currentLang]["diagnosis" + status[0].toUpperCase() + status.slice(1)];
+  paintLossDashboard(values, calculation);
   if (typeof window.nelTrack === "function") {
     window.nelTrack("fiber_calculate", {
       status,
