@@ -1,11 +1,14 @@
 "use strict";
-const CACHE = "nel-chromatic-dispersion-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-49da2452839c-9d5188a475c7";
+const CACHE = "nel-chromatic-dispersion-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-49da2452839c-ad3e3fc2834f";
 const CORE = [
   "./index.html",
   "./",
   "./zh/",
   "./offline.html",
   "./manifest.webmanifest",
+  "../../assets/css/fieldbook.css?v=a3bb21511014",
+  "../../assets/css/tool-layout.css?v=dfdd771763d6",
+  "../../assets/js/tool-detail-v3.js?v=66984b67ff65",
   "./css/style.css?v=48c7b72aa30f",
   "./js/app.js?v=dd824fd802c6",
   "./js/engine.js",

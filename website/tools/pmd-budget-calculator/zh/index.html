@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0b6ffb">
+<meta name="theme-color" content="#16140F">
 <title>PMD 预算计算器｜平均 DGD、ps/√km 与 PMD 受限距离</title>
 <meta name="description" content="计算偏振模色散：平均 DGD = PMD 系数 × √长度，器件按平方和合成，按码元周期比例得到允许 DGD、余量和 PMD 受限距离。">
 <link rel="stylesheet" href="../css/style.css?v=48c7b72aa30f">
@@ -24,6 +24,9 @@
 <meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 
 <link rel="stylesheet" href="/assets/css/cookie-consent.css?v=8dd1728bf5eb">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"PMD 预算计算器｜平均 DGD、ps/√km 与 PMD 受限距离","url":"https://netengineerlab.com/tools/pmd-budget-calculator/zh/","description":"计算偏振模色散：平均 DGD = PMD 系数 × √长度，器件按平方和合成，按码元周期比例得到允许 DGD、余量和 PMD 受限距离。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
@@ -47,7 +50,8 @@
 <link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=dfdd771763d6">
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head>
-<body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<body class="nel-tool-detail-page nel-opb-v3 nel-fieldbook nel-tool-v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<link rel="stylesheet" href="../../../assets/css/fieldbook.css?v=a3bb21511014">
 <a class="skip-link" href="#calculator">跳到计算器</a>
 <noscript><div class="noscript">运行此计算器需要 JavaScript。</div></noscript>
 <!-- NEL_HEADER_START -->
@@ -86,32 +90,12 @@
 <p>偏振模色散（PMD）使脉冲的两个偏振模到达时间略有差异。与色散不同，PMD 随长度的平方根增长：按 0.20 ps/√km 设计的 G.652.D 链路，80 km 平均 DGD 约 1.8 ps。本 PMD 预算计算器把光纤与器件 DGD 合成，对比码元周期容限并求 PMD 受限距离。</p>
 <div class="hero-tags"><span>平均 DGD</span><span>ps/√km</span><span>平方和合成</span><span>PMD 受限距离</span></div></div></section>
 <main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
-<section class="input-panel card nel-tool-input">
-<div class="section-title"><span class="section-icon">☷</span><div>
-<h2>链路与信号</h2>
-<p>输入光纤 PMD 系数和长度、带有 PMD 的器件，以及信号码元速率。</p>
-</div></div>
-<div class="form-grid">
-<div class="field"><label for="projectName">工程名称</label><div class="input-wrap no-unit"><input id="projectName" type="text" value="10G 长途跨段"></div></div>
-<div class="field"><label for="pmdCoef">光纤 PMD 系数</label><div class="input-wrap"><input id="pmdCoef" type="number" min="0" max="5" step="0.01" value="0.2"><span>ps/√km</span></div><p class="hint">G.652.D 链路设计值 PMDQ ≤ 0.20 ps/√km。</p></div>
-<div class="field"><label for="lengthKm">光纤长度</label><div class="input-wrap"><input id="lengthKm" type="number" min="0.001" step="0.001" value="80"><span>km</span></div></div>
-<div class="field"><label for="componentCount">含 PMD 的器件数量（放大器、DCM、ROADM）</label><div class="input-wrap no-unit"><input id="componentCount" type="number" min="0" step="1" value="4"></div></div>
-<div class="field"><label for="componentPmd">单个器件平均 DGD</label><div class="input-wrap"><input id="componentPmd" type="number" min="0" step="0.01" value="0.1"><span>ps</span></div><p class="hint">取自器件规格书。</p></div>
-<div class="field"><label for="symbolRate">码元速率</label><div class="input-wrap"><input id="symbolRate" type="number" min="0.001" step="0.0001" value="10.3125"><span>GBd</span></div><p class="hint">10GBASE-R 为 10.3125 GBd。</p></div>
-<div class="field"><label for="tolerancePct">允许平均 DGD（码元周期百分比）</label><div class="input-wrap"><input id="tolerancePct" type="number" min="0.1" max="100" step="0.1" value="10"><span>%</span></div><p class="hint">NRZ 常用 10%（约 1 dB 代价）。</p></div>
-<div class="field"><label for="maxRatio">最大/平均 DGD 比</label><div class="input-wrap"><input id="maxRatio" type="number" min="1" max="10" step="0.1" value="3"><span>×</span></div><p class="hint">麦克斯韦分布下 3.0 约对应 4×10⁻⁵ 概率。</p></div>
-</div>
-<div class="actions">
-<button class="primary-action" id="calculateBtn" type="button">计算</button>
-<button class="secondary-action" id="resetBtn" type="button">重置</button>
-</div>
-<p class="validation-message" id="validationMessage" role="alert"></p>
-</section>
-<section aria-live="polite" class="result-panel card nel-tool-result">
-<div class="section-title"><span class="section-icon">▥</span><div>
-<h2>计算结果</h2>
-<p>平均 DGD = √((PMD × √L)² + n × 器件²)。超过允许 DGD 判为不通过，超过 80% 给出预警。</p>
-</div></div>
+<section class="input-panel card nel-tool-input"><div class="fb-panel"><div class="panel-h"><h2>链路与信号</h2></div><p class="fg-note">输入光纤 PMD 系数和长度、带有 PMD 的器件，以及信号码元速率。</p><div class="fs"><div class="fg"><p class="fs-t">光纤</p><div class="fields"><div class="f f-wide field"><label for="projectName">工程名称</label><div class="inp input-wrap no-unit"><input id="projectName" type="text" value="10G 长途跨段"></div></div><div class="f field"><label for="pmdCoef">光纤 PMD 系数</label><div class="inp input-wrap"><input id="pmdCoef" type="number" min="0" max="5" step="0.01" value="0.2"><u>ps/√km</u></div><small>G.652.D 链路设计值 PMDQ ≤ 0.20 ps/√km。</small></div><div class="f field"><label for="lengthKm">光纤长度</label><div class="inp input-wrap"><input id="lengthKm" type="number" min="0.001" step="0.001" value="80"><u>km</u></div></div></div></div><div class="fg"><p class="fs-t">器件</p><div class="fields"><div class="f field"><label for="componentCount">含 PMD 的器件数量（放大器、DCM、ROADM）</label><div class="inp input-wrap no-unit"><input id="componentCount" type="number" min="0" step="1" value="4"></div></div><div class="f field"><label for="componentPmd">单个器件平均 DGD</label><div class="inp input-wrap"><input id="componentPmd" type="number" min="0" step="0.01" value="0.1"><u>ps</u></div><small>取自器件规格书。</small></div></div></div><div class="fg"><p class="fs-t">信号</p><div class="fields"><div class="f field"><label for="symbolRate">码元速率</label><div class="inp input-wrap"><input id="symbolRate" type="number" min="0.001" step="0.0001" value="10.3125"><u>GBd</u></div><small>10GBASE-R 为 10.3125 GBd。</small></div><div class="f field"><label for="tolerancePct">允许平均 DGD（码元周期百分比）</label><div class="inp input-wrap"><input id="tolerancePct" type="number" min="0.1" max="100" step="0.1" value="10"><u>%</u></div><small>NRZ 常用 10%（约 1 dB 代价）。</small></div><div class="f field"><label for="maxRatio">最大/平均 DGD 比</label><div class="inp input-wrap"><input id="maxRatio" type="number" min="1" max="10" step="0.1" value="3"><u>×</u></div><small>麦克斯韦分布下 3.0 约对应 4×10⁻⁵ 概率。</small></div></div></div></div><div class="panel-f">
+<button class="btn btn-primary" id="calculateBtn" type="button">计算</button>
+<button class="btn btn-ghost" id="resetBtn" type="button">重置</button>
+</div><p class="validation-message" id="validationMessage" role="alert"></p></div></section>
+<section aria-live="polite" class="result-panel card nel-tool-result"><div class="readout"><div class="ro-h"><span>计算结果</span></div><p class="fg-note">平均 DGD = √((PMD × √L)² + n × 器件²)。超过允许 DGD 判为不通过，超过 80% 给出预警。</p>
+
 <div class="summary-card" id="summaryCard"><div><p>链路平均 DGD</p><strong><span id="meanDgd">—</span></strong></div><div><p>距允许 DGD 余量</p><strong><span id="dgdMargin">—</span></strong></div><div class="health-badge" id="healthBadge">—</div></div>
 <div class="metric-grid">
 <article class="metric-card"><div><small>光纤平均 DGD</small><strong id="fiberDgd">—</strong></div></article>
@@ -122,35 +106,70 @@
 <article class="metric-card"><div><small>预算占用</small><strong id="usedPct">—</strong></div></article>
 </div>
 <p class="hint">PMD 是统计量，会随温度和施工扰动变化。相干接收机在 DSP 中补偿 DGD，应改用其规格书的 DGD 容限而非 NRZ 规则。</p>
-<div class="result-actions">
+<div class="ro-acts">
 <button id="copyBtn" type="button">复制结果</button>
 <button id="saveBtn" type="button">保存记录</button>
 <button id="printBtn" type="button">打印 / 导出 PDF</button>
 </div>
-</section>
+</div></section>
 
-</main>
-<section class="content-section nel-tool-supporting-section" id="history">
-<div class="section-heading"><div><p class="eyebrow">工程记录</p><h2>最近计算记录</h2></div>
-<button class="text-button" id="clearHistoryBtn" type="button">清空记录</button></div>
-<div class="history-list" id="historyList"></div>
-</section>
+<div class="tool-head"><div class="crumbs"><a href="../../../zh/">首页</a>/<span>偏振模色散（PMD）预算计算器</span></div><p class="tool-page-label" role="heading" aria-level="1">偏振模色散（PMD）预算计算器</p><p class="tool-lede">偏振模色散（PMD）使脉冲的两个偏振模到达时间略有差异。与色散不同，PMD 随长度的平方根增长：按 0.20 ps/√km 设计的 G.652.D 链路，80 km 平均 DGD 约 1.8 ps。本 PMD 预算计算器把光纤与器件 DGD 合成，对比码元周期容限并求 PMD 受限距离。</p></div></main>
+<div class="below">
+<nav class="toc" aria-label="本页目录">
+<h4>本页目录</h4>
+<a href="#methodology">计算方法与工程说明</a>
+<a href="#examples">算例</a>
+<a href="#limits">受限距离</a>
+<a href="#faq">常见问题</a>
+<a href="#references">标准与参考资料</a>
+<a href="#nel-tool-graph">继续下一步工程任务</a>
+<a href="#history">最近计算记录</a>
+</nav>
+<div class="prose">
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">计算方法与工程说明</span></summary>
+<div class="fb-fold-body">
 <section class="content-section methodology nel-tool-supporting-section" id="methodology">
 <div class="section-heading"><div><p class="eyebrow">计算方法</p><h2>计算方法与工程说明</h2></div></div>
-<div class="method-grid">
-<article><h3>使用方法</h3><ol><li>输入 PMD 系数（光缆 PMDQ 链路设计值）和光纤长度。</li><li>填写放大器、DCM 等器件数量和单个平均 DGD。</li><li>输入码元速率，以及允许平均 DGD 占码元周期的百分比。</li><li>查看平均 DGD、余量和 PMD 受限距离。</li></ol></article><article><h3>DGD 公式</h3><p>光纤平均 DGD = PMD 系数 × √L（ps），因为 PMD 按随机游走累积。相互独立的段按平方和合成：总 DGD = √(光纤² + Σ 器件²)。码元周期 = 1000 / 码元速率（GBd），单位 ps；允许平均 DGD = 码元周期 × 所选百分比。</p></article><article><h3>受限距离</h3><p>PMD 受限距离 = (允许值² − Σ 器件²) / PMD²。瞬时 DGD 服从麦克斯韦分布，设计最大值通常取平均值约 3 倍。80% 预警阈值是本工具的筛查规则。</p></article>
-</div>
-<div class="example-box"><h3>算例：10.3125 GBd、80 km</h3><p>0.20 ps/√km × √80 = 1.789 ps。4 个 0.1 ps 器件增加 0.04 ps²，平均 DGD 1.800 ps。码元周期 96.97 ps，10% 允许值 9.70 ps，余量 7.897 ps（占用 18.6%）。设计最大值约 5.40 ps，PMD 受限距离约 2,350 km。</p></div>
+<div class="method-grid"><article><h3>使用方法</h3><ol><li>输入 PMD 系数（光缆 PMDQ 链路设计值）和光纤长度。</li><li>填写放大器、DCM 等器件数量和单个平均 DGD。</li><li>输入码元速率，以及允许平均 DGD 占码元周期的百分比。</li><li>查看平均 DGD、余量和 PMD 受限距离。</li></ol></article><article><h3>DGD 公式</h3><p>光纤平均 DGD = PMD 系数 × √L（ps），因为 PMD 按随机游走累积。相互独立的段按平方和合成：总 DGD = √(光纤² + Σ 器件²)。码元周期 = 1000 / 码元速率（GBd），单位 ps；允许平均 DGD = 码元周期 × 所选百分比。</p></article></div>
+
 </section>
-<section aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
+</div>
+</details>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">算例</span></summary>
+<div class="fb-fold-body">
+<section id="examples" class="content-section nel-tool-supporting-section"><div class="section-heading"><div><p class="eyebrow">算例</p><h2>算例</h2></div></div><div class="example-box"><h3>算例：10.3125 GBd、80 km</h3><p>0.20 ps/√km × √80 = 1.789 ps。4 个 0.1 ps 器件增加 0.04 ps²，平均 DGD 1.800 ps。码元周期 96.97 ps，10% 允许值 9.70 ps，余量 7.897 ps（占用 18.6%）。设计最大值约 5.40 ps，PMD 受限距离约 2,350 km。</p></div></section>
+</div>
+</details>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">受限距离</span></summary>
+<div class="fb-fold-body">
+<section id="limits" class="content-section nel-tool-supporting-section"><div class="section-heading"><div><p class="eyebrow">限制</p><h2>受限距离</h2></div></div><article><p>PMD 受限距离 = (允许值² − Σ 器件²) / PMD²。瞬时 DGD 服从麦克斯韦分布，设计最大值通常取平均值约 3 倍。80% 预警阈值是本工具的筛查规则。</p></article></section>
+</div>
+</details>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">常见问题</span></summary>
+<div class="fb-fold-body">
+<section id="faq" aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">常见问题</p><h2 id="faq-title">常见问题</h2></div></div>
+<div class="faq-grid"><details><summary>如何计算光纤链路的 PMD？</summary><p>平均 DGD = PMD 系数 × √长度。0.20 ps/√km、80 km 为 0.2 × 8.94 = 1.79 ps，器件 DGD 按平方和叠加。</p></details><details><summary>10G 的 PMD 限值是多少？</summary><p>按码元周期 10% 的常用规则，10.3125 GBd 允许平均 DGD 约 9.7 ps。0.5 ps/√km 的老光纤约 376 km 就会达到。</p></details><details><summary>为什么 PMD 随长度平方根增长？</summary><p>光纤双折射沿长度随机变化，时延按随机游走累积，因此与 √L 成正比。</p></details><details><summary>PMD 和 DGD 有什么区别？</summary><p>DGD 是两个偏振模之间的瞬时时延；PMD 是 DGD 在波长和时间上的平均值，PMD 系数是每 √km 的平均值。</p></details><details><summary>相干 100G/400G 还要关注 PMD 吗？</summary><p>影响小得多。相干 DSP 可补偿数十 ps 的 DGD，限制 10G NRZ 的老光纤仍可承载相干信号。</p></details></div>
+</section>
+</div>
+</details>
+<details class="fb-fold blk" open data-fold-pinned>
+<summary class="fb-fold-sum"><span class="fb-fold-title">标准与参考资料</span></summary>
+<div class="fb-fold-body">
+<section id="references" aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
 <div class="section-heading"><div><p class="eyebrow">工程参考</p><h2 id="references-title">标准与参考资料</h2></div></div>
 <ul><li><a href="https://www.itu.int/rec/T-REC-G.652/en" rel="noopener">ITU-T G.652 (08/2024)：§7.2 及 Table 1/Table 2：G.652.B/D 最大 PMDQ 链路设计值 0.20 ps/√km（M = 20 段、Q = 0.01%）</a></li><li><a href="https://www.itu.int/rec/T-REC-G.650.2/en" rel="noopener">ITU-T G.650.2 (08/2015)：统计与非线性参数（含 PMD）的定义和测试方法</a></li><li><a href="https://webstore.iec.ch/en/publication/5103" rel="noopener">IEC TR 61282-3 第 2 版（2006-10）：链路 PMD 计算——光纤与器件 DGD 平方和开方合成（第 2 章）</a></li></ul>
 <p>NRZ 取码元周期 10% 以及最大/平均比约 3 是常用工程约定；接收端 DGD 容限请以光模块规格书为准。 最后审核: 2026-10-20.</p>
 </section>
-<section aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
-<div class="section-heading"><div><p class="eyebrow">常见问题</p><h2 id="faq-title">常见问题</h2></div></div>
-<div class="faq-grid"><details><summary>如何计算光纤链路的 PMD？</summary><p>平均 DGD = PMD 系数 × √长度。0.20 ps/√km、80 km 为 0.2 × 8.94 = 1.79 ps，器件 DGD 按平方和叠加。</p></details><details><summary>10G 的 PMD 限值是多少？</summary><p>按码元周期 10% 的常用规则，10.3125 GBd 允许平均 DGD 约 9.7 ps。0.5 ps/√km 的老光纤约 376 km 就会达到。</p></details><details><summary>为什么 PMD 随长度平方根增长？</summary><p>光纤双折射沿长度随机变化，时延按随机游走累积，因此与 √L 成正比。</p></details><details><summary>PMD 和 DGD 有什么区别？</summary><p>DGD 是两个偏振模之间的瞬时时延；PMD 是 DGD 在波长和时间上的平均值，PMD 系数是每 √km 的平均值。</p></details><details><summary>相干 100G/400G 还要关注 PMD 吗？</summary><p>影响小得多。相干 DSP 可补偿数十 ps 的 DGD，限制 10G NRZ 的老光纤仍可承载相干信号。</p></details></div>
-</section>
+</div>
+</details>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">继续下一步工程任务</span></summary>
+<div class="fb-fold-body">
 <!-- NEL_TOOL_GRAPH_START -->
 <section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="pmd-budget-calculator" data-primary-workflow="optical-dispersion-planning">
 <div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
@@ -158,6 +177,20 @@
 <h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/chromatic-dispersion-calculator/zh/"><strong>色散计算器</strong><span class="nel-tool-graph-description">计算 G.652 色散系数、累积与残余色散以及色散受限链路长度。</span></a><a class="nel-tool-graph-card" href="/tools/fiber-loss/zh/"><strong>光纤链路损耗计算器</strong><span class="nel-tool-graph-description">计算光纤、熔接、连接器、分光器及工程余量，输出物理损耗与设计损耗。</span></a><a class="nel-tool-graph-card" href="/tools/optical-power-budget/zh/"><strong>光功率预算计算器</strong><span class="nel-tool-graph-description">结合发送功率、接收灵敏度、光学代价和ODN损耗验证完整光链路预算。</span></a><a class="nel-tool-graph-card" href="/tools/otdr-event/zh/"><strong>OTDR事件分析工具</strong><span class="nel-tool-graph-description">支持多事件录入、双波长对比，识别熔接、连接器、弯曲、断纤、鬼影及盲区影响。</span></a></div>
 </section>
 <!-- NEL_TOOL_GRAPH_END -->
+</div>
+</details>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">最近计算记录</span></summary>
+<div class="fb-fold-body">
+<section class="content-section nel-tool-supporting-section" id="history">
+<div class="section-heading"><div><p class="eyebrow">工程记录</p><h2>最近计算记录</h2></div>
+<button class="text-button" id="clearHistoryBtn" type="button">清空记录</button></div>
+<div class="history-list" id="historyList"></div>
+</section>
+</div>
+</details>
+</div>
+</div>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">
@@ -175,5 +208,6 @@
 <script defer src="../js/app.js?v=4b7d55cfc706"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
 <script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script>
+<script defer src="../../../assets/js/tool-detail-v3.js?v=66984b67ff65"></script>
 </body>
 </html>
