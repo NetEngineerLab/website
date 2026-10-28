@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-pon-splitter-loss-locale-v1.9.9-04-p0-p1-correctness-consent-offline-49da2452839c-c8119fd16ae8";
+const CACHE = "nel-pon-splitter-loss-locale-v1.9.9-04-p0-p1-correctness-consent-offline-49da2452839c-540c5614f8c8";
 const CORE = [
   "./index.html",
   "./",
@@ -7,7 +7,10 @@ const CORE = [
   "./offline.html",
   "./manifest.webmanifest",
   "./css/style.css?v=2699f8c79aa8",
-  "./js/app.js?v=7a1a6f7fbc32",
+  "../../assets/js/tool-detail-v3.js?v=66984b67ff65",
+  "../../assets/css/tool-layout.css?v=dfdd771763d6",
+  "../../assets/css/fieldbook.css?v=a3bb21511014",
+  "./js/app.js?v=32a005d930b6",
   "./js/engine.js",
   "./images/logo.svg",
   "../../data/locales.js?v=909e05076a50",

@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-pon-distance-locale-v1.9.9-04-p0-p1-correctness-consent-offline-49da2452839c-691c2a10c714";
+const CACHE = "nel-pon-distance-locale-v1.9.9-04-p0-p1-correctness-consent-offline-49da2452839c-3cde82b1ff1c";
 const CORE = [
   "./index.html",
   "./",
@@ -7,7 +7,10 @@ const CORE = [
   "./offline.html",
   "./manifest.webmanifest",
   "./css/style.css?v=ab73366a0006",
-  "./js/app.js?v=f3180701a06e",
+  "../../assets/js/tool-detail-v3.js?v=66984b67ff65",
+  "../../assets/css/tool-layout.css?v=dfdd771763d6",
+  "../../assets/css/fieldbook.css?v=a3bb21511014",
+  "./js/app.js?v=80c49648b7d2",
   "./js/engine.js",
   "./images/logo.svg",
   "../../data/locales.js?v=909e05076a50",

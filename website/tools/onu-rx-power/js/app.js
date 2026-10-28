@@ -48,7 +48,7 @@ function invalidate(){
  last=null;
  ["measuredResult","sensitivityMargin","overloadMargin","receiverWindow","expectedRx","deviation","inferredExtra","modeledLoss","fiberLoss","spliceTotal","connectorTotal","splitterLoss"].forEach(id=>$(id).textContent="—");
  $("splitRatio").textContent="—";$("gaugePower").textContent="—";$("gaugeMarker").style.left="0";
- $("healthBadge").textContent=T[LANG].invalidBadge;$("summaryCard").className="summary-card";$("diagnosis").className="diagnosis";
+ $("healthBadge").textContent=T[LANG].invalidBadge;$("summaryCard").className="summary-card";$("diagnosis").className="diagnosis diagnosis-box";
  $("diagnosisText").textContent=T[LANG].invalid;$("causeList").innerHTML="";$("validation").textContent=T[LANG].invalid;
  ["copyBtn","saveBtn","csvBtn","printBtn"].forEach(id=>$(id).disabled=true);
 }
@@ -88,7 +88,7 @@ function calculate(){
  }else{
   ["expectedRx","deviation","inferredExtra","modeledLoss","fiberLoss","spliceTotal","connectorTotal","splitterLoss","splitRatio"].forEach(id=>$(id).textContent="—");
  }
- const summary=$("summaryCard"),diag=$("diagnosis"),badge=$("healthBadge");summary.className="summary-card "+status;diag.className="diagnosis "+status;badge.textContent=T[LANG][status];
+ const summary=$("summaryCard"),diag=$("diagnosis"),badge=$("healthBadge");summary.className="summary-card "+status;diag.className="diagnosis diagnosis-box "+status;badge.textContent=T[LANG][status];
  $("diagnosisText").textContent=T[LANG][status+"Text"];
  const causeKey={healthy:"causesHealthy",warning:"causesWarning",failed:"causesFailed",overload:"causesOverload",nosignal:"causesNoSignal"}[status];
  const causes=T[LANG][causeKey]||[];

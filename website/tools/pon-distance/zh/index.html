@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="tools/pon-distance/"><head>
-<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="../" name="app-base"/>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#16140F" name="theme-color"/><meta content="../" name="app-base"/>
 <title>PON计算器（免费）｜最大传输距离与光预算（GPON B+/C+）</title>
 <meta content="免费PON距离计算：按分光比、发送功率、接收灵敏度、光纤与分光损耗，即时算出GPON最大距离，并判断受光预算还是20 km系统距离限制。" name="description"/>
 <meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
@@ -20,6 +20,9 @@
 <meta name="twitter:description" content="免费PON距离计算：按分光比、发送功率、接收灵敏度、光纤与分光损耗，即时算出GPON最大距离，并判断受光预算还是20 km系统距离限制。">
 <meta name="twitter:image" content="https://netengineerlab.com/tools/pon-distance/images/og-pon-maximum-distance.png">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"PON计算器（免费）｜最大传输距离与光预算（GPON B+/C+）","url":"https://netengineerlab.com/tools/pon-distance/zh/","description":"免费PON距离计算：按分光比、发送功率、接收灵敏度、光纤与分光损耗，即时算出GPON最大距离，并判断受光预算还是20 km系统距离限制。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
@@ -42,7 +45,9 @@
 <script defer src="../../../assets/js/site.js?v=b563dd0297f5"></script>
 <link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=dfdd771763d6">
 <link rel="manifest" href="../manifest-zh.webmanifest">
-</head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+</head><body class="nel-tool-detail-page nel-opb-v3 nel-fieldbook nel-tool-v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<link rel="stylesheet" href="../../../assets/css/fieldbook.css?v=a3bb21511014">
+
 <a class="skip-link" href="#calculator">跳到计算器</a><noscript><div class="noscript">本工具需要启用 JavaScript。</div></noscript>
 <!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
@@ -76,34 +81,30 @@
 <!-- NEL_TOOL_RETURN_END -->
 <section class="hero nel-tool-hero"><div class="hero-inner"><p class="eyebrow">PON PLANNING TOOL</p><h1>PON最大传输距离计算器</h1><p>根据设备光功率窗口、光纤衰减、分光器、熔接点、连接器和工程余量，计算光预算允许的最大距离；同时加入可编辑的系统/协议距离上限，给出真正可用于规划的有效最大距离。</p><div class="hero-tags"><span>光预算距离</span><span>系统距离上限</span><span>规划链路验证</span><span>限制因素判断</span></div></div></section>
 <main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
-<section class="input-panel card nel-tool-input">
-<div class="section-title"><span class="section-icon">☷</span><div><h2>设备、损耗与规划参数</h2><p>默认一级、二级分光器均为1:8，可按实际设计修改。</p></div></div>
-<div class="preset-row"><label for="preset">场景参考预设</label><select id="preset"><option value="custom">自定义</option><option selected="" value="gpon-b">GPON B+参考（可编辑）</option><option value="gpon-c">GPON C+参考（可编辑）</option><option value="epon">EPON参考（可编辑）</option><option value="longreach">长距离参考场景</option></select></div>
-<div class="form-grid">
-<div class="field full"><label for="projectName">工程名称</label><div class="input-wrap no-unit"><input id="projectName" value="PON Maximum Distance Design"/></div></div>
-<div class="subheading">设备光功率与距离约束</div>
-<div class="field"><label for="txPower">最小发送光功率</label><div class="input-wrap"><input id="txPower" step="0.1" type="number" value="1.5"/><span>dBm</span></div></div>
-<div class="field"><label for="rxSensitivity">接收灵敏度</label><div class="input-wrap"><input id="rxSensitivity" step="0.1" type="number" value="-27"/><span>dBm</span></div></div>
-<div class="field"><label for="rxOverload">接收过载门限</label><div class="input-wrap"><input id="rxOverload" step="0.1" type="number" value="-8"/><span>dBm</span></div></div>
-<div class="field"><label for="systemReach">系统/协议距离上限</label><div class="input-wrap"><input id="systemReach" min="0.1" step="0.1" type="number" value="20"/><span>km</span></div><small class="help">可按OLT、ONU、测距能力或企业规划要求修改。</small></div>
-<div class="field"><label for="plannedDistance">规划链路距离</label><div class="input-wrap"><input id="plannedDistance" min="0" step="0.1" type="number" value="5"/><span>km</span></div></div>
-<div class="field"><label for="margin">工程余量</label><div class="input-wrap"><input id="margin" min="0" step="0.1" type="number" value="3"/><span>dB</span></div></div>
-<div class="subheading">光纤与固定无源损耗</div>
-<div class="field"><label for="wavelength">工作波长</label><div class="input-wrap no-unit"><select id="wavelength"><option value="1310">1310 nm</option><option selected="" value="1490">1490 nm</option><option value="1550">1550 nm</option><option value="custom">自定义</option></select></div></div>
-<div class="field"><label for="attenuation">光纤衰减系数</label><div class="input-wrap"><input id="attenuation" min="0" step="0.01" type="number" value="0.30"/><span>dB/km</span></div></div>
-<div class="field"><label for="spliceCount">熔接点数量</label><div class="input-wrap"><input id="spliceCount" min="0" step="1" type="number" value="6"/><span>个</span></div></div>
-<div class="field"><label for="spliceLoss">单点熔接损耗</label><div class="input-wrap"><input id="spliceLoss" min="0" step="0.01" type="number" value="0.10"/><span>dB</span></div></div>
-<div class="field"><label for="connectorCount">连接器数量</label><div class="input-wrap"><input id="connectorCount" min="0" step="1" type="number" value="4"/><span>个</span></div></div>
-<div class="field"><label for="connectorLoss">单个连接器损耗</label><div class="input-wrap"><input id="connectorLoss" min="0" step="0.01" type="number" value="0.30"/><span>dB</span></div></div>
-<div class="field"><label for="splitter1">一级分光器</label><div class="input-wrap no-unit"><select id="splitter1"><option value="0">无</option><option value="3.7">1:2（3.7 dB）</option><option value="7.2">1:4（7.2 dB）</option><option selected="" value="10.5">1:8（10.5 dB）</option><option value="13.8">1:16（13.8 dB）</option><option value="17">1:32（17.0 dB）</option><option value="20.5">1:64（20.5 dB）</option></select></div></div>
-<div class="field"><label for="splitter2">二级分光器</label><div class="input-wrap no-unit"><select id="splitter2"><option value="0">无</option><option value="3.7">1:2（3.7 dB）</option><option value="7.2">1:4（7.2 dB）</option><option selected="" value="10.5">1:8（10.5 dB）</option><option value="13.8">1:16（13.8 dB）</option></select></div></div>
-<div class="field"><label for="otherLoss">其他无源损耗</label><div class="input-wrap"><input id="otherLoss" min="0" step="0.01" type="number" value="0"/><span>dB</span></div></div>
-</div>
-<div class="input-actions"><button class="primary-action" id="calculateBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> 计算最大距离</button><button class="secondary-action" id="resetBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M20 11a8 8 0 1 0-2.3 5.7"></path><path d="M20 4v7h-7"></path></svg> 重置参数</button></div><p class="validation" id="validation" role="alert"></p>
-</section>
-<section aria-live="polite" class="result-panel card nel-tool-result">
-<div class="section-title"><span class="section-icon">▥</span><div><h2>距离与预算结果</h2><p>有效最大距离取光预算最大距离与系统距离上限中的较小值。</p></div></div>
-<div class="summary-card healthy" id="summaryCard"><div><p>有效最大传输距离</p><strong><span id="effectiveMax">0.00</span><small>km</small></strong></div><div class="health-badge" id="healthBadge">✓ 满足设计</div></div>
+<section class="input-panel card nel-tool-input"><div class="fb-panel"><div class="panel-h"><h2>设备、损耗与规划参数</h2></div><p class="fg-note">默认一级、二级分光器均为1:8，可按实际设计修改。</p><div class="fs"><div class="preset-row fg"><label for="preset">场景参考预设</label><div class="inp input-wrap sel"><select id="preset"><option value="custom">自定义</option><option selected="" value="gpon-b">GPON B+参考（可编辑）</option><option value="gpon-c">GPON C+参考（可编辑）</option><option value="epon">EPON参考（可编辑）</option><option value="longreach">长距离参考场景</option></select></div></div>
+<div class="fields form-grid">
+<div class="f f-wide field full"><label for="projectName">工程名称</label><div class="inp input-wrap no-unit"><input id="projectName" value="PON Maximum Distance Design"/></div></div>
+<div class="fs-t subheading">设备光功率与距离约束</div>
+<div class="f field"><label for="txPower">最小发送光功率</label><div class="inp input-wrap"><input id="txPower" step="0.1" type="number" value="1.5"/><u>dBm</u></div></div>
+<div class="f field"><label for="rxSensitivity">接收灵敏度</label><div class="inp input-wrap"><input id="rxSensitivity" step="0.1" type="number" value="-27"/><u>dBm</u></div></div>
+<div class="f field"><label for="rxOverload">接收过载门限</label><div class="inp input-wrap"><input id="rxOverload" step="0.1" type="number" value="-8"/><u>dBm</u></div></div>
+<div class="f field"><label for="systemReach">系统/协议距离上限</label><div class="inp input-wrap"><input id="systemReach" min="0.1" step="0.1" type="number" value="20"/><u>km</u></div><small class="help">可按OLT、ONU、测距能力或企业规划要求修改。</small></div>
+<div class="f field"><label for="plannedDistance">规划链路距离</label><div class="inp input-wrap"><input id="plannedDistance" min="0" step="0.1" type="number" value="5"/><u>km</u></div></div>
+<div class="f field"><label for="margin">工程余量</label><div class="inp input-wrap"><input id="margin" min="0" step="0.1" type="number" value="3"/><u>dB</u></div></div>
+<div class="fs-t subheading">光纤与固定无源损耗</div>
+<div class="f field"><label for="wavelength">工作波长</label><div class="inp input-wrap no-unit sel"><select id="wavelength"><option value="1310">1310 nm</option><option selected="" value="1490">1490 nm</option><option value="1550">1550 nm</option><option value="custom">自定义</option></select></div></div>
+<div class="f field"><label for="attenuation">光纤衰减系数</label><div class="inp input-wrap"><input id="attenuation" min="0" step="0.01" type="number" value="0.30"/><u>dB/km</u></div></div>
+<div class="f field"><label for="spliceCount">熔接点数量</label><div class="inp input-wrap"><input id="spliceCount" min="0" step="1" type="number" value="6"/><u>个</u></div></div>
+<div class="f field"><label for="spliceLoss">单点熔接损耗</label><div class="inp input-wrap"><input id="spliceLoss" min="0" step="0.01" type="number" value="0.10"/><u>dB</u></div></div>
+<div class="f field"><label for="connectorCount">连接器数量</label><div class="inp input-wrap"><input id="connectorCount" min="0" step="1" type="number" value="4"/><u>个</u></div></div>
+<div class="f field"><label for="connectorLoss">单个连接器损耗</label><div class="inp input-wrap"><input id="connectorLoss" min="0" step="0.01" type="number" value="0.30"/><u>dB</u></div></div>
+<div class="f field"><label for="splitter1">一级分光器</label><div class="inp input-wrap no-unit sel"><select id="splitter1"><option value="0">无</option><option value="3.7">1:2（3.7 dB）</option><option value="7.2">1:4（7.2 dB）</option><option selected="" value="10.5">1:8（10.5 dB）</option><option value="13.8">1:16（13.8 dB）</option><option value="17">1:32（17.0 dB）</option><option value="20.5">1:64（20.5 dB）</option></select></div></div>
+<div class="f field"><label for="splitter2">二级分光器</label><div class="inp input-wrap no-unit sel"><select id="splitter2"><option value="0">无</option><option value="3.7">1:2（3.7 dB）</option><option value="7.2">1:4（7.2 dB）</option><option selected="" value="10.5">1:8（10.5 dB）</option><option value="13.8">1:16（13.8 dB）</option></select></div></div>
+<div class="f field"><label for="otherLoss">其他无源损耗</label><div class="inp input-wrap"><input id="otherLoss" min="0" step="0.01" type="number" value="0"/><u>dB</u></div></div>
+</div></div><div class="panel-f input-actions"><button class="btn btn-primary" id="calculateBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> 计算最大距离</button><button class="btn btn-ghost" id="resetBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M20 11a8 8 0 1 0-2.3 5.7"></path><path d="M20 4v7h-7"></path></svg> 重置参数</button></div><p class="validation validation-message" id="validation" role="alert"></p></div></section>
+<section aria-live="polite" class="result-panel card nel-tool-result"><div class="readout">
+<div class="ro-h"><span>距离与预算结果</span></div>
+<div class="summary-card healthy" id="summaryCard"><div><p>有效最大传输距离</p><strong class="big"><span id="effectiveMax">0.00</span><small>km</small></strong></div><div class="health-badge" id="healthBadge">✓ 满足设计</div></div>
 <div class="metric-grid">
 <article class="metric-card"><span class="metric-icon">OPT</span><div><small>光预算最大距离</small><strong><span id="opticalMax">0.00</span> km</strong></div></article>
 <article class="metric-card"><span class="metric-icon">SYS</span><div><small>系统距离上限</small><strong><span id="systemReachResult">0.00</span> km</strong></div></article>
@@ -121,20 +122,40 @@
 <article class="result-box"><span>剩余设计预算</span><strong><span id="designRemaining">0.00</span> dB</strong></article>
 <article class="result-box"><span>预计接收光功率</span><strong><span id="estimatedRx">0.00</span> dBm</strong></article>
 </div>
-<div class="breakdown"><h3>固定损耗构成</h3>
-<div class="breakdown-row"><span>熔接损耗</span><span><b id="spliceTotal">0.00</b> dB</span></div>
-<div class="breakdown-row"><span>连接器损耗</span><span><b id="connectorTotal">0.00</b> dB</span></div>
-<div class="breakdown-row"><span>分光器损耗</span><span><b id="splitterTotal">0.00</b> dB</span></div>
-<div class="breakdown-row"><span>其他无源损耗</span><span><b id="otherResult">0.00</b> dB</span></div>
-<div class="breakdown-row"><span>工程余量</span><span><b id="marginResult">0.00</b> dB</span></div>
-<div class="breakdown-row"><span>物理预算余量</span><span><b id="physicalHeadroom">0.00</b> dB</span></div>
+<div class="grp breakdown"><h3>固定损耗构成</h3>
+<div class="row breakdown-row"><span>熔接损耗</span><span><b id="spliceTotal">0.00</b> dB</span></div>
+<div class="row breakdown-row"><span>连接器损耗</span><span><b id="connectorTotal">0.00</b> dB</span></div>
+<div class="row breakdown-row"><span>分光器损耗</span><span><b id="splitterTotal">0.00</b> dB</span></div>
+<div class="row breakdown-row"><span>其他无源损耗</span><span><b id="otherResult">0.00</b> dB</span></div>
+<div class="row breakdown-row"><span>工程余量</span><span><b id="marginResult">0.00</b> dB</span></div>
+<div class="row breakdown-row"><span>物理预算余量</span><span><b id="physicalHeadroom">0.00</b> dB</span></div>
 </div>
 <div class="limiter"><strong>主要限制因素</strong><span id="limiterText">—</span></div>
-<div class="diagnosis healthy" id="diagnosis"><strong>工程判断</strong><p id="diagnosisText">—</p><ul class="cause-list" id="causeList"></ul></div>
-<div class="result-actions"><button id="copyBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> 复制结果</button><button id="saveBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 5v14M5 12h14"></path></svg> 保存记录</button><button id="csvBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg> 导出 CSV</button><button id="printBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M6 9V3h12v6"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v7H6z"></path></svg> 打印 / PDF</button></div>
-</section>
+<div class="diagnosis diagnosis-box healthy" id="diagnosis"><strong>工程判断</strong><p id="diagnosisText">—</p><ul class="cause-list" id="causeList"></ul></div>
+<div class="ro-acts result-actions"><button id="copyBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> 复制结果</button><button id="saveBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 5v14M5 12h14"></path></svg> 保存记录</button><button id="csvBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg> 导出 CSV</button><button id="printBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M6 9V3h12v6"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v7H6z"></path></svg> 打印 / PDF</button></div>
+</div></section>
+<div class="tool-head">
+<div class="crumbs"><a href="../../../zh/">首页</a>/<a href="../../../zh/topics/pon-optical/">光网络</a>/<span>PON最大传输距离计算器</span></div>
+<p class="tool-page-label" role="heading" aria-level="1">PON最大传输距离计算器</p>
+<p class="tool-lede">根据设备光功率窗口、光纤衰减、分光器、熔接点、连接器和工程余量，计算光预算允许的最大距离；同时加入可编辑的系统/协议距离上限，给出真正可用于规划的有效最大距离。</p>
+</div>
 </main>
+<div class="below">
+<nav class="toc" aria-label="本页目录">
+<h4>本页目录</h4>
+<a href="#scenarios">典型工程场景</a>
+<a href="#pon-toolkit">相关 PON 与光纤工具</a>
+<a href="#methodology">计算方法与工程说明</a>
+<a href="#faq">常见问题</a>
+<a href="#history">最近计算记录</a>
+<a href="#references">工程来源与适用范围</a>
+<a href="#nel-tool-graph">继续下一步工程任务</a>
+</nav>
+<div class="prose">
 <!-- NEL_SCENARIOS_START -->
+<details class="fb-fold blk" open data-fold-pinned>
+<summary class="fb-fold-sum"><span class="fb-fold-title">典型工程场景</span></summary>
+<div class="fb-fold-body">
 <section class="content-section nel-tool-supporting-section" id="scenarios" aria-labelledby="scenarios-title">
 <div class="section-heading"><div><p class="eyebrow">工程算例</p><h2 id="scenarios-title">典型工程场景</h2></div></div>
 <p>点击场景即可一键填入计算器。下方预期结果由同一计算引擎得出，并有自动化测试覆盖。</p>
@@ -144,8 +165,13 @@
 <article class="metric-card nel-scenario-card" data-scenario-id="rural-1x16-long-reach"><div><h3>农村 1:16 分光，40 km 距离规划</h3><p>低分光比以用户数换距离：C+ 光模块、1:16、40 km 系统距离，规划 30 km。</p><p><small>预期结果</small><br><strong data-scenario-expected>最大 40.00 km（光预算 48.00 km）· 规划点剩余 5.40 dB · 受系统距离限制</strong></p><p><a class="nel-scenario-link" href="?scenario=rural-1x16-long-reach#calculator">载入此场景 →</a></p></div></article>
 </div>
 </section>
+</div>
+</details>
 <!-- NEL_SCENARIOS_END -->
 <!-- NEL_PON_LINKS_START -->
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">相关 PON 与光纤工具</span></summary>
+<div class="fb-fold-body">
 <section class="content-section nel-tool-supporting-section" id="pon-toolkit" aria-labelledby="pon-toolkit-title">
 <div class="section-heading"><div><p class="eyebrow">PON 规划工具组</p><h2 id="pon-toolkit-title">相关 PON 与光纤工具</h2></div></div>
 <p>按顺序完成 PON 设计：分光比、传输距离、接收光功率，再做完整链路预算。</p>
@@ -153,8 +179,13 @@
 <h3>指南</h3>
 <ul class="nel-pon-guides"><li><a href="../../../zh/guides/pon-splitter-loss-guide/">PON 分光器损耗指南</a></li><li><a href="../../../zh/guides/fiber-link-budget-guide/">光纤链路预算指南</a></li><li><a href="../../../zh/topics/pon-optical/">PON 与光通信专题</a></li></ul>
 </section>
+</div>
+</details>
 <!-- NEL_PON_LINKS_END -->
 <aside aria-label="广告" class="ad-slot" data-ad-key="afterCalculator" hidden=""><div class="ad-label">广告</div><div class="ad-body"></div></aside>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">计算方法与工程说明</span></summary>
+<div class="fb-fold-body">
 <section class="content-section nel-tool-supporting-section" id="methodology"><div class="section-heading"><div><p class="eyebrow">METHODOLOGY</p><h2>计算方法与工程说明</h2></div></div>
 <div class="method-grid">
 <article><h3>最大允许通道损耗</h3><p>最小发送光功率 − 接收灵敏度。应使用设备规格书中的最不利参数。</p></article>
@@ -164,6 +195,11 @@
 </div>
 <div class="note"><strong>重要说明：</strong>PON可部署距离不仅由光功率预算决定，还可能受OLT测距、设备配置、协议能力、差分距离和企业规划规则限制。因此本工具把“光预算最大距离”和“系统有效距离”分开显示。</div>
 </section>
+</div>
+</details>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">常见问题</span></summary>
+<div class="fb-fold-body">
 <section class="content-section nel-tool-supporting-section" id="faq"><div class="section-heading"><div><p class="eyebrow">FAQ</p><h2>常见问题</h2></div></div><div class="faq-grid">
 <details><summary>为什么光预算能到30 km，结果却只显示20 km？</summary><p>因为有效距离取光预算距离和系统距离上限中的较小值。即使光功率足够，OLT测距或网络配置也可能限制实际部署距离。</p></details>
 <details><summary>一级1:8加二级1:8为什么总分光比是1:64？</summary><p>两级分支数量相乘，8×8=64；损耗则按两个分光器的实际插入损耗相加。</p></details>
@@ -172,8 +208,20 @@
 <details><summary>工程余量应该设置多少？</summary><p>应按企业标准和项目场景设置，用于覆盖老化、温度变化、维护连接、污染和测量误差。</p></details>
 <details><summary>最大距离计算能否替代OTDR测试？</summary><p>不能。本工具用于设计和复核，现场仍需光功率计、OTDR及真实设备参数进行验证。</p></details>
 </div></section>
+</div>
+</details>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">最近计算记录</span></summary>
+<div class="fb-fold-body">
 <section class="content-section nel-tool-supporting-section" id="history"><div class="section-heading"><div><p class="eyebrow">PROJECT RECORDS</p><h2>最近计算记录</h2></div><button class="text-button" id="clearHistoryBtn">清空记录</button></div><div class="history-list" id="historyList"></div></section>
+</div>
+</details>
+<details class="fb-fold blk" open data-fold-pinned>
+<summary class="fb-fold-sum"><span class="fb-fold-title">工程来源与适用范围</span></summary>
+<div class="fb-fold-body">
 <section class="content-section nel-tool-supporting-section" id="references"><div class="section-heading"><div><p class="eyebrow">SOURCES &amp; REVIEW</p><h2>工程来源与适用范围</h2></div></div><p>复核日期：2026-08-31。本计算器组合光损耗、接收灵敏度和系统距离上限，不证明协议互通或现场验收。工程余量是规划输入，不是标准统一强制值。请用光功率计和 OTDR，结合已安装光纤、分光器和设备规格进行复核。</p><ul><li><a href="https://www.itu.int/rec/T-REC-G.984.2/en" rel="noopener noreferrer" target="_blank">ITU-T G.984.2 — GPON 物理媒质相关层</a></li><li><a href="https://www.itu.int/rec/T-REC-G.671/en" rel="noopener noreferrer" target="_blank">ITU-T G.671 — 光器件与子系统传输特性</a></li><li><a href="https://www.itu.int/rec/T-REC-G.650.3/en" rel="noopener noreferrer" target="_blank">ITU-T G.650.3 — 已安装单模光纤链路测试方法</a></li></ul></section>
+</div>
+</details>
 <aside aria-label="广告" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">广告</div><div class="ad-body"></div></aside>
 <p class="hub-return">属于 <a href="../../pon-fiber-calculators/zh/">PON 与光纤计算器</a> 专题。</p>
 <!-- NEL_TOOL_GRAPH_START -->
@@ -183,6 +231,8 @@
 <h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/optical-power-budget/zh/"><strong>光功率预算计算器</strong><span class="nel-tool-graph-description">结合发送功率、接收灵敏度、光学代价和ODN损耗验证完整光链路预算。</span></a><a class="nel-tool-graph-card" href="/tools/pon-splitter-loss/zh/"><strong>PON分光器损耗计算器</strong><span class="nel-tool-graph-description">支持一级、二级、三级分光级联，并计算总分光比、实际插入损耗和有效距离。</span></a><a class="nel-tool-graph-card" href="/tools/fiber-loss/zh/"><strong>光纤链路损耗计算器</strong><span class="nel-tool-graph-description">计算光纤、熔接、连接器、分光器及工程余量，输出物理损耗与设计损耗。</span></a></div>
 </section>
 <!-- NEL_TOOL_GRAPH_END -->
+</div>
+</div>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">
@@ -194,7 +244,8 @@
   </div>
 </footer>
 <!-- NEL_FOOTER_END -->
-<script defer="" src="../js/engine.js"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=f3180701a06e"></script><script defer="" src="../js/scenarios.js"></script>
+<script defer="" src="../js/engine.js"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=80c49648b7d2"></script><script defer="" src="../js/scenarios.js"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
-<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script></body></html>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script><script defer src="../../../assets/js/tool-detail-v3.js?v=66984b67ff65"></script>
+</body></html>
 
