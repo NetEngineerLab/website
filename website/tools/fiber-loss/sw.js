@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-fiber-loss-locale-v1.9.9-04-p0-p1-correctness-consent-offline-49da2452839c-ac843042a9d0";
+const CACHE = "nel-fiber-loss-locale-v1.9.9-04-p0-p1-correctness-consent-offline-49da2452839c-099b52cf4eac";
 const CORE = [
   "./index.html",
   "./",
@@ -7,7 +7,7 @@ const CORE = [
   "./offline.html",
   "./manifest.webmanifest",
   "./css/style.css?v=e27cbec8982c",
-  "./js/app.js?v=0f9b750fb0e5",
+  "./js/app.js?v=19302e6b5783",
   "./js/engine.js",
   "./images/logo.svg",
   "../../data/locales.js?v=909e05076a50",
