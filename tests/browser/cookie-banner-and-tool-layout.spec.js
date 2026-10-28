@@ -64,6 +64,8 @@ async function hubReturnAlignment(page) {
     const hubBox = hub.getBoundingClientRect();
     const selectors = [
       "body > .content-section",
+      // Fieldbook pages keep the supporting sections inside .below, beside the TOC.
+      "main .below .content-section",
       "main.calculator-hub .hub-faq details",
       "main .topic-tools",
       "main.nel-tool-grid > .card"

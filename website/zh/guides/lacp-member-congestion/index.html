@@ -6,7 +6,7 @@
 
 <link rel="stylesheet" href="/assets/css/cookie-consent.css?v=8dd1728bf5eb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=d998a53add89">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=e468a596c0ca">
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"聚合口总带宽够，为什么一条LACP成员链路还在丢包？| NetEngineerLab","url":"https://netengineerlab.com/zh/guides/lacp-member-congestion/","description":"通过成员计数器、2×10G算例、哈希分配检查和N-1容量校核，诊断LACP成员流量不均与单口拥塞。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"LACP会保证每条成员带宽相等吗？","acceptedAnswer":{"@type":"Answer","text":"不会。需要核实活动成员和实测分布；速率相同不代表需求相同。"}},{"@type":"Question","name":"单条流能用满20G吗？","acceptedAnswer":{"@type":"Answer","text":"常见逐流转发下不要这样假设。应检查平台实际转发行为及明确支持的其他机制。"}},{"@type":"Question","name":"聚合利用率70%就安全吗？","acceptedAnswer":{"@type":"Answer","text":"总平均值不能回答这个问题。还要检查最忙成员、队列丢弃、突发和故障要求。"}},{"@type":"Question","name":"修改哈希就能修复吗？","acceptedAnswer":{"@type":"Answer","text":"它可能改变流量落点。先确认所选字段在真实业务中存在差异，再测量变更结果。"}},{"@type":"Question","name":"应该再加一条10G成员吗？","acceptedAnswer":{"@type":"Answer","text":"先比较流量落点、最大单流和N-1需求。扩大聚合容量与提高单成员速率解决的是不同限制。"}}]}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
