@@ -34,8 +34,12 @@ for (const [locale, spec] of Object.entries(pages)) {
   assert.strictEqual((html.match(/<nav class="toc"/g) || []).length, 1, locale + " toc");
   assert.strictEqual((html.match(/class="prose"/g) || []).length, 1, locale + " prose");
   assert.strictEqual((html.match(/class="fb-fold blk"/g) || []).length, foldIds.length, locale + " folds");
-  assert.ok(html.includes("nel-tool-v3"), locale + " opt-in class");
+  assert.ok(html.includes("nel-fieldbook"), locale + " fieldbook skin");
+  assert.ok(html.includes("nel-opb-v3"), locale + " platform fieldbook shell");
+  assert.ok(html.includes("assets/css/fieldbook.css"), locale + " shared fieldbook stylesheet");
+  assert.ok(!html.includes("tool-detail-v3.css"), locale + " half-migrated shell removed");
   assert.ok(!html.includes("fb-v3.css"), locale + " must not use OPB stylesheet");
+  assert.ok(!html.includes("optical-power-budget/css/"), locale + " must not link OPB assets");
   assert.strictEqual((html.match(/data-language-menu/g) || []).length, 1, locale + " one language menu");
   assert.ok(!html.includes('id="langToggle"'), locale + " no legacy toggle");
   const main = html.slice(html.indexOf('<main'), html.indexOf("</main>"));

@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="#0b6ffb" name="theme-color"/>
+<meta content="#16140F" name="theme-color"/>
 <title>Pérdidas de fibra y presupuesto óptico | NetEngineerLab</title>
 <meta content="Calcula pérdidas de fibra, empalmes, conectores y divisores, margen de ingeniería, potencia recibida y presupuesto óptico para enlaces PON y punto a punto." name="description"/>
 <link href="../css/style.css?v=e27cbec8982c" rel="stylesheet"/>
@@ -32,6 +32,9 @@
 <link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link data-nel-workflow-style="" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" rel="stylesheet"/>
 <meta content="launch" name="nel-translation-status"/>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Pérdidas de fibra y presupuesto óptico | NetEngineerLab","url":"https://netengineerlab.com/tools/fiber-loss/es/","description":"Calcula pérdidas de fibra, empalmes, conectores y divisores, margen de ingeniería, potencia recibida y presupuesto óptico para enlaces PON y punto a punto.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="es">
@@ -56,8 +59,8 @@
 <link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=dfdd771763d6">
 <link rel="manifest" href="../manifest-es.webmanifest">
 </head>
-<body class="nel-tool-detail-page nel-tool-v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
-<link rel="stylesheet" href="../../../assets/css/tool-detail-v3.css?v=a51258f43a34">
+<body class="nel-tool-detail-page nel-opb-v3 nel-fieldbook nel-tool-v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<link rel="stylesheet" href="../../../assets/css/fieldbook.css?v=0f2f72588170">
 <a class="skip-link" href="#calculator">Saltar a la calculadora</a>
 <noscript><div class="noscript">Se requiere JavaScript para ejecutar esta calculadora.</div></noscript>
 <!-- NEL_HEADER_START -->
@@ -96,88 +99,21 @@
 <h1 data-i18n="heroTitle">Calculadora de pérdidas de fibra</h1>
 <p>Calcula la pérdida óptica total de fibra, empalmes, conectores, divisores y componentes pasivos; después evalúa el margen de ingeniería, la potencia recibida y el estado del enlace.</p><div class="hero-tags"><span>Atenuación de fibra</span><span>Pérdidas de conectores</span><span>Margen de ingeniería</span><span>Validación del enlace</span></div></div></section>
 <main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
-<section class="input-panel card nel-tool-input">
-<div class="section-title">
-<span class="section-icon">☷</span>
-<div>
-<h2 data-i18n="linkParams">Parámetros del enlace</h2>
-<p data-i18n="linkParamsHint">Introduce parámetros reales de ingeniería para calcular la pérdida del enlace.</p>
-</div>
-</div>
-<div class="preset-row">
-<label data-i18n="scenarioPreset" for="preset">Escenario predefinido</label>
-<select id="preset">
+<section class="input-panel card nel-tool-input"><div class="fb-panel">
+<div class="panel-h"><h2 data-i18n="linkParams">Parámetros del enlace</h2></div>
+<div class="fs">
+<div class="fg"><p class="fs-t">Escenario</p><div class="fields"><div class="f f-wide"><label data-i18n="scenarioPreset" for="preset">Escenario predefinido</label><div class="inp sel"><select id="preset">
 <option data-i18n="presetCustom" value="custom">Personalizado</option>
 <option value="gpon-b">GPON B+ (presupuesto típico de 28 dB)</option>
 <option value="gpon-c">GPON C+ (presupuesto típico de 32 dB)</option>
 <option value="epon">EPON (presupuesto típico de 30 dB)</option>
 <option data-i18n="presetDataCenter" value="datacenter">Centro de datos de corto alcance</option>
-</select>
-</div>
-<div class="form-grid">
-<div class="field">
-<label data-i18n="projectName" for="projectName">Nombre del proyecto</label>
-<div class="input-wrap no-unit">
-<input id="projectName" type="text" value="Enlace óptico FTTH"/>
-</div>
-</div>
-<div class="field">
-<label data-i18n="distance" for="distance">Distancia de transmisión</label>
-<div class="input-wrap">
-<input id="distance" min="0" step="0.1" type="number" value="20"/>
-<span>km</span>
-</div>
-</div>
-<div class="field">
-<label data-i18n="wavelength" for="wavelength">Longitud de onda</label>
-<div class="input-wrap no-unit">
-<select id="wavelength">
+</select></div></div><div class="f f-wide"><label data-i18n="projectName" for="projectName">Nombre del proyecto</label><div class="inp"><input id="projectName" type="text" value="Enlace óptico FTTH"/></div></div></div></div><div class="fg"><p class="fs-t">Enlace</p><p class="fg-note">Introduce parámetros reales de ingeniería para calcular la pérdida del enlace.</p><div class="fields"><div class="f"><label data-i18n="distance" for="distance">Distancia de transmisión</label><div class="inp"><input id="distance" min="0" step="0.1" type="number" value="20"/><u>km</u></div></div><div class="f"><label data-i18n="wavelength" for="wavelength">Longitud de onda</label><div class="inp sel"><select id="wavelength">
 <option value="1310">1310 nm</option>
 <option value="1490">1490 nm</option>
 <option selected="" value="1550">1550 nm</option>
 <option data-i18n="customWavelength" value="custom">Atenuación personalizada</option>
-</select>
-</div>
-</div>
-<div class="field">
-<label data-i18n="attenuation" for="attenuation">Atenuación de la fibra</label>
-<div class="input-wrap">
-<input id="attenuation" min="0" step="0.01" type="number" value="0.20"/>
-<span>dB/km</span>
-</div>
-</div>
-<div class="field">
-<label data-i18n="spliceCount" for="spliceCount">Número de empalmes</label>
-<div class="input-wrap">
-<input id="spliceCount" min="0" step="1" type="number" value="6"/>
-<span data-i18n="pcs">pcs</span>
-</div>
-</div>
-<div class="field">
-<label data-i18n="spliceLoss" for="spliceLoss">Pérdida por empalme</label>
-<div class="input-wrap">
-<input id="spliceLoss" min="0" step="0.01" type="number" value="0.10"/>
-<span>dB</span>
-</div>
-</div>
-<div class="field">
-<label data-i18n="connectorCount" for="connectorCount">Número de conectores</label>
-<div class="input-wrap">
-<input id="connectorCount" min="0" step="1" type="number" value="4"/>
-<span data-i18n="pcs">pcs</span>
-</div>
-</div>
-<div class="field">
-<label data-i18n="connectorLoss" for="connectorLoss">Pérdida por conector</label>
-<div class="input-wrap">
-<input id="connectorLoss" min="0" step="0.01" type="number" value="0.30"/>
-<span>dB</span>
-</div>
-</div>
-<div class="field">
-<label data-i18n="splitter1" for="splitter1">Divisor primario</label>
-<div class="input-wrap no-unit">
-<select id="splitter1">
+</select></div></div><div class="f"><label data-i18n="attenuation" for="attenuation">Atenuación de la fibra</label><div class="inp"><input id="attenuation" min="0" step="0.01" type="number" value="0.20"/><u>dB/km</u></div></div></div></div><div class="fg"><p class="fs-t">Componentes</p><div class="fields"><div class="f"><label data-i18n="spliceCount" for="spliceCount">Número de empalmes</label><div class="inp"><input id="spliceCount" min="0" step="1" type="number" value="6"/><u data-i18n="pcs">pcs</u></div></div><div class="f"><label data-i18n="spliceLoss" for="spliceLoss">Pérdida por empalme</label><div class="inp"><input id="spliceLoss" min="0" step="0.01" type="number" value="0.10"/><u>dB</u></div></div><div class="f"><label data-i18n="connectorCount" for="connectorCount">Número de conectores</label><div class="inp"><input id="connectorCount" min="0" step="1" type="number" value="4"/><u data-i18n="pcs">pcs</u></div></div><div class="f"><label data-i18n="connectorLoss" for="connectorLoss">Pérdida por conector</label><div class="inp"><input id="connectorLoss" min="0" step="0.01" type="number" value="0.30"/><u>dB</u></div></div><div class="f"><label data-i18n="splitter1" for="splitter1">Divisor primario</label><div class="inp sel"><select id="splitter1">
 <option data-i18n="none" value="0">Ninguno</option>
 <option value="3.7">1:2（3.7 dB）</option>
 <option value="7.2">1:4（7.2 dB）</option>
@@ -185,13 +121,7 @@
 <option value="13.8">1:16（13.8 dB）</option>
 <option value="17">1:32（17.0 dB）</option>
 <option value="20.5">1:64（20.5 dB）</option>
-</select>
-</div>
-</div>
-<div class="field">
-<label data-i18n="splitter2" for="splitter2">Divisor secundario</label>
-<div class="input-wrap no-unit">
-<select id="splitter2">
+</select></div></div><div class="f"><label data-i18n="splitter2" for="splitter2">Divisor secundario</label><div class="inp sel"><select id="splitter2">
 <option data-i18n="none" value="0">Ninguno</option>
 <option value="3.7">1:2（3.7 dB）</option>
 <option value="7.2">1:4（7.2 dB）</option>
@@ -199,143 +129,53 @@
 <option value="13.8">1:16（13.8 dB）</option>
 <option value="17">1:32（17.0 dB）</option>
 <option value="20.5">1:64（20.5 dB）</option>
-</select>
+</select></div></div><div class="f"><label data-i18n="otherLoss" for="otherLoss">Otras pérdidas pasivas</label><div class="inp"><input id="otherLoss" min="0" step="0.01" type="number" value="0"/><u>dB</u></div></div></div></div><div class="fg"><p class="fs-t">Ventana de potencia</p><p class="fg-note">La pérdida de diseño incluye el margen de ingeniería; la pérdida física no lo incluye.</p><div class="fields"><div class="f"><label data-i18n="engineeringMargin" for="engineeringMargin">Margen de ingeniería</label><div class="inp"><input id="engineeringMargin" min="0" step="0.1" type="number" value="3"/><u>dB</u></div></div><div class="f"><label data-i18n="availableBudget" for="availableBudget">Presupuesto óptico disponible</label><div class="inp"><input id="availableBudget" min="0" step="0.1" type="number" value="28"/><u>dB</u></div></div><div class="f"><label data-i18n="txPower" for="txPower">Potencia de transmisión</label><div class="inp"><input id="txPower" step="0.1" type="number" value="3"/><u>dBm</u></div></div><div class="f"><label data-i18n="rxThreshold" for="rxThreshold">Sensibilidad del receptor</label><div class="inp"><input id="rxThreshold" step="0.1" type="number" value="-27"/><u>dBm</u></div></div></div></div>
 </div>
-</div>
-<div class="field">
-<label data-i18n="otherLoss" for="otherLoss">Otras pérdidas pasivas</label>
-<div class="input-wrap">
-<input id="otherLoss" min="0" step="0.01" type="number" value="0"/>
-<span>dB</span>
-</div>
-</div>
-<div class="field">
-<label data-i18n="engineeringMargin" for="engineeringMargin">Margen de ingeniería</label>
-<div class="input-wrap">
-<input id="engineeringMargin" min="0" step="0.1" type="number" value="3"/>
-<span>dB</span>
-</div>
-</div>
-<div class="field">
-<label data-i18n="availableBudget" for="availableBudget">Presupuesto óptico disponible</label>
-<div class="input-wrap">
-<input id="availableBudget" min="0" step="0.1" type="number" value="28"/>
-<span>dB</span>
-</div>
-</div>
-<div class="field">
-<label data-i18n="txPower" for="txPower">Potencia de transmisión</label>
-<div class="input-wrap">
-<input id="txPower" step="0.1" type="number" value="3"/>
-<span>dBm</span>
-</div>
-</div>
-<div class="field">
-<label data-i18n="rxThreshold" for="rxThreshold">Sensibilidad del receptor</label>
-<div class="input-wrap">
-<input id="rxThreshold" step="0.1" type="number" value="-27"/>
-<span>dBm</span>
-</div>
-</div>
-</div>
-<div class="input-actions">
-<button class="primary-action" id="calculateBtn" type="button">
-<svg aria-hidden="true" class="action-icon" height="18" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg>
-<span data-i18n="calculateLink">Calcular enlace</span>
-</button>
-<button class="secondary-action" id="resetBtn" type="button">
-<svg aria-hidden="true" class="action-icon" height="18" viewbox="0 0 24 24" width="18"><path d="M20 11a8 8 0 1 0-2.3 5.7"></path><path d="M20 4v7h-7"></path></svg>
-<span data-i18n="reset">Restablecer</span>
-</button>
+<div class="panel-f">
+<button class="btn btn-primary" id="calculateBtn" type="button"><span data-i18n="calculateLink">Calcular enlace</span></button>
+<button class="btn btn-ghost" id="resetBtn" type="button"><span data-i18n="reset">Restablecer</span></button>
 </div>
 <p class="validation-message" id="validationMessage" role="alert"></p>
-</section>
-<section aria-live="polite" class="result-panel card nel-tool-result">
-<div class="section-title">
-<span class="section-icon">▥</span>
-<div>
-<h2 data-i18n="calculationResult">Resultado del cálculo</h2>
-<p data-i18n="resultHint">La pérdida de diseño incluye el margen de ingeniería; la pérdida física no lo incluye.</p>
-</div>
-</div>
+</div></section>
+<section aria-live="polite" class="result-panel card nel-tool-result" id="result"><div class="readout">
+<div class="ro-h"><span data-i18n="calculationResult">Resultado del cálculo</span><span class="health-badge" id="healthBadge">✓ Correcto</span></div>
 <div class="summary-card healthy" id="summaryCard">
-<div>
-<p data-i18n="totalDesignLoss">Pérdida total de diseño</p>
-<strong><span id="designLoss">0.00</span><small>dB</small></strong>
+<p class="lbl" data-i18n="totalDesignLoss">Pérdida total de diseño</p>
+<div class="big"><span id="designLoss">0.00</span><small>dB</small></div>
+<div class="meter" aria-hidden="true"><div class="bar"><i id="lossMeter"></i></div></div>
 </div>
-<div class="health-badge" id="healthBadge">✓ Correcto</div>
+<div class="grp"><h3>Desglose de pérdidas</h3>
+<div class="row"><span data-i18n="fiberLoss">Pérdida de fibra</span><b><span id="fiberLoss">0.00</span> <small>dB</small></b></div>
+<div class="row"><span data-i18n="spliceTotal">Pérdida de empalmes</span><b><span id="spliceTotal">0.00</span> <small>dB</small></b></div>
+<div class="row"><span data-i18n="connectorTotal">Pérdida de conectores</span><b><span id="connectorTotal">0.00</span> <small>dB</small></b></div>
+<div class="row"><span data-i18n="splitterOtherLoss">Divisor y otras pérdidas</span><b><span id="splitterOtherTotal">0.00</span> <small>dB</small></b></div>
 </div>
-<div class="metric-grid">
-<article class="metric-card">
-<span class="metric-icon blue">⌁</span>
-<div>
-<small data-i18n="fiberLoss">Pérdida de fibra</small>
-<strong><span id="fiberLoss">0.00</span> dB</strong>
+<div class="grp"><h3>Presupuesto y potencia recibida</h3>
+<div class="row"><span data-i18n="physicalLoss">Pérdida física del enlace</span><b><span id="physicalLoss">0.00</span> <small>dB</small></b></div>
+<div class="row"><span data-i18n="budgetRemaining">Presupuesto restante</span><b id="budgetRemainingText"><span id="budgetRemaining">0.00</span> <small>dB</small></b></div>
+<div class="row"><span data-i18n="estimatedRxPower">Potencia de recepción estimada</span><b><span id="estimatedRxPower">0.00</span> <small>dBm</small></b></div>
+<div class="row"><span data-i18n="rxMargin">Margen del receptor</span><b><span id="rxMargin">0.00</span> <small>dB</small></b></div>
 </div>
-</article>
-<article class="metric-card">
-<span class="metric-icon cyan">⋈</span>
-<div>
-<small data-i18n="spliceTotal">Pérdida de empalmes</small>
-<strong><span id="spliceTotal">0.00</span> dB</strong>
-</div>
-</article>
-<article class="metric-card">
-<span class="metric-icon violet">↝</span>
-<div>
-<small data-i18n="connectorTotal">Pérdida de conectores</small>
-<strong><span id="connectorTotal">0.00</span> dB</strong>
-</div>
-</article>
-<article class="metric-card">
-<span class="metric-icon gray">+</span>
-<div>
-<small data-i18n="splitterOtherLoss">Divisor y otras pérdidas</small>
-<strong><span id="splitterOtherTotal">0.00</span> dB</strong>
-</div>
-</article>
-</div>
-<div aria-label="Diagrama del enlace óptico" class="link-visual">
-<div class="endpoint tx"><span>✦</span><small data-i18n="transmitter">Transmisor</small></div>
-<div class="line-segment"></div>
-<div class="event-node"><span>⌁</span><small id="fiberLossDiagram">0.00 dB</small></div>
-<div class="line-segment"></div>
-<div class="event-node"><span>⋈</span><small id="spliceLossDiagram">0.00 dB</small></div>
-<div class="line-segment"></div>
-<div class="event-node"><span>↝</span><small id="connectorLossDiagram">0.00 dB</small></div>
-<div class="line-segment"></div>
-<div class="endpoint rx"><span>➤</span><small data-i18n="receiver">Receptor</small></div>
-</div>
-<div class="budget-row">
-<div>
-<span data-i18n="physicalLoss">Pérdida física del enlace</span>
-<strong><span id="physicalLoss">0.00</span> dB</strong>
-</div>
-<div>
-<span data-i18n="budgetRemaining">Presupuesto restante</span>
-<strong id="budgetRemainingText"><span id="budgetRemaining">0.00</span> dB</strong>
-</div>
-</div>
-<div class="power-row">
-<article>
-<span data-i18n="estimatedRxPower">Potencia de recepción estimada</span>
-<strong><span id="estimatedRxPower">0.00</span> dBm</strong>
-</article>
-<article>
-<span data-i18n="rxMargin">Margen del receptor</span>
-<strong><span id="rxMargin">0.00</span> dB</strong>
-</article>
+<div class="wf" aria-label="Resultado del cálculo">
+<div class="r"><span data-i18n="fiberLoss">Pérdida de fibra</span><i id="wfFiber"></i><em id="fiberLossDiagram">0.00 dB</em></div>
+<div class="r"><span data-i18n="spliceTotal">Pérdida de empalmes</span><i id="wfSplice"></i><em id="spliceLossDiagram">0.00 dB</em></div>
+<div class="r"><span data-i18n="connectorTotal">Pérdida de conectores</span><i id="wfConnector"></i><em id="connectorLossDiagram">0.00 dB</em></div>
 </div>
 <div class="diagnosis-box healthy" id="diagnosisBox">
 <strong data-i18n="engineeringConclusion">Conclusión de ingeniería</strong>
 <p id="diagnosisText">—</p>
 </div>
-<div class="result-actions">
-<button id="copyBtn" type="button"><svg aria-hidden="true" class="action-icon" height="18" viewbox="0 0 24 24" width="18"><rect height="13" rx="2" width="13" x="8" y="8"></rect><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"></path></svg><span data-i18n="copyResult">Copiar resultado</span></button>
-<button id="saveBtn" type="button"><svg aria-hidden="true" class="action-icon" height="18" viewbox="0 0 24 24" width="18"><path d="M12 5v14M5 12h14"></path></svg><span data-i18n="saveHistory">Guardar registro</span></button>
-<button id="printBtn" type="button"><svg aria-hidden="true" class="action-icon" height="18" viewbox="0 0 24 24" width="18"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg><span data-i18n="printReport">Imprimir / Exportar PDF</span></button>
+<div class="ro-acts">
+<button id="copyBtn" type="button"><span data-i18n="copyResult">Copiar resultado</span></button>
+<button id="saveBtn" type="button"><span data-i18n="saveHistory">Guardar registro</span></button>
+<button id="printBtn" type="button"><span data-i18n="printReport">Imprimir / Exportar PDF</span></button>
 </div>
-</section>
+</div></section>
+<div class="tool-head">
+<div class="crumbs"><a href="../../../es/">Inicio</a>/<a href="../../es/">Herramientas</a>/<a href="../../../topics/pon-optical/">Óptica</a>/<span>Pérdidas de fibra</span></div>
+<p class="tool-page-label" role="heading" aria-level="1" data-i18n="heroTitle">Calculadora de pérdidas de fibra</p>
+<p class="tool-lede">Calcula la pérdida óptica total de fibra, empalmes, conectores, divisores y componentes pasivos; después evalúa el margen de ingeniería, la potencia recibida y el estado del enlace.</p>
+</div>
 </main>
 <div class="below">
 <nav class="toc" aria-label="En esta página">
@@ -462,7 +302,7 @@
 </footer>
 <!-- NEL_FOOTER_END -->
 <script defer="" src="../js/engine.js"></script><script defer="" src="../js/pwa.js"></script>
-<script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=19302e6b5783"></script><script defer="" src="../js/scenarios.js"></script>
+<script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=29c0ad48f471"></script><script defer="" src="../js/scenarios.js"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
 <script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script><script defer src="../../../assets/js/tool-detail-v3.js?v=66984b67ff65"></script>
 </body>
