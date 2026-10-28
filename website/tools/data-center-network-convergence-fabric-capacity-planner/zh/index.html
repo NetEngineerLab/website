@@ -19,7 +19,7 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"什么是数据中心网络收敛比？","acceptedAnswer":{"@type":"Answer","text":"它表示服务器或接入层向下提供的总容量，与下一层可用上联容量之间的比例。3:1 表示 3 份下联线速容量共享 1 份上联容量。"}},{"@type":"Question","name":"收敛比和超售比是同一个概念吗？","acceptedAnswer":{"@type":"Answer","text":"两者高度相关。超售比常描述单台交换机边界；收敛比更适合描述多层 Fabric 中容量逐层收敛的关系。"}},{"@type":"Question","name":"Spine N-1 会如何影响容量？","acceptedAnswer":{"@type":"Answer","text":"模型假设边缘上联均匀分布在 Spine 或汇聚节点上。故障一个中间层节点后，按其占比减少 Fabric 与上层容量。"}},{"@type":"Question","name":"为什么跨 Leaf 的东西向流量按两次计算？","acceptedAnswer":{"@type":"Answer","text":"跨 Leaf 流量既占用源 Leaf 的 Fabric 链路，也占用目的 Leaf 的 Fabric 链路，因此汇总 Fabric 端口承载量时计算两个链路穿越。"}},{"@type":"Question","name":"这个工具能替代流量监控或 Fabric 仿真吗？","acceptedAnswer":{"@type":"Answer","text":"不能。生产设计仍需结合 P95/P99、ECMP 分布、队列丢包、流量遥测、设备能力和故障演练复核。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=6c0b1c4ee1f1">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=1040076f7555">
 <link rel="stylesheet" href="../../../assets/css/site-shell.css?v=d998a53add89">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>

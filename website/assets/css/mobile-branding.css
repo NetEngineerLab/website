@@ -27,24 +27,24 @@ img,svg,video,canvas{
  --nel-page-gutter:clamp(18px,4vw,48px);
 }
 @media(min-width:769px){
- .breadcrumbs,
- .breadcrumb,
- .hero-inner,
- .tool-shell,
- .calculator-shell,
- .content-section{
+ body:not(.nel-opb-v3) .breadcrumbs,
+ body:not(.nel-opb-v3) .breadcrumb,
+ body:not(.nel-opb-v3) .hero-inner,
+ body:not(.nel-opb-v3) .tool-shell,
+ body:not(.nel-opb-v3) .calculator-shell,
+ body:not(.nel-opb-v3) .content-section{
   width:calc(100% - (var(--nel-page-gutter) * 2));
   max-width:var(--nel-content-max) !important;
   margin-left:auto;
   margin-right:auto;
  }
- .tool-shell,
- .calculator-shell,
- .content-section{
+ body:not(.nel-opb-v3) .tool-shell,
+ body:not(.nel-opb-v3) .calculator-shell,
+ body:not(.nel-opb-v3) .content-section{
   padding-left:0 !important;
   padding-right:0 !important;
  }
- .tool-hero{
+ body:not(.nel-opb-v3) .tool-hero{
   width:calc(100% - (var(--nel-page-gutter) * 2));
   max-width:var(--nel-content-max);
   margin:22px auto 0;

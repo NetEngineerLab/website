@@ -21,7 +21,7 @@
 
 html { overflow-x: hidden; }
 
-body {
+body:not(.nel-opb-v3) {
   margin: 0;
   min-width: 320px;
   overflow-x: hidden;
@@ -143,8 +143,8 @@ body > .site-header {
   white-space: nowrap;
 }
 
-body > .breadcrumbs,
-body > nav.breadcrumbs {
+body:not(.nel-opb-v3) > .breadcrumbs,
+body:not(.nel-opb-v3) > nav.breadcrumbs {
   width: min(calc(100% - (var(--nel-gutter) * 2)), var(--nel-max)) !important;
   max-width: var(--nel-max) !important;
   min-height: 52px;
@@ -168,8 +168,8 @@ body > nav.breadcrumbs {
 .breadcrumbs a:hover,
 .breadcrumbs a:focus-visible { text-decoration:none; }
 
-body > .hero,
-body > .tool-hero {
+body:not(.nel-opb-v3) > .hero,
+body:not(.nel-opb-v3) > .tool-hero {
   width: min(calc(100% - (var(--nel-gutter) * 2)), var(--nel-max)) !important;
   max-width: var(--nel-max) !important;
   min-height: 260px !important;
@@ -261,11 +261,11 @@ main > .tool-hero > p:last-child {
   line-height: 1.2;
 }
 
-body > main,
-body > main.tool-shell,
-body > main.workspace,
-body > main.shell,
-body > main.calculator-shell {
+body:not(.nel-opb-v3) > main,
+body:not(.nel-opb-v3) > main.tool-shell,
+body:not(.nel-opb-v3) > main.workspace,
+body:not(.nel-opb-v3) > main.shell,
+body:not(.nel-opb-v3) > main.calculator-shell {
   width: min(calc(100% - (var(--nel-gutter) * 2)), var(--nel-max)) !important;
   max-width: var(--nel-max) !important;
   margin: 26px auto 0 !important;
@@ -281,19 +281,19 @@ body > .mode-tabs {
   padding: 0 !important;
 }
 
-body > main.nel-tool-grid {
+body:not(.nel-opb-v3) > main.nel-tool-grid {
   display: grid !important;
   grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr) !important;
   align-items: stretch !important;
   gap: 24px !important;
 }
 
-body > main.nel-tool-grid > section,
-body > main.nel-tool-grid > .card,
-body > main.nel-tool-grid > .input-panel,
-body > main.nel-tool-grid > .result-panel,
-body > main.nel-tool-grid > .config-panel,
-body > main.nel-tool-grid > .analysis-panel {
+body:not(.nel-opb-v3) > main.nel-tool-grid > section,
+body:not(.nel-opb-v3) > main.nel-tool-grid > .card,
+body:not(.nel-opb-v3) > main.nel-tool-grid > .input-panel,
+body:not(.nel-opb-v3) > main.nel-tool-grid > .result-panel,
+body:not(.nel-opb-v3) > main.nel-tool-grid > .config-panel,
+body:not(.nel-opb-v3) > main.nel-tool-grid > .analysis-panel {
   min-width: 0;
   height: auto !important;
   margin: 0 !important;
@@ -308,13 +308,13 @@ body > main.nel-tool-grid > .analysis-panel {
  * higher-specificity base rule above otherwise overrides tool-layout's
  * 1100px stack breakpoint and lets the result card run into the viewport. */
 @media (max-width: 1100px) {
-  body > main.nel-tool-grid {
+  body:not(.nel-opb-v3) > main.nel-tool-grid {
     grid-template-columns: minmax(0, 1fr) !important;
   }
 }
 
-body > main h2,
-body > main .section-title h2 {
+body:not(.nel-opb-v3) > main h2,
+body:not(.nel-opb-v3) > main .section-title h2 {
   margin-top: 0;
   color: var(--nel-ink) !important;
   font-size: clamp(22px, 2vw, 28px) !important;
@@ -322,9 +322,9 @@ body > main .section-title h2 {
   letter-spacing: -0.02em;
 }
 
-body > main .field label,
-body > main .form-group label,
-body > main .control-group label {
+body:not(.nel-opb-v3) > main .field label,
+body:not(.nel-opb-v3) > main .form-group label,
+body:not(.nel-opb-v3) > main .control-group label {
   display: block;
   margin-bottom: 7px;
   color: var(--nel-ink) !important;
@@ -332,9 +332,9 @@ body > main .control-group label {
   font-weight: 800 !important;
 }
 
-body > main input:not([type="checkbox"]):not([type="radio"]),
-body > main select,
-body > main textarea {
+body:not(.nel-opb-v3) > main input:not([type="checkbox"]):not([type="radio"]),
+body:not(.nel-opb-v3) > main select,
+body:not(.nel-opb-v3) > main textarea {
   min-height: 44px;
   border-color: #c7d8e8 !important;
   border-radius: 10px;
@@ -345,30 +345,30 @@ body > main textarea {
 /* Tool stylesheets zero every input because the border is meant to live on
    .input / .input-wrap. Unitless fields have no wrapper, so restore a real
    border on the control itself. Nested controls keep the wrapper border. */
-body.nel-tool-detail-page input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="range"]):not([type="file"]):not([type="button"]):not([type="submit"]):not([type="reset"]),
-body.nel-tool-detail-page select,
-body.nel-tool-detail-page textarea {
+body.nel-tool-detail-page:not(.nel-opb-v3) input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="range"]):not([type="file"]):not([type="button"]):not([type="submit"]):not([type="reset"]),
+body.nel-tool-detail-page:not(.nel-opb-v3) select,
+body.nel-tool-detail-page:not(.nel-opb-v3) textarea {
   border-width: 1px !important;
   border-style: solid !important;
   border-color: #c7d8e8 !important;
 }
-body.nel-tool-detail-page :is(.input, .input-wrap) :is(input, select, textarea) {
+body.nel-tool-detail-page:not(.nel-opb-v3) :is(.input, .input-wrap) :is(input, select, textarea) {
   border-width: 0 !important;
   border-style: none !important;
   border-radius: 0 !important;
 }
 
-body > main .input-wrap {
+body:not(.nel-opb-v3) > main .input-wrap {
   min-height: 44px;
   border-color: #c7d8e8 !important;
   border-radius: 10px !important;
   background: #fff !important;
 }
 
-body > main input:focus-visible,
-body > main select:focus-visible,
-body > main textarea:focus-visible,
-body > main button:focus-visible {
+body:not(.nel-opb-v3) > main input:focus-visible,
+body:not(.nel-opb-v3) > main select:focus-visible,
+body:not(.nel-opb-v3) > main textarea:focus-visible,
+body:not(.nel-opb-v3) > main button:focus-visible {
   outline: 3px solid rgba(11, 111, 242, 0.28) !important;
   outline-offset: 2px !important;
 }
@@ -389,13 +389,13 @@ body > main .result-item {
   background: #fff !important;
 }
 
-body > .content,
-body > .content-section,
-body > section.content,
-body > section.content-section,
-body > section.methodology,
-body > section.faq-section,
-body > section#related {
+body:not(.nel-opb-v3) > .content,
+body:not(.nel-opb-v3) > .content-section,
+body:not(.nel-opb-v3) > section.content,
+body:not(.nel-opb-v3) > section.content-section,
+body:not(.nel-opb-v3) > section.methodology,
+body:not(.nel-opb-v3) > section.faq-section,
+body:not(.nel-opb-v3) > section#related {
   width: min(calc(100% - (var(--nel-gutter) * 2)), var(--nel-max)) !important;
   max-width: var(--nel-max) !important;
   margin: 26px auto 0 !important;
@@ -437,10 +437,10 @@ main.acl-shell + .content > .grid > article > p { margin: 0; line-height: 1.65; 
   main.acl-shell + .content > .grid > article { padding: 20px; }
 }
 
-.content h2,
-.content-section h2,
-.methodology h2,
-.faq-section h2 {
+body:not(.nel-opb-v3) .content h2,
+body:not(.nel-opb-v3) .content-section h2,
+body:not(.nel-opb-v3) .methodology h2,
+body:not(.nel-opb-v3) .faq-section h2 {
   color: var(--nel-ink) !important;
   font-size: clamp(24px, 2.4vw, 32px) !important;
   line-height: 1.2 !important;
@@ -590,16 +590,16 @@ footer .footer-links a:hover { text-decoration:none; }
     border-radius: 20px !important;
   }
 
-  body > main.nel-tool-grid {
+  body:not(.nel-opb-v3) > main.nel-tool-grid {
     grid-template-columns: minmax(0, 1fr) !important;
   }
 
-  body > main.nel-tool-grid > section,
-  body > main.nel-tool-grid > .card,
-  body > main.nel-tool-grid > .input-panel,
-  body > main.nel-tool-grid > .result-panel,
-  body > main.nel-tool-grid > .config-panel,
-  body > main.nel-tool-grid > .analysis-panel { min-height: 0 !important; }
+  body:not(.nel-opb-v3) > main.nel-tool-grid > section,
+  body:not(.nel-opb-v3) > main.nel-tool-grid > .card,
+  body:not(.nel-opb-v3) > main.nel-tool-grid > .input-panel,
+  body:not(.nel-opb-v3) > main.nel-tool-grid > .result-panel,
+  body:not(.nel-opb-v3) > main.nel-tool-grid > .config-panel,
+  body:not(.nel-opb-v3) > main.nel-tool-grid > .analysis-panel { min-height: 0 !important; }
 }
 
 @media (max-width: 560px) {
@@ -607,12 +607,12 @@ footer .footer-links a:hover { text-decoration:none; }
   body > .breadcrumbs, body > nav.breadcrumbs { font-size: 13px; }
   .hero h1, .tool-hero h1 { font-size: clamp(30px, 10vw, 42px) !important; }
   .hero h1 + p, .tool-hero .hero-copy { font-size: 15px !important; line-height: 1.65 !important; }
-  body > main.nel-tool-grid > section,
-  body > main.nel-tool-grid > .card,
-  body > main.nel-tool-grid > .input-panel,
-  body > main.nel-tool-grid > .result-panel,
-  body > main.nel-tool-grid > .config-panel,
-  body > main.nel-tool-grid > .analysis-panel { padding: 20px !important; }
+  body:not(.nel-opb-v3) > main.nel-tool-grid > section,
+  body:not(.nel-opb-v3) > main.nel-tool-grid > .card,
+  body:not(.nel-opb-v3) > main.nel-tool-grid > .input-panel,
+  body:not(.nel-opb-v3) > main.nel-tool-grid > .result-panel,
+  body:not(.nel-opb-v3) > main.nel-tool-grid > .config-panel,
+  body:not(.nel-opb-v3) > main.nel-tool-grid > .analysis-panel { padding: 20px !important; }
   body > footer { align-items: flex-start; flex-direction: column; }
 }
 
@@ -677,8 +677,8 @@ a.nel-tool-graph-card:hover,a.nel-tool-graph-card:focus-visible{transform:transl
 
 /* Legacy calculators keep their engine-specific .grid/.layout class, but the
  * source HTML now also exposes this single V1.2 semantic workspace hook. */
-.nel-tool-main > .nel-tool-primary-grid:not(.acl-grid):not(.planner-grid),
-.nel-tool-main.nel-tool-primary-grid {
+body:not(.nel-opb-v3) .nel-tool-main > .nel-tool-primary-grid:not(.acl-grid):not(.planner-grid),
+body:not(.nel-opb-v3) .nel-tool-main.nel-tool-primary-grid {
   display: grid !important;
   grid-template-columns: minmax(0, 1.05fr) minmax(380px, .95fr) !important;
   gap: 24px !important;
@@ -708,8 +708,8 @@ a.nel-tool-graph-card:hover,a.nel-tool-graph-card:focus-visible{transform:transl
 }
 
 @media (max-width: 1100px) {
-  .nel-tool-main > .nel-tool-primary-grid:not(.acl-grid):not(.planner-grid),
-  .nel-tool-main.nel-tool-primary-grid {
+  body:not(.nel-opb-v3) .nel-tool-main > .nel-tool-primary-grid:not(.acl-grid):not(.planner-grid),
+  body:not(.nel-opb-v3) .nel-tool-main.nel-tool-primary-grid {
     grid-template-columns: minmax(0, 1fr) !important;
   }
 }

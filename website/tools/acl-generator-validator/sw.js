@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-acl-generator-validator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-87cff60a3e88-95f72e790e44";
+const CACHE = "nel-acl-generator-validator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-057938175f49-24381c1739c5";
 const CORE = [
   "./index.html",
   "./",
@@ -27,7 +27,7 @@ const CORE = [
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",
   "../../assets/css/site-shell.css?v=d998a53add89",
-  "../../assets/css/tool-design-system.css?v=6c0b1c4ee1f1",
+  "../../assets/css/tool-design-system.css?v=1040076f7555",
   "../../assets/css/tool-workflow.css?v=8c74b394ef2c",
   "../../assets/js/analytics.js?v=1156b7864023",
   "../../assets/js/adsense.js?v=f075c80ccc75",

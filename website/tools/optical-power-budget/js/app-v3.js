@@ -7,7 +7,7 @@
     || "en");
   const I18N = {
     en: {
-      pass: "✓ Healthy", marginal: "⚠ Caution", fail: "✕ Failed", invalid: "Invalid",
+      pass: "Pass", marginal: "Marginal", fail: "Fail", invalid: "Invalid",
       invalidInput: "Invalid input",
       invalidMsg: "Counts must be non-negative integers; losses/distance finite and ≥ 0; attenuation > 0; Tx max ≥ Tx min; overload above sensitivity.",
       cannotCompute: "Cannot compute",
@@ -37,7 +37,7 @@
       splicesLbl: "Splices "
     },
     zh: {
-      pass: "✓ 健康", marginal: "⚠ 风险", fail: "✕ 超限", invalid: "无效",
+      pass: "健康", marginal: "风险", fail: "超限", invalid: "无效",
       invalidInput: "输入无效",
       invalidMsg: "请检查输入：数量须为非负整数；距离与损耗须为有效非负数；衰减系数须大于 0；最大发送功率不得低于最小发送功率；过载门限须高于灵敏度。",
       cannotCompute: "无法计算",
@@ -67,7 +67,7 @@
       splicesLbl: "熔接 "
     },
     es: {
-      pass: "✓ Correcto", marginal: "⚠ Marginal", fail: "✕ Fallo", invalid: "Inválido",
+      pass: "Correcto", marginal: "Marginal", fail: "Fallo", invalid: "Inválido",
       invalidInput: "Entrada inválida",
       invalidMsg: "Revise las entradas: los recuentos deben ser enteros no negativos; distancia y pérdidas finitas y ≥ 0; atenuación > 0; Tx máx ≥ Tx mín; sobrecarga por encima de la sensibilidad.",
       cannotCompute: "No se puede calcular",
@@ -247,7 +247,7 @@
     if (!badge) return;
     if (stOrInvalid === "invalid") {
       badge.className = "status st-fail";
-      badge.textContent = T.invalidInput;
+      badge.innerHTML = '<span class="st-ico" aria-hidden="true">?</span> ' + T.invalidInput;
       return;
     }
     const meta = statusMeta(stOrInvalid);
@@ -334,11 +334,9 @@
       st === "healthy" ? "#059669" : st === "warning" ? "#B45309" : "#DC2626";
 
     document.querySelectorAll("[data-status]").forEach((el) => {
-      if (el.id === "healthBadge") return;
       el.className = "status " + meta.cls;
       el.innerHTML = '<span class="st-ico" aria-hidden="true">' + meta.icon + "</span> " + meta.label;
     });
-    syncHealthBadge(st);
     const vbox = $("validation");
     if (vbox) {
       vbox.hidden = true;
@@ -418,7 +416,7 @@
 
     setHTML("ro-rx", fmt(rx) + "<small>dBm</small>");
     const rxMax = result.rxMax;
-    setText("estimatedRx", fmt(rx) + " to " + fmt(rxMax));
+    setText("estimatedRx", fmt(rx) + " … " + fmt(rxMax));
     setText("ro-rx-window-eqn", "= Tx min…max − physical (min " + fmt(rx) + " · max " + fmt(rxMax) + ")");
     setHTML("physicalLoss", fmt(physical) + "<small>dB</small>");
     setHTML("ro-design", fmt(design) + "<small>dB</small>");

@@ -3,7 +3,7 @@
 <html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="tools/optical-power-budget/"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="../" name="app-base"/><title>光功率预算计算器 | NetEngineerLab</title><meta content="专业光功率预算计算器，支持发送功率、接收灵敏度、过载门限、光纤、熔接、连接器、多级分光器、工程余量、最大传输距离及接收光功率分析。" name="description"/><meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/><meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="光功率预算计算器 | NetEngineerLab" property="og:title"/><meta content="专业光功率预算计算器，支持发送功率、接收灵敏度、过载门限、光纤、熔接、连接器、多级分光器、工程余量、最大传输距离及接收光功率分析。" property="og:description"/><meta content="https://netengineerlab.com/tools/optical-power-budget/zh/" property="og:url"/><meta content="https://netengineerlab.com/tools/optical-power-budget/images/og-optical-power-budget.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><link href="../css/style.css?v=39f97e62e2fc" rel="stylesheet"/><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"光功率预算计算器","alternateName":"Optical Power Budget Calculator","url":"https://netengineerlab.com/tools/optical-power-budget/zh/","description":"光链路预算、接收光功率和最大传输距离计算工具。","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","softwareVersion":"1.0.3","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"NetEngineerLab","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"Optical Power Budget Calculator","item":"https://netengineerlab.com/tools/optical-power-budget/zh/"}]}]}</script>
 <meta content="NetEngineerLab" name="author"/>
 <link href="/assets/css/cookie-consent.css?v=8dd1728bf5eb" rel="stylesheet"/>
-<link href="/assets/css/mobile-branding.css?v=1.9.5-06" rel="stylesheet"/>
+<link href="/assets/css/mobile-branding.css?v=3caac1b0483a" rel="stylesheet"/>
 <script defer="" src="/data/seo-config.js"></script>
 <script defer="" src="/assets/js/seo-engine.js?v=15ac96553c44"></script>
 
@@ -13,9 +13,12 @@
 <meta name="twitter:description" content="专业光功率预算计算器，支持发送功率、接收灵敏度、过载门限、光纤、熔接、连接器、多级分光器、工程余量、最大传输距离及接收光功率分析。">
 <meta name="twitter:image" content="https://netengineerlab.com/tools/optical-power-budget/images/og-optical-power-budget.png">
 
-<link rel="stylesheet" href="../css/fb.css?v=441b298c3d2a">
-<link rel="stylesheet" href="../css/fb-v3.css?v=5fd220292d91">
-<link rel="stylesheet" href="../css/fb-v3-prod.css?v=d70ef9fcee1b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/fb.css?v=2a31994efa84">
+<link rel="stylesheet" href="../css/fb-v3.css?v=52fefac6ca20">
+<link rel="stylesheet" href="../css/fb-v3-prod.css?v=294a75dda787">
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"光功率预算计算器 | NetEngineerLab","url":"https://netengineerlab.com/tools/optical-power-budget/zh/","description":"专业光功率预算计算器，支持发送功率、接收灵敏度、过载门限、光纤、熔接、连接器、多级分光器、工程余量、最大传输距离及接收光功率分析。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
@@ -29,14 +32,14 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么保留1:8×1:8后默认改为GPON C+？","acceptedAnswer":{"@type":"Answer","text":"1:8×1:8的分光器标称损耗约21 dB，再叠加10 km光纤、连接器和熔接点，物理ODN损耗为25.8 dB；加上3 dB工程余量后，设计ODN损耗为28.8 dB。这超过B+的28 dB上限，但在C+的32 dB预算以内（33 dB收发功率窗口减去1 dB光学代价），剩余3.2 dB。"}},{"@type":"Question","name":"光功率预算和光纤链路损耗有什么区别？","acceptedAnswer":{"@type":"Answer","text":"光纤链路损耗关注线路和器件造成了多少损耗；光功率预算还结合发送功率、接收灵敏度和过载门限，判断设备能否可靠工作。"}},{"@type":"Question","name":"为什么应使用最小发送光功率？","acceptedAnswer":{"@type":"Answer","text":"工程设计通常按最不利条件校核，以避免设备差异、老化和温度变化导致预算过于乐观。"}},{"@type":"Question","name":"接收光功率越高越好吗？","acceptedAnswer":{"@type":"Answer","text":"不是。接收功率过低会低于灵敏度，过高则可能超过过载门限，应位于接收机允许窗口内并保留余量。"}},{"@type":"Question","name":"工程余量为什么不从预计接收功率中扣除？","acceptedAnswer":{"@type":"Answer","text":"工程余量是设计储备，不是当前实际器件损耗，因此用于预算判断，但预计接收功率按物理损耗计算。"}},{"@type":"Question","name":"最大距离为什么只是估算值？","acceptedAnswer":{"@type":"Answer","text":"实际距离还受光缆类型、温度、熔接质量、路由和设备参数影响。"}},{"@type":"Question","name":"结果能否直接用于验收？","acceptedAnswer":{"@type":"Answer","text":"本工具适合规划、复核和故障分析；正式验收应结合光功率计、OTDR、设备规格和企业标准。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=6c0b1c4ee1f1">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=1040076f7555">
 <link rel="stylesheet" href="../../../assets/css/site-shell.css?v=d998a53add89">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../../assets/js/site.js?v=b563dd0297f5"></script>
-<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=7dea79f8c287">
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=01d040405208">
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head>
 <body class="nel-tool-detail-page nel-opb-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
@@ -71,41 +74,12 @@
   <span aria-current="page">光功率预算计算器</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
-<section class="hero nel-tool-hero"><div class="hero-inner"><p class="eyebrow">光学工程工具</p><h1>光功率预算计算器</h1><p>根据设备发送功率、接收灵敏度和光链路无源损耗，验证链路是否满足光功率预算，并计算预计接收光功率、工程余量与最大传输距离。</p><div class="hero-tags"><span>预算验证</span><span>最大距离</span><span>多级分光</span><span>工程诊断</span></div></div></section>
+<section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner"><p class="eyebrow">光学工程工具</p><h1>光功率预算计算器</h1><p>根据设备发送功率、接收灵敏度和光链路无源损耗，验证链路是否满足光功率预算，并计算预计接收光功率、工程余量与最大传输距离。</p><div class="hero-tags"><span>预算验证</span><span>最大距离</span><span>多级分光</span><span>工程诊断</span></div></div></section>
 <main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
-<section class="input-panel card nel-tool-input">
-<div class="tool-head">
-<div>
-<div class="crumbs"><a href="../../../zh/">Home</a>/<a href="../../zh/">Tools</a>/<a href="../../../zh/topics/pon-optical/">Optical</a>/<span>Optical Power Budget</span></div>
-<p class="tool-page-label">光功率预算计算器</p>
-<p class="tool-lede">根据发送光功率、接收灵敏度和 ODN 损耗校验光功率预算，并得到接收光功率、剩余余量与最大距离。</p>
-</div>
-<div class="acts">
-<button type="button" class="btn btn-ghost btn-sm" id="btn-share">分享输入</button>
-</div>
-</div>
+<section class="input-panel card nel-tool-input"><div class="fb-panel">
 
-<section class="scenario-section" aria-label="工程场景">
-<div class="scenario-head">
-<p class="fs-t" style="margin:0">工程场景</p>
-<p class="scenario-hint">选择标准配置以填充设备与 ODN 默认值。修改任意字段将切换为自定义。</p>
-</div>
-<div class="scenario-grid" role="listbox" aria-label="场景卡片">
-<button type="button" class="scenario-card on" data-preset="gpon-c" aria-pressed="true" role="option"><b>GPON C+ (32 dB)</b><span>最小发送 +3 dBm · 灵敏度 −30 dBm · 过载 −8 dBm · 光学代价 1 dB</span></button>
-<button type="button" class="scenario-card" data-preset="gpon-b" aria-pressed="false" role="option"><b>GPON B+ (28 dB)</b><span>28 dB ODN 等级 · 设计签发前请核对 OLT/ONU 规格书</span></button>
-<button type="button" class="scenario-card" data-preset="epon" aria-pressed="false" role="option"><b>EPON</b><span>EPON 规划窗口 · 可按实际 OLT/ONU 修改任意参数</span></button>
-<button type="button" class="scenario-card" data-preset="datacenter" aria-pressed="false" role="option"><b>数据中心</b><span>短距示意 · 1310 nm · 无分光器</span></button>
-<button type="button" class="scenario-card" data-preset="custom" aria-pressed="false" role="option"><b>自定义</b><span>保留当前数值 · 全部字段可编辑</span></button>
-</div>
-<div class="presets presets-mobile" role="listbox" aria-label="Scenario chips (compact)">
-<button type="button" class="on" data-preset="gpon-c" aria-pressed="true">GPON C+</button>
-<button type="button" data-preset="gpon-b" aria-pressed="false">GPON B+</button>
-<button type="button" data-preset="epon" aria-pressed="false">EPON</button>
-<button type="button" data-preset="datacenter" aria-pressed="false">数据中心</button>
-<button type="button" data-preset="custom" aria-pressed="false">自定义</button>
-</div>
-<p class="preset-desc" id="preset-desc">GPON C+ 参考：最小发送 <b>+3 dBm</b>，灵敏度 <b>−30 dBm</b>，过载 <b>−8 dBm</b>，光学代价 <b>1 dB</b>，等级预算 <b>32 dB</b>。请以设备规格书为准。</p>
-</section>
+
+
 
 
 
@@ -156,7 +130,7 @@
 </div>
 </div>
 
-<details class="adv" open>
+<details class="adv">
 <summary>高级 · 三级分光与其他无源损耗</summary>
 <p class="adv-note">复杂 ODN 可选三级分光与额外无源损耗。</p>
 <div class="fields">
@@ -169,8 +143,8 @@
 <button type="button" class="btn btn-primary" id="calculateBtn">计算光功率预算</button>
 <button type="button" class="btn btn-ghost" id="resetBtn">重置</button>
 </div>
-</section>
-<section class="result-panel card nel-tool-result" id="result" aria-live="polite">
+</div></section>
+<section class="result-panel card nel-tool-result" id="result" aria-live="polite"><div class="readout">
 <div class="ro-h">预算分析 <span class="status st-pass" data-status id="healthBadge">✓ 健康</span><a class="how how-ro" href="#methodology">如何计算</a></div>
 
 <!-- L1: status + tightest margin -->
@@ -217,6 +191,37 @@
 <button type="button" id="csvBtn" data-ro-act="csv">CSV</button>
 <button type="button" id="printBtn" data-ro-act="print">打印</button>
 </div>
+</div></section>
+<div class="tool-head">
+<div>
+<div class="crumbs"><a href="../../../zh/">Home</a>/<a href="../../zh/">Tools</a>/<a href="../../../zh/topics/pon-optical/">Optical</a>/<span>Optical Power Budget</span></div>
+<p class="tool-page-label" role="heading" aria-level="1">光功率预算计算器</p>
+<p class="tool-lede">根据发送光功率、接收灵敏度和 ODN 损耗校验光功率预算，并得到接收光功率、剩余余量与最大距离。</p>
+</div>
+<div class="acts">
+<button type="button" class="btn btn-ghost btn-sm" id="btn-share">分享输入</button>
+</div>
+</div>
+<section class="scenario-section" aria-label="工程场景">
+<div class="scenario-head">
+<p class="fs-t" style="margin:0">工程场景</p>
+<p class="scenario-hint">选择标准配置以填充设备与 ODN 默认值。修改任意字段将切换为自定义。</p>
+</div>
+<div class="scenario-grid" role="listbox" aria-label="场景卡片">
+<button type="button" class="scenario-card on" data-preset="gpon-c" aria-pressed="true" role="option"><b>GPON C+ (32 dB)</b><span>最小发送 +3 dBm · 灵敏度 −30 dBm · 过载 −8 dBm · 光学代价 1 dB</span></button>
+<button type="button" class="scenario-card" data-preset="gpon-b" aria-pressed="false" role="option"><b>GPON B+ (28 dB)</b><span>28 dB ODN 等级 · 设计签发前请核对 OLT/ONU 规格书</span></button>
+<button type="button" class="scenario-card" data-preset="epon" aria-pressed="false" role="option"><b>EPON</b><span>EPON 规划窗口 · 可按实际 OLT/ONU 修改任意参数</span></button>
+<button type="button" class="scenario-card" data-preset="datacenter" aria-pressed="false" role="option"><b>数据中心</b><span>短距示意 · 1310 nm · 无分光器</span></button>
+<button type="button" class="scenario-card" data-preset="custom" aria-pressed="false" role="option"><b>自定义</b><span>保留当前数值 · 全部字段可编辑</span></button>
+</div>
+<div class="presets presets-mobile" role="listbox" aria-label="Scenario chips (compact)">
+<button type="button" class="on" data-preset="gpon-c" aria-pressed="true">GPON C+</button>
+<button type="button" data-preset="gpon-b" aria-pressed="false">GPON B+</button>
+<button type="button" data-preset="epon" aria-pressed="false">EPON</button>
+<button type="button" data-preset="datacenter" aria-pressed="false">数据中心</button>
+<button type="button" data-preset="custom" aria-pressed="false">自定义</button>
+</div>
+<p class="preset-desc" id="preset-desc">GPON C+ 参考：最小发送 <b>+3 dBm</b>，灵敏度 <b>−30 dBm</b>，过载 <b>−8 dBm</b>，光学代价 <b>1 dB</b>，等级预算 <b>32 dB</b>。请以设备规格书为准。</p>
 </section>
 <div class="mbar"><div><div class="ml">最紧余量</div><b id="mbar-val">3.20 dB</b></div><span class="status st-pass" data-status>通过</span><a href="#result" style="margin-left:auto;color:inherit;font-style:normal;text-decoration:none">详情 ↓</a></div>
 </main>
@@ -251,7 +256,14 @@
 <!-- NEL_TOOL_GRAPH_START -->
 <section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="optical-power-budget" data-primary-workflow="optical-link-design">
 <div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
-<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">当前流程</span><strong>光链路设计工作流</strong><p>从物理损耗、分光规划到光功率预算和最大距离验证，完成一条光链路的设计闭环。</p></div><div class="nel-workflow-step"><strong>步骤 3 / 5</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="3" aria-valuetext="步骤 3 / 5" aria-label="步骤 3 / 5"><span style="width:60%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/pon-splitter-loss/zh/"><span class="nel-tool-graph-label">上一步</span><strong>PON分光器损耗计算器</strong><span class="nel-tool-graph-description">支持一级、二级、三级分光级联，并计算总分光比、实际插入损耗和有效距离。</span></a><a class="nel-tool-graph-card" href="/tools/pon-distance/zh/"><span class="nel-tool-graph-label">下一步</span><strong>PON最大传输距离计算器</strong><span class="nel-tool-graph-description">区分光预算最大距离和系统有效距离，并验证规划链路是否保留工程余量。</span></a></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">当前流程</span><strong>光链路设计工作流</strong><p>从物理损耗、分光规划到光功率预算和最大距离验证，完成一条光链路的设计闭环。</p></div><div class="nel-workflow-step"><strong>步骤 3 / 5</strong>
+      <ol class="fb-wf-markers" aria-label="光链路设计工作流步骤">
+        <li><a href="../../fiber-loss/zh/" title="计算物理损耗与工程余量">1</a></li>
+        <li><a href="../../pon-splitter-loss/zh/" title="规划分光级与插入损耗">2</a></li>
+        <li class="is-current" aria-current="step"><span title="校验端到端光功率余量">3</span></li>
+        <li><a href="../../pon-distance/zh/" title="核对有效传输距离">4</a></li>
+        <li><a href="../../odf-odn-resource-planner/zh/" title="将已校验链路转为 ODF/ODN 资源">5</a></li>
+      </ol><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="3" aria-valuetext="步骤 3 / 5" aria-label="步骤 3 / 5"><span style="width:60%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/pon-splitter-loss/zh/"><span class="nel-tool-graph-label">上一步</span><strong>PON分光器损耗计算器</strong><span class="nel-tool-graph-description">支持一级、二级、三级分光级联，并计算总分光比、实际插入损耗和有效距离。</span></a><a class="nel-tool-graph-card" href="/tools/pon-distance/zh/"><span class="nel-tool-graph-label">下一步</span><strong>PON最大传输距离计算器</strong><span class="nel-tool-graph-description">区分光预算最大距离和系统有效距离，并验证规划链路是否保留工程余量。</span></a></div>
 <h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/fiber-loss/zh/"><strong>光纤链路损耗计算器</strong><span class="nel-tool-graph-description">计算光纤、熔接、连接器、分光器及工程余量，输出物理损耗与设计损耗。</span></a><a class="nel-tool-graph-card" href="/tools/pon-distance/zh/"><strong>PON最大传输距离计算器</strong><span class="nel-tool-graph-description">区分光预算最大距离和系统有效距离，并验证规划链路是否保留工程余量。</span></a><a class="nel-tool-graph-card" href="/tools/onu-rx-power/zh/"><strong>ONU接收光功率诊断</strong><span class="nel-tool-graph-description">根据实测光功率、灵敏度和过载门限判断正常、弱光、过载或疑似无光。</span></a><a class="nel-tool-graph-card" href="/tools/fiber-latency-calculator/zh/"><strong>光纤时延计算器</strong><span class="nel-tool-graph-description">根据距离、群折射率、设备时延和串行化时延计算光纤单向时延与往返 RTT。</span></a></div><div class="nel-workflow-memberships"><span class="nel-workflow-memberships-label">同时用于</span><span class="nel-workflow-chip">光网络故障定位工作流</span></div>
 </section>
 <!-- NEL_TOOL_GRAPH_END -->
@@ -265,5 +277,5 @@
     <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
   </div>
 </footer>
-<!-- NEL_FOOTER_END --><script defer="" src="../js/engine.js?v=5e03675c092d"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer src="../js/app-v3.js?v=4b732124144a"></script><script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+<!-- NEL_FOOTER_END --><script defer="" src="../js/engine.js?v=5e03675c092d"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer src="../js/app-v3.js?v=5a23cc364b4e"></script><script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
 <script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script></body></html>

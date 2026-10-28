@@ -37,7 +37,7 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"环形 All-Reduce 每卡发送多少数据？","acceptedAnswer":{"@type":"Answer","text":"缓冲区的 2(N−1)/N 倍。8 卡为 1.75 × S，N 越大越接近 2 × S。"}},{"@type":"Question","name":"NCCL 中的总线带宽是什么？","acceptedAnswer":{"@type":"Answer","text":"对 All-Reduce，busBW = algBW × 2(N−1)/N，用于消除 GPU 数量的影响，以便与硬件链路速率比较。"}},{"@type":"Question","name":"梯度 All-Reduce 需要多长时间？","acceptedAnswer":{"@type":"Answer","text":"约为 2(N−1)/N × S ÷ 链路带宽，加上 2(N−1) × 每步时延。8 卡、14 GB、50 GB/s 约 0.49 s。"}},{"@type":"Question","name":"增加 GPU 会增加每卡流量吗？","acceptedAnswer":{"@type":"Answer","text":"只略微增加：系数从 4 卡的 1.5 到 8 卡的 1.75、128 卡的 1.98；时延项随 N 线性增长。"}},{"@type":"Question","name":"环形是唯一的 All-Reduce 算法吗？","acceptedAnswer":{"@type":"Answer","text":"不是。Tree、双二叉树、分层以及网内归约（SHARP）在大规模下可降低时延；本工具以带宽最优的环形为基线。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=6c0b1c4ee1f1">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=1040076f7555">
 <link rel="stylesheet" href="../../../assets/css/site-shell.css?v=d998a53add89">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
