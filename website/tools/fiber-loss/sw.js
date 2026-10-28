@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-fiber-loss-locale-v1.9.9-04-p0-p1-correctness-consent-offline-49da2452839c-b4ced180eaaf";
+const CACHE = "nel-fiber-loss-v3-6910c074a5fd";
 const CORE = [
   "./index.html",
   "./",
@@ -17,11 +17,14 @@ const CORE = [
   "../../assets/css/site-shell.css?v=989edb3b4d77",
   "../../assets/css/tool-design-system.css?v=1040076f7555",
   "../../assets/css/tool-workflow.css?v=8c74b394ef2c",
+  "../../assets/css/tool-layout.css?v=dfdd771763d6",
+  "../../assets/css/tool-detail-v3.css?v=a51258f43a34",
   "../../assets/js/analytics.js?v=1156b7864023",
   "../../assets/js/adsense.js?v=f075c80ccc75",
   "../../assets/js/site.js?v=b563dd0297f5",
   "../../assets/js/tool-integration.js?v=05f7934f4687",
   "../../assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b",
+  "../../assets/js/tool-detail-v3.js?v=66984b67ff65",
   "../../assets/css/cookie-consent.css?v=8dd1728bf5eb",
   "../../assets/js/cookie-consent.js?v=5e6d1af21a6a",
   "../../assets/js/rules-engine/normalize.js?v=9e2cb44bca10",
