@@ -102,10 +102,36 @@ const translations = {
     validation:"Please check the inputs. Distances, counts and losses must be valid non-negative numbers.",
     copied:"Result copied",saved:"Record saved",noHistory:"No saved calculations yet. Calculate and click “Save record”.",
     confirmClear:"Clear all saved history?"
+  },
+  es: {
+    healthy:"✓ Correcto",
+    warning:"⚠ Marginal",
+    failed:"✕ Fallo",
+    diagnosisHealthy:"El presupuesto óptico es suficiente y la potencia recibida permanece por encima del umbral.",
+    diagnosisWarning:"El enlace es utilizable, pero el margen de ingeniería es limitado. Revise las etapas del divisor, el número de conectores y el margen de envejecimiento.",
+    diagnosisFailed:"El presupuesto se supera o la potencia recibida queda por debajo del umbral. Revise la cascada de divisores, la contaminación de conectores, la pérdida por curvatura, la calidad de los empalmes y la distancia.",
+    validation:"Revise los valores: las distancias, cantidades y pérdidas deben ser números válidos y no negativos.",
+    copied:"Resultado copiado",
+    saved:"Registro guardado",
+    noHistory:"Aún no hay cálculos guardados. Calcule y pulse “Guardar registro”.",
+    confirmClear:"¿Borrar todo el historial guardado?"
   }
 };
 
-let currentLang = document.documentElement.lang.toLowerCase().startsWith("zh") ? "zh" : "en";
+function pageLocale(){
+  const raw = (document.documentElement.getAttribute("data-nel-locale") || document.documentElement.lang || "en").toLowerCase();
+  if (raw.startsWith("zh")) return "zh";
+  if (raw.startsWith("es")) return "es";
+  return "en";
+}
+
+const runtimeLabels = {
+  zh: { project:"工程", physical:"物理链路损耗", design:"总设计损耗", remaining:"剩余预算", rx:"预计接收光功率", margin:"接收门限余量", status:"状态", date:"zh-CN", designShort:"总设计损耗", remainingShort:"剩余预算" },
+  es: { project:"Proyecto", physical:"Pérdida física", design:"Pérdida de diseño", remaining:"Presupuesto restante", rx:"Potencia recibida estimada", margin:"Margen del receptor", status:"Estado", date:"es", designShort:"Pérdida de diseño", remainingShort:"Restante" },
+  en: { project:"Project", physical:"Physical loss", design:"Design loss", remaining:"Budget remaining", rx:"Estimated receive power", margin:"Receiver margin", status:"Status", date:"en-US", designShort:"Design loss", remainingShort:"Remaining" }
+};
+
+let currentLang = pageLocale();
 let lastResult = null;
 
 const numericIds = [
@@ -270,15 +296,16 @@ function buildResultText(){
   if (!lastResult) calculate();
   const r = lastResult;
   if (!r) return translations[currentLang].validation;
+  const label = runtimeLabels[currentLang] || runtimeLabels.en;
   return [
     "NetEngineerLab - Fiber Loss Calculator",
-    `${currentLang === "zh" ? "工程" : "Project"}: ${r.projectName}`,
-    `${currentLang === "zh" ? "物理链路损耗" : "Physical loss"}: ${r.physicalLoss.toFixed(2)} dB`,
-    `${currentLang === "zh" ? "总设计损耗" : "Design loss"}: ${r.designLoss.toFixed(2)} dB`,
-    `${currentLang === "zh" ? "剩余预算" : "Budget remaining"}: ${r.budgetRemaining.toFixed(2)} dB`,
-    `${currentLang === "zh" ? "预计接收光功率" : "Estimated receive power"}: ${r.estimatedRxPower.toFixed(2)} dBm`,
-    `${currentLang === "zh" ? "接收门限余量" : "Receiver margin"}: ${r.rxMargin.toFixed(2)} dB`,
-    `${currentLang === "zh" ? "状态" : "Status"}: ${translations[currentLang][r.status]}`
+    `${label.project}: ${r.projectName}`,
+    `${label.physical}: ${r.physicalLoss.toFixed(2)} dB`,
+    `${label.design}: ${r.designLoss.toFixed(2)} dB`,
+    `${label.remaining}: ${r.budgetRemaining.toFixed(2)} dB`,
+    `${label.rx}: ${r.estimatedRxPower.toFixed(2)} dBm`,
+    `${label.margin}: ${r.rxMargin.toFixed(2)} dB`,
+    `${label.status}: ${translations[currentLang][r.status]}`
   ].join("\n");
 }
 
@@ -330,13 +357,14 @@ function renderHistory(){
     container.innerHTML = `<div class="history-empty">${translations[currentLang].noHistory}</div>`;
     return;
   }
+  const label = runtimeLabels[currentLang] || runtimeLabels.en;
   container.innerHTML = history.slice(0,6).map((item) => {
     const date = new Date(item.timestamp);
     return `<article class="history-item">
       <h3>${escapeHtml(item.projectName)}</h3>
-      <p>${date.toLocaleString(currentLang === "zh" ? "zh-CN" : "en-US")}</p>
-      <p>${currentLang === "zh" ? "总设计损耗" : "Design loss"}: <strong>${item.designLoss.toFixed(2)} dB</strong></p>
-      <p>${currentLang === "zh" ? "剩余预算" : "Remaining"}: ${item.budgetRemaining.toFixed(2)} dB</p>
+      <p>${date.toLocaleString(label.date)}</p>
+      <p>${label.designShort}: <strong>${item.designLoss.toFixed(2)} dB</strong></p>
+      <p>${label.remainingShort}: ${item.budgetRemaining.toFixed(2)} dB</p>
       <p>${translations[currentLang][item.status]}</p>
     </article>`;
   }).join("");
@@ -356,14 +384,20 @@ function clearHistory(){
 }
 
 function setLanguage(lang){
-  currentLang = lang;
-  document.documentElement.lang = document.documentElement.dataset.nelLocale === "es" ? "es" : (lang === "zh" ? "zh-CN" : "en");
+  const locale = pageLocale();
+  currentLang = locale === "es" ? "es" : (lang === "zh" ? "zh" : "en");
+  if (locale !== "es") {
+    document.documentElement.lang = currentLang === "zh" ? "zh-CN" : "en";
+  }
   const legacyLangToggle = $("langToggle");
-  if (legacyLangToggle) legacyLangToggle.textContent = lang === "zh" ? "English" : "中文";
-  document.querySelectorAll("[data-i18n]").forEach((element) => {
-    const key = element.dataset.i18n;
-    if (translations[lang][key] !== undefined) element.textContent = translations[lang][key];
-  });
+  if (legacyLangToggle) legacyLangToggle.remove();
+  if (locale !== "es") {
+    const dict = translations[currentLang];
+    document.querySelectorAll("[data-i18n]").forEach((element) => {
+      const key = element.dataset.i18n;
+      if (dict[key] !== undefined) element.textContent = dict[key];
+    });
+  }
   if (lastResult) calculate();
   renderHistory();
 }

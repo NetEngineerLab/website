@@ -55,7 +55,8 @@
 <link rel="stylesheet" href="../../assets/css/tool-layout.css?v=dfdd771763d6">
 <link rel="manifest" href="manifest.webmanifest">
 </head>
-<body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<body class="nel-tool-detail-page nel-tool-v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<link rel="stylesheet" href="../../assets/css/tool-detail-v3.css?v=a51258f43a34">
 <a class="skip-link" href="#calculator">Skip to calculator</a>
 <noscript><div class="noscript">JavaScript is required to run this calculator.</div></noscript>
 <!-- NEL_HEADER_START -->
@@ -335,7 +336,24 @@
 </div>
 </section>
 </main>
+<div class="below">
+<nav class="toc" aria-label="On this page">
+<h4>On this page</h4>
+<a href="#scenarios">Typical engineering scenarios</a>
+<a href="#pon-toolkit">Related PON and fiber tools</a>
+<a href="#history">Recent calculations</a>
+<a href="#methodology">Methodology and engineering notes</a>
+<a href="#standards">Standards citations</a>
+<a href="#references">Fiber loss standards and measurement references</a>
+<a href="#faq">Frequently asked questions</a>
+<a href="#nel-tool-graph">Continue the engineering workflow</a>
+</nav>
+<div class="prose">
+
 <!-- NEL_SCENARIOS_START -->
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Typical engineering scenarios</span></summary>
+<div class="fb-fold-body">
 <section class="content-section nel-tool-supporting-section" id="scenarios" aria-labelledby="scenarios-title">
 <div class="section-heading"><div><p class="eyebrow">WORKED EXAMPLES</p><h2 id="scenarios-title">Typical engineering scenarios</h2></div></div>
 <p>Each scenario pre-fills the calculator. The expected result below was computed by the same engine and is covered by automated tests.</p>
@@ -345,8 +363,13 @@
 <article class="metric-card nel-scenario-card" data-scenario-id="p2p-10km-1310"><div><h3>10 km point-to-point link at 1310 nm (6.2 dB channel)</h3><p>10GBASE-LR-style budget: 4 splices, 2 connectors at 0.5 dB, 1 dB margin.</p><p><small>Expected result</small><br><strong data-scenario-expected>Design loss 5.90 dB · remaining 0.30 dB (warning)</strong></p><p><a class="nel-scenario-link" href="?scenario=p2p-10km-1310#calculator">Load this scenario →</a></p></div></article>
 </div>
 </section>
+</div>
+</details>
 <!-- NEL_SCENARIOS_END -->
 <!-- NEL_PON_LINKS_START -->
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Related PON and fiber tools</span></summary>
+<div class="fb-fold-body">
 <section class="content-section nel-tool-supporting-section" id="pon-toolkit" aria-labelledby="pon-toolkit-title">
 <div class="section-heading"><div><p class="eyebrow">PON PLANNING TOOLKIT</p><h2 id="pon-toolkit-title">Related PON and fiber tools</h2></div></div>
 <p>Work through a PON design in order: split ratio, distance, receive power, then the full link budget.</p>
@@ -354,11 +377,16 @@
 <h3>Guides</h3>
 <ul class="nel-pon-guides"><li><a href="../../guides/pon-splitter-loss-guide/">PON splitter loss guide</a></li><li><a href="../../guides/fiber-link-budget-guide/">Fiber link budget guide</a></li><li><a href="../../topics/pon-optical/">PON and optical topic hub</a></li></ul>
 </section>
+</div>
+</details>
 <!-- NEL_PON_LINKS_END -->
 <aside aria-label="Advertisement" class="ad-slot" data-ad-key="afterCalculator" hidden="">
 <div class="ad-label">ADVERTISEMENT</div>
 <div class="ad-body"></div>
 </aside>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Recent calculations</span></summary>
+<div class="fb-fold-body">
 <section class="content-section nel-tool-supporting-section" id="history">
 <div class="section-heading">
 <div>
@@ -369,6 +397,11 @@
 </div>
 <div class="history-list" id="historyList"></div>
 </section>
+</div>
+</details>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Methodology and engineering notes</span></summary>
+<div class="fb-fold-body">
 <section class="content-section methodology nel-tool-supporting-section" id="methodology">
 <div class="section-heading">
 <div>
@@ -400,14 +433,24 @@
 </div>
 <div class="example-box"><h3>Worked case: 10 km PON feeder</h3><p>At 1490 nm, 10 km × 0.25 dB/km = 2.50 dB fiber loss. Add 6 splices × 0.10 dB = 0.60 dB, 4 connectors × 0.30 dB = 1.20 dB, and 1:8 × 1:8 splitter loss of 21.0 dB: physical link loss = 25.30 dB. With a 3 dB engineering margin, total design loss = 28.30 dB. Receive power is transmit power minus 25.30 dB; the margin is checked separately. Use the <a href="../pon-splitter-loss/">PON splitter loss calculator</a> and <a href="../optical-power-budget/">optical power budget calculator</a> to continue the workflow.</p></div>
 </section>
+</div>
+</details>
 <!-- NEL_STANDARDS_START -->
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Standards citations</span></summary>
+<div class="fb-fold-body">
 <section class="content-section nel-tool-supporting-section" id="standards" aria-labelledby="standards-title">
 <div class="section-heading"><div><p class="eyebrow">STANDARDS</p><h2 id="standards-title">Standards citations</h2></div></div>
 <p>Authoritative documents behind the formulas and default values above.</p>
 <ul class="nel-standards-list"><li><a href="https://www.itu.int/rec/T-REC-G.652/en" rel="noopener">ITU-T G.652</a> — Single-mode fibre attenuation; the tool's 0.35 / 0.30 / 0.20 dB/km defaults are typical cabled values below the G.652 maxima. <small>[Checked]</small></li><li><a href="https://www.itu.int/rec/T-REC-G.984.2/en" rel="noopener">ITU-T G.984.2 (08/2019)</a> — GPON physical layer: class B+ 13–28 dB in Annex A Table A.2; class C+ 17–32 dB (60 km max) in Appendix V Table V.3 – an informative appendix, not a normative class. OLT sensitivity −28 dBm (B+) / −32 dBm (C+). <small>[Checked]</small></li><li><strong>ITU-T G.671</strong> <small>(linked in the references section)</small> — Transmission characteristics of passive optical components, including splitters. <small>[Checked]</small></li><li><a href="https://standards.ieee.org/ieee/802.3/10422/" rel="noopener">IEEE 802.3 Clause 52 (10GBASE-LR)</a> — Table 52-12 average launch power min −8.2 dBm (informative per the table footnote); Table 52-13 average receive power min −14.4 dBm; Table 52-14 power budget 9.4 dB, channel insertion loss 6.2 dB, penalties 3.2 dB. <small>[Checked]</small></li></ul>
 </section>
+</div>
+</details>
 <!-- NEL_STANDARDS_END -->
-<section aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Fiber loss standards and measurement references</span></summary>
+<div class="fb-fold-body">
+<section id="references" aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
 <div class="section-heading"><div><p class="eyebrow">ENGINEERING REFERENCES</p><h2 id="references-title">Fiber loss standards and measurement references</h2></div></div>
 <ul>
 <li><a href="https://www.itu.int/rec/T-REC-G.652-202408-I/en">ITU-T G.652: characteristics of single-mode optical fibre and cable</a></li>
@@ -416,7 +459,12 @@
 </ul>
 <p>The 3 dB health threshold is a configurable planning rule used by this calculator, not a universal requirement from these standards. Confirm wavelength-specific fibre, connector, splice and splitter values from the deployed components, then use calibrated field measurements for acceptance. Last reviewed: 2026-08-31.</p>
 </section>
-<section aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
+</div>
+</details>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Frequently asked questions</span></summary>
+<div class="fb-fold-body">
+<section id="faq" aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
 <div class="section-heading">
 <div><p class="eyebrow">FAQ</p><h2 id="faq-title">Frequently asked questions</h2></div>
 </div>
@@ -429,18 +477,28 @@
 <details><summary>Can this result be used for final acceptance?</summary><p>This calculator supports planning, review and troubleshooting. Final acceptance should combine power meter and OTDR measurements, equipment specifications and enterprise standards.</p></details>
 </div>
 </section>
+</div>
+</details>
 <aside aria-label="Advertisement" class="ad-slot" data-ad-key="afterMethodology" hidden="">
 <div class="ad-label">ADVERTISEMENT</div>
 <div class="ad-body"></div>
 </aside>
 <p class="hub-return">Part of the <a href="../pon-fiber-calculators/">PON &amp; fiber calculators</a> hub.</p>
 <!-- NEL_TOOL_GRAPH_START -->
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Continue the engineering workflow</span></summary>
+<div class="fb-fold-body">
 <section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="fiber-loss" data-primary-workflow="optical-link-design">
 <div class="section-heading"><div><p class="eyebrow">ENGINEERING WORKFLOW</p><h2 id="nel-tool-graph-title">Continue the engineering workflow</h2></div></div>
 <div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>Optical Link Design Workflow</strong><p>Build an optical link from physical loss assumptions through split planning, power budget and maximum reach verification.</p></div><div class="nel-workflow-step"><strong>Step 1 of 5</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1" aria-valuetext="Step 1 of 5" aria-label="Step 1 of 5"><span style="width:20%"></span></div></div></div><div class="nel-tool-graph-nav"><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Previous</span><strong>Workflow start</strong></div><a class="nel-tool-graph-card" href="/tools/pon-splitter-loss/"><span class="nel-tool-graph-label">Next</span><strong>PON Splitter Loss Calculator</strong><span class="nel-tool-graph-description">Plan multi-stage splitting and calculate total ratio, insertion loss and effective reach.</span></a></div>
 <h3 class="nel-tool-graph-subtitle">Related tools</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/optical-power-budget/"><strong>Optical Power Budget Calculator</strong><span class="nel-tool-graph-description">Verify an optical link using transmit power, receiver sensitivity, optical penalty and ODN loss.</span></a><a class="nel-tool-graph-card" href="/tools/pon-splitter-loss/"><strong>PON Splitter Loss Calculator</strong><span class="nel-tool-graph-description">Plan multi-stage splitting and calculate total ratio, insertion loss and effective reach.</span></a><a class="nel-tool-graph-card" href="/tools/otdr-event/"><strong>OTDR Event Analyzer</strong><span class="nel-tool-graph-description">Analyze multiple events and dual wavelengths to identify splices, connectors, bends, breaks, ghosts and dead-zone effects.</span></a><a class="nel-tool-graph-card" href="/tools/fiber-latency-calculator/"><strong>Fiber Latency Calculator</strong><span class="nel-tool-graph-description">Calculate one-way and round-trip fiber latency from distance, group index, equipment and serialization delay.</span></a></div><div class="nel-workflow-memberships"><span class="nel-workflow-memberships-label">Also used in</span><span class="nel-workflow-chip">Optical Fault Isolation Workflow</span><span class="nel-workflow-chip">Fiber Latency Planning Workflow</span><span class="nel-workflow-chip">Optical Dispersion Planning Workflow</span></div>
 </section>
+</div>
+</details>
 <!-- NEL_TOOL_GRAPH_END -->
+
+</div>
+</div>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">
@@ -453,9 +511,10 @@
 </footer>
 <!-- NEL_FOOTER_END -->
 <script defer="" src="js/engine.js"></script><script defer="" src="js/pwa.js"></script>
-<script defer="" src="../../data/optical-standards.js"></script><script defer="" src="../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="js/app.js?v=0f9b750fb0e5"></script><script defer src="js/scenarios.js"></script>
+<script defer="" src="../../data/optical-standards.js"></script><script defer="" src="../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="js/app.js?v=19302e6b5783"></script><script defer src="js/scenarios.js"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
-<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script></body>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script><script defer src="../../assets/js/tool-detail-v3.js?v=bf5da79fd3d3"></script>
+</body>
 </html>
 
 

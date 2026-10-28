@@ -55,7 +55,8 @@
 <link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=dfdd771763d6">
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head>
-<body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<body class="nel-tool-detail-page nel-tool-v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<link rel="stylesheet" href="../../../assets/css/tool-detail-v3.css?v=a51258f43a34">
 <a class="skip-link" href="#calculator">跳到计算器</a>
 <noscript><div class="noscript">本工具需要启用 JavaScript 才能完成计算。</div></noscript>
 <!-- NEL_HEADER_START -->
@@ -338,7 +339,24 @@
 </div>
 </section>
 </main>
+<div class="below">
+<nav class="toc" aria-label="本页目录">
+<h4>本页目录</h4>
+<a href="#scenarios">典型工程场景</a>
+<a href="#pon-toolkit">相关 PON 与光纤工具</a>
+<a href="#history">最近计算记录</a>
+<a href="#methodology">计算方法与工程说明</a>
+<a href="#standards">标准引用</a>
+<a href="#references">光纤损耗标准与测量参考</a>
+<a href="#faq">常见问题</a>
+<a href="#nel-tool-graph">继续下一步工程任务</a>
+</nav>
+<div class="prose">
+
 <!-- NEL_SCENARIOS_START -->
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">典型工程场景</span></summary>
+<div class="fb-fold-body">
 <section class="content-section nel-tool-supporting-section" id="scenarios" aria-labelledby="scenarios-title">
 <div class="section-heading"><div><p class="eyebrow">工程算例</p><h2 id="scenarios-title">典型工程场景</h2></div></div>
 <p>点击场景即可一键填入计算器。下方预期结果由同一计算引擎得出，并有自动化测试覆盖。</p>
@@ -348,8 +366,13 @@
 <article class="metric-card nel-scenario-card" data-scenario-id="p2p-10km-1310"><div><h3>10 km 点对点 1310 nm 链路（6.2 dB 通道）</h3><p>10GBASE-LR 类预算：4 个熔接点、2 个 0.5 dB 连接器、1 dB 余量。</p><p><small>预期结果</small><br><strong data-scenario-expected>设计损耗 5.90 dB · 剩余 0.30 dB（预警）</strong></p><p><a class="nel-scenario-link" href="?scenario=p2p-10km-1310#calculator">载入此场景 →</a></p></div></article>
 </div>
 </section>
+</div>
+</details>
 <!-- NEL_SCENARIOS_END -->
 <!-- NEL_PON_LINKS_START -->
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">相关 PON 与光纤工具</span></summary>
+<div class="fb-fold-body">
 <section class="content-section nel-tool-supporting-section" id="pon-toolkit" aria-labelledby="pon-toolkit-title">
 <div class="section-heading"><div><p class="eyebrow">PON 规划工具组</p><h2 id="pon-toolkit-title">相关 PON 与光纤工具</h2></div></div>
 <p>按顺序完成 PON 设计：分光比、传输距离、接收光功率，再做完整链路预算。</p>
@@ -357,11 +380,16 @@
 <h3>指南</h3>
 <ul class="nel-pon-guides"><li><a href="../../../zh/guides/pon-splitter-loss-guide/">PON 分光器损耗指南</a></li><li><a href="../../../zh/guides/fiber-link-budget-guide/">光纤链路预算指南</a></li><li><a href="../../../zh/topics/pon-optical/">PON 与光通信专题</a></li></ul>
 </section>
+</div>
+</details>
 <!-- NEL_PON_LINKS_END -->
 <aside aria-label="广告" class="ad-slot" data-ad-key="afterCalculator" hidden="">
 <div class="ad-label">广告</div>
 <div class="ad-body"></div>
 </aside>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">最近计算记录</span></summary>
+<div class="fb-fold-body">
 <section class="content-section nel-tool-supporting-section" id="history">
 <div class="section-heading">
 <div>
@@ -372,6 +400,11 @@
 </div>
 <div class="history-list" id="historyList"></div>
 </section>
+</div>
+</details>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">计算方法与工程说明</span></summary>
+<div class="fb-fold-body">
 <section class="content-section methodology nel-tool-supporting-section" id="methodology">
 <div class="section-heading">
 <div>
@@ -409,14 +442,24 @@
 </div>
 <div class="example-box"><h3>可复算案例：10 km PON馈线</h3><p>1490 nm下，10 km × 0.25 dB/km = 2.50 dB光纤损耗；加6个熔接点 × 0.10 dB = 0.60 dB、4个连接器 × 0.30 dB = 1.20 dB、1:8 × 1:8分光器21.0 dB，物理链路损耗 = 25.30 dB。加入3 dB工程余量后，总设计损耗 = 28.30 dB。接收光功率按发送功率减去25.30 dB计算，余量单独校核。可继续使用<a href="../../pon-splitter-loss/zh/">PON分光器损耗计算器</a>和<a href="../../optical-power-budget/zh/">光功率预算计算器</a>。</p></div>
 </section>
+</div>
+</details>
 <!-- NEL_STANDARDS_START -->
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">标准引用</span></summary>
+<div class="fb-fold-body">
 <section class="content-section nel-tool-supporting-section" id="standards" aria-labelledby="standards-title">
 <div class="section-heading"><div><p class="eyebrow">标准依据</p><h2 id="standards-title">标准引用</h2></div></div>
 <p>上述公式与默认值所依据的权威文件。</p>
 <ul class="nel-standards-list"><li><a href="https://www.itu.int/rec/T-REC-G.652/en" rel="noopener">ITU-T G.652</a> — 单模光纤衰减；本工具默认 0.35 / 0.30 / 0.20 dB/km 为低于 G.652 上限的典型成缆值。 <small>[已核对]</small></li><li><a href="https://www.itu.int/rec/T-REC-G.984.2/en" rel="noopener">ITU-T G.984.2 (08/2019)</a> — GPON 物理层：B+ 等级 13–28 dB 见附件 A 表 A.2；C+ 等级 17–32 dB（最长 60 km）见附录 V 表 V.3——属参考性附录，不是规范性等级。OLT 灵敏度 −28 dBm（B+）/ −32 dBm（C+）。 <small>[已核对]</small></li><li><strong>ITU-T G.671</strong> <small>(链接见参考资料部分)</small> — 无源光器件（含分光器）传输特性。 <small>[已核对]</small></li><li><a href="https://standards.ieee.org/ieee/802.3/10422/" rel="noopener">IEEE 802.3 Clause 52 (10GBASE-LR)</a> — 表 52-12 平均发射功率最小 −8.2 dBm（按表注仅为参考值）；表 52-13 平均接收功率最小 −14.4 dBm；表 52-14 功率预算 9.4 dB、通道插损 6.2 dB、代价分配 3.2 dB。 <small>[已核对]</small></li></ul>
 </section>
+</div>
+</details>
 <!-- NEL_STANDARDS_END -->
-<section aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">光纤损耗标准与测量参考</span></summary>
+<div class="fb-fold-body">
+<section id="references" aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
 <div class="section-heading"><div><p class="eyebrow">工程参考资料</p><h2 id="references-title">光纤损耗标准与测量参考</h2></div></div>
 <ul>
 <li><a href="https://www.itu.int/rec/T-REC-G.652-202408-I/en">ITU-T G.652：单模光纤与光缆特性</a></li>
@@ -425,7 +468,12 @@
 </ul>
 <p>页面采用的3 dB健康门槛是本工具的可配置规划规则，并非上述标准统一强制要求。应按实际波长和器件规格填写光纤、连接器、熔接点及分光器损耗，并用校准后的现场测量完成正式验收。内容复核：2026-08-31。</p>
 </section>
-<section aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
+</div>
+</details>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">常见问题</span></summary>
+<div class="fb-fold-body">
+<section id="faq" aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
 <div class="section-heading">
 <div><p class="eyebrow">FAQ</p><h2 id="faq-title">常见问题</h2></div>
 </div>
@@ -438,18 +486,28 @@
 <details><summary>计算结果可以用于正式验收吗？</summary><p>本工具适合规划、复核和故障分析。正式验收应结合光功率计、OTDR、设备规格和企业验收标准。</p></details>
 </div>
 </section>
+</div>
+</details>
 <aside aria-label="广告" class="ad-slot" data-ad-key="afterMethodology" hidden="">
 <div class="ad-label">广告</div>
 <div class="ad-body"></div>
 </aside>
 <p class="hub-return">属于 <a href="../../pon-fiber-calculators/zh/">PON 与光纤计算器</a> 专题。</p>
 <!-- NEL_TOOL_GRAPH_START -->
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">继续下一步工程任务</span></summary>
+<div class="fb-fold-body">
 <section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="fiber-loss" data-primary-workflow="optical-link-design">
 <div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
 <div class="nel-workflow-context"><div><span class="nel-workflow-kicker">当前流程</span><strong>光链路设计工作流</strong><p>从物理损耗、分光规划到光功率预算和最大距离验证，完成一条光链路的设计闭环。</p></div><div class="nel-workflow-step"><strong>步骤 1 / 5</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1" aria-valuetext="步骤 1 / 5" aria-label="步骤 1 / 5"><span style="width:20%"></span></div></div></div><div class="nel-tool-graph-nav"><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">上一步</span><strong>流程起点</strong></div><a class="nel-tool-graph-card" href="/tools/pon-splitter-loss/zh/"><span class="nel-tool-graph-label">下一步</span><strong>PON分光器损耗计算器</strong><span class="nel-tool-graph-description">支持一级、二级、三级分光级联，并计算总分光比、实际插入损耗和有效距离。</span></a></div>
 <h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/optical-power-budget/zh/"><strong>光功率预算计算器</strong><span class="nel-tool-graph-description">结合发送功率、接收灵敏度、光学代价和ODN损耗验证完整光链路预算。</span></a><a class="nel-tool-graph-card" href="/tools/pon-splitter-loss/zh/"><strong>PON分光器损耗计算器</strong><span class="nel-tool-graph-description">支持一级、二级、三级分光级联，并计算总分光比、实际插入损耗和有效距离。</span></a><a class="nel-tool-graph-card" href="/tools/otdr-event/zh/"><strong>OTDR事件分析工具</strong><span class="nel-tool-graph-description">支持多事件录入、双波长对比，识别熔接、连接器、弯曲、断纤、鬼影及盲区影响。</span></a><a class="nel-tool-graph-card" href="/tools/fiber-latency-calculator/zh/"><strong>光纤时延计算器</strong><span class="nel-tool-graph-description">根据距离、群折射率、设备时延和串行化时延计算光纤单向时延与往返 RTT。</span></a></div><div class="nel-workflow-memberships"><span class="nel-workflow-memberships-label">同时用于</span><span class="nel-workflow-chip">光网络故障定位工作流</span><span class="nel-workflow-chip">光纤时延规划工作流</span><span class="nel-workflow-chip">光纤色散规划工作流</span></div>
 </section>
+</div>
+</details>
 <!-- NEL_TOOL_GRAPH_END -->
+
+</div>
+</div>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">
@@ -462,8 +520,9 @@
 </footer>
 <!-- NEL_FOOTER_END -->
 <script defer="" src="../js/engine.js"></script><script defer="" src="../js/pwa.js"></script>
-<script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=0f9b750fb0e5"></script><script defer="" src="../js/scenarios.js"></script>
+<script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=19302e6b5783"></script><script defer="" src="../js/scenarios.js"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
-<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script></body>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script><script defer src="../../../assets/js/tool-detail-v3.js?v=bf5da79fd3d3"></script>
+</body>
 </html>
 
