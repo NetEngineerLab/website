@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0b6ffb">
+<meta name="theme-color" content="#16140F">
 <title>Calculadora de dispersión cromática – ps/nm, D(λ) G.652 y límite</title>
 <meta name="description" content="Calcula la dispersión cromática con la fórmula ITU-T G.652: D(λ) en ps/(nm·km), CD acumulada en ps/nm, residual tras compensación, ensanchamiento y distancia límite.">
 <link rel="stylesheet" href="../css/style.css?v=48c7b72aa30f">
@@ -24,6 +24,9 @@
 <meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 
 <link rel="stylesheet" href="/assets/css/cookie-consent.css?v=8dd1728bf5eb">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Calculadora de dispersión cromática – ps/nm, D(λ) G.652 y límite","url":"https://netengineerlab.com/tools/chromatic-dispersion-calculator/es/","description":"Calcula la dispersión cromática con la fórmula ITU-T G.652: D(λ) en ps/(nm·km), CD acumulada en ps/nm, residual tras compensación, ensanchamiento y distancia límite.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="es">
@@ -48,7 +51,8 @@
 <link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=dfdd771763d6">
 <link rel="manifest" href="../manifest-es.webmanifest">
 </head>
-<body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<body class="nel-tool-detail-page nel-opb-v3 nel-fieldbook nel-tool-v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<link rel="stylesheet" href="../../../assets/css/fieldbook.css?v=a3bb21511014">
 <a class="skip-link" href="#calculator">Saltar a la calculadora</a>
 <noscript><div class="noscript">Se necesita JavaScript para ejecutar esta calculadora.</div></noscript>
 <!-- NEL_HEADER_START -->
@@ -87,34 +91,12 @@
 <p>La dispersión cromática (CD) ensancha cada pulso porque las longitudes de onda viajan a velocidades distintas. La fibra G.652 tiene unos 17 ps/(nm·km) a 1550 nm, así que 80 km acumulan unos 1.400 ps/nm. Esta calculadora obtiene D(λ) con el modelo ITU-T G.652, la CD total y residual, el ensanchamiento y el tramo máximo que tolera el transceptor.</p>
 <div class="hero-tags"><span>D(λ) G.652</span><span>ps/nm</span><span>CD residual</span><span>Longitud límite</span></div></div></section>
 <main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
-<section class="input-panel card nel-tool-input">
-<div class="section-title"><span class="section-icon">☷</span><div>
-<h2>Fibra y transceptor</h2>
-<p>Use el modelo G.652 o un coeficiente de hoja de datos, y luego la longitud, la compensación y la tolerancia de CD del receptor.</p>
-</div></div>
-<div class="form-grid">
-<div class="field"><label for="projectName">Nombre del proyecto</label><div class="input-wrap no-unit"><input id="projectName" type="text" value="Tramo DWDM metropolitano"></div></div>
-<div class="field"><label for="mode">Origen del coeficiente</label><div class="input-wrap no-unit"><select id="mode"><option value="model" selected>Modelo ITU-T G.652 D(λ)</option><option value="manual">Valor de hoja de datos</option></select></div></div>
-<div class="field"><label for="wavelength">Longitud de onda λ</label><div class="input-wrap"><input id="wavelength" type="number" min="1200" max="1700" step="0.1" value="1550"><span>nm</span></div></div>
-<div class="field"><label for="lambda0">Longitud de onda de dispersión nula λ0</label><div class="input-wrap"><input id="lambda0" type="number" min="1200" max="1700" step="0.1" value="1310"><span>nm</span></div><p class="hint">G.652: 1300–1324 nm.</p></div>
-<div class="field"><label for="s0">Pendiente de dispersión nula S0</label><div class="input-wrap wide-unit"><input id="s0" type="number" min="0.001" max="0.2" step="0.001" value="0.092"><span>ps/(nm²·km)</span></div><p class="hint">El máximo G.652 es 0,092.</p></div>
-<div class="field"><label for="manualD">Coeficiente D de hoja de datos</label><div class="input-wrap wide-unit"><input id="manualD" type="number" min="-50" max="50" step="0.01" value="17"><span>ps/(nm·km)</span></div><p class="hint">Solo con “Valor de hoja de datos”.</p></div>
-<div class="field"><label for="lengthKm">Longitud de fibra</label><div class="input-wrap"><input id="lengthKm" type="number" min="0.001" step="0.001" value="80"><span>km</span></div></div>
-<div class="field"><label for="compensation">Compensación (DCM/FBG) <span class="required-mark">(Obligatorio)</span></label><div class="input-wrap"><input id="compensation" type="number" required aria-required="true" step="1" value="0"><span>ps/nm</span></div><p class="hint">Obligatorio: introduzca 0 si no hay compensación. Un valor positivo resta CD positiva.</p></div>
-<div class="field"><label for="tolerance">Tolerancia de CD del receptor</label><div class="input-wrap"><input id="tolerance" type="number" min="1" step="1" value="1600"><span>ps/nm</span></div><p class="hint">De la hoja de datos del transceptor.</p></div>
-<div class="field"><label for="spectralWidth">Ancho espectral Δλ</label><div class="input-wrap"><input id="spectralWidth" type="number" min="0" step="0.01" value="0.1"><span>nm</span></div></div>
-</div>
-<div class="actions">
-<button class="primary-action" id="calculateBtn" type="button">Calcular</button>
-<button class="secondary-action" id="resetBtn" type="button">Restablecer</button>
-</div>
-<p class="validation-message" id="validationMessage" role="alert"></p>
-</section>
-<section aria-live="polite" class="result-panel card nel-tool-result">
-<div class="section-title"><span class="section-icon">▥</span><div>
-<h2>Resultado del cálculo</h2>
-<p>CD residual = D × L − compensación. Falla si |residual| supera la tolerancia y avisa por encima del 80 %.</p>
-</div></div>
+<section class="input-panel card nel-tool-input"><div class="fb-panel"><div class="panel-h"><h2>Fibra y transceptor</h2></div><p class="fg-note">Use el modelo G.652 o un coeficiente de hoja de datos, y luego la longitud, la compensación y la tolerancia de CD del receptor.</p><div class="fs"><div class="fg"><p class="fs-t">Fuente</p><div class="fields"><div class="f f-wide field"><label for="projectName">Nombre del proyecto</label><div class="inp input-wrap no-unit"><input id="projectName" type="text" value="Tramo DWDM metropolitano"></div></div><div class="f field"><label for="mode">Origen del coeficiente</label><div class="inp input-wrap no-unit sel"><select id="mode"><option value="model" selected>Modelo ITU-T G.652 D(λ)</option><option value="manual">Valor de hoja de datos</option></select></div></div></div></div><div class="fg"><p class="fs-t">Modelo de dispersión</p><div class="fields"><div class="f field"><label for="wavelength">Longitud de onda λ</label><div class="inp input-wrap"><input id="wavelength" type="number" min="1200" max="1700" step="0.1" value="1550"><u>nm</u></div></div><div class="f field"><label for="lambda0">Longitud de onda de dispersión nula λ0</label><div class="inp input-wrap"><input id="lambda0" type="number" min="1200" max="1700" step="0.1" value="1310"><u>nm</u></div><small>G.652: 1300–1324 nm.</small></div><div class="f field"><label for="s0">Pendiente de dispersión nula S0</label><div class="inp input-wrap wide-unit"><input id="s0" type="number" min="0.001" max="0.2" step="0.001" value="0.092"><u>ps/(nm²·km)</u></div><small>El máximo G.652 es 0,092.</small></div><div class="f field"><label for="manualD">Coeficiente D de hoja de datos</label><div class="inp input-wrap wide-unit"><input id="manualD" type="number" min="-50" max="50" step="0.01" value="17"><u>ps/(nm·km)</u></div><small>Solo con “Valor de hoja de datos”.</small></div></div></div><div class="fg"><p class="fs-t">Tramo y tolerancia</p><div class="fields"><div class="f field"><label for="lengthKm">Longitud de fibra</label><div class="inp input-wrap"><input id="lengthKm" type="number" min="0.001" step="0.001" value="80"><u>km</u></div></div><div class="f field"><label for="compensation">Compensación (DCM/FBG) <span class="required-mark">(Obligatorio)</span></label><div class="inp input-wrap"><input id="compensation" type="number" required aria-required="true" step="1" value="0"><u>ps/nm</u></div><small>Obligatorio: introduzca 0 si no hay compensación. Un valor positivo resta CD positiva.</small></div><div class="f field"><label for="tolerance">Tolerancia de CD del receptor</label><div class="inp input-wrap"><input id="tolerance" type="number" min="1" step="1" value="1600"><u>ps/nm</u></div><small>De la hoja de datos del transceptor.</small></div><div class="f field"><label for="spectralWidth">Ancho espectral Δλ</label><div class="inp input-wrap"><input id="spectralWidth" type="number" min="0" step="0.01" value="0.1"><u>nm</u></div></div></div></div></div><div class="panel-f">
+<button class="btn btn-primary" id="calculateBtn" type="button">Calcular</button>
+<button class="btn btn-ghost" id="resetBtn" type="button">Restablecer</button>
+</div><p class="validation-message" id="validationMessage" role="alert"></p></div></section>
+<section aria-live="polite" class="result-panel card nel-tool-result"><div class="readout"><div class="ro-h"><span>Resultado del cálculo</span></div><p class="fg-note">CD residual = D × L − compensación. Falla si |residual| supera la tolerancia y avisa por encima del 80 %.</p>
+
 <div class="summary-card" id="summaryCard"><div><p>CD residual</p><strong><span id="residualCd">—</span></strong></div><div><p>Margen hasta la tolerancia</p><strong><span id="cdMargin">—</span></strong></div><div class="health-badge" id="healthBadge">—</div></div>
 <div class="metric-grid">
 <article class="metric-card"><div><small>Coeficiente D</small><strong id="dCoef">—</strong></div></article>
@@ -124,37 +106,87 @@
 <article class="metric-card"><div><small>Tolerancia usada</small><strong id="usedPct">—</strong></div></article>
 </div>
 <p class="hint">No incluye PMD, efectos no lineales ni OSNR. Los receptores coherentes con DSP suelen tolerar decenas de miles de ps/nm; use la hoja de datos.</p>
-<div class="result-actions">
+<div class="ro-acts">
 <button id="copyBtn" type="button">Copiar resultado</button>
 <button id="saveBtn" type="button">Guardar registro</button>
 <button id="printBtn" type="button">Imprimir / Exportar PDF</button>
 </div>
-</section>
+</div></section>
 
-</main>
+<div class="tool-head"><div class="crumbs"><a href="../../../es/">Inicio</a>/<span>Calculadora de dispersión cromática</span></div><p class="tool-page-label" role="heading" aria-level="1">Calculadora de dispersión cromática</p><p class="tool-lede">La dispersión cromática (CD) ensancha cada pulso porque las longitudes de onda viajan a velocidades distintas. La fibra G.652 tiene unos 17 ps/(nm·km) a 1550 nm, así que 80 km acumulan unos 1.400 ps/nm. Esta calculadora obtiene D(λ) con el modelo ITU-T G.652, la CD total y residual, el ensanchamiento y el tramo máximo que tolera el transceptor.</p></div></main>
+<div class="below">
+<nav class="toc" aria-label="En esta página">
+<h4>En esta página</h4>
+<a href="#methodology">Metodología y notas de ingeniería</a>
+<a href="#examples">Ejemplos resueltos</a>
+<a href="#limits">Límites y ensanchamiento</a>
+<a href="#faq">Preguntas frecuentes</a>
+<a href="#references">Normas y referencias</a>
+<a href="#nel-tool-graph">Continuar el flujo de ingeniería</a>
+<a href="#history">Cálculos recientes</a>
+</nav>
+<div class="prose">
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Metodología y notas de ingeniería</span></summary>
+<div class="fb-fold-body">
+<section class="content-section methodology nel-tool-supporting-section" id="methodology">
+<div class="section-heading"><div><p class="eyebrow">METODOLOGÍA</p><h2>Metodología y notas de ingeniería</h2></div></div>
+<div class="method-grid"><article><h3>Cómo usar</h3><ol><li>Mantenga el modelo G.652 o elija “Valor de hoja de datos” e introduzca D del cable.</li><li>Introduzca la longitud de onda, la longitud y la compensación DCM o FBG.</li><li>Introduzca la tolerancia de CD del transceptor.</li><li>Lea la CD residual, el margen y la longitud limitada por CD.</li></ol></article><article><h3>Fórmula de dispersión</h3><p>ITU-T G.652 define D(λ) = (S0/4)·(λ − λ0⁴/λ³) ps/(nm·km), con λ0 entre 1300 y 1324 nm y S0 ≤ 0,092 ps/(nm²·km). A 1550 nm con λ0 = 1310 nm y S0 = 0,092 resulta 17,461 ps/(nm·km). CD acumulada = D × L; CD residual = D × L − compensación.</p></article></div>
+
+</section>
+</div>
+</details>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Ejemplos resueltos</span></summary>
+<div class="fb-fold-body">
+<section id="examples" class="content-section nel-tool-supporting-section"><div class="section-heading"><div><p class="eyebrow">Ejemplos resueltos</p><h2>Ejemplos resueltos</h2></div></div><div class="example-box"><h3>Caso práctico: 80 km a 1550 nm</h3><p>Modelo G.652, λ0 1310 nm, S0 0,092: D = 17,461 ps/(nm·km). 80 km dan 1.396,8 ps/nm. Con un receptor de 1.600 ps/nm el margen es 203,2 ps/nm (87,3 % usado, aviso) y la longitud límite 91,63 km. Con Δλ = 0,1 nm el ensanchamiento es 139,68 ps. Con 680 ps/nm de compensación quedan 716,8 ps/nm.</p></div></section>
+</div>
+</details>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Límites y ensanchamiento</span></summary>
+<div class="fb-fold-body">
+<section id="limits" class="content-section nel-tool-supporting-section"><div class="section-heading"><div><p class="eyebrow">Límites</p><h2>Límites y ensanchamiento</h2></div></div><article><p>Las longitudes que mantienen |D × L − C| dentro de la tolerancia T están entre (C·sign(D) − T) / |D| y (C·sign(D) + T) / |D|. Sin compensación el mínimo es 0 y solo se muestra el máximo; un enlace sobrecompensado (por ejemplo D = 17, C = 2.000, T = 400) muestra el intervalo 94,12–141,18 km. El ensanchamiento se estima como |CD residual| × Δλ en ps. El aviso del 80 % es una regla de esta herramienta, no un valor normativo.</p></article></section>
+</div>
+</details>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Preguntas frecuentes</span></summary>
+<div class="fb-fold-body">
+<section id="faq" aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">PREGUNTAS FRECUENTES</p><h2 id="faq-title">Preguntas frecuentes</h2></div></div>
+<div class="faq-grid"><details><summary>¿Cuál es la dispersión de la fibra G.652 a 1550 nm?</summary><p>Unos 17 ps/(nm·km). El modelo ITU-T G.652 con λ0 = 1310 nm y S0 = 0,092 da 17,46 ps/(nm·km); los cables típicos miden 16,5–18.</p></details><details><summary>¿Cómo se calcula la dispersión cromática total?</summary><p>Multiplique el coeficiente por la longitud: CD = D × L. 80 km × 17,46 ps/(nm·km) ≈ 1.397 ps/nm. Reste la compensación DCM o FBG para obtener la residual.</p></details><details><summary>¿Qué tolerancia de CD tienen los módulos de 10G?</summary><p>Depende del módulo. Los 10G de modulación directa suelen indicar unos 800 ps/nm y los de clase ER/ZR unos 1.600 ps/nm. Use siempre la hoja de datos.</p></details><details><summary>¿Importa la dispersión a 1310 nm?</summary><p>Muy poco. 1310 nm está cerca de la longitud de onda de dispersión nula de la fibra G.652, así que D es casi 0.</p></details><details><summary>¿Los módulos coherentes necesitan compensación de dispersión?</summary><p>Normalmente no. El DSP del receptor coherente compensa la CD electrónicamente y tolera decenas de miles de ps/nm.</p></details></div>
+</section>
+</div>
+</details>
+<details class="fb-fold blk" open data-fold-pinned>
+<summary class="fb-fold-sum"><span class="fb-fold-title">Normas y referencias</span></summary>
+<div class="fb-fold-body">
+<section id="references" aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">REFERENCIAS DE INGENIERÍA</p><h2 id="references-title">Normas y referencias</h2></div></div>
+<ul><li><a href="https://www.itu.int/rec/T-REC-G.652/en" rel="noopener">ITU-T G.652 (08/2024): fibra y cable monomodo – §6.10 ecuación (6-1) coeficiente D(λ) = (S0/4)(λ − λ0⁴/λ³); λ0 1300–1324 nm y S0 ≤ 0,092 ps/(nm²·km) en la cláusula 8, tabla 1 (G.652.B) y tabla 2 (G.652.D)</a></li><li><a href="https://www.itu.int/rec/T-REC-G.650.1/en" rel="noopener">ITU-T G.650.1 (01/2024): métodos de prueba de atributos lineales – §6.5 medida de la CD, anexo A ajuste</a></li><li><a href="https://www.itu.int/rec/T-REC-G.691/en" rel="noopener">ITU-T G.691 (03/2006): interfaces ópticas STM-64 monocanal y otros sistemas SDH con amplificadores – §6.3.2.1 dispersión máxima por código de aplicación</a></li><li><a href="https://www.itu.int/rec/T-REC-G.655/en" rel="noopener">ITU-T G.655 (11/2009): fibra de dispersión desplazada no nula – use D de la hoja de datos</a></li></ul>
+<p>Para G.655, G.654 o fibras de fabricante use el coeficiente de hoja de datos; el modelo G.652 es para fibra monomodo estándar. Última revisión: 2026-10-20.</p>
+</section>
+</div>
+</details>
+<details class="fb-fold blk" id="nel-tool-graph">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Continuar el flujo de ingeniería</span></summary>
+<div class="fb-fold-body">
+<!-- NEL_TOOL_GRAPH_START -->
+
+<!-- NEL_TOOL_GRAPH_END -->
+</div>
+</details>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Cálculos recientes</span></summary>
+<div class="fb-fold-body">
 <section class="content-section nel-tool-supporting-section" id="history">
 <div class="section-heading"><div><p class="eyebrow">REGISTROS DEL PROYECTO</p><h2>Cálculos recientes</h2></div>
 <button class="text-button" id="clearHistoryBtn" type="button">Borrar historial</button></div>
 <div class="history-list" id="historyList"></div>
 </section>
-<section class="content-section methodology nel-tool-supporting-section" id="methodology">
-<div class="section-heading"><div><p class="eyebrow">METODOLOGÍA</p><h2>Metodología y notas de ingeniería</h2></div></div>
-<div class="method-grid">
-<article><h3>Cómo usar</h3><ol><li>Mantenga el modelo G.652 o elija “Valor de hoja de datos” e introduzca D del cable.</li><li>Introduzca la longitud de onda, la longitud y la compensación DCM o FBG.</li><li>Introduzca la tolerancia de CD del transceptor.</li><li>Lea la CD residual, el margen y la longitud limitada por CD.</li></ol></article><article><h3>Fórmula de dispersión</h3><p>ITU-T G.652 define D(λ) = (S0/4)·(λ − λ0⁴/λ³) ps/(nm·km), con λ0 entre 1300 y 1324 nm y S0 ≤ 0,092 ps/(nm²·km). A 1550 nm con λ0 = 1310 nm y S0 = 0,092 resulta 17,461 ps/(nm·km). CD acumulada = D × L; CD residual = D × L − compensación.</p></article><article><h3>Límites y ensanchamiento</h3><p>Las longitudes que mantienen |D × L − C| dentro de la tolerancia T están entre (C·sign(D) − T) / |D| y (C·sign(D) + T) / |D|. Sin compensación el mínimo es 0 y solo se muestra el máximo; un enlace sobrecompensado (por ejemplo D = 17, C = 2.000, T = 400) muestra el intervalo 94,12–141,18 km. El ensanchamiento se estima como |CD residual| × Δλ en ps. El aviso del 80 % es una regla de esta herramienta, no un valor normativo.</p></article>
 </div>
-<div class="example-box"><h3>Caso práctico: 80 km a 1550 nm</h3><p>Modelo G.652, λ0 1310 nm, S0 0,092: D = 17,461 ps/(nm·km). 80 km dan 1.396,8 ps/nm. Con un receptor de 1.600 ps/nm el margen es 203,2 ps/nm (87,3 % usado, aviso) y la longitud límite 91,63 km. Con Δλ = 0,1 nm el ensanchamiento es 139,68 ps. Con 680 ps/nm de compensación quedan 716,8 ps/nm.</p></div>
-</section>
-<section aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
-<div class="section-heading"><div><p class="eyebrow">REFERENCIAS DE INGENIERÍA</p><h2 id="references-title">Normas y referencias</h2></div></div>
-<ul><li><a href="https://www.itu.int/rec/T-REC-G.652/en" rel="noopener">ITU-T G.652 (08/2024): fibra y cable monomodo – §6.10 ecuación (6-1) coeficiente D(λ) = (S0/4)(λ − λ0⁴/λ³); λ0 1300–1324 nm y S0 ≤ 0,092 ps/(nm²·km) en la cláusula 8, tabla 1 (G.652.B) y tabla 2 (G.652.D)</a></li><li><a href="https://www.itu.int/rec/T-REC-G.650.1/en" rel="noopener">ITU-T G.650.1 (01/2024): métodos de prueba de atributos lineales – §6.5 medida de la CD, anexo A ajuste</a></li><li><a href="https://www.itu.int/rec/T-REC-G.691/en" rel="noopener">ITU-T G.691 (03/2006): interfaces ópticas STM-64 monocanal y otros sistemas SDH con amplificadores – §6.3.2.1 dispersión máxima por código de aplicación</a></li><li><a href="https://www.itu.int/rec/T-REC-G.655/en" rel="noopener">ITU-T G.655 (11/2009): fibra de dispersión desplazada no nula – use D de la hoja de datos</a></li></ul>
-<p>Para G.655, G.654 o fibras de fabricante use el coeficiente de hoja de datos; el modelo G.652 es para fibra monomodo estándar. Última revisión: 2026-10-20.</p>
-</section>
-<section aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
-<div class="section-heading"><div><p class="eyebrow">PREGUNTAS FRECUENTES</p><h2 id="faq-title">Preguntas frecuentes</h2></div></div>
-<div class="faq-grid"><details><summary>¿Cuál es la dispersión de la fibra G.652 a 1550 nm?</summary><p>Unos 17 ps/(nm·km). El modelo ITU-T G.652 con λ0 = 1310 nm y S0 = 0,092 da 17,46 ps/(nm·km); los cables típicos miden 16,5–18.</p></details><details><summary>¿Cómo se calcula la dispersión cromática total?</summary><p>Multiplique el coeficiente por la longitud: CD = D × L. 80 km × 17,46 ps/(nm·km) ≈ 1.397 ps/nm. Reste la compensación DCM o FBG para obtener la residual.</p></details><details><summary>¿Qué tolerancia de CD tienen los módulos de 10G?</summary><p>Depende del módulo. Los 10G de modulación directa suelen indicar unos 800 ps/nm y los de clase ER/ZR unos 1.600 ps/nm. Use siempre la hoja de datos.</p></details><details><summary>¿Importa la dispersión a 1310 nm?</summary><p>Muy poco. 1310 nm está cerca de la longitud de onda de dispersión nula de la fibra G.652, así que D es casi 0.</p></details><details><summary>¿Los módulos coherentes necesitan compensación de dispersión?</summary><p>Normalmente no. El DSP del receptor coherente compensa la CD electrónicamente y tolera decenas de miles de ps/nm.</p></details></div>
-</section>
-<!-- NEL_TOOL_GRAPH_START -->
-<!-- NEL_TOOL_GRAPH_END -->
+</details>
+</div>
+</div>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">
@@ -172,5 +204,6 @@
 <script defer src="../js/app.js?v=dd824fd802c6"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
 <script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script>
+<script defer src="../../../assets/js/tool-detail-v3.js?v=66984b67ff65"></script>
 </body>
 </html>

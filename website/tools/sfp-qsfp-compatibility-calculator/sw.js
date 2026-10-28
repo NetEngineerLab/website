@@ -1,11 +1,14 @@
 "use strict";
-const CACHE = "nel-sfp-qsfp-compatibility-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-49da2452839c-c2a94a3ef626";
+const CACHE = "nel-sfp-qsfp-compatibility-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-49da2452839c-9f611d2ef658";
 const CORE = [
   "./index.html",
   "./",
   "./zh/",
   "./offline.html",
   "./manifest.webmanifest",
+  "../../assets/css/fieldbook.css?v=a3bb21511014",
+  "../../assets/css/tool-layout.css?v=dfdd771763d6",
+  "../../assets/js/tool-detail-v3.js?v=66984b67ff65",
   "./css/style.css?v=2157c7f32387",
   "./js/engine.js",
   "./js/app.js?v=c6b74f3f6318",

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0b6ffb">
+<meta name="theme-color" content="#16140F">
 <title>Calculadora de presupuesto PMD – DGD medio, ps/√km y longitud límite</title>
 <meta name="description" content="Calcula la dispersión por modo de polarización: DGD medio = coeficiente PMD × √longitud, componentes en cuadratura, DGD admisible por periodo de símbolo, margen y longitud límite.">
 <link rel="stylesheet" href="../css/style.css?v=48c7b72aa30f">
@@ -24,6 +24,9 @@
 <meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 
 <link rel="stylesheet" href="/assets/css/cookie-consent.css?v=8dd1728bf5eb">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Calculadora de presupuesto PMD – DGD medio, ps/√km y longitud límite","url":"https://netengineerlab.com/tools/pmd-budget-calculator/es/","description":"Calcula la dispersión por modo de polarización: DGD medio = coeficiente PMD × √longitud, componentes en cuadratura, DGD admisible por periodo de símbolo, margen y longitud límite.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="es">
@@ -48,7 +51,8 @@
 <link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=dfdd771763d6">
 <link rel="manifest" href="../manifest-es.webmanifest">
 </head>
-<body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<body class="nel-tool-detail-page nel-opb-v3 nel-fieldbook nel-tool-v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<link rel="stylesheet" href="../../../assets/css/fieldbook.css?v=a3bb21511014">
 <a class="skip-link" href="#calculator">Saltar a la calculadora</a>
 <noscript><div class="noscript">Se necesita JavaScript para ejecutar esta calculadora.</div></noscript>
 <!-- NEL_HEADER_START -->
@@ -87,32 +91,12 @@
 <p>La dispersión por modo de polarización (PMD) hace que los dos modos de polarización lleguen con un pequeño retardo. A diferencia de la CD crece con la raíz de la longitud: un enlace G.652.D de 0,20 ps/√km alcanza unos 1,8 ps de DGD medio en 80 km. Esta calculadora suma el DGD de fibra y componentes, lo compara con la tolerancia y halla la longitud límite.</p>
 <div class="hero-tags"><span>DGD medio</span><span>ps/√km</span><span>Suma en cuadratura</span><span>Longitud límite</span></div></div></section>
 <main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
-<section class="input-panel card nel-tool-input">
-<div class="section-title"><span class="section-icon">☷</span><div>
-<h2>Enlace y señal</h2>
-<p>Introduzca el coeficiente PMD y la longitud, los componentes con PMD propia y la velocidad de símbolos.</p>
-</div></div>
-<div class="form-grid">
-<div class="field"><label for="projectName">Nombre del proyecto</label><div class="input-wrap no-unit"><input id="projectName" type="text" value="Tramo 10G de larga distancia"></div></div>
-<div class="field"><label for="pmdCoef">Coeficiente PMD de la fibra</label><div class="input-wrap"><input id="pmdCoef" type="number" min="0" max="5" step="0.01" value="0.2"><span>ps/√km</span></div><p class="hint">Valor de diseño G.652.D PMDQ ≤ 0,20 ps/√km.</p></div>
-<div class="field"><label for="lengthKm">Longitud de fibra</label><div class="input-wrap"><input id="lengthKm" type="number" min="0.001" step="0.001" value="80"><span>km</span></div></div>
-<div class="field"><label for="componentCount">Componentes con PMD (amplificadores, DCM, ROADM)</label><div class="input-wrap no-unit"><input id="componentCount" type="number" min="0" step="1" value="4"></div></div>
-<div class="field"><label for="componentPmd">DGD medio por componente</label><div class="input-wrap"><input id="componentPmd" type="number" min="0" step="0.01" value="0.1"><span>ps</span></div><p class="hint">De la hoja de datos del componente.</p></div>
-<div class="field"><label for="symbolRate">Velocidad de símbolos</label><div class="input-wrap"><input id="symbolRate" type="number" min="0.001" step="0.0001" value="10.3125"><span>GBd</span></div><p class="hint">10GBASE-R es 10,3125 GBd.</p></div>
-<div class="field"><label for="tolerancePct">DGD medio admisible (% del periodo)</label><div class="input-wrap"><input id="tolerancePct" type="number" min="0.1" max="100" step="0.1" value="10"><span>%</span></div><p class="hint">El 10 % es la regla habitual para NRZ (≈1 dB).</p></div>
-<div class="field"><label for="maxRatio">Relación DGD máximo/medio</label><div class="input-wrap"><input id="maxRatio" type="number" min="1" max="10" step="0.1" value="3"><span>×</span></div><p class="hint">3,0 ≈ probabilidad de 4×10⁻⁵ en una distribución de Maxwell.</p></div>
-</div>
-<div class="actions">
-<button class="primary-action" id="calculateBtn" type="button">Calcular</button>
-<button class="secondary-action" id="resetBtn" type="button">Restablecer</button>
-</div>
-<p class="validation-message" id="validationMessage" role="alert"></p>
-</section>
-<section aria-live="polite" class="result-panel card nel-tool-result">
-<div class="section-title"><span class="section-icon">▥</span><div>
-<h2>Resultado del cálculo</h2>
-<p>DGD medio = √((PMD × √L)² + n × componente²). Falla por encima del admisible y avisa por encima del 80 %.</p>
-</div></div>
+<section class="input-panel card nel-tool-input"><div class="fb-panel"><div class="panel-h"><h2>Enlace y señal</h2></div><p class="fg-note">Introduzca el coeficiente PMD y la longitud, los componentes con PMD propia y la velocidad de símbolos.</p><div class="fs"><div class="fg"><p class="fs-t">Fibra</p><div class="fields"><div class="f f-wide field"><label for="projectName">Nombre del proyecto</label><div class="inp input-wrap no-unit"><input id="projectName" type="text" value="Tramo 10G de larga distancia"></div></div><div class="f field"><label for="pmdCoef">Coeficiente PMD de la fibra</label><div class="inp input-wrap"><input id="pmdCoef" type="number" min="0" max="5" step="0.01" value="0.2"><u>ps/√km</u></div><small>Valor de diseño G.652.D PMDQ ≤ 0,20 ps/√km.</small></div><div class="f field"><label for="lengthKm">Longitud de fibra</label><div class="inp input-wrap"><input id="lengthKm" type="number" min="0.001" step="0.001" value="80"><u>km</u></div></div></div></div><div class="fg"><p class="fs-t">Componentes</p><div class="fields"><div class="f field"><label for="componentCount">Componentes con PMD (amplificadores, DCM, ROADM)</label><div class="inp input-wrap no-unit"><input id="componentCount" type="number" min="0" step="1" value="4"></div></div><div class="f field"><label for="componentPmd">DGD medio por componente</label><div class="inp input-wrap"><input id="componentPmd" type="number" min="0" step="0.01" value="0.1"><u>ps</u></div><small>De la hoja de datos del componente.</small></div></div></div><div class="fg"><p class="fs-t">Señal</p><div class="fields"><div class="f field"><label for="symbolRate">Velocidad de símbolos</label><div class="inp input-wrap"><input id="symbolRate" type="number" min="0.001" step="0.0001" value="10.3125"><u>GBd</u></div><small>10GBASE-R es 10,3125 GBd.</small></div><div class="f field"><label for="tolerancePct">DGD medio admisible (% del periodo)</label><div class="inp input-wrap"><input id="tolerancePct" type="number" min="0.1" max="100" step="0.1" value="10"><u>%</u></div><small>El 10 % es la regla habitual para NRZ (≈1 dB).</small></div><div class="f field"><label for="maxRatio">Relación DGD máximo/medio</label><div class="inp input-wrap"><input id="maxRatio" type="number" min="1" max="10" step="0.1" value="3"><u>×</u></div><small>3,0 ≈ probabilidad de 4×10⁻⁵ en una distribución de Maxwell.</small></div></div></div></div><div class="panel-f">
+<button class="btn btn-primary" id="calculateBtn" type="button">Calcular</button>
+<button class="btn btn-ghost" id="resetBtn" type="button">Restablecer</button>
+</div><p class="validation-message" id="validationMessage" role="alert"></p></div></section>
+<section aria-live="polite" class="result-panel card nel-tool-result"><div class="readout"><div class="ro-h"><span>Resultado del cálculo</span></div><p class="fg-note">DGD medio = √((PMD × √L)² + n × componente²). Falla por encima del admisible y avisa por encima del 80 %.</p>
+
 <div class="summary-card" id="summaryCard"><div><p>DGD medio del enlace</p><strong><span id="meanDgd">—</span></strong></div><div><p>Margen hasta el DGD admisible</p><strong><span id="dgdMargin">—</span></strong></div><div class="health-badge" id="healthBadge">—</div></div>
 <div class="metric-grid">
 <article class="metric-card"><div><small>DGD medio de la fibra</small><strong id="fiberDgd">—</strong></div></article>
@@ -123,37 +107,87 @@
 <article class="metric-card"><div><small>Presupuesto usado</small><strong id="usedPct">—</strong></div></article>
 </div>
 <p class="hint">La PMD es estadística y cambia con la temperatura y la manipulación. Los receptores coherentes compensan el DGD en el DSP; use su tolerancia de hoja de datos.</p>
-<div class="result-actions">
+<div class="ro-acts">
 <button id="copyBtn" type="button">Copiar resultado</button>
 <button id="saveBtn" type="button">Guardar registro</button>
 <button id="printBtn" type="button">Imprimir / Exportar PDF</button>
 </div>
-</section>
+</div></section>
 
-</main>
+<div class="tool-head"><div class="crumbs"><a href="../../../es/">Inicio</a>/<span>Calculadora de presupuesto PMD</span></div><p class="tool-page-label" role="heading" aria-level="1">Calculadora de presupuesto PMD</p><p class="tool-lede">La dispersión por modo de polarización (PMD) hace que los dos modos de polarización lleguen con un pequeño retardo. A diferencia de la CD crece con la raíz de la longitud: un enlace G.652.D de 0,20 ps/√km alcanza unos 1,8 ps de DGD medio en 80 km. Esta calculadora suma el DGD de fibra y componentes, lo compara con la tolerancia y halla la longitud límite.</p></div></main>
+<div class="below">
+<nav class="toc" aria-label="En esta página">
+<h4>En esta página</h4>
+<a href="#methodology">Metodología y notas de ingeniería</a>
+<a href="#examples">Ejemplos resueltos</a>
+<a href="#limits">Límites</a>
+<a href="#faq">Preguntas frecuentes</a>
+<a href="#references">Normas y referencias</a>
+<a href="#nel-tool-graph">Continuar el flujo de ingeniería</a>
+<a href="#history">Cálculos recientes</a>
+</nav>
+<div class="prose">
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Metodología y notas de ingeniería</span></summary>
+<div class="fb-fold-body">
+<section class="content-section methodology nel-tool-supporting-section" id="methodology">
+<div class="section-heading"><div><p class="eyebrow">METODOLOGÍA</p><h2>Metodología y notas de ingeniería</h2></div></div>
+<div class="method-grid"><article><h3>Cómo usar</h3><ol><li>Introduzca el coeficiente PMD (valor de diseño PMDQ del cable) y la longitud.</li><li>Añada el número y el DGD medio de amplificadores, DCM y otros componentes.</li><li>Introduzca la velocidad de símbolos y el DGD admisible como % del periodo.</li><li>Lea el DGD medio, el margen y la longitud limitada por PMD.</li></ol></article><article><h3>Fórmula de DGD</h3><p>DGD medio de la fibra = coeficiente PMD × √L (ps), porque la PMD se acumula como un paseo aleatorio. Las secciones independientes se suman en cuadratura: total = √(fibra² + Σ componente²). El periodo es 1000 / velocidad en GBd (ps); el DGD admisible es ese periodo × el porcentaje elegido.</p></article></div>
+
+</section>
+</div>
+</details>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Ejemplos resueltos</span></summary>
+<div class="fb-fold-body">
+<section id="examples" class="content-section nel-tool-supporting-section"><div class="section-heading"><div><p class="eyebrow">Ejemplos resueltos</p><h2>Ejemplos resueltos</h2></div></div><div class="example-box"><h3>Caso práctico: 80 km a 10,3125 GBd</h3><p>0,20 ps/√km × √80 = 1,789 ps. Cuatro componentes de 0,1 ps añaden 0,04 ps²: DGD medio 1,800 ps. El periodo es 96,97 ps, así que el 10 % admite 9,70 ps y el margen es 7,897 ps (18,6 % usado). Máximo de diseño ≈ 5,40 ps. Longitud limitada por PMD ≈ 2.350 km.</p></div></section>
+</div>
+</details>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Límites</span></summary>
+<div class="fb-fold-body">
+<section id="limits" class="content-section nel-tool-supporting-section"><div class="section-heading"><div><p class="eyebrow">Límites</p><h2>Límites</h2></div></div><article><p>Longitud limitada por PMD = (admisible² − Σ componente²) / PMD². El DGD instantáneo sigue una distribución de Maxwell, por lo que se usa una relación máximo/medio de unos 3. El aviso del 80 % es una regla de esta herramienta.</p></article></section>
+</div>
+</details>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Preguntas frecuentes</span></summary>
+<div class="fb-fold-body">
+<section id="faq" aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">PREGUNTAS FRECUENTES</p><h2 id="faq-title">Preguntas frecuentes</h2></div></div>
+<div class="faq-grid"><details><summary>¿Cómo se calcula la PMD de un enlace?</summary><p>DGD medio = coeficiente PMD × √longitud. 0,20 ps/√km en 80 km son 0,2 × 8,94 = 1,79 ps. El DGD de componentes se suma en cuadratura.</p></details><details><summary>¿Cuál es el límite de PMD para 10G?</summary><p>Con la regla del 10 % del periodo, 10,3125 GBd admite unos 9,7 ps de DGD medio. Una fibra antigua de 0,5 ps/√km lo alcanza en unos 376 km.</p></details><details><summary>¿Por qué la PMD crece con la raíz de la longitud?</summary><p>La birrefringencia cambia al azar a lo largo de la fibra, así que el retardo se acumula como un paseo aleatorio, proporcional a √L.</p></details><details><summary>¿Qué diferencia hay entre PMD y DGD?</summary><p>El DGD es el retardo instantáneo entre los dos modos. La PMD es su valor medio en longitud de onda y tiempo; el coeficiente es ese medio por √km.</p></details><details><summary>¿Importa la PMD en 100G o 400G coherente?</summary><p>Mucho menos. Los DSP coherentes compensan decenas de ps de DGD, por lo que una fibra que limita 10G NRZ puede seguir llevando canales coherentes.</p></details></div>
+</section>
+</div>
+</details>
+<details class="fb-fold blk" open data-fold-pinned>
+<summary class="fb-fold-sum"><span class="fb-fold-title">Normas y referencias</span></summary>
+<div class="fb-fold-body">
+<section id="references" aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">REFERENCIAS DE INGENIERÍA</p><h2 id="references-title">Normas y referencias</h2></div></div>
+<ul><li><a href="https://www.itu.int/rec/T-REC-G.652/en" rel="noopener">ITU-T G.652 (08/2024): §7.2 y tablas 1/2: PMDQ máximo de diseño 0,20 ps/√km para G.652.B/D (M = 20 cables, Q = 0,01 %)</a></li><li><a href="https://www.itu.int/rec/T-REC-G.650.2/en" rel="noopener">ITU-T G.650.2 (08/2015): definiciones y métodos de prueba de atributos estadísticos y no lineales, incluida la PMD</a></li><li><a href="https://webstore.iec.ch/en/publication/5103" rel="noopener">IEC TR 61282-3 ed. 2.0 (2006-10): cálculo de la PMD del enlace – suma cuadrática de DGD de fibra y componentes (cláusula 2)</a></li></ul>
+<p>La regla del 10 % del periodo para NRZ y la relación máximo/medio de unos 3 son convenciones de ingeniería; confirme la tolerancia DGD en la hoja de datos. Última revisión: 2026-10-20.</p>
+</section>
+</div>
+</details>
+<details class="fb-fold blk" id="nel-tool-graph">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Continuar el flujo de ingeniería</span></summary>
+<div class="fb-fold-body">
+<!-- NEL_TOOL_GRAPH_START -->
+
+<!-- NEL_TOOL_GRAPH_END -->
+</div>
+</details>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Cálculos recientes</span></summary>
+<div class="fb-fold-body">
 <section class="content-section nel-tool-supporting-section" id="history">
 <div class="section-heading"><div><p class="eyebrow">REGISTROS DEL PROYECTO</p><h2>Cálculos recientes</h2></div>
 <button class="text-button" id="clearHistoryBtn" type="button">Borrar historial</button></div>
 <div class="history-list" id="historyList"></div>
 </section>
-<section class="content-section methodology nel-tool-supporting-section" id="methodology">
-<div class="section-heading"><div><p class="eyebrow">METODOLOGÍA</p><h2>Metodología y notas de ingeniería</h2></div></div>
-<div class="method-grid">
-<article><h3>Cómo usar</h3><ol><li>Introduzca el coeficiente PMD (valor de diseño PMDQ del cable) y la longitud.</li><li>Añada el número y el DGD medio de amplificadores, DCM y otros componentes.</li><li>Introduzca la velocidad de símbolos y el DGD admisible como % del periodo.</li><li>Lea el DGD medio, el margen y la longitud limitada por PMD.</li></ol></article><article><h3>Fórmula de DGD</h3><p>DGD medio de la fibra = coeficiente PMD × √L (ps), porque la PMD se acumula como un paseo aleatorio. Las secciones independientes se suman en cuadratura: total = √(fibra² + Σ componente²). El periodo es 1000 / velocidad en GBd (ps); el DGD admisible es ese periodo × el porcentaje elegido.</p></article><article><h3>Límites</h3><p>Longitud limitada por PMD = (admisible² − Σ componente²) / PMD². El DGD instantáneo sigue una distribución de Maxwell, por lo que se usa una relación máximo/medio de unos 3. El aviso del 80 % es una regla de esta herramienta.</p></article>
 </div>
-<div class="example-box"><h3>Caso práctico: 80 km a 10,3125 GBd</h3><p>0,20 ps/√km × √80 = 1,789 ps. Cuatro componentes de 0,1 ps añaden 0,04 ps²: DGD medio 1,800 ps. El periodo es 96,97 ps, así que el 10 % admite 9,70 ps y el margen es 7,897 ps (18,6 % usado). Máximo de diseño ≈ 5,40 ps. Longitud limitada por PMD ≈ 2.350 km.</p></div>
-</section>
-<section aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
-<div class="section-heading"><div><p class="eyebrow">REFERENCIAS DE INGENIERÍA</p><h2 id="references-title">Normas y referencias</h2></div></div>
-<ul><li><a href="https://www.itu.int/rec/T-REC-G.652/en" rel="noopener">ITU-T G.652 (08/2024): §7.2 y tablas 1/2: PMDQ máximo de diseño 0,20 ps/√km para G.652.B/D (M = 20 cables, Q = 0,01 %)</a></li><li><a href="https://www.itu.int/rec/T-REC-G.650.2/en" rel="noopener">ITU-T G.650.2 (08/2015): definiciones y métodos de prueba de atributos estadísticos y no lineales, incluida la PMD</a></li><li><a href="https://webstore.iec.ch/en/publication/5103" rel="noopener">IEC TR 61282-3 ed. 2.0 (2006-10): cálculo de la PMD del enlace – suma cuadrática de DGD de fibra y componentes (cláusula 2)</a></li></ul>
-<p>La regla del 10 % del periodo para NRZ y la relación máximo/medio de unos 3 son convenciones de ingeniería; confirme la tolerancia DGD en la hoja de datos. Última revisión: 2026-10-20.</p>
-</section>
-<section aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
-<div class="section-heading"><div><p class="eyebrow">PREGUNTAS FRECUENTES</p><h2 id="faq-title">Preguntas frecuentes</h2></div></div>
-<div class="faq-grid"><details><summary>¿Cómo se calcula la PMD de un enlace?</summary><p>DGD medio = coeficiente PMD × √longitud. 0,20 ps/√km en 80 km son 0,2 × 8,94 = 1,79 ps. El DGD de componentes se suma en cuadratura.</p></details><details><summary>¿Cuál es el límite de PMD para 10G?</summary><p>Con la regla del 10 % del periodo, 10,3125 GBd admite unos 9,7 ps de DGD medio. Una fibra antigua de 0,5 ps/√km lo alcanza en unos 376 km.</p></details><details><summary>¿Por qué la PMD crece con la raíz de la longitud?</summary><p>La birrefringencia cambia al azar a lo largo de la fibra, así que el retardo se acumula como un paseo aleatorio, proporcional a √L.</p></details><details><summary>¿Qué diferencia hay entre PMD y DGD?</summary><p>El DGD es el retardo instantáneo entre los dos modos. La PMD es su valor medio en longitud de onda y tiempo; el coeficiente es ese medio por √km.</p></details><details><summary>¿Importa la PMD en 100G o 400G coherente?</summary><p>Mucho menos. Los DSP coherentes compensan decenas de ps de DGD, por lo que una fibra que limita 10G NRZ puede seguir llevando canales coherentes.</p></details></div>
-</section>
-<!-- NEL_TOOL_GRAPH_START -->
-<!-- NEL_TOOL_GRAPH_END -->
+</details>
+</div>
+</div>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">
@@ -171,5 +205,6 @@
 <script defer src="../js/app.js?v=4b7d55cfc706"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
 <script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script>
+<script defer src="../../../assets/js/tool-detail-v3.js?v=66984b67ff65"></script>
 </body>
 </html>
