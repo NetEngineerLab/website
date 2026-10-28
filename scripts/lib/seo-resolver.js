@@ -281,7 +281,7 @@ function stripFaqNodes(node) {
   return copy;
 }
 
-const DETAILS_RE = /<details\b[^>]*>[\s\S]*?<summary\b[^>]*>([\s\S]*?)<\/summary>[\s\S]*?<p\b[^>]*>([\s\S]*?)<\/p>[\s\S]*?<\/details>/gi;
+const DETAILS_RE = /<details\b(?![^>]*\bfb-fold\b)[^>]*>[\s\S]*?<summary\b[^>]*>([\s\S]*?)<\/summary>[\s\S]*?<p\b[^>]*>([\s\S]*?)<\/p>[\s\S]*?<\/details>/gi;
 const FAQ_HEADING_SOURCE = "<h([1-3])\\b[^>]*>\\s*(Frequently asked questions|常见问题|Preguntas frecuentes)(?:\\s+[^<]{0,40})?\\s*<\\/h\\1>";
 const INJECTED_FAQ_RE = /<section\b[^>]*\bdata-nel-faq\s*=\s*["']visible["'][^>]*>[\s\S]*?<\/section>\s*/gi;
 

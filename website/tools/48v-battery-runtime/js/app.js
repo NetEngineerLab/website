@@ -78,9 +78,9 @@ function addEquipment(id="olt-chassis",qty=1,amps){
 function renderEquipment(){
  const body=$("equipmentBody");
  body.innerHTML=state.rows.map(row=>`<tr data-uid="${row.uid}">
-  <td data-label="${T.equipment}"><select class="eq-type">${equipmentOptions(row.id)}</select></td>
-  <td data-label="${T.quantity}"><input class="eq-qty" type="number" min="0" step="1" value="${row.qty}"></td>
-  <td data-label="${T.unitCurrent}"><div class="input-wrap compact"><input class="eq-amps" type="number" min="0" step="0.1" value="${row.amps}"><span>A</span></div></td>
+  <td data-label="${T.equipment}"><div class="inp input-wrap no-unit sel"><select class="eq-type" aria-label="${T.equipment}">${equipmentOptions(row.id)}</select></div></td>
+  <td data-label="${T.quantity}"><div class="inp input-wrap no-unit"><input class="eq-qty" aria-label="${T.quantity}" type="number" min="0" step="1" value="${row.qty}"></div></td>
+  <td data-label="${T.unitCurrent}"><div class="input-wrap inp compact"><input class="eq-amps" aria-label="${T.unitCurrent}" type="number" min="0" step="0.1" value="${row.amps}"><span>A</span></div></td>
   <td data-label="${T.totalCurrent}" class="eq-total">${format(row.qty*row.amps,1)} A</td>
   <td><button type="button" class="remove-row" aria-label="${T.remove}">×</button></td>
  </tr>`).join("");

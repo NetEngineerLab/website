@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="es" dir="ltr" data-nel-locale="es" data-nel-route="tools/48v-battery-runtime/"><head>
-<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="../" name="app-base"/>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#16140F" name="theme-color"/><meta content="../" name="app-base"/>
 <title>Autonomía de batería -48 V telecom | NetEngineerLab</title><meta content="Calcula la autonomía, la capacidad y las cadenas en paralelo de baterías de -48 V para OLT, BBU, transporte y equipos de núcleo." name="description"/><meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
 <meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="Autonomía de batería -48 V telecom | NetEngineerLab" property="og:title"/><meta content="Calcula la autonomía, la capacidad y las cadenas en paralelo de baterías de -48 V para OLT, BBU, transporte y equipos de núcleo." property="og:description"/><meta content="https://netengineerlab.com/tools/48v-battery-runtime/es/" property="og:url"/><meta content="https://netengineerlab.com/tools/48v-battery-runtime/images/og-48v-battery-runtime.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
 <link href="../css/style.css?v=615b07db9494" rel="stylesheet"/>
@@ -18,6 +18,9 @@
 <meta name="twitter:description" content="Calcula la autonomía, la capacidad y las cadenas en paralelo de baterías de -48 V para OLT, BBU, transporte y equipos de núcleo.">
 <meta name="twitter:image" content="https://netengineerlab.com/tools/48v-battery-runtime/images/og-48v-battery-runtime.png">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Autonomía de batería -48 V telecom | NetEngineerLab","url":"https://netengineerlab.com/tools/48v-battery-runtime/es/","description":"Calcula la autonomía, la capacidad y las cadenas en paralelo de baterías de -48 V para OLT, BBU, transporte y equipos de núcleo.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="es">
@@ -41,7 +44,8 @@
 <script defer src="../../../assets/js/es-launch-runtime.js?v=26766a85d049"></script>
 <link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=dfdd771763d6">
 <link rel="manifest" href="../manifest-es.webmanifest">
-</head><body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+</head><body class="nel-opb-v3 nel-fieldbook nel-tool-v3 nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<link rel="stylesheet" href="../../../assets/css/fieldbook.css?v=a3bb21511014">
 <a class="skip" href="#calculator">Ir a la calculadora</a><noscript><div class="noscript">JavaScript required / 本工具需要启用JavaScript。</div></noscript>
 <!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
@@ -75,42 +79,42 @@
 <!-- NEL_TOOL_RETURN_END -->
 <section class="hero nel-tool-hero"><div class="hero-inner"><p class="eyebrow">HERRAMIENTA DE POTENCIA DC DE TELECOMUNICACIONES</p><h1>Calculadora de autonomía de batería telecom -48 V</h1><p>Estime la autonomía de la batería, la capacidad necesaria, las cadenas en paralelo y el aumento de corriente de descarga para sitios de OLT, BBU, transporte, núcleo y acceso.</p><div class="hero-tags"><span>Elementos de 2 V × 24</span><span>Potencia/corriente constante</span><span>Temperatura y envejecimiento</span><span>Dimensionamiento inverso</span></div></div></section>
 <main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
-<section class="input-panel card nel-tool-input"><div class="section-title"><span class="section-icon">48</span><div><h2>Parámetros del banco de baterías y de la carga</h2><p>Seleccione un preajuste de ingeniería y sustitúyalo por los datos reales de la batería y del equipo.</p></div></div><div class="notice">Todos los valores por defecto son preajustes de ingeniería editables, no normas universales. El dimensionamiento final debe usar las curvas de descarga del fabricante, la tensión final y la carga medida del sitio.</div>
-<div class="form-grid">
-<div class="field full"><label for="projectName">Nombre del proyecto</label><div class="input-wrap"><input id="projectName" value="Diseño de respaldo DC telecom"/></div></div>
-<div class="field"><label for="batteryPreset">Preajuste de batería</label><div class="input-wrap no-unit"><select id="batteryPreset"></select></div></div>
-<div class="field"><label for="model">Modelo de cálculo</label><div class="input-wrap no-unit"><select id="model"><option value="peukert">Estimación ajustada por Peukert</option><option value="simple">Modelo simplificado de Ah/energía</option></select></div></div>
+<section class="input-panel card nel-tool-input"><div class="fb-panel"><div class="panel-h"><h2>Parámetros del banco de baterías y de la carga</h2></div><div class="fs"><p>Seleccione un preajuste de ingeniería y sustitúyalo por los datos reales de la batería y del equipo.</p><div class="notice">Todos los valores por defecto son preajustes de ingeniería editables, no normas universales. El dimensionamiento final debe usar las curvas de descarga del fabricante, la tensión final y la carga medida del sitio.</div>
+<div class="form-grid fields">
+<div class="f field full f-wide"><label for="projectName">Nombre del proyecto</label><div class="input-wrap inp"><input id="projectName" value="Diseño de respaldo DC telecom"/></div></div>
+<div class="f field"><label for="batteryPreset">Preajuste de batería</label><div class="input-wrap no-unit inp sel"><select id="batteryPreset"></select></div></div>
+<div class="f field"><label for="model">Modelo de cálculo</label><div class="input-wrap no-unit inp sel"><select id="model"><option value="peukert">Estimación ajustada por Peukert</option><option value="simple">Modelo simplificado de Ah/energía</option></select></div></div>
 <div class="subheading">Estructura del banco de baterías</div>
-<div class="field"><label for="nominalCellV">Tensión nominal del elemento</label><div class="input-wrap"><input id="nominalCellV" min="0.1" step="0.01" type="number"/><span>V</span></div></div>
-<div class="field"><label for="floatCellV">Tensión de flotación de referencia por elemento</label><div class="input-wrap"><input id="floatCellV" min="0.1" step="0.01" type="number"/><span>V</span></div></div>
-<div class="field"><label for="startCellV">Tensión de inicio de descarga por elemento</label><div class="input-wrap"><input id="startCellV" min="0.1" step="0.01" type="number"/><span>V</span></div></div>
-<div class="field"><label for="cutoffCellV">Tensión final por elemento</label><div class="input-wrap"><input id="cutoffCellV" min="0.1" step="0.01" type="number"/><span>V</span></div></div>
-<div class="field"><label for="seriesCells">Elementos en serie por cadena</label><div class="input-wrap"><input id="seriesCells" min="1" step="1" type="number"/><span>elementos</span></div></div>
-<div class="field"><label for="parallelStrings">Cadenas en paralelo</label><div class="input-wrap"><input id="parallelStrings" min="1" step="1" type="number" value="2"/><span>cadenas</span></div></div>
-<div class="field"><label for="capacityAh">Capacidad nominal por cadena</label><div class="input-wrap"><input id="capacityAh" min="1" step="1" type="number"/><span>Ah</span></div></div>
-<div class="field"><label for="ratedHours">Duración de la capacidad nominal</label><div class="input-wrap"><input id="ratedHours" min=".1" step=".1" type="number"/><span>h</span></div></div>
+<div class="f field"><label for="nominalCellV">Tensión nominal del elemento</label><div class="input-wrap inp"><input id="nominalCellV" min="0.1" step="0.01" type="number"/><span>V</span></div></div>
+<div class="f field"><label for="floatCellV">Tensión de flotación de referencia por elemento</label><div class="input-wrap inp"><input id="floatCellV" min="0.1" step="0.01" type="number"/><span>V</span></div></div>
+<div class="f field"><label for="startCellV">Tensión de inicio de descarga por elemento</label><div class="input-wrap inp"><input id="startCellV" min="0.1" step="0.01" type="number"/><span>V</span></div></div>
+<div class="f field"><label for="cutoffCellV">Tensión final por elemento</label><div class="input-wrap inp"><input id="cutoffCellV" min="0.1" step="0.01" type="number"/><span>V</span></div></div>
+<div class="f field"><label for="seriesCells">Elementos en serie por cadena</label><div class="input-wrap inp"><input id="seriesCells" min="1" step="1" type="number"/><span>elementos</span></div></div>
+<div class="f field"><label for="parallelStrings">Cadenas en paralelo</label><div class="input-wrap inp"><input id="parallelStrings" min="1" step="1" type="number" value="2"/><span>cadenas</span></div></div>
+<div class="f field"><label for="capacityAh">Capacidad nominal por cadena</label><div class="input-wrap inp"><input id="capacityAh" min="1" step="1" type="number"/><span>Ah</span></div></div>
+<div class="f field"><label for="ratedHours">Duración de la capacidad nominal</label><div class="input-wrap inp"><input id="ratedHours" min=".1" step=".1" type="number"/><span>h</span></div></div>
 </div>
 <button aria-expanded="false" class="advanced-toggle" data-advanced-toggle="" type="button">Parámetros avanzados de descarga ▾</button>
-<div class="advanced-panel" hidden="" id="advancedPanel"><div class="form-grid">
-<div class="field"><label for="peukertExponent">Exponente de Peukert</label><div class="input-wrap"><input id="peukertExponent" max="1.5" min="1" step=".01" type="number"/></div></div>
-<div class="field"><label for="chemistry">Química de la batería</label><div class="input-wrap no-unit"><select id="chemistry"><option value="lead-acid">Plomo-ácido</option><option value="lifepo4">LiFePO₄</option><option value="custom">Personalizado</option></select></div></div>
+<div class="advanced-panel" hidden="" id="advancedPanel"><div class="form-grid fields">
+<div class="f field"><label for="peukertExponent">Exponente de Peukert</label><div class="input-wrap inp"><input id="peukertExponent" max="1.5" min="1" step=".01" type="number"/></div></div>
+<div class="f field"><label for="chemistry">Química de la batería</label><div class="input-wrap no-unit inp sel"><select id="chemistry"><option value="lead-acid">Plomo-ácido</option><option value="lifepo4">LiFePO₄</option><option value="custom">Personalizado</option></select></div></div>
 </div></div>
-<div class="load-selector"><div class="subheading">Carga de equipos de telecomunicaciones</div><div class="form-grid">
-<div class="field full"><label for="loadMode">Modo de entrada de carga</label><div class="input-wrap no-unit"><select id="loadMode"><option value="equipment">Lista de corrientes de equipos</option><option value="current">Corriente total directa</option></select></div></div>
-<div class="field full" hidden="" id="currentField"><label for="loadCurrentA">Corriente total de equipos de telecomunicaciones</label><div class="input-wrap"><input id="loadCurrentA" min="0" type="number" value="50"/><span>A</span></div></div>
+<div class="load-selector"><div class="subheading">Carga de equipos de telecomunicaciones</div><div class="form-grid fields">
+<div class="f field full f-wide"><label for="loadMode">Modo de entrada de carga</label><div class="input-wrap no-unit inp sel"><select id="loadMode"><option value="equipment">Lista de corrientes de equipos</option><option value="current">Corriente total directa</option></select></div></div>
+<div class="f field full f-wide" hidden="" id="currentField"><label for="loadCurrentA">Corriente total de equipos de telecomunicaciones</label><div class="input-wrap inp"><input id="loadCurrentA" min="0" type="number" value="50"/><span>A</span></div></div>
 </div>
 <div class="equipment-wrap" id="equipmentSection"><div class="equipment-head"><h3>Lista de corrientes de equipos</h3><button id="addEquipmentBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 5v14M5 12h14"></path></svg> Añadir equipo</button></div><div class="table-scroll"><table class="equipment-table"><thead><tr><th>Equipo</th><th>Cant.</th><th>Corriente unitaria</th><th>Corriente total</th><th></th></tr></thead><tbody id="equipmentBody"></tbody></table></div><div class="equipment-total"><span>Total</span><strong id="equipmentTotal">0 A</strong></div></div></div>
-<div class="subheading">Correcciones de diseño y de capacidad</div><div class="form-grid">
-<div class="field"><label for="loadMarginPct">Crecimiento de carga / margen de diseño</label><div class="input-wrap"><input id="loadMarginPct" min="0" step="1" type="number" value="15"/><span>%</span></div></div>
-<div class="field"><label for="pathEfficiencyPct">Eficiencia del camino DC</label><div class="input-wrap"><input id="pathEfficiencyPct" max="100" min="1" step=".1" type="number"/><span>%</span></div></div>
-<div class="field"><label for="dodPct">Profundidad útil permitida</label><div class="input-wrap"><input id="dodPct" max="100" min="1" step="1" type="number"/><span>%</span></div></div>
-<div class="field"><label for="agePct">Capacidad restante tras el envejecimiento</label><div class="input-wrap"><input id="agePct" max="100" min="1" step="1" type="number"/><span>%</span></div></div>
-<div class="field"><label for="tempPct">Factor de capacidad por temperatura</label><div class="input-wrap"><input id="tempPct" max="150" min="1" step="1" type="number"/><span>%</span></div></div>
-<div class="field"><label for="curvePct">Calibración con la curva del fabricante</label><div class="input-wrap"><input id="curvePct" max="150" min="1" step="1" type="number"/><span>%</span></div></div>
-<div class="field full"><label for="targetRuntimeH">Autonomía objetivo</label><div class="input-wrap"><input id="targetRuntimeH" min="0" step=".5" type="number" value="8"/><span>h</span></div></div>
-</div><div class="input-actions"><button class="primary" id="calculateBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> Calcular autonomía y capacidad</button><button class="secondary" id="resetBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M20 11a8 8 0 1 0-2.3 5.7"></path><path d="M20 4v7h-7"></path></svg> Restablecer preajuste de telecom</button></div>
-</section>
-<section aria-live="polite" class="result-panel card nel-tool-result"><div class="section-title"><span class="section-icon">RT</span><div><h2>Resultados de autonomía y capacidad</h2><p>Autonomía actual y dimensionamiento inverso para la duración objetivo.</p></div></div>
+<div class="subheading">Correcciones de diseño y de capacidad</div><div class="form-grid fields">
+<div class="f field"><label for="loadMarginPct">Crecimiento de carga / margen de diseño</label><div class="input-wrap inp"><input id="loadMarginPct" min="0" step="1" type="number" value="15"/><span>%</span></div></div>
+<div class="f field"><label for="pathEfficiencyPct">Eficiencia del camino DC</label><div class="input-wrap inp"><input id="pathEfficiencyPct" max="100" min="1" step=".1" type="number"/><span>%</span></div></div>
+<div class="f field"><label for="dodPct">Profundidad útil permitida</label><div class="input-wrap inp"><input id="dodPct" max="100" min="1" step="1" type="number"/><span>%</span></div></div>
+<div class="f field"><label for="agePct">Capacidad restante tras el envejecimiento</label><div class="input-wrap inp"><input id="agePct" max="100" min="1" step="1" type="number"/><span>%</span></div></div>
+<div class="f field"><label for="tempPct">Factor de capacidad por temperatura</label><div class="input-wrap inp"><input id="tempPct" max="150" min="1" step="1" type="number"/><span>%</span></div></div>
+<div class="f field"><label for="curvePct">Calibración con la curva del fabricante</label><div class="input-wrap inp"><input id="curvePct" max="150" min="1" step="1" type="number"/><span>%</span></div></div>
+<div class="f field full f-wide"><label for="targetRuntimeH">Autonomía objetivo</label><div class="input-wrap inp"><input id="targetRuntimeH" min="0" step=".5" type="number" value="8"/><span>h</span></div></div>
+</div><div class="input-actions"><button class="primary btn btn-primary" id="calculateBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> Calcular autonomía y capacidad</button><button class="secondary btn btn-ghost" id="resetBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M20 11a8 8 0 1 0-2.3 5.7"></path><path d="M20 4v7h-7"></path></svg> Restablecer preajuste de telecom</button></div>
+</div></div></section>
+<section aria-live="polite" class="result-panel card nel-tool-result"><div class="readout"><div class="ro-h"><span>Resultados de autonomía y capacidad</span></div><p>Autonomía actual y dimensionamiento inverso para la duración objetivo.</p>
 <div class="summary-card healthy" id="summaryCard"><div><p>Autonomía estimada</p><strong id="runtimeValue">—</strong><small><span>Modelo:</span> <span id="runtimeModel">—</span></small></div><span class="status-badge" id="statusBadge">—</span></div>
 <div class="metric-grid">
 <article class="metric"><small>Tensión nominal</small><strong id="nominalVoltage">—</strong></article><article class="metric"><small>Tensión de flotación de referencia</small><strong id="floatVoltage">—</strong></article>
@@ -124,13 +128,38 @@
 <div class="breakdown"><h3>Dimensionamiento inverso para la autonomía objetivo</h3><table><tbody><tr><th>Capacidad total necesaria</th><td id="requiredTotalAh">—</td></tr><tr><th>Capacidad por cadena con el número actual</th><td id="requiredAhPerString">—</td></tr><tr><th>Cadenas en paralelo con los Ah actuales</th><td id="requiredStrings">—</td></tr><tr><th>Autonomía actual menos objetivo</th><td id="targetGap">—</td></tr></tbody></table></div>
 <div class="breakdown"><h3>Desglose del cálculo</h3><table><tbody id="breakdownBody"></tbody></table></div>
 <div class="warning-box"><h3>Criterio de ingeniería</h3><ul id="warningList"></ul></div>
-<div class="result-actions"><button id="copyBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> Copiar resultado</button><button id="saveBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 5v14M5 12h14"></path></svg> Guardar registro</button><button id="csvBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg> Exportar CSV</button><button id="printBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M6 9V3h12v6"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v7H6z"></path></svg> Imprimir / PDF</button></div>
-</section></main><aside aria-label="PUBLICIDAD" class="ad-slot" data-ad-key="afterCalculator" hidden=""><div class="ad-label">PUBLICIDAD</div><div class="ad-body"></div></aside>
+<div class="result-actions"><button class="btn btn-ghost" id="copyBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> Copiar resultado</button><button class="btn btn-ghost" id="saveBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 5v14M5 12h14"></path></svg> Guardar registro</button><button class="btn btn-ghost" id="csvBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg> Exportar CSV</button><button class="btn btn-ghost" id="printBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M6 9V3h12v6"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v7H6z"></path></svg> Imprimir / PDF</button></div>
+</div></section><div class="tool-head"><div class="crumbs"><a href="../../../es/">Inicio</a>/<a href="../../es/">Herramientas</a>/<span>Calculadora de autonomía de batería telecom -48 V</span></div><p class="tool-page-label" role="heading" aria-level="1">Calculadora de autonomía de batería telecom -48 V</p><p class="tool-lede">Estime la autonomía de la batería, la capacidad necesaria, las cadenas en paralelo y el aumento de corriente de descarga para sitios de OLT, BBU, transporte, núcleo y acceso.</p></div>
+</main>
+<aside aria-label="PUBLICIDAD" class="ad-slot" data-ad-key="afterCalculator" hidden=""><div class="ad-label">PUBLICIDAD</div><div class="ad-body"></div></aside>
+<div class="below">
+<nav class="toc" aria-label="En esta página">
+<h4>En esta página</h4>
+<a href="#methodology">Metodología y límites de ingeniería</a>
+<a href="#faq">Preguntas frecuentes</a>
+<a href="#nel-tool-graph">Continuar el flujo de trabajo de ingeniería</a>
+<a href="#history">Historial del proyecto</a>
+<a href="#telecom-dc-system-note">Nota del sistema DC de telecom</a>
+</nav>
+<div class="prose">
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Metodología y límites de ingeniería</span></summary>
+<div class="fb-fold-body">
 <section class="content-section nel-tool-supporting-section" id="methodology"><p class="eyebrow">METODOLOGÍA</p><h2>Metodología y límites de ingeniería</h2><div class="method-grid"><article><h3>Carga DC y factor de potencia</h3><p>El equipo alimentado desde un bus DC de -48 V no usa factor de potencia AC. Introduzca una lista de corrientes DC de los equipos o la corriente DC total; la potencia se obtiene de la tensión nominal del bus.</p></article><article><h3>Modelo de energía simplificado</h3><p>El modelo usa la tensión media de descarga y ajusta la capacidad en Ah según la profundidad útil, el envejecimiento, la temperatura y la calibración con la curva del fabricante.</p></article><article><h3>Estimación de Peukert</h3><p>El efecto de la tasa se estima a partir de la duración nominal, la corriente por cadena y un exponente de Peukert editable. Las cargas de potencia constante usan una aproximación por corriente media.</p></article><article><h3>Dimensionamiento inverso</h3><p>La calculadora obtiene los Ah totales, los Ah por cadena y el número de cadenas en paralelo para la autonomía objetivo. El diseño final también debe cumplir los límites del fabricante de paralelo, protección, reparto de corriente y tensión final.</p></article></div>
 <div class="sources"><strong>Referencias de ingeniería:</strong> <a href="https://standards.ieee.org/ieee/485/6726/" rel="noopener">IEEE 485-2020</a> · <a href="https://webstore.iec.ch/en/publication/3851" rel="noopener">IEC 60896-22</a> · <a href="https://portal.etsi.org/webapp/WorkProgram/Report_WorkItem.asp?WKI_ID=54059" rel="noopener">ETSI EN 300 132-2</a></div></section>
-<section class="content-section nel-tool-supporting-section" id="faq"><p class="eyebrow">Preguntas frecuentes</p><h2>Preguntas frecuentes</h2><div class="faq-grid"><details><summary>¿Por qué no hay entrada de factor de potencia?</summary><p>El factor de potencia aplica a sistemas AC. Durante una interrupción, la batería alimenta el bus DC; utilice vatios o amperios DC.</p></details><details><summary>¿Por qué no basta con 48 V × Ah ÷ vatios?</summary><p>La autonomía también depende de la tensión final, la tasa de descarga, el envejecimiento, la temperatura, la profundidad útil, las pérdidas DC y la curva de descarga del fabricante.</p></details><details><summary>¿Por qué el preajuste usa 24 elementos de 2 V?</summary><p>Veinticuatro elementos de 2 V forman una cadena nominal de 48 V. Es una disposición habitual en telecom, pero manda la configuración real del sitio y del fabricante.</p></details><details><summary>¿Qué exponente de Peukert debe usarse?</summary><p>Utilice datos del fabricante siempre que sea posible. Los preajustes son referencias de ingeniería editables; los sistemas de litio y de alta tasa necesitan especialmente la curva del fabricante o datos del BMS.</p></details><details><summary>¿Puede usarse el resultado directamente para la compra?</summary><p>No. Sirve para comparar y dimensionar de forma preliminar. La compra exige carga medida, tablas del fabricante, temperatura del sitio, tensión final y revisión de redundancia.</p></details></div></section>
-<section class="content-section nel-tool-supporting-section" id="history"><div class="history-head"><div><p class="eyebrow">REGISTROS DEL PROYECTO</p><h2>Historial del proyecto</h2></div><button class="text-button" id="clearHistoryBtn">Borrar historial</button></div><div class="history-list" id="historyList"></div></section>
+</div>
+</details>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Preguntas frecuentes</span></summary>
+<div class="fb-fold-body">
+<section class="content-section nel-tool-supporting-section faq-section" id="faq"><p class="eyebrow">Preguntas frecuentes</p><h2>Preguntas frecuentes</h2><div class="faq-grid"><details><summary>¿Por qué no hay entrada de factor de potencia?</summary><p>El factor de potencia aplica a sistemas AC. Durante una interrupción, la batería alimenta el bus DC; utilice vatios o amperios DC.</p></details><details><summary>¿Por qué no basta con 48 V × Ah ÷ vatios?</summary><p>La autonomía también depende de la tensión final, la tasa de descarga, el envejecimiento, la temperatura, la profundidad útil, las pérdidas DC y la curva de descarga del fabricante.</p></details><details><summary>¿Por qué el preajuste usa 24 elementos de 2 V?</summary><p>Veinticuatro elementos de 2 V forman una cadena nominal de 48 V. Es una disposición habitual en telecom, pero manda la configuración real del sitio y del fabricante.</p></details><details><summary>¿Qué exponente de Peukert debe usarse?</summary><p>Utilice datos del fabricante siempre que sea posible. Los preajustes son referencias de ingeniería editables; los sistemas de litio y de alta tasa necesitan especialmente la curva del fabricante o datos del BMS.</p></details><details><summary>¿Puede usarse el resultado directamente para la compra?</summary><p>No. Sirve para comparar y dimensionar de forma preliminar. La compra exige carga medida, tablas del fabricante, temperatura del sitio, tensión final y revisión de redundancia.</p></details></div></section>
+</div>
+</details>
 <p class="hub-return">Forma parte de las <a href="../../datacenter-power-calculators/es/">calculadoras de energía y refrigeración</a>.</p>
+
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Continuar el flujo de trabajo de ingeniería</span></summary>
+<div class="fb-fold-body">
 <!-- NEL_TOOL_GRAPH_START -->
 <section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="48v-battery-runtime" data-primary-workflow="poe-rack-power-design">
 <div class="section-heading"><div><p class="eyebrow">FLUJO DE TRABAJO DE INGENIERÍA</p><h2 id="nel-tool-graph-title">Continuar el flujo de trabajo de ingeniería</h2></div></div>
@@ -138,8 +167,22 @@
 <h3 class="nel-tool-graph-subtitle">Herramientas relacionadas</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="../../telecom-solar-battery-sizing-calculator/es/"><strong>Calculadora solar y de baterías para telecomunicaciones</strong><span class="nel-tool-graph-description">Dimensiona la fotovoltaica y las baterías de un sitio telecom, la autonomía, el balance de energía, el coste y las emisiones, en híbrido con red o aislado.</span></a><a class="nel-tool-graph-card" href="../../network-rack-power-cooling-calculator/es/"><strong>Calculadora de potencia y refrigeración de rack de red</strong><span class="nel-tool-graph-description">Calcula la potencia del rack, la corriente, la carga térmica, la energía y el coste.</span></a><a class="nel-tool-graph-card" href="../../pue-data-center-energy-efficiency/es/"><strong>Analizador de PUE y eficiencia energética del centro de datos</strong><span class="nel-tool-graph-description">Analiza el PUE, la sobrecarga no IT, el coste anual, el ahorro con un PUE objetivo, el WUE, el CUE y las tendencias mensuales.</span></a><a class="nel-tool-graph-card" href="../../generator-fuel-runtime-calculator/es/"><strong>Calculadora de consumo de combustible y autonomía del generador</strong><span class="nel-tool-graph-description">Estima el consumo de combustible del generador, la autonomía útil del depósito, el combustible de la interrupción, los repostajes y la operación asistida por baterías a partir de la curva del fabricante.</span></a></div><div class="nel-workflow-memberships"><span class="nel-workflow-memberships-label">También se utiliza en</span><span class="nel-workflow-chip">Flujo de potencia y energía de telecomunicaciones</span></div>
 </section>
 <!-- NEL_TOOL_GRAPH_END -->
-
-<section class="nel-tool-supporting-section" data-nel-moved-from-hero="true"><strong>Nota del sistema DC de telecom</strong><p>-48 V describe la polaridad DC de telecom; los cálculos usan el módulo de la tensión. Una carga DC no tiene entrada de factor de potencia AC.</p></section>
+</div>
+</details>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Historial del proyecto</span></summary>
+<div class="fb-fold-body">
+<section class="content-section nel-tool-supporting-section" id="history"><div class="history-head"><div><p class="eyebrow">REGISTROS DEL PROYECTO</p><h2>Historial del proyecto</h2></div><button class="text-button" id="clearHistoryBtn">Borrar historial</button></div><div class="history-list" id="historyList"></div></section>
+</div>
+</details>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Nota del sistema DC de telecom</span></summary>
+<div class="fb-fold-body">
+<section id="telecom-dc-system-note" class="nel-tool-supporting-section" data-nel-moved-from-hero="true"><strong>Nota del sistema DC de telecom</strong><p>-48 V describe la polaridad DC de telecom; los cálculos usan el módulo de la tensión. Una carga DC no tiene entrada de factor de potencia AC.</p></section>
+</div>
+</details>
+</div>
+</div>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">
@@ -152,9 +195,10 @@
 </footer>
 <!-- NEL_FOOTER_END -->
 <div class="toast" id="toast" role="status"></div>
-<script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../data/battery-presets.js"></script><script defer="" src="../js/engine.js"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../js/app.js?v=e38ff09939d5"></script>
+<script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../data/battery-presets.js"></script><script defer="" src="../js/engine.js"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../js/app.js?v=2e777f09bad5"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
-<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script></body></html>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script><script defer src="../../../assets/js/tool-detail-v3.js?v=66984b67ff65"></script>
+</body></html>
 
 
 

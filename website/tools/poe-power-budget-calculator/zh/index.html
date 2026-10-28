@@ -2,7 +2,7 @@
 
 <html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="tools/poe-power-budget-calculator/">
 <head>
-<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#16140F" name="theme-color"/>
 <title>PoE功率预算计算器（免费）｜802.3af/at/bt 交换机总功率与余量</title>
 <meta content="免费在线计算PoE交换机功率预算：按摄像机、AP、电话功耗与802.3af/at/bt等级（15.4/30/60/90 W），计入线损与余量，立即判断是否超载。" name="description"/>
 <meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/><meta content="NetEngineerLab" name="author"/>
@@ -21,6 +21,9 @@
 <meta name="twitter:description" content="免费在线计算PoE交换机功率预算：按摄像机、AP、电话功耗与802.3af/at/bt等级（15.4/30/60/90 W），计入线损与余量，立即判断是否超载。">
 <meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"PoE功率预算计算器（免费）｜802.3af/at/bt 交换机总功率与余量","url":"https://netengineerlab.com/tools/poe-power-budget-calculator/zh/","description":"免费在线计算PoE交换机功率预算：按摄像机、AP、电话功耗与802.3af/at/bt等级（15.4/30/60/90 W），计入线损与余量，立即判断是否超载。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
@@ -44,7 +47,8 @@
 <link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=dfdd771763d6">
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head>
-<body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<body class="nel-opb-v3 nel-fieldbook nel-tool-v3 nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<link rel="stylesheet" href="../../../assets/css/fieldbook.css?v=a3bb21511014">
 <a class="skip" href="#calculator">跳转到计算器</a>
 <!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
@@ -78,19 +82,40 @@
 <!-- NEL_TOOL_RETURN_END -->
 <section class="hero nel-tool-hero"><div class="hero-inner"><p class="eyebrow">以太网供电规划工具</p><h1>PoE功率预算计算器</h1><p>为网络摄像头、云台摄像机、无线AP、VoIP电话及门禁设备规划PoE交换机。一次核对总功率、可用端口、网线损耗、工程余量以及IEEE 802.3af、802.3at、802.3bt单端口供电能力。</p><div class="hero-tags"><span>PoE交换机选型</span><span>摄像头容量</span><span>PoE+ / PoE++</span><span>网线损耗</span></div></div></section>
 <main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
-<section class="input-panel card nel-tool-input"><div class="section-title nel-generated-section-title" data-nel-generated="v1.2.2"><span class="section-icon">☷</span><div><h2>工程输入与参数</h2><p>设置工程假设、设备参数与设计边界。</p></div></div><h2>交换机与受电设备参数</h2><p class="intro">应填写设备最大功耗而不是宣传页平均功耗。红外夜视、加热器、云台电机、无线射频和USB附件都可能增加负载。</p>
-<div class="preset"><label for="preset">工程场景预设</label><select id="preset"><option value="cameras">8台固定摄像头</option><option value="ptz">8台高功率云台摄像头</option><option value="wifi">16台无线AP</option><option value="mixed">12台混合PoE设备</option></select></div>
-<div class="form">
-<div class="field"><label for="switchBudget">交换机PoE总预算（W）</label><input id="switchBudget" min="0" step="1" type="number"/></div><div class="field"><label for="switchPorts">PoE供电端口数</label><input id="switchPorts" min="1" step="1" type="number"/></div>
-<div class="field"><label for="deviceCount">受电设备数量</label><input id="deviceCount" min="1" step="1" type="number"/></div><div class="field"><label for="deviceWatts">单台设备最大功率（W）</label><input id="deviceWatts" min="0" step=".1" type="number"/></div>
-<div class="field"><label for="standard">单端口PoE标准</label><select id="standard"><option value="af">802.3af PoE</option><option value="at">802.3at PoE+</option><option value="bt3">802.3bt Type 3 PoE++</option><option value="bt4">802.3bt Type 4 PoE++</option></select></div>
-<div class="field"><label for="cableLoss">预计网线损耗（%）</label><input id="cableLoss" max="40" min="0" step=".5" type="number"/></div><div class="field"><label for="headroom">工程余量（%）</label><input id="headroom" max="80" min="0" step="1" type="number"/></div>
-</div><button class="calculate" id="calculate" type="button">计算PoE功率预算</button></section>
-<section aria-live="polite" class="result-panel card nel-tool-result"><div class="section-title nel-generated-section-title" data-nel-generated="v1.2.2"><span class="section-icon">▥</span><div><h2>工程计算结果</h2><p>查看计算容量、限制因素与设计校核结果。</p></div></div><h2>PoE选型结果</h2><div class="headline"><div><small>所需交换机功率预算</small><strong id="required">—</strong></div><span class="status" id="status">—</span></div><div class="metrics">
+<section class="input-panel card nel-tool-input"><div class="fb-panel"><div class="panel-h"><h2>交换机与受电设备参数</h2></div><div class="fs"><p class="intro">应填写设备最大功耗而不是宣传页平均功耗。红外夜视、加热器、云台电机、无线射频和USB附件都可能增加负载。</p>
+<div class="preset"><label for="preset">工程场景预设</label><div class="inp input-wrap no-unit sel"><select id="preset"><option value="cameras">8台固定摄像头</option><option value="ptz">8台高功率云台摄像头</option><option value="wifi">16台无线AP</option><option value="mixed">12台混合PoE设备</option></select></div></div>
+<div class="form fields">
+<div class="f field"><label for="switchBudget">交换机PoE总预算（W）</label><div class="inp input-wrap no-unit"><input id="switchBudget" min="0" step="1" type="number"/></div></div><div class="f field"><label for="switchPorts">PoE供电端口数</label><div class="inp input-wrap no-unit"><input id="switchPorts" min="1" step="1" type="number"/></div></div>
+<div class="f field"><label for="deviceCount">受电设备数量</label><div class="inp input-wrap no-unit"><input id="deviceCount" min="1" step="1" type="number"/></div></div><div class="f field"><label for="deviceWatts">单台设备最大功率（W）</label><div class="inp input-wrap no-unit"><input id="deviceWatts" min="0" step=".1" type="number"/></div></div>
+<div class="f field"><label for="standard">单端口PoE标准</label><div class="inp input-wrap no-unit sel"><select id="standard"><option value="af">802.3af PoE</option><option value="at">802.3at PoE+</option><option value="bt3">802.3bt Type 3 PoE++</option><option value="bt4">802.3bt Type 4 PoE++</option></select></div></div>
+<div class="f field"><label for="cableLoss">预计网线损耗（%）</label><div class="inp input-wrap no-unit"><input id="cableLoss" max="40" min="0" step=".5" type="number"/></div></div><div class="f field"><label for="headroom">工程余量（%）</label><div class="inp input-wrap no-unit"><input id="headroom" max="80" min="0" step="1" type="number"/></div></div>
+</div><button class="calculate btn btn-primary" id="calculate" type="button">计算PoE功率预算</button></div></div></section>
+<section aria-live="polite" class="result-panel card nel-tool-result"><div class="readout"><div class="ro-h"><span>PoE选型结果</span></div><div class="headline"><div><small>所需交换机功率预算</small><strong id="required">—</strong></div><span class="status" id="status">—</span></div><div class="metrics">
 <article class="metric"><small>交换机侧设备负载</small><strong id="load">—</strong></article><article class="metric"><small>单设备源端功率</small><strong id="perDevice">—</strong></article><article class="metric"><small>剩余功率预算</small><strong id="remaining">—</strong></article><article class="metric"><small>预算利用率</small><strong id="utilization">—</strong></article><article class="metric"><small>最多支持设备</small><strong id="maximum">—</strong></article><article class="metric"><small>端口使用</small><strong id="portsUsed">—</strong></article>
-</div><div class="progress"><span id="bar"></span></div><p class="advice" id="advice"></p><div class="result-actions"><button id="copy" type="button">复制结果</button><button id="csv" type="button">导出CSV</button></div></section>
+</div><div class="progress"><span id="bar"></span></div><p class="advice" id="advice"></p><div class="result-actions"><button class="btn btn-ghost" id="copy" type="button">复制结果</button><button id="csv" type="button">导出CSV</button></div></div></section>
+<div class="tool-head"><div class="crumbs"><a href="../../../zh/">首页</a>/<a href="../../zh/">工具</a>/<span>PoE功率预算计算器</span></div><p class="tool-page-label" role="heading" aria-level="1">PoE功率预算计算器</p><p class="tool-lede">为网络摄像头、云台摄像机、无线AP、VoIP电话及门禁设备规划PoE交换机。一次核对总功率、可用端口、网线损耗、工程余量以及IEEE 802.3af、802.3at、802.3bt单端口供电能力。</p></div>
 </main>
-<!-- NEL_SCENARIOS_START -->
+<div class="below">
+<nav class="toc" aria-label="本页目录">
+<h4>本页目录</h4>
+<a href="#scenarios">典型工程场景</a>
+<a href="#methodology">PoE交换机功率预算怎么计算</a>
+<a href="#poe-standards-and-delivered-power">802.3af、PoE+与PoE++供电能力</a>
+<a href="#poe-camera-and-wireless-ap-planning">PoE摄像头与无线AP选型方法</a>
+<a href="#nel-tool-graph">继续下一步工程任务</a>
+<a href="#faq">常见问题</a>
+<a href="#references">PoE工程参考资料</a>
+<a href="#standards">标准引用</a>
+<a href="#related-calculators">相关网络工程工具</a>
+<a href="#content-review">内容复核</a>
+</nav>
+<div class="prose">
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">PoE交换机功率预算怎么计算</span></summary>
+<div class="fb-fold-body">
+<section id="methodology" class="content-section nel-tool-supporting-section"><h2>PoE交换机功率预算怎么计算</h2><div class="grid"><article><h3>1. 统计同时供电设备</h3><p>统计所有同时在线的摄像头、无线AP、电话、对讲机和门禁控制器。即使总功率还有剩余，PoE端口数量也不能超出。</p></article><article><h3>2. 使用设备最大功耗</h3><p>使用受电设备规格书中的最大输入功率。云台、红外补光、加热器及高负荷无线射频可能让实际功耗明显高于待机值。</p></article><article><h3>3. 加入损耗和工程余量</h3><p>网线电阻会带来功率损耗，还应为设备启动、环境温度、后期扩容及电源老化保留工程余量。</p></article></div></section>
+</div>
+</details>
 <section class="content-section nel-tool-supporting-section" id="scenarios" aria-labelledby="scenarios-title">
 <div class="section-heading"><div><p class="eyebrow">工程算例</p><h2 id="scenarios-title">典型工程场景</h2></div></div>
 <p>点击场景即可一键填入计算器。下方预期结果由同一计算引擎得出，并有自动化测试覆盖。</p>
@@ -100,15 +125,65 @@
 <article class="metric-card nel-scenario-card" data-scenario-id="at-16-wifi6-aps"><div><h3>16 台 Wi-Fi 6 AP 的 802.3at PoE+</h3><p>16 台 AP 按 PoE+ 满额 25.5 W 计算，740 W 交换机，预留 25%。</p><p><small>预期结果</small><br><strong data-scenario-expected>需要 566.7 W / 740 W（76.6%）· 通过</strong></p><p><a class="nel-scenario-link" href="?scenario=at-16-wifi6-aps#calculator">载入此场景 →</a></p></div></article>
 </div>
 </section>
-<!-- NEL_SCENARIOS_END -->
-<section class="content nel-tool-supporting-section"><h2>PoE交换机功率预算怎么计算</h2><div class="grid"><article><h3>1. 统计同时供电设备</h3><p>统计所有同时在线的摄像头、无线AP、电话、对讲机和门禁控制器。即使总功率还有剩余，PoE端口数量也不能超出。</p></article><article><h3>2. 使用设备最大功耗</h3><p>使用受电设备规格书中的最大输入功率。云台、红外补光、加热器及高负荷无线射频可能让实际功耗明显高于待机值。</p></article><article><h3>3. 加入损耗和工程余量</h3><p>网线电阻会带来功率损耗，还应为设备启动、环境温度、后期扩容及电源老化保留工程余量。</p></article></div>
-<h2>802.3af、PoE+与PoE++供电能力</h2><p>IEEE 802.3af PoE通常可向受电设备提供最高12.95 W，802.3at PoE+提高到25.5 W。采用四对线供电的802.3bt Type 3可提供最高51 W，Type 4可提供最高71.3 W。交换机宣传参数有时标注的是供电端输出功率，因此既要比较设备端可获得的功率，也要比较所有端口负载与交换机PoE总预算。</p>
-<p>24口PoE交换机不代表一定能同时带24台高功率设备。例如24台15 W设备在未计算网线损耗和余量之前就需要360 W。反过来，即使交换机有370 W总预算，也可能因为端口不够，或者单端口PoE等级不足而无法启动高功率云台摄像头。本工具会同时检查这三项约束。</p>
-<h2>PoE摄像头与无线AP选型方法</h2><p>计算一台PoE交换机能带多少摄像头时，应输入摄像头最大功耗、PoE供电端口数以及规格书标注的交换机PoE预算。监控系统需要计入红外夜视、加热器和云台动作；Wi-Fi 6E或Wi-Fi 7 AP则需要考虑无线电高负荷与USB或级联供电。20%至25%的余量可以作为项目初始假设，但不是IEEE强制要求；最终余量应结合实测峰值、启动行为、线缆条件、扩容计划、电源配置和可用性目标确定。</p>
-<div class="faq"><details><summary>120 W PoE交换机能带多少摄像头？</summary><p>取决于摄像头最大功耗、网线损耗、余量和端口数。8台10 W固定摄像头通常有余量，而8台15 W摄像头在计入损耗与余量后可能超过预算。</p></details><details><summary>网线长度会影响PoE功率预算吗？</summary><p>会。线缆越长或导体电阻越大，I²R损耗越高。本工具用百分比作工程估算，最终设计还应核对线径、类别、成束温升和实际长度。</p></details><details><summary>应该填写平均功耗还是最大功耗？</summary><p>容量规划应使用最大额定或实测功耗。平均值可能掩盖启动冲击、红外开启、云台动作和无线高利用率。</p></details><details><summary>显示“容量充足”代表什么？</summary><p>表示在当前假设下，总功率、端口数量及单端口PoE等级均满足要求。这是工程估算，不能替代厂商要求和电气安全审核。</p></details><details><summary>IEEE是否强制要求预留20%的PoE余量？</summary><p>不是。工程余量是项目规划参数，并非通用IEEE要求。应结合实测峰值、启动行为、线缆条件、扩容计划、电源配置和可用性目标确定。</p></details></div>
-<h2>PoE工程参考资料</h2><ul><li><a href="https://www.ieee802.org/3/bt/">IEEE 802.3bt四对线以太网供电工作组</a></li><li><a href="https://www.ieee802.org/3/at/objectives.html">IEEE 802.3at PoE Plus工作组目标</a></li><li><a href="https://ethernetalliance.org/poecert/">以太网联盟PoE认证计划</a></li><li><a href="https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus9000/sw/7-x/interfaces/configuration/Hidden/b_Power_Over_Ethernet/b_Power_Over_Ethernet_chapter_00.html">Cisco：PoE配置与功率预算</a></li><li><a href="https://www.flukenetworks.com/blog/cabling-chronicles/bundle-or-not-bundle">Fluke Networks：PoE线缆成束与温升</a></li></ul><p>网线损耗百分比只是规划输入，并非完整的IEEE信道仿真。最终设计应核对PSE与PD等级、协商功率、电源与冗余状态、布线信道、成束温升及设备启动行为。</p>
-<h2>相关网络工程工具</h2><div class="related"><a href="../../wifi-coverage-capacity-planner/zh/">Wi-Fi覆盖与容量规划计算器</a><a href="../../48v-battery-runtime/zh/">-48V蓄电池续航计算器</a><a href="../../bandwidth-calculator/zh/">带宽与传输时间计算器</a></div></section>
-<!-- NEL_CONTENT_REVIEW_START -->
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">802.3af、PoE+与PoE++供电能力</span></summary>
+<div class="fb-fold-body">
+<section id="poe-standards-and-delivered-power" class="content-section nel-tool-supporting-section"><h2>802.3af、PoE+与PoE++供电能力</h2><p>IEEE 802.3af PoE通常可向受电设备提供最高12.95 W，802.3at PoE+提高到25.5 W。采用四对线供电的802.3bt Type 3可提供最高51 W，Type 4可提供最高71.3 W。交换机宣传参数有时标注的是供电端输出功率，因此既要比较设备端可获得的功率，也要比较所有端口负载与交换机PoE总预算。</p>
+<p>24口PoE交换机不代表一定能同时带24台高功率设备。例如24台15 W设备在未计算网线损耗和余量之前就需要360 W。反过来，即使交换机有370 W总预算，也可能因为端口不够，或者单端口PoE等级不足而无法启动高功率云台摄像头。本工具会同时检查这三项约束。</p></section>
+</div>
+</details>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">PoE摄像头与无线AP选型方法</span></summary>
+<div class="fb-fold-body">
+<section id="poe-camera-and-wireless-ap-planning" class="content-section nel-tool-supporting-section"><h2>PoE摄像头与无线AP选型方法</h2><p>计算一台PoE交换机能带多少摄像头时，应输入摄像头最大功耗、PoE供电端口数以及规格书标注的交换机PoE预算。监控系统需要计入红外夜视、加热器和云台动作；Wi-Fi 6E或Wi-Fi 7 AP则需要考虑无线电高负荷与USB或级联供电。20%至25%的余量可以作为项目初始假设，但不是IEEE强制要求；最终余量应结合实测峰值、启动行为、线缆条件、扩容计划、电源配置和可用性目标确定。</p>
+</section>
+</div>
+</details>
+
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">常见问题</span></summary>
+<div class="fb-fold-body">
+<section id="faq" class="content-section faq-section nel-tool-supporting-section"><h2>常见问题</h2><div class="faq-grid"><details><summary>120 W PoE交换机能带多少摄像头？</summary><p>取决于摄像头最大功耗、网线损耗、余量和端口数。8台10 W固定摄像头通常有余量，而8台15 W摄像头在计入损耗与余量后可能超过预算。</p></details><details><summary>网线长度会影响PoE功率预算吗？</summary><p>会。线缆越长或导体电阻越大，I²R损耗越高。本工具用百分比作工程估算，最终设计还应核对线径、类别、成束温升和实际长度。</p></details><details><summary>应该填写平均功耗还是最大功耗？</summary><p>容量规划应使用最大额定或实测功耗。平均值可能掩盖启动冲击、红外开启、云台动作和无线高利用率。</p></details><details><summary>显示“容量充足”代表什么？</summary><p>表示在当前假设下，总功率、端口数量及单端口PoE等级均满足要求。这是工程估算，不能替代厂商要求和电气安全审核。</p></details><details><summary>IEEE是否强制要求预留20%的PoE余量？</summary><p>不是。工程余量是项目规划参数，并非通用IEEE要求。应结合实测峰值、启动行为、线缆条件、扩容计划、电源配置和可用性目标确定。</p></details></div></section>
+</div>
+</details>
+<details class="fb-fold blk" open data-fold-pinned>
+<summary class="fb-fold-sum"><span class="fb-fold-title">PoE工程参考资料</span></summary>
+<div class="fb-fold-body">
+<section id="references" class="content-section nel-tool-supporting-section"><h2>PoE工程参考资料</h2><ul><li><a href="https://www.ieee802.org/3/bt/">IEEE 802.3bt四对线以太网供电工作组</a></li><li><a href="https://www.ieee802.org/3/at/objectives.html">IEEE 802.3at PoE Plus工作组目标</a></li><li><a href="https://ethernetalliance.org/poecert/">以太网联盟PoE认证计划</a></li><li><a href="https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus9000/sw/7-x/interfaces/configuration/Hidden/b_Power_Over_Ethernet/b_Power_Over_Ethernet_chapter_00.html">Cisco：PoE配置与功率预算</a></li><li><a href="https://www.flukenetworks.com/blog/cabling-chronicles/bundle-or-not-bundle">Fluke Networks：PoE线缆成束与温升</a></li></ul><p>网线损耗百分比只是规划输入，并非完整的IEEE信道仿真。最终设计应核对PSE与PD等级、协商功率、电源与冗余状态、布线信道、成束温升及设备启动行为。</p></section>
+</div>
+</details>
+<details class="fb-fold blk" open data-fold-pinned>
+<summary class="fb-fold-sum"><span class="fb-fold-title">标准引用</span></summary>
+<div class="fb-fold-body">
+<section class="content-section nel-tool-supporting-section" id="standards" aria-labelledby="standards-title">
+<div class="section-heading"><div><p class="eyebrow">标准依据</p><h2 id="standards-title">标准引用</h2></div></div>
+<p>上述公式与默认值所依据的权威文件。</p>
+<ul class="nel-standards-list"><li><a href="https://standards.ieee.org/ieee/802.3x/1090/" rel="noopener">IEEE 802.3af-2003</a> — PoE：PSE 端 15.4 W，受电设备端 12.95 W（现并入 IEEE 802.3 第 33 章）。 <small>[已核对]</small></li><li><a href="https://standards.ieee.org/ieee/802.3at/4553/" rel="noopener">IEEE 802.3at-2009</a> — PoE+：PSE 端 30 W，受电设备端 25.5 W。 <small>[已核对]</small></li><li><a href="https://standards.ieee.org/ieee/802.3bt/6749/" rel="noopener">IEEE 802.3bt-2018</a> — PoE++ 四对线供电：Type 3 为 60 W / 51 W，Type 4 为 90 W / 71.3 W。 <small>[已核对]</small></li></ul>
+</section>
+</div>
+</details>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">相关网络工程工具</span></summary>
+<div class="fb-fold-body">
+<section id="related-calculators" class="content-section nel-tool-supporting-section"><h2>相关网络工程工具</h2><div class="related"><a href="../../wifi-coverage-capacity-planner/zh/">Wi-Fi覆盖与容量规划计算器</a><a href="../../48v-battery-runtime/zh/">-48V蓄电池续航计算器</a><a href="../../bandwidth-calculator/zh/">带宽与传输时间计算器</a></div></section>
+</div>
+</details>
+<p class="hub-return">属于 <a href="../../datacenter-power-calculators/zh/">数据中心电力与制冷计算器</a> 专题。</p>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">继续下一步工程任务</span></summary>
+<div class="fb-fold-body">
+<!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="poe-power-budget-calculator" data-primary-workflow="poe-rack-power-design">
+<div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">当前流程</span><strong>PoE 与机架供电设计工作流</strong><p>依次验证 PoE 供电容量、线缆压降、机架功耗与制冷，并估算通信电池后备时长。</p></div><div class="nel-workflow-step"><strong>步骤 1 / 4</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1" aria-valuetext="步骤 1 / 4" aria-label="步骤 1 / 4"><span style="width:25%"></span></div></div></div><div class="nel-tool-graph-nav"><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">上一步</span><strong>流程起点</strong></div><a class="nel-tool-graph-card" href="/tools/poe-voltage-drop-calculator/zh/"><span class="nel-tool-graph-label">下一步</span><strong>网线PoE压降计算器</strong><span class="nel-tool-graph-description">计算PoE网线回路电阻、压降、远端电压、电流和功率损耗。</span></a></div>
+<h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/poe-voltage-drop-calculator/zh/"><strong>网线PoE压降计算器</strong><span class="nel-tool-graph-description">计算PoE网线回路电阻、压降、远端电压、电流和功率损耗。</span></a><a class="nel-tool-graph-card" href="/tools/network-rack-power-cooling-calculator/zh/"><strong>网络机柜功耗与制冷量计算器</strong><span class="nel-tool-graph-description">计算机柜功耗、电流、制冷量、耗电量和电费。</span></a><a class="nel-tool-graph-card" href="/tools/wifi-coverage-capacity-planner/zh/"><strong>Wi-Fi覆盖与容量规划计算器</strong><span class="nel-tool-graph-description">估算双向射频覆盖、AP数量、用户容量、吞吐量及信道复用压力。</span></a></div><div class="nel-workflow-memberships"><span class="nel-workflow-memberships-label">同时用于</span><span class="nel-workflow-chip">无线接入部署工作流</span></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
+</div>
+</details>
+<details class="fb-fold blk">
+<summary class="fb-fold-sum"><span class="fb-fold-title">内容复核</span></summary>
+<div class="fb-fold-body">
 <section class="content-section nel-tool-supporting-section nel-content-review" id="content-review" aria-labelledby="content-review-title">
 <div class="section-heading"><div><p class="eyebrow">内容复核</p><h2 id="content-review-title">内容复核</h2></div></div>
 <dl class="nel-content-review-grid">
@@ -118,22 +193,10 @@
 <div><dt>更新记录</dt><dd><ul><li>2026-08-31 — 复核规划说明与工程引用。</li><li>2026-10-25 — 增加结构化内容复核元数据（日期、公式依据、适用边界、更新记录），对应 GEO 第 1 周。</li></ul></dd></div>
 </dl>
 </section>
-<!-- NEL_CONTENT_REVIEW_END -->
-<!-- NEL_STANDARDS_START -->
-<section class="content-section nel-tool-supporting-section" id="standards" aria-labelledby="standards-title">
-<div class="section-heading"><div><p class="eyebrow">标准依据</p><h2 id="standards-title">标准引用</h2></div></div>
-<p>上述公式与默认值所依据的权威文件。</p>
-<ul class="nel-standards-list"><li><a href="https://standards.ieee.org/ieee/802.3x/1090/" rel="noopener">IEEE 802.3af-2003</a> — PoE：PSE 端 15.4 W，受电设备端 12.95 W（现并入 IEEE 802.3 第 33 章）。 <small>[已核对]</small></li><li><a href="https://standards.ieee.org/ieee/802.3at/4553/" rel="noopener">IEEE 802.3at-2009</a> — PoE+：PSE 端 30 W，受电设备端 25.5 W。 <small>[已核对]</small></li><li><a href="https://standards.ieee.org/ieee/802.3bt/6749/" rel="noopener">IEEE 802.3bt-2018</a> — PoE++ 四对线供电：Type 3 为 60 W / 51 W，Type 4 为 90 W / 71.3 W。 <small>[已核对]</small></li></ul>
-</section>
-<!-- NEL_STANDARDS_END -->
-<p class="hub-return">属于 <a href="../../datacenter-power-calculators/zh/">数据中心电力与制冷计算器</a> 专题。</p>
-<!-- NEL_TOOL_GRAPH_START -->
-<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="poe-power-budget-calculator" data-primary-workflow="poe-rack-power-design">
-<div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
-<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">当前流程</span><strong>PoE 与机架供电设计工作流</strong><p>依次验证 PoE 供电容量、线缆压降、机架功耗与制冷，并估算通信电池后备时长。</p></div><div class="nel-workflow-step"><strong>步骤 1 / 4</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1" aria-valuetext="步骤 1 / 4" aria-label="步骤 1 / 4"><span style="width:25%"></span></div></div></div><div class="nel-tool-graph-nav"><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">上一步</span><strong>流程起点</strong></div><a class="nel-tool-graph-card" href="/tools/poe-voltage-drop-calculator/zh/"><span class="nel-tool-graph-label">下一步</span><strong>网线PoE压降计算器</strong><span class="nel-tool-graph-description">计算PoE网线回路电阻、压降、远端电压、电流和功率损耗。</span></a></div>
-<h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/poe-voltage-drop-calculator/zh/"><strong>网线PoE压降计算器</strong><span class="nel-tool-graph-description">计算PoE网线回路电阻、压降、远端电压、电流和功率损耗。</span></a><a class="nel-tool-graph-card" href="/tools/network-rack-power-cooling-calculator/zh/"><strong>网络机柜功耗与制冷量计算器</strong><span class="nel-tool-graph-description">计算机柜功耗、电流、制冷量、耗电量和电费。</span></a><a class="nel-tool-graph-card" href="/tools/wifi-coverage-capacity-planner/zh/"><strong>Wi-Fi覆盖与容量规划计算器</strong><span class="nel-tool-graph-description">估算双向射频覆盖、AP数量、用户容量、吞吐量及信道复用压力。</span></a></div><div class="nel-workflow-memberships"><span class="nel-workflow-memberships-label">同时用于</span><span class="nel-workflow-chip">无线接入部署工作流</span></div>
-</section>
-<!-- NEL_TOOL_GRAPH_END -->
+</div>
+</details>
+</div>
+</div>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">
@@ -146,4 +209,5 @@
 </footer>
 <!-- NEL_FOOTER_END -->
 <script src="../js/engine.js"></script><script src="../js/app.js?v=7d7872f22613"></script><script src="../js/scenarios.js"></script><script src="../js/pwa.js"></script>
-<script defer="" src="/assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script><script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script></body></html>
+<script defer="" src="/assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script><script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script><script defer src="../../../assets/js/tool-detail-v3.js?v=66984b67ff65"></script>
+</body></html>

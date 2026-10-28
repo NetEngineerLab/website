@@ -1,5 +1,8 @@
-"use strict";const CACHE = "nel-ups-capacity-battery-runtime-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-49da2452839c-0c53d248cb78";
+"use strict";const CACHE = "nel-ups-capacity-battery-runtime-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-49da2452839c-cdc35c6cf2a6";
 const CORE = [
+  "../../assets/js/tool-detail-v3.js?v=66984b67ff65",
+  "../../assets/css/tool-layout.css?v=dfdd771763d6",
+  "../../assets/css/fieldbook.css?v=a3bb21511014",
   "./",
   "./index.html",
   "./zh/",
@@ -7,7 +10,7 @@ const CORE = [
   "./manifest.webmanifest",
   "./css/style.css?v=13f0536b4e75",
   "./js/engine.js?v=2.0.0",
-  "./js/app.js?v=075f152f26b3",
+  "./js/app.js?v=f6b35252c7c0",
   "./js/deep-workflow.js",
   "./zh/js/deep-workflow.js",
   "./js/pwa.js",

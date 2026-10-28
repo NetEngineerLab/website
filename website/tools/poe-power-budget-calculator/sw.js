@@ -1,6 +1,9 @@
 "use strict";
-const CACHE = "nel-poe-power-budget-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-49da2452839c-dbbca0a62352";
+const CACHE = "nel-poe-power-budget-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-49da2452839c-97ef53b7c8eb";
 const CORE = [
+  "../../assets/js/tool-detail-v3.js?v=66984b67ff65",
+  "../../assets/css/tool-layout.css?v=dfdd771763d6",
+  "../../assets/css/fieldbook.css?v=a3bb21511014",
   "./index.html",
   "./",
   "./zh/",

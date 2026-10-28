@@ -112,6 +112,8 @@ const contentContracts={
   },
   "poe-power-budget-calculator":{
     faqCount:5,
+    contentRoot:"body",
+    faqRoot:"#faq",
     references:[
       "https://www.ieee802.org/3/bt/",
       "https://www.ieee802.org/3/at/objectives.html",
@@ -167,6 +169,8 @@ const contentContracts={
   },
   "poe-voltage-drop-calculator":{
     faqCount:5,
+    contentRoot:"body",
+    faqRoot:"#faq",
     references:[
       "https://www.ieee802.org/3/bt/",
       "https://ethernetalliance.org/wp-content/uploads/2020/02/EthernetAlliance_Gen2PoECertProgram_techbrief-FINAL-19DEC19.pdf",

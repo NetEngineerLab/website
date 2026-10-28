@@ -1,6 +1,9 @@
 "use strict";
-const CACHE = "nel-48v-battery-runtime-locale-v1.9.9-04-p0-p1-correctness-consent-offline-49da2452839c-65d22fb450b0";
+const CACHE = "nel-48v-battery-runtime-locale-v1.9.9-04-p0-p1-correctness-consent-offline-49da2452839c-6f2da0a0cb94";
 const CORE = [
+  "../../assets/js/tool-detail-v3.js?v=66984b67ff65",
+  "../../assets/css/tool-layout.css?v=dfdd771763d6",
+  "../../assets/css/fieldbook.css?v=a3bb21511014",
   "./index.html",
   "./",
   "./zh/",
@@ -9,7 +12,7 @@ const CORE = [
   "./data/battery-presets.js",
   "./css/style.css?v=615b07db9494",
   "./js/engine.js",
-  "./js/app.js?v=e38ff09939d5",
+  "./js/app.js?v=2e777f09bad5",
   "./images/logo.svg",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",
