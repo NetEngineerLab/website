@@ -34,7 +34,33 @@
       fiberLbl: "Fiber ",
       splittersLbl: "Splitters",
       connectorsLbl: "Connectors ",
-      splicesLbl: "Splices "
+      splicesLbl: "Splices ",
+      eqnVerify: "= class {standard} − design {design} · remain {remain} · sens {sens} · overload {over}",
+      eqnDistance: "= (class {standard} − margin {margin} − fixed {fixed}) / attenuation {atten} · entered distance {distance} km",
+      eqnRx: "= Tx min {tx} − physical {physical}",
+      eqnWindow: "= Tx min…max − physical (min {rx} · max {rxMax})",
+      eqnPhysical: "fiber + splices + connectors + splitters + other",
+      eqnDesign: "= physical {physical} + margin {margin} (penalty is taken off the budget)",
+      eqnSens: "= Rx {rx} − sensitivity {sens}",
+      eqnOver: "= overload {over} − (Tx max {txMax} − physical)",
+      reportTitle: "NetEngineerLab — Optical Power Budget Calculator",
+      reportMode: "Mode: ",
+      reportModeVerify: "Link budget verification",
+      reportModeDistance: "Maximum distance estimation",
+      reportStatus: "Status: ",
+      reportClass: "Class budget: ",
+      reportPhysical: "Physical loss: ",
+      reportDesign: "Design loss: ",
+      reportRemain: "Remaining: ",
+      reportRx: "Est. Rx: ",
+      reportRxJoin: " to ",
+      reportSens: "Sensitivity margin: ",
+      reportOver: "Overload margin: ",
+      reportMax: "Estimated maximum distance: ",
+      reportWave: "Wavelength: ",
+      csvField: "Field",
+      csvValue: "Value",
+      csvNames: ["Project", "Mode", "Minimum Tx Power dBm", "Maximum Tx Power dBm", "Receiver Sensitivity dBm", "Overload Threshold dBm", "Optical Path Penalty dB", "Engineering Margin dB", "Fiber Distance km", "Fiber Attenuation dB/km", "Wavelength nm", "Standard ODN Budget dB", "Physical Loss dB", "Design Loss dB", "Remaining Budget dB", "Estimated Minimum RX dBm", "Estimated Maximum RX dBm", "Sensitivity Margin dB", "Overload Margin dB", "Maximum Distance km", "Status"]
     },
     zh: {
       pass: "健康", marginal: "风险", fail: "超限", invalid: "无效",
@@ -64,7 +90,33 @@
       fiberLbl: "光纤 ",
       splittersLbl: "分光器",
       connectorsLbl: "连接器 ",
-      splicesLbl: "熔接 "
+      splicesLbl: "熔接 ",
+      eqnVerify: "= 等级 {standard} − 设计 {design} · 剩余 {remain} · 灵敏度 {sens} · 过载 {over}",
+      eqnDistance: "= (等级 {standard} − 余量 {margin} − 固定 {fixed}) / 衰减 {atten} · 输入距离 {distance} km",
+      eqnRx: "= 最小发送 {tx} − 物理 {physical}",
+      eqnWindow: "= 最小…最大发送 − 物理（最小 {rx} · 最大 {rxMax}）",
+      eqnPhysical: "光纤 + 熔接 + 连接器 + 分光器 + 其他",
+      eqnDesign: "= 物理 {physical} + 余量 {margin}（光学代价从预算中扣除）",
+      eqnSens: "= 接收 {rx} − 灵敏度 {sens}",
+      eqnOver: "= 过载 {over} −（最大发送 {txMax} − 物理）",
+      reportTitle: "NetEngineerLab — 光功率预算计算器",
+      reportMode: "模式：",
+      reportModeVerify: "链路预算校核",
+      reportModeDistance: "最大距离估算",
+      reportStatus: "状态：",
+      reportClass: "等级预算：",
+      reportPhysical: "物理损耗：",
+      reportDesign: "设计损耗：",
+      reportRemain: "剩余：",
+      reportRx: "估算接收：",
+      reportRxJoin: " … ",
+      reportSens: "灵敏度余量：",
+      reportOver: "过载余量：",
+      reportMax: "估算最大距离：",
+      reportWave: "波长：",
+      csvField: "字段",
+      csvValue: "数值",
+      csvNames: ["项目", "模式", "最小发送功率 dBm", "最大发送功率 dBm", "接收灵敏度 dBm", "过载门限 dBm", "光学代价 dB", "工程余量 dB", "光纤距离 km", "光纤衰减 dB/km", "波长 nm", "标准 ODN 预算 dB", "物理损耗 dB", "设计损耗 dB", "剩余预算 dB", "估算最小接收 dBm", "估算最大接收 dBm", "灵敏度余量 dB", "过载余量 dB", "最大距离 km", "状态"]
     },
     es: {
       pass: "Correcto", marginal: "Marginal", fail: "Fallo", invalid: "Inválido",
@@ -94,7 +146,33 @@
       fiberLbl: "Fibra ",
       splittersLbl: "Divisores",
       connectorsLbl: "Conectores ",
-      splicesLbl: "Empalmes "
+      splicesLbl: "Empalmes ",
+      eqnVerify: "= clase {standard} − diseño {design} · restante {remain} · sens. {sens} · sobrecarga {over}",
+      eqnDistance: "= (clase {standard} − margen {margin} − fijos {fixed}) / atenuación {atten} · distancia introducida {distance} km",
+      eqnRx: "= Tx mín {tx} − física {physical}",
+      eqnWindow: "= Tx mín…máx − física (mín {rx} · máx {rxMax})",
+      eqnPhysical: "fibra + empalmes + conectores + divisores + otras",
+      eqnDesign: "= física {physical} + margen {margin} (la penalización se resta del presupuesto)",
+      eqnSens: "= Rx {rx} − sensibilidad {sens}",
+      eqnOver: "= sobrecarga {over} − (Tx máx {txMax} − física)",
+      reportTitle: "NetEngineerLab — Calculadora de presupuesto de potencia óptica",
+      reportMode: "Modo: ",
+      reportModeVerify: "Verificación del presupuesto del enlace",
+      reportModeDistance: "Estimación de distancia máxima",
+      reportStatus: "Estado: ",
+      reportClass: "Presupuesto de clase: ",
+      reportPhysical: "Pérdida física: ",
+      reportDesign: "Pérdida de diseño: ",
+      reportRemain: "Restante: ",
+      reportRx: "Rx est.: ",
+      reportRxJoin: " … ",
+      reportSens: "Margen de sensibilidad: ",
+      reportOver: "Margen de sobrecarga: ",
+      reportMax: "Distancia máxima estimada: ",
+      reportWave: "Longitud de onda: ",
+      csvField: "Campo",
+      csvValue: "Valor",
+      csvNames: ["Proyecto", "Modo", "Potencia Tx mínima dBm", "Potencia Tx máxima dBm", "Sensibilidad del receptor dBm", "Umbral de sobrecarga dBm", "Penalización de trayecto dB", "Margen de ingeniería dB", "Distancia de fibra km", "Atenuación de fibra dB/km", "Longitud de onda nm", "Presupuesto ODN estándar dB", "Pérdida física dB", "Pérdida de diseño dB", "Presupuesto restante dB", "Rx mínima estimada dBm", "Rx máxima estimada dBm", "Margen de sensibilidad dB", "Margen de sobrecarga dB", "Distancia máxima km", "Estado"]
     }
   };
   const T = I18N[LOCALE] || I18N.en;
@@ -114,12 +192,32 @@
 
   const ATT = { "1310": 0.35, "1490": 0.3, "1550": 0.2, "1625": 0.25 };
   const DESC = {
-    custom: "Custom values — edit any field. Confirm against equipment datasheets before design sign-off.",
-    "gpon-c": "GPON C+ reference: Tx min <b>+3 dBm</b>, sensitivity <b>−30 dBm</b>, overload <b>−8 dBm</b>, path penalty <b>1 dB</b>, class budget <b>32 dB</b>. Confirm against the datasheet.",
-    "gpon-b": "GPON B+ reference: Tx min <b>+1.5 dBm</b>, sensitivity <b>−27 dBm</b>, overload <b>−8 dBm</b>, path penalty <b>0.5 dB</b>, class budget <b>28 dB</b>. Confirm against the datasheet.",
-    epon: "EPON reference planning window. Confirm OLT/ONU datasheet before design sign-off.",
-    datacenter: "Short-reach data-center style window (planning demo). Confirm transceiver datasheet."
+    en: {
+      custom: "Custom values — edit any field. Confirm against equipment datasheets before design sign-off.",
+      "gpon-c": "GPON C+ reference: Tx min <b>+3 dBm</b>, sensitivity <b>−30 dBm</b>, overload <b>−8 dBm</b>, path penalty <b>1 dB</b>, class budget <b>32 dB</b>. Confirm against the datasheet.",
+      "gpon-b": "GPON B+ reference: Tx min <b>+1.5 dBm</b>, sensitivity <b>−27 dBm</b>, overload <b>−8 dBm</b>, path penalty <b>0.5 dB</b>, class budget <b>28 dB</b>. Confirm against the datasheet.",
+      epon: "EPON reference planning window. Confirm OLT/ONU datasheet before design sign-off.",
+      datacenter: "Short-reach data-center style window (planning demo). Confirm transceiver datasheet."
+    },
+    zh: {
+      custom: "自定义数值 — 可编辑任意字段。设计签发前请以设备规格书为准。",
+      "gpon-c": "GPON C+ 参考：最小发送 <b>+3 dBm</b>，灵敏度 <b>−30 dBm</b>，过载 <b>−8 dBm</b>，光学代价 <b>1 dB</b>，等级预算 <b>32 dB</b>。请以设备规格书为准。",
+      "gpon-b": "GPON B+ 参考：最小发送 <b>+1.5 dBm</b>，灵敏度 <b>−27 dBm</b>，过载 <b>−8 dBm</b>，光学代价 <b>0.5 dB</b>，等级预算 <b>28 dB</b>。请以设备规格书为准。",
+      epon: "EPON 规划参考窗口。设计签发前请核对 OLT/ONU 规格书。",
+      datacenter: "数据中心短距示意窗口（规划演示）。请以光模块规格书为准。"
+    },
+    es: {
+      custom: "Valores personalizados: edite cualquier campo. Confirme con la hoja de datos antes de firmar el diseño.",
+      "gpon-c": "Referencia GPON C+: Tx mín <b>+3 dBm</b>, sensibilidad <b>−30 dBm</b>, sobrecarga <b>−8 dBm</b>, penalización <b>1 dB</b>, presupuesto de clase <b>32 dB</b>. Confirme con la hoja de datos.",
+      "gpon-b": "Referencia GPON B+: Tx mín <b>+1.5 dBm</b>, sensibilidad <b>−27 dBm</b>, sobrecarga <b>−8 dBm</b>, penalización <b>0.5 dB</b>, presupuesto de clase <b>28 dB</b>. Confirme con la hoja de datos.",
+      epon: "Ventana de planificación EPON. Confirme la hoja de datos OLT/ONU antes de firmar el diseño.",
+      datacenter: "Ventana de corto alcance tipo centro de datos (demo de planificación). Confirme la hoja del transceptor."
+    }
   };
+  const DESC_L = DESC[LOCALE] || DESC.en;
+  function fill(template, map) {
+    return String(template).replace(/\{(\w+)\}/g, (_, key) => map[key]);
+  }
   const MODE_HELP = {
     verify: T.modeVerify,
     distance: T.modeDistance
@@ -207,7 +305,7 @@
       el.setAttribute("aria-pressed", on ? "true" : "false");
     });
     const desc = $("preset-desc");
-    if (desc) desc.innerHTML = DESC[key] || DESC.custom;
+    if (desc) desc.innerHTML = DESC_L[key] || DESC_L.custom;
   }
 
   function applyPreset(key) {
@@ -365,17 +463,13 @@
       $("ro-main-big").style.color = tone;
       setText(
         "ro-main-eqn",
-        "= (class " +
-          fmt(standard) +
-          " − margin " +
-          fmt(v.margin) +
-          " − fixed " +
-          fmt(result.fixed) +
-          ") / attenuation " +
-          fmt(v.a) +
-          " · entered distance " +
-          fmt(v.d) +
-          " km"
+        fill(T.eqnDistance, {
+          standard: fmt(standard),
+          margin: fmt(v.margin),
+          fixed: fmt(result.fixed),
+          atten: fmt(v.a),
+          distance: fmt(v.d)
+        })
       );
       setText("mbar-val", fmt(maxD) + " km");
     } else {
@@ -395,16 +489,13 @@
       $("ro-main-big").style.color = tone;
       setText(
         "ro-main-eqn",
-        "= class " +
-          fmt(standard) +
-          " − design " +
-          fmt(design) +
-          " · remain " +
-          fmt(remain) +
-          " · sens " +
-          fmt(sensM) +
-          " · overload " +
-          fmt(overM)
+        fill(T.eqnVerify, {
+          standard: fmt(standard),
+          design: fmt(design),
+          remain: fmt(remain),
+          sens: fmt(sensM),
+          over: fmt(overM)
+        })
       );
       setText("mbar-val", fmt(tight.value) + " dB");
     }
@@ -417,23 +508,17 @@
     setHTML("ro-rx", fmt(rx) + "<small>dBm</small>");
     const rxMax = result.rxMax;
     setText("estimatedRx", fmt(rx) + " … " + fmt(rxMax));
-    setText("ro-rx-window-eqn", "= Tx min…max − physical (min " + fmt(rx) + " · max " + fmt(rxMax) + ")");
+    setText("ro-rx-window-eqn", fill(T.eqnWindow, { rx: fmt(rx), rxMax: fmt(rxMax) }));
     setHTML("physicalLoss", fmt(physical) + "<small>dB</small>");
     setHTML("ro-design", fmt(design) + "<small>dB</small>");
-    setText("ro-rx-eqn", "= Tx min " + fmt(v.tx) + " − physical " + fmt(physical));
-    setText("ro-physical-eqn", "fiber + splices + connectors + splitters + other");
-    setText(
-      "ro-design-eqn",
-      "= physical " + fmt(physical) + " + margin " + fmt(v.margin) + " (penalty is taken off the budget)"
-    );
+    setText("ro-rx-eqn", fill(T.eqnRx, { tx: fmt(v.tx), physical: fmt(physical) }));
+    setText("ro-physical-eqn", T.eqnPhysical);
+    setText("ro-design-eqn", fill(T.eqnDesign, { physical: fmt(physical), margin: fmt(v.margin) }));
 
     setHTML("ro-sensM", fmt(sensM) + "<small>dB</small>");
     setHTML("ro-overM", fmt(overM) + "<small>dB</small>");
-    setText("ro-sensM-eqn", "= Rx " + fmt(rx) + " − sensitivity " + fmt(v.sens));
-    setText(
-      "ro-overM-eqn",
-      "= overload " + fmt(v.over) + " − (Tx max " + fmt(v.txMax) + " − physical)"
-    );
+    setText("ro-sensM-eqn", fill(T.eqnSens, { rx: fmt(rx), sens: fmt(v.sens) }));
+    setText("ro-overM-eqn", fill(T.eqnOver, { over: fmt(v.over), txMax: fmt(v.txMax) }));
 
     setText("remainingBudget", fmt(remain));
     setText("ro-ck-sens", fmt(sensM) + " dB");
@@ -546,18 +631,18 @@
     if (!last) return null;
     const r = last;
     return [
-      "NetEngineerLab — Optical Power Budget Calculator",
-      "Mode: " + (r.mode === "distance" ? "Maximum distance estimation" : "Link budget verification"),
-      "Status: " + statusMeta(r.st).label,
-      "Class budget: " + fmt(r.standard) + " dB",
-      "Physical loss: " + fmt(r.physical) + " dB",
-      "Design loss: " + fmt(r.design) + " dB",
-      "Remaining: " + fmt(r.remain) + " dB",
-      "Est. Rx: " + fmt(r.rx) + " to " + fmt(r.rxMax) + " dBm",
-      "Sensitivity margin: " + fmt(r.sensM) + " dB",
-      "Overload margin: " + fmt(r.overM) + " dB",
-      "Estimated maximum distance: " + fmt(r.maxD) + " km",
-      "Wavelength: " + r.wave + " nm"
+      T.reportTitle,
+      T.reportMode + (r.mode === "distance" ? T.reportModeDistance : T.reportModeVerify),
+      T.reportStatus + statusMeta(r.st).label,
+      T.reportClass + fmt(r.standard) + " dB",
+      T.reportPhysical + fmt(r.physical) + " dB",
+      T.reportDesign + fmt(r.design) + " dB",
+      T.reportRemain + fmt(r.remain) + " dB",
+      T.reportRx + fmt(r.rx) + T.reportRxJoin + fmt(r.rxMax) + " dBm",
+      T.reportSens + fmt(r.sensM) + " dB",
+      T.reportOver + fmt(r.overM) + " dB",
+      T.reportMax + fmt(r.maxD) + " km",
+      T.reportWave + r.wave + " nm"
     ].join("\n");
   }
 
@@ -686,30 +771,30 @@
       return;
     }
     const r = last;
-    const rows = [
-      ["Field", "Value"],
-      ["Project", r.project || (($("projectName") && $("projectName").value) || "")],
-      ["Mode", r.mode],
-      ["Minimum Tx Power dBm", r.tx],
-      ["Maximum Tx Power dBm", r.txMax],
-      ["Receiver Sensitivity dBm", r.sens],
-      ["Overload Threshold dBm", r.over],
-      ["Optical Path Penalty dB", r.penalty],
-      ["Engineering Margin dB", r.margin],
-      ["Fiber Distance km", r.d],
-      ["Fiber Attenuation dB/km", r.a],
-      ["Wavelength nm", r.wave],
-      ["Standard ODN Budget dB", Number(r.standard).toFixed(2)],
-      ["Physical Loss dB", Number(r.physical).toFixed(2)],
-      ["Design Loss dB", Number(r.design).toFixed(2)],
-      ["Remaining Budget dB", Number(r.remain).toFixed(2)],
-      ["Estimated Minimum RX dBm", Number(r.rx).toFixed(2)],
-      ["Estimated Maximum RX dBm", Number(r.rxMax).toFixed(2)],
-      ["Sensitivity Margin dB", Number(r.sensM).toFixed(2)],
-      ["Overload Margin dB", Number(r.overM).toFixed(2)],
-      ["Maximum Distance km", Number(r.maxD).toFixed(2)],
-      ["Status", statusMeta(r.st).label]
+    const values = [
+      r.project || (($("projectName") && $("projectName").value) || ""),
+      r.mode,
+      r.tx,
+      r.txMax,
+      r.sens,
+      r.over,
+      r.penalty,
+      r.margin,
+      r.d,
+      r.a,
+      r.wave,
+      Number(r.standard).toFixed(2),
+      Number(r.physical).toFixed(2),
+      Number(r.design).toFixed(2),
+      Number(r.remain).toFixed(2),
+      Number(r.rx).toFixed(2),
+      Number(r.rxMax).toFixed(2),
+      Number(r.sensM).toFixed(2),
+      Number(r.overM).toFixed(2),
+      Number(r.maxD).toFixed(2),
+      statusMeta(r.st).label
     ];
+    const rows = [[T.csvField, T.csvValue]].concat(T.csvNames.map((name, i) => [name, values[i]]));
     const text =
       "\uFEFF" +
       rows

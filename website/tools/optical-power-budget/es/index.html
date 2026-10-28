@@ -104,7 +104,7 @@
 
 <div class="fg">
 <p class="fs-t">Ventana de potencia del equipo</p>
-<p class="fg-note">Editable. Presets fill these from the selected standards profile; change any value to switch to Personalizado.</p>
+<p class="fg-note">Los preajustes rellenan estos valores desde el perfil normativo seleccionado; cambie cualquier valor para pasar a Personalizado.</p>
 <div class="fields">
 <div class="f"><label for="txPower">Potencia mínima de transmisión</label><div class="inp input-wrap"><input id="txPower" value="3" inputmode="decimal" aria-label="Potencia mínima de transmisión"><u>dBm</u></div><small>Tx de peor caso según hoja de datos OLT</small></div>
 <div class="f"><label for="txMaxPower">Potencia máxima de transmisión</label><div class="inp input-wrap"><input id="txMaxPower" value="7" inputmode="decimal" aria-label="Potencia máxima de transmisión"><u>dBm</u></div><small>Límite de sobrecarga a potencia máxima</small></div>
@@ -117,14 +117,14 @@
 
 <div class="fg">
 <p class="fs-t">Fibra y componentes pasivos</p>
-<p class="fg-note">Editable ODN path. Longitud de onda updates typical fiber attenuation; override attenuation if your cable plant differs.</p>
+<p class="fg-note">Ruta ODN editable. La longitud de onda actualiza la atenuación típica de la fibra; modifique la atenuación si su planta difiere.</p>
 <div class="fields">
 <div class="f"><label for="distance">Distancia de fibra</label><div class="inp input-wrap"><input id="distance" value="10" inputmode="decimal" aria-label="Distancia de fibra"><u>km</u></div></div>
 <div class="f"><label for="wavelength">Longitud de onda</label><div class="inp input-wrap sel"><select id="wavelength" aria-label="Longitud de onda"><option value="1310">1310 nm</option><option value="1490" selected>1490 nm</option><option value="1550">1550 nm</option><option value="1625">1625 nm</option></select></div></div>
 <div class="f"><label for="attenuation">Atenuación de la fibra</label><div class="inp input-wrap"><input id="attenuation" value="0.30" inputmode="decimal" aria-label="Atenuación de la fibra"><u>dB/km</u></div><small>G.652 típica a 1490 nm; use su especificación</small></div>
-<div class="f"><label for="spliceCount">Número de empalmes</label><div class="inp input-wrap"><input id="spliceCount" value="6" inputmode="numeric" aria-label="Número de empalmes"><u>pcs</u></div></div>
+<div class="f"><label for="spliceCount">Número de empalmes</label><div class="inp input-wrap"><input id="spliceCount" value="6" inputmode="numeric" aria-label="Número de empalmes"><u>uds</u></div></div>
 <div class="f"><label for="spliceLoss">Pérdida por empalme</label><div class="inp input-wrap"><input id="spliceLoss" value="0.10" inputmode="decimal" aria-label="Pérdida por empalme"><u>dB</u></div><small>Empalme por fusión</small></div>
-<div class="f"><label for="connectorCount">Número de conectores</label><div class="inp input-wrap"><input id="connectorCount" value="4" inputmode="numeric" aria-label="Número de conectores"><u>pcs</u></div><small>Cuente pares acoplados</small></div>
+<div class="f"><label for="connectorCount">Número de conectores</label><div class="inp input-wrap"><input id="connectorCount" value="4" inputmode="numeric" aria-label="Número de conectores"><u>uds</u></div><small>Cuente pares acoplados</small></div>
 <div class="f"><label for="connectorLoss">Pérdida por conector</label><div class="inp input-wrap"><input id="connectorLoss" value="0.30" inputmode="decimal" aria-label="Pérdida por conector"><u>dB</u></div></div>
 <div class="f"><label for="splitter1">Divisor primario</label><div class="inp input-wrap sel"><select id="splitter1" aria-label="Divisor primario"><option value="0">Ninguno (0 dB)</option><option value="3.5">1:2 (3.5 dB)</option><option value="7.0">1:4 (7.0 dB)</option><option value="10.5" selected>1:8 (10.5 dB)</option><option value="13.8">1:16 (13.8 dB)</option><option value="17.0">1:32 (17.0 dB)</option><option value="20.5">1:64 (20.5 dB)</option></select></div></div>
 <div class="f"><label for="splitter2">Divisor secundario</label><div class="inp input-wrap sel"><select id="splitter2" aria-label="Divisor secundario"><option value="0">Ninguno (0 dB)</option><option value="3.5">1:2 (3.5 dB)</option><option value="7.0">1:4 (7.0 dB)</option><option value="10.5" selected>1:8 (10.5 dB)</option><option value="13.8">1:16 (13.8 dB)</option><option value="17.0">1:32 (17.0 dB)</option><option value="20.5">1:64 (20.5 dB)</option></select></div></div>
@@ -154,28 +154,28 @@
 <div class="ro-main">
 <div class="lbl" id="ro-main-lbl">Margen más ajustado · Restante frente a clase</div>
 <div class="big" id="ro-main-big">3.20<small>dB</small></div>
-<div class="eqn" id="ro-main-eqn">= class 32.00 − design 28.80 · remain 3.20 · sens 7.20 · overload 10.80</div>
+<div class="eqn" id="ro-main-eqn">= clase 32.00 − diseño 28.80 · restante 3.20 · sens. 7.20 · sobrecarga 10.80</div>
 <div class="meter"><div class="bar"><i id="ro-meter-bar" style="width:90%"></i></div>
-<div class="scale"><span id="ro-meter-left">Budget used 90%</span><span id="ro-meter-right">28.80 / 32.00 dB</span></div></div>
+<div class="scale"><span id="ro-meter-left">Presupuesto usado 90%</span><span id="ro-meter-right">28.80 / 32.00 dB</span></div></div>
 </div>
 </div>
 
 <!-- L2: key engineering results -->
 <div class="grp ro-l2"><h3>Resultados clave</h3>
-<div class="row"><span>Potencia recibida estimada</span><b id="ro-rx">−22.80<small>dBm</small></b><div class="eqn" id="ro-rx-eqn">= Tx min 3.00 − physical 25.80</div></div>
-<div class="row"><span>Ventana de potencia recibida</span><b><span id="estimatedRx">0.00</span> <small>dBm</small></b><div class="eqn" id="ro-rx-window-eqn">= Tx min…max − physical (min −22.80 · max −18.80)</div></div>
-<div class="row"><span>Pérdida ODN física</span><b id="physicalLoss">25.80<small>dB</small></b><div class="eqn" id="ro-physical-eqn">fiber + splices + connectors + splitters + other</div></div>
-<div class="row"><span>Pérdida total de diseño</span><b id="ro-design">28.80<small>dB</small></b><div class="eqn" id="ro-design-eqn">= physical 25.80 + margin 3.00 (penalty is taken off the budget)</div></div>
+<div class="row"><span>Potencia recibida estimada</span><b id="ro-rx">−22.80<small>dBm</small></b><div class="eqn" id="ro-rx-eqn">= Tx mín 3.00 − física 25.80</div></div>
+<div class="row"><span>Ventana de potencia recibida</span><b><span id="estimatedRx">-22.80 … -18.80</span> <small>dBm</small></b><div class="eqn" id="ro-rx-window-eqn">= Tx mín…máx − física (mín −22.80 · máx −18.80)</div></div>
+<div class="row"><span>Pérdida ODN física</span><b id="physicalLoss">25.80<small>dB</small></b><div class="eqn" id="ro-physical-eqn">fibra + empalmes + conectores + divisores + otras</div></div>
+<div class="row"><span>Pérdida total de diseño</span><b id="ro-design">28.80<small>dB</small></b><div class="eqn" id="ro-design-eqn">= física 25.80 + margen 3.00 (la penalización se resta del presupuesto)</div></div>
 </div>
 
 <!-- L3: auxiliary -->
 <div class="grp ro-l3"><h3>Ventana del receptor</h3>
-<div class="row"><span>Margen sobre sensibilidad</span><b id="ro-sensM">7.20<small>dB</small></b><div class="eqn" id="ro-sensM-eqn">= Rx −22.80 − sensitivity −30.00</div></div>
-<div class="row"><span>Margen bajo sobrecarga</span><b id="ro-overM">10.80<small>dB</small></b><div class="eqn" id="ro-overM-eqn">= overload −8.00 − (Tx max 7.00 − physical)</div></div>
+<div class="row"><span>Margen sobre sensibilidad</span><b id="ro-sensM">7.20<small>dB</small></b><div class="eqn" id="ro-sensM-eqn">= Rx −22.80 − sensibilidad −30.00</div></div>
+<div class="row"><span>Margen bajo sobrecarga</span><b id="ro-overM">10.80<small>dB</small></b><div class="eqn" id="ro-overM-eqn">= sobrecarga −8.00 − (Tx máx 7.00 − física)</div></div>
 </div>
 
 <div class="checks"><h3>Comprobaciones de estado</h3>
-<div class="ck"><i></i><span>Presupuesto de clase restante</span><b id="remainingBudget">0.00</b></div>
+<div class="ck"><i></i><span>Presupuesto de clase restante</span><b id="remainingBudget">3.20</b></div>
 <div class="ck"><i></i><span>Margen de sensibilidad</span><b id="ro-ck-sens">7.20 dB</b></div>
 <div class="ck"><i></i><span>Margen de sobrecarga</span><b id="ro-ck-over">10.80 dB</b></div>
 <p>Correcto: todas ≥ 3 dB · Marginal: alguna 0–3 dB · Fallo: alguna &lt; 0 dB</p>
@@ -195,7 +195,7 @@
 </div></section>
 <div class="tool-head">
 <div>
-<div class="crumbs"><a href="../../../es/">Home</a>/<a href="../../es/">Tools</a>/<a href="/topics/pon-optical/">Optical</a>/<span>Optical Power Budget</span></div>
+<div class="crumbs"><a href="../../../es/">Inicio</a>/<a href="../../es/">Herramientas</a>/<a href="/topics/pon-optical/">Óptica</a>/<span>Presupuesto óptico</span></div>
 <p class="tool-page-label" role="heading" aria-level="1">Calculadora de presupuesto de potencia óptica</p>
 <p class="tool-lede">Verifique presupuestos ópticos a partir de potencia de transmisión, sensibilidad y pérdidas ODN; obtenga potencia recibida, margen restante y distancia máxima.</p>
 </div>
@@ -215,7 +215,7 @@
 <button type="button" class="scenario-card" data-preset="datacenter" aria-pressed="false" role="option"><b>Centro de datos</b><span>Demo de corto alcance · 1310 nm · sin divisores</span></button>
 <button type="button" class="scenario-card" data-preset="custom" aria-pressed="false" role="option"><b>Personalizado</b><span>Conservar valores actuales · todos los campos editables</span></button>
 </div>
-<div class="presets presets-mobile" role="listbox" aria-label="Scenario chips (compact)">
+<div class="presets presets-mobile" role="listbox" aria-label="Escenarios compactos">
 <button type="button" class="on" data-preset="gpon-c" aria-pressed="true">GPON C+</button>
 <button type="button" data-preset="gpon-b" aria-pressed="false">GPON B+</button>
 <button type="button" data-preset="epon" aria-pressed="false">EPON</button>
@@ -238,7 +238,7 @@
 <aside aria-label="PUBLICIDAD" class="ad-slot" data-ad-key="afterCalculator" hidden=""><div class="ad-label">PUBLICIDAD</div><div class="ad-body"></div></aside>
 <section class="content-section nel-tool-supporting-section" id="methodology"><span class="section-kicker">METODOLOGÍA</span><h2>Metodología y notas de ingeniería</h2><div class="grid"><article><h3>Presupuesto ODN estándar</h3><p>Se obtiene restando a la potencia mínima de transmisión la sensibilidad del receptor y la penalización óptica aplicable.</p><div class="formula">BODN = Ptx,min − Srx − penalización</div></article><article><h3>Pérdida física ODN</h3><p>Suma fibra, empalmes, conectores, divisores multietapa y otras pérdidas pasivas.</p></article><article><h3>Pérdida de diseño</h3><p>La pérdida de diseño añade el margen de ingeniería a la pérdida física. El margen es reserva de proyecto y no una pérdida física presente.</p></article><article><h3>Ventana de recepción</h3><p>Comprueba por separado sensibilidad y sobrecarga. Un enlace corto con potencia Tx alta puede superar el límite de sobrecarga aunque tenga mucho margen de presupuesto.</p></article></div></section>
 <section class="content-section nel-tool-supporting-section" id="faq"><h2>Preguntas frecuentes</h2><div data-nel-faq=""><details><summary>¿Por qué usar la potencia mínima de transmisión?</summary><p>Permite verificar el peor caso de sensibilidad y evita un resultado optimista por dispersión de equipos, temperatura o envejecimiento.</p></details><details><summary>¿Más potencia recibida siempre es mejor?</summary><p>No. Una potencia demasiado baja puede quedar por debajo de la sensibilidad y una demasiado alta puede superar el umbral de sobrecarga.</p></details><details><summary>¿Por qué el margen de ingeniería no se resta de la potencia recibida?</summary><p>Porque es una reserva de diseño, no una pérdida física actual. Se utiliza para verificar el presupuesto.</p></details><details><summary>¿Por qué la distancia máxima es una estimación?</summary><p>Depende de la fibra real, temperatura, empalmes, ruta, divisores y parámetros exactos de OLT/ONU o transceptores.</p></details><details><summary>¿Sustituye a las pruebas de campo?</summary><p>No. La aceptación debe incluir medidor de potencia, OTDR y criterios del fabricante y de la organización.</p></details></div></section><section class="content-section nel-tool-supporting-section" id="history"><div class="section-heading"><div><p class="eyebrow">REGISTROS DEL PROYECTO</p><h2>Cálculos recientes</h2></div><button class="text-button" id="btn-clear-history">Borrar historial</button></div><div class="history-list" id="history-list"></div></section>
-<section class="content-section nel-tool-supporting-section" id="references"><span class="section-kicker">EVIDENCIA DE INGENIERÍA</span><h2>Ventana de potencia y referencias oficiales</h2><p>La potencia mínima Tx se usa para sensibilidad y presupuesto; la potencia máxima Tx se comprueba por separado frente a la sobrecarga del receptor. Los presets son referencias de planificación y no sustituyen la ficha técnica del equipo concreto.</p><ul><li>ITU‑T G.984.2 — parámetros de capa dependiente del medio para GPON.</li><li>ITU‑T G.987.2 — parámetros físicos para XG‑PON.</li><li>ITU‑T G.671 — características de componentes ópticos.</li></ul><p>El límite Correcto/Precaución de 3 dB es una regla de planificación del sitio. Revisado: 2026-08-31.</p></section>
+<section class="content-section nel-tool-supporting-section" id="references"><span class="section-kicker">EVIDENCIA DE INGENIERÍA</span><h2>Ventana de potencia y referencias oficiales</h2><p>La potencia mínima Tx se usa para sensibilidad y presupuesto; la potencia máxima Tx se comprueba por separado frente a la sobrecarga del receptor. Los preajustes son referencias de planificación y no sustituyen la ficha técnica del equipo concreto.</p><ul><li>ITU‑T G.984.2 — parámetros de capa dependiente del medio para GPON.</li><li>ITU‑T G.987.2 — parámetros físicos para XG‑PON.</li><li>ITU‑T G.671 — características de componentes ópticos.</li></ul><p>El límite Correcto / Marginal / Fallo usa 3 dB y 0 dB como regla de planificación de esta herramienta. Revisado: 2026-08-31.</p></section>
 <aside aria-label="PUBLICIDAD" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">PUBLICIDAD</div><div class="ad-body"></div></aside>
 <!-- NEL_CONTENT_REVIEW_START -->
 <section class="content-section nel-tool-supporting-section nel-content-review" id="content-review" aria-labelledby="content-review-title">
@@ -246,7 +246,7 @@
 <dl class="nel-content-review-grid">
 <div><dt>Revisado</dt><dd><time datetime="2026-10-25">2026-10-25</time> (bloque estructurado). Nota editorial previa en esta página: 2026-08-31.</dd></div>
 <div><dt>Base de la fórmula</dt><dd>Presupuesto ODN estándar = Tx mínima − sensibilidad del receptor − penalización de trayectoria óptica. Pérdida ODN física = fibra + empalme + conector + splitter + otras pérdidas pasivas. Pérdida de diseño = pérdida física + margen de ingeniería. La potencia recibida estimada usa solo la pérdida física. Los límites de clase GPON B+/C+ siguen los rangos de planificación de ITU-T G.984.2 citados en esta página.</dd></div>
-<div><dt>Límites de aplicabilidad</dt><dd>Ayuda de planificación y diagnóstico para presupuestos ópticos / PON. Los presets son clases de referencia, no una garantía para cada par OLT/ONU. No sustituye aceptación con medidor de potencia u OTDR, hojas de datos ni normas de empresa. Sin preset XGS-PON; introduzca valores de equipo para diseños G.9807.1.</dd></div>
+<div><dt>Límites de aplicabilidad</dt><dd>Ayuda de planificación y diagnóstico para presupuestos ópticos / PON. Los preajustes son clases de referencia, no una garantía para cada par OLT/ONU. No sustituye aceptación con medidor de potencia u OTDR, hojas de datos ni normas de empresa. Sin preajuste XGS-PON; introduzca valores de equipo para diseños G.9807.1.</dd></div>
 <div><dt>Registro de cambios</dt><dd><ul><li>2026-08-31 — Revisión editorial de las notas de ventana de potencia y referencias oficiales.</li><li>2026-10-25 — Se añadió metadatos estructurados de revisión de contenido (fecha, base de fórmula, límites, registro) para GEO semana 1.</li></ul></dd></div>
 </dl>
 </section>
@@ -276,5 +276,5 @@
     <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
   </div>
 </footer>
-<!-- NEL_FOOTER_END --><script defer="" src="../js/engine.js?v=5e03675c092d"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer src="../js/app-v3.js?v=5a23cc364b4e"></script><script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+<!-- NEL_FOOTER_END --><script defer="" src="../js/engine.js?v=5e03675c092d"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer src="../js/app-v3.js?v=5bac46c4fe4e"></script><script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
 <script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script></body></html>
