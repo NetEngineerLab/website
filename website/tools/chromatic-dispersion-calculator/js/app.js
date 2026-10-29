@@ -297,20 +297,50 @@ function setText(id, value){
   if (node) node.textContent = value;
 }
 
+function statusClass(status){
+  if (status === "warning") return "status st-marg";
+  if (status === "failed") return "status st-fail";
+  if (status === "healthy") return "status st-pass";
+  return "status";
+}
+
 function setStatus(status){
-  const card = $("summaryCard");
-  if (card) card.className = `summary-card ${status || "healthy"}`;
-  const badge = $("healthBadge");
-  if (badge) badge.textContent = status ? text.status[status] : "—";
+  const label = status ? text.status[status] : "—";
+  const className = statusClass(status);
+  for (const id of ["healthBadge", "mbar-status"]){
+    const node = $(id);
+    if (!node) continue;
+    node.textContent = label;
+    node.className = className;
+  }
+}
+
+function setValidation(message){
+  const node = $("validationMessage");
+  if (!node) return;
+  node.textContent = message || "";
+  node.hidden = !message;
+}
+
+function setMbar(residual){
+  setText("mbar-val", residual || "—");
+}
+
+function syncModeCards(){
+  const mode = $("mode");
+  if (!mode) return;
+  document.querySelectorAll("[data-mode]").forEach((btn) => {
+    const on = btn.getAttribute("data-mode") === mode.value;
+    btn.classList.toggle("on", on);
+    btn.setAttribute("aria-pressed", on ? "true" : "false");
+  });
 }
 
 function clearResults(){
   lastResult = null;
   for (const id of CONFIG.outputs) setText(id, "—");
-  const badge = $("healthBadge");
-  if (badge) badge.textContent = "—";
-  const card = $("summaryCard");
-  if (card) card.className = "summary-card";
+  setStatus("");
+  setMbar("—");
 }
 
 function markInvalid(ids){
@@ -329,7 +359,7 @@ function invalidFields(values){
     if (field.type !== "number" && field.type !== "int" && field.type !== "text") continue;
     const node = $(field.id);
     if (!node) continue;
-    const wrap = node.closest(".field");
+    const wrap = node.closest(".f");
     if (wrap && wrap.hidden) continue;
     const value = values[field.id];
     const blank = field.type === "text" ? String(value).trim() === "" : !Number.isFinite(value);
@@ -358,16 +388,17 @@ function calculate(){
     const custom = result.error && text.errors && text.errors[result.error];
     const ids = custom ? [] : invalidFields(values);
     markInvalid(ids);
-    $("validationMessage").textContent = custom || validationText(ids);
+    setValidation(custom || validationText(ids));
     return;
   }
   markInvalid([]);
-  $("validationMessage").textContent = "";
+  setValidation("");
   const display = {};
   for (const [key, value] of Object.entries(result.display)) display[key] = displayValue(value);
   if (result.winner && text.winner) display.winnerText = text.winner[result.winner];
   lastResult = {projectName: ($("projectName").value || "").trim() || "Untitled", display, timestamp: new Date().toISOString()};
   for (const id of CONFIG.outputs) setText(id, display[id] ?? "—");
+  setMbar(display.residualCd);
   if (CONFIG.hasStatus) setStatus(result.status);
   if (typeof window.nelTrack === "function") window.nelTrack(CONFIG.track, {status: result.status || "ok"});
 }
@@ -400,11 +431,12 @@ function applyModes(){
       for (const id of ids){
         const node = $(id);
         if (!node) continue;
-        const wrap = node.closest(".field");
+        const wrap = node.closest(".f");
         if (wrap) wrap.hidden = select.value !== value;
       }
     }
   }
+  syncModeCards();
 }
 
 function resetForm(){
@@ -497,6 +529,15 @@ for (const preset of CONFIG.presets){
 for (const mode of CONFIG.modes){
   $(mode.select).addEventListener("change", () => { applyModes(); calculate(); });
 }
+document.querySelectorAll("[data-mode]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const select = $("mode");
+    if (!select) return;
+    select.value = btn.getAttribute("data-mode");
+    applyModes();
+    calculate();
+  });
+});
 $("calculateBtn").addEventListener("click", calculate);
 $("resetBtn").addEventListener("click", resetForm);
 $("copyBtn").addEventListener("click", copyResult);
