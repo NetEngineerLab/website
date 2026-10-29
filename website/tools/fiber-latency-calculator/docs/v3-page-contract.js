@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 "use strict";
 /* Fiber Latency V3 page contract: OPB public skeleton, preserved DOM ids, SEO.
-   Does not execute the calculator. Engine bytes are pinned separately. */
+   Parses the three locale documents. Does not execute the calculator.
+   Engine bytes are pinned separately. */
 const assert = require("assert");
 const fs = require("fs");
 const path = require("path");
@@ -11,68 +12,228 @@ const root = path.resolve(__dirname, "..");
 const engineHash = crypto.createHash("sha256").update(fs.readFileSync(path.join(root, "js/engine.js"))).digest("hex");
 assert.strictEqual(engineHash, "11269b52819a4b507b567b6a2ee94d2069cb00d7cb0831cbfe19bd07b4d5df12");
 
+const VOID = new Set(["area","base","br","col","embed","hr","img","input","link","meta","source","track","wbr"]);
+const RAW = new Set(["script","style"]);
+
+function parseAttrs(raw) {
+  const attrs = {};
+  const re = /([^\s=\/]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'>]+)))?/g;
+  let m;
+  while ((m = re.exec(raw))) {
+    attrs[m[1]] = m[2] != null ? m[2] : m[3] != null ? m[3] : m[4] != null ? m[4] : "";
+  }
+  return attrs;
+}
+
+function parseDocument(html) {
+  const rootEl = { tag: "#root", attrs: {}, children: [] };
+  const stack = [rootEl];
+  const re = /<!--[\s\S]*?-->|<(\/?)([a-zA-Z][\w:-]*)([^>]*)>/g;
+  let last = 0;
+  let m;
+  while ((m = re.exec(html))) {
+    const parent = stack[stack.length - 1];
+    const text = html.slice(last, m.index);
+    if (text.trim()) parent.children.push({ text });
+    last = re.lastIndex;
+    if (m[0].startsWith("<!--")) continue;
+    const closing = m[1] === "/";
+    const tag = m[2].toLowerCase();
+    if (closing) {
+      for (let i = stack.length - 1; i > 0; i--) {
+        if (stack[i].tag === tag) {
+          stack.length = i;
+          break;
+        }
+      }
+      continue;
+    }
+    const attrs = parseAttrs(m[3].replace(/\/\s*$/, ""));
+    const node = { tag, attrs, children: [] };
+    parent.children.push(node);
+    const selfClose = /\/\s*$/.test(m[3]) || VOID.has(tag);
+    if (!selfClose) {
+      stack.push(node);
+      if (RAW.has(tag)) {
+        const end = new RegExp("<\\/" + tag + "\\s*>", "i");
+        const rest = html.slice(last);
+        const found = end.exec(rest);
+        if (found) {
+          node.children.push({ text: rest.slice(0, found.index) });
+          last = last + found.index + found[0].length;
+          re.lastIndex = last;
+          stack.pop();
+        }
+      }
+    }
+  }
+  return rootEl;
+}
+
+function elements(node) {
+  return (node.children || []).filter((child) => child.tag);
+}
+function cls(node) {
+  return new Set(String(node.attrs.class || "").split(/\s+/).filter(Boolean));
+}
+function has(node, name) {
+  return cls(node).has(name);
+}
+function findAll(node, pred, out = []) {
+  if (node.tag && pred(node)) out.push(node);
+  for (const child of node.children || []) {
+    if (child.tag) findAll(child, pred, out);
+  }
+  return out;
+}
+function one(nodes, label) {
+  assert.strictEqual(nodes.length, 1, label + " count " + nodes.length);
+  return nodes[0];
+}
+function childTags(node) {
+  return elements(node).map((el) => el.tag + (el.attrs.id ? "#" + el.attrs.id : "") + (el.attrs.class ? "." + String(el.attrs.class).split(/\s+/).filter(Boolean).join(".") : ""));
+}
+
 const pages = {
   en: {
     file: "index.html",
     robots: "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
     canonical: "https://netengineerlab.com/tools/fiber-latency-calculator/",
     title: "Fiber Latency Calculator – µs per km, One-Way &amp; RTT",
-    css: "../optical-power-budget/css/"
+    css: "../optical-power-budget/css/",
+    assets: "../../assets/"
   },
   zh: {
     file: "zh/index.html",
     robots: "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
     canonical: "https://netengineerlab.com/tools/fiber-latency-calculator/zh/",
     title: "光纤时延计算器｜每公里时延、单向与往返RTT",
-    css: "../../optical-power-budget/css/"
+    css: "../../optical-power-budget/css/",
+    assets: "../../../assets/"
   },
   es: {
     file: "es/index.html",
     robots: "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
     canonical: "https://netengineerlab.com/tools/fiber-latency-calculator/es/",
     title: "Calculadora de latencia de fibra – µs por km, ida y RTT",
-    css: "../../optical-power-budget/css/"
+    css: "../../optical-power-budget/css/",
+    assets: "../../../assets/"
   }
 };
 const inputIds = ["projectName","distance","distanceUnit","routeFactor","groupIndexPreset","groupIndex","equipmentCount","equipmentDelay","packetSize","linkRate","serializationHops","calculateBtn","resetBtn","validationMessage"];
 const resultIds = ["oneWay","rtt","fiberLength","propagation","equipment","serialization","usPerKm","speed","fractionC","versusVacuum","comparisonBody","summaryCard","copyBtn","saveBtn","printBtn","clearHistoryBtn","historyList","mbar-val"];
 const blocks = ["about-scope","methodology","faq","history","references","content-review","nel-tool-graph"];
-const classes = ["fb-panel","readout","scenario-section","class=\"below\"","class=\"toc\"","class=\"prose\"","fb-fold","fb-fold-sum","fb-fold-title","fb-fold-body","method-defs","class=\"blk faq\"","ref-card","review-grid"];
 
 for (const [locale, spec] of Object.entries(pages)) {
   const html = fs.readFileSync(path.join(root, spec.file), "utf8");
-  assert.strictEqual((html.match(/<title>([^<]*)<\/title>/) || [])[1], spec.title, locale + " title");
-  assert.ok(html.includes(`name="robots" content="${spec.robots}"`), locale + " robots");
-  assert.ok(html.includes(`rel="canonical" href="${spec.canonical}"`), locale + " canonical");
+  const doc = parseDocument(html);
+  const title = one(findAll(doc, (el) => el.tag === "title"), locale + " title");
+  assert.strictEqual((title.children.find((c) => c.text) || {}).text, spec.title, locale + " title");
+  const robots = one(findAll(doc, (el) => el.tag === "meta" && el.attrs.name === "robots"), locale + " robots");
+  assert.strictEqual(robots.attrs.content, spec.robots, locale + " robots");
+  assert.ok(!/noindex/.test(robots.attrs.content), locale + " production robots stay indexable");
+  const theme = one(findAll(doc, (el) => el.tag === "meta" && el.attrs.name === "theme-color"), locale + " theme-color");
+  assert.strictEqual(theme.attrs.content, "#176ff2", locale + " theme-color");
+  const canonical = one(findAll(doc, (el) => el.tag === "link" && el.attrs.rel === "canonical"), locale + " canonical");
+  assert.strictEqual(canonical.attrs.href, spec.canonical, locale + " canonical");
   for (const lang of ["en", "zh-CN", "es", "x-default"]) {
-    assert.ok(html.includes(`hreflang="${lang}"`), locale + " hreflang " + lang);
+    const alt = findAll(doc, (el) => el.tag === "link" && el.attrs.rel === "alternate" && el.attrs.hreflang === lang);
+    assert.strictEqual(alt.length, 1, locale + " hreflang " + lang);
   }
   assert.ok(!/pages\.dev/.test(html), locale + " preview domain");
-  assert.ok(!/noindex/.test(html), locale + " noindex");
-  assert.ok(html.includes("nel-tool-detail-page nel-opb-v3 has-mbar v3"), locale + " body skeleton");
-  assert.ok(html.includes(spec.css + "fb.css?v=2a31994efa84"), locale + " fb.css");
-  assert.ok(html.includes(spec.css + "fb-v3.css?v=52fefac6ca20"), locale + " fb-v3.css");
-  assert.ok(html.includes(spec.css + "fb-v3-prod.css?v=385403578979"), locale + " fb-v3-prod.css");
-  assert.ok(!html.includes("css/style.css"), locale + " old local skin unlinked");
-  assert.ok(!html.includes("method-grid"), locale + " old method-grid");
-  assert.ok(!html.includes("form-grid"), locale + " old form-grid");
-  for (const name of classes) assert.ok(html.includes(name), locale + " missing " + name);
-  assert.strictEqual((html.match(/class="below"/g) || []).length, 1, locale + " below");
-  assert.strictEqual((html.match(/<nav class="toc"/g) || []).length, 1, locale + " toc");
-  assert.strictEqual((html.match(/class="prose"/g) || []).length, 1, locale + " prose");
-  const main = html.slice(html.indexOf("<main"), html.indexOf("</main>"));
-  const below = html.slice(html.indexOf('class="below"'), html.indexOf("<!-- NEL_FOOTER_START -->"));
-  for (const id of inputIds.concat(resultIds)) {
-    assert.strictEqual((html.match(new RegExp(`id="${id}"`, "g")) || []).length, 1, locale + " #" + id);
+  const sheets = findAll(doc, (el) => el.tag === "link" && el.attrs.rel === "stylesheet").map((el) => el.attrs.href);
+  for (const file of ["fb.css?v=2a31994efa84", "fb-v3.css?v=52fefac6ca20", "fb-v3-prod.css?v=385403578979"]) {
+    assert.ok(sheets.includes(spec.css + file), locale + " " + file);
   }
+  assert.ok(sheets.includes(spec.assets + "css/tool-layout.css?v=dfdd771763d6"), locale + " tool-layout");
+  assert.ok(!sheets.some((href) => /style\.css|fieldbook\.css|tool-detail-v3\.css/.test(href)), locale + " no parallel skin");
+  const scripts = findAll(doc, (el) => el.tag === "script" && el.attrs.src).map((el) => el.attrs.src);
+  assert.ok(scripts.includes(spec.assets + "js/tool-detail-v3.js?v=66984b67ff65"), locale + " tool-detail-v3.js");
+  assert.ok(scripts.some((src) => src.endsWith("js/engine.js")), locale + " engine.js");
+
+  const body = one(findAll(doc, (el) => el.tag === "body"), locale + " body");
+  for (const name of ["nel-tool-detail-page", "nel-opb-v3", "has-mbar", "v3", "nel-tool-v3"]) {
+    assert.ok(has(body, name), locale + " body." + name);
+  }
+
+  const hero = one(findAll(doc, (el) => el.tag === "section" && has(el, "hero") && has(el, "nel-tool-hero")), locale + " hero");
+  assert.strictEqual(hero.attrs["aria-hidden"], "true", locale + " hero aria-hidden");
+  const heroInner = one(elements(hero), locale + " hero-inner");
+  assert.ok(heroInner.tag === "div" && has(heroInner, "hero-inner"), locale + " hero-inner");
+  const heroKids = elements(heroInner);
+  assert.deepStrictEqual(heroKids.map((el) => el.tag + (el.attrs.class ? "." + el.attrs.class.split(/\s+/)[0] : "")), ["p.eyebrow", "h1", "p", "div.hero-tags"], locale + " hero children");
+  assert.ok(elements(heroKids[3]).length >= 1 && elements(heroKids[3]).every((el) => el.tag === "span"), locale + " hero tags");
+  assert.strictEqual(findAll(hero, (el) => el.tag === "h1").length, 1, locale + " one hero h1");
+
+  const main = one(findAll(doc, (el) => el.tag === "main"), locale + " main");
+  assert.strictEqual(main.attrs.id, "calculator", locale + " main id");
+  for (const name of ["tool-shell", "nel-tool-main", "nel-tool-grid", "nel-tool-primary-grid"]) {
+    assert.ok(has(main, name), locale + " main." + name);
+  }
+  const mainKids = elements(main);
+  const mainShape = mainKids.map((el) => {
+    if (has(el, "nel-tool-input")) return "input";
+    if (has(el, "nel-tool-result")) return "result";
+    if (has(el, "tool-head")) return "tool-head";
+    if (has(el, "scenario-section")) return "scenario";
+    if (has(el, "mbar")) return "mbar";
+    if (has(el, "below")) return "below";
+    return el.tag + "." + (el.attrs.class || "");
+  });
+  assert.deepStrictEqual(mainShape, ["input", "result", "tool-head", "scenario", "mbar", "below"], locale + " main order " + mainShape.join(","));
+
+  const panel = one(elements(mainKids[0]), locale + " fb-panel");
+  assert.ok(has(panel, "fb-panel"), locale + " fb-panel");
+  const panelKids = elements(panel).map((el) => [...cls(el)][0]);
+  assert.deepStrictEqual(panelKids, ["panel-h", "fs", "panel-f"], locale + " panel parts");
+  const fields = findAll(panel, (el) => el.tag === "div" && has(el, "fields"));
+  assert.ok(fields.length >= 3, locale + " fields groups");
+  for (const group of fields) {
+    for (const field of elements(group)) {
+      assert.ok(has(field, "f"), locale + " .f");
+      const bits = elements(field).map((el) => el.tag + (el.attrs.class ? "." + el.attrs.class.split(/\s+/)[0] : ""));
+      assert.ok(bits[0] === "label" && bits[1] === "div.inp", locale + " field " + bits.join(","));
+      assert.ok(field.attrs.class === "f" || field.attrs.class === "f f-wide", locale + " field class");
+    }
+  }
+  const align = elements(findAll(doc, (el) => el.tag === "head")[0]).find((el) => el.tag === "style");
+  assert.ok(align, locale + " alignment style");
+  const css = align.children.map((c) => c.text || "").join("");
+  assert.ok(css.includes("grid-template-rows:subgrid") && css.includes("grid-row:span 3"), locale + " field subgrid");
+  assert.ok(css.includes("grid-template-columns:repeat(3,minmax(0,1fr))"), locale + " three-column actions");
+
+  const result = mainKids[1];
+  assert.strictEqual(result.attrs.id, "result", locale + " result id");
+  assert.ok(result.attrs["aria-live"] === "polite", locale + " result live");
+  const readout = one(elements(result), locale + " readout");
+  assert.ok(has(readout, "readout"), locale + " readout");
+  const readoutNames = elements(readout).map((el) => [...cls(el)][0]);
+  assert.deepStrictEqual(readoutNames.slice(0, 2), ["ro-h", "ro-l1"], locale + " readout head");
+  assert.ok(readoutNames.includes("grp") && readoutNames[readoutNames.length - 1] === "ro-acts", locale + " readout tail");
+  const acts = elements(readout).find((el) => has(el, "ro-acts"));
+  const buttons = elements(acts);
+  assert.deepStrictEqual(buttons.map((el) => el.tag + "#" + el.attrs.id), ["button#copyBtn", "button#saveBtn", "button#printBtn"], locale + " actions");
+
+  const below = mainKids[5];
+  const belowKids = elements(below);
+  assert.ok(belowKids[0].tag === "nav" && has(belowKids[0], "toc"), locale + " toc");
+  assert.ok(belowKids[1].tag === "div" && has(belowKids[1], "prose"), locale + " prose");
+  const proseIds = new Set(findAll(belowKids[1], (el) => el.attrs.id).map((el) => el.attrs.id));
+  const tocHrefs = new Set(findAll(belowKids[0], (el) => el.tag === "a").map((el) => el.attrs.href));
   for (const id of blocks) {
-    assert.ok(below.includes(`id="${id}"`), locale + " block #" + id);
-    assert.ok(below.includes(`href="#${id}"`), locale + " toc #" + id);
+    assert.ok(proseIds.has(id), locale + " prose #" + id);
+    assert.ok(tocHrefs.has("#" + id), locale + " toc #" + id);
   }
-  assert.ok(main.includes('id="calculator"'), locale + " workbench");
+
+  const ids = findAll(doc, (el) => el.attrs.id).map((el) => el.attrs.id);
+  for (const id of inputIds.concat(resultIds)) {
+    assert.strictEqual(ids.filter((value) => value === id).length, 1, locale + " #" + id);
+  }
+  assert.ok(!ids.includes("txPower"), locale + " no OPB power fields");
+  assert.ok(!/method-grid|form-grid|fieldbook\.css/.test(html), locale + " old layout");
   assert.ok(html.indexOf('id="calculator"') < html.indexOf('class="below"'), locale + " workbench before folds");
-  assert.ok(!html.includes('id="txPower"') && !html.includes("engineering margin"), locale + " no OPB power fields");
 }
+
 assert.ok(fs.readFileSync(path.join(root, "es/index.html"), "utf8").includes("Continuar el flujo de latencia de fibra"));
 assert.ok(fs.readFileSync(path.join(root, "index.html"), "utf8").includes("Continue the engineering workflow"));
 assert.ok(fs.readFileSync(path.join(root, "zh/index.html"), "utf8").includes("继续下一步工程任务"));
