@@ -234,7 +234,17 @@ for (const [locale, spec] of Object.entries(pages)) {
   assert.ok(html.indexOf('id="calculator"') < html.indexOf('class="below"'), locale + " workbench before folds");
 }
 
-assert.ok(fs.readFileSync(path.join(root, "es/index.html"), "utf8").includes("Continuar el flujo de latencia de fibra"));
+const esHtml = fs.readFileSync(path.join(root, "es/index.html"), "utf8");
+assert.ok(esHtml.includes("Continuar el flujo de latencia de fibra"));
+assert.ok(esHtml.includes('class="content-section nel-tool-graph"'));
+assert.ok(esHtml.includes("nel-tool-graph-related"));
+assert.ok(esHtml.includes('aria-label="Paso 2 de 2"'));
+assert.ok(esHtml.includes('href="../../fiber-loss/es/"'));
+assert.ok(esHtml.includes('href="../../optical-power-budget/es/"'));
+assert.ok(esHtml.includes('href="../../otdr-event/es/"'));
+assert.ok(esHtml.includes('href="../../bandwidth-calculator/es/"'));
+assert.ok(esHtml.includes("9,8 µs/km de RTT"));
+assert.ok(!esHtml.includes("9,8 µs de RTT."));
 assert.ok(fs.readFileSync(path.join(root, "index.html"), "utf8").includes("Continue the engineering workflow"));
 assert.ok(fs.readFileSync(path.join(root, "zh/index.html"), "utf8").includes("继续下一步工程任务"));
 
