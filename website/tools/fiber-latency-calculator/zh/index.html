@@ -23,7 +23,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="光纤时延计算器｜每公里时延、单向与往返RTT">
 <meta name="twitter:description" content="计算单模光纤时延：单向约 4.9 µs/km，往返约 9.8 µs/km。可加入路由系数、设备与串行化时延，并对比真空、铜缆和微波。">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://netengineerlab.com/tools/fiber-latency-calculator/zh/#app","name":"光纤时延计算器","url":"https://netengineerlab.com/tools/fiber-latency-calculator/zh/","description":"根据距离、群折射率、路由系数、设备时延和串行化时延计算光纤单向与往返时延。","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Network Engineering Calculator","operatingSystem":"Any","browserRequirements":"Requires JavaScript and a modern web browser","softwareVersion":"1.0.0","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/fiber-latency-calculator/zh/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"NetEngineerLab","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"工具","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"光纤时延计算器","item":"https://netengineerlab.com/tools/fiber-latency-calculator/zh/"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://netengineerlab.com/tools/fiber-latency-calculator/zh/#app","name":"光纤时延计算器","url":"https://netengineerlab.com/tools/fiber-latency-calculator/zh/","description":"根据距离、群折射率、路由系数、设备时延和串行化时延计算光纤单向与往返时延。","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Network Engineering Calculator","operatingSystem":"Any","browserRequirements":"Requires JavaScript and a modern web browser","softwareVersion":"1.0.0","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/fiber-latency-calculator/zh/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"NetEngineerLab","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"工具","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"光网络","item":"https://netengineerlab.com/zh/topics/pon-optical/"},{"@type":"ListItem","position":4,"name":"光纤时延计算器","item":"https://netengineerlab.com/tools/fiber-latency-calculator/zh/"}]}]}</script>
 
 <link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
 <meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
@@ -37,7 +37,7 @@ body.nel-opb-v3 .inp select{white-space:nowrap;overflow:hidden;text-overflow:ell
 body.nel-opb-v3 .inp input[type="number"]{-moz-appearance:textfield;appearance:textfield}
 body.nel-opb-v3 .inp input[type="number"]::-webkit-outer-spin-button,
 body.nel-opb-v3 .inp input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
-body.nel-opb-v3 .ro-acts{grid-template-columns:repeat(3,minmax(0,1fr))}
+body.nel-opb-v3 .ro-acts{grid-template-columns:repeat(4,minmax(0,1fr))}
 body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:center;min-width:0;min-height:44px;white-space:normal;line-height:1.3}
 </style>
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"光纤时延计算器｜每公里时延、单向与往返RTT","url":"https://netengineerlab.com/tools/fiber-latency-calculator/zh/","description":"计算单模光纤时延：单向约 4.9 µs/km，往返约 9.8 µs/km。可加入路由系数、设备与串行化时延，并对比真空、铜缆和微波。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
@@ -122,7 +122,7 @@ body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:
 <div class="f"><label for="distanceUnit">距离单位</label><div class="inp input-wrap sel"><select id="distanceUnit" aria-label="距离单位"><option value="km">千米</option><option value="mi">英里</option><option value="m">米</option></select></div></div>
 <div class="f"><label for="routeFactor">路由系数（纤长 ÷ 直线距离）</label><div class="inp input-wrap"><input id="routeFactor" min="1" step="0.01" type="number" value="1.0" inputmode="decimal"></div><small>陆地路由通常长于直线距离；已知实测或 OTDR 长度时请把系数保持为 1.0。</small></div>
 <div class="f"><label for="groupIndexPreset">群折射率预设</label><div class="inp input-wrap sel"><select id="groupIndexPreset"><option value="1.468">通用单模 1.468</option><option value="1.4677">G.652 单模 @1310 nm 1.4677</option><option value="1.4682">G.652 单模 @1550 nm 1.4682</option><option value="1.003">空芯光纤 ≈1.003</option><option value="custom">自定义</option></select></div></div>
-<div class="f"><label for="groupIndex">群折射率 n_g</label><div class="inp input-wrap"><input id="groupIndex" min="1" max="1.6" step="0.0001" type="number" value="1.468" readonly inputmode="decimal"></div></div>
+<div class="f"><label for="groupIndex">群折射率 n_g</label><div class="inp input-wrap"><input id="groupIndex" min="1" max="1.6" step="0.0001" type="number" value="1.468" inputmode="decimal"></div></div>
 </div>
 </div>
 <div class="fg">
@@ -165,16 +165,20 @@ body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:
 <p>不对称路径、排队和主机协议栈时延未计入。两个方向不同时，请用实测值补充。</p>
 </div>
 <div class="ro-acts">
-<button type="button" id="copyBtn">复制结果</button>
-<button type="button" id="saveBtn">保存记录</button>
-<button type="button" id="printBtn">打印 / 导出 PDF</button>
+<button type="button" id="copyBtn" data-ro-act="copy" disabled>复制</button>
+<button type="button" id="saveBtn" data-ro-act="save" disabled>保存</button>
+<button type="button" id="csvBtn" data-ro-act="csv" disabled>CSV</button>
+<button type="button" id="printBtn" data-ro-act="print">打印</button>
 </div>
 </div></section>
 <div class="tool-head">
 <div>
-<div class="crumbs"><a href="../../../zh/">首页</a>/<a href="../../zh/">工具</a>/<span>光纤时延</span></div>
+<div class="crumbs"><a href="../../../zh/">首页</a>/<a href="../../zh/">工具</a>/<a href="../../../zh/topics/pon-optical/">光网络</a>/<span>光纤时延</span></div>
 <p class="tool-page-label" role="heading" aria-level="1">光纤时延计算器</p>
 <p class="tool-lede">光在光纤中的速度大约只有真空中的三分之二，因此标准单模光纤每公里大约增加 4.9 µs 单向时延（往返约 9.8 µs）。估算城域、数据中心互联和长途链路的单向时间与往返时间（RTT），并可计入路由绕行、有源设备和报文串行化。</p>
+</div>
+<div class="acts">
+<button type="button" class="btn btn-ghost btn-sm" id="btn-share">分享输入</button>
 </div>
 </div>
 <section class="scenario-section" aria-label="群折射率预设">
@@ -272,6 +276,12 @@ body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:
 <div class="review-card"><h3>复核</h3><p>2026-10-18。本页标准与参考资料一节已有的编辑日期。</p></div>
 <div class="review-card"><h3>公式依据</h3><p>纤长 = 路由距离 × 路由系数。传播时延 = 纤长 × 群折射率 ÷ c，c = 299,792.458 km/s。单向时延再加设备时延与存储转发串行化。对称路径上 RTT 是单向的两倍。距离表使用 n_g = 1.468，且只含传播。</p></div>
 <div class="review-card"><h3>适用范围</h3><p>用于城域、数据中心互联和长途光纤时延的规划估算。不包含不对称路径、排队和主机协议栈时延。不能代替 OTDR 长度、厂商时延规格或实测 RTT。</p></div>
+<div class="review-card"><h3>更新记录</h3><ul>
+<li>2026-10-18 — 发布本计算器（单向、RTT、路由系数、设备时延与串行化），并在本页标准说明中记下该日期。</li>
+<li>2026-10-19 — 无效输入会清除上一次的单向结果、RTT 和移动端摘要。</li>
+<li>2026-10-29 — 页面改为与光功率预算相同的 V3 骨架。上方复核日期仍是 2026-10-18 的标准说明，不是新的技术复核日。</li>
+<li>2026-10-29 — 分享链接可恢复输入；CSV 导出全部输入、单位和分解；群折射率可直接修改；结果无效时复制、保存和 CSV 保持禁用。增加光网络主题导航。</li>
+</ul></div>
 </div>
 </div>
 </section>
@@ -300,7 +310,7 @@ body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:
 <script defer src="../js/engine.js"></script>
 <script defer src="../js/pwa.js"></script>
 <script defer src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script>
-<script defer src="../js/app.js?v=17c1285c90c5"></script>
+<script defer src="../js/app.js?v=fb6cb8c9acdc"></script>
 <script defer src="../../../assets/js/tool-detail-v3.js?v=66984b67ff65"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
 <script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script>

@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-fiber-latency-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-49da2452839c-d0bfc1a478ab";
+const CACHE = "nel-fiber-latency-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-49da2452839c-3815c03ece9f";
 const CORE = [
   "./index.html",
   "./",
@@ -11,7 +11,7 @@ const CORE = [
   "../optical-power-budget/css/fb-v3-prod.css?v=385403578979",
   "../../assets/css/tool-layout.css?v=dfdd771763d6",
   "../../assets/js/tool-detail-v3.js?v=66984b67ff65",
-  "./js/app.js?v=17c1285c90c5",
+  "./js/app.js?v=fb6cb8c9acdc",
   "./js/engine.js",
   "./images/logo.svg",
   "../../data/locales.js?v=909e05076a50",

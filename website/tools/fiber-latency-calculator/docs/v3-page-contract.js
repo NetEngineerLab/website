@@ -121,7 +121,7 @@ const pages = {
   }
 };
 const inputIds = ["projectName","distance","distanceUnit","routeFactor","groupIndexPreset","groupIndex","equipmentCount","equipmentDelay","packetSize","linkRate","serializationHops","calculateBtn","resetBtn","validationMessage"];
-const resultIds = ["oneWay","rtt","fiberLength","propagation","equipment","serialization","usPerKm","speed","fractionC","versusVacuum","comparisonBody","summaryCard","copyBtn","saveBtn","printBtn","clearHistoryBtn","historyList","mbar-val"];
+const resultIds = ["oneWay","rtt","fiberLength","propagation","equipment","serialization","usPerKm","speed","fractionC","versusVacuum","comparisonBody","summaryCard","copyBtn","saveBtn","csvBtn","printBtn","clearHistoryBtn","historyList","mbar-val","btn-share"];
 const blocks = ["about-scope","methodology","faq","history","references","content-review","nel-tool-graph"];
 
 for (const [locale, spec] of Object.entries(pages)) {
@@ -200,7 +200,7 @@ for (const [locale, spec] of Object.entries(pages)) {
   assert.ok(align, locale + " alignment style");
   const css = align.children.map((c) => c.text || "").join("");
   assert.ok(css.includes("grid-template-rows:subgrid") && css.includes("grid-row:span 3"), locale + " field subgrid");
-  assert.ok(css.includes("grid-template-columns:repeat(3,minmax(0,1fr))"), locale + " three-column actions");
+  assert.ok(css.includes("grid-template-columns:repeat(4,minmax(0,1fr))"), locale + " four-column actions");
 
   const result = mainKids[1];
   assert.strictEqual(result.attrs.id, "result", locale + " result id");
@@ -212,7 +212,26 @@ for (const [locale, spec] of Object.entries(pages)) {
   assert.ok(readoutNames.includes("grp") && readoutNames[readoutNames.length - 1] === "ro-acts", locale + " readout tail");
   const acts = elements(readout).find((el) => has(el, "ro-acts"));
   const buttons = elements(acts);
-  assert.deepStrictEqual(buttons.map((el) => el.tag + "#" + el.attrs.id), ["button#copyBtn", "button#saveBtn", "button#printBtn"], locale + " actions");
+  assert.deepStrictEqual(buttons.map((el) => el.tag + "#" + el.attrs.id), ["button#copyBtn", "button#saveBtn", "button#csvBtn", "button#printBtn"], locale + " actions");
+  assert.deepStrictEqual(buttons.map((el) => el.attrs["data-ro-act"]), ["copy", "save", "csv", "print"], locale + " action roles");
+  for (const act of ["copy", "save", "csv"]) {
+    const button = buttons.find((el) => el.attrs["data-ro-act"] === act);
+    assert.ok(Object.prototype.hasOwnProperty.call(button.attrs, "disabled"), locale + " " + act + " starts disabled");
+  }
+  assert.ok(!Object.prototype.hasOwnProperty.call(buttons.find((el) => el.attrs["data-ro-act"] === "print").attrs, "disabled"), locale + " print stays available");
+  const groupIndex = one(findAll(doc, (el) => el.attrs.id === "groupIndex"), locale + " group index");
+  assert.ok(!Object.prototype.hasOwnProperty.call(groupIndex.attrs, "readonly"), locale + " group index is editable");
+  const share = one(findAll(doc, (el) => el.attrs.id === "btn-share"), locale + " share");
+  const shareLabel = { en: "Share inputs", zh: "分享输入", es: "Compartir entradas" }[locale];
+  assert.strictEqual((share.children.find((c) => c.text) || {}).text, shareLabel, locale + " share label");
+  const optical = {
+    en: ["../../topics/pon-optical/", "Optical", "https://netengineerlab.com/topics/pon-optical/"],
+    zh: ["../../../zh/topics/pon-optical/", "光网络", "https://netengineerlab.com/zh/topics/pon-optical/"],
+    es: ["/topics/pon-optical/", "Óptica", "https://netengineerlab.com/topics/pon-optical/"]
+  }[locale];
+  const crumb = findAll(doc, (el) => el.tag === "a" && el.attrs.href === optical[0] && (el.children.find((c) => c.text) || {}).text === optical[1]);
+  assert.ok(crumb.length >= 1, locale + " optical crumb");
+  if (locale !== "es") assert.ok(html.includes(optical[2]), locale + " optical breadcrumb url");
 
   const below = mainKids[5];
   const belowKids = elements(below);
