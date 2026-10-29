@@ -3,12 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#16140F">
+<meta name="theme-color" content="#176ff2">
 <title>色散计算器｜G.652 色散系数、累积色散与色散受限距离</title>
 <meta name="description" content="用 ITU-T G.652 公式计算光纤色散：色散系数 D(λ)、累积色散 ps/nm、补偿后残余色散、脉冲展宽以及色散受限传输距离。">
-<link rel="stylesheet" href="../css/style.css?v=48c7b72aa30f">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../optical-power-budget/css/fb.css?v=2a31994efa84">
+<link rel="stylesheet" href="../../optical-power-budget/css/fb-v3.css?v=52fefac6ca20">
+<link rel="stylesheet" href="../../optical-power-budget/css/fb-v3-prod.css?v=385403578979">
 <meta name="app-base" content="../">
-<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NetEngineerLab">
 <meta property="og:title" content="色散计算器｜G.652 色散系数、累积色散与色散受限距离">
@@ -24,9 +29,27 @@
 <meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 
 <link rel="stylesheet" href="/assets/css/cookie-consent.css?v=8dd1728bf5eb">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Shared OPB .fields stacks each label above its control, so a wrapped label
+   drops that input. Subgrid keeps every control in a band on one row.
+   Shared .ro-acts is four columns; this tool has Copy, Save, and Print. */
+body.nel-opb-v3 .fields{row-gap:0}
+body.nel-opb-v3 .fields>.f{display:grid;grid-template-rows:subgrid;grid-row:span 3;margin-bottom:14px}
+body.nel-opb-v3 .fields>.f[hidden]{display:none}
+body.nel-opb-v3 .inp{height:40px;min-height:40px;max-height:40px;overflow:hidden}
+body.nel-opb-v3 .inp u{flex:0 0 auto;font-size:12px;white-space:nowrap}
+body.nel-opb-v3 .inp select{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.nel-opb-v3 .inp input[type="number"]{-moz-appearance:textfield;appearance:textfield}
+body.nel-opb-v3 .inp input[type="number"]::-webkit-outer-spin-button,
+body.nel-opb-v3 .inp input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+body.nel-opb-v3 .ro-acts{grid-template-columns:repeat(3,minmax(0,1fr))}
+body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:center;min-width:0;min-height:44px;white-space:normal;line-height:1.3}
+@media (max-width:640px){
+  body.nel-opb-v3 .grp .row{grid-template-columns:minmax(0,1fr)}
+  body.nel-opb-v3 .grp .row b{white-space:normal;text-align:left;overflow-wrap:anywhere}
+  body.nel-opb-v3 .ro-main .big{overflow-wrap:anywhere}
+}
+</style>
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"色散计算器｜G.652 色散系数、累积色散与色散受限距离","url":"https://netengineerlab.com/tools/chromatic-dispersion-calculator/zh/","description":"用 ITU-T G.652 公式计算光纤色散：色散系数 D(λ)、累积色散 ps/nm、补偿后残余色散、脉冲展宽以及色散受限传输距离。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
@@ -50,8 +73,7 @@
 <link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=dfdd771763d6">
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head>
-<body class="nel-tool-detail-page nel-opb-v3 nel-fieldbook nel-tool-v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
-<link rel="stylesheet" href="../../../assets/css/fieldbook.css?v=a3bb21511014">
+<body class="nel-tool-detail-page nel-opb-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
 <a class="skip-link" href="#calculator">跳到计算器</a>
 <noscript><div class="noscript">运行此计算器需要 JavaScript。</div></noscript>
 <!-- NEL_HEADER_START -->
@@ -84,91 +106,194 @@
   <span aria-current="page">色散计算器</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
-<section class="hero nel-tool-hero"><div class="hero-inner">
+<section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner">
 <p class="eyebrow">光通信工程工具</p>
 <h1>色散计算器</h1>
 <p>色散（CD）使不同波长以不同速度传播，从而把光脉冲展宽。标准 G.652 单模光纤在 1550 nm 约为 17 ps/(nm·km)，80 km 跨段累积约 1,400 ps/nm。本色散计算器按 ITU-T G.652 模型计算 D(λ)、累积与残余色散、脉冲展宽，以及光模块可容忍的最长距离。</p>
 <div class="hero-tags"><span>G.652 D(λ)</span><span>ps/nm</span><span>残余色散</span><span>色散受限距离</span></div></div></section>
 <main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
-<section class="input-panel card nel-tool-input"><div class="fb-panel"><div class="panel-h"><h2>光纤与光模块</h2></div><p class="fg-note">选择 G.652 模型或直接输入厂家色散系数，再填写长度、补偿量和接收端色散容限。</p><div class="fs"><div class="fg"><p class="fs-t">来源</p><div class="fields"><div class="f f-wide field"><label for="projectName">工程名称</label><div class="inp input-wrap no-unit"><input id="projectName" type="text" value="城域 DWDM 跨段"></div></div><div class="f field"><label for="mode">色散系数来源</label><div class="inp input-wrap no-unit sel"><select id="mode"><option value="model" selected>ITU-T G.652 模型 D(λ)</option><option value="manual">厂家数据</option></select></div></div></div></div><div class="fg"><p class="fs-t">色散模型</p><div class="fields"><div class="f field"><label for="wavelength">工作波长 λ</label><div class="inp input-wrap"><input id="wavelength" type="number" min="1200" max="1700" step="0.1" value="1550"><u>nm</u></div></div><div class="f field"><label for="lambda0">零色散波长 λ0</label><div class="inp input-wrap"><input id="lambda0" type="number" min="1200" max="1700" step="0.1" value="1310"><u>nm</u></div><small>G.652：1300–1324 nm。</small></div><div class="f field"><label for="s0">零色散斜率 S0</label><div class="inp input-wrap wide-unit"><input id="s0" type="number" min="0.001" max="0.2" step="0.001" value="0.092"><u>ps/(nm²·km)</u></div><small>G.652 上限为 0.092。</small></div><div class="f field"><label for="manualD">厂家色散系数 D</label><div class="inp input-wrap wide-unit"><input id="manualD" type="number" min="-50" max="50" step="0.01" value="17"><u>ps/(nm·km)</u></div><small>仅在选择“厂家数据”时使用。</small></div></div></div><div class="fg"><p class="fs-t">跨段与容限</p><div class="fields"><div class="f field"><label for="lengthKm">光纤长度</label><div class="inp input-wrap"><input id="lengthKm" type="number" min="0.001" step="0.001" value="80"><u>km</u></div></div><div class="f field"><label for="compensation">色散补偿量（DCM/FBG） <span class="required-mark">(必填)</span></label><div class="inp input-wrap"><input id="compensation" type="number" required aria-required="true" step="1" value="0"><u>ps/nm</u></div><small>必填——无补偿时填 0。正值抵消正色散。</small></div><div class="f field"><label for="tolerance">接收端色散容限</label><div class="inp input-wrap"><input id="tolerance" type="number" min="1" step="1" value="1600"><u>ps/nm</u></div><small>取自光模块规格书。</small></div><div class="f field"><label for="spectralWidth">光源谱宽 Δλ</label><div class="inp input-wrap"><input id="spectralWidth" type="number" min="0" step="0.01" value="0.1"><u>nm</u></div></div></div></div></div><div class="panel-f">
-<button class="btn btn-primary" id="calculateBtn" type="button">计算</button>
-<button class="btn btn-ghost" id="resetBtn" type="button">重置</button>
-</div><p class="validation-message" id="validationMessage" role="alert"></p></div></section>
-<section aria-live="polite" class="result-panel card nel-tool-result"><div class="readout"><div class="ro-h"><span>计算结果</span></div><p class="fg-note">残余色散 = D × L − 补偿量。|残余| 超过容限判为不通过，超过容限 80% 给出预警。</p>
-
-<div class="summary-card" id="summaryCard"><div><p>残余色散</p><strong><span id="residualCd">—</span></strong></div><div><p>距容限余量</p><strong><span id="cdMargin">—</span></strong></div><div class="health-badge" id="healthBadge">—</div></div>
-<div class="metric-grid">
-<article class="metric-card"><div><small>色散系数 D</small><strong id="dCoef">—</strong></div></article>
-<article class="metric-card"><div><small>光纤累积色散</small><strong id="fiberCd">—</strong></div></article>
-<article class="metric-card"><div><small>满足容限的长度范围</small><strong id="maxLength">—</strong></div></article>
-<article class="metric-card"><div><small>脉冲展宽 |CD|·Δλ</small><strong id="broadening">—</strong></div></article>
-<article class="metric-card"><div><small>容限占用</small><strong id="usedPct">—</strong></div></article>
+<section class="input-panel card nel-tool-input"><div class="fb-panel">
+<div class="panel-h">
+<h2>光纤与光模块</h2>
 </div>
-<p class="hint">未包含 PMD、非线性效应和 OSNR。相干 DSP 接收机通常可容忍数万 ps/nm，请以模块规格书为准。</p>
-<div class="ro-acts">
-<button id="copyBtn" type="button">复制结果</button>
-<button id="saveBtn" type="button">保存记录</button>
-<button id="printBtn" type="button">打印 / 导出 PDF</button>
+<div class="fs">
+<p class="form-error" id="validationMessage" role="alert" hidden></p>
+<div class="fg">
+<p class="fs-t">工程</p>
+<div class="fields">
+<div class="f f-wide"><label for="projectName">工程名称</label><div class="inp input-wrap"><input id="projectName" type="text" value="城域 DWDM 跨段" autocomplete="off"></div></div>
+</div>
+</div>
+<div class="fg">
+<p class="fs-t">来源</p>
+<p class="fg-note">选择 G.652 模型或直接输入厂家色散系数，再填写长度、补偿量和接收端色散容限。</p>
+<div class="fields">
+<div class="f f-wide"><label for="mode">色散系数来源</label><div class="inp input-wrap sel"><select id="mode"><option value="model" selected>ITU-T G.652 模型 D(λ)</option><option value="manual">厂家数据</option></select></div></div>
+</div>
+</div>
+<div class="fg">
+<p class="fs-t">色散模型</p>
+<div class="fields">
+<div class="f"><label for="wavelength">工作波长 λ</label><div class="inp input-wrap"><input id="wavelength" type="number" min="1200" max="1700" step="0.1" value="1550" inputmode="decimal"><u>nm</u></div></div>
+<div class="f"><label for="lambda0">零色散波长 λ0</label><div class="inp input-wrap"><input id="lambda0" type="number" min="1200" max="1700" step="0.1" value="1310" inputmode="decimal"><u>nm</u></div><small>G.652：1300–1324 nm。</small></div>
+<div class="f"><label for="s0">零色散斜率 S0</label><div class="inp input-wrap"><input id="s0" type="number" min="0.001" max="0.2" step="0.001" value="0.092" inputmode="decimal"><u>ps/(nm²·km)</u></div><small>G.652 上限为 0.092。</small></div>
+<div class="f"><label for="manualD">厂家色散系数 D</label><div class="inp input-wrap"><input id="manualD" type="number" min="-50" max="50" step="0.01" value="17" inputmode="decimal"><u>ps/(nm·km)</u></div><small>仅在选择“厂家数据”时使用。</small></div>
+</div>
+</div>
+<div class="fg">
+<p class="fs-t">跨段与容限</p>
+<div class="fields">
+<div class="f"><label for="lengthKm">光纤长度</label><div class="inp input-wrap"><input id="lengthKm" type="number" min="0.001" step="0.001" value="80" inputmode="decimal"><u>km</u></div></div>
+<div class="f"><label for="compensation">色散补偿量（DCM/FBG） <span class="required-mark">(必填)</span></label><div class="inp input-wrap"><input id="compensation" type="number" required aria-required="true" step="1" value="0" inputmode="decimal"><u>ps/nm</u></div><small>必填——无补偿时填 0。正值抵消正色散。</small></div>
+<div class="f"><label for="tolerance">接收端色散容限</label><div class="inp input-wrap"><input id="tolerance" type="number" min="1" step="1" value="1600" inputmode="decimal"><u>ps/nm</u></div><small>取自光模块规格书。</small></div>
+<div class="f"><label for="spectralWidth">光源谱宽 Δλ</label><div class="inp input-wrap"><input id="spectralWidth" type="number" min="0" step="0.01" value="0.1" inputmode="decimal"><u>nm</u></div></div>
+</div>
+</div>
+</div>
+<div class="panel-f">
+<button type="button" class="btn btn-primary" id="calculateBtn">计算</button>
+<button type="button" class="btn btn-ghost" id="resetBtn">重置</button>
 </div>
 </div></section>
-
-<div class="tool-head"><div class="crumbs"><a href="../../../zh/">首页</a>/<span>色散计算器</span></div><p class="tool-page-label" role="heading" aria-level="1">色散计算器</p><p class="tool-lede">色散（CD）使不同波长以不同速度传播，从而把光脉冲展宽。标准 G.652 单模光纤在 1550 nm 约为 17 ps/(nm·km)，80 km 跨段累积约 1,400 ps/nm。本色散计算器按 ITU-T G.652 模型计算 D(λ)、累积与残余色散、脉冲展宽，以及光模块可容忍的最长距离。</p></div></main>
+<section aria-live="polite" class="result-panel card nel-tool-result" id="result"><div class="readout">
+<div class="ro-h"><span>计算结果</span><span class="status" id="healthBadge" data-status>—</span><a class="how how-ro" href="#methodology">计算说明</a></div>
+<div class="ro-l1" id="summaryCard">
+<div class="ro-main">
+<div class="lbl">残余色散</div>
+<div class="big"><span id="residualCd">—</span></div>
+<div class="eqn">距容限余量 <span id="cdMargin">—</span></div>
+</div>
+</div>
+<div class="grp"><h3>色散</h3>
+<div class="row"><span>色散系数 D</span><b id="dCoef">—</b></div>
+<div class="row"><span>光纤累积色散</span><b id="fiberCd">—</b></div>
+<div class="row"><span>满足容限的长度范围</span><b id="maxLength">—</b></div>
+<div class="row"><span>脉冲展宽 |CD|·Δλ</span><b id="broadening">—</b></div>
+<div class="row"><span>容限占用</span><b id="usedPct">—</b></div>
+</div>
+<p>残余色散 = D × L − 补偿量。|残余| 超过容限判为不通过，超过容限 80% 给出预警。未包含 PMD、非线性效应和 OSNR。相干 DSP 接收机通常可容忍数万 ps/nm，请以模块规格书为准。</p>
+<div class="ro-acts">
+<button type="button" id="copyBtn">复制结果</button>
+<button type="button" id="saveBtn">保存记录</button>
+<button type="button" id="printBtn">打印 / 导出 PDF</button>
+</div>
+</div></section>
+<div class="tool-head">
+<div>
+<div class="crumbs"><a href="../../../zh/">首页</a>/<a href="../../zh/">工具</a>/<span>色散计算器</span></div>
+<p class="tool-page-label" role="heading" aria-level="1">色散计算器</p>
+<p class="tool-lede">色散（CD）使不同波长以不同速度传播，从而把光脉冲展宽。标准 G.652 单模光纤在 1550 nm 约为 17 ps/(nm·km)，80 km 跨段累积约 1,400 ps/nm。按 ITU-T G.652 模型计算 D(λ)、累积与残余色散、脉冲展宽，以及光模块可容忍的最长距离。</p>
+</div>
+</div>
+<section class="scenario-section" aria-label="色散系数来源">
+<div class="scenario-head">
+<p class="fs-t" style="margin:0">色散系数来源</p>
+<p class="scenario-hint">选择 G.652 模型或厂家数据。对应字段会保持可见。</p>
+</div>
+<div class="scenario-grid" role="listbox" aria-label="色散系数来源">
+<button type="button" class="scenario-card on" data-mode="model" aria-pressed="true" role="option"><b>ITU-T G.652 模型</b><span>由 λ、λ0 和 S0 计算 D(λ)</span></button>
+<button type="button" class="scenario-card" data-mode="manual" aria-pressed="false" role="option"><b>厂家数据</b><span>直接输入 D，单位 ps/(nm·km)</span></button>
+</div>
+<div class="presets presets-mobile" role="listbox" aria-label="色散系数来源快捷选项">
+<button type="button" class="on" data-mode="model" aria-pressed="true">G.652 模型</button>
+<button type="button" data-mode="manual" aria-pressed="false">厂家数据</button>
+</div>
+<p class="preset-desc" id="preset-desc">G.652 模型使用 D(λ) = (S0/4)·(λ − λ0⁴/λ³)。厂家数据使用光缆色散系数，并隐藏 λ、λ0 和 S0。</p>
+</section>
+<div class="mbar"><div><div class="ml">残余色散</div><b id="mbar-val">—</b></div><span class="status" id="mbar-status">—</span><a href="#result" style="margin-left:auto;color:inherit;font-style:normal;text-decoration:none">详情 ↓</a></div>
 <div class="below">
 <nav class="toc" aria-label="本页目录">
 <h4>本页目录</h4>
-<a href="#methodology">计算方法与工程说明</a>
+<a href="#about-scope">适用范围</a>
+<a href="#methodology">计算方法</a>
 <a href="#examples">算例</a>
 <a href="#limits">受限距离与展宽</a>
 <a href="#faq">常见问题</a>
-<a href="#references">标准与参考资料</a>
-<a href="#nel-tool-graph">继续下一步工程任务</a>
 <a href="#history">最近计算记录</a>
+<a href="#references">标准与参考资料</a>
+<a href="#content-review">内容复核</a>
+<a href="#nel-tool-graph">工程工作流</a>
 </nav>
 <div class="prose">
-<details class="fb-fold blk">
-<summary class="fb-fold-sum"><span class="fb-fold-title">计算方法与工程说明</span></summary>
-<div class="fb-fold-body">
-<section class="content-section methodology nel-tool-supporting-section" id="methodology">
-<div class="section-heading"><div><p class="eyebrow">计算方法</p><h2>计算方法与工程说明</h2></div></div>
-<div class="method-grid"><article><h3>使用方法</h3><ol><li>保留 G.652 模型，或选择“厂家数据”并输入光缆规格书中的 D 值。</li><li>输入工作波长、光纤长度以及 DCM/FBG 补偿量。</li><li>输入光模块规格书给出的接收端色散容限。</li><li>查看残余色散、余量和色散受限距离。</li></ol></article><article><h3>色散公式</h3><p>ITU-T G.652 给出色散系数 D(λ) = (S0/4)·(λ − λ0⁴/λ³) ps/(nm·km)，λ0 在 1300–1324 nm，S0 ≤ 0.092 ps/(nm²·km)。在 1550 nm、λ0 = 1310 nm、S0 = 0.092 时 D = 17.461 ps/(nm·km)。累积色散 = D × L；残余色散 = D × L − 补偿量。</p></article></div>
-
-</section>
+<details class="fb-fold blk" id="about-scope">
+<summary class="fb-fold-sum"><span class="fb-fold-title">适用范围</span></summary>
+<div class="fb-fold-body about-card about-card-inline">
+<p>面向通信与网络工程师的免费规划计算器，完全在浏览器中运行：选择 G.652 模型或厂家色散系数，输入光纤长度、补偿量和接收端容限，估算残余色散。应用类别：工程工具 / 光传输规划。无需账号。</p>
+<p>用于城域和长途色散校核。结果是规划辅助，不能代替光缆规格书、实测色散系数或光模块色散容限。</p>
+<div class="about-meta">
+<span>类型 · 工程计算器</span>
+<span>运行 · 浏览器本地</span>
+<span>语言 · EN / 中文 / ES</span>
+<span>规范网址 · /tools/chromatic-dispersion-calculator/zh/</span>
+</div>
 </div>
 </details>
-<details class="fb-fold blk">
+<details class="fb-fold blk" id="methodology">
+<summary class="fb-fold-sum"><span class="fb-fold-title">计算方法 · 公式</span></summary>
+<div class="fb-fold-body">
+<div class="eq">D(λ) = (S0/4)·(λ − λ0⁴/λ³)<br>累积色散 = D × L<br>残余色散 = D × L − 补偿量</div>
+<div class="method-defs">
+<article><h3>使用方法</h3><ol><li>保留 G.652 模型，或选择“厂家数据”并输入光缆规格书中的 D 值。</li><li>输入工作波长、光纤长度以及 DCM/FBG 补偿量。</li><li>输入光模块规格书给出的接收端色散容限。</li><li>查看残余色散、余量和色散受限距离。</li></ol></article>
+<article><h3>色散公式</h3><p>ITU-T G.652 给出色散系数 D(λ) = (S0/4)·(λ − λ0⁴/λ³) ps/(nm·km)，λ0 在 1300–1324 nm，S0 ≤ 0.092 ps/(nm²·km)。在 1550 nm、λ0 = 1310 nm、S0 = 0.092 时 D = 17.461 ps/(nm·km)。累积色散 = D × L；残余色散 = D × L − 补偿量。</p></article>
+</div>
+</div>
+</details>
+<details class="fb-fold blk" id="examples">
 <summary class="fb-fold-sum"><span class="fb-fold-title">算例</span></summary>
 <div class="fb-fold-body">
-<section id="examples" class="content-section nel-tool-supporting-section"><div class="section-heading"><div><p class="eyebrow">算例</p><h2>算例</h2></div></div><div class="example-box"><h3>算例：1550 nm、80 km</h3><p>G.652 模型，λ0 1310 nm、S0 0.092：D = 17.461 ps/(nm·km)。80 km 累积 1,396.8 ps/nm。对 1,600 ps/nm 的接收端余量为 203.2 ps/nm（占用 87.3%，预警），色散受限距离 91.63 km。Δλ = 0.1 nm 时脉冲展宽 139.68 ps。加 680 ps/nm 补偿后残余 716.8 ps/nm。</p></div></section>
+<div class="example-box"><h3>算例：1550 nm、80 km</h3><p>G.652 模型，λ0 1310 nm、S0 0.092：D = 17.461 ps/(nm·km)。80 km 累积 1,396.8 ps/nm。对 1,600 ps/nm 的接收端余量为 203.2 ps/nm（占用 87.3%，预警），色散受限距离 91.63 km。Δλ = 0.1 nm 时脉冲展宽 139.68 ps。加 680 ps/nm 补偿后残余 716.8 ps/nm。</p></div>
 </div>
 </details>
-<details class="fb-fold blk">
+<details class="fb-fold blk" id="limits">
 <summary class="fb-fold-sum"><span class="fb-fold-title">受限距离与展宽</span></summary>
 <div class="fb-fold-body">
-<section id="limits" class="content-section nel-tool-supporting-section"><div class="section-heading"><div><p class="eyebrow">限制</p><h2>受限距离与展宽</h2></div></div><article><p>满足 |D × L − C| ≤ 容限 T 的长度位于 (C·sign(D) − T) / |D| 与 (C·sign(D) + T) / |D| 之间。无补偿时下限为 0，只显示最大长度；过补偿链路（例如 D = 17、C = 2,000、T = 400）会显示完整区间 94.12–141.18 km。脉冲展宽按 |残余色散| × Δλ 估算（ps）。80% 预警阈值是本工具的筛查规则，不是标准值。</p></article></section>
+<p>满足 |D × L − C| ≤ 容限 T 的长度位于 (C·sign(D) − T) / |D| 与 (C·sign(D) + T) / |D| 之间。无补偿时下限为 0，只显示最大长度；过补偿链路（例如 D = 17、C = 2,000、T = 400）会显示完整区间 94.12–141.18 km。脉冲展宽按 |残余色散| × Δλ 估算（ps）。80% 预警阈值是本工具的筛查规则，不是标准值。</p>
 </div>
 </details>
-<details class="fb-fold blk">
-<summary class="fb-fold-sum"><span class="fb-fold-title">常见问题</span></summary>
+<div class="blk faq" id="faq">
+<span class="eyebrow">常见问题</span>
+<h2>常见问题</h2>
+<details><summary>G.652 光纤在 1550 nm 的色散是多少？</summary><p>约 17 ps/(nm·km)。按 ITU-T G.652 模型取 λ0 = 1310 nm、S0 = 0.092，得到 17.46 ps/(nm·km)；实际光缆多在 16.5–18 之间。</p></details>
+<details><summary>如何计算累积色散？</summary><p>色散系数乘以长度：CD = D × L。80 km × 17.46 ps/(nm·km) ≈ 1,397 ps/nm，再减去 DCM 或 FBG 补偿量即为残余色散。</p></details>
+<details><summary>10G 光模块的色散容限一般是多少？</summary><p>取决于模块。直调 10G 模块常见约 800 ps/nm，10G ER/ZR 类常见约 1,600 ps/nm，请以规格书为准。</p></details>
+<details><summary>1310 nm 需要考虑色散吗？</summary><p>影响很小。1310 nm 接近 G.652 光纤的零色散波长，D 接近 0。</p></details>
+<details><summary>相干光模块需要色散补偿吗？</summary><p>通常不需要。相干接收机在 DSP 中电域补偿色散，可容忍数万 ps/nm。</p></details>
+</div>
+<section class="blk" id="history">
+<p class="eyebrow">工程记录</p>
+<h2>最近计算记录</h2>
 <div class="fb-fold-body">
-<section id="faq" aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
-<div class="section-heading"><div><p class="eyebrow">常见问题</p><h2 id="faq-title">常见问题</h2></div></div>
-<div class="faq-grid"><details><summary>G.652 光纤在 1550 nm 的色散是多少？</summary><p>约 17 ps/(nm·km)。按 ITU-T G.652 模型取 λ0 = 1310 nm、S0 = 0.092，得到 17.46 ps/(nm·km)；实际光缆多在 16.5–18 之间。</p></details><details><summary>如何计算累积色散？</summary><p>色散系数乘以长度：CD = D × L。80 km × 17.46 ps/(nm·km) ≈ 1,397 ps/nm，再减去 DCM 或 FBG 补偿量即为残余色散。</p></details><details><summary>10G 光模块的色散容限一般是多少？</summary><p>取决于模块。直调 10G 模块常见约 800 ps/nm，10G ER/ZR 类常见约 1,600 ps/nm，请以规格书为准。</p></details><details><summary>1310 nm 需要考虑色散吗？</summary><p>影响很小。1310 nm 接近 G.652 光纤的零色散波长，D 接近 0。</p></details><details><summary>相干光模块需要色散补偿吗？</summary><p>通常不需要。相干接收机在 DSP 中电域补偿色散，可容忍数万 ps/nm。</p></details></div>
+<div class="history-toolbar">
+<p class="history-hint">仅保存在本浏览器（最多 12 条），不会上传。</p>
+<button type="button" class="btn btn-ghost btn-sm" id="clearHistoryBtn">清空记录</button>
+</div>
+<div class="history-list" id="historyList" role="list"></div>
+</div>
 </section>
-</div>
-</details>
-<details class="fb-fold blk" open data-fold-pinned>
-<summary class="fb-fold-sum"><span class="fb-fold-title">标准与参考资料</span></summary>
+<section class="blk" id="references">
+<h2 id="references-title">标准与参考资料</h2>
 <div class="fb-fold-body">
-<section id="references" aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
-<div class="section-heading"><div><p class="eyebrow">工程参考</p><h2 id="references-title">标准与参考资料</h2></div></div>
-<ul><li><a href="https://www.itu.int/rec/T-REC-G.652/en" rel="noopener">ITU-T G.652 (08/2024)：单模光纤和光缆——§6.10 式 (6-1) 色散系数 D(λ) = (S0/4)(λ − λ0⁴/λ³)；λ0 1300–1324 nm、S0 ≤ 0.092 ps/(nm²·km) 见第 8 章 Table 1（G.652.B）与 Table 2（G.652.D）</a></li><li><a href="https://www.itu.int/rec/T-REC-G.650.1/en" rel="noopener">ITU-T G.650.1 (01/2024)：线性参数测试方法——§6.5 色散测量、附录 A 拟合</a></li><li><a href="https://www.itu.int/rec/T-REC-G.691/en" rel="noopener">ITU-T G.691 (03/2006)：带光放大器的单通道 STM-64 等 SDH 系统光接口——§6.3.2.1 各应用代码的最大色散</a></li><li><a href="https://www.itu.int/rec/T-REC-G.655/en" rel="noopener">ITU-T G.655 (11/2009)：非零色散位移光纤——此类光纤请使用厂家 D 值</a></li></ul>
-<p>G.655、G.654 或特定厂家光纤请使用厂家色散系数；G.652 模型仅适用于标准单模光纤。 最后审核: 2026-10-20.</p>
+<div class="ref-card">
+<p>G.655、G.654 或特定厂家光纤请使用厂家色散系数；G.652 模型仅适用于标准单模光纤。最后审核：2026-10-20。</p>
+<div class="std-row">
+<a class="std-chip" href="https://www.itu.int/rec/T-REC-G.652/en" rel="noopener noreferrer" target="_blank">ITU-T G.652 (08/2024)：单模光纤和光缆——§6.10 式 (6-1) 色散系数 D(λ) = (S0/4)(λ − λ0⁴/λ³)；λ0 1300–1324 nm、S0 ≤ 0.092 ps/(nm²·km) 见第 8 章 Table 1（G.652.B）与 Table 2（G.652.D）</a>
+<a class="std-chip" href="https://www.itu.int/rec/T-REC-G.650.1/en" rel="noopener noreferrer" target="_blank">ITU-T G.650.1 (01/2024)：线性参数测试方法——§6.5 色散测量、附录 A 拟合</a>
+<a class="std-chip" href="https://www.itu.int/rec/T-REC-G.691/en" rel="noopener noreferrer" target="_blank">ITU-T G.691 (03/2006)：带光放大器的单通道 STM-64 等 SDH 系统光接口——§6.3.2.1 各应用代码的最大色散</a>
+<a class="std-chip" href="https://www.itu.int/rec/T-REC-G.655/en" rel="noopener noreferrer" target="_blank">ITU-T G.655 (11/2009)：非零色散位移光纤——此类光纤请使用厂家 D 值</a>
+</div>
+</div>
+</div>
 </section>
-</div>
-</details>
-<details class="fb-fold blk">
-<summary class="fb-fold-sum"><span class="fb-fold-title">继续下一步工程任务</span></summary>
+<section class="blk" id="content-review">
+<h2>内容复核 · 公式依据与限制</h2>
 <div class="fb-fold-body">
+<div class="review-grid">
+<div class="review-card"><h3>复核</h3><p>2026-10-20。本页标准与参考资料一节已有的编辑日期。</p></div>
+<div class="review-card"><h3>公式依据</h3><p>ITU-T G.652：D(λ) = (S0/4)·(λ − λ0⁴/λ³) ps/(nm·km)。累积色散 = D × L。残余色散 = D × L − 补偿量。脉冲展宽 = |残余色散| × Δλ。长度区间使 |D × L − C| 落在接收端容限内。</p></div>
+<div class="review-card"><h3>适用范围</h3><p>用于城域和长途色散的规划估算。不包含 PMD、非线性效应和 OSNR。80% 预警是本工具的筛查规则。不能代替光缆规格书或光模块色散容限。</p></div>
+</div>
+</div>
+</section>
 <!-- NEL_TOOL_GRAPH_START -->
 <section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="chromatic-dispersion-calculator" data-primary-workflow="optical-dispersion-planning">
 <div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
@@ -177,19 +302,9 @@
 </section>
 <!-- NEL_TOOL_GRAPH_END -->
 </div>
-</details>
-<details class="fb-fold blk">
-<summary class="fb-fold-sum"><span class="fb-fold-title">最近计算记录</span></summary>
-<div class="fb-fold-body">
-<section class="content-section nel-tool-supporting-section" id="history">
-<div class="section-heading"><div><p class="eyebrow">工程记录</p><h2>最近计算记录</h2></div>
-<button class="text-button" id="clearHistoryBtn" type="button">清空记录</button></div>
-<div class="history-list" id="historyList"></div>
-</section>
 </div>
-</details>
-</div>
-</div>
+</main>
+
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">
@@ -204,9 +319,8 @@
 <script defer src="../js/engine.js"></script>
 <script defer src="../js/pwa.js"></script>
 <script defer src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script>
-<script defer src="../js/app.js?v=dd824fd802c6"></script>
+<script defer src="../js/app.js?v=3fa1b0a2867c"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
 <script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script>
-<script defer src="../../../assets/js/tool-detail-v3.js?v=66984b67ff65"></script>
 </body>
 </html>

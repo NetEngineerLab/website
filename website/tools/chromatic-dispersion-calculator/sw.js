@@ -1,16 +1,16 @@
 "use strict";
-const CACHE = "nel-chromatic-dispersion-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-49da2452839c-ad3e3fc2834f";
+const CACHE = "nel-chromatic-dispersion-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-49da2452839c-cc5d0aa18196";
 const CORE = [
   "./index.html",
   "./",
   "./zh/",
   "./offline.html",
   "./manifest.webmanifest",
-  "../../assets/css/fieldbook.css?v=a3bb21511014",
+  "../optical-power-budget/css/fb.css?v=2a31994efa84",
+  "../optical-power-budget/css/fb-v3.css?v=52fefac6ca20",
+  "../optical-power-budget/css/fb-v3-prod.css?v=385403578979",
   "../../assets/css/tool-layout.css?v=dfdd771763d6",
-  "../../assets/js/tool-detail-v3.js?v=66984b67ff65",
-  "./css/style.css?v=48c7b72aa30f",
-  "./js/app.js?v=dd824fd802c6",
+  "./js/app.js?v=3fa1b0a2867c",
   "./js/engine.js",
   "./images/logo.svg",
   "../../data/locales.js?v=909e05076a50",
