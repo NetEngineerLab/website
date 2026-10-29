@@ -3,10 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#16140F">
+<meta name="theme-color" content="#176ff2">
 <title>光纤时延计算器｜每公里时延、单向与往返RTT</title>
 <meta name="description" content="计算单模光纤时延：单向约 4.9 µs/km，往返约 9.8 µs/km。可加入路由系数、设备与串行化时延，并对比真空、铜缆和微波。">
-<link rel="stylesheet" href="../css/style.css?v=d77646796303">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../optical-power-budget/css/fb.css?v=2a31994efa84">
+<link rel="stylesheet" href="../../optical-power-budget/css/fb-v3.css?v=52fefac6ca20">
+<link rel="stylesheet" href="../../optical-power-budget/css/fb-v3-prod.css?v=385403578979">
 <meta name="app-base" content="../">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <meta property="og:type" content="website">
@@ -24,9 +29,17 @@
 <meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 
 <link rel="stylesheet" href="/assets/css/cookie-consent.css?v=8dd1728bf5eb">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body.nel-opb-v3 .fields{row-gap:0}
+body.nel-opb-v3 .fields>.f{display:grid;grid-template-rows:subgrid;grid-row:span 3;margin-bottom:14px}
+body.nel-opb-v3 .inp{height:40px;min-height:40px;max-height:40px;overflow:hidden}
+body.nel-opb-v3 .inp select{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.nel-opb-v3 .inp input[type="number"]{-moz-appearance:textfield;appearance:textfield}
+body.nel-opb-v3 .inp input[type="number"]::-webkit-outer-spin-button,
+body.nel-opb-v3 .inp input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+body.nel-opb-v3 .ro-acts{grid-template-columns:repeat(3,minmax(0,1fr))}
+body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:center;min-width:0;min-height:44px;white-space:normal;line-height:1.3}
+</style>
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"光纤时延计算器｜每公里时延、单向与往返RTT","url":"https://netengineerlab.com/tools/fiber-latency-calculator/zh/","description":"计算单模光纤时延：单向约 4.9 µs/km，往返约 9.8 µs/km。可加入路由系数、设备与串行化时延，并对比真空、铜缆和微波。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
@@ -50,8 +63,7 @@
 <link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=dfdd771763d6">
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head>
-<body class="nel-tool-detail-page nel-opb-v3 nel-fieldbook nel-tool-v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
-<link rel="stylesheet" href="../../../assets/css/fieldbook.css?v=a3bb21511014">
+<body class="nel-tool-detail-page nel-opb-v3 has-mbar v3 nel-tool-v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
 <a class="skip-link" href="#calculator">跳到计算器</a>
 <noscript><div class="noscript">运行此计算器需要 JavaScript。</div></noscript>
 <!-- NEL_HEADER_START -->
@@ -84,102 +96,185 @@
   <span aria-current="page">光纤时延计算器</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
-<section class="hero nel-tool-hero"><div class="hero-inner">
+<section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner">
 <p class="eyebrow">光通信工程工具</p>
 <h1>光纤时延计算器</h1>
 <p>光在光纤中的速度大约只有真空中的三分之二，因此标准单模光纤每公里大约增加 4.9 µs 单向时延（往返约 9.8 µs）。用这台光纤时延计算器估算城域、数据中心互联和长途链路的单向时间与往返时间（RTT），并可计入路由绕行、有源设备和报文串行化。</p>
 <div class="hero-tags"><span>单向与往返</span><span>每公里约 4.9 µs</span><span>路由系数</span><span>串行化时延</span></div></div></section>
 <main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
-<section class="input-panel card nel-tool-input"><div class="fb-panel"><div class="panel-h"><h2>链路参数</h2></div><p class="fg-note">输入路由距离、光纤群折射率和可选的设备或串行化时延。</p><div class="fs"><div class="fg"><p class="fs-t">路由</p><div class="fields"><div class="f f-wide field"><label for="projectName">工程名称</label><div class="inp input-wrap no-unit"><input id="projectName" type="text" value="DCI 光纤链路"></div></div><div class="f field"><label for="distance">路由距离</label><div class="inp input-wrap wide-unit"><input id="distance" min="0" step="0.001" type="number" value="100"><select class="unit-select" id="distanceUnit" aria-label="距离单位"><option value="km">千米</option><option value="mi">英里</option><option value="m">米</option></select></div></div><div class="f field"><label for="routeFactor">路由系数（纤长 ÷ 直线距离）</label><div class="inp input-wrap no-unit"><input id="routeFactor" min="1" step="0.01" type="number" value="1.0"></div><small>陆地路由通常长于直线距离；已知实测或 OTDR 长度时请把系数保持为 1.0。</small></div></div></div><div class="fg"><p class="fs-t">光纤</p><div class="fields"><div class="f field"><label for="groupIndexPreset">群折射率预设</label><div class="inp input-wrap no-unit sel"><select id="groupIndexPreset"><option value="1.468">通用单模 1.468</option><option value="1.4677">G.652 单模 @1310 nm 1.4677</option><option value="1.4682">G.652 单模 @1550 nm 1.4682</option><option value="1.003">空芯光纤 ≈1.003</option><option value="custom">自定义</option></select></div></div><div class="f field"><label for="groupIndex">群折射率 n_g</label><div class="inp input-wrap no-unit"><input id="groupIndex" min="1" max="1.6" step="0.0001" type="number" value="1.468" readonly></div></div></div></div><div class="fg"><p class="fs-t">设备与串行化</p><div class="fields"><div class="f field"><label for="equipmentCount">路径中的有源设备数（单向）</label><div class="inp input-wrap no-unit"><input id="equipmentCount" min="0" step="1" type="number" value="0"></div></div><div class="f field"><label for="equipmentDelay">每台设备时延</label><div class="inp input-wrap"><input id="equipmentDelay" min="0" step="0.01" type="number" value="0"><u>µs</u></div><small>以厂商规格书为准；转发器与交换机可从亚微秒到数十微秒。</small></div><div class="f field"><label for="packetSize">串行化报文长度</label><div class="inp input-wrap"><input id="packetSize" min="0" step="1" type="number" value="1500"><u>B</u></div><small>填 0 表示忽略串行化。</small></div><div class="f field"><label for="linkRate">线路速率</label><div class="inp input-wrap"><input id="linkRate" min="0.001" step="0.001" type="number" value="10"><u>Gbps</u></div></div><div class="f field"><label for="serializationHops">存储转发跳数</label><div class="inp input-wrap no-unit"><input id="serializationHops" min="0" step="1" type="number" value="1"></div></div></div></div></div><div class="panel-f">
-<button class="btn btn-primary" id="calculateBtn" type="button">计算时延</button>
-<button class="btn btn-ghost" id="resetBtn" type="button">重置</button>
-</div><p class="validation-message" id="validationMessage" role="alert"></p></div></section>
-<section aria-live="polite" class="result-panel card nel-tool-result"><div class="readout"><div class="ro-h"><span>计算结果</span></div><p class="fg-note">往返时间是单向总和的两倍，并假设路径对称。</p>
-
-<div class="summary-card healthy" id="summaryCard"><div><p>单向时延</p><strong><span id="oneWay">—</span></strong></div><div><p>往返时间（RTT）</p><strong><span id="rtt">—</span></strong></div></div>
-<div class="metric-grid">
-<article class="metric-card"><div><small>光纤长度</small><strong id="fiberLength">—</strong></div></article>
-<article class="metric-card"><div><small>传播时延</small><strong id="propagation">—</strong></div></article>
-<article class="metric-card"><div><small>设备时延</small><strong id="equipment">—</strong></div></article>
-<article class="metric-card"><div><small>串行化时延</small><strong id="serialization">—</strong></div></article>
+<section class="input-panel card nel-tool-input"><div class="fb-panel">
+<div class="panel-h">
+<h2>链路参数</h2>
 </div>
-<div class="budget-row">
-<div><span>每公里传播时延</span><strong id="usPerKm">—</strong></div>
-<div><span>光纤中的速度</span><strong id="speed">—</strong></div>
+<div class="fs">
+<p class="form-error" id="validationMessage" role="alert" hidden></p>
+<div class="fg">
+<p class="fs-t">工程</p>
+<div class="fields">
+<div class="f f-wide"><label for="projectName">工程名称</label><div class="inp input-wrap"><input id="projectName" type="text" value="DCI 光纤链路" autocomplete="off"></div></div>
 </div>
-<div class="power-row">
-<article><span>相对光速</span><strong id="fractionC">—</strong></article>
-<article><span>相对真空的时延增幅</span><strong id="versusVacuum">—</strong></article>
 </div>
-<h3>传播时延对比</h3>
-<table class="compare-table"><thead><tr><th>介质</th><th>时延</th></tr></thead><tbody id="comparisonBody"></tbody></table>
-
-<div class="ro-acts">
-<button id="copyBtn" type="button">复制结果</button>
-<button id="saveBtn" type="button">保存记录</button>
-<button id="printBtn" type="button">打印 / 导出 PDF</button>
+<div class="fg">
+<p class="fs-t">路由与光纤</p>
+<p class="fg-note">已有实测或 OTDR 长度时直接使用该长度。路由系数把直线距离换算成纤长。</p>
+<div class="fields">
+<div class="f"><label for="distance">路由距离</label><div class="inp input-wrap"><input id="distance" min="0" step="0.001" type="number" value="100" inputmode="decimal"></div></div>
+<div class="f"><label for="distanceUnit">距离单位</label><div class="inp input-wrap sel"><select id="distanceUnit" aria-label="距离单位"><option value="km">千米</option><option value="mi">英里</option><option value="m">米</option></select></div></div>
+<div class="f"><label for="routeFactor">路由系数（纤长 ÷ 直线距离）</label><div class="inp input-wrap"><input id="routeFactor" min="1" step="0.01" type="number" value="1.0" inputmode="decimal"></div><small>陆地路由通常长于直线距离；已知实测或 OTDR 长度时请把系数保持为 1.0。</small></div>
+<div class="f"><label for="groupIndexPreset">群折射率预设</label><div class="inp input-wrap sel"><select id="groupIndexPreset"><option value="1.468">通用单模 1.468</option><option value="1.4677">G.652 单模 @1310 nm 1.4677</option><option value="1.4682">G.652 单模 @1550 nm 1.4682</option><option value="1.003">空芯光纤 ≈1.003</option><option value="custom">自定义</option></select></div></div>
+<div class="f"><label for="groupIndex">群折射率 n_g</label><div class="inp input-wrap"><input id="groupIndex" min="1" max="1.6" step="0.0001" type="number" value="1.468" readonly inputmode="decimal"></div></div>
+</div>
+</div>
+<div class="fg">
+<p class="fs-t">设备与串行化</p>
+<div class="fields">
+<div class="f"><label for="equipmentCount">路径中的有源设备数（单向）</label><div class="inp input-wrap"><input id="equipmentCount" min="0" step="1" type="number" value="0" inputmode="numeric"></div></div>
+<div class="f"><label for="equipmentDelay">每台设备时延</label><div class="inp input-wrap"><input id="equipmentDelay" min="0" step="0.01" type="number" value="0" inputmode="decimal"><u>µs</u></div><small>以厂商规格书为准；转发器与交换机可从亚微秒到数十微秒。</small></div>
+<div class="f"><label for="packetSize">串行化报文长度</label><div class="inp input-wrap"><input id="packetSize" min="0" step="1" type="number" value="1500" inputmode="numeric"><u>B</u></div><small>填 0 表示忽略串行化。</small></div>
+<div class="f"><label for="linkRate">线路速率</label><div class="inp input-wrap"><input id="linkRate" min="0.001" step="0.001" type="number" value="10" inputmode="decimal"><u>Gbps</u></div></div>
+<div class="f"><label for="serializationHops">存储转发跳数</label><div class="inp input-wrap"><input id="serializationHops" min="0" step="1" type="number" value="1" inputmode="numeric"></div></div>
+</div>
+</div>
+</div>
+<div class="panel-f">
+<button type="button" class="btn btn-primary" id="calculateBtn">计算时延</button>
+<button type="button" class="btn btn-ghost" id="resetBtn">重置</button>
 </div>
 </div></section>
-
-<div class="tool-head"><div class="crumbs"><a href="../../../zh/">首页</a>/<span>光纤时延计算器</span></div><p class="tool-page-label" role="heading" aria-level="1">光纤时延计算器</p><p class="tool-lede">光在光纤中的速度大约只有真空中的三分之二，因此标准单模光纤每公里大约增加 4.9 µs 单向时延（往返约 9.8 µs）。用这台光纤时延计算器估算城域、数据中心互联和长途链路的单向时间与往返时间（RTT），并可计入路由绕行、有源设备和报文串行化。</p></div></main>
+<section aria-live="polite" class="result-panel card nel-tool-result" id="result"><div class="readout">
+<div class="ro-h"><span>计算结果</span><a class="how how-ro" href="#methodology">计算说明</a></div>
+<div class="ro-l1" id="summaryCard">
+<div class="ro-main">
+<div class="lbl">单向时延</div>
+<div class="big"><span id="oneWay">—</span></div>
+<div class="eqn">往返 RTT <span id="rtt">—</span></div>
+</div>
+</div>
+<div class="grp"><h3>路径分解</h3>
+<div class="row"><span>光纤长度</span><b id="fiberLength">—</b></div>
+<div class="row"><span>传播时延</span><b id="propagation">—</b></div>
+<div class="row"><span>设备时延</span><b id="equipment">—</b></div>
+<div class="row"><span>串行化时延</span><b id="serialization">—</b></div>
+<div class="row"><span>每公里传播时延</span><b id="usPerKm">—</b></div>
+<div class="row"><span>光纤中的速度</span><b id="speed">—</b></div>
+<div class="row"><span>相对光速</span><b id="fractionC">—</b></div>
+<div class="row"><span>相对真空的时延增幅</span><b id="versusVacuum">—</b></div>
+</div>
+<div class="grp"><h3>传播时延对比</h3>
+<table class="t"><thead><tr><th>介质</th><th>时延</th></tr></thead><tbody id="comparisonBody"></tbody></table>
+<p>不对称路径、排队和主机协议栈时延未计入。两个方向不同时，请用实测值补充。</p>
+</div>
+<div class="ro-acts">
+<button type="button" id="copyBtn">复制结果</button>
+<button type="button" id="saveBtn">保存记录</button>
+<button type="button" id="printBtn">打印 / 导出 PDF</button>
+</div>
+</div></section>
+<div class="tool-head">
+<div>
+<div class="crumbs"><a href="../../../zh/">首页</a>/<a href="../../zh/">工具</a>/<span>光纤时延</span></div>
+<p class="tool-page-label" role="heading" aria-level="1">光纤时延计算器</p>
+<p class="tool-lede">光在光纤中的速度大约只有真空中的三分之二，因此标准单模光纤每公里大约增加 4.9 µs 单向时延（往返约 9.8 µs）。估算城域、数据中心互联和长途链路的单向时间与往返时间（RTT），并可计入路由绕行、有源设备和报文串行化。</p>
+</div>
+</div>
+<section class="scenario-section" aria-label="群折射率预设">
+<div class="scenario-head">
+<p class="fs-t" style="margin:0">群折射率预设</p>
+<p class="scenario-hint">选择光纤预设以填入 n_g。修改群折射率即切换为自定义。</p>
+</div>
+<div class="scenario-grid" role="listbox" aria-label="群折射率预设">
+<button type="button" class="scenario-card on" data-preset="1.468" aria-pressed="true" role="option"><b>通用单模</b><span>n_g 1.468 · 约 4.9 µs/km</span></button><button type="button" class="scenario-card" data-preset="1.4677" aria-pressed="false" role="option"><b>G.652 @ 1310 nm</b><span>群折射率 1.4677</span></button><button type="button" class="scenario-card" data-preset="1.4682" aria-pressed="false" role="option"><b>G.652 @ 1550 nm</b><span>群折射率 1.4682</span></button><button type="button" class="scenario-card" data-preset="1.003" aria-pressed="false" role="option"><b>空芯光纤</b><span>群折射率 ≈ 1.003</span></button><button type="button" class="scenario-card" data-preset="custom" aria-pressed="false" role="option"><b>自定义</b><span>输入 1.0 到 1.6 的 n_g</span></button>
+</div>
+<div class="presets presets-mobile" role="listbox" aria-label="群折射率快捷选项">
+<button type="button" class="on" data-preset="1.468" aria-pressed="true">单模 1.468</button><button type="button" class="" data-preset="1.4677" aria-pressed="false">1310 nm</button><button type="button" class="" data-preset="1.4682" aria-pressed="false">1550 nm</button><button type="button" class="" data-preset="1.003" aria-pressed="false">空芯光纤</button><button type="button" class="" data-preset="custom" aria-pressed="false">自定义</button>
+</div>
+<p class="preset-desc" id="preset-desc">通用单模 n_g 为 1.468，大约每公里 4.9 µs。G.652 波长预设采用已公布的群折射率；自定义允许 1.0 到 1.6。</p>
+</section>
+<div class="mbar"><div><div class="ml">单向时延</div><b id="mbar-val">—</b></div><span id="mbar-rtt">往返 RTT —</span><a href="#result" style="margin-left:auto;color:inherit;font-style:normal;text-decoration:none">详情 ↓</a></div>
 <div class="below">
 <nav class="toc" aria-label="本页目录">
 <h4>本页目录</h4>
-<a href="#methodology">计算方法与工程说明</a>
-<a href="#examples">算例</a>
-<a href="#limits">限制</a>
+<a href="#about-scope">适用范围</a>
+<a href="#methodology">计算方法</a>
 <a href="#faq">常见问题</a>
-<a href="#references">标准与参考资料</a>
-<a href="#nel-tool-graph">继续下一步工程任务</a>
 <a href="#history">最近计算记录</a>
+<a href="#references">标准与参考资料</a>
+<a href="#content-review">内容复核</a>
+<a href="#nel-tool-graph">工程工作流</a>
 </nav>
 <div class="prose">
-<details class="fb-fold blk">
-<summary class="fb-fold-sum"><span class="fb-fold-title">计算方法与工程说明</span></summary>
+<details class="fb-fold blk" id="about-scope">
+<summary class="fb-fold-sum"><span class="fb-fold-title">适用范围</span></summary>
+<div class="fb-fold-body about-card about-card-inline">
+<p>面向通信与网络工程师的免费规划计算器，完全在浏览器中运行：输入路由距离、群折射率、设备时延和串行化参数，估算单向时延与往返时间。应用类别：工程工具 / 光传输规划。无需账号。</p>
+<p>用于城域、数据中心互联和长途时延估算。结果是规划辅助，不能代替实测纤长、厂商时延规格，也不能代替包含排队和主机时延的实测 ping。</p>
+<div class="about-meta">
+<span>类型 · 工程计算器</span>
+<span>运行 · 浏览器本地</span>
+<span>语言 · EN / 中文 / ES</span>
+<span>规范网址 · /tools/fiber-latency-calculator/zh/</span>
+</div>
+</div>
+</details>
+<details class="fb-fold blk" id="methodology">
+<summary class="fb-fold-sum"><span class="fb-fold-title">计算方法 · 公式</span></summary>
 <div class="fb-fold-body">
-<section class="content-section methodology nel-tool-supporting-section" id="methodology">
-<div class="section-heading"><div><p class="eyebrow">计算方法</p><h2>计算方法与工程说明</h2></div></div>
-<div class="method-grid"><article><h3>如何使用</h3><ol><li>输入千米或英里路由距离，或直接输入实测纤长（此时路由系数保持 1.0）。</li><li>如果只有直线距离，再设置大于 1 的路由系数。</li><li>选择光纤群折射率；标准单模光纤用 1.468 即可。</li><li>可选填路径中的有源设备数量，以及规格书中的单台时延。</li><li>可选填报文长度和线路速率，以计入串行化时延。</li><li>读取单向时延、RTT，以及与真空、微波和铜缆的对比。</li></ol></article><article><h3>传播时延</h3><p>传播时延 = 光纤长度 × 群折射率 ÷ c。c = 299,792.458 km/s，n_g = 1.468 时，光在玻璃中约为 204,000 km/s，即每公里 4.897 µs。决定脉冲传播速度的是群折射率而不是相位折射率。G.652 光纤在 1310 nm 约为 1.4677，在 1550 nm 约为 1.4682，波长选择带来的时延差不到 0.05%。实际路由很少是直线，管道沿道路和铁路敷设，纤长通常大于地图距离。</p></article><article><h3>设备时延与串行化</h3><p>串行化时延是把一帧时钟送到线路上的时间（比特数 ÷ 线路速率），并在每一跳存储转发处累加。1500 字节在 10 Gbps 为 1.2 µs，在 1 Gbps 为 12 µs，在 100 Gbps 为 0.12 µs。排队和处理时延取决于负载，本计算器不建模。</p></article></div>
-
-
+<div class="eq">纤长 = 路由距离 × 路由系数<br>传播时延 = 纤长 × n_g ÷ c<br>单向 = 传播 + 设备 + 串行化<br>RTT = 2 × 单向</div>
+<div class="method-defs">
+<article><h3>如何使用</h3><ol><li>输入千米或英里路由距离，或直接输入实测纤长（此时路由系数保持 1.0）。</li><li>如果只有直线距离，再设置大于 1 的路由系数。</li><li>选择光纤群折射率；标准单模光纤用 1.468 即可。</li><li>可选填路径中的有源设备数量，以及规格书中的单台时延。</li><li>可选填报文长度和线路速率，以计入串行化时延。</li><li>读取单向时延、RTT，以及与真空、微波和铜缆的对比。</li></ol></article>
+<article><h3>传播时延</h3><p>传播时延 = 光纤长度 × 群折射率 ÷ c。c = 299,792.458 km/s，n_g = 1.468 时，光在玻璃中约为 204,000 km/s，即每公里 4.897 µs。决定脉冲传播速度的是群折射率而不是相位折射率。G.652 光纤在 1310 nm 约为 1.4677，在 1550 nm 约为 1.4682，波长选择带来的时延差不到 0.05%。实际路由很少是直线，管道沿道路和铁路敷设，纤长通常大于地图距离。</p></article>
+<article><h3>设备时延与串行化</h3><p>串行化时延是把一帧时钟送到线路上的时间（比特数 ÷ 线路速率），并在每一跳存储转发处累加。1500 字节在 10 Gbps 为 1.2 µs，在 1 Gbps 为 12 µs，在 100 Gbps 为 0.12 µs。排队和处理时延取决于负载，本计算器不建模。</p></article>
+</div>
+<h3>按距离的时延（n_g = 1.468，仅传播）</h3>
+<table class="t">
+<tr><th>距离</th><th>单向</th><th>往返</th><th>真空单向</th></tr>
+<tr><td>1 km</td><td>4.90 µs</td><td>9.79 µs</td><td>3.34 µs</td></tr>
+<tr><td>10 km</td><td>48.97 µs</td><td>97.93 µs</td><td>33.36 µs</td></tr>
+<tr><td>100 km</td><td>489.67 µs</td><td>979.34 µs</td><td>333.56 µs</td></tr>
+<tr><td>1,000 km</td><td>4.897 ms</td><td>9.793 ms</td><td>3.336 ms</td></tr>
+<tr><td>5,000 km</td><td>24.484 ms</td><td>48.967 ms</td><td>16.678 ms</td></tr>
+</table>
+<h3>演算案例：80 km DCI 与 1000 km × 1.3</h3>
+<p>80 km、n_g 1.468、系数 1.0、2 台设备 × 5 µs、1500 字节 @ 10 Gbps × 1 跳：传播 391.74 µs，设备 10 µs，串行化 1.2 µs，单向 402.94 µs，RTT 805.88 µs。城际 1000 km、路由系数 1.3 对应 1300 km 光纤，仅传播即为单向 6.366 ms、RTT 12.731 ms。1000 km 直线真空单向约为 3.336 ms。经验值：1 ms RTT 预算大约对应 102 km 光纤（1000 µs ÷ 9.793 µs/km）。</p>
+</div>
+</details>
+<div class="blk faq" id="faq">
+<span class="eyebrow">常见问题</span>
+<h2>常见问题</h2>
+<details><summary>光纤每公里时延是多少？</summary><p>标准单模光纤（群折射率约 1.468）单向大约每公里 4.9 µs，往返大约 9.8 µs，大约相当于每 1000 公里单向 5 ms。</p></details><details><summary>如何计算光纤上的 RTT？</summary><p>RTT 大约等于 2 × 纤长 × 4.9 µs/km，再加每个方向的设备时延和串行化时延。100 km 光纤仅传播往返大约 0.98 ms。</p></details><details><summary>为什么实测 ping 比计算器更高？</summary><p>Ping 还包含绕行路由、设备处理、排队和主机时延，而且光纤路由常常比直线距离长 20% 到 50%。请使用实测纤长或路由系数。</p></details><details><summary>微波比光纤更快吗？</summary><p>就传播而言是的。无线电在空气中几乎以真空光速传播（约 3.34 µs/km），比玻璃光纤大约低 32%，因此部分低时延交易链路使用微波。</p></details><details><summary>波长（1310 与 1550 nm）会改变时延吗？</summary><p>影响很小。G.652 光纤在两个波长的群折射率大约相差 0.0005，不到时延的 0.05%。色散补偿光纤或模块带来的时延通常大于波长本身。</p></details><details><summary>铜缆比光纤更快吗？</summary><p>没有实质差别。双绞线标称传播速度约为 0.65–0.70 c（约 4.8–5.1 µs/km），与光纤相近，但铜缆以太网限制在 100 m。</p></details>
+</div>
+<section class="blk" id="history">
+<p class="eyebrow">工程记录</p>
+<h2>最近计算记录</h2>
+<div class="fb-fold-body">
+<div class="history-toolbar">
+<p class="history-hint">仅保存在本浏览器（最多 12 条），不会上传。</p>
+<button type="button" class="btn btn-ghost btn-sm" id="clearHistoryBtn">清空记录</button>
+</div>
+<div class="history-list" id="historyList" role="list"></div>
+</div>
 </section>
-</div>
-</details>
-<details class="fb-fold blk">
-<summary class="fb-fold-sum"><span class="fb-fold-title">算例</span></summary>
+<section class="blk" id="references">
+<h2>标准与参考资料</h2>
 <div class="fb-fold-body">
-<section id="examples" class="content-section nel-tool-supporting-section"><div class="section-heading"><div><p class="eyebrow">算例</p><h2>算例</h2></div></div><h3>按距离的时延（n_g = 1.468，仅传播）</h3>
-<table class="compare-table"><thead><tr><th>距离</th><th>单向</th><th>往返</th><th>真空单向</th></tr></thead><tbody><tr><td>1 km</td><td>4.90 µs</td><td>9.79 µs</td><td>3.34 µs</td></tr><tr><td>10 km</td><td>48.97 µs</td><td>97.93 µs</td><td>33.36 µs</td></tr><tr><td>100 km</td><td>489.67 µs</td><td>979.34 µs</td><td>333.56 µs</td></tr><tr><td>1,000 km</td><td>4.897 ms</td><td>9.793 ms</td><td>3.336 ms</td></tr><tr><td>5,000 km</td><td>24.484 ms</td><td>48.967 ms</td><td>16.678 ms</td></tr></tbody></table><div class="example-box"><h3>演算案例：80 km DCI 与 1000 km × 1.3</h3><p>80 km、n_g 1.468、系数 1.0、2 台设备 × 5 µs、1500 字节 @ 10 Gbps × 1 跳：传播 391.74 µs，设备 10 µs，串行化 1.2 µs，单向 402.94 µs，RTT 805.88 µs。城际 1000 km、路由系数 1.3 对应 1300 km 光纤，仅传播即为单向 6.366 ms、RTT 12.731 ms。1000 km 直线真空单向约为 3.336 ms。经验值：1 ms RTT 预算大约对应 102 km 光纤（1000 µs ÷ 9.793 µs/km）。</p></div></section>
-</div>
-</details>
-<details class="fb-fold blk">
-<summary class="fb-fold-sum"><span class="fb-fold-title">限制</span></summary>
-<div class="fb-fold-body">
-<section id="limits" class="content-section nel-tool-supporting-section"><div class="section-heading"><div><p class="eyebrow">限制</p><h2>限制</h2></div></div><p >不对称路径、排队和主机协议栈时延未计入。两个方向不同时，请用实测值补充。</p></section>
-</div>
-</details>
-<details class="fb-fold blk">
-<summary class="fb-fold-sum"><span class="fb-fold-title">常见问题</span></summary>
-<div class="fb-fold-body">
-<section id="faq" aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
-<div class="section-heading"><div><p class="eyebrow">常见问题</p><h2 id="faq-title">常见问题</h2></div></div>
-<div class="faq-grid"><details><summary>光纤每公里时延是多少？</summary><p>标准单模光纤（群折射率约 1.468）单向大约每公里 4.9 µs，往返大约 9.8 µs，大约相当于每 1000 公里单向 5 ms。</p></details><details><summary>如何计算光纤上的 RTT？</summary><p>RTT 大约等于 2 × 纤长 × 4.9 µs/km，再加每个方向的设备时延和串行化时延。100 km 光纤仅传播往返大约 0.98 ms。</p></details><details><summary>为什么实测 ping 比计算器更高？</summary><p>Ping 还包含绕行路由、设备处理、排队和主机时延，而且光纤路由常常比直线距离长 20% 到 50%。请使用实测纤长或路由系数。</p></details><details><summary>微波比光纤更快吗？</summary><p>就传播而言是的。无线电在空气中几乎以真空光速传播（约 3.34 µs/km），比玻璃光纤大约低 32%，因此部分低时延交易链路使用微波。</p></details><details><summary>波长（1310 与 1550 nm）会改变时延吗？</summary><p>影响很小。G.652 光纤在两个波长的群折射率大约相差 0.0005，不到时延的 0.05%。色散补偿光纤或模块带来的时延通常大于波长本身。</p></details><details><summary>铜缆比光纤更快吗？</summary><p>没有实质差别。双绞线标称传播速度约为 0.65–0.70 c（约 4.8–5.1 µs/km），与光纤相近，但铜缆以太网限制在 100 m。</p></details></div>
-</section>
-</div>
-</details>
-<details class="fb-fold blk" open data-fold-pinned>
-<summary class="fb-fold-sum"><span class="fb-fold-title">标准与参考资料</span></summary>
-<div class="fb-fold-body">
-<section id="references" aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
-<div class="section-heading"><div><p class="eyebrow">工程参考</p><h2 id="references-title">标准与参考资料</h2></div></div>
-<ul><li><a href="https://www.itu.int/rec/T-REC-G.652/en">ITU-T G.652：单模光纤光缆特性</a></li><li><a href="https://physics.nist.gov/cgi-bin/cuu/Value?c">CODATA / NIST 真空光速</a></li><li><a href="https://www.bipm.org/en/si-base-units/second">国际单位制中的秒与定义的光速 c</a></li></ul>
+<div class="ref-card">
 <p>已知光缆时，应以厂商数据为准，例如康宁 SMF-28 在 1310 nm 的有效群折射率 1.4677、在 1550 nm 为 1.4682，而不要停留在通用值 1.468。铜缆以太网即使每公里时延接近光纤，传输距离仍限制在 100 m。最后更新：2026-10-18。</p>
-</section>
+<div class="std-row">
+<a class="std-chip" href="https://www.itu.int/rec/T-REC-G.652/en" rel="noopener noreferrer" target="_blank">ITU-T G.652：单模光纤光缆特性</a><a class="std-chip" href="https://physics.nist.gov/cgi-bin/cuu/Value?c" rel="noopener noreferrer" target="_blank">CODATA / NIST 真空光速</a><a class="std-chip" href="https://www.bipm.org/en/si-base-units/second" rel="noopener noreferrer" target="_blank">国际单位制中的秒与定义的光速 c</a>
 </div>
-</details>
-<details class="fb-fold blk">
-<summary class="fb-fold-sum"><span class="fb-fold-title">继续下一步工程任务</span></summary>
+</div>
+</div>
+</section>
+<section class="blk" id="content-review">
+<h2>内容复核 · 公式依据与限制</h2>
 <div class="fb-fold-body">
+<div class="review-grid">
+<div class="review-card"><h3>复核</h3><p>2026-10-18。本页标准与参考资料一节已有的编辑日期。</p></div>
+<div class="review-card"><h3>公式依据</h3><p>纤长 = 路由距离 × 路由系数。传播时延 = 纤长 × 群折射率 ÷ c，c = 299,792.458 km/s。单向时延再加设备时延与存储转发串行化。对称路径上 RTT 是单向的两倍。距离表使用 n_g = 1.468，且只含传播。</p></div>
+<div class="review-card"><h3>适用范围</h3><p>用于城域、数据中心互联和长途光纤时延的规划估算。不包含不对称路径、排队和主机协议栈时延。不能代替 OTDR 长度、厂商时延规格或实测 RTT。</p></div>
+</div>
+</div>
+</section>
 <!-- NEL_TOOL_GRAPH_START -->
 <section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="fiber-latency-calculator" data-primary-workflow="fiber-latency-planning">
 <div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
@@ -188,19 +283,9 @@
 </section>
 <!-- NEL_TOOL_GRAPH_END -->
 </div>
-</details>
-<details class="fb-fold blk">
-<summary class="fb-fold-sum"><span class="fb-fold-title">最近计算记录</span></summary>
-<div class="fb-fold-body">
-<section class="content-section nel-tool-supporting-section" id="history">
-<div class="section-heading"><div><p class="eyebrow">工程记录</p><h2>最近计算记录</h2></div>
-<button class="text-button" id="clearHistoryBtn" type="button">清空记录</button></div>
-<div class="history-list" id="historyList"></div>
-</section>
 </div>
-</details>
-</div>
-</div>
+</main>
+
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">
@@ -215,9 +300,9 @@
 <script defer src="../js/engine.js"></script>
 <script defer src="../js/pwa.js"></script>
 <script defer src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script>
-<script defer src="../js/app.js?v=222f61ecf3b6"></script>
+<script defer src="../js/app.js?v=17c1285c90c5"></script>
+<script defer src="../../../assets/js/tool-detail-v3.js?v=66984b67ff65"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
 <script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script>
-<script defer src="../../../assets/js/tool-detail-v3.js?v=66984b67ff65"></script>
 </body>
 </html>
