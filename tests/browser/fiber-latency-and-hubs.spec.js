@@ -107,6 +107,14 @@ function parseCsv(text){
   return rows;
 }
 
+async function clickVisiblePreset(page, preset){
+  const wide = await page.evaluate(() => window.innerWidth > 960);
+  const selector = wide
+    ? `.scenario-card[data-preset='${preset}']`
+    : `.presets-mobile [data-preset='${preset}']`;
+  await page.locator(selector).click();
+}
+
 test("fiber latency preset edit, share, csv, copy and save restore", async ({page}) => {
   const {errors, failed} = watchPage(page);
   await page.context().grantPermissions(["clipboard-read", "clipboard-write"]);
@@ -115,13 +123,15 @@ test("fiber latency preset edit, share, csv, copy and save restore", async ({pag
   await expect(page.locator("#groupIndexPreset")).toHaveValue("custom");
   await expect(page.locator(".scenario-card[data-preset='custom']")).toHaveAttribute("aria-pressed", "true");
   await expect(page.locator(".presets-mobile [data-preset='custom']")).toHaveAttribute("aria-pressed", "true");
-  await page.locator(".scenario-card[data-preset='1.4677']").click();
+  await clickVisiblePreset(page, "1.4677");
   await expect(page.locator("#groupIndex")).toHaveValue("1.4677");
   await expect(page.locator("#groupIndexPreset")).toHaveValue("1.4677");
+  await expect(page.locator(".scenario-card[data-preset='1.4677']")).toHaveAttribute("aria-pressed", "true");
   await expect(page.locator(".presets-mobile [data-preset='1.4677']")).toHaveAttribute("aria-pressed", "true");
-  await page.locator(".scenario-card[data-preset='custom']").click();
+  await clickVisiblePreset(page, "custom");
   await expect(page.locator("#groupIndex")).toHaveValue("1.4677");
   await expect(page.locator("#groupIndexPreset")).toHaveValue("custom");
+  await expect(page.locator(".scenario-card[data-preset='custom']")).toHaveAttribute("aria-pressed", "true");
   await expect(page.locator(".presets-mobile [data-preset='custom']")).toHaveAttribute("aria-pressed", "true");
   await page.setViewportSize({width: 390, height: 900});
   await page.locator(".presets-mobile [data-preset='1.003']").click();
