@@ -207,6 +207,8 @@ for (const [locale, spec] of Object.entries(pages)) {
   assert.ok(align, locale + " alignment style");
   const css = align.children.map((c) => c.text || "").join("");
   assert.ok(css.includes("grid-template-rows:subgrid") && css.includes("grid-row:span 3"), locale + " field subgrid");
+  assert.ok(css.includes(".fields>.f[hidden]{display:none}"), locale + " hidden fields stay hidden");
+  assert.strictEqual(findAll(doc, (el) => el.attrs.id === "references-title").length, 1, locale + " references title");
   assert.ok(css.includes("grid-template-columns:repeat(3,minmax(0,1fr))"), locale + " three-column actions");
   assert.ok(css.includes("overflow-wrap:anywhere"), locale + " mobile result wrap");
 
