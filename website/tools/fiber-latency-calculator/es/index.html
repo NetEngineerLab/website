@@ -37,7 +37,7 @@ body.nel-opb-v3 .inp select{white-space:nowrap;overflow:hidden;text-overflow:ell
 body.nel-opb-v3 .inp input[type="number"]{-moz-appearance:textfield;appearance:textfield}
 body.nel-opb-v3 .inp input[type="number"]::-webkit-outer-spin-button,
 body.nel-opb-v3 .inp input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
-body.nel-opb-v3 .ro-acts{grid-template-columns:repeat(3,minmax(0,1fr))}
+body.nel-opb-v3 .ro-acts{grid-template-columns:repeat(4,minmax(0,1fr))}
 body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:center;min-width:0;min-height:44px;white-space:normal;line-height:1.3}
 </style>
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Calculadora de latencia de fibra – µs por km, ida y RTT","url":"https://netengineerlab.com/tools/fiber-latency-calculator/es/","description":"Calcule la latencia de fibra: unos 4,9 µs/km de ida y 9,8 µs/km de RTT. Añada factor de ruta, retardo de equipos y serialización, y compare vacío, cobre y microondas.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
@@ -123,7 +123,7 @@ body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:
 <div class="f"><label for="distanceUnit">Unidad de distancia</label><div class="inp input-wrap sel"><select id="distanceUnit" aria-label="Unidad de distancia"><option value="km">km</option><option value="mi">mi</option><option value="m">m</option></select></div></div>
 <div class="f"><label for="routeFactor">Factor de ruta (fibra ÷ línea recta)</label><div class="inp input-wrap"><input id="routeFactor" min="1" step="0.01" type="number" value="1.0" inputmode="decimal"></div><small>Las rutas terrestres suelen ser más largas que la distancia en línea recta; use la longitud medida u OTDR cuando la conozca.</small></div>
 <div class="f"><label for="groupIndexPreset">Preajuste del índice de grupo</label><div class="inp input-wrap sel"><select id="groupIndexPreset"><option value="1.468">Monomodo genérico 1.468</option><option value="1.4677">G.652 SMF @1310 nm 1.4677</option><option value="1.4682">G.652 SMF @1550 nm 1.4682</option><option value="1.003">Núcleo hueco ≈1.003</option><option value="custom">Personalizado</option></select></div></div>
-<div class="f"><label for="groupIndex">Índice de grupo n_g</label><div class="inp input-wrap"><input id="groupIndex" min="1" max="1.6" step="0.0001" type="number" value="1.468" readonly inputmode="decimal"></div></div>
+<div class="f"><label for="groupIndex">Índice de grupo n_g</label><div class="inp input-wrap"><input id="groupIndex" min="1" max="1.6" step="0.0001" type="number" value="1.468" inputmode="decimal"></div></div>
 </div>
 </div>
 <div class="fg">
@@ -166,16 +166,20 @@ body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:
 <p>No se incluyen caminos asimétricos, colas ni el retardo de la pila del host. Añádalos con medición cuando las dos direcciones difieran.</p>
 </div>
 <div class="ro-acts">
-<button type="button" id="copyBtn">Copiar resultado</button>
-<button type="button" id="saveBtn">Guardar registro</button>
-<button type="button" id="printBtn">Imprimir / Exportar PDF</button>
+<button type="button" id="copyBtn" data-ro-act="copy" disabled>Copiar</button>
+<button type="button" id="saveBtn" data-ro-act="save" disabled>Guardar</button>
+<button type="button" id="csvBtn" data-ro-act="csv" disabled>CSV</button>
+<button type="button" id="printBtn" data-ro-act="print">Imprimir</button>
 </div>
 </div></section>
 <div class="tool-head">
 <div>
-<div class="crumbs"><a href="../../../es/">Inicio</a>/<a href="../../es/">Herramientas</a>/<span>Latencia de fibra</span></div>
+<div class="crumbs"><a href="../../../es/">Inicio</a>/<a href="../../es/">Herramientas</a>/<a href="/topics/pon-optical/">Óptica</a>/<span>Latencia de fibra</span></div>
 <p class="tool-page-label" role="heading" aria-level="1">Calculadora de latencia de fibra</p>
 <p class="tool-lede">La luz en la fibra óptica viaja a unos dos tercios de su velocidad en el vacío, así que cada kilómetro de fibra monomodo añade unos 4,9 µs de retardo de ida (unos 9,8 µs de ida y vuelta). Estime el tiempo de ida y el RTT en enlaces metro, DCI y de larga distancia, incluyendo desvíos de ruta, equipos activos y serialización de paquetes.</p>
+</div>
+<div class="acts">
+<button type="button" class="btn btn-ghost btn-sm" id="btn-share">Compartir entradas</button>
 </div>
 </div>
 <section class="scenario-section" aria-label="Preajustes del índice de grupo">
@@ -273,6 +277,12 @@ body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:
 <div class="review-card"><h3>Revisado</h3><p>2026-10-18. Fecha editorial ya publicada en la sección de normas y referencias de esta página.</p></div>
 <div class="review-card"><h3>Base de la fórmula</h3><p>Longitud de fibra = distancia de ruta × factor de ruta. Propagación = longitud de fibra × índice de grupo ÷ c, con c = 299.792,458 km/s. La ida suma el retardo de equipos y la serialización de almacenamiento y reenvío. El RTT es el doble de la ida en un camino simétrico. La tabla de distancias usa n_g = 1,468 y solo propagación.</p></div>
 <div class="review-card"><h3>Límites de aplicación</h3><p>Estimación de planificación para retardo de fibra metro, DCI y de larga distancia. No incluye caminos asimétricos, colas ni la pila del host. No sustituye la longitud OTDR, las hojas de retardo del fabricante ni el RTT medido.</p></div>
+<div class="review-card"><h3>Registro de cambios</h3><ul>
+<li>2026-10-18 — Se publicó esta calculadora (ida, RTT, factor de ruta, equipos y serialización) y se fechó la nota de normas de esta página.</li>
+<li>2026-10-19 — Una entrada no válida borra el resultado de ida anterior, el RTT y el resumen móvil.</li>
+<li>2026-10-29 — La página pasó al esqueleto V3 del presupuesto óptico. La fecha de revisión de arriba sigue siendo la nota de normas del 2026-10-18, no una revisión técnica nueva.</li>
+<li>2026-10-29 — El enlace para compartir restaura las entradas; el CSV exporta entradas, unidades y el desglose; el índice de grupo se puede editar; Copiar, Guardar y CSV permanecen desactivados si el resultado no es válido. Se añadió la miga Óptica.</li>
+</ul></div>
 </div>
 </div>
 </section>
@@ -301,7 +311,7 @@ body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:
 <script defer src="../js/engine.js"></script>
 <script defer src="../js/pwa.js"></script>
 <script defer src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script>
-<script defer src="../js/app.js?v=17c1285c90c5"></script>
+<script defer src="../js/app.js?v=fb6cb8c9acdc"></script>
 <script defer src="../../../assets/js/tool-detail-v3.js?v=66984b67ff65"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
 <script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script>

@@ -23,7 +23,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Fiber Latency Calculator – µs per km, One-Way &amp; RTT">
 <meta name="twitter:description" content="Calculate fiber optic latency: about 4.9 µs/km one-way and 9.8 µs RTT. Add route factor, equipment and serialization delay, then compare vacuum, copper and microwave.">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://netengineerlab.com/tools/fiber-latency-calculator/#app","name":"Fiber Latency Calculator","url":"https://netengineerlab.com/tools/fiber-latency-calculator/","description":"Calculate one-way and round-trip latency over optical fiber from distance, group index, route factor, equipment and serialization delay.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Network Engineering Calculator","operatingSystem":"Any","browserRequirements":"Requires JavaScript and a modern web browser","softwareVersion":"1.0.0","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/fiber-latency-calculator/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"NetEngineerLab","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"Fiber Latency Calculator","item":"https://netengineerlab.com/tools/fiber-latency-calculator/"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://netengineerlab.com/tools/fiber-latency-calculator/#app","name":"Fiber Latency Calculator","url":"https://netengineerlab.com/tools/fiber-latency-calculator/","description":"Calculate one-way and round-trip latency over optical fiber from distance, group index, route factor, equipment and serialization delay.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Network Engineering Calculator","operatingSystem":"Any","browserRequirements":"Requires JavaScript and a modern web browser","softwareVersion":"1.0.0","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/fiber-latency-calculator/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"NetEngineerLab","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"Optical","item":"https://netengineerlab.com/topics/pon-optical/"},{"@type":"ListItem","position":4,"name":"Fiber Latency Calculator","item":"https://netengineerlab.com/tools/fiber-latency-calculator/"}]}]}</script>
 
 <link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
 <meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
@@ -32,7 +32,7 @@
 <style>
 /* Shared OPB .fields stacks each label above its control, so a wrapped label
    drops that input. Subgrid keeps every control in a band on one row.
-   Shared .ro-acts is four columns; this tool has Copy, Save, and Print. */
+   Shared .ro-acts is four columns: Copy, Save, CSV, and Print. */
 body.nel-opb-v3 .fields{row-gap:0}
 body.nel-opb-v3 .fields>.f{display:grid;grid-template-rows:subgrid;grid-row:span 3;margin-bottom:14px}
 body.nel-opb-v3 .inp{height:40px;min-height:40px;max-height:40px;overflow:hidden}
@@ -40,7 +40,7 @@ body.nel-opb-v3 .inp select{white-space:nowrap;overflow:hidden;text-overflow:ell
 body.nel-opb-v3 .inp input[type="number"]{-moz-appearance:textfield;appearance:textfield}
 body.nel-opb-v3 .inp input[type="number"]::-webkit-outer-spin-button,
 body.nel-opb-v3 .inp input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
-body.nel-opb-v3 .ro-acts{grid-template-columns:repeat(3,minmax(0,1fr))}
+body.nel-opb-v3 .ro-acts{grid-template-columns:repeat(4,minmax(0,1fr))}
 body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:center;min-width:0;min-height:44px;white-space:normal;line-height:1.3}
 </style>
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Fiber Latency Calculator – µs per km, One-Way & RTT","url":"https://netengineerlab.com/tools/fiber-latency-calculator/","description":"Calculate fiber optic latency: about 4.9 µs/km one-way and 9.8 µs RTT. Add route factor, equipment and serialization delay, then compare vacuum, copper and microwave.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
@@ -125,7 +125,7 @@ body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:
 <div class="f"><label for="distanceUnit">Distance unit</label><div class="inp input-wrap sel"><select id="distanceUnit" aria-label="Distance unit"><option value="km">km</option><option value="mi">mi</option><option value="m">m</option></select></div></div>
 <div class="f"><label for="routeFactor">Route factor (fiber path ÷ straight-line)</label><div class="inp input-wrap"><input id="routeFactor" min="1" step="0.01" type="number" value="1.0" inputmode="decimal"></div><small>Terrestrial routes are often longer than straight-line distance; use measured/OTDR length when known.</small></div>
 <div class="f"><label for="groupIndexPreset">Group index preset</label><div class="inp input-wrap sel"><select id="groupIndexPreset"><option value="1.468">Generic single-mode 1.468</option><option value="1.4677">G.652 SMF @1310 nm 1.4677</option><option value="1.4682">G.652 SMF @1550 nm 1.4682</option><option value="1.003">Hollow-core ≈1.003</option><option value="custom">Custom</option></select></div></div>
-<div class="f"><label for="groupIndex">Group index n_g</label><div class="inp input-wrap"><input id="groupIndex" min="1" max="1.6" step="0.0001" type="number" value="1.468" readonly inputmode="decimal"></div></div>
+<div class="f"><label for="groupIndex">Group index n_g</label><div class="inp input-wrap"><input id="groupIndex" min="1" max="1.6" step="0.0001" type="number" value="1.468" inputmode="decimal"></div></div>
 </div>
 </div>
 <div class="fg">
@@ -168,16 +168,20 @@ body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:
 <p>Asymmetric paths, queuing and host-stack delay are not included. Add them from measurement when the two directions differ.</p>
 </div>
 <div class="ro-acts">
-<button type="button" id="copyBtn">Copy result</button>
-<button type="button" id="saveBtn">Save record</button>
-<button type="button" id="printBtn">Print / Export PDF</button>
+<button type="button" id="copyBtn" data-ro-act="copy" disabled>Copy</button>
+<button type="button" id="saveBtn" data-ro-act="save" disabled>Save</button>
+<button type="button" id="csvBtn" data-ro-act="csv" disabled>CSV</button>
+<button type="button" id="printBtn" data-ro-act="print">Print</button>
 </div>
 </div></section>
 <div class="tool-head">
 <div>
-<div class="crumbs"><a href="../../">Home</a>/<a href="../">Tools</a>/<span>Fiber Latency</span></div>
+<div class="crumbs"><a href="../../">Home</a>/<a href="../">Tools</a>/<a href="../../topics/pon-optical/">Optical</a>/<span>Fiber Latency</span></div>
 <p class="tool-page-label" role="heading" aria-level="1">Fiber Latency Calculator</p>
 <p class="tool-lede">Light in optical fiber travels at roughly two-thirds of its speed in vacuum, so every kilometre of single-mode fiber adds about 4.9 µs of one-way delay (about 9.8 µs round trip). Estimate one-way and round-trip time (RTT) for metro, DCI and long-haul links, including route detours, active equipment and packet serialization.</p>
+</div>
+<div class="acts">
+<button type="button" class="btn btn-ghost btn-sm" id="btn-share">Share inputs</button>
 </div>
 </div>
 <section class="scenario-section" aria-label="Group index presets">
@@ -275,6 +279,12 @@ body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:
 <div class="review-card"><h3>Reviewed</h3><p>2026-10-18. Editorial note already published on this page for the standards and reference section.</p></div>
 <div class="review-card"><h3>Formula basis</h3><p>Fiber length = route distance × route factor. Propagation = fiber length × group index ÷ c, with c = 299,792.458 km/s. One-way latency adds equipment delay and store-and-forward serialization. RTT is twice the one-way total on a symmetric path. The distance table uses n_g = 1.468 and propagation only.</p></div>
 <div class="review-card"><h3>Applicability limits</h3><p>Planning estimate for metro, DCI and long-haul fiber delay. Asymmetric paths, queuing and host-stack delay are not included. Not a substitute for OTDR length, vendor delay datasheets, or measured RTT.</p></div>
+<div class="review-card"><h3>Update log</h3><ul>
+<li>2026-10-18 — Published this calculator (one-way, RTT, route factor, equipment and serialization) and dated the standards note on this page.</li>
+<li>2026-10-19 — Invalid inputs clear the previous one-way result, RTT and mobile summary.</li>
+<li>2026-10-29 — Moved the page onto the shared Optical Power Budget V3 skeleton. The review date above is the 2026-10-18 standards note, not a new technical review.</li>
+<li>2026-10-29 — Share link restores the inputs; CSV exports inputs, units and the breakdown; the group index can be edited directly; Copy, Save and CSV stay disabled while the result is invalid. Added the Optical topic crumb.</li>
+</ul></div>
 </div>
 </div>
 </section>
@@ -303,7 +313,7 @@ body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:
 <script defer src="js/engine.js"></script>
 <script defer src="js/pwa.js"></script>
 <script defer src="../../assets/js/tool-integration.js?v=05f7934f4687"></script>
-<script defer src="js/app.js?v=17c1285c90c5"></script>
+<script defer src="js/app.js?v=fb6cb8c9acdc"></script>
 <script defer src="../../assets/js/tool-detail-v3.js?v=66984b67ff65"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
 <script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script>
