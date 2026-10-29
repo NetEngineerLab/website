@@ -97,7 +97,7 @@ function childTags(node) {
 const pages = {
   en: {
     file: "index.html",
-    robots: "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    robots: "index,follow,max-image-preview:large,max-snippet:-1",
     canonical: "https://netengineerlab.com/tools/chromatic-dispersion-calculator/",
     title: "Chromatic Dispersion Calculator – ps/nm, G.652 D(λ) &amp; CD Limit",
     css: "../optical-power-budget/css/",
@@ -106,7 +106,7 @@ const pages = {
   },
   zh: {
     file: "zh/index.html",
-    robots: "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    robots: "index,follow,max-image-preview:large,max-snippet:-1",
     canonical: "https://netengineerlab.com/tools/chromatic-dispersion-calculator/zh/",
     title: "色散计算器｜G.652 色散系数、累积色散与色散受限距离",
     css: "../../optical-power-budget/css/",
@@ -115,7 +115,7 @@ const pages = {
   },
   es: {
     file: "es/index.html",
-    robots: "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    robots: "index,follow,max-image-preview:large,max-snippet:-1",
     canonical: "https://netengineerlab.com/tools/chromatic-dispersion-calculator/es/",
     title: "Calculadora de dispersión cromática – ps/nm, D(λ) G.652 y límite",
     css: "../../optical-power-budget/css/",
@@ -150,15 +150,18 @@ for (const [locale, spec] of Object.entries(pages)) {
   }
   assert.ok(sheets.includes(spec.assets + "css/tool-layout.css?v=dfdd771763d6"), locale + " tool-layout");
   assert.ok(!sheets.some((href) => /style\.css|fieldbook\.css|tool-detail-v3\.css/.test(href)), locale + " no parallel skin");
+  assert.ok(sheets.some((href) => href.includes("fb-v3.css?v=52fefac6ca20")), locale + " fb-v3.css");
+  assert.ok(sheets.some((href) => href.includes("fb-v3-prod.css?v=385403578979")), locale + " fb-v3-prod.css");
   const scripts = findAll(doc, (el) => el.tag === "script" && el.attrs.src).map((el) => el.attrs.src);
-  assert.ok(scripts.includes(spec.assets + "js/tool-detail-v3.js?v=66984b67ff65"), locale + " tool-detail-v3.js");
+  assert.ok(!scripts.some((src) => src.includes("tool-detail-v3.js")), locale + " folds stay closed without the opener");
   assert.ok(scripts.some((src) => src.endsWith("js/engine.js")), locale + " engine.js");
   assert.ok(scripts.some((src) => src.startsWith(spec.js + "js/app.js?v=")), locale + " app.js");
 
   const body = one(findAll(doc, (el) => el.tag === "body"), locale + " body");
-  for (const name of ["nel-tool-detail-page", "nel-opb-v3", "has-mbar", "v3", "nel-tool-v3"]) {
+  for (const name of ["nel-tool-detail-page", "nel-opb-v3", "has-mbar", "v3"]) {
     assert.ok(has(body, name), locale + " body." + name);
   }
+  assert.ok(!has(body, "nel-tool-v3"), locale + " folds are not auto-opened");
 
   const hero = one(findAll(doc, (el) => el.tag === "section" && has(el, "hero") && has(el, "nel-tool-hero")), locale + " hero");
   assert.strictEqual(hero.attrs["aria-hidden"], "true", locale + " hero aria-hidden");
@@ -245,8 +248,10 @@ for (const [locale, spec] of Object.entries(pages)) {
 const foldCss = fs.readFileSync(path.join(root, "../optical-power-budget/css/fb-v3.css"), "utf8");
 assert.ok(/body\.v3 \.below > \.toc\{\s*display:none;/.test(foldCss), "mobile TOC hidden in OPB V3 CSS");
 assert.ok(foldCss.includes("@media (min-width:961px)") && foldCss.includes("@media (max-width:768px)"), "desktop TOC and mobile fold breakpoints");
-const foldJs = fs.readFileSync(path.join(root, "../../assets/js/tool-detail-v3.js"), "utf8");
-assert.ok(foldJs.includes('matchMedia("(min-width: 769px)")') && foldJs.includes("el.open = false"), "explain folds collapse below 769px");
+for (const file of ["index.html", "zh/index.html", "es/index.html"]) {
+  const html = fs.readFileSync(path.join(root, file), "utf8");
+  assert.ok(!/<details class="fb-fold[^"]*" id="[^"]+"[^>]*\sopen[\s>]/.test(html), file + " folds default closed");
+}
 
 const esHtml = fs.readFileSync(path.join(root, "es/index.html"), "utf8");
 assert.ok(esHtml.includes("Continuar el flujo de dispersión cromática"));

@@ -10,7 +10,6 @@ const CORE = [
   "../optical-power-budget/css/fb-v3.css?v=52fefac6ca20",
   "../optical-power-budget/css/fb-v3-prod.css?v=385403578979",
   "../../assets/css/tool-layout.css?v=dfdd771763d6",
-  "../../assets/js/tool-detail-v3.js?v=66984b67ff65",
   "./js/app.js?v=3fa1b0a2867c",
   "./js/engine.js",
   "./images/logo.svg",
