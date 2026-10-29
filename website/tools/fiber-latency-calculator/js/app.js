@@ -85,15 +85,39 @@ function readInputs(){
   };
 }
 
+function syncPresetCards(){
+  const preset = $("groupIndexPreset");
+  if (!preset) return;
+  const value = preset.value;
+  document.querySelectorAll("[data-preset]").forEach((btn) => {
+    const on = btn.getAttribute("data-preset") === value;
+    btn.classList.toggle("on", on);
+    btn.setAttribute("aria-pressed", on ? "true" : "false");
+  });
+}
+
 function applyGroupPreset(){
   const preset = $("groupIndexPreset").value;
   const field = $("groupIndex");
   if (preset === "custom"){
     field.readOnly = false;
-    return;
+  } else {
+    field.value = preset;
+    field.readOnly = true;
   }
-  field.value = preset;
-  field.readOnly = true;
+  syncPresetCards();
+}
+
+function setValidation(message){
+  const node = $("validationMessage");
+  if (!node) return;
+  node.textContent = message || "";
+  node.hidden = !message;
+}
+
+function setMbar(oneWay, rtt){
+  setText("mbar-val", oneWay);
+  setText("mbar-rtt", rtt ? `${text.rtt} ${rtt}` : `${text.rtt} —`);
 }
 
 function setText(id, value){
@@ -142,6 +166,7 @@ function markInvalidFields(values){
 function clearResults(){
   lastResult = null;
   for (const id of RESULT_IDS) setText(id, "—");
+  setMbar("—", "");
   const body = $("comparisonBody");
   if (body) body.replaceChildren();
 }
@@ -152,11 +177,11 @@ function calculate(){
   if (!result.ok){
     clearResults();
     markInvalidFields(values);
-    $("validationMessage").textContent = text.validation;
+    setValidation(text.validation);
     return;
   }
   markInvalidFields(values);
-  $("validationMessage").textContent = "";
+  setValidation("");
   lastResult = {...values, ...result, timestamp: new Date().toISOString()};
   setText("oneWay", result.oneWayText);
   setText("rtt", result.rttText);
@@ -168,6 +193,7 @@ function calculate(){
   setText("speed", `${Math.round(result.speedKmS).toLocaleString(currentLang === "zh" ? "zh-CN" : currentLang === "es" ? "es" : "en-US")} km/s`);
   setText("fractionC", `${result.fractionOfC.toFixed(3)} c`);
   setText("versusVacuum", `${result.percentVsVacuum.toFixed(1)}%`);
+  setMbar(result.oneWayText, result.rttText);
   renderComparison(result);
   if (typeof window.nelTrack === "function"){
     window.nelTrack("fiber_latency_calculate", {
@@ -283,7 +309,14 @@ function clearHistory(){
 }
 
 $("groupIndexPreset").addEventListener("change", () => { applyGroupPreset(); calculate(); });
-$("groupIndex").addEventListener("input", () => { $("groupIndexPreset").value = "custom"; $("groupIndex").readOnly = false; });
+$("groupIndex").addEventListener("input", () => { $("groupIndexPreset").value = "custom"; $("groupIndex").readOnly = false; syncPresetCards(); });
+document.querySelectorAll("[data-preset]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    $("groupIndexPreset").value = btn.getAttribute("data-preset");
+    applyGroupPreset();
+    calculate();
+  });
+});
 $("calculateBtn").addEventListener("click", calculate);
 $("resetBtn").addEventListener("click", resetForm);
 $("copyBtn").addEventListener("click", copyResult);
