@@ -34,14 +34,20 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Qué va primero, la sobresuscripción o el ancho de banda?","acceptedAnswer":{"@type":"Answer","text":"Estime primero la carga ofrecida y después compruebe si los uplinks propuestos la transportan con la concurrencia y el caso de fallo que esté dispuesto a firmar."}},{"@type":"Question","name":"¿El planificador VLAN es una herramienta VLSM?","acceptedAnswer":{"@type":"Answer","text":"Planifica la capacidad útil de hosts por VLAN a partir de un prefijo y reservas. Use antes la calculadora de subredes si todavía debe dibujar los límites del prefijo."}},{"@type":"Question","name":"¿Por qué la MTU está en un hub de ancho de banda?","acceptedAnswer":{"@type":"Answer","text":"Una trama que no cabe en el camino se descarta o se fragmenta. Eso aparece como un fallo de throughput aunque la aritmética del uplink fuera correcta."}},{"@type":"Question","name":"¿Cuándo abro el planificador de capacidad del fabric?","acceptedAnswer":{"@type":"Answer","text":"Cuando la pregunta pasa de un switch de acceso a cómo convergen los niveles leaf, spine o agregación bajo el mismo tráfico y las mismas hipótesis de fallo."}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=989edb3b4d77">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=26fafcdcee42">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../../assets/js/site.js?v=b563dd0297f5"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=20261105-opb2">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=20261105-opb2">
+<link rel="stylesheet" href="../css/style.css?v=20261108-hub-bw2">
 </head>
-<body>
+<body class="nel-tool-detail-page nel-tool-v3 v3">
 <!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
   <div class="site-shell-header-inner">
@@ -63,18 +69,33 @@
   </div>
 </header>
 <!-- NEL_HEADER_END -->
-<nav class="calculator-hub-breadcrumb" aria-label="Breadcrumb"><a href="../../../es/">Inicio</a><span aria-hidden="true">/</span><a href="../../es/">Herramientas</a><span aria-hidden="true">/</span><span aria-current="page">Calculadoras de switching y ancho de banda</span></nav>
-<main class="calculator-hub" id="main">
-<h1>Calculadoras de switching y ancho de banda</h1>
-<p class="lede">La planificación de conmutación y ancho de banda falla cuando el cálculo del uplink, el espacio de direcciones y el tamaño de trama los revisan personas distintas con hojas distintas. Este hub ordena las calculadoras de switching, ancho de banda, subred y capacidad que ya existen en NetEngineerLab. Empiece por el tráfico que pueda defender: tasas de aplicación o una estimación de tiempo de transferencia, no un número redondo copiado de otro sitio. Convierta esa carga en un plan de puertos de acceso y uplinks, con concurrencia, utilización y lo que queda cuando falla un uplink. Solo después recorte el plan de direcciones. La calculadora de subredes define los límites y el planificador de capacidad VLAN comprueba si cada VLAN aún tiene hosts tras las reservas. La MTU pertenece a la misma pasada, porque un flujo de superposición o almacenamiento que no cabe en la red inferior parece un problema de capacidad en producción. La previsión llega cuando el diseño actual ya es explícito, para aplicar el crecimiento a una línea base conocida. La convergencia del fabric cierra la secuencia cuando el switch de acceso es solo un nivel de una red mayor. Las páginas no comparten un único formulario. Comparten un orden: cuantificar la demanda, dimensionar el switch, asignar direcciones y después probar el fallo y el crecimiento.</p>
-<h2>Calculadoras de este hub</h2>
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb"><a href="../../../es/">Inicio</a><span aria-hidden="true">/</span><a href="../../es/">Herramientas</a><span aria-hidden="true">/</span><span aria-current="page">Calculadoras de switching y ancho de banda</span></nav>
+<main class="tool-shell nel-tool-main" id="hub">
+<div class="tool-head"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../../es/">Inicio</a><span aria-hidden="true">/</span><a href="../../es/">Herramientas</a><span aria-hidden="true">/</span><span aria-current="page">Calculadoras de switching y ancho de banda</span></nav><p class="tool-page-label" role="heading" aria-level="1">Calculadoras de switching y ancho de banda</p><p class="tool-lede">La planificación de conmutación y ancho de banda falla cuando el cálculo del uplink, el espacio de direcciones y el tamaño de trama los revisan personas distintas con hojas distintas. Este hub ordena las calculadoras de switching, ancho de banda, subred y capacidad que ya existen en NetEngineerLab. Empiece por el tráfico que pueda defender: tasas de aplicación o una estimación de tiempo de transferencia, no un número redondo copiado de otro sitio. Convierta esa carga en un plan de puertos de acceso y uplinks, con concurrencia, utilización y lo que queda cuando falla un uplink. Solo después recorte el plan de direcciones. La calculadora de subredes define los límites y el planificador de capacidad VLAN comprueba si cada VLAN aún tiene hosts tras las reservas. La MTU pertenece a la misma pasada, porque un flujo de superposición o almacenamiento que no cabe en la red inferior parece un problema de capacidad en producción. La previsión llega cuando el diseño actual ya es explícito, para aplicar el crecimiento a una línea base conocida. La convergencia del fabric cierra la secuencia cuando el switch de acceso es solo un nivel de una red mayor. Las páginas no comparten un único formulario. Comparten un orden: cuantificar la demanda, dimensionar el switch, asignar direcciones y después probar el fallo y el crecimiento.</p></div>
+<div class="below">
+<nav class="toc" aria-label="En esta página"><h4>En esta página</h4>
+<a href="#tools">Calculadoras de este hub</a>
+<a href="#workflow">Flujo de planificación</a>
+<a href="#faq">Preguntas frecuentes</a>
+<a href="#related">Páginas relacionadas</a>
+</nav>
+<div class="prose">
+<section class="blk panel" id="tools"><h2>Calculadoras de este hub</h2>
 <div class="hub-card-grid"><a class="hub-tool-card" href="../../bandwidth-calculator/es/"><strong>Calculadora de ancho de banda y tiempo de transferencia</strong><span>Calcula el tiempo de transferencia, la velocidad necesaria y la capacidad de usuarios concurrentes.</span></a><a class="hub-tool-card" href="/tools/application-bandwidth-analyzer/"><strong>Analizador de ancho de banda por aplicación</strong><span>Analiza el ancho de banda por aplicación, la utilización del enlace y el margen a partir de velocidades indicadas.</span></a><a class="hub-tool-card" href="../../switch-uplink-oversubscription-calculator/es/"><strong>Calculadora de sobresuscripción de uplink</strong><span>Dimensiona uplinks a partir de puertos de acceso, utilización, concurrencia y redundancia.</span></a><a class="hub-tool-card" href="../../subnet-calculator/es/"><strong>Calculadora de subredes IP</strong><span>Calcula IPv4, IPv6, CIDR, máscaras, rangos de broadcast y capacidad de hosts, con planificación VLSM.</span></a><a class="hub-tool-card" href="../../vlan-ip-capacity-planner/es/"><strong>Planificador de capacidad VLAN y subredes IP</strong><span>Planifica la cantidad de VLAN, prefijos IPv4, capacidad de direcciones y crecimiento de subredes.</span></a><a class="hub-tool-card" href="../../mtu-calculator/es/"><strong>Calculadora de MTU</strong><span>Calcula MTU, MSS y el tamaño de trama que cabe en el camino.</span></a><a class="hub-tool-card" href="../../network-capacity-forecast-planner/es/"><strong>Planificador de previsión de capacidad</strong><span>Proyecta el crecimiento de capacidad a partir de una línea base y una tasa de crecimiento.</span></a><a class="hub-tool-card" href="../../data-center-network-convergence-fabric-capacity-planner/es/"><strong>Planificador de capacidad de fabric</strong><span>Evalúa la convergencia y la capacidad del fabric del centro de datos.</span></a></div>
-<h2>Flujo de planificación</h2>
+</section>
+<section class="blk panel" id="workflow"><h2>Flujo de planificación</h2>
 <p>Siga este orden para un diseño de acceso o agregación.</p>
 <ol class="hub-workflow"><li><a href="../../bandwidth-calculator/es/">Calculadora de ancho de banda y tiempo de transferencia</a></li><li><a href="/tools/application-bandwidth-analyzer/">Analizador de ancho de banda por aplicación</a></li><li><a href="../../switch-uplink-oversubscription-calculator/es/">Calculadora de sobresuscripción de uplink</a></li><li><a href="../../subnet-calculator/es/">Calculadora de subredes IP</a></li><li><a href="../../vlan-ip-capacity-planner/es/">Planificador de capacidad VLAN y subredes IP</a></li><li><a href="../../mtu-calculator/es/">Calculadora de MTU</a></li><li><a href="../../network-capacity-forecast-planner/es/">Planificador de previsión de capacidad</a></li><li><a href="../../data-center-network-convergence-fabric-capacity-planner/es/">Planificador de capacidad de fabric</a></li></ol>
-<h2>Preguntas frecuentes</h2>
-<div class="hub-faq"><details><summary>¿Qué va primero, la sobresuscripción o el ancho de banda?</summary><p>Estime primero la carga ofrecida y después compruebe si los uplinks propuestos la transportan con la concurrencia y el caso de fallo que esté dispuesto a firmar.</p></details><details><summary>¿El planificador VLAN es una herramienta VLSM?</summary><p>Planifica la capacidad útil de hosts por VLAN a partir de un prefijo y reservas. Use antes la calculadora de subredes si todavía debe dibujar los límites del prefijo.</p></details><details><summary>¿Por qué la MTU está en un hub de ancho de banda?</summary><p>Una trama que no cabe en el camino se descarta o se fragmenta. Eso aparece como un fallo de throughput aunque la aritmética del uplink fuera correcta.</p></details><details><summary>¿Cuándo abro el planificador de capacidad del fabric?</summary><p>Cuando la pregunta pasa de un switch de acceso a cómo convergen los niveles leaf, spine o agregación bajo el mismo tráfico y las mismas hipótesis de fallo.</p></details></div>
+</section>
+<section class="blk" id="faq"><h2>Preguntas frecuentes</h2>
+<div class="hub-faq"><details class="fb-fold"><summary class="fb-fold-sum"><span class="fb-fold-title">¿Qué va primero, la sobresuscripción o el ancho de banda?</span></summary><div class="fb-fold-body"><p>Estime primero la carga ofrecida y después compruebe si los uplinks propuestos la transportan con la concurrencia y el caso de fallo que esté dispuesto a firmar.</p></div></details><details class="fb-fold"><summary class="fb-fold-sum"><span class="fb-fold-title">¿El planificador VLAN es una herramienta VLSM?</span></summary><div class="fb-fold-body"><p>Planifica la capacidad útil de hosts por VLAN a partir de un prefijo y reservas. Use antes la calculadora de subredes si todavía debe dibujar los límites del prefijo.</p></div></details><details class="fb-fold"><summary class="fb-fold-sum"><span class="fb-fold-title">¿Por qué la MTU está en un hub de ancho de banda?</span></summary><div class="fb-fold-body"><p>Una trama que no cabe en el camino se descarta o se fragmenta. Eso aparece como un fallo de throughput aunque la aritmética del uplink fuera correcta.</p></div></details><details class="fb-fold"><summary class="fb-fold-sum"><span class="fb-fold-title">¿Cuándo abro el planificador de capacidad del fabric?</span></summary><div class="fb-fold-body"><p>Cuando la pregunta pasa de un switch de acceso a cómo convergen los niveles leaf, spine o agregación bajo el mismo tráfico y las mismas hipótesis de fallo.</p></div></details></div>
+</section>
+<section class="blk panel" id="related">
+<h2>Páginas relacionadas</h2>
 <p class="hub-return" data-nel-cluster-link><a href="../../../topics/switch-oversubscription/">Este hub lista las calculadoras de uplink, ancho de banda y direccionamiento. Los ejemplos, LAG y el método N-1 están en el tema de sobresuscripción.</a></p>
+</section>
+</div>
+</div>
 </main>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">

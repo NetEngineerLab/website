@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 
 <html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="tools/onu-rx-power/"><head>
-<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#16140F" name="theme-color"/><meta content="../" name="app-base"/>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="../" name="app-base"/>
 <title>PON光功率计算器（免费）｜ONU接收光功率 dBm 是否正常（GPON B+/C+）</title>
 <meta content="免费PON光功率计算：输入ONU实测收光，即时判断距灵敏度与过载的余量，并按分光比和光纤算出预期dBm、定位额外损耗。" name="description"/>
 <meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
 <meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="PON光功率计算器（免费）｜ONU接收光功率 dBm 是否正常（GPON B+/C+）" property="og:title"/><meta content="免费PON光功率计算：输入ONU实测收光，即时判断距灵敏度与过载的余量，并按分光比和光纤算出预期dBm、定位额外损耗。" property="og:description"/><meta content="https://netengineerlab.com/tools/onu-rx-power/zh/" property="og:url"/><meta content="https://netengineerlab.com/tools/onu-rx-power/images/og-onu-rx-power.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
-<link href="../css/style.css?v=13e0c1fa49cd" rel="stylesheet"/>
+<link href="../css/style.css?v=20261106-bw1" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"ONU接收光功率诊断工具","alternateName":"ONU RX Power Diagnosis","url":"https://netengineerlab.com/tools/onu-rx-power/zh/","applicationCategory":"UtilitiesApplication","applicationSubCategory":"PON Troubleshooting Tool","operatingSystem":"Any","softwareVersion":"1.0.2","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"工具中心","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"ONU接收光功率诊断","item":"https://netengineerlab.com/tools/onu-rx-power/zh/"}]}</script><meta content="NetEngineerLab" name="author"/>
 <link href="/assets/css/cookie-consent.css?v=8dd1728bf5eb" rel="stylesheet"/>
-<link href="/assets/css/mobile-branding.css?v=1.9.5-06" rel="stylesheet"/>
+<link href="/assets/css/mobile-branding.css?v=345784b6b020" rel="stylesheet"/>
 <script defer="" src="/data/seo-config.js"></script>
 <script defer="" src="/assets/js/seo-engine.js?v=15ac96553c44"></script>
 
@@ -22,7 +22,10 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=20261105-method1r">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=35fd6b8f7526">
+<script defer="" src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"PON光功率计算器（免费）｜ONU接收光功率 dBm 是否正常（GPON B+/C+）","url":"https://netengineerlab.com/tools/onu-rx-power/zh/","description":"免费PON光功率计算：输入ONU实测收光，即时判断距灵敏度与过载的余量，并按分光比和光纤算出预期dBm、定位额外损耗。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
@@ -36,17 +39,17 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"ONU接收光功率多少才算正常？","acceptedAnswer":{"@type":"Answer","text":"没有适用于所有设备的固定值，应根据对应ONU或光模块的接收灵敏度和过载门限判断，并保留工程余量。"}},{"@type":"Question","name":"光功率接近灵敏度但业务正常，需要处理吗？","acceptedAnswer":{"@type":"Answer","text":"建议作为弱光隐患主动处理，因为轻微污染、弯曲或温度变化就可能使链路跌破门限。"}},{"@type":"Question","name":"实测值比理论值低很多说明什么？","acceptedAnswer":{"@type":"Answer","text":"可能存在未计入的连接损耗、接头污染、尾纤弯曲、熔接质量差、分光器异常或线路衰减增大。"}},{"@type":"Question","name":"接收光功率过高会导致什么问题？","acceptedAnswer":{"@type":"Answer","text":"可能使接收器饱和，出现误码、注册异常或业务不稳定，应核对设备等级和是否需要衰减器。"}},{"@type":"Question","name":"疑似无光是否一定是断纤？","acceptedAnswer":{"@type":"Answer","text":"不一定，还可能是跳纤脱落、端口对应错误、OLT不发光、分光器故障或严重弯曲。"}},{"@type":"Question","name":"为什么预设参数都可以修改？","acceptedAnswer":{"@type":"Answer","text":"不同厂家、设备等级和网络设计存在差异，预设只用于快速演示，正式诊断必须使用真实参数。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=1040076f7555">
-<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=989edb3b4d77">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=20261105-method1r">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=26fafcdcee42">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../../assets/js/site.js?v=b563dd0297f5"></script>
-<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=dfdd771763d6">
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=20261105-bc1">
 <link rel="manifest" href="../manifest-zh.webmanifest">
-</head><body class="nel-tool-detail-page nel-opb-v3 nel-fieldbook nel-tool-v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
-<link rel="stylesheet" href="../../../assets/css/fieldbook.css?v=a3bb21511014">
+</head><body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1" data-nel-offline-worker="1">
+
 
 <a class="skip-link" href="#calculator">跳到诊断工具</a><noscript><div class="noscript">本工具需要启用 JavaScript。</div></noscript>
 <!-- NEL_HEADER_START -->
@@ -79,9 +82,9 @@
   <span aria-current="page">ONU接收光功率诊断</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
-<section class="hero nel-tool-hero"><div class="hero-inner"><p class="eyebrow">PON MAINTENANCE TOOL</p><h1>ONU接收光功率诊断工具</h1><p>根据ONU实测接收光功率、设备接收灵敏度和过载门限，判断正常、弱光、严重弱光、光功率过高或疑似无光；高级模式还可比较理论接收功率与实测值，推算额外异常损耗。</p><div class="hero-tags"><span>弱光诊断</span><span>过载判断</span><span>额外损耗</span><span>维护建议</span></div></div></section>
-<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
-<section class="input-panel card nel-tool-input"><div class="fb-panel"><div class="panel-h"><h2>实测与设备参数</h2></div><p class="fg-note" id="modeHint">同时建立链路模型，比较理论接收光功率与实测值。</p><div class="fs"><div aria-label="诊断模式" class="mode-tabs" role="tablist"><button aria-selected="false" class="mode-tab" data-mode="measured" role="tab">快速诊断</button><button aria-selected="true" class="mode-tab active" data-mode="model" role="tab">链路模型诊断</button></div>
+<section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner"><p class="eyebrow">PON MAINTENANCE TOOL</p><h1>ONU接收光功率诊断工具</h1><p>根据ONU实测接收光功率、设备接收灵敏度和过载门限，判断正常、弱光、严重弱光、光功率过高或疑似无光；高级模式还可比较理论接收功率与实测值，推算额外异常损耗。</p><div class="hero-tags"><span>弱光诊断</span><span>过载判断</span><span>额外损耗</span><span>维护建议</span></div></div></section>
+<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator" data-nel-readout-roles="%7B%22secondary%22%3A%5B%22sensitivityMargin%22%2C%22overloadMargin%22%2C%22receiverWindow%22%2C%22splitRatio%22%2C%22expectedRx%22%2C%22deviation%22%2C%22inferredExtra%22%2C%22fiberLoss%22%2C%22spliceTotal%22%2C%22connectorTotal%22%2C%22splitterLoss%22%2C%22modeledLoss%22%5D%2C%22identifier%22%3A%5B%5D%2C%22annotation%22%3A%5B%5D%7D" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv">
+<div class="workspace"><section class="input-panel card nel-tool-input fb-panel"><div class="fb-panel"><div class="panel-h"><h2 class="panel-h">实测与设备参数</h2></div><p class="fg-note" id="modeHint">同时建立链路模型，比较理论接收光功率与实测值。</p><div class="fs"><div aria-label="诊断模式" class="mode-tabs tabs" role="tablist"><button aria-selected="false" class="mode-tab" data-mode="measured" role="tab">快速诊断</button><button aria-selected="true" class="mode-tab active" data-mode="model" role="tab">链路模型诊断</button></div>
 <div class="preset-row fg"><label for="preset">场景参考预设</label><div class="inp input-wrap sel"><select id="preset"><option value="custom">自定义</option><option selected="" value="gpon-b">GPON B+参考（可编辑）</option><option value="gpon-c">GPON C+参考（可编辑）</option><option value="epon">EPON参考（可编辑）</option><option value="customWeak">弱光示例</option></select></div></div>
 <div class="fields form-grid">
 <div class="f f-wide field full"><label for="projectName">工程/ONU名称</label><div class="inp input-wrap no-unit"><input id="projectName" value="ONU Optical Power Check"/></div></div>
@@ -106,15 +109,15 @@
 <div class="f field"><label for="splitter2">二级分光器</label><div class="inp input-wrap no-unit sel"><select id="splitter2"><option value="0">无</option><option value="3.7">1:2（3.7 dB）</option><option value="7.2">1:4（7.2 dB）</option><option selected="" value="10.5">1:8（10.5 dB）</option><option value="13.8">1:16（13.8 dB）</option></select></div></div>
 <div class="f field"><label for="otherLoss">其他无源损耗</label><div class="inp input-wrap"><input id="otherLoss" min="0" step="0.01" type="number" value="0"/><u>dB</u></div></div>
 </div></div>
-</div></div><div class="panel-f input-actions"><button class="btn btn-primary" id="calculateBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> 开始光功率诊断</button><button class="btn btn-ghost" id="resetBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M20 11a8 8 0 1 0-2.3 5.7"></path><path d="M20 4v7h-7"></path></svg> 重置参数</button></div><p class="validation validation-message" id="validation" role="alert"></p></div></section>
-<section aria-live="polite" class="result-panel card nel-tool-result"><div class="readout">
+</div></div><div class="input-actions"><button class="primary btn btn-primary" id="calculateBtn" type="button">计算</button><button class="secondary btn btn-ghost" id="resetBtn" type="button">重置</button></div><div class="formula-block"><div class="formula-card"><h3>核心计算</h3><code>灵敏度裕量 = 实测Rx − 灵敏度。过载裕量 = 过载门限 − 实测Rx。期望Rx = OLT最小发光 − Σ(光纤+熔接+活动连接+分光+其它)。当实测更弱时，超额损耗 ≈ 期望Rx − 实测Rx。</code></div><div class="formula-note"><p><strong>灵敏度裕量。</strong>实测光功率相对接收机底限的余量。</p><p><strong>过载裕量。</strong>到达接收机饱和前的安全余量。</p><p><strong>模型路径。</strong>期望功率由可编辑物理损耗积木构成，不含隐藏设计预留。</p><p><strong>诊断。</strong>对比实测与期望，推断超额损耗、脏污连接器或错误分光比。</p></div></div><p class="validation validation-message" id="validation" role="alert"></p></div></section>
+<section aria-live="polite" class="result-panel card nel-tool-result readout"><div class="readout">
 <div class="ro-h"><span>诊断结果</span></div>
-<div class="summary-card healthy" id="summaryCard"><div><p>实测接收光功率</p><strong class="big"><span id="measuredResult">0.00</span><small>dBm</small></strong></div><div class="health-badge" id="healthBadge">✓ 正常</div></div>
+<div class="summary-card healthy ro-l1" id="summaryCard"><div class="ro-main"><p class="lbl">实测接收光功率</p><strong class="big"><span id="measuredResult" data-nel-readout-number="1">0.00</span><small>dBm</small></strong></div><div class="health-badge" id="healthBadge">✓ 正常</div></div>
 <div class="metric-grid">
-<article class="metric-card"><span class="metric-icon">↓</span><div><small>灵敏度余量</small><strong><span id="sensitivityMargin">0.00</span> dB</strong></div></article>
-<article class="metric-card"><span class="metric-icon">↑</span><div><small>过载安全余量</small><strong><span id="overloadMargin">0.00</span> dB</strong></div></article>
-<article class="metric-card"><span class="metric-icon">↕</span><div><small>接收窗口宽度</small><strong><span id="receiverWindow">0.00</span> dB</strong></div></article>
-<article class="metric-card"><span class="metric-icon">PON</span><div><small>总分光比</small><strong id="splitRatio">1:16</strong></div></article>
+<article class="metric"><small>灵敏度余量</small><strong><span id="sensitivityMargin">0.00</span> dB</strong></article>
+<article class="metric"><small>过载安全余量</small><strong><span id="overloadMargin">0.00</span> dB</strong></article>
+<article class="metric"><small>接收窗口宽度</small><strong><span id="receiverWindow">0.00</span> dB</strong></article>
+<article class="metric"><small>总分光比</small><strong id="splitRatio">1:16</strong></article>
 </div>
 <div class="gauge"><div class="gauge-head"><span>接收光功率位置</span><strong id="gaugePower">-18.00 dBm</strong></div><div class="gauge-track"><div class="gauge-marker" id="gaugeMarker"></div></div><div class="gauge-labels"><span>疑似无光</span><span>严重弱光</span><span>正常区间</span><span>过载</span></div></div>
 <div id="modelResults">
@@ -132,61 +135,15 @@
 </div>
 </div>
 <div class="diagnosis diagnosis-box healthy" id="diagnosis"><strong>工程判断</strong><p id="diagnosisText">—</p><ul class="cause-list" id="causeList"></ul></div>
-<div class="ro-acts result-actions"><button id="copyBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> 复制结果</button><button id="saveBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 5v14M5 12h14"></path></svg> 保存记录</button><button id="csvBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg> 导出 CSV</button><button id="printBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M6 9V3h12v6"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v7H6z"></path></svg> 打印 / PDF</button></div>
+<aside class="result-fill" id="resultFill" aria-label="光功率快照"><div class="result-fill-card"><h3>光功率快照</h3><p class="result-fill-lead">本次 ONU 下路中，实测功率、裕量与模型损耗的关系。</p><div class="util-breakdown"><div class="util-seg payload"><span>实测 Rx</span><strong id="fillMeasured">—</strong></div><div class="util-seg overhead"><span>灵敏度裕量</span><strong id="fillSens">—</strong></div><div class="util-seg headroom"><span>期望 Rx</span><strong id="fillExpected">—</strong></div></div><ul class="fill-tips"><li>把弱光判为光纤损伤前，先清洁并重新插紧连接器。</li><li>确认分光级联比与外线图纸一致。</li><li>波长与衰减系数需与在网波长一致。</li></ul></div></aside><div class="ro-acts result-actions"><button id="copyBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> 复制结果</button><button id="saveBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 5v14M5 12h14"></path></svg> 保存记录</button><button id="csvBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg> 导出 CSV</button><button id="printBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M6 9V3h12v6"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v7H6z"></path></svg> 打印 / PDF</button></div>
 </div></section>
+</div>
 <div class="tool-head">
 <div class="crumbs"><a href="../../../zh/">首页</a>/<a href="../../../zh/topics/pon-optical/">光网络</a>/<span>ONU接收光功率诊断工具</span></div>
 <p class="tool-page-label" role="heading" aria-level="1">ONU接收光功率诊断工具</p>
 <p class="tool-lede">根据ONU实测接收光功率、设备接收灵敏度和过载门限，判断正常、弱光、严重弱光、光功率过高或疑似无光；高级模式还可比较理论接收功率与实测值，推算额外异常损耗。</p>
 </div>
-</main>
-<div class="below">
-<nav class="toc" aria-label="本页目录">
-<h4>本页目录</h4>
-<a href="#scenarios">典型工程场景</a>
-<a href="#pon-toolkit">相关 PON 与光纤工具</a>
-<a href="#methodology">判断方法与工程说明</a>
-<a href="#faq">常见问题</a>
-<a href="#references">工程来源与适用范围</a>
-<a href="#history">最近诊断记录</a>
-<a href="#nel-tool-graph">继续下一步工程任务</a>
-</nav>
-<div class="prose">
-<!-- NEL_SCENARIOS_START -->
-<details class="fb-fold blk" open data-fold-pinned>
-<summary class="fb-fold-sum"><span class="fb-fold-title">典型工程场景</span></summary>
-<div class="fb-fold-body">
-<section class="content-section nel-tool-supporting-section" id="scenarios" aria-labelledby="scenarios-title">
-<div class="section-heading"><div><p class="eyebrow">工程算例</p><h2 id="scenarios-title">典型工程场景</h2></div></div>
-<p>点击场景即可一键填入计算器。下方预期结果由同一计算引擎得出，并有自动化测试覆盖。</p>
-<div class="metric-grid nel-scenario-grid">
-<article class="metric-card nel-scenario-card" data-scenario-id="gpon-bplus-1x32-normal"><div><h3>GPON B+ ONU 实测 −22 dBm，1:32，10 km</h3><p>B+ 链路、1:32 分光，实测 −22 dBm 是否正常？与模型预期接收功率对比。</p><p><small>预期结果</small><br><strong data-scenario-expected>距灵敏度余量 5.00 dB · 预期 -20.30 dBm · 正常</strong></p><p><a class="nel-scenario-link" href="?scenario=gpon-bplus-1x32-normal#calculator">载入此场景 →</a></p></div></article>
-<article class="metric-card nel-scenario-card" data-scenario-id="gpon-cplus-1x64-weak"><div><h3>GPON C+ ONU 实测 −28.5 dBm，1:64，20 km</h3><p>接近 C+ −30 dBm 灵敏度的弱光：有多少额外损耗无法由设计解释？</p><p><small>预期结果</small><br><strong data-scenario-expected>距灵敏度余量 1.50 dB · 预期 -25.30 dBm · 预警</strong></p><p><a class="nel-scenario-link" href="?scenario=gpon-cplus-1x64-weak#calculator">载入此场景 →</a></p></div></article>
-<article class="metric-card nel-scenario-card" data-scenario-id="short-drop-overload"><div><h3>过载：0.5 km 入户、1:2 分光实测 −6 dBm</h3><p>实验室或超短链路可能超过 −8 dBm 过载点，工具会在损坏 ONU 前提示。</p><p><small>预期结果</small><br><strong data-scenario-expected>距灵敏度余量 21.00 dB · 预期 -0.65 dBm · 过载</strong></p><p><a class="nel-scenario-link" href="?scenario=short-drop-overload#calculator">载入此场景 →</a></p></div></article>
-</div>
-</section>
-</div>
-</details>
-<!-- NEL_SCENARIOS_END -->
-<!-- NEL_PON_LINKS_START -->
-<details class="fb-fold blk">
-<summary class="fb-fold-sum"><span class="fb-fold-title">相关 PON 与光纤工具</span></summary>
-<div class="fb-fold-body">
-<section class="content-section nel-tool-supporting-section" id="pon-toolkit" aria-labelledby="pon-toolkit-title">
-<div class="section-heading"><div><p class="eyebrow">PON 规划工具组</p><h2 id="pon-toolkit-title">相关 PON 与光纤工具</h2></div></div>
-<p>按顺序完成 PON 设计：分光比、传输距离、接收光功率，再做完整链路预算。</p>
-<ul class="nel-pon-toolkit"><li><a href="../../pon-splitter-loss/zh/">PON 分光器损耗——各分光比 dB 与级联</a></li><li><a href="../../pon-distance/zh/">PON 最大传输距离——光预算与 20 km 系统距离</a></li><li><a href="../../optical-power-budget/zh/">光功率预算——发送、接收灵敏度与余量</a></li><li><a href="../../fiber-loss/zh/">光纤损耗——衰减、熔接与连接器</a></li><li><a href="../../pon-fiber-calculators/zh/">全部 PON 与光纤计算器</a></li></ul>
-<h3>指南</h3>
-<ul class="nel-pon-guides"><li><a href="../../../zh/guides/pon-splitter-loss-guide/">PON 分光器损耗指南</a></li><li><a href="../../../zh/guides/fiber-link-budget-guide/">光纤链路预算指南</a></li><li><a href="../../../zh/topics/pon-optical/">PON 与光通信专题</a></li></ul>
-</section>
-</div>
-</details>
-<!-- NEL_PON_LINKS_END -->
-<aside aria-label="广告" class="ad-slot" data-ad-key="afterCalculator" hidden=""><div class="ad-label">广告</div><div class="ad-body"></div></aside>
-<details class="fb-fold blk">
-<summary class="fb-fold-sum"><span class="fb-fold-title">判断方法与工程说明</span></summary>
-<div class="fb-fold-body">
-<section class="content-section nel-tool-supporting-section" id="methodology"><div class="section-heading"><div><p class="eyebrow">METHODOLOGY</p><h2>判断方法与工程说明</h2></div></div>
+<div class="below"><nav class="toc" aria-label="本页导航"><h4>本页导航</h4><a href="#methodology">计算方法</a><a href="#component-check">分项核对</a><a href="#faq">问答</a><a href="#history">最近计算</a><a href="#references">官方依据</a><a href="#pon-toolkit">PON 工具组</a><a href="#nel-tool-graph">工程工作流</a></nav><div class="prose"><aside aria-label="广告" class="ad-slot" data-ad-key="afterCalculator" hidden=""><div class="ad-label">广告</div><div class="ad-body"></div></aside><aside aria-label="广告" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">广告</div><div class="ad-body"></div></aside><details class="fb-fold blk" id="methodology" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span class="fb-fold-title">判断方法与工程说明</span></summary><div class="fb-fold-body"><section class="content-section nel-tool-supporting-section"><div class="section-heading"><div><p class="eyebrow">METHODOLOGY</p></div></div>
 <div class="method-grid">
 <article><h3>灵敏度余量</h3><p>实测接收光功率 − 接收灵敏度。余量越小，越容易受到污染、弯曲、老化和温度变化影响。</p></article>
 <article><h3>过载安全余量</h3><p>接收过载门限 − 实测接收光功率。结果小于0表示接收功率过高。</p></article>
@@ -194,48 +151,38 @@
 <article><h3>推算额外损耗</h3><p>当实测值低于理论值时，两者差值可作为额外异常损耗的估算。</p></article>
 </div>
 <div class="note"><strong>重要说明：</strong>设备灵敏度、过载门限和发光功率必须以实际设备规格为准。本工具用于规划、复核和故障分析，不能替代光功率计、OTDR及正式验收。</div>
-</section>
+</section></div></details><details class="fb-fold blk" id="component-check" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span id="scenarios-title" class="fb-fold-title">典型工程场景</span></summary><div class="fb-fold-body"><section class="content-section nel-tool-supporting-section" id="scenarios" aria-labelledby="scenarios-title">
+<div class="section-heading"><div><p class="eyebrow">工程算例</p></div></div>
+<p>点击场景即可一键填入计算器。下方预期结果由同一计算引擎得出，并有自动化测试覆盖。</p>
+<div class="metric-grid nel-scenario-grid">
+<article class="metric-card nel-scenario-card" data-scenario-id="gpon-bplus-1x32-normal"><div><h3>GPON B+ ONU 实测 −22 dBm，1:32，10 km</h3><p>B+ 链路、1:32 分光，实测 −22 dBm 是否正常？与模型预期接收功率对比。</p><p><small>预期结果</small><br><strong data-scenario-expected>距灵敏度余量 5.00 dB · 预期 -20.30 dBm · 正常</strong></p><p><a class="nel-scenario-link" href="?scenario=gpon-bplus-1x32-normal#calculator">载入此场景 →</a></p></div></article>
+<article class="metric-card nel-scenario-card" data-scenario-id="gpon-cplus-1x64-weak"><div><h3>GPON C+ ONU 实测 −28.5 dBm，1:64，20 km</h3><p>接近 C+ −30 dBm 灵敏度的弱光：有多少额外损耗无法由设计解释？</p><p><small>预期结果</small><br><strong data-scenario-expected>距灵敏度余量 1.50 dB · 预期 -25.30 dBm · 预警</strong></p><p><a class="nel-scenario-link" href="?scenario=gpon-cplus-1x64-weak#calculator">载入此场景 →</a></p></div></article>
+<article class="metric-card nel-scenario-card" data-scenario-id="short-drop-overload"><div><h3>过载：0.5 km 入户、1:2 分光实测 −6 dBm</h3><p>实验室或超短链路可能超过 −8 dBm 过载点，工具会在损坏 ONU 前提示。</p><p><small>预期结果</small><br><strong data-scenario-expected>距灵敏度余量 21.00 dB · 预期 -0.65 dBm · 过载</strong></p><p><a class="nel-scenario-link" href="?scenario=short-drop-overload#calculator">载入此场景 →</a></p></div></article>
 </div>
-</details>
-<details class="fb-fold blk">
-<summary class="fb-fold-sum"><span class="fb-fold-title">常见问题</span></summary>
-<div class="fb-fold-body">
-<section class="content-section nel-tool-supporting-section" id="faq"><div class="section-heading"><div><p class="eyebrow">FAQ</p><h2>常见问题</h2></div></div><div class="faq-grid">
+</section></div></details><div class="blk faq" id="faq" data-nel-v3-title-normalized="1"><h2>常见问题</h2><p class="eyebrow">FAQ</p>
 <details><summary>ONU接收光功率多少才算正常？</summary><p>没有适用于所有设备的固定值，应根据对应ONU或光模块的接收灵敏度和过载门限判断，并保留工程余量。</p></details>
 <details><summary>光功率接近灵敏度但业务正常，需要处理吗？</summary><p>建议作为弱光隐患主动处理，因为轻微污染、弯曲或温度变化就可能使链路跌破门限。</p></details>
 <details><summary>实测值比理论值低很多说明什么？</summary><p>可能存在未计入的连接损耗、接头污染、尾纤弯曲、熔接质量差、分光器异常或线路衰减增大。</p></details>
 <details><summary>接收光功率过高会导致什么问题？</summary><p>可能使接收器饱和，出现误码、注册异常或业务不稳定，应核对设备等级和是否需要衰减器。</p></details>
 <details><summary>疑似无光是否一定是断纤？</summary><p>不一定，还可能是跳纤脱落、端口对应错误、OLT不发光、分光器故障或严重弯曲。</p></details>
 <details><summary>为什么预设参数都可以修改？</summary><p>不同厂家、设备等级和网络设计存在差异，预设只用于快速演示，正式诊断必须使用真实参数。</p></details>
-</div></section>
-</div>
-</details>
-<details class="fb-fold blk" open data-fold-pinned>
-<summary class="fb-fold-sum"><span class="fb-fold-title">工程来源与适用范围</span></summary>
-<div class="fb-fold-body">
-<section class="content-section nel-tool-supporting-section" id="references"><div class="section-heading"><div><p class="eyebrow">SOURCES &amp; REVIEW</p><h2>工程来源与适用范围</h2></div></div>
+</div><section class="blk" id="history" data-nel-v3-title-normalized="1"><h2>最近诊断记录</h2><div class="fb-fold-body"><section class="content-section nel-tool-supporting-section"><div class="section-heading"><div><p class="eyebrow">PROJECT RECORDS</p></div><button class="text-button btn btn-ghost btn-sm" id="clearHistoryBtn">清空记录</button></div><div class="history-list" id="historyList"></div></section></div></section><section class="blk" id="references" data-nel-v3-title-normalized="1"><h2>工程来源与适用范围</h2><div class="fb-fold-body"><section class="content-section nel-tool-supporting-section"><div class="section-heading"><div><p class="eyebrow">SOURCES &amp; REVIEW</p></div></div>
 <p>复核日期：2026-08-31。接收灵敏度、过载门限和发送功率边界取决于具体光功率等级与设备实现。默认 3 dB 预警余量是 NetEngineerLab 的规划阈值，不是标准统一强制值。分光器插损是规划输入，必须以已安装器件规格和现场测量为准。</p>
 <ul><li><a href="https://www.itu.int/rec/T-REC-G.984.2/en" rel="noopener noreferrer" target="_blank">ITU-T G.984.2 — GPON 物理媒质相关层</a></li><li><a href="https://www.itu.int/rec/T-REC-G.671/en" rel="noopener noreferrer" target="_blank">ITU-T G.671 — 光器件与子系统传输特性</a></li><li><a href="https://www.itu.int/rec/T-REC-G.650.3/en" rel="noopener noreferrer" target="_blank">ITU-T G.650.3 — 已安装单模光纤链路测试方法</a></li></ul>
-</section>
-</div>
-</details>
-<details class="fb-fold blk">
-<summary class="fb-fold-sum"><span class="fb-fold-title">最近诊断记录</span></summary>
-<div class="fb-fold-body">
-<section class="content-section nel-tool-supporting-section" id="history"><div class="section-heading"><div><p class="eyebrow">PROJECT RECORDS</p><h2>最近诊断记录</h2></div><button class="text-button" id="clearHistoryBtn">清空记录</button></div><div class="history-list" id="historyList"></div></section>
-</div>
-</details>
-<aside aria-label="广告" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">广告</div><div class="ad-body"></div></aside>
-<p class="hub-return">属于 <a href="../../pon-fiber-calculators/zh/">PON 与光纤计算器</a> 专题。</p>
-<!-- NEL_TOOL_GRAPH_START -->
+</section></div></section><section class="content-section nel-tool-supporting-section" id="pon-toolkit" aria-labelledby="pon-toolkit-title" data-nel-v3-title-normalized="1"><h2 id="pon-toolkit-title">相关 PON 与光纤工具</h2><div class="fb-fold-body"><section class="content-section nel-tool-supporting-section" aria-labelledby="pon-toolkit-title">
+<div class="section-heading"><div><p class="eyebrow">PON 规划工具组</p></div></div>
+<p>按顺序完成 PON 设计：分光比、传输距离、接收光功率，再做完整链路预算。</p>
+<ul class="nel-pon-toolkit"><li><a href="../../pon-splitter-loss/zh/">PON 分光器损耗——各分光比 dB 与级联</a></li><li><a href="../../pon-distance/zh/">PON 最大传输距离——光预算与 20 km 系统距离</a></li><li><a href="../../optical-power-budget/zh/">光功率预算——发送、接收灵敏度与余量</a></li><li><a href="../../fiber-loss/zh/">光纤损耗——衰减、熔接与连接器</a></li><li><a href="../../pon-fiber-calculators/zh/">全部 PON 与光纤计算器</a></li></ul>
+<h3>指南</h3>
+<ul class="nel-pon-guides"><li><a href="../../../zh/guides/pon-splitter-loss-guide/">PON 分光器损耗指南</a></li><li><a href="../../../zh/guides/fiber-link-budget-guide/">光纤链路预算指南</a></li><li><a href="../../../zh/topics/pon-optical/">PON 与光通信专题</a></li></ul>
+</section></div></section><p class="hub-return">属于 <a href="../../pon-fiber-calculators/zh/">PON 与光纤计算器</a> 专题。</p><!-- NEL_TOOL_GRAPH_START -->
 <section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="onu-rx-power" data-primary-workflow="optical-troubleshooting">
 <div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
 <div class="nel-workflow-context"><div><span class="nel-workflow-kicker">当前流程</span><strong>光网络故障定位工作流</strong><p>从 ONU 实测接收光功率入手，定位异常事件，再与设计损耗和预算进行交叉验证。</p></div><div class="nel-workflow-step"><strong>步骤 1 / 4</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1" aria-valuetext="步骤 1 / 4" aria-label="步骤 1 / 4"><span style="width:25%"></span></div></div></div><div class="nel-tool-graph-nav"><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">上一步</span><strong>流程起点</strong></div><a class="nel-tool-graph-card" href="/tools/otdr-event/zh/"><span class="nel-tool-graph-label">下一步</span><strong>OTDR事件分析工具</strong><span class="nel-tool-graph-description">支持多事件录入、双波长对比，识别熔接、连接器、弯曲、断纤、鬼影及盲区影响。</span></a></div>
 <h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/optical-power-budget/zh/"><strong>光功率预算计算器</strong><span class="nel-tool-graph-description">结合发送功率、接收灵敏度、光学代价和ODN损耗验证完整光链路预算。</span></a><a class="nel-tool-graph-card" href="/tools/otdr-event/zh/"><strong>OTDR事件分析工具</strong><span class="nel-tool-graph-description">支持多事件录入、双波长对比，识别熔接、连接器、弯曲、断纤、鬼影及盲区影响。</span></a><a class="nel-tool-graph-card" href="/tools/fiber-loss/zh/"><strong>光纤链路损耗计算器</strong><span class="nel-tool-graph-description">计算光纤、熔接、连接器、分光器及工程余量，输出物理损耗与设计损耗。</span></a></div>
 </section>
-<!-- NEL_TOOL_GRAPH_END -->
-</div>
-</div>
+<!-- NEL_TOOL_GRAPH_END --></div></div></main>
+
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">
@@ -247,9 +194,9 @@
   </div>
 </footer>
 <!-- NEL_FOOTER_END -->
-<script defer="" src="../js/engine.js"></script><script defer="" src="../js/pwa.js?v=1.0.2"></script><script defer="" src="../js/app.js?v=62e689511255"></script><script defer="" src="../js/scenarios.js"></script>
+<script defer="" src="../js/engine.js?v=872ecd6d2578"></script><script defer="" src="../js/pwa.js?v=1.0.2"></script><script defer="" src="../js/app.js?v=20261106-bw1"></script><script defer="" src="../js/scenarios.js"></script>
 <script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
-<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script><script defer src="../../../assets/js/tool-detail-v3.js?v=66984b67ff65"></script>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=77b297dd25ca"></script><script defer src="../../../assets/js/tool-detail-v3.js?v=6f38212f00f3"></script>
 </body></html>
 
 

@@ -1,18 +1,48 @@
 (function(){"use strict";
+var nelCurrentValid=false;
+window.NELToolInputController={calculate:function(){calc();},managesValidation:true,isValid:function(){return nelCurrentValid;},invalidate:function(){nelCurrentValid=false;window.lastResult=null;},resultStatus:"#status",resultActions:"",resultValues:"#pue,#itShare,#nonIT,#overhead,#annualTotal,#annualIT,#annualNonIT,#annualCost,#saveEnergy,#saveCost,#whatIf,#gap,#wue,#cue",resultDetails:"#bars,#trend,#warnings",validation:"#error",inputControls:".input-panel input,.input-panel select,.input-panel textarea"};
+
+
+
 const $=id=>document.getElementById(id), num=id=>Number($(id)?.value||0), htmlLang=(document.documentElement.lang||"en").toLowerCase(), lang=htmlLang.startsWith("zh")?"zh":htmlLang.startsWith("es")?"es":"en";
 const fmt=(v,d=2)=>Number(v).toLocaleString(lang==="zh"?"zh-CN":lang==="es"?"es-ES":"en-US",{maximumFractionDigits:d});
 const text={en:{invalid:"Check the inputs: total must be at least the IT load, the period must be at least 1 day, and costs and loads cannot be negative.",healthy:"At / below target",caution:"Near target",poor:"Above target",unitPower:"kW",unitEnergy:"kWh",saved:"Potential annual saving",fixed:"PUE if IT grows and facility overhead stays fixed",gap:"Unallocated non-IT overhead",breakWarn:"Breakdown exceeds calculated non-IT overhead; review component inputs.",trend:"Enter monthly PUE values to show trend",parts:{cooling:"Cooling",ups:"UPS",lighting:"Lighting",distribution:"Distribution",other:"Other"}},zh:{invalid:"请检查输入：数据中心总量必须不小于 IT 负载，统计周期至少 1 天，电价与各项负载不能为负数。",healthy:"达到/优于目标",caution:"接近目标",poor:"高于目标",unitPower:"kW",unitEnergy:"kWh",saved:"目标 PUE 下的年节能潜力",fixed:"IT 增长且设施开销不变时的 PUE",gap:"未分配的非 IT 开销",breakWarn:"分项合计超过计算得到的非 IT 开销，请检查分项输入。",trend:"输入月度 PUE 后显示趋势",parts:{cooling:"制冷",ups:"UPS",lighting:"照明",distribution:"配电",other:"其他"}},es:{invalid:"Compruebe las entradas: el total debe ser al menos la carga IT, el periodo debe ser de al menos 1 día y los costes y cargas no pueden ser negativos.",healthy:"En el objetivo o por debajo",caution:"Cerca del objetivo",poor:"Por encima del objetivo",unitPower:"kW",unitEnergy:"kWh",saved:"Ahorro anual potencial",fixed:"PUE si crece la carga IT y la sobrecarga de instalaciones permanece fija",gap:"Sobrecarga no IT sin asignar",breakWarn:"El desglose supera la sobrecarga no IT calculada; revise las partidas.",trend:"Introduzca los valores mensuales de PUE para mostrar la tendencia",parts:{cooling:"Refrigeración",ups:"UPS",lighting:"Iluminación",distribution:"Distribución",other:"Otros"}}}[lang];
 function collect(){return{mode:$("mode").value,total:num("total"),it:num("it"),periodDays:num("periodDays"),tariff:num("tariff"),targetPUE:num("targetPUE"),itGrowthPct:num("itGrowthPct"),cooling:num("cooling"),ups:num("ups"),lighting:num("lighting"),distribution:num("distribution"),other:num("other"),annualWaterL:num("annualWaterL"),annualCO2kg:num("annualCO2kg"),monthlyPUE:$("monthlyPUE").value};}
-function set(id,v){$(id).textContent=v}
-function calc(){const r=window.NELPUEEngine.calculate(collect()); if(!r.ok){$("result").hidden=true;$("error").textContent=text.invalid;$("error").hidden=false;return} $("error").hidden=true;$("result").hidden=false;
- const unit=r.mode==="power"?text.unitPower:text.unitEnergy; set("pue",fmt(r.pue,3)); set("status",text[r.status]); $("status").className=`badge ${r.status}`; set("itShare",fmt(r.itShare,1)+"%"); set("nonIT",fmt(r.nonIT,2)+" "+unit); set("overhead",fmt(r.overheadPct,1)+"%");
+function set(id,v){const el=$(id);if(!el)return;const raw=String(v);const m=raw.match(/^([+\-]?\d+(?:[.,]\d+)?)\s+(.+)$/);if(m&&String(m[2]).length<=18){el.innerHTML="<span>"+m[1]+"</span><small>"+m[2]+"</small>";}else el.textContent=raw;}
+function calc(){try{const r=window.NELPUEEngine.calculate(collect());nelCurrentValid=r.ok!==false; if(!r.ok){$("result").hidden=true;$("error").textContent=text.invalid;$("error").hidden=false;return} $("error").hidden=true;$("result").hidden=false;
+ const unit=r.mode==="power"?text.unitPower:text.unitEnergy; set("pue",fmt(r.pue,3)); set("status",text[r.status]); $("status").className=`badge status ${r.status} ${r.status==="healthy"?"st-pass":r.status==="caution"?"st-marginal":"st-fail"}`; set("itShare",fmt(r.itShare,1)+"%"); set("nonIT",fmt(r.nonIT,2)+" "+unit); set("overhead",fmt(r.overheadPct,1)+"%");
  set("annualTotal",fmt(r.annualTotal,0)+" kWh");set("annualIT",fmt(r.annualIT,0)+" kWh");set("annualNonIT",fmt(r.annualNonIT,0)+" kWh");set("annualCost",fmt(r.annualCost,0));set("saveEnergy",fmt(r.savingsKWh,0)+" kWh");set("saveCost",fmt(r.savingsCost,0));set("whatIf",fmt(r.fixedOverheadPUE,3));set("gap",fmt(r.breakdownGap,2)+" "+unit);
  set("wue",r.wue==null?"—":fmt(r.wue,3)+" L/kWh IT");set("cue",r.cue==null?"—":fmt(r.cue,4)+" kgCO₂/kWh IT");
  const max=Math.max(r.nonIT,1); const parts=[['cooling',r.parts.cooling],['ups',r.parts.ups],['lighting',r.parts.lighting],['distribution',r.parts.distribution],['other',r.parts.other]]; $("bars").innerHTML=parts.map(([k,v])=>`<div class="barrow"><span>${text.parts[k]}</span><div><i style="width:${Math.min(100,Math.max(0,v/max*100))}%"></i></div><b>${fmt(v,2)} ${unit}</b></div>`).join("");
  $("trend").innerHTML=r.trend.length?r.trend.map((v,i)=>`<span style="height:${Math.max(8,Math.min(100,(v-1)*90))}%" title="M${i+1}: ${v}"></span>`).join(""):`<em>${text.trend}</em>`;
  const warnText={breakdown_exceeds_overhead:text.breakWarn,invalid_pue:lang==="zh"?"PUE 低于 1。":lang==="es"?"El PUE es inferior a 1.":"PUE is below 1.",period:lang==="zh"?"能源统计周期至少为 1 天。":lang==="es"?"El periodo energético debe ser de al menos 1 día.":"Energy period must be at least 1 day."};
  $("warnings").innerHTML=r.warnings.map(w=>`<li>${warnText[w]||w}</li>`).join("");
- }
+ }finally{window.NELToolInputController.sync?.();}}
 function mode(){const energy=$("mode").value==='energy';$("periodField").hidden=!energy;document.querySelectorAll('[data-unit]').forEach(x=>x.textContent=energy?'kWh':'kW');calc();}
-document.querySelectorAll('input,select').forEach(x=>x.addEventListener('input',calc));$("mode").addEventListener('change',mode);$("calculate").addEventListener('click',calc);mode();
+function flashRefresh(){
+  const btn=$("calculate"); const panel=$("result");
+  [btn,panel].forEach(el=>{ if(!el) return; el.classList.remove("nel-just-refreshed"); void el.offsetWidth; el.classList.add("nel-just-refreshed"); });
+  setTimeout(()=>{ [btn,panel].forEach(el=>el&&el.classList.remove("nel-just-refreshed")); }, 700);
+  try{ panel&&panel.setAttribute("aria-busy","true"); setTimeout(()=>panel&&panel.setAttribute("aria-busy","false"), 200); }catch(e){}
+}
+function onCalculateClick(ev){ if(ev){ ev.preventDefault(); ev.stopPropagation(); } calc(); flashRefresh(); }
+function resetAll(ev){
+  if(ev){ ev.preventDefault(); ev.stopPropagation(); }
+  document.querySelectorAll(".input-panel input, .input-panel select, .input-panel textarea").forEach(el=>{
+    if(el.tagName==="SELECT"){ [...el.options].forEach(o=>{ o.selected=o.defaultSelected; }); }
+    else { el.value = el.defaultValue; }
+  });
+  // sync energy/power unit labels then recalc from restored defaults
+  const energy=$("mode").value==="energy"; $("periodField").hidden=!energy;
+  document.querySelectorAll("[data-unit]").forEach(x=>x.textContent=energy?"kWh":"kW");
+  calc(); flashRefresh();
+}
+// Live input already recalculates (same pattern as bandwidth debounce-less). Calculate still force-refreshes with visible feedback so the button is never a no-op.
+document.querySelectorAll("input,select,textarea").forEach(x=>x.addEventListener("input",calc));
+$("mode").addEventListener("change",mode);
+$("calculate").addEventListener("click", onCalculateClick);
+$("reset").addEventListener("click", resetAll);
+mode();
+
+document.getElementById("clearHistoryBtn")?.addEventListener("click",()=>{const list=document.getElementById("historyList"); if(list) list.innerHTML="";});
 })();

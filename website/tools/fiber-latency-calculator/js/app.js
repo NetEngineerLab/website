@@ -117,7 +117,7 @@ function setValidation(message){
 
 function setMbar(oneWay, rtt){
   setText("mbar-val", oneWay);
-  setText("mbar-rtt", rtt ? `${text.rtt} ${rtt}` : `${text.rtt} —`);
+  setText("mbar-rtt", rtt || "—");
 }
 
 function setText(id, value){
@@ -172,8 +172,11 @@ function clearResults(){
 }
 
 function calculate(){
+ try {
+
   const values = readInputs();
   const result = window.NELFiberLatencyEngine.calculate(values);
+  window.__lastDomainResult=result;
   if (!result.ok){
     clearResults();
     markInvalidFields(values);
@@ -201,6 +204,8 @@ function calculate(){
       rtt_us: Number(result.rttUs.toFixed(2))
     });
   }
+
+ } finally { window.NELToolInputController?.sync?.(); }
 }
 
 function resetForm(){
@@ -309,15 +314,15 @@ function clearHistory(){
 }
 
 $("groupIndexPreset").addEventListener("change", () => { applyGroupPreset(); calculate(); });
-$("groupIndex").addEventListener("input", () => { $("groupIndexPreset").value = "custom"; $("groupIndex").readOnly = false; syncPresetCards(); });
-document.querySelectorAll("[data-preset]").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    $("groupIndexPreset").value = btn.getAttribute("data-preset");
-    applyGroupPreset();
-    calculate();
-  });
+$("groupIndex").addEventListener("input", () => { $("groupIndexPreset").value = "custom"; $("groupIndex").readOnly = false; syncPresetCards(); clearTimeout(window.__fiberLatencyTimer); window.__fiberLatencyTimer=setTimeout(calculate,180); });
+document.addEventListener("click", (event) => {
+  const button = event.target.closest && event.target.closest(".latency-presets button[data-preset]");
+  if (!button || !button.closest(".input-panel")) return;
+  $("groupIndexPreset").value = button.getAttribute("data-preset");
+  applyGroupPreset();
+  calculate();
 });
-$("calculateBtn").addEventListener("click", calculate);
+$("calculateBtn").addEventListener("click",()=>{calculate();const e=$("calculateBtn");e.classList.add("nel-refreshed");setTimeout(()=>e.classList.remove("nel-refreshed"),800)});
 $("resetBtn").addEventListener("click", resetForm);
 $("copyBtn").addEventListener("click", copyResult);
 $("saveBtn").addEventListener("click", saveHistory);
@@ -334,3 +339,8 @@ $("clearHistoryBtn").addEventListener("click", clearHistory);
 applyGroupPreset();
 calculate();
 renderHistory();
+
+// Reuse the domain validation/history; the shell owns result-only DOM gates.
+window.NELToolInputController={calculate:calculate,calculateSelector:"#calculateBtn",managesValidation:true,isValid:()=>Boolean(lastResult),invalidate:()=>{clearResults();},resultActions:"#copyBtn,#saveBtn,#csvBtn,#exportBtn,#jsonBtn,#printBtn",resultValues:()=>RESULT_IDS.map(id=>$(id)).filter(Boolean),resultStatus:"",resultDetails:"#comparisonBody",resultMeters:"",validation:"#validationMessage",inputControls:".nel-tool-input input,.nel-tool-input select,.nel-tool-input textarea"};
+
+(function(){function pair(){document.querySelectorAll('.result-panel .big,.result-panel .big>[id],.result-panel .row>b,.result-panel .metric strong,.result-panel .metric-card strong').forEach(e=>{if(e.querySelector('[id]'))return;const t=e.textContent;if(e.dataset.paired===t)return;e.dataset.paired=t;const rx=/[-+]?\d[\d.,]*(?:\s*(?:ps\/\(nm[·.]km\)|ps\/nm|µs\/km|km\/s|dBm|dB|µs|ms|ps|km|%|c))/g;let m,last=0,frag=document.createDocumentFragment();while((m=rx.exec(t))){frag.append(t.slice(last,m.index));let a=document.createElement('span');a.className='value-pair';a.textContent=m[0];frag.append(a);last=rx.lastIndex}if(last){frag.append(t.slice(last));e.replaceChildren(frag)}})}pair();new MutationObserver(pair).observe(document.querySelector('.result-panel'),{childList:true,subtree:true})})();

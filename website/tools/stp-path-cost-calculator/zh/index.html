@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0b6ffb">
+<meta name="theme-color" content="#176ff2">
 <title>STP 路径开销计算器｜802.1D/802.1Q 长短开销与根路径对比</title>
 <meta name="description" content="按 IEEE 802.1D-2004/802.1Q 长开销（20,000,000,000 ÷ kb/s）或传统短开销表计算生成树端口开销与根路径开销，并对比两条路径看 STP 选择哪条。">
-<link rel="stylesheet" href="../css/style.css?v=48c7b72aa30f">
+<link rel="stylesheet" href="../css/style.css?v=20261106-bw1">
 <meta name="app-base" content="../">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <meta property="og:type" content="website">
@@ -24,6 +24,12 @@
 <meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 
 <link rel="stylesheet" href="/assets/css/cookie-consent.css?v=8dd1728bf5eb">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=20261105-method1r">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=35fd6b8f7526">
+<script defer="" src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"STP 路径开销计算器｜802.1D/802.1Q 长短开销与根路径对比","url":"https://netengineerlab.com/tools/stp-path-cost-calculator/zh/","description":"按 IEEE 802.1D-2004/802.1Q 长开销（20,000,000,000 ÷ kb/s）或传统短开销表计算生成树端口开销与根路径开销，并对比两条路径看 STP 选择哪条。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
@@ -37,17 +43,17 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"STP 路径开销如何计算？","acceptedAnswer":{"@type":"Answer","text":"根路径开销是从本交换机到根桥沿途端口开销之和。长开销方法下每个端口开销 = 20,000,000,000 ÷ 链路速率（kb/s）。"}},{"@type":"Question","name":"10G 链路的 STP 开销是多少？","acceptedAnswer":{"@type":"Answer","text":"长开销（802.1D-2004/802.1Q）为 2,000，传统短开销为 2。"}},{"@type":"Question","name":"100G 的 STP 开销是多少？","acceptedAnswer":{"@type":"Answer","text":"长开销为 200。802.1D-1998 短开销表只到 10 Gbps，100G 没有标准短开销值。"}},{"@type":"Question","name":"IEEE 为什么改用长开销？","acceptedAnswer":{"@type":"Answer","text":"16 位短开销无法区分 10 Gbps 以上的链路，容易出现开销相同。32 位长开销可扩展到 10 Tb/s。"}},{"@type":"Question","name":"两条路径开销相同时怎么办？","acceptedAnswer":{"@type":"Answer","text":"STP 依次比较发送方网桥 ID 和发送方端口 ID，取较小者。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=1040076f7555">
-<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=989edb3b4d77">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=20261105-method1r">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=26fafcdcee42">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../../assets/js/site.js?v=b563dd0297f5"></script>
-<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=dfdd771763d6">
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=20261105-bc1">
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head>
-<body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1" data-nel-offline-worker="1">
 <a class="skip-link" href="#calculator">跳到计算器</a>
 <noscript><div class="noscript">运行此计算器需要 JavaScript。</div></noscript>
 <!-- NEL_HEADER_START -->
@@ -80,78 +86,86 @@
   <span aria-current="page">STP 路径开销计算器</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
-<section class="hero nel-tool-hero"><div class="hero-inner">
+<section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner">
 <p class="eyebrow">网络工程工具</p>
 <h1>STP 路径开销计算器</h1>
 <p>生成树选择到根桥根路径开销最小的路径，根路径开销是沿途端口开销之和。IEEE 802.1D-2004 与 802.1Q 定义长开销方法：开销 = 20,000,000,000 ÷ 链路速率（kb/s），1 Gbps 为 20,000，10 Gbps 为 2,000；传统短开销 1 Gbps 为 4，10 Gbps 为 2。输入两条候选路径的链路速率，即可得到每个端口开销、合计以及 STP 转发的路径。</p>
 <div class="hero-tags"><span>802.1D-2004 长开销</span><span>传统短开销</span><span>根路径开销</span><span>路径 A 对比 B</span></div></div></section>
-<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
-<section class="input-panel card nel-tool-input">
-<div class="section-title"><span class="section-icon">☷</span><div>
-<h2>开销方法与链路</h2>
+<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator" data-nel-readout-roles="%7B%22secondary%22%3A%5B%22costsA%22%2C%22costsB%22%2C%22difference%22%2C%22winnerText%22%5D%2C%22identifier%22%3A%5B%5D%2C%22annotation%22%3A%5B%5D%7D" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv"><div class="tool-head"><nav class="crumbs" aria-label="Breadcrumb">
+  <a href="../../../zh/">首页</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../../zh/">工具</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">STP 路径开销计算器</span>
+</nav><p class="tool-page-label" role="heading" aria-level="1">STP 路径开销计算器</p><p class="tool-lede">生成树选择到根桥根路径开销最小的路径，根路径开销是沿途端口开销之和。IEEE 802.1D-2004 与 802.1Q 定义长开销方法：开销 = 20,000,000,000 ÷ 链路速率（kb/s），1 Gbps 为 20,000，10 Gbps 为 2,000；传统短开销 1 Gbps 为 4，10 Gbps 为 2。输入两条候选路径的链路速率，即可得到每个端口开销、合计以及 STP 转发的路径。</p></div>
+<div class="workspace">
+<section class="input-panel card nel-tool-input fb-panel">
+<div class="section-title panel-h"><span class="section-icon">☷</span><div>
+<h2 class="panel-h">开销方法与链路</h2>
 <p>选择开销方法，再按跳列出每条路径到根桥的链路速率（Mbps）。</p>
 </div></div>
-<div class="form-grid">
-<div class="field"><label for="projectName">工程名称</label><div class="input-wrap no-unit"><input id="projectName" type="text" value="汇聚层冗余检查"></div></div>
-<div class="field"><label for="method">开销方法</label><div class="input-wrap no-unit"><select id="method"><option value="long" selected>长开销（802.1D-2004 / 802.1Q，32 位）</option><option value="short">短开销（802.1D-1998，16 位）</option></select></div></div>
-<div class="field"><label for="pathA">路径 A 各跳速率（Mbps，逗号分隔）</label><div class="input-wrap no-unit"><input id="pathA" type="text" inputmode="decimal" value="10000, 10000"></div><p class="hint">例：10000, 10000 表示两跳 10G。</p></div>
-<div class="field"><label for="pathB">路径 B 各跳速率（Mbps，逗号分隔）</label><div class="input-wrap no-unit"><input id="pathB" type="text" inputmode="decimal" value="1000"></div><p class="hint">短开销仅支持 4、10、16、100、1000、10000。</p></div>
+<div class="form-grid fields">
+<div class="field f"><label for="projectName">工程名称</label><div class="input-wrap no-unit inp"><input id="projectName" type="text" value="汇聚层冗余检查"></div></div>
+<div class="field f"><label for="method">开销方法</label><div class="input-wrap no-unit inp sel"><select id="method"><option value="long" selected>长开销（802.1D-2004 / 802.1Q，32 位）</option><option value="short">短开销（802.1D-1998，16 位）</option></select></div></div>
+<div class="field f"><label for="pathA">路径 A 各跳速率（Mbps，逗号分隔）</label><div class="input-wrap no-unit inp"><input id="pathA" type="text" inputmode="decimal" value="10000, 10000"></div><p class="hint">例：10000, 10000 表示两跳 10G。</p></div>
+<div class="field f"><label for="pathB">路径 B 各跳速率（Mbps，逗号分隔）</label><div class="input-wrap no-unit inp"><input id="pathB" type="text" inputmode="decimal" value="1000"></div><p class="hint">短开销仅支持 4、10、16、100、1000、10000。</p></div>
 </div>
-<div class="actions">
-<button class="primary-action" id="calculateBtn" type="button">计算</button>
-<button class="secondary-action" id="resetBtn" type="button">重置</button>
-</div>
+<div class="input-actions"><button class="primary btn btn-primary" id="calculateBtn" type="button">计算</button><button class="secondary btn btn-ghost" id="resetBtn" type="button">重置</button></div><div class="formula-block"><div class="formula-card"><h3>核心计算</h3><code>端口代价 = f(链路速率, STP 代价表)。路径代价 = Σ 沿途端口代价。优选路径 = 更低的根路径总代价（相等时需桥/端口优先级）。</code></div><div class="formula-note"><p><strong>端口代价。</strong>按所选长/短代价表映射每条链路速率。</p><p><strong>路径代价。</strong>从本桥到根累加端口代价。</p><p><strong>比较。</strong>总和更低者胜出；相等时依赖优先级决胜。</p><p><strong>厂商表。</strong>切换前确认长/短模式与交换机 CLI 一致。</p></div></div>
 <p class="validation-message" id="validationMessage" role="alert"></p>
 </section>
-<section aria-live="polite" class="result-panel card nel-tool-result">
-<div class="section-title"><span class="section-icon">▥</span><div>
-<h2>计算结果</h2>
+<section aria-live="polite" class="result-panel card nel-tool-result readout">
+<div class="section-title ro-h"><span class="section-icon">▥</span><div>
+<h2 class="ro-h">计算结果</h2>
 <p>根路径开销为路径上端口开销之和，总和小者胜出；相同时 STP 依次比较网桥 ID 和端口 ID。</p>
 </div></div>
-<div class="summary-card" id="summaryCard"><div><p>路径 A 根路径开销</p><strong><span id="totalA">—</span></strong></div><div><p>路径 B 根路径开销</p><strong><span id="totalB">—</span></strong></div><div class="health-badge" id="healthBadge">—</div></div>
+<div class="summary-card ro-l1" id="summaryCard"><div class="ro-main"><p class="lbl">路径 A 根路径开销</p><strong class="big"><span id="totalA" data-nel-readout-number="1">—</span></strong></div><div class="ro-main"><p class="lbl">路径 B 根路径开销</p><strong class="big"><span id="totalB" data-nel-readout-number="1">—</span></strong></div><div class="health-badge" id="healthBadge">—</div></div>
 <div class="metric-grid">
-<article class="metric-card"><div><small>路径 A 端口开销</small><strong id="costsA">—</strong></div></article>
-<article class="metric-card"><div><small>路径 B 端口开销</small><strong id="costsB">—</strong></div></article>
-<article class="metric-card"><div><small>开销差值</small><strong id="difference">—</strong></div></article>
-<article class="metric-card"><div><small>优选路径</small><strong id="winnerText">—</strong></div></article>
+<article class="metric"><small>路径 A 端口开销</small><strong id="costsA">—</strong></article>
+<article class="metric"><small>路径 B 端口开销</small><strong id="costsB">—</strong></article>
+<article class="metric"><small>开销差值</small><strong id="difference">—</strong></article>
+<article class="metric"><small>优选路径</small><strong id="winnerText">—</strong></article>
 </div>
 <p class="hint">厂家默认值可能不同（如 10G 以上短开销、聚合链路开销），请用交换机命令确认实际方法。</p>
-<div class="result-actions">
+<aside class="result-fill" id="resultFill" aria-label="路径快照"><div class="result-fill-card"><h3>路径快照</h3><p class="result-fill-lead">所选 STP 代价表下，路径 A 与路径 B 总和的对比。</p><div class="util-breakdown"><div class="util-seg payload"><span>路径 A 总和</span><strong id="fillA">—</strong></div><div class="util-seg overhead"><span>路径 B 总和</span><strong id="fillB">—</strong></div><div class="util-seg headroom"><span>差值</span><strong id="fillDiff">—</strong></div></div><ul class="fill-tips"><li>同一区域内所有桥保持相同代价模式（长/短）。</li><li>记录手工代价覆盖，避免固件升级丢失。</li><li>改代价后用 show spanning-tree 核对根端口选择。</li></ul></div></aside><div class="result-actions ro-acts">
 <button id="copyBtn" type="button">复制结果</button>
 <button id="saveBtn" type="button">保存记录</button>
 <button id="printBtn" type="button">打印 / 导出 PDF</button>
 </div>
 </section>
 
-</main>
-<section class="content-section nel-tool-supporting-section" id="history">
-<div class="section-heading"><div><p class="eyebrow">工程记录</p><h2>最近计算记录</h2></div>
-<button class="text-button" id="clearHistoryBtn" type="button">清空记录</button></div>
-<div class="history-list" id="historyList"></div>
-</section>
-<section class="content-section methodology nel-tool-supporting-section" id="methodology">
-<div class="section-heading"><div><p class="eyebrow">计算方法</p><h2>计算方法与工程说明</h2></div></div>
+</div>
+
+<div class="below"><nav class="toc" aria-label="本页导航"><h4>本页导航</h4><a href="#methodology">计算方法</a><a href="#faq">问答</a><a href="#history">最近计算</a><a href="#references">官方依据</a><a href="#nel-tool-graph">工程工作流</a></nav><div class="prose"><details class="fb-fold blk" id="methodology" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span class="fb-fold-title">计算方法与工程说明</span></summary><div class="fb-fold-body"><section class="content-section methodology nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">计算方法</p></div></div>
 <div class="method-grid">
 <article><h3>使用方法</h3><ol><li>选择长开销（现代 RSTP/MSTP 默认）或传统短开销。</li><li>按跳列出路径 A 到根桥的链路速率（Mbps）。</li><li>同样填写路径 B。</li><li>比较根路径开销，总和较小者成为根端口所在路径。</li></ol></article><article><h3>长开销方法</h3><p>IEEE 802.1D-2004 与 802.1Q 建议端口路径开销 = 20,000,000,000 ÷ 链路速率（kb/s），取值 1 到 200,000,000。结果：10 Mbps 2,000,000；100 Mbps 200,000；1 Gbps 20,000；10 Gbps 2,000；25 Gbps 800；40 Gbps 500；100 Gbps 200；400 Gbps 50。</p></article><article><h3>短开销方法</h3><p>IEEE 802.1D-1998 推荐的 16 位取值：4 Mbps 250、10 Mbps 100、16 Mbps 62、100 Mbps 19、1 Gbps 4、10 Gbps 2。该表未定义 10 Gbps 以上速率，本工具直接提示而不猜测厂家取值。</p></article>
 </div>
 <div class="example-box"><h3>算例：两跳 10G 对比一跳 1G</h3><p>长开销：路径 A = 2,000 + 2,000 = 4,000；路径 B = 20,000。尽管跳数更多，STP 仍以 16,000 的差值优选路径 A。若用短开销，两者均为 4（2 + 2 与 4），相同时由网桥 ID 决定——这也是 802.1D-2004 改用 32 位开销的原因之一。</p></div>
-</section>
-<section aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
-<div class="section-heading"><div><p class="eyebrow">工程参考</p><h2 id="references-title">标准与参考资料</h2></div></div>
+</section></div></details><div class="blk faq" id="faq" data-nel-v3-title-normalized="1"><h2 id="faq-title">常见问题</h2><section aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">常见问题</p></div></div>
+<div class="faq-grid"><details><summary>STP 路径开销如何计算？</summary><p>根路径开销是从本交换机到根桥沿途端口开销之和。长开销方法下每个端口开销 = 20,000,000,000 ÷ 链路速率（kb/s）。</p></details><details><summary>10G 链路的 STP 开销是多少？</summary><p>长开销（802.1D-2004/802.1Q）为 2,000，传统短开销为 2。</p></details><details><summary>100G 的 STP 开销是多少？</summary><p>长开销为 200。802.1D-1998 短开销表只到 10 Gbps，100G 没有标准短开销值。</p></details><details><summary>IEEE 为什么改用长开销？</summary><p>16 位短开销无法区分 10 Gbps 以上的链路，容易出现开销相同。32 位长开销可扩展到 10 Tb/s。</p></details><details><summary>两条路径开销相同时怎么办？</summary><p>STP 依次比较发送方网桥 ID 和发送方端口 ID，取较小者。</p></details></div>
+</section></div><section class="blk" id="history" data-nel-v3-title-normalized="1"><h2>最近计算记录</h2><div class="fb-fold-body"><section class="content-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">工程记录</p></div>
+<button class="text-button btn btn-ghost btn-sm" id="clearHistoryBtn" type="button">清空记录</button></div>
+<div class="history-list" id="historyList"></div>
+</section></div></section><section class="blk" id="references" data-nel-v3-title-normalized="1"><h2 id="references-title">标准与参考资料</h2><div class="fb-fold-body"><section aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">工程参考</p></div></div>
 <ul><li><a href="https://standards.ieee.org/ieee/802.1D/3387/" rel="noopener">IEEE 802.1D-2004：表 17-3 推荐端口路径开销（长方法，20,000,000,000 / 链路速率 kb/s，范围 1–200,000,000）</a></li><li><a href="https://standards.ieee.org/ieee/802.1t/1043/" rel="noopener">IEEE 802.1t-2001：802.1D-1998 修正案，引入 32 位长路径开销</a></li><li><a href="https://standards.ieee.org/ieee/802.1D/1029/" rel="noopener">IEEE 802.1D-1998：§8.10.2 表 8-5 推荐 16 位路径开销（短方法：4 Mb/s 250、10 Mb/s 100、16 Mb/s 62、100 Mb/s 19、1 Gb/s 4、10 Gb/s 2）</a></li><li><a href="https://standards.ieee.org/ieee/802.1Q/10323/" rel="noopener">IEEE 802.1Q：网桥与桥接网络——RSTP/MSTP 采用同样的长路径开销 [条款号 UNVERIFIED（未核实）]</a></li><li><a href="https://www.cisco.com/c/en/us/support/docs/lan-switching/spanning-tree-protocol/5234-5.html" rel="noopener">Cisco：理解和配置生成树协议（厂商指南）</a></li></ul>
 <p>长开销公式与短开销表依据 IEEE 推荐值；交换机实际默认取决于平台与配置（例如 “spanning-tree pathcost method long”）。 最后审核: 2026-10-20.</p>
-</section>
-<section aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
-<div class="section-heading"><div><p class="eyebrow">常见问题</p><h2 id="faq-title">常见问题</h2></div></div>
-<div class="faq-grid"><details><summary>STP 路径开销如何计算？</summary><p>根路径开销是从本交换机到根桥沿途端口开销之和。长开销方法下每个端口开销 = 20,000,000,000 ÷ 链路速率（kb/s）。</p></details><details><summary>10G 链路的 STP 开销是多少？</summary><p>长开销（802.1D-2004/802.1Q）为 2,000，传统短开销为 2。</p></details><details><summary>100G 的 STP 开销是多少？</summary><p>长开销为 200。802.1D-1998 短开销表只到 10 Gbps，100G 没有标准短开销值。</p></details><details><summary>IEEE 为什么改用长开销？</summary><p>16 位短开销无法区分 10 Gbps 以上的链路，容易出现开销相同。32 位长开销可扩展到 10 Tb/s。</p></details><details><summary>两条路径开销相同时怎么办？</summary><p>STP 依次比较发送方网桥 ID 和发送方端口 ID，取较小者。</p></details></div>
-</section>
-<!-- NEL_TOOL_GRAPH_START -->
+</section></div></section><!-- NEL_TOOL_GRAPH_START -->
 <section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="stp-path-cost-calculator" data-primary-workflow="layer2-path-design">
 <div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
 <div class="nel-workflow-context"><div><span class="nel-workflow-kicker">当前流程</span><strong>二层路径设计工作流</strong><p>先确定生成树转发路径，再估算沿途每跳串行化时延。</p></div><div class="nel-workflow-step"><strong>步骤 1 / 2</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="2" aria-valuenow="1" aria-valuetext="步骤 1 / 2" aria-label="步骤 1 / 2"><span style="width:50%"></span></div></div></div><div class="nel-tool-graph-nav"><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">上一步</span><strong>流程起点</strong></div><a class="nel-tool-graph-card" href="/tools/ethernet-serialization-delay-calculator/zh/"><span class="nel-tool-graph-label">下一步</span><strong>以太网串行化时延计算器</strong><span class="nel-tool-graph-description">计算以太网链路的单跳与多跳串行化时延、线路占用时间、最大帧速率和二层效率。</span></a></div>
 <h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/switch-uplink-oversubscription-calculator/zh/"><strong>交换机上联带宽与超售比计算器</strong><span class="nel-tool-graph-description">根据接入端口、利用率、并发率与冗余方式规划交换机上联带宽。</span></a><a class="nel-tool-graph-card" href="/tools/vlan-ip-capacity-planner/zh/"><strong>VLAN与IP子网容量规划器</strong><span class="nel-tool-graph-description">规划VLAN数量、IPv4前缀、地址容量与扩容余量。</span></a><a class="nel-tool-graph-card" href="/tools/ospf-cost-calculator/zh/"><strong>OSPF Cost计算器</strong><span class="nel-tool-graph-description">根据参考带宽计算OSPF接口Cost，比较路径总成本并识别ECMP候选。</span></a><a class="nel-tool-graph-card" href="/tools/ethernet-serialization-delay-calculator/zh/"><strong>以太网串行化时延计算器</strong><span class="nel-tool-graph-description">计算以太网链路的单跳与多跳串行化时延、线路占用时间、最大帧速率和二层效率。</span></a></div>
 </section>
-<!-- NEL_TOOL_GRAPH_END -->
+<!-- NEL_TOOL_GRAPH_END --></div></div></main>
+
+
+
+
+
+
+
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">
@@ -163,11 +177,11 @@
   </div>
 </footer>
 <!-- NEL_FOOTER_END -->
-<script defer src="../js/engine.js"></script>
+<script defer src="../js/engine.js?v=f5dac5b1767f"></script>
 <script defer src="../js/pwa.js"></script>
 <script defer src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script>
-<script defer src="../js/app.js?v=290684de1f73"></script>
+<script defer src="../js/app.js?v=20261106-bw1"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
-<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script>
+<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=77b297dd25ca"></script>
 </body>
 </html>

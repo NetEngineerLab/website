@@ -6,6 +6,10 @@ const $=id=>document.getElementById(id);
 const rawLang=(document.documentElement.lang||"en").toLowerCase(); const lang=rawLang.startsWith("zh")?"zh":(rawLang.startsWith("es")?"es":"en");
 const locale=lang==="zh"?"zh-CN":(lang==="es"?"es-ES":"en-US");
 const state={last:{},activeTab:"ipv6"};
+const outputContracts={"ipv6":{"resultValues":"#v6Canonical,#v6Expanded,#v6Type,#v6TypeBadge,#v6ParentNetwork,#v6ParentLast,#v6ChildCount,#v6AddressesPerChild,#v6Containing,#v6ContainingIndex,#v6Previous,#v6Next","resultDetails":"#v6PreviewBody","resultMeters":"","resultStatus":"","validation":"#v6Error"},"nat44":{"resultValues":"#n44RawPorts,#n44UsablePorts,#n44Protocols,#n44MappingsPerIp,#n44TotalMappings,#n44RequiredMappings,#n44DemandLabel,#n44RequiredPublicIps,#n44MaxSubscribers,#n44SharingRatio,#n44MappingsPerSubscriber,#n44Usage,#n44NamespaceNote","resultDetails":"","resultMeters":"#n44Bar","resultStatus":"#n44Risk","validation":"#n44Error"},"cgn":{"resultValues":"#cgnUsablePorts,#cgnBlocksPerIp,#cgnSupportedSubscribers,#cgnRequiredPublicIps,#cgnSpareSubscribers,#cgnUnusedPorts,#cgnSharingRatio,#cgnCapacityPct,#cgnTcpPeak,#cgnUdpPeak,#cgnBlockUsage,#cgnActiveSubscribers,#cgnActiveMappings,#cgnDailyEvents,#cgnDailyLogs,#cgnRetentionLogs,#cgnDeterministicNote","resultDetails":"","resultMeters":"#cgnCapacityBar,#cgnPortBar","resultStatus":"#cgnSubscriberRisk,#cgnPortRisk","validation":"#cgnError"},"nat64":{"resultValues":"#n64PrefixResult,#n64Ipv4Result,#n64Ipv4Type,#n64Ipv6Result,#n64Expanded","resultDetails":"#n64Warnings","resultMeters":"","resultStatus":"","validation":"#n64Error"}};
+function syncActiveContract(){Object.assign(window.NELToolInputController,outputContracts[state.activeTab]);window.NELToolInputController.sync?.();}
+window.NELToolInputController={calculate:calculateAll,managesValidation:true,isValid:function(){return !!state.last[state.activeTab==='cgn'?'cgnat':state.activeTab]?.ok;},invalidate:function(){delete state.last[state.activeTab==='cgn'?'cgnat':state.activeTab];},resultActions:'#copyBtn,#csvBtn,#printBtn',inputControls:'[data-panel] input:not(#n64reverseIpv6),[data-panel] select'};
+
 
 const T={
  en:{
@@ -98,7 +102,7 @@ function errorText(code){return T.errors[code]||code||"Error"}
 function setText(id,value){const el=$(id);if(el)el.textContent=value}
 function setRisk(id,risk){
  const el=$(id);if(!el)return;
- el.className=`risk-badge ${risk}`;
+ el.className=`risk-badge status ${risk} ${risk==="low"?"st-pass":risk==="medium"?"st-marginal":"st-fail"}`;
  el.textContent=T.risk[risk]||risk;
 }
 function showError(id,code){
@@ -122,12 +126,14 @@ function activateTab(name){
  state.activeTab=name;
  document.querySelectorAll("[data-tab]").forEach(btn=>{
   const active=btn.dataset.tab===name;
-  btn.classList.toggle("active",active);btn.setAttribute("aria-selected",String(active));
+  btn.classList.toggle("active",active);btn.setAttribute("aria-selected",String(active));btn.tabIndex=active?0:-1;
  });
  document.querySelectorAll("[data-panel]").forEach(panel=>panel.hidden=panel.dataset.panel!==name);
  history.replaceState(null,"",`#${name}`);
-}
+syncActiveContract();}
 document.querySelectorAll("[data-tab]").forEach(btn=>btn.addEventListener("click",()=>activateTab(btn.dataset.tab)));
+document.querySelectorAll('[data-tab]').forEach((button,index,list)=>button.addEventListener('keydown',event=>{let target;if(event.key==='ArrowRight')target=(index+1)%list.length;else if(event.key==='ArrowLeft')target=(index+list.length-1)%list.length;else if(event.key==='Home')target=0;else if(event.key==='End')target=list.length-1;else return;event.preventDefault();activateTab(list[target].dataset.tab);list[target].focus();}));
+
 
 function fillFields(prefix,data){
  Object.entries(data).forEach(([key,value])=>{
@@ -150,7 +156,7 @@ function formatIPv6Expanded(value){
  return String(value).replace(/:/g,":\u200b");
 }
 
-function calculateIPv6(){
+function calculateIPv6(){try{delete state.last.ipv6;
  clearError("v6Error");
  const result=E.planIPv6({
   address:$("v6address").value,
@@ -173,7 +179,7 @@ function calculateIPv6(){
  setText("v6Previous",result.previous||"—");
  setText("v6Next",result.next||"—");
  $("v6PreviewBody").innerHTML=result.preview.map(row=>`<tr><td>${row.index}</td><td><code>${row.cidr}</code></td></tr>`).join("");
-}
+}finally{syncActiveContract();}}
 function ipv6Report(r){
  return[
   ["Canonical IPv6",r.input],["Expanded IPv6",r.expanded],["Type",T.types[r.type]||r.type],
@@ -189,7 +195,7 @@ function applyNat44Preset(key){
  const p=P.nat44[key];if(!p)return;
  fillFields("n44",p);calculateNat44();
 }
-function calculateNat44(){
+function calculateNat44(){try{delete state.last.nat44;
  clearError("n44Error");
  const r=E.nat44Capacity({
   publicIps:$("n44publicIps").value,subscribers:$("n44subscribers").value,
@@ -215,7 +221,7 @@ function calculateNat44(){
  $("n44Bar").style.width=`${Math.min(100,Math.max(0,r.usagePct))}%`;
  $("n44Bar").className=`bar-fill ${r.risk}`;
  setText("n44NamespaceNote",T.portNamespace);
-}
+}finally{syncActiveContract();}}
 function nat44Report(r){
  return[
   ["Public IPv4",r.publicIps],["Subscribers",r.subscribers],["Raw ports/protocol",r.rawPorts],
@@ -232,7 +238,7 @@ function applyCgnPreset(key){
  const p=P.cgnat[key];if(!p)return;
  fillFields("cgn",p);calculateCgn();
 }
-function calculateCgn(){
+function calculateCgn(){try{delete state.last.cgnat;
  clearError("cgnError");
  const r=E.cgnatCapacity({
   subscribers:$("cgnsubscribers").value,publicIps:$("cgnpublicIps").value,
@@ -268,7 +274,7 @@ function calculateCgn(){
  $("cgnPortBar").style.width=`${Math.min(100,Math.max(0,r.blockUsagePct))}%`;
  $("cgnPortBar").className=`bar-fill ${r.portRisk}`;
  setText("cgnDeterministicNote",T.deterministicNote);
-}
+}finally{syncActiveContract();}}
 function cgnReport(r){
  return[
   ["Subscribers",r.subscribers],["Public IPv4",r.publicIps],["Usable ports/IP",r.usablePorts],
@@ -287,7 +293,7 @@ function applyNat64Preset(key){
  const p=P.nat64[key];if(!p)return;
  fillFields("n64",p);calculateNat64();
 }
-function calculateNat64(){
+function calculateNat64(){try{delete state.last.nat64;
  clearError("n64Error");
  const r=E.nat64Embed($("n64prefix").value,$("n64ipv4").value);
  if(!r.ok){showError("n64Error",r.error);return}
@@ -304,7 +310,7 @@ function calculateNat64(){
  notes.push(T.engineering);
  $("n64Warnings").innerHTML=notes.map(x=>`<li>${x}</li>`).join("");
  calculateNat64Reverse();
-}
+}finally{syncActiveContract();}}
 function calculateNat64Reverse(){
  clearError("n64ReverseError");
  const r=E.nat64Extract($("n64prefix").value,$("n64reverseIpv6").value);

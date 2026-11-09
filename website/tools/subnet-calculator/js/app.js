@@ -72,6 +72,8 @@ function syncMaskPrefix(){
  calculateIPv4();
 }
 function calculateIPv4(){
+ try {
+
  try{
   const result=ENGINE.analyzeIPv4($("ipv4Address").value,prefixFromUi(),REF);
   last={mode:"ipv4",result,time:new Date().toISOString()};
@@ -94,8 +96,12 @@ function calculateIPv4(){
  }catch{
   invalidate("ipv4",T[LANG].invalidIPv4);
  }
+
+ } finally { window.NELToolInputController?.sync?.(); }
 }
 function calculateIPv6(){
+ try {
+
  try{
   const result=ENGINE.analyzeIPv6($("ipv6Address").value,Number($("ipv6Prefix").value),Number($("ipv6BasePrefix").value));
   last={mode:"ipv6",result,time:new Date().toISOString()};
@@ -112,6 +118,8 @@ function calculateIPv6(){
  }catch{
   invalidate("ipv6",T[LANG].invalidIPv6);
  }
+
+ } finally { window.NELToolInputController?.sync?.(); }
 }
 function addVlsmRow(name="",hosts=0,reserve=1){
  sequence++;
@@ -141,7 +149,7 @@ function renderVlsmRows(){
   <td><input id="vlsm-name-${row.id}" value="${esc(row.name)}" aria-label="${LANG==="zh"?"子网名称":(LANG==="es"?"Nombre de subred":"Subnet name")}"></td>
   <td><input id="vlsm-hosts-${row.id}" type="number" min="0" step="1" value="${row.hosts}" aria-label="${LANG==="zh"?"主机需求":(LANG==="es"?"Necesidad de hosts":"Host requirement")}"></td>
   <td><input id="vlsm-reserve-${row.id}" type="number" min="0" step="1" value="${row.reserve}" aria-label="${LANG==="zh"?"预留地址":(LANG==="es"?"Direcciones reservadas":"Reserved addresses")}"></td>
-  <td><button class="delete-row" data-delete="${row.id}" aria-label="${T[LANG].remove}">×</button></td>
+  <td><button class="delete-row btn btn-ghost btn-sm" data-delete="${row.id}" aria-label="${T[LANG].remove}">×</button></td>
  </tr>`).join("");
  body.querySelectorAll("input").forEach(input=>input.addEventListener("input",()=>{
   syncVlsmRows();clearTimeout(window.__vlsm);window.__vlsm=setTimeout(calculateVlsm,120);
@@ -149,6 +157,8 @@ function renderVlsmRows(){
  body.querySelectorAll("[data-delete]").forEach(button=>button.addEventListener("click",()=>removeVlsmRow(Number(button.dataset.delete))));
 }
 function calculateVlsm(){
+ try {
+
  try{
   syncVlsmRows();
   const result=ENGINE.planVlsm($("vlsmBaseAddress").value,Number($("vlsmBasePrefix").value),vlsmRows,0,REF);
@@ -159,15 +169,17 @@ function calculateVlsm(){
   $("vlsmRemaining").textContent=formatInteger(result.remainingAddresses);
   $("vlsmUtilization").textContent=result.utilizationPercent.toFixed(2)+"%";
   $("vlsmAllocationBody").innerHTML=result.allocations.map((item,index)=>`<tr>
-   <td>${index+1}</td><td>${esc(item.name)}</td><td>${item.hosts}</td><td>${item.reserve}</td>
+   <td>${index+1}</td><td data-nel-locale-value>${esc(item.name)}</td><td>${item.hosts}</td><td>${item.reserve}</td>
    <td>${item.cidr}</td><td>${item.firstHost}</td><td>${item.lastHost}</td><td>${item.broadcast}</td><td>${item.usableHosts}</td>
-  </tr>`).join("")+(result.errors.length?result.errors.map(error=>`<tr class="error-row"><td>!</td><td>${esc(error.name)}</td><td colspan="7">${T[LANG].allocationFailed} /${error.requiredPrefix}</td></tr>`).join(""):"");
+  </tr>`).join("")+(result.errors.length?result.errors.map(error=>`<tr class="error-row"><td>!</td><td data-nel-locale-value>${esc(error.name)}</td><td colspan="7">${T[LANG].allocationFailed} /${error.requiredPrefix}</td></tr>`).join(""):"");
   const pct=Math.max(0,Math.min(100,result.utilizationPercent));
   $("vlsmBar").style.width=pct+"%";
   if(typeof window.nelTrack==="function")window.nelTrack("subnet_vlsm_calculate",{subnets:result.allocations.length,errors:result.errors.length});
  }catch{
   invalidate("vlsm",T[LANG].invalidIPv4);
  }
+
+ } finally { window.NELToolInputController?.sync?.(); }
 }
 function loadSampleVlsm(){
  vlsmRows=[];sequence=0;
@@ -177,7 +189,7 @@ function loadSampleVlsm(){
 function resetAll(){
  $("ipv4Address").value="192.168.10.130";$("ipv4PrefixMode").value="cidr";$("ipv4Prefix").value=24;$("ipv4Mask").value="255.255.255.0";
  $("ipv6Address").value="2001:db8:1234:5678::1";$("ipv6Prefix").value=64;$("ipv6BasePrefix").value=48;
- $("vlsmBaseAddress").value="10.10.0.0";$("vlsmBasePrefix").value=20;syncMaskPrefix();loadSampleVlsm();calculateIPv6();
+ $("vlsmBaseAddress").value="10.10.0.0";$("vlsmBasePrefix").value=20;syncMaskPrefix();loadSampleVlsm();calculateIPv6();setMode("ipv4");
 }
 function reportText(){
  if(!last)return"";
@@ -247,3 +259,12 @@ resetAll();setMode("ipv4");renderHistory();
 
 
 
+
+// Keep the existing calculation/modes/history; share only result lifecycle.
+window.NELToolInputController={calculate:()=>activeMode==="ipv4"?calculateIPv4():activeMode==="ipv6"?calculateIPv6():calculateVlsm(),calculateSelector:"#calculateBtn",managesValidation:true,isValid:()=>Boolean(last)&&last.mode===activeMode,invalidate:()=>{last=null;},resultActions:"#copyBtn,#saveBtn,#csvBtn,#printBtn",resultValues:"#ipv4Cidr,#ipv4Network,#ipv4Broadcast,#ipv4First,#ipv4Last,#ipv4MaskResult,#ipv4Wildcard,#ipv4Total,#ipv4Usable,#ipv4Scope,#ipv4Previous,#ipv4Next,#ipv4Reverse,#ipv4BinaryIp,#ipv4BinaryMask,#ipv4BinaryNetwork,#ipv4BinaryBroadcast,#ipv6Cidr,#ipv6Network,#ipv6Last,#ipv6Total,#ipv6SubnetCount,#ipv6HostBits,#ipv6Scope,#vlsmBaseCidr,#vlsmUsed,#vlsmRemaining,#vlsmUtilization",resultStatus:"",resultDetails:"#ipv4BitBar,#ipv6BitBar,#vlsmAllocationBody",resultMeters:"",validation:"#ipv4Validation,#ipv6Validation,#vlsmValidation",requiredInputs:"#ipv4Address,#ipv4Prefix,#ipv6Address,#ipv6Prefix,#ipv6BasePrefix,#vlsmBaseAddress,#vlsmBasePrefix",inputControls:".nel-tool-input input,.nel-tool-input select,.nel-tool-input textarea"};
+
+// t330u: original engine/listeners retained; explicit confirmation for existing live-update forms.
+(function(){const button=document.getElementById("calculateBtn");if(!button)return;let timer;const original=button.innerHTML;button.addEventListener("click",()=>{clearTimeout(timer);button.setAttribute("aria-live","polite");button.innerHTML=document.documentElement.lang.startsWith("zh")?"已重新计算":document.documentElement.lang.startsWith("es")?"Recalculado":"Recalculated";timer=setTimeout(()=>{button.innerHTML=original},1100)});})();
+
+// Label existing table cells responsively without changing allocations/editor values.
+(function(){function labelTables(){document.querySelectorAll("#calculator table").forEach(table=>{const heads=Array.from(table.querySelectorAll("thead th")).map(h=>h.textContent.trim());table.querySelectorAll("tbody tr").forEach(row=>Array.from(row.children).forEach((cell,i)=>{if(heads[i])cell.setAttribute("data-label",heads[i])}))})}labelTables();if(typeof MutationObserver!=="undefined")new MutationObserver(labelTables).observe(document.getElementById("calculator"),{childList:true,subtree:true});})();

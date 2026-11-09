@@ -28,13 +28,18 @@
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/terms/">
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../assets/css/site-shell.css?v=989edb3b4d77">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=26fafcdcee42">
+<link rel="stylesheet" href="../../assets/css/site-pages-v2.css?v=20261105-v2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/site-doc.css?v=20261109-sitebw1">
 <script defer src="../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../assets/js/site.js?v=b563dd0297f5"></script>
-</head><body><!-- NEL_HEADER_START -->
+</head><body class="nel-site-v2"><!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
   <div class="site-shell-header-inner">
     <a class="site-shell-brand brand" href="../">
@@ -55,8 +60,69 @@
   </div>
 </header>
 <!-- NEL_HEADER_END -->
-<main class="policy"><p class="eyebrow">NETENGINEERLAB</p><h1>Términos de uso</h1><p>Los resultados de las herramientas sirven de apoyo a la planificación, revisión, formación y resolución de averías. No sustituyen las especificaciones del equipo, las normas de la organización, las mediciones de campo, el diseño final ni las decisiones de aceptación.</p>
-<h2>Disponibilidad del servicio</h2><p>El servicio incluye herramientas de ingeniería en línea que pueden actualizarse para mejorar precisión, compatibilidad, seguridad y usabilidad. El usuario sigue siendo responsable de contrastar los resultados con las normas aplicables, la documentación del equipo y las condiciones de campo.</p></main>
+<main class="tool-shell" id="page">
+<div class="tool-head"><nav class="crumbs" aria-label="Breadcrumb"><a href="../">Inicio</a><span aria-hidden="true">/</span><span aria-current="page">Términos de uso</span></nav><p class="tool-page-label" role="heading" aria-level="1">Términos de uso</p><p class="tool-lede">Estas páginas son un banco de cálculo para planificar, revisar, formar y diagnosticar. Abrir una página significa usar el resultado dentro de los límites de abajo: el número compara opciones y acota un fallo, y no sustituye los datos del equipo, una norma aplicable, una medida de campo ni una aceptación formal.</p></div>
+<div class="below">
+<nav class="toc" aria-label="En esta página"><h4>En esta página</h4>
+<a href="#part-1">Para qué sirven las herramientas</a>
+<a href="#part-2">Un resultado no es una firma</a>
+<a href="#part-3">El cálculo se queda en este navegador</a>
+<a href="#part-4">La fórmula está en la página</a>
+<a href="#part-5">Compruebe antes de usar un número</a>
+<a href="#part-6">Las páginas pueden cambiar</a>
+<a href="#part-7">Páginas relacionadas</a>
+</nav>
+<div class="prose">
+<section class="doc-card" id="part-1">
+<h2>Para qué sirven las herramientas</h2>
+<p>NetEngineerLab es un banco de cálculo para fibra, PON, IP, radio, capacidad de conmutación y energía de telecomunicaciones. Cada página responde a una pregunta: pérdida, nivel de recepción, relación de división, ancho de banda, subred, capacidad de enlace ascendente, refrigeración o tiempo de respaldo.</p>
+<p>El sitio publica herramientas en línea, además de guías y temas que indican en qué paso de un diseño se usa cada número. La guía explica el método y el ejemplo. La calculadora convierte los límites que usted introduce en un resultado que se puede revisar.</p>
+</section>
+<section class="doc-card" id="part-2">
+<h2>Un resultado no es una firma</h2>
+<p>Use el resultado para planificar, comparar, revisar, formar y diagnosticar. No es una hoja de datos del equipo, una norma de empresa, una lectura de instrumento de campo, ni un documento formal de diseño o de aceptación.</p>
+<p>Un número sirve solo si los datos corresponden al trabajo actual: longitud de onda, unidades de velocidad, eficiencia, margen, concurrencia y lo que queda tras un fallo. Una norma que la página no cita no es una norma que la página afirme cumplir. Los datos del fabricante, las pruebas de campo y los documentos de diseño firmados se comprueban aparte.</p>
+</section>
+<section class="doc-card" id="part-3">
+<h2>El cálculo se queda en este navegador</h2>
+<p>Hacer un cálculo no envía al sitio los valores que usted escribe. Las herramientas que guardan un historial lo guardan en este navegador. Otro equipo, o borrar los datos locales, no conserva esos registros.</p>
+<p>Las estadísticas de visita opcionales solo se cargan después de su consentimiento. Lo que se cuenta, las cookies y cómo retirar el consentimiento están en la <a href="../privacy/">política de privacidad</a>.</p>
+</section>
+<section class="doc-card" id="part-4">
+<h2>La fórmula está en la página</h2>
+<p>Cuando una página usa una fórmula, escribe la fórmula, las unidades, las hipótesis y el alcance. Si una página no cita una norma, no está siguiendo una norma que no aparece escrita.</p>
+<p>Un valor predeterminado es el valor típico o de planificación que declara esa página. No es una medida de su enlace, sala o equipo. Lea la nota junto al valor antes de cambiarlo.</p>
+</section>
+<section class="doc-card" id="part-5">
+<h2>Compruebe antes de usar un número</h2>
+<p>Usted elige la herramienta, introduce los límites y decide si el resultado encaja en el trabajo actual. Antes de usarlo, compruebe al menos esto:</p>
+<ul>
+<li>Las unidades coinciden. Separe bits y bytes, dBm y dB, W y kW.</li>
+<li>La dirección coincide. No compare enlace ascendente y descendente, transmisión y recepción, o carga y descarga como si fueran la misma magnitud.</li>
+<li>El estado de fallo es una comprobación distinta. Una capacidad suficiente en operación normal no sigue siéndolo tras perder un enlace o un equipo.</li>
+<li>La lectura de campo pesa más que el valor predeterminado. Si hay un instrumento o un contador del equipo, use ese valor y anote las condiciones de medida.</li>
+</ul>
+</section>
+<section class="doc-card" id="part-6">
+<h2>Las páginas pueden cambiar</h2>
+<p>Las herramientas, las guías y estas condiciones pueden actualizarse para mejorar la precisión, la compatibilidad y el uso. Si cambian una fórmula, un valor predeterminado o la estructura de la página, vale la página abierta en ese momento. Un resultado ya exportado o copiado no se reescribe.</p>
+<p>El sitio está en inglés, chino simplificado y español. No todas las herramientas tienen los tres idiomas. Si el mismo título existe en más de un idioma, siga el texto de la página que está leyendo.</p>
+<p>Si una fórmula, una unidad o un límite no queda claro, envíe la dirección de la página y la frase desde la <a href="../contact/">página de contacto</a>.</p>
+</section>
+<section class="doc-card" id="part-7">
+<h2>Páginas relacionadas</h2>
+<p>Estas condiciones solo describen hasta dónde se puede llevar un resultado. El resto del sitio está aquí:</p>
+<ul>
+<li><a href="../about/">Acerca de</a>: qué problemas de ingeniería cubre el banco.</li>
+<li><a href="../privacy/">Privacidad</a>: datos de cálculo, historial local y estadísticas opcionales.</li>
+<li><a href="../../tools/es/">Herramientas</a>: abrir una calculadora por especialidad.</li>
+<li><a href="../../guides/">Guías</a>: fórmulas, ejemplos y fallos que hay que comprobar. Están en inglés.</li>
+<li><a href="../../topics/">Temas</a>: guías y herramientas de la misma pregunta. Están en inglés.</li>
+</ul>
+</section>
+</div>
+</div>
+</main>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">

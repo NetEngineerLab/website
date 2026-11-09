@@ -115,9 +115,24 @@ function volumeInput(){
   efficiencyPercent:n("volumeEfficiency"),utilizationPercent:n("volumeUtilization")
  };
 }
+
+function renderFillSnapshot(payloadPct, overheadPct){
+  const p = Math.max(0, Math.min(100, Number(payloadPct) || 0));
+  const o = Math.max(0, Math.min(100 - p, Number(overheadPct) || Math.max(0, 100 - p)));
+  const h = Math.max(0, 100 - p - o);
+  const setTxt = (id, v) => { const el = $(id); if (el) el.textContent = `${formatNumber(v, 2)}%`; };
+  setTxt("fillPayload", p);
+  setTxt("fillOverhead", o);
+  setTxt("fillHeadroom", h);
+  const bp = $("fillBarPayload"), bo = $("fillBarOverhead"), bh = $("fillBarHeadroom");
+  if (bp) bp.style.width = p + "%";
+  if (bo) bo.style.width = o + "%";
+  if (bh) bh.style.width = h + "%";
+}
+
 function renderStatus(status){
  const badge=$("statusBadge");
- badge.className=`status-badge ${status}`;
+ badge.className=`status-badge status ${{healthy:"st-pass",warning:"st-marginal",failed:"st-fail",invalid:"st-fail"}[status]} ${status}`;
  badge.textContent=T[LANG][status]||status;
 }
 function renderTransfer(result){
@@ -131,6 +146,7 @@ function renderTransfer(result){
  $("transferOverheadResult").textContent=`${formatNumber(result.overheadPercent,2)}%`;
  $("transferConcurrencyResult").textContent=result.concurrent;
  $("transferBar").style.width=Math.max(0,Math.min(100,result.linkPayloadEfficiency))+"%";
+ renderFillSnapshot(result.linkPayloadEfficiency, result.overheadPercent);
  renderStatus(result.status);
 }
 function renderRequired(result){
@@ -143,6 +159,7 @@ function renderRequired(result){
  $("requiredCombined").textContent=`${formatNumber(result.combined*100,2)}%`;
  $("requiredConcurrentResult").textContent=result.concurrent;
  $("requiredBar").style.width=Math.max(0,Math.min(100,result.combined*100))+"%";
+ renderFillSnapshot(result.combined*100, Math.max(0,100-result.combined*100));
  renderStatus(result.status);
 }
 function renderConcurrency(result){
@@ -156,6 +173,7 @@ function renderConcurrency(result){
  $("capacityTargetStatus").textContent=result.targetPass?T[LANG].pass:T[LANG].fail;
  $("capacityTargetStatus").className=`inline-status ${result.targetPass?"healthy":"warning"}`;
  $("capacityBar").style.width=Math.max(0,Math.min(100,result.targetUtilizationPercent))+"%";
+ renderFillSnapshot(result.targetUtilizationPercent, Math.max(0,100-result.targetUtilizationPercent));
  renderStatus(result.status);
 }
 function renderVolume(result){
@@ -167,9 +185,12 @@ function renderVolume(result){
  $("volumeCombined").textContent=`${formatNumber(result.combined*100,2)}%`;
  $("volumeDurationSeconds").textContent=`${formatNumber(result.durationSeconds,0)} s`;
  $("volumeBar").style.width=Math.max(0,Math.min(100,result.combined*100))+"%";
+ renderFillSnapshot(result.combined*100, Math.max(0,100-result.combined*100));
  renderStatus(result.status);
 }
 function calculate(){
+ try {
+
  try{
   if(activeMode==="transfer"){last={mode:"transfer",result:ENGINE.transferTime(transferInput(),LIB),time:new Date().toISOString()};renderTransfer(last.result)}
   else if(activeMode==="required"){last={mode:"required",result:ENGINE.requiredBandwidth(requiredInput(),LIB),time:new Date().toISOString()};renderRequired(last.result)}
@@ -177,10 +198,12 @@ function calculate(){
   else{last={mode:"volume",result:ENGINE.dataVolume(volumeInput(),LIB),time:new Date().toISOString()};renderVolume(last.result)}
   $("validation").textContent="";
   if(typeof window.nelTrack==="function")window.nelTrack("bandwidth_calculate",{mode:activeMode,status:last.result.status});
- }catch(error){
+ }catch(error){last=null;
   $("validation").textContent=LANG==="zh"?"请检查输入参数和单位。":(LANG==="es"?"Compruebe los valores y las unidades introducidas.":"Check the input values and units.");
   renderStatus("invalid");
  }
+
+ } finally { window.NELToolInputController?.sync?.(); }
 }
 function resetAll(){
  $("preset").value="ethernet";
@@ -251,3 +274,6 @@ resetAll();setMode("transfer");renderHistory();
 
 
 
+
+// Keep the existing calculation/modes/history; share only result lifecycle.
+window.NELToolInputController={calculate:calculate,calculateSelector:"#calculateBtn",managesValidation:true,isValid:()=>Boolean(last)&&last.mode===activeMode,invalidate:()=>{last=null;},resultActions:"#copyBtn,#saveBtn,#csvBtn,#printBtn",resultValues:"#transferHeadline,#transferPerRate,#transferAggregateRate,#transferSetup,#transferSerialization,#transferTotalData,#transferEfficiencyResult,#transferOverheadResult,#transferConcurrencyResult,#requiredHeadline,#requiredPayload,#requiredPerTransfer,#requiredDataTime,#requiredSetup,#requiredTotalBits,#requiredCombined,#requiredConcurrentResult,#capacityHeadline,#capacityAvailable,#capacityPerUserEngineered,#capacityUsedTarget,#capacityHeadroom,#capacityTargetUtilization,#capacityCombined,#capacityTargetStatus,#volumeHeadline,#volumePayloadRate,#volumeBits,#volumeDaily,#volumeMonthly,#volumeCombined,#volumeDurationSeconds",resultStatus:"#statusBadge",resultDetails:"",resultMeters:"#transferBar,#requiredBar,#capacityBar,#volumeBar",validation:"#validation",requiredInputs:"#transferFileSize,#transferLinkRate,#transferConcurrent,#requiredFileSize,#requiredTime,#requiredConcurrent,#capacityLinkRate,#capacityPerUserRate,#volumeLinkRate,#volumeDuration",inputControls:".nel-tool-input input,.nel-tool-input select,.nel-tool-input textarea"};

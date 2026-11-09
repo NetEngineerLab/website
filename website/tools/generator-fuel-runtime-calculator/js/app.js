@@ -1,5 +1,10 @@
 (function(){
   "use strict";
+var nelCurrentValid=false;
+window.NELToolInputController={calculate:function(){calc();},managesValidation:true,isValid:function(){return nelCurrentValid;},invalidate:function(){nelCurrentValid=false;window.lastResult=null;},resultActions:"#downloadJson,#downloadCsv",resultValues:"#avgLoad,#loadPct,#fuelRate,#dailyFuel,#runtime,#targetFuel,#additionalFuel,#usableFuel,#specificFuel,#targetCost,#targetCO2,#refills,#perUnit,#rotations,#batteryDelay,#fuelAfterBattery,#fuelSaved",resultDetails:"#engineeringExtras",validation:"",inputControls:".input-panel input,.input-panel select,.input-panel textarea"};
+
+
+
   const $=id=>document.getElementById(id);
   const htmlLang=(document.documentElement.lang||"en").toLowerCase();
   const lang=htmlLang.startsWith("zh")?"zh":htmlLang.startsWith("es")?"es":"en";
@@ -78,27 +83,29 @@
     const afterCount=num("afterGeneratorCount")||num("afterGeneradorCount");
     return {...b,before:{...b,generatorCount:beforeCount||b.generatorCount,redundantGen:num("beforeRedundantGen")},after:{...b,generatorCount:afterCount||b.generatorCount,redundantGen:num("afterRedundantGen")}};
   }
-  function set(id,value){if($(id))$(id).textContent=value;}
+  function set(id,value,unit){const el=$(id);if(!el)return; if(unit!=null&&unit!==""){el.innerHTML="<span>"+value+"</span><small>"+unit+"</small>";} else if(typeof value==="string"&&value!=="—"&&/\s/.test(value)&&/[A-Za-zμ%°]/.test(value)){const m=value.match(/^([\d.,\-]+)\s+(.+)$/); if(m){el.innerHTML="<span>"+m[1]+"</span><small>"+m[2]+"</small>";} else el.textContent=value;} else el.textContent=value;}
   function download(name,text,type){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);}
   function extras(r){
     let box=$("engineeringExtras");
     if(!box){box=document.createElement("section");box.id="engineeringExtras";box.className="panel";$("result")?.appendChild(box);}
     const ba=r.beforeAfter;
-    const fuelLine=ba&&ba.ok?`<div class="kv"><span>${copy.baFuel}</span><b>${fmt(ba.before.fuel,1)} → ${fmt(ba.after.fuel,1)} L (${fmt(ba.delta.fuel,1)} L)</b></div><div class="kv"><span>${copy.baN1}</span><b>${fmt(ba.before.capacity,1)} → ${fmt(ba.after.capacity,1)} kW (${fmt(ba.delta.capacity,1)} kW)</b></div><div class="kv"><span>${copy.baRun}</span><b>${fmt(ba.before.runtime,1)} → ${fmt(ba.after.runtime,1)} h (${fmt(ba.delta.runtime,1)} h)</b></div>`:`<p>${copy.baMissing}</p>`;
-    box.innerHTML=`<h2>${copy.gates}</h2><div class="kv"><span>${copy.risk}</span><b>${level(r.risk)} (${r.riskScore})</b></div><div class="kv"><span>${copy.n1}</span><b>${fmt(r.nMinus1Capacity,1)} kW — ${r.nMinus1Pass?copy.pass:copy.fail}</b></div><div class="kv"><span>${copy.derate}</span><b>${fmt(r.environment.totalDeratePct,1)}%</b></div><div class="kv"><span>${copy.wet}</span><b>${level(r.wetStackRisk)}</b></div>${fuelLine}<p>${r.scenarios.map(s=>`${scenarioName(s.name)}: ${fmt(s.targetFuel,1)} L, ${level(s.risk)}`).join(" | ")}</p><button type="button" class="btn" id="downloadJson">${copy.json}</button> <button type="button" class="btn" id="downloadCsv">${copy.csv}</button>`;
+    const pair=(value,unit)=>`<span class="bw-value-pair">${fmt(value,1)} ${unit}</span>`;
+    const fuelLine=ba&&ba.ok?`<div class="kv"><span>${copy.baFuel}</span><b>${pair(ba.before.fuel,"L")} → ${pair(ba.after.fuel,"L")} (${pair(ba.delta.fuel,"L")})</b></div><div class="kv"><span>${copy.baN1}</span><b>${pair(ba.before.capacity,"kW")} → ${pair(ba.after.capacity,"kW")} (${pair(ba.delta.capacity,"kW")})</b></div><div class="kv"><span>${copy.baRun}</span><b>${pair(ba.before.runtime,"h")} → ${pair(ba.after.runtime,"h")} (${pair(ba.delta.runtime,"h")})</b></div>`:`<p>${copy.baMissing}</p>`;
+    box.innerHTML=`<h2 class="ro-h">${copy.gates}</h2><div class="kv"><span>${copy.risk}</span><b>${level(r.risk)} (${r.riskScore})</b></div><div class="kv"><span>${copy.n1}</span><b>${pair(r.nMinus1Capacity,"kW")} — <span>${r.nMinus1Pass?copy.pass:copy.fail}</span></b></div><div class="kv"><span>${copy.derate}</span><b>${fmt(r.environment.totalDeratePct,1)}%</b></div><div class="kv"><span>${copy.wet}</span><b>${level(r.wetStackRisk)}</b></div>${fuelLine}<p>${r.scenarios.map(s=>`${scenarioName(s.name)}: ${fmt(s.targetFuel,1)} L, ${level(s.risk)}`).join(" | ")}</p><button type="button" class="btn" id="downloadJson">${copy.json}</button> <button type="button" class="btn" id="downloadCsv">${copy.csv}</button>`;
+    const actionBar=document.createElement("div");actionBar.className="bw-extra-actions";box.append(actionBar);actionBar.append($("downloadJson"),$("downloadCsv"));
     $("downloadJson").onclick=()=>download("generator-fuel-engineering-report.json",window.NELGeneratorFuelEngine.toJSONReport(r),"application/json");
     $("downloadCsv").onclick=()=>download("generator-fuel-check-sheet.csv",window.NELGeneratorFuelEngine.toCSV(r),"text/csv");
   }
-  function calc(){
-    const r=window.NELGeneratorFuelEngine.calculate(collect());
+  function calc(){try{
+    const r=window.NELGeneratorFuelEngine.calculate(collect());nelCurrentValid=r.ok!==false;
     $("error").hidden=r.ok;
     if(!r.ok){$("result").hidden=true;return;}
     $("result").hidden=false;
-    set("avgLoad",`${fmt(r.avgLoadKW,1)} kW`);
-    set("loadPct",`${fmt(r.avgLoadPct,1)}%`);
-    set("fuelRate",`${fmt(r.avgFuelLph,2)} L/h`);
+    set("avgLoad",fmt(r.avgLoadKW,1),"kW");
+    set("loadPct",fmt(r.avgLoadPct,1),"%");
+    set("fuelRate",fmt(r.avgFuelLph,2),"L/h");
     set("dailyFuel",`${fmt(r.fuelPerCycle*24/r.totalHours,1)} ${copy.perDay}`);
-    set("runtime",r.runtimeHours==null?"—":`${fmt(r.runtimeHours,1)} h`);
+    if(r.runtimeHours==null)set("runtime","—"); else set("runtime",fmt(r.runtimeHours,1),"h");
     set("targetFuel",`${fmt(r.targetFuelWithReserve,1)} L`);
     set("additionalFuel",`${fmt(r.additionalFuel,1)} L`);
     set("usableFuel",`${fmt(r.usableFuel,1)} L`);
@@ -122,13 +129,18 @@
       body.innerHTML="";
       r.profile.forEach(s=>{
         const tr=document.createElement("tr");
-        tr.innerHTML=`<td>${s.name}</td><td>${fmt(s.loadKW,1)} kW</td><td>${fmt(s.loadPct,1)}%</td><td>${fmt(s.fuelLph,2)} L/h</td><td>${fmt(s.fuelLiters,1)} L</td>`;
+        tr.innerHTML=`<td data-nel-locale-value></td><td>${fmt(s.loadKW,1)} kW</td><td>${fmt(s.loadPct,1)}%</td><td>${fmt(s.fuelLph,2)} L/h</td><td>${fmt(s.fuelLiters,1)} L</td>`;
+        tr.firstElementChild.textContent=s.name;
         body.appendChild(tr);
       });
     }
     extras(r);
-  }
+    document.querySelectorAll("table").forEach(table=>{const heads=Array.from(table.querySelectorAll("thead th")).map(x=>x.textContent.trim());table.querySelectorAll("tbody tr").forEach(row=>Array.from(row.children).forEach((cell,i)=>{if(heads[i])cell.setAttribute("data-label",heads[i]);}));});
+  }finally{window.NELToolInputController.sync?.();}}
+  const bwInitialInputs=Object.fromEntries(Array.from(document.querySelectorAll(".input-panel input,.input-panel select")).map(e=>[e.id,{value:e.value,checked:e.checked,type:e.type}]));
   document.querySelectorAll("[data-input]").forEach(e=>e.addEventListener("input",calc));
-  $("calculate")?.addEventListener("click",calc);
+  $("calculate")?.addEventListener("click",calc);document.getElementById("reset")?.addEventListener("click",()=>{Object.entries(bwInitialInputs).forEach(([id,d])=>{const e=$(id);if(e){e.value=d.value;if(d.type==="checkbox")e.checked=d.checked;}}); calc();});
   calc();
 })();
+
+(function(){const b=document.getElementById("calculate");if(!b)return;const label=b.innerHTML;let timer;b.addEventListener("click",()=>{clearTimeout(timer);b.setAttribute("aria-live","polite");b.textContent=document.documentElement.lang.startsWith("zh")?"已重新计算":document.documentElement.lang.startsWith("es")?"Recalculado":"Recalculated";timer=setTimeout(()=>b.innerHTML=label,1100);});})();

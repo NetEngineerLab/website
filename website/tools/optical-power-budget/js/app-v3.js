@@ -354,7 +354,7 @@
   }
 
   function invalidate() {
-    last = null;
+    last = null;window.lastResult=null;
     setExportEnabled(false);
     syncHealthBadge("invalid");
     setText("remainingBudget", "—");
@@ -388,6 +388,7 @@
   }
 
   function showInvalid(msg) {
+    window.lastResult=null;
     last = null;
     setExportEnabled(false);
     document.querySelectorAll("[data-status]").forEach((el) => {
@@ -425,6 +426,7 @@
     }
     const { standard, physical, design, remain, rx, sensM, overM, fiber, splice, conn, split, st, usage, maxD } = result;
     last = Object.assign({ wave: $("wavelength").value, mode: activeMode }, v, result);
+    window.lastResult=last;
     setExportEnabled(true);
     const meta = statusMeta(st);
     const tight = tightest(remain, sensM, overM);
@@ -507,7 +509,7 @@
 
     setHTML("ro-rx", fmt(rx) + "<small>dBm</small>");
     const rxMax = result.rxMax;
-    setText("estimatedRx", fmt(rx) + " … " + fmt(rxMax));
+    setHTML("estimatedRx", "<span class=opb-power-pair>"+fmt(rx)+"<small>dBm</small></span><span aria-hidden=true>…</span><span class=opb-power-pair>"+fmt(rxMax)+"<small>dBm</small></span>");
     setText("ro-rx-window-eqn", fill(T.eqnWindow, { rx: fmt(rx), rxMax: fmt(rxMax) }));
     setHTML("physicalLoss", fmt(physical) + "<small>dB</small>");
     setHTML("ro-design", fmt(design) + "<small>dB</small>");
@@ -558,7 +560,7 @@
     if (box) {
       box.hidden = false;
       box.textContent =
-        "Invalid input: check non-negative losses, integer splice/connector counts, Tx max ≥ Tx min, and overload above sensitivity.";
+        T.invalidMsg;
     }
     const map = {
       "txPower": Number.isFinite(v.tx),
@@ -909,7 +911,7 @@
       });
     }
 
-    $("calculateBtn").addEventListener("click", calc);
+    $("calculateBtn").addEventListener("click", ()=>{calc();const e=$("calculateBtn");e.classList.add("nel-refreshed");setTimeout(()=>e.classList.remove("nel-refreshed"),800)});
     $("resetBtn").addEventListener("click", reset);
     $("btn-share").addEventListener("click", shareInputs);
 

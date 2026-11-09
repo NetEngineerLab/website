@@ -1,0 +1,13 @@
+---
+description: Tool pages use the shared NetEngineerLab template and CSS
+alwaysApply: true
+---
+
+# Tool page template
+
+New and updated tool pages under `website/tools/` use the same shell as `website/tools/bandwidth-calculator/`.
+
+- Load the shared stylesheets: `design-tokens.css`, `site-shell.css`, `fb-v3.css`, `fb-v3-prod.css`, `tool-layout.css`, `tool-design-system.css`, `locale-menu.css`, `tool-workflow.css`, `cookie-consent.css`, and `mobile-branding.css`.
+- Use the shared header and footer markup (`site-shell-header`, `site-shell-footer`), including the language menu and the footer links.
+- Keep tool-specific layout in that tool's own `css/style.css`. Do not restyle the header or footer there, and do not edit the shared CSS files unless the user explicitly asks.
+- This applies to later tool work unless the user says otherwise.

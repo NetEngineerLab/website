@@ -76,7 +76,7 @@ function renderLayers(){
   <td><input id="layer-bytes-${layer.id}" type="number" min="0" step="1" value="${layer.bytes}" aria-label="${T[LANG].bytes}"></td>
   <td><input id="layer-count-${layer.id}" type="number" min="0" step="1" value="${layer.count}" aria-label="${T[LANG].count}"></td>
   <td><strong>${layer.bytes*layer.count}</strong> B</td>
-  <td><button class="delete-layer" data-delete="${layer.id}" aria-label="${T[LANG].remove}">×</button></td>
+  <td><button class="delete-layer btn btn-ghost btn-sm" data-delete="${layer.id}" aria-label="${T[LANG].remove}">×</button></td>
  </tr>`).join("");
  body.querySelectorAll("select").forEach(select=>select.addEventListener("change",()=>{
   const id=Number(select.id.split("-").at(-1));
@@ -124,6 +124,8 @@ function inputModel(){
  };
 }
 function calculate(){
+ try {
+
  last=ENGINE.calculate(inputModel());
  renderResult(last);
  if(typeof window.nelTrack==="function"){
@@ -134,6 +136,8 @@ function calculate(){
    mss:last.advertisedMss
   });
  }
+
+ } finally { window.NELToolInputController?.sync?.(); }
 }
 function setText(id,value){$(id).textContent=value}
 function renderResult(r){
@@ -157,7 +161,7 @@ function renderResult(r){
 
  const card=$("summaryCard");
  card.className=`summary-card ${r.status}`;
- $("statusBadge").className=`status-badge ${r.status}`;
+ $("statusBadge").className=`status-badge status ${{healthy:"st-pass",warning:"st-marginal",failed:"st-fail",invalid:"st-fail"}[r.status]} ${r.status}`;
  $("statusBadge").textContent=T[LANG][r.status];
 
  const used=Math.max(0,Math.min(100,(r.totalLayerOverhead/Math.max(1,r.underlayMtu))*100));
@@ -257,6 +261,7 @@ function clearHistory(){
 ["underlayMtu","desiredInnerMtu","outerVlanTags","vlanMode","innerIp","ipExtraBytes","tcpOptionsBytes"].forEach(id=>$(id).addEventListener("input",()=>{clearTimeout(window.__mtuInput);window.__mtuInput=setTimeout(calculate,100)}));
 $("preset").addEventListener("change",loadPreset);
 $("addLayerBtn").addEventListener("click",()=>addLayer("custom",1,0));
+window.NELMtuCalculate=calculate;window.NELMtuReset=resetAll;
 $("calculateBtn").addEventListener("click",calculate);
 $("resetBtn").addEventListener("click",resetAll);
 $("copyBtn").addEventListener("click",copyResult);
@@ -271,3 +276,42 @@ resetAll();renderHistory();
 
 
 
+
+// Keep the existing calculation/modes/history; share only result lifecycle.
+window.NELToolInputController={calculate:calculate,calculateSelector:"#calculateBtn",managesValidation:true,isValid:()=>Boolean(last)&&last.errors.length===0,invalidate:()=>{last=null;},resultActions:"#copyBtn,#saveBtn,#csvBtn,#printBtn",resultValues:"#effectiveMtu,#totalOverhead,#recommendedMss,#actualTcpPayload,#udpPayload,#icmpPayload,#requiredUnderlay,#outerPacketLimit,#headroom,#fragmentationBytes,#currentFrame,#requiredFrame,#overheadPercent,#ipHeader,#tcpHeader,#windowsPing,#linuxPing",resultStatus:"#statusBadge",resultDetails:"#warningList,#breakdownBody,#stackDiagram",resultMeters:"#overheadBar,#mtuBar",validation:"",requiredInputs:"#underlayMtu,#desiredInnerMtu",inputControls:".nel-tool-input input,.nel-tool-input select,.nel-tool-input textarea"};
+/* 20261106-bw1-chrome */
+(()=>{try{
+  const $=id=>document.getElementById(id);
+  const syncFill=()=>{
+    [['fillMtu','effectiveMtu'],['fillOverhead','totalOverhead'],['fillMss','recommendedMss']].forEach(([fid,sid])=>{
+      const f=$(fid),s=$(sid); if(f&&s){ f.textContent=(s.textContent||'—').trim(); }
+    });
+  };
+  const doCalc=()=>{
+    try{
+      if(typeof window.NELMtuCalculate==='function') window.NELMtuCalculate();
+      else if(window.NELToolInputController&&typeof window.NELToolInputController.calculate==='function') window.NELToolInputController.calculate();
+    }catch(e){console.warn('mtu calc',e)}
+    syncFill();
+  };
+  const doReset=()=>{
+    try{ if(typeof window.NELMtuReset==='function') window.NELMtuReset(); }catch(e){console.warn('mtu reset',e)}
+    syncFill();
+  };
+  const obs=new MutationObserver(syncFill);
+  ['effectiveMtu','totalOverhead','recommendedMss'].forEach(id=>{const el=$(id); if(el) obs.observe(el,{childList:true,characterData:true,subtree:true});});
+  syncFill();
+  const bind=()=>{
+    const calc=$('calculateBtn'); const resetBtn=$('resetBtn');
+    if(calc && !calc.dataset.bw1eBound){
+      calc.dataset.bw1eBound='1'; calc.style.pointerEvents='auto'; calc.style.cursor='pointer'; calc.disabled=false;
+      calc.addEventListener('click',e=>{ e.preventDefault(); e.stopPropagation(); doCalc(); }, true);
+    }
+    if(resetBtn && !resetBtn.dataset.bw1eBound){
+      resetBtn.dataset.bw1eBound='1'; resetBtn.style.pointerEvents='auto'; resetBtn.style.cursor='pointer'; resetBtn.disabled=false;
+      resetBtn.addEventListener('click',e=>{ e.preventDefault(); e.stopPropagation(); doReset(); }, true);
+    }
+  };
+  bind(); document.addEventListener('DOMContentLoaded', bind); window.addEventListener('load', bind);
+  setTimeout(doCalc, 0);
+}catch(e){console.warn('mtu bw1',e)}})();

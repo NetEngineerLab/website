@@ -1,4 +1,9 @@
 (function(){"use strict";
+var nelCurrentValid=false;
+window.NELToolInputController={calculate:function(){calc();},managesValidation:true,isValid:function(){return nelCurrentValid;},invalidate:function(){nelCurrentValid=false;window.lastResult=null;},resultMeters:"#coverageBar",resultActions:"",resultValues:"#dailyLoad,#avgLoad,#netEff,#requiredPV,#modules,#stringing,#battery,#batteryAh,#generation,#annualGen,#coverage,#balance,#supplement,#savings,#payback,#co2,#diesel,#pvGap,#battGap,#extraLoad",resultDetails:"",validation:"#error",inputControls:".input-panel input,.input-panel select,.input-panel textarea"};
+
+
+
 const $=id=>document.getElementById(id),num=id=>Number($(id)?.value||0);
 const htmlLang=(document.documentElement.lang||"en").toLowerCase();
 const lang=htmlLang.startsWith("zh")?"zh":htmlLang.startsWith("es")?"es":"en";
@@ -9,16 +14,16 @@ const unit={
   es:{day:"kWh/día",yr:"kWh/año",lyr:"L/año",co2:"kgCO₂/año",pay:"años",min:"mín. "}
 }[lang];
 function collect(){let o={};document.querySelectorAll("[data-input]").forEach(e=>o[e.id]=e.type==="number"?Number(e.value):e.value);return o}
-function set(id,v){$(id).textContent=v}
-function calc(){
-  const r=window.NELSolarEngine.calculate(collect());
+function set(id,v){const el=$(id);if(!el)return; const raw=String(v); const m=raw.match(/^([+\-]?[\d.,]+)\s+(.+)$/); if(m){el.innerHTML="<span>"+m[1]+"</span><small>"+m[2]+"</small>";} else el.textContent=raw;}
+function calc(){try{
+  const r=window.NELSolarEngine.calculate(collect());nelCurrentValid=r.ok!==false;window.lastResult=r;
   if(!r.ok){$("error").hidden=false;$("result").hidden=true;return}
   $("error").hidden=true;$("result").hidden=false;
   set("dailyLoad",fmt(r.dailyLoad,2)+" "+unit.day);
   set("avgLoad",fmt(r.avgLoad,2)+" kW");
   set("netEff",fmt(r.netEff*100,1)+"%");
   set("requiredPV",fmt(r.requiredPV,2)+" kWp");
-  set("modules",r.installedModules+" × "+num("moduleW")+" W ("+unit.min+r.moduleCount+")");
+  $("modules").innerHTML="<span class=number-pair>"+r.installedModules+" × "+num("moduleW")+" W</span><span class=module-note>"+unit.min+r.moduleCount+"</span>";
   set("stringing",r.strings+" × "+r.modulesPerString);
   set("battery",fmt(r.batteryNominal,2)+" kWh");
   set("batteryAh",fmt(r.batteryAh,0)+" Ah @ "+num("systemVoltage")+" V");
@@ -35,8 +40,8 @@ function calc(){
   set("battGap",(r.battGap>0?"+":"")+fmt(r.battGap,2)+" kWh");
   set("extraLoad",fmt(r.surplusContinuousW,0)+" W");
   $("coverageBar").style.width=Math.min(100,r.coverage)+"%";
-}
-document.querySelectorAll("[data-input]").forEach(e=>e.addEventListener("input",calc));
-$("calculate").addEventListener("click",calc);
-calc();
-})();
+}finally{window.NELToolInputController.sync?.();}}
+function refresh(){calc();const e=$('calculate');e.classList.add('nel-refreshed');setTimeout(()=>e.classList.remove('nel-refreshed'),800)}
+document.querySelectorAll('[data-input]').forEach(e=>e.addEventListener('input',calc));
+$('calculate').addEventListener('click',refresh);
+$('reset').addEventListener('click',()=>{document.querySelectorAll('.input-panel input,.input-panel select,.input-panel textarea').forEach(e=>{if(e.tagName==='SELECT'){[...e.options].forEach(o=>o.selected=o.defaultSelected)}else e.value=e.defaultValue});refresh()});calc();})();

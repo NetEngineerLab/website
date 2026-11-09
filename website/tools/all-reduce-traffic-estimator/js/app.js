@@ -273,18 +273,39 @@ function readInputs(){
 
 function setText(id, value){
   const node = $(id);
-  if (node) node.textContent = value;
+  if (!node) return;
+  const host = node.closest("strong") || node.parentElement || node;
+  const raw = String(value);
+  const m = raw.match(/^([\d.,]+)\s+(.+)$/);
+  if (m) {
+    node.textContent = m[1];
+    // remove nested small injected by shell inside the number span
+    node.querySelectorAll("small").forEach(s=>s.remove());
+    let small = null;
+    for (const child of Array.from(host.children)) {
+      if (child.tagName === "SMALL") { small = child; break; }
+    }
+    if (!small) { small = document.createElement("small"); host.appendChild(small); }
+    small.textContent = m[2];
+  } else {
+    node.textContent = raw;
+    host.querySelectorAll(":scope > small").forEach(s=>s.remove());
+  }
 }
 
 function setStatus(status){
   const card = $("summaryCard");
   if (card) card.className = `summary-card ${status || "healthy"}`;
   const badge = $("healthBadge");
-  if (badge) badge.textContent = status ? text.status[status] : "—";
+  if (badge) {
+    badge.textContent = status ? text.status[status] : "—";
+    badge.className = "health-badge status " + ({healthy:"st-pass",warning:"st-marginal",failed:"st-fail"}[status] || "st-fail");
+  }
 }
 
 function clearResults(){
   lastResult = null;
+  ["copyBtn","saveBtn","printBtn"].forEach(id=>{if($(id))$(id).disabled=true;});
   for (const id of CONFIG.outputs) setText(id, "—");
   const badge = $("healthBadge");
   if (badge) badge.textContent = "—";
@@ -330,6 +351,8 @@ function displayValue(value){
 }
 
 function calculate(){
+  try {
+
   const values = readInputs();
   const result = engine.calculate(values);
   if (!result.ok){
@@ -340,6 +363,7 @@ function calculate(){
     $("validationMessage").textContent = custom || validationText(ids);
     return;
   }
+  ["copyBtn","saveBtn","printBtn"].forEach(id=>{if($(id))$(id).disabled=false;});
   markInvalid([]);
   $("validationMessage").textContent = "";
   const display = {};
@@ -349,6 +373,8 @@ function calculate(){
   for (const id of CONFIG.outputs) setText(id, display[id] ?? "—");
   if (CONFIG.hasStatus) setStatus(result.status);
   if (typeof window.nelTrack === "function") window.nelTrack(CONFIG.track, {status: result.status || "ok"});
+
+  } finally { window.NELToolInputController?.sync?.(); }
 }
 
 // Picking a preset fills the field; the field stays editable.
@@ -496,3 +522,8 @@ applyPresets();
 applyModes();
 calculate();
 renderHistory();
+
+// The shared shell owns result-only DOM clearing and action gates.
+window.NELToolInputController={calculate,managesValidation:true,isValid:()=>Boolean(lastResult),invalidate:()=>{lastResult=null;},allowStepMismatchInputs:"#linkGbps",resultActions:"#copyBtn,#saveBtn,#printBtn",resultValues:()=>CONFIG.outputs.map(id=>document.getElementById(id)).filter(Boolean),resultStatus:CONFIG.hasStatus?"#healthBadge":"",validation:"#validationMessage",inputControls:"#projectName,.fields input,.fields select,.fields textarea"};
+
+(function(){const b=document.getElementById("calculateBtn");if(!b)return;const label=b.innerHTML;let timer;b.addEventListener("click",()=>{clearTimeout(timer);b.setAttribute("aria-live","polite");b.textContent=document.documentElement.lang.startsWith("zh")?"已重新计算":document.documentElement.lang.startsWith("es")?"Recalculado":"Recalculated";timer=setTimeout(()=>b.innerHTML=label,1100);});})();

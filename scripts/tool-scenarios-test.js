@@ -3,6 +3,17 @@
 // Typical engineering scenarios: recompute every scenario with the tool engine and
 // compare it with docs/scenarios-fixtures.json, js/scenarios.js and the en/zh/es pages.
 const assert=require("assert");const fs=require("fs");const path=require("path");
+const dom=require("./lib/tool-v3-dom");
+// Legacy anchor spans now live inside the actual section/fold after V3 migration.
+function semanticBlock(root,id){
+ function visit(node,ancestors){
+  if(dom.attr(node,"id")===id)return [node,...ancestors.slice().reverse()].find(n=>["section","details"].includes(n.tag));
+  for(const child of node.children||[])if(typeof child!=="string"){
+   const found=visit(child,[...ancestors,node]);if(found)return found;
+  }
+ }
+ return visit(root,[]);
+}
 const ROOT=path.join(__dirname,"..","website","tools");
 const fx2=v=>Number(v).toFixed(2);const en1=v=>Number(v).toLocaleString("en-US",{maximumFractionDigits:1});
 const RUN={
@@ -29,17 +40,21 @@ for(const slug of Object.keys(RUN)){
  }
  for(const [lang,folder] of [["en",""],["zh","zh/"],["es","es/"]]){
   const html=fs.readFileSync(path.join(dir,folder,"index.html"),"utf8");
-  const block=(html.match(/<!-- NEL_SCENARIOS_START -->([\s\S]*?)<!-- NEL_SCENARIOS_END -->/)||[])[1];
+  const tree=dom.parse(html);
+  const scenarios=semanticBlock(tree,"scenarios");
+  const block=scenarios&&dom.render(scenarios);
   assert.ok(block,`${slug} ${lang}: scenarios block missing`);
   for(const f of fixtures){
    assert.ok(block.includes(`href="?scenario=${f.id}#calculator"`),`${slug} ${lang}: link ${f.id}`);
    const head=f.headline[lang].replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
    assert.ok(block.includes(head),`${slug} ${lang}: headline ${f.id}`);
   }
-  const std=(html.match(/<!-- NEL_STANDARDS_START -->([\s\S]*?)<!-- NEL_STANDARDS_END -->/)||[])[1];
+  const standards=semanticBlock(tree,"standards");
+  const std=standards&&dom.render(standards);
   assert.ok(std&&/<a href="https:\/\/(www\.itu\.int|www\.rfc-editor\.org|standards\.ieee\.org)\//.test(std),`${slug} ${lang}: standards block`);
-  const formula=html.search(/<section[^>]*id="methodology"|<section class="content nel-tool-supporting-section">/);
-  assert.ok(formula>=0&&html.indexOf("NEL_STANDARDS_START")>formula,`${slug} ${lang}: standards must follow the formula section`);
+  const formula=semanticBlock(tree,"methodology")||dom.all(tree,node=>node.tag==="section"&&dom.has(node,"content")&&dom.has(node,"nel-tool-supporting-section"))[0];
+  const ordered=dom.all(tree,()=>true);
+  assert.ok(formula&&standards&&ordered.indexOf(standards)>ordered.indexOf(formula),`${slug} ${lang}: standards must follow the formula section`);
   assert.ok(/src="(\.\.\/)?js\/scenarios\.js/.test(html),`${slug} ${lang}: loader script`);
  }
 }
@@ -53,7 +68,9 @@ for(const slug of Object.keys(RUN)){
 // Audit P3-21a/b: G.984.2 and 802.3 Clause 52 citations carry table numbers and are no longer UNVERIFIED.
 {
  const html=fs.readFileSync(path.join(ROOT,"fiber-loss/index.html"),"utf8");
- const std=html.match(/<!-- NEL_STANDARDS_START -->([\s\S]*?)<!-- NEL_STANDARDS_END -->/)[1];
+ const standards=semanticBlock(dom.parse(html),"standards");
+ assert.ok(standards,"fiber standards block missing");
+ const std=dom.render(standards);
  for(const needle of ["Table A.2","Table V.3","informative appendix","Table 52-12","Table 52-14"])assert.ok(std.includes(needle),"fiber standards: "+needle);
  assert.ok(!/UNVERIFIED/.test(std),"fiber standards should be verified");
 }

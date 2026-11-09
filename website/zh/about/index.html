@@ -30,13 +30,18 @@
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/about/">
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../assets/css/site-shell.css?v=989edb3b4d77">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=26fafcdcee42">
+<link rel="stylesheet" href="../../assets/css/site-pages-v2.css?v=20261105-v2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/site-doc.css?v=20261109-sitebw1">
 <script defer src="../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../assets/js/site.js?v=b563dd0297f5"></script>
-</head><body><!-- NEL_HEADER_START -->
+</head><body class="nel-site-v2"><!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
   <div class="site-shell-header-inner">
     <a class="site-shell-brand brand" href="../">
@@ -58,9 +63,21 @@
 </header>
 <!-- NEL_HEADER_END -->
 <script type="application/ld+json" data-nel-schema="about">{"@context":"https://schema.org","@graph":[{"@type":"AboutPage","@id":"https://netengineerlab.com/zh/about/#about","name":"关于 NetEngineerLab","url":"https://netengineerlab.com/zh/about/","description":"NetEngineerLab 面向通信与网络工程师，提供网络规划、工程计算、方案核查和维护诊断工具。计算在本机完成。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"},"author":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/","logo":{"@type":"ImageObject","url":"https://netengineerlab.com/zh/assets/images/logo.svg"}}},{"@type":"Organization","@id":"https://netengineerlab.com/#organization","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/","logo":{"@type":"ImageObject","url":"https://netengineerlab.com/zh/assets/images/logo.svg"},"description":"面向通信与网络工程师的浏览器计算器、指南和专题：IP 网络、光与 PON、容量与可靠性、通信电源与运维。"}]}</script>
-<main class="policy"><p class="eyebrow">NETENGINEERLAB</p><h1>关于 NetEngineerLab</h1>
-<p>NetEngineerLab 面向通信与网络工程师，提供<strong>网络规划</strong>、<strong>工程计算</strong>、<strong>方案核查</strong>和<strong>维护诊断</strong>工具。你填入的数值在浏览器里计算，不会上传。</p>
-<section class="nel-about-identity" aria-labelledby="about-experience">
+<main class="tool-shell" id="page">
+<div class="tool-head"><nav class="crumbs" aria-label="Breadcrumb"><a href="../">首页</a><span aria-hidden="true">/</span><span aria-current="page">关于 NetEngineerLab</span></nav><p class="tool-page-label" role="heading" aria-level="1">关于 NetEngineerLab</p><p class="tool-lede">NetEngineerLab 面向通信与网络工程师，提供<strong>网络规划</strong>、<strong>工程计算</strong>、<strong>方案核查</strong>和<strong>维护诊断</strong>工具。你填入的数值在浏览器里计算，不会上传。</p></div>
+<div class="below">
+<nav class="toc" aria-label="本页导航"><h4>本页导航</h4>
+<a href="#part-1">经验与专业方向</a>
+<a href="#part-2">审核分工</a>
+<a href="#part-3">免责说明</a>
+<a href="#part-4">站上有什么</a>
+<a href="#part-5">计算器怎么做出来</a>
+<a href="#part-6">隐私</a>
+<a href="#part-7">联系</a>
+<a href="#part-8">接着看</a>
+</nav>
+<div class="prose">
+<section id="part-1" class="nel-about-identity doc-card" aria-labelledby="about-experience">
 <h2 id="about-experience">经验与专业方向</h2>
 <p>核心团队成员拥有<strong>30 年通信行业从业经验</strong>，长期从事通信工程、通信技术与通信网络运营管理工作，具备跨专业网络分析和工程实践经验。</p>
 <p>本页不列出具体个人姓名，也不宣称学历、职业资格认证或雇主隶属关系。</p>
@@ -74,7 +91,7 @@
 <li>云 / 自动化 / 工程工具开发</li>
 </ul>
 </section>
-<section class="nel-about-identity" aria-labelledby="about-review">
+<section id="part-2" class="nel-about-identity doc-card" aria-labelledby="about-review">
 <h2 id="about-review">审核分工</h2>
 <p>计算器与指南上线前，复核覆盖以下职责：</p>
 <ul>
@@ -87,18 +104,29 @@
 </ul>
 <p>每项工具应在页面上明确<strong>假设</strong>、<strong>适用范围</strong>和<strong>结果限制</strong>。</p>
 </section>
+<section class="doc-card" id="part-3">
 <h2>免责说明</h2>
 <p>计算结果用于规划、比较、方案复核和故障分析，<strong>不能替代</strong>厂家参数、现场测试、正式设计文件或验收测试。</p>
+</section>
+<section class="doc-card" id="part-4">
 <h2>站上有什么</h2>
 <p><a href="../../tools/zh/">工具目录</a>目前列出 <span data-tool-count>46</span> 个计算器，按工作内容分组：光链路、PON 规划、维护与 OTDR、IP 与交换、通信和数据中心电源、无线链路、传输，以及运维。三组计算器入口把相关工具收在一起：<a href="../../tools/pon-fiber-calculators/zh/">PON 与光纤</a>、<a href="../../tools/switching-bandwidth-calculators/zh/">交换与带宽</a>、<a href="../../tools/datacenter-power-calculators/zh/">数据中心电源与制冷</a>。</p>
 <p>较长的说明在<a href="../guides/">工程指南</a>中心。专题把一个问题和对应的指南、计算器连起来，目前包括交换机超售、PON 光网络、数据中心容量、制冷容量、通信电源、摄像头带宽与 PoE，以及网络监控。</p>
+</section>
+<section class="doc-card" id="part-5">
 <h2>计算器怎么做出来</h2>
 <p>每个工具页说明这一页的算法、假设和限制。用到公式时，公式和单位写在该页上。某一页引用了标准时，引用就写在该页上。页面没有引用标准，就不表示它遵循一份未写明的标准。</p>
 <p>工具如果提供历史记录，记录保存在浏览器本地。做过内容复核的页面会写明复核日期，常见形式是结构化的「内容复核」区块。</p>
+</section>
+<section class="doc-card" id="part-6">
 <h2>隐私</h2>
 <p>不使用 Cookie 也能打开必要页面。可选分析只在你同意之后加载，可以在<a href="../privacy/">隐私政策</a>里撤回选择。做一次计算，并不会把输入发给 NetEngineerLab。</p>
+</section>
+<section class="doc-card" id="part-7">
 <h2>联系</h2>
 <p>问题、勘误和合作请看<a href="../contact/">联系页</a>。该页公布的邮箱是 <a href="mailto:netengineerlab@outlook.com">netengineerlab@outlook.com</a>。</p>
+</section>
+<section class="doc-card" id="part-8">
 <h2>接着看</h2>
 <ul class="about-links">
 <li><a href="../../tools/zh/">全部工具</a></li>
@@ -107,6 +135,9 @@
 <li><a href="../privacy/">隐私政策</a></li>
 <li><a href="../contact/">联系</a></li>
 </ul>
+</section>
+</div>
+</div>
 </main>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">

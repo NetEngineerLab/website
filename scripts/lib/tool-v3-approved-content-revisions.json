@@ -1,0 +1,88 @@
+{
+  "scope": "Explicit user/root approved 2026-11-03 same-tool multilingual content evolution. FAQ exceptions only for listed locales; non-FAQ scripts/controls/hooks remain byte-preserved.",
+  "faqLocales": [
+    "bandwidth-calculator/es",
+    "fiber-loss/es",
+    "pon-splitter-loss/es",
+    "pue-data-center-energy-efficiency/es",
+    "subnet-calculator/es",
+    "poe-power-budget-calculator/es",
+    "vlan-ip-capacity-planner/es",
+    "wireless-link-budget-calculator/es",
+    "ups-capacity-battery-runtime-calculator/es",
+    "ups-capacity-battery-runtime-calculator/zh",
+    "wireless-link-budget-calculator/zh",
+    "switch-uplink-oversubscription-calculator/es"
+  ],
+  "proseErrata": [
+    {
+      "route": "ups-capacity-battery-runtime-calculator/en",
+      "before": "Example: 60 kW at PF 0.9 is 66.7 kVA; with 25% headroom the design is 83.3 kVA, so three 40 kVA modules provide N+1. A 384 V, 100 Ah, two-string bank at 80% DOD, 92% efficiency and 80% aging factor yields about 45.2 kWh before load-dependent discharge effects.",
+      "after": "Example: 60 kW at PF 0.9 is 66.7 kVA; with 25% headroom the design is 83.3 kVA, so four 40 kVA modules provide N+1. A 384 V, 100 Ah, two-string bank at 80% DOD, 92% efficiency and 80% aging factor yields about 45.2 kWh before load-dependent discharge effects."
+    },
+    {
+      "route": "ups-capacity-battery-runtime-calculator/zh",
+      "before": "例如，60 kW 负载在功率因数 0.9 时为 66.7 kVA；增加 25% 余量后为 83.3 kVA，因此三个 40 kVA 模块可提供 N+1。384 V、100 Ah、两组并联的电池，在 DOD 80%、效率 92%、老化系数 80% 时，计入负载相关放电影响之前的可用能量约为 45.2 kWh。",
+      "after": "例如，60 kW 负载在功率因数 0.9 时为 66.7 kVA；增加 25% 余量后为 83.3 kVA，因此四个 40 kVA 模块可提供 N+1。384 V、100 Ah、两组并联的电池，在 DOD 80%、效率 92%、老化系数 80% 时，计入负载相关放电影响之前的可用能量约为 45.2 kWh。"
+    },
+    {
+      "route": "ups-capacity-battery-runtime-calculator/es",
+      "before": "Ejemplo: 60 kW con un factor de potencia de 0,9 equivalen a 66,7 kVA; con un 25 % de margen, el diseño requiere 83,3 kVA, por lo que tres módulos de 40 kVA proporcionan N+1. Un banco de 384 V y 100 Ah, con dos cadenas, DOD del 80 %, eficiencia del 92 % y factor de envejecimiento del 80 %, ofrece unos 45,2 kWh antes de considerar los efectos de descarga dependientes de la carga.",
+      "after": "Ejemplo: 60 kW con un factor de potencia de 0,9 equivalen a 66,7 kVA; con un 25 % de margen, el diseño requiere 83,3 kVA, por lo que cuatro módulos de 40 kVA proporcionan N+1. Un banco de 384 V y 100 Ah, con dos cadenas, DOD del 80 %, eficiencia del 92 % y factor de envejecimiento del 80 %, ofrece unos 45,2 kWh antes de considerar los efectos de descarga dependientes de la carga."
+    },
+    {
+      "route": "data-center-network-convergence-fabric-capacity-planner/es",
+      "before": "No válidoed middle-layer nodes",
+      "after": "Nodos intermedios averiados",
+      "scope": "Correct broken mixed-language ES field label; machine field/constraints unchanged."
+    },
+    {
+      "route": "ip-camera-network-planner/en",
+      "before": "Base bitrate comes from the resolution and codec tier, then scales linearly with frame rate. Total bandwidth adds 20% for protocol and burst headroom. Raw NVR capacity uses Mbps × days × 0.0108 to get decimal gigabytes, then terabytes. Recommended usable capacity keeps another 15%. The uplink is twice the total bandwidth, rounded up to 1/10/25/40/100G.",
+      "after": "Base bitrate comes from the resolution and codec tier, then scales linearly with frame rate. Total bandwidth adds 20% for protocol and burst headroom. Raw NVR capacity uses Mbps × days × 0.0108 to get decimal terabytes (TB). Recommended usable capacity keeps another 15%. The uplink is twice the total bandwidth, rounded up to 1/10/25/40/100G.",
+      "scope": "Previously authorized storage-unit method GB→TB display correction, 20%/15% assumptions retained."
+    },
+    {
+      "route": "ip-camera-network-planner/zh",
+      "before": "基础码率按分辨率与编码档位估算，再按帧率线性缩放；总带宽增加 20% 协议与突发余量。NVR 原始容量使用 Mbps × 天数 × 0.0108 得到十进制 GB，再换算为 TB；建议可用容量额外预留 15%。上联按总带宽的 2 倍取整到 1/10/25/40/100G 档位。",
+      "after": "基础码率按分辨率与编码档位估算，再按帧率线性缩放；总带宽增加 20% 协议与突发余量。NVR 原始容量使用 Mbps × 天数 × 0.0108 得到十进制 TB；建议可用容量额外预留 15%。上联按总带宽的 2 倍取整到 1/10/25/40/100G 档位。",
+      "scope": "Previously authorized storage-unit method GB→TB display correction, 20%/15% assumptions retained."
+    },
+    {
+      "route": "onu-rx-power/es",
+      "before": "Recent diagnosis records",
+      "after": "Registros de diagnóstico recientes",
+      "reason": "User 2026-11-04 approved faithful same-tool native ES human UI translation; exact context, machine attrs unchanged"
+    },
+    {
+      "route": "otdr-event/es",
+      "before": "Secondary attenuation",
+      "after": "Atenuación secundaria",
+      "reason": "User 2026-11-04 approved faithful same-tool native ES human UI translation; exact context, machine attrs unchanged"
+    },
+    {
+      "route": "otdr-event/es",
+      "before": "Very strong reflection",
+      "after": "Reflexión muy fuerte",
+      "reason": "User 2026-11-04 approved faithful same-tool native ES human UI translation; exact context, machine attrs unchanged"
+    },
+    {
+      "route": "otdr-event/es",
+      "before": "Non-reflective events",
+      "after": "Eventos no reflectivos",
+      "reason": "User 2026-11-04 approved faithful same-tool native ES human UI translation; exact context, machine attrs unchanged"
+    },
+    {
+      "route": "switch-uplink-oversubscription-calculator/es",
+      "before": "Protocol / burst allowance",
+      "after": "Reserva de protocolo / ráfagas",
+      "reason": "User 2026-11-04 approved faithful same-tool native ES human UI translation; exact context, machine attrs unchanged"
+    },
+    {
+      "route": "wifi-coverage-capacity-planner/es",
+      "before": "Channel width20 MHz40 MHz80 MHz160 MHz320 MHz",
+      "after": "Ancho de canal20 MHz40 MHz80 MHz160 MHz320 MHz",
+      "reason": "User 2026-11-04 approved faithful same-tool native ES human UI translation; exact context, machine attrs unchanged"
+    }
+  ]
+}

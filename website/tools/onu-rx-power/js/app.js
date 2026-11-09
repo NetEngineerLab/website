@@ -63,6 +63,8 @@ function applyPreset(){
 }
 function setMode(mode){
  document.querySelectorAll(".mode-tab").forEach(b=>{const active=b.dataset.mode===mode;b.classList.toggle("active",active);b.setAttribute("aria-selected",String(active))});
+ $("modelFields").hidden=mode==="measured";
+ $("modelResults").hidden=mode==="measured";
  $("modelFields").classList.toggle("hidden",mode==="measured");
  $("modelResults").classList.toggle("hidden",mode==="measured");
  $("modeHint").textContent=mode==="measured"
@@ -72,6 +74,8 @@ function setMode(mode){
 }
 function currentMode(){return document.querySelector(".mode-tab.active")?.dataset.mode||"model"}
 function calculate(){
+ try {
+
  const v={
   project:$("projectName").value.trim()||"Untitled",mode:currentMode(),measured:n("measuredRx"),sens:n("rxSensitivity"),over:n("rxOverload"),noSignal:n("noSignalThreshold"),warning:n("warningMargin"),
   tx:n("txPower"),distance:n("distance"),attenuation:n("attenuation"),spliceCount:n("spliceCount"),spliceLoss:n("spliceLoss"),connectorCount:n("connectorCount"),connectorLoss:n("connectorLoss"),
@@ -88,7 +92,7 @@ function calculate(){
  }else{
   ["expectedRx","deviation","inferredExtra","modeledLoss","fiberLoss","spliceTotal","connectorTotal","splitterLoss","splitRatio"].forEach(id=>$(id).textContent="—");
  }
- const summary=$("summaryCard"),diag=$("diagnosis"),badge=$("healthBadge");summary.className="summary-card "+status;diag.className="diagnosis diagnosis-box "+status;badge.textContent=T[LANG][status];
+ const summary=$("summaryCard"),diag=$("diagnosis"),badge=$("healthBadge");summary.className="summary-card "+status;diag.className="diagnosis diagnosis-box "+status;badge.textContent=T[LANG][status];badge.className="health-badge status "+({healthy:"st-pass",warning:"st-marginal",failed:"st-fail"}[status]||"st-fail");
  $("diagnosisText").textContent=T[LANG][status+"Text"];
  const causeKey={healthy:"causesHealthy",warning:"causesWarning",failed:"causesFailed",overload:"causesOverload",nosignal:"causesNoSignal"}[status];
  const causes=T[LANG][causeKey]||[];
@@ -98,6 +102,8 @@ function calculate(){
  $("modelResults").classList.toggle("hidden",v.mode==="measured");
  ["copyBtn","saveBtn","csvBtn","printBtn"].forEach(id=>$(id).disabled=false);
  if(typeof nelTrack==="function")nelTrack("onu_rx_diagnosis",{status,mode:v.mode,measured_rx:Number(v.measured.toFixed(2)),split_ratio:ratio});
+
+ } finally { window.NELToolInputController?.sync?.(); }
 }
 function reset(){
  $("preset").value="gpon-b";$("projectName").value="ONU Optical Power Check";$("measuredRx").value=-18;$("rxSensitivity").value=-27;$("rxOverload").value=-8;$("noSignalThreshold").value=-40;$("warningMargin").value=3;
@@ -123,5 +129,29 @@ function csv(){
 }
 ["projectName","measuredRx","rxSensitivity","rxOverload","noSignalThreshold","warningMargin","txPower","distance","attenuation","spliceCount","spliceLoss","connectorCount","connectorLoss","splitter1","splitter2","otherLoss"].forEach(id=>$(id).addEventListener("input",()=>{invalidate();clearTimeout(window.__onu);window.__onu=setTimeout(calculate,160)}));
 $("wavelength").addEventListener("change",()=>{setAttenuation();calculate()});$("preset").addEventListener("change",applyPreset);document.querySelectorAll(".mode-tab").forEach(b=>b.addEventListener("click",()=>setMode(b.dataset.mode)));
+window.NELOnuCalculate=calculate;window.NELOnuReset=reset;
 $("calculateBtn").addEventListener("click",calculate);$("resetBtn").addEventListener("click",reset);$("copyBtn").addEventListener("click",copyResult);$("saveBtn").addEventListener("click",save);$("csvBtn").addEventListener("click",csv);$("printBtn").addEventListener("click",()=>print());$("clearHistoryBtn").addEventListener("click",clearHistory);
 setAttenuation();calculate();renderHistory();
+
+// Reuse the domain validation/history; the shell owns result-only DOM gates.
+window.NELToolInputController={calculate:calculate,calculateSelector:"#calculateBtn",managesValidation:true,isValid:()=>Boolean(last),invalidate:()=>{invalidate();},resultActions:"#copyBtn,#saveBtn,#csvBtn,#exportBtn,#jsonBtn,#printBtn",resultValues:"#measuredResult,#sensitivityMargin,#overloadMargin,#receiverWindow,#expectedRx,#deviation,#inferredExtra,#modeledLoss,#fiberLoss,#spliceTotal,#connectorTotal,#splitterLoss,#splitRatio,#gaugePower",resultStatus:"#healthBadge",resultDetails:"",resultMeters:"",validation:"#validation",get validationInputs(){return currentMode()==="model"?"#modelFields input,#modelFields select,#modelFields textarea":"";},inputControls:".nel-tool-input input,.nel-tool-input select,.nel-tool-input textarea"};
+/* 20261106-bw1-chrome */
+(()=>{try{
+  const $=id=>document.getElementById(id);
+  const syncFill=()=>{
+    [['fillMeasured','measuredResult'],['fillSens','sensitivityMargin'],['fillExpected','expectedRx']].forEach(([a,b])=>{
+      const x=$(a),y=$(b); if(x&&y) x.textContent=(y.textContent||'—').trim();
+    });
+  };
+  const doCalc=()=>{ try{ (window.NELOnuCalculate||window.NELToolInputController?.calculate)?.(); }catch(e){console.warn(e);} syncFill(); };
+  const doReset=()=>{ try{ window.NELOnuReset?.(); }catch(e){console.warn(e);} syncFill(); };
+  const obs=new MutationObserver(syncFill);
+  ['measuredResult','sensitivityMargin','expectedRx'].forEach(id=>{const el=$(id); if(el) obs.observe(el,{childList:true,characterData:true,subtree:true});});
+  syncFill();
+  const bind=()=>{
+    const c=$('calculateBtn'), r=$('resetBtn');
+    if(c&&!c.dataset.bw1eBound){ c.dataset.bw1eBound='1'; c.style.pointerEvents='auto'; c.style.cursor='pointer'; c.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();doCalc();},true); }
+    if(r&&!r.dataset.bw1eBound){ r.dataset.bw1eBound='1'; r.style.pointerEvents='auto'; r.style.cursor='pointer'; r.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();doReset();},true); }
+  };
+  bind(); document.addEventListener('DOMContentLoaded', bind); window.addEventListener('load', bind); setTimeout(doCalc,0);
+}catch(e){console.warn('onu bw1',e)}})();

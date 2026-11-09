@@ -1,2 +1,164 @@
-.mtu-deep-workflow{margin-top:24px}.mtu-deep-workflow .deep-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}.mtu-deep-workflow .deep-version{font:600 12px/1.2 ui-monospace,monospace;color:#176ff2;background:#edf5ff;border:1px solid #cfe2ff;border-radius:999px;padding:7px 10px;white-space:nowrap}.mtu-deep-workflow .deep-actions{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}.mtu-deep-workflow .deep-actions button{border:1px solid #b8d2f5;background:#fff;color:#0b4d8f;border-radius:10px;padding:10px 13px;font-weight:700;cursor:pointer}.mtu-deep-workflow .deep-actions button:first-child{background:#176ff2;color:#fff;border-color:#176ff2}.mtu-deep-workflow .deep-feedback{min-height:1.3em;color:#176ff2;font-size:13px}.mtu-deep-workflow .deep-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(260px,1fr);gap:18px}.mtu-deep-workflow .table-wrap{overflow:auto}.mtu-deep-workflow .deep-table{width:100%;border-collapse:collapse}.mtu-deep-workflow .deep-table th,.mtu-deep-workflow .deep-table td{padding:12px 10px;border-bottom:1px solid #e5edf8;text-align:left;white-space:nowrap}.mtu-deep-workflow .deep-table th{font-size:12px;color:#58708c;text-transform:uppercase;letter-spacing:.04em}.risk-chip{display:inline-block;border-radius:999px;padding:3px 8px;font:700 11px ui-monospace,monospace}.risk-chip.p0{color:#a51f26;background:#ffe7e8}.risk-chip.p1{color:#8a5a00;background:#fff2cc}.risk-chip.p2{color:#14653c;background:#e3f6eb}.before-after{border:1px solid #dce8f6;border-radius:14px;padding:16px;background:#f8fbff}.before-after h3{margin:0 0 10px;font-size:14px}.ba-row{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #e4edf8}.ba-row strong{font-size:13px}.ba-arrow{text-align:center;color:#176ff2;font-size:22px;padding:3px}.before-after ul{padding-left:20px;margin:0;color:#49627e;font-size:13px;line-height:1.65}@media(max-width:760px){.mtu-deep-workflow .deep-head{display:block}.mtu-deep-workflow .deep-version{display:inline-block;margin-top:10px}.mtu-deep-workflow .deep-grid{grid-template-columns:1fr}}
-@media print{.mtu-deep-workflow .deep-actions{display:none}.mtu-deep-workflow{break-inside:avoid}}
+/* MTU deep-workflow — scoped; sit inside .below > .prose like accepted supporting sections */
+.below > .prose > .mtu-deep-workflow,
+.prose > .mtu-deep-workflow,
+.mtu-deep-workflow{
+  display:block;
+  width:100%;
+  max-width:100%;
+  box-sizing:border-box;
+  margin:18px 0 8px;
+  padding:18px 18px 16px;
+  border:1px solid #d7e3f1;
+  border-radius:14px;
+  background:#fff;
+  box-shadow:0 1px 0 rgba(15,23,42,.03);
+}
+.mtu-deep-workflow .deep-head{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  align-items:flex-start;
+}
+.mtu-deep-workflow .deep-head h2{
+  margin:4px 0 8px;
+  font:700 22px/1.3 var(--sans, system-ui, sans-serif);
+  color:#0f172a;
+}
+.mtu-deep-workflow .deep-head p{
+  margin:0;
+  color:#49627e;
+  font:400 14px/1.6 var(--sans, system-ui, sans-serif);
+  max-width:62ch;
+}
+.mtu-deep-workflow .eyebrow{
+  margin:0;
+  color:#667d92;
+  font:700 11px/1.2 var(--sans, system-ui, sans-serif);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.mtu-deep-workflow .deep-version{
+  flex:0 0 auto;
+  font:600 12px/1.2 ui-monospace,monospace;
+  color:#176ff2;
+  background:#edf5ff;
+  border:1px solid #cfe2ff;
+  border-radius:999px;
+  padding:7px 10px;
+  white-space:nowrap;
+}
+.mtu-deep-workflow .deep-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:14px 0 8px;
+}
+.mtu-deep-workflow .deep-actions button{
+  border:1px solid #b8d2f5;
+  background:#fff;
+  color:#0b4d8f;
+  border-radius:10px;
+  padding:10px 13px;
+  font:650 13px/1.2 var(--sans, system-ui, sans-serif);
+  cursor:pointer;
+}
+.mtu-deep-workflow .deep-actions button:first-child{
+  background:#176ff2;
+  color:#fff;
+  border-color:#176ff2;
+}
+.mtu-deep-workflow .deep-feedback{
+  min-height:1.3em;
+  color:#176ff2;
+  font-size:13px;
+  margin:0 0 10px;
+}
+/* Single-column stack inside prose width: table then before/after */
+.mtu-deep-workflow .deep-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:14px;
+}
+.mtu-deep-workflow .table-wrap{
+  overflow:auto;
+  border:1px solid #e5edf8;
+  border-radius:12px;
+  background:#fbfdff;
+}
+.mtu-deep-workflow .deep-table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:520px;
+}
+.mtu-deep-workflow .deep-table th,
+.mtu-deep-workflow .deep-table td{
+  padding:11px 12px;
+  border-bottom:1px solid #e5edf8;
+  text-align:left;
+  white-space:nowrap;
+  font-size:13px;
+}
+.mtu-deep-workflow .deep-table th{
+  font-size:12px;
+  color:#58708c;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  background:#f3f7fc;
+}
+.mtu-deep-workflow .deep-table tr:last-child td{border-bottom:0}
+.risk-chip{
+  display:inline-block;
+  border-radius:999px;
+  padding:3px 8px;
+  font:700 11px ui-monospace,monospace;
+}
+.risk-chip.p0{color:#a51f26;background:#ffe7e8}
+.risk-chip.p1{color:#8a5a00;background:#fff2cc}
+.risk-chip.p2{color:#14653c;background:#e3f6eb}
+.mtu-deep-workflow .before-after{
+  border:1px solid #dce8f6;
+  border-radius:12px;
+  padding:14px 16px;
+  background:#f8fbff;
+}
+.mtu-deep-workflow .before-after h3{
+  margin:0 0 10px;
+  font:700 14px/1.3 var(--sans, system-ui, sans-serif);
+  color:#13233e;
+}
+.mtu-deep-workflow .ba-row{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:10px 0;
+  border-bottom:1px solid #e4edf8;
+  font-size:13px;
+}
+.mtu-deep-workflow .ba-row strong{font-size:13px;font-weight:650;color:#0f172a}
+.mtu-deep-workflow .ba-arrow{text-align:center;color:#176ff2;font-size:20px;padding:2px}
+.mtu-deep-workflow .before-after ul{
+  padding-left:18px;
+  margin:0;
+  color:#49627e;
+  font-size:13px;
+  line-height:1.65;
+}
+@media (min-width:900px){
+  /* On wide prose, keep table | compare as a calm 2-col inside the prose card */
+  .mtu-deep-workflow .deep-grid{
+    grid-template-columns:minmax(0,1.55fr) minmax(220px,1fr);
+    gap:16px;
+    align-items:start;
+  }
+}
+@media (max-width:760px){
+  .mtu-deep-workflow{padding:14px}
+  .mtu-deep-workflow .deep-head{display:block}
+  .mtu-deep-workflow .deep-version{display:inline-block;margin-top:10px}
+  .mtu-deep-workflow .deep-grid{grid-template-columns:1fr}
+  .mtu-deep-workflow .deep-table{min-width:0}
+}
+@media print{
+  .mtu-deep-workflow .deep-actions{display:none}
+  .mtu-deep-workflow{break-inside:avoid}
+}

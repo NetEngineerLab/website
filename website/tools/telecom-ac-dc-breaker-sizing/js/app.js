@@ -1,5 +1,10 @@
 (function(){"use strict";
-function nelInputError(ok){const l=(document.documentElement.lang||"en").toLowerCase();const msg=l.startsWith("zh")?"请检查输入：数值不能为负，必填负载与容量必须大于 0。":l.startsWith("es")?"Revise las entradas: los valores no pueden ser negativos y las cargas y capacidades obligatorias deben ser mayores que cero.":"Check the inputs: values cannot be negative, and required loads and capacities must be greater than zero.";let el=document.getElementById("nelInputError");if(ok){if(el)el.hidden=true;return;}if(!el){el=document.createElement("p");el.id="nelInputError";el.className="nel-input-error";el.setAttribute("role","alert");el.style.cssText="color:#b42318;font-weight:700;background:#fdecec;border:1px solid #f4c7c3;border-radius:10px;padding:10px 12px;margin:10px 0";const anchor=document.getElementById("calculate");if(anchor&&anchor.parentNode)anchor.parentNode.insertBefore(el,anchor);else(document.querySelector("main")||document.body).prepend(el);}el.textContent=msg;el.hidden=false;}
+var nelCurrentValid=false;
+window.NELToolInputController={calculate:function(){run();},managesValidation:true,isValid:function(){return nelCurrentValid;},invalidate:function(){nelCurrentValid=false;window.lastResult=null;},resultActions:"#downloadJson,#downloadCsv",resultValues:"#acbase,#acdesign,#breaker,#kva,#dcd,#dcb",resultDetails:"#engineeringExtras",validation:"#warn",inputControls:".input-panel input,.input-panel select,.input-panel textarea"};
+
+
+
+function nelInputError(ok){const l=(document.documentElement.lang||"en").toLowerCase();const msg=l.startsWith("zh")?"请检查输入：数值不能为负，必填负载与容量必须大于 0。":l.startsWith("es")?"Revise las entradas: los valores no pueden ser negativos y las cargas y capacidades obligatorias deben ser mayores que cero.":"Check the inputs: values cannot be negative, and required loads and capacities must be greater than zero.";let el=document.getElementById("nelInputError");if(ok){if(el)el.hidden=true;return;}if(!el){el=document.createElement("p");el.id="nelInputError";el.className="nel-input-error";el.setAttribute("role","alert");el.style.cssText="color:#b42318;font-weight:700;background:#fdecec;border:1px solid #f4c7c3;border-radius:10px;padding:10px 12px;margin:10px 0";const anchor=document.getElementById("calculate");if(anchor&&anchor.parentNode)(anchor.closest(".input-actions")||anchor).parentNode.insertBefore(el,anchor.closest(".input-actions")||anchor);else(document.querySelector("main")||document.body).prepend(el);}el.textContent=msg;el.hidden=false;}
 
 const $=id=>document.getElementById(id), n=id=>Number($(id)?.value||0), fmt=(v,d=1)=>Number(v).toLocaleString(undefined,{maximumFractionDigits:d});
 const htmlLang=(document.documentElement.lang||"").toLowerCase();
@@ -66,7 +71,7 @@ const riskText={
   }
 };
 function level(value){return copy.levels[value]||copy.levels.low;}
-function collect(){const b={loadKW:n("loadKW"),acVoltage:n("acV"),phase:$("phase")?.value,powerFactor:n("pf"),efficiencyPct:n("eff"),headroomPct:n("head"),deratingPct:n("der"),dcVoltage:n("dcV"),dcLoadA:n("dcA"),dcHeadroomPct:n("dcHead"),growthPct:n("growthPct")||20,conservativePct:n("conservativePct")||35,ambientC:n("ambientC")||30,altitudeM:n("altitudeM"),conductorAmpacityA:n("conductorA"),conductorLengthM:n("lengthM"),conductorAreaMm2:n("areaMm2"),faultCurrentKA:n("faultKA"),breakerInterruptKA:n("interruptKA"),sourceUnits:n("sourceUnits")||1,unitRatingA:n("unitRatingA")||0};return {...b,before:b,after:{...b,growthPct:0,conservativePct:0,sourceUnits:Math.max(2,b.sourceUnits)}};}
+function collect(){const b={loadKW:n("loadKW"),acVoltage:n("acV"),phase:$("phase")?.value,powerFactor:n("pf"),efficiencyPct:n("eff"),headroomPct:n("head"),deratingPct:n("der"),dcVoltage:n("dcV"),dcLoadA:n("dcA"),dcHeadroomPct:n("dcHead"),growthPct:n("growthPct"),conservativePct:n("conservativePct"),ambientC:n("ambientC"),altitudeM:n("altitudeM"),conductorAmpacityA:n("conductorA"),conductorLengthM:n("lengthM"),conductorAreaMm2:n("areaMm2"),faultCurrentKA:n("faultKA"),breakerInterruptKA:n("interruptKA"),sourceUnits:n("sourceUnits")||1,unitRatingA:n("unitRatingA")||0};return {...b,before:b,after:{...b,growthPct:0,conservativePct:0,sourceUnits:Math.max(2,b.sourceUnits)}};}
 function download(name,text,type){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);}
 function riskLine(item){
   if(lang==="en")return `${level(item.severity)}: ${item.message}`;
@@ -81,11 +86,11 @@ function riskLine(item){
   const text=(riskText[lang]&&riskText[lang][item.code])||item.message;
   return `${level(item.severity)}: ${text}`;
 }
-function run(){
-  const r=window.NELACDCBreakerEngine.calculate(collect());
+function run(){try{
+  const r=window.NELACDCBreakerEngine.calculate(collect());nelCurrentValid=r.ok!==false;
   nelInputError(r.ok);
   if(!r.ok){["acbase","acdesign","breaker","kva","dcd","dcb"].forEach(id=>{if($(id))$(id).textContent="—";});if($("warn"))$("warn").textContent="";const extras=$("engineeringExtras");if(extras)extras.replaceChildren();return;}
-  [["acbase",r.baseA," A"],["acdesign",r.designA," A"],["breaker",r.suggestedBreakerA," A"],["kva",r.apparentKVA," kVA"],["dcd",r.dcDesignA," A"],["dcb",r.suggestedDCBreakerA||"—",r.suggestedDCBreakerA?" A":""]].forEach(([id,v,u])=>{if($(id))$(id).textContent=(typeof v==="number"?fmt(v):v)+u;});
+  [["acbase",r.baseA,"A"],["acdesign",r.designA,"A"],["breaker",r.suggestedBreakerA,"A"],["kva",r.apparentKVA,"kVA"],["dcd",r.dcDesignA,"A"],["dcb",r.suggestedDCBreakerA||"—",r.suggestedDCBreakerA?"A":""]].forEach(([id,v,u])=>{const el=$(id); if(!el)return; const val=(typeof v==="number"?fmt(v):v); if(u){el.innerHTML="<span>"+val+"</span><small>"+u+"</small>";} else el.textContent=val;});
   if($("warn")){
     const lines=(r.risks||[]).map(riskLine);
     $("warn").replaceChildren();
@@ -98,11 +103,14 @@ function run(){
   let box=$("engineeringExtras");
   if(!box){box=document.createElement("section");box.id="engineeringExtras";box.className="content-section";document.querySelector(".result-panel")?.appendChild(box);}
   const riskValue=r.riskLevel||r.summary?.riskLevel;
-  box.innerHTML=`<h2>${copy.gates}</h2><p>${copy.risk}: <strong>${level(riskValue)}</strong>; N-1: <strong>${r.summary.n1Pass?copy.pass:copy.fail}</strong>; ${copy.conductor}: <strong>${r.scenarios.conservative.conductorPass?copy.pass:copy.fail}</strong>; ${copy.drop}: <strong>${fmt(r.scenarios.conservative.dropPct,2)}%</strong></p><p>${copy.before}: ${fmt(r.beforeAfter.before.designA,1)} A → ${fmt(r.beforeAfter.after.designA,1)} A</p><button type="button" id="downloadJson" class="btn">${copy.json}</button> <button type="button" id="downloadCsv" class="btn">${copy.csv}</button>`;
+  box.innerHTML=`<h2 class="ro-h">${copy.gates}</h2><p>${copy.risk}: <strong>${level(riskValue)}</strong>; N-1: <strong>${r.summary.n1Pass?copy.pass:copy.fail}</strong>; ${copy.conductor}: <strong>${r.scenarios.conservative.conductorPass?copy.pass:copy.fail}</strong>; ${copy.drop}: <strong>${fmt(r.scenarios.conservative.dropPct,2)}%</strong></p><p>${copy.before}: <span class="bw-value-pair">${fmt(r.beforeAfter.before.designA,1)} A</span> → <span class="bw-value-pair">${fmt(r.beforeAfter.after.designA,1)} A</span></p><button type="button" id="downloadJson" class="btn">${copy.json}</button> <button type="button" id="downloadCsv" class="btn">${copy.csv}</button>`;
+  const bar=document.createElement("div");bar.className="bw-extra-actions";box.append(bar);bar.append($("downloadJson"),$("downloadCsv"));
   $("downloadJson").onclick=()=>download("acdc-breaker-report.json",JSON.stringify(r,null,2),"application/json");
   $("downloadCsv").onclick=()=>download("acdc-breaker-check.csv",r.exportCSV(),"text/csv");
-}
-document.querySelectorAll("input,select").forEach(e=>e.addEventListener("input",run));
-$("calculate")?.addEventListener("click",run);
+}finally{window.NELToolInputController.sync?.();}}
+const bwInitialInputs=Object.fromEntries(Array.from(document.querySelectorAll(".input-panel input,.input-panel select")).map(e=>[e.id,{value:e.value,checked:e.checked,type:e.type}]));document.querySelectorAll("input,select").forEach(e=>e.addEventListener("input",run));
+$("calculate")?.addEventListener("click",run);document.getElementById("reset")?.addEventListener("click",()=>{Object.entries(bwInitialInputs).forEach(([id,d])=>{const e=$(id);if(e){e.value=d.value;if(d.type==="checkbox")e.checked=d.checked;}});run();});
 run();
 })();
+
+(function(){const b=document.getElementById("calculate");if(!b)return;const label=b.innerHTML;let timer;b.addEventListener("click",()=>{clearTimeout(timer);b.setAttribute("aria-live","polite");b.textContent=document.documentElement.lang.startsWith("zh")?"已重新计算":document.documentElement.lang.startsWith("es")?"Recalculado":"Recalculated";timer=setTimeout(()=>b.innerHTML=label,1100);});})();

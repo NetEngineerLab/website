@@ -27,7 +27,18 @@
   const csv = rows => '\uFEFF' + rows.map(r => r.map(v => `"${String(v ?? '').replace(/"/g,'""')}"`).join(',')).join('\n');
   const section = document.createElement('section'); section.id='nelDeepWorkflow'; section.className='content-section nel-tool-supporting-section mtu-deep-workflow';
   section.innerHTML = `<div class="deep-head"><div><p class="eyebrow">${es?'PUERTA DE INGENIERÍA':(zh?'门禁校核':'ENGINEERING GATE')}</p><h2>${text.title}</h2><p>${text.intro}</p></div><span class="deep-version">${es?'Modelo MTU v2.0':(zh?'MTU 模型 v2.0':'MTU model v2.0')}</span></div><div class="deep-actions"><button type="button" data-action="compare">${text.compare}</button><button type="button" data-action="report">${text.report}</button><button type="button" data-action="bom">${text.bom}</button><button type="button" data-action="print">${text.print}</button></div><p class="deep-feedback" role="status" aria-live="polite"></p><div class="deep-grid"><div class="table-wrap"><table class="deep-table"><thead><tr><th>${text.scenario}</th><th>${text.mtu}</th><th>${text.mss}</th><th>${text.risk}</th><th>${text.gate}</th></tr></thead><tbody data-scenarios></tbody></table></div><div class="before-after"><h3>${text.beforeAfter}</h3><div data-ba></div><h3>${text.action}</h3><ul data-actions></ul></div></div>`;
-  const main = document.querySelector('main'); if (main?.parentNode) main.parentNode.insertBefore(section, main.nextSibling); else document.body.appendChild(section);
+  const prose = document.querySelector('.below > .prose') || document.querySelector('.prose');
+  if (prose) {
+    const meth = prose.querySelector('#methodology, details#methodology');
+    const faq = prose.querySelector('#faq, .faq');
+    if (meth && meth.nextSibling) prose.insertBefore(section, meth.nextSibling);
+    else if (faq) prose.insertBefore(section, faq);
+    else prose.appendChild(section);
+  } else {
+    const main = document.querySelector('main');
+    if (main?.parentNode) main.parentNode.insertBefore(section, main.nextSibling);
+    else document.body.appendChild(section);
+  }
   const scenarioBody=section.querySelector('[data-scenarios]'), ba=section.querySelector('[data-ba]'), actions=section.querySelector('[data-actions]'), feedback=section.querySelector('.deep-feedback');
   const localizeAction = action => es ? ({
     'Set inner MTU to the effective path MTU':'Ajustar la MTU interna a la MTU efectiva de la ruta',

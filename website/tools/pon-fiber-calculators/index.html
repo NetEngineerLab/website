@@ -34,14 +34,20 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Which calculator should I open first?","acceptedAnswer":{"@type":"Answer","text":"Start with splitter loss when the PON ratio is still a choice, or with fiber loss when the route length and splice plan are the unknown. Power budget comes after both."}},{"@type":"Question","name":"Does fiber latency change the optical power budget?","acceptedAnswer":{"@type":"Answer","text":"No. Latency and loss are different limits. A link can pass the power budget and still miss a delay target, so calculate both when the route is long."}},{"@type":"Question","name":"When should I use OTDR instead of the loss calculator?","acceptedAnswer":{"@type":"Answer","text":"Use the loss calculator to predict a design. Use the OTDR event tool when you already have a trace and need to explain a splice, connector, bend or break."}},{"@type":"Question","name":"Where do ODF and ODN resources fit?","acceptedAnswer":{"@type":"Answer","text":"After the optical budget and split are acceptable. The resource planner turns that design into ports, trays and a planning bill of materials."}}]}</script>
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../assets/css/site-shell.css?v=989edb3b4d77">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=26fafcdcee42">
 <script defer src="../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../assets/js/site.js?v=b563dd0297f5"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=20261105-opb2">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=20261105-opb2">
+<link rel="stylesheet" href="css/style.css?v=20261108-hub-bw2">
 </head>
-<body>
+<body class="nel-tool-detail-page nel-tool-v3 v3">
 <!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
   <div class="site-shell-header-inner">
@@ -63,18 +69,33 @@
   </div>
 </header>
 <!-- NEL_HEADER_END -->
-<nav class="calculator-hub-breadcrumb" aria-label="Breadcrumb"><a href="../../">Home</a><span aria-hidden="true">/</span><a href="../">Tools</a><span aria-hidden="true">/</span><span aria-current="page">PON &amp; Fiber Calculators</span></nav>
-<main class="calculator-hub" id="main">
-<h1>PON &amp; Fiber Calculators</h1>
-<p class="lede">A PON or metro fiber design is a chain of decisions that only make sense together. Splitter ratio sets the loss floor, the cable route sets attenuation and delay, and the transceiver class decides whether the remaining budget is real. This hub collects the fiber and PON calculators already published on NetEngineerLab so you can walk that chain in one place. Start from the optical split, add fiber, splice and connector loss, then test the end-to-end power budget and the distance the class can still support. When the route is long enough for propagation to matter, estimate one-way delay and round-trip time, including route factor and equipment. If a field reading looks weak, compare it with the ONU receive-power check and the OTDR event list before you redesign the split. Optics choice, ODF and ODN resources, and dual OLT uplinks come last, once the optical numbers can become a build list. Each calculator keeps its own inputs and limits. Use this page to choose the next check.</p>
-<h2>Calculators in this hub</h2>
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb"><a href="../../">Home</a><span aria-hidden="true">/</span><a href="../">Tools</a><span aria-hidden="true">/</span><span aria-current="page">PON &amp; Fiber Calculators</span></nav>
+<main class="tool-shell nel-tool-main" id="hub">
+<div class="tool-head"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../">Home</a><span aria-hidden="true">/</span><a href="../">Tools</a><span aria-hidden="true">/</span><span aria-current="page">PON &amp; Fiber Calculators</span></nav><p class="tool-page-label" role="heading" aria-level="1">PON &amp; Fiber Calculators</p><p class="tool-lede">A PON or metro fiber design is a chain of decisions that only make sense together. Splitter ratio sets the loss floor, the cable route sets attenuation and delay, and the transceiver class decides whether the remaining budget is real. This hub collects the fiber and PON calculators already published on NetEngineerLab so you can walk that chain in one place. Start from the optical split, add fiber, splice and connector loss, then test the end-to-end power budget and the distance the class can still support. When the route is long enough for propagation to matter, estimate one-way delay and round-trip time, including route factor and equipment. If a field reading looks weak, compare it with the ONU receive-power check and the OTDR event list before you redesign the split. Optics choice, ODF and ODN resources, and dual OLT uplinks come last, once the optical numbers can become a build list. Each calculator keeps its own inputs and limits. Use this page to choose the next check.</p></div>
+<div class="below">
+<nav class="toc" aria-label="On this page"><h4>On this page</h4>
+<a href="#tools">Calculators in this hub</a>
+<a href="#workflow">Planning workflow</a>
+<a href="#faq">Frequently asked questions</a>
+<a href="#related">Related pages</a>
+</nav>
+<div class="prose">
+<section class="blk panel" id="tools"><h2>Calculators in this hub</h2>
 <div class="hub-card-grid"><a class="hub-tool-card" href="../pon-splitter-loss/"><strong>PON Splitter Loss Calculator</strong><span>Plan multi-stage splitting and calculate total ratio, insertion loss and effective reach.</span></a><a class="hub-tool-card" href="../fiber-loss/"><strong>Fiber Loss Calculator</strong><span>Calculate fiber, splice, connector, splitter and engineering losses for an optical link.</span></a><a class="hub-tool-card" href="../optical-power-budget/"><strong>Optical Power Budget Calculator</strong><span>Verify an optical link using transmit power, receiver sensitivity, optical penalty and ODN loss.</span></a><a class="hub-tool-card" href="../pon-distance/"><strong>PON Maximum Distance Calculator</strong><span>Calculate optical-budget reach, effective system reach and planned link margin.</span></a><a class="hub-tool-card" href="../fiber-latency-calculator/"><strong>Fiber Latency Calculator</strong><span>Calculate one-way and round-trip fiber latency from distance, group index, equipment and serialization delay.</span></a><a class="hub-tool-card" href="../onu-rx-power/"><strong>ONU RX Power Diagnosis</strong><span>Diagnose normal, weak-light, overload or possible no-signal conditions from measured power.</span></a><a class="hub-tool-card" href="../otdr-event/"><strong>OTDR Event Analyzer</strong><span>Analyze multiple events and dual wavelengths to identify splices, connectors, bends, breaks, ghosts and dead-zone effects.</span></a><a class="hub-tool-card" href="../sfp-qsfp-compatibility-calculator/"><strong>SFP &amp; QSFP Compatibility Checker</strong><span>Check SFP, SFP28, QSFP and QSFP28 speed, lanes, fiber, wavelength and optical link budget.</span></a><a class="hub-tool-card" href="../odf-odn-resource-planner/"><strong>ODF / ODN Fiber Resource &amp; Split Planning Planner</strong><span>Compare ODF/ODN resource plans and calculate PON ports, splitters, fibre cores, ODF capacity, gaps and a planning BOM.</span></a><a class="hub-tool-card" href="../olt-dual-uplink-transport-mse-planner/"><strong>OLT Dual-Uplink Capacity, Transport Channel &amp; MSE Port Planner</strong><span>Calculate OLT dual-uplink ports, transport channels, MSE ports and line cards, then verify single-side failure capacity and path diversity.</span></a></div>
-<h2>Planning workflow</h2>
+</section>
+<section class="blk panel" id="workflow"><h2>Planning workflow</h2>
 <p>Run the tools in this order when you are turning a route into an optical plan.</p>
 <ol class="hub-workflow"><li><a href="../pon-splitter-loss/">PON Splitter Loss Calculator</a></li><li><a href="../fiber-loss/">Fiber Loss Calculator</a></li><li><a href="../optical-power-budget/">Optical Power Budget Calculator</a></li><li><a href="../pon-distance/">PON Maximum Distance Calculator</a></li><li><a href="../fiber-latency-calculator/">Fiber Latency Calculator</a></li><li><a href="../onu-rx-power/">ONU RX Power Diagnosis</a></li><li><a href="../otdr-event/">OTDR Event Analyzer</a></li><li><a href="../sfp-qsfp-compatibility-calculator/">SFP &amp; QSFP Compatibility Checker</a></li><li><a href="../odf-odn-resource-planner/">ODF / ODN Fiber Resource &amp; Split Planning Planner</a></li><li><a href="../olt-dual-uplink-transport-mse-planner/">OLT Dual-Uplink Capacity, Transport Channel &amp; MSE Port Planner</a></li></ol>
-<h2>Frequently asked questions</h2>
-<div class="hub-faq"><details><summary>Which calculator should I open first?</summary><p>Start with splitter loss when the PON ratio is still a choice, or with fiber loss when the route length and splice plan are the unknown. Power budget comes after both.</p></details><details><summary>Does fiber latency change the optical power budget?</summary><p>No. Latency and loss are different limits. A link can pass the power budget and still miss a delay target, so calculate both when the route is long.</p></details><details><summary>When should I use OTDR instead of the loss calculator?</summary><p>Use the loss calculator to predict a design. Use the OTDR event tool when you already have a trace and need to explain a splice, connector, bend or break.</p></details><details><summary>Where do ODF and ODN resources fit?</summary><p>After the optical budget and split are acceptable. The resource planner turns that design into ports, trays and a planning bill of materials.</p></details></div>
+</section>
+<section class="blk" id="faq"><h2>Frequently asked questions</h2>
+<div class="hub-faq"><details class="fb-fold"><summary class="fb-fold-sum"><span class="fb-fold-title">Which calculator should I open first?</span></summary><div class="fb-fold-body"><p>Start with splitter loss when the PON ratio is still a choice, or with fiber loss when the route length and splice plan are the unknown. Power budget comes after both.</p></div></details><details class="fb-fold"><summary class="fb-fold-sum"><span class="fb-fold-title">Does fiber latency change the optical power budget?</span></summary><div class="fb-fold-body"><p>No. Latency and loss are different limits. A link can pass the power budget and still miss a delay target, so calculate both when the route is long.</p></div></details><details class="fb-fold"><summary class="fb-fold-sum"><span class="fb-fold-title">When should I use OTDR instead of the loss calculator?</span></summary><div class="fb-fold-body"><p>Use the loss calculator to predict a design. Use the OTDR event tool when you already have a trace and need to explain a splice, connector, bend or break.</p></div></details><details class="fb-fold"><summary class="fb-fold-sum"><span class="fb-fold-title">Where do ODF and ODN resources fit?</span></summary><div class="fb-fold-body"><p>After the optical budget and split are acceptable. The resource planner turns that design into ports, trays and a planning bill of materials.</p></div></details></div>
+</section>
+<section class="blk panel" id="related">
+<h2>Related pages</h2>
 <p class="hub-return" data-nel-cluster-link><a href="../../topics/pon-optical/">These calculators are the measurement checklist. For design method, loss budgets and field troubleshooting, continue in the PON optical topic.</a></p>
+</section>
+</div>
+</div>
 </main>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">

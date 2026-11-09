@@ -241,7 +241,10 @@ function setStatus(status){
   const card = $("summaryCard");
   if (card) card.className = `summary-card ${status || "healthy"}`;
   const badge = $("healthBadge");
-  if (badge) badge.textContent = status ? text.status[status] : "—";
+  if (badge) {
+    badge.textContent = status ? text.status[status] : "—";
+    badge.className = "health-badge status " + ({healthy:"st-pass",warning:"st-marginal",failed:"st-fail"}[status] || "st-fail");
+  }
 }
 
 function clearResults(){
@@ -291,6 +294,8 @@ function displayValue(value){
 }
 
 function calculate(){
+  try {
+
   const values = readInputs();
   const result = engine.calculate(values);
   if (!result.ok){
@@ -310,6 +315,8 @@ function calculate(){
   for (const id of CONFIG.outputs) setText(id, display[id] ?? "—");
   if (CONFIG.hasStatus) setStatus(result.status);
   if (typeof window.nelTrack === "function") window.nelTrack(CONFIG.track, {status: result.status || "ok"});
+
+  } finally { window.NELToolInputController?.sync?.(); }
 }
 
 // Picking a preset fills the field; the field stays editable.
@@ -437,6 +444,7 @@ for (const preset of CONFIG.presets){
 for (const mode of CONFIG.modes){
   $(mode.select).addEventListener("change", () => { applyModes(); calculate(); });
 }
+window.NELEthSerializeCalculate=calculate;window.NELEthSerializeReset=resetForm;
 $("calculateBtn").addEventListener("click", calculate);
 $("resetBtn").addEventListener("click", resetForm);
 $("copyBtn").addEventListener("click", copyResult);
@@ -457,3 +465,42 @@ applyPresets();
 applyModes();
 calculate();
 renderHistory();
+
+// The shared shell owns result-only DOM clearing and action gates.
+window.NELToolInputController={calculate,managesValidation:true,isValid:()=>Boolean(lastResult),invalidate:()=>{lastResult=null;},resultActions:"#copyBtn,#saveBtn,#printBtn",resultValues:()=>CONFIG.outputs.map(id=>document.getElementById(id)).filter(Boolean),resultStatus:CONFIG.hasStatus?"#healthBadge":"",validation:"#validationMessage",inputControls:"#projectName,.fields input,.fields select,.fields textarea"};
+/* 20261106-bw1-chrome */
+(()=>{try{
+  const $=id=>document.getElementById(id);
+  const syncFill=()=>{
+    [['fillPerHop','perHop'],['fillTotal','totalDelay'],['fillWire','wireTime']].forEach(([fid,sid])=>{
+      const f=$(fid),s=$(sid); if(f&&s) f.textContent=(s.textContent||'—').trim();
+    });
+  };
+  const doCalc=()=>{
+    try{
+      if(typeof window.NELEthSerializeCalculate==='function') window.NELEthSerializeCalculate();
+      else if(window.NELToolInputController&&typeof window.NELToolInputController.calculate==='function') window.NELToolInputController.calculate();
+    }catch(e){console.warn('eth calc',e)}
+    syncFill();
+  };
+  const doReset=()=>{
+    try{ if(typeof window.NELEthSerializeReset==='function') window.NELEthSerializeReset(); }catch(e){console.warn('eth reset',e)}
+    syncFill();
+  };
+  const obs=new MutationObserver(syncFill);
+  ['perHop','totalDelay','wireTime'].forEach(id=>{const el=$(id); if(el) obs.observe(el,{childList:true,characterData:true,subtree:true});});
+  syncFill();
+  const bind=()=>{
+    const calc=$('calculateBtn'); const resetBtn=$('resetBtn');
+    if(calc && !calc.dataset.bw1eBound){
+      calc.dataset.bw1eBound='1'; calc.style.pointerEvents='auto'; calc.style.cursor='pointer'; calc.disabled=false;
+      calc.addEventListener('click',e=>{ e.preventDefault(); e.stopPropagation(); doCalc(); }, true);
+    }
+    if(resetBtn && !resetBtn.dataset.bw1eBound){
+      resetBtn.dataset.bw1eBound='1'; resetBtn.style.pointerEvents='auto'; resetBtn.style.cursor='pointer'; resetBtn.disabled=false;
+      resetBtn.addEventListener('click',e=>{ e.preventDefault(); e.stopPropagation(); doReset(); }, true);
+    }
+  };
+  bind(); document.addEventListener('DOMContentLoaded', bind); window.addEventListener('load', bind);
+  setTimeout(doCalc, 0);
+}catch(e){console.warn('eth bw1',e)}})();

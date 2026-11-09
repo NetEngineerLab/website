@@ -10,4 +10,17 @@ const required=engine.fresnel(5,5.8,50)*.6,atClearance=delta=>engine.calculate({
 const clear=atClearance(-.001);assert.equal(clear.clearanceMargin,0);assert.equal(clear.status,"excellent");assert.ok(!clear.warnings.includes("fresnel"));
 const blocked=atClearance(-.006);assert.equal(blocked.clearanceMargin,-.01);assert.equal(blocked.status,"marginal");assert.ok(blocked.warnings.includes("fresnel"));
 assert.deepEqual(engine.calculate({...base,txPower:40,frequencyGHz:60}).warnings,["fade","eirp","oxygen"]);
+const enhanced={...base,rainLoss:1,protectionLinks:1,availabilityTarget:99.99,afterFadeMargin:3};
+const result=engine.calculate(enhanced),baselineInput={...enhanced};delete baselineInput.protectionLinks;
+assert.notStrictEqual(result.beforeAfter.before,result,"before-change result must be a snapshot, not a reference to the enhanced result");
+assert.deepEqual(result.beforeAfter.before,engine.calculate(baselineInput),"snapshot retains the exact original calculated values");
+assert.doesNotThrow(()=>JSON.stringify(result),"public calculate results must be serializable");
+for(const report of [JSON.parse(engine.toJSON(enhanced)),JSON.parse(engine.toJSON(engine.buildReport(enhanced)))]){
+ assert.deepEqual(report.inputs,enhanced);assert.deepEqual(report.result,JSON.parse(JSON.stringify(result)));
+ assert.equal(report.schemaVersion,"wireless-link-budget-report/2.0.0");
+}
+const csv=engine.toCSV(engine.buildReport(enhanced)).split("\n");
+assert.equal(csv[0],"scenario,rxPower,fadeMargin,clearanceMargin,status");
+assert.equal(csv[1],["baseline",result.rxPower,result.fadeMargin,result.clearanceMargin,result.status].join(","));
+assert.equal(csv[2],["afterChange",result.beforeAfter.after.rxPower,result.beforeAfter.after.fadeMargin,result.clearanceMargin,result.status].join(","));
 console.log("Wireless link budget engine tests: PASS");

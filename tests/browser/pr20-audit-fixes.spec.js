@@ -49,8 +49,16 @@ for(const folder of ["","zh/","es/"]){
 
   test(`AR-1 sub-MB buffer and ALL-2 named validation ${loc}`,async({page})=>{
     await page.goto(`/tools/all-reduce-traffic-estimator/${folder}`,{waitUntil:"networkidle"});
+    // The engine supports sub-MB arithmetic; the original native UI has min/step=.001.
+    expect(await page.evaluate(()=>window.NELAllReduceEngine.calculate({ranks:8,paramsBillion:1e-7,bytesPerParam:2,linkGbps:400,efficiencyPct:100,latencyUs:0}).display.bufferSize)).toBe("200 B");
     await fill(page,"paramsBillion","0.0000001");
-    await expect(page.locator("#bufferSize")).toHaveText("200 B");
+    await expect(page.locator("#paramsBillion")).toHaveAttribute("aria-invalid","true");
+    await expect(page.locator("#bufferSize")).toHaveText("—");
+    await expect(page.locator("#copyBtn")).toBeDisabled();
+    await fill(page,"paramsBillion","0.001");
+    await expect(page.locator("#bufferSize")).toHaveText("2.000 MB");
+    await expect(page.locator("#paramsBillion")).not.toHaveAttribute("aria-invalid","true");
+    await expect(page.locator("#copyBtn")).toBeEnabled();
     await fill(page,"ranks",1);
     await expect(page.locator("#validationMessage")).toContainText(await labelOf(page,"ranks"));
   });

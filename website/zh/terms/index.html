@@ -30,13 +30,18 @@
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/terms/">
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../assets/css/site-shell.css?v=989edb3b4d77">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=26fafcdcee42">
+<link rel="stylesheet" href="../../assets/css/site-pages-v2.css?v=20261105-v2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/site-doc.css?v=20261109-sitebw1">
 <script defer src="../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../assets/js/site.js?v=b563dd0297f5"></script>
-</head><body><!-- NEL_HEADER_START -->
+</head><body class="nel-site-v2"><!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
   <div class="site-shell-header-inner">
     <a class="site-shell-brand brand" href="../">
@@ -57,8 +62,69 @@
   </div>
 </header>
 <!-- NEL_HEADER_END -->
-<main class="policy"><p class="eyebrow">NETENGINEERLAB</p><h1>使用条款</h1><p>工具结果用于规划、复核、培训和故障分析，不替代设备规格书、企业标准、现场仪表测试、正式设计或验收结论。</p>
-<h2>服务状态</h2><p>网站目前提供<span data-tool-count>46</span>个在线工具。为提高准确性、兼容性、安全性和易用性，功能可能持续更新。用户仍应结合适用标准、设备资料和现场条件复核结果。</p></main>
+<main class="tool-shell" id="page">
+<div class="tool-head"><nav class="crumbs" aria-label="Breadcrumb"><a href="../">首页</a><span aria-hidden="true">/</span><span aria-current="page">使用条款</span></nav><p class="tool-page-label" role="heading" aria-level="1">使用条款</p><p class="tool-lede">这些页面是规划、复核、培训和排障用的计算工作台。打开页面就表示你按下面的范围使用结果：数字用来比较方案和缩小排查范围，不能代替设备资料、适用标准、现场测量或正式验收。</p></div>
+<div class="below">
+<nav class="toc" aria-label="本页导航"><h4>本页导航</h4>
+<a href="#part-1">工具用来做什么</a>
+<a href="#part-2">结果不能单独签字</a>
+<a href="#part-3">计算留在这台浏览器</a>
+<a href="#part-4">公式写在工具页上</a>
+<a href="#part-5">使用前要自己核对</a>
+<a href="#part-6">页面会更新</a>
+<a href="#part-7">相关页面</a>
+</nav>
+<div class="prose">
+<section class="doc-card" id="part-1">
+<h2>工具用来做什么</h2>
+<p>NetEngineerLab 把光纤、PON、IP、无线、交换容量和通信电源放在同一套页面里。每一页针对一个工程问题：损耗、收光、分光、带宽、子网、上联、制冷或后备时间。</p>
+<p>除了在线工具，还有工程指南和专题，用来说明一个数在方案里放在哪一步。指南解释方法和例子，计算器负责把你填入的边界算成一个可复核的结果。</p>
+</section>
+<section class="doc-card" id="part-2">
+<h2>结果不能单独签字</h2>
+<p>结果用于规划、比较、复核、培训和故障分析。它不是设备规格书，不是企业标准，不是现场仪表读数，也不是正式设计文件或验收结论。</p>
+<p>一个数能用，取决于输入是否对应当前工程：波长、速率单位、效率、余量、并发和故障后还剩多少。页面没有写明的标准，不要当成已经满足。厂家参数、现场测试和签过字的设计文件仍然要单独核对。</p>
+</section>
+<section class="doc-card" id="part-3">
+<h2>计算留在这台浏览器</h2>
+<p>做一次计算不会把你填的数发给网站。需要历史记录的工具，把记录保存在这台浏览器里。换一台电脑，或清除本机数据，这些记录不会跟着走。</p>
+<p>可选的访问统计只在你同意之后加载。统计、Cookie 和可以撤回同意的方式写在<a href="../privacy/">隐私政策</a>里。</p>
+</section>
+<section class="doc-card" id="part-4">
+<h2>公式写在工具页上</h2>
+<p>用到公式时，公式、单位、假设和适用范围写在该工具页。某一页没有引用一份标准，不表示它遵循一份没写出来的标准。</p>
+<p>默认值是该页声明的典型或规划值，不是你的链路、机房或设备已经测到的数。换默认值之前，先看该页对这个默认值的说明。</p>
+</section>
+<section class="doc-card" id="part-5">
+<h2>使用前要自己核对</h2>
+<p>你负责选择工具、填写边界，并判断结果能不能用在当前工程里。开始之前至少核对这几件事：</p>
+<ul>
+<li>单位一致。速率分清比特和字节，光功率分清 dBm 和 dB，功率分清 W 和 kW。</li>
+<li>方向一致。上联、下行、收发光和充放电不要拿来互相比。</li>
+<li>故障状态单独算。正常时容量够，不表示断一条链路或停一台设备之后还够。</li>
+<li>现场读数优先于默认值。有仪表或设备计数器时，用那个数，并记下测量条件。</li>
+</ul>
+</section>
+<section class="doc-card" id="part-6">
+<h2>页面会更新</h2>
+<p>为提高准确性、兼容性和易用性，工具、指南和这些条款都可能更新。公式、默认值或页面结构变化后，以当时打开的页面为准。已经导出或抄下来的旧结果，不会自动改成新结果。</p>
+<p>站点有英语、简体中文和西班牙语。不是每个工具都有三种语言。同名页面若语言不同，以你正在看的这一页文字为准。</p>
+<p>发现某一页的公式、单位或限制写得不清楚，可以通过<a href="../contact/">联系页面</a>把页面地址和具体句子发过来。</p>
+</section>
+<section class="doc-card" id="part-7">
+<h2>相关页面</h2>
+<p>条款只说明结果的使用范围。站点本身的说明在这些页面：</p>
+<ul>
+<li><a href="../about/">关于</a>：这个工作台覆盖哪些工程问题。</li>
+<li><a href="../privacy/">隐私政策</a>：计算数据、本机记录和可选统计。</li>
+<li><a href="../../tools/zh/">工具中心</a>：按专业打开计算器。</li>
+<li><a href="../guides/">工程指南</a>：公式、例子和要核对的失败情况。</li>
+<li><a href="../topics/">专题</a>：把同一个问题的指南和工具放在一起。</li>
+</ul>
+</section>
+</div>
+</div>
+</main>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">

@@ -281,7 +281,9 @@ function stripFaqNodes(node) {
   return copy;
 }
 
-const DETAILS_RE = /<details\b[^>]*>[\s\S]*?<summary\b[^>]*>([\s\S]*?)<\/summary>[\s\S]*?<p\b[^>]*>([\s\S]*?)<\/p>[\s\S]*?<\/details>/gi;
+// Explanation folds are document navigation, never FAQ questions. Reject the
+// outer fold start so nested authored FAQ details can still match normally.
+const DETAILS_RE = /<details\b(?![^>]*\bclass\s*=\s*["'][^"']*\bfb-fold\b)[^>]*>[\s\S]*?<summary\b[^>]*>([\s\S]*?)<\/summary>[\s\S]*?<p\b[^>]*>([\s\S]*?)<\/p>[\s\S]*?<\/details>/gi;
 const FAQ_HEADING_SOURCE = "<h([1-3])\\b[^>]*>\\s*(Frequently asked questions|常见问题|Preguntas frecuentes)(?:\\s+[^<]{0,40})?\\s*<\\/h\\1>";
 const INJECTED_FAQ_RE = /<section\b[^>]*\bdata-nel-faq\s*=\s*["']visible["'][^>]*>[\s\S]*?<\/section>\s*/gi;
 
@@ -291,12 +293,19 @@ function browserText(html) {
 
 function visibleFaq(html) {
   const found = [];
-  const pattern = new RegExp(DETAILS_RE.source, "gi");
+  const dom=require('./tool-v3-dom');
+  const pattern=/<details\b[^>]*>/gi;
   let match;
   while ((match = pattern.exec(html))) {
-    const name = browserText(match[1]);
-    const answer = browserText(match[2]);
-    if (name && answer) found.push({ name, answer, index: match.index, end: pattern.lastIndex });
+    const bounds=elementBounds(html,'details',pattern.lastIndex);if(!bounds)continue;
+    const node=dom.parse(html.slice(match.index,bounds.end)).children.find(n=>typeof n!=='string'&&n.tag==='details');
+    if(!node||dom.has(node,'fb-fold'))continue;
+    const summary=node.children.find(n=>typeof n!=='string'&&n.tag==='summary');
+    if(!summary)continue;
+    const paragraph=dom.all(node,n=>n.tag==='p')[0];if(!paragraph)continue;
+    const name=browserText(summary.children.map(dom.render).join(''));
+    const answer=browserText(paragraph.children.map(dom.render).join(''));
+    if(name&&answer)found.push({name,answer,index:match.index,end:bounds.end});
   }
   return found;
 }

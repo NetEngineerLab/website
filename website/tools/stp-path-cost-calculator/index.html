@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0b6ffb">
+<meta name="theme-color" content="#176ff2">
 <title>STP Path Cost Calculator – 802.1D/802.1Q Long &amp; Short Port Cost</title>
 <meta name="description" content="Calculate Spanning Tree port and root path cost with the IEEE 802.1D-2004/802.1Q long method (20,000,000,000 ÷ kb/s) or the legacy short table, and compare two paths to see which one STP selects.">
-<link rel="stylesheet" href="css/style.css?v=48c7b72aa30f">
+<link rel="stylesheet" href="css/style.css?v=20261106-bw1">
 <meta name="app-base" content="./">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <meta property="og:type" content="website">
@@ -24,6 +24,12 @@
 <meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 
 <link rel="stylesheet" href="/assets/css/cookie-consent.css?v=8dd1728bf5eb">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=20261105-method1r">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=35fd6b8f7526">
+<script defer="" src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"STP Path Cost Calculator – 802.1D/802.1Q Long & Short Port Cost","url":"https://netengineerlab.com/tools/stp-path-cost-calculator/","description":"Calculate Spanning Tree port and root path cost with the IEEE 802.1D-2004/802.1Q long method (20,000,000,000 ÷ kb/s) or the legacy short table, and compare two paths to see which one STP selects.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="en">
@@ -37,17 +43,17 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is STP path cost calculated?","acceptedAnswer":{"@type":"Answer","text":"Root path cost is the sum of the port costs from the switch to the root bridge. With the long method each port cost is 20,000,000,000 ÷ link speed in kb/s."}},{"@type":"Question","name":"What is the STP cost of a 10G link?","acceptedAnswer":{"@type":"Answer","text":"2,000 with the long method (802.1D-2004/802.1Q) and 2 with the legacy short method."}},{"@type":"Question","name":"What is the STP cost of 100G?","acceptedAnswer":{"@type":"Answer","text":"200 with the long method. The 802.1D-1998 short table stops at 10 Gbps, so 100G has no standard short value."}},{"@type":"Question","name":"Why did IEEE change to long path costs?","acceptedAnswer":{"@type":"Answer","text":"16-bit short costs could not separate links faster than 10 Gbps, causing ties. The 32-bit long method scales to 10 Tb/s."}},{"@type":"Question","name":"What happens when two paths have equal cost?","acceptedAnswer":{"@type":"Answer","text":"STP compares the sender bridge ID, then the sender port ID, and the lower value wins."}}]}</script>
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=1040076f7555">
-<link rel="stylesheet" href="../../assets/css/site-shell.css?v=989edb3b4d77">
+<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=20261105-method1r">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=26fafcdcee42">
 <script defer src="../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../assets/js/site.js?v=b563dd0297f5"></script>
-<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=dfdd771763d6">
+<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=20261105-bc1">
 <link rel="manifest" href="manifest.webmanifest">
 </head>
-<body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1" data-nel-offline-worker="1">
 <a class="skip-link" href="#calculator">Skip to calculator</a>
 <noscript><div class="noscript">JavaScript is required to run this calculator.</div></noscript>
 <!-- NEL_HEADER_START -->
@@ -80,78 +86,86 @@
   <span aria-current="page">STP Path Cost Calculator</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
-<section class="hero nel-tool-hero"><div class="hero-inner">
+<section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner">
 <p class="eyebrow">NETWORK ENGINEERING TOOL</p>
 <h1>STP Path Cost Calculator</h1>
 <p>Spanning Tree picks the path to the root bridge with the lowest root path cost, the sum of the port costs along the way. IEEE 802.1D-2004 and 802.1Q define the long method, cost = 20,000,000,000 ÷ link speed in kb/s, so 1 Gbps costs 20,000 and 10 Gbps costs 2,000. The legacy short method used 4 for 1 Gbps and 2 for 10 Gbps. Enter the link speeds of two candidate paths to get each port cost, the totals and the path STP will forward on.</p>
 <div class="hero-tags"><span>802.1D-2004 long</span><span>Legacy short</span><span>Root path cost</span><span>Path A vs B</span></div></div></section>
-<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
-<section class="input-panel card nel-tool-input">
-<div class="section-title"><span class="section-icon">☷</span><div>
-<h2>Path cost method and links</h2>
+<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator" data-nel-readout-roles="%7B%22secondary%22%3A%5B%22costsA%22%2C%22costsB%22%2C%22difference%22%2C%22winnerText%22%5D%2C%22identifier%22%3A%5B%5D%2C%22annotation%22%3A%5B%5D%7D" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv"><div class="tool-head"><nav class="crumbs" aria-label="Breadcrumb">
+  <a href="../../">Home</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../">Tools</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">STP Path Cost Calculator</span>
+</nav><p class="tool-page-label" role="heading" aria-level="1">STP Path Cost Calculator</p><p class="tool-lede">Spanning Tree picks the path to the root bridge with the lowest root path cost, the sum of the port costs along the way. IEEE 802.1D-2004 and 802.1Q define the long method, cost = 20,000,000,000 ÷ link speed in kb/s, so 1 Gbps costs 20,000 and 10 Gbps costs 2,000. The legacy short method used 4 for 1 Gbps and 2 for 10 Gbps. Enter the link speeds of two candidate paths to get each port cost, the totals and the path STP will forward on.</p></div>
+<div class="workspace">
+<section class="input-panel card nel-tool-input fb-panel">
+<div class="section-title panel-h"><span class="section-icon">☷</span><div>
+<h2 class="panel-h">Path cost method and links</h2>
 <p>Choose the cost method, then list the link speed of every hop on each path toward the root bridge, in Mbps.</p>
 </div></div>
-<div class="form-grid">
-<div class="field"><label for="projectName">Project name</label><div class="input-wrap no-unit"><input id="projectName" type="text" value="Distribution redundancy check"></div></div>
-<div class="field"><label for="method">Path cost method</label><div class="input-wrap no-unit"><select id="method"><option value="long" selected>Long (802.1D-2004 / 802.1Q, 32-bit)</option><option value="short">Short (802.1D-1998, 16-bit)</option></select></div></div>
-<div class="field"><label for="pathA">Path A link speeds (Mbps, comma-separated)</label><div class="input-wrap no-unit"><input id="pathA" type="text" inputmode="decimal" value="10000, 10000"></div><p class="hint">Example: 10000, 10000 = two 10G hops.</p></div>
-<div class="field"><label for="pathB">Path B link speeds (Mbps, comma-separated)</label><div class="input-wrap no-unit"><input id="pathB" type="text" inputmode="decimal" value="1000"></div><p class="hint">Short method accepts only 4, 10, 16, 100, 1000 and 10000.</p></div>
+<div class="form-grid fields">
+<div class="field f"><label for="projectName">Project name</label><div class="input-wrap no-unit inp"><input id="projectName" type="text" value="Distribution redundancy check"></div></div>
+<div class="field f"><label for="method">Path cost method</label><div class="input-wrap no-unit inp sel"><select id="method"><option value="long" selected>Long (802.1D-2004 / 802.1Q, 32-bit)</option><option value="short">Short (802.1D-1998, 16-bit)</option></select></div></div>
+<div class="field f"><label for="pathA">Path A link speeds (Mbps, comma-separated)</label><div class="input-wrap no-unit inp"><input id="pathA" type="text" inputmode="decimal" value="10000, 10000"></div><p class="hint">Example: 10000, 10000 = two 10G hops.</p></div>
+<div class="field f"><label for="pathB">Path B link speeds (Mbps, comma-separated)</label><div class="input-wrap no-unit inp"><input id="pathB" type="text" inputmode="decimal" value="1000"></div><p class="hint">Short method accepts only 4, 10, 16, 100, 1000 and 10000.</p></div>
 </div>
-<div class="actions">
-<button class="primary-action" id="calculateBtn" type="button">Calculate</button>
-<button class="secondary-action" id="resetBtn" type="button">Reset</button>
-</div>
+<div class="input-actions"><button class="primary btn btn-primary" id="calculateBtn" type="button">Calculate</button><button class="secondary btn btn-ghost" id="resetBtn" type="button">Reset</button></div><div class="formula-block"><div class="formula-card"><h3>Core calculation</h3><code>Port cost = f(link speed, STP cost table). Path cost = Σ port costs along the path. Preferred path = lower total root path cost (ties need bridge/port priority).</code></div><div class="formula-note"><p><strong>Port cost.</strong> Map each link speed through the selected long/short cost table.</p><p><strong>Path cost.</strong> Sum the port costs from the bridge toward the root.</p><p><strong>Comparison.</strong> The lower total wins; equal totals need priority tie-breakers.</p><p><strong>Vendor tables.</strong> Confirm long vs short mode matches the switch CLI before cutover.</p></div></div>
 <p class="validation-message" id="validationMessage" role="alert"></p>
 </section>
-<section aria-live="polite" class="result-panel card nel-tool-result">
-<div class="section-title"><span class="section-icon">▥</span><div>
-<h2>Calculation result</h2>
+<section aria-live="polite" class="result-panel card nel-tool-result readout">
+<div class="section-title ro-h"><span class="section-icon">▥</span><div>
+<h2 class="ro-h">Calculation result</h2>
 <p>Root path cost is the sum of port costs on the path. The lower total wins; on a tie STP compares bridge ID, then port ID.</p>
 </div></div>
-<div class="summary-card" id="summaryCard"><div><p>Path A root path cost</p><strong><span id="totalA">—</span></strong></div><div><p>Path B root path cost</p><strong><span id="totalB">—</span></strong></div><div class="health-badge" id="healthBadge">—</div></div>
+<div class="summary-card ro-l1" id="summaryCard"><div class="ro-main"><p class="lbl">Path A root path cost</p><strong class="big"><span id="totalA" data-nel-readout-number="1">—</span></strong></div><div class="ro-main"><p class="lbl">Path B root path cost</p><strong class="big"><span id="totalB" data-nel-readout-number="1">—</span></strong></div><div class="health-badge" id="healthBadge">—</div></div>
 <div class="metric-grid">
-<article class="metric-card"><div><small>Path A port costs</small><strong id="costsA">—</strong></div></article>
-<article class="metric-card"><div><small>Path B port costs</small><strong id="costsB">—</strong></div></article>
-<article class="metric-card"><div><small>Cost difference</small><strong id="difference">—</strong></div></article>
-<article class="metric-card"><div><small>Preferred path</small><strong id="winnerText">—</strong></div></article>
+<article class="metric"><small>Path A port costs</small><strong id="costsA">—</strong></article>
+<article class="metric"><small>Path B port costs</small><strong id="costsB">—</strong></article>
+<article class="metric"><small>Cost difference</small><strong id="difference">—</strong></article>
+<article class="metric"><small>Preferred path</small><strong id="winnerText">—</strong></article>
 </div>
 <p class="hint">Vendors may use different defaults (for example short costs above 10G or LAG costs). Confirm the configured method with the switch CLI.</p>
-<div class="result-actions">
+<aside class="result-fill" id="resultFill" aria-label="Path snapshot"><div class="result-fill-card"><h3>Path snapshot</h3><p class="result-fill-lead">How Path A and Path B totals compare for the selected STP cost table.</p><div class="util-breakdown"><div class="util-seg payload"><span>Path A total</span><strong id="fillA">—</strong></div><div class="util-seg overhead"><span>Path B total</span><strong id="fillB">—</strong></div><div class="util-seg headroom"><span>Difference</span><strong id="fillDiff">—</strong></div></div><ul class="fill-tips"><li>Keep the same cost mode (long/short) on every bridge in the region.</li><li>Document manual cost overrides so they survive firmware upgrades.</li><li>After changing costs, verify root port selection with show spanning-tree.</li></ul></div></aside><div class="result-actions ro-acts">
 <button id="copyBtn" type="button">Copy result</button>
 <button id="saveBtn" type="button">Save record</button>
 <button id="printBtn" type="button">Print / Export PDF</button>
 </div>
 </section>
 
-</main>
-<section class="content-section nel-tool-supporting-section" id="history">
-<div class="section-heading"><div><p class="eyebrow">PROJECT RECORDS</p><h2>Recent calculations</h2></div>
-<button class="text-button" id="clearHistoryBtn" type="button">Clear history</button></div>
-<div class="history-list" id="historyList"></div>
-</section>
-<section class="content-section methodology nel-tool-supporting-section" id="methodology">
-<div class="section-heading"><div><p class="eyebrow">METHODOLOGY</p><h2>Methodology and engineering notes</h2></div></div>
+</div>
+
+<div class="below"><nav class="toc" aria-label="On this page"><h4>On this page</h4><a href="#methodology">How it’s calculated</a><a href="#faq">FAQ</a><a href="#history">Recent calculations</a><a href="#references">Official references</a><a href="#nel-tool-graph">Engineering workflow</a></nav><div class="prose"><details class="fb-fold blk" id="methodology" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span class="fb-fold-title">Methodology and engineering notes</span></summary><div class="fb-fold-body"><section class="content-section methodology nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">METHODOLOGY</p></div></div>
 <div class="method-grid">
 <article><h3>How to use</h3><ol><li>Pick the long method (default on modern RSTP/MSTP) or the legacy short method.</li><li>List each hop's link speed on path A toward the root bridge, in Mbps.</li><li>Do the same for path B.</li><li>Compare root path costs; the lower total becomes the root port path.</li></ol></article><article><h3>Long method</h3><p>IEEE 802.1D-2004 and 802.1Q recommend Port Path Cost = 20,000,000,000 ÷ link speed in kb/s, within 1 to 200,000,000. Results: 10 Mbps 2,000,000; 100 Mbps 200,000; 1 Gbps 20,000; 10 Gbps 2,000; 25 Gbps 800; 40 Gbps 500; 100 Gbps 200; 400 Gbps 50.</p></article><article><h3>Short method</h3><p>IEEE 802.1D-1998 recommended 16-bit values: 4 Mbps 250, 10 Mbps 100, 16 Mbps 62, 100 Mbps 19, 1 Gbps 4, 10 Gbps 2. Speeds above 10 Gbps are not defined by that table, so the tool rejects them instead of guessing a vendor value.</p></article>
 </div>
 <div class="example-box"><h3>Worked case: two 10G hops vs one 1G hop</h3><p>Long method: path A = 2,000 + 2,000 = 4,000; path B = 20,000. STP prefers path A by 16,000 even though it has more hops. With the short method the totals are 2 + 2 = 4 and 4, a tie, so the bridge ID decides — one reason 802.1D-2004 moved to 32-bit costs.</p></div>
-</section>
-<section aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
-<div class="section-heading"><div><p class="eyebrow">ENGINEERING REFERENCES</p><h2 id="references-title">Standards and references</h2></div></div>
+</section></div></details><div class="blk faq" id="faq" data-nel-v3-title-normalized="1"><h2 id="faq-title">Frequently asked questions</h2><section aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">FAQ</p></div></div>
+<div class="faq-grid"><details><summary>How is STP path cost calculated?</summary><p>Root path cost is the sum of the port costs from the switch to the root bridge. With the long method each port cost is 20,000,000,000 ÷ link speed in kb/s.</p></details><details><summary>What is the STP cost of a 10G link?</summary><p>2,000 with the long method (802.1D-2004/802.1Q) and 2 with the legacy short method.</p></details><details><summary>What is the STP cost of 100G?</summary><p>200 with the long method. The 802.1D-1998 short table stops at 10 Gbps, so 100G has no standard short value.</p></details><details><summary>Why did IEEE change to long path costs?</summary><p>16-bit short costs could not separate links faster than 10 Gbps, causing ties. The 32-bit long method scales to 10 Tb/s.</p></details><details><summary>What happens when two paths have equal cost?</summary><p>STP compares the sender bridge ID, then the sender port ID, and the lower value wins.</p></details></div>
+</section></div><section class="blk" id="history" data-nel-v3-title-normalized="1"><h2>Recent calculations</h2><div class="fb-fold-body"><section class="content-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">PROJECT RECORDS</p></div>
+<button class="text-button btn btn-ghost btn-sm" id="clearHistoryBtn" type="button">Clear history</button></div>
+<div class="history-list" id="historyList"></div>
+</section></div></section><section class="blk" id="references" data-nel-v3-title-normalized="1"><h2 id="references-title">Standards and references</h2><div class="fb-fold-body"><section aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">ENGINEERING REFERENCES</p></div></div>
 <ul><li><a href="https://standards.ieee.org/ieee/802.1D/3387/" rel="noopener">IEEE 802.1D-2004: Table 17-3 recommended Port Path Cost (long method, 20,000,000,000 / link speed in kb/s, range 1–200,000,000)</a></li><li><a href="https://standards.ieee.org/ieee/802.1t/1043/" rel="noopener">IEEE 802.1t-2001: amendment to 802.1D-1998 that introduced the 32-bit long path cost values</a></li><li><a href="https://standards.ieee.org/ieee/802.1D/1029/" rel="noopener">IEEE 802.1D-1998: §8.10.2 Table 8-5 recommended 16-bit path cost (short method: 4 Mb/s 250, 10 Mb/s 100, 16 Mb/s 62, 100 Mb/s 19, 1 Gb/s 4, 10 Gb/s 2)</a></li><li><a href="https://standards.ieee.org/ieee/802.1Q/10323/" rel="noopener">IEEE 802.1Q: bridges and bridged networks – RSTP/MSTP use the same long path cost values [clause number UNVERIFIED]</a></li><li><a href="https://www.cisco.com/c/en/us/support/docs/lan-switching/spanning-tree-protocol/5234-5.html" rel="noopener">Cisco: understanding and configuring Spanning Tree Protocol (vendor guide)</a></li></ul>
 <p>The long-method formula and short table follow the IEEE recommendations; actual switch defaults depend on platform and configuration (for example “spanning-tree pathcost method long”). Last reviewed: 2026-10-20.</p>
-</section>
-<section aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
-<div class="section-heading"><div><p class="eyebrow">FAQ</p><h2 id="faq-title">Frequently asked questions</h2></div></div>
-<div class="faq-grid"><details><summary>How is STP path cost calculated?</summary><p>Root path cost is the sum of the port costs from the switch to the root bridge. With the long method each port cost is 20,000,000,000 ÷ link speed in kb/s.</p></details><details><summary>What is the STP cost of a 10G link?</summary><p>2,000 with the long method (802.1D-2004/802.1Q) and 2 with the legacy short method.</p></details><details><summary>What is the STP cost of 100G?</summary><p>200 with the long method. The 802.1D-1998 short table stops at 10 Gbps, so 100G has no standard short value.</p></details><details><summary>Why did IEEE change to long path costs?</summary><p>16-bit short costs could not separate links faster than 10 Gbps, causing ties. The 32-bit long method scales to 10 Tb/s.</p></details><details><summary>What happens when two paths have equal cost?</summary><p>STP compares the sender bridge ID, then the sender port ID, and the lower value wins.</p></details></div>
-</section>
-<!-- NEL_TOOL_GRAPH_START -->
+</section></div></section><!-- NEL_TOOL_GRAPH_START -->
 <section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="stp-path-cost-calculator" data-primary-workflow="layer2-path-design">
 <div class="section-heading"><div><p class="eyebrow">ENGINEERING WORKFLOW</p><h2 id="nel-tool-graph-title">Continue the engineering workflow</h2></div></div>
 <div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>Layer 2 Path Design Workflow</strong><p>Pick the Spanning Tree forwarding path, then estimate the per-hop serialization delay along it.</p></div><div class="nel-workflow-step"><strong>Step 1 of 2</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="2" aria-valuenow="1" aria-valuetext="Step 1 of 2" aria-label="Step 1 of 2"><span style="width:50%"></span></div></div></div><div class="nel-tool-graph-nav"><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Previous</span><strong>Workflow start</strong></div><a class="nel-tool-graph-card" href="/tools/ethernet-serialization-delay-calculator/"><span class="nel-tool-graph-label">Next</span><strong>Ethernet Serialization Delay Calculator</strong><span class="nel-tool-graph-description">Calculate per-hop and multi-hop serialization delay, wire time, maximum frame rate and L2 efficiency for an Ethernet link.</span></a></div>
 <h3 class="nel-tool-graph-subtitle">Related tools</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/switch-uplink-oversubscription-calculator/"><strong>Switch Uplink Bandwidth &amp; Oversubscription Calculator</strong><span class="nel-tool-graph-description">Size switch uplinks from access ports, utilization, concurrency and redundancy.</span></a><a class="nel-tool-graph-card" href="/tools/vlan-ip-capacity-planner/"><strong>VLAN &amp; IP Subnet Capacity Planner</strong><span class="nel-tool-graph-description">Plan VLAN count, IPv4 prefix, address capacity and growth headroom.</span></a><a class="nel-tool-graph-card" href="/tools/ospf-cost-calculator/"><strong>OSPF Cost Calculator</strong><span class="nel-tool-graph-description">Calculate OSPF interface costs from reference bandwidth, compare path costs and identify ECMP candidates.</span></a><a class="nel-tool-graph-card" href="/tools/ethernet-serialization-delay-calculator/"><strong>Ethernet Serialization Delay Calculator</strong><span class="nel-tool-graph-description">Calculate per-hop and multi-hop serialization delay, wire time, maximum frame rate and L2 efficiency for an Ethernet link.</span></a></div>
 </section>
-<!-- NEL_TOOL_GRAPH_END -->
+<!-- NEL_TOOL_GRAPH_END --></div></div></main>
+
+
+
+
+
+
+
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">
@@ -163,11 +177,11 @@
   </div>
 </footer>
 <!-- NEL_FOOTER_END -->
-<script defer src="js/engine.js"></script>
+<script defer src="js/engine.js?v=f5dac5b1767f"></script>
 <script defer src="js/pwa.js"></script>
 <script defer src="../../assets/js/tool-integration.js?v=05f7934f4687"></script>
-<script defer src="js/app.js?v=290684de1f73"></script>
+<script defer src="js/app.js?v=20261106-bw1"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
-<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script>
+<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=77b297dd25ca"></script>
 </body>
 </html>

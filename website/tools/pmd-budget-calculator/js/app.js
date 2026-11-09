@@ -282,7 +282,10 @@ function setStatus(status){
   const card = $("summaryCard");
   if (card) card.className = `summary-card ${status || "healthy"}`;
   const badge = $("healthBadge");
-  if (badge) badge.textContent = status ? text.status[status] : "—";
+  if (badge) {
+    badge.textContent = status ? text.status[status] : "—";
+    badge.className = "health-badge status " + ({healthy:"st-pass",warning:"st-marginal",failed:"st-fail"}[status] || "st-fail");
+  }
 }
 
 function clearResults(){
@@ -332,8 +335,11 @@ function displayValue(value){
 }
 
 function calculate(){
+  try {
+
   const values = readInputs();
   const result = engine.calculate(values);
+  window.__lastDomainResult=result;
   if (!result.ok){
     clearResults();
     const custom = result.error && text.errors && text.errors[result.error];
@@ -351,6 +357,8 @@ function calculate(){
   for (const id of CONFIG.outputs) setText(id, display[id] ?? "—");
   if (CONFIG.hasStatus) setStatus(result.status);
   if (typeof window.nelTrack === "function") window.nelTrack(CONFIG.track, {status: result.status || "ok"});
+
+  } finally { window.NELToolInputController?.sync?.(); }
 }
 
 // Picking a preset fills the field; the field stays editable.
@@ -478,7 +486,7 @@ for (const preset of CONFIG.presets){
 for (const mode of CONFIG.modes){
   $(mode.select).addEventListener("change", () => { applyModes(); calculate(); });
 }
-$("calculateBtn").addEventListener("click", calculate);
+$("calculateBtn").addEventListener("click",()=>{calculate();const e=$("calculateBtn");e.classList.add("nel-refreshed");setTimeout(()=>e.classList.remove("nel-refreshed"),800)});
 $("resetBtn").addEventListener("click", resetForm);
 $("copyBtn").addEventListener("click", copyResult);
 $("saveBtn").addEventListener("click", saveHistory);
@@ -498,3 +506,8 @@ applyPresets();
 applyModes();
 calculate();
 renderHistory();
+
+// The shared shell owns result-only DOM clearing and action gates.
+window.NELToolInputController={calculate,managesValidation:true,isValid:()=>Boolean(lastResult),invalidate:()=>{lastResult=null;},resultActions:"#copyBtn,#saveBtn,#printBtn",resultValues:()=>CONFIG.outputs.map(id=>document.getElementById(id)).filter(Boolean),resultStatus:CONFIG.hasStatus?"#healthBadge":"",validation:"#validationMessage",inputControls:"#projectName,.fields input,.fields select,.fields textarea"};
+
+(function(){function pair(){document.querySelectorAll('.result-panel .big,.result-panel .big>[id],.result-panel .row>b,.result-panel .metric strong,.result-panel .metric-card strong').forEach(e=>{if(e.querySelector('[id]'))return;const t=e.textContent;if(e.dataset.paired===t)return;e.dataset.paired=t;const rx=/[-+]?\d[\d.,]*(?:\s*(?:ps\/\(nm[·.]km\)|ps\/nm|µs\/km|km\/s|dBm|dB|µs|ms|ps|km|%|c))/g;let m,last=0,frag=document.createDocumentFragment();while((m=rx.exec(t))){frag.append(t.slice(last,m.index));let a=document.createElement('span');a.className='value-pair';a.textContent=m[0];frag.append(a);last=rx.lastIndex}if(last){frag.append(t.slice(last));e.replaceChildren(frag)}})}pair();new MutationObserver(pair).observe(document.querySelector('.result-panel'),{childList:true,subtree:true})})();

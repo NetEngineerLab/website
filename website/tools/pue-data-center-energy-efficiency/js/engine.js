@@ -23,7 +23,7 @@
   const annualTotal=total*annualFactor, annualIT=it*annualFactor, annualNonIT=nonIT*annualFactor;
   const tariff=Math.max(0,n(input.tariff)||0);
   const annualCost=annualTotal*tariff;
-  const targetPUE=Math.max(1,n(input.targetPUE)||1.4);
+  const targetPUE=Math.max(1,n(input.targetPUE)||1.45);
   const targetAnnualTotal=annualIT*targetPUE;
   const savingsKWh=Math.max(0,annualTotal-targetAnnualTotal);
   const savingsCost=savingsKWh*tariff;

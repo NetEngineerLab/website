@@ -1,7 +1,11 @@
 (function(){
-  "use strict";
-  if(!("serviceWorker" in navigator)||location.protocol==="file:")return;
-  const source=document.currentScript?.src;
-  const workerUrl=source?new URL("../sw.js",source):new URL("sw.js",location.href);
-  addEventListener("load",()=>navigator.serviceWorker.register(workerUrl.pathname).catch(()=>{}),{once:true});
+ "use strict";
+ if(!("serviceWorker" in navigator)||location.protocol==="file:")return;
+ const source=document.currentScript?.src;
+ if(!source)return;
+ const worker=new URL("../sw.js",source);
+ addEventListener("load",()=>{
+  navigator.serviceWorker.register(worker.href,{scope:new URL("./",worker).pathname,updateViaCache:"none"})
+   .then(registration=>registration.update()).catch(()=>{});
+ },{once:true});
 })();

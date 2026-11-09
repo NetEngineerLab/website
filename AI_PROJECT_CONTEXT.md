@@ -3,6 +3,10 @@
 > 本文件是 AI / Codex / 开发 Agent 的最小项目上下文入口。
 > 日常开发默认先读取本文件，不得为了“了解项目”无目的扫描全仓库。
 
+**工具页新任务强制入口（2026-10-30）：** 先读 [Tool Page Standard](docs/standards/TOOL_PAGE_STANDARD.md) 与 [全站逐页迁移矩阵](docs/standards/TOOL_PAGE_MIGRATION_MATRIX.md)，先冻结范围再实施与独立验收。矩阵 B 为静态壳候选，不能视为 A 或本轮验收通过；历史 OPB 基准保留作生产对照与历史证据，不替代新标准的 15 项验收。
+
+**Tool-detail V3 权威入口：** [NEL OPB 三语基准](docs/NEL_OPB_V3_TRI_LOCALE_BASELINE.md)。该文件控制 tool-detail V3 的结构、视觉与交互检查：唯一参照为其中列出的 OPB 三语生产页，必须按同 locale 对照；冲突的旧参照（包括下文历史模板入口）失效。OPB 的公式、字段、FAQ 与 workflow 目标等领域内容不得照抄到其他工具。2026-10-29 用户已授权对本地所有尚未完成 OPB V3 迁移工具的现有 EN / ZH / ES 页面进行迁移，已完整迁移者保留；不自动提交、push 或部署。
+
 ## 1. 项目定位
 
 NetEngineerLab 是面向网络工程师、运营商运维、规划、设计、安全管理人员的专业网络工程工具平台。

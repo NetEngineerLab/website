@@ -1,5 +1,10 @@
 (function () {
   "use strict";
+var nelCurrentValid=false;
+window.NELToolInputController={calculate:function(){run();},managesValidation:true,isValid:function(){return nelCurrentValid;},invalidate:function(){nelCurrentValid=false;window.lastResult=null;},resultActions:"#coolJson,#coolCsv",resultValues:"#base,#design,#units,#n1,#util,#btu,#tons,#air",resultDetails:"#coolingRows",validation:"",inputControls:".input-panel input,.input-panel select,.input-panel textarea"};
+
+
+
 function nelInputError(ok){const l=(document.documentElement.lang||"en").toLowerCase();const msg=l.startsWith("zh")?"请检查输入：数值不能为负，必填负载与容量必须大于 0。":l.startsWith("es")?"Revise las entradas: los valores no pueden ser negativos y las cargas y capacidades obligatorias deben ser mayores que cero.":"Check the inputs: values cannot be negative, and required loads and capacities must be greater than zero.";let el=document.getElementById("nelInputError");if(ok){if(el)el.hidden=true;return;}if(!el){el=document.createElement("p");el.id="nelInputError";el.className="nel-input-error";el.setAttribute("role","alert");el.style.cssText="color:#b42318;font-weight:700;background:#fdecec;border:1px solid #f4c7c3;border-radius:10px;padding:10px 12px;margin:10px 0";const anchor=document.getElementById("calculate");if(anchor&&anchor.parentNode)anchor.parentNode.insertBefore(el,anchor);else(document.querySelector("main")||document.body).prepend(el);}el.textContent=msg;el.hidden=false;}
 
 
@@ -39,9 +44,9 @@ function nelInputError(ok){const l=(document.documentElement.lang||"en").toLower
       };
 
   const field = (label, hint, id, value, unit, extra = "") => `
-    <div class="field cooling-gate-field">
+    <div class="field f cooling-gate-field">
       <label for="${id}">${label}${unit ? ` (${unit})` : ""}</label>
-      <input id="${id}" data-input type="number" value="${value}" ${extra} aria-describedby="${id}Hint">
+      <div class="inp input-wrap"><input id="${id}" data-input type="number" value="${value}" ${extra} aria-describedby="${id}Hint"></div>
       <small id="${id}Hint" class="hint">${hint}</small>
     </div>`;
 
@@ -125,13 +130,13 @@ function nelInputError(ok){const l=(document.documentElement.lang||"en").toLower
     return ({ baseline: "当前基线", peak: "峰值场景", conservative: "保守场景" })[name] || name;
   };
 
-  function run(event) {
+  function run(event) {try{
     ensureScenarioFields();
     if (["itKW", "peakITKW"].includes(event?.target?.id)) updateAutomaticPlaceholders();
-    const result = window.NELCoolingSizingEngine.calculate(collect());
-    if ($("result")) $("result").hidden = !result.ok;
+    const result = window.NELCoolingSizingEngine.calculate(collect());nelCurrentValid=result.ok!==false;
+    if ($("result")) $("result").hidden = false;
     nelInputError(result.ok);
-    if (!result.ok) return;
+    if (!result.ok) {window.lastResult=null;for(const id of ["base","design","units","n1","util","btu","tons","air"])if($(id))$(id).textContent="—";if($("coolingRows"))$("coolingRows").replaceChildren();for(const id of ["coolJson","coolCsv"])if($(id))$(id).disabled=true;return;}window.lastResult=result;
 
     [
       ["base", result.totalBaseKW, " kW"],
@@ -158,20 +163,20 @@ function nelInputError(ok){const l=(document.documentElement.lang||"en").toLower
     if (!report) {
       report = document.createElement("section");
       report.id = "cooling-report";
-      report.className = "panel";
-      $("result")?.appendChild(report);
+      report.className = "bw-workspace-table nel-tool-result";
+      document.querySelector("main>.workspace")?.appendChild(report);
     }
     report.innerHTML = `
-      <h2>${zh ? "场景与方案" : "Scenarios & plan"}</h2>
+      <h2 class="ro-h">${zh ? "场景与方案" : "Scenarios & plan"}</h2>
       <p>${zh ? "基线与保守场景对比" : "Baseline and conservative-case comparison"}</p>
-      <p>${result.scenarios.map((scenario) => `${scenarioLabel(scenario.name)}：${format(scenario.tons, 1)} RT / ${zh ? "风险" : "risk"} ${riskLabel(scenario.risk)}`).join(" · ")}</p>
-      <button id="coolJson" class="btn" type="button">${zh ? "下载 JSON 工程报告" : "Download JSON report"}</button>
-      <button id="coolCsv" class="btn" type="button">${zh ? "下载 CSV 校核表" : "Download CSV check sheet"}</button>`;
-    $("coolJson").onclick = () => download("cooling-engineering-report.json", window.NELCoolingSizingEngine.toJSON(result), "application/json");
-    $("coolCsv").onclick = () => download("cooling-check-sheet.csv", window.NELCoolingSizingEngine.toCSV(result), "text/csv");
-  }
+      <div class="table-wrap"><table><thead><tr><th>${zh?"场景":"Scenario"}</th><th>RT</th><th>${zh?"风险":"Risk"}</th></tr></thead><tbody id="coolingRows">${result.scenarios.map(s=>`<tr><td>${scenarioLabel(s.name)}</td><td>${format(s.tons,1)} RT</td><td>${riskLabel(s.risk)}</td></tr>`).join("")}</tbody></table></div>
+      <div class="bw-actions"><button id="coolJson" class="btn" type="button">${zh ? "下载 JSON 工程报告" : "Download JSON report"}</button>
+      <button id="coolCsv" class="btn" type="button">${zh ? "下载 CSV 校核表" : "Download CSV check sheet"}</button></div>`;
+    $("coolJson").onclick = () => {if(!nelCurrentValid)return;download("cooling-engineering-report.json", window.NELCoolingSizingEngine.toJSON(result), "application/json")};
+    $("coolCsv").onclick = () => {if(!nelCurrentValid)return;download("cooling-check-sheet.csv", window.NELCoolingSizingEngine.toCSV(result), "text/csv")};
+  }finally{window.NELToolInputController.sync?.();}}
 
-  document.addEventListener("input", run);
+  document.addEventListener("input", run);document.addEventListener("change", run);
   $("calculate")?.addEventListener("click", run);
   run();
 })();

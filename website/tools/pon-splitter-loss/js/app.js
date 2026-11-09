@@ -72,6 +72,8 @@ function invalidate(){
  ["copyBtn","saveBtn","csvBtn"].forEach(id=>$(id).disabled=true);
 }
 function calculate(){
+ try {
+
  const v={
   project:readValue("projectName").trim()||"Untitled",
   distance:num("distance"),attenuation:num("attenuation"),
@@ -103,13 +105,15 @@ function calculate(){
  ["copyBtn","saveBtn","csvBtn"].forEach(id=>$(id).disabled=false);
  const card=$("summaryCard"),diag=$("diagnosis");
  card.className="summary-card "+status;diag.className="diagnosis diagnosis-box "+status;
- $("healthBadge").textContent=T[LANG][status];
+ $("healthBadge").textContent=T[LANG][status];$("healthBadge").className="health-badge status "+({healthy:"st-pass",warning:"st-marginal",failed:"st-fail"}[status]||"st-fail");
  $("diagnosisText").textContent=status==="healthy"?T[LANG].good:status==="warning"?T[LANG].warn:T[LANG].bad;
  ["stage1Ratio","stage2Ratio","stage3Ratio"].forEach((id,i)=>$(id).textContent="1:"+[r1,r2,r3][i]);
  ["stage1Loss","stage2Loss","stage3Loss"].forEach((id,i)=>$(id).textContent=[v.s1,v.s2,v.s3][i].toFixed(2)+" dB");
  if(typeof window.nelTrack==="function"){
   window.nelTrack("pon_splitter_calculate",{status,total_ratio:totalRatio,standard_budget:Number(standardBudget.toFixed(2)),remaining:Number(remaining.toFixed(2))});
  }
+
+ } finally { window.NELToolInputController?.sync?.(); }
 }
 function reset(){
  writeValue("preset","8x8");writeValue("systemProfile","gpon-c");
@@ -177,3 +181,27 @@ $("csvBtn")?.addEventListener("click",exportCsv);
 $("printBtn")?.addEventListener("click",()=>window.print());
 $("clearHistoryBtn")?.addEventListener("click",clearHistory);
 setAttenuation();calculate();renderHistory();
+
+// Reuse the domain validation/history; the shell owns result-only DOM gates.
+window.NELToolInputController={calculate:calculate,calculateSelector:"#calculateBtn",managesValidation:true,isValid:()=>Boolean(last),invalidate:()=>{invalidate();},resultActions:"#copyBtn,#saveBtn,#csvBtn,#exportBtn,#jsonBtn,#printBtn",resultValues:"#ratioResult,#splitterLossResult,#remaining,#rxPower,#maxDistance,#standardBudget,#opticalMaxDistance,#idealLoss,#excessLoss,#physicalLoss,#designLoss,#sensMargin,#overMargin,#fiberLoss,#spliceTotal,#connectorTotal,#otherResult,#opticalPenaltyResult,#marginResult,#stage1Ratio,#stage2Ratio,#stage3Ratio,#stage1Loss,#stage2Loss,#stage3Loss",resultStatus:"#healthBadge",resultDetails:"",resultMeters:"",validation:"#validation",inputControls:".nel-tool-input input,.nel-tool-input select,.nel-tool-input textarea"};
+window.NELPonSplitterCalculate=calculate;window.NELPonSplitterReset=reset;
+/* 20261106-bw1-chrome */
+(()=>{try{
+  const $=id=>document.getElementById(id);
+  const syncFill=()=>{
+    [['fillRatio','ratioResult'],['fillLoss','splitterLossResult'],['fillRx','rxPower']].forEach(([a,b])=>{
+      const x=$(a),y=$(b); if(x&&y) x.textContent=(y.textContent||'\u2014').trim();
+    });
+  };
+  const doCalc=()=>{ try{ (window.NELPonSplitterCalculate||window.NELToolInputController?.calculate)?.(); }catch(e){console.warn(e);} syncFill(); };
+  const doReset=()=>{ try{ window.NELPonSplitterReset?.(); }catch(e){console.warn(e);} syncFill(); };
+  const obs=new MutationObserver(syncFill);
+  ['ratioResult','splitterLossResult','rxPower'].forEach(id=>{const el=$(id); if(el) obs.observe(el,{childList:true,characterData:true,subtree:true});});
+  syncFill();
+  const bind=()=>{
+    const c=$('calculateBtn'), r=$('resetBtn');
+    if(c&&!c.dataset.bw1eBound){ c.dataset.bw1eBound='1'; c.style.pointerEvents='auto'; c.style.cursor='pointer'; c.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();doCalc();},true); }
+    if(r&&!r.dataset.bw1eBound){ r.dataset.bw1eBound='1'; r.style.pointerEvents='auto'; r.style.cursor='pointer'; r.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();doReset();},true); }
+  };
+  bind(); document.addEventListener('DOMContentLoaded', bind); window.addEventListener('load', bind); setTimeout(doCalc,0);
+}catch(e){console.warn('pon bw1',e)}})();

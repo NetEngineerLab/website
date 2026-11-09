@@ -1,1 +1,1 @@
-(()=>{'use strict';if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register((document.documentElement.lang.startsWith('zh')?'../':'')+'sw.js').catch(()=>{}));})();
+(()=>{'use strict';if(!('serviceWorker' in navigator)||location.protocol==='file:')return;const source=document.currentScript?.src;if(!source)return;const workerUrl=new URL('../sw.js',source);window.addEventListener('load',()=>navigator.serviceWorker.register(workerUrl.pathname).catch(()=>{}),{once:true});})();

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 
 <html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="tools/pon-splitter-loss/"><head>
-<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#16140F" name="theme-color"/><meta content="../" name="app-base"/>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="../" name="app-base"/>
 <title>PON分光器损耗计算器（免费）｜1:8/1:32/1:64 分光比损耗表与级联</title>
 <meta content="免费计算PON分光损耗：1:8≈10.5 dB、1:32≈17.0 dB、1:64≈20.5 dB，支持三级级联，按GPON B+/C+预算即时给出剩余余量。" name="description"/>
 <meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
 <meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="PON分光器损耗计算器（免费）｜1:8/1:32/1:64 分光比损耗表与级联" property="og:title"/><meta content="免费计算PON分光损耗：1:8≈10.5 dB、1:32≈17.0 dB、1:64≈20.5 dB，支持三级级联，按GPON B+/C+预算即时给出剩余余量。" property="og:description"/><meta content="https://netengineerlab.com/tools/pon-splitter-loss/zh/" property="og:url"/><meta content="https://netengineerlab.com/tools/pon-splitter-loss/images/og-pon-splitter-loss.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
-<link href="../css/style.css?v=2699f8c79aa8" rel="stylesheet"/>
+<link href="../css/style.css?v=20261106-fl4s2" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"PON分光器损耗计算器","alternateName":"PON Splitter Loss Calculator","url":"https://netengineerlab.com/tools/pon-splitter-loss/zh/","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Optical Engineering Calculator","operatingSystem":"Any","softwareVersion":"1.0.2","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"工具中心","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"PON分光器损耗计算器","item":"https://netengineerlab.com/tools/pon-splitter-loss/zh/"}]}</script><meta content="NetEngineerLab" name="author"/>
 <link href="/assets/css/cookie-consent.css?v=8dd1728bf5eb" rel="stylesheet"/>
-<link href="/assets/css/mobile-branding.css?v=1.9.5-06" rel="stylesheet"/>
+<link href="/assets/css/mobile-branding.css?v=345784b6b020" rel="stylesheet"/>
 <script defer="" src="/data/seo-config.js"></script>
 <script defer="" src="/assets/js/seo-engine.js?v=15ac96553c44"></script>
 
@@ -22,7 +22,10 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=20261105-method1r">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=35fd6b8f7526">
+<script defer="" src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"PON分光器损耗计算器（免费）｜1:8/1:32/1:64 分光比损耗表与级联","url":"https://netengineerlab.com/tools/pon-splitter-loss/zh/","description":"免费计算PON分光损耗：1:8≈10.5 dB、1:32≈17.0 dB、1:64≈20.5 dB，支持三级级联，按GPON B+/C+预算即时给出剩余余量。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
@@ -36,17 +39,17 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么1:8 × 1:8默认采用GPON C+？","acceptedAnswer":{"@type":"Answer","text":"两级分光器本身约21 dB，再叠加光纤、连接器、熔接点和工程余量后，B+预算容易不足；C+提供32 dB ODN等级，更适合该默认1:64方案。"}},{"@type":"Question","name":"一级分光和二级分光哪个损耗更小？","acceptedAnswer":{"@type":"Answer","text":"在总分光比相同的情况下，多级级联通常会增加额外插入损耗和连接点，因此一级分光一般更容易控制预算，但实际部署还要考虑覆盖范围和维护便利性。"}},{"@type":"Question","name":"1:4 × 1:8为什么等于1:32？","acceptedAnswer":{"@type":"Answer","text":"一级产生4个分支，每个分支再分成8路，总分支数量为4×8=32。"}},{"@type":"Question","name":"理论分光损耗和标称损耗为什么不同？","acceptedAnswer":{"@type":"Answer","text":"理论值只反映理想能量均分；标称插入损耗还包含器件制造、耦合、封装和均匀性等损耗。"}},{"@type":"Question","name":"分光器级联越多越好吗？","acceptedAnswer":{"@type":"Answer","text":"不是。级联越多，设计灵活性可能提高，但连接点、插入损耗和维护复杂度也会增加。"}},{"@type":"Question","name":"接收光功率过高也会有问题吗？","acceptedAnswer":{"@type":"Answer","text":"会。若超过接收机过载门限，可能导致误码或接收异常，因此需要同时检查灵敏度余量和过载余量。"}},{"@type":"Question","name":"本工具能否直接替代现场测试？","acceptedAnswer":{"@type":"Answer","text":"不能。它用于规划和复核，正式验收仍需光功率计、OTDR和设备实际参数。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=1040076f7555">
-<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=989edb3b4d77">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=20261105-method1r">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=26fafcdcee42">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../../assets/js/site.js?v=b563dd0297f5"></script>
-<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=dfdd771763d6">
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=20261105-bc1">
 <link rel="manifest" href="../manifest-zh.webmanifest">
-</head><body class="nel-tool-detail-page nel-opb-v3 nel-fieldbook nel-tool-v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
-<link rel="stylesheet" href="../../../assets/css/fieldbook.css?v=a3bb21511014">
+</head><body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1" data-nel-offline-worker="1">
+
 
 <a class="skip-link" href="#calculator">跳到计算器</a><noscript><div class="noscript">本工具需要启用 JavaScript。</div></noscript>
 <!-- NEL_HEADER_START -->
@@ -79,9 +82,9 @@
   <span aria-current="page">PON分光器损耗计算器</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
-<section class="hero nel-tool-hero"><div class="hero-inner"><p class="eyebrow">PON工程工具</p><h1>PON分光器损耗计算器</h1><p>规划一级、二级或三级PON分光级联，计算总分光比、分光器总插入损耗、理论分光损耗、额外损耗、链路预算和预计ONU接收光功率。</p><div class="hero-tags"><span>三级级联</span><span>1:2–1:128</span><span>预算诊断</span><span>最大距离</span></div></div></section>
-<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
-<section class="input-panel card nel-tool-input"><div class="fb-panel"><div class="panel-h"><h2>分光与链路参数</h2></div><p class="fg-note">输入分光级联、链路损耗和设备光功率窗口。</p><div class="fs"><div class="preset-row fg"><label for="preset">分光场景预设</label><div class="inp input-wrap sel"><select id="preset"><option value="custom">自定义</option><option selected="" value="8x8">二级 1:8 × 1:8</option><option value="1x16">一级 1:16</option><option value="1x32">一级 1:32</option><option value="1x64">一级 1:64</option><option value="2x8">二级 1:2 × 1:8</option><option value="4x8">二级 1:4 × 1:8</option><option value="4x4x4">三级 1:4 × 1:4 × 1:4</option></select></div></div>
+<section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner"><p class="eyebrow">PON工程工具</p><h1>PON分光器损耗计算器</h1><p>规划一级、二级或三级PON分光级联，计算总分光比、分光器总插入损耗、理论分光损耗、额外损耗、链路预算和预计ONU接收光功率。</p><div class="hero-tags"><span>三级级联</span><span>1:2–1:128</span><span>预算诊断</span><span>最大距离</span></div></div></section>
+<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator" data-nel-readout-roles="%7B%22secondary%22%3A%5B%22splitterLossResult%22%2C%22remaining%22%2C%22rxPower%22%2C%22maxDistance%22%2C%22standardBudget%22%2C%22opticalMaxDistance%22%2C%22idealLoss%22%2C%22excessLoss%22%2C%22physicalLoss%22%2C%22designLoss%22%2C%22sensMargin%22%2C%22overMargin%22%2C%22fiberLoss%22%2C%22spliceTotal%22%2C%22connectorTotal%22%2C%22otherResult%22%2C%22opticalPenaltyResult%22%2C%22marginResult%22%5D%2C%22identifier%22%3A%5B%5D%2C%22annotation%22%3A%5B%5D%7D" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv">
+<div class="workspace"><section class="input-panel card nel-tool-input fb-panel"><div class="fb-panel"><div class="panel-h"><h2 class="panel-h">分光与链路参数</h2></div><p class="fg-note">输入分光级联、链路损耗和设备光功率窗口。</p><div class="fs"><div class="preset-row fg"><label for="preset">分光场景预设</label><div class="inp input-wrap sel"><select id="preset"><option value="custom">自定义</option><option selected="" value="8x8">二级 1:8 × 1:8</option><option value="1x16">一级 1:16</option><option value="1x32">一级 1:32</option><option value="1x64">一级 1:64</option><option value="2x8">二级 1:2 × 1:8</option><option value="4x8">二级 1:4 × 1:8</option><option value="4x4x4">三级 1:4 × 1:4 × 1:4</option></select></div></div>
 <div class="fields form-grid">
 <div class="f f-wide field full"><label for="projectName">工程名称</label><div class="inp input-wrap no-unit"><input id="projectName" value="GPON C+ 1:64 Splitter Design"/></div></div><div class="f field"><label for="systemProfile">系统光功率等级</label><div class="inp input-wrap no-unit sel"><select id="systemProfile"><option value="custom">自定义</option><option value="gpon-b">GPON B+（28 dB）</option><option selected="" value="gpon-c">GPON C+（32 dB）</option></select></div><small class="help">保留1:8 × 1:8时，默认采用C+等级。</small></div>
 <div class="fs-t subheading">分光器级联</div>
@@ -102,15 +105,15 @@
 <div class="f field"><label for="txMaxPower">最大发送光功率</label><div class="inp input-wrap"><input id="txMaxPower" step="0.1" type="number" value="7"/><u>dBm</u></div><small class="help">用于接收机过载校核；请以具体设备规格书为准。</small></div>
 <div class="f field"><label for="rxSensitivity">接收灵敏度</label><div class="inp input-wrap"><input id="rxSensitivity" step="0.1" type="number" value="-30"/><u>dBm</u></div></div>
 <div class="f field"><label for="rxOverload">接收过载门限</label><div class="inp input-wrap"><input id="rxOverload" step="0.1" type="number" value="-8"/><u>dBm</u></div></div>
-</div></div><div class="panel-f input-actions"><button class="btn btn-primary" id="calculateBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> 计算分光损耗</button><button class="btn btn-ghost" id="resetBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M20 11a8 8 0 1 0-2.3 5.7"></path><path d="M20 4v7h-7"></path></svg> 重置参数</button></div><p class="validation validation-message" id="validation" role="alert"></p></div></section>
-<section aria-live="polite" class="result-panel card nel-tool-result"><div class="readout">
+</div></div><div class="input-actions"><button class="primary btn btn-primary" id="calculateBtn" type="button">计算</button><button class="secondary btn btn-ghost" id="resetBtn" type="button">重置</button></div><div class="formula-block"><div class="formula-card"><h3>核心计算</h3><code>总分光比 = 各级分光比之积。分光损耗 ≈ 理想分光损耗 + 超额损耗。设计损耗 = 光纤 + 熔接 + 活动连接 + 分光 + 其它 + 惩罚项。估算 Rx = 发光 − 设计损耗。</code></div><div class="formula-note"><p><strong>级联分光。</strong>一至三级分光比相乘，插入损耗相加。</p><p><strong>理想与超额。</strong>理想损耗按 10·log10(N)；超额反映非理想器件。</p><p><strong>设计叠加。</strong>与预算比较前先计入光纤、熔接、活动连接与光学惩罚项。</p><p><strong>接收估算。</strong>发光减去设计损耗，判断 ONU 是否仍在窗口内。</p></div></div><p class="validation validation-message" id="validation" role="alert"></p></div></section>
+<section aria-live="polite" class="result-panel card nel-tool-result readout"><div class="readout">
 <div class="ro-h"><span>分光与预算结果</span></div>
-<div class="summary-card healthy" id="summaryCard"><div><p>总分光比</p><strong class="big" id="ratioResult">1:64</strong></div><div class="health-badge" id="healthBadge">✓ 健康</div></div>
+<div class="summary-card healthy ro-l1" id="summaryCard"><div class="ro-main"><p class="lbl">总分光比</p><strong class="big" id="ratioResult" data-nel-readout-number="1">1:64</strong></div><div class="health-badge" id="healthBadge">✓ 健康</div></div>
 <div class="metric-grid">
-<article class="metric-card"><span class="metric-icon">Σ</span><div><small>分光器总损耗</small><strong><span id="splitterLossResult">0.00</span> dB</strong></div></article>
-<article class="metric-card"><span class="metric-icon">P</span><div><small>剩余预算</small><strong><span id="remaining">0.00</span> dB</strong></div></article>
-<article class="metric-card"><span class="metric-icon">RX</span><div><small>预计接收功率范围</small><strong><span id="rxPower">0.00</span> dBm</strong></div></article>
-<article class="metric-card"><span class="metric-icon">↔</span><div><small>有效最大距离</small><strong><span id="maxDistance">0.00</span> km</strong></div></article>
+<article class="metric"><small>分光器总损耗</small><strong><span id="splitterLossResult">0.00</span> dB</strong></article>
+<article class="metric"><small>剩余预算</small><strong><span id="remaining">0.00</span> dB</strong></article>
+<article class="metric"><small>预计接收功率范围</small><strong><span id="rxPower">0.00</span> dBm</strong></article>
+<article class="metric"><small>有效最大距离</small><strong><span id="maxDistance">0.00</span> km</strong></article>
 </div>
 <div class="topology">
 <div class="node endpoint"><b>OLT</b><span>发送端</span></div><div class="line"></div>
@@ -135,61 +138,15 @@
 <div class="row breakdown-row"><span>系统光学代价</span><span><b id="opticalPenaltyResult">0.00</b> dB</span></div><div class="row breakdown-row"><span>工程余量</span><span><b id="marginResult">0.00</b> dB</span></div>
 </div>
 <div class="diagnosis diagnosis-box healthy" id="diagnosis"><strong>工程诊断</strong><p id="diagnosisText">—</p></div>
-<div class="ro-acts result-actions"><button id="copyBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> 复制结果</button><button id="saveBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 5v14M5 12h14"></path></svg> 保存记录</button><button id="csvBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg> 导出 CSV</button><button id="printBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M6 9V3h12v6"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v7H6z"></path></svg> 打印 / PDF</button></div>
+<aside class="result-fill" id="resultFill" aria-label="分光快照"><div class="result-fill-card"><h3>分光快照</h3><p class="result-fill-lead">本次级联下，总分光比、分光损耗与估算接收功率的关系。</p><div class="util-breakdown"><div class="util-seg payload"><span>总分光比</span><strong id="fillRatio">—</strong></div><div class="util-seg overhead"><span>分光损耗</span><strong id="fillLoss">—</strong></div><div class="util-seg headroom"><span>估算 Rx</span><strong id="fillRx">—</strong></div></div><ul class="fill-tips"><li>各级分光比需与外线图纸一致。</li><li>计入器件手册超额损耗，而非只用理想 10·log10(N)。</li><li>需要时把老化、温度与保护倒换惩罚显式列出。</li></ul></div></aside><div class="ro-acts result-actions"><button id="copyBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> 复制结果</button><button id="saveBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 5v14M5 12h14"></path></svg> 保存记录</button><button id="csvBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg> 导出 CSV</button><button id="printBtn"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M6 9V3h12v6"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v7H6z"></path></svg> 打印 / PDF</button></div>
 </div></section>
+</div>
 <div class="tool-head">
 <div class="crumbs"><a href="../../../zh/">首页</a>/<a href="../../../zh/topics/pon-optical/">光网络</a>/<span>PON分光器损耗计算器</span></div>
 <p class="tool-page-label" role="heading" aria-level="1">PON分光器损耗计算器</p>
 <p class="tool-lede">规划一级、二级或三级PON分光级联，计算总分光比、分光器总插入损耗、理论分光损耗、额外损耗、链路预算和预计ONU接收光功率。</p>
 </div>
-</main>
-<div class="below">
-<nav class="toc" aria-label="本页目录">
-<h4>本页目录</h4>
-<a href="#scenarios">典型工程场景</a>
-<a href="#pon-toolkit">相关 PON 与光纤工具</a>
-<a href="#methodology">计算方法与工程说明</a>
-<a href="#faq">常见问题</a>
-<a href="#history">最近计算记录</a>
-<a href="#references">分光假设与官方依据</a>
-<a href="#nel-tool-graph">继续下一步工程任务</a>
-</nav>
-<div class="prose">
-<!-- NEL_SCENARIOS_START -->
-<details class="fb-fold blk" open data-fold-pinned>
-<summary class="fb-fold-sum"><span class="fb-fold-title">典型工程场景</span></summary>
-<div class="fb-fold-body">
-<section class="content-section nel-tool-supporting-section" id="scenarios" aria-labelledby="scenarios-title">
-<div class="section-heading"><div><p class="eyebrow">工程算例</p><h2 id="scenarios-title">典型工程场景</h2></div></div>
-<p>点击场景即可一键填入计算器。下方预期结果由同一计算引擎得出，并有自动化测试覆盖。</p>
-<div class="metric-grid nel-scenario-grid">
-<article class="metric-card nel-scenario-card" data-scenario-id="gpon-cplus-1x64"><div><h3>GPON C+ 单级 1:64 分光，20 km</h3><p>C+ 光模块（OLT +3～+7 dBm，ONU −30 dBm），单个 1:64 分光器带 64 户。</p><p><small>预期结果</small><br><strong data-scenario-expected>1:64 · 分光 20.50 dB · 设计损耗 30.30 dB · 剩余 1.70 dB（预警）</strong></p><p><a class="nel-scenario-link" href="?scenario=gpon-cplus-1x64#calculator">载入此场景 →</a></p></div></article>
-<article class="metric-card nel-scenario-card" data-scenario-id="gpon-bplus-1x32-cascade"><div><h3>GPON B+ 两级 1:4 + 1:8（1:32），15 km</h3><p>分布式分光：机柜 1:4、楼道 1:8，B+ 光模块（OLT +1.5 dBm，ONU −27 dBm）。</p><p><small>预期结果</small><br><strong data-scenario-expected>1:32 · 分光 17.70 dB · 设计损耗 26.25 dB · 剩余 1.25 dB（预警）</strong></p><p><a class="nel-scenario-link" href="?scenario=gpon-bplus-1x32-cascade#calculator">载入此场景 →</a></p></div></article>
-<article class="metric-card nel-scenario-card" data-scenario-id="gpon-bplus-1x128-overbudget"><div><h3>B+ 光模块 1:128 分光，10 km（超预算）</h3><p>为什么 1:128 需要 C+ 或更高：同样的 B+ 光模块，1:2 + 1:64 级联。</p><p><small>预期结果</small><br><strong data-scenario-expected>1:128 · 分光 24.20 dB · 设计损耗 31.50 dB · 剩余 -4.00 dB（不通过）</strong></p><p><a class="nel-scenario-link" href="?scenario=gpon-bplus-1x128-overbudget#calculator">载入此场景 →</a></p></div></article>
-</div>
-</section>
-</div>
-</details>
-<!-- NEL_SCENARIOS_END -->
-<!-- NEL_PON_LINKS_START -->
-<details class="fb-fold blk">
-<summary class="fb-fold-sum"><span class="fb-fold-title">相关 PON 与光纤工具</span></summary>
-<div class="fb-fold-body">
-<section class="content-section nel-tool-supporting-section" id="pon-toolkit" aria-labelledby="pon-toolkit-title">
-<div class="section-heading"><div><p class="eyebrow">PON 规划工具组</p><h2 id="pon-toolkit-title">相关 PON 与光纤工具</h2></div></div>
-<p>按顺序完成 PON 设计：分光比、传输距离、接收光功率，再做完整链路预算。</p>
-<ul class="nel-pon-toolkit"><li><a href="../../pon-distance/zh/">PON 最大传输距离——光预算与 20 km 系统距离</a></li><li><a href="../../onu-rx-power/zh/">ONU 接收光功率——实测 dBm 是否正常</a></li><li><a href="../../optical-power-budget/zh/">光功率预算——发送、接收灵敏度与余量</a></li><li><a href="../../fiber-loss/zh/">光纤损耗——衰减、熔接与连接器</a></li><li><a href="../../pon-fiber-calculators/zh/">全部 PON 与光纤计算器</a></li></ul>
-<h3>指南</h3>
-<ul class="nel-pon-guides"><li><a href="../../../zh/guides/pon-splitter-loss-guide/">PON 分光器损耗指南</a></li><li><a href="../../../zh/guides/fiber-link-budget-guide/">光纤链路预算指南</a></li><li><a href="../../../zh/topics/pon-optical/">PON 与光通信专题</a></li></ul>
-</section>
-</div>
-</details>
-<!-- NEL_PON_LINKS_END -->
-<aside aria-label="广告" class="ad-slot" data-ad-key="afterCalculator" hidden=""><div class="ad-label">广告</div><div class="ad-body"></div></aside>
-<details class="fb-fold blk">
-<summary class="fb-fold-sum"><span class="fb-fold-title">计算方法与工程说明</span></summary>
-<div class="fb-fold-body">
-<section class="content-section nel-tool-supporting-section" id="methodology"><div class="section-heading"><div><p class="eyebrow">METHODOLOGY</p><h2>计算方法与工程说明</h2></div></div>
+<div class="below"><nav class="toc" aria-label="本页导航"><h4>本页导航</h4><a href="#methodology">计算方法</a><a href="#component-check">分项核对</a><a href="#faq">问答</a><a href="#history">最近计算</a><a href="#references">官方依据</a><a href="#pon-toolkit">PON 工具组</a><a href="#nel-tool-graph">工程工作流</a></nav><div class="prose"><aside aria-label="广告" class="ad-slot" data-ad-key="afterCalculator" hidden=""><div class="ad-label">广告</div><div class="ad-body"></div></aside><aside aria-label="广告" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">广告</div><div class="ad-body"></div></aside><details class="fb-fold blk" id="methodology" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span class="fb-fold-title">计算方法与工程说明</span></summary><div class="fb-fold-body"><section class="content-section nel-tool-supporting-section"><div class="section-heading"><div><p class="eyebrow">METHODOLOGY</p></div></div>
 <div class="method-grid">
 <article><h3>总分光比</h3><p>各级分光比相乘。一级1:8与二级1:8形成总分光比1:64。</p></article>
 <article><h3>实际分光损耗</h3><p>各级分光器标称插入损耗相加；1:8加1:8默认共21.0 dB。</p></article>
@@ -197,45 +154,35 @@
 <article><h3>有效最大距离</h3><p>先按标准ODN预算计算光预算距离，再与系统距离上限取较小值。</p></article>
 </div>
 <div class="note"><strong>工程说明：</strong>1490 nm的0.25 dB/km为可编辑的工程典型值，不是统一验收上限；正式设计应以设备、光缆和企业标准为准。<div class="example-box"><h3>可复算工程案例：10 km、1:8 × 1:8</h3><p>总分光比 = 8 × 8 = 64（1:64）。按本页默认值，分光器插入损耗为10.5 + 10.5 = 21.0 dB；10 km × 0.25 dB/km = 2.5 dB光纤损耗；6个0.1 dB熔接点 = 0.6 dB；4个0.3 dB连接器 = 1.2 dB；再计1 dB光学代价和3 dB工程余量，设计损耗为29.3 dB。结果必须满足所选ODN等级，接收光功率也必须位于灵敏度和过载门限之间。</p><p>可先用<a href="../../fiber-loss/zh/">光纤链路损耗计算器</a>核对物理损耗，再用<a href="../../optical-power-budget/zh/">光功率预算计算器</a>验证收发功率窗口。这些是规划值，正式验收应替换为厂商规格和实测数据。</p></div></div>
-</section>
+</section></div></details><details class="fb-fold blk" id="component-check" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span id="scenarios-title" class="fb-fold-title">典型工程场景</span></summary><div class="fb-fold-body"><section class="content-section nel-tool-supporting-section" id="scenarios" aria-labelledby="scenarios-title">
+<div class="section-heading"><div><p class="eyebrow">工程算例</p></div></div>
+<p>点击场景即可一键填入计算器。下方预期结果由同一计算引擎得出，并有自动化测试覆盖。</p>
+<div class="metric-grid nel-scenario-grid">
+<article class="nel-scenario-card" data-scenario-id="gpon-cplus-1x64"><div class="nel-scenario-body"><h3>GPON C+ 单级 1:64 分光，20 km</h3><p class="nel-scenario-desc">C+ 光模块（OLT +3～+7 dBm，ONU −30 dBm），单个 1:64 分光器带 64 户。</p><div class="nel-scenario-expected-wrap"><small>预期结果</small><strong data-scenario-expected><span class="nel-sc-metric">1:64</span> · <span class="nel-sc-metric">分光 20.50 dB</span> · <span class="nel-sc-metric">设计损耗 30.30 dB</span> · <span class="nel-sc-metric">剩余 1.70 dB（预警）</span></strong></div><p class="nel-scenario-action"><a class="nel-scenario-link" href="?scenario=gpon-cplus-1x64#calculator">载入此场景 →</a></p></div></article>
+<article class="nel-scenario-card" data-scenario-id="gpon-bplus-1x32-cascade"><div class="nel-scenario-body"><h3>GPON B+ 两级 1:4 + 1:8（1:32），15 km</h3><p class="nel-scenario-desc">分布式分光：机柜 1:4、楼道 1:8，B+ 光模块（OLT +1.5 dBm，ONU −27 dBm）。</p><div class="nel-scenario-expected-wrap"><small>预期结果</small><strong data-scenario-expected><span class="nel-sc-metric">1:32</span> · <span class="nel-sc-metric">分光 17.70 dB</span> · <span class="nel-sc-metric">设计损耗 26.25 dB</span> · <span class="nel-sc-metric">剩余 1.25 dB（预警）</span></strong></div><p class="nel-scenario-action"><a class="nel-scenario-link" href="?scenario=gpon-bplus-1x32-cascade#calculator">载入此场景 →</a></p></div></article>
+<article class="nel-scenario-card" data-scenario-id="gpon-bplus-1x128-overbudget"><div class="nel-scenario-body"><h3>B+ 光模块 1:128 分光，10 km（超预算）</h3><p class="nel-scenario-desc">为什么 1:128 需要 C+ 或更高：同样的 B+ 光模块，1:2 + 1:64 级联。</p><div class="nel-scenario-expected-wrap"><small>预期结果</small><strong data-scenario-expected><span class="nel-sc-metric">1:128</span> · <span class="nel-sc-metric">分光 24.20 dB</span> · <span class="nel-sc-metric">设计损耗 31.50 dB</span> · <span class="nel-sc-metric">剩余 -4.00 dB（不通过）</span></strong></div><p class="nel-scenario-action"><a class="nel-scenario-link" href="?scenario=gpon-bplus-1x128-overbudget#calculator">载入此场景 →</a></p></div></article>
 </div>
-</details>
-<details class="fb-fold blk">
-<summary class="fb-fold-sum"><span class="fb-fold-title">常见问题</span></summary>
-<div class="fb-fold-body">
-<section class="content-section nel-tool-supporting-section" id="faq"><div class="section-heading"><div><p class="eyebrow">FAQ</p><h2>常见问题</h2></div></div><div class="faq-grid"><details id="faqCplusDefault"><summary>为什么1:8 × 1:8默认采用GPON C+？</summary><p>两级分光器本身约21 dB，再叠加光纤、连接器、熔接点和工程余量后，B+预算容易不足；C+提供32 dB ODN等级，更适合该默认1:64方案。</p></details>
+</section></div></details><div class="blk faq" id="faq" data-nel-v3-title-normalized="1"><h2>常见问题</h2><p class="eyebrow">FAQ</p><details id="faqCplusDefault"><summary>为什么1:8 × 1:8默认采用GPON C+？</summary><p>两级分光器本身约21 dB，再叠加光纤、连接器、熔接点和工程余量后，B+预算容易不足；C+提供32 dB ODN等级，更适合该默认1:64方案。</p></details>
 <details><summary>一级分光和二级分光哪个损耗更小？</summary><p>在总分光比相同的情况下，多级级联通常会增加额外插入损耗和连接点，因此一级分光一般更容易控制预算，但实际部署还要考虑覆盖范围和维护便利性。</p></details>
 <details><summary>1:4 × 1:8为什么等于1:32？</summary><p>一级产生4个分支，每个分支再分成8路，总分支数量为4×8=32。</p></details>
 <details><summary>理论分光损耗和标称损耗为什么不同？</summary><p>理论值只反映理想能量均分；标称插入损耗还包含器件制造、耦合、封装和均匀性等损耗。</p></details>
 <details><summary>分光器级联越多越好吗？</summary><p>不是。级联越多，设计灵活性可能提高，但连接点、插入损耗和维护复杂度也会增加。</p></details>
 <details><summary>接收光功率过高也会有问题吗？</summary><p>会。若超过接收机过载门限，可能导致误码或接收异常，因此需要同时检查灵敏度余量和过载余量。</p></details>
 <details><summary>本工具能否直接替代现场测试？</summary><p>不能。它用于规划和复核，正式验收仍需光功率计、OTDR和设备实际参数。</p></details>
-</div></section>
-</div>
-</details>
-<details class="fb-fold blk">
-<summary class="fb-fold-sum"><span class="fb-fold-title">最近计算记录</span></summary>
-<div class="fb-fold-body">
-<section class="content-section nel-tool-supporting-section" id="history"><div class="section-heading"><div><p class="eyebrow">PROJECT RECORDS</p><h2>最近计算记录</h2></div><button class="text-button" id="clearHistoryBtn">清空记录</button></div><div class="history-list" id="historyList"></div></section>
-</div>
-</details>
-<details class="fb-fold blk" open data-fold-pinned>
-<summary class="fb-fold-sum"><span class="fb-fold-title">分光假设与官方依据</span></summary>
-<div class="fb-fold-body">
-<section class="content-section nel-tool-supporting-section" id="references"><div class="section-heading"><div><p class="eyebrow">工程证据</p><h2>分光假设与官方依据</h2></div></div><div class="note"><p>接收灵敏度和 ODN 预算按最小发送功率校核，接收过载单独按最大发送功率校核。可选插入损耗是规划值，不是统一上限；最终设计必须使用具体分光器等级、均匀性、回波损耗和设备规格书。3 dB 的健康/风险分界是本工具规划门槛，不是标准统一强制值。</p><p>复核日期：2026-08-31。官方来源：<a href="https://www.itu.int/rec/T-REC-G.984.2/en" rel="noopener noreferrer" target="_blank">ITU-T G.984.2 GPON PMD</a>、<a href="https://www.itu.int/rec/T-REC-G.671/en" rel="noopener noreferrer" target="_blank">ITU-T G.671 光器件与 PON 分支器件</a>、<a href="https://www.itu.int/rec/T-REC-G.652-202408-I/en" rel="noopener noreferrer" target="_blank">ITU-T G.652 单模光纤</a>。</p></div></section>
-</div>
-</details>
-<aside aria-label="广告" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">广告</div><div class="ad-body"></div></aside>
-<p class="hub-return">属于 <a href="../../pon-fiber-calculators/zh/">PON 与光纤计算器</a> 专题。</p>
-<!-- NEL_TOOL_GRAPH_START -->
+</div><section class="blk" id="history" data-nel-v3-title-normalized="1"><h2>最近计算记录</h2><div class="fb-fold-body"><section class="content-section nel-tool-supporting-section"><div class="section-heading"><div><p class="eyebrow">PROJECT RECORDS</p></div><button class="text-button btn btn-ghost btn-sm" id="clearHistoryBtn">清空记录</button></div><div class="history-list" id="historyList"></div></section></div></section><section class="blk" id="references" data-nel-v3-title-normalized="1"><h2>分光假设与官方依据</h2><div class="fb-fold-body"><section class="content-section nel-tool-supporting-section"><div class="section-heading"><div><p class="eyebrow">工程证据</p></div></div><div class="note"><p>接收灵敏度和 ODN 预算按最小发送功率校核，接收过载单独按最大发送功率校核。可选插入损耗是规划值，不是统一上限；最终设计必须使用具体分光器等级、均匀性、回波损耗和设备规格书。3 dB 的健康/风险分界是本工具规划门槛，不是标准统一强制值。</p><p>复核日期：2026-08-31。官方来源：<a href="https://www.itu.int/rec/T-REC-G.984.2/en" rel="noopener noreferrer" target="_blank">ITU-T G.984.2 GPON PMD</a>、<a href="https://www.itu.int/rec/T-REC-G.671/en" rel="noopener noreferrer" target="_blank">ITU-T G.671 光器件与 PON 分支器件</a>、<a href="https://www.itu.int/rec/T-REC-G.652-202408-I/en" rel="noopener noreferrer" target="_blank">ITU-T G.652 单模光纤</a>。</p></div></section></div></section><section class="content-section nel-tool-supporting-section" id="pon-toolkit" aria-labelledby="pon-toolkit-title" data-nel-v3-title-normalized="1"><h2 id="pon-toolkit-title">相关 PON 与光纤工具</h2><div class="fb-fold-body"><section class="content-section nel-tool-supporting-section" aria-labelledby="pon-toolkit-title">
+<div class="section-heading"><div><p class="eyebrow">PON 规划工具组</p></div></div>
+<p>按顺序完成 PON 设计：分光比、传输距离、接收光功率，再做完整链路预算。</p>
+<ul class="nel-pon-toolkit"><li><a href="../../pon-distance/zh/">PON 最大传输距离——光预算与 20 km 系统距离</a></li><li><a href="../../onu-rx-power/zh/">ONU 接收光功率——实测 dBm 是否正常</a></li><li><a href="../../optical-power-budget/zh/">光功率预算——发送、接收灵敏度与余量</a></li><li><a href="../../fiber-loss/zh/">光纤损耗——衰减、熔接与连接器</a></li><li><a href="../../pon-fiber-calculators/zh/">全部 PON 与光纤计算器</a></li></ul>
+<h3>指南</h3>
+<ul class="nel-pon-guides"><li><a href="../../../zh/guides/pon-splitter-loss-guide/">PON 分光器损耗指南</a></li><li><a href="../../../zh/guides/fiber-link-budget-guide/">光纤链路预算指南</a></li><li><a href="../../../zh/topics/pon-optical/">PON 与光通信专题</a></li></ul>
+</section></div></section><p class="hub-return">属于 <a href="../../pon-fiber-calculators/zh/">PON 与光纤计算器</a> 专题。</p><!-- NEL_TOOL_GRAPH_START -->
 <section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="pon-splitter-loss" data-primary-workflow="optical-link-design">
 <div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
 <div class="nel-workflow-context"><div><span class="nel-workflow-kicker">当前流程</span><strong>光链路设计工作流</strong><p>从物理损耗、分光规划到光功率预算和最大距离验证，完成一条光链路的设计闭环。</p></div><div class="nel-workflow-step"><strong>步骤 2 / 5</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="2" aria-valuetext="步骤 2 / 5" aria-label="步骤 2 / 5"><span style="width:40%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/fiber-loss/zh/"><span class="nel-tool-graph-label">上一步</span><strong>光纤链路损耗计算器</strong><span class="nel-tool-graph-description">计算光纤、熔接、连接器、分光器及工程余量，输出物理损耗与设计损耗。</span></a><a class="nel-tool-graph-card" href="/tools/optical-power-budget/zh/"><span class="nel-tool-graph-label">下一步</span><strong>光功率预算计算器</strong><span class="nel-tool-graph-description">结合发送功率、接收灵敏度、光学代价和ODN损耗验证完整光链路预算。</span></a></div>
 <h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/fiber-loss/zh/"><strong>光纤链路损耗计算器</strong><span class="nel-tool-graph-description">计算光纤、熔接、连接器、分光器及工程余量，输出物理损耗与设计损耗。</span></a><a class="nel-tool-graph-card" href="/tools/optical-power-budget/zh/"><strong>光功率预算计算器</strong><span class="nel-tool-graph-description">结合发送功率、接收灵敏度、光学代价和ODN损耗验证完整光链路预算。</span></a><a class="nel-tool-graph-card" href="/tools/pon-distance/zh/"><strong>PON最大传输距离计算器</strong><span class="nel-tool-graph-description">区分光预算最大距离和系统有效距离，并验证规划链路是否保留工程余量。</span></a></div>
 </section>
-<!-- NEL_TOOL_GRAPH_END -->
-</div>
-</div>
+<!-- NEL_TOOL_GRAPH_END --></div></div></main>
+
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">
@@ -247,8 +194,8 @@
   </div>
 </footer>
 <!-- NEL_FOOTER_END -->
-<script defer="" src="../js/engine.js"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=32a005d930b6"></script><script defer="" src="../js/scenarios.js"></script>
+<script defer="" src="../js/engine.js?v=c33958d704ae"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=20261106-fl4s2"></script><script defer="" src="../js/scenarios.js"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
-<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script><script defer src="../../../assets/js/tool-detail-v3.js?v=66984b67ff65"></script>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=77b297dd25ca"></script><script defer src="../../../assets/js/tool-detail-v3.js?v=6f38212f00f3"></script>
 </body></html>
 

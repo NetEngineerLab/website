@@ -60,6 +60,8 @@ function applyPreset(){
  $("txPower").value=p.tx;$("rxSensitivity").value=p.sens;$("rxOverload").value=p.over;$("systemReach").value=p.system;$("wavelength").value=p.wave;$("plannedDistance").value=p.planned;$("splitter1").value=p.s1;$("splitter2").value=p.s2;$("margin").value=p.margin;setAttenuation();calculate();
 }
 function calculate(){
+ try {
+
  const v={
   project:$("projectName").value.trim()||"Untitled",tx:n("txPower"),sens:n("rxSensitivity"),over:n("rxOverload"),
   planned:n("plannedDistance"),systemReach:n("systemReach"),attenuation:n("attenuation"),wavelength:$("wavelength").value,
@@ -81,7 +83,7 @@ function calculate(){
  set("plannedPhysical",plannedPhysical);set("plannedDesign",plannedDesign);set("designRemaining",designRemaining);set("estimatedRx",estimatedRx);set("physicalHeadroom",physicalHeadroom);
  set("spliceTotal",spliceTotal);set("connectorTotal",connectorTotal);set("splitterTotal",splitterTotal);set("otherResult",v.other);set("marginResult",v.margin);
  $("splitRatio").textContent="1:"+ratio;
- const summary=$("summaryCard"),diag=$("diagnosis");summary.className="summary-card "+status;diag.className="diagnosis diagnosis-box "+status;$("healthBadge").textContent=T[LANG][status];
+ const summary=$("summaryCard"),diag=$("diagnosis");summary.className="summary-card "+status;diag.className="diagnosis diagnosis-box "+status;$("healthBadge").textContent=T[LANG][status];$("healthBadge").className="health-badge status "+({healthy:"st-pass",warning:"st-marginal",failed:"st-fail"}[status]||"st-fail");
  $("diagnosisText").textContent=T[LANG][status+"Text"];
  $("limiterText").textContent=limiter==="optical"?T[LANG].opticalLimiter:limiter==="system"?T[LANG].systemLimiter:T[LANG].equalLimiter;
  const causes=T[LANG]["causes"+status[0].toUpperCase()+status.slice(1)];
@@ -92,6 +94,8 @@ function calculate(){
  $("distanceScaleMax").textContent=scale.toFixed(1)+" km";
  if(typeof nelTrack==="function")nelTrack("pon_max_distance_calculate",{status,limiter,optical_max:Number(opticalMax.toFixed(2)),effective_max:Number(effectiveMax.toFixed(2)),planned_distance:Number(v.planned.toFixed(2))});
  ["copyBtn","saveBtn","csvBtn","printBtn","jsonBtn"].forEach(id=>{if($(id))$(id).disabled=false});
+
+ } finally { window.NELToolInputController?.sync?.(); }
 }
 function reset(){
  $("preset").value="gpon-b";$("projectName").value="PON Maximum Distance Design";$("txPower").value=1.5;$("rxSensitivity").value=-27;$("rxOverload").value=-8;$("systemReach").value=20;
@@ -123,5 +127,29 @@ function installDeepControls(){
  ["agingLoss","temperatureLoss","maintenanceLoss"].forEach(id=>$(id).addEventListener("input",()=>{invalidate();calculate()}));["protectionRequired","protectionPresent","dualUplinkRequired","dualUplinkPresent"].forEach(id=>$(id).addEventListener("change",calculate));
 }
 ["projectName","txPower","rxSensitivity","rxOverload","plannedDistance","systemReach","attenuation","spliceCount","spliceLoss","connectorCount","connectorLoss","splitter1","splitter2","otherLoss","margin"].forEach(id=>$(id).addEventListener("input",()=>{invalidate();clearTimeout(window.__ponDist);window.__ponDist=setTimeout(calculate,160)}));
-$("wavelength").addEventListener("change",()=>{setAttenuation();calculate()});$("preset").addEventListener("change",applyPreset);$("calculateBtn").addEventListener("click",calculate);$("resetBtn").addEventListener("click",reset);$("copyBtn").addEventListener("click",copyResult);$("saveBtn").addEventListener("click",save);$("csvBtn").addEventListener("click",csv);$("printBtn").addEventListener("click",()=>print());$("clearHistoryBtn").addEventListener("click",clearHistory);
+$("wavelength").addEventListener("change",()=>{setAttenuation();calculate()});$("preset").addEventListener("change",applyPreset);window.NELPonDistanceCalculate=calculate;window.NELPonDistanceReset=reset;
+$("calculateBtn").addEventListener("click",calculate);$("resetBtn").addEventListener("click",reset);$("copyBtn").addEventListener("click",copyResult);$("saveBtn").addEventListener("click",save);$("csvBtn").addEventListener("click",csv);$("printBtn").addEventListener("click",()=>print());$("clearHistoryBtn").addEventListener("click",clearHistory);
 installDeepControls();setAttenuation();calculate();renderHistory();
+
+// Reuse the domain validation/history; the shell owns result-only DOM gates.
+window.NELToolInputController={calculate:calculate,calculateSelector:"#calculateBtn",managesValidation:true,isValid:()=>Boolean(last),invalidate:()=>{invalidate();},resultActions:"#copyBtn,#saveBtn,#csvBtn,#exportBtn,#jsonBtn,#printBtn",resultValues:"#effectiveMax,#opticalMax,#systemReachResult,#plannedDistanceResult,#maxChannelLoss,#fixedPhysical,#fiberAllowance,#plannedFiber,#plannedPhysical,#plannedDesign,#designRemaining,#estimatedRx,#physicalHeadroom,#spliceTotal,#connectorTotal,#splitterTotal,#otherResult,#marginResult,#splitRatio,#distanceScaleMax",resultStatus:"#healthBadge",resultDetails:"",resultMeters:"#effectiveBar",validation:"#validation",inputControls:".nel-tool-input input,.nel-tool-input select,.nel-tool-input textarea"};
+/* 20261106-bw1-chrome */
+(()=>{try{
+  const $=id=>document.getElementById(id);
+  const syncFill=()=>{
+    [['fillEffective','effectiveMax'],['fillOptical','opticalMax'],['fillPlanned','plannedDistanceResult']].forEach(([a,b])=>{
+      const x=$(a),y=$(b); if(x&&y) x.textContent=(y.textContent||'\u2014').trim();
+    });
+  };
+  const doCalc=()=>{ try{ (window.NELPonDistanceCalculate||window.NELToolInputController?.calculate)?.(); }catch(e){console.warn(e);} syncFill(); };
+  const doReset=()=>{ try{ window.NELPonDistanceReset?.(); }catch(e){console.warn(e);} syncFill(); };
+  const obs=new MutationObserver(syncFill);
+  ['effectiveMax','opticalMax','plannedDistanceResult'].forEach(id=>{const el=$(id); if(el) obs.observe(el,{childList:true,characterData:true,subtree:true});});
+  syncFill();
+  const bind=()=>{
+    const c=$('calculateBtn'), r=$('resetBtn');
+    if(c&&!c.dataset.bw1eBound){ c.dataset.bw1eBound='1'; c.style.pointerEvents='auto'; c.style.cursor='pointer'; c.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();doCalc();},true); }
+    if(r&&!r.dataset.bw1eBound){ r.dataset.bw1eBound='1'; r.style.pointerEvents='auto'; r.style.cursor='pointer'; r.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();doReset();},true); }
+  };
+  bind(); document.addEventListener('DOMContentLoaded', bind); window.addEventListener('load', bind); setTimeout(doCalc,0);
+}catch(e){console.warn('pon bw1',e)}})();

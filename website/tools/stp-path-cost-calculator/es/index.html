@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0b6ffb">
+<meta name="theme-color" content="#176ff2">
 <title>Calculadora de coste de ruta STP – coste largo y corto 802.1D/802.1Q</title>
 <meta name="description" content="Calcula el coste de puerto y de ruta raíz de Spanning Tree con el método largo IEEE 802.1D-2004/802.1Q (20.000.000.000 ÷ kb/s) o la tabla corta, y compara dos rutas.">
-<link rel="stylesheet" href="../css/style.css?v=48c7b72aa30f">
+<link rel="stylesheet" href="../css/style.css?v=20261106-bw1">
 <meta name="app-base" content="../">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <meta property="og:type" content="website">
@@ -24,6 +24,12 @@
 <meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 
 <link rel="stylesheet" href="/assets/css/cookie-consent.css?v=8dd1728bf5eb">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=20261105-method1r">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=35fd6b8f7526">
+<script defer="" src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Calculadora de coste de ruta STP – coste largo y corto 802.1D/802.1Q","url":"https://netengineerlab.com/tools/stp-path-cost-calculator/es/","description":"Calcula el coste de puerto y de ruta raíz de Spanning Tree con el método largo IEEE 802.1D-2004/802.1Q (20.000.000.000 ÷ kb/s) o la tabla corta, y compara dos rutas.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="es">
@@ -37,18 +43,18 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cómo se calcula el coste de ruta STP?","acceptedAnswer":{"@type":"Answer","text":"El coste de ruta raíz es la suma de los costes de puerto hasta el puente raíz. Con el método largo cada coste es 20.000.000.000 ÷ velocidad en kb/s."}},{"@type":"Question","name":"¿Qué coste STP tiene un enlace de 10G?","acceptedAnswer":{"@type":"Answer","text":"2.000 con el método largo (802.1D-2004/802.1Q) y 2 con el método corto clásico."}},{"@type":"Question","name":"¿Qué coste STP tiene 100G?","acceptedAnswer":{"@type":"Answer","text":"200 con el método largo. La tabla corta de 802.1D-1998 termina en 10 Gbps, así que 100G no tiene valor corto normalizado."}},{"@type":"Question","name":"¿Por qué IEEE pasó a costes largos?","acceptedAnswer":{"@type":"Answer","text":"Los costes cortos de 16 bits no distinguían enlaces de más de 10 Gbps y provocaban empates. El método largo de 32 bits llega a 10 Tb/s."}},{"@type":"Question","name":"¿Qué ocurre si dos rutas tienen el mismo coste?","acceptedAnswer":{"@type":"Answer","text":"STP compara el ID de puente del emisor y luego el ID de puerto; gana el menor."}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=1040076f7555">
-<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=989edb3b4d77">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=20261105-method1r">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=26fafcdcee42">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../../assets/js/site.js?v=b563dd0297f5"></script>
-<script defer src="../../../assets/js/es-launch-runtime.js?v=26766a85d049"></script>
-<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=dfdd771763d6">
+<script defer src="../../../assets/js/es-launch-runtime.js?v=3f188aa72208"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=20261105-bc1">
 <link rel="manifest" href="../manifest-es.webmanifest">
 </head>
-<body class="nel-tool-detail-page" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1" data-nel-offline-worker="1">
 <a class="skip-link" href="#calculator">Saltar a la calculadora</a>
 <noscript><div class="noscript">Se necesita JavaScript para ejecutar esta calculadora.</div></noscript>
 <!-- NEL_HEADER_START -->
@@ -81,73 +87,79 @@
   <span aria-current="page">Calculadora de coste de ruta STP</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
-<section class="hero nel-tool-hero"><div class="hero-inner">
+<section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner">
 <p class="eyebrow">HERRAMIENTA DE INGENIERÍA DE REDES</p>
 <h1>Calculadora de coste de ruta STP</h1>
 <p>Spanning Tree elige la ruta hacia el puente raíz con el menor coste de ruta raíz, la suma de los costes de puerto. IEEE 802.1D-2004 y 802.1Q definen el método largo, coste = 20.000.000.000 ÷ velocidad en kb/s: 1 Gbps cuesta 20.000 y 10 Gbps 2.000. El método corto usaba 4 para 1 Gbps y 2 para 10 Gbps. Introduzca las velocidades de dos rutas para ver cada coste, los totales y la ruta elegida.</p>
 <div class="hero-tags"><span>Largo 802.1D-2004</span><span>Corto clásico</span><span>Coste de ruta raíz</span><span>Ruta A frente a B</span></div></div></section>
-<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
-<section class="input-panel card nel-tool-input">
-<div class="section-title"><span class="section-icon">☷</span><div>
-<h2>Método de coste y enlaces</h2>
+<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator" data-nel-readout-roles="%7B%22secondary%22%3A%5B%22costsA%22%2C%22costsB%22%2C%22difference%22%2C%22winnerText%22%5D%2C%22identifier%22%3A%5B%5D%2C%22annotation%22%3A%5B%5D%7D" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv"><div class="tool-head"><nav class="crumbs" aria-label="Breadcrumb">
+  <a href="../../../es/">Inicio</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../../es/">Herramientas</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">Calculadora de coste de ruta STP</span>
+</nav><p class="tool-page-label" role="heading" aria-level="1">Calculadora de coste de ruta STP</p><p class="tool-lede">Spanning Tree elige la ruta hacia el puente raíz con el menor coste de ruta raíz, la suma de los costes de puerto. IEEE 802.1D-2004 y 802.1Q definen el método largo, coste = 20.000.000.000 ÷ velocidad en kb/s: 1 Gbps cuesta 20.000 y 10 Gbps 2.000. El método corto usaba 4 para 1 Gbps y 2 para 10 Gbps. Introduzca las velocidades de dos rutas para ver cada coste, los totales y la ruta elegida.</p></div>
+<div class="workspace">
+<section class="input-panel card nel-tool-input fb-panel">
+<div class="section-title panel-h"><span class="section-icon">☷</span><div>
+<h2 class="panel-h">Método de coste y enlaces</h2>
 <p>Elija el método y enumere la velocidad de cada salto de cada ruta hacia el puente raíz, en Mbps.</p>
 </div></div>
-<div class="form-grid">
-<div class="field"><label for="projectName">Nombre del proyecto</label><div class="input-wrap no-unit"><input id="projectName" type="text" value="Revisión de redundancia de distribución"></div></div>
-<div class="field"><label for="method">Método de coste</label><div class="input-wrap no-unit"><select id="method"><option value="long" selected>Largo (802.1D-2004 / 802.1Q, 32 bits)</option><option value="short">Corto (802.1D-1998, 16 bits)</option></select></div></div>
-<div class="field"><label for="pathA">Velocidades de la ruta A (Mbps, separadas por comas)</label><div class="input-wrap no-unit"><input id="pathA" type="text" inputmode="decimal" value="10000, 10000"></div><p class="hint">Ejemplo: 10000, 10000 = dos saltos de 10G.</p></div>
-<div class="field"><label for="pathB">Velocidades de la ruta B (Mbps, separadas por comas)</label><div class="input-wrap no-unit"><input id="pathB" type="text" inputmode="decimal" value="1000"></div><p class="hint">El método corto solo acepta 4, 10, 16, 100, 1000 y 10000.</p></div>
+<div class="form-grid fields">
+<div class="field f"><label for="projectName">Nombre del proyecto</label><div class="input-wrap no-unit inp"><input id="projectName" type="text" value="Revisión de redundancia de distribución"></div></div>
+<div class="field f"><label for="method">Método de coste</label><div class="input-wrap no-unit inp sel"><select id="method"><option value="long" selected>Largo (802.1D-2004 / 802.1Q, 32 bits)</option><option value="short">Corto (802.1D-1998, 16 bits)</option></select></div></div>
+<div class="field f"><label for="pathA">Velocidades de la ruta A (Mbps, separadas por comas)</label><div class="input-wrap no-unit inp"><input id="pathA" type="text" inputmode="decimal" value="10000, 10000"></div><p class="hint">Ejemplo: 10000, 10000 = dos saltos de 10G.</p></div>
+<div class="field f"><label for="pathB">Velocidades de la ruta B (Mbps, separadas por comas)</label><div class="input-wrap no-unit inp"><input id="pathB" type="text" inputmode="decimal" value="1000"></div><p class="hint">El método corto solo acepta 4, 10, 16, 100, 1000 y 10000.</p></div>
 </div>
-<div class="actions">
-<button class="primary-action" id="calculateBtn" type="button">Calcular</button>
-<button class="secondary-action" id="resetBtn" type="button">Restablecer</button>
-</div>
+<div class="input-actions"><button class="primary btn btn-primary" id="calculateBtn" type="button">Calcular</button><button class="secondary btn btn-ghost" id="resetBtn" type="button">Restablecer</button></div><div class="formula-block"><div class="formula-card"><h3>Cálculo principal</h3><code>Coste de puerto = f(velocidad, tabla STP). Coste de ruta = Σ costes de puerto. Ruta preferida = menor coste total a la raíz (empates: prioridad de bridge/puerto).</code></div><div class="formula-note"><p><strong>Coste de puerto.</strong> Asigne cada velocidad con la tabla larga/corta elegida.</p><p><strong>Coste de ruta.</strong> Sume los costes de puerto hacia la raíz.</p><p><strong>Comparación.</strong> Gana el total menor; empates requieren prioridad.</p><p><strong>Tablas de fabricante.</strong> Confirme modo largo/corto con la CLI antes del corte.</p></div></div>
 <p class="validation-message" id="validationMessage" role="alert"></p>
 </section>
-<section aria-live="polite" class="result-panel card nel-tool-result">
-<div class="section-title"><span class="section-icon">▥</span><div>
-<h2>Resultado del cálculo</h2>
+<section aria-live="polite" class="result-panel card nel-tool-result readout">
+<div class="section-title ro-h"><span class="section-icon">▥</span><div>
+<h2 class="ro-h">Resultado del cálculo</h2>
 <p>El coste de ruta raíz es la suma de costes de puerto. Gana el menor; en empate STP compara el ID de puente y luego el de puerto.</p>
 </div></div>
-<div class="summary-card" id="summaryCard"><div><p>Coste de ruta raíz A</p><strong><span id="totalA">—</span></strong></div><div><p>Coste de ruta raíz B</p><strong><span id="totalB">—</span></strong></div><div class="health-badge" id="healthBadge">—</div></div>
+<div class="summary-card ro-l1" id="summaryCard"><div class="ro-main"><p class="lbl">Coste de ruta raíz A</p><strong class="big"><span id="totalA" data-nel-readout-number="1">—</span></strong></div><div class="ro-main"><p class="lbl">Coste de ruta raíz B</p><strong class="big"><span id="totalB" data-nel-readout-number="1">—</span></strong></div><div class="health-badge" id="healthBadge">—</div></div>
 <div class="metric-grid">
-<article class="metric-card"><div><small>Costes de puerto A</small><strong id="costsA">—</strong></div></article>
-<article class="metric-card"><div><small>Costes de puerto B</small><strong id="costsB">—</strong></div></article>
-<article class="metric-card"><div><small>Diferencia de coste</small><strong id="difference">—</strong></div></article>
-<article class="metric-card"><div><small>Ruta preferida</small><strong id="winnerText">—</strong></div></article>
+<article class="metric"><small>Costes de puerto A</small><strong id="costsA">—</strong></article>
+<article class="metric"><small>Costes de puerto B</small><strong id="costsB">—</strong></article>
+<article class="metric"><small>Diferencia de coste</small><strong id="difference">—</strong></article>
+<article class="metric"><small>Ruta preferida</small><strong id="winnerText">—</strong></article>
 </div>
 <p class="hint">Los fabricantes pueden usar valores distintos (costes cortos por encima de 10G o de LAG). Confirme el método configurado en el switch.</p>
-<div class="result-actions">
+<aside class="result-fill" id="resultFill" aria-label="Instantánea de ruta"><div class="result-fill-card"><h3>Instantánea de ruta</h3><p class="result-fill-lead">Cómo se comparan los totales de Ruta A y Ruta B con la tabla STP elegida.</p><div class="util-breakdown"><div class="util-seg payload"><span>Total ruta A</span><strong id="fillA">—</strong></div><div class="util-seg overhead"><span>Total ruta B</span><strong id="fillB">—</strong></div><div class="util-seg headroom"><span>Diferencia</span><strong id="fillDiff">—</strong></div></div><ul class="fill-tips"><li>Mantenga el mismo modo de coste (largo/corto) en todos los bridges de la región.</li><li>Documente overrides manuales para que sobrevivan actualizaciones.</li><li>Tras cambiar costes, verifique el root port con show spanning-tree.</li></ul></div></aside><div class="result-actions ro-acts">
 <button id="copyBtn" type="button">Copiar resultado</button>
 <button id="saveBtn" type="button">Guardar registro</button>
 <button id="printBtn" type="button">Imprimir / Exportar PDF</button>
 </div>
 </section>
 
-</main>
-<section class="content-section nel-tool-supporting-section" id="history">
-<div class="section-heading"><div><p class="eyebrow">REGISTROS DEL PROYECTO</p><h2>Cálculos recientes</h2></div>
-<button class="text-button" id="clearHistoryBtn" type="button">Borrar historial</button></div>
-<div class="history-list" id="historyList"></div>
-</section>
-<section class="content-section methodology nel-tool-supporting-section" id="methodology">
-<div class="section-heading"><div><p class="eyebrow">METODOLOGÍA</p><h2>Metodología y notas de ingeniería</h2></div></div>
+</div>
+
+<div class="below"><nav class="toc" aria-label="En esta página"><h4>En esta página</h4><a href="#methodology">Cómo se calcula</a><a href="#faq">Preguntas frecuentes</a><a href="#history">Cálculos recientes</a><a href="#references">Referencias oficiales</a><a href="#nel-tool-graph">Flujo de ingeniería</a></nav><div class="prose"><details class="fb-fold blk" id="methodology" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span class="fb-fold-title">Metodología y notas de ingeniería</span></summary><div class="fb-fold-body"><section class="content-section methodology nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">METODOLOGÍA</p></div></div>
 <div class="method-grid">
 <article><h3>Cómo usar</h3><ol><li>Elija el método largo (predeterminado en RSTP/MSTP modernos) o el corto clásico.</li><li>Enumere la velocidad de cada salto de la ruta A hacia el puente raíz, en Mbps.</li><li>Haga lo mismo con la ruta B.</li><li>Compare los costes; el menor total define la ruta del puerto raíz.</li></ol></article><article><h3>Método largo</h3><p>IEEE 802.1D-2004 y 802.1Q recomiendan coste de puerto = 20.000.000.000 ÷ velocidad en kb/s, entre 1 y 200.000.000. Resultados: 10 Mbps 2.000.000; 100 Mbps 200.000; 1 Gbps 20.000; 10 Gbps 2.000; 25 Gbps 800; 40 Gbps 500; 100 Gbps 200; 400 Gbps 50.</p></article><article><h3>Método corto</h3><p>Valores de 16 bits recomendados por IEEE 802.1D-1998: 4 Mbps 250, 10 Mbps 100, 16 Mbps 62, 100 Mbps 19, 1 Gbps 4, 10 Gbps 2. La tabla no define velocidades superiores a 10 Gbps, por lo que la herramienta las rechaza en lugar de suponer un valor de fabricante.</p></article>
 </div>
 <div class="example-box"><h3>Caso práctico: dos saltos de 10G frente a uno de 1G</h3><p>Método largo: ruta A = 2.000 + 2.000 = 4.000; ruta B = 20.000. STP prefiere la ruta A por 16.000 aunque tenga más saltos. Con el método corto los totales son 2 + 2 = 4 y 4, un empate que decide el ID de puente; una de las razones del paso a costes de 32 bits en 802.1D-2004.</p></div>
-</section>
-<section aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
-<div class="section-heading"><div><p class="eyebrow">REFERENCIAS DE INGENIERÍA</p><h2 id="references-title">Normas y referencias</h2></div></div>
+</section></div></details><div class="blk faq" id="faq" data-nel-v3-title-normalized="1"><h2 id="faq-title">Preguntas frecuentes</h2><section aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">PREGUNTAS FRECUENTES</p></div></div>
+<div class="faq-grid"><details><summary>¿Cómo se calcula el coste de ruta STP?</summary><p>El coste de ruta raíz es la suma de los costes de puerto hasta el puente raíz. Con el método largo cada coste es 20.000.000.000 ÷ velocidad en kb/s.</p></details><details><summary>¿Qué coste STP tiene un enlace de 10G?</summary><p>2.000 con el método largo (802.1D-2004/802.1Q) y 2 con el método corto clásico.</p></details><details><summary>¿Qué coste STP tiene 100G?</summary><p>200 con el método largo. La tabla corta de 802.1D-1998 termina en 10 Gbps, así que 100G no tiene valor corto normalizado.</p></details><details><summary>¿Por qué IEEE pasó a costes largos?</summary><p>Los costes cortos de 16 bits no distinguían enlaces de más de 10 Gbps y provocaban empates. El método largo de 32 bits llega a 10 Tb/s.</p></details><details><summary>¿Qué ocurre si dos rutas tienen el mismo coste?</summary><p>STP compara el ID de puente del emisor y luego el ID de puerto; gana el menor.</p></details></div>
+</section></div><section class="blk" id="history" data-nel-v3-title-normalized="1"><h2>Cálculos recientes</h2><div class="fb-fold-body"><section class="content-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">REGISTROS DEL PROYECTO</p></div>
+<button class="text-button btn btn-ghost btn-sm" id="clearHistoryBtn" type="button">Borrar historial</button></div>
+<div class="history-list" id="historyList"></div>
+</section></div></section><section class="blk" id="references" data-nel-v3-title-normalized="1"><h2 id="references-title">Normas y referencias</h2><div class="fb-fold-body"><section aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">REFERENCIAS DE INGENIERÍA</p></div></div>
 <ul><li><a href="https://standards.ieee.org/ieee/802.1D/3387/" rel="noopener">IEEE 802.1D-2004: tabla 17-3 coste de puerto recomendado (método largo, 20 000 000 000 / velocidad en kb/s, rango 1–200 000 000)</a></li><li><a href="https://standards.ieee.org/ieee/802.1t/1043/" rel="noopener">IEEE 802.1t-2001: enmienda a 802.1D-1998 que introdujo los costes largos de 32 bits</a></li><li><a href="https://standards.ieee.org/ieee/802.1D/1029/" rel="noopener">IEEE 802.1D-1998: §8.10.2 tabla 8-5 coste de 16 bits recomendado (método corto: 4 Mb/s 250, 10 Mb/s 100, 16 Mb/s 62, 100 Mb/s 19, 1 Gb/s 4, 10 Gb/s 2)</a></li><li><a href="https://standards.ieee.org/ieee/802.1Q/10323/" rel="noopener">IEEE 802.1Q: puentes y redes con puentes – RSTP/MSTP usan los mismos costes largos [número de cláusula UNVERIFIED (sin verificar)]</a></li><li><a href="https://www.cisco.com/c/en/us/support/docs/lan-switching/spanning-tree-protocol/5234-5.html" rel="noopener">Cisco: comprender y configurar Spanning Tree (guía del fabricante)</a></li></ul>
 <p>La fórmula larga y la tabla corta siguen las recomendaciones IEEE; los valores reales dependen de la plataforma y la configuración (por ejemplo «spanning-tree pathcost method long»). Última revisión: 2026-10-20.</p>
-</section>
-<section aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
-<div class="section-heading"><div><p class="eyebrow">PREGUNTAS FRECUENTES</p><h2 id="faq-title">Preguntas frecuentes</h2></div></div>
-<div class="faq-grid"><details><summary>¿Cómo se calcula el coste de ruta STP?</summary><p>El coste de ruta raíz es la suma de los costes de puerto hasta el puente raíz. Con el método largo cada coste es 20.000.000.000 ÷ velocidad en kb/s.</p></details><details><summary>¿Qué coste STP tiene un enlace de 10G?</summary><p>2.000 con el método largo (802.1D-2004/802.1Q) y 2 con el método corto clásico.</p></details><details><summary>¿Qué coste STP tiene 100G?</summary><p>200 con el método largo. La tabla corta de 802.1D-1998 termina en 10 Gbps, así que 100G no tiene valor corto normalizado.</p></details><details><summary>¿Por qué IEEE pasó a costes largos?</summary><p>Los costes cortos de 16 bits no distinguían enlaces de más de 10 Gbps y provocaban empates. El método largo de 32 bits llega a 10 Tb/s.</p></details><details><summary>¿Qué ocurre si dos rutas tienen el mismo coste?</summary><p>STP compara el ID de puente del emisor y luego el ID de puerto; gana el menor.</p></details></div>
-</section>
-<!-- NEL_TOOL_GRAPH_START -->
-<!-- NEL_TOOL_GRAPH_END -->
+</section></div></section><!-- NEL_TOOL_GRAPH_START --><section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="stp-path-cost-calculator" data-primary-workflow="layer2-path-design"><h2 id="nel-tool-graph-title">Flujo de ingeniería</h2><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="../../ethernet-serialization-delay-calculator/es/"><strong>Calculadora de retardo de serialización Ethernet</strong><span class="nel-tool-graph-description">Calcula el retardo de serialización por salto y total, el tiempo en línea, la tasa máxima de tramas y la eficiencia L2.</span></a><a class="nel-tool-graph-card" href="../../switch-uplink-oversubscription-calculator/es/"><strong>Calculadora de ancho de banda y sobresuscripción de uplinks</strong><span class="nel-tool-graph-description">Dimensiona los uplinks del switch según puertos de acceso, utilización, concurrencia y redundancia.</span></a><a class="nel-tool-graph-card" href="../../vlan-ip-capacity-planner/es/"><strong>Planificador de capacidad VLAN y subredes IP</strong><span class="nel-tool-graph-description">Planifica la cantidad de VLAN, prefijos IPv4, capacidad de direcciones y crecimiento de subredes.</span></a><a class="nel-tool-graph-card" href="../../ospf-cost-calculator/es/"><strong>Calculadora de coste OSPF</strong><span class="nel-tool-graph-description">Calcula el coste OSPF de la interfaz a partir del ancho de banda de referencia y la velocidad del enlace.</span></a></div></section><!-- NEL_TOOL_GRAPH_END --></div></div></main>
+
+
+
+
+
+
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">
@@ -159,11 +171,11 @@
   </div>
 </footer>
 <!-- NEL_FOOTER_END -->
-<script defer src="../js/engine.js"></script>
+<script defer src="../js/engine.js?v=f5dac5b1767f"></script>
 <script defer src="../js/pwa.js"></script>
 <script defer src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script>
-<script defer src="../js/app.js?v=290684de1f73"></script>
+<script defer src="../js/app.js?v=20261106-bw1"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
-<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b"></script>
+<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=77b297dd25ca"></script>
 </body>
 </html>

@@ -1,6 +1,8 @@
 /** NetEngineerLab OLT Dual-Uplink Planner V1.2 UI | Modified 2026-09-12 00:20:00 */
 (function(){
 'use strict';
+var nelCurrentValid=false;window.NELToolInputController={calculate:run,managesValidation:true,isValid:function(){return nelCurrentValid;},invalidate:function(){nelCurrentValid=false;},resultActions:"",resultValues:"#oltPorts,#channelsSide,#channelsTotal,#msePortsSide,#boards,#failureChannel,#failureMse,#headroom",resultDetails:"#checks,#warnings",resultStatus:"#risk",resultMeters:"#channelUtilBar,#mseUtilBar",validation:"#inputState",inputControls:".input-panel input,.input-panel select"};
+
 const $=id=>document.getElementById(id);
 const n=id=>{const raw=String($(id).value).trim();return raw===''?NaN:Number(raw);};
 const b=id=>$(id).checked;
@@ -28,7 +30,7 @@ function setUtilization(barId,markerId,textId,value,limit){
   text.textContent=zh?`规划上限 ${fmt(limit,0)}%`:`Planning limit ${fmt(limit,0)}%`;
 }
 
-function run(){
+function run(){try{
   const channelLimit=n('channelLimit');
   const mseLimit=n('mseLimit');
   const r=window.NELUplinkTransportMseEngine.calculate({
@@ -46,9 +48,9 @@ function run(){
     physicalDiversity:b('physical'),
     separateRing:b('ring'),
     separateSystem:b('system')
-  });
+  });nelCurrentValid=r.ok===true;
   const blankInput=['boardPorts','channelLimit','channelRate','mseCount','mseLimit','mseRate','oltCount','reserve','traffic','uplinkRate'].some(id=>$(id)&&!Number.isFinite(n(id)));
-  if(blankInput||!r.ok){
+  if(blankInput||!r.ok){nelCurrentValid=false;
     $('result').hidden=true;
     $('inputState').textContent=zh?'请检查 OLT 数量与容量输入：所有数值必须为正数，利用率上限须在 1–100% 之间。':'Check OLT count and capacity inputs: every value must be positive and planning limits must be 1–100%.';
     $('inputState').classList.add('is-error');
@@ -71,7 +73,7 @@ function run(){
   ].forEach(([id,v,u])=>$(id).textContent=fmt(v,1)+u);
 
   $('risk').textContent=riskLabel[r.risk]||String(r.risk).toUpperCase();
-  $('risk').className='status '+(r.risk==='low'?'healthy':r.risk==='medium'?'caution':r.risk==='critical'?'critical':'high');
+  $('risk').className='status '+r.risk+' '+(r.risk==='low'?'st-pass':r.risk==='medium'?'st-marginal':'st-fail');
 
   setUtilization('channelUtilBar','channelLimitMarker','channelLimitText',r.failureChannelUtilPct,channelLimit);
   setUtilization('mseUtilBar','mseLimitMarker','mseLimitText',r.failureMseUtilPct,mseLimit);
@@ -88,7 +90,7 @@ function run(){
   }else{
     $('warnings').innerHTML=`<li class="no-warning">${zh?'当前输入下未发现主要容量或共同失效风险。':'No major capacity or common-mode failure warning under the entered assumptions.'}</li>`;
   }
-}
+}finally{window.NELToolInputController.sync?.();}}
 
 document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',run));
 $('calculate').addEventListener('click',run);

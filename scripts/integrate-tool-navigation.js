@@ -9,6 +9,7 @@
 const fs=require("fs");const path=require("path");
 const {stableFileHash}=require("./stable-text-hash");
 const {refreshServiceWorkerCacheName}=require("./service-worker-precache");
+const {preserveAuthoredGraph}=require('./lib/tool-v3-navigation-preserve');
 const {deriveToolGraph,validateWorkflowRegistry}=require("./workflow-registry");
 const root=path.resolve(__dirname,"..");const site=path.join(root,"website");
 const errors=validateWorkflowRegistry();if(errors.length){console.error(errors.join("\n"));process.exit(1)}
@@ -83,7 +84,7 @@ for(const toolId of Object.keys(graph.tools)){
   if(!fs.existsSync(file)){console.error(`Missing tool page: ${path.relative(root,file)}`);process.exit(1)}
   checked++;
   const before=fs.readFileSync(file,"utf8");
-  let after=replaceBlock(before,markup(toolId,zh));
+  let after=preserveAuthoredGraph(before,replaceBlock(before,markup(toolId,zh)));
   // The workflow step list on the Optical Power Budget page is authored
   // markup (ol.fb-wf-markers). Regenerating the graph block must keep it,
   // or every production build dirties those pages and drops the steps.

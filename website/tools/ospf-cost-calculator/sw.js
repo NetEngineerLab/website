@@ -1,28 +1,42 @@
 "use strict";
-const CACHE = "nel-ospf-cost-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-49da2452839c-60e5489fcf55";
+const CACHE = "nel-ospf-cost-20261106-bw1";
 const CORE = [
   "./index.html",
   "./",
   "./offline.html",
   "./manifest.webmanifest",
-  "./css/ospf.css?v=ospf1",
+  "./css/style.css?v=20261106-bw1",
+  "./css/ospf.css?v=20261106-bw1",
   "./js/engine.js",
-  "./js/app.js?v=80782d266575",
+  "./js/app.js?v=20261106-bw1",
   "./images/logo.svg",
   "./images/icons/icon-192.png",
   "./images/icons/icon-512.png",
+  "./css/style.css?v=20261106-bw1",
+  "./css/ospf.css?v=20261106-bw1",
+  "../../assets/css/tool-layout.css?v=e7de330b5d86",
+  "../../assets/images/logo.svg",
+  "./js/pwa.js",
+  "../../assets/js/es-launch-runtime.js?v=26766a85d049",
+  "./js/engine.js?v=b018a067c4e9",
+  "../../assets/js/es-launch-runtime.js?v=c7c562a25b80",
+  "../../assets/js/es-launch-runtime.js?v=b69809c86108",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",
-  "../../assets/css/site-shell.css?v=989edb3b4d77",
-  "../../assets/css/tool-design-system.css?v=1040076f7555",
+  "../../assets/css/site-shell.css?v=26fafcdcee42",
+  "../../assets/css/tool-design-system.css?v=0163aaafdd67",
   "../../assets/css/tool-workflow.css?v=8c74b394ef2c",
+  "../../assets/css/fb-v3.css?v=c294004026b6",
+  "../../assets/css/fb-v3-prod.css?v=35fd6b8f7526",
+  "../../assets/js/tool-v3-navigation.js?v=b8d825e0f678",
+  "../../assets/js/tool-detail-v3.js?v=6f38212f00f3",
   "../../assets/js/analytics.js?v=1156b7864023",
   "../../assets/js/adsense.js?v=f075c80ccc75",
   "../../assets/js/site.js?v=b563dd0297f5",
   "../../assets/js/tool-integration.js?v=05f7934f4687",
-  "../../assets/js/tool-shell-v1.9.9-04.js?v=88f5d296e75b",
+  "../../assets/js/tool-shell-v1.9.9-04.js?v=77b297dd25ca",
   "../../assets/css/cookie-consent.css?v=8dd1728bf5eb",
   "../../assets/js/cookie-consent.js?v=5e6d1af21a6a",
   "../../assets/js/rules-engine/normalize.js?v=9e2cb44bca10",
@@ -31,11 +45,22 @@ const CORE = [
   "../../assets/js/rules-engine/score.js?v=fce2240d4bb7",
   "../../assets/js/rules-engine/report.js?v=01f2524dcdac",
   "../../assets/generated/rules-engine/rules-bundle.9d06acb2a0ff.js?v=9d06acb2a0ff",
+  "./zh/",
   "./zh/index.html",
   "./manifest-zh.webmanifest",
+  "./es/",
   "./es/index.html",
-  "./manifest-es.webmanifest"
+  "./manifest-es.webmanifest",
+  "../../assets/js/es-launch-runtime.js?v=3f188aa72208"
 ];
 self.addEventListener("install",e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE))));
 self.addEventListener("activate",e=>e.waitUntil(self.clients.claim()));
-self.addEventListener("fetch",e=>{if(e.request.method!=="GET")return;e.respondWith(caches.match(e.request,{ignoreSearch:true}).then(c=>c||fetch(e.request).then(r=>{if(r.ok){const copy=r.clone();caches.open(CACHE).then(x=>x.put(e.request,copy));}return r;}).catch(()=>caches.match("./offline.html"))));});
+self.addEventListener("fetch",e=>{if(e.request.method!=="GET")return;e.respondWith(nelScopedCacheMatch(e.request,{ignoreSearch:true}).then(c=>c||fetch(e.request).then(r=>{if(r.ok){const copy=r.clone();caches.open(CACHE).then(x=>x.put(e.request,copy));}return r;}).catch(()=>nelScopedCacheMatch("./offline.html"))));});
+/* NEL_SCOPED_CACHE_START */
+// A different tool may retain another version of a shared asset. Never search
+// its cache, and never discard a resource's content-hash query when matching.
+function nelScopedCacheMatch(request, options) {
+  const navigation = typeof request !== "string" && request.mode === "navigate";
+  return caches.open(CACHE).then(cache => cache.match(request, navigation ? { ...options, ignoreSearch: true } : undefined));
+}
+/* NEL_SCOPED_CACHE_END */

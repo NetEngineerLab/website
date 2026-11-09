@@ -164,7 +164,7 @@ function applyPreset(){
   calculate();
 }
 
-const LOSS_RESULT_IDS = ["fiberLoss","spliceTotal","connectorTotal","splitterOtherTotal","fiberLossDiagram","spliceLossDiagram","connectorLossDiagram","physicalLoss","designLoss","budgetRemaining","estimatedRxPower","rxMargin","budgetRemainingText","healthBadge","diagnosisText"];
+const LOSS_RESULT_IDS = ["fiberLoss","spliceTotal","connectorTotal","splitterOtherTotal","fiberLossDiagram","spliceLossDiagram","connectorLossDiagram","physicalLoss","designLoss","budgetRemaining","estimatedRxPower","rxMargin","healthBadge","diagnosisText"];
 const LOSS_INPUT_IDS = ["distance","attenuation","spliceCount","spliceLoss","connectorCount","connectorLoss","splitter1","splitter2","otherLoss","engineeringMargin","availableBudget","txPower","rxThreshold"];
 
 function clearInvalidMarks(){
@@ -184,6 +184,8 @@ function clearInvalidResult(values){
   }
   const summary = $("summaryCard");
   if (summary) summary.className = "summary-card";
+  const remaining = $("budgetRemainingText");
+  if (remaining) remaining.className = "";
   const diagnosis = $("diagnosisBox");
   if (diagnosis) diagnosis.className = "diagnosis-box";
   paintLossDashboard(null, null);
@@ -220,6 +222,8 @@ function paintLossDashboard(values, result){
 }
 
 function calculate(){
+ try {
+
   const values = {
     distance:numberValue("distance"),
     attenuation:numberValue("attenuation"),
@@ -281,6 +285,7 @@ function calculate(){
   remainingText.className = budgetRemaining >= 3 ? "positive" : budgetRemaining >= 0 ? "caution" : "negative";
 
   badge.textContent = translations[currentLang][status];
+  badge.className="health-badge status "+({healthy:"st-pass",warning:"st-marginal",failed:"st-fail"}[status]||"st-fail");
   $("diagnosisText").textContent = translations[currentLang]["diagnosis" + status[0].toUpperCase() + status.slice(1)];
   paintLossDashboard(values, calculation);
   if (typeof window.nelTrack === "function") {
@@ -291,6 +296,8 @@ function calculate(){
       budget_remaining: Number(budgetRemaining.toFixed(2))
     });
   }
+
+ } finally { window.NELToolInputController?.sync?.(); }
 }
 
 function resetForm(){
@@ -425,6 +432,7 @@ function setLanguage(lang){
 
 $("wavelength").addEventListener("change", () => { updateAttenuation(); calculate(); });
 $("preset").addEventListener("change", applyPreset);
+window.NELFiberLossCalculate=calculate;window.NELFiberLossReset=resetForm;
 $("calculateBtn").addEventListener("click", calculate);
 $("resetBtn").addEventListener("click", resetForm);
 $("copyBtn").addEventListener("click", copyResult);
@@ -441,3 +449,22 @@ updateAttenuation();
 setLanguage(currentLang);
 calculate();
 renderHistory();
+
+// Reuse the domain validation/history; the shell owns result-only DOM gates.
+window.NELToolInputController={calculate:calculate,calculateSelector:"#calculateBtn",managesValidation:true,isValid:()=>Boolean(lastResult),invalidate:()=>{clearInvalidResult(Object.fromEntries(LOSS_INPUT_IDS.map(id=>[id,numberValue(id)])));},resultActions:"#copyBtn,#saveBtn,#csvBtn,#exportBtn,#jsonBtn,#printBtn",resultValues:()=>LOSS_RESULT_IDS.filter(id=>id!=="healthBadge").map(id=>$(id)).filter(Boolean),resultStatus:"#healthBadge",resultDetails:"",resultMeters:"#lossMeter,#wfFiber,#wfSplice,#wfConnector",validation:"#validationMessage",inputControls:".nel-tool-input input,.nel-tool-input select,.nel-tool-input textarea"};
+/* 20261106-fl3-chrome */
+(()=>{try{
+  const $=id=>document.getElementById(id);
+  const syncFill=()=>{};
+  const doCalc=()=>{ try{ (window.NELFiberLossCalculate||window.NELToolInputController?.calculate)?.(); }catch(e){console.warn(e);} syncFill(); };
+  const doReset=()=>{ try{ window.NELFiberLossReset?.(); }catch(e){console.warn(e);} syncFill(); };
+  const obs=new MutationObserver(syncFill);
+  ['designLoss','budgetRemaining','estimatedRxPower','fiberLoss'].forEach(id=>{const el=$(id); if(el) obs.observe(el,{childList:true,characterData:true,subtree:true});});
+  syncFill();
+  const bind=()=>{
+    const c=$('calculateBtn'), r=$('resetBtn');
+    if(c&&!c.dataset.bw1eBound){ c.dataset.bw1eBound='1'; c.style.pointerEvents='auto'; c.style.cursor='pointer'; c.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();doCalc();},true); }
+    if(r&&!r.dataset.bw1eBound){ r.dataset.bw1eBound='1'; r.style.pointerEvents='auto'; r.style.cursor='pointer'; r.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();doReset();},true); }
+  };
+  bind(); document.addEventListener('DOMContentLoaded', bind); window.addEventListener('load', bind); setTimeout(doCalc,0);
+}catch(e){console.warn('fiber-loss bw1',e)}})();

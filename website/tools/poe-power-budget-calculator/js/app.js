@@ -1,5 +1,10 @@
 (function(){
  "use strict";
+var nelCurrentValid=false;
+window.NELToolInputController={calculate:function(){calculate();},managesValidation:true,isValid:function(){return nelCurrentValid;},invalidate:function(){nelCurrentValid=false;last=null;},resultStatus:"#status",resultMeters:"#bar",allowStepMismatchInputs:'#deviceWatts',resultActions:"#copy,#csv",resultValues:"#required,#load,#perDevice,#remaining,#utilization,#maximum,#portsUsed",resultDetails:"#advice",validation:"",inputControls:"#switchBudget,#switchPorts,#deviceCount,#deviceWatts,#cableLoss,#headroom,#standard"};
+
+
+
  const locale=document.documentElement.lang.toLowerCase();
  const zh=locale.startsWith("zh");
  const es=locale.startsWith("es");
@@ -22,8 +27,8 @@
   deviceWatts:$("deviceWatts").value,cableLossPercent:$("cableLoss").value,headroomPercent:$("headroom").value,
   standard:$("standard").value
  }}
- function calculate(track=true){
-  last=E.calculate(values());
+ function calculate(track=true){try{
+  last=E.calculate(values());window.lastResult=last;nelCurrentValid=last.ok!==false;
   $("required").textContent=fmt(last.requiredBudget)+" W";
   $("load").textContent=fmt(last.loadWatts)+" W";
   $("perDevice").textContent=fmt(last.sourcePerDevice,2)+" W";
@@ -31,7 +36,7 @@
   $("utilization").textContent=Number.isFinite(last.utilization)?fmt(last.utilization)+"%":"—";
   $("maximum").textContent=fmt(last.maxDevices,0);
   $("portsUsed").textContent=`${last.count} / ${last.ports}`;
-  $("status").className="status "+last.status;
+  $("status").className="status "+last.status+" "+(last.status==="pass"?"st-pass":last.status==="warning"?"st-marginal":"st-fail");
   $("status").textContent=text[last.status];
   $("bar").style.width=Math.min(100,Math.max(0,last.utilization||0))+"%";
   const issues=[];
@@ -40,7 +45,7 @@
   if(!last.standardPass)issues.push(last.recommended==="unsupported"?text.unsupported:`${text.standard} — ${text.recommend} ${E.STANDARDS[last.recommended].label}`);
   $("advice").textContent=issues.join(" · ")||(zh?"配置满足端口、总功率和单端口供电等级要求。":"The design meets port-count, total-budget and per-port power requirements.");
   if(track&&typeof window.nelTrack==="function")window.nelTrack("poe_budget_calculate",{status:last.status,standard:last.inputStandard});
- }
+ }finally{window.NELToolInputController.sync?.();}}
  const presets={
   cameras:[160,8,8,12.95,10,20,"af"],
   ptz:[370,16,8,30,12,20,"bt3"],
@@ -66,6 +71,7 @@
  async function copy(){try{await navigator.clipboard.writeText(report())}catch{const a=document.createElement("textarea");a.value=report();document.body.append(a);a.select();document.execCommand("copy");a.remove()}$("copy").textContent=text.copied}
  function csv(){const b=new Blob(["\uFEFFMetric,Value\n"+report().split("\n").slice(1).map(x=>`"${x.replaceAll('"','""')}"`).join("\n")],{type:"text/csv"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="poe-power-budget.csv";a.click();URL.revokeObjectURL(a.href);$("csv").textContent=text.csv}
  document.querySelectorAll("input,select").forEach(x=>x.addEventListener("input",()=>calculate(false)));
- $("preset").addEventListener("change",preset);$("calculate").addEventListener("click",()=>calculate());$("copy").addEventListener("click",copy);$("csv").addEventListener("click",csv);
+ $("reset").addEventListener("click",()=>{const controls=[...document.querySelectorAll('.input-panel input,.input-panel select')];controls.forEach(e=>{if(e.tagName==='SELECT'){[...e.options].forEach(o=>o.selected=o.defaultSelected)}else e.value=e.defaultValue});preset()});
+ $("preset").addEventListener("change",preset);$("calculate").addEventListener("click",()=>{calculate();const e=$("calculate");e.classList.add("nel-refreshed");setTimeout(()=>e.classList.remove("nel-refreshed"),800)});$("copy").addEventListener("click",copy);$("csv").addEventListener("click",csv);
  preset();
 })();

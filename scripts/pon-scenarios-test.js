@@ -3,6 +3,16 @@
 // PON cluster: recompute every one-click scenario with the tool engine, compare with docs/scenarios-fixtures.json,
 // the loader data and the en/zh/es pages; check the PON toolkit links and the CTR meta length limits.
 const assert=require("assert");const fs=require("fs");const path=require("path");
+const dom=require("./lib/tool-v3-dom");
+function semanticBlock(root,id){
+ function visit(node,ancestors){
+  if(dom.attr(node,"id")===id)return [node,...ancestors.slice().reverse()].find(n=>["section","details"].includes(n.tag));
+  for(const child of node.children||[])if(typeof child!=="string"){
+   const found=visit(child,[...ancestors,node]);if(found)return found;
+  }
+ }
+ return visit(root,[]);
+}
 const ROOT=path.join(__dirname,"..","website","tools");
 const f2=x=>Number(x).toFixed(2);
 const RUN={
@@ -36,7 +46,8 @@ for(const slug of Object.keys(RUN)){
  }
  for(const folder of ["","zh/","es/"]){
   const html=fs.readFileSync(path.join(dir,folder,"index.html"),"utf8");
-  const block=(html.match(/<!-- NEL_SCENARIOS_START -->([\s\S]*?)<!-- NEL_SCENARIOS_END -->/)||[])[1];
+  const scenarios=semanticBlock(dom.parse(html),"scenarios");
+  const block=scenarios&&dom.render(scenarios);
   assert.ok(block,`${slug} ${folder}: scenarios block`);
   const lang=folder?folder.slice(0,2):"en";
   for(const f of fixtures){assert.ok(block.includes(`href="?scenario=${f.id}#calculator"`));assert.ok(block.includes(f.headline[lang].replace(/&/g,"&amp;")),`${slug} ${lang} headline ${f.id}`);}
@@ -47,7 +58,8 @@ for(const slug of Object.keys(RUN)){
 const CLUSTER=["pon-splitter-loss","pon-distance","onu-rx-power","optical-power-budget","fiber-loss"];
 for(const slug of CLUSTER)for(const folder of ["","zh/","es/"]){
  const html=fs.readFileSync(path.join(ROOT,slug,folder,"index.html"),"utf8");
- const block=(html.match(/<!-- NEL_PON_LINKS_START -->([\s\S]*?)<!-- NEL_PON_LINKS_END -->/)||[])[1];
+ const toolkit=semanticBlock(dom.parse(html),"pon-toolkit");
+ const block=toolkit&&dom.render(toolkit);
  assert.ok(block,`${slug} ${folder}: PON links block`);
  for(const other of CLUSTER.filter(s=>s!==slug))assert.ok(new RegExp(`href="(?:/tools/|(?:\\.\\./)+)${other}/${folder}"`).test(block),`${slug} ${folder} -> ${other}`);
  assert.ok(block.includes("pon-splitter-loss-guide")&&block.includes("fiber-link-budget-guide"),`${slug} ${folder}: guides`);

@@ -30,13 +30,18 @@
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/terms/">
 <link rel="stylesheet" href="../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../assets/css/site-shell.css?v=989edb3b4d77">
+<link rel="stylesheet" href="../assets/css/site-shell.css?v=26fafcdcee42">
+<link rel="stylesheet" href="../assets/css/site-pages-v2.css?v=20261105-v2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site-doc.css?v=20261109-sitebw1">
 <script defer src="../data/locales.js?v=909e05076a50"></script>
 <script defer src="../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../assets/js/site.js?v=b563dd0297f5"></script>
-</head><body><!-- NEL_HEADER_START -->
+</head><body class="nel-site-v2"><!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
   <div class="site-shell-header-inner">
     <a class="site-shell-brand brand" href="../">
@@ -57,8 +62,69 @@
   </div>
 </header>
 <!-- NEL_HEADER_END -->
-<main class="policy"><p class="eyebrow">NETENGINEERLAB</p><h1>Terms of Use</h1><p>Tool results support planning, review, training and troubleshooting. They do not replace equipment specifications, enterprise standards, field measurements, final design or acceptance decisions.</p>
-<h2>Service availability</h2><p>The service currently includes <span data-tool-count>46</span> online tools. Features may be updated to improve accuracy, compatibility, security and usability. Users remain responsible for reviewing results against applicable standards, equipment documentation and field conditions.</p></main>
+<main class="tool-shell" id="page">
+<div class="tool-head"><nav class="crumbs" aria-label="Breadcrumb"><a href="../">Home</a><span aria-hidden="true">/</span><span aria-current="page">Terms of Use</span></nav><p class="tool-page-label" role="heading" aria-level="1">Terms of Use</p><p class="tool-lede">These pages are a calculation bench for planning, review, training and troubleshooting. Opening a page means you use the result within the limits below: the number compares options and narrows a fault, and it does not replace equipment data, an applicable standard, a field measurement or a formal acceptance.</p></div>
+<div class="below">
+<nav class="toc" aria-label="On this page"><h4>On this page</h4>
+<a href="#part-1">What the tools are for</a>
+<a href="#part-2">A result is not a sign-off</a>
+<a href="#part-3">The calculation stays in this browser</a>
+<a href="#part-4">The formula is on the tool page</a>
+<a href="#part-5">Check before you use a number</a>
+<a href="#part-6">Pages can change</a>
+<a href="#part-7">Related pages</a>
+</nav>
+<div class="prose">
+<section class="doc-card" id="part-1">
+<h2>What the tools are for</h2>
+<p>NetEngineerLab is a calculation bench for fiber, PON, IP, wireless, switching capacity and telecom power. Each page answers one engineering question: loss, receive level, split ratio, bandwidth, subnet size, uplink capacity, cooling or backup time.</p>
+<p>Besides the online tools, guides and topic pages show where a number sits in a design. A guide explains the method and the worked example. The calculator turns the boundaries you enter into a result you can check.</p>
+</section>
+<section class="doc-card" id="part-2">
+<h2>A result is not a sign-off</h2>
+<p>Use a result for planning, comparison, review, training and troubleshooting. It is not an equipment data sheet, an enterprise standard, a field-meter reading, or a formal design or acceptance document.</p>
+<p>Whether a number is usable depends on the inputs matching the job: wavelength, rate units, efficiency, margin, concurrency and what remains after a failure. A standard that the page does not cite is not a standard the page claims to meet. Manufacturer data, field tests and signed design documents still have to be checked on their own.</p>
+</section>
+<section class="doc-card" id="part-3">
+<h2>The calculation stays in this browser</h2>
+<p>Running a calculation does not send the values you type to the site. Tools that keep a history store that history in this browser. Another computer, or clearing local data, does not keep those records.</p>
+<p>Optional visit statistics load only after you agree. What is counted, which cookies are used, and how to withdraw consent are described in the <a href="../privacy/">privacy policy</a>.</p>
+</section>
+<section class="doc-card" id="part-4">
+<h2>The formula is on the tool page</h2>
+<p>When a page uses a formula, that page states the formula, the units, the assumptions and the range where it applies. A page that does not cite a standard is not following an unstated standard.</p>
+<p>A default is the typical or planning value that page declares. It is not a measurement of your link, room or equipment. Read the note next to a default before you change it.</p>
+</section>
+<section class="doc-card" id="part-5">
+<h2>Check before you use a number</h2>
+<p>You choose the tool, enter the boundaries, and decide whether the result fits the current job. Before relying on it, check at least the following:</p>
+<ul>
+<li>Units match. Keep bits and bytes apart, dBm and dB apart, and W and kW apart.</li>
+<li>Direction matches. Do not compare uplink with downlink, transmit with receive, or charge with discharge as if they were the same quantity.</li>
+<li>Failure state is a separate check. Capacity that is enough in normal operation is not automatically enough after one link or one unit is lost.</li>
+<li>A field reading beats a default. When a meter or equipment counter is available, use that value and note the measurement conditions.</li>
+</ul>
+</section>
+<section class="doc-card" id="part-6">
+<h2>Pages can change</h2>
+<p>Tools, guides and these terms may be updated to improve accuracy, compatibility and usability. After a formula, a default or the page structure changes, the page open at that time is the one that applies. A result you already exported or copied is not rewritten.</p>
+<p>The site is published in English, Simplified Chinese and Spanish. Not every tool has all three languages. When the same title exists in more than one language, follow the wording of the page you are reading.</p>
+<p>If a formula, a unit or a limit on a page is unclear, send the page address and the sentence through the <a href="../contact/">contact page</a>.</p>
+</section>
+<section class="doc-card" id="part-7">
+<h2>Related pages</h2>
+<p>These terms only describe how far a result can be taken. The rest of the site is here:</p>
+<ul>
+<li><a href="../about/">About</a>: which engineering problems the bench covers.</li>
+<li><a href="../privacy/">Privacy</a>: calculation data, local history and optional statistics.</li>
+<li><a href="../tools/">Tools</a>: open a calculator by discipline.</li>
+<li><a href="../guides/">Guides</a>: formulas, examples and the failure cases to check.</li>
+<li><a href="../topics/">Topics</a>: guides and tools for the same question.</li>
+</ul>
+</section>
+</div>
+</div>
+</main>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">

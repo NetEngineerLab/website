@@ -32,14 +32,19 @@
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/">
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../assets/css/site-shell.css?v=989edb3b4d77">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=26fafcdcee42">
+<link rel="stylesheet" href="../../assets/css/site-pages-v2.css?v=20261105-v2">
 <script defer src="../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../assets/js/site.js?v=b563dd0297f5"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/guides-fresh.css?v=20261109-guides2">
 </head>
-<body class="topic-directory topic-hub-page guides-directory">
+<body class="guides-fresh topic-directory topic-hub-page guides-directory">
 <!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
   <div class="site-shell-header-inner">
@@ -61,10 +66,29 @@
   </div>
 </header>
 <!-- NEL_HEADER_END -->
-<nav class="topic-hub-breadcrumb" aria-label="面包屑"><a href="../">首页</a><span aria-hidden="true">›</span><span aria-current="page">工程指南</span></nav>
-<main id="main">
-<section class="directory-hero"><p class="eyebrow">工程指南</p><h1>网络工程指南</h1><p class="directory-lead">每篇指南回答一个具体的设计问题：给出计算公式、前提假设、工程实例和需要校核的故障场景，并链接到完成计算的对应工具。</p><p class="directory-lead"><strong>16 篇指南</strong></p></section>
-<section class="topic-group" aria-labelledby="guides-switching"><h2 id="guides-switching">交换与上联容量</h2><p class="directory-lead">超售比、N-1 故障容量、LACP 哈希与上联升级决策。</p><div class="topic-grid"><a class="topic-card" href="switch-oversubscription-ratio/"><span class="topic-tag">交换与上联容量</span><strong>交换机上联超售比计算：公式、案例与N-1容量规划</strong><p>用48口交换机实例学习上联超售比计算，并结合LAG、忙时利用率、N-1故障和增长余量进行容量规划。</p><span class="topic-open">阅读指南 →</span></a><a class="topic-card" href="48-port-switch-oversubscription/"><span class="topic-tag">交换与上联容量</span><strong>48口交换机超售比怎么计算：1G接入、10G/25G上联与N-1案例</strong><p>用48口交换机实例计算超售比，对比2×10G、4×10G、2×25G上联，并分析N-1故障、实际利用率和扩容余量。</p><span class="topic-open">阅读指南 →</span></a><a class="topic-card" href="48-port-switch-2x10g-enough/"><span class="topic-tag">交换与上联容量</span><strong>48口千兆交换机2×10G上联够不够？</strong><p>分析48口千兆交换机使用2×10G上联是否足够，对比理论超售比、忙时流量、LAG、N-1故障和升级方案。</p><span class="topic-open">阅读指南 →</span></a><a class="topic-card" href="switch-oversubscription-n-1/"><span class="topic-tag">交换与上联容量</span><strong>N-1故障下交换机超售比怎么计算？</strong><p>学习如何计算N-1故障状态下的交换机超售比，对比正常与故障后的上联容量、业务需求、余量和升级方案。</p><span class="topic-open">阅读指南 →</span></a><a class="topic-card" href="lacp-member-congestion/"><span class="topic-tag">交换与上联容量</span><strong>聚合口总带宽够，为什么一条LACP成员链路还在丢包？</strong><p>通过成员计数器、2×10G算例、哈希分配检查和N-1容量校核，诊断LACP成员流量不均与单口拥塞。</p><span class="topic-open">阅读指南 →</span></a></div></section><section class="topic-group" aria-labelledby="guides-ip"><h2 id="guides-ip">IP 网络与带宽</h2><p class="directory-lead">子网划分、传输时间窗口，以及摄像机网络带宽与 PoE 预算。</p><div class="topic-grid"><a class="topic-card" href="subnet-calculator-guide/"><span class="topic-tag">IP 网络与带宽</span><strong>如何计算 IPv4 子网：CIDR、主机数与可用地址范围</strong><p>根据 CIDR 表示法计算 IPv4 子网，确定网络地址和广播地址，并用可重复的工程方法验证可用主机容量。</p><span class="topic-open">阅读指南 →</span></a><a class="topic-card" href="bandwidth-transfer-time-guide/"><span class="topic-tag">IP 网络与带宽</span><strong>如何计算带宽与文件传输时间</strong><p>根据链路速率、有效载荷大小和协议开销估算文件传输时间，并提供 WAN 备份、云上传和 NOC 规划示例。</p><span class="topic-open">阅读指南 →</span></a><a class="topic-card" href="ip-camera-network-bandwidth-poe/"><span class="topic-tag">IP 网络与带宽</span><strong>IP 摄像头网络带宽与 PoE 规划深度指南</strong><p>深度讲解摄像头带宽、交换机上联、PoE预算、NVR存储和N-1冗余规划。</p><span class="topic-open">阅读指南 →</span></a></div></section><section class="topic-group" aria-labelledby="guides-optical"><h2 id="guides-optical">光纤与 PON</h2><p class="directory-lead">光纤链路预算、分光级联与 ODN 余量。</p><div class="topic-grid"><a class="topic-card" href="fiber-link-budget-guide/"><span class="topic-tag">光纤与 PON</span><strong>光纤链路预算计算：损耗、余量与最大距离</strong><p>通过汇总连接器、熔接点和光纤衰减损耗规划光纤链路，在与收发器功率上限比较前预留工程余量。</p><span class="topic-open">阅读指南 →</span></a><a class="topic-card" href="pon-splitter-loss-guide/"><span class="topic-tag">光纤与 PON</span><strong>PON分光损耗计算：级联分光比、插入损耗与ODN余量</strong><p>说明PON一级和级联分光的总分光比、插入损耗、ODN设计余量，并提供10 km可复算工程案例。</p><span class="topic-open">阅读指南 →</span></a></div></section><section class="topic-group" aria-labelledby="guides-cooling"><h2 id="guides-cooling">数据中心制冷</h2><p class="directory-lead">热负荷、制冷容量、冷吨换算与 N+1 冗余。</p><div class="topic-grid"><a class="topic-card" href="data-center-cooling-load-calculation/"><span class="topic-tag">数据中心制冷</span><strong>数据中心制冷负荷计算：公式、实例与精密空调选型指南</strong><p>汇总IT功耗、UPS/PDU损耗、照明、人员和围护结构得热，计算数据中心显热制冷负荷，并校核精密空调N+1容量。</p><span class="topic-open">阅读指南 →</span></a><a class="topic-card" href="server-room-heat-load-calculation/"><span class="topic-tag">数据中心制冷</span><strong>服务器机房热负荷计算：应计入哪些热源？</strong><p>汇总IT设备、电气损耗、照明、人员、围护结构和工程余量，计算服务器机房热负荷，并提供120 kW完整实例。</p><span class="topic-open">阅读指南 →</span></a><a class="topic-card" href="how-many-tons-of-cooling-for-server-room/"><span class="topic-tag">数据中心制冷</span><strong>服务器机房需要多少冷吨？kW、BTU/h与冷吨换算</strong><p>从服务器机房显热负荷计算所需冷吨，汇总IT及房间得热、工程余量，并校核精密空调容量和冗余。</p><span class="topic-open">阅读指南 →</span></a><a class="topic-card" href="data-center-cooling-n-plus-one/"><span class="topic-tag">数据中心制冷</span><strong>数据中心制冷N+1：容量公式、台数与故障校核</strong><p>计算数据中心精密空调N+1配置，确定运行与安装台数，并校核任意1台退出后的剩余显冷量。</p><span class="topic-open">阅读指南 →</span></a></div></section><section class="topic-group" aria-labelledby="guides-power"><h2 id="guides-power">通信电源与能源</h2><p class="directory-lead">整流器配置、回充电流与油机燃油续航。</p><div class="topic-grid"><a class="topic-card" href="telecom-rectifier-dc-power-sizing/"><span class="topic-tag">通信电源与能源</span><strong>通信整流器容量配置：N+1/N+2、回充与故障校核</strong><p>结合负载增长、电池回充峰值、N+1/N+2冗余、降额和N-1/N-2故障校核配置通信整流模块。</p><span class="topic-open">阅读指南 →</span></a><a class="topic-card" href="generator-fuel-runtime-planning/"><span class="topic-tag">通信电源与能源</span><strong>通信油机一箱油能运行多久？计算负载曲线与可用油量</strong><p>根据厂家油耗曲线、分时站点负载和油箱可用燃油估算通信油机续航，附计算示例与工程限制。</p><span class="topic-open">阅读指南 →</span></a></div></section>
+<main id="main" class="gd">
+<header class="gd-head">
+<nav class="gd-crumbs" aria-label="Breadcrumb"><a href="../">首页</a><span aria-hidden="true">/</span><span aria-current="page">工程指南</span></nav>
+<p class="gd-kicker">工程指南</p>
+<h1>网络工程指南</h1>
+<p class="gd-lede">每篇指南回答一个具体的设计问题：给出计算公式、前提假设、工程实例和需要校核的故障场景，并链接到完成计算的对应工具。</p>
+</header>
+<div class="gd-layout">
+<nav class="gd-toc" aria-label="本页导航"><h2>本页导航</h2>
+<a href="#guides-switching">交换与上联容量</a>
+<a href="#guides-ip">IP 网络与带宽</a>
+<a href="#guides-optical">光纤与 PON</a>
+<a href="#guides-cooling">数据中心制冷</a>
+<a href="#guides-power">通信电源与能源</a>
+</nav>
+<div>
+<section class="gd-group" id="guides-switching"><h2>交换与上联容量</h2><p class="gd-note">超售比、N-1 故障容量、LACP 哈希与上联升级决策。</p><div class="gd-grid"><a class="gd-card" href="switch-oversubscription-ratio/"><strong>交换机上联超售比计算：公式、案例与N-1容量规划</strong><p>用48口交换机实例学习上联超售比计算，并结合LAG、忙时利用率、N-1故障和增长余量进行容量规划。</p><span class="go">阅读指南 →</span></a><a class="gd-card" href="48-port-switch-oversubscription/"><strong>48口交换机超售比怎么计算：1G接入、10G/25G上联与N-1案例</strong><p>用48口交换机实例计算超售比，对比2×10G、4×10G、2×25G上联，并分析N-1故障、实际利用率和扩容余量。</p><span class="go">阅读指南 →</span></a><a class="gd-card" href="48-port-switch-2x10g-enough/"><strong>48口千兆交换机2×10G上联够不够？</strong><p>分析48口千兆交换机使用2×10G上联是否足够，对比理论超售比、忙时流量、LAG、N-1故障和升级方案。</p><span class="go">阅读指南 →</span></a><a class="gd-card" href="switch-oversubscription-n-1/"><strong>N-1故障下交换机超售比怎么计算？</strong><p>学习如何计算N-1故障状态下的交换机超售比，对比正常与故障后的上联容量、业务需求、余量和升级方案。</p><span class="go">阅读指南 →</span></a><a class="gd-card" href="lacp-member-congestion/"><strong>聚合口总带宽够，为什么一条LACP成员链路还在丢包？</strong><p>通过成员计数器、2×10G算例、哈希分配检查和N-1容量校核，诊断LACP成员流量不均与单口拥塞。</p><span class="go">阅读指南 →</span></a></div></section>
+<section class="gd-group" id="guides-ip"><h2>IP 网络与带宽</h2><p class="gd-note">子网划分、传输时间窗口，以及摄像机网络带宽与 PoE 预算。</p><div class="gd-grid"><a class="gd-card" href="subnet-calculator-guide/"><strong>如何计算 IPv4 子网：CIDR、主机数与可用地址范围</strong><p>根据 CIDR 表示法计算 IPv4 子网，确定网络地址和广播地址，并用可重复的工程方法验证可用主机容量。</p><span class="go">阅读指南 →</span></a><a class="gd-card" href="bandwidth-transfer-time-guide/"><strong>如何计算带宽与文件传输时间</strong><p>根据链路速率、有效载荷大小和协议开销估算文件传输时间，并提供 WAN 备份、云上传和 NOC 规划示例。</p><span class="go">阅读指南 →</span></a><a class="gd-card" href="ip-camera-network-bandwidth-poe/"><strong>IP 摄像头网络带宽与 PoE 规划深度指南</strong><p>深度讲解摄像头带宽、交换机上联、PoE预算、NVR存储和N-1冗余规划。</p><span class="go">阅读指南 →</span></a></div></section>
+<section class="gd-group" id="guides-optical"><h2>光纤与 PON</h2><p class="gd-note">光纤链路预算、分光级联与 ODN 余量。</p><div class="gd-grid"><a class="gd-card" href="fiber-link-budget-guide/"><strong>光纤链路预算计算：损耗、余量与最大距离</strong><p>通过汇总连接器、熔接点和光纤衰减损耗规划光纤链路，在与收发器功率上限比较前预留工程余量。</p><span class="go">阅读指南 →</span></a><a class="gd-card" href="pon-splitter-loss-guide/"><strong>PON分光损耗计算：级联分光比、插入损耗与ODN余量</strong><p>说明PON一级和级联分光的总分光比、插入损耗、ODN设计余量，并提供10 km可复算工程案例。</p><span class="go">阅读指南 →</span></a></div></section>
+<section class="gd-group" id="guides-cooling"><h2>数据中心制冷</h2><p class="gd-note">热负荷、制冷容量、冷吨换算与 N+1 冗余。</p><div class="gd-grid"><a class="gd-card" href="data-center-cooling-load-calculation/"><strong>数据中心制冷负荷计算：公式、实例与精密空调选型指南</strong><p>汇总IT功耗、UPS/PDU损耗、照明、人员和围护结构得热，计算数据中心显热制冷负荷，并校核精密空调N+1容量。</p><span class="go">阅读指南 →</span></a><a class="gd-card" href="server-room-heat-load-calculation/"><strong>服务器机房热负荷计算：应计入哪些热源？</strong><p>汇总IT设备、电气损耗、照明、人员、围护结构和工程余量，计算服务器机房热负荷，并提供120 kW完整实例。</p><span class="go">阅读指南 →</span></a><a class="gd-card" href="how-many-tons-of-cooling-for-server-room/"><strong>服务器机房需要多少冷吨？kW、BTU/h与冷吨换算</strong><p>从服务器机房显热负荷计算所需冷吨，汇总IT及房间得热、工程余量，并校核精密空调容量和冗余。</p><span class="go">阅读指南 →</span></a><a class="gd-card" href="data-center-cooling-n-plus-one/"><strong>数据中心制冷N+1：容量公式、台数与故障校核</strong><p>计算数据中心精密空调N+1配置，确定运行与安装台数，并校核任意1台退出后的剩余显冷量。</p><span class="go">阅读指南 →</span></a></div></section>
+<section class="gd-group" id="guides-power"><h2>通信电源与能源</h2><p class="gd-note">整流器配置、回充电流与油机燃油续航。</p><div class="gd-grid"><a class="gd-card" href="telecom-rectifier-dc-power-sizing/"><strong>通信整流器容量配置：N+1/N+2、回充与故障校核</strong><p>结合负载增长、电池回充峰值、N+1/N+2冗余、降额和N-1/N-2故障校核配置通信整流模块。</p><span class="go">阅读指南 →</span></a><a class="gd-card" href="generator-fuel-runtime-planning/"><strong>通信油机一箱油能运行多久？计算负载曲线与可用油量</strong><p>根据厂家油耗曲线、分时站点负载和油箱可用燃油估算通信油机续航，附计算示例与工程限制。</p><span class="go">阅读指南 →</span></a></div></section>
+</div>
+</div>
 </main><!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">

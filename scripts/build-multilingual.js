@@ -49,6 +49,10 @@ const sharedRuntimeAssets=[
  {sitePath:"assets/css/site-shell.css",cachePath:"../../assets/css/site-shell.css"},
  {sitePath:"assets/css/tool-design-system.css",cachePath:"../../assets/css/tool-design-system.css"},
  {sitePath:"assets/css/tool-workflow.css",cachePath:"../../assets/css/tool-workflow.css"},
+ {sitePath:"assets/css/fb-v3.css",cachePath:"../../assets/css/fb-v3.css"},
+ {sitePath:"assets/css/fb-v3-prod.css",cachePath:"../../assets/css/fb-v3-prod.css"},
+ {sitePath:"assets/js/tool-v3-navigation.js",cachePath:"../../assets/js/tool-v3-navigation.js"},
+ {sitePath:"assets/js/tool-detail-v3.js",cachePath:"../../assets/js/tool-detail-v3.js"},
  {sitePath:"assets/js/analytics.js",cachePath:"../../assets/js/analytics.js"},
  {sitePath:"assets/js/adsense.js",cachePath:"../../assets/js/adsense.js"},
  {sitePath:"assets/js/site.js",cachePath:"../../assets/js/site.js"},
@@ -681,7 +685,9 @@ function generateManifests(groups){
     let assets=parsePrecacheArrayLiteral(match[3]);
     if(!assets)throw new Error(`Invalid Service Worker asset array: ${path.relative(siteRoot,swPath)}`);
     const folders=localeConfig.locales.filter(item=>item.folder).map(item=>item.folder);
-    assets=assets.filter(item=>!folders.some(folder=>item===`./${folder}/index.html`)&&!/^\.\/manifest-[^/]+\.webmanifest$/.test(item));
+    assets=assets.filter(item=>!folders.some(folder=>item===`./${folder}/`||item===`./${folder}/index.html`)&&!/^\.\/manifest-[^/]+\.webmanifest$/.test(item));
+    // Default-language navigation uses the directory key just like zh/es.
+    if(!assets.includes("./"))assets.unshift("./");
     if(!assets.includes("./index.html"))assets.unshift("./index.html");
     if(!assets.includes("./manifest.webmanifest"))assets.push("./manifest.webmanifest");
     assets=assets.filter(item=>{
@@ -693,7 +699,10 @@ function generateManifests(groups){
     }
     for(const locale of activeLocales.filter(item=>item.id!==defaultLocale.id)){
      if(groups.get(`tools/${tool.id}/`)?.has(locale.id)){
-      assets.push(`./${locale.folder}/index.html`,`./manifest-${locale.folder}.webmanifest`);
+      // Navigation requests use the canonical directory URL. Cache that key
+      // at install time as well as index.html; an initial offline reload must
+      // not depend on a second online navigation warming the directory route.
+      assets.push(`./${locale.folder}/`,`./${locale.folder}/index.html`,`./manifest-${locale.folder}.webmanifest`);
      }
     }
     assets=assets.map(item=>{
@@ -702,12 +711,22 @@ function generateManifests(groups){
      const targetRel=`tools/${tool.id}/${clean.slice(2)}`;
      return fs.existsSync(path.join(siteRoot,...targetRel.split("/")))?`${clean}?v=${assetVersion(targetRel)}`:item;
     });
+    // Append exact URLs only after the legacy CSS/app normalization above.
+    // engine.js?v=1.9.7 and other HTML queries are distinct offline requests.
+    const {toolPagePrecacheAssets}=require('./lib/tool-page-precache-assets');
+    for(const locale of activeLocales){
+     if(!groups.get(`tools/${tool.id}/`)?.has(locale.id))continue;
+     const pageFile=path.join(toolRoot,locale.id===defaultLocale.id?'':locale.folder,'index.html');
+     assets.push(...toolPagePrecacheAssets(fs.readFileSync(pageFile,'utf8'),pageFile,toolRoot,siteRoot));
+    }
     assets=[...new Set(assets)];
-    const cacheName=`nel-${tool.id}-locale-v${localeConfig.version}-${sharedRuntimeVersion()}-${toolCacheVersion(toolRoot,assets)}`;
+    const {isolateServiceWorkerCache,isolationVersion}=require('./lib/service-worker-cache-isolation');
+    const cacheName=`nel-${tool.id}-locale-v${localeConfig.version}-${isolationVersion}-${sharedRuntimeVersion()}-${toolCacheVersion(toolRoot,assets)}`;
     const replacement=compactMatch
      ?`const C=${JSON.stringify(cacheName)},A=${JSON.stringify(assets)};`
      :`const CACHE = ${JSON.stringify(cacheName)};\nconst CORE = ${JSON.stringify(assets,null,2)};`;
     sw=sw.replace(compactMatch?compactHead:verboseHead,replacement);
+    sw=isolateServiceWorkerCache(sw);
     writeFileWithRetry(swPath,sw,"utf8");
    }
   }
@@ -876,6 +895,9 @@ function enhanceGuideContent(html,info,locale){
  return html;
 }
 function build(){
+ // Generate the shared V3 CSS before any assetVersion() result is cached;
+ // HTML queries and service-worker precache queries must use the same bytes.
+ require('./lib/tool-v3-styles').generate();
  generateRuntimeFiles();
  const htmlFiles=walk(siteRoot).filter(file=>file.endsWith(".html"));
  const records=[];
@@ -954,6 +976,7 @@ function build(){
   const group=groups.get(record.info.route);
   if(!locale||!group)continue;
   let html=repairJsonLdHtml(fs.readFileSync(record.file,"utf8"));
+  const hadToolMain=record.info.kind==="tool"&&/<main\b/i.test(html);
   html=replaceMarkdownLinks(html,{locale,urlForRoute,relativeUrl,route:record.info.route});
   html=repairMisnestedRelativeUrls(html,record.rel,record.info);
   html=repairAppBase(html,record.info);
@@ -1061,6 +1084,7 @@ function build(){
   html=versionExistingAsset(html,"assets/js/tool-integration.js");
   html=versionExistingAsset(html,"assets/js/tool-shell-v1.9.9-04.js");
   if(record.info.kind==="tool"){
+   html=require('./lib/tool-engine-asset-version').versionToolEngineScripts(html,record.file,siteRoot);
    const toolBase=`tools/${record.info.toolSlug}`;
    for(const localAsset of [`${toolBase}/css/style.css`,`${toolBase}/js/app.js`]){
     if(fs.existsSync(path.join(siteRoot,...localAsset.split("/"))))html=versionRelativeAsset(html,record.rel,localAsset);
@@ -1072,6 +1096,7 @@ function build(){
   }
   html=updateManifestLink(html,record.rel,record.info);
   html=html.replace(/<head>([\s\S]*?)<\/head>/i,(whole,body)=>`<head>${body.replace(/(?:\r?\n[ \t]*){3,}/g,"\n\n")}</head>`);
+  if(hadToolMain&&!/<main\b/i.test(html))throw new Error(`${record.rel}: build transform removed the tool main; source was not overwritten`);
   writeFileWithRetry(record.file,html,"utf8");
  }
  generateSitemap(groups);
@@ -1098,6 +1123,9 @@ function build(){
  // Precached HTML must be final before the cache hash is computed. Layout
  // repair runs above; tool navigation rewrites graph links afterwards and
  // refreshes these cache names once those bytes are stable.
+ // V3 is a real source transform, not a client-side skin. Run after layout
+ // repair and before service-worker cache fingerprints see the final HTML.
+ require('./migrate-tool-detail-v3').run();
  generateManifests(groups);
  const report={
   version:localeConfig.version,

@@ -151,7 +151,7 @@ function renderEventRows(){
   <td><input id="reflectance-${row.id}" type="number" step="0.1" value="${escapeHtml(row.reflectanceDb)}" aria-label="${LANG==="zh"?"反射率":"Reflectance"}"></td>
   <td><input id="cumulative-${row.id}" type="number" min="0" step="0.01" value="${escapeHtml(row.cumulativeLossDb)}" aria-label="${LANG==="zh"?"累计损耗":"Cumulative loss"}"></td>
   <td><select id="manual-${row.id}" aria-label="${LANG==="zh"?"手工事件类型":"Manual event type"}">${TYPE_OPTIONS.map(type=>`<option value="${type}" ${type===row.manualType?"selected":""}>${typeLabel(type)}</option>`).join("")}</select></td>
-  <td class="row-actions"><input id="note-${row.id}" type="text" value="${escapeHtml(row.note)}" placeholder="${LANG==="zh"?"备注":"Note"}" aria-label="${LANG==="zh"?`事件 ${row.id} 备注`:`Event ${row.id} note`}"><button type="button" class="delete-row" data-delete="${row.id}" aria-label="${LANG==="zh"?"删除事件":"Delete event"}">×</button></td>
+  <td class="row-actions"><input id="note-${row.id}" type="text" value="${escapeHtml(row.note)}" placeholder="${LANG==="zh"?"备注":"Note"}" aria-label="${LANG==="zh"?`事件 ${row.id} 备注`:`Event ${row.id} note`}"><button type="button" class="delete-row btn btn-ghost btn-sm" data-delete="${row.id}" aria-label="${LANG==="zh"?"删除事件":"Delete event"}">×</button></td>
  </tr>`).join("");
 
  body.querySelectorAll("input,select").forEach(control=>control.addEventListener("input",()=>{
@@ -191,6 +191,8 @@ function currentEvents(){
 }
 
 function analyze(){
+ try {
+
  const events=currentEvents();
  if(events.some(event=>!finite(event.distanceKm)||!finite(event.lossPrimaryDb))){
   invalidateAnalysis();
@@ -217,6 +219,7 @@ function analyze(){
    timestamp:new Date().toISOString()
   }
  };
+ window.lastResult=lastAnalysis;
  renderSummary(lastAnalysis);
  renderTopology(lastAnalysis.events);
  renderResultsTable(lastAnalysis.events);
@@ -229,6 +232,8 @@ function analyze(){
    critical_count:lastAnalysis.summary.criticalCount
   });
  }
+
+ } finally { window.NELToolInputController?.sync?.(); }
 }
 
 function renderEmptyResults(){
@@ -259,7 +264,7 @@ function renderSummary(result){
  $("deadZoneCount").textContent=s.deadZoneCount;
  const overall=overallSeverity(s);
  $("overallStatus").textContent=severityLabel(overall);
- $("overallStatus").className=`status-badge ${overall}`;
+ $("overallStatus").className=`status-badge status ${{normal:"st-pass",attention:"st-marginal",abnormal:"st-marginal",critical:"st-fail"}[overall]} ${overall}`;
 }
 
 function renderTopology(events){
@@ -267,7 +272,7 @@ function renderTopology(events){
  const topology=$("topology");
  topology.innerHTML=`<div class="fiber-line"></div>${events.map(event=>{
   const left=Math.max(1,Math.min(99,event.distanceKm/linkLength*100));
-  return `<button class="event-marker ${event.severity}" style="left:${left}%" title="${escapeHtml(typeLabel(event.detectedType))} · ${event.distanceKm.toFixed(3)} km">
+  return `<button class="event-marker ${event.severity}" style="left:calc(${left}% + ${30-left*.6}px)" title="${escapeHtml(typeLabel(event.detectedType))} · ${event.distanceKm.toFixed(3)} km">
    <span>${event.eventNumber}</span><small>${event.distanceKm.toFixed(2)} km</small>
   </button>`;
  }).join("")}<div class="topology-start">OTDR</div><div class="topology-end">${linkLength.toFixed(2)} km</div>`;
@@ -362,7 +367,10 @@ function resetAll(){
  $("attenuationDeadZone").value=defaults.attenuationDeadZoneM;
  $("ghostTolerance").value=defaults.ghostDistanceToleranceM;
  $("nearEndTolerance").value=defaults.nearEndToleranceM;
- loadSample();
+ rows=[];
+ rowSequence=0;
+ createRow({distanceKm:0.150,lossPrimaryDb:0.12,lossSecondaryDb:0.14,reflectanceDb:-50,cumulativeLossDb:0.12,manualType:"auto",note:""});
+ analyze();
 }
 
 function clearEvents(){
@@ -519,7 +527,7 @@ $("primaryWavelength").addEventListener("change",setWavelengthAttenuation);
 $("secondaryWavelength").addEventListener("change",setWavelengthAttenuation);
 $("addEventBtn").addEventListener("click",()=>createRow());
 $("sampleBtn").addEventListener("click",loadSample);
-$("analyzeBtn").addEventListener("click",analyze);
+$("analyzeBtn").addEventListener("click",()=>{analyze();const e=$("analyzeBtn");e.classList.add("nel-refreshed");setTimeout(()=>e.classList.remove("nel-refreshed"),800)});
 $("resetBtn").addEventListener("click",resetAll);
 $("clearEventsBtn").addEventListener("click",clearEvents);
 $("copyBtn").addEventListener("click",copyResult);
@@ -532,3 +540,10 @@ $("csvFile").addEventListener("change",event=>{const file=event.target.files?.[0
 $("clearHistoryBtn").addEventListener("click",clearHistory);
 resetAll();
 renderHistory();
+
+// Reuse the domain validation/history; the shell owns result-only DOM gates.
+window.NELToolInputController={calculate:analyze,calculateSelector:"#analyzeBtn",managesValidation:true,isValid:()=>Boolean(lastAnalysis),invalidate:()=>{invalidateAnalysis();},allowStepMismatchInputs:"#primaryAttenuation,#secondaryAttenuation",resultActions:"#copyBtn,#saveBtn,#csvBtn,#exportBtn,#jsonBtn,#printBtn",resultValues:"#eventCount,#abnormalCount,#criticalCount,#maxEventLoss,#estimatedPrimaryLoss,#estimatedSecondaryLoss,#reflectiveCount,#deadZoneCount",resultStatus:"#overallStatus",resultDetails:"#diagnosisList,#resultBody",resultMeters:"",validation:"#validationMessage",inputControls:".nel-tool-input input,.nel-tool-input select,.nel-tool-input textarea"};
+
+// Preserve all table headers and fields while presenting narrow panel records without hidden horizontal scroll.
+function labelResponsiveTables(){document.querySelectorAll('main table').forEach(table=>{const headers=[...table.querySelectorAll('thead th')].map(e=>e.textContent.trim());table.querySelectorAll('tbody tr').forEach(tr=>[...tr.children].forEach((td,i)=>td.setAttribute('data-label',headers[i]||'')))})}
+labelResponsiveTables();new MutationObserver(labelResponsiveTables).observe(document.querySelector('main'),{childList:true,subtree:true});

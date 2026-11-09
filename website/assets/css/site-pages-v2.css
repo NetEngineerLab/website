@@ -1,0 +1,225 @@
+/* NetEngineerLab site pages v2 — match home-v2 light shell.
+   Link only from non-tool pages (home already has home-v2; tool calculators must not load this). */
+:root{
+  --nel-v2-bg:#f6f8fc;
+  --nel-v2-text:#152844;
+  --nel-v2-heading:#10294d;
+  --nel-v2-muted:#506883;
+  --nel-v2-faint:#526b82;
+  --nel-v2-primary:#0b5fb8;
+  --nel-v2-accent:#176ff2;
+  --nel-v2-line:#e0e8f2;
+  --nel-v2-line-strong:#b8d3f4;
+  --nel-v2-surface:#fff;
+  --nel-v2-soft:#edf4ff;
+  --nel-v2-max:1180px;
+  --nel-v2-gutter:clamp(18px,4vw,56px);
+  --nel-v2-radius:14px;
+}
+
+body.nel-site-v2,
+body.guide-page,
+body.topic-hub-page,
+body.topic-directory,
+body.tools-directory{
+  background:var(--nel-v2-bg);
+  color:var(--nel-v2-text);
+}
+
+/* Dark gradient hero → light home-style hero */
+body.nel-site-v2 .page-hero,
+body.tools-directory .page-hero,
+body.topic-directory .page-hero,
+body.guides-directory .page-hero{
+  padding:clamp(36px,5vw,64px) var(--nel-v2-gutter) clamp(28px,4vw,40px);
+  color:var(--nel-v2-text);
+  background:transparent;
+}
+body.nel-site-v2 .page-hero-inner,
+body.tools-directory .page-hero-inner{
+  width:min(100%,var(--nel-v2-max));
+  margin:0 auto;
+  max-width:none;
+}
+body.nel-site-v2 .page-hero .eyebrow,
+body.tools-directory .page-hero .eyebrow,
+body.topic-directory .directory-hero .eyebrow,
+body.guides-directory .directory-hero .eyebrow{
+  margin:0 0 12px;
+  color:var(--nel-v2-primary);
+  font-size:12px;
+  letter-spacing:.16em;
+  font-weight:800;
+}
+body.nel-site-v2 .page-hero h1,
+body.tools-directory .page-hero h1{
+  margin:0;
+  color:var(--nel-v2-heading);
+  font-size:clamp(2rem,4.5vw,3.2rem);
+  letter-spacing:-.04em;
+  line-height:1.08;
+}
+body.nel-site-v2 .page-hero p,
+body.tools-directory .page-hero p{
+  max-width:720px;
+  margin:16px 0 0;
+  color:var(--nel-v2-muted);
+  font-size:clamp(15px,1.6vw,18px);
+  line-height:1.7;
+}
+
+body.nel-site-v2 .breadcrumb,
+body.tools-directory .breadcrumb{
+  width:min(calc(100% - (2 * var(--nel-v2-gutter))),var(--nel-v2-max));
+  margin:18px auto 0;
+  padding:0;
+  color:var(--nel-v2-faint);
+  font-size:13px;
+}
+body.nel-site-v2 .breadcrumb a,
+body.tools-directory .breadcrumb a{
+  color:var(--nel-v2-primary);
+  text-decoration:none;
+  font-weight:700;
+}
+body.nel-site-v2 .breadcrumb a:hover{text-decoration:underline}
+
+/* About / privacy / terms / contact */
+body.nel-site-v2 main.policy,
+body.nel-site-v2 .policy{
+  width:min(calc(100% - (2 * var(--nel-v2-gutter))),720px);
+  margin:0 auto;
+  padding:clamp(36px,5vw,56px) 0 72px;
+}
+body.nel-site-v2 .policy .eyebrow{
+  margin:0 0 12px;
+  color:var(--nel-v2-primary);
+  font-size:12px;
+  letter-spacing:.16em;
+  font-weight:800;
+}
+body.nel-site-v2 .policy h1{
+  margin:0;
+  color:var(--nel-v2-heading);
+  font-size:clamp(2rem,4vw,2.8rem);
+  letter-spacing:-.035em;
+  line-height:1.12;
+}
+body.nel-site-v2 .policy h2{
+  margin:34px 0 12px;
+  color:var(--nel-v2-heading);
+  font-size:1.35rem;
+}
+body.nel-site-v2 .policy p,
+body.nel-site-v2 .policy li{
+  color:var(--nel-v2-muted);
+  line-height:1.75;
+  font-size:1.02rem;
+}
+body.nel-site-v2 .policy a{color:var(--nel-v2-primary);font-weight:700}
+
+/* Guides */
+body.guide-page{
+  background:var(--nel-v2-bg);
+}
+body.guide-page .guide-hero,
+body.guide-page .guide-breadcrumb{
+  color:var(--nel-v2-faint);
+}
+body.guide-page .guide-hero .eyebrow,
+body.guide-page .eyebrow{
+  color:var(--nel-v2-primary);
+}
+body.guide-page .guide-hero h1,
+body.guide-page h1{
+  color:var(--nel-v2-heading);
+}
+body.guide-page .guide-lead,
+body.guide-page .guide-content p{
+  color:var(--nel-v2-muted);
+}
+body.guide-page .guide-callout,
+body.guide-page .guide-example,
+body.guide-page .guide-formula{
+  border-color:var(--nel-v2-line);
+  background:var(--nel-v2-surface);
+  border-radius:var(--nel-v2-radius);
+}
+body.guide-page .guide-primary-cta,
+body.guide-page .guide-cta a{
+  background:var(--nel-v2-accent);
+  border-color:var(--nel-v2-accent);
+}
+body.guide-page .guide-related a,
+body.guide-page .guide-cross-links a{
+  border:1px solid var(--nel-v2-line);
+  border-radius:var(--nel-v2-radius);
+  background:var(--nel-v2-surface);
+}
+
+/* Topic / guides directory cards */
+body.topic-directory .directory-hero h1,
+body.guides-directory .directory-hero h1{
+  color:var(--nel-v2-heading);
+}
+body.topic-directory .directory-lead,
+body.guides-directory .directory-lead{
+  color:var(--nel-v2-muted);
+}
+body.topic-directory .topic-card,
+body.guides-directory .topic-card{
+  border-color:var(--nel-v2-line);
+  background:var(--nel-v2-surface);
+  border-radius:var(--nel-v2-radius);
+  box-shadow:none;
+}
+body.topic-directory .topic-card:hover,
+body.guides-directory .topic-card:hover{
+  border-color:var(--nel-v2-line-strong);
+  box-shadow:0 12px 28px rgba(28,65,109,.08);
+}
+body.topic-directory .topic-card .topic-tag,
+body.guides-directory .topic-card .topic-tag{
+  color:var(--nel-v2-primary);
+}
+body.topic-directory .topic-card .topic-open,
+body.guides-directory .topic-card .topic-open{
+  color:var(--nel-v2-primary);
+}
+
+/* Topic hubs */
+body.topic-hub-page{
+  background:var(--nel-v2-bg);
+  color:var(--nel-v2-text);
+}
+body.topic-hub-page h1,
+body.topic-hub-page h2,
+body.topic-hub-page h3{
+  color:var(--nel-v2-heading);
+}
+body.topic-hub-page p,
+body.topic-hub-page li{
+  color:var(--nel-v2-muted);
+}
+body.topic-hub-page a{
+  color:var(--nel-v2-primary);
+}
+
+/* 404 */
+body.nel-site-v2 .error-page,
+body.nel-site-v2 main.error,
+body.nel-site-v2 .not-found{
+  width:min(calc(100% - (2 * var(--nel-v2-gutter))),720px);
+  margin:0 auto;
+  padding:64px 0 80px;
+  color:var(--nel-v2-muted);
+}
+body.nel-site-v2 .error-page h1,
+body.nel-site-v2 main h1{
+  color:var(--nel-v2-heading);
+}
+
+@media (prefers-reduced-motion:reduce){
+  body.topic-directory .topic-card,
+  body.guides-directory .topic-card{transition:none}
+}

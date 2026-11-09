@@ -58,137 +58,169 @@
     "traditional": {
       "name": {
         "en": "Traditional L2/L3",
-        "zh": "传统二层/三层"
+        "zh": "传统二层/三层",
+        "es": "L2/L3 tradicional"
       },
       "strengths": {
         "en": "Familiar VLAN/routing boundaries can suit stable, modest change requirements.",
-        "zh": "熟悉的VLAN与路由边界适合变化较少的需求。"
+        "zh": "熟悉的VLAN与路由边界适合变化较少的需求。",
+        "es": "Los límites conocidos de VLAN y enrutamiento pueden adaptarse a requisitos estables con pocos cambios."
       },
       "weaknesses": {
         "en": "Broad L2 domains and manual change processes need explicit loop, failure-domain and change-control review.",
-        "zh": "较大的二层域和人工变更需要明确审查环路、故障域与变更控制。"
+        "zh": "较大的二层域和人工变更需要明确审查环路、故障域与变更控制。",
+        "es": "Los dominios L2 amplios y los cambios manuales exigen revisar expresamente bucles, dominios de fallo y control de cambios."
       },
       "complexity": {
         "en": "Lower overlay learning burden; physical redundancy and L2 behavior still need design.",
-        "zh": "覆盖网络学习负担较低，但物理冗余与二层行为仍须设计。"
+        "zh": "覆盖网络学习负担较低，但物理冗余与二层行为仍须设计。",
+        "es": "Menor aprendizaje de overlay; aun así deben diseñarse la redundancia física y el comportamiento L2."
       },
       "skillsRequired": {
         "en": "VLAN, routing, loop prevention and failure testing.",
-        "zh": "VLAN、路由、防环与故障测试。"
+        "zh": "VLAN、路由、防环与故障测试。",
+        "es": "VLAN, enrutamiento, prevención de bucles y pruebas de fallo."
       },
       "scalability": {
         "en": "No device, MAC, VLAN or throughput capacity is inferred from inventory counts. Validate platform limits and topology.",
-        "zh": "不由资产数量推断设备、MAC、VLAN或吞吐上限。须核实平台限制和拓扑。"
+        "zh": "不由资产数量推断设备、MAC、VLAN或吞吐上限。须核实平台限制和拓扑。",
+        "es": "Las cantidades del inventario no permiten inferir capacidad de equipos, MAC, VLAN ni rendimiento. Valide los límites de plataforma y la topología."
       },
       "operationalRisk": {
         "en": "Conditional risk: manual changes and wider L2 fault domains may increase troubleshooting scope.",
-        "zh": "条件风险：人工变更和较大二层故障域可能扩大排障范围。"
+        "zh": "条件风险：人工变更和较大二层故障域可能扩大排障范围。",
+        "es": "Riesgo condicional: los cambios manuales y los dominios de fallo L2 más amplios pueden aumentar el alcance del diagnóstico."
       },
       "migration": {
         "en": "Map VLAN gateways and dependencies; test staged gateway moves and rollback before cutover.",
-        "zh": "梳理VLAN网关和依赖；切换前测试分阶段网关迁移与回退。"
+        "zh": "梳理VLAN网关和依赖；切换前测试分阶段网关迁移与回退。",
+        "es": "Mapee las pasarelas VLAN y sus dependencias; pruebe movimientos por etapas y reversión antes del cambio definitivo."
       }
     },
     "routed": {
       "name": {
         "en": "Routed Leaf-Spine (pure L3)",
-        "zh": "路由型Leaf-Spine（纯三层）"
+        "zh": "路由型Leaf-Spine（纯三层）",
+        "es": "Leaf-Spine enrutada (L3 pura)"
       },
       "strengths": {
         "en": "IP routing and ECMP can provide repeatable paths without introducing an L2 overlay.",
-        "zh": "IP路由和ECMP可提供可重复的路径，无须引入二层覆盖。"
+        "zh": "IP路由和ECMP可提供可重复的路径，无须引入二层覆盖。",
+        "es": "El enrutamiento IP y ECMP pueden proporcionar rutas repetibles sin introducir una superposición L2."
       },
       "weaknesses": {
         "en": "This defined candidate cannot meet an explicit cross-rack L2 requirement; adding overlay changes the candidate.",
-        "zh": "此候选定义无法满足明确的跨机架二层需求；加入覆盖后已是另一候选。"
+        "zh": "此候选定义无法满足明确的跨机架二层需求；加入覆盖后已是另一候选。",
+        "es": "Esta candidata no satisface un requisito explícito de L2 entre bastidores; añadir un overlay cambia la candidata."
       },
       "complexity": {
         "en": "Requires routed underlay addressing, routing policy and ECMP operations.",
-        "zh": "需要底层地址规划、路由策略与ECMP运维。"
+        "zh": "需要底层地址规划、路由策略与ECMP运维。",
+        "es": "Requiere direccionamiento del underlay enrutado, políticas de enrutamiento y operación de ECMP."
       },
       "skillsRequired": {
         "en": "BGP or chosen IGP, addressing, ECMP and route convergence verification.",
-        "zh": "BGP或所选IGP、地址规划、ECMP与路由收敛验证。"
+        "zh": "BGP或所选IGP、地址规划、ECMP与路由收敛验证。",
+        "es": "BGP o el IGP elegido, direccionamiento, ECMP y verificación de convergencia."
       },
       "scalability": {
         "en": "No rack/server count proves forwarding table, oversubscription or link capacity.",
-        "zh": "机架或服务器数量不能证明转发表、超售比或链路容量充足。"
+        "zh": "机架或服务器数量不能证明转发表、超售比或链路容量充足。",
+        "es": "Ninguna cantidad de bastidores o servidores demuestra capacidad de tablas de reenvío, sobresuscripción ni capacidad de enlaces."
       },
       "operationalRisk": {
         "en": "Conditional risk: routing policy and addressing mistakes can affect reachability; validate failure paths.",
-        "zh": "条件风险：路由策略和地址错误可能影响可达性；须验证故障路径。"
+        "zh": "条件风险：路由策略和地址错误可能影响可达性；须验证故障路径。",
+        "es": "Riesgo condicional: errores de políticas de enrutamiento o direccionamiento pueden afectar a la conectividad; valide las rutas de fallo."
       },
       "migration": {
         "en": "Confirm applications tolerate routed boundaries and renumbering; stage adjacency and gateway changes.",
-        "zh": "确认应用可接受路由边界及地址变更；分阶段迁移邻接与网关。"
+        "zh": "确认应用可接受路由边界及地址变更；分阶段迁移邻接与网关。",
+        "es": "Confirme que las aplicaciones toleran los límites enrutados y la renumeración; cambie por etapas las adyacencias y pasarelas."
       }
     },
     "evpn": {
       "name": {
         "en": "VXLAN EVPN",
-        "zh": "VXLAN EVPN"
+        "zh": "VXLAN EVPN",
+        "es": "VXLAN EVPN"
       },
       "strengths": {
         "en": "Separates overlay services from routed transport where segmentation or within-fabric L2 extension is required.",
-        "zh": "在需要分段或Fabric内二层延伸时，将覆盖业务与路由传输分离。"
+        "zh": "在需要分段或Fabric内二层延伸时，将覆盖业务与路由传输分离。",
+        "es": "Separa los servicios overlay del transporte enrutado cuando se requiere segmentación o extensión L2 dentro de la fabric."
       },
       "weaknesses": {
         "en": "Adds VTEP, VNI, control-plane and MTU dependencies that do not disappear with automation.",
-        "zh": "增加VTEP、VNI、控制平面和MTU依赖，自动化不会消除这些依赖。"
+        "zh": "增加VTEP、VNI、控制平面和MTU依赖，自动化不会消除这些依赖。",
+        "es": "Añade dependencias de VTEP, VNI, plano de control y MTU que la automatización no elimina."
       },
       "complexity": {
         "en": "Operate underlay and overlay together; distinguish control-plane state from actual forwarding evidence.",
-        "zh": "联合运维底层与覆盖；区分控制平面状态与真实转发证据。"
+        "zh": "联合运维底层与覆盖；区分控制平面状态与真实转发证据。",
+        "es": "Opere conjuntamente underlay y overlay; distinga el estado del plano de control de las pruebas de reenvío real."
       },
       "skillsRequired": {
         "en": "BGP EVPN routes, VXLAN encapsulation, tenant mapping and end-to-end MTU validation.",
-        "zh": "BGP EVPN路由、VXLAN封装、租户映射与端到端MTU验证。"
+        "zh": "BGP EVPN路由、VXLAN封装、租户映射与端到端MTU验证。",
+        "es": "Rutas BGP EVPN, encapsulación VXLAN, asignación de tenants y validación extremo a extremo de la MTU."
       },
       "scalability": {
         "en": "Verify VNI/MAC/route limits and interoperability against exact platforms; no universal threshold is inferred.",
-        "zh": "按具体平台核实VNI、MAC、路由限制与互通，不推断通用门槛。"
+        "zh": "按具体平台核实VNI、MAC、路由限制与互通，不推断通用门槛。",
+        "es": "Verifique límites de VNI/MAC/rutas e interoperabilidad en las plataformas exactas; no se infiere un umbral universal."
       },
       "operationalRisk": {
         "en": "Conditional risk: mapping drift and underlay/overlay interaction require correlated evidence.",
-        "zh": "条件风险：映射漂移及底层与覆盖交互需要关联证据。"
+        "zh": "条件风险：映射漂移及底层与覆盖交互需要关联证据。",
+        "es": "Riesgo condicional: las desviaciones de asignación y la interacción underlay/overlay requieren evidencias correlacionadas."
       },
       "migration": {
         "en": "Inventory VLAN/VNI/VRF mapping, gateways and MTU; rehearse coexistence, rollback and forwarding checks.",
-        "zh": "盘点VLAN/VNI/VRF映射、网关与MTU；演练共存、回退和转发验证。"
+        "zh": "盘点VLAN/VNI/VRF映射、网关与MTU；演练共存、回退和转发验证。",
+        "es": "Inventaríe asignaciones VLAN/VNI/VRF, pasarelas y MTU; ensaye coexistencia, reversión y comprobaciones de reenvío."
       }
     },
     "controller": {
       "name": {
         "en": "Controller-based Fabric (ACI-style example)",
-        "zh": "控制器Fabric（ACI风格示例）"
+        "zh": "控制器Fabric（ACI风格示例）",
+        "es": "Fabric con controlador (ejemplo de tipo ACI)"
       },
       "strengths": {
         "en": "Central policy coordination can suit a team prepared to adopt and govern its policy model.",
-        "zh": "集中策略协调适合愿意采用并治理其策略模型的团队。"
+        "zh": "集中策略协调适合愿意采用并治理其策略模型的团队。",
+        "es": "La coordinación central de políticas puede convenir a un equipo preparado para adoptar y gobernar ese modelo."
       },
       "weaknesses": {
         "en": "Controller/platform lifecycle, licensing and ecosystem dependence need explicit review.",
-        "zh": "必须明确审查控制器与平台生命周期、许可及生态依赖。"
+        "zh": "必须明确审查控制器与平台生命周期、许可及生态依赖。",
+        "es": "Deben revisarse expresamente el ciclo de vida del controlador y la plataforma, las licencias y la dependencia del ecosistema."
       },
       "complexity": {
         "en": "Policy abstractions and controller lifecycle add learning and operating responsibilities.",
-        "zh": "策略抽象与控制器生命周期增加学习和运维责任。"
+        "zh": "策略抽象与控制器生命周期增加学习和运维责任。",
+        "es": "Las abstracciones de políticas y el ciclo de vida del controlador añaden aprendizaje y responsabilidades operativas."
       },
       "skillsRequired": {
         "en": "Chosen platform policy model, tenant/VRF segmentation, API/change governance and recovery practice.",
-        "zh": "所选平台策略模型、租户/VRF分段、API变更治理与恢复实践。"
+        "zh": "所选平台策略模型、租户/VRF分段、API变更治理与恢复实践。",
+        "es": "Modelo de políticas de la plataforma elegida, segmentación tenant/VRF, gobernanza de API y cambios, y prácticas de recuperación."
       },
       "scalability": {
         "en": "Check exact controller, fabric, endpoint and license limits; this is not an ACI sizing tool.",
-        "zh": "核实具体控制器、Fabric、终端与许可限制；此工具不是ACI容量规划器。"
+        "zh": "核实具体控制器、Fabric、终端与许可限制；此工具不是ACI容量规划器。",
+        "es": "Compruebe los límites concretos de controlador, fabric, endpoints y licencias; esto no es una herramienta de dimensionamiento ACI."
       },
       "operationalRisk": {
         "en": "Conditional risk: policy errors and platform coupling need governance; no data-plane outage is inferred from controller loss alone.",
-        "zh": "条件风险：策略错误与平台耦合需要治理；不能仅因控制器失联推断数据平面中断。"
+        "zh": "条件风险：策略错误与平台耦合需要治理；不能仅因控制器失联推断数据平面中断。",
+        "es": "Riesgo condicional: los errores de políticas y el acoplamiento de plataforma requieren gobernanza; la pérdida del controlador por sí sola no permite inferir una caída del plano de datos."
       },
       "migration": {
         "en": "Translate existing policy and dependencies into the target model; validate licensing, coexistence and rollback.",
-        "zh": "将现有策略与依赖转换至目标模型；验证许可、共存与回退。"
+        "zh": "将现有策略与依赖转换至目标模型；验证许可、共存与回退。",
+        "es": "Traduzca las políticas y dependencias actuales al modelo de destino; valide licencias, coexistencia y reversión."
       }
     }
   },

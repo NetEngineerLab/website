@@ -11,7 +11,7 @@ for(const locale of ["en","zh"]){
   await expect(page.locator("#copyBtn")).toBeEnabled();
 
   await page.locator('[id^="distance-"]').first().fill("");
-  await expect(page.locator("#eventCount")).toHaveText("0");
+  await expect(page.locator("#eventCount")).toHaveText("—");
   await expect(page.locator("#copyBtn")).toBeDisabled();
   await expect(page.locator("#exportBtn")).toBeDisabled();
 

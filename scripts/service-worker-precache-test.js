@@ -53,14 +53,15 @@ for (const bypass of [
 
 const siteRoot = path.resolve(__dirname, "..", "website");
 const toolRoot = path.join(siteRoot, "tools", "fiber-loss");
-assert.deepEqual(precachePathIssues(["./", "./zh/", "./index.html", "../../data/locales.js"], toolRoot, siteRoot), []);
+assert.deepEqual(precachePathIssues(["./", "./zh/", "./es/", "./index.html", "../../data/locales.js"], toolRoot, siteRoot), []);
 for (const invalidPath of [
   "../../../package.json",
   "C:/Windows/System32/drivers/etc/hosts",
   "/etc/passwd",
   "..\\..\\..\\package.json",
   "https://example.com/engine.js",
-  "./missing-precache-file.js"
+  "./missing-precache-file.js",
+  "./css/"
 ]) {
   assert(precachePathIssues([invalidPath], toolRoot, siteRoot).length > 0, invalidPath);
 }

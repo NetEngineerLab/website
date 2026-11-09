@@ -1,2 +1,1 @@
-// The localized page loads the shared locale-aware workflow from the parent tool directory.
-(() => { const script = document.createElement('script'); script.src = '../js/deep-workflow.js'; document.head.appendChild(script); })();
+(() => { const s=document.createElement('script'); s.src='../js/deep-workflow.js?v=20261106-bw4e'; document.head.appendChild(s); })();

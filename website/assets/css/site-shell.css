@@ -133,6 +133,15 @@ body > .site-shell-header {
 .site-shell-context-action:empty { display: none; }
 .site-shell-context-action a { border-color: var(--nel-color-primary) !important; color: #fff !important; background: var(--nel-color-primary) !important; }
 
+/* Native buttons do not inherit the header's typography by default. Keep
+   the language trigger's existing 14px size/weight and inherit its line box. */
+.site-shell-header .language-trigger,
+.site-shell-header .site-shell-menu-toggle {
+  font-family: inherit;
+  line-height: inherit;
+}
+.site-shell-header .site-shell-menu-toggle { font-size: inherit; }
+
 .site-shell-menu-toggle {
   width: 42px;
   height: 42px;
@@ -190,6 +199,13 @@ body > footer.site-shell-footer {
 .site-shell-header a:focus-visible,
 .site-shell-header button:focus-visible,
 .site-shell-footer a:focus-visible { outline: 0; box-shadow: var(--nel-focus-ring); }
+
+/* Keep the complete primary navigation at tablet widths. The optional
+   tagline and start CTA otherwise force the Spanish header past 1040px. */
+@media (min-width: 801px) and (max-width: 1100px) {
+  .site-shell-header .site-shell-brand small { display: none !important; }
+  .site-shell-context-action { display: none !important; }
+}
 
 @media (max-width: 800px) {
   body > .site-shell-header {

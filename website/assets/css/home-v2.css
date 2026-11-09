@@ -44,6 +44,15 @@
   .home-page .quick-start .tool-card{min-height:145px;padding:14px 16px}
   .home-page .quick-start .tool-card p{font-size:13px}
 }
+/* Spanish copy needs a compact quick-start heading and a shared icon/title row. */
+html[lang="es"] .home-page .quick-start .section-head h2{font-size:26px;line-height:1.25}
+@media(min-width:901px){
+  html[lang="es"] .home-page .quick-start .tool-card{display:grid;grid-template-columns:42px minmax(0,1fr);grid-template-rows:auto 1fr auto;gap:10px 12px}
+  html[lang="es"] .home-page .quick-start .tool-icon{margin:0}
+  html[lang="es"] .home-page .quick-start .tool-card h2{align-self:center;margin:0}
+  html[lang="es"] .home-page .quick-start .tool-card p,html[lang="es"] .home-page .quick-start .tool-card a.open{grid-column:1/-1}
+}
+@media(max-width:680px){html[lang="es"] .home-page .quick-start .section-head h2{font-size:22px}}
 @media(max-width:680px){.home-page .hero{padding:28px 18px 56px}.home-page .hero h1{font-size:30px;letter-spacing:-.04em}.home-page .hero-copy>p:not(.eyebrow){margin-top:11px;font-size:14px}.home-page .home-search{grid-template-columns:auto 1fr;margin-top:18px;padding:7px 10px}.home-page .home-search button{grid-column:1/-1;width:100%;padding:11px 18px}.home-page .popular-searches{display:none}.home-page .quick-start{margin-top:-40px}.home-page .quick-start .section-head{display:block;padding:16px 16px 12px}.home-page .quick-start .section-link{display:inline-block;margin-top:7px}.home-page .quick-start .tool-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:0 8px 10px}.home-page .quick-start .tool-card{min-height:140px;padding:12px 11px}.home-page .quick-start .tool-card h2{font-size:14px}.home-page .quick-start .tool-card p{font-size:13px}.home-page .quick-start .tool-card a.open{padding:9px 9px}.home-page .overview-section{padding-top:20px}.home-page .home-overview{padding:17px 14px}.home-page .hero-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.home-page .hero-stat{padding:11px}.home-page .hero-stat strong{font-size:17px}.home-page .category-section{padding-top:22px}.home-page .category-link-grid{gap:8px}.home-page .category-link-grid .category{min-height:155px;padding:14px 12px}.home-page .alt{margin-top:22px;margin-bottom:18px;padding:24px 16px}.home-page .standard-grid{grid-template-columns:1fr}.home-page .trust-section{margin-bottom:34px;padding:22px 17px}.home-page .trust-section h2{font-size:22px}}
 
 

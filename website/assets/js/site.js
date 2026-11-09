@@ -45,6 +45,63 @@ function initNetEngineerLabSite(){
   }).join("");
  });
  const filterButtons=[...document.querySelectorAll("[data-filter]")];
+ const TOOLS_PAGE_SIZE=12;
+ let toolsRevealLimit=TOOLS_PAGE_SIZE;
+ const moreCopy=({
+  en:{more:"Show more",remaining:"{shown} of {total} · {n} more"},
+  zh:{more:"更多",remaining:"已显示 {shown}/{total} · 还有 {n} 个"},
+  es:{more:"Ver más",remaining:"{shown} de {total} · {n} más"}
+ })[locale?.id]||{more:"Show more",remaining:"{shown} of {total} · {n} more"};
+ function ensureToolsShowMore(){
+  if(!isToolsDirectory)return null;
+  const grid=document.querySelector("[data-tool-grid]");
+  if(!grid)return null;
+  let wrap=document.querySelector("[data-tools-show-more-wrap]");
+  if(!wrap){
+   wrap=document.createElement("div");
+   wrap.className="tools-show-more-wrap";
+   wrap.setAttribute("data-tools-show-more-wrap","");
+   const btn=document.createElement("button");
+   btn.type="button";
+   btn.className="tools-show-more";
+   btn.setAttribute("data-tools-show-more","");
+   btn.textContent=moreCopy.more;
+   const meta=document.createElement("span");
+   meta.className="tools-show-more-meta";
+   meta.setAttribute("data-tools-show-more-meta","");
+   wrap.appendChild(btn);
+   wrap.appendChild(meta);
+   grid.insertAdjacentElement("afterend",wrap);
+   btn.addEventListener("click",()=>{
+    toolsRevealLimit+=TOOLS_PAGE_SIZE;
+    const selected=filterButtons.find(b=>b.classList.contains("active"))?.dataset.filter||"all";
+    applyFilter(selected,{updateUrl:false,resetPage:false});
+   });
+  }
+  return wrap;
+ }
+ function syncToolsShowMore(matchCount){
+  if(!isToolsDirectory)return;
+  const wrap=ensureToolsShowMore();
+  if(!wrap)return;
+  const btn=wrap.querySelector("[data-tools-show-more]");
+  const meta=wrap.querySelector("[data-tools-show-more-meta]");
+  const remaining=Math.max(0,matchCount-toolsRevealLimit);
+  const shown=Math.min(matchCount,toolsRevealLimit);
+  const needMore=remaining>0;
+  wrap.hidden=!needMore;
+  if(btn){
+   btn.hidden=!needMore;
+   btn.textContent=moreCopy.more;
+   btn.disabled=!needMore;
+  }
+  if(meta){
+   meta.hidden=!needMore;
+   meta.textContent=needMore
+    ? moreCopy.remaining.replace("{n}",String(remaining)).replace("{shown}",String(shown)).replace("{total}",String(matchCount))
+    : "";
+  }
+ }
  const validFilters=new Set(["all",...tools.map(tool=>tool.category)]);
  function updateCategoryCounts(){
   const counts=(isToolsDirectory?directoryTools:tools).reduce((map,tool)=>{map[tool.category]=(map[tool.category]||0)+1;return map},{});
@@ -53,25 +110,32 @@ function initNetEngineerLabSite(){
    node.textContent=String(category==="all"?(isToolsDirectory?directoryTools.length:tools.length):(counts[category]||0));
   });
  }
- function applyFilter(category,{updateUrl=true}={}){
+ function applyFilter(category,{updateUrl=true,resetPage=true}={}){
   const selected=validFilters.has(category)?category:"all";
+  if(isToolsDirectory&&resetPage)toolsRevealLimit=TOOLS_PAGE_SIZE;
   filterButtons.forEach(button=>{
    const active=button.dataset.filter===selected;
    button.classList.toggle("active",active);
    button.setAttribute("aria-pressed",String(active));
   });
-  let visible=0;
+  let matchCount=0;
+  const revealCap=isToolsDirectory?toolsRevealLimit:Number.POSITIVE_INFINITY;
   document.querySelectorAll(".tool-card[data-category]").forEach(card=>{
-   const show=selected==="all"||card.dataset.category===selected;
-   card.hidden=!show;
-   if(show)visible++;
+   const match=selected==="all"||card.dataset.category===selected;
+   if(!match){
+    card.hidden=true;
+    return;
+   }
+   matchCount++;
+   card.hidden=matchCount>revealCap;
   });
   const status=document.querySelector("[data-filter-status]");
   if(status){
    const label=filterButtons.find(button=>button.dataset.filter===selected)?.dataset.filterLabel||selected;
-   const template=(visible===1&&status.dataset.templateOne)||status.dataset.template;
-   status.textContent=template?.replace("{count}",String(visible)).replace("{category}",label)||`${visible} tools`;
+   const template=(matchCount===1&&status.dataset.templateOne)||status.dataset.template;
+   status.textContent=template?.replace("{count}",String(matchCount)).replace("{category}",label)||`${matchCount} tools`;
   }
+  syncToolsShowMore(matchCount);
   if(updateUrl&&isToolsDirectory){
    const url=new URL(location.href);
    if(selected==="all")url.searchParams.delete("category");else url.searchParams.set("category",selected);

@@ -6,6 +6,7 @@ const fs = require("fs");
 const path = require("path");
 const { applyGlossaryToHtml, repairJsonLdHtml } = require("./lib/jsonld-localize");
 const { normalizeBreadcrumbs } = require("./lib/seo-resolver");
+const dom = require("./lib/tool-v3-dom");
 
 const siteRoot = path.join(__dirname, "..", "website");
 
@@ -195,7 +196,6 @@ assert.doesNotMatch(repaired, /Preguntas frecuentesPage|常见问题Page|sdetwar
 // grid; their single supporting FAQ stays a body > .content-section, which the
 // tool stylesheet centers. Nesting that section would put it in the grid.
 const FAQ_HEADING = /<h([1-3])\b[^>]*>\s*((?:Frequently asked questions|常见问题|Preguntas frecuentes)(?:\s+[^<]{0,40})?)\s*<\/h\1>/gi;
-const FAQ_DETAILS = /<details\b[^>]*>[\s\S]*?<summary\b[^>]*>([\s\S]*?)<\/summary>[\s\S]*?<p\b[^>]*>([\s\S]*?)<\/p>[\s\S]*?<\/details>/gi;
 const FAQ_PAIRS = /<h3\b[^>]*>([\s\S]*?)<\/h3>\s*<p\b[^>]*>([\s\S]*?)<\/p>/gi;
 
 function faqPlain(value) {
@@ -236,8 +236,22 @@ function pageMain(html) {
 }
 
 function questionsIn(region) {
-  const details = [...region.matchAll(new RegExp(FAQ_DETAILS.source, "gi"))]
-    .map(match => ({ question: faqPlain(match[1]), answer: faqPlain(match[2]) }))
+  const tree = dom.parse(region);
+  const details = dom.all(tree, node => node.tag === "details" && !dom.has(node, "fb-fold"))
+    .map(node => {
+      const summary = node.children.find(child => typeof child !== "string" && child.tag === "summary");
+      // A nested details entry owns its own answer; never borrow that paragraph.
+      function firstParagraph(parent) {
+        for (const child of parent.children || []) {
+          if (typeof child === "string" || child.tag === "details" || child.tag === "summary") continue;
+          if (child.tag === "p") return child;
+          const found = firstParagraph(child);
+          if (found) return found;
+        }
+      }
+      const answer = firstParagraph(node);
+      return { question: faqPlain(summary && dom.render(summary)), answer: faqPlain(answer && dom.render(answer)) };
+    })
     .filter(item => item.question && item.answer);
   if (details.length) return details;
   return [...region.matchAll(new RegExp(FAQ_PAIRS.source, "gi"))]
@@ -292,15 +306,24 @@ for (const file of walk(siteRoot)) {
   }
   const schemas = faqSchemas(html);
   if (schemas.length > 1) faqErrors.push(`${rel}: ${schemas.length} FAQPage schemas`);
+  const tree = dom.parse(html);
+  const migrated = dom.all(tree, node => node.tag === "body" && /\sdata-nel-v3-migrated(?:\s|=|>)/i.test(node.start)).length > 0;
   let regionQuestions = [];
-  if (headings.length === 1) {
+  if (migrated) {
+    const canonicalFaq = dom.all(tree, node => node.tag === "div" && dom.attr(node, "id") === "faq");
+    if (canonicalFaq.length !== 1) {
+      if (schemas.length || headings.length) faqErrors.push(`${rel}: migrated page must have exactly one canonical div#faq (${canonicalFaq.length} found)`);
+    } else {
+      regionQuestions = questionsIn(dom.render(canonicalFaq[0]));
+    }
+  } else if (headings.length === 1) {
     const start = headings[0].index + headings[0][0].length;
     const rest = html.slice(start);
     const nextHeading = rest.search(/<h2\b/i);
     regionQuestions = questionsIn(nextHeading >= 0 ? rest.slice(0, nextHeading) : rest);
   }
   if (schemas.length === 1) {
-    const visible = regionQuestions.length ? regionQuestions : questionsIn(html);
+    const visible = migrated ? regionQuestions : (regionQuestions.length ? regionQuestions : questionsIn(html));
     const entities = schemas[0].mainEntity.map(entity => ({
       question: faqPlain(entity?.name),
       answer: faqPlain(entity?.acceptedAnswer?.text)

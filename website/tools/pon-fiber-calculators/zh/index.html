@@ -34,14 +34,20 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"应该先打开哪个计算器？","acceptedAnswer":{"@type":"Answer","text":"分光比还没定时先算分光损耗；未知的是路由长度和熔接方案时先算光纤损耗。光功率预算放在两者之后。"}},{"@type":"Question","name":"光纤时延会改变光功率预算吗？","acceptedAnswer":{"@type":"Answer","text":"不会。时延和损耗是不同限制。一条链路可以通过光功率预算，仍然达不到时延目标，路由较长时两者都要算。"}},{"@type":"Question","name":"什么时候用 OTDR 而不是损耗计算器？","acceptedAnswer":{"@type":"Answer","text":"损耗计算器用来预测设计。已经有测试曲线、需要解释熔接、连接器、弯曲或中断时，使用 OTDR 事件工具。"}},{"@type":"Question","name":"ODF 和 ODN 资源放在哪一步？","acceptedAnswer":{"@type":"Answer","text":"放在光功率预算和分光可以接受之后。资源规划器把该设计转换成端口、盘片和规划物料。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=989edb3b4d77">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=26fafcdcee42">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../../assets/js/site.js?v=b563dd0297f5"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=20261105-opb2">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=20261105-opb2">
+<link rel="stylesheet" href="../css/style.css?v=20261108-hub-bw2">
 </head>
-<body>
+<body class="nel-tool-detail-page nel-tool-v3 v3">
 <!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
   <div class="site-shell-header-inner">
@@ -63,18 +69,33 @@
   </div>
 </header>
 <!-- NEL_HEADER_END -->
-<nav class="calculator-hub-breadcrumb" aria-label="Breadcrumb"><a href="../../../zh/">首页</a><span aria-hidden="true">/</span><a href="../../zh/">工具</a><span aria-hidden="true">/</span><span aria-current="page">PON 与光纤计算器</span></nav>
-<main class="calculator-hub" id="main">
-<h1>PON 与光纤计算器</h1>
-<p class="lede">PON 或城域光纤设计是一串必须放在一起看的小决策。分光比决定损耗底数，光缆路由决定衰减和时延，光模块等级决定剩余预算是否成立。本专题把 NetEngineerLab 已经发布的光纤与 PON 计算器集中在一起，避免把每一页当成互不相干的产品。先确定分光，再计入光纤、熔接和连接器损耗，然后检验端到端光功率预算以及该等级还能支持的距离。当路由长到传播时间不能忽略时，用光纤时延计算器估算单向时延和往返时间，并计入路由系数与设备时延。如果现场读数偏弱，先用 ONU 接收光功率和 OTDR 事件对照设计，再决定是否改分光。光模块选型、ODF/ODN 资源以及 OLT 双上联放在同一路径的后段，等光功率数字稳定到可以变成施工清单。每个计算器保留自己的输入、限制和参考资料。本页只帮助你选择下一项检查，不替代工具页上的方法。</p>
-<h2>本专题中的计算器</h2>
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb"><a href="../../../zh/">首页</a><span aria-hidden="true">/</span><a href="../../zh/">工具</a><span aria-hidden="true">/</span><span aria-current="page">PON 与光纤计算器</span></nav>
+<main class="tool-shell nel-tool-main" id="hub">
+<div class="tool-head"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../../zh/">首页</a><span aria-hidden="true">/</span><a href="../../zh/">工具</a><span aria-hidden="true">/</span><span aria-current="page">PON 与光纤计算器</span></nav><p class="tool-page-label" role="heading" aria-level="1">PON 与光纤计算器</p><p class="tool-lede">PON 或城域光纤设计是一串必须放在一起看的小决策。分光比决定损耗底数，光缆路由决定衰减和时延，光模块等级决定剩余预算是否成立。本专题把 NetEngineerLab 已经发布的光纤与 PON 计算器集中在一起，避免把每一页当成互不相干的产品。先确定分光，再计入光纤、熔接和连接器损耗，然后检验端到端光功率预算以及该等级还能支持的距离。当路由长到传播时间不能忽略时，用光纤时延计算器估算单向时延和往返时间，并计入路由系数与设备时延。如果现场读数偏弱，先用 ONU 接收光功率和 OTDR 事件对照设计，再决定是否改分光。光模块选型、ODF/ODN 资源以及 OLT 双上联放在同一路径的后段，等光功率数字稳定到可以变成施工清单。每个计算器保留自己的输入、限制和参考资料。本页只帮助你选择下一项检查，不替代工具页上的方法。</p></div>
+<div class="below">
+<nav class="toc" aria-label="本页导航"><h4>本页导航</h4>
+<a href="#tools">本专题中的计算器</a>
+<a href="#workflow">规划流程</a>
+<a href="#faq">常见问题</a>
+<a href="#related">相关页面</a>
+</nav>
+<div class="prose">
+<section class="blk panel" id="tools"><h2>本专题中的计算器</h2>
 <div class="hub-card-grid"><a class="hub-tool-card" href="../../pon-splitter-loss/zh/"><strong>PON分光器损耗计算器</strong><span>支持一级、二级、三级分光级联，并计算总分光比、实际插入损耗和有效距离。</span></a><a class="hub-tool-card" href="../../fiber-loss/zh/"><strong>光纤链路损耗计算器</strong><span>计算光纤、熔接、连接器、分光器及工程余量，输出物理损耗与设计损耗。</span></a><a class="hub-tool-card" href="../../optical-power-budget/zh/"><strong>光功率预算计算器</strong><span>结合发送功率、接收灵敏度、光学代价和ODN损耗验证完整光链路预算。</span></a><a class="hub-tool-card" href="../../pon-distance/zh/"><strong>PON最大传输距离计算器</strong><span>区分光预算最大距离和系统有效距离，并验证规划链路是否保留工程余量。</span></a><a class="hub-tool-card" href="../../fiber-latency-calculator/zh/"><strong>光纤时延计算器</strong><span>根据距离、群折射率、设备时延和串行化时延计算光纤单向时延与往返 RTT。</span></a><a class="hub-tool-card" href="../../onu-rx-power/zh/"><strong>ONU接收光功率诊断</strong><span>根据实测光功率、灵敏度和过载门限判断正常、弱光、过载或疑似无光。</span></a><a class="hub-tool-card" href="../../otdr-event/zh/"><strong>OTDR事件分析工具</strong><span>支持多事件录入、双波长对比，识别熔接、连接器、弯曲、断纤、鬼影及盲区影响。</span></a><a class="hub-tool-card" href="../../sfp-qsfp-compatibility-calculator/zh/"><strong>SFP与QSFP光模块兼容性查询</strong><span>检查SFP、SFP28、QSFP和QSFP28速率、通道、光纤、波长及光链路预算。</span></a><a class="hub-tool-card" href="../../odf-odn-resource-planner/zh/"><strong>ODF / ODN 光纤资源与分光规划器</strong><span>比较 ODF/ODN 资源方案，计算 PON 端口、分光器、纤芯、ODF 容量、资源缺口与规划 BOM。</span></a><a class="hub-tool-card" href="../../olt-dual-uplink-transport-mse-planner/zh/"><strong>OLT双上联容量、传输波道与MSE端口规划工具</strong><span>计算OLT双上联端口、传输波道、MSE端口和板卡资源，并校验单边故障承载与双路由独立性。</span></a></div>
-<h2>规划流程</h2>
+</section>
+<section class="blk panel" id="workflow"><h2>规划流程</h2>
 <p>把一条路由变成光链路方案时，按这个顺序使用工具。</p>
 <ol class="hub-workflow"><li><a href="../../pon-splitter-loss/zh/">PON分光器损耗计算器</a></li><li><a href="../../fiber-loss/zh/">光纤链路损耗计算器</a></li><li><a href="../../optical-power-budget/zh/">光功率预算计算器</a></li><li><a href="../../pon-distance/zh/">PON最大传输距离计算器</a></li><li><a href="../../fiber-latency-calculator/zh/">光纤时延计算器</a></li><li><a href="../../onu-rx-power/zh/">ONU接收光功率诊断</a></li><li><a href="../../otdr-event/zh/">OTDR事件分析工具</a></li><li><a href="../../sfp-qsfp-compatibility-calculator/zh/">SFP与QSFP光模块兼容性查询</a></li><li><a href="../../odf-odn-resource-planner/zh/">ODF / ODN 光纤资源与分光规划器</a></li><li><a href="../../olt-dual-uplink-transport-mse-planner/zh/">OLT双上联容量、传输波道与MSE端口规划工具</a></li></ol>
-<h2>常见问题</h2>
-<div class="hub-faq"><details><summary>应该先打开哪个计算器？</summary><p>分光比还没定时先算分光损耗；未知的是路由长度和熔接方案时先算光纤损耗。光功率预算放在两者之后。</p></details><details><summary>光纤时延会改变光功率预算吗？</summary><p>不会。时延和损耗是不同限制。一条链路可以通过光功率预算，仍然达不到时延目标，路由较长时两者都要算。</p></details><details><summary>什么时候用 OTDR 而不是损耗计算器？</summary><p>损耗计算器用来预测设计。已经有测试曲线、需要解释熔接、连接器、弯曲或中断时，使用 OTDR 事件工具。</p></details><details><summary>ODF 和 ODN 资源放在哪一步？</summary><p>放在光功率预算和分光可以接受之后。资源规划器把该设计转换成端口、盘片和规划物料。</p></details></div>
+</section>
+<section class="blk" id="faq"><h2>常见问题</h2>
+<div class="hub-faq"><details class="fb-fold"><summary class="fb-fold-sum"><span class="fb-fold-title">应该先打开哪个计算器？</span></summary><div class="fb-fold-body"><p>分光比还没定时先算分光损耗；未知的是路由长度和熔接方案时先算光纤损耗。光功率预算放在两者之后。</p></div></details><details class="fb-fold"><summary class="fb-fold-sum"><span class="fb-fold-title">光纤时延会改变光功率预算吗？</span></summary><div class="fb-fold-body"><p>不会。时延和损耗是不同限制。一条链路可以通过光功率预算，仍然达不到时延目标，路由较长时两者都要算。</p></div></details><details class="fb-fold"><summary class="fb-fold-sum"><span class="fb-fold-title">什么时候用 OTDR 而不是损耗计算器？</span></summary><div class="fb-fold-body"><p>损耗计算器用来预测设计。已经有测试曲线、需要解释熔接、连接器、弯曲或中断时，使用 OTDR 事件工具。</p></div></details><details class="fb-fold"><summary class="fb-fold-sum"><span class="fb-fold-title">ODF 和 ODN 资源放在哪一步？</span></summary><div class="fb-fold-body"><p>放在光功率预算和分光可以接受之后。资源规划器把该设计转换成端口、盘片和规划物料。</p></div></details></div>
+</section>
+<section class="blk panel" id="related">
+<h2>相关页面</h2>
 <p class="hub-return" data-nel-cluster-link><a href="../../../zh/topics/pon-optical/">本页是计算器清单。设计方法、损耗预算和现场排障请继续阅读 PON 光网络专题。</a></p>
+</section>
+</div>
+</div>
 </main>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">

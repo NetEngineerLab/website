@@ -118,3 +118,1519 @@
 
 /* V1.9.9-01: keep the full site navigation visible on desktop. */
 @media (min-width: 1101px){}
+
+
+/* === 20261106-bw1: shared remake pack (scoped per tool style.css) === */
+/* TOC | prose desktop */
+@media (min-width: 961px){
+  body.nel-tool-v3.v3 .below,
+  body.nel-opb-v3.v3 .below{
+    display: grid !important;
+    grid-template-columns: minmax(200px, 240px) minmax(0, 1fr) !important;
+    gap: 40px !important;
+    align-items: start !important;
+  }
+  body.nel-tool-v3.v3 .below > .toc,
+  body.nel-opb-v3.v3 .below > .toc{
+    display: block !important;
+    position: sticky !important;
+    top: 90px !important;
+    align-self: start !important;
+  }
+  body.nel-tool-v3.v3 .below > .toc a,
+  body.nel-opb-v3.v3 .below > .toc a{
+    font: 700 15.5px/1.4 var(--sans, system-ui, sans-serif) !important;
+  }
+  body.nel-tool-v3.v3 .below > .prose,
+  body.nel-opb-v3.v3 .below > .prose{
+    grid-column: auto !important;
+    min-width: 0 !important;
+  }
+}
+@media (max-width: 960px){
+  body.nel-tool-v3.v3 .below,
+  body.nel-opb-v3.v3 .below{
+    grid-template-columns: minmax(0,1fr) !important;
+  }
+  body.nel-tool-v3.v3 .below > .toc,
+  body.nel-opb-v3.v3 .below > .toc{ display: none !important; }
+}
+
+/* Workspace dual column top/bottom stretch */
+body.nel-tool-v3 #analyzer > .workspace,
+body.nel-opb-v3 #analyzer > .workspace,
+body.nel-tool-v3 .workspace,
+body.nel-opb-v3 .workspace{
+  align-items: stretch !important;
+}
+body.nel-tool-v3 #analyzer > .workspace > .input-panel,
+body.nel-tool-v3 #analyzer > .workspace > .result-panel,
+body.nel-opb-v3 #analyzer > .workspace > .input-panel,
+body.nel-opb-v3 #analyzer > .workspace > .result-panel,
+body.nel-tool-v3 .workspace > .input-panel,
+body.nel-tool-v3 .workspace > .result-panel{
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+}
+
+/* Metric / summary result cards: 2-col, label above, value+unit same line orange/500 */
+body.nel-tool-v3 #analyzer .metrics,
+body.nel-tool-v3 #analyzer .metric-grid:not(.nel-scenario-grid),
+body.nel-tool-v3 #analyzer .summary-bar,
+body.nel-opb-v3 #analyzer .grp.ro-l2{
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+  align-items: stretch !important;
+}
+body.nel-tool-v3 #analyzer .metrics > .metric,
+body.nel-tool-v3 #analyzer .metric-grid:not(.nel-scenario-grid) > .metric,
+body.nel-tool-v3 #analyzer .summary-bar > .summary-card,
+body.nel-tool-v3 #analyzer .summary-bar > article{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 6px !important;
+  min-width: 0 !important;
+  padding: 12px 14px !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+  border: 1px solid #d7e2ec !important;
+  border-radius: 12px !important;
+  background: #fff !important;
+}
+body.nel-tool-v3 #analyzer .metrics > .metric > small,
+body.nel-tool-v3 #analyzer .metric-grid:not(.nel-scenario-grid) > .metric > small,
+body.nel-tool-v3 #analyzer .summary-bar > .summary-card > small,
+body.nel-tool-v3 #analyzer .summary-bar > article > small{
+  display: block !important;
+  margin: 0 !important;
+  color: #667d92 !important;
+  font: 500 13px/1.35 var(--sans, system-ui, sans-serif) !important;
+  white-space: normal !important;
+}
+body.nel-tool-v3 #analyzer .metrics > .metric > strong,
+body.nel-tool-v3 #analyzer .metric-grid:not(.nel-scenario-grid) > .metric > strong,
+body.nel-tool-v3 #analyzer .summary-bar > .summary-card > strong,
+body.nel-tool-v3 #analyzer .summary-bar > article > strong.big,
+body.nel-tool-v3 #analyzer .summary-bar > article > strong{
+  display: inline-flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: baseline !important;
+  gap: 0.28em !important;
+  width: auto !important;
+  max-width: 100% !important;
+  margin: auto 0 0 !important;
+  color: #E8590C !important;
+  font: 500 18px/1.2 var(--mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace) !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+}
+body.nel-tool-v3 #analyzer .metrics > .metric > strong > span,
+body.nel-tool-v3 #analyzer .metrics > .metric > strong > small,
+body.nel-tool-v3 #analyzer .summary-bar strong > span,
+body.nel-tool-v3 #analyzer .summary-bar strong > small,
+body.nel-tool-v3 #analyzer .summary-bar strong.big > span,
+body.nel-tool-v3 #analyzer .summary-bar strong.big > small{
+  display: inline !important;
+  width: auto !important;
+  color: inherit !important;
+  font: inherit !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+}
+/* status badge in summary should stay readable horizontal */
+body.nel-tool-v3 #analyzer .status-badge,
+body.nel-tool-v3 #analyzer #status,
+body.nel-tool-v3 #analyzer #overallStatus,
+body.nel-opb-v3 #analyzer #healthBadge,
+body.nel-opb-v3 #analyzer .status{
+  display: inline-flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  width: auto !important;
+  min-width: max-content !important;
+  white-space: nowrap !important;
+  writing-mode: horizontal-tb !important;
+}
+
+/* OPB readout big + small unit same line */
+body.nel-opb-v3 #analyzer .ro-main .big,
+body.nel-opb-v3 #analyzer #ro-main-big,
+body.nel-opb-v3 #analyzer .row b{
+  display: inline-flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: baseline !important;
+  gap: 0.28em !important;
+  color: #E8590C !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+}
+body.nel-opb-v3 #analyzer .ro-main .big > small,
+body.nel-opb-v3 #analyzer #ro-main-big > small,
+body.nel-opb-v3 #analyzer .row b > small{
+  display: inline !important;
+  color: inherit !important;
+  font: inherit !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  margin: 0 !important;
+}
+body.nel-opb-v3 #analyzer .grp.ro-l2 .row{
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  gap: 8px 12px !important;
+  align-items: baseline !important;
+  padding: 10px 12px !important;
+  border: 1px solid #d7e2ec !important;
+  border-radius: 12px !important;
+  background: #fff !important;
+}
+body.nel-opb-v3 #analyzer .grp.ro-l2 .row > span{
+  color: #667d92 !important;
+  font: 500 13px/1.35 var(--sans, system-ui, sans-serif) !important;
+  white-space: normal !important;
+}
+
+/* Methodology: stacked wide bars */
+body.nel-tool-v3 #methodology .method-grid,
+body.nel-tool-v3 details#methodology .method-grid,
+body.nel-tool-v3 .prose .method-grid,
+body.nel-opb-v3 #methodology .method-grid,
+body.nel-opb-v3 details#methodology .method-grid,
+body.nel-opb-v3 .prose .method-grid{
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 10px !important;
+}
+body.nel-tool-v3 #methodology .method-grid > article,
+body.nel-tool-v3 .prose .method-grid > article,
+body.nel-opb-v3 #methodology .method-grid > article,
+body.nel-opb-v3 .prose .method-grid > article{
+  display: grid !important;
+  grid-template-columns: minmax(140px, 200px) minmax(0, 1fr) !important;
+  gap: 10px 18px !important;
+  align-items: start !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  padding: 14px 16px !important;
+  border: 1px solid #d7e3f1 !important;
+  border-radius: 12px !important;
+  background: #fff !important;
+  box-sizing: border-box !important;
+}
+body.nel-tool-v3 #methodology .method-grid > article > h3,
+body.nel-opb-v3 #methodology .method-grid > article > h3{
+  margin: 0 !important;
+  color: #13233e !important;
+  font: 700 15px/1.35 var(--sans, system-ui, sans-serif) !important;
+}
+body.nel-tool-v3 #methodology .method-grid > article > p,
+body.nel-tool-v3 #methodology .method-grid > article > ol,
+body.nel-opb-v3 #methodology .method-grid > article > p,
+body.nel-opb-v3 #methodology .method-grid > article > ol{
+  margin: 0 !important;
+  color: #49627e !important;
+  font: 400 14px/1.65 var(--sans, system-ui, sans-serif) !important;
+  white-space: normal !important;
+}
+@media (max-width: 720px){
+  body.nel-tool-v3 #methodology .method-grid > article,
+  body.nel-opb-v3 #methodology .method-grid > article,
+  body.nel-tool-v3 #analyzer .metrics,
+  body.nel-tool-v3 #analyzer .metric-grid:not(.nel-scenario-grid),
+  body.nel-tool-v3 #analyzer .summary-bar{
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  body.nel-tool-v3 #analyzer .metrics,
+  body.nel-tool-v3 #analyzer .summary-bar{ grid-template-columns: 1fr !important; }
+}
+
+/* Light formula surfaces */
+body.nel-tool-v3 #analyzer .formula-card,
+body.nel-tool-v3 #analyzer .formula,
+body.nel-tool-v3 .prose .formula,
+body.nel-opb-v3 #analyzer .formula-card,
+body.nel-opb-v3 #analyzer .eqn,
+body.nel-opb-v3 .eqn{
+  background: linear-gradient(180deg, #F8FAFF 0%, #FFFFFF 100%) !important;
+  border: 1px solid #D6E4FF !important;
+  color: #0f172a !important;
+}
+
+/* Actions unclip */
+body.nel-tool-v3 #analyzer > .workspace > .input-panel,
+body.nel-opb-v3 #analyzer > .workspace > .input-panel{
+  overflow: visible !important;
+}
+body.nel-tool-v3 #analyzer .input-actions,
+body.nel-opb-v3 #analyzer .input-actions{
+  position: relative !important;
+  z-index: 6 !important;
+  pointer-events: auto !important;
+}
+body.nel-tool-v3 #analyzer #calculateBtn,
+body.nel-tool-v3 #analyzer #resetBtn,
+body.nel-opb-v3 #analyzer #calculateBtn,
+body.nel-opb-v3 #analyzer #resetBtn{
+  position: relative !important;
+  z-index: 7 !important;
+  pointer-events: auto !important;
+}
+
+
+/* OTDR: keep overall status semantic colors (not orange metric) */
+body.nel-tool-v3 #analyzer #overallStatus,
+body.nel-tool-v3 #analyzer .overall-card > strong.status-badge{
+  color: inherit !important;
+  font-weight: 800 !important;
+  white-space: nowrap !important;
+}
+body.nel-tool-v3 #analyzer .summary-bar{
+  grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+}
+body.nel-tool-v3 #analyzer .summary-bar > .overall-card{
+  grid-column: 1 / -1 !important;
+}
+
+
+/* === 20261106-bw1e: tighten dual-column bottoms + force orange value/unit === */
+@media (min-width: 961px){
+  body.nel-tool-v3 #analyzer > .workspace,
+  body.nel-opb-v3 #analyzer > .workspace,
+  body.nel-tool-v3 .workspace,
+  body.nel-opb-v3 .workspace{
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    gap: 18px !important;
+    align-items: stretch !important;
+  }
+  body.nel-tool-v3 #analyzer > .workspace > .input-panel,
+  body.nel-tool-v3 #analyzer > .workspace > .result-panel,
+  body.nel-opb-v3 #analyzer > .workspace > .input-panel,
+  body.nel-opb-v3 #analyzer > .workspace > .result-panel{
+    height: auto !important;
+    min-height: 100% !important;
+    align-self: stretch !important;
+  }
+  /* grow trailing spacer / actions stay at natural end; equalize via stretch only */
+}
+
+/* Force orange 500 nowrap on all common readout strongs (exclude health/status badges) */
+body.nel-tool-v3 #analyzer .summary-card > strong:not(.status-badge):not([data-nel-health-status]),
+body.nel-tool-v3 #analyzer .summary-bar > article > strong:not(.status-badge),
+body.nel-tool-v3 #analyzer .metrics > .metric > strong,
+body.nel-tool-v3 #analyzer .ro-main > strong.big,
+body.nel-tool-v3 #analyzer .ro-main strong.big,
+body.nel-tool-v3 #analyzer #required,
+body.nel-tool-v3 #analyzer #eventCount,
+body.nel-tool-v3 #analyzer #abnormalCount,
+body.nel-tool-v3 #analyzer #criticalCount,
+body.nel-tool-v3 #analyzer #reflectiveCount,
+body.nel-tool-v3 #analyzer #deadZoneCount,
+body.nel-tool-v3 #analyzer #maxEventLoss,
+body.nel-tool-v3 #analyzer #estimatedPrimaryLoss,
+body.nel-tool-v3 #analyzer #estimatedSecondaryLoss,
+body.nel-tool-v3 #analyzer #load,
+body.nel-tool-v3 #analyzer #perDevice,
+body.nel-tool-v3 #analyzer #remaining,
+body.nel-tool-v3 #analyzer #utilization,
+body.nel-tool-v3 #analyzer #maximum,
+body.nel-tool-v3 #analyzer #portsUsed{
+  display: inline-flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: baseline !important;
+  gap: 0.28em !important;
+  color: #E8590C !important;
+  font-weight: 500 !important;
+  font: 500 18px/1.2 var(--mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace) !important;
+  white-space: nowrap !important;
+}
+body.nel-tool-v3 #analyzer .summary-card > strong > span,
+body.nel-tool-v3 #analyzer .summary-card > strong > small,
+body.nel-tool-v3 #analyzer .ro-main strong.big > span,
+body.nel-tool-v3 #analyzer .ro-main strong.big > small,
+body.nel-tool-v3 #analyzer #required > span,
+body.nel-tool-v3 #analyzer #required > small,
+body.nel-tool-v3 #analyzer strong.big > span,
+body.nel-tool-v3 #analyzer strong.big > small{
+  display: inline !important;
+  color: inherit !important;
+  font: inherit !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  margin: 0 !important;
+}
+
+/* OTDR: strong.big wraps span#id + small — make strong the flex container */
+body.nel-tool-v3 #analyzer .summary-card.ro-main > strong.big{
+  display: inline-flex !important;
+  color: #E8590C !important;
+  font-weight: 500 !important;
+}
+
+/* === 20261106-bw1e: OTDR force orange + unit same line on summary cards === */
+body.nel-tool-v3 #analyzer .summary-bar{
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+  gap: 10px !important;
+}
+body.nel-tool-v3 #analyzer .summary-bar > .overall-card{ grid-column: 1 / -1 !important; }
+body.nel-tool-v3 #analyzer .summary-bar > .summary-card,
+body.nel-tool-v3 #analyzer .summary-bar > article.summary-card,
+body.nel-tool-v3 #analyzer .summary-bar > article.ro-l1{
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  padding: 12px 14px !important;
+  min-width: 0 !important;
+}
+body.nel-tool-v3 #analyzer .summary-bar > .summary-card > strong,
+body.nel-tool-v3 #analyzer .summary-bar > article > strong:not(.status-badge),
+body.nel-tool-v3 #analyzer .summary-bar strong.big,
+body.nel-tool-v3 #analyzer #eventCount,
+body.nel-tool-v3 #analyzer #abnormalCount,
+body.nel-tool-v3 #analyzer #criticalCount,
+body.nel-tool-v3 #analyzer #reflectiveCount,
+body.nel-tool-v3 #analyzer #deadZoneCount{
+  display: inline-flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: baseline !important;
+  gap: 0.28em !important;
+  color: #E8590C !important;
+  font: 500 18px/1.2 var(--mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace) !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+}
+body.nel-tool-v3 #analyzer .summary-bar strong.big > span,
+body.nel-tool-v3 #analyzer .summary-bar strong.big > small,
+body.nel-tool-v3 #analyzer .summary-bar strong > span,
+body.nel-tool-v3 #analyzer .summary-bar strong > small{
+  display: inline !important;
+  color: #E8590C !important;
+  font: inherit !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  margin: 0 !important;
+}
+/* OTDR workspace equalize if present */
+body.nel-tool-v3 #analyzer > .workspace,
+body.nel-tool-v3 .workspace{
+  align-items: stretch !important;
+}
+@media (min-width: 961px){
+  body.nel-tool-v3 #analyzer.nel-tool-primary-grid,
+  body.nel-tool-v3 main.nel-tool-primary-grid{
+    align-items: stretch !important;
+    grid-template-columns: minmax(0,1fr) minmax(0,1fr) !important;
+  }
+  body.nel-tool-v3 #analyzer > .input-panel,
+  body.nel-tool-v3 #analyzer > .result-panel{
+    align-self: stretch !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+}
+
+/* === 20261106-bw1e: OTDR root is #analyzer (not #analyzer) === */
+body.nel-tool-v3 #analyzer .summary-bar{
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+  gap: 10px !important;
+}
+body.nel-tool-v3 #analyzer .summary-bar > .overall-card{ grid-column: 1 / -1 !important; }
+body.nel-tool-v3 #analyzer .summary-bar > .summary-card,
+body.nel-tool-v3 #analyzer .summary-bar > article.ro-l1{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 6px !important;
+  min-width: 0 !important;
+  padding: 12px 14px !important;
+  box-sizing: border-box !important;
+  border: 1px solid #d7e2ec !important;
+  border-radius: 12px !important;
+  background: #fff !important;
+}
+body.nel-tool-v3 #analyzer .summary-bar > .summary-card > small,
+body.nel-tool-v3 #analyzer .summary-bar > article > small{
+  display: block !important;
+  color: #667d92 !important;
+  font: 500 13px/1.35 var(--sans, system-ui, sans-serif) !important;
+  white-space: normal !important;
+}
+body.nel-tool-v3 #analyzer .summary-bar > .summary-card > strong,
+body.nel-tool-v3 #analyzer .summary-bar > article > strong:not(.status-badge),
+body.nel-tool-v3 #analyzer .summary-bar strong.big,
+body.nel-tool-v3 #analyzer #eventCount,
+body.nel-tool-v3 #analyzer #abnormalCount,
+body.nel-tool-v3 #analyzer #criticalCount,
+body.nel-tool-v3 #analyzer #reflectiveCount,
+body.nel-tool-v3 #analyzer #deadZoneCount,
+body.nel-tool-v3 #analyzer #maxEventLoss,
+body.nel-tool-v3 #analyzer #estimatedPrimaryLoss,
+body.nel-tool-v3 #analyzer #estimatedSecondaryLoss{
+  display: inline-flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: baseline !important;
+  gap: 0.28em !important;
+  color: #E8590C !important;
+  font: 500 18px/1.2 var(--mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace) !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+}
+body.nel-tool-v3 #analyzer .summary-bar strong.big > span,
+body.nel-tool-v3 #analyzer .summary-bar strong.big > small,
+body.nel-tool-v3 #analyzer .summary-bar strong > span,
+body.nel-tool-v3 #analyzer .summary-bar strong > small{
+  display: inline !important;
+  color: #E8590C !important;
+  font: inherit !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  margin: 0 !important;
+}
+body.nel-tool-v3 #analyzer #overallStatus,
+body.nel-tool-v3 #analyzer .overall-card > strong.status-badge{
+  color: inherit !important;
+  font-weight: 800 !important;
+  white-space: nowrap !important;
+  display: inline-flex !important;
+}
+@media (min-width: 961px){
+  body.nel-tool-v3 #analyzer.nel-tool-primary-grid{
+    align-items: stretch !important;
+    grid-template-columns: minmax(0,1fr) minmax(0,1fr) !important;
+  }
+  body.nel-tool-v3 #analyzer > .input-panel,
+  body.nel-tool-v3 #analyzer > .result-panel{
+    align-self: stretch !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+}
+@media (max-width: 720px){
+  body.nel-tool-v3 #analyzer .summary-bar{ grid-template-columns: 1fr !important; }
+}
+
+
+/* 20261107 Group B: accepted local Bandwidth supporting stack */
+/* === 20261105-opb1: OPB V3 supporting stack (Bandwidth-local; calculator CSS unchanged above) === */
+/* Do not force multi-column methodology/FAQ/history in the prose stack — OPB uses .eq + .method-defs / FAQ details / ref-card */
+body.nel-tool-v3 #methodology .method-grid,
+body.nel-tool-v3 .prose .method-grid,
+body.nel-tool-v3 .prose .faq-grid {
+  display: none !important;
+}
+body.nel-tool-v3 #methodology .method-defs {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+  margin: 12px 0;
+}
+body.nel-tool-v3 #methodology .method-defs > article {
+  min-width: 0;
+  padding: 14px 16px;
+  border: 1px solid var(--line, #d9e4f2);
+  border-radius: 12px;
+  background: #fff;
+}
+body.nel-tool-v3 #methodology .eq {
+  margin: 0 0 12px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #d9e4f2;
+  border-left: 3px solid #176ff2;
+  background: linear-gradient(180deg, #F8FAFF, #fff);
+  color: #13233e;
+  font: 500 13px/1.7 var(--mono, ui-monospace, monospace);
+}
+body.nel-tool-v3 #references .ref-card {
+  padding: 16px 18px;
+  border: 1px solid var(--line, #d9e4f2);
+  border-radius: 14px;
+  background: #fff;
+}
+body.nel-tool-v3 #references .std-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+body.nel-tool-v3 #references .std-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid #c9d8eb;
+  background: #f5f9ff;
+  color: #1558c0;
+  text-decoration: none;
+  font-weight: 650;
+  font-size: 13px;
+}
+body.nel-tool-v3 #about-scope .about-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  margin-top: 12px;
+  color: var(--muted, #65768e);
+  font-size: 13px;
+}
+@media (max-width: 520px) {
+  body.nel-tool-v3 #methodology .eq { font-size: 12px; }
+  body.nel-tool-v3 #references .std-chip { width: 100%; justify-content: center; }
+}
+
+
+/* === 20261105-opb2: OPB below left-right (toc | prose) === */
+/* Mirrors production OPB / local optical-power-budget fb-v3 below grid.
+   Shared assets/css/fb-v3.css had a corrupted content:"-" string that
+   poisoned CSSOM nesting so .below never became display:grid for nel-tool-v3. */
+body.nel-tool-v3.v3 .below{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:16px;
+  align-items:start;
+  margin-top:28px;
+  min-width:0;
+  grid-column:1 / -1;
+}
+body.nel-tool-v3.v3 .below > .toc{
+  display:none;
+}
+body.nel-tool-v3.v3 .below > .prose{
+  min-width:0;
+  max-width:none;
+  position:relative;
+  z-index:1;
+  grid-column:1 / -1;
+}
+body.nel-tool-v3.v3 .below > .prose > *{min-width:0}
+@media (min-width:961px){
+  body.nel-tool-v3.v3 .below{
+    grid-template-columns:minmax(180px,228px) minmax(0,1fr);
+    gap:36px;
+    margin-top:48px;
+  }
+  body.nel-tool-v3.v3 .below > .toc{
+    display:block;
+    position:sticky;
+    top:90px;
+    align-self:start;
+    z-index:2;
+    background:rgba(255,255,255,.72);
+    border:1px solid var(--v3-border-soft, #E2E8F0);
+    border-radius:14px;
+    padding:14px 12px 16px;
+    box-shadow:0 1px 0 rgba(15,23,42,.04);
+  }
+  body.nel-tool-v3.v3 .below > .toc h4{
+    margin:0 0 12px;
+    padding:0 8px;
+    font:600 12px var(--sans) !important;
+    letter-spacing:.08em !important;
+    text-transform:uppercase;
+    color:var(--v3-ink, #0F172A) !important;
+    opacity:1;
+  }
+  body.nel-tool-v3.v3 .below > .toc a{
+    display:block;
+    margin:0;
+    padding:8px 10px 8px 12px;
+    border-left:3px solid transparent;
+    border-radius:0 8px 8px 0;
+    color:var(--v3-ink, #0F172A);
+    font:700 15.5px/1.4 var(--sans);
+    text-decoration:none;
+  }
+  body.nel-tool-v3.v3 .below > .toc a:hover{
+    background:rgba(238,242,255,.7);
+    color:var(--v3-ink, #0F172A);
+  }
+  body.nel-tool-v3.v3 .below > .toc a.on{
+    border-left-color:var(--amber, #E8590C);
+    background:rgba(255,247,237,.95);
+    color:var(--v3-ink, #0F172A);
+    font-weight:700;
+  }
+  body.nel-tool-v3.v3 .below > .prose{
+    grid-column:auto;
+  }
+}
+@media (min-width:1180px){
+  body.nel-tool-v3.v3 .below{
+    grid-template-columns:minmax(200px,240px) minmax(0,1fr);
+    gap:40px;
+  }
+}
+@media (min-width:961px){
+  body.nel-tool-v3.v3 > main > .below{
+    gap:18px;
+    margin-top:16px;
+  }
+  body.nel-tool-v3.v3 .below > .toc{
+    padding:10px 8px 12px;
+  }
+  body.nel-tool-v3.v3 .below > .toc h4{
+    margin:0 0 6px;
+    padding:0 8px;
+    font:700 12px var(--sans) !important;
+    letter-spacing:.08em !important;
+    color:var(--v3-muted, #64748B) !important;
+  }
+  body.nel-tool-v3.v3 .below > .toc a{
+    padding:7px 10px 7px 12px;
+    color:var(--v3-ink, #0F172A);
+    font:700 15.5px/1.4 var(--sans);
+  }
+  body.nel-tool-v3.v3 .below > .toc a:hover{
+    color:var(--v3-ink, #0F172A);
+    background:rgba(238,242,255,.7);
+  }
+  body.nel-tool-v3.v3 .below > .toc a.on{
+    border-left-color:var(--amber, #E8590C);
+    background:rgba(255,247,237,.95);
+    color:var(--v3-ink, #0F172A);
+    font-weight:700;
+  }
+}
+@media (min-width:1180px){
+  body.nel-tool-v3.v3 > main > .below{ gap:18px; }
+}
+@media (max-width:768px){
+  body.nel-tool-v3.v3 .below{
+    grid-template-columns:minmax(0,1fr) !important;
+    gap:12px;
+    margin-top:20px;
+  }
+  body.nel-tool-v3.v3 .below > .toc{
+    display:none !important;
+  }
+  body.nel-tool-v3.v3 .below > .prose{
+    grid-column:1 / -1;
+    width:100%;
+    max-width:none;
+  }
+}
+
+/* === 20261105-opb3: OPB light .eq formula surface (methodology + left Core calculation) === */
+/* === 20261105-opb3-toc: left ON THIS PAGE links larger + bold; orange active rail kept === */
+@media (min-width:961px){
+  body.nel-tool-v3.v3 .below > .toc a{
+    font:700 15.5px/1.4 var(--sans) !important;
+    color:var(--v3-ink, #0F172A) !important;
+  }
+  body.nel-tool-v3.v3 .below > .toc a.on{
+    border-left-color:var(--amber, #E8590C) !important;
+    background:rgba(255,247,237,.95) !important;
+    font-weight:700 !important;
+  }
+}
+
+/* === 20261105-opb3c: left/right column stretch + formula note fill + action bar align === */
+.workspace{
+  align-items: stretch !important;
+}
+.workspace > .input-panel,
+.workspace > .result-panel{
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+.workspace > .input-panel > .formula-block{
+  margin-top: 14px;
+  padding-top: 0;
+}
+.workspace > .input-panel .input-actions{
+  display: flex !important;
+  flex-wrap: wrap !important;
+  grid-template-columns: none !important;
+  gap: 10px !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  width: 100%;
+  margin-top: 14px !important;
+  margin-bottom: 0 !important;
+  padding-top: 12px;
+  border-top: 1px solid #E8EEF7;
+}
+.workspace > .input-panel .form-grid.fields,
+.workspace > .input-panel #transferPanel .form-grid,
+.workspace > .input-panel #requiredPanel .form-grid,
+.workspace > .input-panel #concurrencyPanel .form-grid,
+.workspace > .input-panel #volumePanel .form-grid{
+  margin-bottom: 0;
+}
+.workspace > .input-panel .validation{
+  min-height: 0;
+  margin: 8px 0 0;
+}
+.formula-card{
+  background: linear-gradient(180deg,#F8FAFF 0%,#F1F5FF 100%) !important;
+  border: 1px solid #D6E4FF !important;
+  border-left: 4px solid #176ff2 !important;
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: #0F172A !important;
+  box-shadow: none !important;
+}
+.formula-card h3{
+  margin: 0 0 8px;
+  font: 700 13px/1.3 var(--sans, system-ui, sans-serif);
+  color: #0F172A;
+}
+.formula-card code{
+  display: block;
+  white-space: pre-wrap;
+  font: 600 12.5px/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: #1E3A5F;
+  background: transparent;
+}
+.formula-note{
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  color: #475569;
+  font: 500 12.5px/1.55 var(--sans, system-ui, sans-serif);
+}
+.formula-note p{ margin: 0 0 8px; }
+.formula-note p:last-child{ margin-bottom: 0; }
+.formula-note strong{ color: #0F172A; font-weight: 700; }
+
+/* Keep TOC larger/bold + orange .on rail (opb3-toc) */
+@media (min-width:961px){
+  body.nel-tool-v3.v3 .below > .toc a{
+    font:700 15.5px/1.4 var(--sans) !important;
+    color:var(--v3-ink, #0F172A) !important;
+  }
+  body.nel-tool-v3.v3 .below > .toc a.on{
+    border-left-color:var(--amber, #E8590C) !important;
+    background:rgba(255,247,237,.95) !important;
+    font-weight:700 !important;
+  }
+}
+
+/* opb3c-b: last odd field full-width; action bar clear of form gap */
+.workspace > .input-panel .form-grid.fields > .field:last-child:nth-child(odd),
+.workspace > .input-panel #transferPanel .form-grid > .field:last-child:nth-child(odd),
+.workspace > .input-panel #requiredPanel .form-grid > .field:last-child:nth-child(odd),
+.workspace > .input-panel #concurrencyPanel .form-grid > .field:last-child:nth-child(odd),
+.workspace > .input-panel #volumePanel .form-grid > .field:last-child:nth-child(odd){
+  grid-column: 1 / -1;
+}
+.workspace > .input-panel .input-actions{
+  width: 100%;
+  justify-content: flex-start;
+  padding-top: 4px;
+  border-top: 1px solid #E8EEF7;
+  margin-top: 14px;
+  padding-bottom: 2px;
+}
+.workspace > .input-panel .input-actions .btn,
+.workspace > .input-panel .input-actions button{
+  min-height: 40px;
+  align-self: center;
+}
+
+/* === 20261105-opb3d: fix9 metrics clarity (2-col stacked label/value) === */
+/* Adapted from switch-uplink-oversubscription-calculator fix9.
+   Bandwidth uses .metric-grid/.metric (not .readout .metrics). */
+body.nel-tool-v3 #analyzer .metric-grid{
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  column-gap:10px !important;
+  row-gap:10px !important;
+  gap:10px !important;
+  width:100% !important;
+  max-width:100% !important;
+  margin:12px 0 0 !important;
+  padding:12px !important;
+  min-width:0 !important;
+  align-items:stretch !important;
+  justify-items:stretch !important;
+  box-sizing:border-box !important;
+  border:1px solid #d7e2ec !important;
+  border-radius:14px !important;
+  background:rgba(255,255,255,.55) !important;
+}
+body.nel-tool-v3 #analyzer .metric{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:stretch !important;
+  justify-content:space-between !important;
+  gap:8px !important;
+  min-width:0 !important;
+  width:100% !important;
+  min-height:76px !important;
+  height:100% !important;
+  margin:0 !important;
+  padding:12px 14px !important;
+  box-sizing:border-box !important;
+  overflow:visible !important;
+  background:#fff !important;
+  border:1px solid #dde7ef !important;
+  border-radius:12px !important;
+}
+body.nel-tool-v3 #analyzer .metric small{
+  display:block !important;
+  flex:0 0 auto !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  margin:0 !important;
+  padding:0 !important;
+  color:var(--muted,#667d92) !important;
+  font-size:13px !important;
+  font-weight:500 !important;
+  letter-spacing:0 !important;
+  line-height:1.35 !important;
+  white-space:normal !important;
+  overflow:visible !important;
+  text-overflow:clip !important;
+  word-break:keep-all !important;
+  overflow-wrap:break-word !important;
+  hyphens:none !important;
+}
+body.nel-tool-v3 #analyzer .metric strong{
+  display:block !important;
+  flex:0 0 auto !important;
+  width:100% !important;
+  min-width:0 !important;
+  margin:0 !important;
+  margin-top:auto !important;
+  padding:0 !important;
+  color:#173f65 !important;
+  font:700 18px/1.25 var(--mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace) !important;
+  text-align:left !important;
+  white-space:normal !important;
+  word-break:keep-all !important;
+  overflow-wrap:break-word !important;
+  font-variant-numeric:tabular-nums !important;
+  font-feature-settings:"tnum" 1 !important;
+  overflow:visible !important;
+  text-overflow:clip !important;
+}
+body.nel-tool-v3 #analyzer .metric strong span{
+  white-space:normal !important;
+}
+@media (max-width:520px){
+  body.nel-tool-v3 #analyzer .metric-grid{
+    grid-template-columns:minmax(0,1fr) !important;
+    padding:10px !important;
+  }
+  body.nel-tool-v3 #analyzer .metric{
+    min-height:72px !important;
+  }
+}
+
+/* === 20261105-opb3e: restore left|right workspace + readable primary result === */
+.workspace{
+  display:grid !important;
+  grid-template-columns:minmax(390px,.88fr) minmax(520px,1.45fr) !important;
+  gap:22px !important;
+  align-items:stretch !important;
+  max-width:var(--nel-content-max, 1400px);
+  margin:auto;
+  padding:20px 4vw 34px;
+  box-sizing:border-box;
+}
+.workspace > .input-panel,
+.workspace > .result-panel{
+  display:flex !important;
+  flex-direction:column !important;
+  min-width:0 !important;
+  height:auto;
+  box-sizing:border-box;
+}
+.workspace > .input-panel > .formula-block{
+  margin-top:14px;
+  padding-top:0;
+}
+/* Primary result: readable, not oversized hero */
+body.nel-tool-v3 #analyzer .summary-card strong.big,
+body.nel-tool-v3 #analyzer .summary-card .big,
+body.nel-tool-v3 #analyzer .ro-main .big,
+body.nel-tool-v3 #analyzer .summary-card strong{
+  font-size:clamp(22px, 2.2vw, 30px) !important;
+  line-height:1.2 !important;
+  font-weight:750 !important;
+  letter-spacing:-0.02em;
+  color:var(--primary, #176ff2) !important;
+  text-shadow:none !important;
+  white-space:normal !important;
+  overflow-wrap:anywhere !important;
+}
+body.nel-tool-v3 #analyzer .summary-card{
+  padding:18px 20px !important;
+}
+body.nel-tool-v3 #analyzer .summary-card small.lbl,
+body.nel-tool-v3 #analyzer .summary-card .lbl{
+  font-size:13px !important;
+  margin-bottom:6px !important;
+}
+@media (max-width:960px){
+  .workspace{
+    grid-template-columns:minmax(0,1fr) !important;
+    padding:12px !important;
+    gap:13px !important;
+  }
+}
+@media (max-width:800px){
+  body.nel-tool-v3 #analyzer .summary-card strong.big,
+  body.nel-tool-v3 #analyzer .summary-card .big,
+  body.nel-tool-v3 #analyzer .ro-main .big,
+  body.nel-tool-v3 #analyzer .summary-card strong{
+    font-size:24px !important;
+  }
+}
+
+/* === 20261105-opb3e-dense: fill left white gap — formula directly under actions === */
+.workspace{
+  align-items: start !important;
+}
+.workspace > .input-panel,
+.workspace > .result-panel{
+  height: auto !important;
+  min-height: 0 !important;
+}
+.workspace > .input-panel{
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+}
+.workspace > .input-panel > .formula-block{
+  margin-top: 14px !important;
+  padding-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+.workspace > .input-panel .input-actions{
+  margin-bottom: 0 !important;
+}
+.workspace > .input-panel .formula-note{
+  margin-top: 10px !important;
+}
+
+/* === 20261105-opb3e3: restore Calculate primary fill + denser left + readable headline === */
+.workspace > .input-panel .input-actions{
+  display: grid !important;
+  grid-template-columns: 1.2fr 0.8fr !important;
+  gap: 10px !important;
+  width: 100% !important;
+  margin-top: 14px !important;
+  margin-bottom: 0 !important;
+  padding-top: 12px !important;
+  border-top: 1px solid #E8EEF7 !important;
+}
+.workspace > .input-panel .input-actions .btn,
+.workspace > .input-panel .input-actions button{
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 44px !important;
+  width: 100% !important;
+  border-radius: 12px !important;
+  font-weight: 750 !important;
+}
+.workspace > .input-panel .input-actions .btn-primary,
+.workspace > .input-panel .input-actions button.primary,
+.workspace > .input-panel .input-actions #calculateBtn{
+  background: #176ff2 !important;
+  background-image: none !important;
+  color: #fff !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+.workspace > .input-panel .input-actions .btn-ghost,
+.workspace > .input-panel .input-actions button.secondary,
+.workspace > .input-panel .input-actions #resetBtn{
+  background: #fff !important;
+  color: #3b526e !important;
+  border: 1px solid #c9d8e9 !important;
+}
+.workspace > .input-panel > .formula-block{
+  margin-top: 14px !important;
+  padding-top: 0 !important;
+}
+/* Keep primary result readable, not hero-sized */
+body.nel-tool-v3 #analyzer .summary-card strong.big,
+body.nel-tool-v3 #analyzer .summary-card .big,
+body.nel-tool-v3 #analyzer .ro-main .big,
+body.nel-tool-v3 #analyzer .summary-card strong,
+body.nel-tool-v3 #analyzer #transferHeadline,
+body.nel-tool-v3 #analyzer #requiredHeadline,
+body.nel-tool-v3 #analyzer #capacityHeadline,
+body.nel-tool-v3 #analyzer #volumeHeadline{
+  font-size: clamp(20px, 1.8vw, 26px) !important;
+  line-height: 1.25 !important;
+  font-weight: 700 !important;
+  color: #176ff2 !important;
+  text-shadow: none !important;
+  white-space: normal !important;
+}
+
+/* === 20261105-opb3e4: primary result unit inline (no hero digit line-break) === */
+body.nel-tool-v3 #analyzer .summary-card .big > small,
+body.nel-tool-v3 #analyzer .ro-main .big > small,
+body.nel-tool-v3 #analyzer #transferHeadline > small,
+body.nel-tool-v3 #analyzer #requiredHeadline > small,
+body.nel-tool-v3 #analyzer #capacityHeadline > small,
+body.nel-tool-v3 #analyzer #volumeHeadline > small{
+  display: inline !important;
+  font-size: 0.72em !important;
+  font-weight: 650 !important;
+  color: #5b6b7c !important;
+  margin-left: 0.2em;
+  white-space: normal !important;
+}
+body.nel-tool-v3 #analyzer .summary-card strong.big,
+body.nel-tool-v3 #analyzer .ro-main .big,
+body.nel-tool-v3 #analyzer #transferHeadline,
+body.nel-tool-v3 #analyzer #requiredHeadline,
+body.nel-tool-v3 #analyzer #capacityHeadline,
+body.nel-tool-v3 #analyzer #volumeHeadline{
+  font-size: clamp(20px, 1.7vw, 24px) !important;
+  line-height: 1.3 !important;
+  white-space: normal !important;
+}
+
+/* === 20261105-opb3f: equal-height panels + fill right void with result insight === */
+.workspace{
+  align-items: stretch !important;
+}
+.workspace > .input-panel,
+.workspace > .result-panel{
+  display: flex !important;
+  flex-direction: column !important;
+  align-self: stretch !important;
+  height: auto !important;
+  min-height: 0 !important;
+  box-sizing: border-box !important;
+}
+/* Left: keep formula dense under actions; note can absorb leftover if right grows taller */
+.workspace > .input-panel > .formula-block{
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 14px !important;
+  min-height: 0;
+}
+.workspace > .input-panel .formula-note{
+  flex: 1 1 auto;
+}
+/* Right: grow insight block; pin actions to bottom so bottoms align with content fill */
+.workspace > .result-panel > .result-fill{
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 14px;
+  min-height: 140px;
+}
+.workspace > .result-panel > .result-fill > .result-fill-card{
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid #d7e2ec;
+  background: linear-gradient(180deg, #f8fbff 0%, #f3f7fc 100%);
+  box-sizing: border-box;
+}
+.workspace > .result-panel .result-fill-card h3{
+  margin: 0;
+  font: 700 14px/1.3 var(--sans, system-ui, sans-serif);
+  color: #0F172A;
+}
+.workspace > .result-panel .result-fill-lead{
+  margin: 0;
+  font: 500 12.5px/1.45 var(--sans, system-ui, sans-serif);
+  color: #5b6b7c;
+}
+.workspace > .result-panel .util-breakdown{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.workspace > .result-panel .util-seg{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 10px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  min-width: 0;
+}
+.workspace > .result-panel .util-seg span{
+  font: 500 11.5px/1.3 var(--sans, system-ui, sans-serif);
+  color: #667d92;
+}
+.workspace > .result-panel .util-seg strong{
+  font: 700 15px/1.2 var(--mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
+  color: #173f65;
+  font-variant-numeric: tabular-nums;
+}
+.workspace > .result-panel .util-seg.payload{ border-top: 3px solid #176ff2; }
+.workspace > .result-panel .util-seg.overhead{ border-top: 3px solid #e8590c; }
+.workspace > .result-panel .util-seg.headroom{ border-top: 3px solid #0d9488; }
+.workspace > .result-panel .fill-bar{
+  display: flex;
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #e8eef7;
+}
+.workspace > .result-panel .fill-bar > span{
+  display: block;
+  height: 100%;
+  min-width: 0;
+}
+.workspace > .result-panel .fill-payload{ background: #176ff2; width: 0%; }
+.workspace > .result-panel .fill-overhead{ background: #e8590c; width: 0%; }
+.workspace > .result-panel .fill-headroom{ background: #0d9488; width: 0%; }
+.workspace > .result-panel .fill-tips{
+  margin: auto 0 0;
+  padding: 0 0 0 18px;
+  color: #475569;
+  font: 500 12.5px/1.5 var(--sans, system-ui, sans-serif);
+}
+.workspace > .result-panel .fill-tips li{ margin: 0 0 4px; }
+.workspace > .result-panel .fill-tips li:last-child{ margin-bottom: 0; }
+.workspace > .result-panel > .result-actions,
+.workspace > .result-panel > .ro-acts{
+  margin-top: auto !important;
+  padding-top: 14px !important;
+}
+@media (max-width: 720px){
+  .workspace > .result-panel .util-breakdown{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === 20261105-opb3g: flush twin calculator cards + gold result values === */
+.workspace{
+  display: grid !important;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.35fr) !important;
+  gap: 22px !important;
+  align-items: stretch !important;
+  width: min(100%, var(--nel-content-max, 1400px)) !important;
+  max-width: var(--nel-content-max, 1400px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 16px 0 28px !important;
+  box-sizing: border-box !important;
+}
+.workspace > .input-panel,
+.workspace > .result-panel{
+  display: flex !important;
+  flex-direction: column !important;
+  align-self: stretch !important;
+  min-width: 0 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 22px 22px 20px !important;
+  box-sizing: border-box !important;
+  border: 1px solid #d7e3f1 !important;
+  border-radius: 16px !important;
+  background: #ffffff !important;
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.03) !important;
+  overflow: hidden;
+}
+.workspace > .input-panel > .formula-block{
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 14px !important;
+}
+.workspace > .input-panel .formula-note{
+  flex: 1 1 auto;
+}
+.workspace > .result-panel > .result-fill{
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 14px;
+  min-height: 120px;
+}
+.workspace > .result-panel > .result-fill > .result-fill-card{
+  flex: 1 1 auto;
+}
+.workspace > .result-panel > .result-actions,
+.workspace > .result-panel > .ro-acts{
+  margin-top: auto !important;
+  padding-top: 14px !important;
+}
+
+/* Result values: gold, NOT bold. Labels stay muted gray. */
+body.nel-tool-v3 #analyzer .metric strong,
+body.nel-tool-v3 #analyzer .metric strong span,
+body.nel-tool-v3 #analyzer .summary-card strong.big,
+body.nel-tool-v3 #analyzer .summary-card .big,
+body.nel-tool-v3 #analyzer .ro-main .big,
+body.nel-tool-v3 #analyzer .summary-card strong,
+body.nel-tool-v3 #analyzer #transferHeadline,
+body.nel-tool-v3 #analyzer #requiredHeadline,
+body.nel-tool-v3 #analyzer #capacityHeadline,
+body.nel-tool-v3 #analyzer #volumeHeadline{
+  color: #C9A227 !important;
+  font-weight: 500 !important;
+  text-shadow: none !important;
+}
+body.nel-tool-v3 #analyzer .summary-card .big > small,
+body.nel-tool-v3 #analyzer .ro-main .big > small,
+body.nel-tool-v3 #analyzer #transferHeadline > small,
+body.nel-tool-v3 #analyzer #requiredHeadline > small,
+body.nel-tool-v3 #analyzer #capacityHeadline > small,
+body.nel-tool-v3 #analyzer #volumeHeadline > small{
+  color: #A16207 !important;
+  font-weight: 500 !important;
+}
+body.nel-tool-v3 #analyzer .metric small,
+body.nel-tool-v3 #analyzer .summary-card small.lbl,
+body.nel-tool-v3 #analyzer .summary-card .lbl{
+  color: #667d92 !important;
+  font-weight: 500 !important;
+}
+/* Keep snapshot util numbers consistent with result gold */
+.workspace > .result-panel .util-seg strong{
+  color: #C9A227 !important;
+  font-weight: 500 !important;
+}
+
+@media (max-width: 960px){
+  .workspace{
+    grid-template-columns: minmax(0, 1fr) !important;
+    padding: 12px 0 20px !important;
+    gap: 14px !important;
+  }
+}
+
+/* === 20261105-opb3h: full-width twin panels (match OPB main grid) + accent #E8590C === */
+/* Root cause: main.nel-tool-primary-grid is 664|440; .workspace was only in col1 (664),
+   so both calculator cards were crushed into the left half. Span full width like OPB. */
+body.nel-tool-v3 #analyzer > .tool-head,
+body.nel-tool-v3 #analyzer > .mode-tabs,
+body.nel-tool-v3 #analyzer > .workspace,
+body.nel-tool-v3 #analyzer > .below{
+  grid-column: 1 / -1 !important;
+  width: 100% !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
+}
+body.nel-tool-v3 #analyzer > .workspace{
+  display: grid !important;
+  /* Match OPB main ratio ~664:440 */
+  grid-template-columns: minmax(0, 1.509fr) minmax(0, 1fr) !important;
+  gap: 20px !important;
+  align-items: stretch !important;
+  margin: 0 !important;
+  padding: 0 0 8px !important;
+}
+body.nel-tool-v3 #analyzer > .workspace > .input-panel,
+body.nel-tool-v3 #analyzer > .workspace > .result-panel{
+  display: flex !important;
+  flex-direction: column !important;
+  align-self: stretch !important;
+  min-width: 0 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 22px !important;
+  box-sizing: border-box !important;
+  border: 1px solid #d8dee8 !important;
+  border-radius: 16px !important;
+  background: #ffffff !important;
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.03) !important;
+  overflow: hidden;
+}
+/* Align section titles to same first line */
+body.nel-tool-v3 #analyzer > .workspace > .input-panel > .section-title,
+body.nel-tool-v3 #analyzer > .workspace > .result-panel > .section-title{
+  margin: 0 0 14px !important;
+  align-items: flex-start !important;
+}
+body.nel-tool-v3 #analyzer > .workspace > .input-panel > .section-title h2,
+body.nel-tool-v3 #analyzer > .workspace > .result-panel > .section-title h2,
+body.nel-tool-v3 #analyzer > .workspace .panel-h h2,
+body.nel-tool-v3 #analyzer > .workspace h2.panel-h,
+body.nel-tool-v3 #analyzer > .workspace h2.ro-h{
+  margin: 0 !important;
+  padding: 0 !important;
+  font: 600 15px/1.45 var(--sans, system-ui, sans-serif) !important;
+  color: #0f172a !important;
+}
+body.nel-tool-v3 #analyzer > .workspace > .input-panel > .formula-block{
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 14px !important;
+}
+body.nel-tool-v3 #analyzer > .workspace > .input-panel .formula-note{
+  flex: 1 1 auto;
+}
+body.nel-tool-v3 #analyzer > .workspace > .result-panel > .result-fill{
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 14px;
+  min-height: 120px;
+}
+body.nel-tool-v3 #analyzer > .workspace > .result-panel > .result-fill > .result-fill-card{
+  flex: 1 1 auto;
+}
+body.nel-tool-v3 #analyzer > .workspace > .result-panel > .result-actions,
+body.nel-tool-v3 #analyzer > .workspace > .result-panel > .ro-acts{
+  margin-top: auto !important;
+  padding-top: 14px !important;
+}
+
+/* Result values: exact swatch #E8590C, non-bold */
+body.nel-tool-v3 #analyzer .metric strong,
+body.nel-tool-v3 #analyzer .metric strong span,
+body.nel-tool-v3 #analyzer .summary-card strong.big,
+body.nel-tool-v3 #analyzer .summary-card .big,
+body.nel-tool-v3 #analyzer .ro-main .big,
+body.nel-tool-v3 #analyzer .summary-card strong,
+body.nel-tool-v3 #analyzer #transferHeadline,
+body.nel-tool-v3 #analyzer #requiredHeadline,
+body.nel-tool-v3 #analyzer #capacityHeadline,
+body.nel-tool-v3 #analyzer #volumeHeadline{
+  color: #E8590C !important;
+  font-weight: 500 !important;
+  text-shadow: none !important;
+}
+body.nel-tool-v3 #analyzer .summary-card .big > small,
+body.nel-tool-v3 #analyzer .ro-main .big > small,
+body.nel-tool-v3 #analyzer #transferHeadline > small,
+body.nel-tool-v3 #analyzer #requiredHeadline > small,
+body.nel-tool-v3 #analyzer #capacityHeadline > small,
+body.nel-tool-v3 #analyzer #volumeHeadline > small{
+  color: #E8590C !important;
+  font-weight: 500 !important;
+  opacity: 0.85;
+}
+body.nel-tool-v3 #analyzer .metric small,
+body.nel-tool-v3 #analyzer .summary-card small.lbl,
+body.nel-tool-v3 #analyzer .summary-card .lbl{
+  color: #667d92 !important;
+  font-weight: 500 !important;
+}
+body.nel-tool-v3 #analyzer .workspace > .result-panel .util-seg strong{
+  color: #E8590C !important;
+  font-weight: 500 !important;
+}
+/* Prefer single-line metric values */
+body.nel-tool-v3 #analyzer .metric strong{
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+@media (max-width: 960px){
+  body.nel-tool-v3 #analyzer > .workspace{
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 14px !important;
+  }
+  body.nel-tool-v3 #analyzer .metric strong{
+    white-space: normal !important;
+  }
+}
+
+
+/* === 20261105-opb3i: ensure Calculate/Reset clickable (defensive z-index) === */
+body.nel-tool-v3 #analyzer > .workspace > .input-panel > .input-actions{
+  position: relative !important;
+  z-index: 6 !important;
+  pointer-events: auto !important;
+  flex: 0 0 auto !important;
+}
+body.nel-tool-v3 #analyzer #calculateBtn,
+body.nel-tool-v3 #analyzer #resetBtn,
+body.nel-tool-v3 #analyzer > .workspace > .input-panel > .input-actions button{
+  position: relative !important;
+  z-index: 7 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+body.nel-tool-v3 #analyzer > .workspace > .input-panel > .formula-block{
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+
+body.nel-tool-v3 #analyzer>.workspace{grid-column:1/-1!important;display:grid!important;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)!important;gap:20px!important;width:100%!important;align-items:stretch!important}
+body.nel-tool-v3 #analyzer>.workspace>.input-panel,body.nel-tool-v3 #analyzer>.workspace>.result-panel{display:flex!important;flex-direction:column!important;align-self:stretch!important;min-width:0!important;width:auto!important;margin:0!important;padding:22px!important;box-sizing:border-box!important}
+body.nel-tool-v3 #analyzer>.tool-head{grid-column:1/-1!important}
+body.nel-tool-v3 #analyzer .input-actions{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important;width:100%!important;margin-top:14px!important;padding-top:12px!important}
+body.nel-tool-v3 #analyzer .input-actions>button{width:100%!important;min-width:0!important;height:44px!important;min-height:44px!important;margin:0!important;border-radius:12px!important;font-size:15px!important;padding:0 10px!important;box-sizing:border-box!important;white-space:normal!important}
+body.nel-tool-v3 #analyzer .input-actions>.primary,body.nel-tool-v3 #analyzer .input-actions>.btn-primary{background:#176ff2!important;background-image:none!important;color:#fff!important;border:0!important}
+body.nel-tool-v3 #analyzer .input-actions>.secondary,body.nel-tool-v3 #analyzer .input-actions>.btn-ghost{background:#fff!important;color:#3b526e!important;border:1px solid #c9d8e9!important}
+body.nel-tool-v3 #analyzer .result-panel .panel{display:block!important;width:100%!important;min-width:0!important}
+body.nel-tool-v3 #analyzer .summary,body.nel-tool-v3 #analyzer .metric-grid,body.nel-tool-v3 #analyzer .metrics{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;width:100%!important;min-width:0!important;gap:12px!important}
+body.nel-tool-v3 #analyzer .metric,body.nel-tool-v3 #analyzer .summary-card{min-width:0!important}
+body.nel-tool-v3 #analyzer .metric>strong,body.nel-tool-v3 #analyzer .metric-card strong{color:#E8590C!important;font-weight:500!important;display:inline-flex!important;align-items:baseline!important;gap:4px!important;white-space:nowrap!important;overflow:visible!important}
+body.nel-tool-v3 #analyzer .input input,body.nel-tool-v3 #analyzer .inp input,body.nel-tool-v3 #analyzer .input-wrap input{min-width:0!important;flex:1 1 auto!important}
+body.nel-tool-v3 #analyzer .input>span,body.nel-tool-v3 #analyzer .inp>span{white-space:nowrap!important;flex:0 0 auto!important;width:auto!important}
+body.nel-tool-v3 .method-defs>article{display:block!important;padding:12px 0;border-top:1px solid #e2e8f0}
+body.nel-tool-v3 .toc a{display:block!important}
+body.nel-tool-v3 .nel-tool-graph-card,body.nel-tool-v3 .nel-tool-graph-card strong{min-width:0!important;white-space:normal!important;overflow-wrap:anywhere!important}
+body.nel-tool-v3 #analyzer .nel-refreshed{outline:2px solid #176ff2!important;outline-offset:2px}
+@media(max-width:720px){body.nel-tool-v3 #analyzer>.workspace{grid-template-columns:minmax(0,1fr)!important}}
+
+body.nel-tool-v3 #analyzer .table-scroll{overflow:visible!important;width:100%!important;min-width:0!important}
+body.nel-tool-v3 #analyzer table{display:block!important;width:100%!important;min-width:0!important;table-layout:fixed!important}
+body.nel-tool-v3 #analyzer table thead{display:none!important}
+body.nel-tool-v3 #analyzer table tbody{display:block!important;width:100%!important;min-width:0!important}
+body.nel-tool-v3 #analyzer table tr{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;border:1px solid #e2e8f0;border-radius:12px;margin:10px 0;padding:10px;box-sizing:border-box!important}
+body.nel-tool-v3 #analyzer table td{display:block!important;width:auto!important;min-width:0!important;white-space:normal!important;overflow-wrap:anywhere!important;padding:4px!important;box-sizing:border-box!important}
+body.nel-tool-v3 #analyzer table td::before{content:attr(data-label);display:block;font-size:12px;line-height:1.5;color:#64748b;margin-bottom:4px;white-space:normal}
+body.nel-tool-v3 #analyzer table input,body.nel-tool-v3 #analyzer table select{width:100%!important;min-width:0!important;max-width:100%!important;box-sizing:border-box!important}
+body.nel-tool-v3 #analyzer #topology .fiber-line{left:30px!important;right:30px!important;width:auto!important}
+body.nel-tool-v3 #analyzer #topology .topology-end{right:0!important;transform:none!important}
+body.nel-tool-v3 #analyzer #topology .topology-start{left:0!important;transform:none!important}
+
+body.nel-tool-v3 #analyzer .type-pill,body.nel-tool-v3 #analyzer .severity-pill{white-space:normal!important;overflow-wrap:anywhere!important;max-width:100%!important;box-sizing:border-box!important}
+body.nel-tool-v3 #analyzer .results-section{overflow:visible!important}
+
+body.nel-tool-v3 #analyzer .summary-bar{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;width:100%!important;gap:12px!important}
+body.nel-tool-v3 #analyzer .summary-card>strong:not(.status-badge),body.nel-tool-v3 #analyzer .headline strong{color:#E8590C!important;font-weight:500!important;font-size:20px!important;white-space:nowrap!important;display:inline-flex!important;gap:4px!important;align-items:baseline!important;overflow:visible!important}
+body.nel-tool-v3 #analyzer .summary-card>strong small{font-weight:500!important;color:inherit!important}
+
+body.nel-tool-v3 .below .prose #methodology .eq{background:#f4f7fb!important;background-image:none!important;border:1px solid #d6e4ff!important;border-radius:12px!important;padding:14px 16px!important;white-space:normal!important;overflow-wrap:anywhere!important;color:#13233e!important}
+
+/* t297u/t299u: sample action is outside input-actions; never depend on unset v3-accent. */
+body.nel-tool-v3 #analyzer .config-actions{grid-template-columns:minmax(0,1fr)!important}
+body.nel-tool-v3 #analyzer #sampleBtn{width:100%!important;height:44px!important;min-height:44px!important;min-width:0!important;background:#176ff2!important;background-image:none!important;color:#fff!important;border:0!important;border-radius:12px!important;box-shadow:none!important;font-size:15px!important;font-weight:500!important}
+body.nel-tool-v3 #analyzer #sampleBtn:hover{background:#125bd0!important;color:#fff!important}
+body.nel-tool-v3 #analyzer #sampleBtn:focus-visible{background:#176ff2!important;color:#fff!important;outline:3px solid #92baff!important;outline-offset:3px!important}
+
+/* t302u: input-event identity spans the record; paired parameters align below. */
+body.nel-tool-v3 #analyzer #eventInputBody>tr>.event-index{grid-column:1/-1!important;display:flex!important;align-items:center;gap:4px;padding:4px 4px 8px!important;border-bottom:1px solid #e2e8f0;font-weight:600}
+body.nel-tool-v3 #analyzer #eventInputBody>tr>.event-index::before{content:"Event";display:inline;font:inherit;color:inherit;margin:0;white-space:nowrap}
+html[lang^="zh"] body.nel-tool-v3 #analyzer #eventInputBody>tr>.event-index::before{content:"\4e8b\4ef6"}
+html[lang^="es"] body.nel-tool-v3 #analyzer #eventInputBody>tr>.event-index::before{content:"Evento"}
+body.nel-tool-v3 #analyzer #eventInputBody>tr>td:not(.event-index):not(.row-actions){display:flex!important;flex-direction:column;align-self:stretch}
+body.nel-tool-v3 #analyzer #eventInputBody>tr>td:not(.row-actions)>input,body.nel-tool-v3 #analyzer #eventInputBody>tr>td:not(.row-actions)>select{margin-top:auto!important}
+body.nel-tool-v3 #analyzer #eventInputBody>tr>.row-actions{grid-column:1/-1!important;display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:6px!important;align-items:center}
+body.nel-tool-v3 #analyzer #eventInputBody>tr>.row-actions::before{grid-column:1/-1;margin-bottom:0}
+
+/* t325u: missing whole FAQ card and markers only inside existing engineering references. */
+body.nel-tool-v3 #analyzer .prose>#faq{padding:16px 18px!important;border:1px solid var(--line,#d9e4f2)!important;border-radius:14px!important;background:#fff!important;min-width:0!important;box-sizing:border-box!important}
+body.nel-tool-v3 #analyzer #references .ref-card ul{display:flex!important;flex-direction:column!important;gap:12px!important;list-style:none!important;margin:0!important;padding:0!important}
+body.nel-tool-v3 #analyzer #references .ref-card ul>li{list-style:none!important;margin:0!important;padding:0!important;min-width:0!important}
+body.nel-tool-v3 #analyzer #references .ref-card ul>li::marker{content:''}
+body.nel-tool-v3 #analyzer #references .ref-card .std-chip{white-space:normal!important;overflow-wrap:anywhere!important;max-width:100%!important;box-sizing:border-box!important}

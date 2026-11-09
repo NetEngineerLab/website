@@ -34,14 +34,20 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"应该先算超售还是先算带宽？","acceptedAnswer":{"@type":"Answer","text":"先估算提供的负载，再检验拟定上联在你愿意签字的并发和故障条件下是否扛得住。"}},{"@type":"Question","name":"VLAN 规划器是 VLSM 工具吗？","acceptedAnswer":{"@type":"Answer","text":"它根据前缀和预留计算每个 VLAN 的可用主机容量。前缀边界还没画出来时，先用子网计算器。"}},{"@type":"Question","name":"为什么带宽专题里有 MTU？","acceptedAnswer":{"@type":"Answer","text":"放不进路径的帧会被丢弃或分片。即使上联算术是对的，现网也会表现为吞吐失败。"}},{"@type":"Question","name":"什么时候打开 Fabric 容量规划？","acceptedAnswer":{"@type":"Answer","text":"当问题从一台接入交换机变成叶、脊或汇聚层在同样的流量和故障假设下如何收敛时。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=989edb3b4d77">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=26fafcdcee42">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../../assets/js/site.js?v=b563dd0297f5"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=20261105-opb2">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=20261105-opb2">
+<link rel="stylesheet" href="../css/style.css?v=20261108-hub-bw2">
 </head>
-<body>
+<body class="nel-tool-detail-page nel-tool-v3 v3">
 <!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
   <div class="site-shell-header-inner">
@@ -63,19 +69,33 @@
   </div>
 </header>
 <!-- NEL_HEADER_END -->
-<nav class="calculator-hub-breadcrumb" aria-label="Breadcrumb"><a href="../../../zh/">首页</a><span aria-hidden="true">/</span><a href="../../zh/">工具</a><span aria-hidden="true">/</span><span aria-current="page">交换与带宽计算器</span></nav>
-<main class="calculator-hub" id="main">
-<h1>交换与带宽计算器</h1>
-<p class="lede">交换和带宽规划容易失败，是因为上联计算、地址空间和帧长常常由不同的人用不同的表格各自核对。本专题把 NetEngineerLab 已有的交换、带宽、子网和容量计算器按顺序放在一起。先给出能够解释的流量：应用速率或传输时间估算，而不是从上一座站点抄来的整数。再把该负载变成接入端口和上联方案，包括并发、利用率和一条上联失效后还剩多少。然后才划分地址。子网计算器确定前缀边界，VLAN 容量规划检查预留之后每个 VLAN 还剩多少主机。MTU 应在同一次检查里完成，因为叠加或存储流量放不进底层时，到了现网会看起来像容量不够。预测要放在当前设计已经写清之后，这样增长是加在已知基线上，而不是加在猜测上。当接入交换机只是更大网络中的一层时，再用 Fabric 收敛和数据中心上联规划收尾。这些页面并不共用一张输入表。它们共用一个顺序：量化需求，给交换机定容，分配地址，再检验失效和增长。</p>
-<h2>本专题中的计算器</h2>
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb"><a href="../../../zh/">首页</a><span aria-hidden="true">/</span><a href="../../zh/">工具</a><span aria-hidden="true">/</span><span aria-current="page">交换与带宽计算器</span></nav>
+<main class="tool-shell nel-tool-main" id="hub">
+<div class="tool-head"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../../zh/">首页</a><span aria-hidden="true">/</span><a href="../../zh/">工具</a><span aria-hidden="true">/</span><span aria-current="page">交换与带宽计算器</span></nav><p class="tool-page-label" role="heading" aria-level="1">交换与带宽计算器</p><p class="tool-lede">交换和带宽规划容易失败，是因为上联计算、地址空间和帧长常常由不同的人用不同的表格各自核对。本专题把 NetEngineerLab 已有的交换、带宽、子网和容量计算器按顺序放在一起。先给出能够解释的流量：应用速率或传输时间估算，而不是从上一座站点抄来的整数。再把该负载变成接入端口和上联方案，包括并发、利用率和一条上联失效后还剩多少。然后才划分地址。子网计算器确定前缀边界，VLAN 容量规划检查预留之后每个 VLAN 还剩多少主机。MTU 应在同一次检查里完成，因为叠加或存储流量放不进底层时，到了现网会看起来像容量不够。预测要放在当前设计已经写清之后，这样增长是加在已知基线上，而不是加在猜测上。当接入交换机只是更大网络中的一层时，再用 Fabric 收敛和数据中心上联规划收尾。这些页面并不共用一张输入表。它们共用一个顺序：量化需求，给交换机定容，分配地址，再检验失效和增长。</p></div>
+<div class="below">
+<nav class="toc" aria-label="本页导航"><h4>本页导航</h4>
+<a href="#tools">本专题中的计算器</a>
+<a href="#workflow">规划流程</a>
+<a href="#faq">常见问题</a>
+<a href="#related">相关页面</a>
+</nav>
+<div class="prose">
+<section class="blk panel" id="tools"><h2>本专题中的计算器</h2>
 <div class="hub-card-grid"><a class="hub-tool-card" href="../../bandwidth-calculator/zh/"><strong>带宽与传输时间计算器</strong><span>计算文件传输时间、所需链路速率、并发用户容量和持续速率对应的数据量。</span></a><a class="hub-tool-card" href="../../application-bandwidth-analyzer/zh/"><strong>应用带宽分析器</strong><span>用手工输入的速率分析各应用带宽、链路利用率和余量。</span></a><a class="hub-tool-card" href="../../switch-uplink-oversubscription-calculator/zh/"><strong>交换机上联带宽与超售比计算器</strong><span>根据接入端口、利用率、并发率与冗余方式规划交换机上联带宽。</span></a><a class="hub-tool-card" href="../../subnet-calculator/zh/"><strong>IP子网计算器</strong><span>计算IPv4、IPv6、CIDR、掩码、广播地址、主机容量，并支持VLSM地址规划。</span></a><a class="hub-tool-card" href="../../vlan-ip-capacity-planner/zh/"><strong>VLAN与IP子网容量规划器</strong><span>规划VLAN数量、IPv4前缀、地址容量与扩容余量。</span></a><a class="hub-tool-card" href="../../mtu-calculator/zh/"><strong>MTU与MSS计算器</strong><span>计算PPPoE、GRE、VXLAN、MPLS、IPsec和WireGuard封装后的有效MTU、TCP MSS与分片风险。</span></a><a class="hub-tool-card" href="../../network-capacity-forecast-planner/zh/"><strong>网络容量增长预测规划器</strong><span>根据实测利用率预测网络增长、扩容时机和目标容量。</span></a><a class="hub-tool-card" href="../../data-center-network-convergence-fabric-capacity-planner/zh/"><strong>数据中心网络收敛比与 Fabric 容量规划器</strong><span>规划 Leaf-Spine 和三层数据中心的收敛比、东西向/南北向业务、Spine N-1、瓶颈与增长容量。</span></a></div>
-<h2>规划流程</h2>
+</section>
+<section class="blk panel" id="workflow"><h2>规划流程</h2>
 <p>做接入或汇聚设计时按这个顺序进行。</p>
 <ol class="hub-workflow"><li><a href="../../bandwidth-calculator/zh/">带宽与传输时间计算器</a></li><li><a href="../../application-bandwidth-analyzer/zh/">应用带宽分析器</a></li><li><a href="../../switch-uplink-oversubscription-calculator/zh/">交换机上联带宽与超售比计算器</a></li><li><a href="../../subnet-calculator/zh/">IP子网计算器</a></li><li><a href="../../vlan-ip-capacity-planner/zh/">VLAN与IP子网容量规划器</a></li><li><a href="../../mtu-calculator/zh/">MTU与MSS计算器</a></li><li><a href="../../network-capacity-forecast-planner/zh/">网络容量增长预测规划器</a></li><li><a href="../../data-center-network-convergence-fabric-capacity-planner/zh/">数据中心网络收敛比与 Fabric 容量规划器</a></li></ol>
-<h2>常见问题</h2>
-<div class="hub-faq"><details><summary>应该先算超售还是先算带宽？</summary><p>先估算提供的负载，再检验拟定上联在你愿意签字的并发和故障条件下是否扛得住。</p></details><details><summary>VLAN 规划器是 VLSM 工具吗？</summary><p>它根据前缀和预留计算每个 VLAN 的可用主机容量。前缀边界还没画出来时，先用子网计算器。</p></details><details><summary>为什么带宽专题里有 MTU？</summary><p>放不进路径的帧会被丢弃或分片。即使上联算术是对的，现网也会表现为吞吐失败。</p></details><details><summary>什么时候打开 Fabric 容量规划？</summary><p>当问题从一台接入交换机变成叶、脊或汇聚层在同样的流量和故障假设下如何收敛时。</p></details></div>
+</section>
+<section class="blk" id="faq"><h2>常见问题</h2>
+<div class="hub-faq"><details class="fb-fold"><summary class="fb-fold-sum"><span class="fb-fold-title">应该先算超售还是先算带宽？</span></summary><div class="fb-fold-body"><p>先估算提供的负载，再检验拟定上联在你愿意签字的并发和故障条件下是否扛得住。</p></div></details><details class="fb-fold"><summary class="fb-fold-sum"><span class="fb-fold-title">VLAN 规划器是 VLSM 工具吗？</span></summary><div class="fb-fold-body"><p>它根据前缀和预留计算每个 VLAN 的可用主机容量。前缀边界还没画出来时，先用子网计算器。</p></div></details><details class="fb-fold"><summary class="fb-fold-sum"><span class="fb-fold-title">为什么带宽专题里有 MTU？</span></summary><div class="fb-fold-body"><p>放不进路径的帧会被丢弃或分片。即使上联算术是对的，现网也会表现为吞吐失败。</p></div></details><details class="fb-fold"><summary class="fb-fold-sum"><span class="fb-fold-title">什么时候打开 Fabric 容量规划？</span></summary><div class="fb-fold-body"><p>当问题从一台接入交换机变成叶、脊或汇聚层在同样的流量和故障假设下如何收敛时。</p></div></details></div>
+</section>
+<section class="blk panel" id="related">
 <p class="hub-return" data-nel-cluster-link><a href="../../../zh/topics/switch-oversubscription/">本页汇总上联、带宽和编址计算。案例、LAG 行为与 N-1 方法在交换机超售比专题。</a></p>
-<section class="content-section" data-nel-editorial-links><h2>相关页面</h2><p><a href="../../../zh/guides/lacp-member-congestion/">为什么一条 LACP 成员链路拥塞</a></p></section>
+<h2>相关页面</h2><p><a href="../../../zh/guides/lacp-member-congestion/">为什么一条 LACP 成员链路拥塞</a></p>
+</section>
+</div>
+</div>
 </main>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">

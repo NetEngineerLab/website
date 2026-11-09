@@ -7,6 +7,10 @@ const $=id=>document.getElementById(id);
 const lang=(document.documentElement.lang||"en").toLowerCase().startsWith("zh")?"zh":"en";
 const locale=lang==="zh"?"zh-CN":"en-US";
 const state={activeTab:"coverage",coverage:null,capacity:null,combined:null,channel:null};
+const outputContracts={"coverage":{"resultValues":"#coverageApCount,#designRadius,#rfRadius,#downlinkRadius,#uplinkRadius,#apEirp,#clientEirp,#downlinkBudget,#uplinkBudget,#obstacleLoss,#fspl1m,#effectiveArea,#apsPerFloor,#areaPerFloor","resultDetails":"#coverageWarnings","resultMeters":"","resultStatus":"","validation":"#coverageError"},"capacity":{"resultValues":"#capacityApCount,#phyRate,#autoPhyRate,#effectiveThroughput,#totalDemand,#activeUsers,#throughputApCount,#clientApCount,#associatedUsersPerAp,#activeUsersPerAp,#demandPerAp,#throughputHeadroom","resultDetails":"#capacityWarnings","resultMeters":"#capacityHeadroomBar","resultStatus":"","validation":"#capacityError"},"channel":{"resultValues":"#reusableChannels,#apsPerChannel,#channelReuseLoad,#channelWidthResult,#channelInventory","resultDetails":"#channelPlanBody,#channelWarnings","resultMeters":"#channelBar","resultStatus":"#channelRisk","validation":"#channelError"},"summary":{"resultValues":"#finalApCount,#summaryBottleneck,#summaryCoverageAps,#summaryCapacityAps,#summaryThroughputAps,#summaryClientAps,#summaryAssociatedPerAp,#summaryActivePerAp,#summaryDemandPerAp,#summaryThroughputUtilization,#summaryThroughputUtilizationBarLabel,#summaryFloorAllocation","resultDetails":"#summaryWarnings","resultMeters":"#summaryUtilBar","resultStatus":"","validation":"#coverageError,#capacityError"}};
+function syncActiveContract(){Object.assign(window.NELToolInputController,outputContracts[state.activeTab]);window.NELToolInputController.sync?.();}
+window.NELToolInputController={calculate:calculateAll,managesValidation:true,isValid:function(){return !!state[state.activeTab==='summary'?'combined':state.activeTab]?.ok;},invalidate:function(){state.coverage=null;state.capacity=null;state.combined=null;state.channel=null;},resultActions:'#copyBtn,#csvBtn,#printBtn',validationInputs:function(){return ['summary','channel'].includes(state.activeTab)?allInputIds.filter(id=>id!=='profilePreset'&&(id!=='customPhyRateMbps'||$('useCustomPhyRate').checked)&&(state.activeTab==='channel'||id!=='available20MHzChannels')).map(id=>'#'+id).join(','):'';},inputControls:"#profilePreset,#standard,#band,#channelWidth,#spatialStreams,#radiosPerAp,#freqMHz,#totalAreaM2,#floors,#apTxPowerDbm,#clientTxPowerDbm,#apAntennaGainDbi,#clientAntennaGainDbi,#apCableLossDb,#clientCableLossDb,#targetRssiClient,#targetRssiAp,#fadeMarginDb,#pathLossExponent,#maxDesignRadiusM,#layoutEfficiencyPct,#overlapPct,#lightWalls,#lightWallLossDb,#mediumWalls,#mediumWallLossDb,#heavyWalls,#heavyWallLossDb,#floorPenetrations,#floorLossDb,#totalUsers,#activePct,#perActiveUserMbps,#protocolEfficiencyPct,#usableAirtimePct,#clientMixPct,#maxAssociatedUsersPerAp,#minimumApCount,#useCustomPhyRate,#customPhyRateMbps,#available20MHzChannels"};
+
 
 const T={
  en:{
@@ -107,7 +111,7 @@ function toast(message){
 }
 function setRisk(id,risk){
  const el=$(id);if(!el)return;
- el.className=`risk-badge ${risk}`;
+ el.className=`risk-badge status ${risk} ${risk==="low"?"st-pass":risk==="medium"?"st-marginal":"st-fail"}`;
  el.textContent=T.risk[risk]||risk;
 }
 function warningsHtml(items){
@@ -136,7 +140,7 @@ function activateTab(name){
  });
  document.querySelectorAll("[data-panel]").forEach(panel=>panel.hidden=panel.dataset.panel!==name);
  history.replaceState(null,"",`#${name}`);
-}
+syncActiveContract();}
 
 function updateBandAndWidthOptions(applyBandDefaults=false){
  const standard=$("standard").value;
@@ -282,7 +286,7 @@ function renderChannel(r){
  $("channelWarnings").innerHTML=warningsHtml(r.warnings);
 }
 
-function calculateAll(){
+function calculateAll(){try{state.coverage=null;state.capacity=null;state.combined=null;state.channel=null;
  clearError("coverageError");clearError("capacityError");clearError("channelError");
 
  const coverage=E.coveragePlan(coverageInput());
@@ -318,7 +322,7 @@ function calculateAll(){
   return;
  }
  renderChannel(channel);
-}
+}finally{syncActiveContract();}}
 
 function activeRows(){
  const tab=state.activeTab;

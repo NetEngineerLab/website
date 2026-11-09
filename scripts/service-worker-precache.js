@@ -425,7 +425,7 @@ function hasPrecacheAsset(source, expectedPath) {
 
 function precachePathIssues(assets, toolRoot, siteRoot) {
   const issues = [];
-  const allowedDirectories = new Set(["./", "./zh/"]);
+  const allowedDirectories = new Set(["./", "./zh/", "./es/"]);
   const realSiteRoot = fs.realpathSync(siteRoot);
   for (const asset of assets) {
     const clean = String(asset).split(/[?#]/)[0];

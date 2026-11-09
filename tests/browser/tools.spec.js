@@ -224,22 +224,35 @@ test.describe("all configured tools",()=>{
         expect((await page.locator("body").innerText()).length).toBeGreaterThan(200);
         const contentContract=contentContracts[tool.id];
         if(contentContract){
-          const contentRoot=contentContract.contentRoot||".content";
-          const faqRoot=contentContract.faqRoot||contentRoot;
-          await expect(page.locator(`${faqRoot} details`)).toHaveCount(contentContract.faqCount);
+          const migratedV3=await page.locator("body[data-nel-v3-migrated]").count()===1;
+          const contentRoot=contentContract.contentRoot||(migratedV3?".below .prose":".content");
+          const faqRoot=contentContract.faqRoot||(migratedV3?"#faq":contentRoot);
+          // V3 section folds wrap the FAQ entries; only those wrappers are excluded.
+          const faqEntries=`${faqRoot} details:not(.fb-fold)`;
+          await expect(page.locator(faqEntries)).toHaveCount(contentContract.faqCount);
           for(const reference of contentContract.references){
-            await expect(page.locator(`${contentRoot} a[href="${reference}"]`)).toBeVisible();
+            const referenceLink=page.locator(`${contentRoot} a[href="${reference}"]`);
+            await expect(referenceLink).toHaveCount(1);
+            // Open enclosing section folds through their summaries, as a user would.
+            const folds=referenceLink.locator('xpath=ancestor::details[contains(concat(" ", normalize-space(@class), " "), " fb-fold ")]');
+            for(const fold of await folds.all()){
+              if(await fold.getAttribute("open")===null){
+                await fold.locator(":scope > summary").click();
+                await expect(fold).toHaveAttribute("open","");
+              }
+            }
+            await expect(referenceLink).toBeVisible();
           }
           const faqMatchesVisible=await page.evaluate((rootSelector)=>{
             const schema=JSON.parse(document.querySelector('script[data-nel-schema="faq"]')?.textContent||"null");
-            const visible=[...document.querySelectorAll(`${rootSelector} details`)].map(item=>({
+            const visible=[...document.querySelectorAll(rootSelector)].map(item=>({
               question:item.querySelector("summary")?.textContent.trim(),
               answer:item.querySelector("p")?.textContent.trim()
             }));
             return schema?.mainEntity?.length===visible.length&&schema.mainEntity.every(entity=>visible.some(item=>
               item.question===entity.name&&item.answer===entity.acceptedAnswer?.text
             ));
-          },faqRoot);
+          },faqEntries);
           expect(faqMatchesVisible).toBe(true);
         }
         const engineLoaded=await page.evaluate(()=>performance.getEntriesByType("resource").some(entry=>/\/js\/engine\.js(?:\?|$)/.test(entry.name)));

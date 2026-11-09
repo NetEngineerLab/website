@@ -124,7 +124,7 @@
   }
 
   function bind() {
-    if (!document.body || !document.body.classList.contains("nel-tool-v3")) return;
+    if (!document.body || !document.body.classList.contains("nel-tool-v3") || document.body.hasAttribute("data-nel-v3-migrated")) return;
     syncExplainFolds();
     bindExplainAnchors();
     bindTocScrollSpy();

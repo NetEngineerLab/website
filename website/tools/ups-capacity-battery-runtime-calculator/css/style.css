@@ -1,1 +1,735 @@
 *{box-sizing:border-box}.grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:22px;margin:24px 0}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field label{display:block;font-weight:700;margin-bottom:6px}.field input, .field select{width:100%;padding:11px 12px;border:1px solid #bdc9d5;border-radius:9px;background:#fff}.hint{font-size:13px;color:#617184}.btn{width:100%;padding:13px 16px;border:0;border-radius:10px;font-weight:800;background:#0b67b2;color:white;cursor:pointer}.metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.metric{padding:14px;border-radius:12px;background:#f4f8fb}.metric span{display:block;font-size:12px;color:#607080}.metric strong{font-size:22px}.warn{padding:12px;border-left:4px solid #d98200;background:#fff8e8;margin-top:12px}.ok{padding:12px;border-left:4px solid #16845b;background:#eefaf5;margin-top:12px}.subhead{grid-column:1/-1;margin:6px 0 -2px;font-size:14px;color:#294966}.note{padding:12px;border-radius:10px;background:#f5f8fb;color:#4a6074;font-size:13px}@media (max-width:760px){.grid{grid-template-columns:1fr}.form-grid, .metrics{grid-template-columns:1fr}}.deep-conclusions{margin:0;white-space:normal;line-height:1.55}.deep-source{font-size:.9rem;overflow-wrap:anywhere}.deep-source a{color:var(--accent,#1e5aa8)}
+/* === 20261106-bw3a: shared remake pack (scoped per tool style.css) === */
+/* TOC | prose desktop */
+@media (min-width: 961px){
+  body.nel-tool-v3.v3 .below,
+  body.nel-opb-v3.v3 .below{
+    display: grid !important;
+    grid-template-columns: minmax(200px, 240px) minmax(0, 1fr) !important;
+    gap: 40px !important;
+    align-items: start !important;
+  }
+  body.nel-tool-v3.v3 .below > .toc,
+  body.nel-opb-v3.v3 .below > .toc{
+    display: block !important;
+    position: sticky !important;
+    top: 90px !important;
+    align-self: start !important;
+  }
+  body.nel-tool-v3.v3 .below > .toc a,
+  body.nel-opb-v3.v3 .below > .toc a{
+    font: 700 15.5px/1.4 var(--sans, system-ui, sans-serif) !important;
+  }
+  body.nel-tool-v3.v3 .below > .prose,
+  body.nel-opb-v3.v3 .below > .prose{
+    grid-column: auto !important;
+    min-width: 0 !important;
+  }
+}
+@media (max-width: 960px){
+  body.nel-tool-v3.v3 .below,
+  body.nel-opb-v3.v3 .below{
+    grid-template-columns: minmax(0,1fr) !important;
+  }
+  body.nel-tool-v3.v3 .below > .toc,
+  body.nel-opb-v3.v3 .below > .toc{ display: none !important; }
+}
+
+/* Workspace dual column top/bottom stretch */
+body.nel-tool-v3 #calculator > .workspace,
+body.nel-opb-v3 #calculator > .workspace,
+body.nel-tool-v3 .workspace,
+body.nel-opb-v3 .workspace{
+  align-items: stretch !important;
+}
+body.nel-tool-v3 #calculator > .workspace > .input-panel,
+body.nel-tool-v3 #calculator > .workspace > .result-panel,
+body.nel-opb-v3 #calculator > .workspace > .input-panel,
+body.nel-opb-v3 #calculator > .workspace > .result-panel,
+body.nel-tool-v3 .workspace > .input-panel,
+body.nel-tool-v3 .workspace > .result-panel{
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+}
+
+/* Metric / summary result cards: 2-col, label above, value+unit same line orange/500 */
+body.nel-tool-v3 #calculator .metrics,
+body.nel-tool-v3 #calculator .metric-grid:not(.nel-scenario-grid),
+body.nel-tool-v3 #calculator .summary-bar,
+body.nel-opb-v3 #calculator .grp.ro-l2{
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+  align-items: stretch !important;
+}
+body.nel-tool-v3 #calculator .metrics > .metric,
+body.nel-tool-v3 #calculator .metric-grid:not(.nel-scenario-grid) > .metric,
+body.nel-tool-v3 #calculator .summary-bar > .summary-card,
+body.nel-tool-v3 #calculator .summary-bar > article{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 6px !important;
+  min-width: 0 !important;
+  padding: 12px 14px !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+  border: 1px solid #d7e2ec !important;
+  border-radius: 12px !important;
+  background: #fff !important;
+}
+body.nel-tool-v3 #calculator .metrics > .metric > small,
+body.nel-tool-v3 #calculator .metric-grid:not(.nel-scenario-grid) > .metric > small,
+body.nel-tool-v3 #calculator .summary-bar > .summary-card > small,
+body.nel-tool-v3 #calculator .summary-bar > article > small{
+  display: block !important;
+  margin: 0 !important;
+  color: #667d92 !important;
+  font: 500 13px/1.35 var(--sans, system-ui, sans-serif) !important;
+  white-space: normal !important;
+}
+body.nel-tool-v3 #calculator .metrics > .metric > strong,
+body.nel-tool-v3 #calculator .metric-grid:not(.nel-scenario-grid) > .metric > strong,
+body.nel-tool-v3 #calculator .summary-bar > .summary-card > strong,
+body.nel-tool-v3 #calculator .summary-bar > article > strong.big,
+body.nel-tool-v3 #calculator .summary-bar > article > strong{
+  display: inline-flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: baseline !important;
+  gap: 0.28em !important;
+  width: auto !important;
+  max-width: 100% !important;
+  margin: auto 0 0 !important;
+  color: #E8590C !important;
+  font: 500 18px/1.2 var(--mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace) !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+}
+body.nel-tool-v3 #calculator .metrics > .metric > strong > span,
+body.nel-tool-v3 #calculator .metrics > .metric > strong > small,
+body.nel-tool-v3 #calculator .summary-bar strong > span,
+body.nel-tool-v3 #calculator .summary-bar strong > small,
+body.nel-tool-v3 #calculator .summary-bar strong.big > span,
+body.nel-tool-v3 #calculator .summary-bar strong.big > small{
+  display: inline !important;
+  width: auto !important;
+  color: inherit !important;
+  font: inherit !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+}
+/* status badge in summary should stay readable horizontal */
+body.nel-tool-v3 #calculator .status-badge,
+body.nel-tool-v3 #calculator #status,
+body.nel-tool-v3 #calculator #overallStatus,
+body.nel-opb-v3 #calculator #healthBadge,
+body.nel-opb-v3 #calculator .status{
+  display: inline-flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  width: auto !important;
+  min-width: max-content !important;
+  white-space: nowrap !important;
+  writing-mode: horizontal-tb !important;
+}
+
+/* OPB readout big + small unit same line */
+body.nel-opb-v3 #calculator .ro-main .big,
+body.nel-opb-v3 #calculator #ro-main-big,
+body.nel-opb-v3 #calculator .row b{
+  display: inline-flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: baseline !important;
+  gap: 0.28em !important;
+  color: #E8590C !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+}
+body.nel-opb-v3 #calculator .ro-main .big > small,
+body.nel-opb-v3 #calculator #ro-main-big > small,
+body.nel-opb-v3 #calculator .row b > small{
+  display: inline !important;
+  color: inherit !important;
+  font: inherit !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  margin: 0 !important;
+}
+body.nel-opb-v3 #calculator .grp.ro-l2 .row{
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  gap: 8px 12px !important;
+  align-items: baseline !important;
+  padding: 10px 12px !important;
+  border: 1px solid #d7e2ec !important;
+  border-radius: 12px !important;
+  background: #fff !important;
+}
+body.nel-opb-v3 #calculator .grp.ro-l2 .row > span{
+  color: #667d92 !important;
+  font: 500 13px/1.35 var(--sans, system-ui, sans-serif) !important;
+  white-space: normal !important;
+}
+
+/* Methodology: stacked wide bars */
+body.nel-tool-v3 #methodology .method-grid,
+body.nel-tool-v3 details#methodology .method-grid,
+body.nel-tool-v3 .prose .method-grid,
+body.nel-opb-v3 #methodology .method-grid,
+body.nel-opb-v3 details#methodology .method-grid,
+body.nel-opb-v3 .prose .method-grid{
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 10px !important;
+}
+body.nel-tool-v3 #methodology .method-grid > article,
+body.nel-tool-v3 .prose .method-grid > article,
+body.nel-opb-v3 #methodology .method-grid > article,
+body.nel-opb-v3 .prose .method-grid > article{
+  display: grid !important;
+  grid-template-columns: minmax(140px, 200px) minmax(0, 1fr) !important;
+  gap: 10px 18px !important;
+  align-items: start !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  padding: 14px 16px !important;
+  border: 1px solid #d7e3f1 !important;
+  border-radius: 12px !important;
+  background: #fff !important;
+  box-sizing: border-box !important;
+}
+body.nel-tool-v3 #methodology .method-grid > article > h3,
+body.nel-opb-v3 #methodology .method-grid > article > h3{
+  margin: 0 !important;
+  color: #13233e !important;
+  font: 700 15px/1.35 var(--sans, system-ui, sans-serif) !important;
+}
+body.nel-tool-v3 #methodology .method-grid > article > p,
+body.nel-tool-v3 #methodology .method-grid > article > ol,
+body.nel-opb-v3 #methodology .method-grid > article > p,
+body.nel-opb-v3 #methodology .method-grid > article > ol{
+  margin: 0 !important;
+  color: #49627e !important;
+  font: 400 14px/1.65 var(--sans, system-ui, sans-serif) !important;
+  white-space: normal !important;
+}
+@media (max-width: 720px){
+  body.nel-tool-v3 #methodology .method-grid > article,
+  body.nel-opb-v3 #methodology .method-grid > article,
+  body.nel-tool-v3 #calculator .metrics,
+  body.nel-tool-v3 #calculator .metric-grid:not(.nel-scenario-grid),
+  body.nel-tool-v3 #calculator .summary-bar{
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  body.nel-tool-v3 #calculator .metrics,
+  body.nel-tool-v3 #calculator .summary-bar{ grid-template-columns: 1fr !important; }
+}
+
+/* Light formula surfaces */
+body.nel-tool-v3 #calculator .formula-card,
+body.nel-tool-v3 #calculator .formula,
+body.nel-tool-v3 .prose .formula,
+body.nel-opb-v3 #calculator .formula-card,
+body.nel-opb-v3 #calculator .eqn,
+body.nel-opb-v3 .eqn{
+  background: linear-gradient(180deg, #F8FAFF 0%, #FFFFFF 100%) !important;
+  border: 1px solid #D6E4FF !important;
+  color: #0f172a !important;
+}
+
+/* Actions unclip */
+body.nel-tool-v3 #calculator > .workspace > .input-panel,
+body.nel-opb-v3 #calculator > .workspace > .input-panel{
+  overflow: visible !important;
+}
+body.nel-tool-v3 #calculator .input-actions,
+body.nel-opb-v3 #calculator .input-actions{
+  position: relative !important;
+  z-index: 6 !important;
+  pointer-events: auto !important;
+}
+body.nel-tool-v3 #calculator #calculateBtn,
+body.nel-tool-v3 #calculator #resetBtn,
+body.nel-opb-v3 #calculator #calculateBtn,
+body.nel-opb-v3 #calculator #resetBtn{
+  position: relative !important;
+  z-index: 7 !important;
+  pointer-events: auto !important;
+}
+
+/* === 20261106-fl4s1: scenario cards (batch bw1) === */
+body.nel-tool-v3 .nel-scenario-grid,
+body.nel-tool-v3 .metric-grid.nel-scenario-grid{
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+  align-items: stretch !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+body.nel-tool-v3 .nel-scenario-grid > .nel-scenario-card{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  gap: 0 !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: 100% !important;
+  margin: 0 !important;
+  padding: 16px 18px !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  background: #fff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 14px !important;
+  box-shadow: 0 1px 0 rgba(15,23,42,.03) !important;
+  position: relative !important;
+}
+body.nel-tool-v3 .nel-scenario-grid > .nel-scenario-card > .nel-scenario-body,
+body.nel-tool-v3 .nel-scenario-grid > .nel-scenario-card > div{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+}
+body.nel-tool-v3 .nel-scenario-card h3{
+  margin: 0 0 8px !important;
+  padding: 0 !important;
+  max-width: 100% !important;
+  color: #0f172a !important;
+  font: 700 15.5px/1.35 var(--sans, system-ui, sans-serif) !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+body.nel-tool-v3 .nel-scenario-card .nel-scenario-desc,
+body.nel-tool-v3 .nel-scenario-card > div > p:not(.nel-scenario-action):not(.nel-scenario-expected-wrap){
+  margin: 0 0 10px !important;
+  max-width: 100% !important;
+  color: #475569 !important;
+  font: 500 13.5px/1.5 var(--sans, system-ui, sans-serif) !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+}
+body.nel-tool-v3 .nel-scenario-card .nel-scenario-expected-wrap,
+body.nel-tool-v3 .nel-scenario-card p.nel-scenario-expected-wrap{
+  margin: 0 0 12px !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+}
+body.nel-tool-v3 .nel-scenario-card .nel-scenario-expected-wrap > small{
+  display: block !important;
+  margin: 0 0 4px !important;
+  color: #64748b !important;
+  font: 500 12.5px/1.35 var(--sans, system-ui, sans-serif) !important;
+}
+body.nel-tool-v3 .nel-scenario-card .nel-scenario-expected-wrap > strong,
+body.nel-tool-v3 .nel-scenario-card [data-scenario-expected],
+body.nel-tool-v3 .nel-scenario-card strong{
+  display: block !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  color: #E8590C !important;
+  font: 500 13.5px/1.45 var(--sans, system-ui, sans-serif) !important;
+  font-weight: 500 !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+/* keep number+unit pairs together while allowing breaks between metrics */
+body.nel-tool-v3 .nel-scenario-card [data-scenario-expected] .nel-sc-metric{
+  display: inline !important;
+  white-space: nowrap !important;
+  color: inherit !important;
+  font: inherit !important;
+}
+body.nel-tool-v3 .nel-scenario-card .nel-scenario-action{
+  margin: auto 0 0 !important;
+  padding-top: 4px !important;
+  max-width: 100% !important;
+}
+body.nel-tool-v3 .nel-scenario-card .nel-scenario-link{
+  display: inline-flex !important;
+  align-items: center !important;
+  color: #176ff2 !important;
+  font: 600 13.5px/1.3 var(--sans, system-ui, sans-serif) !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+body.nel-tool-v3 .nel-scenario-card .nel-scenario-link:hover{
+  text-decoration: underline !important;
+}
+@media (max-width: 720px){
+  body.nel-tool-v3 .nel-scenario-grid,
+  body.nel-tool-v3 .metric-grid.nel-scenario-grid{
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* === 20261106-bw3a: tighten dual-column bottoms + force orange value/unit === */
+@media (min-width: 961px){
+  body.nel-tool-v3 #calculator > .workspace,
+  body.nel-opb-v3 #calculator > .workspace,
+  body.nel-tool-v3 .workspace,
+  body.nel-opb-v3 .workspace{
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    gap: 18px !important;
+    align-items: stretch !important;
+  }
+  body.nel-tool-v3 #calculator > .workspace > .input-panel,
+  body.nel-tool-v3 #calculator > .workspace > .result-panel,
+  body.nel-opb-v3 #calculator > .workspace > .input-panel,
+  body.nel-opb-v3 #calculator > .workspace > .result-panel{
+    height: auto !important;
+    min-height: 100% !important;
+    align-self: stretch !important;
+  }
+  /* grow trailing spacer / actions stay at natural end; equalize via stretch only */
+}
+
+/* Force orange 500 nowrap on all common readout strongs (exclude health/status badges) */
+body.nel-tool-v3 #calculator .summary-card > strong:not(.status-badge):not([data-nel-health-status]),
+body.nel-tool-v3 #calculator .summary-bar > article > strong:not(.status-badge),
+body.nel-tool-v3 #calculator .metrics > .metric > strong,
+body.nel-tool-v3 #calculator .ro-main > strong.big,
+body.nel-tool-v3 #calculator .ro-main strong.big,
+body.nel-tool-v3 #calculator #required,
+body.nel-tool-v3 #calculator #eventCount,
+body.nel-tool-v3 #calculator #abnormalCount,
+body.nel-tool-v3 #calculator #criticalCount,
+body.nel-tool-v3 #calculator #reflectiveCount,
+body.nel-tool-v3 #calculator #deadZoneCount,
+body.nel-tool-v3 #calculator #maxEventLoss,
+body.nel-tool-v3 #calculator #estimatedPrimaryLoss,
+body.nel-tool-v3 #calculator #estimatedSecondaryLoss,
+body.nel-tool-v3 #calculator #load,
+body.nel-tool-v3 #calculator #perDevice,
+body.nel-tool-v3 #calculator #remaining,
+body.nel-tool-v3 #calculator #utilization,
+body.nel-tool-v3 #calculator #maximum,
+body.nel-tool-v3 #calculator #portsUsed{
+  display: inline-flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: baseline !important;
+  gap: 0.28em !important;
+  color: #E8590C !important;
+  font-weight: 500 !important;
+  font: 500 18px/1.2 var(--mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace) !important;
+  white-space: nowrap !important;
+}
+body.nel-tool-v3 #calculator .summary-card > strong > span,
+body.nel-tool-v3 #calculator .summary-card > strong > small,
+body.nel-tool-v3 #calculator .ro-main strong.big > span,
+body.nel-tool-v3 #calculator .ro-main strong.big > small,
+body.nel-tool-v3 #calculator #required > span,
+body.nel-tool-v3 #calculator #required > small,
+body.nel-tool-v3 #calculator strong.big > span,
+body.nel-tool-v3 #calculator strong.big > small{
+  display: inline !important;
+  color: inherit !important;
+  font: inherit !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  margin: 0 !important;
+}
+
+/* OTDR: strong.big wraps span#id + small — make strong the flex container */
+body.nel-tool-v3 #calculator .summary-card.ro-main > strong.big{
+  display: inline-flex !important;
+  color: #E8590C !important;
+  font-weight: 500 !important;
+}
+
+/* === 20261106-bw3a: PoE headline required orange/500 same-line === */
+body.nel-tool-v3 #calculator #required.big,
+body.nel-tool-v3 #calculator .ro-main #required,
+body.nel-tool-v3 #calculator .headline .ro-main strong.big{
+  display: inline-flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: baseline !important;
+  gap: 0.28em !important;
+  color: #E8590C !important;
+  font: 500 28px/1.15 var(--mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace) !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+}
+body.nel-tool-v3 #calculator #required.big > small,
+body.nel-tool-v3 #calculator #required > small{
+  display: inline !important;
+  color: inherit !important;
+  font: inherit !important;
+  font-weight: 500 !important;
+  margin: 0 !important;
+}
+@media (min-width: 961px){
+  body.nel-tool-v3 #calculator.nel-tool-primary-grid,
+  body.nel-tool-v3 main.nel-tool-primary-grid,
+  body.nel-tool-v3 #calculator > .workspace{
+    align-items: stretch !important;
+    grid-template-columns: minmax(0,1fr) minmax(0,1fr) !important;
+  }
+  body.nel-tool-v3 #calculator > .input-panel,
+  body.nel-tool-v3 #calculator > .result-panel,
+  body.nel-tool-v3 .workspace > .input-panel,
+  body.nel-tool-v3 .workspace > .result-panel{
+    align-self: stretch !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+}
+/* === 20261106-bw3a: cache bump === */
+
+/* === 20261106-bw3a: ups-capacity-battery-runtime-calculator remake pack === */
+/* === 20261106-bw3a: ups-capacity-battery-runtime-calculator remake pack === */
+body.nel-tool-v3 #calculator.nel-tool-primary-grid,
+body.nel-tool-v3 main#calculator{ align-items: stretch !important; }
+@media (min-width: 961px){
+  body.nel-tool-v3 #calculator.nel-tool-primary-grid{
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    column-gap: 18px !important;
+    align-items: stretch !important;
+  }
+  body.nel-tool-v3 #calculator.nel-tool-primary-grid > .tool-head{ grid-column: 1 / -1 !important; }
+  body.nel-tool-v3 #calculator > .input-panel,
+  body.nel-tool-v3 #calculator > .result-panel{
+    align-self: stretch !important; height: auto !important; min-height: 100% !important;
+    display: flex !important; flex-direction: column !important;
+  }
+}
+body.nel-tool-v3 #calculator .metrics,
+body.nel-tool-v3 #calculator .summary{
+  display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px !important;
+}
+body.nel-tool-v3 #calculator .metrics > .metric,
+body.nel-tool-v3 #calculator .summary > .metric{
+  display: flex !important; flex-direction: column !important; align-items: flex-start !important;
+  gap: 6px !important; padding: 14px 16px !important; background: #fff !important;
+  border: 1px solid #e2eaf4 !important; border-radius: 12px !important; min-width: 0 !important;
+}
+body.nel-tool-v3 #calculator .metrics > .metric > small,
+body.nel-tool-v3 #calculator .summary > .metric > small,
+body.nel-tool-v3 #calculator .kv > span{
+  color: #64758d !important; font: 500 12.5px/1.4 var(--sans, system-ui, sans-serif) !important; white-space: normal !important;
+}
+body.nel-tool-v3 #calculator .metrics > .metric > strong,
+body.nel-tool-v3 #calculator .summary > .metric > strong,
+body.nel-tool-v3 #calculator .kv > b{
+  display: inline-flex !important; flex-wrap: wrap !important; align-items: baseline !important; gap: 4px !important;
+  color: #E8590C !important; font-weight: 500 !important; font-size: 20px !important; line-height: 1.25 !important; white-space: normal !important;
+}
+body.nel-tool-v3 #calculator .metrics > .metric > strong > span,
+body.nel-tool-v3 #calculator .metrics > .metric > strong > small,
+body.nel-tool-v3 #calculator .summary > .metric > strong > span,
+body.nel-tool-v3 #calculator .summary > .metric > strong > small,
+body.nel-tool-v3 #calculator .kv > b > span,
+body.nel-tool-v3 #calculator .kv > b > small{
+  color: #E8590C !important; font-weight: 500 !important;
+}
+body.nel-tool-v3 #calculator .metrics > .metric > strong > small,
+body.nel-tool-v3 #calculator .summary > .metric > strong > small,
+body.nel-tool-v3 #calculator .kv > b > small{ font-size: 0.85em !important; white-space: nowrap !important; }
+body.nel-tool-v3 #calculator .kv{
+  display: flex !important; flex-direction: column !important; align-items: flex-start !important; gap: 6px !important;
+  padding: 14px 16px !important; background: #fff !important; border: 1px solid #e2eaf4 !important; border-radius: 12px !important;
+  margin: 0 !important;
+}
+body.nel-tool-v3 #calculator .panel .kv,
+body.nel-tool-v3 #calculator #result .kv{ /* keep */ }
+body.nel-tool-v3 #calculator #result .panel{
+  display: grid !important; grid-template-columns: repeat(2, minmax(0,1fr)) !important; gap: 12px !important;
+}
+body.nel-tool-v3 #calculator #result .panel > .ro-h,
+body.nel-tool-v3 #calculator #result .panel > h2{
+  grid-column: 1 / -1 !important;
+}
+@media (max-width: 720px){
+  body.nel-tool-v3 #calculator .metrics,
+  body.nel-tool-v3 #calculator .summary,
+  body.nel-tool-v3 #calculator #result .panel{ grid-template-columns: minmax(0,1fr) !important; }
+}
+body.nel-tool-v3 .eq,
+body.nel-tool-v3 #methodology .eq{
+  background: #f4f7fb !important; border: 1px solid #e2eaf4 !important; border-radius: 12px !important;
+  padding: 14px 16px !important; color: #13233e !important; margin: 10px 0 !important;
+  font: 500 13.5px/1.55 var(--mono, ui-monospace, monospace) !important; white-space: normal !important; overflow-wrap: anywhere !important;
+}
+body.nel-tool-v3.v3 .below{
+  display: grid !important; grid-template-columns: 240px minmax(0, 1fr) !important; gap: 24px !important;
+  max-width: 1106px !important; margin-left: auto !important; margin-right: auto !important;
+}
+body.nel-tool-v3.v3 .below > .toc{ width: 240px !important; max-width: 240px !important; }
+body.nel-tool-v3.v3 .below > .prose{ max-width: 866px !important; min-width: 0 !important; }
+@media (max-width: 960px){
+  body.nel-tool-v3.v3 .below{ grid-template-columns: minmax(0,1fr) !important; max-width: none !important; }
+  body.nel-tool-v3.v3 .below > .toc{ display: none !important; }
+}
+body.nel-tool-v3 #calculator .actions{ display:flex !important; flex-wrap:wrap !important; gap:10px !important; overflow:visible !important; }
+
+
+/* t330u: current accepted local Bandwidth workspace/prose/card/action vocabulary; tool-local only. */
+body.nel-tool-v3{--accent:#176ff2;--line:#d9e4f2}
+body.nel-tool-v3 #calculator{display:block!important;max-width:1400px!important;width:100%!important;margin-inline:auto!important;box-sizing:border-box!important}
+body.nel-tool-v3 #calculator>.workspace{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;align-items:stretch!important;gap:22px!important;width:100%!important;max-width:none!important;padding:0!important;margin:20px 0 34px!important}
+body.nel-tool-v3 #calculator>.workspace>:is(.input-panel,.result-panel){display:flex!important;flex-direction:column!important;align-self:stretch!important;min-width:0!important;max-width:100%!important;width:100%!important;height:auto!important;margin:0!important;box-sizing:border-box!important;padding:22px!important;border:1px solid #d9e4f2!important;border-radius:14px!important;background:#fff!important}
+body.nel-tool-v3 #calculator .below{display:grid!important;grid-template-columns:minmax(180px,228px) minmax(0,1fr)!important;gap:36px!important;margin-top:28px!important;align-items:start!important;width:100%!important}
+body.nel-tool-v3 #calculator .below>.toc{display:block!important;position:sticky;top:90px;min-width:0;padding:14px 12px!important;border:1px solid #e2e8f0!important;border-radius:14px!important;background:rgba(255,255,255,.72)!important}
+body.nel-tool-v3 #calculator .below>.toc a{display:block!important;padding:8px 10px!important;font-size:15.5px!important;line-height:1.4;white-space:normal!important}
+body.nel-tool-v3 #calculator .below>.prose{display:block!important;grid-column:auto!important;width:100%!important;min-width:0!important;max-width:none!important}
+body.nel-tool-v3 #calculator .prose>.bw-standard-card,
+body.nel-tool-v3 #calculator .prose .bw-reference-card,
+body.nel-tool-v3 #calculator #history>.fb-fold-body{padding:16px 18px!important;border:1px solid #d9e4f2!important;border-radius:14px!important;background:#fff!important;min-width:0!important;box-sizing:border-box!important;margin:0 0 18px!important}
+body.nel-tool-v3 #calculator .prose .bw-standard-card>.fb-fold-body{margin-top:12px!important}
+body.nel-tool-v3 #calculator .prose .method-defs{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:10px!important;margin:12px 0!important}
+body.nel-tool-v3 #calculator .prose .method-defs>article{padding:14px 16px!important;border:1px solid #d9e4f2!important;border-radius:12px!important;background:#fff!important;min-width:0!important}
+body.nel-tool-v3 #calculator .prose .eq{padding:14px 16px!important;margin:0 0 12px!important;border:1px solid #d9e4f2!important;border-left:3px solid #176ff2!important;border-radius:12px!important;background:linear-gradient(180deg,#f8faff,#fff)!important;color:#13233e!important;font-weight:500!important;line-height:1.7!important;white-space:normal!important;overflow-wrap:anywhere!important;overflow:visible!important}
+body.nel-tool-v3 #calculator .prose .faq details{margin:0 0 12px!important;min-width:0}
+body.nel-tool-v3 #calculator .prose .faq summary{cursor:pointer;list-style:none!important;display:flex!important;justify-content:space-between;gap:12px;font-weight:500!important;line-height:1.5!important}
+body.nel-tool-v3 #calculator .prose .faq summary::-webkit-details-marker{display:none}
+body.nel-tool-v3 #calculator .prose .faq summary::after{content:'+';flex:none}
+body.nel-tool-v3 #calculator .prose .faq details[open]>summary::after{content:'−'}
+body.nel-tool-v3 #calculator #references ul{display:flex!important;flex-direction:column!important;list-style:none!important;margin:0!important;padding:0!important;gap:12px!important}
+body.nel-tool-v3 #calculator #references ul>li{list-style:none!important;margin:0!important;padding:0!important;min-width:0!important}
+body.nel-tool-v3 #calculator #references ul>li::marker{content:''}
+body.nel-tool-v3 #calculator #references .std-chip{white-space:normal!important;overflow-wrap:anywhere!important;max-width:100%!important;box-sizing:border-box!important}
+body.nel-tool-v3 #calculator .form-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:14px!important;min-width:0!important}
+body.nel-tool-v3 #calculator .field{min-width:0!important;max-width:100%!important}
+body.nel-tool-v3 #calculator .field.full{grid-column:1/-1}
+body.nel-tool-v3 #calculator .input-wrap{display:flex!important;align-items:center!important;min-width:0!important;min-height:44px!important;box-sizing:border-box!important}
+body.nel-tool-v3 #calculator .input-wrap>:is(input,select,textarea){min-width:0!important;width:100%!important;flex:1 1 0!important;box-sizing:border-box!important}
+body.nel-tool-v3 #calculator .input-wrap>span{flex:0 0 auto!important;white-space:nowrap!important;padding-inline:8px!important}
+body.nel-tool-v3 #calculator :is(.input-actions,.actions,.result-actions,.editor-buttons){display:flex!important;flex-wrap:wrap!important;gap:10px!important;align-items:center!important;min-width:0!important}
+body.nel-tool-v3 #calculator button{min-height:44px!important;height:44px!important;box-sizing:border-box!important;max-width:100%!important;padding:2px 12px!important;border:1px solid #c9d9eb!important;border-radius:10px!important;background:#fff!important;background-image:none!important;color:#1760cc!important;font-size:15.5px!important;font-weight:500!important;line-height:1.2!important;white-space:normal!important;cursor:pointer}
+body.nel-tool-v3 #calculator :is(#calculate,#calculateBtn){background:#176ff2!important;color:#fff!important;border-color:#176ff2!important}
+body.nel-tool-v3 #calculator :is(#calculate,#calculateBtn,#reset,#resetBtn){flex:1 1 0!important;width:calc(50% - 5px)!important;min-width:0!important}
+body.nel-tool-v3 #calculator :is(.result-actions,.bw-report-actions)>button{flex:1 1 140px!important}
+body.nel-tool-v3 #calculator button:hover{border-color:#176ff2!important;background:#eef6ff!important}
+body.nel-tool-v3 #calculator :is(#calculate,#calculateBtn):hover{background:#125ed0!important}
+body.nel-tool-v3 #calculator button:focus-visible{outline:3px solid #92baff!important;outline-offset:2px!important}
+body.nel-tool-v3 #calculator button:disabled{opacity:.55;cursor:not-allowed}
+body.nel-tool-v3 #calculator :is(.metric-grid,.metrics,.vlsm-summary){display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;width:100%!important;min-width:0!important;margin:12px 0!important;padding:0!important;border:0!important;background:transparent!important}
+body.nel-tool-v3 #calculator :is(.metric,.summary,.result-hero){display:block!important;padding:14px 16px!important;min-width:0!important;border:1px solid #d9e4f2!important;border-radius:12px!important;background:#fff!important;box-sizing:border-box!important}
+body.nel-tool-v3 #calculator .metric>small,body.nel-tool-v3 #calculator .summary>div>small,body.nel-tool-v3 #calculator .result-hero>small{display:block!important;white-space:normal!important;overflow:visible!important;text-overflow:clip!important;line-height:1.5!important;color:#64748b!important;margin:0 0 7px!important}
+body.nel-tool-v3 #calculator :is(.metric strong,.summary strong,.result-hero strong){display:flex!important;flex-wrap:nowrap!important;align-items:baseline!important;gap:5px!important;min-width:0!important;max-width:100%!important;color:#E8590C!important;font-size:20px!important;font-weight:500!important;line-height:1.3!important;white-space:nowrap!important;overflow:visible!important;text-overflow:clip!important}
+body.nel-tool-v3 #calculator :is(.metric strong,.summary strong)>*{font:inherit!important;color:inherit!important;white-space:nowrap!important;flex:0 0 auto!important}
+body.nel-tool-v3 #calculator .summary>.badge{display:inline-flex!important;margin-top:10px!important;white-space:normal!important}
+body.nel-tool-v3 #calculator .nel-scenario-grid{border:0!important;padding:0!important;grid-template-columns:minmax(0,1fr)!important;gap:12px!important}
+body.nel-tool-v3 #calculator #engineeringDetails{min-width:0;max-width:100%;margin-top:16px;padding:16px 18px;border:1px solid #d9e4f2;border-radius:14px;background:#fff}
+body.nel-tool-v3 #calculator .prose table{width:100%;border-collapse:collapse}
+body.nel-tool-v3 #calculator .prose :is(th,td){padding:10px 12px;border:1px solid #d9e4f2;text-align:start;overflow-wrap:anywhere}
+body.nel-tool-v3 #calculator [hidden]{display:none!important}
+@media(max-width:1100px){body.nel-tool-v3 #calculator>.workspace{grid-template-columns:minmax(0,1fr)!important}body.nel-tool-v3 #calculator .below{grid-template-columns:minmax(180px,228px) minmax(0,1fr)!important;gap:24px!important}}
+@media(max-width:700px){body.nel-tool-v3 #calculator>.workspace>:is(.input-panel,.result-panel){padding:16px!important}body.nel-tool-v3 #calculator .below{grid-template-columns:minmax(0,1fr)!important;gap:16px!important}body.nel-tool-v3 #calculator .below>.toc{position:static!important;display:none!important}body.nel-tool-v3 #calculator .form-grid{grid-template-columns:minmax(0,1fr)!important}body.nel-tool-v3 #calculator :is(.result-actions,.bw-report-actions)>button{flex-basis:100%!important}body.nel-tool-v3 #calculator .metrics>.metric{padding:12px!important}}
+
+/* t330u third group: full original labels and real runtime operations. */
+body.nel-tool-v3 #calculator .field>label{font-size:15.5px!important;font-weight:500!important;line-height:1.45!important;white-space:normal!important}
+body.nel-tool-v3 #calculator .subhead{grid-column:1/-1!important;margin-top:14px;font-weight:500}
+body.nel-tool-v3 #calculator .prose{font-size:15.5px;line-height:1.7}
+body.nel-tool-v3 #calculator .bw-extra-actions{display:flex!important;flex-wrap:wrap!important;gap:10px!important;margin-top:16px!important}
+body.nel-tool-v3 #calculator .bw-extra-actions>button{flex:1 1 180px!important}
+body.nel-tool-v3 #calculator :is(#ups-report,#engineeringExtras){padding:16px 18px!important;border:1px solid #d9e4f2!important;border-radius:14px!important;background:#fff!important;margin-top:16px!important;min-width:0!important;max-width:100%!important;box-sizing:border-box!important}
+body.nel-tool-v3 #calculator #history>.fb-fold-body>.content-section{padding:0!important;margin:0!important;border:0!important;box-shadow:none!important;background:transparent!important}
+body.nel-tool-v3 #calculator .history-item{padding:14px 16px;border:1px solid #d9e4f2;border-radius:12px;margin-top:12px;background:#fff;overflow-wrap:anywhere}
+body.nel-tool-v3 #calculator .summary-card{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;min-width:0!important;width:100%!important;padding:0!important;border:0!important;background:transparent!important}
+body.nel-tool-v3 #calculator .summary-card>.ro-main{padding:14px 16px!important;border:1px solid #d9e4f2!important;border-radius:12px!important;background:#fff!important;min-width:0!important;max-width:100%!important;box-sizing:border-box!important}
+body.nel-tool-v3 #calculator .summary-card .lbl{font-size:15.5px!important;line-height:1.5!important;color:#64748b!important;font-weight:400!important;white-space:normal!important;overflow:visible!important;text-overflow:clip!important;margin:0 0 7px!important}
+body.nel-tool-v3 #calculator .summary-card strong{display:flex!important;align-items:baseline!important;gap:5px!important;color:#E8590C!important;font-size:20px!important;font-weight:500!important;line-height:1.3!important;white-space:nowrap!important;overflow:visible!important;flex-wrap:nowrap!important}
+body.nel-tool-v3 #calculator .summary-card strong>*{font:inherit!important;color:inherit!important;white-space:nowrap!important;flex:none!important}
+body.nel-tool-v3 #calculator .bw-value-pair{display:inline-flex!important;white-space:nowrap!important;gap:4px;font:inherit;color:inherit}
+@media(max-width:700px){body.nel-tool-v3 #calculator .input-actions>:is(#calculate,#reset,#calculateBtn,#resetBtn){flex:1 1 100%!important;width:100%!important;min-width:0!important}body.nel-tool-v3 #calculator .bw-extra-actions>button{flex-basis:100%!important}}
+
+/* t330 final cascade repair: same selector tier as the proven legacy ancestor,
+   same parent tracks/full-span contract as accepted Bandwidth; no global change. */
+body.nel-tool-v3 #calculator.nel-tool-primary-grid{display:grid!important;grid-template-columns:minmax(0,1fr) 440px!important;gap:20px!important;align-items:start!important;width:100%!important;max-width:1180px!important;margin:0 auto!important;padding:0 28px 40px!important;min-width:0!important;box-sizing:border-box!important}
+body.nel-tool-v3 #calculator.nel-tool-primary-grid>.tool-head,
+body.nel-tool-v3 #calculator.nel-tool-primary-grid>.workspace,
+body.nel-tool-v3 #calculator.nel-tool-primary-grid>.below{grid-column:1/-1!important;width:100%!important;max-width:none!important;min-width:0!important;box-sizing:border-box!important}
+body.nel-tool-v3 #calculator.nel-tool-primary-grid>.workspace{display:grid!important;grid-template-columns:minmax(0,1.509fr) minmax(0,1fr)!important;gap:20px!important;align-items:stretch!important;margin:0!important;padding:0 0 8px!important}
+@media(max-width:960px){body.nel-tool-v3 #calculator.nel-tool-primary-grid{grid-template-columns:minmax(0,1fr)!important}body.nel-tool-v3 #calculator.nel-tool-primary-grid>.workspace{grid-template-columns:minmax(0,1fr)!important;gap:14px!important}}
+@media(max-width:768px){body.nel-tool-v3 #calculator.nel-tool-primary-grid{padding:0 18px 40px!important}}
+
+/* Actual accepted lower-layout winners: 240/228px TOC tracks, 18px gap,
+   automatic TOC width (not stale fixed240 inside228), and phone single column. */
+body.nel-tool-v3 #calculator.nel-tool-primary-grid>.below{display:grid!important;grid-column:1/-1!important;grid-template-columns:minmax(180px,228px) minmax(0,1fr)!important;gap:18px!important;width:100%!important;max-width:none!important;margin-top:16px!important;align-items:start!important}
+body.nel-tool-v3 #calculator.nel-tool-primary-grid>.below>.toc{display:block!important;width:auto!important;max-width:none!important;min-width:0!important;padding:10px 8px 12px!important;position:sticky!important;top:90px!important}
+body.nel-tool-v3 #calculator.nel-tool-primary-grid>.below>.prose{display:block!important;width:100%!important;max-width:none!important;min-width:0!important;grid-column:auto!important}
+body.nel-tool-v3 #calculator.nel-tool-primary-grid>.workspace>:is(.input-panel,.result-panel){display:flex!important;flex-direction:column!important;align-self:stretch!important;min-width:0!important;max-width:100%!important;height:auto!important;min-height:0!important;padding:22px!important}
+@media(min-width:1180px){body.nel-tool-v3 #calculator.nel-tool-primary-grid>.below{grid-template-columns:minmax(200px,240px) minmax(0,1fr)!important}}
+@media(max-width:960px){body.nel-tool-v3 #calculator.nel-tool-primary-grid>.below{grid-template-columns:minmax(0,1fr)!important;margin-top:28px!important}body.nel-tool-v3 #calculator.nel-tool-primary-grid>.below>.toc{display:none!important}body.nel-tool-v3 #calculator.nel-tool-primary-grid>.below>.prose{grid-column:1/-1!important}}
+@media(max-width:768px){body.nel-tool-v3 #calculator.nel-tool-primary-grid>.below{gap:12px!important;margin-top:20px!important}}
+
+/* Exact accepted Bandwidth citation-chip treatment. Original links remain in
+   their full original paragraphs/articles/list items: no extraction or orphan punctuation. */
+body.nel-tool-v3 #calculator #references .std-chip{display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;border:1px solid #c9d8eb;background:#f5f9ff;color:#1558c0;text-decoration:none;font-weight:650;font-size:13px;white-space:normal;overflow-wrap:anywhere;max-width:100%;box-sizing:border-box}
+@media(max-width:768px){body.nel-tool-v3 #calculator #references .std-chip{width:100%;justify-content:center}}
+
+/* t336u real dynamic ID is nelDeepWorkflow, NOT engineeringExtras.
+   Its existing EN/ZH module now mounts in right prose; no duplicate card. */
+body.nel-tool-v3 #calculator .below>.prose>#nelDeepWorkflow{
+ display:block!important;grid-column:1/-1!important;min-width:0!important;width:100%!important;max-width:100%!important;
+ box-sizing:border-box!important;height:auto!important;max-height:none!important;margin:0!important;
+ padding:16px 18px!important;background:#fff!important;border:1px solid var(--line,#d9e4f2)!important;border-radius:14px!important;
+}
+body.nel-tool-v3 #calculator #nelDeepWorkflow>h2{margin:0 0 10px!important;font-size:18px!important;font-weight:500!important;line-height:1.45!important}
+body.nel-tool-v3 #calculator #nelDeepWorkflow>p{margin:0 0 12px!important;line-height:1.7!important;white-space:normal!important;overflow-wrap:anywhere!important}
+body.nel-tool-v3 #calculator #nelDeepWorkflow .deep-source a{overflow-wrap:anywhere!important;word-break:normal!important}
+body.nel-tool-v3 #calculator #nelDeepWorkflow .deep-actions{display:flex!important;flex-wrap:wrap!important;align-items:stretch!important;gap:10px!important;margin:16px 0 12px!important;padding:0!important;min-width:0!important;border:0!important;background:transparent!important}
+body.nel-tool-v3 #calculator #nelDeepWorkflow .deep-actions>button{
+ display:flex!important;align-items:center!important;justify-content:center!important;flex:1 1 180px!important;
+ min-width:0!important;max-width:100%!important;height:44px!important;min-height:44px!important;box-sizing:border-box!important;
+ margin:0!important;padding:0 14px!important;border:1px solid #c9d9eb!important;border-radius:10px!important;
+ background:#fff!important;color:#1760cc!important;font-family:inherit!important;font-size:15.5px!important;font-weight:500!important;
+ line-height:1.4!important;white-space:normal!important;text-align:center!important;text-overflow:clip!important;overflow:visible!important;cursor:pointer;
+}
+body.nel-tool-v3 #calculator #nelDeepWorkflow .deep-actions>button:hover{background:#f2f7ff!important;border-color:#1760cc!important}
+body.nel-tool-v3 #calculator #nelDeepWorkflow .deep-actions>button:focus-visible{outline:3px solid #92baff!important;outline-offset:2px}
+body.nel-tool-v3 #calculator #nelDeepWorkflow>.table-wrap{
+ display:block!important;min-width:0!important;width:100%!important;max-width:100%!important;box-sizing:border-box!important;
+ overflow-x:auto!important;overflow-y:auto!important;height:auto!important;max-height:none!important;margin:0!important;padding:0!important;
+ border:0!important;background:transparent!important;scrollbar-width:auto;touch-action:pan-x pan-y;
+}
+body.nel-tool-v3 #calculator #nelDeepWorkflow>.table-wrap:focus-visible{outline:3px solid #92baff;outline-offset:2px}
+body.nel-tool-v3 #calculator #nelDeepWorkflow table{display:table!important;table-layout:fixed!important;width:100%!important;min-width:860px!important;max-width:none!important;border-collapse:collapse!important;font-size:15.5px!important}
+body.nel-tool-v3 #calculator #nelDeepWorkflow thead{display:table-header-group!important}
+body.nel-tool-v3 #calculator #nelDeepWorkflow tbody{display:table-row-group!important;width:auto!important}
+body.nel-tool-v3 #calculator #nelDeepWorkflow tr{display:table-row!important;grid-template-columns:none!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important}
+body.nel-tool-v3 #calculator #nelDeepWorkflow :is(th,td){display:table-cell!important;vertical-align:top!important;text-align:left!important;min-width:0!important;max-width:none!important;padding:12px 14px!important;border:0!important;border-bottom:1px solid var(--line,#d9e4f2)!important;font-size:15.5px!important;line-height:1.7!important;white-space:normal!important;word-break:normal!important;overflow-wrap:anywhere!important;overflow:visible!important;text-overflow:clip!important}
+body.nel-tool-v3 #calculator #nelDeepWorkflow th{background:#f3f7fc!important;font-weight:500!important}
+body.nel-tool-v3 #calculator #nelDeepWorkflow th:nth-child(1){width:150px!important}
+body.nel-tool-v3 #calculator #nelDeepWorkflow th:nth-child(2){width:260px!important}
+body.nel-tool-v3 #calculator #nelDeepWorkflow td::before{display:none!important;content:none!important}
+body.nel-tool-v3 #calculator #nelDeepWorkflow .deep-conclusions{margin:0!important;white-space:normal!important;line-height:1.7!important;font-size:inherit!important;height:auto!important;max-height:none!important;overflow:visible!important}
+@media(max-width:600px){body.nel-tool-v3 #calculator #nelDeepWorkflow .deep-actions>button{flex-basis:100%!important;width:100%!important}}
+@media print{
+ body.nel-tool-v3 #calculator #nelDeepWorkflow>.table-wrap{overflow:visible!important}
+ body.nel-tool-v3 #calculator #nelDeepWorkflow table{width:100%!important;min-width:0!important;max-width:100%!important}
+ body.nel-tool-v3 #calculator #nelDeepWorkflow :is(th,td){width:auto!important;padding:5px!important}
+}

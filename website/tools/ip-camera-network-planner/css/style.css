@@ -1,0 +1,453 @@
+
+/* 20261108-next4 bandwidth full-page standard, scoped per tool. */
+/* Mirrors the accepted local bandwidth-calculator workspace: full main span,
+   left input / right result, toc|prose below. Does not edit shared CSS. */
+
+body.nel-tool-v3 #calculator > .tool-head,
+body.nel-tool-v3 #calculator > .workspace,
+body.nel-tool-v3 #calculator > .below,
+body.nel-tool-v3 #calculator > .project-bar,
+body.nel-tool-v3 #calculator > .tabs,
+body.nel-tool-v3 #calculator > .panel-layout {
+  grid-column: 1 / -1 !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+body.nel-tool-v3 #calculator > .workspace,
+body.nel-tool-v3 #calculator > .panel-layout {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.509fr) minmax(0, 1fr) !important;
+  gap: 20px !important;
+  align-items: stretch !important;
+  margin: 0 0 8px !important;
+  padding: 0 !important;
+}
+
+body.nel-tool-v3 #calculator > .workspace > .nel-tool-input,
+body.nel-tool-v3 #calculator > .workspace > .nel-tool-result,
+body.nel-tool-v3 #calculator > .panel-layout > .nel-tool-input,
+body.nel-tool-v3 #calculator > .panel-layout > .nel-tool-result,
+body.nel-tool-v3 #calculator > .panel-layout > .input-card,
+body.nel-tool-v3 #calculator > .panel-layout > .result-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-self: stretch !important;
+  min-width: 0 !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 22px !important;
+  box-sizing: border-box !important;
+  border: 1px solid #d8dee8 !important;
+  border-radius: 16px !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  color: #0f172a !important;
+  overflow: visible !important;
+}
+
+body.nel-tool-v3 #calculator .nel-tool-result,
+body.nel-tool-v3 #calculator .readout {
+  background: #fff !important;
+  color: #0f172a !important;
+}
+
+body.nel-tool-v3 #calculator > .workspace > .nel-tool-input > .formula-block,
+body.nel-tool-v3 #calculator > .panel-layout .formula-block {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 14px;
+}
+
+body.nel-tool-v3 #calculator .formula-card,
+body.nel-tool-v3 #calculator .eq,
+body.nel-tool-v3 #calculator .formula {
+  margin: 0;
+  padding: 14px 16px !important;
+  border-radius: 12px !important;
+  border: 1px solid #d6e4ff !important;
+  border-left: 4px solid #176ff2 !important;
+  background: linear-gradient(180deg, #f8faff 0%, #ffffff 100%) !important;
+  color: #0f172a !important;
+  box-shadow: none !important;
+}
+
+body.nel-tool-v3 #calculator .formula-card h3 {
+  margin: 0 0 8px;
+  color: #0f172a;
+  font: 700 14px/1.4 var(--sans, system-ui, sans-serif);
+}
+
+body.nel-tool-v3 #calculator .formula-card code,
+body.nel-tool-v3 #calculator .eq,
+body.nel-tool-v3 #calculator .formula {
+  display: block;
+  white-space: normal;
+  color: #0f172a !important;
+  font: 500 13px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+body.nel-tool-v3 #calculator .input-actions,
+body.nel-tool-v3 #calculator .panel-actions,
+body.nel-tool-v3 #calculator .project-actions,
+body.nel-tool-v3 #calculator .result-actions,
+body.nel-tool-v3 #calculator .ro-acts,
+body.nel-tool-v3 #calculator .actions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+  align-items: center !important;
+  margin-top: 14px !important;
+}
+
+body.nel-tool-v3 #calculator button.btn,
+body.nel-tool-v3 #calculator .input-actions button,
+body.nel-tool-v3 #calculator .panel-actions button,
+body.nel-tool-v3 #calculator .project-actions button,
+body.nel-tool-v3 #calculator .actions button,
+body.nel-tool-v3 #calculator .result-actions button,
+body.nel-tool-v3 #calculator .ro-acts button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 !important;
+  min-height: 44px !important;
+  height: 44px !important;
+  padding: 0 16px !important;
+  border-radius: 10px !important;
+  font-weight: 500 !important;
+  line-height: 1.3 !important;
+  white-space: normal !important;
+  text-align: center !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+}
+
+body.nel-tool-v3 #calculator button.btn-primary,
+body.nel-tool-v3 #calculator button.primary,
+body.nel-tool-v3 #calculator button.calculate {
+  background: #176ff2 !important;
+  background-image: none !important;
+  color: #fff !important;
+  border: 1px solid #176ff2 !important;
+}
+
+body.nel-tool-v3 #calculator button.btn-ghost,
+body.nel-tool-v3 #calculator button.secondary,
+body.nel-tool-v3 #calculator .actions button:not(.btn-primary):not(.primary):not(.calculate) {
+  background: #fff !important;
+  color: #1760cc !important;
+  border: 1px solid #c9d9eb !important;
+}
+
+body.nel-tool-v3 #calculator button.btn-primary:hover,
+body.nel-tool-v3 #calculator button.primary:hover,
+body.nel-tool-v3 #calculator button.calculate:hover {
+  background: #0d57c8 !important;
+  border-color: #0d57c8 !important;
+}
+
+body.nel-tool-v3 #calculator button.btn-ghost:hover,
+body.nel-tool-v3 #calculator .actions button:not(.btn-primary):not(.primary):not(.calculate):hover {
+  background: #f3f7fd !important;
+}
+
+body.nel-tool-v3 #calculator button:focus-visible {
+  outline: 3px solid #ffbf47 !important;
+  outline-offset: 2px !important;
+}
+
+body.nel-tool-v3 #calculator button:disabled {
+  opacity: 0.55 !important;
+  cursor: not-allowed !important;
+}
+
+body.nel-tool-v3 #calculator .metric,
+body.nel-tool-v3 #calculator .metric-grid .metric {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+  min-width: 0 !important;
+  min-height: 76px !important;
+  margin: 0 !important;
+  padding: 12px 14px !important;
+  background: #fff !important;
+  border: 1px solid #dde7ef !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+}
+
+body.nel-tool-v3 #calculator .metric > span,
+body.nel-tool-v3 #calculator .metric > small,
+body.nel-tool-v3 #calculator .summary small,
+body.nel-tool-v3 #calculator .summary-card small {
+  display: block !important;
+  color: #667d92 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  line-height: 1.35 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  word-break: keep-all !important;
+  overflow-wrap: break-word !important;
+}
+
+body.nel-tool-v3 #calculator .metric > strong,
+body.nel-tool-v3 #calculator .metric strong,
+body.nel-tool-v3 #calculator .ro-main strong {
+  display: block !important;
+  margin-top: auto !important;
+  color: #e8590c !important;
+  font-weight: 500 !important;
+  font-size: 18px !important;
+  line-height: 1.3 !important;
+  text-shadow: none !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+
+body.nel-tool-v3 #calculator .summary strong,
+body.nel-tool-v3 #calculator #headline {
+  color: #e8590c !important;
+  font-weight: 500 !important;
+  white-space: normal !important;
+}
+body.nel-tool-v3 #calculator .metric strong.wrap,
+body.nel-tool-v3 #calculator #uplink,
+body.nel-tool-v3 #calculator #n1,
+body.nel-tool-v3 #calculator .metric strong:has(code),
+body.nel-tool-v3 #calculator .summary strong:has(code),
+body.nel-tool-v3 #calculator .metric code,
+body.nel-tool-v3 #calculator .summary code {
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+  color: #e8590c !important;
+  font-weight: 500 !important;
+}
+
+body.nel-tool-v3 #calculator .metric-grid,
+body.nel-tool-v3 #calculator .metrics,
+body.nel-tool-v3 #calculator .readout > .grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  margin-top: 12px !important;
+}
+
+body.nel-tool-v3 #calculator .inp,
+body.nel-tool-v3 #calculator .input-wrap {
+  display: flex !important;
+  align-items: center !important;
+  height: 44px !important;
+  min-height: 44px !important;
+  border: 1px solid #cbd9eb !important;
+  border-radius: 11px !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  overflow: hidden;
+}
+
+body.nel-tool-v3 #calculator .inp :is(input, select),
+body.nel-tool-v3 #calculator .input-wrap :is(input, select) {
+  border: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  height: 44px !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 44px !important;
+  flex: 1 1 auto !important;
+}
+
+body.nel-tool-v3 #calculator .inp:focus-within,
+body.nel-tool-v3 #calculator .input-wrap:focus-within,
+body.nel-tool-v3 #calculator .fields :is(input, select, textarea):not(.inp *):not(.input-wrap *):focus {
+  border-color: #176ff2 !important;
+  box-shadow: 0 0 0 3px rgba(23, 111, 242, 0.2) !important;
+}
+
+body.nel-tool-v3 #calculator .fields :is(input, select, textarea):not(.inp *):not(.input-wrap *) {
+  border: 1px solid #cbd9eb !important;
+  border-radius: 10px !important;
+  background: #fff !important;
+  box-shadow: none !important;
+}
+
+body.nel-tool-v3 #calculator .table-wrap,
+body.nel-tool-v3 #calculator .result-table-wrap {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+body.nel-tool-v3 #calculator .table-wrap > table,
+body.nel-tool-v3 #calculator .result-table-wrap > table {
+  width: max-content;
+  min-width: 100%;
+  max-width: none;
+}
+
+body.nel-tool-v3 #calculator .below {
+  display: grid !important;
+  grid-template-columns: minmax(200px, 240px) minmax(0, 1fr) !important;
+  gap: 18px !important;
+  align-items: start !important;
+  margin-top: 16px !important;
+}
+
+body.nel-tool-v3 #calculator .below > .prose {
+  min-width: 0 !important;
+  max-width: none !important;
+}
+
+body.nel-tool-v3 #calculator .below > .prose > .blk,
+body.nel-tool-v3 #calculator .below > .prose > details,
+body.nel-tool-v3 #calculator .below > .prose > section,
+body.nel-tool-v3 #calculator .below > .prose > .faq,
+body.nel-tool-v3 #calculator .below > .prose > .sources {
+  background: #fff !important;
+  border: 1px solid #d7e3f1 !important;
+  border-radius: 14px !important;
+  padding: 16px 18px !important;
+  margin: 0 0 12px !important;
+  box-shadow: none !important;
+}
+
+body.nel-tool-v3 #calculator .below .fb-fold-body > .card,
+body.nel-tool-v3 #calculator .below .fb-fold-body > section.card {
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+body.nel-tool-v3 #calculator #references ul,
+body.nel-tool-v3 #calculator .ref-list,
+body.nel-tool-v3 #calculator .sources ul {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body.nel-tool-v3 #calculator #references li,
+body.nel-tool-v3 #calculator .ref-list li,
+body.nel-tool-v3 #calculator .sources li {
+  margin: 0 0 12px !important;
+  padding: 0 !important;
+}
+
+body.nel-tool-v3 #calculator #references li:last-child,
+body.nel-tool-v3 #calculator .sources li:last-child {
+  margin-bottom: 0 !important;
+}
+
+body.nel-tool-v3 #calculator .result-state {
+  margin: 0 0 12px;
+  padding: 12px 14px;
+  border: 1px solid #f3d3b0;
+  border-radius: 12px;
+  background: #fff7ed;
+  color: #9a3412;
+  line-height: 1.5;
+}
+
+body.nel-tool-v3 #calculator .asset-editor {
+  border: 1px solid #e6edf5 !important;
+  box-shadow: none !important;
+  background: #fbfcfe !important;
+}
+
+@media (max-width: 960px) {
+  body.nel-tool-v3 #calculator > .workspace,
+  body.nel-tool-v3 #calculator > .panel-layout,
+  body.nel-tool-v3 #calculator .below {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  body.nel-tool-v3 #calculator .below > .toc {
+    display: none !important;
+  }
+  body.nel-tool-v3 #calculator .metric > strong,
+  body.nel-tool-v3 #calculator .metric strong {
+    white-space: normal !important;
+  }
+}
+
+@media (max-width: 960px) {
+  body.nel-tool-v3 #calculator .metric-grid,
+  body.nel-tool-v3 #calculator .metrics,
+  body.nel-tool-v3 #calculator .readout > .grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+body.nel-tool-v3 #calculator .below > .toc h4 {
+  margin: 0 0 6px !important;
+  padding: 0 8px !important;
+  font: 700 12px/1.4 var(--sans, inherit) !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  color: #64748b !important;
+}
+body.nel-tool-v3 #calculator .below > .toc a {
+  display: block !important;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 7px 10px 7px 12px !important;
+  border-left: 3px solid transparent !important;
+  border-radius: 0 8px 8px 0 !important;
+  background: transparent !important;
+  color: #0f172a !important;
+  font: 700 15.5px/1.4 var(--sans, inherit) !important;
+  text-decoration: none !important;
+  white-space: normal !important;
+}
+body.nel-tool-v3 #calculator .below > .toc a:hover {
+  background: rgba(238, 242, 255, .7) !important;
+  color: #0f172a !important;
+}
+body.nel-tool-v3 #calculator .below > .toc a.on {
+  border-left-color: #e8590c !important;
+  background: rgba(255, 247, 237, .95) !important;
+  color: #0f172a !important;
+}
+@media (max-width: 960px) {
+  body.nel-tool-v3 #calculator .below > .toc {
+    display: none !important;
+  }
+}
+
+body.nel-tool-v3 #calculator .input-panel .grid,
+body.nel-tool-v3 #calculator .result-panel .grid {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  gap: 14px 16px !important;
+  overflow: visible !important;
+}
+
+body.nel-tool-v3 #calculator :is(input, select):not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="hidden"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not(.inp *):not(.input-wrap *) {
+  height: 44px !important;
+  min-height: 44px !important;
+  line-height: 44px !important;
+  padding: 0 12px !important;
+  border: 1px solid #cbd9eb !important;
+  border-radius: 10px !important;
+  background: #fff !important;
+  box-sizing: border-box !important;
+}

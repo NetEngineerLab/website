@@ -1,0 +1,82 @@
+/* 20261108-hub-bw1 directory page on the bandwidth tool-page shell */
+body.nel-tool-v3 #hub .tool-head .crumbs{
+  display:flex;flex-wrap:wrap;align-items:center;gap:0;
+  margin:0;color:#667d92;font-size:13.5px;line-height:1.4;
+}
+body.nel-tool-v3 #hub .tool-head .crumbs a{color:#1760cc;text-decoration:none}
+body.nel-tool-v3 #hub .tool-head .crumbs span[aria-hidden]{margin:0 8px;color:#94a3b8}
+body.nel-tool-v3 #hub .tool-page-label{font-weight:600!important}
+body.nel-tool-v3 #hub .tool-lede{max-width:none;margin:10px 0 0;font-size:15.5px;line-height:1.7;color:#3d3a33}
+body.nel-tool-v3 #hub > .below{
+  display:grid!important;
+  grid-template-columns:minmax(200px,240px) minmax(0,1fr)!important;
+  gap:20px!important;
+  align-items:start!important;
+  margin-top:20px!important;
+}
+body.nel-tool-v3 #hub > .below > .toc{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  position:sticky!important;
+  top:90px!important;
+  align-self:start!important;
+  background:rgba(255,255,255,.72)!important;
+  border:1px solid #e2e8f0!important;
+  border-radius:14px!important;
+  padding:10px 8px 12px!important;
+}
+body.nel-tool-v3 #hub .prose > section.blk{margin:0 0 16px;background:transparent;border:0;padding:0}
+body.nel-tool-v3 #hub .prose > section.panel{
+  background:#fff;border:1px solid #d8dee8;border-radius:16px;padding:22px;
+  box-shadow:none;
+}
+body.nel-tool-v3 #hub .prose h2{margin:0 0 12px;font-size:22px;font-weight:600;letter-spacing:-.02em;color:#16140f}
+body.nel-tool-v3 #hub .prose p{margin:0 0 10px;line-height:1.7}
+body.nel-tool-v3 #hub .prose p:last-child{margin-bottom:0}
+body.nel-tool-v3 #hub .prose a{color:#1760cc;text-decoration:none}
+body.nel-tool-v3 #hub .prose a:hover{text-decoration:underline}
+body.nel-tool-v3 #hub .hub-card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+body.nel-tool-v3 #hub .hub-tool-card{
+  display:flex;flex-direction:column;gap:6px;min-height:0;min-width:0;
+  padding:16px;border:1px solid #d8dee8;border-radius:16px;background:#fff;
+  color:#0f172a;text-decoration:none;
+}
+body.nel-tool-v3 #hub .hub-tool-card:hover{border-color:#176ff2;text-decoration:none}
+body.nel-tool-v3 #hub .hub-tool-card strong{font-size:15.5px;font-weight:600;line-height:1.4;color:#1760cc}
+body.nel-tool-v3 #hub .hub-tool-card span{color:#667d92;font-size:13.5px;line-height:1.5}
+body.nel-tool-v3 #hub .hub-workflow{margin:0;padding-left:1.25em;line-height:1.7}
+body.nel-tool-v3 #hub .hub-workflow li{margin:4px 0}
+body.nel-tool-v3 #hub > .below > .toc h4{
+  display:block!important;
+  margin:0 0 6px!important;
+  padding:0 8px!important;
+  font:700 12px/1.35 var(--sans)!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+  color:#0f172a!important;
+}
+body.nel-tool-v3 #hub > .below > .toc a{
+  display:block!important;
+  width:100%!important;
+  box-sizing:border-box!important;
+  margin:0!important;
+  padding:7px 10px 7px 12px!important;
+  border-left:3px solid transparent!important;
+  border-radius:0 8px 8px 0!important;
+  color:#0f172a!important;
+  font:700 13.5px/1.35 var(--sans)!important;
+  text-decoration:none!important;
+  white-space:normal!important;
+}
+body.nel-tool-v3 #hub > .below > .toc a.on{
+  border-left-color:#e8590c!important;
+  background:rgba(255,247,237,.95)!important;
+  font-weight:700!important;
+}
+@media (max-width:960px){
+  body.nel-tool-v3 #hub > .below{grid-template-columns:minmax(0,1fr)!important}
+  body.nel-tool-v3 #hub > .below > .toc{display:none!important}
+  body.nel-tool-v3 #hub .hub-card-grid{grid-template-columns:minmax(0,1fr)}
+  body.nel-tool-v3 #hub .prose > section.panel{padding:18px}
+}

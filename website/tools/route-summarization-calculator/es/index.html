@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculadora de resumen de rutas | NetEngineerLab</title>
+<meta name="description" content="Agrupa prefijos IPv4 o IPv6 en menos rutas agregadas y marca los duplicados que ya cubre un prefijo más corto. Un agregado puede cubrir espacio que no escribió, así que revíselo antes de anunciarlo.">
+<link rel="canonical" href="https://netengineerlab.com/tools/route-summarization-calculator/es/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/route-summarization-calculator/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/route-summarization-calculator/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/route-summarization-calculator/es/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/route-summarization-calculator/">
+<link rel="icon" href="/assets/icons/favicon.svg?v=1.9.5-06" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=8dd1728bf5eb">
+<link rel="stylesheet" href="/assets/css/mobile-branding.css?v=345784b6b020">
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=20261105-opb2">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=20261105-opb2">
+<link rel="stylesheet" href="/assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="/assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="/assets/css/tool-design-system.css?v=20261105-method1r">
+<link rel="stylesheet" href="/assets/css/site-shell.css?v=26fafcdcee42">
+<link rel="stylesheet" href="/assets/css/tool-layout.css?v=20261105-bc1">
+<link rel="stylesheet" href="../css/style.css?v=20261109-route4">
+</head>
+<body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1">
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../es/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Plataforma de herramientas para ingeniería de redes</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Abrir navegación"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navegación principal">
+      <a href="../../../es/">Inicio</a>
+      <a href="../../es/" aria-current="page">Herramientas</a>
+      <a href="../../../guides/">Guías</a>
+      <a href="../../../topics/">Temas</a>
+    </nav>
+    <div class="site-shell-actions"><!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Español"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Español</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/route-summarization-calculator/" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="/tools/route-summarization-calculator/zh/" lang="zh-CN" hreflang="zh-CN" ><span>简体中文</span><small>简体中文</small></a><a class="language-option" role="menuitem" href="/tools/route-summarization-calculator/es/" aria-current="page" lang="es" hreflang="es"><span>Español</span><small>西班牙语</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">Calcular</a></div>
+    </div>
+  </div>
+</header>
+<main id="calculator">
+<div class="tool-head">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../es/">Inicio</a> / <a href="../../es/">Herramientas</a> / <span aria-current="page">Calculadora de resumen de rutas</span></nav>
+<p class="tool-page-label" role="heading" aria-level="1">Calculadora de resumen de rutas</p>
+<p class="tool-lede">Escriba un prefijo por línea. Los prefijos contiguos de la misma longitud se pliegan en un agregado más corto. IPv4 e IPv6 se resumen por separado.</p>
+</div>
+<div class="workspace">
+<section class="nel-tool-input">
+<h2>Prefijos a resumir</h2>
+<p class="hint">Un prefijo por línea, por ejemplo 10.0.0.0/24. La dirección se normaliza al límite de red de ese prefijo.</p>
+<label for="prefixes">Prefijos a resumir</label>
+<textarea id="prefixes" spellcheck="false"></textarea>
+<label for="minPrefix">Longitud mínima permitida</label>
+<input id="minPrefix" type="number" min="0" max="128" inputmode="numeric">
+<p class="hint">Déjelo vacío para no poner un suelo. Escriba 24 para no plegar un /24 en un /23.</p>
+<div class="actions"><button id="run" type="button">Calcular</button><button id="sample" class="ghost" type="button">Cargar ejemplo</button></div>
+</section>
+<section class="nel-tool-result">
+<h2>Resumen</h2>
+<p id="status" class="hint"></p>
+<div class="metrics"><div class="metric"><span>Agregados</span><b id="sumCount">0</b></div><div class="metric"><span>Rutas quitadas</span><b id="reduction">0</b></div></div>
+<h3>Rutas agregadas</h3><ul id="summaryList" class="route-list"></ul>
+<h3>Duplicado o cubierto</h3><ul id="redundantList" class="summary"></ul>
+<h3 id="notesTitle">Antes de anunciar</h3><ul id="notes" class="notes"></ul>
+<p id="errors" class="err" role="alert"></p>
+</section>
+</div>
+<div class="below">
+<nav class="toc" aria-label="En esta página"><h4>En esta página</h4>
+<a href="#method">Principio</a><a href="#limits">Límites</a><a href="#faq">Preguntas</a><a href="#related">Páginas relacionadas</a>
+</nav>
+<div class="prose">
+<section class="blk" id="method"><h2>Principio</h2><p>El resumen de rutas pliega varios prefijos más largos en menos prefijos más cortos. La tabla de rutas y lo que se anuncia quedan más pequeños. El pliegue depende de si las direcciones caen en la misma red superior, no de si los nombres se parecen.</p><ol><li>Cada prefijo se normaliza a su dirección de red. 10.0.0.5/24 se escribe 10.0.0.0/24.</li><li>Un prefijo ya cubierto por uno más corto no se anuncia solo. 10.0.0.0/25 es redundante si ya está 10.0.0.0/24.</li><li>Los prefijos restantes de la misma longitud que forman la pareja de una red superior se pliegan en ese prefijo más corto. 10.0.0.0/24 y 10.0.1.0/24 pasan a 10.0.0.0/23.</li><li>El paso se repite hasta que no quede nada que plegar. Si queda una ruta, el resultado es esa ruta. 10.0.1.0/24 y 10.0.2.0/24 no son pareja, así que siguen siendo varias rutas.</li><li>IPv4 e IPv6 se resumen por separado.</li></ol><p>Un prefijo más corto cubre direcciones que no estaban en la lista. Confirme que ese espacio no debe anunciarse.</p></section>
+<section class="blk" id="limits"><h2>Límites</h2><ul><li>El resumen sigue la contigüidad de direcciones. No comprueba si esas rutas existen en la red.</li><li>Un agregado más corto cubre espacio que no estaba en la lista. Confirme que ese espacio no debe anunciarse.</li><li>IPv4 e IPv6 no se mezclan.</li><li>La longitud mínima detiene la agregación. No es un comando del router.</li></ul></section>
+<section class="blk" id="faq"><h2>Preguntas</h2><h3>¿Dos /24 siempre forman un /23?</h3><p>Solo si son la pareja dentro de un mismo /23. 10.0.1.0/24 y 10.0.2.0/24 no lo son, así que no forman 10.0.0.0/22.</p><h3>¿Se puede pegar el resultado en un protocolo de enrutamiento?</h3><p>No. El resultado solo compara bloques. Anunciarlo, y conservar excepciones de prefijo más largo, depende de la topología y de la documentación del equipo.</p></section>
+<section class="blk" id="related"><h2>Páginas relacionadas</h2><p>Revise primero un prefijo suelto y después traiga aquí los prefijos que piensa anunciar. La guía está en inglés.</p><h3>Guía</h3><ul class="rel"><li><a href="../../../guides/subnet-calculator-guide/">Cálculo de subredes IPv4: CIDR, hosts y rangos útiles</a><span>Cómo se calculan la longitud del prefijo, la dirección de red y los hosts útiles.</span></li></ul><h3>Herramientas</h3><ul class="rel"><li><a href="../subnet-calculator/es/">Calculadora de subredes IP</a><span>Compruebe una ruta: dirección de red, máscara y hosts útiles.</span></li><li><a href="../vlan-ip-capacity-planner/es/">Planificador de capacidad VLAN y subredes IP</a><span>Elija prefijos por capacidad y luego resúmalos aquí.</span></li><li><a href="../ospf-cost-calculator/es/">Calculadora de coste OSPF</a><span>El resumen elige qué prefijos anunciar. El coste elige el camino de esos prefijos.</span></li></ul></section>
+</div>
+</div>
+</main>
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Herramientas profesionales en línea para ingenieros de telecomunicaciones y redes.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navegación del pie">
+      <a href="../../../es/about/">Acerca de</a><a href="../../../es/contact/">Contacto</a><a href="../../../es/privacy/">Privacidad</a><a href="../../../es/terms/">Condiciones</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<script src="/data/locales.js?v=909e05076a50"></script>
+<script src="/data/site-config.js?v=b5072ad7fa47"></script>
+<script src="/assets/js/site.js?v=b563dd0297f5"></script>
+<script src="../js/engine.js"></script>
+<script src="../js/page.js?v=20261109-route3"></script>
+<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+</body>
+</html>

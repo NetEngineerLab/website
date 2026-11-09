@@ -1,5 +1,10 @@
 (function(){
 "use strict";
+var nelCurrentValid=false;
+window.NELToolInputController={calculate:function(){calculate();},managesValidation:true,isValid:function(){return nelCurrentValid;},invalidate:function(){nelCurrentValid=false;state.last=null;$("summaryCard").className="summary-card invalid";},resultStatus:"#statusBadge",resultMeters:"#targetBar",validationInputs:function(){return '#nominalCellV,#floatCellV,#startCellV,#cutoffCellV,#seriesCells,#parallelStrings,#capacityAh,#ratedHours,#peukertExponent,#loadMarginPct,#pathEfficiencyPct,#dodPct,#agePct,#tempPct,#curvePct,#targetRuntimeH'+($('loadMode').value==='equipment'?',#equipmentBody input,#equipmentBody select':',#loadCurrentA');},resultActions:"#copyBtn,#saveBtn,#csvBtn,#printBtn",resultValues:"#runtimeValue,#runtimeModel,#nominalVoltage,#floatVoltage,#cutoffVoltage,#designLoad,#averageCurrent,#cutoffCurrent,#nameplateEnergy,#usableEnergy,#correctedCapacity,#cRate,#cellCount,#usableFactor,#simpleRuntime,#peukertRuntime,#requiredTotalAh,#requiredAhPerString,#requiredStrings,#targetGap,#targetCoverageGap",resultDetails:"#breakdownBody,#warningList",validation:"",inputControls:"#projectName,#batteryPreset,#model,#nominalCellV,#floatCellV,#startCellV,#cutoffCellV,#seriesCells,#parallelStrings,#capacityAh,#ratedHours,#peukertExponent,#loadMode,#loadPowerW,#loadCurrentA,#loadMarginPct,#pathEfficiencyPct,#dodPct,#agePct,#tempPct,#curvePct,#targetRuntimeH,#equipmentBody input,#equipmentBody select"};
+
+
+
 const $=id=>document.getElementById(id);
 const lang=(document.documentElement.lang||"en").toLowerCase().startsWith("zh")?"zh":"en";
 const T={
@@ -78,11 +83,11 @@ function addEquipment(id="olt-chassis",qty=1,amps){
 function renderEquipment(){
  const body=$("equipmentBody");
  body.innerHTML=state.rows.map(row=>`<tr data-uid="${row.uid}">
-  <td data-label="${T.equipment}"><select class="eq-type">${equipmentOptions(row.id)}</select></td>
-  <td data-label="${T.quantity}"><input class="eq-qty" type="number" min="0" step="1" value="${row.qty}"></td>
-  <td data-label="${T.unitCurrent}"><div class="input-wrap compact"><input class="eq-amps" type="number" min="0" step="0.1" value="${row.amps}"><span>A</span></div></td>
+  <td data-label="${T.equipment}"><select class="eq-type" aria-label="${document.documentElement.lang.startsWith('es')?'Equipo':T.equipment}">${equipmentOptions(row.id)}</select></td>
+  <td data-label="${T.quantity}"><input aria-label="${document.documentElement.lang.startsWith('es')?'Cantidad':T.quantity}" class="eq-qty" type="number" min="0" step="1" value="${row.qty}"></td>
+  <td data-label="${T.unitCurrent}"><div class="inp input-wrap compact"><input aria-label="${document.documentElement.lang.startsWith('es')?'Corriente por equipo (A)':T.unitCurrent+' (A)'}" class="eq-amps" type="number" min="0" step="0.1" value="${row.amps}"><span>A</span></div></td>
   <td data-label="${T.totalCurrent}" class="eq-total">${format(row.qty*row.amps,1)} A</td>
-  <td><button type="button" class="remove-row" aria-label="${T.remove}">×</button></td>
+  <td><button type="button" class="remove-row btn btn-ghost btn-sm" aria-label="${T.remove}">×</button></td>
  </tr>`).join("");
  body.querySelectorAll("tr").forEach(tr=>{
   const row=state.rows.find(x=>x.uid===tr.dataset.uid);
@@ -138,23 +143,23 @@ function collect(){
  };
 }
 function clearErrors(){document.querySelectorAll(".invalid").forEach(x=>x.classList.remove("invalid"))}
-function calculate(){
+function calculate(){try{
  clearErrors();
  const input=collect();
- const result=window.NELBatteryEngine.calculate(input);
- if(!result.ok){
+ const result=window.NELBatteryEngine.calculate(input);nelCurrentValid=result.ok!==false;
+ if(!result.ok){state.last=null;$("summaryCard").className="summary-card invalid";
   result.errors.forEach(id=>{const el=$(id);if(el)el.closest(".field")?.classList.add("invalid")});
   $("runtimeValue").textContent="—";$("statusBadge").textContent=T.invalid;
   return;
  }
  state.last={input,result};
  renderResult(input,result);
-}
+}finally{window.NELToolInputController.sync?.();}}
 function renderResult(input,r){
  $("runtimeValue").textContent=runtimeText(r.runtimeH);
  $("runtimeModel").textContent=r.model==="simple"?T.modelSimple:T.modelPeukert;
  const met=r.targetRuntimeH<=0||r.runtimeH>=r.targetRuntimeH;
- $("statusBadge").textContent=met?T.meets:T.notMet;
+ $("statusBadge").textContent=met?T.meets:T.notMet;$("statusBadge").className="status "+(met?"st-pass":"st-marginal");
  $("summaryCard").className=`summary-card ${met?"healthy":"warning"}`;
  const set=(id,value)=>$(id).textContent=value;
  set("nominalVoltage",`${format(r.nominalV)} V`);
@@ -232,10 +237,11 @@ function renderHistory(){
  const root=$("historyList");
  if(!list.length){root.innerHTML=`<div class="empty">${T.noHistory}</div>`;return}
  root.innerHTML=list.map((item,index)=>`<article class="history-item">
-  <div><strong>${item.input.projectName}</strong><small>${new Date(item.ts).toLocaleString()}</small></div>
+  <div><strong data-nel-locale-value></strong><small>${new Date(item.ts).toLocaleString()}</small></div>
   <div><b>${runtimeText(item.result.runtimeH)}</b><span>${format(item.result.designLoadW,0)} W · ${item.result.seriesCells}S×${item.result.parallelStrings}P</span></div>
   <button data-history="${index}" type="button">${lang==="zh"?"载入":"Load"}</button>
  </article>`).join("");
+ root.querySelectorAll("article").forEach((entry,index)=>{entry.querySelector("strong").textContent=String(list[index].input.projectName)});
  root.querySelectorAll("[data-history]").forEach(btn=>btn.addEventListener("click",()=>loadHistory(list[Number(btn.dataset.history)])));
 }
 function loadHistory(item){
@@ -285,4 +291,44 @@ document.querySelectorAll("[data-advanced-toggle]").forEach(btn=>btn.addEventLis
  const panel=$("advancedPanel"),open=panel.hidden;panel.hidden=!open;btn.setAttribute("aria-expanded",String(open));
 }));
 reset();renderHistory();
+window.NEL48vCalculate=calculate;
+window.NEL48vReset=reset;
 })();
+/* 20261106-bw1-chrome */
+(()=>{try{
+  const $=id=>document.getElementById(id);
+  const syncFill=()=>{
+    const map=[['fillRuntime','runtimeValue'],['fillUsable','correctedCapacity'],['fillRequired','requiredTotalAh']];
+    map.forEach(([fid,sid])=>{const f=$(fid),s=$(sid); if(f&&s) f.textContent=s.textContent||'—';});
+  };
+  const doCalc=()=>{
+    try{
+      if(typeof window.NEL48vCalculate==='function'){ window.NEL48vCalculate(); }
+      else if(window.NELToolInputController&&typeof window.NELToolInputController.calculate==='function'){ window.NELToolInputController.calculate(); }
+    }catch(e){console.warn('48v calc',e)}
+    syncFill();
+  };
+  const doReset=()=>{
+    try{
+      if(typeof window.NEL48vReset==='function'){ window.NEL48vReset(); }
+    }catch(e){console.warn('48v reset',e)}
+    syncFill();
+  };
+  const obs=new MutationObserver(syncFill);
+  ['runtimeValue','correctedCapacity','requiredTotalAh'].forEach(id=>{const el=$(id); if(el) obs.observe(el,{childList:true,characterData:true,subtree:true});});
+  syncFill();
+  const bind=()=>{
+    const calc=$('calculateBtn'); const resetBtn=$('resetBtn');
+    if(calc && !calc.dataset.bw1eBound){
+      calc.dataset.bw1eBound='1'; calc.style.pointerEvents='auto'; calc.style.cursor='pointer'; calc.disabled=false;
+      calc.addEventListener('click',e=>{ e.preventDefault(); e.stopPropagation(); doCalc(); }, true);
+    }
+    if(resetBtn && !resetBtn.dataset.bw1eBound){
+      resetBtn.dataset.bw1eBound='1'; resetBtn.style.pointerEvents='auto'; resetBtn.style.cursor='pointer'; resetBtn.disabled=false;
+      resetBtn.addEventListener('click',e=>{ e.preventDefault(); e.stopPropagation(); doReset(); }, true);
+    }
+  };
+  bind(); document.addEventListener('DOMContentLoaded', bind); window.addEventListener('load', bind);
+  // initial calc after bind
+  setTimeout(doCalc, 0);
+}catch(e){console.warn('48v bw1',e)}})();
