@@ -253,8 +253,15 @@ body > footer.site-shell-footer {
 @media (max-width: 800px) {
   html { scroll-padding-top: 76px; }
   body > .site-shell-header {
-    height: auto !important;
+    height: var(--nel-header-height-mobile, 66px) !important;
     min-height: var(--nel-header-height-mobile, 66px) !important;
+    max-height: var(--nel-header-height-mobile, 66px) !important;
+    overflow: hidden !important;
+  }
+  body > .site-shell-header[data-nav-open="true"] {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
   }
   body > .site-shell-header .site-shell-header-inner {
     height: auto !important;

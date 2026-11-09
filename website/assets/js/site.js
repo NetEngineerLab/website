@@ -195,6 +195,37 @@ function initNetEngineerLabSite(){
  }))).observe(document.body,{childList:true,subtree:true});
  document.documentElement.dataset.nelLocale=locale?.id||"en";
  document.documentElement.dataset.nelI18nVersion=config.version||"";
+ mountMobileResultJump();
+}
+
+function mountMobileResultJump(){
+ const page=document.body;
+ if(!page||!page.classList.contains("nel-tool-v3")||page.querySelector(".nel-result-jump"))return;
+ const result=page.querySelector("#result, .result-panel, .nel-tool-result");
+ const calculator=page.querySelector("#calculator");
+ if(!result||!calculator)return;
+ if(!result.id)result.id="nel-result";
+ const lang=(document.documentElement.lang||page.dataset.nelLocale||"").toLowerCase();
+ const copy=lang.startsWith("zh")?["去计算","查看结果"]:lang.startsWith("es")?["Ir al cálculo","Ver resultado"]:["Calculator","See result"];
+ const bar=document.createElement("nav");
+ bar.className="nel-result-jump";
+ bar.setAttribute("aria-label",copy[1]);
+ const calcLink=document.createElement("a");
+ calcLink.href="#"+calculator.id;
+ calcLink.textContent=copy[0];
+ const resultLink=document.createElement("a");
+ resultLink.href="#"+result.id;
+ resultLink.className="nel-result-jump-go";
+ resultLink.textContent=copy[1];
+ bar.append(calcLink,resultLink);
+ page.append(bar);
+ page.classList.add("has-result-jump");
+ if("IntersectionObserver" in window){
+  const watch=new IntersectionObserver(entries=>{
+   bar.classList.toggle("is-hidden",entries.some(entry=>entry.isIntersecting));
+  },{threshold:0});
+  watch.observe(result);
+ }
 }
 
 // The catalog is intentionally loaded after this shared script on directory

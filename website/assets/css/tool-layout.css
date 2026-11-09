@@ -629,3 +629,127 @@ body.nel-opb-v3 > .hub-return{
     white-space: normal !important;
   }
 }
+
+/* Phone forms: one card padding. Nested panel and .fs padding was leaving
+   the fields about 60px inside the card on each side. */
+@media (max-width: 768px) {
+  body.nel-tool-v3 #calculator > .workspace > :is(.input-panel, .result-panel) {
+    padding: 14px !important;
+  }
+  body.nel-tool-v3 #calculator .input-panel > .fb-panel,
+  body.nel-tool-v3 #calculator .result-panel > .fb-panel,
+  body.nel-tool-v3 #calculator .result-panel > .readout {
+    padding: 0 !important;
+  }
+  body.nel-tool-v3 #calculator :is(.input-panel, .result-panel) .fs {
+    padding: 0 !important;
+  }
+  body.nel-tool-v3 #calculator .panel-h,
+  body.nel-tool-v3 #calculator .inp,
+  body.nel-tool-v3 #calculator .input-wrap,
+  body.nel-tool-v3 #calculator .fg,
+  body.nel-tool-v3 #calculator .fg-note {
+    max-width: none !important;
+    width: auto !important;
+  }
+  body.nel-tool-v3 #calculator .inp,
+  body.nel-tool-v3 #calculator .input-wrap {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* Phone tool pages: a short jump bar, like a "see result" link.
+   It stays off the fields while typing, and hides once the result is on screen. */
+@media (max-width: 800px) {
+  body.nel-tool-v3.has-result-jump {
+    padding-bottom: calc(92px + env(safe-area-inset-bottom)) !important;
+  }
+  body.nel-tool-v3 .nel-result-jump {
+    position: fixed;
+    z-index: 30;
+    left: 12px;
+    right: 12px;
+    bottom: calc(10px + env(safe-area-inset-bottom));
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: 8px;
+    margin: 0;
+    padding: 8px;
+    border-radius: 16px;
+    background: #0f172a;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.28);
+  }
+  body.nel-tool-v3 .nel-result-jump.is-hidden,
+  body.nel-tool-v3:has(.nel-cookie-banner) .nel-result-jump,
+  body.nel-tool-v3:has(input:focus, select:focus, textarea:focus) .nel-result-jump {
+    display: none !important;
+  }
+  body.nel-tool-v3 .nel-result-jump a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 8px 10px;
+    border-radius: 12px;
+    color: #fff;
+    background: transparent;
+    font-size: 15px;
+    font-weight: 750;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+  }
+  body.nel-tool-v3 .nel-result-jump .nel-result-jump-go {
+    background: #176ff2;
+  }
+  body.nel-tool-v3 #calculator,
+  body.nel-tool-v3 #result,
+  body.nel-tool-v3 #nel-result,
+  body.nel-tool-v3 .result-panel {
+    scroll-margin-top: 76px;
+  }
+  html body.nel-tool-v3 #calculator .input-actions,
+  html body.nel-tool-v3 #calculator > .workspace > .input-panel .input-actions,
+  html body.nel-tool-v3 #calculator > .workspace > .input-panel > .input-actions {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 8px !important;
+  }
+  html body.nel-tool-v3 #calculator .input-actions > button,
+  html body.nel-tool-v3 #calculator .input-actions > .btn,
+  html body.nel-tool-v3 #calculator .input-actions > :is(#calculateBtn, #calculate, #resetBtn, #reset) {
+    width: 100% !important;
+    max-width: none !important;
+    flex: 1 1 100% !important;
+    min-height: 48px !important;
+  }
+  html body.nel-tool-v3 #calculator :is(#calculateBtn, #calculate, .input-actions > .btn-primary, .input-actions > button.primary) {
+    background: #176ff2 !important;
+    background-image: none !important;
+    color: #fff !important;
+    border: 0 !important;
+  }
+}
+@media (min-width: 801px) {
+  body.nel-tool-v3 .nel-result-jump { display: none !important; }
+}
+
+/* One card around the workbench and one border on each field.
+   The inner panel, the section group, and the control inside the field
+   were each drawing another box. */
+html body.nel-tool-v3 #calculator :is(.input-panel, .result-panel) > .fb-panel {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+html body.nel-tool-v3 #calculator .fg,
+html body.nel-tool-v3 #calculator :is(.input-panel, .result-panel) .parameter-group {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+html body.nel-tool-v3 #calculator :is(.inp, .input-wrap) :is(input, select, textarea) {
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
