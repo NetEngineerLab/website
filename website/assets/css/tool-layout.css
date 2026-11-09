@@ -753,3 +753,10 @@ html body.nel-tool-v3 #calculator :is(.inp, .input-wrap) :is(input, select, text
   box-shadow: none !important;
   background: transparent !important;
 }
+
+/* iOS zooms the page when a focused field is under 16px. */
+@media (max-width: 800px) {
+  html body.nel-tool-v3 #calculator :is(input, select, textarea):not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="file"]):not([type="range"]) {
+    font-size: 16px !important;
+  }
+}
