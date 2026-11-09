@@ -248,6 +248,43 @@ body > footer.site-shell-footer {
   .site-shell-footer-links { justify-content: center !important; }
 }
 
+/* Phone header: the menu is part of the header, not a layer over the page.
+   A fixed 66px bar with an absolute nav was painting across the first buttons. */
+@media (max-width: 800px) {
+  html { scroll-padding-top: 76px; }
+  body > .site-shell-header {
+    height: auto !important;
+    min-height: var(--nel-header-height-mobile, 66px) !important;
+  }
+  body > .site-shell-header .site-shell-header-inner {
+    height: auto !important;
+    min-height: var(--nel-header-height-mobile, 66px) !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+  }
+  body > .site-shell-header .site-shell-nav {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    display: none !important;
+    flex: 1 0 100% !important;
+    order: 10 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 2px 0 10px !important;
+    grid-template-columns: 1fr 1fr !important;
+    box-shadow: none !important;
+    border-bottom: 0 !important;
+  }
+  body > .site-shell-header[data-nav-open="true"] .site-shell-nav {
+    display: grid !important;
+  }
+  body > .site-shell-header .site-shell-nav a {
+    min-height: 44px !important;
+  }
+}
+
 @media print {
   body > .site-shell-header, body > footer.site-shell-footer { display: none !important; }
 }

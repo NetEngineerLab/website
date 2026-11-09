@@ -543,3 +543,89 @@ body.nel-opb-v3 > .hub-return{
   body.nel-opb-v3 > .hub-return,
   body.nel-opb-v3 > .ad-slot{padding-left:18px;padding-right:18px}
 }
+
+/* Phone workbench: nothing floats over the fields, and every action is a full row. */
+@media (max-width: 640px) {
+  body.nel-tool-v3 .mbar {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: auto !important;
+    margin: 14px 0 0 !important;
+    z-index: 1 !important;
+  }
+  body.nel-tool-v3.has-mbar { padding-bottom: 28px !important; }
+  body.nel-tool-v3:has(.nel-cookie-banner) .mbar { display: none !important; }
+  body.nel-tool-v3 #calculator > .workspace > .result-panel > .ro-acts,
+  body.nel-tool-v3 #calculator > .workspace > .result-panel > .result-actions,
+  body.nel-tool-v3 .ro-acts,
+  body.nel-tool-v3 .result-actions {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+  body.nel-tool-v3 .ro-acts > button,
+  body.nel-tool-v3 .result-actions > button {
+    min-height: 44px !important;
+    height: auto !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+    padding: 8px 10px !important;
+    font-size: 14px !important;
+  }
+  body.nel-tool-v3 #calculator > .workspace > .input-panel .input-actions,
+  body.nel-tool-v3 #calculator .input-actions,
+  body.nel-tool-v3 .panel-f {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+  body.nel-tool-v3 #calculator .input-actions > button,
+  body.nel-tool-v3 #calculator .input-actions > .btn,
+  body.nel-tool-v3 .panel-f > .btn,
+  body.nel-tool-v3 .panel-f > button {
+    width: 100% !important;
+    min-height: 44px !important;
+    justify-content: center;
+  }
+  body.nel-tool-v3 .inp,
+  body.nel-tool-v3 .input-wrap {
+    min-height: 44px !important;
+    height: auto !important;
+  }
+  body.nel-tool-v3 select {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  body.nel-tool-v3 input,
+  body.nel-tool-v3 select,
+  body.nel-tool-v3 textarea,
+  body.nel-tool-v3 button {
+    scroll-margin-top: 84px;
+    scroll-margin-bottom: 20px;
+  }
+}
+
+/* Phone prose cards: one full-width column. Two half-width cards turn
+   Chinese paragraphs into a single character per line. */
+@media (max-width: 800px) {
+  body.nel-tool-v3 :is(.prose, .ref-card, #references, .bw-standard-card) :is(.grid, .review-grid, .wf-grid, .related-grid, .ex, .method-defs, .nel-content-review-grid) {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  body.nel-tool-v3 :is(.prose, .ref-card, #references, .bw-standard-card) :is(article, .review-card, h3, p, li, .std-chip) {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+  }
+  body.nel-tool-v3 .std-chip {
+    display: inline !important;
+    white-space: normal !important;
+  }
+}
