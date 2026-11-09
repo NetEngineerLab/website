@@ -754,6 +754,18 @@ html body.nel-tool-v3 #calculator :is(.inp, .input-wrap) :is(input, select, text
   background: transparent !important;
 }
 
+/* Result column: the panel and each key-result tile keep a border.
+   The readout shell and the formula line inside a tile do not. */
+html body.nel-tool-v3 #calculator :is(.result-panel, .nel-tool-result) > .readout {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+html body.nel-tool-v3 #calculator #result .row > .eqn {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
 /* iOS zooms the page when a focused field is under 16px. */
 @media (max-width: 800px) {
   html body.nel-tool-v3 #calculator :is(input, select, textarea):not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="file"]):not([type="range"]) {
