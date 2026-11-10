@@ -1,12 +1,12 @@
 "use strict";
-const CACHE = "nel-mtu-calculator-20261106-mtu2";
+const CACHE = "nel-mtu-calculator-20261110-mtu-faq";
 const CORE = [
   "./index.html",
   "./",
   "./offline.html",
   "./manifest.webmanifest",
   "./data/mtu-overhead-library.js",
-  "./css/style.css?v=20261106-mtu2",
+  "./css/style.css?v=20261110-mtu-faq",
   "./css/deep-workflow.css?v=20261106-bw1f",
   "./js/engine.js",
   "./js/app.js?v=20261106-mtu2",
@@ -33,7 +33,7 @@ const CORE = [
   "../../assets/css/site-shell.css?v=26fafcdcee42",
   "../../assets/css/tool-design-system.css?v=0163aaafdd67",
   "../../assets/css/tool-workflow.css?v=8c74b394ef2c",
-  "../../assets/css/fb-v3.css?v=c294004026b6",
+  "../../assets/css/fb-v3.css?v=252951bc45c8",
   "../../assets/css/fb-v3-prod.css?v=35fd6b8f7526",
   "../../assets/js/tool-v3-navigation.js?v=b8d825e0f678",
   "../../assets/js/tool-detail-v3.js?v=6f38212f00f3",

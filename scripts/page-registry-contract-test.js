@@ -46,7 +46,7 @@ const supplementalSitemapUrls=[
   "tools/data-center-architecture-decision-workshop/",
   "tools/network-asset-lifecycle-tracker/",
   "tools/oob-network-design-planner/"
-].flatMap(route=>["", "zh/"].map(locale=>`https://netengineerlab.com/${route}${locale}`));
+].flatMap(route=>["", "zh/", "es/"].filter(locale=>fs.existsSync(path.join(root,"website",route,locale,"index.html"))).map(locale=>`https://netengineerlab.com/${route}${locale}`));
 const expected=[...registry.pages.filter(page=>page.sitemapEligible).map(page=>page.url),...supplementalSitemapUrls].sort();
 assert.deepStrictEqual(actual,expected,"Page Registry eligible URLs must equal sitemap.xml exactly");
 

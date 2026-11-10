@@ -14,9 +14,9 @@ const CORE = [
   "/data/seo-config.js",
   "/assets/js/seo-engine.js?v=15ac96553c44",
   "/assets/css/tool-workflow.css?v=8c74b394ef2c",
-  "/assets/css/fb-v3.css?v=20261105-method1r",
-  "/assets/css/fb-v3-prod.css?v=35fd6b8f7526",
-  "/assets/js/tool-v3-navigation.js?v=b8d825e0f678",
+  "../../assets/css/fb-v3.css?v=252951bc45c8",
+  "../../assets/css/fb-v3-prod.css?v=35fd6b8f7526",
+  "../../assets/js/tool-v3-navigation.js?v=b8d825e0f678",
   "/assets/css/locale-menu.css?v=7804394246fb",
   "/assets/css/design-tokens.css?v=10e842cd32cf",
   "/assets/css/tool-design-system.css?v=20261105-method1r",
@@ -35,13 +35,13 @@ const CORE = [
   "/assets/js/tool-integration.js?v=05f7934f4687",
   "/assets/js/tool-shell-v1.9.9-04.js?v=77b297dd25ca",
   "/assets/js/cookie-consent.js?v=5e6d1af21a6a",
-  "/assets/js/tool-detail-v3.js?v=6f38212f00f3",
+  "../../assets/js/tool-detail-v3.js?v=6f38212f00f3",
   "/tools/sfp-qsfp-compatibility-calculator/manifest-zh.webmanifest",
   "/assets/js/es-launch-runtime.js?v=3f188aa72208",
   "/tools/sfp-qsfp-compatibility-calculator/manifest-es.webmanifest"
 ];
 self.addEventListener("install", event => {
- event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(CORE.map(url => new Request(url, {cache:"reload"})))).then(() => self.skipWaiting()));
+ event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(CORE).then(() => self.skipWaiting())));
 });
 self.addEventListener("activate", event => {
  // Do not clear origin caches or user projects. Old caches are never read by this worker.

@@ -48,6 +48,9 @@ function markup(toolId,zh){
 }
 function removeLegacyRelatedSections(fragment){
  return fragment.replace(/<section\b[^>]*>[\s\S]*?<\/section>\s*/gi,section=>{
+  // An authored related section, such as route summarization's Related pages,
+  // is source content. The generated related-tools block is still removed.
+  if(/data-nel-v3-related=["']authored["']/.test(section))return section;
   const legacyId=/\bid=["']related["']/i.test(section);
   const legacyHeading=/(?:>\s*RELATED TOOLS\s*<|>\s*Related engineering tools\s*<|>\s*相关推荐工具\s*<|>\s*相关工程工具\s*<)/i.test(section);
   return legacyId||legacyHeading?"":section;

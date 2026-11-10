@@ -11,9 +11,9 @@ const CORE = [
   "./offline.html",
   "/assets/css/tool-workflow.css?v=8c74b394ef2c",
   "/assets/css/cookie-consent.css?v=8dd1728bf5eb",
-  "/assets/css/fb-v3.css?v=20261105-method1r",
-  "/assets/css/fb-v3-prod.css?v=35fd6b8f7526",
-  "/assets/js/tool-v3-navigation.js?v=b8d825e0f678",
+  "../../assets/css/fb-v3.css?v=252951bc45c8",
+  "../../assets/css/fb-v3-prod.css?v=35fd6b8f7526",
+  "../../assets/js/tool-v3-navigation.js?v=b8d825e0f678",
   "/assets/css/locale-menu.css?v=7804394246fb",
   "/assets/css/design-tokens.css?v=10e842cd32cf",
   "/assets/css/tool-design-system.css?v=20261105-method1r",
@@ -32,13 +32,13 @@ const CORE = [
   "/tools/chromatic-dispersion-calculator/js/app.js?v=20261108-cd-bw5",
   "/assets/js/cookie-consent.js?v=5e6d1af21a6a",
   "/assets/js/tool-shell-v1.9.9-04.js?v=77b297dd25ca",
-  "/assets/js/tool-detail-v3.js?v=6f38212f00f3",
+  "../../assets/js/tool-detail-v3.js?v=6f38212f00f3",
   "/tools/chromatic-dispersion-calculator/manifest-zh.webmanifest",
   "/assets/js/es-launch-runtime.js?v=3f188aa72208",
   "/tools/chromatic-dispersion-calculator/manifest-es.webmanifest"
 ];
 self.addEventListener("install", event => {
- event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(CORE.map(url => new Request(url, {cache:"reload"})))).then(() => self.skipWaiting()));
+ event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(CORE).then(() => self.skipWaiting())));
 });
 self.addEventListener("activate", event => {
  // Do not clear origin caches or user projects. Old caches are never read by this worker.

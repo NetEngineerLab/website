@@ -53,11 +53,15 @@ for (const bypass of [
 
 const siteRoot = path.resolve(__dirname, "..", "website");
 const toolRoot = path.join(siteRoot, "tools", "fiber-loss");
-assert.deepEqual(precachePathIssues(["./", "./zh/", "./es/", "./index.html", "../../data/locales.js"], toolRoot, siteRoot), []);
+assert.deepEqual(precachePathIssues(["./", "./zh/", "./es/", "./index.html", "../../data/locales.js", "/assets/css/fb-v3.css", "../../assets/css/fb-v3.css"], toolRoot, siteRoot), []);
 for (const invalidPath of [
   "../../../package.json",
   "C:/Windows/System32/drivers/etc/hosts",
+  "C:\\Windows\\System32\\drivers\\etc\\hosts",
+  "\\\\server\\share\\secret.txt",
+  "//server/share/secret.txt",
   "/etc/passwd",
+  "/assets/../../package.json",
   "..\\..\\..\\package.json",
   "https://example.com/engine.js",
   "./missing-precache-file.js",
@@ -65,6 +69,7 @@ for (const invalidPath of [
 ]) {
   assert(precachePathIssues([invalidPath], toolRoot, siteRoot).length > 0, invalidPath);
 }
+assert.equal(precachePathIssues(["/assets/css/fb-v3.css"], toolRoot, siteRoot).some(issue => issue.includes("invalid precache path")), false);
 
 const fixtureRoot = fs.mkdtempSync(path.join(os.tmpdir(), "nel-sw-precache-"));
 try {

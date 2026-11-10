@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Route Summarization Calculator | NetEngineerLab</title>
 <meta name="description" content="Fold IPv4 or IPv6 prefixes into fewer aggregate routes and mark duplicates that a shorter prefix already covers. An aggregate can cover space you did not list, so check it before you advertise it.">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="en">
+<meta name="nel-route" content="tools/route-summarization-calculator/">
+<meta name="nel-available-locales" content="en,zh,es">
 <link rel="canonical" href="https://netengineerlab.com/tools/route-summarization-calculator/">
 <link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/route-summarization-calculator/">
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/route-summarization-calculator/zh/">
@@ -17,16 +22,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/fb-v3.css?v=20261105-opb2">
-<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=20261105-opb2">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=252951bc45c8">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=35fd6b8f7526">
 <link rel="stylesheet" href="/assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="/assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="/assets/css/tool-design-system.css?v=20261105-method1r">
+<link rel="stylesheet" href="/assets/css/tool-design-system.css?v=fbfd8fc05bdc">
 <link rel="stylesheet" href="/assets/css/site-shell.css?v=20261109-jump">
-<link rel="stylesheet" href="/assets/css/tool-layout.css?v=20261109-res2">
+<link rel="stylesheet" href="/assets/css/tool-layout.css?v=2d2126024817">
 <link rel="stylesheet" href="css/style.css?v=20261109-route4">
-</head>
-<body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1">
+
+<script defer="" src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script><meta name="theme-color" content="#176ff2"></head>
+<body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-v3-migrated="1">
 <header class="site-header site-shell-header" data-nav-open="false">
   <div class="site-shell-header-inner">
     <a class="site-shell-brand brand" href="../../">
@@ -45,25 +51,26 @@
     </div>
   </div>
 </header>
-<main id="calculator">
+<section class="hero nel-tool-hero" aria-hidden="true"></section><main id="calculator" class="tool-shell nel-tool-main" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv">
 <div class="tool-head">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="../../">Home</a> / <a href="../">Tools</a> / <span aria-current="page">Route Summarization Calculator</span></nav>
-<p class="tool-page-label" role="heading" aria-level="1">Route Summarization Calculator</p>
+<h1 class="tool-page-label">Route Summarization Calculator</h1>
+
 <p class="tool-lede">Write one prefix per line. Adjacent prefixes of the same length fold into one shorter aggregate. IPv4 and IPv6 are summarized separately.</p>
 </div>
 <div class="workspace">
-<section class="nel-tool-input">
-<h2>Prefixes to summarize</h2>
+<section class="nel-tool-input fb-panel">
+<h2 class="panel-h">Prefixes to summarize</h2>
 <p class="hint">One prefix per line, such as 10.0.0.0/24. Each address is normalized to the network boundary of that prefix.</p>
 <label for="prefixes">Prefixes to summarize</label>
 <textarea id="prefixes" spellcheck="false"></textarea>
 <label for="minPrefix">Shortest allowed prefix length</label>
 <input id="minPrefix" type="number" min="0" max="128" inputmode="numeric">
 <p class="hint">Leave blank for no floor. Enter 24 to stop a /24 from folding into a /23.</p>
-<div class="actions"><button id="run" type="button">Calculate</button><button id="sample" class="ghost" type="button">Load example</button></div>
+<div class="actions"><button id="run" type="button" class="btn btn-ghost">Calculate</button><button id="sample" class="ghost btn btn-ghost" type="button">Load example</button></div>
 </section>
-<section class="nel-tool-result">
-<h2>Summary</h2>
+<section class="nel-tool-result readout">
+<h2 class="ro-h">Summary</h2>
 <p id="status" class="hint"></p>
 <div class="metrics"><div class="metric"><span>Aggregates</span><b id="sumCount">0</b></div><div class="metric"><span>Routes removed</span><b id="reduction">0</b></div></div>
 <h3>Aggregate routes</h3><ul id="summaryList" class="route-list"></ul>
@@ -72,18 +79,8 @@
 <p id="errors" class="err" role="alert"></p>
 </section>
 </div>
-<div class="below">
-<nav class="toc" aria-label="On this page"><h4>On this page</h4>
-<a href="#method">How summarization works</a><a href="#limits">Limits</a><a href="#faq">Questions</a><a href="#related">Related pages</a>
-</nav>
-<div class="prose">
-<section class="blk" id="method"><h2>How summarization works</h2><p>Route summarization folds several longer prefixes into fewer, shorter ones. The routing table and the routes you advertise get smaller. A fold depends on whether the addresses sit in the same parent network, not on whether the names look similar.</p><ol><li>Each prefix is normalized to its network address. 10.0.0.5/24 is written as 10.0.0.0/24.</li><li>A prefix already covered by a shorter one is not advertised on its own. 10.0.0.0/25 is redundant once 10.0.0.0/24 is present.</li><li>Remaining prefixes of the same length that are the pair inside one parent fold into that shorter prefix. 10.0.0.0/24 and 10.0.1.0/24 become 10.0.0.0/23.</li><li>The step repeats until nothing else folds. If they become one route, that one route is the result. 10.0.1.0/24 and 10.0.2.0/24 are not a pair, so they stay as more than one route.</li><li>IPv4 and IPv6 are summarized separately.</li></ol><p>A shorter prefix covers addresses that were not in the list. Confirm that space should not be advertised before you publish the summary.</p></section>
-<section class="blk" id="limits"><h2>Limits</h2><ul><li>The summary follows address adjacency. It does not look at whether those routes exist in a network.</li><li>A shorter aggregate covers address space that was not in the list. Confirm that space should not be advertised before you publish the summary.</li><li>IPv4 and IPv6 stay separate.</li><li>The shortest prefix length stops further aggregation. It is not a router command.</li></ul></section>
-<section class="blk" id="faq"><h2>Questions</h2><h3>Do two /24s always become a /23?</h3><p>Only when they are the pair inside one /23. 10.0.1.0/24 and 10.0.2.0/24 are not that pair, so they do not become 10.0.0.0/22.</p><h3>Can the result be pasted into a routing protocol?</h3><p>No. The result only compares address blocks. Advertising it, and keeping longer-prefix exceptions, still depends on the topology and the equipment notes.</p></section>
-<section class="blk" id="related"><h2>Related pages</h2><p>Check a single prefix first, then bring the prefixes you plan to advertise here.</p><h3>Guide</h3><ul class="rel"><li><a href="../../guides/subnet-calculator-guide/">IPv4 subnet calculation: CIDR, hosts and usable ranges</a><span>How prefix length, the network address and usable hosts are calculated.</span></li></ul><h3>Tools</h3><ul class="rel"><li><a href="../subnet-calculator/">IP Subnet Calculator</a><span>Check one prefix: network address, mask and usable hosts.</span></li><li><a href="../vlan-ip-capacity-planner/">VLAN and IP subnet capacity planner</a><span>Choose prefixes by capacity, then summarize them here.</span></li><li><a href="../ospf-cost-calculator/">OSPF Cost Calculator</a><span>Summarization chooses which prefixes to advertise. Cost chooses the path those prefixes take.</span></li></ul></section>
-</div>
-</div>
-</main>
+
+<div class="below"><nav class="toc" aria-label="On this page"><h4>On this page</h4><a href="#about-scope">About & applicability</a><a href="#methodology">How it’s calculated</a><a href="#faq">FAQ</a><a href="#nel-tool-graph">Engineering workflow</a></nav><div class="prose"><details class="fb-fold blk" id="about-scope" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span class="fb-fold-title">Limits</span></summary><div class="fb-fold-body"><section class="blk" id="limits"><ul><li>The summary follows address adjacency. It does not look at whether those routes exist in a network.</li><li>A shorter aggregate covers address space that was not in the list. Confirm that space should not be advertised before you publish the summary.</li><li>IPv4 and IPv6 stay separate.</li><li>The shortest prefix length stops further aggregation. It is not a router command.</li></ul></section></div></details><details class="fb-fold blk" id="methodology" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span class="fb-fold-title">How summarization works</span></summary><div class="fb-fold-body"><section class="blk" id="method"><p>Route summarization folds several longer prefixes into fewer, shorter ones. The routing table and the routes you advertise get smaller. A fold depends on whether the addresses sit in the same parent network, not on whether the names look similar.</p><ol><li>Each prefix is normalized to its network address. 10.0.0.5/24 is written as 10.0.0.0/24.</li><li>A prefix already covered by a shorter one is not advertised on its own. 10.0.0.0/25 is redundant once 10.0.0.0/24 is present.</li><li>Remaining prefixes of the same length that are the pair inside one parent fold into that shorter prefix. 10.0.0.0/24 and 10.0.1.0/24 become 10.0.0.0/23.</li><li>The step repeats until nothing else folds. If they become one route, that one route is the result. 10.0.1.0/24 and 10.0.2.0/24 are not a pair, so they stay as more than one route.</li><li>IPv4 and IPv6 are summarized separately.</li></ol><p>A shorter prefix covers addresses that were not in the list. Confirm that space should not be advertised before you publish the summary.</p></section></div></details><div class="blk faq" id="faq" data-nel-v3-title-normalized="1"><h2>Questions</h2><h3>Do two /24s always become a /23?</h3><p>Only when they are the pair inside one /23. 10.0.1.0/24 and 10.0.2.0/24 are not that pair, so they do not become 10.0.0.0/22.</p><h3>Can the result be pasted into a routing protocol?</h3><p>No. The result only compares address blocks. Advertising it, and keeping longer-prefix exceptions, still depends on the topology and the equipment notes.</p></div><!-- NEL_TOOL_GRAPH_START --><section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="route-summarization-calculator" data-primary-workflow="enterprise-lan-ip-planning"><h2 id="nel-tool-graph-title">Engineering workflow</h2><p>Enterprise LAN & IP Planning Workflow</p><p>Plan addressing, VLAN capacity, packet size, uplinks, optics, access policy and DNS behavior as one LAN design sequence.</p><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/network-capacity-forecast-planner/"><strong>Network Capacity Forecast Planner</strong><span class="nel-tool-graph-description">Forecast network demand growth, expansion timing and capacity targets from measured utilization.</span></a><a class="nel-tool-graph-card" href="/tools/subnet-calculator/"><strong>IP Subnet Calculator</strong><span class="nel-tool-graph-description">Calculate IPv4, IPv6, CIDR, masks, broadcast ranges and host capacity, with VLSM planning.</span></a><a class="nel-tool-graph-card" href="/tools/vlan-ip-capacity-planner/"><strong>VLAN & IP Subnet Capacity Planner</strong><span class="nel-tool-graph-description">Plan VLAN count, IPv4 prefix, address capacity and growth headroom.</span></a><a class="nel-tool-graph-card" href="/tools/ospf-cost-calculator/"><strong>OSPF Cost Calculator</strong><span class="nel-tool-graph-description">Calculate OSPF interface costs from reference bandwidth, compare path costs and identify ECMP candidates.</span></a></div><section class="blk" id="related" data-nel-v3-related="authored"><h2>Related pages</h2><p>Check a single prefix first, then bring the prefixes you plan to advertise here.</p><h3>Guide</h3><ul class="rel"><li><a href="../../guides/subnet-calculator-guide/">IPv4 subnet calculation: CIDR, hosts and usable ranges</a><span>How prefix length, the network address and usable hosts are calculated.</span></li></ul><h3>Tools</h3><ul class="rel"><li><a href="../subnet-calculator/">IP Subnet Calculator</a><span>Check one prefix: network address, mask and usable hosts.</span></li><li><a href="../vlan-ip-capacity-planner/">VLAN and IP subnet capacity planner</a><span>Choose prefixes by capacity, then summarize them here.</span></li><li><a href="../ospf-cost-calculator/">OSPF Cost Calculator</a><span>Summarization chooses which prefixes to advertise. Cost chooses the path those prefixes take.</span></li></ul></section></section><!-- NEL_TOOL_GRAPH_END --></div></div></main>
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">
     <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
@@ -96,8 +93,9 @@
 <script src="/data/locales.js?v=909e05076a50"></script>
 <script src="/data/site-config.js?v=b5072ad7fa47"></script>
 <script src="/assets/js/site.js?v=20261109-jump"></script>
-<script src="js/engine.js"></script>
+<script src="js/engine.js?v=5e6e4f9c4c83"></script>
 <script src="js/page.js?v=20261109-route3"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
-</body>
+
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=b786c10e6903"></script></body>
 </html>
