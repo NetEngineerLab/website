@@ -1038,3 +1038,48 @@ body.nel-tool-v3 #acl-workspace>.workspace>:is(.input-panel,.result-panel)[hidde
 body.nel-tool-v3 #acl-workspace #ruleRows{min-width:0!important;max-width:100%!important;width:100%!important}
 body.nel-tool-v3 #acl-workspace .rule-row{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;min-width:0!important;max-width:100%!important}
 @media(max-width:768px){body.nel-tool-v3 #acl-workspace .rule-row{grid-template-columns:minmax(0,1fr)!important}}
+
+/* Review summary and score share one row, aligned with the severity cards. */
+body.nel-tool-v3 #acl-workspace .score-head{
+  display:grid !important;
+  grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+  gap:12px !important;
+  align-items:stretch !important;
+  width:100% !important;
+  min-width:0 !important;
+  margin:0 0 12px !important;
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+}
+body.nel-tool-v3 #acl-workspace .score-head > .ro-l1{
+  min-width:0 !important;
+  margin:0 !important;
+  padding:14px 16px !important;
+  border:1px solid #d9e4f2 !important;
+  border-radius:12px !important;
+  background:#fff !important;
+  box-sizing:border-box !important;
+}
+body.nel-tool-v3 #acl-workspace .score-head .ro-h{
+  margin:0 0 8px !important;
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+  font-size:13px !important;
+  line-height:1.4 !important;
+  letter-spacing:.04em !important;
+}
+body.nel-tool-v3 #acl-workspace .score-head .coverage-note{
+  margin:0 !important;
+  color:#334155 !important;
+  font-size:14px !important;
+  line-height:1.5 !important;
+}
+body.nel-tool-v3 #acl-workspace #statusPanel{
+  box-sizing:border-box !important;
+  margin:0 0 12px !important;
+  border:1px solid #d7e3ef !important;
+  border-left:4px solid #0b5ea8 !important;
+  border-radius:12px !important;
+}
