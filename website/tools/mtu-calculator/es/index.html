@@ -4,10 +4,10 @@
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="../" name="app-base"/>
 <title>Calculadora de MTU y MSS | NetEngineerLab</title><meta content="Calculadora profesional de MTU y MSS TCP para encapsulación PPPoE, VLAN, GRE, VXLAN, MPLS, IPsec y WireGuard." name="description"/><meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
 <meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="Calculadora de MTU y MSS | NetEngineerLab" property="og:title"/><meta content="Calculadora profesional de MTU y MSS TCP para encapsulación PPPoE, VLAN, GRE, VXLAN, MPLS, IPsec y WireGuard." property="og:description"/><meta content="https://netengineerlab.com/tools/mtu-calculator/es/" property="og:url"/><meta content="https://netengineerlab.com/tools/mtu-calculator/images/og-mtu-mss-calculator.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
-<link href="../css/style.css?v=20261106-mtu2" rel="stylesheet"/><link href="../css/deep-workflow.css?v=20261106-bw1f" rel="stylesheet"/>
+<link href="../css/style.css?v=41f1b12ebf44" rel="stylesheet"/><link href="../css/deep-workflow.css?v=6f91804b47b7" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de MTU y MSS","url":"https://netengineerlab.com/tools/mtu-calculator/es/","description":"Calculadora profesional de MTU y MSS TCP para encapsulación PPPoE, VLAN, GRE, VXLAN, MPLS, IPsec y WireGuard.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Ingeniería de redes","operatingSystem":"Any","softwareVersion":"1.0.0","inLanguage":"es","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
 <script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://netengineerlab.com/es/"},{"@type":"ListItem","position":2,"name":"Herramientas","item":"https://netengineerlab.com/tools/es/"},{"@type":"ListItem","position":3,"name":"Calculadora de MTU y MSS","item":"https://netengineerlab.com/tools/mtu-calculator/es/"}]}</script><meta content="NetEngineerLab" name="author"/>
-<link href="/assets/css/cookie-consent.css?v=20261109-mnav" rel="stylesheet"/>
+<link href="/assets/css/cookie-consent.css?v=2f2c8ab643e6" rel="stylesheet"/>
 <link href="/assets/css/mobile-branding.css?v=345784b6b020" rel="stylesheet"/>
 <script defer="" src="/data/seo-config.js"></script>
 <script defer="" src="/assets/js/seo-engine.js?v=15ac96553c44"></script>
@@ -21,8 +21,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/fb-v3.css?v=20261105-method1r">
-<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=35fd6b8f7526">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=718e11ad9233">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=0e51668c3f12">
 <script defer="" src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Calculadora de MTU y MSS | NetEngineerLab","url":"https://netengineerlab.com/tools/mtu-calculator/es/","description":"Calculadora profesional de MTU y MSS TCP para encapsulación PPPoE, VLAN, GRE, VXLAN, MPLS, IPsec y WireGuard.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
@@ -37,15 +37,15 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Por qué la MTU de PPPoE suele ser 1492?","acceptedAnswer":{"@type":"Answer","text":"Una carga Ethernet de 1500 bytes menos 8 bytes de sobrecarga PPPoE y del protocolo PPP deja 1492 bytes."}},{"@type":"Question","name":"¿VLAN siempre debe reducir la MTU IP en 4 bytes?","acceptedAnswer":{"@type":"Answer","text":"No. La mayoría de dispositivos Ethernet admiten la trama etiquetada ligeramente mayor y mantienen la MTU IP en 1500. Use el modo estricto solo cuando el límite físico de trama no se amplíe."}},{"@type":"Question","name":"¿Por qué los valores de IPsec son estimaciones?","acceptedAnswer":{"@type":"Answer","text":"La sobrecarga ESP depende de IP exterior, NAT-T, IV, etiqueta de integridad y relleno variable. Verifique el conjunto de cifrado y la implementación del proveedor."}},{"@type":"Question","name":"¿Cuál es el MSS TCP correcto para una MTU IPv6 de 1500?","acceptedAnswer":{"@type":"Answer","text":"Con solo cabeceras fijas, 1500 - cabecera IPv6 de 40 bytes - cabecera TCP de 20 bytes = 1440 bytes."}},{"@type":"Question","name":"¿Ping puede demostrar la MTU completa de la ruta?","acceptedAnswer":{"@type":"Answer","text":"Es útil, pero no concluyente. El filtrado ICMP, ECMP, los túneles y el enrutamiento asimétrico pueden afectar el resultado. Combínelo con PMTUD, capturas y contadores de dispositivos."}},{"@type":"Question","name":"¿Qué significa una MTU IPv6 inferior a 1280?","acceptedAnswer":{"@type":"Answer","text":"IPv6 define 1280 bytes como MTU mínima del enlace. Los diseños inferiores requieren fragmentación/reensamblaje en capas inferiores o adaptación y deben revisarse."}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=20261105-method1r">
-<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=20261109-jump">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=475098aa29f5">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../../assets/js/site.js?v=20261109-jump"></script>
-<script defer src="../../../assets/js/es-launch-runtime.js?v=3f188aa72208"></script>
-<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=20261109-res2">
+<script defer src="../../../assets/js/site.js?v=f55d6161a761"></script>
+<script defer src="../../../assets/js/es-launch-runtime.js?v=829a7f1559b7"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
 <link rel="manifest" href="../manifest-es.webmanifest">
 </head><body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1" data-nel-offline-worker="1">
 <a class="skip" href="#calculator">Saltar a la calculadora</a><noscript><div class="noscript">Se requiere JavaScript.</div></noscript>
@@ -172,9 +172,9 @@
   </div>
 </footer>
 <!-- NEL_FOOTER_END -->
-<script defer="" src="../data/mtu-overhead-library.js"></script><script defer="" src="../js/engine.js?v=20261106-mtu2"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=20261106-mtu2"></script><script defer="" src="../js/deep-workflow.js?v=20261106-bw1f"></script>
+<script defer="" src="../data/mtu-overhead-library.js"></script><script defer="" src="../js/engine.js?v=dcf176ac2167"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=2816d5da6ca2"></script><script defer="" src="../js/deep-workflow.js?v=20261106-bw1f"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
-<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=77b297dd25ca"></script></body></html>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=b786c10e6903"></script></body></html>
 
 
 

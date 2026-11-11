@@ -1609,3 +1609,29 @@ body.nel-tool-v3 #calculator .metric>strong#modules,body.nel-tool-v3 #calculator
 body.nel-tool-v3 #calculator #modules .number-pair{display:inline-flex;gap:4px;align-items:baseline;white-space:nowrap}
 body.nel-tool-v3 #calculator #modules .module-note{display:block;font:400 13px/1.5 var(--sans,system-ui);color:#64748b;white-space:normal;margin-top:4px}
 body.nel-tool-v3 #calculator .badge{position:static!important;white-space:normal!important}
+
+/* Planning notes read across the column instead of three narrow stacks. */
+body.nel-tool-v3 #calculator #about-scope .grid{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body.nel-tool-v3 #calculator #about-scope .grid > article,
+body.nel-tool-v3 #calculator #about-scope .eq{
+  background: transparent !important;
+}
+
+/* Result tiles share the summary card edges, and the unit sits on the value. */
+body.nel-tool-v3 #calculator .result-panel .metrics.grp{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+body.nel-tool-v3 #calculator .metrics > .metric > strong,
+body.nel-tool-v3 #calculator .metrics > .metric > strong span,
+body.nel-tool-v3 #calculator .metrics > .metric > strong small{
+  display: inline !important;
+}
+body.nel-tool-v3 #calculator .metrics > .metric > strong small{
+  margin-left: 0.25em !important;
+}

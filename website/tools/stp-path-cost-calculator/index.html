@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#176ff2">
 <title>STP Path Cost Calculator – 802.1D/802.1Q Long &amp; Short Port Cost</title>
 <meta name="description" content="Calculate Spanning Tree port and root path cost with the IEEE 802.1D-2004/802.1Q long method (20,000,000,000 ÷ kb/s) or the legacy short table, and compare two paths to see which one STP selects.">
-<link rel="stylesheet" href="css/style.css?v=20261106-bw1">
+<link rel="stylesheet" href="css/style.css?v=c44b867cda2d">
 <meta name="app-base" content="./">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <meta property="og:type" content="website">
@@ -23,12 +23,12 @@
 <link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
 <meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 
-<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=20261109-mnav">
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/fb-v3.css?v=20261105-method1r">
-<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=35fd6b8f7526">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=718e11ad9233">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=0e51668c3f12">
 <script defer="" src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"STP Path Cost Calculator – 802.1D/802.1Q Long & Short Port Cost","url":"https://netengineerlab.com/tools/stp-path-cost-calculator/","description":"Calculate Spanning Tree port and root path cost with the IEEE 802.1D-2004/802.1Q long method (20,000,000,000 ÷ kb/s) or the legacy short table, and compare two paths to see which one STP selects.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
@@ -43,14 +43,14 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is STP path cost calculated?","acceptedAnswer":{"@type":"Answer","text":"Root path cost is the sum of the port costs from the switch to the root bridge. With the long method each port cost is 20,000,000,000 ÷ link speed in kb/s."}},{"@type":"Question","name":"What is the STP cost of a 10G link?","acceptedAnswer":{"@type":"Answer","text":"2,000 with the long method (802.1D-2004/802.1Q) and 2 with the legacy short method."}},{"@type":"Question","name":"What is the STP cost of 100G?","acceptedAnswer":{"@type":"Answer","text":"200 with the long method. The 802.1D-1998 short table stops at 10 Gbps, so 100G has no standard short value."}},{"@type":"Question","name":"Why did IEEE change to long path costs?","acceptedAnswer":{"@type":"Answer","text":"16-bit short costs could not separate links faster than 10 Gbps, causing ties. The 32-bit long method scales to 10 Tb/s."}},{"@type":"Question","name":"What happens when two paths have equal cost?","acceptedAnswer":{"@type":"Answer","text":"STP compares the sender bridge ID, then the sender port ID, and the lower value wins."}}]}</script>
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=20261105-method1r">
-<link rel="stylesheet" href="../../assets/css/site-shell.css?v=20261109-jump">
+<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=475098aa29f5">
 <script defer src="../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../assets/js/site.js?v=20261109-jump"></script>
-<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=20261109-res2">
+<script defer src="../../assets/js/site.js?v=f55d6161a761"></script>
+<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=c4aecb2c24ab">
 <link rel="manifest" href="manifest.webmanifest">
 </head>
 <body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1" data-nel-offline-worker="1">
@@ -180,8 +180,8 @@
 <script defer src="js/engine.js?v=f5dac5b1767f"></script>
 <script defer src="js/pwa.js"></script>
 <script defer src="../../assets/js/tool-integration.js?v=05f7934f4687"></script>
-<script defer src="js/app.js?v=20261106-bw1"></script>
+<script defer src="js/app.js?v=ec22acda2339"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
-<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=77b297dd25ca"></script>
+<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=b786c10e6903"></script>
 </body>
 </html>

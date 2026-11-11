@@ -631,17 +631,30 @@ function injectToolReturnNavigation(html,currentRel,currentInfo){
  if(headerEnd.test(html))return html.replace(headerEnd,match=>`${match}\n${nav}`);
  return html.replace(/<\/header>/i,match=>`${match}\n${nav}`);
 }
-function updateManifestLink(html,currentRel,info){
+function supplementalLocaleManifestWillBeWritten(toolSlug,locale,groups){
+ if(!supplementalSlugs.has(toolSlug)||locale.id===defaultLocale.id)return false;
+ const route=`tools/${toolSlug}/`;
+ if(!groups||!groups.get(route)?.has(locale.id))return false;
+ if(!fs.existsSync(path.join(siteRoot,"tools",toolSlug,"manifest.webmanifest")))return false;
+ return !fs.existsSync(path.join(siteRoot,"tools",toolSlug,`manifest-${locale.folder}.webmanifest`));
+}
+function updateManifestLink(html,currentRel,info,groups){
  if(info.kind!=="tool")return html;
  const locale=localeMap.get(info.localeId);
  const fileName=locale.id===defaultLocale.id?"manifest.webmanifest":`manifest-${locale.folder}.webmanifest`;
  const manifestRel=`tools/${info.toolSlug}/${fileName}`;
  const baseRel=`tools/${info.toolSlug}/manifest.webmanifest`;
- // Locale manifests are written later from the English file. Skip the link
- // when neither file exists so the page does not advertise a 404.
- const manifestExists=fs.existsSync(path.join(siteRoot,...manifestRel.split("/")))||fs.existsSync(path.join(siteRoot,...baseRel.split("/")));
+ const exactExists=fs.existsSync(path.join(siteRoot,...manifestRel.split("/")));
+ const baseExists=fs.existsSync(path.join(siteRoot,...baseRel.split("/")));
+ const route=`tools/${info.toolSlug}/`;
+ const localePage=Boolean(groups&&groups.get(route)?.has(locale.id));
+ // Catalog tools still get a locale link when the English manifest exists;
+ // generateManifests writes that file before the link check. Supplemental
+ // tools are not in the catalog, so advertise a locale file only when this
+ // build will actually create it or it is already on disk.
+ const catalogWillWrite=activeTools.some(item=>item.id===info.toolSlug)&&baseExists&&localePage;
  html=html.replace(/<link\b[^>]*\brel\s*=\s*["'][^"']*\bmanifest\b[^"']*["'][^>]*>\s*/gi,"");
- if(!manifestExists)return html;
+ if(!exactExists&&!catalogWillWrite&&!supplementalLocaleManifestWillBeWritten(info.toolSlug,locale,groups))return html;
  const href=relativeFile(currentRel,manifestRel);
  return html.replace(/<\/head>/i,`<link rel="manifest" href="${href}">\n</head>`);
 }
@@ -729,6 +742,35 @@ function generateManifests(groups){
     sw=isolateServiceWorkerCache(sw);
     writeFileWithRetry(swPath,sw,"utf8");
    }
+  }
+ }
+ // Supplemental planners are published outside the tool catalog. Create a
+ // missing locale manifest from the English file without overwriting a
+ // manifest that was already authored for another locale.
+ for(const slug of supplementalSlugs){
+  const toolRoot=path.join(siteRoot,"tools",slug);
+  const baseManifestPath=path.join(toolRoot,"manifest.webmanifest");
+  if(!fs.existsSync(baseManifestPath))continue;
+  let template={};
+  try{template=JSON.parse(fs.readFileSync(baseManifestPath,"utf8"));}catch{continue;}
+  const route=`tools/${slug}/`;
+  for(const locale of activeLocales){
+   if(!supplementalLocaleManifestWillBeWritten(slug,locale,groups))continue;
+   const pageFile=path.join(toolRoot,locale.folder,"index.html");
+   const pageHtml=fs.readFileSync(pageFile,"utf8");
+   const title=(pageHtml.match(/<title>([^<]*)<\/title>/i)||["",""])[1];
+   const name=title.split("|")[0].trim();
+   const description=(pageHtml.match(/<meta\s+name=["']description["']\s+content=["']([^"']*)["']/i)||["",""])[1];
+   const manifest={
+    ...template,
+    id:urlForRoute(route,locale),
+    scope:`/tools/${slug}/`,
+    ...(name?{name:`NetEngineerLab ${name}`,short_name:name}:{}),
+    ...(description?{description}:{}),
+    lang:locale.htmlLang,
+    start_url:urlForRoute(route,locale)
+   };
+   writeFileWithRetry(path.join(toolRoot,`manifest-${locale.folder}.webmanifest`),JSON.stringify(manifest,null,2)+"\n","utf8");
   }
  }
 }
@@ -1094,7 +1136,7 @@ function build(){
    // tool-specific stylesheet so legacy width/mobile rules cannot win.
    html=ensureAsset(html,record.rel,"assets/css/tool-layout.css","css");
   }
-  html=updateManifestLink(html,record.rel,record.info);
+  html=updateManifestLink(html,record.rel,record.info,groups);
   html=html.replace(/<head>([\s\S]*?)<\/head>/i,(whole,body)=>`<head>${body.replace(/(?:\r?\n[ \t]*){3,}/g,"\n\n")}</head>`);
   if(hadToolMain&&!/<main\b/i.test(html))throw new Error(`${record.rel}: build transform removed the tool main; source was not overwritten`);
   writeFileWithRetry(record.file,html,"utf8");

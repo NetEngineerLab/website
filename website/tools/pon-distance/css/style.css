@@ -1115,3 +1115,128 @@ body.nel-tool-v3 .nel-scenario-card .nel-scenario-link:hover{
   }
 }
 
+
+/* The metric grid frame was a third border around the tiles. */
+body.nel-tool-v3 #calculator .metric-grid{
+  border:0 !important;
+  box-shadow:none !important;
+  background:transparent !important;
+}
+
+/* Loss tiles use the same columns, inset and baseline as the distance metrics. */
+body.nel-tool-v3 #calculator .result-grid{
+  display:grid !important;
+  grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+  gap:12px 0 !important;
+  width:100% !important;
+  max-width:100% !important;
+  margin:12px 0 0 !important;
+  padding:12px !important;
+  box-sizing:border-box !important;
+  border:0 !important;
+  box-shadow:none !important;
+  background:transparent !important;
+  align-items:stretch !important;
+}
+body.nel-tool-v3 #calculator .result-grid > .result-box{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:flex-start !important;
+  justify-content:flex-start !important;
+  gap:6px !important;
+  width:100% !important;
+  min-width:0 !important;
+  height:100% !important;
+  margin:0 !important;
+  padding:12px 14px !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+body.nel-tool-v3 #calculator .result-grid > .result-box > span{
+  display:block !important;
+  min-width:0 !important;
+  color:#667d92 !important;
+  font-size:13px !important;
+  font-weight:500 !important;
+  line-height:1.35 !important;
+}
+body.nel-tool-v3 #calculator .result-grid > .result-box > strong{
+  display:block !important;
+  margin-top:auto !important;
+  color:#E8590C !important;
+  font:500 18px/1.25 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
+  white-space:nowrap !important;
+}
+body.nel-tool-v3 #calculator .result-grid > .result-box > strong span{
+  display:inline !important;
+  color:inherit !important;
+  font:inherit !important;
+}
+body.nel-tool-v3 #calculator .result-grid > .result-box:nth-child(odd){
+  border-right-width:0 !important;
+  border-top-right-radius:0 !important;
+  border-bottom-right-radius:0 !important;
+}
+body.nel-tool-v3 #calculator .result-grid > .result-box:nth-child(even){
+  border-left-width:0 !important;
+  border-top-left-radius:0 !important;
+  border-bottom-left-radius:0 !important;
+}
+@media (max-width:520px){
+  body.nel-tool-v3 #calculator .result-grid{
+    grid-template-columns:minmax(0, 1fr) !important;
+    gap:12px !important;
+  }
+  body.nel-tool-v3 #calculator .result-grid > .result-box{
+    border-width:1px !important;
+    border-radius:14px !important;
+  }
+}
+
+/* Loss tiles share the distance-metric edges. The 12px frame inset is removed. */
+body.nel-tool-v3 #calculator > .workspace > .result-panel .result-grid{
+  padding:0 !important;
+  margin-top:20px !important;
+}
+body.nel-tool-v3 #calculator > .workspace > .result-panel .readout > .metric-grid{
+  padding-bottom:0 !important;
+}
+html body.nel-tool-v3 #calculator > .workspace > .result-panel.readout > .readout > .metric-grid.grp > .metric{
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  background:transparent !important;
+}
+body.nel-tool-v3 #calculator > .workspace > .result-panel .distance-visual{
+  margin-top:20px !important;
+}
+body.nel-tool-v3 #calculator #history > .fb-fold-body > .content-section{
+  border:1px solid #d7e3f1 !important;
+  border-radius:14px !important;
+  background:#fff !important;
+  padding:14px 18px 16px !important;
+  box-sizing:border-box !important;
+}
+body.nel-tool-v3 #calculator #references > .fb-fold-body > .content-section > .section-heading{
+  margin:0 !important;
+  padding:14px 18px 0 !important;
+  background:#fff !important;
+  border:1px solid #d7e3f1 !important;
+  border-bottom:0 !important;
+  border-radius:14px 14px 0 0 !important;
+  box-sizing:border-box !important;
+}
+body.nel-tool-v3 #calculator #references > .fb-fold-body > .content-section.nel-tool-supporting-section > p{
+  border-top:0 !important;
+  border-radius:0 !important;
+  margin-top:0 !important;
+  padding-top:8px !important;
+}
+
+/* The result panel and the diagnosis card are the two borders. */
+body.nel-tool-v3 #calculator .diagnosis .cause-list li{
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  border-radius:0 !important;
+}

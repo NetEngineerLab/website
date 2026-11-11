@@ -6,10 +6,10 @@
 <meta content="免费PON距离计算：按分光比、发送功率、接收灵敏度、光纤与分光损耗，即时算出GPON最大距离，并判断受光预算还是20 km系统距离限制。" name="description"/>
 <meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
 <meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="PON计算器（免费）｜最大传输距离与光预算（GPON B+/C+）" property="og:title"/><meta content="免费PON距离计算：按分光比、发送功率、接收灵敏度、光纤与分光损耗，即时算出GPON最大距离，并判断受光预算还是20 km系统距离限制。" property="og:description"/><meta content="https://netengineerlab.com/tools/pon-distance/zh/" property="og:url"/><meta content="https://netengineerlab.com/tools/pon-distance/images/og-pon-maximum-distance.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
-<link href="../css/style.css?v=20261106-fl4s1" rel="stylesheet"/>
+<link href="../css/style.css?v=3dfd643d7497" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"PON最大传输距离计算器","alternateName":"PON Maximum Distance Calculator","url":"https://netengineerlab.com/tools/pon-distance/zh/","applicationCategory":"UtilitiesApplication","applicationSubCategory":"PON Engineering Calculator","operatingSystem":"Any","softwareVersion":"1.0.0","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"工具中心","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"PON最大传输距离计算器","item":"https://netengineerlab.com/tools/pon-distance/zh/"}]}</script><meta content="NetEngineerLab" name="author"/>
-<link href="/assets/css/cookie-consent.css?v=20261109-mnav" rel="stylesheet"/>
+<link href="/assets/css/cookie-consent.css?v=2f2c8ab643e6" rel="stylesheet"/>
 <link href="/assets/css/mobile-branding.css?v=345784b6b020" rel="stylesheet"/>
 <script defer="" src="/data/seo-config.js"></script>
 <script defer="" src="/assets/js/seo-engine.js?v=15ac96553c44"></script>
@@ -23,8 +23,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/fb-v3.css?v=20261105-method1r">
-<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=35fd6b8f7526">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=718e11ad9233">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=0e51668c3f12">
 <script defer="" src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"PON计算器（免费）｜最大传输距离与光预算（GPON B+/C+）","url":"https://netengineerlab.com/tools/pon-distance/zh/","description":"免费PON距离计算：按分光比、发送功率、接收灵敏度、光纤与分光损耗，即时算出GPON最大距离，并判断受光预算还是20 km系统距离限制。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
@@ -39,14 +39,14 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么光预算能到30 km，结果却只显示20 km？","acceptedAnswer":{"@type":"Answer","text":"因为有效距离取光预算距离和系统距离上限中的较小值。即使光功率足够，OLT测距或网络配置也可能限制实际部署距离。"}},{"@type":"Question","name":"一级1:8加二级1:8为什么总分光比是1:64？","acceptedAnswer":{"@type":"Answer","text":"两级分支数量相乘，8×8=64；损耗则按两个分光器的实际插入损耗相加。"}},{"@type":"Question","name":"光预算最大距离是否等于可建设距离？","acceptedAnswer":{"@type":"Answer","text":"不一定。还要核对系统距离上限、光缆路由、差分距离、设备规格和企业规划标准。"}},{"@type":"Question","name":"规划距离显示“仅物理可达”是什么意思？","acceptedAnswer":{"@type":"Answer","text":"说明物理损耗还未超过接收灵敏度预算，但无法完整保留设定的工程余量，长期可靠性不足。"}},{"@type":"Question","name":"工程余量应该设置多少？","acceptedAnswer":{"@type":"Answer","text":"应按企业标准和项目场景设置，用于覆盖老化、温度变化、维护连接、污染和测量误差。"}},{"@type":"Question","name":"最大距离计算能否替代OTDR测试？","acceptedAnswer":{"@type":"Answer","text":"不能。本工具用于设计和复核，现场仍需光功率计、OTDR及真实设备参数进行验证。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=20261105-method1r">
-<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=20261109-jump">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=475098aa29f5">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../../assets/js/site.js?v=20261109-jump"></script>
-<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=20261109-res2">
+<script defer src="../../../assets/js/site.js?v=f55d6161a761"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head><body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1" data-nel-offline-worker="1">
 
@@ -191,8 +191,8 @@
   </div>
 </footer>
 <!-- NEL_FOOTER_END -->
-<script defer="" src="../js/engine.js?v=b5210f0fd4a9"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=20261106-fl4s1"></script><script defer="" src="../js/scenarios.js"></script>
+<script defer="" src="../js/engine.js?v=b5210f0fd4a9"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=3c89c7386fc4"></script><script defer="" src="../js/scenarios.js"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
-<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=77b297dd25ca"></script><script defer src="../../../assets/js/tool-detail-v3.js?v=6f38212f00f3"></script>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=b786c10e6903"></script><script defer src="../../../assets/js/tool-detail-v3.js?v=6f38212f00f3"></script>
 </body></html>
 

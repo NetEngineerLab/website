@@ -691,6 +691,23 @@ body.nel-tool-v3 #calculator #about-scope .bw-scope-note-grid>article>p{
  height:auto!important;max-height:none!important;overflow:visible!important;
 }
 
+/* The EIRP and fade-margin notes sit side by side. The shared three-column
+   grid left an empty tinted column on the right. */
+body.nel-tool-v3 #calculator #about-scope .grid{
+ display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+ gap:18px!important;width:100%!important;max-width:none!important;margin:0!important;
+ padding:0!important;background:transparent!important;border:0!important;
+ border-radius:0!important;box-shadow:none!important;overflow:visible!important;
+}
+body.nel-tool-v3 #calculator #about-scope .grid>article{
+ min-width:0!important;margin:0!important;padding:0!important;
+ background:transparent!important;border:0!important;border-radius:0!important;
+ box-shadow:none!important;
+}
+@media(max-width:800px){
+ body.nel-tool-v3 #calculator #about-scope .grid{grid-template-columns:minmax(0,1fr)!important}
+}
+
 /* Resting inputs keep one thin bar. Focus stays on that same bar. */
 body.nel-tool-v3 #calculator .input-wrap{
   border:1px solid #c5d2e0!important;
@@ -713,4 +730,16 @@ body.nel-tool-v3 #calculator .input-wrap>:is(input,select,textarea){
   min-height:0!important;
   height:auto!important;
   padding:0!important;
+}
+
+/* Engineering scope sits under the related-tool cards. Keep the same 16px gap used above that row. */
+body.nel-tool-v3 #calculator .prose > #review-and-related{
+  margin-top:16px !important;
+}
+
+/* The result panel and the calculated-result card are the two borders. */
+body.nel-tool-v3 #calculator .result-panel > .summary{
+  border:0 !important;
+  box-shadow:none !important;
+  background:transparent !important;
 }

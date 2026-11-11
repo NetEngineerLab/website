@@ -32,6 +32,10 @@ assert.equal(expected.has("/zh/guides/switch-oversubscription-ratio/"), true);
 assert.equal(expected.has("/tools/application-bandwidth-analyzer/"), true);
 assert.equal(expected.has("/tools/application-bandwidth-analyzer/zh/"), true);
 assert.equal(expected.has("/tools/ip-camera-network-planner/"), true);
-assert.equal(expected.has("/tools/ip-camera-network-planner/es/"), false);
+assert.equal(expected.has("/tools/ip-camera-network-planner/es/"), true);
+assert.equal(expected.has("/tools/application-bandwidth-analyzer/es/"), true);
+assert.equal(expected.has("/tools/data-center-architecture-decision-workshop/es/"), true);
+assert.equal(expected.has("/tools/network-asset-lifecycle-tracker/es/"), true);
+assert.equal(expected.has("/tools/oob-network-design-planner/es/"), false);
 
 console.log(`Expected sitemap set PASS (${expected.size} URLs match website/sitemap.xml).`);

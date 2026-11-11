@@ -442,15 +442,25 @@ body.nel-tool-v3 #calculator .below > .toc a.on {
 
 body.nel-tool-v3 #calculator #methodology .grid {
   display: grid !important;
-  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-  gap: 12px !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 14px !important;
   background: transparent !important;
   padding: 0 !important;
   border: 0 !important;
   box-shadow: none !important;
 }
-@media (max-width: 900px) {
-  body.nel-tool-v3 #calculator #methodology .grid {
+body.nel-tool-v3 #calculator #methodology .grid > article {
+  display: grid !important;
+  grid-template-columns: minmax(180px, 240px) minmax(0, 1fr) !important;
+  gap: 8px 18px !important;
+  align-items: start !important;
+}
+body.nel-tool-v3 #calculator #methodology .grid > article > h3,
+body.nel-tool-v3 #calculator #methodology .grid > article > p {
+  margin: 0 !important;
+}
+@media (max-width: 640px) {
+  body.nel-tool-v3 #calculator #methodology .grid > article {
     grid-template-columns: minmax(0, 1fr) !important;
   }
 }

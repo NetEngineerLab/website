@@ -423,17 +423,37 @@ function hasPrecacheAsset(source, expectedPath) {
   return parsePrecacheAssets(source).some(item => item.split(/[?#]/)[0] === expectedPath);
 }
 
+function isDrivePath(clean) {
+  return /^[a-zA-Z]:/.test(clean);
+}
+
+function isSiteRootUrl(clean) {
+  return clean.startsWith("/") && !clean.startsWith("//") && !isDrivePath(clean);
+}
+
+function isFilesystemAbsolute(clean) {
+  if (isDrivePath(clean) || clean.startsWith("\\\\")) return true;
+  if (isSiteRootUrl(clean)) return false;
+  return path.win32.isAbsolute(clean) || path.posix.isAbsolute(clean);
+}
+
+function resolvePrecacheTarget(clean, toolRoot, siteRoot) {
+  const parts = clean.split("/").filter(part => part.length > 0);
+  const root = isSiteRootUrl(clean) ? siteRoot : toolRoot;
+  return path.resolve(root, ...parts);
+}
+
 function precachePathIssues(assets, toolRoot, siteRoot) {
   const issues = [];
   const allowedDirectories = new Set(["./", "./zh/", "./es/"]);
   const realSiteRoot = fs.realpathSync(siteRoot);
   for (const asset of assets) {
     const clean = String(asset).split(/[?#]/)[0];
-    if (!clean || clean.includes("\\") || clean.includes("\0") || /^[a-z][a-z0-9+.-]*:/i.test(clean) || path.isAbsolute(clean) || path.win32.isAbsolute(clean) || clean.startsWith("//") || /%(?:2e|2f|5c)/i.test(clean)) {
+    if (!clean || clean.includes("\\") || clean.includes("\0") || /^[a-z][a-z0-9+.-]*:/i.test(clean) || isFilesystemAbsolute(clean) || clean.startsWith("//") || /%(?:2e|2f|5c)/i.test(clean)) {
       issues.push(`${asset}: invalid precache path`);
       continue;
     }
-    const target = path.resolve(toolRoot, ...clean.split("/"));
+    const target = resolvePrecacheTarget(clean, toolRoot, siteRoot);
     const relativeToSite = path.relative(siteRoot, target);
     if (!relativeToSite || relativeToSite.startsWith(`..${path.sep}`) || relativeToSite === ".." || path.isAbsolute(relativeToSite)) {
       issues.push(`${asset}: outside website deployment root`);
@@ -459,7 +479,7 @@ function serviceWorkerCacheVersion(assets, toolRoot, siteRoot) {
   if (issues.length) throw new Error(`Invalid Service Worker precache assets for ${path.relative(siteRoot, toolRoot)}: ${issues.join("; ")}`);
   return stableHash(assets.map(item => {
     const clean = String(item).split(/[?#]/)[0];
-    const target = path.resolve(toolRoot, clean);
+    const target = resolvePrecacheTarget(clean, toolRoot, siteRoot);
     if (fs.existsSync(target) && fs.statSync(target).isFile()) return `${item}:${stableFileHash(target, 12)}`;
     return item;
   }).join("\n"), 12);
@@ -483,6 +503,9 @@ module.exports = {
   parsePrecacheAssets,
   parsePrecacheArrayLiteral,
   hasPrecacheAsset,
+  isSiteRootUrl,
+  isFilesystemAbsolute,
+  resolvePrecacheTarget,
   precachePathIssues,
   serviceWorkerCacheVersion,
   refreshServiceWorkerCacheName

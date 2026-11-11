@@ -8,16 +8,17 @@
 <meta property="og:url" content="https://netengineerlab.com/guides/switch-oversubscription-n-1/"><meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/css/site.css">
-<link rel="stylesheet" href="../../assets/css/guide.css?v=f69c3b2daf49">
+<link rel="stylesheet" href="../../assets/css/guide.css?v=09f302fd8b51">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://netengineerlab.com/guides/switch-oversubscription-n-1/#webpage","name":"How to Calculate Switch Uplink Capacity Under N-1 Failure","description":"Calculate normal and surviving switch uplink capacity, N-1 oversubscription and busy-hour headroom with practical link and device failure examples.","url":"https://netengineerlab.com/guides/switch-oversubscription-n-1/","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}},{"@type":"Article","@id":"https://netengineerlab.com/guides/switch-oversubscription-n-1/#article","headline":"How to Calculate Switch Uplink Capacity Under N-1 Failure","description":"Calculate normal and surviving switch uplink capacity, N-1 oversubscription and busy-hour headroom with practical link and device failure examples.","url":"https://netengineerlab.com/guides/switch-oversubscription-n-1/","inLanguage":"en","mainEntityOfPage":{"@id":"https://netengineerlab.com/guides/switch-oversubscription-n-1/#webpage"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/","logo":{"@type":"ImageObject","url":"https://netengineerlab.com/assets/images/logo.svg"}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"How to Calculate Switch Uplink Capacity Under N-1 Failure","item":"https://netengineerlab.com/guides/switch-oversubscription-n-1/"}]}]}</script>
 
 <meta name="twitter:title" content="How to Calculate Switch Uplink Capacity Under N-1 Failure | NetEngineerLab">
 <meta name="twitter:description" content="Calculate normal and surviving switch uplink capacity, N-1 oversubscription and busy-hour headroom with practical link and device failure examples.">
 
-<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=20261109-mnav">
-<link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../assets/css/site-shell.css?v=20261109-jump">
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
 <link rel="stylesheet" href="../../assets/css/site-pages-v2.css?v=20261105-v2">
+<link rel="stylesheet" href="../../assets/css/editorial-fresh.css?v=20261109-edit7">
+<link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=475098aa29f5">
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"How to Calculate Switch Uplink Capacity Under N-1 Failure | NetEngineerLab","url":"https://netengineerlab.com/guides/switch-oversubscription-n-1/","description":"Calculate normal and surviving switch uplink capacity, N-1 oversubscription and busy-hour headroom with practical link and device failure examples.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why can a network pass normal-state checks but fail N-1?","acceptedAnswer":{"@type":"Answer","text":"Because the same traffic demand must be carried by less remaining capacity after a failure."}},{"@type":"Question","name":"Does N-1 always mean one physical link?","acceptedAnswer":{"@type":"Answer","text":"No. It means one required component is unavailable. The exact component depends on the architecture and resilience requirement."}},{"@type":"Question","name":"Should I design N-1 for 100% of theoretical access bandwidth?","acceptedAnswer":{"@type":"Answer","text":"Not necessarily. Use the service objective and realistic busy-hour demand, but keep the maximum theoretical ratio visible for context."}},{"@type":"Question","name":"Is 4.8:1 N-1 automatically unacceptable?","acceptedAnswer":{"@type":"Answer","text":"No. The ratio is only one indicator. Compare it with actual demand, application sensitivity and the required service level during failure."}}]}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
@@ -33,8 +34,7 @@
 <script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../assets/js/site.js?v=20261109-jump"></script>
-<link rel="stylesheet" href="../../assets/css/editorial-fresh.css?v=20261109-edit7">
+<script defer src="../../assets/js/site.js?v=f55d6161a761"></script>
 </head><body class="guide-page guide-fresh"><!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
   <div class="site-shell-header-inner">

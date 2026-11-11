@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html data-nel-locale="en" data-nel-route="tools/pmd-budget-calculator/" dir="ltr" lang="en">
+<html lang="en" dir="ltr" data-nel-locale="en" data-nel-route="tools/pmd-budget-calculator/">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -19,69 +19,69 @@
 <meta content="PMD Budget Calculator – Mean DGD, ps/√km &amp; PMD-Limited Length" name="twitter:title"/>
 <meta content="Calculate polarization mode dispersion: mean DGD from the PMD coefficient × √length, components added in quadrature, the allowed DGD as a fraction of the symbol period, margin and PMD-limited length." name="twitter:description"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://netengineerlab.com/tools/pmd-budget-calculator/#app","name":"PMD Budget Calculator","url":"https://netengineerlab.com/tools/pmd-budget-calculator/","description":"Calculate fiber and link mean DGD from the PMD coefficient, compare it with the symbol-period tolerance and find the PMD-limited length.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Network Engineering Calculator","operatingSystem":"Any","browserRequirements":"Requires JavaScript and a modern web browser","softwareVersion":"1.0.0","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/pmd-budget-calculator/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"NetEngineerLab","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"PMD Budget Calculator","item":"https://netengineerlab.com/tools/pmd-budget-calculator/"}]}]}</script>
-<link data-nel-workflow-style="" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
 <meta content="https://netengineerlab.com/assets/images/og-netengineerlab.png" name="twitter:image"/>
-<link href="/assets/css/cookie-consent.css?v=20261109-mnav" rel="stylesheet"/>
+<link href="/assets/css/cookie-consent.css?v=2f2c8ab643e6" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif:ital@1&amp;display=swap" rel="stylesheet"/>
-<link href="/assets/css/fb-v3.css?v=20261105-method1r" rel="stylesheet"/>
-<link href="/assets/css/fb-v3-prod.css?v=35fd6b8f7526" rel="stylesheet"/>
+<link href="/assets/css/fb-v3.css?v=718e11ad9233" rel="stylesheet"/>
+<link href="/assets/css/fb-v3-prod.css?v=0e51668c3f12" rel="stylesheet"/>
 <script defer="" src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
-<script data-nel-schema="webpage" type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"PMD Budget Calculator – Mean DGD, ps/√km & PMD-Limited Length","url":"https://netengineerlab.com/tools/pmd-budget-calculator/","description":"Calculate polarization mode dispersion: mean DGD from the PMD coefficient × √length, components added in quadrature, the allowed DGD as a fraction of the symbol period, margin and PMD-limited length.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
-<meta content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline" name="nel-framework"/>
-<meta content="en" name="nel-locale"/>
-<meta content="tools/pmd-budget-calculator/" name="nel-route"/>
-<meta content="en,zh,es" name="nel-available-locales"/>
-<link href="https://netengineerlab.com/tools/pmd-budget-calculator/" rel="canonical"/>
-<link href="https://netengineerlab.com/tools/pmd-budget-calculator/" hreflang="en" rel="alternate"/>
-<link href="https://netengineerlab.com/tools/pmd-budget-calculator/zh/" hreflang="zh-CN" rel="alternate"/>
-<link href="https://netengineerlab.com/tools/pmd-budget-calculator/es/" hreflang="es" rel="alternate"/>
-<link href="https://netengineerlab.com/tools/pmd-budget-calculator/" hreflang="x-default" rel="alternate"/>
-<script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I calculate PMD for a fiber link?","acceptedAnswer":{"@type":"Answer","text":"Mean DGD = PMD coefficient × √length. 0.20 ps/√km over 80 km is 0.2 × 8.94 = 1.79 ps. Add component DGD in quadrature."}},{"@type":"Question","name":"What is the PMD limit for 10G?","acceptedAnswer":{"@type":"Answer","text":"With the common rule of 10% of the bit period, 10.3125 GBd allows about 9.7 ps mean DGD. Older fiber with 0.5 ps/√km reaches that in about 376 km."}},{"@type":"Question","name":"Why does PMD grow with the square root of length?","acceptedAnswer":{"@type":"Answer","text":"Birefringence changes randomly along the fiber, so the delay accumulates like a random walk, which scales with √L."}},{"@type":"Question","name":"What is the difference between PMD and DGD?","acceptedAnswer":{"@type":"Answer","text":"DGD is the instantaneous delay between the two polarization modes. PMD is its mean value over wavelength and time, and the coefficient is that mean per √km."}},{"@type":"Question","name":"Does PMD matter for coherent 100G or 400G?","acceptedAnswer":{"@type":"Answer","text":"Much less. Coherent DSPs compensate tens of ps of DGD, so legacy fiber that limits 10G NRZ can still carry coherent channels."}}]}</script>
-<link href="../../assets/css/locale-menu.css?v=7804394246fb" rel="stylesheet"/>
-<link href="../../assets/css/design-tokens.css?v=10e842cd32cf" rel="stylesheet"/>
-<link href="../../assets/css/tool-design-system.css?v=20261105-method1r" rel="stylesheet"/>
-<link href="../../assets/css/site-shell.css?v=20261109-jump" rel="stylesheet"/>
-<script defer="" src="../../data/locales.js?v=909e05076a50"></script>
-<script defer="" src="../../data/site-config.js?v=b5072ad7fa47"></script>
-<script defer="" src="../../assets/js/analytics.js?v=1156b7864023"></script>
-<script defer="" src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer="" src="../../assets/js/site.js?v=20261109-jump"></script>
-<link href="../../assets/css/tool-layout.css?v=20261109-res2" rel="stylesheet"/>
-<link href="manifest.webmanifest" rel="manifest"/>
-<link href="css/style.css?v=20261108-pmd-bw5" rel="stylesheet"/></head>
+<link href="css/style.css?v=cd40dc3205ef" rel="stylesheet"/><script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"PMD Budget Calculator – Mean DGD, ps/√km & PMD-Limited Length","url":"https://netengineerlab.com/tools/pmd-budget-calculator/","description":"Calculate polarization mode dispersion: mean DGD from the PMD coefficient × √length, components added in quadrature, the allowed DGD as a fraction of the symbol period, margin and PMD-limited length.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="en">
+<meta name="nel-route" content="tools/pmd-budget-calculator/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/tools/pmd-budget-calculator/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/pmd-budget-calculator/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/pmd-budget-calculator/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/pmd-budget-calculator/es/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/pmd-budget-calculator/">
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I calculate PMD for a fiber link?","acceptedAnswer":{"@type":"Answer","text":"Mean DGD = PMD coefficient × √length. 0.20 ps/√km over 80 km is 0.2 × 8.94 = 1.79 ps. Add component DGD in quadrature."}},{"@type":"Question","name":"What is the PMD limit for 10G?","acceptedAnswer":{"@type":"Answer","text":"With the common rule of 10% of the bit period, 10.3125 GBd allows about 9.7 ps mean DGD. Older fiber with 0.5 ps/√km reaches that in about 376 km."}},{"@type":"Question","name":"Why does PMD grow with the square root of length?","acceptedAnswer":{"@type":"Answer","text":"Birefringence changes randomly along the fiber, so the delay accumulates like a random walk, which scales with √L."}},{"@type":"Question","name":"What is the difference between PMD and DGD?","acceptedAnswer":{"@type":"Answer","text":"DGD is the instantaneous delay between the two polarization modes. PMD is its mean value over wavelength and time, and the coefficient is that mean per √km."}},{"@type":"Question","name":"Does PMD matter for coherent 100G or 400G?","acceptedAnswer":{"@type":"Answer","text":"Much less. Coherent DSPs compensate tens of ps of DGD, so legacy fiber that limits 10G NRZ can still carry coherent channels."}}]}</script>
+<link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=475098aa29f5">
+<script defer src="../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../assets/js/site.js?v=f55d6161a761"></script>
+<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=c4aecb2c24ab">
+<link rel="manifest" href="manifest.webmanifest">
+</head>
 <body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-offline-worker="1" data-nel-template="tool-detail-v1.3.1" data-nel-v3-migrated="1" data-nel-visual="network-change-planner-reference">
 <a class="skip-link" href="#calculator">Skip to calculator</a>
 <noscript><div class="noscript">JavaScript is required to run this calculator.</div></noscript>
 <!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
-<div class="site-shell-header-inner">
-<a class="site-shell-brand brand" href="../../">
-<img alt="" height="42" src="../../assets/images/logo.svg" width="42"/>
-<span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span>
-</a>
-<button aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation" class="site-shell-menu-toggle" type="button"><span aria-hidden="true"></span></button>
-<nav aria-label="Primary navigation" class="site-shell-nav nel-global-nav" id="site-shell-nav">
-<a href="../../">Home</a>
-<a aria-current="page" href="../">Tools</a>
-<a href="../../guides/">Guides</a>
-<a href="../../topics/">Topics</a>
-</nav>
-<div class="site-shell-actions">
-<!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu="" data-open="false"><button aria-expanded="false" aria-haspopup="true" aria-label="Language: English" class="language-trigger" type="button"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z" fill="currentColor"></path></svg><span class="language-current">English</span><span aria-hidden="true" class="language-caret">▾</span></button><div class="language-options" hidden="" role="menu"><a aria-current="page" class="language-option" href="/tools/pmd-budget-calculator/" hreflang="en" lang="en" role="menuitem"><span>English</span><small>English</small></a><a class="language-option" href="/tools/pmd-budget-calculator/zh/" hreflang="zh-CN" lang="zh-CN" role="menuitem"><span>简体中文</span><small>Chinese</small></a><a class="language-option" href="/tools/pmd-budget-calculator/es/" hreflang="es" lang="es" role="menuitem"><span>Español</span><small>Spanish</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
-<div class="site-shell-context-action"><a href="#calculator">Start calculating</a></div>
-</div>
-</div>
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Primary navigation">
+      <a href="../../">Home</a>
+      <a href="../" aria-current="page">Tools</a>
+      <a href="../../guides/">Guides</a>
+      <a href="../../topics/">Topics</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/pmd-budget-calculator/" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="/tools/pmd-budget-calculator/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a><a class="language-option" role="menuitem" href="/tools/pmd-budget-calculator/es/" lang="es" hreflang="es"><span>Español</span><small>Spanish</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">Start calculating</a></div>
+    </div>
+  </div>
 </header>
 <!-- NEL_HEADER_END -->
 <!-- NEL_TOOL_RETURN_START -->
-<nav aria-label="Breadcrumb" class="breadcrumbs tool-return-nav">
-<a href="../../">Home</a>
-<span aria-hidden="true">/</span>
-<a class="tool-return-link" href="../">Tools</a>
-<span aria-hidden="true">/</span>
-<span aria-current="page">PMD Budget Calculator</span>
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a href="../../">Home</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../">Tools</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">PMD Budget Calculator</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
 <section aria-hidden="true" class="hero nel-tool-hero"><div class="hero-inner">
@@ -124,29 +124,29 @@
 <ul><li><a class="std-chip" href="https://www.itu.int/rec/T-REC-G.652/en" rel="noopener">ITU-T G.652 (08/2024): §7.2 and Table 1/Table 2: maximum PMDQ link design value 0.20 ps/√km for G.652.B/D (M = 20 cables, Q = 0.01%)</a></li><li><a class="std-chip" href="https://www.itu.int/rec/T-REC-G.650.2/en" rel="noopener">ITU-T G.650.2 (08/2015): definitions and test methods for statistical and non-linear attributes, including PMD</a></li><li><a class="std-chip" href="https://webstore.iec.ch/en/publication/5103" rel="noopener">IEC TR 61282-3 Ed. 2.0 (2006-10): calculation of link PMD – root-sum-square concatenation of fibre and component DGD (clause 2)</a></li></ul>
 <p>The 10%-of-bit-period NRZ rule and the max/mean ratio of about 3 are widely used engineering conventions; confirm the receiver DGD tolerance in the transceiver datasheet. Last reviewed: 2026-10-20.</p>
 </section></div></div></section><!-- NEL_TOOL_GRAPH_START -->
-<section aria-labelledby="nel-tool-graph-title" class="content-section nel-tool-graph" data-primary-workflow="optical-dispersion-planning" data-tool-id="pmd-budget-calculator" id="nel-tool-graph">
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="pmd-budget-calculator" data-primary-workflow="optical-dispersion-planning">
 <div class="section-heading"><div><p class="eyebrow">ENGINEERING WORKFLOW</p><h2 id="nel-tool-graph-title">Continue the engineering workflow</h2></div></div>
-<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>Optical Dispersion Planning Workflow</strong><p>Confirm span length and loss, then check chromatic dispersion and PMD against the transceiver limits.</p></div><div class="nel-workflow-step"><strong>Step 3 of 3</strong><div aria-label="Step 3 of 3" aria-valuemax="3" aria-valuemin="1" aria-valuenow="3" aria-valuetext="Step 3 of 3" class="nel-workflow-progress" role="progressbar"><span style="width:100%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/chromatic-dispersion-calculator/"><span class="nel-tool-graph-label">Previous</span><strong>Chromatic Dispersion Calculator</strong><span class="nel-tool-graph-description">Calculate G.652 dispersion coefficient, accumulated and residual chromatic dispersion, and the CD-limited link length.</span></a><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Next</span><strong>Workflow complete</strong></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>Optical Dispersion Planning Workflow</strong><p>Confirm span length and loss, then check chromatic dispersion and PMD against the transceiver limits.</p></div><div class="nel-workflow-step"><strong>Step 3 of 3</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="3" aria-valuetext="Step 3 of 3" aria-label="Step 3 of 3"><span style="width:100%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/chromatic-dispersion-calculator/"><span class="nel-tool-graph-label">Previous</span><strong>Chromatic Dispersion Calculator</strong><span class="nel-tool-graph-description">Calculate G.652 dispersion coefficient, accumulated and residual chromatic dispersion, and the CD-limited link length.</span></a><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Next</span><strong>Workflow complete</strong></div></div>
 <h3 class="nel-tool-graph-subtitle">Related tools</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/chromatic-dispersion-calculator/"><strong>Chromatic Dispersion Calculator</strong><span class="nel-tool-graph-description">Calculate G.652 dispersion coefficient, accumulated and residual chromatic dispersion, and the CD-limited link length.</span></a><a class="nel-tool-graph-card" href="/tools/fiber-loss/"><strong>Fiber Loss Calculator</strong><span class="nel-tool-graph-description">Calculate fiber, splice, connector, splitter and engineering losses for an optical link.</span></a><a class="nel-tool-graph-card" href="/tools/optical-power-budget/"><strong>Optical Power Budget Calculator</strong><span class="nel-tool-graph-description">Verify an optical link using transmit power, receiver sensitivity, optical penalty and ODN loss.</span></a><a class="nel-tool-graph-card" href="/tools/otdr-event/"><strong>OTDR Event Analyzer</strong><span class="nel-tool-graph-description">Analyze multiple events and dual wavelengths to identify splices, connectors, bends, breaks, ghosts and dead-zone effects.</span></a></div>
 </section>
 <!-- NEL_TOOL_GRAPH_END --></div></div></main>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
-<div class="site-shell-footer-inner">
-<div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
-<nav aria-label="Footer navigation" class="site-shell-footer-links">
-<a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a>
-</nav>
-<p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
-</div>
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Footer navigation">
+      <a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
 </footer>
 <!-- NEL_FOOTER_END -->
 <script defer="" src="js/engine.js?v=6bee3dc55db8"></script>
 <script defer="" src="js/pwa.js?v=20261108-pmd-bw5"></script>
 <script defer="" src="../../assets/js/tool-integration.js?v=05f7934f4687"></script>
-<script defer="" src="js/app.js?v=20261108-pmd-bw5"></script>
+<script defer="" src="js/app.js?v=e53bab0cf63e"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
-<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=77b297dd25ca"></script>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=b786c10e6903"></script>
 <script defer="" src="../../assets/js/tool-detail-v3.js?v=6f38212f00f3"></script>
 </body>
 </html>

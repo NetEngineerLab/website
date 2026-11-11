@@ -142,10 +142,10 @@ for (const [locale, spec] of Object.entries(pages)) {
   }
   assert.ok(!/pages\.dev/.test(html), locale + " preview domain");
   const sheets = findAll(doc, (el) => el.tag === "link" && el.attrs.rel === "stylesheet").map((el) => el.attrs.href);
-  for (const file of ["fb.css?v=2a31994efa84", "fb-v3.css?v=52fefac6ca20", "fb-v3-prod.css?v=385403578979"]) {
+  for (const file of ["fb.css?v=2a31994efa84", "fb-v3.css?v=718e11ad9233", "fb-v3-prod.css?v=0e51668c3f12"]) {
     assert.ok(sheets.includes(spec.css + file), locale + " " + file);
   }
-  assert.ok(sheets.includes(spec.assets + "css/tool-layout.css?v=dfdd771763d6"), locale + " tool-layout");
+  assert.ok(sheets.includes(spec.assets + "css/tool-layout.css?v=c4aecb2c24ab"), locale + " tool-layout");
   assert.ok(!sheets.some((href) => /style\.css|fieldbook\.css|tool-detail-v3\.css/.test(href)), locale + " no parallel skin");
   const scripts = findAll(doc, (el) => el.tag === "script" && el.attrs.src).map((el) => el.attrs.src);
   assert.ok(scripts.includes(spec.assets + "js/tool-detail-v3.js?v=66984b67ff65"), locale + " tool-detail-v3.js");

@@ -1523,3 +1523,8 @@ body.nel-tool-v3 #calculator .prose>details:is(#about-scope,#methodology)>.fb-fo
 
 /* t327u: remove only the shared three-scenario grid border; preserve all other layout/surfaces. */
 body.nel-tool-v3 #calculator .prose #component-check #scenarios > .metric-grid.nel-scenario-grid{border:0!important}
+
+/* FAQ questions sit on one horizontal line. */
+body.nel-tool-v3 #calculator #faq.faq{
+  grid-template-columns: minmax(0, 1fr) !important;
+}

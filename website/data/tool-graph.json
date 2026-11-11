@@ -296,7 +296,7 @@
         {
           "workflowId": "enterprise-lan-ip-planning",
           "step": 4,
-          "total": 11,
+          "total": 12,
           "previous": "vlan-ip-capacity-planner",
           "next": "bandwidth-calculator"
         }
@@ -335,7 +335,7 @@
         {
           "workflowId": "enterprise-lan-ip-planning",
           "step": 1,
-          "total": 11,
+          "total": 12,
           "previous": null,
           "next": "ipv6-nat-planner"
         }
@@ -374,7 +374,7 @@
         {
           "workflowId": "enterprise-lan-ip-planning",
           "step": 5,
-          "total": 11,
+          "total": 12,
           "previous": "mtu-calculator",
           "next": "switch-uplink-oversubscription-calculator"
         },
@@ -467,7 +467,7 @@
         {
           "workflowId": "enterprise-lan-ip-planning",
           "step": 2,
-          "total": 11,
+          "total": 12,
           "previous": "subnet-calculator",
           "next": "vlan-ip-capacity-planner"
         }
@@ -591,7 +591,7 @@
         {
           "workflowId": "enterprise-lan-ip-planning",
           "step": 8,
-          "total": 11,
+          "total": 12,
           "previous": "ospf-cost-calculator",
           "next": "acl-generator-validator"
         },
@@ -775,7 +775,7 @@
         {
           "workflowId": "enterprise-lan-ip-planning",
           "step": 3,
-          "total": 11,
+          "total": 12,
           "previous": "ipv6-nat-planner",
           "next": "mtu-calculator"
         }
@@ -814,7 +814,7 @@
         {
           "workflowId": "enterprise-lan-ip-planning",
           "step": 6,
-          "total": 11,
+          "total": 12,
           "previous": "bandwidth-calculator",
           "next": "ospf-cost-calculator"
         },
@@ -867,7 +867,7 @@
         {
           "workflowId": "enterprise-lan-ip-planning",
           "step": 10,
-          "total": 11,
+          "total": 12,
           "previous": "acl-generator-validator",
           "next": "network-capacity-forecast-planner"
         }
@@ -906,7 +906,7 @@
         {
           "workflowId": "enterprise-lan-ip-planning",
           "step": 9,
-          "total": 11,
+          "total": 12,
           "previous": "sfp-qsfp-compatibility-calculator",
           "next": "dns-ttl-propagation-calculator"
         },
@@ -1628,7 +1628,7 @@
         {
           "workflowId": "enterprise-lan-ip-planning",
           "step": 7,
-          "total": 11,
+          "total": 12,
           "previous": "switch-uplink-oversubscription-calculator",
           "next": "sfp-qsfp-compatibility-calculator"
         }
@@ -1667,9 +1667,9 @@
         {
           "workflowId": "enterprise-lan-ip-planning",
           "step": 11,
-          "total": 11,
+          "total": 12,
           "previous": "dns-ttl-propagation-calculator",
-          "next": null
+          "next": "route-summarization-calculator"
         },
         {
           "workflowId": "engineering-deliverable-assembly",
@@ -1681,7 +1681,7 @@
       ],
       "primaryWorkflow": "enterprise-lan-ip-planning",
       "previous": "dns-ttl-propagation-calculator",
-      "next": null
+      "next": "route-summarization-calculator"
     },
     "engineering-report-batch-export-center": {
       "id": "engineering-report-batch-export-center",
@@ -1961,6 +1961,45 @@
       "primaryWorkflow": "ai-training-fabric-planning",
       "previous": null,
       "next": "data-center-network-convergence-fabric-capacity-planner"
+    },
+    "route-summarization-calculator": {
+      "id": "route-summarization-calculator",
+      "routes": {
+        "en": "/tools/route-summarization-calculator/",
+        "zh-CN": "/tools/route-summarization-calculator/zh/",
+        "es": "/tools/route-summarization-calculator/es/"
+      },
+      "translations": {
+        "en": {
+          "name": "Route Summarization Calculator",
+          "description": "Fold IPv4 or IPv6 prefixes into fewer aggregate routes and mark covered duplicates."
+        },
+        "zh": {
+          "name": "路由汇总计算器",
+          "description": "把多条 IPv4 或 IPv6 前缀收成更少的汇总路由，并标出已被覆盖的重复前缀。"
+        },
+        "es": {
+          "name": "Calculadora de resumen de rutas",
+          "description": "Agrupa prefijos IPv4 o IPv6 en menos rutas agregadas y marca los duplicados ya cubiertos."
+        }
+      },
+      "related": [
+        "subnet-calculator",
+        "vlan-ip-capacity-planner",
+        "ospf-cost-calculator"
+      ],
+      "workflows": [
+        {
+          "workflowId": "enterprise-lan-ip-planning",
+          "step": 12,
+          "total": 12,
+          "previous": "network-capacity-forecast-planner",
+          "next": null
+        }
+      ],
+      "primaryWorkflow": "enterprise-lan-ip-planning",
+      "previous": "network-capacity-forecast-planner",
+      "next": null
     }
   },
   "workflows": {
@@ -2247,6 +2286,18 @@
             },
             "zh": {
               "action": "预测增长并安排容量扩容"
+            }
+          }
+        },
+        {
+          "order": 12,
+          "toolId": "route-summarization-calculator",
+          "translations": {
+            "en": {
+              "action": "Summarize contiguous IPv4 prefixes into route aggregates"
+            },
+            "zh": {
+              "action": "将连续 IPv4 前缀汇总为路由聚合"
             }
           }
         }

@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#176ff2">
 <title>Ethernet Serialization Delay Calculator – Frame Time, PPS &amp; Line Rate</title>
 <meta name="description" content="Calculate Ethernet serialization delay for any frame size and link speed, plus wire time with preamble and IFG, maximum frames per second (64 B at 10G = 14.88 Mpps) and L2 throughput efficiency.">
-<link rel="stylesheet" href="css/style.css?v=20261106-esd1">
+<link rel="stylesheet" href="css/style.css?v=10eb0d12cf4d">
 <meta name="app-base" content="./">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <meta property="og:type" content="website">
@@ -23,12 +23,12 @@
 <link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
 <meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 
-<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=20261109-mnav">
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/fb-v3.css?v=20261105-method1r">
-<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=35fd6b8f7526">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=718e11ad9233">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=0e51668c3f12">
 <script defer="" src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Ethernet Serialization Delay Calculator – Frame Time, PPS & Line Rate","url":"https://netengineerlab.com/tools/ethernet-serialization-delay-calculator/","description":"Calculate Ethernet serialization delay for any frame size and link speed, plus wire time with preamble and IFG, maximum frames per second (64 B at 10G = 14.88 Mpps) and L2 throughput efficiency.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
@@ -43,14 +43,14 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I calculate serialization delay?","acceptedAnswer":{"@type":"Answer","text":"Divide the frame size in bits by the line rate. 1500 bytes × 8 = 12,000 bits; at 10 Gbps that is 1.2 µs, at 1 Gbps 12 µs."}},{"@type":"Question","name":"Why is 10G line rate 14.88 Mpps?","acceptedAnswer":{"@type":"Answer","text":"A minimum 64-byte frame occupies 84 bytes with preamble, SFD and IFG. 10,000,000,000 ÷ (84 × 8) = 14,880,952 frames per second."}},{"@type":"Question","name":"Does serialization delay depend on cable length?","acceptedAnswer":{"@type":"Answer","text":"No. It depends only on frame size and line rate. Cable length adds propagation delay, about 5 µs per km of fiber."}},{"@type":"Question","name":"What is the overhead of an Ethernet frame on the wire?","acceptedAnswer":{"@type":"Answer","text":"20 bytes per frame: 7 bytes preamble, 1 byte SFD and 12 bytes minimum inter-packet gap, in addition to the 18-byte MAC header and FCS inside the frame."}},{"@type":"Question","name":"Do jumbo frames reduce latency?","acceptedAnswer":{"@type":"Answer","text":"They raise efficiency but increase per-frame serialization delay: a 9018-byte frame takes 7.2 µs at 10 Gbps versus 1.2 µs for 1518 bytes."}}]}</script>
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=20261105-method1r">
-<link rel="stylesheet" href="../../assets/css/site-shell.css?v=20261109-jump">
+<link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=475098aa29f5">
 <script defer src="../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../assets/js/site.js?v=20261109-jump"></script>
-<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=20261109-res2">
+<script defer src="../../assets/js/site.js?v=f55d6161a761"></script>
+<link rel="stylesheet" href="../../assets/css/tool-layout.css?v=c4aecb2c24ab">
 <link rel="manifest" href="manifest.webmanifest">
 </head>
 <body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1" data-nel-offline-worker="1">
@@ -182,8 +182,8 @@
 <script defer src="js/engine.js?v=290f80636505"></script>
 <script defer src="js/pwa.js"></script>
 <script defer src="../../assets/js/tool-integration.js?v=05f7934f4687"></script>
-<script defer src="js/app.js?v=20261106-esd1"></script>
+<script defer src="js/app.js?v=c55248458ad9"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
-<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=77b297dd25ca"></script>
+<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=b786c10e6903"></script>
 </body>
 </html>

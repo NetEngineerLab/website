@@ -56,7 +56,8 @@ const intentByTool=Object.freeze({
   "network-risk-hidden-hazard-assessment-generator":"planning",
   "ospf-cost-calculator":"calculation",
   "network-capacity-forecast-planner":"planning",
-  "engineering-report-batch-export-center":"planning"
+  "engineering-report-batch-export-center":"planning",
+  "route-summarization-calculator":"calculation"
 });
 const intentLabels=Object.freeze({
   calculation:{en:"calculation",zh:"计算",es:"cálculo"},

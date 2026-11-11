@@ -1589,3 +1589,21 @@ body.nel-tool-v3 #calculator #modules .status{white-space:nowrap!important;posit
 @media(max-width:720px){body.nel-tool-v3 #calculator>.workspace{grid-template-columns:minmax(0,1fr)!important}}
 
 body.nel-tool-v3 .nel-tool-graph-card,body.nel-tool-v3 .nel-tool-graph-card strong{min-width:0!important;white-space:normal!important;overflow-wrap:anywhere!important}
+
+/* Keep the result heading and module table at their text size, and line the metric cards up with the panel. */
+body.nel-tool-v3 #calculator > .workspace > .result-panel > .section-title{
+  flex: 0 0 auto !important;
+  height: auto !important;
+  min-height: max-content !important;
+  overflow: visible !important;
+}
+body.nel-tool-v3 #calculator .result-panel > .table-wrap{
+  flex: 0 0 auto !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+body.nel-tool-v3 #calculator .result-panel > .metrics.grp{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}

@@ -1100,3 +1100,16 @@ body.nel-tool-v3 #calculator .summary-card .big > span{
 body.nel-tool-v3 #calculator .metric-card strong,
 body.nel-tool-v3 #calculator .metric strong{display:block !important; margin-top:auto !important;}
 body.nel-tool-v3 #calculator .metric strong span{display:inline !important;}
+
+/* The last question uses the full row so the wording stays on one line. */
+body.nel-tool-v3 #calculator #faq .faq-grid > details:last-child{
+  grid-column: 1 / -1 !important;
+}
+/* The reference notes share one frame. The heading stays outside it. */
+body.nel-tool-v3 #calculator #references .content-section{
+  border: 1px solid #d8dee8 !important;
+  border-radius: 12px !important;
+  background: #fff !important;
+  padding: 14px 20px !important;
+  box-sizing: border-box !important;
+}
