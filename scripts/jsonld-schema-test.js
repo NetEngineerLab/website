@@ -235,9 +235,9 @@ function pageMain(html) {
   return { innerStart, innerEnd: bounds.innerEnd, tool };
 }
 
-function questionsIn(region) {
+function questionsIn(region, includeFolds) {
   const tree = dom.parse(region);
-  const details = dom.all(tree, node => node.tag === "details" && !dom.has(node, "fb-fold"))
+  const details = dom.all(tree, node => node.tag === "details" && (includeFolds || !dom.has(node, "fb-fold")))
     .map(node => {
       const summary = node.children.find(child => typeof child !== "string" && child.tag === "summary");
       // A nested details entry owns its own answer; never borrow that paragraph.
@@ -320,7 +320,7 @@ for (const file of walk(siteRoot)) {
     const start = headings[0].index + headings[0][0].length;
     const rest = html.slice(start);
     const nextHeading = rest.search(/<h2\b/i);
-    regionQuestions = questionsIn(nextHeading >= 0 ? rest.slice(0, nextHeading) : rest);
+    regionQuestions = questionsIn(nextHeading >= 0 ? rest.slice(0, nextHeading) : rest, true);
   }
   if (schemas.length === 1) {
     const visible = migrated ? regionQuestions : (regionQuestions.length ? regionQuestions : questionsIn(html));
