@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#176ff2">
 <title>Calculadora de serialización Ethernet – tiempo de trama, PPS y tasa</title>
 <meta name="description" content="Calcula el retardo de serialización Ethernet para cualquier trama y velocidad, el tiempo en línea con preámbulo e IFG, las tramas por segundo (64 B a 10G = 14,88 Mpps) y la eficiencia L2.">
-<link rel="stylesheet" href="../css/style.css?v=20261106-esd1">
+<link rel="stylesheet" href="../css/style.css?v=10eb0d12cf4d">
 <meta name="app-base" content="../">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <meta property="og:type" content="website">
@@ -23,12 +23,12 @@
 <link rel="stylesheet" href="../../../assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
 <meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 
-<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=20261109-mnav">
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/fb-v3.css?v=20261105-method1r">
-<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=35fd6b8f7526">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=718e11ad9233">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=0e51668c3f12">
 <script defer="" src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Calculadora de serialización Ethernet – tiempo de trama, PPS y tasa","url":"https://netengineerlab.com/tools/ethernet-serialization-delay-calculator/es/","description":"Calcula el retardo de serialización Ethernet para cualquier trama y velocidad, el tiempo en línea con preámbulo e IFG, las tramas por segundo (64 B a 10G = 14,88 Mpps) y la eficiencia L2.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
@@ -43,15 +43,15 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cómo se calcula el retardo de serialización?","acceptedAnswer":{"@type":"Answer","text":"Divida el tamaño de la trama en bits entre la velocidad. 1500 bytes × 8 = 12.000 bits; a 10 Gbps son 1,2 µs y a 1 Gbps 12 µs."}},{"@type":"Question","name":"¿Por qué la tasa de línea de 10G es 14,88 Mpps?","acceptedAnswer":{"@type":"Answer","text":"Una trama mínima de 64 bytes ocupa 84 bytes con preámbulo, SFD e IFG. 10.000.000.000 ÷ (84 × 8) = 14.880.952 tramas por segundo."}},{"@type":"Question","name":"¿Depende la serialización de la longitud del cable?","acceptedAnswer":{"@type":"Answer","text":"No. Solo depende del tamaño de trama y la velocidad. La longitud añade retardo de propagación, unos 5 µs por km de fibra."}},{"@type":"Question","name":"¿Cuál es la sobrecarga de una trama Ethernet en la línea?","acceptedAnswer":{"@type":"Answer","text":"20 bytes por trama: 7 de preámbulo, 1 de SFD y 12 de IFG mínimo, además de los 18 bytes de cabecera MAC y FCS dentro de la trama."}},{"@type":"Question","name":"¿Las tramas jumbo reducen la latencia?","acceptedAnswer":{"@type":"Answer","text":"Mejoran la eficiencia pero aumentan la serialización por trama: 9018 bytes tardan 7,2 µs a 10 Gbps frente a 1,2 µs con 1518 bytes."}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=20261105-method1r">
-<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=20261109-jump">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=475098aa29f5">
 <script defer src="../../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../../assets/js/site.js?v=20261109-jump"></script>
+<script defer src="../../../assets/js/site.js?v=f55d6161a761"></script>
 <script defer src="../../../assets/js/es-launch-runtime.js?v=829a7f1559b7"></script>
-<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=20261109-res2">
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
 <link rel="manifest" href="../manifest-es.webmanifest">
 </head>
 <body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1" data-nel-offline-worker="1">

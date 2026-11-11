@@ -98,3 +98,62 @@ body.nel-tool-v3 #change-workspace .below>.toc h4,
 body.nel-tool-v3 #change-workspace .below>.toc a,
 body.nel-tool-v3 #change-workspace .below>.toc a.on{font-weight:700!important;}
 body.nel-tool-v3 #change-workspace #about-scope .grid>article>h3{font-size:15px!important;font-weight:600!important;line-height:1.45!important;}
+
+/* The plan card fills the empty upper-right beside the status line. */
+@media screen and (min-width:961px){
+  body.nel-tool-v3 #change-workspace{
+    display:grid !important;
+    grid-template-columns:minmax(0,1.509fr) minmax(0,1fr) !important;
+    column-gap:20px !important;
+    align-items:start !important;
+  }
+  body.nel-tool-v3 #change-workspace>:is(.tool-head,.privacy-note,.product-guide,.below){
+    grid-column:1 / -1 !important;
+  }
+  body.nel-tool-v3 #change-workspace>#plannerStatus{
+    grid-column:1 !important;
+    grid-row:4 !important;
+    align-self:start !important;
+    width:auto !important;
+    margin:0 0 20px !important;
+  }
+  body:not(.print-mop).nel-tool-v3 #change-workspace>.planner-grid{
+    display:contents !important;
+  }
+  body.nel-tool-v3 #change-workspace>.planner-grid>.input-panel{
+    grid-column:1 !important;
+    grid-row:5 !important;
+    align-self:start !important;
+  }
+  body.nel-tool-v3 #change-workspace>.planner-grid>.planner-side{
+    grid-column:2 !important;
+    grid-row:4 / span 2 !important;
+    align-self:start !important;
+    display:flex !important;
+    flex-direction:column !important;
+    gap:20px !important;
+    min-width:0 !important;
+    margin:0 !important;
+    padding:0 !important;
+    border:0 !important;
+    background:transparent !important;
+    box-shadow:none !important;
+  }
+  body.nel-tool-v3 #change-workspace>.planner-grid>.planner-side>.planner-card{
+    margin-top:0 !important;
+  }
+  body.nel-tool-v3 #change-workspace .member-row{
+    align-items:end !important;
+  }
+}
+@media(max-width:960px){
+  body.nel-tool-v3 #change-workspace>.planner-grid>.planner-side{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:20px !important;
+    grid-column:1 / -1 !important;
+    grid-row:auto !important;
+    min-width:0 !important;
+  }
+}
+body.print-mop #change-workspace>.planner-grid{display:block !important;}

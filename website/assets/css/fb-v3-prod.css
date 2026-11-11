@@ -123,6 +123,235 @@ body.nel-tool-v3 > .hub-return{
   body.nel-tool-v3 > .ad-slot{padding-left:18px;padding-right:18px}
 }
 
+/* Phone workbench: nothing floats over the fields, and every action is a full row. */
+@media (max-width: 640px) {
+  body.nel-tool-v3 .mbar {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: auto !important;
+    margin: 14px 0 0 !important;
+    z-index: 1 !important;
+  }
+  body.nel-tool-v3.has-mbar { padding-bottom: 28px !important; }
+  body.nel-tool-v3:has(.nel-cookie-banner) .mbar { display: none !important; }
+  body.nel-tool-v3 #calculator > .workspace > .result-panel > .ro-acts,
+  body.nel-tool-v3 #calculator > .workspace > .result-panel > .result-actions,
+  body.nel-tool-v3 .ro-acts,
+  body.nel-tool-v3 .result-actions {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+  body.nel-tool-v3 .ro-acts > button,
+  body.nel-tool-v3 .result-actions > button {
+    min-height: 44px !important;
+    height: auto !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+    padding: 8px 10px !important;
+    font-size: 14px !important;
+  }
+  body.nel-tool-v3 #calculator > .workspace > .input-panel .input-actions,
+  body.nel-tool-v3 #calculator .input-actions,
+  body.nel-tool-v3 .panel-f {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+  body.nel-tool-v3 #calculator .input-actions > button,
+  body.nel-tool-v3 #calculator .input-actions > .btn,
+  body.nel-tool-v3 .panel-f > .btn,
+  body.nel-tool-v3 .panel-f > button {
+    width: 100% !important;
+    min-height: 44px !important;
+    justify-content: center;
+  }
+  body.nel-tool-v3 .inp,
+  body.nel-tool-v3 .input-wrap {
+    min-height: 44px !important;
+    height: auto !important;
+  }
+  body.nel-tool-v3 select {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  body.nel-tool-v3 input,
+  body.nel-tool-v3 select,
+  body.nel-tool-v3 textarea,
+  body.nel-tool-v3 button {
+    scroll-margin-top: 84px;
+    scroll-margin-bottom: 20px;
+  }
+}
+
+/* Phone prose cards: one full-width column. Two half-width cards turn
+   Chinese paragraphs into a single character per line. */
+@media (max-width: 800px) {
+  body.nel-tool-v3 :is(.prose, .ref-card, #references, .bw-standard-card) :is(.grid, .review-grid, .wf-grid, .related-grid, .ex, .method-defs, .nel-content-review-grid) {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  body.nel-tool-v3 :is(.prose, .ref-card, #references, .bw-standard-card) :is(article, .review-card, h3, p, li, .std-chip) {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+  }
+  body.nel-tool-v3 .std-chip {
+    display: inline !important;
+    white-space: normal !important;
+  }
+}
+
+/* Phone forms: one card padding. Nested panel and .fs padding was leaving
+   the fields about 60px inside the card on each side. */
+@media (max-width: 768px) {
+  body.nel-tool-v3 #calculator > .workspace > :is(.input-panel, .result-panel) {
+    padding: 14px !important;
+  }
+  body.nel-tool-v3 #calculator .input-panel > .fb-panel,
+  body.nel-tool-v3 #calculator .result-panel > .fb-panel,
+  body.nel-tool-v3 #calculator .result-panel > .readout {
+    padding: 0 !important;
+  }
+  body.nel-tool-v3 #calculator :is(.input-panel, .result-panel) .fs {
+    padding: 0 !important;
+  }
+  body.nel-tool-v3 #calculator .panel-h,
+  body.nel-tool-v3 #calculator .inp,
+  body.nel-tool-v3 #calculator .input-wrap,
+  body.nel-tool-v3 #calculator .fg,
+  body.nel-tool-v3 #calculator .fg-note {
+    max-width: none !important;
+    width: auto !important;
+  }
+  body.nel-tool-v3 #calculator .inp,
+  body.nel-tool-v3 #calculator .input-wrap {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* Phone tool pages: a short jump bar, like a "see result" link.
+   It stays off the fields while typing, and hides once the result is on screen. */
+@media (max-width: 800px) {
+  body.nel-tool-v3.has-result-jump {
+    padding-bottom: calc(92px + env(safe-area-inset-bottom)) !important;
+  }
+  body.nel-tool-v3 .nel-result-jump {
+    position: fixed;
+    z-index: 30;
+    left: 12px;
+    right: 12px;
+    bottom: calc(10px + env(safe-area-inset-bottom));
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: 8px;
+    margin: 0;
+    padding: 8px;
+    border-radius: 16px;
+    background: #0f172a;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.28);
+  }
+  body.nel-tool-v3 .nel-result-jump.is-hidden,
+  body.nel-tool-v3:has(.nel-cookie-banner) .nel-result-jump,
+  body.nel-tool-v3:has(input:focus, select:focus, textarea:focus) .nel-result-jump {
+    display: none !important;
+  }
+  body.nel-tool-v3 .nel-result-jump a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 8px 10px;
+    border-radius: 12px;
+    color: #fff;
+    background: transparent;
+    font-size: 15px;
+    font-weight: 750;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+  }
+  body.nel-tool-v3 .nel-result-jump .nel-result-jump-go {
+    background: #176ff2;
+  }
+  body.nel-tool-v3 #calculator,
+  body.nel-tool-v3 #result,
+  body.nel-tool-v3 #nel-result,
+  body.nel-tool-v3 .result-panel {
+    scroll-margin-top: 76px;
+  }
+  html body.nel-tool-v3 #calculator .input-actions,
+  html body.nel-tool-v3 #calculator > .workspace > .input-panel .input-actions,
+  html body.nel-tool-v3 #calculator > .workspace > .input-panel > .input-actions {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 8px !important;
+  }
+  html body.nel-tool-v3 #calculator .input-actions > button,
+  html body.nel-tool-v3 #calculator .input-actions > .btn,
+  html body.nel-tool-v3 #calculator .input-actions > :is(#calculateBtn, #calculate, #resetBtn, #reset) {
+    width: 100% !important;
+    max-width: none !important;
+    flex: 1 1 100% !important;
+    min-height: 48px !important;
+  }
+  html body.nel-tool-v3 #calculator :is(#calculateBtn, #calculate, .input-actions > .btn-primary, .input-actions > button.primary) {
+    background: #176ff2 !important;
+    background-image: none !important;
+    color: #fff !important;
+    border: 0 !important;
+  }
+}
+@media (min-width: 801px) {
+  body.nel-tool-v3 .nel-result-jump { display: none !important; }
+}
+
+/* One card around the workbench and one border on each field.
+   The inner panel, the section group, and the control inside the field
+   were each drawing another box. */
+html body.nel-tool-v3 #calculator :is(.input-panel, .result-panel) > .fb-panel {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+html body.nel-tool-v3 #calculator .fg,
+html body.nel-tool-v3 #calculator :is(.input-panel, .result-panel) .parameter-group {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+html body.nel-tool-v3 #calculator :is(.inp, .input-wrap) :is(input, select, textarea) {
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* Result column: the panel and each key-result tile keep a border.
+   The readout shell and the formula line inside a tile do not. */
+html body.nel-tool-v3 #calculator :is(.result-panel, .nel-tool-result) > .readout {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+html body.nel-tool-v3 #calculator #result .row > .eqn {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* iOS zooms the page when a focused field is under 16px. */
+@media (max-width: 800px) {
+  html body.nel-tool-v3 #calculator :is(input, select, textarea):not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="file"]):not([type="range"]) {
+    font-size: 16px !important;
+  }
+}
+
 
 /* Existing calculators use several field/result layouts; preserve their domain
    hierarchy while giving all of them the baseline workbench surfaces. */
@@ -232,6 +461,16 @@ body.nel-tool-v3 main:is(#calculator,main) .nel-tool-input .subheading:after{con
 html[lang^="zh"] body.nel-tool-v3 main:is(#calculator,main) button.btn{line-height:1.7}
 body.nel-tool-v3 main:is(#calculator,main) .nel-tool-input h2{font:600 15px/1.6 var(--sans);color:var(--ink);letter-spacing:-.01em}
 html[lang^="zh"] body.nel-tool-v3 main:is(#calculator,main) .nel-tool-input h2{line-height:1.7}
+/* Explicit generated groups use the actual OPB .grp surface, not another bounded card. */
+body.nel-tool-v3 main:is(#calculator,main) [data-nel-group-surface]{border:0;border-top:1px solid var(--v3-navy-line);border-radius:0;background:transparent;box-shadow:none;padding:14px 18px 6px}
+body.nel-tool-v3 main:is(#calculator,main) [data-nel-result-region] [data-nel-readout-role="secondary"]{font:500 17px/normal var(--mono);color:var(--v3-ink)}
+body.nel-tool-v3 main:is(#calculator,main) [data-nel-result-region] [data-nel-readout-role="label"]{font:400 14.5px/1.6 var(--sans);color:var(--v3-readout-mute)}
+html[lang^="zh"] body.nel-tool-v3 main:is(#calculator,main) [data-nel-result-region] [data-nel-readout-role="label"]{line-height:1.7}
+/* Native history record roles borrow the actual OPB record, meta and summary components. */
+body.nel-tool-v3 main:is(#calculator,main) #historyList .nel-history-record{border:1px solid var(--v3-border-soft);border-radius:12px;padding:12px 14px;background:#fff}
+body.nel-tool-v3 main:is(#calculator,main) #historyList .nel-history-summary{font:400 12.5px/1.6 var(--sans);color:var(--v3-muted)}
+html[lang^="zh"] body.nel-tool-v3 main:is(#calculator,main) #historyList .nel-history-summary{line-height:1.7}
+body.nel-tool-v3 main:is(#calculator,main) #historyList .nel-history-date{font:400 12px/normal var(--mono);color:var(--v3-muted)}
 /* Native project history titles alias the actual OPB history title typography. */
 body.nel-tool-v3 main:is(#calculator,main) #historyList .nel-history-title{font:700 14.5px/1.6 var(--sans);color:var(--v3-ink)}
 html[lang^="zh"] body.nel-tool-v3 main:is(#calculator,main) #historyList .nel-history-title{line-height:1.7}
@@ -312,3 +551,50 @@ body.nel-tool-v3:has(#nel-tool-graph:is([data-tool-id="poe-voltage-drop-calculat
 body.nel-tool-v3:has(#nel-tool-graph:is([data-tool-id="poe-voltage-drop-calculator"],[data-tool-id="wireless-link-budget-calculator"])) main #error{margin:0 0 12px;padding:10px 12px;border-radius:10px;background:#FEF2F2;border:1px solid #FECACA;color:#B91C1C;font-size:13.5px}
 body.nel-tool-v3:has(#nel-tool-graph:is([data-tool-id="poe-voltage-drop-calculator"],[data-tool-id="wireless-link-budget-calculator"])) main .readout{border-radius:14px;background:radial-gradient(520px 280px at 100% 0%,rgba(59,130,246,.07),transparent 55%),linear-gradient(165deg,var(--v3-panel-bg) 0%,var(--v3-panel-bg-2) 60%,#F1F5F9 100%)}
 
+/* Four readout metrics share two boxes: each row is one border. */
+body.nel-tool-v3 #calculator .readout .metric-grid:has(> .metric:nth-child(4):last-child){
+  display:grid !important;
+  grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+  gap:12px 0 !important;
+}
+body.nel-tool-v3 #calculator .readout .metric-grid:has(> .metric:nth-child(4):last-child) > .metric:nth-child(odd){
+  border-right-width:0 !important;
+  border-top-right-radius:0 !important;
+  border-bottom-right-radius:0 !important;
+}
+body.nel-tool-v3 #calculator .readout .metric-grid:has(> .metric:nth-child(4):last-child) > .metric:nth-child(even){
+  border-left-width:0 !important;
+  border-top-left-radius:0 !important;
+  border-bottom-left-radius:0 !important;
+}
+
+
+/* Scenario cards stay in one horizontal row and wrap inside the card.
+   These beat the calculator metric-grid and nowrap rules, which also match this block. */
+body.nel-tool-v3 #calculator .metric-grid.nel-scenario-grid,
+body.nel-tool-v3 .nel-scenario-grid{
+  display:grid !important;
+  grid-template-columns:repeat(3, minmax(0, 1fr)) !important;
+  gap:14px !important;
+  width:100% !important;
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+}
+body.nel-tool-v3 #calculator .nel-scenario-card,
+body.nel-tool-v3 .nel-scenario-card{
+  min-width:0 !important;
+  align-items:stretch !important;
+  overflow:hidden;
+}
+body.nel-tool-v3 #calculator .nel-scenario-card strong,
+body.nel-tool-v3 .nel-scenario-card strong{
+  white-space:normal !important;
+  overflow-wrap:anywhere;
+}
+@media (max-width:900px){
+  body.nel-tool-v3 #calculator .metric-grid.nel-scenario-grid,
+  body.nel-tool-v3 .nel-scenario-grid{
+    grid-template-columns:minmax(0, 1fr) !important;
+  }
+}

@@ -99,9 +99,10 @@ body.nel-tool-v3 #calculator .readout .metrics{
   align-items:stretch !important;
   justify-items:stretch !important;
   box-sizing:border-box !important;
-  border:1px solid #d7e2ec !important;
-  border-radius:14px !important;
-  background:rgba(255,255,255,.55) !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  padding:0 !important;
 }
 body.nel-tool-v3 #calculator .readout .metric{
   display:flex !important;
@@ -179,7 +180,7 @@ body.nel-tool-v3 #calculator .readout .summary{
 @media (max-width:520px){
   body.nel-tool-v3 #calculator .readout .metrics{
     grid-template-columns:minmax(0,1fr) !important;
-    padding:10px !important;
+    padding:0 !important;
   }
   body.nel-tool-v3 #calculator .readout .metric{
     min-height:72px !important;
@@ -922,4 +923,20 @@ body.nel-tool-v3 #calculator .below>.prose>:is(.nel-topic-hub,.nel-guide-seconda
  display:block!important;grid-column:1/-1!important;min-width:0!important;width:100%!important;max-width:100%!important;
  box-sizing:border-box!important;margin:12px 0!important;padding:14px 20px!important;
  background:#fff!important;border:1px solid #dbe6f1!important;border-radius:14px!important;
+}
+
+/* The result panel and the metric tiles are the two borders. */
+body.nel-tool-v3 #calculator .result-panel > .summary,
+body.nel-tool-v3 #calculator .result-panel > .summary > .ro-l1{
+  border:0 !important;
+  box-shadow:none !important;
+  background:transparent !important;
+  padding:0 !important;
+}
+body.nel-tool-v3 #calculator .result-panel #headline.reason{
+  border:0 !important;
+  box-shadow:none !important;
+  background:transparent !important;
+  padding:0 !important;
+  border-radius:0 !important;
 }

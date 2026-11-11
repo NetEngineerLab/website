@@ -960,3 +960,21 @@ body.nel-tool-v3 #calculator > .workspace > .input-panel > .formula-block{
   z-index: 1 !important;
 }
 
+/* Related pages uses the same column as the workflow cards. */
+@media (min-width: 961px){
+  body.nel-tool-v3 > [data-nel-editorial-links]{
+    display: grid;
+    grid-template-columns: minmax(180px, 228px) minmax(0, 1fr);
+    column-gap: 18px;
+  }
+  body.nel-tool-v3 > [data-nel-editorial-links] > *{
+    grid-column: 2;
+  }
+}
+@media (min-width: 1180px){
+  body.nel-tool-v3 > [data-nel-editorial-links]{
+    grid-template-columns: minmax(200px, 240px) minmax(0, 1fr);
+    column-gap: 18px;
+  }
+}
+

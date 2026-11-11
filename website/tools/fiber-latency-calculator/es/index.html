@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html data-nel-locale="es" data-nel-route="tools/fiber-latency-calculator/" dir="ltr" lang="es">
+<html lang="es" dir="ltr" data-nel-locale="es" data-nel-route="tools/fiber-latency-calculator/">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -24,7 +24,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://netengineerlab.com/tools/fiber-latency-calculator/es/#app","name":"Calculadora de latencia de fibra","url":"https://netengineerlab.com/tools/fiber-latency-calculator/es/","description":"Calcule la latencia de ida y de ida y vuelta en fibra óptica a partir de distancia, índice de grupo, factor de ruta, equipos y serialización.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Calculadora de ingeniería de redes","operatingSystem":"Any","browserRequirements":"Requiere JavaScript y un navegador web moderno","softwareVersion":"1.0.0","inLanguage":"es","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/fiber-latency-calculator/es/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"NetEngineerLab","item":"https://netengineerlab.com/es/"},{"@type":"ListItem","position":2,"name":"Herramientas","item":"https://netengineerlab.com/tools/es/"},{"@type":"ListItem","position":3,"name":"Calculadora de latencia de fibra","item":"https://netengineerlab.com/tools/fiber-latency-calculator/es/"}]}]}</script>
 <link data-nel-workflow-style="" href="../../../assets/css/tool-workflow.css?v=8c74b394ef2c" rel="stylesheet"/>
 <meta content="https://netengineerlab.com/assets/images/og-netengineerlab.png" name="twitter:image"/>
-<link href="/assets/css/cookie-consent.css?v=20261109-mnav" rel="stylesheet"/>
+<link href="/assets/css/cookie-consent.css?v=2f2c8ab643e6" rel="stylesheet"/>
 <style>
 body.nel-opb-v3 .fields{row-gap:0}
 body.nel-opb-v3 .fields>.f{display:grid;grid-template-rows:subgrid;grid-row:span 3;margin-bottom:14px}
@@ -36,64 +36,64 @@ body.nel-opb-v3 .inp input[type="number"]::-webkit-inner-spin-button{-webkit-app
 body.nel-opb-v3 .ro-acts{grid-template-columns:repeat(3,minmax(0,1fr))}
 body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:center;min-width:0;min-height:44px;white-space:normal;line-height:1.3}
 </style>
-<link href="/assets/css/fb-v3.css?v=20261105-method1r" rel="stylesheet"/>
-<link href="/assets/css/fb-v3-prod.css?v=35fd6b8f7526" rel="stylesheet"/>
+<link href="/assets/css/fb-v3.css?v=718e11ad9233" rel="stylesheet"/>
+<link href="/assets/css/fb-v3-prod.css?v=0e51668c3f12" rel="stylesheet"/>
 <script defer="" src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
-<script data-nel-schema="webpage" type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Calculadora de latencia de fibra – µs por km, ida y RTT","url":"https://netengineerlab.com/tools/fiber-latency-calculator/es/","description":"Calcule la latencia de fibra: unos 4,9 µs/km de ida y 9,8 µs/km de RTT. Añada factor de ruta, retardo de equipos y serialización, y compare vacío, cobre y microondas.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
-<meta content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline" name="nel-framework"/>
-<meta content="es" name="nel-locale"/>
-<meta content="tools/fiber-latency-calculator/" name="nel-route"/>
-<meta content="en,zh,es" name="nel-available-locales"/>
-<link href="https://netengineerlab.com/tools/fiber-latency-calculator/es/" rel="canonical"/>
-<link href="https://netengineerlab.com/tools/fiber-latency-calculator/" hreflang="en" rel="alternate"/>
-<link href="https://netengineerlab.com/tools/fiber-latency-calculator/zh/" hreflang="zh-CN" rel="alternate"/>
-<link href="https://netengineerlab.com/tools/fiber-latency-calculator/es/" hreflang="es" rel="alternate"/>
-<link href="https://netengineerlab.com/tools/fiber-latency-calculator/" hreflang="x-default" rel="alternate"/>
-<script data-nel-schema="faq" type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cuál es la latencia de la fibra por km?","acceptedAnswer":{"@type":"Answer","text":"Unos 4,9 µs de ida por km en fibra monomodo estándar (índice de grupo aproximado 1,468), o unos 9,8 µs de ida y vuelta: aproximadamente 5 ms por cada 1000 km de ida."}},{"@type":"Question","name":"¿Cómo calculo el RTT sobre fibra?","acceptedAnswer":{"@type":"Answer","text":"El RTT es aproximadamente 2 × longitud de fibra × 4,9 µs/km, más el retardo de equipos y de serialización en cada sentido. 100 km de fibra dan unos 0,98 ms de RTT solo por propagación."}},{"@type":"Question","name":"¿Por qué mi ping medido es mayor que la calculadora?","acceptedAnswer":{"@type":"Answer","text":"El ping añade desvíos de enrutamiento, procesamiento, colas y retardo del host, y la ruta de fibra suele ser más larga que la línea recta. Use la longitud medida o un factor de ruta."}},{"@type":"Question","name":"¿Las microondas son más rápidas que la fibra?","acceptedAnswer":{"@type":"Answer","text":"En propagación, sí. La radio en el aire viaja casi a la velocidad de la luz en el vacío (unos 3,34 µs/km), aproximadamente un 32 % menos de retardo que la fibra de vidrio."}},{"@type":"Question","name":"¿La longitud de onda cambia la latencia de la fibra?","acceptedAnswer":{"@type":"Answer","text":"Solo de forma marginal. El índice de grupo de la fibra G.652 a 1310 nm y 1550 nm difiere en unos 0,0005, menos del 0,05 % del retardo."}},{"@type":"Question","name":"¿El cobre es más rápido que la fibra?","acceptedAnswer":{"@type":"Answer","text":"No de forma significativa. El par trenzado se propaga a unos 0,65–0,70 c (unos 4,8–5,1 µs/km), similar a la fibra, pero Ethernet sobre cobre se limita a 100 m."}}]}</script>
-<link href="../../../assets/css/locale-menu.css?v=7804394246fb" rel="stylesheet"/>
-<link href="../../../assets/css/design-tokens.css?v=10e842cd32cf" rel="stylesheet"/>
-<link href="../../../assets/css/tool-design-system.css?v=20261105-method1r" rel="stylesheet"/>
-<link href="../../../assets/css/site-shell.css?v=20261109-jump" rel="stylesheet"/>
-<script defer="" src="../../../data/locales.js?v=909e05076a50"></script>
-<script defer="" src="../../../data/site-config.js?v=b5072ad7fa47"></script>
-<script defer="" src="../../../assets/js/analytics.js?v=1156b7864023"></script>
-<script defer="" src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer="" src="../../../assets/js/site.js?v=20261109-jump"></script>
-<script defer="" src="../../../assets/js/es-launch-runtime.js?v=829a7f1559b7"></script>
-<link href="../../../assets/css/tool-layout.css?v=20261109-res2" rel="stylesheet"/>
-<link href="../manifest-es.webmanifest" rel="manifest"/>
-<link href="../css/style.css?v=20261108-latency-bw7" rel="stylesheet"/></head>
+<link href="../css/style.css?v=7fe982d34755" rel="stylesheet"/><script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Calculadora de latencia de fibra – µs por km, ida y RTT","url":"https://netengineerlab.com/tools/fiber-latency-calculator/es/","description":"Calcule la latencia de fibra: unos 4,9 µs/km de ida y 9,8 µs/km de RTT. Añada factor de ruta, retardo de equipos y serialización, y compare vacío, cobre y microondas.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="es">
+<meta name="nel-route" content="tools/fiber-latency-calculator/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/tools/fiber-latency-calculator/es/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/fiber-latency-calculator/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/fiber-latency-calculator/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/fiber-latency-calculator/es/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/fiber-latency-calculator/">
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cuál es la latencia de la fibra por km?","acceptedAnswer":{"@type":"Answer","text":"Unos 4,9 µs de ida por km en fibra monomodo estándar (índice de grupo aproximado 1,468), o unos 9,8 µs de ida y vuelta: aproximadamente 5 ms por cada 1000 km de ida."}},{"@type":"Question","name":"¿Cómo calculo el RTT sobre fibra?","acceptedAnswer":{"@type":"Answer","text":"El RTT es aproximadamente 2 × longitud de fibra × 4,9 µs/km, más el retardo de equipos y de serialización en cada sentido. 100 km de fibra dan unos 0,98 ms de RTT solo por propagación."}},{"@type":"Question","name":"¿Por qué mi ping medido es mayor que la calculadora?","acceptedAnswer":{"@type":"Answer","text":"El ping añade desvíos de enrutamiento, procesamiento, colas y retardo del host, y la ruta de fibra suele ser más larga que la línea recta. Use la longitud medida o un factor de ruta."}},{"@type":"Question","name":"¿Las microondas son más rápidas que la fibra?","acceptedAnswer":{"@type":"Answer","text":"En propagación, sí. La radio en el aire viaja casi a la velocidad de la luz en el vacío (unos 3,34 µs/km), aproximadamente un 32 % menos de retardo que la fibra de vidrio."}},{"@type":"Question","name":"¿La longitud de onda cambia la latencia de la fibra?","acceptedAnswer":{"@type":"Answer","text":"Solo de forma marginal. El índice de grupo de la fibra G.652 a 1310 nm y 1550 nm difiere en unos 0,0005, menos del 0,05 % del retardo."}},{"@type":"Question","name":"¿El cobre es más rápido que la fibra?","acceptedAnswer":{"@type":"Answer","text":"No de forma significativa. El par trenzado se propaga a unos 0,65–0,70 c (unos 4,8–5,1 µs/km), similar a la fibra, pero Ethernet sobre cobre se limita a 100 m."}}]}</script>
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=475098aa29f5">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=f55d6161a761"></script>
+<script defer src="../../../assets/js/es-launch-runtime.js?v=829a7f1559b7"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
+<link rel="manifest" href="../manifest-es.webmanifest">
+</head>
 <body class="nel-tool-detail-page has-mbar v3 nel-tool-v3" data-nel-offline-worker="1" data-nel-template="tool-detail-v1.3.1" data-nel-v3-migrated="1" data-nel-visual="network-change-planner-reference">
 <a class="skip-link" href="#calculator">Saltar a la calculadora</a>
 <noscript><div class="noscript">Se necesita JavaScript para ejecutar esta calculadora.</div></noscript>
 <!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
-<div class="site-shell-header-inner">
-<a class="site-shell-brand brand" href="../../../es/">
-<img alt="" height="42" src="../../../assets/images/logo.svg" width="42"/>
-<span><strong>NetEngineerLab</strong><small>Plataforma de inteligencia para ingeniería de redes</small></span>
-</a>
-<button aria-controls="site-shell-nav" aria-expanded="false" aria-label="Abrir navegación" class="site-shell-menu-toggle" type="button"><span aria-hidden="true"></span></button>
-<nav aria-label="Navegación principal" class="site-shell-nav nel-global-nav" id="site-shell-nav">
-<a href="../../../es/">Inicio</a>
-<a aria-current="page" href="../../es/">Herramientas</a>
-<a href="../../../guides/">Guías</a>
-<a href="../../../topics/">Temas</a>
-</nav>
-<div class="site-shell-actions">
-<!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu="" data-open="false"><button aria-expanded="false" aria-haspopup="true" aria-label="Idioma: Español" class="language-trigger" type="button"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z" fill="currentColor"></path></svg><span class="language-current">Español</span><span aria-hidden="true" class="language-caret">▾</span></button><div class="language-options" hidden="" role="menu"><a class="language-option" href="/tools/fiber-latency-calculator/" hreflang="en" lang="en" role="menuitem"><span>English</span><small>Inglés</small></a><a class="language-option" href="/tools/fiber-latency-calculator/zh/" hreflang="zh-CN" lang="zh-CN" role="menuitem"><span>简体中文</span><small>Chino simplificado</small></a><a aria-current="page" class="language-option" href="/tools/fiber-latency-calculator/es/" hreflang="es" lang="es" role="menuitem"><span>Español</span><small>Español</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
-<div class="site-shell-context-action"><a href="#calculator">Empezar a calcular</a></div>
-</div>
-</div>
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../es/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Plataforma de inteligencia para ingeniería de redes</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Abrir navegación"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navegación principal">
+      <a href="../../../es/">Inicio</a>
+      <a href="../../es/" aria-current="page">Herramientas</a>
+      <a href="../../../guides/">Guías</a>
+      <a href="../../../topics/">Temas</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Español"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Español</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/fiber-latency-calculator/" lang="en" hreflang="en"><span>English</span><small>Inglés</small></a><a class="language-option" role="menuitem" href="/tools/fiber-latency-calculator/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chino simplificado</small></a><a class="language-option" role="menuitem" href="/tools/fiber-latency-calculator/es/" lang="es" hreflang="es" aria-current="page"><span>Español</span><small>Español</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">Empezar a calcular</a></div>
+    </div>
+  </div>
 </header>
 <!-- NEL_HEADER_END -->
 <!-- NEL_TOOL_RETURN_START -->
-<nav aria-label="Breadcrumb" class="breadcrumbs tool-return-nav">
-<a href="../../../es/">Inicio</a>
-<span aria-hidden="true">/</span>
-<a class="tool-return-link" href="../../es/">Herramientas</a>
-<span aria-hidden="true">/</span>
-<span aria-current="page">Calculadora de latencia de fibra</span>
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a href="../../../es/">Inicio</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../../es/">Herramientas</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">Calculadora de latencia de fibra</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
 <section aria-hidden="true" class="hero nel-tool-hero"><div class="hero-inner">
@@ -237,18 +237,18 @@ body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:
 </div>
 </section></div></section><!-- NEL_TOOL_GRAPH_START --><section aria-labelledby="nel-tool-graph-title" class="content-section nel-tool-graph" data-primary-workflow="fiber-latency-planning" data-tool-id="fiber-latency-calculator" id="nel-tool-graph">
 <div class="section-heading"><div><p class="eyebrow">FLUJO DE TRABAJO DE INGENIERÍA</p><h2 id="nel-tool-graph-title">Continuar el flujo de latencia de fibra</h2></div></div>
-<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Flujo de trabajo actual</span><strong>Flujo de planificación de latencia de fibra</strong><p>Confirme la longitud de la ruta y las hipótesis de pérdida, y después estime el retardo de ida y el tiempo de ida y vuelta.</p></div><div class="nel-workflow-step"><strong>Paso 2 de 2</strong><div aria-label="Paso 2 de 2" aria-valuemax="2" aria-valuemin="1" aria-valuenow="2" aria-valuetext="Paso 2 de 2" class="nel-workflow-progress" role="progressbar"><span style="width:100%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="../../fiber-loss/es/"><span class="nel-tool-graph-label">Anterior</span><strong>Calculadora de pérdidas de fibra</strong><span class="nel-tool-graph-description">Calcula pérdidas de fibra, empalmes, conectores, divisores y margen de ingeniería de un enlace óptico.</span></a><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Siguiente</span><strong>Flujo completado</strong></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Flujo de trabajo actual</span><strong>Flujo de planificación de latencia de fibra</strong><p>Confirme la longitud de la ruta y las hipótesis de pérdida, y después estime el retardo de ida y el tiempo de ida y vuelta.</p></div><div class="nel-workflow-step"><strong>Paso 2 de 2</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="2" aria-valuenow="2" aria-valuetext="Paso 2 de 2" aria-label="Paso 2 de 2"><span style="width:100%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="../../fiber-loss/es/"><span class="nel-tool-graph-label">Anterior</span><strong>Calculadora de pérdidas de fibra</strong><span class="nel-tool-graph-description">Calcula pérdidas de fibra, empalmes, conectores, divisores y margen de ingeniería de un enlace óptico.</span></a><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Siguiente</span><strong>Flujo completado</strong></div></div>
 <h3 class="nel-tool-graph-subtitle">Herramientas relacionadas</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="../../fiber-loss/es/"><strong>Calculadora de pérdidas de fibra</strong><span class="nel-tool-graph-description">Calcula pérdidas de fibra, empalmes, conectores, divisores y margen de ingeniería de un enlace óptico.</span></a><a class="nel-tool-graph-card" href="../../optical-power-budget/es/"><strong>Calculadora de presupuesto de potencia óptica</strong><span class="nel-tool-graph-description">Verifica un enlace óptico con la potencia de transmisión, la sensibilidad del receptor, la penalización óptica y la pérdida ODN.</span></a><a class="nel-tool-graph-card" href="../../otdr-event/es/"><strong>Analizador de eventos OTDR</strong><span class="nel-tool-graph-description">Analiza eventos OTDR de empalmes, conectores, curvaturas, roturas, fantasmas y efectos de zona muerta.</span></a><a class="nel-tool-graph-card" href="../../bandwidth-calculator/es/"><strong>Ancho de banda y tiempo de transferencia</strong><span class="nel-tool-graph-description">Calcula tiempo de transferencia, ancho de banda necesario, capacidad de usuarios concurrentes y volumen de datos.</span></a></div>
 </section><!-- NEL_TOOL_GRAPH_END --></div></div></main>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
-<div class="site-shell-footer-inner">
-<div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Herramientas profesionales en línea para ingenieros de telecomunicaciones y redes.</p></div>
-<nav aria-label="Navegación del pie de página" class="site-shell-footer-links">
-<a href="../../../es/about/">Acerca de</a><a href="../../../es/contact/">Contacto</a><a href="../../../es/privacy/">Privacidad</a><a href="../../../es/terms/">Términos</a>
-</nav>
-<p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
-</div>
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Herramientas profesionales en línea para ingenieros de telecomunicaciones y redes.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navegación del pie de página">
+      <a href="../../../es/about/">Acerca de</a><a href="../../../es/contact/">Contacto</a><a href="../../../es/privacy/">Privacidad</a><a href="../../../es/terms/">Términos</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
 </footer>
 <!-- NEL_FOOTER_END -->
 <script defer="" src="../js/engine.js?v=11269b52819a"></script>

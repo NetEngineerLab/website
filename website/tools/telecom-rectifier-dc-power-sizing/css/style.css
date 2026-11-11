@@ -707,3 +707,41 @@ body.nel-tool-v3 #calculator #rectifier-scenarios td::before{content:none!import
  body.nel-tool-v3 #calculator #rectifier-scenarios table{width:100%!important;min-width:0!important;max-width:100%!important}
  body.nel-tool-v3 #calculator #rectifier-scenarios :is(th,td){white-space:normal!important;overflow-wrap:anywhere!important;padding:5px!important}
 }
+
+/* The checklist, report and downloads fill the empty left column and share its edges. */
+@media screen and (min-width:961px){
+  body.nel-tool-v3 #calculator.nel-tool-primary-grid>.workspace{
+    align-items:start !important;
+  }
+  body.nel-tool-v3 #calculator.nel-tool-primary-grid>.workspace>.input-panel{
+    grid-column:1 !important;
+    grid-row:1 !important;
+    align-self:start !important;
+    height:auto !important;
+  }
+  body.nel-tool-v3 #calculator #rectifier-output,
+  body.nel-tool-v3 #calculator #result.rectifier-results{
+    display:contents !important;
+  }
+  body.nel-tool-v3 #calculator .rectifier-main,
+  body.nel-tool-v3 #calculator .rectifier-lower{
+    display:flex !important;
+    flex-direction:column !important;
+    align-self:start !important;
+    min-width:0 !important;
+    box-sizing:border-box !important;
+    margin:0 !important;
+    padding:22px !important;
+    border:1px solid #d9e4f2 !important;
+    border-radius:14px !important;
+    background:#fff !important;
+  }
+  body.nel-tool-v3 #calculator .rectifier-main{
+    grid-column:2 !important;
+    grid-row:1 / span 2 !important;
+  }
+  body.nel-tool-v3 #calculator .rectifier-lower{
+    grid-column:1 !important;
+    grid-row:2 !important;
+  }
+}

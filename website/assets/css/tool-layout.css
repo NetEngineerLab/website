@@ -772,3 +772,152 @@ html body.nel-tool-v3 #calculator #result .row > .eqn {
     font-size: 16px !important;
   }
 }
+
+/* Scenario cards align with the section text. Three borders, and the
+   result line wraps inside the card. */
+body.nel-tool-v3 #scenarios{
+  container-type:inline-size;
+  min-width:0;
+}
+body.nel-tool-v3 #calculator .metric-grid.nel-scenario-grid{
+  display:grid !important;
+  grid-template-columns:minmax(0, 1fr) !important;
+  gap:14px !important;
+  width:100% !important;
+  max-width:100% !important;
+  margin:0 !important;
+  padding:0 !important;
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+  align-items:stretch !important;
+}
+@container (min-width:760px){
+  body.nel-tool-v3 #calculator .metric-grid.nel-scenario-grid{
+    grid-template-columns:repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+body.nel-tool-v3 #calculator .nel-scenario-grid > .nel-scenario-card{
+  min-width:0 !important;
+  margin:0 !important;
+  overflow:hidden !important;
+}
+body.nel-tool-v3 #calculator .nel-scenario-card [data-scenario-expected],
+body.nel-tool-v3 #calculator .nel-scenario-card [data-scenario-expected] .nel-sc-metric{
+  white-space:normal !important;
+  overflow-wrap:anywhere !important;
+  max-width:100% !important;
+}
+body.nel-tool-v3 #calculator .nel-scenario-card .nel-scenario-link{
+  margin-top:auto !important;
+}
+
+/* PON source and toolkit cards: one border each, aligned with the heading. */
+body.nel-tool-v3:has(#pon-toolkit) #references > .fb-fold-body > .content-section > p,
+body.nel-tool-v3 #pon-toolkit > .fb-fold-body > .content-section > .section-heading,
+body.nel-tool-v3 #pon-toolkit > .fb-fold-body > .content-section > p,
+body.nel-tool-v3 #pon-toolkit > .fb-fold-body > .content-section > ul.nel-pon-toolkit,
+body.nel-tool-v3 #pon-toolkit > .fb-fold-body > .content-section > ul.nel-pon-guides{
+  background:#fff !important;
+  border-left:1px solid #d7e3f1 !important;
+  border-right:1px solid #d7e3f1 !important;
+  box-shadow:none !important;
+}
+body.nel-tool-v3:has(#pon-toolkit) #references > .fb-fold-body > .content-section > p{
+  margin:0 !important;
+  padding:16px 18px 8px !important;
+  border-top:1px solid #d7e3f1 !important;
+  border-bottom:0 !important;
+  border-radius:14px 14px 0 0 !important;
+}
+body.nel-tool-v3:has(#pon-toolkit) #references > .fb-fold-body > .content-section > ul{
+  margin:0 0 12px !important;
+  padding:0 18px 14px 34px !important;
+  background:#fff !important;
+  border:1px solid #d7e3f1 !important;
+  border-top:0 !important;
+  border-radius:0 0 14px 14px !important;
+}
+body.nel-tool-v3 #pon-toolkit > .fb-fold-body > .content-section > .section-heading{
+  margin:0 !important;
+  padding:14px 18px 0 !important;
+  border-top:1px solid #d7e3f1 !important;
+  border-bottom:0 !important;
+  border-radius:14px 14px 0 0 !important;
+}
+body.nel-tool-v3 #pon-toolkit > .fb-fold-body > .content-section > p{
+  margin:0 !important;
+  padding:8px 18px !important;
+  border-top:0 !important;
+  border-bottom:0 !important;
+  border-radius:0 !important;
+}
+body.nel-tool-v3 #pon-toolkit > .fb-fold-body > .content-section > ul.nel-pon-toolkit{
+  margin:0 0 16px !important;
+  padding:0 18px 14px 34px !important;
+  border-top:0 !important;
+  border-bottom:1px solid #d7e3f1 !important;
+  border-radius:0 0 14px 14px !important;
+}
+body.nel-tool-v3 #pon-toolkit > .fb-fold-body > .content-section > ul.nel-pon-guides{
+  margin:8px 0 0 !important;
+  padding:12px 18px 12px 34px !important;
+  border:1px solid #d7e3f1 !important;
+  border-radius:14px !important;
+}
+
+/* A result panel and its tiles are the two borders. The grid around the
+   tiles is not a third frame, and the tiles use the summary card's edges. */
+html body.nel-tool-v3 :is(#calculator, #analyzer, #planner, #assessment, #change-workspace, #acl-workspace, #main) :is(.result-panel, .nel-tool-result) .metric-grid:not(.nel-scenario-grid){
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  padding-left:0 !important;
+  padding-right:0 !important;
+}
+html body.nel-tool-v3 :is(#calculator, #analyzer, #planner, #assessment, #change-workspace, #acl-workspace, #main) :is(.result-panel, .nel-tool-result) > .readout .metrics{
+  padding-left:0 !important;
+  padding-right:0 !important;
+}
+html body.nel-tool-v3 #calculator .latency-presets{
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+
+/* Labels that wrap still leave the inputs in a row on one line.
+   Text in a field sits on the vertical center of that field. */
+html body.nel-tool-v3 :is(#calculator, #analyzer, #planner, #assessment, #change-workspace, #acl-workspace, #main) .fields > .field{
+  display:grid !important;
+  grid-template-rows:subgrid !important;
+  grid-row:span 3 !important;
+}
+html body.nel-tool-v3 :is(#calculator, #analyzer, #planner, #assessment, #change-workspace, #acl-workspace, #main) .fields > .field > label{
+  align-self:start !important;
+}
+html body.nel-tool-v3 :is(#calculator, #analyzer, #planner, #assessment, #change-workspace, #acl-workspace, #main) .fields > .field > :is(.inp, .input-wrap){
+  margin-top:0 !important;
+}
+html body.nel-tool-v3 :is(#calculator, #analyzer, #planner, #assessment, #change-workspace, #acl-workspace, #main) :is(.inp, .input-wrap) :is(textarea, select){
+  width:100% !important;
+  height:22px !important;
+  min-height:0 !important;
+  max-height:22px !important;
+  margin:0 !important;
+  padding:0 !important;
+  line-height:22px !important;
+  align-self:center !important;
+  resize:none !important;
+  overflow:hidden !important;
+  box-sizing:border-box !important;
+}
+html body.nel-tool-v3 :is(#calculator, #analyzer, #planner, #assessment, #change-workspace, #acl-workspace, #main) :is(.inp, .input-wrap) input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="file"]):not([type="range"]){
+  height:22px !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding-top:0 !important;
+  padding-bottom:0 !important;
+  line-height:22px !important;
+  align-self:center !important;
+  box-sizing:border-box !important;
+}

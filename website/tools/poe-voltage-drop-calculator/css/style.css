@@ -602,9 +602,10 @@ body.nel-tool-v3 #calculator .summary > div{
   align-items: flex-start !important;
   gap: 6px !important;
   padding: 14px 16px !important;
-  background: #fff !important;
-  border: 1px solid #e2eaf4 !important;
-  border-radius: 12px !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
 }
 @media (max-width: 720px){
   body.nel-tool-v3 #calculator .metrics,
@@ -724,3 +725,9 @@ body.nel-tool-v3 #calculator.nel-tool-primary-grid>.workspace>:is(.input-panel,.
    their full original paragraphs/articles/list items: no extraction or orphan punctuation. */
 body.nel-tool-v3 #calculator #references .std-chip{display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;border:1px solid #c9d8eb;background:#f5f9ff;color:#1558c0;text-decoration:none;font-weight:650;font-size:13px;white-space:normal;overflow-wrap:anywhere;max-width:100%;box-sizing:border-box}
 @media(max-width:768px){body.nel-tool-v3 #calculator #references .std-chip{width:100%;justify-content:center}}
+
+/* Engineering notes are sentences, not a bulleted list. */
+body.nel-tool-v3 #calculator #warnings,
+body.nel-tool-v3 #calculator #warnings li{
+  list-style: none !important;
+}

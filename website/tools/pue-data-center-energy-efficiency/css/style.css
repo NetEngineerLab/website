@@ -935,3 +935,22 @@ body.nel-tool-v3 #calculator .result-panel.nel-just-refreshed{
   transition: outline-color .2s ease;
 }
 
+/* The result cards keep their own frame. The tinted summary wrapper does not add a third one. */
+body.nel-tool-v3 #calculator #result .summary.grp{
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+body.nel-tool-v3 #calculator #result .summary > .metric.row{
+  border: 1px solid #d7e3ef !important;
+  border-radius: 12px !important;
+  padding: 14px 16px !important;
+  box-sizing: border-box !important;
+}
+body.nel-tool-v3 #calculator #result .summary > .metric.row:has(#status){
+  padding-right: 172px !important;
+}
+

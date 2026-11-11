@@ -300,3 +300,24 @@ body.nel-tool-v3 #calculator .print-source{
 body.nel-tool-v3 #calculator .below>.toc h4,
 body.nel-tool-v3 #calculator .below>.toc a,
 body.nel-tool-v3 #calculator .below>.toc a.on{font-weight:700!important;}
+
+/* Result tiles share the recommended-plan card edges. */
+body.nel-tool-v3 #calculator .result-card > .metrics.grp{
+  padding-left:0 !important;
+  padding-right:0 !important;
+}
+body.nel-tool-v3 #calculator .result-card > .metrics.grp > .metric:last-child:nth-child(odd){
+  grid-column:1 / -1 !important;
+}
+body.nel-tool-v3 #calculator .below > .toc a{
+  font-size:15px !important;
+  line-height:1.4 !important;
+}
+
+/* Wrapped labels stay at the top. Inputs in the same row share one line. */
+body.nel-tool-v3 #calculator :is(.resource-grid, .plan-grid) > label{
+  height:100%;
+}
+body.nel-tool-v3 #calculator :is(.resource-grid, .plan-grid) > label > :is(input, select){
+  margin-top:auto !important;
+}

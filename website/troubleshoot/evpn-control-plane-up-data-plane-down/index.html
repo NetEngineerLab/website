@@ -1,10 +1,12 @@
-<!doctype html><html lang="en" dir="ltr" data-nel-locale="en" data-nel-route="troubleshoot/evpn-control-plane-up-data-plane-down/"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EVPN Control Plane Up, Data Plane Down Lab | NetEngineerLab</title><meta name="description" content="Diagnose size-dependent EVPN/VXLAN loss through eight interactive stages and ten evidence checkpoints."><meta property="og:title" content="EVPN Control Plane Up, Data Plane Down Lab | NetEngineerLab"><meta property="og:description" content="Diagnose size-dependent EVPN/VXLAN loss through eight interactive stages and ten evidence checkpoints."><meta property="og:url" content="https://netengineerlab.com/troubleshoot/evpn-control-plane-up-data-plane-down/"><meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png"><link rel="stylesheet" href="/assets/css/guide.css?v=f69c3b2daf49"><link rel="stylesheet" href="/troubleshoot/evpn-control-plane-up-data-plane-down/css/style.css"><script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"EVPN Control Plane Up, Data Plane Down Lab","headline":"EVPN Control Plane Up, Data Plane Down Lab","description":"Diagnose size-dependent EVPN/VXLAN loss through eight interactive stages and ten evidence checkpoints.","url":"https://netengineerlab.com/troubleshoot/evpn-control-plane-up-data-plane-down/","inLanguage":"en","datePublished":"2026-10-16","dateModified":"2026-10-16","author":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script><meta name="twitter:card" content="summary_large_image">
+<!doctype html><html lang="en" dir="ltr" data-nel-locale="en" data-nel-route="troubleshoot/evpn-control-plane-up-data-plane-down/"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EVPN Control Plane Up, Data Plane Down Lab | NetEngineerLab</title><meta name="description" content="Diagnose size-dependent EVPN/VXLAN loss through eight interactive stages and ten evidence checkpoints."><meta property="og:title" content="EVPN Control Plane Up, Data Plane Down Lab | NetEngineerLab"><meta property="og:description" content="Diagnose size-dependent EVPN/VXLAN loss through eight interactive stages and ten evidence checkpoints."><meta property="og:url" content="https://netengineerlab.com/troubleshoot/evpn-control-plane-up-data-plane-down/"><meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png"><link rel="stylesheet" href="/assets/css/guide.css?v=09f302fd8b51"><link rel="stylesheet" href="/troubleshoot/evpn-control-plane-up-data-plane-down/css/style.css"><script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"EVPN Control Plane Up, Data Plane Down Lab","headline":"EVPN Control Plane Up, Data Plane Down Lab","description":"Diagnose size-dependent EVPN/VXLAN loss through eight interactive stages and ten evidence checkpoints.","url":"https://netengineerlab.com/troubleshoot/evpn-control-plane-up-data-plane-down/","inLanguage":"en","datePublished":"2026-10-16","dateModified":"2026-10-16","author":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script><meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="EVPN Control Plane Up, Data Plane Down Lab | NetEngineerLab">
 <meta name="twitter:description" content="Diagnose size-dependent EVPN/VXLAN loss through eight interactive stages and ten evidence checkpoints.">
 <meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 <meta name="robots" content="index,follow,max-image-preview:large">
 
-<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=20261109-mnav">
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="../../assets/css/site-pages-v2.css?v=20261105-v2">
+<link rel="stylesheet" href="../../assets/css/editorial-fresh.css?v=20261109-edit7">
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"EVPN Control Plane Up, Data Plane Down Lab | NetEngineerLab","url":"https://netengineerlab.com/troubleshoot/evpn-control-plane-up-data-plane-down/","description":"Diagnose size-dependent EVPN/VXLAN loss through eight interactive stages and ten evidence checkpoints.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="en">
@@ -17,14 +19,12 @@
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does an Established EVPN session prove data-plane delivery?","acceptedAnswer":{"@type":"Answer","text":"No. Check service forwarding and the actual encapsulated packet path, including MTU."}}]}</script>
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../assets/css/site-shell.css?v=20261109-jump">
-<link rel="stylesheet" href="../../assets/css/site-pages-v2.css?v=20261105-v2">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=475098aa29f5">
 <script defer src="../../data/locales.js?v=909e05076a50"></script>
 <script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../assets/js/site.js?v=20261109-jump"></script>
-<link rel="stylesheet" href="../../assets/css/editorial-fresh.css?v=20261109-edit7">
+<script defer src="../../assets/js/site.js?v=f55d6161a761"></script>
 </head><body class="guide-page lab-fresh"><a class="skip-link" href="#main">Skip to content</a><!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
   <div class="site-shell-header-inner">

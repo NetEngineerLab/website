@@ -136,6 +136,27 @@
 }
 .mtu-deep-workflow .ba-row strong{font-size:13px;font-weight:650;color:#0f172a}
 .mtu-deep-workflow .ba-arrow{text-align:center;color:#176ff2;font-size:20px;padding:2px}
+.mtu-deep-workflow .before-after [data-ba]{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.mtu-deep-workflow .before-after .ba-row{
+  flex:1 1 0;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+  gap:4px;
+  min-width:0;
+  border-bottom:0;
+  padding:0;
+}
+.mtu-deep-workflow .before-after .ba-arrow{
+  flex:0 0 auto;
+  padding:0;
+  line-height:1;
+}
 .mtu-deep-workflow .before-after ul{
   padding-left:18px;
   margin:0;
@@ -161,4 +182,19 @@
 @media print{
   .mtu-deep-workflow .deep-actions{display:none}
   .mtu-deep-workflow{break-inside:avoid}
+}
+
+/* The title and the comparison each get a frame. A later shared rule clears the section border. */
+body.nel-tool-v3 .prose .mtu-deep-workflow .deep-head,
+body.nel-tool-v3 .prose .mtu-deep-workflow .deep-grid{
+  border:1px solid #d7e3f1 !important;
+  border-radius:14px;
+  box-sizing:border-box;
+  background:#fff;
+}
+body.nel-tool-v3 .prose .mtu-deep-workflow .deep-head{
+  padding:14px 16px !important;
+}
+body.nel-tool-v3 .prose .mtu-deep-workflow .deep-grid{
+  padding:12px !important;
 }
