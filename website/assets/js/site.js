@@ -177,7 +177,8 @@ function initNetEngineerLabSite(){
  });
  let generatedControlId=0;
  function ensureControlLabels(scope=document){
-  scope.querySelectorAll?.("input,select,textarea").forEach(control=>{
+  if(!scope||typeof scope.querySelectorAll!=="function")return;
+  scope.querySelectorAll("input,select,textarea").forEach(control=>{
    if(control.labels?.length||control.hasAttribute("aria-label")||control.hasAttribute("aria-labelledby"))return;
    const label=control.closest(".field")?.querySelector("label");
    if(label){
@@ -191,7 +192,7 @@ function initNetEngineerLabSite(){
  }
  ensureControlLabels();
  new MutationObserver(records=>records.forEach(record=>record.addedNodes.forEach(node=>{
-  if(node.nodeType===Node.ELEMENT_NODE)ensureControlLabels(node.matches?.("input,select,textarea")?node.parentElement:node);
+  if(node.nodeType===Node.ELEMENT_NODE){const target=node.matches?.("input,select,textarea")?node.parentElement:node;if(target)ensureControlLabels(target);}
  }))).observe(document.body,{childList:true,subtree:true});
  document.documentElement.dataset.nelLocale=locale?.id||"en";
  document.documentElement.dataset.nelI18nVersion=config.version||"";

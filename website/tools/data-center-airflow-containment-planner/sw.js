@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-data-center-airflow-containment-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-70a9126ff026-d818fe881fea";
+const CACHE = "nel-data-center-airflow-containment-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-70a9126ff026-d818fe881fea-sitec957f6562d31";
 const CORE = [
   "./js/locale-es.js?v=20261108-t339-bw1",
   "./",
