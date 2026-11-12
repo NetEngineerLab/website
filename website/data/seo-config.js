@@ -22,7 +22,7 @@
       }),
       es: Object.freeze({
         title: "NetEngineerLab | Herramientas de telecomunicaciones y redes",
-        description: "Herramientas profesionales para ingeniería óptica, PON, redes IP, PoE, energía, centro de datos y planificación inalámbrica."
+        description: "PoE, energía, refrigeración de centros de datos, planificación de capacidad y cambios, y comprobaciones ópticas, con fórmula y límite en cada página."
       })
     }),
     socialImage: "/assets/images/og-netengineerlab.png",
