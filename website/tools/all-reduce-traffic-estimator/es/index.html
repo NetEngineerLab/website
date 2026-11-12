@@ -6,18 +6,18 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="#176ff2" name="theme-color"/>
 <title>Estimador de tráfico All-Reduce – bytes 2(N−1)/N, tiempo y busBW</title>
-<meta content="Estima el tráfico all-reduce en anillo para entrenamiento distribuido: bytes que envía cada GPU (2(N−1)/N × búfer), tráfico total, tiempo por ancho de banda y latencia, algBW y busBW de NCCL." name="description"/>
+<meta content="Estima el tráfico all-reduce en anillo para entrenamiento distribuido: bytes por GPU (2(N−1)/N × búfer), tiempo de tejido y latencia, algBW y busBW." name="description"/>
 <meta content="../" name="app-base"/>
 <meta content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" name="robots"/>
 <meta content="website" property="og:type"/>
 <meta content="NetEngineerLab" property="og:site_name"/>
 <meta content="Estimador de tráfico All-Reduce – bytes 2(N−1)/N, tiempo y busBW" property="og:title"/>
-<meta content="Estima el tráfico all-reduce en anillo para entrenamiento distribuido: bytes que envía cada GPU (2(N−1)/N × búfer), tráfico total, tiempo por ancho de banda y latencia, algBW y busBW de NCCL." property="og:description"/>
+<meta content="Estima el tráfico all-reduce en anillo para entrenamiento distribuido: bytes por GPU (2(N−1)/N × búfer), tiempo de tejido y latencia, algBW y busBW." property="og:description"/>
 <meta content="https://netengineerlab.com/tools/all-reduce-traffic-estimator/es/" property="og:url"/>
 <meta content="https://netengineerlab.com/assets/images/og-netengineerlab.png" property="og:image"/>
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="Estimador de tráfico All-Reduce – bytes 2(N−1)/N, tiempo y busBW" name="twitter:title"/>
-<meta content="Estima el tráfico all-reduce en anillo para entrenamiento distribuido: bytes que envía cada GPU (2(N−1)/N × búfer), tráfico total, tiempo por ancho de banda y latencia, algBW y busBW de NCCL." name="twitter:description"/>
+<meta content="Estima el tráfico all-reduce en anillo para entrenamiento distribuido: bytes por GPU (2(N−1)/N × búfer), tiempo de tejido y latencia, algBW y busBW." name="twitter:description"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://netengineerlab.com/tools/all-reduce-traffic-estimator/es/#app","name":"Estimador de tráfico All-Reduce","url":"https://netengineerlab.com/tools/all-reduce-traffic-estimator/es/","description":"Estima el tráfico por GPU y total, el tiempo y el ancho de banda de bus de un all-reduce en anillo de gradientes.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Network Engineering Calculator","operatingSystem":"Any","browserRequirements":"Requires JavaScript and a modern web browser","softwareVersion":"1.0.0","inLanguage":"es","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/all-reduce-traffic-estimator/es/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"NetEngineerLab","item":"https://netengineerlab.com/es/"},{"@type":"ListItem","position":2,"name":"Herramientas","item":"https://netengineerlab.com/tools/es/"},{"@type":"ListItem","position":3,"name":"Estimador de tráfico All-Reduce","item":"https://netengineerlab.com/tools/all-reduce-traffic-estimator/es/"}]}]}</script>
 <link data-nel-workflow-style="" href="../../../assets/css/tool-workflow.css?v=8c74b394ef2c" rel="stylesheet"/>
 <meta content="https://netengineerlab.com/assets/images/og-netengineerlab.png" name="twitter:image"/>
@@ -28,8 +28,7 @@
 <link href="/assets/css/fb-v3.css?v=718e11ad9233" rel="stylesheet"/>
 <link href="/assets/css/fb-v3-prod.css?v=0e51668c3f12" rel="stylesheet"/>
 <script defer="" src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
-<link href="../css/style.css?v=e555d018ba04" rel="stylesheet"/>
-<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Estimador de tráfico All-Reduce – bytes 2(N−1)/N, tiempo y busBW","url":"https://netengineerlab.com/tools/all-reduce-traffic-estimator/es/","description":"Estima el tráfico all-reduce en anillo para entrenamiento distribuido: bytes que envía cada GPU (2(N−1)/N × búfer), tráfico total, tiempo por ancho de banda y latencia, algBW y busBW de NCCL.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
+<link href="../css/style.css?v=e555d018ba04" rel="stylesheet"/><script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Estimador de tráfico All-Reduce – bytes 2(N−1)/N, tiempo y busBW","url":"https://netengineerlab.com/tools/all-reduce-traffic-estimator/es/","description":"Estima el tráfico all-reduce en anillo para entrenamiento distribuido: bytes por GPU (2(N−1)/N × búfer), tiempo de tejido y latencia, algBW y busBW.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="es">
 <meta name="nel-route" content="tools/all-reduce-traffic-estimator/">

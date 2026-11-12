@@ -14,14 +14,14 @@
     defaults: Object.freeze({
       en: Object.freeze({
         title: "NetEngineerLab | Telecom and Network Engineering Tools",
-        description: "Optical links, PoE, telecom power, data-center cooling, capacity planning and change checks, with the formula and the limit written on each page."
+        description: "PoE, telecom power, data-center cooling, capacity and change planning, plus optical checks, with the formula and limit on each page."
       }),
       zh: Object.freeze({
         title: "NetEngineerLab | 通信与网络工程工具",
-        description: "光链路、PoE、通信电源、数据中心制冷、容量规划和变更校核工具，每页写明公式、单位和适用范围。"
+        description: "PoE、通信电源、数据中心制冷、容量规划、变更规划与光链路校核工具，每页写明公式和适用范围。"
       }),
       es: Object.freeze({
-        title: "NetEngineerLab | Herramientas de telecomunicaciones e ingeniería de redes",
+        title: "NetEngineerLab | Herramientas de telecomunicaciones y redes",
         description: "Herramientas profesionales para ingeniería óptica, PON, redes IP, PoE, energía, centro de datos y planificación inalámbrica."
       })
     }),
