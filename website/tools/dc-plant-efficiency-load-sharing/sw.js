@@ -5,7 +5,7 @@ const CORE = [
   "./index.html",
   "./offline.html",
   "./manifest.webmanifest",
-  "./css/style.css?v=7e2ba011814d",
+  "./css/style.css?v=8b049c2c3e73",
   "./js/engine.js",
   "./js/app.js?v=28c3b363c6ad",
   "./js/pwa.js",
