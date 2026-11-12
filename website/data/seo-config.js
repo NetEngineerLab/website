@@ -14,11 +14,11 @@
     defaults: Object.freeze({
       en: Object.freeze({
         title: "NetEngineerLab | Telecom and Network Engineering Tools",
-        description: "Professional tools for optical engineering, PON planning, OTDR analysis, MTU/MSS, IP subnet planning and bandwidth calculations."
+        description: "Optical links, PoE, telecom power, data-center cooling, capacity planning and change checks, with the formula and the limit written on each page."
       }),
       zh: Object.freeze({
         title: "NetEngineerLab | 通信与网络工程工具",
-        description: "面向通信与网络工程师的光纤、PON、OTDR、MTU/MSS、IP地址规划和带宽计算工具。"
+        description: "光链路、PoE、通信电源、数据中心制冷、容量规划和变更校核工具，每页写明公式、单位和适用范围。"
       }),
       es: Object.freeze({
         title: "NetEngineerLab | Herramientas de telecomunicaciones e ingeniería de redes",

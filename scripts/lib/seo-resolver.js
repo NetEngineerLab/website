@@ -1,5 +1,8 @@
 "use strict";
 
+const fs = require("fs");
+const path = require("path");
+
 // Shared SEO resolver used by the multilingual build. It fills metadata and
 // structured data the page templates do not already emit, and it keeps
 // breadcrumb URLs on absolute trailing-slash sitemap locations.
@@ -721,12 +724,14 @@ function renderLlmsTxt({ siteUrl, toolCatalog, routes, activeLocales }) {
     "",
     "## Languages",
     "",
-    "Active locales are English (`en`), Chinese (`zh-CN`) and Spanish (`es`). `x-default` is English. A tool or guide has an hreflang alternate only when that locale page exists. Tool URLs stay `/tools/<slug>/`, `/tools/<slug>/zh/` and `/tools/<slug>/es/`.",
+    "Active locales are English (`en`), Chinese (`zh-CN`) and Spanish (`es`). `x-default` is English. A tool or guide has an hreflang alternate only when that locale page exists.",
+    "An English tool page is `/tools/{slug}/`. Its Chinese page is `/tools/{slug}/zh/` and its Spanish page is `/tools/{slug}/es/`. Example: `/tools/pon-distance/`, `/tools/pon-distance/zh/`, `/tools/pon-distance/es/`.",
     "",
     "## Tools",
     ""
   ];
   const tools = toolCatalog.filter(tool => tool.status === "active").slice().sort((a, b) => String(a.id).localeCompare(String(b.id)));
+  lines.push(`${tools.length} production calculators. The supplementary tools and workshops below are indexable, but they are not included in this count.`, "");
   for (const tool of tools) {
     const name = tool.translations?.en?.name || tool.id;
     const locales = activeLocales
@@ -734,6 +739,21 @@ function renderLlmsTxt({ siteUrl, toolCatalog, routes, activeLocales }) {
       .map(locale => locale.id)
       .join(", ");
     lines.push(`- ${name} (${locales}): ${siteUrl}/tools/${tool.id}/`);
+  }
+  lines.push("", "## Supplementary tools and workshops", "");
+  lines.push("These pages can be indexed. They sit outside the production calculator count above. A language is listed only when that page is published.", "");
+  const supplemental = [
+    ["application-bandwidth-analyzer", "Application Bandwidth Analyzer", "Analyzes per-application bandwidth, link utilization and headroom from rates you enter."],
+    ["data-center-architecture-decision-workshop", "Data Center Architecture Decision Workshop", "Compares architecture candidates with a local preference rubric, requirement gaps and a migration review."],
+    ["ip-camera-network-planner", "IP Camera Network Planner", "Estimates camera bitrate, switch uplinks, PoE budget, NVR storage and N-1 headroom."],
+    ["network-asset-lifecycle-tracker", "Network Asset Lifecycle Tracker", "Tracks lifecycle dates, replacement windows and local priorities across device groups."],
+    ["oob-network-design-planner", "OOB Network Design Workshop", "Plans out-of-band transport, console access, management controls and power dependencies."]
+  ];
+  for (const [id, name, role] of supplemental) {
+    const base = path.join(__dirname, "..", "..", "website", "tools", id);
+    const published = ["en", "zh", "es"].filter(locale => fs.existsSync(path.join(base, locale === "en" ? "index.html" : path.join(locale, "index.html"))));
+    if (!published.includes("en")) throw new Error(`llms.txt supplemental page is missing: ${id}`);
+    lines.push(`- ${name} (${published.join(", ")}): ${siteUrl}/tools/${id}/ — ${role}`);
   }
   lines.push("", "## Calculator hubs", "");
   lines.push(`- PON and fiber calculators: ${siteUrl}/tools/pon-fiber-calculators/`);
