@@ -82,7 +82,7 @@
   <span aria-current="page">ONU接收光功率诊断</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
-<section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner"><p class="eyebrow">PON MAINTENANCE TOOL</p><h1>ONU接收光功率诊断工具</h1><p>根据ONU实测接收光功率、设备接收灵敏度和过载门限，判断正常、弱光、严重弱光、光功率过高或疑似无光；高级模式还可比较理论接收功率与实测值，推算额外异常损耗。</p><div class="hero-tags"><span>弱光诊断</span><span>过载判断</span><span>额外损耗</span><span>维护建议</span></div></div></section>
+<section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner"><p class="eyebrow">PON MAINTENANCE TOOL</p><p class="hero-title">ONU接收光功率诊断工具</p><p>根据ONU实测接收光功率、设备接收灵敏度和过载门限，判断正常、弱光、严重弱光、光功率过高或疑似无光；高级模式还可比较理论接收功率与实测值，推算额外异常损耗。</p><div class="hero-tags"><span>弱光诊断</span><span>过载判断</span><span>额外损耗</span><span>维护建议</span></div></div></section>
 <main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator" data-nel-readout-roles="%7B%22secondary%22%3A%5B%22sensitivityMargin%22%2C%22overloadMargin%22%2C%22receiverWindow%22%2C%22splitRatio%22%2C%22expectedRx%22%2C%22deviation%22%2C%22inferredExtra%22%2C%22fiberLoss%22%2C%22spliceTotal%22%2C%22connectorTotal%22%2C%22splitterLoss%22%2C%22modeledLoss%22%5D%2C%22identifier%22%3A%5B%5D%2C%22annotation%22%3A%5B%5D%7D" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv">
 <div class="workspace"><section class="input-panel card nel-tool-input fb-panel"><div class="fb-panel"><div class="panel-h"><h2 class="panel-h">实测与设备参数</h2></div><p class="fg-note" id="modeHint">同时建立链路模型，比较理论接收光功率与实测值。</p><div class="fs"><div aria-label="诊断模式" class="mode-tabs tabs" role="tablist"><button aria-selected="false" class="mode-tab" data-mode="measured" role="tab">快速诊断</button><button aria-selected="true" class="mode-tab active" data-mode="model" role="tab">链路模型诊断</button></div>
 <div class="preset-row fg"><label for="preset">场景参考预设</label><div class="inp input-wrap sel"><select id="preset"><option value="custom">自定义</option><option selected="" value="gpon-b">GPON B+参考（可编辑）</option><option value="gpon-c">GPON C+参考（可编辑）</option><option value="epon">EPON参考（可编辑）</option><option value="customWeak">弱光示例</option></select></div></div>
@@ -140,7 +140,7 @@
 </div>
 <div class="tool-head">
 <div class="crumbs"><a href="../../../zh/">首页</a>/<a href="../../../zh/topics/pon-optical/">光网络</a>/<span>ONU接收光功率诊断工具</span></div>
-<p class="tool-page-label" role="heading" aria-level="1">ONU接收光功率诊断工具</p>
+<h1 class="tool-page-label">ONU接收光功率诊断工具</h1>
 <p class="tool-lede">根据ONU实测接收光功率、设备接收灵敏度和过载门限，判断正常、弱光、严重弱光、光功率过高或疑似无光；高级模式还可比较理论接收功率与实测值，推算额外异常损耗。</p>
 </div>
 <div class="below"><nav class="toc" aria-label="本页导航"><h4>本页导航</h4><a href="#methodology">计算方法</a><a href="#component-check">分项核对</a><a href="#faq">问答</a><a href="#history">最近计算</a><a href="#references">官方依据</a><a href="#pon-toolkit">PON 工具组</a><a href="#nel-tool-graph">工程工作流</a></nav><div class="prose"><aside aria-label="广告" class="ad-slot" data-ad-key="afterCalculator" hidden=""><div class="ad-label">广告</div><div class="ad-body"></div></aside><aside aria-label="广告" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">广告</div><div class="ad-body"></div></aside><details class="fb-fold blk" id="methodology" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span class="fb-fold-title">判断方法与工程说明</span></summary><div class="fb-fold-body"><section class="content-section nel-tool-supporting-section"><div class="section-heading"><div><p class="eyebrow">METHODOLOGY</p></div></div>
