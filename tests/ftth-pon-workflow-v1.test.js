@@ -96,6 +96,15 @@ const fullOdn = wf.run(changedOdn, { clock, runId: "run-odn-change" });
 assert.equal(step(fullOdn.run, "odf-odn").toolRun.outputs.resources.ponPorts, 2);
 assert.equal(step(fullOdn.run, "odf-odn").toolRun.outputs.scenarios[0].status, "FAIL");
 assert.equal(wf.create({ ...wf.exampleProject(), parameters: { ...wf.exampleProject().parameters, splitter1Db: 24 } }).ok, false);
+const renamed = project();
+renamed.name = "Renamed span";
+const renamedResume = wf.rerun(renamed, first.run, "measured-rx", { clock });
+assert.equal(renamedResume.ok, false);
+assert.equal(renamedResume.error, "upstream-inputs-changed");
+assert.equal(renamedResume.stepId, "odf-odn");
+const renamedFull = wf.run(renamed, { clock, runId: "run-rename" });
+assert.equal(step(renamedFull.run, "odf-odn").toolRun.outputs.scenarios[0].name, "Renamed span");
+assert.ok(!wf.buildReport(renamed, renamedFull.run).markdown.includes("FTTH example"));
 
 const report = wf.buildReport(project(), first.run, { owner: "design" });
 assert.equal(report.ok, true);

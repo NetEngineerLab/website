@@ -352,6 +352,7 @@
           run(context){
             const p = context.parameters;
             const inputs = {
+              projectName: context.name || "Project",
               targetOnu: p.targetOnu, stages: p.stages, ratio1: p.ratio1, ratio2: p.ratio2, ratio3: p.ratio3,
               operatorCap: p.operatorCap, protectionFactor: p.protectionFactor, reservePct: p.reservePct,
               maxCableCores: p.maxCableCores, odfTrayCapacity: p.odfTrayCapacity, spliceTrayCapacity: p.spliceTrayCapacity,
@@ -391,7 +392,7 @@
               existingOdfPorts: p.existingOdfPorts, existingOdfTrays: p.existingOdfTrays,
               existingSpliceTrays: p.existingSpliceTrays, existingFeederCores: p.existingFeederCores,
               existingDistributionCores: p.existingDistributionCores,
-              scenarios: [Object.assign({ id: "A", name: context.name || "Project" }, down)]
+              scenarios: [Object.assign({ id: "A", name: inputs.projectName }, down)]
             });
             const resourcesOk = output.resources && output.resources.valid === true;
             const optical = output.scenarios && output.scenarios[0];
