@@ -2,38 +2,25 @@
 
 Reviewer: the same independent agent that did not implement WF-01.
 
-Verdict: **FAIL**
+Verdict: **PASS**
 
-Commit reviewed: `61815d274bbb1214ec7cdf558d07ec8b0e1d5616` on `cursor/ftth-pon-workflow-v1-deec`. Product code, tests, registries, and the workflow page were not modified by this review.
+Commit reviewed: `9223813aa7da02d16458091edc218b133494a4d0` on `cursor/ftth-pon-workflow-v1-deec`. Product code and tests were not modified by this review.
 
-## Previous defect
+## Rename resume
 
-The operator-cap and max-ODN-loss hole is closed. `website/assets/js/workflow/ftth-pon-v1.js` now records the ODN resource fields and the optical window on the ODN step, including `operatorCap` and `maxOdnLossDb`.
+`website/assets/js/workflow/ftth-pon-v1.js` records `projectName: context.name || "Project"` on the ODN step and passes that same value as the scenario name. Renaming the example to `Renamed span` and resuming from `measured-rx` returns `ok: false`, error `upstream-inputs-changed`, step `odf-odn`. A full run names the scenario `Renamed span`, the recorded input is `Renamed span`, and the report does not contain `FTTH example`.
 
-`node tests/ftth-pon-workflow-v1.test.js` exited 0 and printed `FTTH/PON workflow V1 tests: PASS`. The new assertions reject `wf.rerun` from `measured-rx` after `operatorCap` 32 and `maxOdnLossDb` 10 with `upstream-inputs-changed` on `odf-odn`. A full `wf.run` of that project returns 2 PON ports and scenario status `FAIL`. The same probe, plus reserve, protection, existing feeder cores, cable size, tray capacity, attenuation, penalty, and `sameBothDirections`, also refused the resume. A null measured receive level still returns `UNKNOWN` with `cause: null`, and the ONU engine is not called.
+`node tests/ftth-pon-workflow-v1.test.js` exited 0 and printed `FTTH/PON workflow V1 tests: PASS`. It covers that rename resume and the full run named `Renamed span`.
 
-## Blocking defect
+## Engine arguments against recorded inputs
 
-The ODN input snapshot still omits `context.name`, which is passed into `NELOdfOdnEngine.calculate` as the scenario name (`scenarios[0].name`, about line 394).
+Each `calculate` call was compared with that step’s `toolRun.inputs` on the example, a measured receive level, a folded third splitter stage with other loss 1 dB, one-direction optics, and a renamed project.
 
-Observed behavior, example project, clock fixed:
+- Fiber loss: distance, attenuation, splice count and loss, connector count and loss, splitter 1, splitter 2, margin, transmit power, and receive threshold match recorded fields. `otherLoss` equals recorded `otherLossDb + splitter3Db`. `availableBudget` equals recorded `txMinDbm - rxSensitivityDbm - penaltyDb`.
+- PON splitter: distance, attenuation, splices, connectors, all three splitter values, other loss, penalty, margin, both transmit levels, both receive levels, and system reach match recorded fields.
+- Optical power budget: penalty, distance, attenuation, splices, connectors, all three splitter values, other loss, margin, and the transmit and receive window match recorded fields.
+- PON distance: planned distance, system reach, attenuation, splices, connectors, splitter 1, splitter 2, margin, transmit minimum, and both receive levels match recorded fields. The `other` argument equals recorded `distanceOtherLossDb`, including the folded third stage.
+- ODN: target ONU, stages, ratios, operator cap, protection, reserve, cable and tray sizes, existing resources, distance, attenuation, splitter-loss sum, splices, connectors, other loss, max ODN loss, system reach, penalty, transmit and receive window, and `sameBothDirections` match recorded fields. The scenario name equals recorded `projectName`. Upstream attenuation and power are copied only when that flag is true, and they use the same recorded fields. The scenario id passed to the engine is the constant `A`.
+- ONU receive power, when a measurement is present: measured level, sensitivity, overload, no-signal level, warning margin, distance, attenuation, splices, connectors, splitter 1, splitter 2, and transmit minimum match recorded fields. `other` equals recorded `otherLossDb + splitter3Db`. The mode passed to the engine is the constant `model`. With no measurement the step stays `UNKNOWN`, `cause` is null, and `calculate` is not called.
 
-- Run the example, then rerun from `measured-rx` with the project name changed to `Renamed span`.
-- `rerun` returns `ok: true` and keeps the previous ODN step.
-- The kept scenario name is `FTTH example`, status `PASS`, 1 PON port.
-- A full run of the renamed project names the scenario `Renamed span`.
-- `buildReport` sets the bundle project to `Renamed span` and the Markdown still contains `"name":"FTTH example"` inside the serialized ODN scenario.
-
-The constant scenario id `"A"` is also omitted. It cannot drift. The stale field that is shown is the name.
-
-## Other checks
-
-Measured-RX inputs now include the varying ONU arguments: measured level, distance, attenuation, splices, connectors, three splitter values, other loss, transmit minimum, sensitivity, overload, no-signal level, and warning margin. The engine’s `mode` is the constant `"model"` and is not in the snapshot. `other` is `otherLossDb + splitter3Db`, and both parts are recorded. Changing `noSignalDbm` and rerunning from `measured-rx` recalculates that step.
-
-No loss, ratio, reach, or resource formula was copied from the engines in this commit. The only arithmetic still in the workflow is the previous input adaptation: fiber `availableBudget` is `txMinDbm - rxSensitivityDbm - penaltyDb` because that engine requires a dB budget and has no penalty field; a third splitter stage is added to `otherLoss` for two-stage engines; ODN receives the sum of the three splitter dB values. Calculated loss, remaining budget, and receive power still come from the engine `calculate` functions. The report still comes from `createBundle` and `toMarkdown`.
-
-`src/registry/tool-registry.json` and `website/sitemap.xml` still have no `ftth-pon` entry. Splitter value 24 is no longer in the workflow catalog, and `create` rejects it.
-
-## Required correction
-
-Put the project name in the ODN step’s recorded inputs so a resume cannot keep the previous scenario name after the project is renamed.
+No changeable engine argument or displayed scenario value is absent from the recorded inputs. The two constants cannot drift between runs.
