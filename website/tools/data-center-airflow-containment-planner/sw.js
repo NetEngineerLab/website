@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-data-center-airflow-containment-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-70a9126ff026-d818fe881fea-sitec957f6562d31";
+const CACHE = "nel-data-center-airflow-containment-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-d03638bcd26e-cd85f931a7df";
 const CORE = [
   "./js/locale-es.js?v=20261108-t339-bw1",
   "./",
@@ -17,6 +17,7 @@ const CORE = [
   "../../assets/js/es-launch-runtime.js?v=c7c562a25b80",
   "../../assets/js/es-launch-runtime.js?v=b69809c86108",
   "../../assets/js/es-launch-runtime.js?v=3f188aa72208",
+  "../../assets/js/es-launch-runtime.js?v=829a7f1559b7",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
@@ -24,13 +25,13 @@ const CORE = [
   "../../assets/css/site-shell.css?v=475098aa29f5",
   "../../assets/css/tool-design-system.css?v=fbfd8fc05bdc",
   "../../assets/css/tool-workflow.css?v=8c74b394ef2c",
-  "../../assets/css/fb-v3.css?v=718e11ad9233",
-  "../../assets/css/fb-v3-prod.css?v=0e51668c3f12",
+  "../../assets/css/fb-v3.css?v=031fae951adb",
+  "../../assets/css/fb-v3-prod.css?v=cc63b134f28f",
   "../../assets/js/tool-v3-navigation.js?v=b8d825e0f678",
   "../../assets/js/tool-detail-v3.js?v=6f38212f00f3",
   "../../assets/js/analytics.js?v=1156b7864023",
   "../../assets/js/adsense.js?v=f075c80ccc75",
-  "../../assets/js/site.js?v=f55d6161a761",
+  "../../assets/js/site.js?v=c957f6562d31",
   "../../assets/js/tool-integration.js?v=05f7934f4687",
   "../../assets/js/tool-shell-v1.9.9-04.js?v=b786c10e6903",
   "../../assets/css/cookie-consent.css?v=2f2c8ab643e6",
@@ -46,9 +47,7 @@ const CORE = [
   "./manifest-zh.webmanifest",
   "./es/",
   "./es/index.html",
-  "./manifest-es.webmanifest",
-  "../../assets/css/tool-layout.css?v=c4aecb2c24ab",
-  "../../assets/js/es-launch-runtime.js?v=829a7f1559b7"
+  "./manifest-es.webmanifest"
 ];self.addEventListener("install",e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)));self.skipWaiting()});self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith("nel-data-center-airflow-containment-planner-")&&k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim()});self.addEventListener("fetch",e=>{if(e.request.method!=="GET")return;e.respondWith(nelScopedCacheMatch(e.request,{ignoreSearch:true}).then(c=>c||fetch(e.request)))});
 /* NEL_SCOPED_CACHE_START */
 // A different tool may retain another version of a shared asset. Never search

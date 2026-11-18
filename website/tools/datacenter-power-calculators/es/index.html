@@ -26,6 +26,7 @@
 <link rel="stylesheet" href="/assets/css/fb-v3.css?v=718e11ad9233-opb2">
 <link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=0e51668c3f12-opb2">
 <link rel="stylesheet" href="../css/style.css?v=c489585e98d2">
+
 <link rel="stylesheet" href="../../../assets/css/site.css?v=e139c2a424b2">
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Calculadoras de energía y refrigeración – PoE, UPS, PUE","url":"https://netengineerlab.com/tools/datacenter-power-calculators/es/","description":"Planifique PoE, potencia de rack, carga de refrigeración, autonomía de UPS, combustible, rectificadores y PUE.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
@@ -37,7 +38,6 @@
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/datacenter-power-calculators/zh/">
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/datacenter-power-calculators/es/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/datacenter-power-calculators/">
-<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Por qué PoE y PUE están en el mismo hub?","acceptedAnswer":{"@type":"Answer","text":"PoE suele formar parte de la carga TI que multiplica el PUE. Omitirlo subestima tanto el rack como la carga eléctrica de la instalación."}},{"@type":"Question","name":"¿Dimensiono el generador a partir de la potencia del UPS?","acceptedAnswer":{"@type":"Answer","text":"No por sí solo. Compruebe primero la autonomía del UPS y el soporte de la transferencia, y después el combustible del generador para la duración del corte y la carga realmente conectada."}},{"@type":"Question","name":"¿Dónde termina la refrigeración del rack y empieza la de la sala?","acceptedAnswer":{"@type":"Answer","text":"Use la calculadora de rack para el armario. Use la carga de refrigeración y el flujo de aire cuando la pregunta es la sala, la fila y si la contención cambia el caudal que deben entregar los equipos."}},{"@type":"Question","name":"¿Qué calculadora de batería usa una sala de telecomunicaciones?","acceptedAnswer":{"@type":"Answer","text":"Use la de autonomía de −48 V para la planta de corriente continua y la de autonomía del UPS para un UPS de alterna. El rectificador y los interruptores acompañan a la planta de continua, no la sustituyen."}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../../assets/css/site-shell.css?v=475098aa29f5">
@@ -45,7 +45,7 @@
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../../assets/js/site.js?v=f55d6161a761"></script>
+<script defer src="../../../assets/js/site.js?v=c957f6562d31"></script>
 </head>
 <body class="nel-tool-detail-page nel-tool-v3 v3">
 <!-- NEL_HEADER_START -->
@@ -93,12 +93,11 @@
 <section class="blk panel" id="related">
 <h2>Páginas relacionadas</h2>
 </section>
-<section class="blk panel content-section faq-section" data-nel-faq="visible"></section>
-<p class="hub-return" data-nel-cluster-link><a href="../../../topics/data-center-capacity/">Esta página lista las calculadoras de energía y refrigeración. Las compensaciones de carga, espacio y uplinks están en el tema de capacidad del centro de datos; las fórmulas y N+1, en el tema de refrigeración.</a> <a href="../../../topics/data-center-cooling-capacity/">Tema de capacidad de refrigeración</a></p>
 </div>
 </div>
 </main>
 
+<p class="hub-return" data-nel-cluster-link><a href="../../../topics/data-center-capacity/">Esta página lista las calculadoras de energía y refrigeración. Las compensaciones de carga, espacio y uplinks están en el tema de capacidad del centro de datos; las fórmulas y N+1, en el tema de refrigeración.</a> <a href="../../../topics/data-center-cooling-capacity/">Tema de capacidad de refrigeración</a></p>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">
