@@ -87,6 +87,16 @@ const oneWay = wf.run(project({ sameBothDirections: false }), { clock, runId: "r
 assert.equal(step(oneWay.run, "odf-odn").toolRun.outputs.scenarios[0].status, "INCONCLUSIVE");
 assert.equal(step(oneWay.run, "odf-odn").toolRun.ok, true);
 
+const changedOdn = project({ operatorCap: 32, maxOdnLossDb: 10 });
+const resumed = wf.rerun(changedOdn, first.run, "measured-rx", { clock });
+assert.equal(resumed.ok, false);
+assert.equal(resumed.error, "upstream-inputs-changed");
+assert.equal(resumed.stepId, "odf-odn");
+const fullOdn = wf.run(changedOdn, { clock, runId: "run-odn-change" });
+assert.equal(step(fullOdn.run, "odf-odn").toolRun.outputs.resources.ponPorts, 2);
+assert.equal(step(fullOdn.run, "odf-odn").toolRun.outputs.scenarios[0].status, "FAIL");
+assert.equal(wf.create({ ...wf.exampleProject(), parameters: { ...wf.exampleProject().parameters, splitter1Db: 24 } }).ok, false);
+
 const report = wf.buildReport(project(), first.run, { owner: "design" });
 assert.equal(report.ok, true);
 assert.equal(report.bundle.schemaVersion, "1.0.0");

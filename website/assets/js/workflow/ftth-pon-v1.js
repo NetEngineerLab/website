@@ -8,7 +8,7 @@
 
   const WORKFLOW_ID = "optical-link-design";
   const WORKFLOW_VERSION = "ftth-pon-v1";
-  const SPLITTER_DB = ["0", "3.7", "7.2", "10.5", "13.8", "17", "20.5", "24"];
+  const SPLITTER_DB = ["0", "3.7", "7.2", "10.5", "13.8", "17", "20.5"];
   const UNITS = {
     distanceKm: "km",
     attenuationDbPerKm: "dB/km",
@@ -353,7 +353,18 @@
             const p = context.parameters;
             const inputs = {
               targetOnu: p.targetOnu, stages: p.stages, ratio1: p.ratio1, ratio2: p.ratio2, ratio3: p.ratio3,
-              distanceKm: p.distanceKm, splitterLossDb: p.splitter1Db + p.splitter2Db + p.splitter3Db,
+              operatorCap: p.operatorCap, protectionFactor: p.protectionFactor, reservePct: p.reservePct,
+              maxCableCores: p.maxCableCores, odfTrayCapacity: p.odfTrayCapacity, spliceTrayCapacity: p.spliceTrayCapacity,
+              existingOdfPorts: p.existingOdfPorts, existingOdfTrays: p.existingOdfTrays,
+              existingSpliceTrays: p.existingSpliceTrays, existingFeederCores: p.existingFeederCores,
+              existingDistributionCores: p.existingDistributionCores,
+              distanceKm: p.distanceKm, attenuationDbPerKm: p.attenuationDbPerKm,
+              splitterLossDb: p.splitter1Db + p.splitter2Db + p.splitter3Db,
+              spliceCount: p.spliceCount, spliceLossDb: p.spliceLossDb,
+              connectorCount: p.connectorCount, connectorLossDb: p.connectorLossDb, otherLossDb: p.otherLossDb,
+              maxOdnLossDb: p.maxOdnLossDb, systemReachKm: p.systemReachKm, penaltyDb: p.penaltyDb,
+              txMinDbm: p.txMinDbm, txMaxDbm: p.txMaxDbm,
+              rxSensitivityDbm: p.rxSensitivityDbm, rxOverloadDbm: p.rxOverloadDbm,
               sameBothDirections: p.sameBothDirections
             };
             const down = {
@@ -411,7 +422,15 @@
           required: false,
           run(context){
             const p = context.parameters;
-            const inputs = { measuredRxDbm: p.measuredRxDbm, distanceKm: p.distanceKm, splitter1Db: p.splitter1Db, splitter2Db: p.splitter2Db, splitter3Db: p.splitter3Db };
+            const inputs = {
+              measuredRxDbm: p.measuredRxDbm, distanceKm: p.distanceKm, attenuationDbPerKm: p.attenuationDbPerKm,
+              spliceCount: p.spliceCount, spliceLossDb: p.spliceLossDb,
+              connectorCount: p.connectorCount, connectorLossDb: p.connectorLossDb,
+              splitter1Db: p.splitter1Db, splitter2Db: p.splitter2Db, splitter3Db: p.splitter3Db,
+              otherLossDb: p.otherLossDb, txMinDbm: p.txMinDbm,
+              rxSensitivityDbm: p.rxSensitivityDbm, rxOverloadDbm: p.rxOverloadDbm,
+              noSignalDbm: p.noSignalDbm, warningMarginDb: p.warningMarginDb
+            };
             if (p.measuredRxDbm == null) {
               return core().toolResult({
                 ok: true,

@@ -6,7 +6,7 @@
     {
       "command": "node tests/ftth-pon-workflow-v1.test.js",
       "result": "PASS",
-      "covers": ["shared chain", "distance recalculation", "resume", "stale upstream rejection", "user input lock", "NaN", "Infinity", "negative distance", "third stage abort", "explicit third-stage carry", "measured comparison", "UNKNOWN without a cause", "one-direction ODN inconclusive", "report bundle", "save restore import"]
+      "covers": ["shared chain", "distance recalculation", "resume", "stale upstream rejection", "ODN operator cap and max loss resume", "splitter loss 24 rejected", "user input lock", "NaN", "Infinity", "negative distance", "third stage abort", "explicit third-stage carry", "measured comparison", "UNKNOWN without a cause", "one-direction ODN inconclusive", "report bundle", "save restore import"]
     },
     {
       "command": "node website/tools/fiber-loss/docs/engine-test.js",
@@ -39,16 +39,13 @@
     },
     {
       "command": "node scripts/check-internal-links.js",
-      "result": "FAIL_PREEXISTING",
-      "failure": "tools/ip-camera-network-planner/es/index.html -> ../manifest-es.webmanifest",
-      "causedByThisChange": false
+      "result": "PASS",
+      "note": "Added the missing Spanish manifest referenced by the IP camera planner."
     },
     {
       "command": "node scripts/launch-audit.js",
-      "result": "FAIL_PREEXISTING",
-      "failure": "guides/fiber-link-budget-guide/index.html: duplicate HTML id",
-      "causedByThisChange": false,
-      "note": "The new workflow page produced no launch-audit error. htmlPages included it."
+      "result": "PASS",
+      "note": "Removed the duplicated header that repeated id site-shell-nav in the fiber link budget guide."
     }
   ],
   "notRun": [
