@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FTTH/PON Engineering Workflow | NetEngineerLab</title>
+<meta name="description" content="Run fiber loss, PON splitter loss, optical power budget, PON distance, ODN resources and measured receive power from one local FTTH project.">
+<meta property="og:title" content="FTTH/PON Engineering Workflow | NetEngineerLab">
+<meta property="og:description" content="Share one optical project across the existing NetEngineerLab PON calculators, recalculate, save locally and export one engineering report.">
+<meta property="og:url" content="https://netengineerlab.com/workflows/ftth-pon/">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FTTH/PON Engineering Workflow | NetEngineerLab">
+<meta name="twitter:description" content="Share one optical project across the existing NetEngineerLab PON calculators, recalculate, save locally and export one engineering report.">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://netengineerlab.com/workflows/ftth-pon/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/workflows/ftth-pon/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/workflows/ftth-pon/">
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="en">
+<meta name="nel-route" content="workflows/ftth-pon/">
+<meta name="nel-available-locales" content="en">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=475098aa29f5">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"FTTH/PON Engineering Workflow","url":"https://netengineerlab.com/workflows/ftth-pon/","description":"Run fiber loss, PON splitter loss, optical power budget, PON distance, ODN resources and measured receive power from one local FTTH project.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script defer src="../../data/site-config.js"></script>
+<script defer src="../../assets/js/analytics.js"></script>
+<script defer src="../../assets/js/adsense.js"></script>
+<style>
+:root{color-scheme:light;--ink:#13233e;--muted:#5d6d84;--line:#d5e1f0;--paper:#f4f8fd;--blue:#0d5ec4}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,"Segoe UI","Microsoft YaHei",Arial,sans-serif;color:var(--ink);background:var(--paper)}
+a{color:var(--blue)}header,main{width:min(1100px,calc(100% - 32px));margin:0 auto}header{padding:28px 0 8px}h1{font-size:clamp(28px,4vw,42px);line-height:1.15;margin:8px 0}h2{font-size:22px;margin:0 0 12px}.lede{max-width:760px;color:var(--muted);line-height:1.6}
+.links{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:16px 0;list-style:none}.links a{display:inline-flex;min-height:40px;align-items:center;padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:#fff;text-decoration:none}
+form,section{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;margin:16px 0}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted)}input,textarea,button{font:inherit}input[type="text"],input[type="number"],textarea{width:100%;min-height:40px;border:1px solid #b9cbe2;border-radius:10px;padding:8px 10px;color:var(--ink);background:#fff}textarea{min-height:220px}
+.checks{display:flex;flex-wrap:wrap;gap:14px;margin-top:12px}.checks label{flex-direction:row;align-items:center;min-height:40px;color:var(--ink)}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}button{min-height:40px;border-radius:10px;border:1px solid var(--blue);background:var(--blue);color:#fff;padding:8px 12px;cursor:pointer}.ghost{background:#fff;color:var(--blue)}
+#wf-feedback{min-height:24px;font-weight:700}#wf-feedback[data-state="bad"]{color:#9d1c1c}
+.wf-step{border-top:1px solid var(--line);padding:12px 0}.wf-step h3{margin:0 0 4px;font-size:16px}.wf-step p{margin:0 0 8px;font-weight:700}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:390px){header,main{width:min(1100px,calc(100% - 20px))}h1{font-size:28px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Primary navigation">
+      <a href="../../">Home</a>
+      <a href="../../tools/">Tools</a>
+      <a href="../../guides/">Guides</a>
+      <a href="../../topics/">Topics</a>
+    </nav>
+  </div>
+</header>
+<header>
+<p><a href="../../">NetEngineerLab</a> / FTTH workflow</p>
+<h1>FTTH/PON engineering workflow</h1>
+<p class="lede">One project feeds the existing fiber loss, splitter, power budget, distance, ODN and ONU receive-power engines. Changing a locked input never happens silently. The browser keeps the project locally until you export it.</p>
+<ul class="links">
+<li><a href="../../tools/fiber-loss/">Fiber loss</a></li>
+<li><a href="../../tools/pon-splitter-loss/">PON splitter</a></li>
+<li><a href="../../tools/optical-power-budget/">Optical power budget</a></li>
+<li><a href="../../tools/pon-distance/">PON distance</a></li>
+<li><a href="../../tools/odf-odn-resource-planner/">ODN resources</a></li>
+<li><a href="../../tools/onu-rx-power/">ONU RX</a></li>
+<li><a href="../../tools/engineering-report-batch-export-center/">Report center</a></li>
+</ul>
+</header>
+<main>
+<form id="wf-project">
+<h2>Project</h2>
+<div class="grid">
+<label>Project id <input id="projectId" type="text" value="ftth-example-class-b" autocomplete="off"></label>
+<label>Project name <input id="projectName" type="text" value="FTTH example" autocomplete="off"></label>
+<label>Scenario <input id="scenario" type="text" value="GPON class planning example" autocomplete="off"></label>
+<label>Equipment class <input id="equipmentClass" type="text" value="GPON Class B+" autocomplete="off"></label>
+<label>Vendor <input id="vendor" type="text" value="unspecified" autocomplete="off"></label>
+<label>Distance km <input id="distanceKm" type="number" step="any"></label>
+<label>Attenuation dB/km <input id="attenuationDbPerKm" type="number" step="any"></label>
+<label>Splices <input id="spliceCount" type="number" step="1"></label>
+<label>Splice loss dB <input id="spliceLossDb" type="number" step="any"></label>
+<label>Connectors <input id="connectorCount" type="number" step="1"></label>
+<label>Connector loss dB <input id="connectorLossDb" type="number" step="any"></label>
+<label>Splitter 1 dB <input id="splitter1Db" type="number" step="any"></label>
+<label>Splitter 2 dB <input id="splitter2Db" type="number" step="any"></label>
+<label>Splitter 3 dB <input id="splitter3Db" type="number" step="any"></label>
+<label>Other loss dB <input id="otherLossDb" type="number" step="any"></label>
+<label>Margin dB <input id="marginDb" type="number" step="any"></label>
+<label>Penalty dB <input id="penaltyDb" type="number" step="any"></label>
+<label>Tx min dBm <input id="txMinDbm" type="number" step="any"></label>
+<label>Tx max dBm <input id="txMaxDbm" type="number" step="any"></label>
+<label>RX sensitivity dBm <input id="rxSensitivityDbm" type="number" step="any"></label>
+<label>RX overload dBm <input id="rxOverloadDbm" type="number" step="any"></label>
+<label>System reach km <input id="systemReachKm" type="number" step="any"></label>
+<label>Max ODN loss dB <input id="maxOdnLossDb" type="number" step="any"></label>
+<label>Target ONU <input id="targetOnu" type="number" step="1"></label>
+<label>Splitter stages <input id="stages" type="number" step="1"></label>
+<label>Ratio 1 <input id="ratio1" type="number" step="1"></label>
+<label>Ratio 2 <input id="ratio2" type="number" step="1"></label>
+<label>Ratio 3 <input id="ratio3" type="number" step="1"></label>
+<label>Operator cap per PON <input id="operatorCap" type="number" step="1"></label>
+<label>Protection factor <input id="protectionFactor" type="number" step="1"></label>
+<label>Reserve percent <input id="reservePct" type="number" step="any"></label>
+<label>Max cable cores <input id="maxCableCores" type="number" step="1"></label>
+<label>ODF tray capacity <input id="odfTrayCapacity" type="number" step="1"></label>
+<label>Splice tray capacity <input id="spliceTrayCapacity" type="number" step="1"></label>
+<label>Existing ODF ports <input id="existingOdfPorts" type="number" step="1"></label>
+<label>Existing ODF trays <input id="existingOdfTrays" type="number" step="1"></label>
+<label>Existing splice trays <input id="existingSpliceTrays" type="number" step="1"></label>
+<label>Existing feeder cores <input id="existingFeederCores" type="number" step="1"></label>
+<label>Existing distribution cores <input id="existingDistributionCores" type="number" step="1"></label>
+<label>Measured RX dBm <input id="measuredRxDbm" type="number" step="any"></label>
+<label>Warning margin dB <input id="warningMarginDb" type="number" step="any"></label>
+<label>No-signal dBm <input id="noSignalDbm" type="number" step="any"></label>
+</div>
+<div class="checks">
+<label><input id="includeStage3InDistanceOther" type="checkbox"> Carry a third splitter stage into the distance tool</label>
+<label><input id="sameBothDirections" type="checkbox"> Use the same optical window upstream and downstream</label>
+</div>
+<div class="actions">
+<button id="wf-example" class="ghost" type="button">Load example</button>
+<button id="wf-calculate" type="button">Calculate chain</button>
+<button id="wf-save" class="ghost" type="button">Save locally</button>
+<button id="wf-restore" class="ghost" type="button">Restore</button>
+<button id="wf-export" class="ghost" type="button">Export JSON</button>
+<label class="ghost">Import JSON <input id="wf-import" type="file" accept="application/json,.json"></label>
+</div>
+<p id="wf-feedback"></p>
+</form>
+<section>
+<h2>Chain</h2>
+<div id="wf-steps"></div>
+</section>
+<section>
+<h2>Engineering report</h2>
+<p class="lede">The report is assembled by the existing Engineering Report Center from this run. It is a planning record, not a command to a live network.</p>
+<textarea id="wf-report" readonly></textarea>
+<div class="actions"><button id="wf-report-download" class="ghost" type="button">Download report</button></div>
+</section>
+</main>
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Footer navigation">
+      <a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<script src="../../assets/js/workflow/nel-workflow-core.js"></script>
+<script src="../../tools/fiber-loss/js/engine.js"></script>
+<script src="../../tools/pon-splitter-loss/js/engine.js"></script>
+<script src="../../tools/optical-power-budget/js/engine.js"></script>
+<script src="../../tools/pon-distance/js/engine.js"></script>
+<script src="../../tools/odf-odn-resource-planner/js/engine.js"></script>
+<script src="../../tools/onu-rx-power/js/engine.js"></script>
+<script src="../../tools/engineering-report-batch-export-center/js/engine.js"></script>
+<script src="../../assets/js/workflow/ftth-pon-v1.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
