@@ -1,41 +1,39 @@
 # Independent audit
 
-Reviewer: an independent agent that did not implement WF-01.
+Reviewer: the same independent agent that did not implement WF-01.
 
 Verdict: **FAIL**
 
-Commit reviewed: `b6ada0df` on `cursor/ftth-pon-workflow-v1-deec`. Uncommitted edits to `website/guides/fiber-link-budget-guide/index.html` and `website/tools/ip-camera-network-planner/manifest-es.webmanifest` were left untouched and are outside this verdict. Product code, tests, registries, and the workflow page were not modified.
+Commit reviewed: `61815d274bbb1214ec7cdf558d07ec8b0e1d5616` on `cursor/ftth-pon-workflow-v1-deec`. Product code, tests, registries, and the workflow page were not modified by this review.
+
+## Previous defect
+
+The operator-cap and max-ODN-loss hole is closed. `website/assets/js/workflow/ftth-pon-v1.js` now records the ODN resource fields and the optical window on the ODN step, including `operatorCap` and `maxOdnLossDb`.
+
+`node tests/ftth-pon-workflow-v1.test.js` exited 0 and printed `FTTH/PON workflow V1 tests: PASS`. The new assertions reject `wf.rerun` from `measured-rx` after `operatorCap` 32 and `maxOdnLossDb` 10 with `upstream-inputs-changed` on `odf-odn`. A full `wf.run` of that project returns 2 PON ports and scenario status `FAIL`. The same probe, plus reserve, protection, existing feeder cores, cable size, tray capacity, attenuation, penalty, and `sameBothDirections`, also refused the resume. A null measured receive level still returns `UNKNOWN` with `cause: null`, and the ONU engine is not called.
 
 ## Blocking defect
 
-`website/assets/js/workflow/ftth-pon-v1.js` records an incomplete `inputs` object for the `odf-odn` step (about lines 354–358). `website/assets/js/workflow/nel-workflow-core.js` `rerunFrom` keeps earlier steps when `JSON.stringify` of those recorded inputs matches. The ODN snapshot omits fields the ODN engine actually uses, including `operatorCap`, `protectionFactor`, `reservePct`, `maxOdnLossDb`, cable and tray capacities, and the existing-port and existing-core counts. Optical fields such as attenuation and transmit power are also absent from that snapshot; those particular fields are still guarded because earlier steps copy them into `opticalInputs`.
+The ODN input snapshot still omits `context.name`, which is passed into `NELOdfOdnEngine.calculate` as the scenario name (`scenarios[0].name`, about line 394).
 
-Observed behavior, example project, clock fixed, previous run `probe-1`:
+Observed behavior, example project, clock fixed:
 
-- Full run at `operatorCap` 64 and `maxOdnLossDb` 32: ODN `ponPorts` 1, `minMargin` 6.7 dB, scenario status `PASS`.
-- Same project changed to `operatorCap` 32 and `maxOdnLossDb` 10, then `wf.rerun(..., "measured-rx")`: returns `ok: true` and reuses the previous ODN step object. Kept result remains `ponPorts` 1, `minMargin` 6.7 dB, status `PASS`.
-- `wf.run` on that changed project: `ponPorts` 2, `minMargin` -15.3 dB, scenario status `FAIL`.
+- Run the example, then rerun from `measured-rx` with the project name changed to `Renamed span`.
+- `rerun` returns `ok: true` and keeps the previous ODN step.
+- The kept scenario name is `FTTH example`, status `PASS`, 1 PON port.
+- A full run of the renamed project names the scenario `Renamed span`.
+- `buildReport` sets the bundle project to `Renamed span` and the Markdown still contains `"name":"FTTH example"` inside the serialized ODN scenario.
 
-`website/workflows/ftth-pon/app.js` `recalculate` calls this path from “Recalculate from here” and tells the user that earlier inputs still match. For these ODN fields they do not. A passing plan is shown for inputs the engine would fail.
+The constant scenario id `"A"` is also omitted. It cannot drift. The stale field that is shown is the name.
 
-The measured-RX step’s recorded inputs are also only the measured level, distance, and three splitter values. It is the last step, so the current page re-executes it. The user-visible stale result is the kept ODN step.
+## Other checks
 
-## Evidence checked
+Measured-RX inputs now include the varying ONU arguments: measured level, distance, attenuation, splices, connectors, three splitter values, other loss, transmit minimum, sensitivity, overload, no-signal level, and warning margin. The engine’s `mode` is the constant `"model"` and is not in the snapshot. `other` is `otherLossDb + splitter3Db`, and both parts are recorded. Changing `noSignalDbm` and rerunning from `measured-rx` recalculates that step.
 
-1. Engine calls. `ftth-pon-v1.js` `engines()` loads `fiber-loss`, `pon-splitter-loss`, `optical-power-budget`, `pon-distance`, `odf-odn-resource-planner`, `onu-rx-power`, and `engineering-report-batch-export-center`. Each optical step calls that engine’s `calculate`. `buildReport` calls `createBundle` and `toMarkdown`. The example chain’s physical loss 25.3 dB, remaining 3.7 dB, and receive level -22.3 dBm come from those engines and match across fiber loss, splitter loss, and optical power budget. Local arithmetic is limited to input adaptation: fiber `availableBudget` is `txMinDbm - rxSensitivityDbm - penaltyDb` because that engine has no penalty field and requires a dB budget; a third splitter stage is added to `otherLoss` only for engines with two splitter fields; ODN receives the sum of the three splitter dB values because its scenario field is one `splitterLoss`. Those adapters do not replace the engines’ loss, ratio, reach, resource, or RX formulas. This item is not the fail reason.
+No loss, ratio, reach, or resource formula was copied from the engines in this commit. The only arithmetic still in the workflow is the previous input adaptation: fiber `availableBudget` is `txMinDbm - rxSensitivityDbm - penaltyDb` because that engine requires a dB budget and has no penalty field; a third splitter stage is added to `otherLoss` for two-stage engines; ODN receives the sum of the three splitter dB values. Calculated loss, remaining budget, and receive power still come from the engine `calculate` functions. The report still comes from `createBundle` and `toMarkdown`.
 
-2. Units and locks. Project fields are passed through in km, dB/km, dB, and dBm. Key results use dB for loss and margin, dBm for receive power, and km for reach. `proposeParameter` in `nel-workflow-core.js` rejects a derived write to a `user` lock unless `confirm === true`, and the rejected call leaves the original context at 10 km. With `confirm: true` the copy becomes 4 km and the lock becomes `derived`. Distance `designRemaining` on the example is 4.7 dB. Splitter and budget remaining are 3.7 dB. The 1.0 dB gap equals `penaltyDb`. The distance engine has no penalty input, and the workflow does not subtract penalty locally. That is an engine-basis difference, not a km/dB mix-up, and it is not the fail reason.
-
-3. Missing measured receive power. The example leaves `measuredRxDbm` null. The measured-RX step returns status `UNKNOWN`, `outputs.cause` null, warning “No measured receive power was provided.”, and assumption “Evidence is insufficient. No root cause is assigned.” The ONU engine is not called on that path. No cause string is invented.
-
-4. Invalid numbers. `validateParameters` rejects `NaN`, `Infinity`, `-Infinity`, and negative `distanceKm` with `distanceKm-invalid` before `run` builds steps. Splitter values 9, 15, -3.7, `NaN`, and `Infinity` are rejected with `splitter1Db-unsupported`. The workflow list is `0, 3.7, 7.2, 10.5, 13.8, 17, 20.5, 24`. Value 24 is in the PON splitter engine and not in the PON distance or ONU RX catalogs. `create` accepts `splitter1Db` 24, then the run aborts at `pon-distance` with `invalid-input` and leaves ODN and measured RX `not-run`. That abort is fail-closed. It is not the blocking defect.
-
-5. Registry and sitemap. `src/registry/tool-registry.json` and `website/sitemap.xml` contain no `ftth-pon` entry. `git diff HEAD` does not change either file. `package.json` only adds the workflow test script.
-
-6. Commands, secrets, and deploy. The workflow sources, page, and test contain no `child_process`, `exec`, `ssh`, API key, private key, or deploy command. The page stores the project in `localStorage` and downloads a JSON or Markdown blob. It loads the existing local engines plus the site analytics and adsense scripts. No device command execution was added.
-
-7. Test. `node tests/ftth-pon-workflow-v1.test.js` exited 0 and printed `FTTH/PON workflow V1 tests: PASS`. The test was not edited. It does not cover an ODN-only field change followed by rerun from `measured-rx`. The browser note in `BROWSER_QA_REPORT.md` was read and was not re-run; its distance change goes through the full calculate path, which does recompute ODN.
+`src/registry/tool-registry.json` and `website/sitemap.xml` still have no `ftth-pon` entry. Splitter value 24 is no longer in the workflow catalog, and `create` rejects it.
 
 ## Required correction
 
-Record every value passed into `NELOdfOdnEngine.calculate` on the ODN step’s `inputs`, including resource counts and `maxOdnLossDb`, so `rerunFrom` rejects the resume when those values changed. Do the same for the measured-RX engine arguments before another step is added after it.
+Put the project name in the ODN step’s recorded inputs so a resume cannot keep the previous scenario name after the project is renamed.
