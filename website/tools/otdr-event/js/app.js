@@ -538,7 +538,7 @@ $("printBtn").addEventListener("click",()=>window.print());
 $("importBtn").addEventListener("click",()=>$("csvFile").click());
 $("csvFile").addEventListener("change",event=>{const file=event.target.files?.[0];if(file)importCsv(file);event.target.value=""});
 $("clearHistoryBtn").addEventListener("click",clearHistory);
-resetAll();
+loadSample();
 renderHistory();
 
 // Reuse the domain validation/history; the shell owns result-only DOM gates.

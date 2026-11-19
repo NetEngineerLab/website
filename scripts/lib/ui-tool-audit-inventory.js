@@ -13,19 +13,25 @@ const localeCount = tool => ['en', 'zh', 'es'].filter(locale => {
   const rel = locale === 'en' ? 'index.html' : `${locale}/index.html`;
   return tool.translations?.[locale] && require('fs').existsSync(require('path').join(__dirname, '..', '..', 'website', 'tools', tool.id, rel));
 }).length;
-const auditableTools = activeTools.filter(tool => localeCount(tool) > 0);
+const supplemental = require('./supplemental-tool-slugs');
+const auditableTools = activeTools.filter(tool => !supplemental.has(tool.id) && localeCount(tool) > 0);
+const auditableIds = new Set(auditableTools.map(tool => tool.id));
 const pageCount = auditableTools.reduce((count, tool) => count + localeCount(tool), 0);
-if (activeTools.length < 35 || pageCount < 80) {
-  throw new Error(`UI audit baseline cannot shrink below 35 tools and 80 locale pages; registry has ${activeTools.length} tools and ${pageCount} pages`);
+const ordinaryPageCount = auditableTools.reduce((count, tool) => count + (complexTools.has(tool.id) ? 0 : localeCount(tool)), 0);
+if (auditableTools.length < 35 || pageCount < 80) {
+  throw new Error(`UI audit baseline cannot shrink below 35 tools and 80 locale pages; registry has ${auditableTools.length} tools and ${pageCount} pages`);
+}
+function skip(name) {
+  return name === 'zh' || name === 'es' || supplemental.has(name) || !auditableIds.has(name);
 }
 
 module.exports = {
-  // The source-convergence audit covers rendered detail pages, including
-  // legacy locale variants that are not represented in the registry's
-  // translation count. Keep these baselines aligned with the filesystem
-  // inventory used by the audit itself.
-  activeToolCount: 46,
-  pageCount: 138,
-  ordinaryPageCount: 120,
-  complexTools
+  // Counts follow the active registry and the locale files on disk.
+  // Hubs and supplemental planners are not tool-detail pages.
+  activeToolCount: auditableTools.length,
+  pageCount,
+  ordinaryPageCount,
+  complexTools,
+  auditableIds,
+  skip
 };

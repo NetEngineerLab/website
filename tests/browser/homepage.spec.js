@@ -23,20 +23,39 @@ test.describe("homepage",()=>{
   }
 });
 
-const quickIds=["fiber-loss","subnet-calculator","poe-power-budget-calculator","wifi-coverage-capacity-planner","pue-data-center-energy-efficiency","data-center-network-convergence-fabric-capacity-planner"];
+const featuredIds=["fiber-loss","subnet-calculator","poe-power-budget-calculator","pue-data-center-energy-efficiency"];
 for(const route of ["/","/zh/","/es/"]){
- test(route+" has six registry quick tools and truthful navigation",async({page})=>{
+ test(route+" has the specialty entry tools and truthful navigation",async({page})=>{
   await page.goto(route,{waitUntil:"networkidle"});
-  const links=page.locator("[data-home-quick-grid] .open");await expect(links).toHaveCount(6);
-  for(let i=0;i<6;i++){await expect(links.nth(i)).toBeVisible();const locale=route==="/"?"en":route.slice(1,-1);const tool=require("../../website/data/tools-catalog.json").find(tool=>tool.id===quickIds[i]);const suffix=locale!=="en"&&tool.translations[locale]?locale+"/":"";const href=await links.nth(i).getAttribute("href");expect(new URL(href,page.url()).pathname).toBe("/tools/"+quickIds[i]+"/"+suffix);}
-  await expect(page.locator('a[href="#methods-validation"]')).toBeVisible();await expect(page.locator("#methods-validation")).toHaveCount(1);
+  const locale=route==="/"?"en":route.slice(1,-1);
+  const prefix=locale==="en"?"":"../";
+  for(const id of featuredIds){
+   const tool=require("../../website/data/tools-catalog.json").find(tool=>tool.id===id);
+   const suffix=locale!=="en"&&tool.translations[locale]?locale+"/":"";
+   const link=page.locator(`#find a.hf-tool[href$="tools/${id}/${suffix}"]`);
+   await expect(link).toHaveCount(1);
+   await link.scrollIntoViewIfNeeded();
+   await expect(link).toBeVisible();
+   expect(new URL(await link.getAttribute("href"),page.url()).pathname).toBe(`/tools/${id}/${suffix}`);
+  }
+  await expect(page.locator("#steps h2")).toBeVisible();
+  await expect(page.locator("#read h2")).toBeVisible();
   await expect(page.locator('[data-category-link="transport"]')).toHaveAttribute("href",/category=transport/);
-  if(route==="/es/"){const spanishCategoryTitles={optical:"Óptica",pon:"Planificación PON",maintenance:"Mantenimiento",network:"Redes IP",wireless:"Inalámbrico y Wi\u2011Fi",power:"Energía de telecomunicaciones",transport:"Transporte",operations:"Operaciones"};for(const link of await page.locator('[data-category-link]').all()){await link.scrollIntoViewIfNeeded();await expect(link.locator('strong')).toBeVisible();const category=await link.getAttribute('data-category-link');const title=((await link.locator('strong').evaluate(node=>node.textContent))||"").replace(/\s+/g," ").trim();expect(title,category).toBe(spanishCategoryTitles[category]);expect(new URL(await link.getAttribute('href'),page.url()).pathname).toBe('/tools/es/');expect(new URL(await link.getAttribute('href'),page.url()).searchParams.get('category')).toBe(category);}}
+  const categories=await page.locator("[data-category-link]").evaluateAll(nodes=>nodes.map(node=>({category:node.getAttribute("data-category-link"),title:node.querySelector("strong").textContent.replace(/\s+/g," ").trim(),href:node.getAttribute("href")})));
+  expect(categories.map(item=>item.category)).toEqual(["optical","pon","maintenance","network","wireless","power","transport","operations"]);
+  const directory=locale==="en"?"/tools/":`/tools/${locale}/`;
+  const spanishCategoryTitles={optical:"Óptica",pon:"PON",maintenance:"Mantenimiento",network:"Redes IP",wireless:"Radio",power:"Energía",transport:"Transmisión",operations:"Operación"};
+  for(const item of categories){
+   const url=new URL(item.href,page.url());
+   expect(url.pathname,item.category).toBe(directory);
+   expect(url.searchParams.get("category"),item.category).toBe(item.category);
+   if(route==="/es/")expect(item.title,item.category).toBe(spanishCategoryTitles[item.category]);
+  }
   await page.evaluate(()=>{scrollTo(0,0)});
   for(const viewport of [{width:1366,height:768},{width:390,height:844}]){
    await page.setViewportSize(viewport);
-   const positions=await page.evaluate(()=>({search:document.querySelector('.home-search').getBoundingClientRect().bottom,quick:document.querySelector('[data-home-quick-grid] .tool-card').getBoundingClientRect().bottom,overview:document.querySelector('.overview-section').getBoundingClientRect().top,quickEnd:document.querySelector('.quick-start').getBoundingClientRect().bottom,overflow:document.documentElement.scrollWidth>innerWidth+1}));
-   expect(positions.search).toBeLessThan(viewport.height);expect(positions.quick).toBeLessThanOrEqual(viewport.height+8);expect(positions.overview).toBeGreaterThanOrEqual(positions.quickEnd-1);expect(positions.overflow).toBe(false);
+   const positions=await page.evaluate(()=>({search:document.querySelector("[data-home-search]").getBoundingClientRect().bottom,quick:document.querySelector(".hf-chips a").getBoundingClientRect().bottom,grid:document.querySelector("#find").getBoundingClientRect().top,heroEnd:document.querySelector(".hf-hero").getBoundingClientRect().bottom,overflow:document.documentElement.scrollWidth>innerWidth+1}));
+   expect(positions.search).toBeLessThan(viewport.height);expect(positions.quick).toBeLessThanOrEqual(viewport.height+8);expect(positions.grid).toBeGreaterThanOrEqual(positions.heroEnd-1);expect(positions.overflow).toBe(false);
    if(route==="/"){const reject=page.locator(".nel-cookie-reject");if(await reject.isVisible())await reject.click();}if(route==="/")await page.screenshot({path:"artifacts/homepage-"+viewport.width+"x"+viewport.height+".png",fullPage:false});
   }
  });

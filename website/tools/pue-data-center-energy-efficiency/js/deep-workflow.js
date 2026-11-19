@@ -1,6 +1,7 @@
 (() => {
   'use strict';
-  if (document.getElementById('nelDeepWorkflow')) return;
+  let section = document.getElementById('nelDeepWorkflow');
+  if (section && section.querySelector('[data-action="compare"]')) return;
   const engine = window.NELPUEEngine;
   if (!engine || typeof engine.calculate !== 'function') return;
   const lang0 = (document.documentElement.lang || 'en').toLowerCase();
@@ -67,8 +68,10 @@
   const escape = value => String(value)
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-  const section = document.createElement('section');
-  section.id = 'nelDeepWorkflow';
+  if (!section) {
+    section = document.createElement('section');
+    section.id = 'nelDeepWorkflow';
+  }
   section.className = 'content-section nel-tool-supporting-section';
   section.innerHTML = `
     <h2>${T.title}</h2>
@@ -87,7 +90,9 @@
 
   // Mount inside right prose (Bandwidth/OPB below = toc | prose). Fallback only if prose missing.
   const prose = document.querySelector('.below > .prose') || document.querySelector('.prose');
-  if (prose) {
+  if (section.isConnected) {
+    // The page already reserves the anchor. Fill it in place.
+  } else if (prose) {
     const meth = prose.querySelector('#methodology, details#methodology');
     const faq = prose.querySelector('#faq, .faq, .blk.faq');
     if (meth && meth.nextSibling) prose.insertBefore(section, meth.nextSibling);

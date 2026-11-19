@@ -7,8 +7,13 @@ const assert = require("assert");
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
+const {stableFileHash} = require("../../../../scripts/stable-text-hash");
 
 const root = path.resolve(__dirname, "..");
+const site = path.resolve(__dirname, "../../..");
+function assetQuery(rel) {
+  return rel + "?v=" + stableFileHash(path.join(site, rel), 12);
+}
 const engineHash = crypto.createHash("sha256").update(fs.readFileSync(path.join(root, "js/engine.js"))).digest("hex");
 assert.strictEqual(engineHash, "11269b52819a4b507b567b6a2ee94d2069cb00d7cb0831cbfe19bd07b4d5df12");
 
@@ -100,7 +105,6 @@ const pages = {
     robots: "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
     canonical: "https://netengineerlab.com/tools/fiber-latency-calculator/",
     title: "Fiber Latency Calculator – µs per km, One-Way &amp; RTT",
-    css: "../optical-power-budget/css/",
     assets: "../../assets/"
   },
   zh: {
@@ -108,7 +112,6 @@ const pages = {
     robots: "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
     canonical: "https://netengineerlab.com/tools/fiber-latency-calculator/zh/",
     title: "光纤时延计算器｜每公里时延、单向与往返RTT",
-    css: "../../optical-power-budget/css/",
     assets: "../../../assets/"
   },
   es: {
@@ -116,7 +119,6 @@ const pages = {
     robots: "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
     canonical: "https://netengineerlab.com/tools/fiber-latency-calculator/es/",
     title: "Calculadora de latencia de fibra – µs por km, ida y RTT",
-    css: "../../optical-power-budget/css/",
     assets: "../../../assets/"
   }
 };
@@ -142,19 +144,24 @@ for (const [locale, spec] of Object.entries(pages)) {
   }
   assert.ok(!/pages\.dev/.test(html), locale + " preview domain");
   const sheets = findAll(doc, (el) => el.tag === "link" && el.attrs.rel === "stylesheet").map((el) => el.attrs.href);
-  for (const file of ["fb.css?v=2a31994efa84", "fb-v3.css?v=718e11ad9233", "fb-v3-prod.css?v=0e51668c3f12"]) {
-    assert.ok(sheets.includes(spec.css + file), locale + " " + file);
+  // The shipped shell uses the generated shared V3 styles plus this tool's
+  // own style.css. It does not link the OPB-relative fb.css copy.
+  for (const file of ["assets/css/fb-v3.css", "assets/css/fb-v3-prod.css"]) {
+    assert.ok(sheets.includes("/" + assetQuery(file)), locale + " /" + file);
   }
-  assert.ok(sheets.includes(spec.assets + "css/tool-layout.css?v=c4aecb2c24ab"), locale + " tool-layout");
-  assert.ok(!sheets.some((href) => /style\.css|fieldbook\.css|tool-detail-v3\.css/.test(href)), locale + " no parallel skin");
+  assert.ok(sheets.includes(spec.assets + "css/tool-layout.css?v=" + stableFileHash(path.join(site, "assets/css/tool-layout.css"), 12)), locale + " tool-layout");
+  const localStyle = locale === "en" ? "css/style.css" : "../css/style.css";
+  assert.ok(sheets.includes(localStyle + "?v=" + stableFileHash(path.join(root, "css/style.css"), 12)), locale + " tool style.css");
+  assert.ok(!sheets.some((href) => /optical-power-budget\/css\/fb\.css|fieldbook\.css|tool-detail-v3\.css/.test(href)), locale + " no retired skin");
   const scripts = findAll(doc, (el) => el.tag === "script" && el.attrs.src).map((el) => el.attrs.src);
-  assert.ok(scripts.includes(spec.assets + "js/tool-detail-v3.js?v=66984b67ff65"), locale + " tool-detail-v3.js");
-  assert.ok(scripts.some((src) => src.endsWith("js/engine.js")), locale + " engine.js");
+  assert.ok(scripts.includes(spec.assets + "js/tool-detail-v3.js?v=" + stableFileHash(path.join(site, "assets/js/tool-detail-v3.js"), 12)), locale + " tool-detail-v3.js");
+  assert.ok(scripts.some((src) => /(?:^|\/)js\/engine\.js(?:\?|$)/.test(src)), locale + " engine.js");
 
   const body = one(findAll(doc, (el) => el.tag === "body"), locale + " body");
-  for (const name of ["nel-tool-detail-page", "nel-opb-v3", "has-mbar", "v3", "nel-tool-v3"]) {
+  for (const name of ["nel-tool-detail-page", "has-mbar", "v3", "nel-tool-v3"]) {
     assert.ok(has(body, name), locale + " body." + name);
   }
+  assert.ok(!has(body, "nel-opb-v3"), locale + " body does not wear the OPB-only class");
 
   const hero = one(findAll(doc, (el) => el.tag === "section" && has(el, "hero") && has(el, "nel-tool-hero")), locale + " hero");
   assert.strictEqual(hero.attrs["aria-hidden"], "true", locale + " hero aria-hidden");
@@ -172,25 +179,32 @@ for (const [locale, spec] of Object.entries(pages)) {
   }
   const mainKids = elements(main);
   const mainShape = mainKids.map((el) => {
-    if (has(el, "nel-tool-input")) return "input";
-    if (has(el, "nel-tool-result")) return "result";
     if (has(el, "tool-head")) return "tool-head";
-    if (has(el, "scenario-section")) return "scenario";
-    if (has(el, "mbar")) return "mbar";
+    if (has(el, "workspace")) return "workspace";
     if (has(el, "below")) return "below";
     return el.tag + "." + (el.attrs.class || "");
   });
-  assert.deepStrictEqual(mainShape, ["input", "result", "tool-head", "scenario", "mbar", "below"], locale + " main order " + mainShape.join(","));
+  assert.deepStrictEqual(mainShape, ["tool-head", "workspace", "below"], locale + " main order " + mainShape.join(","));
+  const visibleTitle = one(findAll(mainKids[0], (el) => el.attrs.role === "heading" && has(el, "tool-page-label")), locale + " visible title");
+  assert.strictEqual(visibleTitle.attrs["aria-level"], "1", locale + " visible title level");
+  assert.strictEqual(findAll(doc, (el) => el.tag === "h1" && !findAll(hero, (node) => node === el).length).length, 0, locale + " no second visible h1");
 
-  const panel = one(elements(mainKids[0]), locale + " fb-panel");
+  const workspaceKids = elements(mainKids[1]);
+  const workShape = workspaceKids.map((el) => {
+    if (has(el, "nel-tool-input")) return "input";
+    if (has(el, "nel-tool-result")) return "result";
+    return el.tag + "." + (el.attrs.class || "");
+  });
+  assert.deepStrictEqual(workShape, ["input", "result"], locale + " workspace " + workShape.join(","));
+
+  const panel = one(elements(workspaceKids[0]), locale + " fb-panel");
   assert.ok(has(panel, "fb-panel"), locale + " fb-panel");
   const panelKids = elements(panel).map((el) => [...cls(el)][0]);
   assert.deepStrictEqual(panelKids, ["panel-h", "fs", "panel-f"], locale + " panel parts");
   const fields = findAll(panel, (el) => el.tag === "div" && has(el, "fields"));
   assert.ok(fields.length >= 3, locale + " fields groups");
   for (const group of fields) {
-    for (const field of elements(group)) {
-      assert.ok(has(field, "f"), locale + " .f");
+    for (const field of elements(group).filter((el) => has(el, "f"))) {
       const bits = elements(field).map((el) => el.tag + (el.attrs.class ? "." + el.attrs.class.split(/\s+/)[0] : ""));
       assert.ok(bits[0] === "label" && bits[1] === "div.inp", locale + " field " + bits.join(","));
       assert.ok(field.attrs.class === "f" || field.attrs.class === "f f-wide", locale + " field class");
@@ -202,19 +216,19 @@ for (const [locale, spec] of Object.entries(pages)) {
   assert.ok(css.includes("grid-template-rows:subgrid") && css.includes("grid-row:span 3"), locale + " field subgrid");
   assert.ok(css.includes("grid-template-columns:repeat(3,minmax(0,1fr))"), locale + " three-column actions");
 
-  const result = mainKids[1];
+  const result = workspaceKids[1];
   assert.strictEqual(result.attrs.id, "result", locale + " result id");
   assert.ok(result.attrs["aria-live"] === "polite", locale + " result live");
   const readout = one(elements(result), locale + " readout");
   assert.ok(has(readout, "readout"), locale + " readout");
   const readoutNames = elements(readout).map((el) => [...cls(el)][0]);
-  assert.deepStrictEqual(readoutNames.slice(0, 2), ["ro-h", "ro-l1"], locale + " readout head");
+  assert.deepStrictEqual(readoutNames.slice(0, 3), ["ro-h", "latency-summary", "ro-l1"], locale + " readout head");
   assert.ok(readoutNames.includes("grp") && readoutNames[readoutNames.length - 1] === "ro-acts", locale + " readout tail");
   const acts = elements(readout).find((el) => has(el, "ro-acts"));
   const buttons = elements(acts);
   assert.deepStrictEqual(buttons.map((el) => el.tag + "#" + el.attrs.id), ["button#copyBtn", "button#saveBtn", "button#printBtn"], locale + " actions");
 
-  const below = mainKids[5];
+  const below = mainKids[2];
   const belowKids = elements(below);
   assert.ok(belowKids[0].tag === "nav" && has(belowKids[0], "toc"), locale + " toc");
   assert.ok(belowKids[1].tag === "div" && has(belowKids[1], "prose"), locale + " prose");

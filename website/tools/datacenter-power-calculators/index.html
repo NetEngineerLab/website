@@ -23,9 +23,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/fb-v3.css?v=718e11ad9233-opb2">
-<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=0e51668c3f12-opb2">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=031fae951adb">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=64bd0d9f6bcb">
 <link rel="stylesheet" href="css/style.css?v=c489585e98d2">
+
 <link rel="stylesheet" href="../../assets/css/site.css?v=e139c2a424b2">
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Data Center Power & Cooling Calculators – PoE, UPS, PUE","url":"https://netengineerlab.com/tools/datacenter-power-calculators/","description":"Plan PoE budgets, rack power, cooling load, UPS runtime, generator fuel, rectifiers and PUE with data-center power calculators.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
@@ -37,7 +38,6 @@
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/datacenter-power-calculators/zh/">
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/datacenter-power-calculators/es/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/datacenter-power-calculators/">
-<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why are PoE and PUE in the same hub?","acceptedAnswer":{"@type":"Answer","text":"PoE is often part of the IT load that PUE multiplies. Leaving it out understates both the rack and the facility electrical load."}},{"@type":"Question","name":"Do I size the generator from the UPS rating?","acceptedAnswer":{"@type":"Answer","text":"Not by itself. Check UPS runtime and the transfer ride-through first, then size generator fuel for the outage duration and the load that is actually connected."}},{"@type":"Question","name":"Where does rack cooling stop and room cooling start?","acceptedAnswer":{"@type":"Answer","text":"Use the rack calculator for the cabinet. Use the cooling-load and airflow tools when the question is the room, the row and whether containment changes the airflow the units must deliver."}},{"@type":"Question","name":"Which battery calculator should a telecom room use?","acceptedAnswer":{"@type":"Answer","text":"Use the −48 V runtime tool for the DC plant, and the UPS runtime tool for an AC UPS. Rectifier and breaker sizing sit beside the DC plant, not instead of it."}}]}</script>
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../assets/css/site-shell.css?v=475098aa29f5">
@@ -45,7 +45,7 @@
 <script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../assets/js/site.js?v=f55d6161a761"></script>
+<script defer src="../../assets/js/site.js?v=c957f6562d31"></script>
 </head>
 <body class="nel-tool-detail-page nel-tool-v3 v3">
 <!-- NEL_HEADER_START -->
@@ -93,12 +93,11 @@
 <section class="blk panel" id="related">
 <h2>Related pages</h2>
 </section>
-<section class="blk panel content-section faq-section" data-nel-faq="visible"></section>
-<p class="hub-return" data-nel-cluster-link><a href="../../topics/data-center-capacity/">This page lists the power and cooling calculators. Capacity tradeoffs across IT load, space and uplinks are in the data center capacity topic; cooling formulas and N+1 checks are in the cooling capacity topic.</a> <a href="../../topics/data-center-cooling-capacity/">Cooling capacity topic</a></p>
 </div>
 </div>
 </main>
 
+<p class="hub-return" data-nel-cluster-link><a href="../../topics/data-center-capacity/">This page lists the power and cooling calculators. Capacity tradeoffs across IT load, space and uplinks are in the data center capacity topic; cooling formulas and N+1 checks are in the cooling capacity topic.</a> <a href="../../topics/data-center-cooling-capacity/">Cooling capacity topic</a></p>
 <!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">

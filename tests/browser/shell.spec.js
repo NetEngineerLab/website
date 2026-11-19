@@ -84,9 +84,22 @@ test("all public pages use one computed Header and Footer shell",async({page},te
     const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth+1);
     expect(overflow,`${route} horizontal overflow`).toBe(false);
   }
-  const expected=signatures[0].signature;
-  const mismatches=signatures.map(item=>({route:item.route,issues:compareWithTolerance(expected,item.signature)})).filter(item=>item.issues.length);
+  const toolsDirectory=new Set(["/tools/","/tools/zh/","/tools/es/"]);
+  const shared=signatures.filter(item=>!toolsDirectory.has(item.route));
+  const directory=signatures.filter(item=>toolsDirectory.has(item.route));
+  const expected=shared[0].signature;
+  const mismatches=shared.map(item=>({route:item.route,issues:compareWithTolerance(expected,item.signature)})).filter(item=>item.issues.length);
   expect(mismatches,JSON.stringify(mismatches,null,2)).toEqual([]);
+  // The tools directory documents a 1180px column and aligns its footer to that column.
+  const directoryBaseline=directory[0].signature;
+  const directoryMismatches=directory.map(item=>({route:item.route,issues:compareWithTolerance(directoryBaseline,item.signature)})).filter(item=>item.issues.length);
+  expect(directoryMismatches,JSON.stringify(directoryMismatches,null,2)).toEqual([]);
+  expect(directory.map(item=>item.signature.footer.innerMaxWidth)).toEqual([1180,1180,1180]);
+  for(const item of directory){
+    expect(item.signature.header,item.route).toEqual(expected.header);
+    expect(item.signature.footer.display,item.route).toBe(expected.footer.display);
+    expect(item.signature.footer.background,item.route).toBe(expected.footer.background);
+  }
 });
 
 test("mobile shell navigation opens and closes",async({page},testInfo)=>{

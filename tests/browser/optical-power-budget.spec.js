@@ -37,7 +37,7 @@ for(const locale of ["en","zh"]){
     await page.locator("#txMaxPower").fill("7");
     await page.locator("#calculateBtn").click();
     await expect(page.locator("#healthBadge")).toHaveText(locale==="zh"?"✕ 超限":"✕ Fail");
-    await expect(page.locator("#estimatedRx")).toHaveText("-20.00 … 7.00");
+    await expect(page.locator("#estimatedRx")).toHaveText("-20.00dBm…7.00dBm");
 
     await page.locator("#spliceCount").fill("1.5");
     await expect(page.locator("#saveBtn")).toBeDisabled();

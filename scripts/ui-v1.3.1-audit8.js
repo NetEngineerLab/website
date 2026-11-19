@@ -22,9 +22,12 @@ for (const f of toolPages) {
   const hero=s.match(/<section[^>]*class="[^"]*\bnel-tool-hero\b[^"]*"[^>]*>([\s\S]*?)<\/section>/);
   if(!hero){errors.push(`${rel(f)}: missing nel-tool-hero`);continue;}
   const h=hero[1];
-  const eyebrow=h.indexOf('class="eyebrow"'), h1=h.indexOf('<h1');
-  const closeH1=h.indexOf('</h1>'); const desc=closeH1>=0?h.indexOf('<p',closeH1):-1; const tagsAt=h.indexOf('class="hero-tags"');
-  if([eyebrow,h1,desc,tagsAt].some(x=>x<0)||!(eyebrow<h1&&h1<desc&&desc<tagsAt)) errors.push(`${rel(f)}: hero order differs from MOP baseline`);
+  const eyebrow=h.indexOf('class="eyebrow"');
+  const h1=h.indexOf('<h1'); const title=h.indexOf('class="hero-title"');
+  const titleAt=[h1,title].filter(x=>x>=0).reduce((a,b)=>Math.min(a,b),1e9);
+  const titleEnd=h1>=0?h.indexOf('</h1>'):h.indexOf('</p>',titleAt);
+  const desc=titleEnd>=0?h.indexOf('<p',titleEnd):-1; const tagsAt=h.indexOf('class="hero-tags"');
+  if([eyebrow,titleAt,desc,tagsAt].some(x=>x<0)||!(eyebrow<titleAt&&titleAt<desc&&desc<tagsAt)) errors.push(`${rel(f)}: hero order differs from MOP baseline`);
   const tags=h.match(/<div class="hero-tags">([\s\S]*?)<\/div>/);
   if(!tags){errors.push(`${rel(f)}: missing hero-tags`);continue;}
   const spans=[...tags[1].matchAll(/<span[^>]*>([\s\S]*?)<\/span>/g)].map(m=>m[1].replace(/<[^>]+>/g,'').replace(/&amp;/g,'&').trim());

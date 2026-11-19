@@ -8,6 +8,27 @@ const cases=[
   ["all-reduce-traffic-estimator","#perRank","24.500 GB","#fabricTraffic","196.000 GB"]
 ];
 
+async function expectQuantity(page, selector, labeled){
+  const node=page.locator(selector);
+  const parts=await node.evaluate(element=>{
+    const host=element.closest("strong")||element;
+    const small=[...host.children].find(child=>child.tagName==="SMALL");
+    if(!small) return null;
+    const owner=element===host?host:element;
+    return {
+      number:[...owner.childNodes].filter(child=>child.nodeType===3).map(child=>child.textContent).join("").trim(),
+      unit:small.textContent.trim()
+    };
+  });
+  if(!parts){
+    await expect(node).toHaveText(labeled);
+    return;
+  }
+  const match=/^([\d.,]+)\s+(.+)$/.exec(labeled);
+  expect(parts.number, selector).toBe(match[1]);
+  expect(parts.unit, selector).toBe(match[2]);
+}
+
 function watchPage(page){
   const errors=[];
   const failed=[];
@@ -24,8 +45,8 @@ for(const [slug,firstId,firstValue,secondId,secondValue] of cases){
       const route=`/tools/${slug}/${folder}`;
       const response=await page.goto(route,{waitUntil:"networkidle"});
       expect(response?.status(),route).toBe(200);
-      await expect(page.locator(firstId)).toHaveText(firstValue);
-      await expect(page.locator(secondId)).toHaveText(secondValue);
+      await expectQuantity(page, firstId, firstValue);
+      await expectQuantity(page, secondId, secondValue);
       await expect(page.locator("#validationMessage")).toHaveText("");
       expect(failed,route).toEqual([]);
       expect(errors,route).toEqual([]);
