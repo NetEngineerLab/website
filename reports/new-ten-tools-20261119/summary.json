@@ -1,0 +1,37 @@
+{
+  "base": "1c849433e568548c6a7b42d5be4cc4603845caae",
+  "branch": "cursor/ten-engineering-tools-89ec",
+  "catalogBefore": 47,
+  "catalogAfter": 57,
+  "mergeable": false,
+  "reason": "Baseline gates are red, and registering 30 new locale pages makes scripts/tool-detail-v3-contract-test.js fail 185 !== 155. That assertion was not edited.",
+  "parallelIsolation": "PR 65 head cursor/gate-build-contract-281f was not checked out, pushed, cherry-picked, or rebased.",
+  "frozenEngines": 51,
+  "frozenEngineMismatches": 0,
+  "newEngineTests": "PASS",
+  "browser": {
+    "command": "npx playwright test tests/browser/new-ten-tools-20261119.spec.js --project=chrome-desktop",
+    "playwright": "1.62.1",
+    "browser": "Chromium 151.0.7922.34",
+    "rows": 120,
+    "functionalPass": 120,
+    "viewports": ["1440x900", "1280x800", "390x844", "320x740"],
+    "locales": ["en", "zh", "es"],
+    "consoleErrors": 0,
+    "sameOriginFailedResources": 0,
+    "valueColor": "rgb(232, 89, 12)",
+    "valueWeight": "400",
+    "pageOverflow": false
+  },
+  "gates": {
+    "test:new-ten-tools-20261119": "PASS",
+    "page-registry-contract": "PASS",
+    "expected-sitemap": "PASS",
+    "category-coverage": "PASS",
+    "tool-navigation": "FAIL inherited route-summarization legacy related section",
+    "ui-trust": "FAIL inherited website/terms/index.html missing tool count marker",
+    "engineering-rules-runtime": "FAIL inherited missing route-summarization-calculator/sw.js",
+    "architecture-validate": "FAIL inherited route-summarization missing app/pwa/manifest/sw and fiber-link-budget-guide header",
+    "tool-detail-v3-contract": "FAIL new 185 !== 155; assertion not changed. Baseline also failed later on sfp-qsfp precache after printing 155."
+  }
+}

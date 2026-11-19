@@ -1106,5 +1106,201 @@
         }
       }
     ]
+  },
+  {
+    "id": "itu-grid-and-ase",
+    "schemaVersion": "2.1.0",
+    "status": "active",
+    "domain": "optical",
+    "primary": true,
+    "translations": {
+      "en": {
+        "name": "Optical grid and ASE estimate",
+        "description": "Place a channel on the ITU grid, then estimate ASE and OSNR for identical amplifier spans."
+      },
+      "zh": {
+        "name": "光频率栅格与 ASE 估算",
+        "description": "先把信道放到 ITU 栅格上，再按相同放大器跨段估算 ASE 和 OSNR。"
+      }
+    },
+    "steps": [
+      {
+        "order": 1,
+        "toolId": "itu-dwdm-grid-calculator",
+        "translations": {
+          "en": {
+            "action": "Place the channel on the frequency grid"
+          },
+          "zh": {
+            "action": "把信道放到频率栅格上"
+          }
+        }
+      },
+      {
+        "order": 2,
+        "toolId": "edfa-ase-osnr-estimator",
+        "translations": {
+          "en": {
+            "action": "Estimate ASE and OSNR"
+          },
+          "zh": {
+            "action": "估算 ASE 与 OSNR"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "line-rate-and-capacity",
+    "schemaVersion": "2.1.0",
+    "status": "active",
+    "domain": "ip-networking",
+    "primary": true,
+    "translations": {
+      "en": {
+        "name": "Line rate, copper delay and capacity bound",
+        "description": "Expand a payload rate by a published line code, estimate copper delay, then compare an AWGN capacity bound."
+      },
+      "zh": {
+        "name": "线路速率、铜缆时延与容量上界",
+        "description": "先按已发布线路编码放大净荷速率，再估算铜缆时延，并对照 AWGN 容量上界。"
+      }
+    },
+    "steps": [
+      {
+        "order": 1,
+        "toolId": "ethernet-line-coding-calculator",
+        "translations": {
+          "en": {
+            "action": "Expand the payload rate by the line code"
+          },
+          "zh": {
+            "action": "按线路编码放大净荷速率"
+          }
+        }
+      },
+      {
+        "order": 2,
+        "toolId": "copper-propagation-delay-calculator",
+        "translations": {
+          "en": {
+            "action": "Estimate copper propagation delay"
+          },
+          "zh": {
+            "action": "估算铜缆传播时延"
+          }
+        }
+      },
+      {
+        "order": 3,
+        "toolId": "shannon-capacity-calculator",
+        "translations": {
+          "en": {
+            "action": "Compare the AWGN capacity bound"
+          },
+          "zh": {
+            "action": "对照 AWGN 容量上界"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "loss-and-queue-models",
+    "schemaVersion": "2.1.0",
+    "status": "active",
+    "domain": "ip-networking",
+    "primary": true,
+    "translations": {
+      "en": {
+        "name": "Loss-based TCP and queue delay",
+        "description": "Estimate a loss-based TCP ceiling, then the sojourn time of one M/M/1 queue."
+      },
+      "zh": {
+        "name": "丢包 TCP 模型与排队时延",
+        "description": "先估算丢包模型下的 TCP 吞吐上限，再计算一个 M/M/1 队列的逗留时间。"
+      }
+    },
+    "steps": [
+      {
+        "order": 1,
+        "toolId": "tcp-mathis-throughput-estimator",
+        "translations": {
+          "en": {
+            "action": "Estimate the Mathis TCP ceiling"
+          },
+          "zh": {
+            "action": "估算 Mathis TCP 上限"
+          }
+        }
+      },
+      {
+        "order": 2,
+        "toolId": "mm1-queue-delay-calculator",
+        "translations": {
+          "en": {
+            "action": "Calculate M/M/1 sojourn time"
+          },
+          "zh": {
+            "action": "计算 M/M/1 逗留时间"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "facility-power-pathway",
+    "schemaVersion": "2.1.0",
+    "status": "active",
+    "domain": "power-datacenter",
+    "primary": true,
+    "translations": {
+      "en": {
+        "name": "Feeder drop, pathway fill and availability",
+        "description": "Estimate DC feeder drop and geometric pathway fill, then combine independent path availabilities."
+      },
+      "zh": {
+        "name": "馈线压降、通道填充与可用度",
+        "description": "先估算直流馈线压降和通道几何填充率，再合成相互独立路径的可用度。"
+      }
+    },
+    "steps": [
+      {
+        "order": 1,
+        "toolId": "dc-feeder-voltage-drop-calculator",
+        "translations": {
+          "en": {
+            "action": "Estimate feeder voltage drop"
+          },
+          "zh": {
+            "action": "估算馈线压降"
+          }
+        }
+      },
+      {
+        "order": 2,
+        "toolId": "pathway-fill-calculator",
+        "translations": {
+          "en": {
+            "action": "Compare geometric pathway fill"
+          },
+          "zh": {
+            "action": "比较通道几何填充率"
+          }
+        }
+      },
+      {
+        "order": 3,
+        "toolId": "path-availability-calculator",
+        "translations": {
+          "en": {
+            "action": "Combine independent path availability"
+          },
+          "zh": {
+            "action": "合成独立路径可用度"
+          }
+        }
+      }
+    ]
   }
 ]

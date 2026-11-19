@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr" data-nel-locale="es" data-nel-route="tools/shannon-capacity-calculator/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="app-base" content="../">
+<title>Calculadora de capacidad AWGN de Shannon | NetEngineerLab</title>
+<meta name="description" content="Calcula la cota de capacidad del canal AWGN C = B log2(1+S/N) a partir del ancho de banda y la SNR.">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<link rel="icon" href="/assets/icons/favicon.svg?v=1.9.5-06" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="/assets/css/mobile-branding.css?v=345784b6b020">
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif:ital@1&amp;display=swap">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=718e11ad9233">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=0e51668c3f12">
+<link rel="stylesheet" href="../css/style.css?v=3e625a824a21">
+<script defer src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
+<meta name="theme-color" content="#176ff2">
+<meta property="og:url" content="https://netengineerlab.com/tools/shannon-capacity-calculator/es/">
+<meta property="og:title" content="Calculadora de capacidad AWGN de Shannon | NetEngineerLab">
+<meta property="og:description" content="Calcula la cota de capacidad del canal AWGN C = B log2(1+S/N) a partir del ancho de banda y la SNR.">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Calculadora de capacidad AWGN de Shannon | NetEngineerLab">
+<meta name="twitter:description" content="Calcula la cota de capacidad del canal AWGN C = B log2(1+S/N) a partir del ancho de banda y la SNR.">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Calculadora de capacidad AWGN de Shannon","url":"https://netengineerlab.com/tools/shannon-capacity-calculator/es/","description":"Calcula la cota de capacidad del canal AWGN C = B log2(1+S/N) a partir del ancho de banda y la SNR.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="es">
+<meta name="nel-route" content="tools/shannon-capacity-calculator/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/tools/shannon-capacity-calculator/es/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/shannon-capacity-calculator/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/shannon-capacity-calculator/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/shannon-capacity-calculator/es/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/shannon-capacity-calculator/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Herramientas","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"Calculadora de capacidad AWGN de Shannon","item":"https://netengineerlab.com/tools/shannon-capacity-calculator/es/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de capacidad AWGN de Shannon","url":"https://netengineerlab.com/tools/shannon-capacity-calculator/es/","description":"Calcula la cota de capacidad del canal AWGN C = B log2(1+S/N) a partir del ancho de banda y la SNR.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","inLanguage":"es","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿log2(101) forma parte del ejemplo de 20 dB?","acceptedAnswer":{"@type":"Answer","text":"Sí. 20 dB es una relación lineal de 100, y el argumento del logaritmo es 1+100."}},{"@type":"Question","name":"¿La SNR puede ser 0 dB?","acceptedAnswer":{"@type":"Answer","text":"Sí. La relación lineal es 1 y la capacidad es B × 1 bit/s/Hz."}},{"@type":"Question","name":"¿Una banda más ancha siempre ayuda?","acceptedAnswer":{"@type":"Answer","text":"Solo en esta fórmula, y solo si la SNR introducida sigue valiendo para esa banda más ancha."}},{"@type":"Question","name":"¿Es el caudal de Wi-Fi?","acceptedAnswer":{"@type":"Answer","text":"No. Es la cota AWGN."}}]}</script>
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=475098aa29f5">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=c957f6562d31"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
+</head>
+<body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-v3-migrated="1">
+<a class="skip" href="#calculator">Saltar a la calculadora</a>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../es/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Plataforma de inteligencia para ingeniería de redes</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Abrir navegación"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navegación principal">
+      <a href="../../../es/">Inicio</a>
+      <a href="../../es/" aria-current="page">Herramientas</a>
+      <a href="../../../guides/">Guías</a>
+      <a href="../../../topics/">Temas</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Español"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Español</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/shannon-capacity-calculator/" lang="en" hreflang="en"><span>English</span><small>Inglés</small></a><a class="language-option" role="menuitem" href="/tools/shannon-capacity-calculator/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chino simplificado</small></a><a class="language-option" role="menuitem" href="/tools/shannon-capacity-calculator/es/" lang="es" hreflang="es" aria-current="page"><span>Español</span><small>Español</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">Empezar a calcular</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a href="../../../es/">Inicio</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../../es/">Herramientas</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">Calculadora de capacidad AWGN de Shannon</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END -->
+<section class="hero nel-tool-hero" aria-hidden="true"></section>
+<main id="calculator" class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" data-engine="NEL_Shannon" data-primary="capacityMbps" data-nel-readout-rows=".metric">
+<div class="tool-head">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../es/">Inicio</a> <span aria-hidden="true">/</span> <a href="../../es/">Herramientas</a> <span aria-hidden="true">/</span> <span aria-current="page">Calculadora de capacidad AWGN de Shannon</span></nav>
+<h1 class="tool-page-label">Calculadora de capacidad AWGN de Shannon</h1>
+<p class="tool-lede">Calcula la cota de capacidad del canal AWGN C = B log2(1+S/N) a partir del ancho de banda y la SNR.</p>
+</div>
+<div class="workspace">
+<section class="input-panel card nel-tool-input fb-panel">
+<h2 class="panel-h">Datos</h2>
+<p class="hint">El resultado sigue a los datos. Un dato no válido explica el motivo y borra el valor anterior.</p>
+<div class="fields"><div class="field"><label for="bandwidth">Ancho de referencia</label><div class="inp"><input id="bandwidth" data-field="bandwidth" data-example="20" type="number" inputmode="decimal" value="20" step="any" data-probe="1" data-probe-edit="40" data-probe-invalid="0"><select id="bandwidthUnit" data-field="bandwidthUnit" aria-label="Ancho de referencia unit"><option value="MHz" selected>MHz</option><option value="Hz">Hz</option><option value="kHz">kHz</option><option value="GHz">GHz</option></select></div></div><div class="field"><label for="snr">Relación señal a ruido</label><div class="inp"><input id="snr" data-field="snr" data-example="100" type="number" inputmode="decimal" value="20" step="any"></div></div><div class="field"><label for="snrUnit">Unidad de SNR</label><select id="snrUnit" data-field="snrUnit" data-example="linear"><option value="dB" selected>dB</option><option value="linear">Lineal</option></select></div></div>
+<p id="validation" class="validation" role="alert"></p>
+<div class="input-actions"><button id="calculateBtn" class="btn btn-primary" type="button">Calcular</button><button id="exampleBtn" class="btn btn-ghost" type="button">Cargar ejemplo</button><button id="resetBtn" class="btn btn-ghost" type="button">Restablecer</button></div>
+<div class="formula-card"><h3>Fórmula</h3><code>C = B × log2(1 + S/N).</code><p>Es una aproximación de ingeniería para planificación. No es una medición de laboratorio ni garantiza el rendimiento del equipo.</p></div>
+</section>
+<section class="result-panel card nel-tool-result readout" id="result" aria-live="polite">
+<h2 class="ro-h">Resultado</h2>
+<p id="statusLine" class="hint"></p>
+<div class="metric-grid"><article class="metric"><span class="lbl" id="lbl-capacityMbps">Cota de capacidad AWGN</span><span class="val" id="out-capacityMbps" data-out="capacityMbps"><span class="num">—</span><span class="unit">Mbps</span></span></article><article class="metric"><span class="lbl" id="lbl-capacityBps">Cota de capacidad AWGN</span><span class="val" id="out-capacityBps" data-out="capacityBps"><span class="num">—</span><span class="unit">bit/s</span></span></article><article class="metric"><span class="lbl" id="lbl-snrLinear">SNR lineal</span><span class="val" id="out-snrLinear" data-out="snrLinear"><span class="num">—</span></span></article><article class="metric"><span class="lbl" id="lbl-spectral">Eficiencia espectral</span><span class="val" id="out-spectral" data-out="spectral"><span class="num">—</span><span class="unit">bit/s/Hz</span></span></article></div>
+
+<div class="result-actions"><button id="copyBtn" type="button">Copiar resultado</button><button id="csvBtn" type="button">Exportar CSV</button></div>
+</section>
+</div>
+<div class="below">
+<nav class="toc" aria-label="En esta página"><h4>En esta página</h4><a href="#about-scope">Acerca de y aplicabilidad</a><a href="#methodology">Cómo se calcula</a><a href="#faq">Preguntas</a><a href="#references">Referencias</a><a href="#nel-tool-graph">Flujo de ingeniería</a></nav>
+<div class="prose">
+<details class="fb-fold blk" id="about-scope" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span class="fb-fold-title">Acerca de y aplicabilidad</span></summary><div class="fb-fold-body"><p>Es la cota de capacidad AWGN. Un módem, una tabla MCS de Wi-Fi o un transpondedor óptico pueden quedar muy por debajo. La SNR puede entrar en decibelios o como relación lineal de potencias.</p><p>Es una aproximación de ingeniería para planificación. No es una medición de laboratorio ni garantiza el rendimiento del equipo.</p><p class="about-meta">Content reviewed: 2026-11-19</p></div></details>
+<details class="fb-fold blk" id="methodology" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span class="fb-fold-title">Cómo se calcula</span></summary><div class="fb-fold-body"><p class="eq">C = B × log2(1 + S/N).</p><p>La fórmula AWGN de Shannon es C = B log2(1 + S/N), donde B es el ancho en hercios y S/N es una relación lineal de potencias. Una SNR de x decibelios pasa a 10^(x/10). Un caso revisable es B = 20 MHz y SNR = 20 dB, así que S/N = 100 y C = 20000000 × log2(101). El resultado es una cota superior para ruido gaussiano blanco aditivo con el ancho y la SNR que introduces. No es un balance de enlace y no incluye desvanecimiento, la estructura de la interferencia ni la sobrecarga de protocolo.</p></div></details>
+<div class="blk faq" id="faq"><h2>Preguntas</h2><h3>¿log2(101) forma parte del ejemplo de 20 dB?</h3><p>Sí. 20 dB es una relación lineal de 100, y el argumento del logaritmo es 1+100.</p><h3>¿La SNR puede ser 0 dB?</h3><p>Sí. La relación lineal es 1 y la capacidad es B × 1 bit/s/Hz.</p><h3>¿Una banda más ancha siempre ayuda?</h3><p>Solo en esta fórmula, y solo si la SNR introducida sigue valiendo para esa banda más ancha.</p><h3>¿Es el caudal de Wi-Fi?</h3><p>No. Es la cota AWGN.</p></div>
+<section class="blk" id="references"><h2>Referencias</h2><ul class="rel"><li><a href="https://ieeexplore.ieee.org/document/6773024">Shannon, A Mathematical Theory of Communication</a></li><li><a href="https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf">Shannon 1948 reprint</a></li><li><a href="https://www.nist.gov/pml/owm/metric-si">NIST decibel and ratio guidance</a></li></ul><h3>Herramientas relacionadas</h3><ul class="rel"><li><a href="../../wireless-link-budget-calculator/es/">Calculadora de presupuesto de enlace inalámbrico</a></li><li><a href="../../bandwidth-calculator/es/">Calculadora de ancho de banda y tiempo de transferencia</a></li><li><a href="../../ethernet-line-coding-calculator/es/">Calculadora de sobrecarga de codificación Ethernet</a></li></ul></section>
+<!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="shannon-capacity-calculator" data-primary-workflow="line-rate-and-capacity">
+<div class="section-heading"><div><p class="eyebrow">FLUJO DE INGENIERÍA</p><h2 id="nel-tool-graph-title">Seguir el flujo de ingeniería</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Flujo actual</span><strong>Tasa de línea, retardo en cobre y cota de capacidad</strong><p>Amplía la tasa útil con un código de línea publicado, estima el retardo en cobre y compáralo con una cota AWGN.</p></div><div class="nel-workflow-step"><strong>Paso 3 de 3</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="3" aria-valuetext="Paso 3 de 3" aria-label="Paso 3 de 3"><span style="width:100%"></span></div></div></div>
+<div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/copper-propagation-delay-calculator/es/"><span class="nel-tool-graph-label">Anterior</span><strong>Calculadora de retardo de propagación en cobre</strong><span class="nel-tool-graph-description">Calcula el retardo de propagación en un sentido a partir de la longitud y del factor de velocidad que indiques.</span></a><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Siguiente</span><strong>Fin del flujo</strong></div></div>
+<h3 class="nel-tool-graph-subtitle">Herramientas relacionadas</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/wireless-link-budget-calculator/es/"><strong>Calculadora de presupuesto de enlace inalámbrico</strong><span class="nel-tool-graph-description">Calcula pérdidas de espacio libre, margen de desvanecimiento, disponibilidad y alcance del enlace inalámbrico.</span></a><a class="nel-tool-graph-card" href="/tools/bandwidth-calculator/es/"><strong>Calculadora de ancho de banda y tiempo de transferencia</strong><span class="nel-tool-graph-description">Calcula el tiempo de transferencia, la velocidad necesaria y la capacidad de usuarios concurrentes.</span></a><a class="nel-tool-graph-card" href="/tools/ethernet-line-coding-calculator/es/"><strong>Calculadora de sobrecarga de codificación Ethernet</strong><span class="nel-tool-graph-description">Amplía una tasa de carga útil con las relaciones publicadas 8b/10b, 64b/66b y de palabra RS-FEC.</span></a></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
+</div>
+</div>
+</main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Herramientas profesionales en línea para ingenieros de telecomunicaciones y redes.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navegación del pie de página">
+      <a href="../../../es/about/">Acerca de</a><a href="../../../es/contact/">Contacto</a><a href="../../../es/privacy/">Privacidad</a><a href="../../../es/terms/">Términos</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script type="application/json" id="nel-copy">{"calculate":"Calcular","example":"Cargar ejemplo","reset":"Restablecer","copy":"Copiar resultado","csv":"Exportar CSV","invalid":"El valor queda fuera del límite. El resultado anterior válido se ha borrado.","ready":"Resultado actualizado con los datos actuales.","inputs":"Datos","results":"Resultado","formula":"Fórmula","toc":"En esta página","about":"Acerca de y aplicabilidad","method":"Cómo se calcula","faq":"Preguntas","refs":"Referencias","flow":"Flujo de ingeniería","reviewed":"Content reviewed: 2026-11-19","approx":"Es una aproximación de ingeniería para planificación. No es una medición de laboratorio ni garantiza el rendimiento del equipo.","start":"Empezar a calcular","home":"Inicio","tools":"Herramientas","errors":{"empty":"Introduce un valor.","invalid-number":"Introduce un decimal finito.","non-finite":"El valor debe ser finito.","not-integer":"Introduce un número entero.","bad-unit":"Elige una unidad admitida.","overflow":"El cálculo se desborda. Usa un dato menor.","anchor-range":"Mantén el ancla entre 100 y 400 THz.","spacing-range":"La separación debe ser mayor que 0 y como máximo 10000 GHz.","channel-range":"El índice de canal debe estar entre -100000 y 100000.","frequency-range":"La frecuencia óptica queda fuera de 0 a 1000 THz.","power-range":"La potencia de canal debe estar entre -80 y 40 dBm.","gain-range":"La ganancia debe ser mayor que 0 dB y como máximo 50 dB.","nf-range":"La figura de ruido de este modelo debe estar entre 0 y 40 dB.","bandwidth-range":"El ancho de banda queda fuera del rango aceptado.","span-range":"El número de vanos debe ser un entero de 1 a 10000.","bad-code":"Elige un código de línea.","payload-range":"La tasa útil debe ser mayor que 0 y como máximo 100000 Gbps.","mss-range":"El MSS debe ser un entero de 1 a 65535 bytes.","rtt-range":"El RTT debe ser mayor que 0 y como máximo 100 s.","loss-range":"La probabilidad de pérdida debe ser mayor que 0 y menor que 1.","link-range":"La tasa del enlace debe ser mayor que 0.","arrival-range":"La tasa de llegada debe ser mayor que 0.","service-range":"La tasa de servicio debe ser mayor que 0.","unstable":"La tasa de servicio debe ser mayor que la de llegada.","bad-kind":"Elige bloques o MTBF.","availability-range":"La disponibilidad debe ser mayor que 0 y como máximo 1.","mtbf-range":"El MTBF debe ser mayor que 0.","mttr-range":"El MTTR debe ser mayor que 0.","bad-mode":"Elige serie o paralelo.","block-count":"Introduce de 1 a 20 disponibilidades.","voltage-range":"La tensión debe ser mayor que 0 y como máximo 2000 V.","current-range":"La corriente debe estar entre 0 y 100000 A.","length-range":"La longitud queda fuera del rango aceptado.","area-range":"La sección del conductor debe ser mayor que 0.","temperature-range":"La temperatura debe mantener la resistividad positiva y estar entre -50 y 200 °C.","alpha-range":"Alfa debe estar entre 0 y 0,02 por °C.","conductor-count":"El número de conductores debe ser 1 o 2.","rho-range":"La resistividad debe ser mayor que 0.","conduit-range":"El diámetro de la canalización debe ser mayor que 0.","group-count":"Introduce de 1 a 4 grupos de cables.","diameter-range":"El diámetro del cable debe ser mayor que 0.","count-range":"La cantidad de cables debe ser un entero de 1 a 100000.","limit-range":"El límite de llenado debe ser mayor que 0 y como máximo 100 por ciento.","vf-range":"El factor de velocidad debe ser mayor que 0 y como máximo 1.","snr-range":"La SNR queda fuera del rango aceptado."}}</script>
+<link rel="stylesheet" href="../css/style.css?v=3e625a824a21">
+<script src="../js/engine.js?v=29dcf7737188"></script>
+<script src="../js/app.js?v=13190eae6437"></script>
+<script src="../js/pwa.js"></script>
+<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=b786c10e6903"></script>
+</body>
+</html>

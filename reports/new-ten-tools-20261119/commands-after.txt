@@ -1,0 +1,45 @@
+BASE 1c849433e568548c6a7b42d5be4cc4603845caae branch cursor/ten-engineering-tools-89ec
+==== new-ten-tools ====
+itu-dwdm-grid-calculator engine tests PASS
+edfa-ase-osnr-estimator engine tests PASS
+ethernet-line-coding-calculator engine tests PASS
+tcp-mathis-throughput-estimator engine tests PASS
+mm1-queue-delay-calculator engine tests PASS
+path-availability-calculator engine tests PASS
+dc-feeder-voltage-drop-calculator engine tests PASS
+pathway-fill-calculator engine tests PASS
+copper-propagation-delay-calculator engine tests PASS
+shannon-capacity-calculator engine tests PASS
+New ten tools 2026-11-19 PASS (10 engines; 51 frozen engines unchanged)
+EXIT:0
+==== page-registry-contract ====
+Page Registry contract tests: PASS (94 families; 253 localized pages; sitemap exact).
+EXIT:0
+==== expected-sitemap ====
+Expected sitemap set PASS (267 URLs match website/sitemap.xml).
+EXIT:0
+==== category ====
+Category coverage PASS (home + tool directory, en/zh/es)
+EXIT:0
+==== tool-navigation ====
+EXIT:1
+==== ui-trust ====
+EXIT:1
+==== rules-runtime ====
+EXIT:1
+==== v3-contract ====
+EXIT:1
+==== architecture ====
+EXIT:1
+FAIL
+website/tools/route-summarization-calculator/js/app.js: missing
+website/tools/route-summarization-calculator/js/pwa.js: missing
+website/tools/route-summarization-calculator/manifest.webmanifest: missing
+website/tools/route-summarization-calculator/sw.js: missing
+website/tools/route-summarization-calculator: Service Worker is not registered
+website/guides/fiber-link-budget-guide/index.html: exactly one generated Header region is required
+warnings
+website/tools/route-summarization-calculator/offline.html: missing offline fallback
+==== playwright ====
+npx playwright test tests/browser/new-ten-tools-20261119.spec.js --project=chrome-desktop
+EXIT:0  1 passed (2.6m)  120/120 rows

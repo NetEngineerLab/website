@@ -2000,6 +2000,396 @@
       "primaryWorkflow": "enterprise-lan-ip-planning",
       "previous": "network-capacity-forecast-planner",
       "next": null
+    },
+    "itu-dwdm-grid-calculator": {
+      "id": "itu-dwdm-grid-calculator",
+      "routes": {
+        "en": "/tools/itu-dwdm-grid-calculator/",
+        "zh-CN": "/tools/itu-dwdm-grid-calculator/zh/",
+        "es": "/tools/itu-dwdm-grid-calculator/es/"
+      },
+      "translations": {
+        "en": {
+          "name": "ITU DWDM Grid Calculator",
+          "description": "Convert an ITU-T G.694.1 channel index into optical frequency and vacuum wavelength from the 193.1 THz anchor."
+        },
+        "zh": {
+          "name": "ITU DWDM 频率栅格计算器",
+          "description": "按 ITU-T G.694.1，把以 193.1 THz 为锚点的信道序号换成光频率和真空波长。"
+        },
+        "es": {
+          "name": "Calculadora de rejilla DWDM UIT",
+          "description": "Convierte un índice de canal ITU-T G.694.1 en frecuencia óptica y longitud de onda en el vacío desde el ancla de 193,1 THz."
+        }
+      },
+      "related": [
+        "fiber-loss",
+        "chromatic-dispersion-calculator",
+        "optical-power-budget"
+      ],
+      "workflows": [
+        {
+          "workflowId": "itu-grid-and-ase",
+          "step": 1,
+          "total": 2,
+          "previous": null,
+          "next": "edfa-ase-osnr-estimator"
+        }
+      ],
+      "primaryWorkflow": "itu-grid-and-ase",
+      "previous": null,
+      "next": "edfa-ase-osnr-estimator"
+    },
+    "edfa-ase-osnr-estimator": {
+      "id": "edfa-ase-osnr-estimator",
+      "routes": {
+        "en": "/tools/edfa-ase-osnr-estimator/",
+        "zh-CN": "/tools/edfa-ase-osnr-estimator/zh/",
+        "es": "/tools/edfa-ase-osnr-estimator/es/"
+      },
+      "translations": {
+        "en": {
+          "name": "EDFA ASE OSNR Estimator",
+          "description": "Estimate amplifier ASE and OSNR from gain, noise factor, optical frequency, reference bandwidth and identical span count."
+        },
+        "zh": {
+          "name": "EDFA ASE 与 OSNR 估算器",
+          "description": "用增益、噪声系数、光频率、参考带宽和相同跨段数量估算 ASE 与 OSNR。"
+        },
+        "es": {
+          "name": "Estimador de OSNR y ASE de EDFA",
+          "description": "Estima el ASE y la OSNR a partir de la ganancia, el factor de ruido, la frecuencia, el ancho de referencia y el número de vanos iguales."
+        }
+      },
+      "related": [
+        "optical-power-budget",
+        "itu-dwdm-grid-calculator",
+        "fiber-loss"
+      ],
+      "workflows": [
+        {
+          "workflowId": "itu-grid-and-ase",
+          "step": 2,
+          "total": 2,
+          "previous": "itu-dwdm-grid-calculator",
+          "next": null
+        }
+      ],
+      "primaryWorkflow": "itu-grid-and-ase",
+      "previous": "itu-dwdm-grid-calculator",
+      "next": null
+    },
+    "ethernet-line-coding-calculator": {
+      "id": "ethernet-line-coding-calculator",
+      "routes": {
+        "en": "/tools/ethernet-line-coding-calculator/",
+        "zh-CN": "/tools/ethernet-line-coding-calculator/zh/",
+        "es": "/tools/ethernet-line-coding-calculator/es/"
+      },
+      "translations": {
+        "en": {
+          "name": "Ethernet Line-Coding Overhead Calculator",
+          "description": "Expand a payload bit rate by the published 8b/10b, 64b/66b and RS-FEC codeword ratios."
+        },
+        "zh": {
+          "name": "以太网线路编码开销计算器",
+          "description": "按已发布的 8b/10b、64b/66b 和 RS-FEC 码字比例，把净荷速率换成线路速率。"
+        },
+        "es": {
+          "name": "Calculadora de sobrecarga de codificación Ethernet",
+          "description": "Amplía una tasa de carga útil con las relaciones publicadas 8b/10b, 64b/66b y de palabra RS-FEC."
+        }
+      },
+      "related": [
+        "ethernet-serialization-delay-calculator",
+        "bandwidth-calculator",
+        "mtu-calculator"
+      ],
+      "workflows": [
+        {
+          "workflowId": "line-rate-and-capacity",
+          "step": 1,
+          "total": 3,
+          "previous": null,
+          "next": "copper-propagation-delay-calculator"
+        }
+      ],
+      "primaryWorkflow": "line-rate-and-capacity",
+      "previous": null,
+      "next": "copper-propagation-delay-calculator"
+    },
+    "tcp-mathis-throughput-estimator": {
+      "id": "tcp-mathis-throughput-estimator",
+      "routes": {
+        "en": "/tools/tcp-mathis-throughput-estimator/",
+        "zh-CN": "/tools/tcp-mathis-throughput-estimator/zh/",
+        "es": "/tools/tcp-mathis-throughput-estimator/es/"
+      },
+      "translations": {
+        "en": {
+          "name": "TCP Mathis Throughput Estimator",
+          "description": "Estimate the Mathis loss-based TCP ceiling and the bandwidth-delay product from MSS, RTT and loss probability."
+        },
+        "zh": {
+          "name": "TCP Mathis 吞吐估算器",
+          "description": "用 MSS、RTT 和丢包概率估算 Mathis 丢包模型下的 TCP 吞吐上限和带宽时延积。"
+        },
+        "es": {
+          "name": "Estimador de caudal TCP de Mathis",
+          "description": "Estima el techo TCP de Mathis y el producto ancho de banda-retardo a partir de MSS, RTT y probabilidad de pérdida."
+        }
+      },
+      "related": [
+        "bandwidth-calculator",
+        "ethernet-serialization-delay-calculator",
+        "fiber-latency-calculator"
+      ],
+      "workflows": [
+        {
+          "workflowId": "loss-and-queue-models",
+          "step": 1,
+          "total": 2,
+          "previous": null,
+          "next": "mm1-queue-delay-calculator"
+        }
+      ],
+      "primaryWorkflow": "loss-and-queue-models",
+      "previous": null,
+      "next": "mm1-queue-delay-calculator"
+    },
+    "mm1-queue-delay-calculator": {
+      "id": "mm1-queue-delay-calculator",
+      "routes": {
+        "en": "/tools/mm1-queue-delay-calculator/",
+        "zh-CN": "/tools/mm1-queue-delay-calculator/zh/",
+        "es": "/tools/mm1-queue-delay-calculator/es/"
+      },
+      "translations": {
+        "en": {
+          "name": "M/M/1 Queue Delay Calculator",
+          "description": "Calculate utilization, waiting time and sojourn time for a single M/M/1 queue from arrival and service rates."
+        },
+        "zh": {
+          "name": "M/M/1 排队时延计算器",
+          "description": "用到达率和服务率计算单服务员 M/M/1 队列的利用率、等待时间和逗留时间。"
+        },
+        "es": {
+          "name": "Calculadora de retardo de cola M/M/1",
+          "description": "Calcula utilización, espera y permanencia de una cola M/M/1 a partir de las tasas de llegada y servicio."
+        }
+      },
+      "related": [
+        "ethernet-serialization-delay-calculator",
+        "bandwidth-calculator",
+        "tcp-mathis-throughput-estimator"
+      ],
+      "workflows": [
+        {
+          "workflowId": "loss-and-queue-models",
+          "step": 2,
+          "total": 2,
+          "previous": "tcp-mathis-throughput-estimator",
+          "next": null
+        }
+      ],
+      "primaryWorkflow": "loss-and-queue-models",
+      "previous": "tcp-mathis-throughput-estimator",
+      "next": null
+    },
+    "path-availability-calculator": {
+      "id": "path-availability-calculator",
+      "routes": {
+        "en": "/tools/path-availability-calculator/",
+        "zh-CN": "/tools/path-availability-calculator/zh/",
+        "es": "/tools/path-availability-calculator/es/"
+      },
+      "translations": {
+        "en": {
+          "name": "Path Availability Calculator",
+          "description": "Combine independent series or parallel availabilities, or convert MTBF and MTTR into availability and annual downtime."
+        },
+        "zh": {
+          "name": "路径可用度计算器",
+          "description": "把相互独立的串联或并联可用度合成，或把 MTBF 与 MTTR 换成可用度和年停机时间。"
+        },
+        "es": {
+          "name": "Calculadora de disponibilidad de trayecto",
+          "description": "Combina disponibilidades independientes en serie o paralelo, o convierte MTBF y MTTR en disponibilidad y tiempo anual fuera de servicio."
+        }
+      },
+      "related": [
+        "pue-data-center-energy-efficiency",
+        "ups-capacity-battery-runtime-calculator",
+        "network-capacity-forecast-planner"
+      ],
+      "workflows": [
+        {
+          "workflowId": "facility-power-pathway",
+          "step": 3,
+          "total": 3,
+          "previous": "pathway-fill-calculator",
+          "next": null
+        }
+      ],
+      "primaryWorkflow": "facility-power-pathway",
+      "previous": "pathway-fill-calculator",
+      "next": null
+    },
+    "dc-feeder-voltage-drop-calculator": {
+      "id": "dc-feeder-voltage-drop-calculator",
+      "routes": {
+        "en": "/tools/dc-feeder-voltage-drop-calculator/",
+        "zh-CN": "/tools/dc-feeder-voltage-drop-calculator/zh/",
+        "es": "/tools/dc-feeder-voltage-drop-calculator/es/"
+      },
+      "translations": {
+        "en": {
+          "name": "DC Feeder Voltage Drop Calculator",
+          "description": "Estimate two-wire or one-way DC feeder drop from current, length, copper area and temperature."
+        },
+        "zh": {
+          "name": "直流馈电线压降计算器",
+          "description": "按电流、长度、铜截面积和温度估算单程或往返直流馈电线压降。"
+        },
+        "es": {
+          "name": "Calculadora de caída en alimentador de CC",
+          "description": "Estima la caída de un alimentador de CC de ida o de ida y vuelta según corriente, longitud, sección de cobre y temperatura."
+        }
+      },
+      "related": [
+        "telecom-rectifier-dc-power-sizing",
+        "poe-voltage-drop-calculator",
+        "48v-battery-runtime"
+      ],
+      "workflows": [
+        {
+          "workflowId": "facility-power-pathway",
+          "step": 1,
+          "total": 3,
+          "previous": null,
+          "next": "pathway-fill-calculator"
+        }
+      ],
+      "primaryWorkflow": "facility-power-pathway",
+      "previous": null,
+      "next": "pathway-fill-calculator"
+    },
+    "pathway-fill-calculator": {
+      "id": "pathway-fill-calculator",
+      "routes": {
+        "en": "/tools/pathway-fill-calculator/",
+        "zh-CN": "/tools/pathway-fill-calculator/zh/",
+        "es": "/tools/pathway-fill-calculator/es/"
+      },
+      "translations": {
+        "en": {
+          "name": "Pathway Geometric Fill Calculator",
+          "description": "Compare the circle area of cable groups with the inner area of a round pathway."
+        },
+        "zh": {
+          "name": "通道几何填充率计算器",
+          "description": "用电缆组的圆面积和圆形通道内截面积比较几何填充率。"
+        },
+        "es": {
+          "name": "Calculadora geométrica de llenado de canalización",
+          "description": "Compara el área circular de los grupos de cables con el área interior de una canalización redonda."
+        }
+      },
+      "related": [
+        "network-rack-power-cooling-calculator",
+        "dc-feeder-voltage-drop-calculator",
+        "data-center-cooling-load-calculator"
+      ],
+      "workflows": [
+        {
+          "workflowId": "facility-power-pathway",
+          "step": 2,
+          "total": 3,
+          "previous": "dc-feeder-voltage-drop-calculator",
+          "next": "path-availability-calculator"
+        }
+      ],
+      "primaryWorkflow": "facility-power-pathway",
+      "previous": "dc-feeder-voltage-drop-calculator",
+      "next": "path-availability-calculator"
+    },
+    "copper-propagation-delay-calculator": {
+      "id": "copper-propagation-delay-calculator",
+      "routes": {
+        "en": "/tools/copper-propagation-delay-calculator/",
+        "zh-CN": "/tools/copper-propagation-delay-calculator/zh/",
+        "es": "/tools/copper-propagation-delay-calculator/es/"
+      },
+      "translations": {
+        "en": {
+          "name": "Copper Propagation Delay Calculator",
+          "description": "Calculate one-way propagation delay from cable length and a velocity factor you supply."
+        },
+        "zh": {
+          "name": "铜缆传播时延计算器",
+          "description": "用你输入的长度和速度系数计算铜缆单向传播时延。"
+        },
+        "es": {
+          "name": "Calculadora de retardo de propagación en cobre",
+          "description": "Calcula el retardo de propagación en un sentido a partir de la longitud y del factor de velocidad que indiques."
+        }
+      },
+      "related": [
+        "fiber-latency-calculator",
+        "ethernet-serialization-delay-calculator",
+        "poe-voltage-drop-calculator"
+      ],
+      "workflows": [
+        {
+          "workflowId": "line-rate-and-capacity",
+          "step": 2,
+          "total": 3,
+          "previous": "ethernet-line-coding-calculator",
+          "next": "shannon-capacity-calculator"
+        }
+      ],
+      "primaryWorkflow": "line-rate-and-capacity",
+      "previous": "ethernet-line-coding-calculator",
+      "next": "shannon-capacity-calculator"
+    },
+    "shannon-capacity-calculator": {
+      "id": "shannon-capacity-calculator",
+      "routes": {
+        "en": "/tools/shannon-capacity-calculator/",
+        "zh-CN": "/tools/shannon-capacity-calculator/zh/",
+        "es": "/tools/shannon-capacity-calculator/es/"
+      },
+      "translations": {
+        "en": {
+          "name": "Shannon AWGN Capacity Calculator",
+          "description": "Calculate the AWGN channel capacity bound C = B log2(1+S/N) from bandwidth and SNR."
+        },
+        "zh": {
+          "name": "香农 AWGN 信道容量计算器",
+          "description": "用带宽和信噪比计算 AWGN 信道容量上界 C = B log2(1+S/N)。"
+        },
+        "es": {
+          "name": "Calculadora de capacidad AWGN de Shannon",
+          "description": "Calcula la cota de capacidad del canal AWGN C = B log2(1+S/N) a partir del ancho de banda y la SNR."
+        }
+      },
+      "related": [
+        "wireless-link-budget-calculator",
+        "bandwidth-calculator",
+        "ethernet-line-coding-calculator"
+      ],
+      "workflows": [
+        {
+          "workflowId": "line-rate-and-capacity",
+          "step": 3,
+          "total": 3,
+          "previous": "copper-propagation-delay-calculator",
+          "next": null
+        }
+      ],
+      "primaryWorkflow": "line-rate-and-capacity",
+      "previous": "copper-propagation-delay-calculator",
+      "next": null
     }
   },
   "workflows": {
@@ -3058,6 +3448,190 @@
             },
             "zh": {
               "action": "规划 Leaf-Spine 网络容量"
+            }
+          }
+        }
+      ]
+    },
+    "itu-grid-and-ase": {
+      "id": "itu-grid-and-ase",
+      "domain": "optical",
+      "translations": {
+        "en": {
+          "name": "Optical grid and ASE estimate",
+          "description": "Place a channel on the ITU grid, then estimate ASE and OSNR for identical amplifier spans."
+        },
+        "zh": {
+          "name": "光频率栅格与 ASE 估算",
+          "description": "先把信道放到 ITU 栅格上，再按相同放大器跨段估算 ASE 和 OSNR。"
+        }
+      },
+      "steps": [
+        {
+          "order": 1,
+          "toolId": "itu-dwdm-grid-calculator",
+          "translations": {
+            "en": {
+              "action": "Place the channel on the frequency grid"
+            },
+            "zh": {
+              "action": "把信道放到频率栅格上"
+            }
+          }
+        },
+        {
+          "order": 2,
+          "toolId": "edfa-ase-osnr-estimator",
+          "translations": {
+            "en": {
+              "action": "Estimate ASE and OSNR"
+            },
+            "zh": {
+              "action": "估算 ASE 与 OSNR"
+            }
+          }
+        }
+      ]
+    },
+    "line-rate-and-capacity": {
+      "id": "line-rate-and-capacity",
+      "domain": "ip-networking",
+      "translations": {
+        "en": {
+          "name": "Line rate, copper delay and capacity bound",
+          "description": "Expand a payload rate by a published line code, estimate copper delay, then compare an AWGN capacity bound."
+        },
+        "zh": {
+          "name": "线路速率、铜缆时延与容量上界",
+          "description": "先按已发布线路编码放大净荷速率，再估算铜缆时延，并对照 AWGN 容量上界。"
+        }
+      },
+      "steps": [
+        {
+          "order": 1,
+          "toolId": "ethernet-line-coding-calculator",
+          "translations": {
+            "en": {
+              "action": "Expand the payload rate by the line code"
+            },
+            "zh": {
+              "action": "按线路编码放大净荷速率"
+            }
+          }
+        },
+        {
+          "order": 2,
+          "toolId": "copper-propagation-delay-calculator",
+          "translations": {
+            "en": {
+              "action": "Estimate copper propagation delay"
+            },
+            "zh": {
+              "action": "估算铜缆传播时延"
+            }
+          }
+        },
+        {
+          "order": 3,
+          "toolId": "shannon-capacity-calculator",
+          "translations": {
+            "en": {
+              "action": "Compare the AWGN capacity bound"
+            },
+            "zh": {
+              "action": "对照 AWGN 容量上界"
+            }
+          }
+        }
+      ]
+    },
+    "loss-and-queue-models": {
+      "id": "loss-and-queue-models",
+      "domain": "ip-networking",
+      "translations": {
+        "en": {
+          "name": "Loss-based TCP and queue delay",
+          "description": "Estimate a loss-based TCP ceiling, then the sojourn time of one M/M/1 queue."
+        },
+        "zh": {
+          "name": "丢包 TCP 模型与排队时延",
+          "description": "先估算丢包模型下的 TCP 吞吐上限，再计算一个 M/M/1 队列的逗留时间。"
+        }
+      },
+      "steps": [
+        {
+          "order": 1,
+          "toolId": "tcp-mathis-throughput-estimator",
+          "translations": {
+            "en": {
+              "action": "Estimate the Mathis TCP ceiling"
+            },
+            "zh": {
+              "action": "估算 Mathis TCP 上限"
+            }
+          }
+        },
+        {
+          "order": 2,
+          "toolId": "mm1-queue-delay-calculator",
+          "translations": {
+            "en": {
+              "action": "Calculate M/M/1 sojourn time"
+            },
+            "zh": {
+              "action": "计算 M/M/1 逗留时间"
+            }
+          }
+        }
+      ]
+    },
+    "facility-power-pathway": {
+      "id": "facility-power-pathway",
+      "domain": "power-datacenter",
+      "translations": {
+        "en": {
+          "name": "Feeder drop, pathway fill and availability",
+          "description": "Estimate DC feeder drop and geometric pathway fill, then combine independent path availabilities."
+        },
+        "zh": {
+          "name": "馈线压降、通道填充与可用度",
+          "description": "先估算直流馈线压降和通道几何填充率，再合成相互独立路径的可用度。"
+        }
+      },
+      "steps": [
+        {
+          "order": 1,
+          "toolId": "dc-feeder-voltage-drop-calculator",
+          "translations": {
+            "en": {
+              "action": "Estimate feeder voltage drop"
+            },
+            "zh": {
+              "action": "估算馈线压降"
+            }
+          }
+        },
+        {
+          "order": 2,
+          "toolId": "pathway-fill-calculator",
+          "translations": {
+            "en": {
+              "action": "Compare geometric pathway fill"
+            },
+            "zh": {
+              "action": "比较通道几何填充率"
+            }
+          }
+        },
+        {
+          "order": 3,
+          "toolId": "path-availability-calculator",
+          "translations": {
+            "en": {
+              "action": "Combine independent path availability"
+            },
+            "zh": {
+              "action": "合成独立路径可用度"
             }
           }
         }

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr" data-nel-locale="es" data-nel-route="tools/itu-dwdm-grid-calculator/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="app-base" content="../">
+<title>Calculadora de rejilla DWDM UIT | NetEngineerLab</title>
+<meta name="description" content="Convierte un índice de canal ITU-T G.694.1 en frecuencia óptica y longitud de onda en el vacío desde el ancla de 193,1 THz.">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<link rel="icon" href="/assets/icons/favicon.svg?v=1.9.5-06" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="/assets/css/mobile-branding.css?v=345784b6b020">
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif:ital@1&amp;display=swap">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=718e11ad9233">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=0e51668c3f12">
+<link rel="stylesheet" href="../css/style.css?v=3e625a824a21">
+<script defer src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
+<meta name="theme-color" content="#176ff2">
+<meta property="og:url" content="https://netengineerlab.com/tools/itu-dwdm-grid-calculator/es/">
+<meta property="og:title" content="Calculadora de rejilla DWDM UIT | NetEngineerLab">
+<meta property="og:description" content="Convierte un índice de canal ITU-T G.694.1 en frecuencia óptica y longitud de onda en el vacío desde el ancla de 193,1 THz.">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Calculadora de rejilla DWDM UIT | NetEngineerLab">
+<meta name="twitter:description" content="Convierte un índice de canal ITU-T G.694.1 en frecuencia óptica y longitud de onda en el vacío desde el ancla de 193,1 THz.">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Calculadora de rejilla DWDM UIT","url":"https://netengineerlab.com/tools/itu-dwdm-grid-calculator/es/","description":"Convierte un índice de canal ITU-T G.694.1 en frecuencia óptica y longitud de onda en el vacío desde el ancla de 193,1 THz.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="es">
+<meta name="nel-route" content="tools/itu-dwdm-grid-calculator/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/tools/itu-dwdm-grid-calculator/es/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/itu-dwdm-grid-calculator/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/itu-dwdm-grid-calculator/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/itu-dwdm-grid-calculator/es/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/itu-dwdm-grid-calculator/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Herramientas","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"Calculadora de rejilla DWDM UIT","item":"https://netengineerlab.com/tools/itu-dwdm-grid-calculator/es/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de rejilla DWDM UIT","url":"https://netengineerlab.com/tools/itu-dwdm-grid-calculator/es/","description":"Convierte un índice de canal ITU-T G.694.1 en frecuencia óptica y longitud de onda en el vacío desde el ancla de 193,1 THz.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","inLanguage":"es","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿1550 nm es exactamente el canal 0?","acceptedAnswer":{"@type":"Answer","text":"No. El canal 0 a 193,1 THz tiene una longitud de onda en el vacío de 299792,458 / 193,1 nanómetros, unos 1552,52 nm."}},{"@type":"Question","name":"¿Un índice negativo alarga la longitud de onda?","acceptedAnswer":{"@type":"Answer","text":"Sí. Una frecuencia menor corresponde a una longitud de onda de vacío mayor."}},{"@type":"Question","name":"¿Sustituye la hoja del transceptor?","acceptedAnswer":{"@type":"Answer","text":"No. Solo convierte la definición de rejilla que introduces."}},{"@type":"Question","name":"¿Por qué la separación no está fija en 100 GHz?","acceptedAnswer":{"@type":"Answer","text":"G.694.1 también define otras separaciones. La separación es un dato."}}]}</script>
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=475098aa29f5">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=c957f6562d31"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
+</head>
+<body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-v3-migrated="1">
+<a class="skip" href="#calculator">Saltar a la calculadora</a>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../es/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Plataforma de inteligencia para ingeniería de redes</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Abrir navegación"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navegación principal">
+      <a href="../../../es/">Inicio</a>
+      <a href="../../es/" aria-current="page">Herramientas</a>
+      <a href="../../../guides/">Guías</a>
+      <a href="../../../topics/">Temas</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Español"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Español</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/itu-dwdm-grid-calculator/" lang="en" hreflang="en"><span>English</span><small>Inglés</small></a><a class="language-option" role="menuitem" href="/tools/itu-dwdm-grid-calculator/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chino simplificado</small></a><a class="language-option" role="menuitem" href="/tools/itu-dwdm-grid-calculator/es/" lang="es" hreflang="es" aria-current="page"><span>Español</span><small>Español</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">Empezar a calcular</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a href="../../../es/">Inicio</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../../es/">Herramientas</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">Calculadora de rejilla DWDM UIT</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END -->
+<section class="hero nel-tool-hero" aria-hidden="true"></section>
+<main id="calculator" class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" data-engine="NEL_DwdmGrid" data-primary="frequencyTHz" data-nel-readout-rows=".metric">
+<div class="tool-head">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../es/">Inicio</a> <span aria-hidden="true">/</span> <a href="../../es/">Herramientas</a> <span aria-hidden="true">/</span> <span aria-current="page">Calculadora de rejilla DWDM UIT</span></nav>
+<h1 class="tool-page-label">Calculadora de rejilla DWDM UIT</h1>
+<p class="tool-lede">Convierte un índice de canal ITU-T G.694.1 en frecuencia óptica y longitud de onda en el vacío desde el ancla de 193,1 THz.</p>
+</div>
+<div class="workspace">
+<section class="input-panel card nel-tool-input fb-panel">
+<h2 class="panel-h">Datos</h2>
+<p class="hint">El resultado sigue a los datos. Un dato no válido explica el motivo y borra el valor anterior.</p>
+<div class="fields"><div class="field"><label for="anchor">Frecuencia de ancla</label><div class="inp"><input id="anchor" data-field="anchor" data-example="193.1" type="number" inputmode="decimal" value="193.1" step="any"><select id="anchorUnit" data-field="anchorUnit" aria-label="Frecuencia de ancla unit"><option value="THz" selected>THz</option><option value="GHz">GHz</option></select></div></div><div class="field"><label for="spacing">Separación de canal</label><div class="inp"><input id="spacing" data-field="spacing" data-example="50" type="number" inputmode="decimal" value="100" step="any"><select id="spacingUnit" data-field="spacingUnit" aria-label="Separación de canal unit"><option value="GHz" selected>GHz</option><option value="THz">THz</option><option value="MHz">MHz</option></select></div></div><div class="field"><label for="channel">Índice de canal n</label><div class="inp"><input id="channel" data-field="channel" data-example="4" type="number" inputmode="decimal" value="0" step="any" data-probe="1" data-probe-edit="1" data-probe-invalid="-1000000"></div></div></div>
+<p id="validation" class="validation" role="alert"></p>
+<div class="input-actions"><button id="calculateBtn" class="btn btn-primary" type="button">Calcular</button><button id="exampleBtn" class="btn btn-ghost" type="button">Cargar ejemplo</button><button id="resetBtn" class="btn btn-ghost" type="button">Restablecer</button></div>
+<div class="formula-card"><h3>Fórmula</h3><code>f = f_anchor + n × spacing; λ = c / f, with c = 299792458 m/s.</code><p>Es una aproximación de ingeniería para planificación. No es una medición de laboratorio ni garantiza el rendimiento del equipo.</p></div>
+</section>
+<section class="result-panel card nel-tool-result readout" id="result" aria-live="polite">
+<h2 class="ro-h">Resultado</h2>
+<p id="statusLine" class="hint"></p>
+<div class="metric-grid"><article class="metric"><span class="lbl" id="lbl-frequencyTHz">Frecuencia óptica</span><span class="val" id="out-frequencyTHz" data-out="frequencyTHz"><span class="num">—</span><span class="unit">THz</span></span></article><article class="metric"><span class="lbl" id="lbl-wavelengthNm">Longitud de onda en el vacío</span><span class="val" id="out-wavelengthNm" data-out="wavelengthNm"><span class="num">—</span><span class="unit">nm</span></span></article><article class="metric"><span class="lbl" id="lbl-frequencyGHz">La misma frecuencia en gigahercios</span><span class="val" id="out-frequencyGHz" data-out="frequencyGHz"><span class="num">—</span><span class="unit">GHz</span></span></article></div>
+<div class="table-scroll"><table><caption>Canales vecinos</caption><thead><tr><th>n</th><th>THz</th><th>nm</th></tr></thead><tbody id="gridBody"></tbody></table></div>
+<div class="result-actions"><button id="copyBtn" type="button">Copiar resultado</button><button id="csvBtn" type="button">Exportar CSV</button></div>
+</section>
+</div>
+<div class="below">
+<nav class="toc" aria-label="En esta página"><h4>En esta página</h4><a href="#about-scope">Acerca de y aplicabilidad</a><a href="#methodology">Cómo se calcula</a><a href="#faq">Preguntas</a><a href="#references">Referencias</a><a href="#nel-tool-graph">Flujo de ingeniería</a></nav>
+<div class="prose">
+<details class="fb-fold blk" id="about-scope" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span class="fb-fold-title">Acerca de y aplicabilidad</span></summary><div class="fb-fold-body"><p>Úsalo cuando un plan DWDM nombre los canales como un entero respecto a 193,1 THz. La longitud de onda es la del vacío para esa frecuencia. No incluye el índice de grupo de la fibra, la tolerancia del transceptor ni un mapa de canal de un fabricante.</p><p>Es una aproximación de ingeniería para planificación. No es una medición de laboratorio ni garantiza el rendimiento del equipo.</p><p class="about-meta">Content reviewed: 2026-11-19</p></div></details>
+<details class="fb-fold blk" id="methodology" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span class="fb-fold-title">Cómo se calcula</span></summary><div class="fb-fold-body"><p class="eq">f = f_anchor + n × spacing; λ = c / f, with c = 299792458 m/s.</p><p>La UIT-T G.694.1 ancla la rejilla DWDM en 193,1 THz. Un índice n y una separación en hercios dan f = 193,1 THz + n × separación. La longitud de onda en el vacío es λ = c / f. La velocidad de la luz es el valor exacto del SI, 299792458 m/s, así que λ en nanómetros es 299792,458 dividido por f en terahercios. Las filas vecinas usan la misma separación. Puedes cambiar el ancla para un supuesto; el ancla publicada sigue siendo 193,1 THz.</p></div></details>
+<div class="blk faq" id="faq"><h2>Preguntas</h2><h3>¿1550 nm es exactamente el canal 0?</h3><p>No. El canal 0 a 193,1 THz tiene una longitud de onda en el vacío de 299792,458 / 193,1 nanómetros, unos 1552,52 nm.</p><h3>¿Un índice negativo alarga la longitud de onda?</h3><p>Sí. Una frecuencia menor corresponde a una longitud de onda de vacío mayor.</p><h3>¿Sustituye la hoja del transceptor?</h3><p>No. Solo convierte la definición de rejilla que introduces.</p><h3>¿Por qué la separación no está fija en 100 GHz?</h3><p>G.694.1 también define otras separaciones. La separación es un dato.</p></div>
+<section class="blk" id="references"><h2>Referencias</h2><ul class="rel"><li><a href="https://www.itu.int/rec/T-REC-G.694.1">ITU-T G.694.1 spectral grids</a></li><li><a href="https://www.bipm.org/en/si-base-units/metre">SI speed of light</a></li><li><a href="https://physics.nist.gov/cgi-bin/cuu/Value?c">NIST speed of light</a></li></ul><h3>Herramientas relacionadas</h3><ul class="rel"><li><a href="../../fiber-loss/es/">Calculadora de pérdidas de fibra</a></li><li><a href="../../chromatic-dispersion-calculator/es/">Calculadora de dispersión cromática</a></li><li><a href="../../optical-power-budget/es/">Calculadora de presupuesto óptico</a></li></ul></section>
+<!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="itu-dwdm-grid-calculator" data-primary-workflow="itu-grid-and-ase">
+<div class="section-heading"><div><p class="eyebrow">FLUJO DE INGENIERÍA</p><h2 id="nel-tool-graph-title">Seguir el flujo de ingeniería</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Flujo actual</span><strong>Rejilla óptica y estimación de ASE</strong><p>Sitúa un canal en la rejilla UIT y después estima ASE y OSNR para vanos de amplificador iguales.</p></div><div class="nel-workflow-step"><strong>Paso 1 de 2</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="2" aria-valuenow="1" aria-valuetext="Paso 1 de 2" aria-label="Paso 1 de 2"><span style="width:50%"></span></div></div></div>
+<div class="nel-tool-graph-nav"><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Anterior</span><strong>Inicio del flujo</strong></div><a class="nel-tool-graph-card" href="/tools/edfa-ase-osnr-estimator/es/"><span class="nel-tool-graph-label">Siguiente</span><strong>Estimador de OSNR y ASE de EDFA</strong><span class="nel-tool-graph-description">Estima el ASE y la OSNR a partir de la ganancia, el factor de ruido, la frecuencia, el ancho de referencia y el número de vanos iguales.</span></a></div>
+<h3 class="nel-tool-graph-subtitle">Herramientas relacionadas</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/fiber-loss/es/"><strong>Calculadora de pérdidas de fibra</strong><span class="nel-tool-graph-description">Calcula las pérdidas de fibra, empalmes, conectores, divisores y margen de ingeniería de un enlace óptico.</span></a><a class="nel-tool-graph-card" href="/tools/chromatic-dispersion-calculator/es/"><strong>Calculadora de dispersión cromática</strong><span class="nel-tool-graph-description">Calcula el coeficiente de dispersión G.652, la dispersión cromática acumulada y residual, y la longitud limitada por CD.</span></a><a class="nel-tool-graph-card" href="/tools/optical-power-budget/es/"><strong>Calculadora de presupuesto óptico</strong><span class="nel-tool-graph-description">Verifica un enlace óptico con potencia de transmisión, sensibilidad del receptor, penalización óptica y pérdidas ODN.</span></a></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
+</div>
+</div>
+</main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Herramientas profesionales en línea para ingenieros de telecomunicaciones y redes.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navegación del pie de página">
+      <a href="../../../es/about/">Acerca de</a><a href="../../../es/contact/">Contacto</a><a href="../../../es/privacy/">Privacidad</a><a href="../../../es/terms/">Términos</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script type="application/json" id="nel-copy">{"calculate":"Calcular","example":"Cargar ejemplo","reset":"Restablecer","copy":"Copiar resultado","csv":"Exportar CSV","invalid":"El valor queda fuera del límite. El resultado anterior válido se ha borrado.","ready":"Resultado actualizado con los datos actuales.","inputs":"Datos","results":"Resultado","formula":"Fórmula","toc":"En esta página","about":"Acerca de y aplicabilidad","method":"Cómo se calcula","faq":"Preguntas","refs":"Referencias","flow":"Flujo de ingeniería","reviewed":"Content reviewed: 2026-11-19","approx":"Es una aproximación de ingeniería para planificación. No es una medición de laboratorio ni garantiza el rendimiento del equipo.","start":"Empezar a calcular","home":"Inicio","tools":"Herramientas","errors":{"empty":"Introduce un valor.","invalid-number":"Introduce un decimal finito.","non-finite":"El valor debe ser finito.","not-integer":"Introduce un número entero.","bad-unit":"Elige una unidad admitida.","overflow":"El cálculo se desborda. Usa un dato menor.","anchor-range":"Mantén el ancla entre 100 y 400 THz.","spacing-range":"La separación debe ser mayor que 0 y como máximo 10000 GHz.","channel-range":"El índice de canal debe estar entre -100000 y 100000.","frequency-range":"La frecuencia óptica queda fuera de 0 a 1000 THz.","power-range":"La potencia de canal debe estar entre -80 y 40 dBm.","gain-range":"La ganancia debe ser mayor que 0 dB y como máximo 50 dB.","nf-range":"La figura de ruido de este modelo debe estar entre 0 y 40 dB.","bandwidth-range":"El ancho de banda queda fuera del rango aceptado.","span-range":"El número de vanos debe ser un entero de 1 a 10000.","bad-code":"Elige un código de línea.","payload-range":"La tasa útil debe ser mayor que 0 y como máximo 100000 Gbps.","mss-range":"El MSS debe ser un entero de 1 a 65535 bytes.","rtt-range":"El RTT debe ser mayor que 0 y como máximo 100 s.","loss-range":"La probabilidad de pérdida debe ser mayor que 0 y menor que 1.","link-range":"La tasa del enlace debe ser mayor que 0.","arrival-range":"La tasa de llegada debe ser mayor que 0.","service-range":"La tasa de servicio debe ser mayor que 0.","unstable":"La tasa de servicio debe ser mayor que la de llegada.","bad-kind":"Elige bloques o MTBF.","availability-range":"La disponibilidad debe ser mayor que 0 y como máximo 1.","mtbf-range":"El MTBF debe ser mayor que 0.","mttr-range":"El MTTR debe ser mayor que 0.","bad-mode":"Elige serie o paralelo.","block-count":"Introduce de 1 a 20 disponibilidades.","voltage-range":"La tensión debe ser mayor que 0 y como máximo 2000 V.","current-range":"La corriente debe estar entre 0 y 100000 A.","length-range":"La longitud queda fuera del rango aceptado.","area-range":"La sección del conductor debe ser mayor que 0.","temperature-range":"La temperatura debe mantener la resistividad positiva y estar entre -50 y 200 °C.","alpha-range":"Alfa debe estar entre 0 y 0,02 por °C.","conductor-count":"El número de conductores debe ser 1 o 2.","rho-range":"La resistividad debe ser mayor que 0.","conduit-range":"El diámetro de la canalización debe ser mayor que 0.","group-count":"Introduce de 1 a 4 grupos de cables.","diameter-range":"El diámetro del cable debe ser mayor que 0.","count-range":"La cantidad de cables debe ser un entero de 1 a 100000.","limit-range":"El límite de llenado debe ser mayor que 0 y como máximo 100 por ciento.","vf-range":"El factor de velocidad debe ser mayor que 0 y como máximo 1.","snr-range":"La SNR queda fuera del rango aceptado."}}</script>
+<link rel="stylesheet" href="../css/style.css?v=3e625a824a21">
+<script src="../js/engine.js?v=8ac14006f26f"></script>
+<script src="../js/app.js?v=13190eae6437"></script>
+<script src="../js/pwa.js"></script>
+<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=b786c10e6903"></script>
+</body>
+</html>
