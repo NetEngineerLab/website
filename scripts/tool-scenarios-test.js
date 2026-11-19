@@ -47,11 +47,13 @@ for(const slug of Object.keys(RUN)){
   for(const f of fixtures){
    assert.ok(block.includes(`href="?scenario=${f.id}#calculator"`),`${slug} ${lang}: link ${f.id}`);
    const head=f.headline[lang].replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-   assert.ok(block.includes(head),`${slug} ${lang}: headline ${f.id}`);
+   const compact=value=>value.replace(/<[^>]+>/g,"").replace(/\s+/g,"");
+   // Metric and status are separate spans, so the separator's spaces are not part of the headline.
+   assert.ok(compact(block).includes(compact(head)),`${slug} ${lang}: headline ${f.id}`);
   }
   const standards=semanticBlock(tree,"standards");
   const std=standards&&dom.render(standards);
-  assert.ok(std&&/<a href="https:\/\/(www\.itu\.int|www\.rfc-editor\.org|standards\.ieee\.org)\//.test(std),`${slug} ${lang}: standards block`);
+  assert.ok(std&&/<a\b[^>]*href="https:\/\/(www\.itu\.int|www\.rfc-editor\.org|standards\.ieee\.org)\//.test(std),`${slug} ${lang}: standards block`);
   const formula=semanticBlock(tree,"methodology")||dom.all(tree,node=>node.tag==="section"&&dom.has(node,"content")&&dom.has(node,"nel-tool-supporting-section"))[0];
   const ordered=dom.all(tree,()=>true);
   assert.ok(formula&&standards&&ordered.indexOf(standards)>ordered.indexOf(formula),`${slug} ${lang}: standards must follow the formula section`);

@@ -1,4 +1,5 @@
 const inventory=require('./lib/ui-tool-audit-inventory');
+const contract=require('./lib/ui-v3-detail-contract');
 const fs=require('fs'); const path=require('path');
 const root=path.join(__dirname,'..'); const toolsRoot=path.join(root,'website','tools');
 const errors=[]; const warnings=[]; const read=p=>fs.readFileSync(p,'utf8');
@@ -14,28 +15,15 @@ for(const r of mustExist) if(!fs.existsSync(path.join(root,r))) errors.push(`mis
 const COMPLEX=inventory.complexTools;
 let tools=0,pages=0,ordinary=0; const domSigs=new Set();
 function walk(d,out=[]){for(const n of fs.readdirSync(d)){const p=path.join(d,n),s=fs.statSync(p); if(s.isDirectory())walk(p,out); else out.push(p);} return out;}
-const supplemental=require('./lib/supplemental-tool-slugs');
 for(const tool of fs.readdirSync(toolsRoot)){
- const dir=path.join(toolsRoot,tool); if(!fs.existsSync(dir)||!fs.statSync(dir).isDirectory()||tool==='es'||supplemental.has(tool)) continue;
+ const dir=path.join(toolsRoot,tool); if(!fs.existsSync(dir)||!fs.statSync(dir).isDirectory()||inventory.skip(tool)) continue;
  let counted=false;
  for(const r of ['index.html','zh/index.html','es/index.html']){
    const f=path.join(dir,r); if(!fs.existsSync(f)) continue; const h=read(f); if(!h.includes('nel-tool-detail-page')) continue;
    pages++; if(!counted){tools++;counted=true;}
    const name=path.relative(root,f).replaceAll('\\','/');
-   const exact=[['header',/NEL_HEADER_START/g,1],['footer',/NEL_FOOTER_START/g,1],['breadcrumb',/class="breadcrumbs tool-return-nav"/g,1],['hero',/<section class="hero nel-tool-hero"/g,1],['h1',/<h1(?:\s|>)/g,1],['CTA',/class="site-shell-context-action"/g,1]];
-   for(const [label,re,w] of exact){const got=(h.match(re)||[]).length;if(got!==w)errors.push(`${name}: ${label} count ${got}, expected ${w}`)}
-   if(!h.includes('data-nel-template="tool-detail-v1.3.1"')) errors.push(`${name}: missing v1.3.1 template marker`);
-   const hm=h.match(/<section class="hero nel-tool-hero"[^>]*><div class="hero-inner">([\s\S]*?)<\/div><\/section>/);
-   if(!hm) errors.push(`${name}: canonical hero-inner missing`); else {
-     const inner=hm[1].trim(); const re=/^<p class="eyebrow"[^>]*>[\s\S]*?<\/p>\s*<h1[^>]*>[\s\S]*?<\/h1>\s*<p[^>]*>[\s\S]*?<\/p>\s*<div class="hero-tags">\s*(?:<span[^>]*>[\s\S]*?<\/span>\s*)+<\/div>$/;
-     if(!re.test(inner)) errors.push(`${name}: hero sequence drift`);
-   }
-   if(/\bstart-btn\b/.test(h)) errors.push(`${name}: legacy start-btn in HTML`);
-   if(!COMPLEX.has(tool)){
-     ordinary++;
-     const m=h.match(/<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid"[^>]*>\s*<section[^>]*class="input-panel card nel-tool-input"[^>]*>[\s\S]*?<\/section>\s*<section[^>]*class="result-panel card nel-tool-result"[^>]*>/);
-     if(!m) errors.push(`${name}: ordinary calculator main DOM drift`); else domSigs.add('input>result');
-   } else if(!/<main[^>]*class="[^"]*nel-tool-main[^"]*nel-tool-specialized[^"]*"/.test(h)) errors.push(`${name}: specialized marker missing`);
+   errors.push(...contract.checkDetailPage(h,name,tool));
+   if(!COMPLEX.has(tool)){ordinary++; domSigs.add('input>result');}
  }
 }
 if(tools!==inventory.activeToolCount) errors.push(`tool count ${tools}, expected ${inventory.activeToolCount}`); if(pages!==inventory.pageCount) errors.push(`page count ${pages}, expected ${inventory.pageCount}`); if(ordinary!==inventory.ordinaryPageCount) errors.push(`ordinary page count ${ordinary}, expected ${inventory.ordinaryPageCount}`); if(domSigs.size!==1) errors.push(`ordinary DOM signature count ${domSigs.size}, expected 1`);

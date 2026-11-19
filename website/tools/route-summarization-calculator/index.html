@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="app-base" content="./">
 <title>Route Summarization Calculator | NetEngineerLab</title>
 <meta name="description" content="Fold IPv4 or IPv6 prefixes into fewer summaries and flag address space a shorter prefix covers but you did not list.">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
@@ -15,7 +16,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/fb-v3.css?v=031fae951adb">
 <link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=64bd0d9f6bcb">
-<link rel="stylesheet" href="css/style.css?v=23a3f338db49">
+<link rel="stylesheet" href="css/style.css?v=2ddd0b667517">
 
 <script defer="" src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script><meta name="theme-color" content="#176ff2"><meta property="og:url" content="https://netengineerlab.com/tools/route-summarization-calculator/">
 <meta property="og:title" content="Route Summarization Calculator | NetEngineerLab">
@@ -51,7 +52,7 @@
 <link rel="stylesheet" href="../../assets/css/tool-layout.css?v=c4aecb2c24ab">
 <link rel="manifest" href="manifest.webmanifest">
 </head>
-<body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-v3-migrated="1">
+<body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1" data-nel-offline-worker="1">
 <!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
   <div class="site-shell-header-inner">
@@ -82,7 +83,7 @@
   <span aria-current="page">Route Summarization Calculator</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
-<section class="hero nel-tool-hero" aria-hidden="true"></section><main id="calculator" class="tool-shell nel-tool-main" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv">
+<section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner"><p class="eyebrow">ROUTING ENGINEERING TOOL</p><p class="hero-title">Route Summarization Calculator</p><p>Write one prefix per line. Adjacent prefixes of the same length fold into one shorter aggregate. IPv4 and IPv6 are summarized separately.</p><div class="hero-tags"><span>IPv4</span><span>IPv6</span><span>CIDR</span><span>Aggregates</span></div></div></section><main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv">
 <div class="tool-head">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="../../">Home</a> / <a href="../">Tools</a> / <span aria-current="page">Route Summarization Calculator</span></nav>
 <h1 class="tool-page-label">Route Summarization Calculator</h1>
@@ -90,7 +91,7 @@
 <p class="tool-lede">Write one prefix per line. Adjacent prefixes of the same length fold into one shorter aggregate. IPv4 and IPv6 are summarized separately.</p>
 </div>
 <div class="workspace">
-<section class="nel-tool-input fb-panel">
+<section class="input-panel card nel-tool-input fb-panel">
 <h2 class="panel-h">Prefixes to summarize</h2>
 <p class="hint">One prefix per line, such as 10.0.0.0/24. Each address is normalized to the network boundary of that prefix.</p>
 <label for="prefixes">Prefixes to summarize</label>
@@ -100,7 +101,7 @@
 <p class="hint">Leave blank for no floor. Enter 24 to stop a /24 from folding into a /23.</p>
 <div class="actions"><button id="run" type="button" class="btn btn-ghost">Calculate</button><button id="sample" class="ghost btn btn-ghost" type="button">Load example</button></div>
 </section>
-<section class="nel-tool-result readout">
+<section class="result-panel card nel-tool-result readout">
 <h2 class="ro-h">Summary</h2>
 <p id="status" class="hint"></p>
 <div class="metrics"><div class="metric"><span>Aggregates</span><b id="sumCount">0</b></div><div class="metric"><span>Routes removed</span><b id="reduction">0</b></div></div>
@@ -130,7 +131,8 @@
 </footer>
 <!-- NEL_FOOTER_END -->
 <script src="js/engine.js?v=5e6e4f9c4c83"></script>
-<script src="js/page.js?v=20261109-route3"></script>
+<script defer src="js/pwa.js"></script>
+<script defer src="js/app.js?v=da7dad8ca4bb"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
 
 <script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d"></script></body>

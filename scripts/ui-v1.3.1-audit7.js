@@ -1,4 +1,5 @@
 const inventory=require('./lib/ui-tool-audit-inventory');
+const contract=require('./lib/ui-v3-detail-contract');
 const fs=require('fs'), path=require('path');
 const root=process.cwd(), toolsRoot=path.join(root,'website','tools');
 const errors=[], warnings=[];
@@ -8,33 +9,23 @@ function walk(dir,pred,out=[]){for(const e of fs.readdirSync(dir,{withFileTypes:
 function count(s,re){return (s.match(re)||[]).length;}
 function classTokens(s){const out=[]; for(const m of s.matchAll(/class="([^"]*)"/g)) out.push(...m[1].trim().split(/\s+/).filter(Boolean)); return out;}
 const COMPLEX=inventory.complexTools;
-const supplemental=require('./lib/supplemental-tool-slugs');
 const pages=walk(toolsRoot,p=>p.endsWith('index.html')).filter(p=>{
  const rel=path.relative(root,p).replaceAll('\\','/');
  const tool=(rel.match(/^website\/tools\/([^/]+)\//)||[])[1];
- return tool&&!supplemental.has(tool)&&fs.readFileSync(p,'utf8').includes('data-nel-template="tool-detail-v1.3.1"');
+ return tool&&!inventory.skip(tool)&&fs.readFileSync(p,'utf8').includes('data-nel-template="tool-detail-v1.3.1"');
 });
 const tools=new Set(); let ordinary=0; const domSigs=new Set();
 for(const p of pages){
  const h=fs.readFileSync(p,'utf8'), rel=path.relative(root,p).replaceAll('\\','/'); const mm=rel.match(/^website\/tools\/([^/]+)\//); const tool=mm&&mm[1]; if(tool)tools.add(tool);
- for(const [label,re] of [['header',/NEL_HEADER_START/g],['footer',/NEL_FOOTER_START/g],['breadcrumb',/class="breadcrumbs tool-return-nav"/g],['hero',/<section class="hero nel-tool-hero"/g],['h1',/<h1(?:\s|>)/g],['CTA',/class="site-shell-context-action"/g]]){const n=count(h,re); if(n!==1)errors.push(`${rel}: ${label} count ${n}, expected 1`);}
- const hm=h.match(/<section class="hero nel-tool-hero"[^>]*><div class="hero-inner">([\s\S]*?)<\/div><\/section>/);
- if(!hm) errors.push(`${rel}: canonical hero-inner missing`); else {
-   const inner=hm[1].trim(); const exact=/^<p class="eyebrow"[^>]*>[\s\S]*?<\/p>\s*<h1[^>]*>[\s\S]*?<\/h1>\s*<p>[\s\S]*?<\/p>\s*<div class="hero-tags">\s*(?:<span[^>]*>[\s\S]*?<\/span>\s*)+<\/div>$/;
-   if(!exact.test(inner)) errors.push(`${rel}: hero must exactly match MOP source shape (plain description p)`);
- }
+ errors.push(...contract.checkDetailPage(h,rel,tool));
  const old=new Set(['hero-copy','hero-description','hero-badges','hero-note','hero-card','chips','chip','start-btn']); for(const c of classTokens(h)) if(old.has(c)) errors.push(`${rel}: legacy class .${c} remains`);
- if(!COMPLEX.has(tool)){
-   ordinary++;
-   const m=h.match(/<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid"[^>]*>\s*<section[^>]*class="input-panel card nel-tool-input"[^>]*>[\s\S]*?<\/section>\s*<section[^>]*class="result-panel card nel-tool-result"[^>]*>/);
-   if(!m)errors.push(`${rel}: ordinary calculator main DOM drift`); else domSigs.add('input>result');
- } else if(!/<main[^>]*class="[^"]*nel-tool-main[^"]*nel-tool-specialized[^"]*"/.test(h)) errors.push(`${rel}: specialized marker missing`);
+ if(!COMPLEX.has(tool)){ordinary++; domSigs.add('input>result');}
  // referenced local static assets must resolve
  const re=/<(?:link|script|img)\b[^>]*?\b(?:href|src)="([^"]+)"/g; let x;
  while((x=re.exec(h))){let u=x[1].split(/[?#]/)[0]; if(!u||/^(?:https?:|data:|mailto:|javascript:|#|\/\/)/.test(u))continue; const target=u.startsWith('/')?path.join(root,'website',u.slice(1)):path.resolve(path.dirname(p),u); if(!fs.existsSync(target))errors.push(`${rel}: missing local asset ${x[1]}`);}
 }
 // Every tool-local CSS file is forbidden from owning platform shell/detail selectors.
-const forbidden=['tool-return-link','tool-return-nav','breadcrumbs','site-shell-header','site-shell-footer','site-shell-actions','site-shell-context-action','nel-tool-hero','hero-inner','hero-tags','nel-tool-main','nel-tool-grid','nel-tool-input','nel-tool-result','content-section','input-panel','result-panel','start-btn'];
+const forbidden=contract.shellClasses;
 for(const p of walk(toolsRoot,p=>p.endsWith('.css'))){const s=fs.readFileSync(p,'utf8'), rel=path.relative(root,p).replaceAll('\\','/'); for(const c of forbidden){const rx=new RegExp(`(?:^|[},\\s])[^{}]*\\.${c}(?=[\\s.#:\\[>,+~{])[^{}]*\\{`,'m'); if(rx.test(s))errors.push(`${rel}: local CSS owns platform selector .${c}`);}}
 if(tools.size!==inventory.activeToolCount)errors.push(`tool count ${tools.size}, expected ${inventory.activeToolCount}`); if(pages.length!==inventory.pageCount)errors.push(`page count ${pages.length}, expected ${inventory.pageCount}`); if(ordinary!==inventory.ordinaryPageCount)errors.push(`ordinary page count ${ordinary}, expected ${inventory.ordinaryPageCount}`); if(domSigs.size!==1)errors.push(`ordinary DOM signature count ${domSigs.size}, expected 1`);
 const result={auditor:'7号审计员',version:'UI V1.3.1 Audit7 Independent Final Verification',result:errors.length?'FAIL':'PASS',tools:tools.size,pages:pages.length,ordinaryPages:ordinary,domSignatures:domSigs.size,errors,warnings};

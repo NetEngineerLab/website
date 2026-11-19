@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="app-base" content="../">
 <title>Agregación de prefijos IPv4 e IPv6 | NetEngineerLab</title>
 <meta name="description" content="Agrupe prefijos IPv4 o IPv6 en menos rutas agregadas y marque los que ya cubre un prefijo más corto. Revise el espacio extra antes de anunciarlo.">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
@@ -15,7 +16,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/fb-v3.css?v=031fae951adb">
 <link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=64bd0d9f6bcb">
-<link rel="stylesheet" href="../css/style.css?v=23a3f338db49">
+<link rel="stylesheet" href="../css/style.css?v=2ddd0b667517">
 
 <script defer="" src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script><meta name="theme-color" content="#176ff2"><meta property="og:url" content="https://netengineerlab.com/tools/route-summarization-calculator/es/">
 <meta property="og:title" content="Agregación de prefijos IPv4 e IPv6 | NetEngineerLab">
@@ -51,7 +52,7 @@
 <link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
 <link rel="manifest" href="../manifest-es.webmanifest">
 </head>
-<body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-v3-migrated="1">
+<body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1" data-nel-offline-worker="1">
 <!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
   <div class="site-shell-header-inner">
@@ -82,7 +83,7 @@
   <span aria-current="page">Calculadora de resumen de rutas</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
-<section class="hero nel-tool-hero" aria-hidden="true"></section><main id="calculator" class="tool-shell nel-tool-main" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv">
+<section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner"><p class="eyebrow">HERRAMIENTA DE INGENIERÍA DE ENRUTAMIENTO</p><p class="hero-title">Calculadora de resumen de rutas</p><p>Escriba un prefijo por línea. Los prefijos contiguos de la misma longitud se pliegan en un agregado más corto. IPv4 e IPv6 se resumen por separado.</p><div class="hero-tags"><span>IPv4</span><span>IPv6</span><span>CIDR</span><span>Agregados</span></div></div></section><main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv">
 <div class="tool-head">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="../../../es/">Inicio</a> / <a href="../../es/">Herramientas</a> / <span aria-current="page">Calculadora de resumen de rutas</span></nav>
 <h1 class="tool-page-label">Calculadora de resumen de rutas</h1>
@@ -90,7 +91,7 @@
 <p class="tool-lede">Escriba un prefijo por línea. Los prefijos contiguos de la misma longitud se pliegan en un agregado más corto. IPv4 e IPv6 se resumen por separado.</p>
 </div>
 <div class="workspace">
-<section class="nel-tool-input fb-panel">
+<section class="input-panel card nel-tool-input fb-panel">
 <h2 class="panel-h">Prefijos a resumir</h2>
 <p class="hint">Un prefijo por línea, por ejemplo 10.0.0.0/24. La dirección se normaliza al límite de red de ese prefijo.</p>
 <label for="prefixes">Prefijos a resumir</label>
@@ -100,7 +101,7 @@
 <p class="hint">Déjelo vacío para no poner un suelo. Escriba 24 para no plegar un /24 en un /23.</p>
 <div class="actions"><button id="run" type="button" class="btn btn-ghost">Calcular</button><button id="sample" class="ghost btn btn-ghost" type="button">Cargar ejemplo</button></div>
 </section>
-<section class="nel-tool-result readout">
+<section class="result-panel card nel-tool-result readout">
 <h2 class="ro-h">Resumen</h2>
 <p id="status" class="hint"></p>
 <div class="metrics"><div class="metric"><span>Agregados</span><b id="sumCount">0</b></div><div class="metric"><span>Rutas quitadas</span><b id="reduction">0</b></div></div>
@@ -124,7 +125,8 @@
 </footer>
 <!-- NEL_FOOTER_END -->
 <script src="../js/engine.js?v=5e6e4f9c4c83"></script>
-<script src="../js/page.js?v=20261109-route3"></script>
+<script defer src="../js/pwa.js"></script>
+<script defer src="../js/app.js?v=da7dad8ca4bb"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
 
 <script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d"></script></body>

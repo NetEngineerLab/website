@@ -135,6 +135,30 @@ for(const url of urls){
     .map(match=>({question:textContent(match[1]),answer:textContent(match[2])}));
   let headingFaq=[];
   const faqText=value=>decode(String(value||"").replace(/<br\s*\/?>/gi," ").replace(/<[^>]+>/g,""));
+  const faqItems=region=>{
+    const details=[...region.matchAll(/<details\b[^>]*>[\s\S]*?<summary\b[^>]*>([\s\S]*?)<\/summary>[\s\S]*?<p\b[^>]*>([\s\S]*?)<\/p>[\s\S]*?<\/details>/gi)]
+      .map(match=>({question:faqText(match[1]),answer:faqText(match[2])}))
+      .filter(item=>item.question&&item.answer);
+    return details.length?details:[...region.matchAll(/<h3\b[^>]*>([\s\S]*?)<\/h3>\s*<p\b[^>]*>([\s\S]*?)<\/p>/gi)]
+      .map(match=>({question:faqText(match[1]),answer:faqText(match[2])}))
+      .filter(item=>item.question&&item.answer);
+  };
+  // V3 pages keep the questions in #faq. Other <details> on the page are folds, not FAQ entries.
+  const faqAttr=/\bid=["']faq["']/i.exec(html);
+  let regionFaq=[];
+  if(faqAttr){
+    const tagStart=html.lastIndexOf("<",faqAttr.index);
+    const open=/^<([a-z0-9]+)\b[^>]*>/i.exec(html.slice(tagStart));
+    if(open){
+      const re=new RegExp(`</?${open[1]}\\b[^>]*>`,"gi");
+      re.lastIndex=tagStart;
+      let depth=0,match;
+      while((match=re.exec(html))){
+        if(match[0].startsWith("</")){depth-=1;if(depth===0){regionFaq=faqItems(html.slice(tagStart+open[0].length,match.index));break}}
+        else depth+=1;
+      }
+    }
+  }
   const heading=/<h([1-3])\b[^>]*>\s*(?:Frequently asked questions|常见问题|Preguntas frecuentes)(?:\s+[^<]{0,40})?\s*<\/h\1>/i.exec(html);
   if(heading){
     const rest=html.slice(heading.index+heading[0].length);
@@ -147,7 +171,7 @@ for(const url of urls){
       .map(match=>({question:faqText(match[1]),answer:faqText(match[2])}))
       .filter(item=>item.question&&item.answer);
   }
-  const visibleFaq=headingFaq.length?headingFaq:detailFaq;
+  const visibleFaq=regionFaq.length?regionFaq:(headingFaq.length?headingFaq:detailFaq);
   const faqMarkerPresent=/\bdata-nel-faq(?:\s|=|>)/i.test(html);
   if(faqMarkerPresent&&faqSchemas.length!==1)errors.push(`${rel}: data-nel-faq requires exactly one FAQPage schema`);
   if(faqSchemas.length>1)errors.push(`${rel}: expected at most one FAQPage schema`);
