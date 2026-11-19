@@ -700,3 +700,7 @@ body.nel-tool-v3:has(#nel-tool-graph:is([data-tool-id="poe-voltage-drop-calculat
 body.nel-tool-v3:has(#nel-tool-graph:is([data-tool-id="poe-voltage-drop-calculator"],[data-tool-id="wireless-link-budget-calculator"])) main #error{margin:0 0 12px;padding:10px 12px;border-radius:10px;background:#FEF2F2;border:1px solid #FECACA;color:#B91C1C;font-size:13.5px}
 body.nel-tool-v3:has(#nel-tool-graph:is([data-tool-id="poe-voltage-drop-calculator"],[data-tool-id="wireless-link-budget-calculator"])) main .readout{border-radius:14px;background:radial-gradient(520px 280px at 100% 0%,rgba(59,130,246,.07),transparent 55%),linear-gradient(165deg,var(--v3-panel-bg) 0%,var(--v3-panel-bg-2) 60%,#F1F5F9 100%)}
 
+/* The field subgrid uses display:grid !important. A hidden mode field must still leave the row. */
+html body.nel-tool-v3 :is(#calculator, #analyzer, #planner, #assessment, #change-workspace, #acl-workspace, #main) .fields > .field[hidden]{display:none !important}
+/* The return line sits outside the workbench; keep a full text line between it and the footer. */
+body.nel-tool-v3 > .hub-return{margin-bottom:24px !important}

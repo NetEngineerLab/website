@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-generator-fuel-runtime-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-d03638bcd26e-67ac95c7f0ed";
+const CACHE = "nel-generator-fuel-runtime-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-2accf73918dc";
 const CORE = [
   "./",
   "./index.html",
@@ -26,14 +26,14 @@ const CORE = [
   "../../assets/css/tool-design-system.css?v=fbfd8fc05bdc",
   "../../assets/css/tool-workflow.css?v=8c74b394ef2c",
   "../../assets/css/fb-v3.css?v=031fae951adb",
-  "../../assets/css/fb-v3-prod.css?v=cc63b134f28f",
+  "../../assets/css/fb-v3-prod.css?v=64bd0d9f6bcb",
   "../../assets/js/tool-v3-navigation.js?v=b8d825e0f678",
   "../../assets/js/tool-detail-v3.js?v=6f38212f00f3",
   "../../assets/js/analytics.js?v=1156b7864023",
   "../../assets/js/adsense.js?v=f075c80ccc75",
   "../../assets/js/site.js?v=c957f6562d31",
   "../../assets/js/tool-integration.js?v=05f7934f4687",
-  "../../assets/js/tool-shell-v1.9.9-04.js?v=b786c10e6903",
+  "../../assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d",
   "../../assets/css/cookie-consent.css?v=2f2c8ab643e6",
   "../../assets/js/cookie-consent.js?v=5e6d1af21a6a",
   "../../assets/js/rules-engine/normalize.js?v=9e2cb44bca10",

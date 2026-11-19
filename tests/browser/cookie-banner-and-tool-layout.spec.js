@@ -70,9 +70,10 @@ async function hubReturnAlignment(page) {
       "main .topic-tools",
       "main.nel-tool-grid > .card"
     ];
-    const cards = selectors
-      .flatMap(selector => [...document.querySelectorAll(selector)])
-      .filter(node => node !== hub && !hub.contains(node));
+    const fallbacks = ["main.tool-shell", "main .hub-card-grid", "main .below .blk.panel"];
+    const visible = nodes => nodes.filter(node => node !== hub && !hub.contains(node) && node.getBoundingClientRect().width > 0);
+    let cards = visible(selectors.flatMap(selector => [...document.querySelectorAll(selector)]));
+    if (!cards.length) cards = visible(fallbacks.flatMap(selector => [...document.querySelectorAll(selector)]));
     cards.sort((a, b) => b.getBoundingClientRect().width - a.getBoundingClientRect().width);
     const card = cards[0];
     if (!card) return {error: "missing neighbouring card"};

@@ -497,9 +497,14 @@
       summary.focus();
     };
     const nativeCalculate = main.querySelector(controller?.calculateSelector || '#calculateBtn, #calculate, [data-nel-action="calculate"], [data-action="calculate"], [id$="Calculate"]');
+    const nativeResetEarly = main.querySelector(controller?.resetSelector || '#resetBtn, #reset, [data-nel-action="reset"], [data-action="reset"]');
+    if (nativeCalculate && !nativeCalculate.dataset.nelAction) nativeCalculate.dataset.nelAction = "calculate";
+    if (nativeResetEarly && !nativeResetEarly.dataset.nelAction) nativeResetEarly.dataset.nelAction = "reset";
     if (nativeCalculate && typeof controller?.calculate === "function") {
       nativeCalculate.addEventListener("click", () => setTimeout(() => {
         syncControllerActions();
+        const badInput = [...main.querySelectorAll("input, select, textarea")].find(element => element.validity && element.validity.badInput);
+        if (badInput) { badInput.focus(); return; }
         focusCalculationError();
       }, 0));
     }
@@ -517,6 +522,7 @@
         actions.appendChild(printButton);
       }
       const nativeReset = main.querySelector(controller?.resetSelector || '#resetBtn, #reset, [data-nel-action="reset"], [data-action="reset"]');
+      if (nativeReset && !nativeReset.dataset.nelAction) nativeReset.dataset.nelAction = "reset";
       const nativeSave = main.querySelector(controller?.saveSelector || '#saveBtn, #save, [data-nel-action="save"], [data-action="save"]');
       const reset = nativeReset || button(text.reset, "reset");
       if (typeof controller?.calculate === "function") reset.className = "btn btn-ghost";

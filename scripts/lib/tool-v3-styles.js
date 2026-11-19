@@ -275,6 +275,10 @@ body.nel-tool-v3 main .readout .big[data-nel-readout-format="duration"] small[da
 ${narrowComponents}
 ${inputFocus}
 ${domainComponents}
+/* The field subgrid uses display:grid !important. A hidden mode field must still leave the row. */
+html body.nel-tool-v3 :is(#calculator, #analyzer, #planner, #assessment, #change-workspace, #acl-workspace, #main) .fields > .field[hidden]{display:none !important}
+/* The return line sits outside the workbench; keep a full text line between it and the footer. */
+body.nel-tool-v3 > .hub-return{margin-bottom:24px !important}
 `);
  // Shared platform chrome must opt out for this genuine migrated shell too.
  for(const name of ['tool-layout.css','tool-design-system.css','mobile-branding.css']){const file=path.join(root,'website/assets/css',name),old=fs.readFileSync(file,'utf8');write(file,old.replace(/:not\(\.nel-opb-v3\)(?!:not\(\.nel-tool-v3\))/g,':not(.nel-opb-v3):not(.nel-tool-v3)'));}

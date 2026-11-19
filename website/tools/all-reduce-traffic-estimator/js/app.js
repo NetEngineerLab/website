@@ -350,10 +350,30 @@ function displayValue(value){
   return value;
 }
 
+function nativeRangeIds(){
+  const ids = [];
+  for (const field of CONFIG.inputs){
+    const node = $(field.id);
+    if (!node || field.type === "select") continue;
+    const wrap = node.closest(".field");
+    if (wrap && wrap.hidden) continue;
+    const validity = node.validity;
+    if (validity.badInput || validity.rangeUnderflow || validity.rangeOverflow) ids.push(field.id);
+  }
+  return ids;
+}
+
 function calculate(){
   try {
 
   const values = readInputs();
+  const blocked = nativeRangeIds();
+  if (blocked.length){
+    clearResults();
+    markInvalid(blocked);
+    $("validationMessage").textContent = validationText(blocked);
+    return;
+  }
   const result = engine.calculate(values);
   if (!result.ok){
     clearResults();
