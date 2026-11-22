@@ -25,9 +25,13 @@ const viewports = [
   { name: "mobile-390", width: 390, height: 844, kind: "mobile" },
   { name: "mobile-320", width: 320, height: 740, kind: "mobile" }
 ];
-const shotDir = path.resolve("reports/new-ten-tools-20261119/screenshots");
-const resultFile = path.resolve("reports/new-ten-tools-20261119/browser-results.json");
-fs.mkdirSync(shotDir, { recursive: true });
+function evidencePaths() {
+  const project = test.info().project.name;
+  const shotDir = path.join("/tmp/nel-ten-matrix", project, "screenshots");
+  const resultFile = path.join("/tmp/nel-ten-matrix", project, "browser-results.json");
+  fs.mkdirSync(shotDir, { recursive: true });
+  return { shotDir, resultFile, project };
+}
 
 async function primaryNumber(page) {
   const key = await page.locator("#calculator").getAttribute("data-primary");
@@ -80,6 +84,7 @@ test.describe.configure({ mode: "serial" });
 
 test("ten new tools, three languages, desktop and mobile", async ({ page }) => {
   test.setTimeout(45 * 60 * 1000);
+  const { shotDir, resultFile, project } = evidencePaths();
   const results = [];
   const consoleErrors = [];
   const failedResources = [];
@@ -139,7 +144,7 @@ test("ten new tools, three languages, desktop and mobile", async ({ page }) => {
           try { return new URL(item.url).host === "127.0.0.1:4173"; } catch { return true; }
         });
         results.push({
-          tool, locale: locale.id, viewport: viewport.name, kind: viewport.kind,
+          tool, locale: locale.id, viewport: viewport.name, kind: viewport.kind, project,
           http: response && response.status(),
           initial, edited, focused,
           csvBytes: csv.length,
