@@ -27,7 +27,11 @@
 <meta name="twitter:title" content="端到端路径可用度计算器">
 <meta name="twitter:description" content="把相互独立的串联或并联可用度合成，或把 MTBF 与 MTTR 换成可用度和年停机时间。">
 <meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
-<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"端到端路径可用度计算器","url":"https://netengineerlab.com/tools/path-availability-calculator/zh/","description":"把相互独立的串联或并联可用度合成，或把 MTBF 与 MTTR 换成可用度和年停机时间。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"工具","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"端到端路径可用度计算器","item":"https://netengineerlab.com/tools/path-availability-calculator/zh/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"端到端路径可用度计算器","url":"https://netengineerlab.com/tools/path-availability-calculator/zh/","description":"把相互独立的串联或并联可用度合成，或把 MTBF 与 MTTR 换成可用度和年停机时间。","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
+
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"端到端路径可用度计算器","url":"https://netengineerlab.com/tools/path-availability-calculator/zh/","description":"把相互独立的串联或并联可用度合成，或把 MTBF 与 MTTR 换成可用度和年停机时间。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
 <meta name="nel-route" content="tools/path-availability-calculator/">
@@ -37,9 +41,6 @@
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/path-availability-calculator/zh/">
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/path-availability-calculator/es/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/path-availability-calculator/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"工具","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"端到端路径可用度计算器","item":"https://netengineerlab.com/tools/path-availability-calculator/zh/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"端到端路径可用度计算器","url":"https://netengineerlab.com/tools/path-availability-calculator/zh/","description":"把相互独立的串联或并联可用度合成，或把 MTBF 与 MTTR 换成可用度和年停机时间。","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
-<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"并联是否总是高于串联？","acceptedAnswer":{"@type":"Answer","text":"对同一组独立分块，并联合成更高。"}},{"@type":"Question","name":"可用度可以正好是 1 吗？","acceptedAnswer":{"@type":"Answer","text":"可以。此时本模型的停机时间为 0。"}},{"@type":"Question","name":"为什么拒绝 0？","acceptedAnswer":{"@type":"Answer","text":"零可用度需要另一套失效模型。"}},{"@type":"Question","name":"0.999999 是实测 SLA 吗？","acceptedAnswer":{"@type":"Answer","text":"不是。它是两个 0.999 分块的运算结果。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
@@ -50,9 +51,9 @@
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../../assets/js/site.js?v=c957f6562d31"></script>
 <link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
-<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
+<link rel="manifest" href="../manifest-zh.webmanifest">
 </head>
-<body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1">
+<body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1" data-nel-offline-worker="1">
 <a class="skip" href="#calculator">跳到计算器</a>
 <!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
@@ -81,11 +82,11 @@
   <span aria-hidden="true">/</span>
   <a class="tool-return-link" href="../../zh/">工具</a>
   <span aria-hidden="true">/</span>
-  <span aria-current="page">端到端路径可用度计算器</span>
+  <span aria-current="page">路径可用度计算器</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
 <section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner"><p class="eyebrow">路径可用度</p><p class="hero-title">端到端路径可用度计算器</p><p>把相互独立的串联或并联可用度合成，或把 MTBF 与 MTTR 换成可用度和年停机时间。</p><div class="hero-tags"><span>串联</span><span>并联</span><span>MTBF</span><span>MTTR</span></div></div></section>
-<main id="calculator" class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" data-engine="NEL_Availability" data-primary="availability" data-nel-readout-rows=".metric">
+<main id="calculator" class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" data-engine="NEL_Availability" data-primary="availability" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv">
 <div class="tool-head">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="../../../zh/">首页</a> <span aria-hidden="true">/</span> <a href="../../zh/">工具</a> <span aria-hidden="true">/</span> <span aria-current="page">端到端路径可用度计算器</span></nav>
 <h1 class="tool-page-label">端到端路径可用度计算器</h1>
@@ -95,7 +96,7 @@
 <section class="input-panel card nel-tool-input fb-panel">
 <h2 class="panel-h">输入</h2>
 <p class="hint">本页结果随输入变化。非法输入会显示原因，并清除上一组数值。</p>
-<div class="fields"><div class="field"><label for="kind">计算方式</label><select id="kind" data-field="kind" data-example="blocks"><option value="mtbf" selected>MTBF / MTTR</option><option value="blocks">Series or parallel blocks</option></select></div><div class="field"><label for="mode">可靠性框图</label><select id="mode" data-field="mode" data-example="parallel"><option value="parallel" selected>并联</option><option value="series">串联</option></select></div><div class="field"><label for="blocks">每个独立分块的可用度</label><div class="inp input-wrap"><input id="blocks" data-field="blocks" data-example="0.999, 0.999" type="text" inputmode="text" value="0.999, 0.999"></div></div><div class="field"><label for="mtbfHours">MTBF</label><div class="inp input-wrap"><input id="mtbfHours" data-field="mtbfHours" data-example="43800" type="number" inputmode="decimal" value="8760" step="any"></div></div><div class="field"><label for="mttrHours">MTTR</label><div class="inp input-wrap"><input id="mttrHours" data-field="mttrHours" data-example="2" type="number" inputmode="decimal" value="4" step="any" data-probe="1" data-probe-edit="8" data-probe-invalid="0"></div></div></div>
+<div class="fields"><div class="field f"><label for="kind">计算方式</label><div class="inp input-wrap sel"><select id="kind" data-field="kind" data-example="blocks"><option value="mtbf" selected>MTBF / MTTR</option><option value="blocks">Series or parallel blocks</option></select></div></div><div class="field f"><label for="mode">可靠性框图</label><div class="inp input-wrap sel"><select id="mode" data-field="mode" data-example="parallel"><option value="parallel" selected>并联</option><option value="series">串联</option></select></div></div><div class="field f"><label for="blocks">每个独立分块的可用度</label><div class="inp input-wrap"><input id="blocks" data-field="blocks" data-example="0.999, 0.999" type="text" inputmode="text" value="0.999, 0.999"></div></div><div class="field f"><label for="mtbfHours">MTBF</label><div class="inp input-wrap"><input id="mtbfHours" data-field="mtbfHours" data-example="43800" type="number" inputmode="decimal" value="8760" step="any"></div></div><div class="field f"><label for="mttrHours">MTTR</label><div class="inp input-wrap"><input id="mttrHours" data-field="mttrHours" data-example="2" type="number" inputmode="decimal" value="4" step="any" data-probe="1" data-probe-edit="8" data-probe-invalid="0"></div></div></div>
 <p id="validation" class="validation" role="alert"></p>
 <div class="input-actions"><button id="calculateBtn" class="btn btn-primary" type="button">计算</button><button id="exampleBtn" class="btn btn-ghost" type="button">载入示例</button><button id="resetBtn" class="btn btn-ghost" type="button">重置</button></div>
 <div class="formula-card"><h3>公式</h3><code>Series A = ∏ A_i. Parallel A = 1 − ∏(1 − A_i). A = MTBF / (MTBF + MTTR).</code><p>这是规划用的工程近似，不是实验室实测，也不保证设备实际性能。</p></div>
@@ -105,7 +106,7 @@
 <p id="statusLine" class="hint"></p>
 <div class="metric-grid"><article class="metric"><span class="lbl" id="lbl-availability">可用度</span><span class="val" id="out-availability" data-out="availability"><span class="num">—</span></span></article><article class="metric"><span class="lbl" id="lbl-unavailability">不可用度</span><span class="val" id="out-unavailability" data-out="unavailability"><span class="num">—</span></span></article><article class="metric"><span class="lbl" id="lbl-downMinutesPerYear">365 天的期望停机时间</span><span class="val" id="out-downMinutesPerYear" data-out="downMinutesPerYear"><span class="num">—</span><span class="unit">min</span></span></article></div>
 
-<div class="result-actions"><button id="copyBtn" type="button">复制结果</button><button id="csvBtn" type="button">导出 CSV</button></div>
+<div class="result-actions ro-acts"><button id="copyBtn" type="button">复制结果</button><button id="csvBtn" type="button">导出 CSV</button></div>
 </section>
 </div>
 <div class="below">
@@ -118,8 +119,7 @@
 <!-- NEL_TOOL_GRAPH_START -->
 <section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="path-availability-calculator" data-primary-workflow="facility-power-pathway">
 <div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
-<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">当前流程</span><strong>馈线压降、通道填充与可用度</strong><p>先估算直流馈线压降和通道几何填充率，再合成相互独立路径的可用度。</p></div><div class="nel-workflow-step"><strong>步骤 3 / 3</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="3" aria-valuetext="步骤 3 / 3" aria-label="步骤 3 / 3"><span style="width:100%"></span></div></div></div>
-<div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/pathway-fill-calculator/zh/"><span class="nel-tool-graph-label">上一步</span><strong>通道几何填充率计算器</strong><span class="nel-tool-graph-description">用电缆组的圆面积和圆形通道内截面积比较几何填充率。</span></a><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">下一步</span><strong>流程终点</strong></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">当前流程</span><strong>馈线压降、通道填充与可用度</strong><p>先估算直流馈线压降和通道几何填充率，再合成相互独立路径的可用度。</p></div><div class="nel-workflow-step"><strong>步骤 3 / 3</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="3" aria-valuetext="步骤 3 / 3" aria-label="步骤 3 / 3"><span style="width:100%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/pathway-fill-calculator/zh/"><span class="nel-tool-graph-label">上一步</span><strong>通道几何填充率计算器</strong><span class="nel-tool-graph-description">用电缆组的圆面积和圆形通道内截面积比较几何填充率。</span></a><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">下一步</span><strong>流程终点</strong></div></div>
 <h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/pue-data-center-energy-efficiency/zh/"><strong>数据中心PUE与能效分析器</strong><span class="nel-tool-graph-description">分析PUE、非IT能耗、年度电费、目标PUE节能潜力、WUE/CUE和月度趋势。</span></a><a class="nel-tool-graph-card" href="/tools/ups-capacity-battery-runtime-calculator/zh/"><strong>UPS容量与电池后备时间计算器</strong><span class="nel-tool-graph-description">计算UPS kW/kVA容量、模块冗余、电池后备时间、老化/温度修正、回充需求与旁路电流。</span></a><a class="nel-tool-graph-card" href="/tools/network-capacity-forecast-planner/zh/"><strong>网络容量增长预测规划器</strong><span class="nel-tool-graph-description">根据实测利用率预测网络增长、扩容时机和目标容量。</span></a></div>
 </section>
 <!-- NEL_TOOL_GRAPH_END -->

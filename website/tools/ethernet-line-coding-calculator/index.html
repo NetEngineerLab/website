@@ -27,6 +27,10 @@
 <meta name="twitter:title" content="Ethernet Line-Coding Overhead Calculator">
 <meta name="twitter:description" content="Expand a payload bit rate by the published 8b/10b, 64b/66b and RS-FEC codeword ratios.">
 <meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"Ethernet Line-Coding Overhead Calculator","item":"https://netengineerlab.com/tools/ethernet-line-coding-calculator/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Ethernet Line-Coding Overhead Calculator","url":"https://netengineerlab.com/tools/ethernet-line-coding-calculator/","description":"Expand a payload bit rate by the published 8b/10b, 64b/66b and RS-FEC codeword ratios.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
+
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Ethernet Line-Coding Overhead Calculator","url":"https://netengineerlab.com/tools/ethernet-line-coding-calculator/","description":"Expand a payload bit rate by the published 8b/10b, 64b/66b and RS-FEC codeword ratios.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="en">
@@ -37,9 +41,6 @@
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/ethernet-line-coding-calculator/zh/">
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/ethernet-line-coding-calculator/es/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/ethernet-line-coding-calculator/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"Ethernet Line-Coding Overhead Calculator","item":"https://netengineerlab.com/tools/ethernet-line-coding-calculator/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Ethernet Line-Coding Overhead Calculator","url":"https://netengineerlab.com/tools/ethernet-line-coding-calculator/","description":"Expand a payload bit rate by the published 8b/10b, 64b/66b and RS-FEC codeword ratios.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
-<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is 10.3125 Gbps a measured rate?","acceptedAnswer":{"@type":"Answer","text":"It is the exact 66/64 expansion of 10 Gbps."}},{"@type":"Question","name":"Does RS-FEC replace 64b/66b?","acceptedAnswer":{"@type":"Answer","text":"No. The presets multiply both ratios."}},{"@type":"Question","name":"Can I paste this into a switch as a speed?","acceptedAnswer":{"@type":"Answer","text":"No. It is the line-rate arithmetic of the selected code."}},{"@type":"Question","name":"Where do the ratios come from?","acceptedAnswer":{"@type":"Answer","text":"They are the published 8b/10b, 64b/66b, RS(528,514) and RS(544,514) sizes used by IEEE 802.3."}}]}</script>
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
@@ -50,9 +51,9 @@
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../assets/js/site.js?v=c957f6562d31"></script>
 <link rel="stylesheet" href="../../assets/css/tool-layout.css?v=c4aecb2c24ab">
-<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
+<link rel="manifest" href="manifest.webmanifest">
 </head>
-<body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1">
+<body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1" data-nel-offline-worker="1">
 <a class="skip" href="#calculator">Skip to calculator</a>
 <!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
@@ -85,7 +86,7 @@
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
 <section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner"><p class="eyebrow">LINE CODING OVERHEAD</p><p class="hero-title">Ethernet Line-Coding Overhead Calculator</p><p>Expand a payload bit rate by the published 8b/10b, 64b/66b and RS-FEC codeword ratios.</p><div class="hero-tags"><span>8b/10b</span><span>64b/66b</span><span>RS-FEC</span><span>Line rate</span></div></div></section>
-<main id="calculator" class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" data-engine="NEL_LineCoding" data-primary="lineGbps" data-nel-readout-rows=".metric">
+<main id="calculator" class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" data-engine="NEL_LineCoding" data-primary="lineGbps" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv">
 <div class="tool-head">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="../../">Home</a> <span aria-hidden="true">/</span> <a href="../">Tools</a> <span aria-hidden="true">/</span> <span aria-current="page">Ethernet Line-Coding Overhead Calculator</span></nav>
 <h1 class="tool-page-label">Ethernet Line-Coding Overhead Calculator</h1>
@@ -95,7 +96,7 @@
 <section class="input-panel card nel-tool-input fb-panel">
 <h2 class="panel-h">Inputs</h2>
 <p class="hint">The result follows the inputs. An invalid input explains why and clears the previous numbers.</p>
-<div class="fields"><div class="field"><label for="payload">Payload bit rate</label><div class="inp input-wrap"><input id="payload" data-field="payload" data-example="100" type="number" inputmode="decimal" value="10" step="any" data-probe="1" data-probe-edit="40" data-probe-invalid="0"><select id="payloadUnit" data-field="payloadUnit" aria-label="Payload bit rate unit"><option value="Gbps" selected>Gbps</option><option value="Mbps">Mbps</option><option value="Tbps">Tbps</option></select></div></div><div class="field"><label for="code">Line code</label><select id="code" data-field="code" data-example="64b66b-rs544"><option value="8b10b">8b/10b</option><option value="64b66b" selected>64b/66b</option><option value="64b66b-rs528">64b/66b + RS(528,514)</option><option value="64b66b-rs544">64b/66b + RS(544,514)</option></select></div></div>
+<div class="fields"><div class="field f"><label for="payload">Payload bit rate</label><div class="inp input-wrap"><input id="payload" data-field="payload" data-example="100" type="number" inputmode="decimal" value="10" step="any" data-probe="1" data-probe-edit="40" data-probe-invalid="0"><select id="payloadUnit" data-field="payloadUnit" aria-label="Payload bit rate unit"><option value="Gbps" selected>Gbps</option><option value="Mbps">Mbps</option><option value="Tbps">Tbps</option></select></div></div><div class="field f"><label for="code">Line code</label><div class="inp input-wrap sel"><select id="code" data-field="code" data-example="64b66b-rs544"><option value="8b10b">8b/10b</option><option value="64b66b" selected>64b/66b</option><option value="64b66b-rs528">64b/66b + RS(528,514)</option><option value="64b66b-rs544">64b/66b + RS(544,514)</option></select></div></div></div>
 <p id="validation" class="validation" role="alert"></p>
 <div class="input-actions"><button id="calculateBtn" class="btn btn-primary" type="button">Calculate</button><button id="exampleBtn" class="btn btn-ghost" type="button">Load example</button><button id="resetBtn" class="btn btn-ghost" type="button">Reset</button></div>
 <div class="formula-card"><h3>Formula</h3><code>Line rate = payload × (code bits / payload bits). RS-FEC multiplies an extra codeword ratio.</code><p>This is an engineering approximation for planning. It is not a laboratory measurement and it does not guarantee equipment performance.</p></div>
@@ -105,7 +106,7 @@
 <p id="statusLine" class="hint"></p>
 <div class="metric-grid"><article class="metric"><span class="lbl" id="lbl-lineGbps">Line bit rate</span><span class="val" id="out-lineGbps" data-out="lineGbps"><span class="num">—</span><span class="unit">Gbps</span></span></article><article class="metric"><span class="lbl" id="lbl-overheadPercent">Line-code overhead</span><span class="val" id="out-overheadPercent" data-out="overheadPercent"><span class="num">—</span><span class="unit">%</span></span></article><article class="metric"><span class="lbl" id="lbl-efficiencyPercent">Payload share of the line rate</span><span class="val" id="out-efficiencyPercent" data-out="efficiencyPercent"><span class="num">—</span><span class="unit">%</span></span></article><article class="metric"><span class="lbl" id="lbl-expansion">Expansion ratio</span><span class="val" id="out-expansion" data-out="expansion"><span class="num">—</span></span></article></div>
 
-<div class="result-actions"><button id="copyBtn" type="button">Copy result</button><button id="csvBtn" type="button">Export CSV</button></div>
+<div class="result-actions ro-acts"><button id="copyBtn" type="button">Copy result</button><button id="csvBtn" type="button">Export CSV</button></div>
 </section>
 </div>
 <div class="below">
@@ -118,8 +119,7 @@
 <!-- NEL_TOOL_GRAPH_START -->
 <section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="ethernet-line-coding-calculator" data-primary-workflow="line-rate-and-capacity">
 <div class="section-heading"><div><p class="eyebrow">ENGINEERING WORKFLOW</p><h2 id="nel-tool-graph-title">Continue the engineering workflow</h2></div></div>
-<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>Line rate, copper delay and capacity bound</strong><p>Expand a payload rate by a published line code, estimate copper delay, then compare an AWGN capacity bound.</p></div><div class="nel-workflow-step"><strong>Step 1 of 3</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1" aria-valuetext="Step 1 of 3" aria-label="Step 1 of 3"><span style="width:33%"></span></div></div></div>
-<div class="nel-tool-graph-nav"><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Previous</span><strong>Workflow start</strong></div><a class="nel-tool-graph-card" href="/tools/copper-propagation-delay-calculator/"><span class="nel-tool-graph-label">Next</span><strong>Copper Propagation Delay Calculator</strong><span class="nel-tool-graph-description">Calculate one-way propagation delay from cable length and a velocity factor you supply.</span></a></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Current workflow</span><strong>Line rate, copper delay and capacity bound</strong><p>Expand a payload rate by a published line code, estimate copper delay, then compare an AWGN capacity bound.</p></div><div class="nel-workflow-step"><strong>Step 1 of 3</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1" aria-valuetext="Step 1 of 3" aria-label="Step 1 of 3"><span style="width:33%"></span></div></div></div><div class="nel-tool-graph-nav"><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Previous</span><strong>Workflow start</strong></div><a class="nel-tool-graph-card" href="/tools/copper-propagation-delay-calculator/"><span class="nel-tool-graph-label">Next</span><strong>Copper Propagation Delay Calculator</strong><span class="nel-tool-graph-description">Calculate one-way propagation delay from cable length and a velocity factor you supply.</span></a></div>
 <h3 class="nel-tool-graph-subtitle">Related tools</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/ethernet-serialization-delay-calculator/"><strong>Ethernet Serialization Delay Calculator</strong><span class="nel-tool-graph-description">Calculate per-hop and multi-hop serialization delay, wire time, maximum frame rate and L2 efficiency for an Ethernet link.</span></a><a class="nel-tool-graph-card" href="/tools/bandwidth-calculator/"><strong>Bandwidth &amp; Transfer Time Calculator</strong><span class="nel-tool-graph-description">Calculate file transfer time, required link rate, concurrent-user capacity and sustained-rate data volume.</span></a><a class="nel-tool-graph-card" href="/tools/mtu-calculator/"><strong>MTU &amp; MSS Calculator</strong><span class="nel-tool-graph-description">Calculate effective MTU, TCP MSS and fragmentation risk for PPPoE, GRE, VXLAN, MPLS, IPsec and WireGuard.</span></a></div>
 </section>
 <!-- NEL_TOOL_GRAPH_END -->

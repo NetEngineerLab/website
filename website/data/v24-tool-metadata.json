@@ -604,6 +604,126 @@
       ],
       "inputContext": [],
       "outputContext": []
+    },
+    "itu-dwdm-grid-calculator": {
+      "id": "itu-dwdm-grid-calculator",
+      "toolLevel": "calculator",
+      "supportedJobs": [],
+      "nextTools": [
+        "fiber-loss",
+        "chromatic-dispersion-calculator",
+        "optical-power-budget"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "edfa-ase-osnr-estimator": {
+      "id": "edfa-ase-osnr-estimator",
+      "toolLevel": "calculator",
+      "supportedJobs": [],
+      "nextTools": [
+        "optical-power-budget",
+        "itu-dwdm-grid-calculator",
+        "fiber-loss"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "ethernet-line-coding-calculator": {
+      "id": "ethernet-line-coding-calculator",
+      "toolLevel": "calculator",
+      "supportedJobs": [],
+      "nextTools": [
+        "ethernet-serialization-delay-calculator",
+        "bandwidth-calculator",
+        "mtu-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "tcp-mathis-throughput-estimator": {
+      "id": "tcp-mathis-throughput-estimator",
+      "toolLevel": "calculator",
+      "supportedJobs": [],
+      "nextTools": [
+        "bandwidth-calculator",
+        "ethernet-serialization-delay-calculator",
+        "fiber-latency-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "mm1-queue-delay-calculator": {
+      "id": "mm1-queue-delay-calculator",
+      "toolLevel": "calculator",
+      "supportedJobs": [],
+      "nextTools": [
+        "ethernet-serialization-delay-calculator",
+        "bandwidth-calculator",
+        "tcp-mathis-throughput-estimator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "path-availability-calculator": {
+      "id": "path-availability-calculator",
+      "toolLevel": "calculator",
+      "supportedJobs": [],
+      "nextTools": [
+        "pue-data-center-energy-efficiency",
+        "ups-capacity-battery-runtime-calculator",
+        "network-capacity-forecast-planner"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "dc-feeder-voltage-drop-calculator": {
+      "id": "dc-feeder-voltage-drop-calculator",
+      "toolLevel": "calculator",
+      "supportedJobs": [],
+      "nextTools": [
+        "telecom-rectifier-dc-power-sizing",
+        "poe-voltage-drop-calculator",
+        "48v-battery-runtime"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "pathway-fill-calculator": {
+      "id": "pathway-fill-calculator",
+      "toolLevel": "calculator",
+      "supportedJobs": [],
+      "nextTools": [
+        "network-rack-power-cooling-calculator",
+        "dc-feeder-voltage-drop-calculator",
+        "data-center-cooling-load-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "copper-propagation-delay-calculator": {
+      "id": "copper-propagation-delay-calculator",
+      "toolLevel": "calculator",
+      "supportedJobs": [],
+      "nextTools": [
+        "fiber-latency-calculator",
+        "ethernet-serialization-delay-calculator",
+        "poe-voltage-drop-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
+    },
+    "shannon-capacity-calculator": {
+      "id": "shannon-capacity-calculator",
+      "toolLevel": "calculator",
+      "supportedJobs": [],
+      "nextTools": [
+        "wireless-link-budget-calculator",
+        "bandwidth-calculator",
+        "ethernet-line-coding-calculator"
+      ],
+      "inputContext": [],
+      "outputContext": []
     }
   }
 }
