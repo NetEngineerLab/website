@@ -83,7 +83,34 @@
 <p><strong>边界：</strong>不能替代厂家放电曲线、温度降额、油机试验数据或维护规程。老化、温度和故障会缩短续航。可继续阅读<a href="../../guides/telecom-rectifier-dc-power-sizing/">整流器选型指南</a>与<a href="../../guides/generator-fuel-runtime-planning/">油机油耗规划</a>。</p>
 </section>
 <!-- NEL_WORKED_EXAMPLE_END -->
-<h2>常见工程场景</h2><ul><li><a href="../../guides/telecom-rectifier-dc-power-sizing/">整流器容量、回充与 N-1</a> — 校核正常和单台退出状态。</li><li><a href="../../guides/generator-fuel-runtime-planning/">通信油机一箱油能运行多久？</a> — 结合负载、油耗曲线和自治要求。</li><li>站点扩容 — 同时重新核算直流负载、整流余量、电池续航和油机容量。</li></ul><h2>故障、冗余与运维</h2><p>需要检查单台整流器退出、电池容量衰减、油机降额和太阳能不足。额定容量通过不代表老化电池或故障期间的备用能力满足要求。</p><h2>工程资源</h2><p>使用链接中的指南和计算器方法，并结合设备数据表、电池放电曲线和站点运维规则。每次计算都记录负载边界、单位、环境条件和设计余量。</p><h2>推荐使用顺序</h2><ol><li>测量并明确直流负载边界。</li><li>配置整流器并校核回充/N-1。</li><li>按设计负载计算蓄电池自治时间。</li><li>估算油机油耗和太阳能贡献。</li><li>复核故障、降额和维护约束。</li></ol><h2>工程边界与常见问题</h2><p>浏览器计算器不能替代厂家放电曲线、油机测试数据、温度降额或运维计划。结果须与现场设备和站点规则复核。</p><details><summary>为什么先算整流器再算电池？</summary><p>整流器余量和回充能力决定正常及恢复状态下电池需要承担的负载。</p></details><details><summary>续航时间就是保证的服务时间吗？</summary><p>不是。续航是基于输入负载、电池和燃油假设的估算，老化、温度、油机负载和故障都会缩短时间。</p></details><h2>相关专题</h2><ul><li><a href="../data-center-cooling-capacity/">数据中心制冷负荷与容量</a></li><li><a href="../switch-oversubscription/">交换机上联与容量规划</a></li></ul><section class="content-section" data-nel-editorial-links><h2>相关页面</h2><p><a href="../../../tools/network-asset-lifecycle-tracker/zh/">网络资产生命周期跟踪</a> · <a href="../../../tools/oob-network-design-planner/zh/">带外网络设计工作坊</a></p></section>
+<h2>常见工程场景</h2><ul><li><a href="../../guides/telecom-rectifier-dc-power-sizing/">整流器容量、回充与 N-1</a> — 校核正常和单台退出状态。</li><li><a href="../../guides/generator-fuel-runtime-planning/">通信油机一箱油能运行多久？</a> — 结合负载、油耗曲线和自治要求。</li><li>站点扩容 — 同时重新核算直流负载、整流余量、电池续航和油机容量。</li></ul><h2>故障、冗余与运维</h2><p>需要检查单台整流器退出、电池容量衰减、油机降额和太阳能不足。额定容量通过不代表老化电池或故障期间的备用能力满足要求。</p><h2>工程资源</h2><p>使用链接中的指南和计算器方法，并结合设备数据表、电池放电曲线和站点运维规则。每次计算都记录负载边界、单位、环境条件和设计余量。</p><h2>推荐使用顺序</h2><ol><li>测量并明确直流负载边界。</li><li>配置整流器并校核回充/N-1。</li><li>按设计负载计算蓄电池自治时间。</li><li>估算油机油耗和太阳能贡献。</li><li>复核故障、降额和维护约束。</li></ol><h2>工程边界与常见问题</h2><p>浏览器计算器不能替代厂家放电曲线、油机测试数据、温度降额或运维计划。结果须与现场设备和站点规则复核。</p><details><summary>为什么先算整流器再算电池？</summary><p>整流器余量和回充能力决定正常及恢复状态下电池需要承担的负载。</p></details><details><summary>续航时间就是保证的服务时间吗？</summary><p>不是。续航是基于输入负载、电池和燃油假设的估算，老化、温度、油机负载和故障都会缩短时间。</p></details><section id="task-routes">
+<h2>任务分流</h2>
+<p>每项通信直流任务都有起点和单独校核。本专题负责 −48 V 电源：整流器、蓄电池、油机燃油和站点光伏。数据中心 UPS 续航、切换穿越和交流 UPS 不在这里决定，应使用<a href="../../../tools/datacenter-power-calculators/zh/">数据中心电力计算器</a>专题。</p>
+<ul>
+<li><strong>整流器。</strong>从<a href="../../guides/telecom-rectifier-dc-power-sizing/">整流器容量指南</a>开始。用<a href="../../../tools/telecom-rectifier-dc-power-sizing/zh/">整流器计算器</a>校核，包括 N-1。</li>
+<li><strong>蓄电池。</strong>从<a href="../../../tools/48v-battery-runtime/zh/">−48 V 蓄电池续航</a>开始。校核算例：180 A、4 小时、0.8 × 0.9 时标称约 1,000 Ah。</li>
+<li><strong>油机燃油。</strong>从<a href="../../guides/generator-fuel-runtime-planning/">油机油耗指南</a>开始。用<a href="../../../tools/generator-fuel-runtime-calculator/zh/">油耗续航计算器</a>按实际可抽取油量校核。</li>
+<li><strong>光伏。</strong>从<a href="../../../tools/telecom-solar-battery-sizing-calculator/zh/">太阳能与蓄电池配置</a>开始。用现场低日照重算。不要用数据中心 UPS 掩盖缺口。</li>
+</ul>
+</section>
+<h2 id="exceptions">异常路径</h2>
+<ul>
+<li><strong>整流器。</strong>总电流通过不等于 N-1 通过。接受方案前要在整流器计算器中退出一台模块再算。</li>
+<li><strong>蓄电池。</strong>1,000 Ah 只对应放电深度 0.8 和老化系数 0.9。温度或老化超出该假设时停止，改用厂家放电曲线。</li>
+<li><strong>油机。</strong>30 kW 机组按白天 18 kW、12 小时，夜间 12 kW、12 小时，油耗曲线 1.5 / 2.5 / 4.2 / 5.8 / 7.4 L/h，平均 4.18 L/h。24 小时加 10% 备用需要 111.5 L，120 L 油箱约可运行 25.8 小时。若实际可抽取只有 100 L，续航低于 24 小时，必须补油或降负载。超过额定 30 kW 是过载，不是更长续航。</li>
+<li><strong>光伏。</strong>通信 0.8 kW 运行 24 小时，加上辅助 0.1 kW 运行 24 小时，日耗电 21.6 kWh。在 3.5 峰值日照小时、系统效率 80%、设计余量 15%、550 W 组件、备用 48 小时（放电深度 80%、电池效率 92%、电池余量 10%、48 V）时，所需光伏约 8.87 kW，即 17 块组件、9.35 kWp，蓄电池约 1,345 Ah。若这 9.35 kWp 阵列只有 2.0 峰值日照小时，日发电 14.96 kWh，当天短缺 6.64 kWh。</li>
+</ul>
+<h2 id="ownership">输入由谁提供</h2>
+<ul>
+<li>无线或传输专业提供实测直流负载（安培或千瓦）。规划人员不自行编造负载。</li>
+<li>电源专业校核整流模块容量、降额、回充和 N-1。</li>
+<li>蓄电池专业在 0.8 × 0.9 估算不适用时提供放电曲线。</li>
+<li>能源专业提供油机油耗曲线、可抽取油量和日照数据来源。</li>
+<li>数据中心 UPS 与切换穿越的输入属于数据中心电力专题，不属于本直流电源。</li>
+</ul>
+<h2 id="field-case">现场案例：一座室外站点</h2>
+<p>以同一 180 A、−48 V 站点为例。整流综合电流在 15% 增长、60 A 充电、25% 充电峰值和 15% 余量下为 324.3 A，之后仍要做模块和 N-1 校核。4 小时蓄电池标称容量只在所述系数下为 1,000 Ah。上述 30 kW 油机工况在含备用时 24 小时需要 111.5 L；吸油口更高时不能把 120 L 油箱全部当成可用油。按 3.5 峰值日照小时配出的光伏阵列，在同一阵列只有 2.0 峰值日照小时时盖不住 21.6 kWh。</p>
+<h2>相关专题</h2><ul><li><a href="../data-center-cooling-capacity/">数据中心制冷负荷与容量</a></li><li><a href="../switch-oversubscription/">交换机上联与容量规划</a></li></ul><section class="content-section" data-nel-editorial-links><h2>相关页面</h2><p><a href="../../../tools/network-asset-lifecycle-tracker/zh/">网络资产生命周期跟踪</a> · <a href="../../../tools/oob-network-design-planner/zh/">带外网络设计工作坊</a></p></section>
 </main><!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">

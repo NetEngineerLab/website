@@ -1,4 +1,5 @@
-PASS: Wrangler 4.149.0 Pages dev returned the configured 301, Location, 200 responses and noindex headers from the isolated copy.
-PASS: redirects parsed=9; headers parsed=9.
-KNOWN PRE-EXISTING WARNING: /tools/*/images/* was skipped because it has two wildcards; unrelated to TD-01 rules.
+PASS: Wrangler 4.149.0 Pages dev on the isolated copy returned 301 for /topics/switching-oversubscription/ with Location: /topics/switch-oversubscription/.
+PASS: /topics/pon-optical/ and /topics/data-center-capacity/ returned HTTP 200 without X-Robots-Tag: noindex. That matches their current indexable hub role after TD-02; the 2026-10-11 noindex-stub result is not restated as the current response.
+PASS: redirects parsed=30; headers parsed=9.
+KNOWN PRE-EXISTING WARNING: /tools/*/images/* was skipped because it has two wildcards; unrelated to the switch alias rule.
 Production state not tested.
