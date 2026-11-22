@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr" data-nel-locale="es" data-nel-route="tools/edfa-ase-osnr-estimator/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="app-base" content="../">
+<title>Estimador de OSNR y ASE de EDFA</title>
+<meta name="description" content="Estima el ASE y la OSNR a partir de la ganancia, el factor de ruido, la frecuencia, el ancho de referencia y el número de vanos iguales.">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<link rel="icon" href="/assets/icons/favicon.svg?v=1.9.5-06" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="/assets/css/mobile-branding.css?v=345784b6b020">
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif:ital@1&amp;display=swap">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=031fae951adb">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=64bd0d9f6bcb">
+<link rel="stylesheet" href="../css/style.css?v=3e625a824a21">
+<script defer src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
+<meta name="theme-color" content="#176ff2">
+<meta property="og:url" content="https://netengineerlab.com/tools/edfa-ase-osnr-estimator/es/">
+<meta property="og:title" content="Estimador de OSNR y ASE de EDFA">
+<meta property="og:description" content="Estima el ASE y la OSNR a partir de la ganancia, el factor de ruido, la frecuencia, el ancho de referencia y el número de vanos iguales.">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Estimador de OSNR y ASE de EDFA">
+<meta name="twitter:description" content="Estima el ASE y la OSNR a partir de la ganancia, el factor de ruido, la frecuencia, el ancho de referencia y el número de vanos iguales.">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://netengineerlab.com/es/"},{"@type":"ListItem","position":2,"name":"Herramientas","item":"https://netengineerlab.com/tools/es/"},{"@type":"ListItem","position":3,"name":"Estimador de OSNR y ASE de EDFA","item":"https://netengineerlab.com/tools/edfa-ase-osnr-estimator/es/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Estimador de OSNR y ASE de EDFA","url":"https://netengineerlab.com/tools/edfa-ase-osnr-estimator/es/","description":"Estima el ASE y la OSNR a partir de la ganancia, el factor de ruido, la frecuencia, el ancho de referencia y el número de vanos iguales.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","inLanguage":"es","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
+
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Estimador de OSNR y ASE de EDFA","url":"https://netengineerlab.com/tools/edfa-ase-osnr-estimator/es/","description":"Estima el ASE y la OSNR a partir de la ganancia, el factor de ruido, la frecuencia, el ancho de referencia y el número de vanos iguales.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="es">
+<meta name="nel-route" content="tools/edfa-ase-osnr-estimator/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/tools/edfa-ase-osnr-estimator/es/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/edfa-ase-osnr-estimator/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/edfa-ase-osnr-estimator/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/edfa-ase-osnr-estimator/es/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/edfa-ase-osnr-estimator/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=475098aa29f5">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=c957f6562d31"></script>
+<script defer src="../../../assets/js/es-launch-runtime.js?v=829a7f1559b7"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
+<link rel="manifest" href="../manifest-es.webmanifest">
+</head>
+<body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1" data-nel-offline-worker="1">
+<a class="skip" href="#calculator">Saltar a la calculadora</a>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../es/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Plataforma de inteligencia para ingeniería de redes</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Abrir navegación"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navegación principal">
+      <a href="../../../es/">Inicio</a>
+      <a href="../../es/" aria-current="page">Herramientas</a>
+      <a href="../../../guides/">Guías</a>
+      <a href="../../../topics/">Temas</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Español"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Español</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/edfa-ase-osnr-estimator/" lang="en" hreflang="en"><span>English</span><small>Inglés</small></a><a class="language-option" role="menuitem" href="/tools/edfa-ase-osnr-estimator/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chino simplificado</small></a><a class="language-option" role="menuitem" href="/tools/edfa-ase-osnr-estimator/es/" lang="es" hreflang="es" aria-current="page"><span>Español</span><small>Español</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">Empezar a calcular</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a href="../../../es/">Inicio</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../../es/">Herramientas</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">Estimador de OSNR y ASE de EDFA</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END -->
+<section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner"><p class="eyebrow">RUIDO DEL AMPLIFICADOR ÓPTICO</p><p class="hero-title">Estimador de OSNR y ASE de EDFA</p><p>Estima el ASE y la OSNR a partir de la ganancia, el factor de ruido, la frecuencia, el ancho de referencia y el número de vanos iguales.</p><div class="hero-tags"><span>ASE</span><span>OSNR</span><span>Factor de ruido</span><span>Vanos</span></div></div></section>
+<main id="calculator" class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" data-engine="NEL_EdfaOsnr" data-primary="osnrDb" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv">
+<div class="tool-head">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../es/">Inicio</a> <span aria-hidden="true">/</span> <a href="../../es/">Herramientas</a> <span aria-hidden="true">/</span> <span aria-current="page">Estimador de OSNR y ASE de EDFA</span></nav>
+<h1 class="tool-page-label">Estimador de OSNR y ASE de EDFA</h1>
+<p class="tool-lede">Estima el ASE y la OSNR a partir de la ganancia, el factor de ruido, la frecuencia, el ancho de referencia y el número de vanos iguales.</p>
+</div>
+<div class="workspace">
+<section class="input-panel card nel-tool-input fb-panel">
+<h2 class="panel-h">Datos</h2>
+<p class="hint">El resultado sigue a los datos. Un dato no válido explica el motivo y borra el valor anterior.</p>
+<div class="fields"><div class="field f"><label for="powerDbm">Potencia de canal a la salida del amplificador</label><div class="inp input-wrap"><input id="powerDbm" data-field="powerDbm" data-example="3" type="number" inputmode="decimal" value="0" step="any"></div></div><div class="field f"><label for="gainDb">Ganancia del amplificador</label><div class="inp input-wrap"><input id="gainDb" data-field="gainDb" data-example="22" type="number" inputmode="decimal" value="20" step="any"></div></div><div class="field f"><label for="noiseFigureDb">Figura de ruido</label><div class="inp input-wrap"><input id="noiseFigureDb" data-field="noiseFigureDb" data-example="6" type="number" inputmode="decimal" value="5" step="any"></div></div><div class="field f"><label for="frequency">Frecuencia óptica</label><div class="inp input-wrap"><input id="frequency" data-field="frequency" data-example="193.1" type="number" inputmode="decimal" value="193.1" step="any"><select id="frequencyUnit" data-field="frequencyUnit" aria-label="Frecuencia óptica unit"><option value="THz" selected>THz</option><option value="GHz">GHz</option></select></div></div><div class="field f"><label for="bandwidth">Ancho de referencia</label><div class="inp input-wrap"><input id="bandwidth" data-field="bandwidth" data-example="12.5" type="number" inputmode="decimal" value="12.5" step="any"><select id="bandwidthUnit" data-field="bandwidthUnit" aria-label="Ancho de referencia unit"><option value="GHz" selected>GHz</option><option value="MHz">MHz</option><option value="Hz">Hz</option></select></div></div><div class="field f"><label for="spans">Vanos iguales</label><div class="inp input-wrap"><input id="spans" data-field="spans" data-example="4" type="number" inputmode="decimal" value="1" step="any" data-probe="1" data-probe-edit="2" data-probe-invalid="0"></div></div></div>
+<p id="validation" class="validation" role="alert"></p>
+<div class="input-actions"><button id="calculateBtn" class="btn btn-primary" type="button">Calcular</button><button id="exampleBtn" class="btn btn-ghost" type="button">Cargar ejemplo</button><button id="resetBtn" class="btn btn-ghost" type="button">Restablecer</button></div>
+<div class="formula-card"><h3>Fórmula</h3><code>P_ASE = N × F × h × f × (G − 1) × B; OSNR = P_channel / P_ASE.</code><p>Es una aproximación de ingeniería para planificación. No es una medición de laboratorio ni garantiza el rendimiento del equipo.</p></div>
+</section>
+<section class="result-panel card nel-tool-result readout" id="result" aria-live="polite">
+<h2 class="ro-h">Resultado</h2>
+<p id="statusLine" class="hint"></p>
+<div class="metric-grid"><article class="metric"><span class="lbl" id="lbl-osnrDb">OSNR</span><span class="val" id="out-osnrDb" data-out="osnrDb"><span class="num">—</span><span class="unit">dB</span></span></article><article class="metric"><span class="lbl" id="lbl-aseDbm">ASE total en la banda de referencia</span><span class="val" id="out-aseDbm" data-out="aseDbm"><span class="num">—</span><span class="unit">dBm</span></span></article><article class="metric"><span class="lbl" id="lbl-signalMw">Potencia de canal</span><span class="val" id="out-signalMw" data-out="signalMw"><span class="num">—</span><span class="unit">mW</span></span></article><article class="metric"><span class="lbl" id="lbl-aseMw">ASE total</span><span class="val" id="out-aseMw" data-out="aseMw"><span class="num">—</span><span class="unit">mW</span></span></article></div>
+
+<div class="result-actions ro-acts"><button id="copyBtn" type="button">Copiar resultado</button><button id="csvBtn" type="button">Exportar CSV</button></div>
+</section>
+</div>
+<div class="below">
+<nav class="toc" aria-label="En esta página"><h4>En esta página</h4><a href="#about-scope">Acerca de y aplicabilidad</a><a href="#methodology">Cómo se calcula</a><a href="#faq">Preguntas</a><a href="#references">Referencias</a><a href="#nel-tool-graph">Flujo de ingeniería</a></nav>
+<div class="prose">
+<details class="fb-fold blk" id="about-scope" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span class="fb-fold-title">Acerca de y aplicabilidad</span></summary><div class="fb-fold-body"><p>Sirve para presupuestar el ASE de amplificadores ópticos iguales que devuelven el canal a la misma potencia de salida. El factor de ruido F es 10^(NF_dB/10) y multiplica h·f·(G−1)·B. No es una OSNR medida y omite la interferencia no lineal, el estrechamiento del filtro y el detalle de polarización.</p><p>Es una aproximación de ingeniería para planificación. No es una medición de laboratorio ni garantiza el rendimiento del equipo.</p><p class="about-meta">Content reviewed: 2026-11-19</p></div></details>
+<details class="fb-fold blk" id="methodology" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span class="fb-fold-title">Cómo se calcula</span></summary><div class="fb-fold-body"><p class="eq">P_ASE = N × F × h × f × (G − 1) × B; OSNR = P_channel / P_ASE.</p><p>La constante de Planck es el valor exacto del SI, 6,62607015×10^−34 J·s. La ganancia lineal G y el factor de ruido lineal F salen de los decibelios. El ASE de un amplificador en el ancho B es F·h·f·(G−1)·B. N vanos iguales suman esas potencias de ASE. La OSNR es la potencia de canal dividida por ese total, en decibelios. La ganancia debe ser mayor que 0 dB porque la expresión usa (G−1). Si tu definición de figura de ruido ya incluye la aproximación de alta ganancia, lee el resultado con esa misma definición.</p></div></details>
+<div class="blk faq" id="faq"><h2>Preguntas</h2><h3>¿Es la OSNR que mostraría un medidor?</h3><p>No. Un medidor incluye el espectro real, los filtros y ruido fuera de este modelo.</p><h3>¿Por qué se rechaza una ganancia de 0 dB?</h3><p>G−1 es cero con ganancia unidad, así que esta expresión de ASE no aplica.</p><h3>¿Los vanos tienen que ser iguales?</h3><p>Sí. Ganancias o figuras de ruido distintas piden una suma vano a vano que esta página no hace.</p><h3>¿Qué ancho introduzco?</h3><p>El ancho de referencia en el que quieres expresar la OSNR; 12,5 GHz es habitual para una referencia de clase 0,1 nm.</p></div>
+<section class="blk" id="references"><h2>Referencias</h2><ul class="rel"><li><a href="https://physics.nist.gov/cgi-bin/cuu/Value?h">NIST Planck constant</a></li><li><a href="https://www.rp-photonics.com/amplifier_noise.html">RP Photonics amplifier noise</a></li><li><a href="https://www.bipm.org/en/measurement-units">SI metre and the second</a></li></ul></section>
+<!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="edfa-ase-osnr-estimator" data-primary-workflow="itu-grid-and-ase">
+<div class="section-heading"><div><p class="eyebrow">FLUJO DE INGENIERÍA</p><h2 id="nel-tool-graph-title">Seguir el flujo de ingeniería</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Flujo actual</span><strong>Rejilla óptica y estimación de ASE</strong><p>Sitúa un canal en la rejilla UIT y después estima ASE y OSNR para vanos de amplificador iguales.</p></div><div class="nel-workflow-step"><strong>Paso 2 de 2</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="2" aria-valuenow="2" aria-valuetext="Paso 2 de 2" aria-label="Paso 2 de 2"><span style="width:100%"></span></div></div></div>
+<div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="../../itu-dwdm-grid-calculator/es/"><span class="nel-tool-graph-label">Anterior</span><strong>Calculadora de rejilla DWDM UIT</strong><span class="nel-tool-graph-description">Convierte un índice de canal ITU-T G.694.1 en frecuencia óptica y longitud de onda en el vacío desde el ancla de 193,1 THz.</span></a><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Siguiente</span><strong>Fin del flujo</strong></div></div>
+<h3 class="nel-tool-graph-subtitle">Herramientas relacionadas</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="../../optical-power-budget/es/"><strong>Calculadora de presupuesto óptico</strong><span class="nel-tool-graph-description">Verifica un enlace óptico con potencia de transmisión, sensibilidad del receptor, penalización óptica y pérdidas ODN.</span></a><a class="nel-tool-graph-card" href="../../itu-dwdm-grid-calculator/es/"><strong>Calculadora de rejilla DWDM UIT</strong><span class="nel-tool-graph-description">Convierte un índice de canal ITU-T G.694.1 en frecuencia óptica y longitud de onda en el vacío desde el ancla de 193,1 THz.</span></a><a class="nel-tool-graph-card" href="../../fiber-loss/es/"><strong>Calculadora de pérdidas de fibra</strong><span class="nel-tool-graph-description">Calcula las pérdidas de fibra, empalmes, conectores, divisores y margen de ingeniería de un enlace óptico.</span></a></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
+</div>
+</div>
+</main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Herramientas profesionales en línea para ingenieros de telecomunicaciones y redes.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navegación del pie de página">
+      <a href="../../../es/about/">Acerca de</a><a href="../../../es/contact/">Contacto</a><a href="../../../es/privacy/">Privacidad</a><a href="../../../es/terms/">Términos</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script type="application/json" id="nel-copy">{"calculate":"Calcular","example":"Cargar ejemplo","reset":"Restablecer","copy":"Copiar resultado","csv":"Exportar CSV","invalid":"El valor queda fuera del límite. El resultado anterior válido se ha borrado.","ready":"Resultado actualizado con los datos actuales.","inputs":"Datos","results":"Resultado","formula":"Fórmula","toc":"En esta página","about":"Acerca de y aplicabilidad","method":"Cómo se calcula","faq":"Preguntas","refs":"Referencias","flow":"Flujo de ingeniería","reviewed":"Content reviewed: 2026-11-19","approx":"Es una aproximación de ingeniería para planificación. No es una medición de laboratorio ni garantiza el rendimiento del equipo.","start":"Empezar a calcular","home":"Inicio","tools":"Herramientas","errors":{"empty":"Introduce un valor.","invalid-number":"Introduce un decimal finito.","non-finite":"El valor debe ser finito.","not-integer":"Introduce un número entero.","bad-unit":"Elige una unidad admitida.","overflow":"El cálculo se desborda. Usa un dato menor.","anchor-range":"Mantén el ancla entre 100 y 400 THz.","spacing-range":"La separación debe ser mayor que 0 y como máximo 10000 GHz.","channel-range":"El índice de canal debe estar entre -100000 y 100000.","frequency-range":"La frecuencia óptica queda fuera de 0 a 1000 THz.","power-range":"La potencia de canal debe estar entre -80 y 40 dBm.","gain-range":"La ganancia debe ser mayor que 0 dB y como máximo 50 dB.","nf-range":"La figura de ruido de este modelo debe estar entre 0 y 40 dB.","bandwidth-range":"El ancho de banda queda fuera del rango aceptado.","span-range":"El número de vanos debe ser un entero de 1 a 10000.","bad-code":"Elige un código de línea.","payload-range":"La tasa útil debe ser mayor que 0 y como máximo 100000 Gbps.","mss-range":"El MSS debe ser un entero de 1 a 65535 bytes.","rtt-range":"El RTT debe ser mayor que 0 y como máximo 100 s.","loss-range":"La probabilidad de pérdida debe ser mayor que 0 y menor que 1.","link-range":"La tasa del enlace debe ser mayor que 0.","arrival-range":"La tasa de llegada debe ser mayor que 0.","service-range":"La tasa de servicio debe ser mayor que 0.","unstable":"La tasa de servicio debe ser mayor que la de llegada.","bad-kind":"Elige bloques o MTBF.","availability-range":"La disponibilidad debe ser mayor que 0 y como máximo 1.","mtbf-range":"El MTBF debe ser mayor que 0.","mttr-range":"El MTTR debe ser mayor que 0.","bad-mode":"Elige serie o paralelo.","block-count":"Introduce de 1 a 20 disponibilidades.","voltage-range":"La tensión debe ser mayor que 0 y como máximo 2000 V.","current-range":"La corriente debe estar entre 0 y 100000 A.","length-range":"La longitud queda fuera del rango aceptado.","area-range":"La sección del conductor debe ser mayor que 0.","temperature-range":"La temperatura debe mantener la resistividad positiva y estar entre -50 y 200 °C.","alpha-range":"Alfa debe estar entre 0 y 0,02 por °C.","conductor-count":"El número de conductores debe ser 1 o 2.","rho-range":"La resistividad debe ser mayor que 0.","conduit-range":"El diámetro de la canalización debe ser mayor que 0.","group-count":"Introduce de 1 a 4 grupos de cables.","diameter-range":"El diámetro del cable debe ser mayor que 0.","count-range":"La cantidad de cables debe ser un entero de 1 a 100000.","limit-range":"El límite de llenado debe ser mayor que 0 y como máximo 100 por ciento.","vf-range":"El factor de velocidad debe ser mayor que 0 y como máximo 1.","snr-range":"La SNR queda fuera del rango aceptado."}}</script>
+<link rel="stylesheet" href="../css/style.css?v=3e625a824a21">
+<script src="../js/engine.js?v=3e5fdb903829"></script>
+<script src="../js/app.js?v=13190eae6437"></script>
+<script src="../js/pwa.js"></script>
+<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d"></script>
+</body>
+</html>

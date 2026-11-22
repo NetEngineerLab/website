@@ -49,6 +49,16 @@ const calculationOutputs={
   ,"ospf-cost-calculator":["#totalCost","—"]
   ,"network-capacity-forecast-planner":["#headline","—"]
   ,"route-summarization-calculator":["#summaryList",""]
+  ,"itu-dwdm-grid-calculator":["#out-frequencyTHz .num","—"]
+  ,"edfa-ase-osnr-estimator":["#out-osnrDb .num","—"]
+  ,"ethernet-line-coding-calculator":["#out-lineGbps .num","—"]
+  ,"tcp-mathis-throughput-estimator":["#out-throughputMbps .num","—"]
+  ,"mm1-queue-delay-calculator":["#out-sojournMs .num","—"]
+  ,"path-availability-calculator":["#out-availability .num","—"]
+  ,"dc-feeder-voltage-drop-calculator":["#out-dropV .num","—"]
+  ,"pathway-fill-calculator":["#out-fillPercent .num","—"]
+  ,"copper-propagation-delay-calculator":["#out-delayNs .num","—"]
+  ,"shannon-capacity-calculator":["#out-capacityMbps .num","—"]
 };
 const contentContracts={
   "fiber-loss":{

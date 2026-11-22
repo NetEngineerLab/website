@@ -1,0 +1,124 @@
+BASE 1c849433e568548c6a7b42d5be4cc4603845caae
+==== tool-detail-v3-contract ====
+Tool-detail V3 contract PASS: 155 pages, 152 migrated, 3 preserved; real folds, baseline anchors, workflow, original controls/scripts/IDs, canonical. Full-page migration byte equality is reported separately and is not part of this contract.
+node:internal/assert/utils:77
+    throw err;
+    ^
+
+AssertionError [ERR_ASSERTION]: sfp-qsfp-compatibility-calculator/en first-install canonical offline route and index must both be cached
+    at Object.<anonymous> (/agent/repos/website/scripts/tool-detail-v3-contract-test.js:38:186)
+    at Module._compile (node:internal/modules/cjs/loader:1781:14)
+    at Object..js (node:internal/modules/cjs/loader:1913:10)
+    at Module.load (node:internal/modules/cjs/loader:1505:32)
+    at Function._load (node:internal/modules/cjs/loader:1309:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+    at node:internal/main/run_main_module:36:49 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v22.23.4
+EXIT:1
+==== category-coverage ====
+Category coverage FAIL
+index.html: optical shows 0, catalog has 7
+index.html: pon shows 0, catalog has 2
+index.html: maintenance shows 0, catalog has 2
+index.html: network shows 0, catalog has 17
+index.html: wireless shows 0, catalog has 2
+index.html: power shows 0, catalog has 14
+index.html: transport shows 0, catalog has 2
+index.html: operations shows 0, catalog has 1
+index.html: category counts sum to 0, catalog has 47 tools
+zh/index.html: optical shows 0, catalog has 7
+zh/index.html: pon shows 0, catalog has 2
+zh/index.html: maintenance shows 0, catalog has 2
+zh/index.html: network shows 0, catalog has 17
+zh/index.html: wireless shows 0, catalog has 2
+zh/index.html: power shows 0, catalog has 14
+zh/index.html: transport shows 0, catalog has 2
+zh/index.html: operations shows 0, catalog has 1
+zh/index.html: category counts sum to 0, catalog has 47 tools
+es/index.html: optical shows 0, catalog has 7
+es/index.html: pon shows 0, catalog has 2
+es/index.html: maintenance shows 0, catalog has 2
+es/index.html: network shows 0, catalog has 17
+es/index.html: wireless shows 0, catalog has 2
+es/index.html: power shows 0, catalog has 14
+es/index.html: transport shows 0, catalog has 2
+es/index.html: operations shows 0, catalog has 1
+es/index.html: category counts sum to 0, catalog has 47 tools
+EXIT:1
+==== ui-trust ====
+node:internal/assert/utils:77
+    throw err;
+    ^
+
+AssertionError [ERR_ASSERTION]: website/terms/index.html: tool count marker
+    at Object.<anonymous> (/agent/repos/website/scripts/ui-trust-contract-test.js:56:10)
+    at Module._compile (node:internal/modules/cjs/loader:1781:14)
+    at Object..js (node:internal/modules/cjs/loader:1913:10)
+    at Module.load (node:internal/modules/cjs/loader:1505:32)
+    at Function._load (node:internal/modules/cjs/loader:1309:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+    at node:internal/main/run_main_module:36:49 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v22.23.4
+EXIT:1
+==== engineering-rules-runtime ====
+node:fs:440
+    return binding.readFileUtf8(path, stringToFlags(options.flag));
+                   ^
+
+Error: ENOENT: no such file or directory, open '/agent/repos/website/website/tools/route-summarization-calculator/sw.js'
+    at Object.readFileSync (node:fs:440:20)
+    at Object.<anonymous> (/agent/repos/website/scripts/engineering-rules-runtime-test.js:93:15)
+    at Module._compile (node:internal/modules/cjs/loader:1781:14)
+    at Object..js (node:internal/modules/cjs/loader:1913:10)
+    at Module.load (node:internal/modules/cjs/loader:1505:32)
+    at Function._load (node:internal/modules/cjs/loader:1309:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+    at node:internal/main/run_main_module:36:49 {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/agent/repos/website/website/tools/route-summarization-calculator/sw.js'
+}
+
+Node.js v22.23.4
+EXIT:1
+==== architecture-validate ====
+{
+  "version": "1.9.9-04-p0-p1-correctness-consent-offline",
+  "generatedAt": "2026-11-19T06:42:21.539Z",
+  "activeTools": 47,
+  "publicPages": 243,
+  "sitemapUrls": 237,
+  "errors": [
+    "website/tools/route-summarization-calculator/js/app.js: missing",
+    "website/tools/route-summarization-calculator/js/pwa.js: missing",
+    "website/tools/route-summarization-calculator/manifest.webmanifest: missing",
+    "website/tools/route-summarization-calculator/sw.js: missing",
+    "website/tools/route-summarization-calculator: Service Worker is not registered",
+    "website/guides/fiber-link-budget-guide/index.html: exactly one generated Header region is required"
+  ],
+  "warnings": [
+    "website/tools/route-summarization-calculator/offline.html: missing offline fallback"
+  ],
+  "status": "FAIL"
+}
+EXIT:1

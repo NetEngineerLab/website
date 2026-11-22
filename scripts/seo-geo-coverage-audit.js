@@ -57,7 +57,17 @@ const intentByTool=Object.freeze({
   "ospf-cost-calculator":"calculation",
   "network-capacity-forecast-planner":"planning",
   "engineering-report-batch-export-center":"planning",
-  "route-summarization-calculator":"calculation"
+  "route-summarization-calculator":"calculation",
+  "itu-dwdm-grid-calculator":"calculation",
+  "edfa-ase-osnr-estimator":"calculation",
+  "ethernet-line-coding-calculator":"calculation",
+  "tcp-mathis-throughput-estimator":"calculation",
+  "mm1-queue-delay-calculator":"calculation",
+  "path-availability-calculator":"calculation",
+  "dc-feeder-voltage-drop-calculator":"calculation",
+  "pathway-fill-calculator":"calculation",
+  "copper-propagation-delay-calculator":"calculation",
+  "shannon-capacity-calculator":"calculation",
 });
 const intentLabels=Object.freeze({
   calculation:{en:"calculation",zh:"计算",es:"cálculo"},

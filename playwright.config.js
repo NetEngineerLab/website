@@ -11,7 +11,9 @@ module.exports=defineConfig({
   reporter:[["line"],["html",{open:"never"}]],
   use:{baseURL:"http://127.0.0.1:4173",serviceWorkers:"allow",trace:"retain-on-failure",screenshot:"only-on-failure"},
   projects:[
-    {name:"chrome-desktop",use:{...devices["Desktop Chrome"],deviceScaleFactor:1}},
+    // The headless shell of this Chromium revision SIGSEGV at 0x1b0.
+    // chrome-for-testing selects the full Chromium binary Playwright already installed.
+    {name:"chrome-desktop",use:{...devices["Desktop Chrome"],channel:"chrome-for-testing",deviceScaleFactor:1}},
     {name:"edge-desktop",use:{...devices["Desktop Edge"],channel:"msedge",deviceScaleFactor:1}},
     {name:"edge-android",use:{...devices["Pixel 7"],channel:"msedge",deviceScaleFactor:1}},
     {name:"edge-iphone",use:{...devices["iPhone 13"],browserName:"chromium",channel:"msedge",deviceScaleFactor:1}}

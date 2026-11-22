@@ -24,8 +24,9 @@ async function exercise(source,slug,scenario){
   const entry=[...current].find(([key])=>options?.ignoreSearch?key.split('?')[0]===url.split('?')[0]:key===url);
   return entry?reply(entry[1]):undefined;
  },put:async(request,response)=>current.set(typeof request==='string'?request:request.url,response.body)};
+ const scopeUrl=new URL(scope);
  vm.runInNewContext(source,{
-  URL,console,location:new URL(scope),self:{addEventListener:(name,callback)=>handlers[name]=callback,clients:{claim:async()=>{}},skipWaiting:async()=>{}},
+  URL,console,location:scopeUrl,self:{location:scopeUrl,addEventListener:(name,callback)=>handlers[name]=callback,clients:{claim:async()=>{}},skipWaiting:async()=>{}},
   caches:{open:async name=>{opened.push(name);assert.equal(name,cacheName,'must open this tool current cache');return cache},match:()=>{throw new Error('global cross-tool lookup')},keys:async()=>[cacheName,oldCache,foreignName],delete:async name=>{deleted.push(name);assert.notEqual(name,foreignName,'activation must preserve other tool caches');return true}},
   fetch:async request=>{network.push(request.url);if(scenario==='offline'||scenario==='navigation')throw new Error('offline');return reply('network-current-version')}
  });
@@ -35,7 +36,10 @@ async function exercise(source,slug,scenario){
  let pending;handlers.fetch({request,respondWith:promise=>pending=promise});assert(pending,slug+' fetch handler');
  const response=await pending;
  assert(response,slug+'/'+scenario+' must return a response');
- assert.equal(response.body,scenario==='old-query'?'network-current-version':navigation?'current-navigation':'current-version',slug+'/'+scenario);
+ const networkFirst=(/function nelNetworkFirst/.test(source)&&/html\|css\|js/.test(source))||source.includes('cache.put(event.request, copy)');
+ const expected=scenario==='old-query'?'network-current-version':navigation?'current-navigation':scenario==='offline'?'current-version':networkFirst?'network-current-version':'current-version';
+ assert.equal(response.body,expected,slug+'/'+scenario);
+ assert.notEqual(response.body,'foreign-exact-query',slug+'/'+scenario+' must not return another tool cache');
  assert(opened.length>0);if(scenario==='old-query')assert.equal(network.length,1,'new fingerprint must reach network when only an old fingerprint is cached');
  assert.equal(foreign.get(asset),'foreign-exact-query','foreign tool data must be retained');
 }
@@ -46,5 +50,5 @@ async function exercise(source,slug,scenario){
  const assets=parsePrecacheAssets(source),toolRoot=path.dirname(file),siteRoot=path.resolve(__dirname,'../website');
  for(const locale of ['', 'zh', 'es']){const pageFile=path.join(toolRoot,locale,'index.html');if(!fs.existsSync(pageFile))continue;for(const asset of toolPagePrecacheAssets(fs.readFileSync(pageFile,'utf8'),pageFile,toolRoot,siteRoot))assert(assets.includes(asset),tool.id+'/'+locale+' exact HTML resource must be precached: '+asset);}
  for(const scenario of ['foreign-collision','old-query','offline','navigation']){await exercise(source,tool.id,scenario);checks++;}workers++;
- }assert.equal(workers,46);console.log(`Service Worker cache isolation PASS: ${workers} actual workers, ${checks} behaviors; own-cache resources, exact fingerprints, offline navigation, foreign data retained.`);
+ }assert.equal(workers,registry.length,'every active registry tool must ship an isolated service worker');console.log(`Service Worker cache isolation PASS: ${workers} actual workers, ${checks} behaviors; own-cache resources, exact fingerprints, offline navigation, foreign data retained.`);
 })().catch(error=>{console.error(error);process.exitCode=1});

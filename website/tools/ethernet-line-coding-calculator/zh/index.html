@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="tools/ethernet-line-coding-calculator/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="app-base" content="../">
+<title>以太网线路编码开销计算器</title>
+<meta name="description" content="按已发布的 8b/10b、64b/66b 和 RS-FEC 码字比例，把净荷速率换成线路速率。">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<link rel="icon" href="/assets/icons/favicon.svg?v=1.9.5-06" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="/assets/css/mobile-branding.css?v=345784b6b020">
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif:ital@1&amp;display=swap">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=031fae951adb">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=64bd0d9f6bcb">
+<link rel="stylesheet" href="../css/style.css?v=3e625a824a21">
+<script defer src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
+<meta name="theme-color" content="#176ff2">
+<meta property="og:url" content="https://netengineerlab.com/tools/ethernet-line-coding-calculator/zh/">
+<meta property="og:title" content="以太网线路编码开销计算器">
+<meta property="og:description" content="按已发布的 8b/10b、64b/66b 和 RS-FEC 码字比例，把净荷速率换成线路速率。">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="以太网线路编码开销计算器">
+<meta name="twitter:description" content="按已发布的 8b/10b、64b/66b 和 RS-FEC 码字比例，把净荷速率换成线路速率。">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"工具","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"以太网线路编码开销计算器","item":"https://netengineerlab.com/tools/ethernet-line-coding-calculator/zh/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"以太网线路编码开销计算器","url":"https://netengineerlab.com/tools/ethernet-line-coding-calculator/zh/","description":"按已发布的 8b/10b、64b/66b 和 RS-FEC 码字比例，把净荷速率换成线路速率。","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
+
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"以太网线路编码开销计算器","url":"https://netengineerlab.com/tools/ethernet-line-coding-calculator/zh/","description":"按已发布的 8b/10b、64b/66b 和 RS-FEC 码字比例，把净荷速率换成线路速率。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="zh">
+<meta name="nel-route" content="tools/ethernet-line-coding-calculator/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/tools/ethernet-line-coding-calculator/zh/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/ethernet-line-coding-calculator/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/ethernet-line-coding-calculator/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/ethernet-line-coding-calculator/es/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/ethernet-line-coding-calculator/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=475098aa29f5">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=c957f6562d31"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
+<link rel="manifest" href="../manifest-zh.webmanifest">
+</head>
+<body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1" data-nel-offline-worker="1">
+<a class="skip" href="#calculator">跳到计算器</a>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../zh/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="打开导航菜单"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="主导航">
+      <a href="../../../zh/">首页</a>
+      <a href="../../zh/" aria-current="page">工具中心</a>
+      <a href="../../../zh/guides/">工程指南</a>
+      <a href="../../../zh/topics/">专题</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/ethernet-line-coding-calculator/" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="/tools/ethernet-line-coding-calculator/zh/" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a><a class="language-option" role="menuitem" href="/tools/ethernet-line-coding-calculator/es/" lang="es" hreflang="es"><span>Español</span><small>西班牙语</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">开始计算</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a href="../../../zh/">首页</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../../zh/">工具</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">以太网线路编码开销计算器</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END -->
+<section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner"><p class="eyebrow">线路编码开销</p><p class="hero-title">以太网线路编码开销计算器</p><p>按已发布的 8b/10b、64b/66b 和 RS-FEC 码字比例，把净荷速率换成线路速率。</p><div class="hero-tags"><span>8b/10b</span><span>64b/66b</span><span>RS-FEC</span><span>线路速率</span></div></div></section>
+<main id="calculator" class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" data-engine="NEL_LineCoding" data-primary="lineGbps" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv">
+<div class="tool-head">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../zh/">首页</a> <span aria-hidden="true">/</span> <a href="../../zh/">工具</a> <span aria-hidden="true">/</span> <span aria-current="page">以太网线路编码开销计算器</span></nav>
+<h1 class="tool-page-label">以太网线路编码开销计算器</h1>
+<p class="tool-lede">按已发布的 8b/10b、64b/66b 和 RS-FEC 码字比例，把净荷速率换成线路速率。</p>
+</div>
+<div class="workspace">
+<section class="input-panel card nel-tool-input fb-panel">
+<h2 class="panel-h">输入</h2>
+<p class="hint">本页结果随输入变化。非法输入会显示原因，并清除上一组数值。</p>
+<div class="fields"><div class="field f"><label for="payload">净荷比特率</label><div class="inp input-wrap"><input id="payload" data-field="payload" data-example="100" type="number" inputmode="decimal" value="10" step="any" data-probe="1" data-probe-edit="40" data-probe-invalid="0"><select id="payloadUnit" data-field="payloadUnit" aria-label="净荷比特率 unit"><option value="Gbps" selected>Gbps</option><option value="Mbps">Mbps</option><option value="Tbps">Tbps</option></select></div></div><div class="field f"><label for="code">线路编码</label><div class="inp input-wrap sel"><select id="code" data-field="code" data-example="64b66b-rs544"><option value="8b10b">8b/10b</option><option value="64b66b" selected>64b/66b</option><option value="64b66b-rs528">64b/66b + RS(528,514)</option><option value="64b66b-rs544">64b/66b + RS(544,514)</option></select></div></div></div>
+<p id="validation" class="validation" role="alert"></p>
+<div class="input-actions"><button id="calculateBtn" class="btn btn-primary" type="button">计算</button><button id="exampleBtn" class="btn btn-ghost" type="button">载入示例</button><button id="resetBtn" class="btn btn-ghost" type="button">重置</button></div>
+<div class="formula-card"><h3>公式</h3><code>Line rate = payload × (code bits / payload bits). RS-FEC multiplies an extra codeword ratio.</code><p>这是规划用的工程近似，不是实验室实测，也不保证设备实际性能。</p></div>
+</section>
+<section class="result-panel card nel-tool-result readout" id="result" aria-live="polite">
+<h2 class="ro-h">结果</h2>
+<p id="statusLine" class="hint"></p>
+<div class="metric-grid"><article class="metric"><span class="lbl" id="lbl-lineGbps">线路比特率</span><span class="val" id="out-lineGbps" data-out="lineGbps"><span class="num">—</span><span class="unit">Gbps</span></span></article><article class="metric"><span class="lbl" id="lbl-overheadPercent">线路编码开销</span><span class="val" id="out-overheadPercent" data-out="overheadPercent"><span class="num">—</span><span class="unit">%</span></span></article><article class="metric"><span class="lbl" id="lbl-efficiencyPercent">净荷占线路速率的比例</span><span class="val" id="out-efficiencyPercent" data-out="efficiencyPercent"><span class="num">—</span><span class="unit">%</span></span></article><article class="metric"><span class="lbl" id="lbl-expansion">放大倍数</span><span class="val" id="out-expansion" data-out="expansion"><span class="num">—</span></span></article></div>
+
+<div class="result-actions ro-acts"><button id="copyBtn" type="button">复制结果</button><button id="csvBtn" type="button">导出 CSV</button></div>
+</section>
+</div>
+<div class="below">
+<nav class="toc" aria-label="本页导航"><h4>本页导航</h4><a href="#about-scope">关于与适用范围</a><a href="#methodology">计算方法</a><a href="#faq">问答</a><a href="#references">参考资料</a><a href="#nel-tool-graph">工程工作流</a></nav>
+<div class="prose">
+<details class="fb-fold blk" id="about-scope" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span class="fb-fold-title">关于与适用范围</span></summary><div class="fb-fold-body"><p>把 MAC 净荷速率换成已发布以太网线路编码所对应的更高线路速率。它不选择 PMD、lane 数或距离。</p><p>这是规划用的工程近似，不是实验室实测，也不保证设备实际性能。</p><p class="about-meta">内容复核：2026年11月19日</p></div></details>
+<details class="fb-fold blk" id="methodology" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span class="fb-fold-title">计算方法</span></summary><div class="fb-fold-body"><p class="eq">Line rate = payload × (code bits / payload bits). RS-FEC multiplies an extra codeword ratio.</p><p>8b/10b 把 8 个净荷比特扩成 10 个线路比特，比例是 10/8。64b/66b 使用 66/64。RS(528,514) 在 64b/66b 之外再乘 528/514。RS(544,514) 再乘 544/514。10 Gbps 净荷配合 64b/66b 正好是 10.3125 Gbps。计算器只应用这个比例。自协商、对齐标记和某一条款的 lane 映射不在结果里。</p></div></details>
+<div class="blk faq" id="faq"><h2>问答</h2><h3>10.3125 Gbps 是实测速率吗？</h3><p>它是 10 Gbps 按 66/64 放大后的精确值。</p><h3>RS-FEC 会取代 64b/66b 吗？</h3><p>不会。预设把两个比例相乘。</p><h3>可以把结果当作交换机速率填进去吗？</h3><p>不能。它是所选编码的线路速率运算。</p><h3>比例从哪里来？</h3><p>来自 IEEE 802.3 使用的 8b/10b、64b/66b、RS(528,514) 和 RS(544,514) 已发布尺寸。</p></div>
+<section class="blk" id="references"><h2>参考资料</h2><ul class="rel"><li><a href="https://standards.ieee.org/ieee/802.3/10422/">IEEE 802.3 Ethernet standard</a></li><li><a href="https://www.ieee802.org/3/">IEEE 802.3 working group</a></li><li><a href="https://standards.ieee.org/products-programs/ieee-get-program/">IEEE GET program</a></li></ul></section>
+<!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="ethernet-line-coding-calculator" data-primary-workflow="line-rate-and-capacity">
+<div class="section-heading"><div><p class="eyebrow">工程工作流</p><h2 id="nel-tool-graph-title">继续下一步工程任务</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">当前流程</span><strong>线路速率、铜缆时延与容量上界</strong><p>先按已发布线路编码放大净荷速率，再估算铜缆时延，并对照 AWGN 容量上界。</p></div><div class="nel-workflow-step"><strong>步骤 1 / 3</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1" aria-valuetext="步骤 1 / 3" aria-label="步骤 1 / 3"><span style="width:33%"></span></div></div></div><div class="nel-tool-graph-nav"><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">上一步</span><strong>流程起点</strong></div><a class="nel-tool-graph-card" href="/tools/copper-propagation-delay-calculator/zh/"><span class="nel-tool-graph-label">下一步</span><strong>铜缆传播时延计算器</strong><span class="nel-tool-graph-description">用你输入的长度和速度系数计算铜缆单向传播时延。</span></a></div>
+<h3 class="nel-tool-graph-subtitle">相关工具</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/ethernet-serialization-delay-calculator/zh/"><strong>以太网串行化时延计算器</strong><span class="nel-tool-graph-description">计算以太网链路的单跳与多跳串行化时延、线路占用时间、最大帧速率和二层效率。</span></a><a class="nel-tool-graph-card" href="/tools/bandwidth-calculator/zh/"><strong>带宽与传输时间计算器</strong><span class="nel-tool-graph-description">计算文件传输时间、所需链路速率、并发用户容量和持续速率对应的数据量。</span></a><a class="nel-tool-graph-card" href="/tools/mtu-calculator/zh/"><strong>MTU与MSS计算器</strong><span class="nel-tool-graph-description">计算PPPoE、GRE、VXLAN、MPLS、IPsec和WireGuard封装后的有效MTU、TCP MSS与分片风险。</span></a></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
+</div>
+</div>
+</main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div>
+    <nav class="site-shell-footer-links" aria-label="页脚导航">
+      <a href="../../../zh/about/">关于</a><a href="../../../zh/contact/">联系</a><a href="../../../zh/privacy/">隐私政策</a><a href="../../../zh/terms/">使用条款</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script type="application/json" id="nel-copy">{"calculate":"计算","example":"载入示例","reset":"重置","copy":"复制结果","csv":"导出 CSV","invalid":"输入超出限制。上一组有效结果已清除。","ready":"结果已按当前输入更新。","inputs":"输入","results":"结果","formula":"公式","toc":"本页导航","about":"关于与适用范围","method":"计算方法","faq":"问答","refs":"参考资料","flow":"工程工作流","reviewed":"内容复核：2026年11月19日","approx":"这是规划用的工程近似，不是实验室实测，也不保证设备实际性能。","start":"开始计算","home":"首页","tools":"工具","errors":{"empty":"请填写数值。","invalid-number":"请输入有限的十进制数。","non-finite":"数值必须是有限数。","not-integer":"请输入整数。","bad-unit":"请选择支持的单位。","overflow":"计算溢出，请减小输入。","anchor-range":"锚点频率应在 100 到 400 THz。","spacing-range":"间隔必须大于 0，且不超过 10000 GHz。","channel-range":"信道序号应在 -100000 到 100000。","frequency-range":"得到的光频率超出 0 到 1000 THz。","power-range":"信道功率应在 -80 到 40 dBm。","gain-range":"增益必须大于 0 dB，且不超过 50 dB。","nf-range":"本模型的噪声系数应在 0 到 40 dB。","bandwidth-range":"带宽超出允许范围。","span-range":"跨段数量必须是 1 到 10000 的整数。","bad-code":"请选择线路编码。","payload-range":"净荷速率必须大于 0，且不超过 100000 Gbps。","mss-range":"MSS 必须是 1 到 65535 字节的整数。","rtt-range":"RTT 必须大于 0，且不超过 100 s。","loss-range":"丢包概率必须大于 0 且小于 1。","link-range":"链路速率必须大于 0。","arrival-range":"到达率必须大于 0。","service-range":"服务率必须大于 0。","unstable":"服务率必须大于到达率。","bad-kind":"请选择可用度列表或 MTBF。","availability-range":"可用度必须大于 0 且不超过 1。","mtbf-range":"MTBF 必须大于 0。","mttr-range":"MTTR 必须大于 0。","bad-mode":"请选择串联或并联。","block-count":"请输入 1 到 20 个可用度。","voltage-range":"电压必须大于 0，且不超过 2000 V。","current-range":"电流应在 0 到 100000 A。","length-range":"长度超出允许范围。","area-range":"导体截面积必须大于 0。","temperature-range":"温度应使电阻率保持为正，并处在 -50 到 200 °C。","alpha-range":"温度系数应在每 °C 0 到 0.02。","conductor-count":"导体回数必须是 1 或 2。","rho-range":"电阻率必须大于 0。","conduit-range":"通道直径必须大于 0。","group-count":"请输入 1 到 4 组电缆。","diameter-range":"电缆外径必须大于 0。","count-range":"电缆根数必须是 1 到 100000 的整数。","limit-range":"填充率限值必须大于 0 且不超过 100%。","vf-range":"速度系数必须大于 0 且不超过 1。","snr-range":"信噪比超出允许范围。"}}</script>
+<link rel="stylesheet" href="../css/style.css?v=3e625a824a21">
+<script src="../js/engine.js?v=7de6d4c0c38e"></script>
+<script src="../js/app.js?v=13190eae6437"></script>
+<script src="../js/pwa.js"></script>
+<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d"></script>
+</body>
+</html>

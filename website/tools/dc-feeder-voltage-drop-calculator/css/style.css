@@ -1,0 +1,43 @@
+/* Tool-local layout. Shared header and footer stay in the site stylesheets. */
+body.nel-tool-v3 #calculator{width:min(100% - 48px,1400px);margin:0 auto;padding:28px 0 72px;box-sizing:border-box;color:#16140f}
+body.nel-tool-v3 #calculator > .tool-head{margin-bottom:22px}
+body.nel-tool-v3 #calculator .tool-page-label{margin:0;font-size:40px;font-weight:600;letter-spacing:-.03em;line-height:1.12}
+body.nel-tool-v3 #calculator .tool-lede{max-width:760px;margin:12px 0 0;line-height:1.7}
+body.nel-tool-v3 #calculator > .workspace{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:20px!important;align-items:stretch!important;width:100%!important;min-width:0!important}
+body.nel-tool-v3 #calculator .nel-tool-input,body.nel-tool-v3 #calculator .nel-tool-result{min-width:0;height:100%;box-sizing:border-box;border:1px solid #d8dee8;border-radius:16px;background:#fff;padding:22px}
+body.nel-tool-v3 #calculator .fields{display:grid;grid-template-columns:1fr;gap:12px}
+body.nel-tool-v3 #calculator label{display:block;margin:0 0 6px;font-size:14px;font-weight:600;white-space:normal;overflow:visible;text-overflow:clip}
+body.nel-tool-v3 #calculator .inp{display:flex;align-items:center;gap:8px;min-width:0}
+body.nel-tool-v3 #calculator .inp input,body.nel-tool-v3 #calculator .inp select,body.nel-tool-v3 #calculator select{min-width:0}
+body.nel-tool-v3 #calculator .inp input{flex:1}
+body.nel-tool-v3 #calculator .input-actions,.result-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+body.nel-tool-v3 #calculator .input-actions button,.result-actions button{min-height:44px}
+body.nel-tool-v3 #calculator .formula-card{margin-top:16px;padding:14px 16px;border:1px solid #d9e4f2;border-radius:12px;background:#f8faff}
+body.nel-tool-v3 #calculator .formula-card h3{margin:0 0 8px;font-size:14px;font-weight:600}
+body.nel-tool-v3 #calculator .formula-card code{display:block;white-space:normal;font:500 13px/1.7 "Geist Mono",ui-monospace,monospace}
+body.nel-tool-v3 #calculator .metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+body.nel-tool-v3 #calculator .metric{min-width:0;padding:12px;border:1px solid #d8dee8;border-radius:12px;background:#fff}
+body.nel-tool-v3 #calculator .metric .lbl{display:block;margin-bottom:6px;color:#3d3a33;font-size:13px;font-weight:500;white-space:normal;overflow:visible;text-overflow:clip;line-height:1.45}
+body.nel-tool-v3 #calculator .metric .val{display:flex;align-items:baseline;gap:6px;max-width:100%;overflow-x:auto;color:#E8590C;font-weight:400;font-size:22px;line-height:1.3}
+body.nel-tool-v3 #calculator .metric .num,body.nel-tool-v3 #calculator .metric .unit{white-space:nowrap;font-weight:400;color:#E8590C}
+body.nel-tool-v3 #calculator .table-scroll{max-width:100%;overflow-x:auto;margin-top:14px}
+body.nel-tool-v3 #calculator table{width:max-content;min-width:100%;border-collapse:collapse}
+body.nel-tool-v3 #calculator th,body.nel-tool-v3 #calculator td{padding:8px 10px;border:1px solid #d8dee8;text-align:left;white-space:nowrap}
+body.nel-tool-v3 #calculator > .below{display:grid!important;grid-template-columns:minmax(200px,240px) minmax(0,1fr)!important;gap:20px!important;align-items:start!important;margin-top:28px!important}
+body.nel-tool-v3 #calculator > .below > .toc{display:flex;flex-direction:column;position:sticky;top:90px;padding:10px;border:1px solid #e2e8f0;border-radius:14px;background:#fff}
+body.nel-tool-v3 #calculator > .below > .toc a{display:block;padding:7px 10px;color:#0f172a;text-decoration:none}
+body.nel-tool-v3 #calculator .blk{margin:0 0 16px;padding:22px;background:#fff;border:1px solid #d8dee8;border-radius:16px}
+body.nel-tool-v3 #calculator .validation{min-height:1.4em;color:#9a3412}
+body.nel-tool-v3 #calculator .validation:empty{display:none}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #ffbf47;outline-offset:3px}
+@media (max-width:960px){body.nel-tool-v3 #calculator .tool-page-label{font-size:32px}body.nel-tool-v3 #calculator > .workspace,body.nel-tool-v3 #calculator > .below{grid-template-columns:minmax(0,1fr)!important}body.nel-tool-v3 #calculator > .below > .toc{position:static}}
+@media (max-width:800px){body.nel-tool-v3 #calculator{width:min(100% - 24px,1400px)}body.nel-tool-v3 #calculator .metric-grid{grid-template-columns:1fr}body.nel-tool-v3 #calculator .input-actions,body.nel-tool-v3 #calculator .result-actions{display:grid;grid-template-columns:1fr}}
+html body.nel-tool-v3 > main.tool-shell{width:min(100% - 48px,1400px) !important;max-width:1400px !important}
+html body.nel-tool-v3 > main.nel-tool-grid{grid-template-columns:minmax(0,1fr) !important}
+html body.nel-tool-v3 #calculator > .workspace{grid-column:1 / -1 !important}
+html body.nel-tool-v3 #calculator .nel-tool-result.readout{color:#16140f !important;background:#fff !important;overflow:visible !important;position:static !important}
+html body.nel-tool-v3 #calculator .inp{display:flex !important;align-items:center;gap:8px;width:100%;min-height:44px !important;height:auto !important;padding:0 12px;border:1px solid #d8dee8;border-radius:8px;background:#fff;box-sizing:border-box}
+html body.nel-tool-v3 #calculator .inp :is(input,select){all:revert;flex:1 1 auto;min-width:0 !important;width:auto !important;height:32px !important;min-height:32px !important;max-height:none !important;overflow:visible !important;border:0 !important;background:transparent !important;padding:0 !important;font:500 15px/1.4 ui-monospace,monospace;color:#16140f}
+html body.nel-tool-v3 #calculator .inp select{flex:0 0 auto !important;max-width:46% !important;width:auto !important}
+html body.nel-tool-v3 #calculator .metric .val,html body.nel-tool-v3 #calculator .metric .num,html body.nel-tool-v3 #calculator .metric .unit{color:#E8590C !important;font-weight:400 !important;white-space:nowrap !important}
+html body.nel-tool-v3 #calculator > .below > .toc{display:flex !important}

@@ -660,7 +660,7 @@ function updateManifestLink(html,currentRel,info,groups){
 }
 function generateRuntimeFiles(){
  writeFileWithRetry(path.join(dataDir,"locales.js"),`window.NEL_I18N=${JSON.stringify(localeConfig)};\nwindow.NEL_LOCALES=window.NEL_I18N.locales;\n`,"utf8");
- writeFileWithRetry(path.join(dataDir,"tools-catalog.js"),`window.NEL_TOOLS=${JSON.stringify(toolCatalog)};\n`,"utf8");
+ writeFileWithRetry(path.join(dataDir,"tools-catalog.js"),`window.NEL_TOOLS=${JSON.stringify(toolCatalog)};\nwindow.dispatchEvent(new Event("nel:tools-ready"));\n`,"utf8");
 }
 function generateManifests(groups){
  for(const tool of toolCatalog.filter(item=>item.status==="active")){
