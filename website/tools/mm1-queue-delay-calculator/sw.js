@@ -1,5 +1,5 @@
 "use strict";
-const CACHE="nel-mm1-queue-delay-calculator-v1";
+const CACHE="nel-mm1-queue-delay-calculator-v1-e1efc2d9c9e2";
 const CORE=[
   "./",
   "./index.html",
@@ -38,6 +38,7 @@ const CORE=[
   "../../assets/js/rules-engine/score.js?v=fce2240d4bb7",
   "../../assets/js/rules-engine/report.js?v=01f2524dcdac",
   "../../assets/generated/rules-engine/rules-bundle.9d06acb2a0ff.js?v=9d06acb2a0ff",
+  "../../assets/js/tool-integration.js?v=05f7934f4687",
   "../../assets/icons/favicon.svg?v=1.9.5-06",
   "../../assets/css/mobile-branding.css?v=345784b6b020",
   "../../assets/images/logo.svg",

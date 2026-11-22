@@ -8,7 +8,7 @@
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
-const { stableFileHash } = require("../stable-text-hash");
+const { stableFileHash, stableHash } = require("../stable-text-hash");
 const { rulesRuntimeAssets } = require("../rules-runtime-assets");
 
 const root = path.resolve(__dirname, "../..");
@@ -1580,6 +1580,7 @@ function workflowEntry(flow) {
 
 function serviceWorker(id) {
   const toolRoot = path.join(site, "tools", id);
+  const shared = ["assets/css/fb-v3.css", "assets/css/fb-v3-prod.css", "assets/js/tool-v3-navigation.js", "assets/js/tool-detail-v3.js", "assets/js/tool-shell-v1.9.9-04.js", "assets/css/design-tokens.css", "assets/css/site-shell.css", "assets/css/tool-layout.css", "assets/css/tool-workflow.css", "assets/css/locale-menu.css", "assets/css/tool-design-system.css", "assets/js/analytics.js", "assets/js/adsense.js", "assets/js/site.js", "assets/js/tool-integration.js", "assets/css/cookie-consent.css", "assets/js/cookie-consent.js", "data/locales.js", "data/site-config.js"];
   const assets = [
     "./", "./index.html", "./offline.html", "./manifest.webmanifest",
     `./css/style.css?v=${hash12(path.join(toolRoot, "css/style.css"))}`,
@@ -1588,11 +1589,24 @@ function serviceWorker(id) {
     `./js/engine.js?v=${hash12(path.join(toolRoot, "js/engine.js"))}`,
     "./js/pwa.js",
     "./zh/", "./zh/index.html", "./es/", "./es/index.html",
-    ...["assets/css/fb-v3.css", "assets/css/fb-v3-prod.css", "assets/js/tool-v3-navigation.js", "assets/js/tool-detail-v3.js", "assets/js/tool-shell-v1.9.9-04.js", "assets/css/design-tokens.css", "assets/css/site-shell.css", "assets/css/tool-layout.css", "assets/css/tool-workflow.css", "assets/css/locale-menu.css", "assets/css/tool-design-system.css", "assets/js/analytics.js", "assets/js/adsense.js", "assets/js/site.js", "assets/css/cookie-consent.css", "assets/js/cookie-consent.js", "data/locales.js", "data/site-config.js"].map((rel) => `../../${rel}?v=${hash12(path.join(site, rel))}`),
-    ...rulesRuntimeAssets(site).map((asset) => `${asset.cachePath}?v=${hash12(path.join(site, ...asset.sitePath.split("/")))}`)
+    ...shared.map((rel) => `../../${rel}?v=${hash12(path.join(site, rel))}`),
+    ...rulesRuntimeAssets(site).map((asset) => `${asset.cachePath}?v=${hash12(path.join(site, ...asset.sitePath.split("/")))}`),
+    "../../assets/icons/favicon.svg?v=1.9.5-06",
+    "../../assets/css/mobile-branding.css?v=345784b6b020",
+    "../../assets/images/logo.svg"
   ];
+  const versioned = [
+    "data/locales.js", "data/site-config.js", "assets/css/locale-menu.css", "assets/css/design-tokens.css",
+    "assets/css/site-shell.css", "assets/css/tool-design-system.css", "assets/css/tool-workflow.css",
+    "assets/css/fb-v3.css", "assets/css/fb-v3-prod.css", "assets/js/tool-v3-navigation.js", "assets/js/tool-detail-v3.js",
+    "assets/js/analytics.js", "assets/js/adsense.js", "assets/js/site.js", "assets/js/tool-integration.js",
+    "assets/js/tool-shell-v1.9.9-04.js", "assets/css/cookie-consent.css", "assets/js/cookie-consent.js",
+    ...rulesRuntimeAssets(site).map((asset) => asset.sitePath)
+  ];
+  const sharedVersion = stableHash(versioned.map((rel) => hash12(path.join(site, ...rel.split("/")))).join(":"), 12);
+  const cache = `nel-${id}-v1-${sharedVersion}`;
   return `"use strict";
-const CACHE=${JSON.stringify("nel-" + id + "-v1")};
+const CACHE=${JSON.stringify(cache)};
 const CORE=${JSON.stringify(assets, null, 2)};
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)));
@@ -1604,8 +1618,22 @@ self.addEventListener("activate", (event) => {
 });
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
-  event.respondWith(fetch(event.request).catch(() => caches.match(event.request)));
+  event.respondWith(fetch(event.request).then((response) => {
+    if (response.ok) {
+      const copy = response.clone();
+      caches.open(CACHE).then((cache) => cache.put(event.request, copy));
+    }
+    return response;
+  }).catch(() => nelScopedCacheMatch(event.request)));
 });
+/* NEL_SCOPED_CACHE_START */
+// A different tool may retain another version of a shared asset. Never search
+// its cache, and never discard a resource's content-hash query when matching.
+function nelScopedCacheMatch(request, options) {
+  const navigation = typeof request !== "string" && request.mode === "navigate";
+  return caches.open(CACHE).then(cache => cache.match(request, navigation ? { ...options, ignoreSearch: true } : undefined));
+}
+/* NEL_SCOPED_CACHE_END */
 `;
 }
 
