@@ -42,6 +42,8 @@ const tools = [
     engineGlobal: "NEL_DwdmGrid",
     related: ["fiber-loss", "chromatic-dispersion-calculator", "optical-power-budget"],
     tags: { en: ["DWDM", "G.694.1", "Wavelength"], zh: ["DWDM", "G.694.1", "波长"], es: ["DWDM", "G.694.1", "Longitud de onda"] },
+    heroEyebrow: { en: "OPTICAL CHANNEL GRID", zh: "光信道栅格", es: "REJILLA DE CANALES ÓPTICOS" },
+    heroTags: { en: ["G.694.1", "193.1 THz", "Frequency", "Wavelength"], zh: ["G.694.1", "193.1 THz", "光频率", "真空波长"], es: ["G.694.1", "193,1 THz", "Frecuencia", "Longitud de onda"] },
     name: { en: "ITU DWDM Grid Calculator", zh: "ITU DWDM 频率栅格计算器", es: "Calculadora de rejilla DWDM UIT" },
     description: {
       en: "Convert an ITU-T G.694.1 channel index into optical frequency and vacuum wavelength from the 193.1 THz anchor.",
@@ -64,6 +66,8 @@ const tools = [
     engineGlobal: "NEL_EdfaOsnr",
     related: ["optical-power-budget", "itu-dwdm-grid-calculator", "fiber-loss"],
     tags: { en: ["OSNR", "ASE", "EDFA"], zh: ["OSNR", "ASE", "EDFA"], es: ["OSNR", "ASE", "EDFA"] },
+    heroEyebrow: { en: "OPTICAL AMPLIFIER NOISE", zh: "光放大器噪声", es: "RUIDO DEL AMPLIFICADOR ÓPTICO" },
+    heroTags: { en: ["ASE", "OSNR", "Noise factor", "Span count"], zh: ["ASE", "OSNR", "噪声系数", "跨段数量"], es: ["ASE", "OSNR", "Factor de ruido", "Vanos"] },
     name: { en: "EDFA ASE OSNR Estimator", zh: "EDFA ASE 与 OSNR 估算器", es: "Estimador de OSNR y ASE de EDFA" },
     description: {
       en: "Estimate amplifier ASE and OSNR from gain, noise factor, optical frequency, reference bandwidth and identical span count.",
@@ -86,6 +90,8 @@ const tools = [
     engineGlobal: "NEL_LineCoding",
     related: ["ethernet-serialization-delay-calculator", "bandwidth-calculator", "mtu-calculator"],
     tags: { en: ["64b/66b", "8b/10b", "FEC"], zh: ["64b/66b", "8b/10b", "FEC"], es: ["64b/66b", "8b/10b", "FEC"] },
+    heroEyebrow: { en: "LINE CODING OVERHEAD", zh: "线路编码开销", es: "SOBRECARGA DE CODIFICACIÓN" },
+    heroTags: { en: ["8b/10b", "64b/66b", "RS-FEC", "Line rate"], zh: ["8b/10b", "64b/66b", "RS-FEC", "线路速率"], es: ["8b/10b", "64b/66b", "RS-FEC", "Tasa de línea"] },
     name: { en: "Ethernet Line-Coding Overhead Calculator", zh: "以太网线路编码开销计算器", es: "Calculadora de sobrecarga de codificación Ethernet" },
     description: {
       en: "Expand a payload bit rate by the published 8b/10b, 64b/66b and RS-FEC codeword ratios.",
@@ -108,6 +114,8 @@ const tools = [
     engineGlobal: "NEL_Mathis",
     related: ["bandwidth-calculator", "ethernet-serialization-delay-calculator", "fiber-latency-calculator"],
     tags: { en: ["TCP", "BDP", "Loss"], zh: ["TCP", "BDP", "丢包"], es: ["TCP", "BDP", "Pérdida"] },
+    heroEyebrow: { en: "TCP LOSS MODEL", zh: "TCP 丢包模型", es: "MODELO TCP CON PÉRDIDA" },
+    heroTags: { en: ["MSS", "RTT", "Loss", "Delay product"], zh: ["MSS", "RTT", "丢包概率", "带宽时延积"], es: ["MSS", "RTT", "Pérdida", "Producto B-R"] },
     name: { en: "TCP Mathis Throughput Estimator", zh: "TCP Mathis 吞吐估算器", es: "Estimador de caudal TCP de Mathis" },
     description: {
       en: "Estimate the Mathis loss-based TCP ceiling and the bandwidth-delay product from MSS, RTT and loss probability.",
@@ -130,6 +138,8 @@ const tools = [
     engineGlobal: "NEL_Mm1",
     related: ["ethernet-serialization-delay-calculator", "bandwidth-calculator", "tcp-mathis-throughput-estimator"],
     tags: { en: ["M/M/1", "Queue", "Latency"], zh: ["M/M/1", "排队", "时延"], es: ["M/M/1", "Cola", "Latencia"] },
+    heroEyebrow: { en: "QUEUEING DELAY", zh: "排队时延", es: "RETARDO DE COLA" },
+    heroTags: { en: ["Arrival rate", "Service rate", "Utilization", "Sojourn"], zh: ["到达率", "服务率", "利用率", "逗留时间"], es: ["Llegadas", "Servicio", "Utilización", "Permanencia"] },
     name: { en: "M/M/1 Queue Delay Calculator", zh: "M/M/1 排队时延计算器", es: "Calculadora de retardo de cola M/M/1" },
     description: {
       en: "Calculate utilization, waiting time and sojourn time for a single M/M/1 queue from arrival and service rates.",
@@ -152,6 +162,8 @@ const tools = [
     engineGlobal: "NEL_Availability",
     related: ["pue-data-center-energy-efficiency", "ups-capacity-battery-runtime-calculator", "network-capacity-forecast-planner"],
     tags: { en: ["Availability", "MTBF", "Redundancy"], zh: ["可用度", "MTBF", "冗余"], es: ["Disponibilidad", "MTBF", "Redundancia"] },
+    heroEyebrow: { en: "PATH RELIABILITY", zh: "路径可用度", es: "DISPONIBILIDAD DE TRAYECTO" },
+    heroTags: { en: ["Series", "Parallel", "MTBF", "MTTR"], zh: ["串联", "并联", "MTBF", "MTTR"], es: ["Serie", "Paralelo", "MTBF", "MTTR"] },
     name: { en: "Path Availability Calculator", zh: "路径可用度计算器", es: "Calculadora de disponibilidad de trayecto" },
     description: {
       en: "Combine independent series or parallel availabilities, or convert MTBF and MTTR into availability and annual downtime.",
@@ -174,6 +186,8 @@ const tools = [
     engineGlobal: "NEL_FeederDrop",
     related: ["telecom-rectifier-dc-power-sizing", "poe-voltage-drop-calculator", "48v-battery-runtime"],
     tags: { en: ["DC plant", "Voltage drop", "Copper"], zh: ["直流系统", "压降", "铜导体"], es: ["Planta DC", "Caída", "Cobre"] },
+    heroEyebrow: { en: "DC POWER FEEDER", zh: "直流馈电线", es: "ALIMENTADOR DE CORRIENTE CONTINUA" },
+    heroTags: { en: ["Current", "Length", "Copper area", "Temperature"], zh: ["电流", "长度", "铜截面积", "温度"], es: ["Corriente", "Longitud", "Sección", "Temperatura"] },
     name: { en: "DC Feeder Voltage Drop Calculator", zh: "直流馈电线压降计算器", es: "Calculadora de caída en alimentador de CC" },
     description: {
       en: "Estimate two-wire or one-way DC feeder drop from current, length, copper area and temperature.",
@@ -196,6 +210,8 @@ const tools = [
     engineGlobal: "NEL_PathwayFill",
     related: ["network-rack-power-cooling-calculator", "dc-feeder-voltage-drop-calculator", "data-center-cooling-load-calculator"],
     tags: { en: ["Conduit", "Fill", "Pathway"], zh: ["导管", "填充率", "通道"], es: ["Conducto", "Llenado", "Canalización"] },
+    heroEyebrow: { en: "CABLE PATHWAY FILL", zh: "通道填充率", es: "LLENADO DE CANALIZACIÓN" },
+    heroTags: { en: ["Cable diameter", "Pathway", "Fill ratio", "Circle area"], zh: ["电缆外径", "通道内径", "填充率", "圆面积"], es: ["Diámetro", "Canalización", "Llenado", "Área circular"] },
     name: { en: "Pathway Geometric Fill Calculator", zh: "通道几何填充率计算器", es: "Calculadora geométrica de llenado de canalización" },
     description: {
       en: "Compare the circle area of cable groups with the inner area of a round pathway.",
@@ -218,6 +234,8 @@ const tools = [
     engineGlobal: "NEL_CopperDelay",
     related: ["fiber-latency-calculator", "ethernet-serialization-delay-calculator", "poe-voltage-drop-calculator"],
     tags: { en: ["Delay", "Velocity factor", "Copper"], zh: ["时延", "速度系数", "铜缆"], es: ["Retardo", "Factor de velocidad", "Cobre"] },
+    heroEyebrow: { en: "PROPAGATION DELAY", zh: "传播时延", es: "RETARDO DE PROPAGACIÓN" },
+    heroTags: { en: ["Length", "Velocity factor", "One-way delay", "Speed of light"], zh: ["长度", "速度系数", "单向时延", "光速"], es: ["Longitud", "Factor de velocidad", "Retardo", "Velocidad de la luz"] },
     name: { en: "Copper Propagation Delay Calculator", zh: "铜缆传播时延计算器", es: "Calculadora de retardo de propagación en cobre" },
     description: {
       en: "Calculate one-way propagation delay from cable length and a velocity factor you supply.",
@@ -240,6 +258,8 @@ const tools = [
     engineGlobal: "NEL_Shannon",
     related: ["wireless-link-budget-calculator", "bandwidth-calculator", "ethernet-line-coding-calculator"],
     tags: { en: ["Shannon", "SNR", "Capacity"], zh: ["香农", "信噪比", "容量"], es: ["Shannon", "SNR", "Capacidad"] },
+    heroEyebrow: { en: "CHANNEL CAPACITY", zh: "信道容量", es: "CAPACIDAD DE CANAL" },
+    heroTags: { en: ["Bandwidth", "SNR", "log2", "AWGN"], zh: ["带宽", "信噪比", "log2", "AWGN"], es: ["Ancho de banda", "SNR", "log2", "AWGN"] },
     name: { en: "Shannon AWGN Capacity Calculator", zh: "香农 AWGN 信道容量计算器", es: "Calculadora de capacidad AWGN de Shannon" },
     description: {
       en: "Calculate the AWGN channel capacity bound C = B log2(1+S/N) from bandwidth and SNR.",
@@ -1221,11 +1241,11 @@ function pageHtml(tool, locale) {
 <link rel="stylesheet" href="${locale === "en" ? "../../" : "../../../"}assets/css/tool-layout.css?v=${hash12(path.join(site, "assets/css/tool-layout.css"))}">
 <link rel="stylesheet" href="/assets/css/tool-workflow.css?v=${hash12(path.join(site, "assets/css/tool-workflow.css"))}" data-nel-workflow-style>
 </head>
-<body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-v3-migrated="1">
+<body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1">
 <a class="skip" href="#calculator">${locale === "zh" ? "跳到计算器" : locale === "es" ? "Saltar a la calculadora" : "Skip to calculator"}</a>
 ${header}
 ${ret}
-<section class="hero nel-tool-hero" aria-hidden="true"></section>
+<section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner"><p class="eyebrow">${esc(tool.heroEyebrow[locale])}</p><p class="hero-title">${esc(tool.name[locale])}</p><p>${esc(tool.description[locale])}</p><div class="hero-tags">${tool.heroTags[locale].map(tag => `<span>${esc(tag)}</span>`).join("")}</div></div></section>
 <main id="calculator" class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" data-engine="${tool.engineGlobal}" data-primary="${tool.primary}" data-nel-readout-rows=".metric">
 <div class="tool-head">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="${locale === "en" ? "../../" : "../../../" + (locale === "zh" ? "zh/" : "es/")}">${esc(text.home)}</a> <span aria-hidden="true">/</span> <a href="${locale === "en" ? "../" : "../../" + locale + "/"}">${esc(text.tools)}</a> <span aria-hidden="true">/</span> <span aria-current="page">${esc(tool.name[locale])}</span></nav>
