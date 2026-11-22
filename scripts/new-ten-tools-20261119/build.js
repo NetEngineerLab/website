@@ -1193,7 +1193,7 @@ function pageHtml(tool, locale) {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="app-base" content="${locale === "en" ? "./" : "../"}">
-<title>${esc(tool.name[locale])} | NetEngineerLab</title>
+<title>${esc(tool.name[locale])}</title>
 <meta name="description" content="${esc(tool.description[locale])}">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <link rel="icon" href="/assets/icons/favicon.svg?v=1.9.5-06" type="image/svg+xml">
