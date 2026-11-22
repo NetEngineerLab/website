@@ -14,8 +14,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif:ital@1&amp;display=swap">
-<link rel="stylesheet" href="/assets/css/fb-v3.css?v=718e11ad9233">
-<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=0e51668c3f12">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=031fae951adb">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=64bd0d9f6bcb">
 <link rel="stylesheet" href="../css/style.css?v=3e625a824a21">
 <script defer src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
 <meta name="theme-color" content="#176ff2">
@@ -95,7 +95,7 @@
 <section class="input-panel card nel-tool-input fb-panel">
 <h2 class="panel-h">输入</h2>
 <p class="hint">本页结果随输入变化。非法输入会显示原因，并清除上一组数值。</p>
-<div class="fields"><div class="field"><label for="powerDbm">放大器输出端信道功率</label><div class="inp"><input id="powerDbm" data-field="powerDbm" data-example="3" type="number" inputmode="decimal" value="0" step="any"></div></div><div class="field"><label for="gainDb">放大器增益</label><div class="inp"><input id="gainDb" data-field="gainDb" data-example="22" type="number" inputmode="decimal" value="20" step="any"></div></div><div class="field"><label for="noiseFigureDb">噪声系数</label><div class="inp"><input id="noiseFigureDb" data-field="noiseFigureDb" data-example="6" type="number" inputmode="decimal" value="5" step="any"></div></div><div class="field"><label for="frequency">光频率</label><div class="inp"><input id="frequency" data-field="frequency" data-example="193.1" type="number" inputmode="decimal" value="193.1" step="any"><select id="frequencyUnit" data-field="frequencyUnit" aria-label="光频率 unit"><option value="THz" selected>THz</option><option value="GHz">GHz</option></select></div></div><div class="field"><label for="bandwidth">参考带宽</label><div class="inp"><input id="bandwidth" data-field="bandwidth" data-example="12.5" type="number" inputmode="decimal" value="12.5" step="any"><select id="bandwidthUnit" data-field="bandwidthUnit" aria-label="参考带宽 unit"><option value="GHz" selected>GHz</option><option value="MHz">MHz</option><option value="Hz">Hz</option></select></div></div><div class="field"><label for="spans">相同跨段数</label><div class="inp"><input id="spans" data-field="spans" data-example="4" type="number" inputmode="decimal" value="1" step="any" data-probe="1" data-probe-edit="2" data-probe-invalid="0"></div></div></div>
+<div class="fields"><div class="field"><label for="powerDbm">放大器输出端信道功率</label><div class="inp input-wrap"><input id="powerDbm" data-field="powerDbm" data-example="3" type="number" inputmode="decimal" value="0" step="any"></div></div><div class="field"><label for="gainDb">放大器增益</label><div class="inp input-wrap"><input id="gainDb" data-field="gainDb" data-example="22" type="number" inputmode="decimal" value="20" step="any"></div></div><div class="field"><label for="noiseFigureDb">噪声系数</label><div class="inp input-wrap"><input id="noiseFigureDb" data-field="noiseFigureDb" data-example="6" type="number" inputmode="decimal" value="5" step="any"></div></div><div class="field"><label for="frequency">光频率</label><div class="inp input-wrap"><input id="frequency" data-field="frequency" data-example="193.1" type="number" inputmode="decimal" value="193.1" step="any"><select id="frequencyUnit" data-field="frequencyUnit" aria-label="光频率 unit"><option value="THz" selected>THz</option><option value="GHz">GHz</option></select></div></div><div class="field"><label for="bandwidth">参考带宽</label><div class="inp input-wrap"><input id="bandwidth" data-field="bandwidth" data-example="12.5" type="number" inputmode="decimal" value="12.5" step="any"><select id="bandwidthUnit" data-field="bandwidthUnit" aria-label="参考带宽 unit"><option value="GHz" selected>GHz</option><option value="MHz">MHz</option><option value="Hz">Hz</option></select></div></div><div class="field"><label for="spans">相同跨段数</label><div class="inp input-wrap"><input id="spans" data-field="spans" data-example="4" type="number" inputmode="decimal" value="1" step="any" data-probe="1" data-probe-edit="2" data-probe-invalid="0"></div></div></div>
 <p id="validation" class="validation" role="alert"></p>
 <div class="input-actions"><button id="calculateBtn" class="btn btn-primary" type="button">计算</button><button id="exampleBtn" class="btn btn-ghost" type="button">载入示例</button><button id="resetBtn" class="btn btn-ghost" type="button">重置</button></div>
 <div class="formula-card"><h3>公式</h3><code>P_ASE = N × F × h × f × (G − 1) × B; OSNR = P_channel / P_ASE.</code><p>这是规划用的工程近似，不是实验室实测，也不保证设备实际性能。</p></div>
@@ -143,6 +143,6 @@
 <script src="../js/app.js?v=13190eae6437"></script>
 <script src="../js/pwa.js"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
-<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=b786c10e6903"></script>
+<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d"></script>
 </body>
 </html>

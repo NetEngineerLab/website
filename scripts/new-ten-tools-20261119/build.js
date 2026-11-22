@@ -1128,7 +1128,7 @@ function fieldHtml(field, tool) {
   const unit = field.unitId ? `<select id="${esc(field.unitId)}" data-field="${esc(field.unitId)}" aria-label="${esc(field.label)} unit">${field.units.map((unit) => `<option value="${esc(unit)}"${unit === field.selected ? " selected" : ""}>${esc(unit)}</option>`).join("")}</select>` : "";
   const inputType = field.id === "blocks" ? "text" : "number";
   const step = inputType === "number" ? ` step="any"` : "";
-  return `<div class="field"><label for="${esc(field.id)}">${esc(field.label)}</label><div class="inp"><input id="${esc(field.id)}" data-field="${esc(field.id)}" data-example="${esc(field.example)}" type="${inputType}" inputmode="${inputType === "number" ? "decimal" : "text"}" value="${esc(field.value)}"${step}${probe}>${unit}</div></div>`;
+  return `<div class="field"><label for="${esc(field.id)}">${esc(field.label)}</label><div class="inp input-wrap"><input id="${esc(field.id)}" data-field="${esc(field.id)}" data-example="${esc(field.example)}" type="${inputType}" inputmode="${inputType === "number" ? "decimal" : "text"}" value="${esc(field.value)}"${step}${probe}>${unit}</div></div>`;
 }
 
 function pageHtml(tool, locale) {

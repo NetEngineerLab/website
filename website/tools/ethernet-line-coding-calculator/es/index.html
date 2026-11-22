@@ -14,8 +14,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif:ital@1&amp;display=swap">
-<link rel="stylesheet" href="/assets/css/fb-v3.css?v=718e11ad9233">
-<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=0e51668c3f12">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=031fae951adb">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=64bd0d9f6bcb">
 <link rel="stylesheet" href="../css/style.css?v=3e625a824a21">
 <script defer src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
 <meta name="theme-color" content="#176ff2">
@@ -95,7 +95,7 @@
 <section class="input-panel card nel-tool-input fb-panel">
 <h2 class="panel-h">Datos</h2>
 <p class="hint">El resultado sigue a los datos. Un dato no válido explica el motivo y borra el valor anterior.</p>
-<div class="fields"><div class="field"><label for="payload">Tasa útil</label><div class="inp"><input id="payload" data-field="payload" data-example="100" type="number" inputmode="decimal" value="10" step="any" data-probe="1" data-probe-edit="40" data-probe-invalid="0"><select id="payloadUnit" data-field="payloadUnit" aria-label="Tasa útil unit"><option value="Gbps" selected>Gbps</option><option value="Mbps">Mbps</option><option value="Tbps">Tbps</option></select></div></div><div class="field"><label for="code">Código de línea</label><select id="code" data-field="code" data-example="64b66b-rs544"><option value="8b10b">8b/10b</option><option value="64b66b" selected>64b/66b</option><option value="64b66b-rs528">64b/66b + RS(528,514)</option><option value="64b66b-rs544">64b/66b + RS(544,514)</option></select></div></div>
+<div class="fields"><div class="field"><label for="payload">Tasa útil</label><div class="inp input-wrap"><input id="payload" data-field="payload" data-example="100" type="number" inputmode="decimal" value="10" step="any" data-probe="1" data-probe-edit="40" data-probe-invalid="0"><select id="payloadUnit" data-field="payloadUnit" aria-label="Tasa útil unit"><option value="Gbps" selected>Gbps</option><option value="Mbps">Mbps</option><option value="Tbps">Tbps</option></select></div></div><div class="field"><label for="code">Código de línea</label><select id="code" data-field="code" data-example="64b66b-rs544"><option value="8b10b">8b/10b</option><option value="64b66b" selected>64b/66b</option><option value="64b66b-rs528">64b/66b + RS(528,514)</option><option value="64b66b-rs544">64b/66b + RS(544,514)</option></select></div></div>
 <p id="validation" class="validation" role="alert"></p>
 <div class="input-actions"><button id="calculateBtn" class="btn btn-primary" type="button">Calcular</button><button id="exampleBtn" class="btn btn-ghost" type="button">Cargar ejemplo</button><button id="resetBtn" class="btn btn-ghost" type="button">Restablecer</button></div>
 <div class="formula-card"><h3>Fórmula</h3><code>Line rate = payload × (code bits / payload bits). RS-FEC multiplies an extra codeword ratio.</code><p>Es una aproximación de ingeniería para planificación. No es una medición de laboratorio ni garantiza el rendimiento del equipo.</p></div>
@@ -143,6 +143,6 @@
 <script src="../js/app.js?v=13190eae6437"></script>
 <script src="../js/pwa.js"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
-<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=b786c10e6903"></script>
+<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d"></script>
 </body>
 </html>

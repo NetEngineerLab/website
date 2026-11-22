@@ -14,8 +14,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif:ital@1&amp;display=swap">
-<link rel="stylesheet" href="/assets/css/fb-v3.css?v=718e11ad9233">
-<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=0e51668c3f12">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=031fae951adb">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=64bd0d9f6bcb">
 <link rel="stylesheet" href="../css/style.css?v=3e625a824a21">
 <script defer src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
 <meta name="theme-color" content="#176ff2">
@@ -95,7 +95,7 @@
 <section class="input-panel card nel-tool-input fb-panel">
 <h2 class="panel-h">输入</h2>
 <p class="hint">本页结果随输入变化。非法输入会显示原因，并清除上一组数值。</p>
-<div class="fields"><div class="field"><label for="mss">TCP MSS</label><div class="inp"><input id="mss" data-field="mss" data-example="1460" type="number" inputmode="decimal" value="1460" step="any"></div></div><div class="field"><label for="rtt">往返时间</label><div class="inp"><input id="rtt" data-field="rtt" data-example="20" type="number" inputmode="decimal" value="40" step="any" data-probe="1" data-probe-edit="80" data-probe-invalid="0"><select id="rttUnit" data-field="rttUnit" aria-label="往返时间 unit"><option value="ms" selected>ms</option><option value="us">us</option><option value="s">s</option></select></div></div><div class="field"><label for="loss">丢包</label><div class="inp"><input id="loss" data-field="loss" data-example="0.0001" type="number" inputmode="decimal" value="0.01" step="any"><select id="lossUnit" data-field="lossUnit" aria-label="丢包 unit"><option value="percent" selected>percent</option><option value="probability">probability</option></select></div></div><div class="field"><label for="link">用于带宽时延积的可选链路速率</label><div class="inp"><input id="link" data-field="link" data-example="10000" type="number" inputmode="decimal" value="1000" step="any"><select id="linkUnit" data-field="linkUnit" aria-label="用于带宽时延积的可选链路速率 unit"><option value="Mbps" selected>Mbps</option><option value="Gbps">Gbps</option><option value="Kbps">Kbps</option></select></div></div></div>
+<div class="fields"><div class="field"><label for="mss">TCP MSS</label><div class="inp input-wrap"><input id="mss" data-field="mss" data-example="1460" type="number" inputmode="decimal" value="1460" step="any"></div></div><div class="field"><label for="rtt">往返时间</label><div class="inp input-wrap"><input id="rtt" data-field="rtt" data-example="20" type="number" inputmode="decimal" value="40" step="any" data-probe="1" data-probe-edit="80" data-probe-invalid="0"><select id="rttUnit" data-field="rttUnit" aria-label="往返时间 unit"><option value="ms" selected>ms</option><option value="us">us</option><option value="s">s</option></select></div></div><div class="field"><label for="loss">丢包</label><div class="inp input-wrap"><input id="loss" data-field="loss" data-example="0.0001" type="number" inputmode="decimal" value="0.01" step="any"><select id="lossUnit" data-field="lossUnit" aria-label="丢包 unit"><option value="percent" selected>percent</option><option value="probability">probability</option></select></div></div><div class="field"><label for="link">用于带宽时延积的可选链路速率</label><div class="inp input-wrap"><input id="link" data-field="link" data-example="10000" type="number" inputmode="decimal" value="1000" step="any"><select id="linkUnit" data-field="linkUnit" aria-label="用于带宽时延积的可选链路速率 unit"><option value="Mbps" selected>Mbps</option><option value="Gbps">Gbps</option><option value="Kbps">Kbps</option></select></div></div></div>
 <p id="validation" class="validation" role="alert"></p>
 <div class="input-actions"><button id="calculateBtn" class="btn btn-primary" type="button">计算</button><button id="exampleBtn" class="btn btn-ghost" type="button">载入示例</button><button id="resetBtn" class="btn btn-ghost" type="button">重置</button></div>
 <div class="formula-card"><h3>公式</h3><code>Rate &lt; (MSS × 8) / (RTT × √p). BDP bytes = link bit rate × RTT / 8.</code><p>这是规划用的工程近似，不是实验室实测，也不保证设备实际性能。</p></div>
@@ -143,6 +143,6 @@
 <script src="../js/app.js?v=13190eae6437"></script>
 <script src="../js/pwa.js"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
-<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=b786c10e6903"></script>
+<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d"></script>
 </body>
 </html>
