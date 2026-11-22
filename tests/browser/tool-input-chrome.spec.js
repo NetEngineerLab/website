@@ -58,9 +58,14 @@ test.describe("tool input chrome and localized results", () => {
             if (style.display === "none" || style.visibility === "hidden") continue;
             const rect = el.getBoundingClientRect();
             if (rect.width < 2 || rect.height < 2) continue;
-            const chrome = el.closest(".input, .input-wrap") || el;
-            const box = getComputedStyle(chrome);
-            const width = ["Top", "Right", "Bottom", "Left"].reduce((sum, side) => sum + parseFloat(box[`border${side}Width`]) || 0, 0);
+            const wrap = el.closest(".input, .input-wrap");
+            const borderWidth = node => {
+              const box = getComputedStyle(node);
+              return ["Top", "Right", "Bottom", "Left"].reduce((sum, side) => sum + parseFloat(box[`border${side}Width`]) || 0, 0);
+            };
+            // Some calculators put the one visible border on the control and clear the wrap
+            // so the field does not draw two boxes. Either surface satisfies the chrome.
+            const width = Math.max(wrap ? borderWidth(wrap) : 0, borderWidth(el));
             if (!(width > 0)) issues.push(`border ${el.id || el.name || el.dataset.key || type}`);
             const named = el.labels && [...el.labels].some(label => label.textContent.replace(el.value || "", "").trim());
             const field = el.closest(".field, .form-group, .control-group, label");

@@ -113,5 +113,5 @@
   document.getElementById('sample').addEventListener('click', function () {
     fill('10.0.0.0/24\n10.0.1.0/24\n10.0.0.0/25');
   });
-  run();
+  fill('10.0.0.0/24\n10.0.1.0/24\n10.0.0.0/25');
 })();

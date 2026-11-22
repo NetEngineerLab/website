@@ -56,7 +56,7 @@ for(const folder of ["","zh/","es/"]){
     await expect(page.locator("#bufferSize")).toHaveText("—");
     await expect(page.locator("#copyBtn")).toBeDisabled();
     await fill(page,"paramsBillion","0.001");
-    await expect(page.locator("#bufferSize")).toHaveText("2.000 MB");
+    await expect(page.locator("#bufferSize")).toHaveText(/^2\.000\s*MB$/);
     await expect(page.locator("#paramsBillion")).not.toHaveAttribute("aria-invalid","true");
     await expect(page.locator("#copyBtn")).toBeEnabled();
     await fill(page,"ranks",1);

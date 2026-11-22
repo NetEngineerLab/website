@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-otdr-event-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-70a9126ff026-b59e65de76a3-sitec957f6562d31";
+const CACHE = "nel-otdr-event-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-67ce7f68d040";
 const CORE = [
   "./index.html",
   "./",
@@ -10,7 +10,7 @@ const CORE = [
   "../../assets/css/tool-layout.css?v=c4aecb2c24ab",
   "../../assets/css/fieldbook.css?v=a3bb21511014",
   "./js/engine.js",
-  "./js/app.js?v=d9a873a9cd08",
+  "./js/app.js?v=2c91dc019cad",
   "./images/logo.svg",
   "../../assets/css/mobile-branding.css?v=345784b6b020",
   "../../data/seo-config.js",
@@ -19,7 +19,6 @@ const CORE = [
   "../../assets/icons/favicon-32x32.png?v=1.9.5-06",
   "../../favicon.ico?v=1.9.5-06",
   "../../assets/icons/apple-touch-icon.png?v=1.9.5-06",
-  "../../assets/css/tool-layout.css?v=c4aecb2c24ab",
   "../../assets/images/logo.svg",
   "./js/pwa.js",
   "../../assets/js/es-launch-runtime.js?v=26766a85d049",
@@ -27,6 +26,7 @@ const CORE = [
   "../../assets/js/es-launch-runtime.js?v=c7c562a25b80",
   "../../assets/js/es-launch-runtime.js?v=b69809c86108",
   "../../assets/js/es-launch-runtime.js?v=3f188aa72208",
+  "../../assets/js/es-launch-runtime.js?v=829a7f1559b7",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
@@ -34,15 +34,15 @@ const CORE = [
   "../../assets/css/site-shell.css?v=475098aa29f5",
   "../../assets/css/tool-design-system.css?v=fbfd8fc05bdc",
   "../../assets/css/tool-workflow.css?v=8c74b394ef2c",
-  "../../assets/css/fb-v3.css?v=718e11ad9233",
-  "../../assets/css/fb-v3-prod.css?v=0e51668c3f12",
+  "../../assets/css/fb-v3.css?v=031fae951adb",
+  "../../assets/css/fb-v3-prod.css?v=64bd0d9f6bcb",
   "../../assets/js/tool-v3-navigation.js?v=b8d825e0f678",
   "../../assets/js/tool-detail-v3.js?v=6f38212f00f3",
   "../../assets/js/analytics.js?v=1156b7864023",
   "../../assets/js/adsense.js?v=f075c80ccc75",
-  "../../assets/js/site.js?v=f55d6161a761",
+  "../../assets/js/site.js?v=c957f6562d31",
   "../../assets/js/tool-integration.js?v=05f7934f4687",
-  "../../assets/js/tool-shell-v1.9.9-04.js?v=b786c10e6903",
+  "../../assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d",
   "../../assets/css/cookie-consent.css?v=2f2c8ab643e6",
   "../../assets/js/cookie-consent.js?v=5e6d1af21a6a",
   "../../assets/js/rules-engine/normalize.js?v=9e2cb44bca10",
@@ -56,9 +56,7 @@ const CORE = [
   "./manifest-zh.webmanifest",
   "./es/",
   "./es/index.html",
-  "./manifest-es.webmanifest",
-  "../../assets/css/tool-layout.css?v=c4aecb2c24ab",
-  "../../assets/js/es-launch-runtime.js?v=829a7f1559b7"
+  "./manifest-es.webmanifest"
 ];
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)));

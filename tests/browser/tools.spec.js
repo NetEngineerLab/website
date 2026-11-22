@@ -48,6 +48,7 @@ const calculationOutputs={
   ,"odf-odn-resource-planner":["#ponPorts","—"]
   ,"ospf-cost-calculator":["#totalCost","—"]
   ,"network-capacity-forecast-planner":["#headline","—"]
+  ,"route-summarization-calculator":["#summaryList",""]
 };
 const contentContracts={
   "fiber-loss":{
