@@ -1275,7 +1275,7 @@ ${table}
 <details class="fb-fold blk" id="about-scope" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span class="fb-fold-title">${esc(text.about)}</span></summary><div class="fb-fold-body"><p>${esc(info.about[locale])}</p><p>${esc(text.approx)}</p><p class="about-meta">${esc(text.reviewed)}</p></div></details>
 <details class="fb-fold blk" id="methodology" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span class="fb-fold-title">${esc(text.method)}</span></summary><div class="fb-fold-body"><p class="eq">${esc(info.formula)}</p><p>${esc(info.method[locale])}</p></div></details>
 <div class="blk faq" id="faq"><h2>${esc(text.faq)}</h2>${faq}</div>
-<section class="blk" id="references"><h2>${esc(text.refs)}</h2><ul class="rel">${refs}</ul><h3>${locale === "zh" ? "相关工具" : locale === "es" ? "Herramientas relacionadas" : "Related tools"}</h3><ul class="rel">${related}</ul></section>
+<section class="blk" id="references"><h2>${esc(text.refs)}</h2><ul class="rel">${refs}</ul></section>
 ${graph}
 </div>
 </div>
