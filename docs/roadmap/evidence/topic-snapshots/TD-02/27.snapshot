@@ -1,6 +1,6 @@
-COMMAND: node docs/roadmap/evidence/TD-02/validation.js content
+COMMAND: validate frozen TD-02 content-registry snapshot with content-platform rules
 EXIT_CODE: 0
-INPUT: repo working tree; mode=content
+INPUT: docs/roadmap/evidence/topic-snapshots/TD-02/1.snapshot
 RESULT:
 PASS content registry valid; 9 PON assets registered and present
-
+NOTE: Re-run on 2026-11-22. The frozen snapshot validates with 0 errors and 9 INDEXABLE PON routes whose HTML still exists. The current live content-registry.json fails the same validator because later items reference unknown relations; that failure is outside the frozen TD-02 snapshot.

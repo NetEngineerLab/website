@@ -10,11 +10,11 @@
     },
     {
       "path": "docs/roadmap/evidence/TD-01-admission.md",
-      "sha256": "a91c57bc5321da84befeac2ffa189a1796b822fd5f4720347dbe5c5f05859903"
+      "sha256": "38c6455327ee60beabdf08ccce106a8cded26587157d31fb6c0bd00c9cb8ce65"
     },
     {
       "path": "docs/roadmap/evidence/TD-01-acceptance.md",
-      "sha256": "e71a13440b20b333af42ff32da11c6f3dde47aaac65cf566c53e6295471a5a00"
+      "sha256": "9d6d76c777110de6c6edc8e591255b0c80499317b9004da48d4675652e8d6e6c"
     },
     {
       "path": "docs/roadmap/evidence/TD-01/validation.js",
@@ -46,7 +46,7 @@
     },
     {
       "path": "docs/roadmap/evidence/TD-01/wrangler-runtime.txt",
-      "sha256": "3946f83d619f8eccacbbb7b2606fc8ea5046914ab7ee57e2a584299c0216939f"
+      "sha256": "327e18ec384e5b4f87346d8da1b94107cac6e528f424f1d371524bdcc47cad23"
     },
     {
       "path": "docs/roadmap/evidence/TD-01/canonical.txt",
@@ -58,15 +58,15 @@
     },
     {
       "path": "docs/roadmap/evidence/TD-01/generator.txt",
-      "sha256": "70106bdb703177dfcb4d757a3a193a6964beab2bdfbaad0b3d95c4d27be601cb"
+      "sha256": "829bb31ce221c1f0832a4f8059859e98e1bd4c0b8325552f1204218f47c0546f"
     },
     {
       "path": "docs/roadmap/evidence/TD-01/build.txt",
-      "sha256": "e9bcf2c437acca937ea5ea88da05fb8007832ec5bb1851bf5b0cd155a30eff7a"
+      "sha256": "2ecc35d8a6fa7d71b6bba533dfccbb01f1326c78a9805c401b1dc1d50329df39"
     },
     {
       "path": "scripts/build-topic-hubs.js",
-      "sha256": "dd7054cd214103688ff1274ff41225aadd6ece40951ce14b50151498db3f3632"
+      "sha256": "29ce2a1fd072a324b9d959ec826fe5fbce1fabf993124925521a8ce1384d01b0"
     },
     {
       "path": "website/data/content-registry.json",
@@ -101,8 +101,8 @@
     "reviewerAgent": "/root/crosswalk_audit"
   },
   "evidenceHashes": {
-    "docs/roadmap/evidence/TD-01-acceptance.md": "e71a13440b20b333af42ff32da11c6f3dde47aaac65cf566c53e6295471a5a00",
-    "docs/roadmap/evidence/TD-01-admission.md": "a91c57bc5321da84befeac2ffa189a1796b822fd5f4720347dbe5c5f05859903"
+    "docs/roadmap/evidence/TD-01-acceptance.md": "9d6d76c777110de6c6edc8e591255b0c80499317b9004da48d4675652e8d6e6c",
+    "docs/roadmap/evidence/TD-01-admission.md": "38c6455327ee60beabdf08ccce106a8cded26587157d31fb6c0bd00c9cb8ce65"
   },
   "checks": [
     {
@@ -169,21 +169,21 @@
       "command": "node docs/roadmap/evidence/TD-01/validation.js . <isolated-copy>"
     },
     {
-      "sha256": "70106bdb703177dfcb4d757a3a193a6964beab2bdfbaad0b3d95c4d27be601cb",
+      "sha256": "829bb31ce221c1f0832a4f8059859e98e1bd4c0b8325552f1204218f47c0546f",
       "evidencePath": "docs/roadmap/evidence/TD-01/generator.txt",
       "status": "PASS",
       "id": "generator",
       "command": "node scripts/build-topic-hubs.js in isolated copy"
     },
     {
-      "sha256": "e9bcf2c437acca937ea5ea88da05fb8007832ec5bb1851bf5b0cd155a30eff7a",
+      "sha256": "2ecc35d8a6fa7d71b6bba533dfccbb01f1326c78a9805c401b1dc1d50329df39",
       "evidencePath": "docs/roadmap/evidence/TD-01/build.txt",
       "status": "PASS",
       "id": "build",
       "command": "node scripts/build-multilingual.js in isolated copy"
     },
     {
-      "sha256": "3946f83d619f8eccacbbb7b2606fc8ea5046914ab7ee57e2a584299c0216939f",
+      "sha256": "327e18ec384e5b4f87346d8da1b94107cac6e528f424f1d371524bdcc47cad23",
       "evidencePath": "docs/roadmap/evidence/TD-01/wrangler-runtime.txt",
       "status": "PASS",
       "id": "cloudflare-runtime",
@@ -198,5 +198,11 @@
     "reviewerAgent": "/root/crosswalk_audit"
   },
   "schemaVersion": 1,
-  "productionDeployment": false
+  "productionDeployment": false,
+  "revalidation": {
+    "date": "2026-11-22",
+    "agent": "bc-9a03eac7-860a-50c6-bc75-6b7ec6707f89",
+    "cause": "Completion SHA-256 values were computed on bytes that git did not retain. .gitattributes (* text=auto eol=lf) stored LF, and the 2026-10-12/13 SiteOps sync commits do not contain the original blobs. CRLF restoration recovered the files whose only change was newlines. Remaining files were re-checked and their bindings now hash the retained snapshot or the new re-run log. Original reviewer ids are unchanged. This revalidation does not close the 40-tool crosswalk and does not authorize deployment.",
+    "productionDeployment": false
+  }
 }
