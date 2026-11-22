@@ -14,6 +14,13 @@ const site = path.resolve(__dirname, "../../..");
 function assetQuery(rel) {
   return rel + "?v=" + stableFileHash(path.join(site, rel), 12);
 }
+const {parsePrecacheAssets} = require("../../../../scripts/service-worker-precache");
+const swScope = "https://netengineerlab.com/tools/fiber-latency-calculator/sw.js";
+const precache = parsePrecacheAssets(fs.readFileSync(path.join(root, "sw.js"), "utf8"));
+assert.ok(precache.length > 0, "service worker install precaches the declared assets");
+const requestUrls = precache.map(asset => new URL(asset, swScope).href);
+assert.strictEqual(new Set(requestUrls).size, requestUrls.length, "Cache.addAll must not receive duplicate requests");
+
 const engineHash = crypto.createHash("sha256").update(fs.readFileSync(path.join(root, "js/engine.js"))).digest("hex");
 assert.strictEqual(engineHash, "11269b52819a4b507b567b6a2ee94d2069cb00d7cb0831cbfe19bd07b4d5df12");
 

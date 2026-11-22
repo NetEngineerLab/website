@@ -88,11 +88,7 @@ const SHARE_KEYS = ["project", "distance", "unit", "factor", "ng", "preset", "de
 let lastResult = null;
 
 function numberValue(id){
-  return Number.parseFloat($(id).value);
-}
-
-function integerValue(id){
-  return Number.parseInt($(id).value, 10);
+  return $(id).valueAsNumber;
 }
 
 function readRaw(){
@@ -118,11 +114,11 @@ function readInputs(){
     distanceUnit: $("distanceUnit").value,
     routeFactor: numberValue("routeFactor"),
     groupIndex: numberValue("groupIndex"),
-    equipmentCount: integerValue("equipmentCount"),
+    equipmentCount: numberValue("equipmentCount"),
     equipmentDelay: numberValue("equipmentDelay"),
     packetSize: numberValue("packetSize"),
     linkRate: numberValue("linkRate"),
-    serializationHops: integerValue("serializationHops")
+    serializationHops: numberValue("serializationHops")
   };
 }
 
@@ -203,7 +199,7 @@ function comparisonRows(result){
   ].map(([label, us, digits]) => ({ label, value: formatUsPerKm(us, digits), unit: "µs/km" }));
 }
 
-const RESULT_IDS = ["oneWay","rtt","fiberLength","propagation","equipment","serialization","usPerKm","speed","fractionC","versusVacuum"];
+const RESULT_IDS = ["oneWay","rtt","fiberLength","propagation","equipment","serialization","usPerKm","speed","fractionC","versusVacuum","mbar-val","mbar-rtt"];
 const INPUT_IDS = ["distance","routeFactor","groupIndex","equipmentCount","equipmentDelay","packetSize","linkRate","serializationHops"];
 
 function markInvalidFields(values){
@@ -217,19 +213,20 @@ function markInvalidFields(values){
     linkRate: Number.isFinite(values.linkRate) && values.linkRate > 0,
     serializationHops: Number.isSafeInteger(values.serializationHops) && values.serializationHops >= 0
   };
+  let valid = true;
   for (const id of INPUT_IDS){
     const field = $(id);
-    if (!field) continue;
-    const invalid = checks[id] === false;
+    const invalid = !checks[id] || !field.validity.valid;
+    if (invalid) valid = false;
     field.setAttribute("aria-invalid", invalid ? "true" : "false");
     field.style.outline = invalid ? "2px solid #b42318" : "";
   }
+  return valid;
 }
 
 function clearResults(){
   lastResult = null;
   for (const id of RESULT_IDS) setText(id, "—");
-  setMbar("—", "");
   const body = $("comparisonBody");
   if (body) body.replaceChildren();
   setExportEnabled(false);
@@ -241,13 +238,12 @@ function calculate(){
   const values = readInputs();
   const result = window.NELFiberLatencyEngine.calculate(values);
   window.__lastDomainResult=result;
-  if (!result.ok){
+  const fieldsValid = markInvalidFields(values);
+  if (!result.ok || !fieldsValid){
     clearResults();
-    markInvalidFields(values);
     setValidation(text.validation);
     return;
   }
-  markInvalidFields(values);
   setValidation("");
   lastResult = {...values, ...result, raw: readRaw(), presetLabel: optionText("groupIndexPreset"), timestamp: new Date().toISOString()};
   setText("oneWay", result.oneWayText);

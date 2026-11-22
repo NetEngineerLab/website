@@ -91,6 +91,31 @@ for (const [locale, route] of calculatorLocales) {
   });
 }
 
+for (const [locale, route] of calculatorLocales){
+  test(`fiber latency rejects invalid device and hop counts ${locale}`, async ({page}) => {
+    await page.goto(route, {waitUntil: "domcontentloaded"});
+    await expect(page.locator("#oneWay")).toHaveText("490.87 µs");
+    for (const id of ["equipmentCount", "serializationHops"]){
+      for (const value of ["1.5", "-1", ""]){
+        const field = page.locator("#" + id);
+        await field.fill(value);
+        await page.locator("#calculateBtn").click();
+        await expect(field).toHaveAttribute("aria-invalid", "true");
+        await expect(page.locator("#validationMessage")).not.toHaveText("");
+        for (const result of await page.locator("#oneWay,#rtt,#mbar-val,#mbar-rtt").all()){
+          await expect(result).toHaveText("—");
+        }
+        await expect(page.locator("#comparisonBody tr")).toHaveCount(0);
+        for (const button of await page.locator("#copyBtn,#saveBtn,#csvBtn").all()){
+          await expect(button).toBeDisabled();
+        }
+        await page.locator("#resetBtn").click();
+        await expect(page.locator("#oneWay")).toHaveText("490.87 µs");
+      }
+    }
+  });
+}
+
 const csvHeaders = {
   en: ["Field","Value","Unit"],
   zh: ["字段","数值","单位"],
@@ -299,6 +324,41 @@ for (const [locale, route, shareLabel, opticalPath, opticalName] of [
     await expect(page.locator("#csvBtn")).toBeEnabled();
     await expect(page.locator("#printBtn")).toBeEnabled();
     await expect(page.locator("link[rel='canonical']")).toHaveAttribute("href", `https://netengineerlab.com${route}`);
+  });
+}
+
+for (const [locale, route] of calculatorLocales){
+  test(`fiber latency cold offline shared URL ${locale}`, async ({page, context}) => {
+    await page.goto(calculatorLocales[0][1], {waitUntil: "domcontentloaded"});
+    await page.waitForFunction(() => navigator.serviceWorker.controller?.state === "activated");
+
+    const params = new URLSearchParams({
+      project: 'Offline, "West" link', distance: "80", unit: "km", factor: "1",
+      ng: "1.468", preset: "1.468", devices: "2", delay: "5",
+      bytes: "1500", rate: "10", hops: "1"
+    });
+    const offline = await context.newPage();
+    await context.setOffline(true);
+    const response = await offline.goto(route + "?" + params + "#result", {waitUntil: "domcontentloaded"});
+    expect(response?.status()).toBe(200);
+    expect(response?.fromServiceWorker()).toBe(true);
+    await expect(offline.locator("#oneWay")).toHaveText("402.94 µs");
+    await expect(offline.locator("#rtt")).toHaveText("805.88 µs");
+    for (const [id, value] of Object.entries({
+      projectName: params.get("project"), distance: "80", distanceUnit: "km", routeFactor: "1",
+      groupIndex: "1.468", groupIndexPreset: "1.468", equipmentCount: "2", equipmentDelay: "5",
+      packetSize: "1500", linkRate: "10", serializationHops: "1"
+    })) await expect(offline.locator("#" + id)).toHaveValue(value);
+    const resources = await offline.evaluate(async () => {
+      const app = document.querySelector("script[src*='/app.js?v='], script[src^='js/app.js?v=']");
+      const style = document.querySelector("link[href*='/css/style.css?v='], link[href^='css/style.css?v=']");
+      const keys = await caches.keys();
+      const name = keys.find(key => key.startsWith("nel-fiber-latency-calculator-locale-"));
+      if (!app || !style || !name) return [];
+      const cache = await caches.open(name);
+      return Promise.all([app.src, style.href].map(async url => Boolean(await cache.match(url))));
+    });
+    expect(resources).toEqual([true, true]);
   });
 }
 
