@@ -1209,11 +1209,11 @@ function pageHtml(tool, locale) {
 <script defer src="/assets/js/tool-v3-navigation.js?v=${hash12(path.join(site, "assets/js/tool-v3-navigation.js"))}"></script>
 <meta name="theme-color" content="#176ff2">
 <meta property="og:url" content="${url}">
-<meta property="og:title" content="${esc(tool.name[locale])} | NetEngineerLab">
+<meta property="og:title" content="${esc(tool.name[locale])}">
 <meta property="og:description" content="${esc(tool.description[locale])}">
 <meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="${esc(tool.name[locale])} | NetEngineerLab">
+<meta name="twitter:title" content="${esc(tool.name[locale])}">
 <meta name="twitter:description" content="${esc(tool.description[locale])}">
 <meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 <script type="application/ld+json" data-nel-schema="webpage">${JSON.stringify({ "@context": "https://schema.org", "@type": "WebPage", name: tool.name[locale], url, description: tool.description[locale], inLanguage: lang, isPartOf: { "@type": "WebSite", name: "NetEngineerLab", url: "https://netengineerlab.com/" } })}</script>
