@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="app-base" content="../">
-<title>路径可用度计算器</title>
+<title>端到端路径可用度计算器</title>
 <meta name="description" content="把相互独立的串联或并联可用度合成，或把 MTBF 与 MTTR 换成可用度和年停机时间。">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <link rel="icon" href="/assets/icons/favicon.svg?v=1.9.5-06" type="image/svg+xml">
@@ -20,14 +20,14 @@
 <script defer src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
 <meta name="theme-color" content="#176ff2">
 <meta property="og:url" content="https://netengineerlab.com/tools/path-availability-calculator/zh/">
-<meta property="og:title" content="路径可用度计算器 | NetEngineerLab">
+<meta property="og:title" content="端到端路径可用度计算器 | NetEngineerLab">
 <meta property="og:description" content="把相互独立的串联或并联可用度合成，或把 MTBF 与 MTTR 换成可用度和年停机时间。">
 <meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="路径可用度计算器 | NetEngineerLab">
+<meta name="twitter:title" content="端到端路径可用度计算器 | NetEngineerLab">
 <meta name="twitter:description" content="把相互独立的串联或并联可用度合成，或把 MTBF 与 MTTR 换成可用度和年停机时间。">
 <meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
-<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"路径可用度计算器","url":"https://netengineerlab.com/tools/path-availability-calculator/zh/","description":"把相互独立的串联或并联可用度合成，或把 MTBF 与 MTTR 换成可用度和年停机时间。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"端到端路径可用度计算器","url":"https://netengineerlab.com/tools/path-availability-calculator/zh/","description":"把相互独立的串联或并联可用度合成，或把 MTBF 与 MTTR 换成可用度和年停机时间。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
 <meta name="nel-route" content="tools/path-availability-calculator/">
@@ -37,8 +37,8 @@
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/path-availability-calculator/zh/">
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/path-availability-calculator/es/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/path-availability-calculator/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"工具","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"路径可用度计算器","item":"https://netengineerlab.com/tools/path-availability-calculator/zh/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"路径可用度计算器","url":"https://netengineerlab.com/tools/path-availability-calculator/zh/","description":"把相互独立的串联或并联可用度合成，或把 MTBF 与 MTTR 换成可用度和年停机时间。","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"工具","item":"https://netengineerlab.com/tools/"},{"@type":"ListItem","position":3,"name":"端到端路径可用度计算器","item":"https://netengineerlab.com/tools/path-availability-calculator/zh/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"端到端路径可用度计算器","url":"https://netengineerlab.com/tools/path-availability-calculator/zh/","description":"把相互独立的串联或并联可用度合成，或把 MTBF 与 MTTR 换成可用度和年停机时间。","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"并联是否总是高于串联？","acceptedAnswer":{"@type":"Answer","text":"对同一组独立分块，并联合成更高。"}},{"@type":"Question","name":"可用度可以正好是 1 吗？","acceptedAnswer":{"@type":"Answer","text":"可以。此时本模型的停机时间为 0。"}},{"@type":"Question","name":"为什么拒绝 0？","acceptedAnswer":{"@type":"Answer","text":"零可用度需要另一套失效模型。"}},{"@type":"Question","name":"0.999999 是实测 SLA 吗？","acceptedAnswer":{"@type":"Answer","text":"不是。它是两个 0.999 分块的运算结果。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
@@ -81,14 +81,14 @@
   <span aria-hidden="true">/</span>
   <a class="tool-return-link" href="../../zh/">工具</a>
   <span aria-hidden="true">/</span>
-  <span aria-current="page">路径可用度计算器</span>
+  <span aria-current="page">端到端路径可用度计算器</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
-<section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner"><p class="eyebrow">路径可用度</p><p class="hero-title">路径可用度计算器</p><p>把相互独立的串联或并联可用度合成，或把 MTBF 与 MTTR 换成可用度和年停机时间。</p><div class="hero-tags"><span>串联</span><span>并联</span><span>MTBF</span><span>MTTR</span></div></div></section>
+<section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner"><p class="eyebrow">路径可用度</p><p class="hero-title">端到端路径可用度计算器</p><p>把相互独立的串联或并联可用度合成，或把 MTBF 与 MTTR 换成可用度和年停机时间。</p><div class="hero-tags"><span>串联</span><span>并联</span><span>MTBF</span><span>MTTR</span></div></div></section>
 <main id="calculator" class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" data-engine="NEL_Availability" data-primary="availability" data-nel-readout-rows=".metric">
 <div class="tool-head">
-<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../zh/">首页</a> <span aria-hidden="true">/</span> <a href="../../zh/">工具</a> <span aria-hidden="true">/</span> <span aria-current="page">路径可用度计算器</span></nav>
-<h1 class="tool-page-label">路径可用度计算器</h1>
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../zh/">首页</a> <span aria-hidden="true">/</span> <a href="../../zh/">工具</a> <span aria-hidden="true">/</span> <span aria-current="page">端到端路径可用度计算器</span></nav>
+<h1 class="tool-page-label">端到端路径可用度计算器</h1>
 <p class="tool-lede">把相互独立的串联或并联可用度合成，或把 MTBF 与 MTTR 换成可用度和年停机时间。</p>
 </div>
 <div class="workspace">

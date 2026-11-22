@@ -164,7 +164,7 @@ const tools = [
     tags: { en: ["Availability", "MTBF", "Redundancy"], zh: ["可用度", "MTBF", "冗余"], es: ["Disponibilidad", "MTBF", "Redundancia"] },
     heroEyebrow: { en: "PATH RELIABILITY", zh: "路径可用度", es: "DISPONIBILIDAD DE TRAYECTO" },
     heroTags: { en: ["Series", "Parallel", "MTBF", "MTTR"], zh: ["串联", "并联", "MTBF", "MTTR"], es: ["Serie", "Paralelo", "MTBF", "MTTR"] },
-    name: { en: "Path Availability Calculator", zh: "路径可用度计算器", es: "Calculadora de disponibilidad de trayecto" },
+    name: { en: "Path Availability Calculator", zh: "端到端路径可用度计算器", es: "Calculadora de disponibilidad de trayecto" },
     description: {
       en: "Combine independent series or parallel availabilities, or convert MTBF and MTTR into availability and annual downtime.",
       zh: "把相互独立的串联或并联可用度合成，或把 MTBF 与 MTTR 换成可用度和年停机时间。",
@@ -188,7 +188,7 @@ const tools = [
     tags: { en: ["DC plant", "Voltage drop", "Copper"], zh: ["直流系统", "压降", "铜导体"], es: ["Planta DC", "Caída", "Cobre"] },
     heroEyebrow: { en: "DC POWER FEEDER", zh: "直流馈电线", es: "ALIMENTADOR DE CORRIENTE CONTINUA" },
     heroTags: { en: ["Current", "Length", "Copper area", "Temperature"], zh: ["电流", "长度", "铜截面积", "温度"], es: ["Corriente", "Longitud", "Sección", "Temperatura"] },
-    name: { en: "DC Feeder Voltage Drop Calculator", zh: "直流馈电线压降计算器", es: "Calculadora de caída en alimentador de CC" },
+    name: { en: "DC Feeder Voltage Drop Calculator", zh: "直流馈电线电压降计算器", es: "Calculadora de caída en alimentador de CC" },
     description: {
       en: "Estimate two-wire or one-way DC feeder drop from current, length, copper area and temperature.",
       zh: "按电流、长度、铜截面积和温度估算单程或往返直流馈电线压降。",
@@ -212,7 +212,7 @@ const tools = [
     tags: { en: ["Conduit", "Fill", "Pathway"], zh: ["导管", "填充率", "通道"], es: ["Conducto", "Llenado", "Canalización"] },
     heroEyebrow: { en: "CABLE PATHWAY FILL", zh: "通道填充率", es: "LLENADO DE CANALIZACIÓN" },
     heroTags: { en: ["Cable diameter", "Pathway", "Fill ratio", "Circle area"], zh: ["电缆外径", "通道内径", "填充率", "圆面积"], es: ["Diámetro", "Canalización", "Llenado", "Área circular"] },
-    name: { en: "Pathway Geometric Fill Calculator", zh: "通道几何填充率计算器", es: "Calculadora geométrica de llenado de canalización" },
+    name: { en: "Pathway Geometric Fill Calculator", zh: "电缆通道几何填充率计算器", es: "Calculadora geométrica de llenado de canalización" },
     description: {
       en: "Compare the circle area of cable groups with the inner area of a round pathway.",
       zh: "用电缆组的圆面积和圆形通道内截面积比较几何填充率。",
@@ -236,7 +236,7 @@ const tools = [
     tags: { en: ["Delay", "Velocity factor", "Copper"], zh: ["时延", "速度系数", "铜缆"], es: ["Retardo", "Factor de velocidad", "Cobre"] },
     heroEyebrow: { en: "PROPAGATION DELAY", zh: "传播时延", es: "RETARDO DE PROPAGACIÓN" },
     heroTags: { en: ["Length", "Velocity factor", "One-way delay", "Speed of light"], zh: ["长度", "速度系数", "单向时延", "光速"], es: ["Longitud", "Factor de velocidad", "Retardo", "Velocidad de la luz"] },
-    name: { en: "Copper Propagation Delay Calculator", zh: "铜缆传播时延计算器", es: "Calculadora de retardo de propagación en cobre" },
+    name: { en: "Copper Propagation Delay Calculator", zh: "铜缆单向传播时延计算器", es: "Calculadora de retardo de propagación en cobre" },
     description: {
       en: "Calculate one-way propagation delay from cable length and a velocity factor you supply.",
       zh: "用你输入的长度和速度系数计算铜缆单向传播时延。",
