@@ -35,15 +35,25 @@ assert.notDeepEqual(scriptSig(managedScript),scriptSig(managedScript.replace('de
 assert.notDeepEqual(scriptSig(managedScript),scriptSig(managedScript.replace('#run','#other')),'script fragments remain protected');
 assert.notDeepEqual(scriptSig(managedScript),scriptSig(managedScript.replace('js/app.js','js/another-app.js')),'script source path remains protected');
 assert.notDeepEqual(scriptSig('<script>calculate(1);</script>'),scriptSig('<script>calculate(2);</script>'),'unapproved inline bytes remain protected');
-const inlinePair=require('./lib/tool-v3-approved-script-revisions.json').inlinePairs[0];
-const ipBefore=fs.readFileSync(path.resolve(__dirname,'../artifacts/opb-v3-audit/before/website/tools/ip-camera-network-planner/index.html'),'utf8');
-const ipAfter=fs.readFileSync(path.resolve(__dirname,'../website/tools/ip-camera-network-planner/index.html'),'utf8');
-const oldIpScripts=scriptSig(ipBefore),nextIpScripts=scriptSig(ipAfter);
-const exactOld=oldIpScripts.find(raw=>require('crypto').createHash('sha256').update(raw).digest('hex')===inlinePair.beforeSha256);
-const exactNext=approvedInlineReplacement(exactOld,nextIpScripts,'ip-camera-network-planner','en');
-assert.notEqual(exactNext,exactOld);
-assert.throws(()=>approvedInlineReplacement(exactOld,[],'ip-camera-network-planner','en'),/exact approved inline replacement/);
-assert.equal(approvedInlineReplacement(exactOld,nextIpScripts,'fiber-loss','en'),exactOld,'inline approval is exact-route scoped');
+const {execFileSync}=require('node:child_process'),crypto=require('node:crypto');
+const historicalCommit='d5d581fad777eee45c8f4239b6b034e58566b87a';
+function historicalPage(repoPath){return execFileSync('git',['show',historicalCommit+':'+repoPath],{encoding:'utf8'});}
+for(const pair of require('./lib/tool-v3-approved-script-revisions.json').inlinePairs){
+ const [slug,locale]=pair.route.split('/');
+ const repoPath='website/tools/'+slug+'/'+(locale==='en'?'':locale+'/')+'index.html';
+ const beforeHtml=historicalPage(repoPath),afterHtml=fs.readFileSync(path.resolve(__dirname,'../'+repoPath),'utf8');
+ const oldScripts=scriptSig(beforeHtml),nextScripts=scriptSig(afterHtml);
+ const exactOld=oldScripts.find(raw=>crypto.createHash('sha256').update(raw).digest('hex')===pair.beforeSha256);
+ assert(exactOld,pair.route+' historical before script is in '+historicalCommit);
+ assert.equal(exactOld.length,pair.beforeCharacters,pair.route+' before length');
+ const exactNext=approvedInlineReplacement(exactOld,nextScripts,slug,locale);
+ assert.notEqual(exactNext,exactOld);
+ assert.equal(exactNext.length,pair.afterCharacters,pair.route+' successor length');
+ if(locale==='en'){
+  assert.throws(()=>approvedInlineReplacement(exactOld,[],'ip-camera-network-planner','en'),/exact approved inline replacement/);
+  assert.equal(approvedInlineReplacement(exactOld,nextScripts,'fiber-loss','en'),exactOld,'inline approval is exact-route scoped');
+ }
+}
 // Exact accessibility/void-tag revisions never permit machine-field drift.
 const controlPair=require('./lib/tool-v3-approved-control-revisions.json').pairs[0];
 const controlRoute=controlPair.route.split('/');

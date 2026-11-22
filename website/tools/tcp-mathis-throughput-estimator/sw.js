@@ -37,7 +37,10 @@ const CORE=[
   "../../assets/js/rules-engine/evaluate.js?v=fdd7e0e551ef",
   "../../assets/js/rules-engine/score.js?v=fce2240d4bb7",
   "../../assets/js/rules-engine/report.js?v=01f2524dcdac",
-  "../../assets/generated/rules-engine/rules-bundle.9d06acb2a0ff.js?v=9d06acb2a0ff"
+  "../../assets/generated/rules-engine/rules-bundle.9d06acb2a0ff.js?v=9d06acb2a0ff",
+  "../../assets/icons/favicon.svg?v=1.9.5-06",
+  "../../assets/css/mobile-branding.css?v=345784b6b020",
+  "../../assets/images/logo.svg",
 ];
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)));
@@ -49,5 +52,19 @@ self.addEventListener("activate", (event) => {
 });
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
-  event.respondWith(fetch(event.request).catch(() => caches.match(event.request)));
+  event.respondWith(fetch(event.request).then((response) => {
+    if (response.ok) {
+      const copy = response.clone();
+      caches.open(CACHE).then((cache) => cache.put(event.request, copy));
+    }
+    return response;
+  }).catch(() => nelScopedCacheMatch(event.request)));
 });
+/* NEL_SCOPED_CACHE_START */
+// A different tool may retain another version of a shared asset. Never search
+// its cache, and never discard a resource's content-hash query when matching.
+function nelScopedCacheMatch(request, options) {
+  const navigation = typeof request !== "string" && request.mode === "navigate";
+  return caches.open(CACHE).then(cache => cache.match(request, navigation ? { ...options, ignoreSearch: true } : undefined));
+}
+/* NEL_SCOPED_CACHE_END */

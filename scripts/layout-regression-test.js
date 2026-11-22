@@ -48,6 +48,9 @@ assert(repairedMain.includes('id="afterGeneratorCount"'), "fixture: Spanish afte
 assert(repairedMain.includes('id="requiredGenerators"'), "fixture: required generator id must match the calculator script");
 assert(repairedMain.includes('id="startFailurePct"'), "fixture: start-failure id must match the calculator script");
 assert(repairedMain.includes('class="hub-return"'), "fixture: cluster line must move inside main");
+function mainHasClass(main, className) {
+  return new RegExp(`class=["'][^"']*\\b${className}\\b`).test(main);
+}
 assert(!/<\/main>[\s\S]*id="before-after-inputs"/i.test(repaired), "fixture: before/after section must not remain after main");
 const calculateAt = repairedMain.indexOf('id="calculate"');
 assert(calculateAt > repairedMain.indexOf('id="before-after-inputs"'), "fixture: moved inputs stay in the input card ahead of calculate");
@@ -79,11 +82,11 @@ for (const rel of toolPages) {
       assert(main.includes(`id="${id}"`), `${rel}: #${id} must be inside main`);
       assert(!html.slice(html.search(/<\/main>/i)).includes(`id="${id}"`), `${rel}: #${id} must not remain after </main>`);
     }
-    assert(main.includes('class="hub-return"'), `${rel}: cluster line must sit inside main`);
+    assert(mainHasClass(main, "hub-return"), `${rel}: cluster line must sit inside main`);
   } else {
     assert(main.includes('id="engineering-gates"'), `${rel}: #engineering-gates must be inside main`);
     assert(!html.slice(html.search(/<\/main>/i)).includes('id="engineering-gates"'), `${rel}: #engineering-gates must not remain after </main>`);
-    assert(main.includes('class="hub-return"'), `${rel}: cluster line must sit inside main`);
+    assert(mainHasClass(main, "hub-return"), `${rel}: cluster line must sit inside main`);
   }
 }
 
