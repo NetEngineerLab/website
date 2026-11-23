@@ -51,34 +51,53 @@ const titles = new Set();
 for (const [slug, markers] of Object.entries(cases)) {
   const topic = markers.at(-2);
   const tool = markers.at(-1);
-  for (const locale of ['', 'zh/']) {
+  for (const locale of ['', 'zh/', 'es/']) {
     const file = `website/${locale}guides/${slug}/index.html`;
     const html = read(file);
     const title = (html.match(/<title>([^<]+)/) || [])[1];
     check(file + ' unique title', title && !titles.has(title));
     titles.add(title);
     check(file + ' one h1', (html.match(/<h1>/g) || []).length === 1);
-    check(file + ' example', locale ? html.includes('示例') : html.includes('Example'));
+    const exampleLabel = locale === 'zh/' ? '示例' : locale === 'es/' ? 'Ejemplo' : 'Example';
+    check(file + ' example', html.includes(exampleLabel));
     check(file + ' shell', html.includes('class="guide-shell"') && !html.includes('guide-content') && !html.includes('guide-primary-cta'));
     check(file + ' topic', html.includes(`topics/${topic}/`));
-    check(file + ' tool', html.includes(`/tools/${tool}/`));
+    check(file + ' tool', locale === 'es/' ? html.includes(`tools/${tool}/es/`) : html.includes(`/tools/${tool}/`));
     check(file + ' canonical', html.includes(`rel="canonical" href="https://netengineerlab.com/${locale}guides/${slug}/"`));
+    check(file + ' hreflang es', html.includes('hreflang="es" href="https://netengineerlab.com/es/guides/' + slug + '/"'));
     for (const marker of markers.slice(0, 4)) check(file + ' ' + marker, html.includes(marker));
+    const aside = (html.match(/<aside class="guide-toc guide-related-side"[\s\S]*?<\/aside>/) || [])[0] || '';
+    check(file + ' sidebar', aside.includes('guide-related-side'));
+    const links = [...aside.matchAll(/<a href="([^"]+)">([^<]+)<\/a>/g)];
+    check(file + ' sidebar count', links.length >= 2 && links.length <= 5, String(links.length));
+    check(file + ' sidebar not self', !aside.includes(slug));
+    if (locale === 'es/') check(file + ' sidebar stays in Spanish', !aside.includes('/zh/') && !aside.includes('/guides/') );
+    for (const [, href, text] of links) {
+      const target = path.resolve(path.dirname(path.join(root, file)), href, 'index.html');
+      const targetHtml = fs.existsSync(target) ? fs.readFileSync(target, 'utf8') : '';
+      const h1 = ((targetHtml.match(/<h1[^>]*>([^<]+)/) || [])[1] || '').replace(/&amp;/g, '&');
+      check(file + ' link ' + href, h1 && text.replace(/&amp;/g, '&') === h1, text + ' vs ' + h1);
+    }
   }
   const record = registry.routes.find(route => route.route === `guides/${slug}/`);
-  check('registry ' + slug, Boolean(record && record.indexable === true && record.translations.en.title && record.translations.zh.title && record.longTailQuestions.en.length === 1));
+  check('registry ' + slug, Boolean(record && record.indexable === true && record.translations.en.title && record.translations.zh.title && record.translations.es.title && record.longTailQuestions.en.length === 1 && record.longTailQuestions.es.length === 1));
 }
 for (const file of [
   'website/guides/index.html',
   'website/zh/guides/index.html',
+  'website/es/guides/index.html',
   'website/topics/telecom-power-energy/index.html',
   'website/zh/topics/telecom-power-energy/index.html',
+  'website/es/topics/telecom-power-energy/index.html',
   'website/topics/data-center-capacity/index.html',
   'website/zh/topics/data-center-capacity/index.html',
+  'website/es/topics/data-center-capacity/index.html',
   'website/topics/ip-camera-network-bandwidth-poe/index.html',
   'website/zh/topics/ip-camera-network-bandwidth-poe/index.html',
+  'website/es/topics/ip-camera-network-bandwidth-poe/index.html',
   'website/topics/pon-optical/index.html',
-  'website/zh/topics/pon-optical/index.html'
+  'website/zh/topics/pon-optical/index.html',
+  'website/es/topics/pon-optical/index.html'
 ]) {
   const html = read(file);
   check(file + ' links a new guide', Object.keys(cases).some(slug => html.includes(slug)));

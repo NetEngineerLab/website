@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="es" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>La batería dura 21.25 minutos. ¿Dos módulos de SAI bastan? | NetEngineerLab</title><meta name="description" content="Ejemplo: 30 kW piden 33.33 kVA. Dos módulos de 20 kVA no superan N+1, pero la misma batería sigue 21.25 minutos."><link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/guide.css?v=ffc815a61c42"><link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=475098aa29f5">
+<meta property="og:url" content="https://netengineerlab.com/es/guides/ups-battery-minutes-versus-n-plus-one/">
+<meta property="og:title" content="La batería dura 21.25 minutos. ¿Dos módulos de SAI bastan? | NetEngineerLab">
+<meta property="og:description" content="Ejemplo: 30 kW piden 33.33 kVA. Dos módulos de 20 kVA no superan N+1, pero la misma batería sigue 21.25 minutos.">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="La batería dura 21.25 minutos. ¿Dos módulos de SAI bastan? | NetEngineerLab">
+<meta name="twitter:description" content="Ejemplo: 30 kW piden 33.33 kVA. Dos módulos de 20 kVA no superan N+1, pero la misma batería sigue 21.25 minutos.">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"La batería dura 21.25 minutos. ¿Dos módulos de SAI sobreviven a un fallo?","name":"La batería dura 21.25 minutos. ¿Dos módulos de SAI sobreviven a un fallo?","description":"Ejemplo: 30 kW piden 33.33 kVA. Dos módulos de 20 kVA no superan N+1, pero la misma batería sigue 21.25 minutos.","url":"https://netengineerlab.com/es/guides/ups-battery-minutes-versus-n-plus-one/","inLanguage":"es","mainEntityOfPage":"https://netengineerlab.com/es/guides/ups-battery-minutes-versus-n-plus-one/","author":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://netengineerlab.com/es/"},{"@type":"ListItem","position":2,"name":"La batería dura 21.25 minutos. ¿Dos módulos de SAI sobreviven a un fallo?","item":"https://netengineerlab.com/es/guides/ups-battery-minutes-versus-n-plus-one/"}]}</script>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"La batería dura 21.25 minutos. ¿Dos módulos de SAI bastan? | NetEngineerLab","url":"https://netengineerlab.com/es/guides/ups-battery-minutes-versus-n-plus-one/","description":"Ejemplo: 30 kW piden 33.33 kVA. Dos módulos de 20 kVA no superan N+1, pero la misma batería sigue 21.25 minutos.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="es">
+<meta name="nel-route" content="guides/ups-battery-minutes-versus-n-plus-one/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/es/guides/ups-battery-minutes-versus-n-plus-one/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/ups-battery-minutes-versus-n-plus-one/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/ups-battery-minutes-versus-n-plus-one/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/es/guides/ups-battery-minutes-versus-n-plus-one/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/ups-battery-minutes-versus-n-plus-one/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=c957f6562d31"></script>
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+</head><body>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Plataforma de inteligencia para ingeniería de redes</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Abrir navegación"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navegación principal">
+      <a href="../../">Inicio</a>
+      <a href="../../../tools/es/">Herramientas</a>
+      <a href="../" aria-current="page">Guías</a>
+      <a href="../../topics/">Temas</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Español"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Español</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/guides/ups-battery-minutes-versus-n-plus-one/" lang="en" hreflang="en"><span>English</span><small>Inglés</small></a><a class="language-option" role="menuitem" href="/zh/guides/ups-battery-minutes-versus-n-plus-one/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chino simplificado</small></a><a class="language-option" role="menuitem" href="/es/guides/ups-battery-minutes-versus-n-plus-one/" lang="es" hreflang="es" aria-current="page"><span>Español</span><small>Español</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END --><nav class="guide-breadcrumb" aria-label="Migas de pan"><a href="../../">Inicio</a><span aria-hidden="true">›</span><a href="../">Guías</a><span aria-hidden="true">›</span><span aria-current="page">La batería dura 21.25 minutos. ¿Dos módulos de SAI sobreviven a un fallo?</span></nav><main class="guide-shell" id="main"><section class="guide-hero"><p class="eyebrow">EJEMPLO RESUELTO</p><h1>La batería dura 21.25 minutos. ¿Dos módulos de SAI sobreviven a un fallo?</h1><p class="guide-lead">Solo un ejemplo, no una prueba de aceptación. Una carga de 30 kW con factor de potencia 0.9 pide 33.33 kVA. Dos módulos de 20 kVA no superan la salida de un módulo. La misma batería sigue funcionando 21.25 minutos, por encima de un objetivo de 15 minutos.</p><div class="guide-meta"><span>33.33 kVA</span><span>21.25 min</span><span>N+1</span><span>Ejemplo</span></div></section><div class="guide-tool-link"><strong>Calculadora relacionada</strong><p>Esta calculadora no tiene un enlace que rellene todos los datos de este ejemplo. Escriba los valores de abajo y compare el resultado.</p><a href="../../../tools/ups-capacity-battery-runtime-calculator/es/">Abrir la calculadora →</a></div><div class="guide-layout"><article class="guide-article"><p>El tema de capacidad ya tiene un ejemplo de camino a 160 kW. Esta página separa la redundancia de los módulos del SAI de los minutos de batería.</p><h2>Supuestos del ejemplo</h2><ul><li>Carga 30 kW. Factor de potencia de la carga 0.9. Sin holgura extra. Eficiencia del SAI 94 %. Factor de potencia de salida 0.9. Módulo de 20 kVA. Módulos de redundancia: 1.</li><li>Bus de batería 384 V. Una serie de 40 Ah. Profundidad de descarga 80 %. Eficiencia de batería 92 %. Factores de envejecimiento y temperatura 100 %. Objetivo 15 minutos.</li></ul><h2>Pasos</h2><ol><li>La carga es 30 / 0.9 = 33.33 kVA. Dos módulos de 20 kVA dan 40 kVA, así que el estado normal cabe, pero un módulo restante son 20 kVA. 20 × 0.9 = 18 kW, por debajo de 30 kW. N+1 falla. El recuento recomendado es 3.</li><li>Energía nominal de batería = 384 × 40 / 1000 = 15.36 kWh. Energía útil = 11.30 kWh. Autonomía = 21.25 minutos, así que el objetivo de 15 minutos se cumple. Ese objetivo pide 28.23 Ah en esta serie.</li><li>Al instalar el tercer módulo de 20 kVA, la comprobación de un módulo fuera pasa. La autonomía sigue en 21.25 minutos. Otro módulo no añade minutos de batería.</li></ol><h2>Límite</h2><p>La calculadora no usa una curva de batería del fabricante, límites de corriente de recarga ni un tiempo de transferencia medido. Una autonomía que pasa no significa que el módulo restante pueda llevar la carga.</p><p><a href="../../topics/data-center-capacity/">Volver al tema de capacidad</a></p></article><aside class="guide-toc guide-related-side" aria-label="Artículos relacionados"><strong>Artículos relacionados</strong><ul><li><a href="../rack-breaker-before-cooling/">Con 4 kW, ¿el interruptor de 16 A falla antes que la refrigeración?</a></li><li><a href="../monthly-energy-pue-not-redundancy/">¿Qué dice realmente un PUE de 1.50 medido durante un mes?</a></li><li><a href="../../topics/data-center-capacity/">Capacidad del centro de datos</a></li></ul></aside></div></main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Herramientas profesionales en línea para ingenieros de telecomunicaciones y redes.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navegación del pie de página">
+      <a href="../../about/">Acerca de</a><a href="../../contact/">Contacto</a><a href="../../privacy/">Privacidad</a><a href="../../terms/">Términos</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+</body></html>

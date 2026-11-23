@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-route-summarization-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-a6435c6a9fa3";
+const CACHE = "nel-route-summarization-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-8a2a96ff3150";
 const CORE = [
   "./",
   "./index.html",
