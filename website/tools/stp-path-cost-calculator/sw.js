@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-stp-path-cost-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-ec82c3fdf070";
+const CACHE = "nel-stp-path-cost-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-a833a8b150c8";
 const CORE = [
   "./index.html",
   "./",
@@ -18,6 +18,7 @@ const CORE = [
   "../../assets/js/es-launch-runtime.js?v=b69809c86108",
   "../../assets/js/es-launch-runtime.js?v=3f188aa72208",
   "../../assets/js/es-launch-runtime.js?v=829a7f1559b7",
+  "../../assets/js/es-launch-runtime.js?v=e0fea69289b0",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
@@ -47,8 +48,7 @@ const CORE = [
   "./manifest-zh.webmanifest",
   "./es/",
   "./es/index.html",
-  "./manifest-es.webmanifest",
-  "../../assets/js/es-launch-runtime.js?v=e0fea69289b0"
+  "./manifest-es.webmanifest"
 ];
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)));

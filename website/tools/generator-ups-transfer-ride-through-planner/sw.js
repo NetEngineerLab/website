@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-generator-ups-transfer-ride-through-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-4d3b2af3958e";
+const CACHE = "nel-generator-ups-transfer-ride-through-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-3593b7358cfd";
 const CORE = [
   "./",
   "./index.html",
@@ -21,6 +21,7 @@ const CORE = [
   "./js/locale-es.js",
   "./js/bw-page-adapter.js",
   "../../assets/js/es-launch-runtime.js?v=829a7f1559b7",
+  "../../assets/js/es-launch-runtime.js?v=e0fea69289b0",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
@@ -50,8 +51,7 @@ const CORE = [
   "./manifest-zh.webmanifest",
   "./es/",
   "./es/index.html",
-  "./manifest-es.webmanifest",
-  "../../assets/js/es-launch-runtime.js?v=e0fea69289b0"
+  "./manifest-es.webmanifest"
 ];self.addEventListener("install",e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)));self.skipWaiting()});self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith("nel-generator-ups-transfer-ride-through-planner-")&&k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim()});self.addEventListener("fetch",e=>{if(e.request.method!=="GET")return;e.respondWith(nelScopedCacheMatch(e.request,{ignoreSearch:true}).then(c=>c||fetch(e.request)))});
 /* NEL_SCOPED_CACHE_START */
 // A different tool may retain another version of a shared asset. Never search

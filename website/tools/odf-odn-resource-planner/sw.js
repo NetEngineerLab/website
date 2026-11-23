@@ -1,4 +1,4 @@
-const CACHE = "nel-odf-odn-resource-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-0501d11f4772";
+const CACHE = "nel-odf-odn-resource-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-afa15ad1b12a";
 const CORE = [
   "./index.html",
   "./",
@@ -16,6 +16,7 @@ const CORE = [
   "../../assets/js/es-launch-runtime.js?v=b69809c86108",
   "../../assets/js/es-launch-runtime.js?v=3f188aa72208",
   "../../assets/js/es-launch-runtime.js?v=829a7f1559b7",
+  "../../assets/js/es-launch-runtime.js?v=e0fea69289b0",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
@@ -45,8 +46,7 @@ const CORE = [
   "./manifest-zh.webmanifest",
   "./es/",
   "./es/index.html",
-  "./manifest-es.webmanifest",
-  "../../assets/js/es-launch-runtime.js?v=e0fea69289b0"
+  "./manifest-es.webmanifest"
 ];self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE).then(()=>self.skipWaiting()))));self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x.startsWith("nel-odf-odn-resource-planner-")&&x!==CACHE).map(x=>caches.delete(x)))).then(()=>self.clients.claim())));self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(nelScopedCacheMatch(e.request).then(r=>r||fetch(e.request).then(x=>{const y=x.clone();caches.open(CACHE).then(c=>c.put(e.request,y));return x}).catch(()=>nelScopedCacheMatch('./offline.html'))))});
 /* NEL_SCOPED_CACHE_START */
 // A different tool may retain another version of a shared asset. Never search
