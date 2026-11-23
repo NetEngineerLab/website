@@ -1,0 +1,87 @@
+<!DOCTYPE html><html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ONU RX Power Troubleshooting and Fault Diagnosis | NetEngineerLab</title><meta name="description" content="ONU receive power is the downstream level at the ONU. OLT receive power is the upstream level from the ONU laser. They are different readings. An unnamed equipment model has an UNKNOWN threshold."><link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../assets/css/site.css"><link rel="stylesheet" href="../../assets/css/guide.css?v=ffc815a61c42"><meta property="og:url" content="https://netengineerlab.com/guides/onu-rx-power-troubleshooting/">
+<meta property="og:title" content="ONU RX Power Troubleshooting and Fault Diagnosis | NetEngineerLab">
+<meta property="og:description" content="ONU receive power is the downstream level at the ONU. OLT receive power is the upstream level from the ONU laser. They are different readings. An unnamed equipment model has an UNKNOWN threshold.">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ONU RX Power Troubleshooting and Fault Diagnosis | NetEngineerLab">
+<meta name="twitter:description" content="ONU receive power is the downstream level at the ONU. OLT receive power is the upstream level from the ONU laser. They are different readings. An unnamed equipment model has an UNKNOWN threshold.">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"ONU RX Power Troubleshooting: Optical Power Reading and Fault Diagnosis","name":"ONU RX Power Troubleshooting: Optical Power Reading and Fault Diagnosis","description":"ONU receive power is the downstream level at the ONU. OLT receive power is the upstream level from the ONU laser. They are different readings. An unnamed equipment model has an UNKNOWN threshold.","url":"https://netengineerlab.com/guides/onu-rx-power-troubleshooting/","inLanguage":"en","mainEntityOfPage":"https://netengineerlab.com/guides/onu-rx-power-troubleshooting/","author":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"ONU RX Power Troubleshooting: Optical Power Reading and Fault Diagnosis","item":"https://netengineerlab.com/guides/onu-rx-power-troubleshooting/"}]}</script>
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=475098aa29f5">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"ONU RX Power Troubleshooting and Fault Diagnosis | NetEngineerLab","url":"https://netengineerlab.com/guides/onu-rx-power-troubleshooting/","description":"ONU receive power is the downstream level at the ONU. OLT receive power is the upstream level from the ONU laser. They are different readings. An unnamed equipment model has an UNKNOWN threshold.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="en">
+<meta name="nel-route" content="guides/onu-rx-power-troubleshooting/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/guides/onu-rx-power-troubleshooting/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/onu-rx-power-troubleshooting/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/onu-rx-power-troubleshooting/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/es/guides/onu-rx-power-troubleshooting/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/onu-rx-power-troubleshooting/">
+<link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
+<script defer src="../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../assets/js/site.js?v=c957f6562d31"></script>
+</head><body>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Primary navigation">
+      <a href="../../">Home</a>
+      <a href="../../tools/">Tools</a>
+      <a href="../" aria-current="page">Guides</a>
+      <a href="../../topics/">Topics</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/guides/onu-rx-power-troubleshooting/" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="/zh/guides/onu-rx-power-troubleshooting/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a><a class="language-option" role="menuitem" href="/es/guides/onu-rx-power-troubleshooting/" lang="es" hreflang="es"><span>Español</span><small>Spanish</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END --><nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../../">Home</a><span aria-hidden="true">›</span><a href="../">Guides</a><span aria-hidden="true">›</span><span aria-current="page">ONU RX Power Troubleshooting: Optical Power Reading and Fault Diagnosis</span></nav><main class="guide-shell" id="main"><section class="guide-hero"><p class="eyebrow">PON OPTICAL</p><h1>ONU RX Power Troubleshooting: Optical Power Reading and Fault Diagnosis</h1><p class="guide-lead">An optical receive-power reading names one direction, one wavelength and one instrument. ONU receive power is not OLT receive power, and the ONU laser is the upstream transmitter, not the downstream reading.</p></section><div class="guide-tool-link"><strong>Related calculator</strong><p>The calculator compares a measured reading with limits you type and with a loss model. It does not supply a universal ONU threshold. If the datasheet is not in hand, leave the limit UNKNOWN.</p><a href="../../tools/onu-rx-power/">Open the ONU receive-power calculator</a></div><div class="guide-layout"><article class="guide-article">
+<h2 id="reading">What the reading means</h2>
+<p>Optical receive power is a power level in dBm at one point in one direction. Loss in dB is the difference between two power levels. A single dBm reading does not contain the fiber loss, the splitter loss or the connector loss. Those have to be built from the path, or measured as events.</p>
+<h2 id="directions">ONU receive, OLT receive and the ONU laser</h2>
+<p>Downstream, the OLT transmits and the ONU receives. That level is ONU RX power, or optical receive power at the ONU. Upstream, the ONU transmits and the OLT receives. That level is OLT RX power. The ONU laser check is this upstream transmitter, seen at the OLT receiver or on a meter at the upstream wavelength. It is not the ONU receive reading.</p>
+<p>The two directions use different wavelengths and different datasheet windows. ITU-T G.984.2 names the GPON wavelength ranges; ITU-T G.9807.1 names the XGS-PON ranges. This page does not copy either table. Read the range from the recommendation and from the module datasheet. If the PON generation is not identified, the wavelength is UNKNOWN. Public texts: <a href="https://www.itu.int/rec/T-REC-G.984.2/en">ITU-T G.984.2</a> and <a href="https://www.itu.int/rec/T-REC-G.9807.1/en">ITU-T G.9807.1</a>.</p>
+<p>There is no universal ONU receive threshold on this page. GPON, XGS-PON, a vendor class and a specific model do not share one pass band. If the model is not identified, the sensitivity and the overload are UNKNOWN. Do not fill them from a remembered class table.</p>
+<h2 id="measure">How to take the reading</h2>
+<p>Use a calibrated optical power meter at the wavelength of that direction, on a clean connector, at the point you claim to measure. A number in a management screen is a management reading. It becomes a calibrated measurement only when the vendor states that this software value is a calibrated power and states the uncertainty. If that statement is missing, keep the label “management reading” and do not treat it as the meter result.</p>
+<h2 id="loss">Loss and a moving reading</h2>
+<p>If the measured power is lower than the power the path model predicts, the difference is unexplained loss. The model has to list fiber length and coefficient, splitter, connectors and splices. A single end-to-end number cannot name which item moved. The fiber coefficient is separated in <a href="../fiber-loss-per-kilometer/">fiber loss per kilometre</a>. Splitter planning loss is separated in the <a href="../pon-splitter-loss-guide/">PON splitter guide</a>.</p>
+<p>A reading that moves while the route is untouched points first at the connector seating, a dirty end-face or an intermittent bend. A reading that stays low points at a stable loss in the model. Those are different clues. Neither clue names the failed part until the path is opened with a meter and, where the plant allows it, an OTDR.</p>
+<h2 id="sequence">Fault location sequence</h2>
+<ol>
+<li>Write the direction and the wavelength. If the direction is unknown, stop. The diagnosis is UNKNOWN.</li>
+<li>Write the sensitivity and overload from that model’s datasheet. If the datasheet is not in hand, the pass/fail limit is UNKNOWN.</li>
+<li>Measure with a calibrated meter at that wavelength, or label the management number as uncalibrated.</li>
+<li>Compare the measured level with the datasheet window. A separate example on this site classifies one entered reading against entered limits. Those limits are not reused here. The example is the <a href="../onu-receive-level-warning-margin/">warning-margin guide</a>.</li>
+<li>If the level is low or unexplained, split the loss into fiber, splitter, connectors and splices. Then compare the sum with the <a href="../../tools/optical-power-budget/">optical power budget</a>. Do not assign the whole difference to the ONU.</li>
+<li>If the upstream direction is the one that failed, check the ONU laser at the upstream wavelength and the OLT receive port. Do not adjust the downstream ONU receive number to explain it.</li>
+</ol>
+<p>This sequence does not declare a numeric healthy range. A passing downstream reading does not prove the upstream reading.</p>
+</article><aside class="guide-toc guide-related-side" aria-label="Related articles"><strong>Related articles</strong><ul><li><a href="../../tools/onu-rx-power/">ONU receive-power calculator</a></li><li><a href="../../tools/optical-power-budget/">Optical power budget calculator</a></li><li><a href="../fiber-loss-per-kilometer/">Fiber loss per kilometre</a></li><li><a href="../onu-receive-level-warning-margin/">Warning-margin example</a></li><li><a href="../../topics/pon-optical/">PON optical topic</a></li></ul></aside></div></main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Footer navigation">
+      <a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+</body></html>

@@ -6,14 +6,14 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="#176ff2" name="theme-color"/>
 <title>Fiber Loss Calculator &amp; Optical Link Budget | NetEngineerLab</title>
-<meta content="Fiber loss calculator: 0.35 dB/km @1310, 0.25 dB/km @1550, splices and connectors → total link loss and margin." name="description"/>
+<meta content="Fiber loss per kilometre is attenuation in dB/km times length. This calculator then adds splices, connectors and splitters. The 0.35 and 0.25 dB/km defaults are planning inputs, not a measured cable." name="description"/>
 <link href="css/style.css?v=5b8a5672ecc0" rel="stylesheet"/>
 <meta content="./" name="app-base"/>
 <meta content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" name="robots"/>
 <meta content="website" property="og:type"/>
 <meta content="NetEngineerLab" property="og:site_name"/>
 <meta property="og:title" content="Fiber Loss Calculator &amp; Optical Link Budget | NetEngineerLab"/>
-<meta property="og:description" content="Fiber loss calculator: 0.35 dB/km @1310, 0.25 dB/km @1550, splices and connectors → total link loss and margin."/>
+<meta property="og:description" content="Fiber loss per kilometre is attenuation in dB/km times length. This calculator then adds splices, connectors and splitters. The 0.35 and 0.25 dB/km defaults are planning inputs, not a measured cable."/>
 <meta content="https://netengineerlab.com/tools/fiber-loss/" property="og:url"/>
 <meta content="https://netengineerlab.com/tools/fiber-loss/images/og-fiber-loss.png" property="og:image"/>
 <meta content="1200" property="og:image:width"/>
@@ -38,7 +38,7 @@
 <link rel="stylesheet" href="/assets/css/fb-v3.css?v=031fae951adb">
 <link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=64bd0d9f6bcb">
 <script defer="" src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
-<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Fiber Loss Calculator & Optical Link Budget | NetEngineerLab","url":"https://netengineerlab.com/tools/fiber-loss/","description":"Fiber loss calculator: 0.35 dB/km @1310, 0.25 dB/km @1550, splices and connectors → total link loss and margin.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Fiber Loss Calculator & Optical Link Budget | NetEngineerLab","url":"https://netengineerlab.com/tools/fiber-loss/","description":"Fiber loss per kilometre is attenuation in dB/km times length. This calculator then adds splices, connectors and splitters. The 0.35 and 0.25 dB/km defaults are planning inputs, not a measured cable.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="en">
 <meta name="nel-route" content="tools/fiber-loss/">
@@ -238,7 +238,7 @@
 <div class="section-heading"><div><p class="eyebrow">STANDARDS</p></div></div>
 <p>Authoritative documents behind the formulas and default values above.</p>
 <ul class="nel-standards-list"><li><a href="https://www.itu.int/rec/T-REC-G.652/en" rel="noopener">ITU-T G.652</a> — Single-mode fibre attenuation; the tool's 0.35 / 0.30 / 0.20 dB/km defaults are typical cabled values below the G.652 maxima. <small>[Checked]</small></li><li><a href="https://www.itu.int/rec/T-REC-G.984.2/en" rel="noopener">ITU-T G.984.2 (08/2019)</a> — GPON physical layer: class B+ 13–28 dB in Annex A Table A.2; class C+ 17–32 dB (60 km max) in Appendix V Table V.3 – an informative appendix, not a normative class. OLT sensitivity −28 dBm (B+) / −32 dBm (C+). <small>[Checked]</small></li><li><strong>ITU-T G.671</strong> <small>(linked in the references section)</small> — Transmission characteristics of passive optical components, including splitters. <small>[Checked]</small></li><li><a href="https://standards.ieee.org/ieee/802.3/10422/" rel="noopener">IEEE 802.3 Clause 52 (10GBASE-LR)</a> — Table 52-12 average launch power min −8.2 dBm (informative per the table footnote); Table 52-13 average receive power min −14.4 dBm; Table 52-14 power budget 9.4 dB, channel insertion loss 6.2 dB, penalties 3.2 dB. <small>[Checked]</small></li></ul>
-</section><section aria-labelledby="references-title" class="content-section nel-tool-supporting-section"><h2 id="references-title">Fiber loss standards and measurement references</h2>
+</section><section id="nel-db-per-km"><h2>Loss per kilometre is not the link</h2><p>Fiber attenuation is α times length, with α in dB/km. ITU-T G.652.D specifies maximum cable coefficients of 0.40 dB/km at 1310 nm and 0.30 dB/km at 1550 nm. Those maxima are not a measured span. This calculator’s 0.35 dB/km and 0.25 dB/km defaults are planning inputs below those maxima.</p><p>Example, not a measurement: 12 km at 0.30 dB/km is 3.60 dB of fiber. Two connector pairs at 0.50 dB and three splices at 0.10 dB bring the path to 4.90 dB. Dividing 4.90 by 12 gives 0.408 dB/km, which is not the fiber coefficient. The steps are in <a href="../../guides/fiber-loss-per-kilometer/">fiber loss per kilometre</a>.</p></section><section aria-labelledby="references-title" class="content-section nel-tool-supporting-section"><h2 id="references-title">Fiber loss standards and measurement references</h2>
 <div class="section-heading"><div><p class="eyebrow">ENGINEERING REFERENCES</p></div></div>
 <ul>
 <li><a href="https://www.itu.int/rec/T-REC-G.652-202408-I/en">ITU-T G.652: characteristics of single-mode optical fibre and cable</a></li>
