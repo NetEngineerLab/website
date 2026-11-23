@@ -84,7 +84,7 @@ check("dns slot", newRoutes.includes("/guides/dns-ttl-explained/"));
 const fiber = fs.readFileSync(fileFor("/guides/fiber-loss-per-kilometer/", "en"), "utf8");
 check("fiber coefficient stays 0.30", fiber.includes("0.30") && fiber.includes("3.60") && fiber.includes("4.90") && fiber.includes("0.408"));
 check("blended 0.408 is not the coefficient", fiber.includes("not the fiber coefficient"));
-check("G.652.D cites clause 8 Table 2", fiber.includes("clause 8") && fiber.includes("Table 2") && fiber.includes("0.40") && !fiber.includes("2016"));
+check("G.652.D cites in-force 08/2024 table 2 ranges", fiber.includes("G.652 (08/2024)") && fiber.includes("Clause 8, Table 2") && fiber.includes("1310 nm to 1625 nm") && fiber.includes("1530–1565 nm") && fiber.includes("11/2016"));
 function metaDesc(html) {
   const tag = html.match(/<meta[^>]*name="description"[^>]*>/i) || html.match(/<meta[^>]*content="[^"]*"[^>]*name="description"[^>]*>/i);
   const raw = tag ? tag[0] : "";
