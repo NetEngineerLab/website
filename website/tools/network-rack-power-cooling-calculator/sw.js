@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-network-rack-power-cooling-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-7b644bdb9b37";
+const CACHE = "nel-network-rack-power-cooling-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-0db952435db9";
 const CORE = [
   "./index.html",
   "./",
@@ -7,7 +7,7 @@ const CORE = [
   "./manifest.webmanifest",
   "./css/style.css?v=52fc8dd5ee9e",
   "./js/engine.js?v=rackdeep01",
-  "./js/app.js?v=a194b74ef4cc",
+  "./js/app.js?v=1b103dab8773",
   "./images/logo.svg",
   "../../favicon.ico?v=1.9.8",
   "../../assets/css/tool-layout.css?v=c4aecb2c24ab",
