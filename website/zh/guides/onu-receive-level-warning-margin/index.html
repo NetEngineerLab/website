@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ONU收光只比灵敏度高1 dB，算健康吗？ | NetEngineerLab</title><meta name="description" content="示例：实测-26 dBm比输入的-27 dBm灵敏度高1 dB。警告余量设为3 dB时，计算器给出警告，不是健康。"><link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/guide.css?v=7b20a19be24f"><meta property="og:url" content="https://netengineerlab.com/zh/guides/onu-receive-level-warning-margin/">
+<meta property="og:title" content="ONU收光只比灵敏度高1 dB，算健康吗？ | NetEngineerLab">
+<meta property="og:description" content="示例：实测-26 dBm比输入的-27 dBm灵敏度高1 dB。警告余量设为3 dB时，计算器给出警告，不是健康。">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ONU收光只比灵敏度高1 dB，算健康吗？ | NetEngineerLab">
+<meta name="twitter:description" content="示例：实测-26 dBm比输入的-27 dBm灵敏度高1 dB。警告余量设为3 dB时，计算器给出警告，不是健康。">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"实测收光只比灵敏度高1 dB，这算健康吗？","name":"实测收光只比灵敏度高1 dB，这算健康吗？","description":"示例：实测-26 dBm比输入的-27 dBm灵敏度高1 dB。警告余量设为3 dB时，计算器给出警告，不是健康。","url":"https://netengineerlab.com/zh/guides/onu-receive-level-warning-margin/","inLanguage":"zh-CN","mainEntityOfPage":"https://netengineerlab.com/zh/guides/onu-receive-level-warning-margin/","author":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"实测收光只比灵敏度高1 dB，这算健康吗？","item":"https://netengineerlab.com/zh/guides/onu-receive-level-warning-margin/"}]}</script>
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=475098aa29f5">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"ONU收光只比灵敏度高1 dB，算健康吗？ | NetEngineerLab","url":"https://netengineerlab.com/zh/guides/onu-receive-level-warning-margin/","description":"示例：实测-26 dBm比输入的-27 dBm灵敏度高1 dB。警告余量设为3 dB时，计算器给出警告，不是健康。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="zh">
+<meta name="nel-route" content="guides/onu-receive-level-warning-margin/">
+<meta name="nel-available-locales" content="en,zh">
+<link rel="canonical" href="https://netengineerlab.com/zh/guides/onu-receive-level-warning-margin/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/onu-receive-level-warning-margin/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/onu-receive-level-warning-margin/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/onu-receive-level-warning-margin/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=c957f6562d31"></script>
+</head><body>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="打开导航菜单"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="主导航">
+      <a href="../../">首页</a>
+      <a href="../../../tools/zh/">工具中心</a>
+      <a href="../" aria-current="page">工程指南</a>
+      <a href="../../topics/">专题</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/guides/onu-receive-level-warning-margin/" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="/zh/guides/onu-receive-level-warning-margin/" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END --><nav class="guide-breadcrumb" aria-label="面包屑"><a href="../../">首页</a><span aria-hidden="true">›</span><a href="../">指南</a><span aria-hidden="true">›</span><span aria-current="page">实测收光只比灵敏度高1 dB，这算健康吗？</span></nav><main class="guide-shell" id="main"><section class="guide-hero"><p class="eyebrow">工程示例</p><h1>实测收光只比灵敏度高1 dB，这算健康吗？</h1><p class="guide-lead">这是工程示例，不是现网告警，也不是另一份连接器损耗预算。实测-26 dBm，对照输入的灵敏度-27 dBm和过载-8 dBm，灵敏度余量是1 dB。警告余量取3 dB时，结果是警告。</p><div class="guide-meta"><span>-26 dBm</span><span>1 dB</span><span>警告</span><span>示例</span></div></section><div class="guide-tool-link"><strong>配套计算器</strong><p>计算器没有可覆盖本例全部输入的网址预设。按下列数值手工输入后再对照结果。</p><a href="../../../tools/onu-rx-power/zh/">打开计算器 →</a></div><div class="guide-layout"><article class="guide-article"><p>前面三份光纤预算示例是在累加连接器和光纤损耗。本例从实测收光开始做判定，不重新设计损耗。</p><h2>示例假设</h2><ul><li>模式：实测。实测电平-26 dBm。灵敏度-27 dBm。过载-8 dBm。无信号下限-40 dBm。警告余量3 dB。</li><li>-27 dBm和-8 dBm是示例输入。它们不是ITU-T G.984.2里的GPON等级，必须换成ONU数据表。</li></ul><h2>步骤</h2><ol><li>灵敏度余量 = -26 − (-27) = 1 dB。</li><li>过载余量 = -8 − (-26) = 18 dB。接收窗口是19 dB。</li><li>电平高于灵敏度、低于过载，但1 dB小于3 dB警告余量。状态是警告。</li></ol><h2>边界</h2><p>警告不能定位故障。要用校准过的光功率计复核，再对照损耗预算和OTDR证据。ITU-T G.984.2是GPON物理媒质建议；本页没有从中抄录等级表。</p><p>公开来源：<a href="https://www.itu.int/rec/T-REC-G.984.2/en">https://www.itu.int/rec/T-REC-G.984.2/en</a>。</p><p><a href="../../topics/pon-optical/">返回PON专题</a></p></article></div></main><!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div>
+    <nav class="site-shell-footer-links" aria-label="页脚导航">
+      <a href="../../about/">关于</a><a href="../../contact/">联系</a><a href="../../privacy/">隐私政策</a><a href="../../terms/">使用条款</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+</body></html>

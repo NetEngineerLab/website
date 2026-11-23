@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>UPS Battery Minutes Are Not the Same as N+1 | NetEngineerLab</title><meta name="description" content="Example: 30 kW needs 33.33 kVA. Two 20 kVA modules fail N+1 while the battery still runs 21.25 minutes. A third module fixes redundancy and does not add minutes."><link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../assets/css/site.css"><link rel="stylesheet" href="../../assets/css/guide.css?v=7b20a19be24f"><meta property="og:url" content="https://netengineerlab.com/guides/ups-battery-minutes-versus-n-plus-one/">
+<meta property="og:title" content="UPS Battery Minutes Are Not the Same as N+1 | NetEngineerLab">
+<meta property="og:description" content="Example: 30 kW needs 33.33 kVA. Two 20 kVA modules fail N+1 while the battery still runs 21.25 minutes. A third module fixes redundancy and does not add minutes.">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="UPS Battery Minutes Are Not the Same as N+1 | NetEngineerLab">
+<meta name="twitter:description" content="Example: 30 kW needs 33.33 kVA. Two 20 kVA modules fail N+1 while the battery still runs 21.25 minutes. A third module fixes redundancy and does not add minutes.">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The Battery Lasts 21.25 Minutes. Do Two UPS Modules Survive One Failure?","name":"The Battery Lasts 21.25 Minutes. Do Two UPS Modules Survive One Failure?","description":"Example: 30 kW needs 33.33 kVA. Two 20 kVA modules fail N+1 while the battery still runs 21.25 minutes. A third module fixes redundancy and does not add minutes.","url":"https://netengineerlab.com/guides/ups-battery-minutes-versus-n-plus-one/","inLanguage":"en","mainEntityOfPage":"https://netengineerlab.com/guides/ups-battery-minutes-versus-n-plus-one/","author":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"The Battery Lasts 21.25 Minutes. Do Two UPS Modules Survive One Failure?","item":"https://netengineerlab.com/guides/ups-battery-minutes-versus-n-plus-one/"}]}</script>
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=475098aa29f5">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"UPS Battery Minutes Are Not the Same as N+1 | NetEngineerLab","url":"https://netengineerlab.com/guides/ups-battery-minutes-versus-n-plus-one/","description":"Example: 30 kW needs 33.33 kVA. Two 20 kVA modules fail N+1 while the battery still runs 21.25 minutes. A third module fixes redundancy and does not add minutes.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="en">
+<meta name="nel-route" content="guides/ups-battery-minutes-versus-n-plus-one/">
+<meta name="nel-available-locales" content="en,zh">
+<link rel="canonical" href="https://netengineerlab.com/guides/ups-battery-minutes-versus-n-plus-one/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/ups-battery-minutes-versus-n-plus-one/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/ups-battery-minutes-versus-n-plus-one/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/ups-battery-minutes-versus-n-plus-one/">
+<link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
+<script defer src="../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../assets/js/site.js?v=c957f6562d31"></script>
+</head><body>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Primary navigation">
+      <a href="../../">Home</a>
+      <a href="../../tools/">Tools</a>
+      <a href="../" aria-current="page">Guides</a>
+      <a href="../../topics/">Topics</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/guides/ups-battery-minutes-versus-n-plus-one/" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="/zh/guides/ups-battery-minutes-versus-n-plus-one/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END --><nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../../">Home</a><span aria-hidden="true">›</span><a href="../">Guides</a><span aria-hidden="true">›</span><span aria-current="page">The Battery Lasts 21.25 Minutes. Do Two UPS Modules Survive One Failure?</span></nav><main class="guide-shell" id="main"><section class="guide-hero"><p class="eyebrow">WORKED EXAMPLE</p><h1>The Battery Lasts 21.25 Minutes. Do Two UPS Modules Survive One Failure?</h1><p class="guide-lead">Example only, not a site acceptance test. A 30 kW load at power factor 0.9 needs 33.33 kVA. Two 20 kVA modules fail the one-module-out check. The same battery still runs 21.25 minutes, above a 15 minute target.</p><div class="guide-meta"><span>30 kW</span><span>21.25 min</span><span>N+1 fails</span><span>Example</span></div></section><div class="guide-tool-link"><strong>Related calculator</strong><p>This calculator has no URL preset that fills every input in this example. Type the values below and compare the result.</p><a href="../../tools/ups-capacity-battery-runtime-calculator/">Open the calculator →</a></div><div class="guide-layout"><article class="guide-article"><p>The capacity topic already has a 160 kW path example. This page separates UPS module redundancy from battery minutes.</p><h2>Example assumptions</h2><ul><li>Load 30 kW. Load power factor 0.9. No extra headroom. UPS efficiency 94%. Output power factor 0.9. Module size 20 kVA. Redundancy modules: 1.</li><li>Battery bus 384 V. One 40 Ah string. Depth of discharge 80%. Battery efficiency 92%. Aging and temperature factors 100%. Target 15 minutes.</li></ul><h2>Steps</h2><ol><li>Load is 30 / 0.9 = 33.33 kVA. Two 20 kVA modules provide 40 kVA, so the normal state fits, but one module left is 20 kVA. 20 × 0.9 = 18 kW, which is below 30 kW. N+1 fails. The recommended count is 3.</li><li>Nominal battery energy = 384 × 40 / 1000 = 15.36 kWh. Usable energy = 11.30 kWh. Runtime = 21.25 minutes, so the 15 minute target passes. The 15 minute target needs 28.23 Ah in this string.</li><li>Install the third 20 kVA module and the one-module-out check passes. Runtime stays 21.25 minutes. Another module does not add battery minutes.</li></ol><h2>Boundary</h2><p>The calculator does not use a manufacturer battery curve, recharge current limits or a measured transfer time. A passing runtime does not mean the remaining module can carry the load.</p><p><a href="../../topics/data-center-capacity/">Return to the data center capacity topic</a></p></article></div></main><!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Footer navigation">
+      <a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+</body></html>
