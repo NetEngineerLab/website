@@ -62,7 +62,16 @@
 <section class="topic-tools" aria-label="Herramientas del tema"><div><span class="eyebrow">PRIMERO LA PREGUNTA</span><strong>¿Vatios, tensión o bitrate?</strong><p>La calculadora de vatios responde la potencia del switch, la de tensión el extremo del cable, y la guía el método de caudal.</p></div><a href="../../guides/ip-camera-network-bandwidth-poe/">Leer el método de caudal →</a></section>
 <div class="guide-layout">
 <article class="guide-article">
-<p>Este tema explica cómo evaluar el caudal de datos de una cámara IP PoE sin tratar los vatios PoE como ancho de banda. Las cifras son un ejemplo de escenario, no un bitrate universal. La forma larga, con unidades y hipótesis, está en la <a href="../../guides/ip-camera-network-bandwidth-poe/">guía de caudal</a>.</p>
+<h2 id="overview">Para qué sirve este tema</h2>
+<p>Este tema es para un switch de acceso que alimenta cámaras y a la vez transporta su vídeo. Separa tres respuestas: bitrate en Mbit/s, vatios del switch y tensión en la cámara. Las cifras de abajo son un ejemplo de escenario, no un bitrate universal.</p>
+<h2 id="question">Qué pregunta está haciendo</h2>
+<ul>
+<li>¿Cuántos datos hay en una ruta? Cuente solo los flujos que usan esa ruta y lea la guía de caudal.</li>
+<li>¿El presupuesto de potencia del switch cubre esas cámaras? Use la calculadora de presupuesto PoE. Devuelve vatios, no Mbit/s.</li>
+<li>¿La tensión en la cámara sigue por encima del suelo que usted introdujo? Use la calculadora de caída. Un aprobado de vatios no la responde.</li>
+</ul>
+<h2 id="principle">Por qué las tres respuestas van aparte</h2>
+<p>Bitrate, vatios y tensión no comparten una fórmula. Las secciones 1 a 7 son el método: qué sumar, qué no contar dos veces y qué calculadora posee cada unidad. El resultado de una sección no es un dato que las otras inventen.</p>
 <h2 id="formula">1. Fórmula de ancho de banda</h2>
 <p>Carga útil de la ruta (Mbit/s) = suma de los flujos que usan esa ruta al mismo tiempo. Si cada cámara aporta los mismos flujos, carga = cantidad × la suma de esas tasas. Carga de planificación = carga útil × un margen. El margen de trabajo de este sitio es × 1.15. Cubre cabeceras y picos cortos cuando la entrada es un bitrate codificado. No es un requisito IEEE. No lo aplique otra vez a una medida de puerto que ya incluye cabeceras.</p>
 <h2 id="count">2. Cantidad por una tasa</h2>
@@ -86,7 +95,17 @@
 <a href="../../../tools/poe-voltage-drop-calculator/es/"><strong>Calculadora de caída de tensión PoE</strong><br>Tensión en el extremo. Un aprobado de vatios no la responde.</a>
 <a href="../../../tools/ip-camera-network-planner/es/"><strong>Planificador de red de cámaras IP</strong><br>Borrador de primer paso. Sustituya los coeficientes antes de decidir.</a>
 </div>
-<p><a href="../../guides/poe-switch-budget-16-versus-24-cameras/">Un presupuesto PoE de 370 W alimenta 16 cámaras. ¿Alimenta 24?</a> · <a href="../../guides/poe-voltage-after-90m/">Tras 90 m, ¿el 26 AWG deja la cámara por debajo de 42.5 V?</a></p>
+<h2 id="articles">Artículos que se pueden repetir</h2>
+<p>Cada artículo introduce las mismas entradas en la calculadora congelada y anota el resultado. Son ejemplos, no fichas técnicas.</p>
+<ul>
+<li><a href="../../guides/poe-switch-budget-16-versus-24-cameras/">Un presupuesto PoE de 370 W alimenta 16 cámaras. ¿Alimenta 24?</a> Con 12 W, 15 % de pérdida, 20 % de reserva y 802.3at, 16 cámaras piden 271.06 W y 24 piden 406.59 W.</li>
+<li><a href="../../guides/poe-voltage-after-90m/">Tras 90 m, ¿el 26 AWG deja la cámara por debajo de 42.5 V?</a> Otra carga de 25.5 W devuelve 37.87 V con 26 AWG y 43.51 V con 23 AWG.</li>
+</ul>
+<h2 id="guide">Guía principal</h2>
+<p>La <a href="../../guides/ip-camera-network-bandwidth-poe/">guía de caudal</a> reúne unidades, la regla de la ruta y la aritmética de 16 cámaras. Empiece ahí si la pregunta es el bitrate. Esa guía vuelve a este tema para el caso de vatios y el caso de tensión.</p>
+<h2 id="related">Temas relacionados</h2>
+<p>Los vatios PoE son una carga del diseño de energía del sitio. El <a href="../telecom-power-energy/">tema de energía de telecomunicaciones</a> trata rectificadores, baterías y autonomía. Un presupuesto PoE aprobado no es un resultado de autonomía.</p>
+<p>El caudal del enlace de acceso, en Mbit/s, se calcula en la sección 5 de este tema.</p>
 <h2 id="mistakes">10. Errores frecuentes</h2>
 <ul>
 <li>Leer el ancho de banda en la etiqueta de resolución, o en un porcentaje fijo de H.265.</li>
@@ -100,7 +119,7 @@
 <details><summary>¿La resolución por sí sola predice el ancho de banda de las cámaras IP?</summary><p>No. El códec, la tasa de fotogramas, el movimiento de la escena y el ajuste de bitrate cambian el resultado. Use el bitrate medio configurado o medido de cada flujo.</p></details>
 <details><summary>¿La calculadora de presupuesto de potencia PoE da el ancho de banda de la red de cámaras?</summary><p>No. La calculadora de presupuesto de potencia PoE devuelve vatios, número de puertos y un límite de clase. El ancho de banda de las cámaras es una suma distinta de bitrates simultáneos, en Mbit/s.</p></details>
 <details><summary>¿Puedo restar un porcentaje fijo al pasar de H.264 a H.265?</summary><p>No. No aplique un porcentaje fijo de ahorro. H.264 y H.265 son normas distintas, y el bitrate sigue dependiendo de la escena y de los ajustes del codificador.</p></details>
-<h2 id="sources">Fuentes</h2>
+<h2 id="further">Lectura adicional</h2>
 <ul>
 <li><a href="https://www.itu.int/rec/T-REC-H.264">UIT-T H.264</a> y <a href="https://www.itu.int/rec/T-REC-H.265">UIT-T H.265</a></li>
 <li><a href="https://whitepapers.axis.com/download/wp_bitrate_control_for_ip_video_t10170456_2501.pdf">Axis, control de bitrate para vídeo IP</a></li>

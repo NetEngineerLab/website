@@ -64,7 +64,16 @@
 <section class="topic-tools" aria-label="专题工具"><div><span class="eyebrow">先分清问题</span><strong>问的是瓦、电压，还是码率？</strong><p>功率用瓦数计算器，线缆末端电压用压降计算器，吞吐量方法读指南。</p></div><a href="../../guides/ip-camera-network-bandwidth-poe/">阅读吞吐量方法 →</a></section>
 <div class="guide-layout">
 <article class="guide-article">
-<p>本专题说明如何评估 PoE 网络摄像机的数据吞吐量，并且不把 PoE 瓦数当成带宽。数字是场景示例，不是统一的摄像机码率。单位和假设的完整写法在<a href="../../guides/ip-camera-network-bandwidth-poe/">摄像机吞吐量指南</a>。</p>
+<h2 id="overview">这个专题解决什么</h2>
+<p>本专题面向既给摄像机供电、又转发图像的接入交换机。它把三个答案分开：以 Mbit/s 计的码率、交换机瓦数、摄像机端电压。下面的数字是场景示例，不是统一的摄像机码率。</p>
+<h2 id="question">先问清是哪一个问题</h2>
+<ul>
+<li>一条路径上有多少数据？只加占用这条路径的流，再读吞吐量指南。</li>
+<li>交换机功率预算够不够这些摄像机？用 PoE 功率预算计算器。它给出瓦，不给出 Mbit/s。</li>
+<li>摄像机端电压是否仍高于你输入的下限？用压降计算器。功率通过并不能回答它。</li>
+</ul>
+<h2 id="principle">三个答案为什么分开</h2>
+<p>码率、瓦和电压不共用一条公式。第 1–7 节是方法：加什么、什么不要算两次、哪台计算器负责哪个单位。一个小节的结果不是另两个小节凭空得到的输入。</p>
 <h2 id="formula">1. 带宽公式</h2>
 <p>路径净荷（Mbit/s）= 同时占用该路径的各路流之和。每台贡献相同时，净荷 = 台数 × 这些单路码率之和。规划负荷 = 净荷 × 开销余量。本站演算用 × 1.15，用于编码码率之外的报头和短时峰值。它不是 IEEE 规定。已经包含报头的端口实测值不要再乘。</p>
 <h2 id="count">2. 数量乘以单路码率</h2>
@@ -88,7 +97,17 @@
 <a href="../../../tools/poe-voltage-drop-calculator/zh/"><strong>PoE 压降计算器</strong><br>远端电压。功率通过并不能回答它。</a>
 <a href="../../../tools/ip-camera-network-planner/zh/"><strong>IP 摄像机网络规划器</strong><br>初算草图。做决定前替换编码系数。</a>
 </div>
-<p><a href="../../guides/poe-switch-budget-16-versus-24-cameras/">16台摄像机通过370 W预算，24台不能</a> · <a href="../../guides/poe-voltage-after-90m/">90米26 AWG低于42.5 V</a></p>
+<h2 id="articles">可以复算的工程文章</h2>
+<p>每篇文章把同一组输入送进未改动的计算器，并记下结果。它们是示例，不是规格书。</p>
+<ul>
+<li><a href="../../guides/poe-switch-budget-16-versus-24-cameras/">16台摄像机通过370 W预算，24台不能</a>。12 W、线损 15%、余量 20%、802.3at：16 台需要 271.06 W，24 台需要 406.59 W。</li>
+<li><a href="../../guides/poe-voltage-after-90m/">90米26 AWG低于42.5 V</a>。另一组 25.5 W 负载：26 AWG 为 37.87 V，23 AWG 为 43.51 V。</li>
+</ul>
+<h2 id="guide">核心指南</h2>
+<p><a href="../../guides/ip-camera-network-bandwidth-poe/">吞吐量指南</a>集中写单位、路径规则和 16 台演算。问码率时从这里开始。指南再链回本专题，查看功率案例和电压案例。</p>
+<h2 id="related">相关专题</h2>
+<p>接入上联上的 Mbit/s 是交换机容量规划的输入。<a href="../switch-oversubscription/">交换机超售比与上联容量</a>讨论超售比、LAG 和 N-1。它不计算摄像机编码，也不计算 PoE 瓦数。</p>
+<p>PoE 瓦数是站点供电设计上的一项负荷。<a href="../telecom-power-energy/">通信电源与能源</a>讨论整流器、电池和续航。PoE 预算通过并不是电池续航结果。</p>
 <h2 id="mistakes">10. 常见错误</h2>
 <ul>
 <li>用分辨率名称或固定的 H.265 百分比当作带宽。</li>
@@ -102,7 +121,7 @@
 <details><summary>只看分辨率能否得到 IP 摄像机带宽？</summary><p>不能。编码、帧率、场景运动和码率设置都会改变结果。每一路都应使用配置的或实测的平均码率。</p></details>
 <details><summary>PoE 功率预算计算器会给出摄像机网络带宽吗？</summary><p>不会。PoE 功率预算计算器给出的是瓦、端口数和等级上限。摄像机网络带宽是同时存在的各路码率之和，单位是 Mbit/s。</p></details>
 <details><summary>从 H.264 换成 H.265 时可以减去一个固定百分比吗？</summary><p>不可以。不要使用固定节省百分比。H.264 和 H.265 是不同标准，码率仍取决于场景和编码器设置。</p></details>
-<h2 id="sources">来源</h2>
+<h2 id="further">延伸阅读</h2>
 <ul>
 <li><a href="https://www.itu.int/rec/T-REC-H.264">ITU-T H.264</a> 与 <a href="https://www.itu.int/rec/T-REC-H.265">ITU-T H.265</a></li>
 <li><a href="https://whitepapers.axis.com/download/wp_bitrate_control_for_ip_video_t10170456_2501.pdf">Axis：IP 视频码率控制</a></li>
