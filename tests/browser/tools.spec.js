@@ -151,7 +151,7 @@ const contentContracts={
     ]
   },
   "dns-ttl-propagation-calculator":{
-    faqCount:5,
+    faqCount:6,
     references:[
       "https://www.rfc-editor.org/rfc/rfc1035.html",
       "https://www.rfc-editor.org/rfc/rfc2308.html",
