@@ -1420,14 +1420,14 @@
       "id": "topic-ip-camera-network-bandwidth-poe",
       "publishedAt": "2026-10-12",
       "searchIntent": {
-        "en": "plan IP camera bandwidth, PoE, NVR storage and N-1 uplinks",
-        "zh": "规划IP摄像头带宽、PoE、NVR存储与N-1上联",
-        "es": "separar el presupuesto de vatios PoE de la tensión que llega a la cámara"
+        "en": "camera network bandwidth and the separate PoE switch power budget",
+        "zh": "摄像机网络带宽，以及与之分开的 PoE 交换机功率预算",
+        "es": "ancho de banda de cámaras y el presupuesto de potencia PoE del switch, por separado"
       },
       "primaryTopic": {
-        "en": "IP camera network bandwidth and PoE planning",
-        "zh": "IP摄像头网络带宽与PoE规划",
-        "es": "Cámaras IP y PoE"
+        "en": "camera network bandwidth and PoE switch power budget",
+        "zh": "摄像机网络带宽与 PoE 交换机功率预算",
+        "es": "ancho de banda de cámaras y presupuesto PoE del switch"
       },
       "breadcrumb": [
         "home"
@@ -1438,12 +1438,14 @@
         "BreadcrumbList"
       ],
       "relatedContent": [
-        "/tools/ip-camera-network-planner/"
+        "/guides/ip-camera-network-bandwidth-poe/",
+        "/tools/poe-power-budget-calculator/",
+        "/tools/poe-voltage-drop-calculator/"
       ],
       "owner": "NetEngineerLab Editorial",
       "reviewedAt": {
-        "en": "2026-10-12",
-        "zh": "2026-10-12",
+        "en": "2026-11-23",
+        "zh": "2026-11-23",
         "es": "2026-11-23"
       },
       "pageType": "hub",
@@ -1454,32 +1456,35 @@
       "priority": "0.9",
       "translations": {
         "en": {
-          "title": "IP Camera Network Bandwidth & PoE Planning Hub | NetEngineerLab",
-          "description": "Plan camera bandwidth, PoE budget, switch uplinks, NVR storage and N-1 resilience."
+          "title": "Camera Network Bandwidth and PoE Switch Power Budget | NetEngineerLab",
+          "description": "Camera network bandwidth is concurrent streams on one path, in Mbit/s, times a stated overhead allowance. The PoE switch power budget is a separate watt check."
         },
         "zh": {
-          "title": "IP 摄像头网络带宽与 PoE 规划专题 | NetEngineerLab",
-          "description": "围绕100、300、500台摄像头，学习带宽、PoE预算、NVR容量和N-1冗余规划。"
+          "title": "摄像机网络带宽与 PoE 交换机功率预算 | NetEngineerLab",
+          "description": "摄像机网络带宽是一条路径上同时存在的各路流之和（Mbit/s），再乘以写明的开销余量。PoE 交换机功率预算是另一项以瓦为单位的核对。"
         },
         "es": {
-          "title": "Ancho de banda y PoE para cámaras IP | NetEngineerLab",
-          "description": "Dos ejemplos en español: el presupuesto de vatios PoE y la tensión al final de 90 m."
+          "title": "Ancho de banda de cámaras y presupuesto PoE del switch | NetEngineerLab",
+          "description": "El ancho de banda es la suma de los flujos simultáneos de una ruta, en Mbit/s, por un margen declarado. El presupuesto de potencia PoE del switch es un cálculo aparte, en vatios."
         }
       },
       "longTailQuestions": {
         "en": [
-          "How do I plan bandwidth, PoE and NVR storage for 100, 300 or 500 IP cameras?"
+          "How is camera network bandwidth different from a PoE switch power budget?"
         ],
         "zh": [
-          "100、300、500台IP摄像头的带宽、PoE和NVR存储如何规划？"
+          "摄像机网络带宽和 PoE 交换机功率预算有什么不同？"
         ],
         "es": [
-          "¿Un presupuesto PoE que pasa garantiza la tensión a 90 m?"
+          "¿En qué se diferencia el ancho de banda de las cámaras del presupuesto de potencia PoE del switch?"
         ]
       },
       "sources": [
-        "https://www.axis.com/learning/web-articles/bitrate-control",
-        "https://www.axis.com/learning/web-articles/poe-and-network-cameras"
+        "https://www.itu.int/rec/T-REC-H.264",
+        "https://www.itu.int/rec/T-REC-H.265",
+        "https://whitepapers.axis.com/download/wp_bitrate_control_for_ip_video_t10170456_2501.pdf",
+        "https://www.ieee802.org/3/",
+        "https://www.iol.unh.edu/sites/default/files/testsuites/ethernet/CL33_PD/PD_Test_Suite_v2.2.pdf"
       ],
       "withdrawal": null
     },
@@ -1493,29 +1498,38 @@
       "priority": "0.8",
       "translations": {
         "en": {
-          "title": "IP Camera Network Bandwidth & PoE Planning Guide | NetEngineerLab",
-          "description": "Deep guide to camera bandwidth, switch uplinks, PoE budgets, NVR storage and N-1 resilience."
+          "title": "How to Evaluate PoE IP Camera Data Throughput | NetEngineerLab",
+          "description": "Camera network bandwidth is the sum of concurrent streams on one path, in Mbit/s, times a stated overhead allowance. A PoE switch power budget is a separate watt calculation."
         },
         "zh": {
-          "title": "IP 摄像头网络带宽与 PoE 规划深度指南 | NetEngineerLab",
-          "description": "深度讲解摄像头带宽、交换机上联、PoE预算、NVR存储和N-1冗余规划。"
+          "title": "如何评估 PoE 网络摄像机数据吞吐量 | NetEngineerLab",
+          "description": "摄像机网络带宽是同一路径上同时存在的各路码率之和（Mbit/s），再乘以写明的开销余量。PoE 交换机功率预算是另一项以瓦为单位的计算。"
+        },
+        "es": {
+          "title": "Cómo evaluar el caudal de datos de una cámara IP PoE | NetEngineerLab",
+          "description": "El ancho de banda es la suma de los flujos simultáneos de una ruta, en Mbit/s, por un margen de sobrecarga declarado. El presupuesto de potencia PoE del switch es un cálculo aparte, en vatios."
         }
       },
       "publishedAt": "2026-10-13",
       "searchIntent": {
-        "en": "learn how to plan IP camera bandwidth, PoE, NVR storage and N-1 resilience",
-        "zh": "学习IP摄像头带宽、PoE、NVR存储与N-1冗余规划"
+        "en": "how to evaluate PoE IP camera data throughput separately from the PoE switch power budget",
+        "zh": "如何评估 PoE 网络摄像机数据吞吐量，并与 PoE 交换机功率预算分开",
+        "es": "cómo evaluar el caudal de datos de una cámara IP PoE aparte del presupuesto de potencia del switch"
       },
       "primaryTopic": {
-        "en": "IP camera network bandwidth and PoE planning",
-        "zh": "IP摄像头网络带宽与PoE规划"
+        "en": "PoE IP camera data throughput and camera network bandwidth",
+        "zh": "PoE 网络摄像机数据吞吐量与摄像机网络带宽",
+        "es": "caudal de datos de cámaras IP PoE y ancho de banda"
       },
       "longTailQuestions": {
         "en": [
-          "How do I size bandwidth, PoE and NVR storage for 100, 300 or 500 IP cameras?"
+          "How do I evaluate PoE IP camera data throughput without using a fixed H.265 savings percent?"
         ],
         "zh": [
-          "100、300、500台IP摄像头的带宽、PoE和NVR容量如何规划？"
+          "如何评估 PoE 网络摄像机数据吞吐量，并且不使用固定的 H.265 节省百分比？"
+        ],
+        "es": [
+          "¿Cómo evalúo el caudal de datos de una cámara IP PoE sin un porcentaje fijo de ahorro H.265?"
         ]
       },
       "breadcrumb": [
@@ -1528,16 +1542,22 @@
         "BreadcrumbList"
       ],
       "sources": [
-        "https://www.axis.com/learning/web-articles/bitrate-control",
-        "https://www.axis.com/learning/web-articles/poe-and-network-cameras"
+        "https://www.itu.int/rec/T-REC-H.264",
+        "https://www.itu.int/rec/T-REC-H.265",
+        "https://whitepapers.axis.com/download/wp_bitrate_control_for_ip_video_t10170456_2501.pdf",
+        "https://www.ieee802.org/3/",
+        "https://www.iol.unh.edu/sites/default/files/testsuites/ethernet/CL33_PD/PD_Test_Suite_v2.2.pdf"
       ],
       "owner": "NetEngineerLab Editorial",
       "reviewedAt": {
-        "en": "2026-10-13",
-        "zh": "2026-10-13"
+        "en": "2026-11-23",
+        "zh": "2026-11-23",
+        "es": "2026-11-23"
       },
       "withdrawal": null,
       "relatedContent": [
+        "/tools/poe-power-budget-calculator/",
+        "/tools/poe-voltage-drop-calculator/",
         "/tools/ip-camera-network-planner/",
         "/topics/ip-camera-network-bandwidth-poe/"
       ]
