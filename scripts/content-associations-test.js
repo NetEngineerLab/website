@@ -76,6 +76,24 @@ check("burst 0 stays 34.6 and 7.09", ratio.includes("34.6%") && ratio.includes("
 check("pr72 excluded", (data.dependencies || []).some(item => item.id === "PR72" && item.status === "excluded"));
 check("dns pending", data.pages.some(page => page.route === "/guides/dns-ttl-explained/" && page.status === "pending"));
 check("no dns file on this tree", !fs.existsSync(fileFor("/guides/dns-ttl-explained/", "en")));
+const newRoutes = data.pages.filter(page => page.tier === "integrated-new" || page.tier === "pending-new").map(page => page.route);
+check("fiber slot", newRoutes.includes("/guides/fiber-loss-per-kilometer/"));
+check("onu slot", newRoutes.includes("/guides/onu-rx-power-troubleshooting/"));
+check("stp slot", newRoutes.includes("/guides/stp-path-cost-explained/"));
+check("dns slot", newRoutes.includes("/guides/dns-ttl-explained/"));
+const fiber = fs.readFileSync(fileFor("/guides/fiber-loss-per-kilometer/", "en"), "utf8");
+check("fiber coefficient stays 0.30", fiber.includes("0.30") && fiber.includes("3.60") && fiber.includes("4.90") && fiber.includes("0.408"));
+check("blended 0.408 is not the coefficient", fiber.includes("not the fiber coefficient"));
+check("G.652.D cites clause 8 Table 2", fiber.includes("clause 8") && fiber.includes("Table 2") && fiber.includes("0.40") && !fiber.includes("2016"));
+function metaDesc(html) {
+  const tag = html.match(/<meta[^>]*name="description"[^>]*>/i) || html.match(/<meta[^>]*content="[^"]*"[^>]*name="description"[^>]*>/i);
+  const raw = tag ? tag[0] : "";
+  return ((raw.match(/content="([^"]*)"/) || [])[1] || "");
+}
+check("splitter tool description 173", metaDesc(fs.readFileSync(fileFor("/tools/pon-splitter-loss/", "en"), "utf8")).length === 173);
+check("onu tool description 173", metaDesc(fs.readFileSync(fileFor("/tools/onu-rx-power/", "en"), "utf8")).length === 173);
+check("fiber tool description 179", metaDesc(fs.readFileSync(fileFor("/tools/fiber-loss/", "en"), "utf8")).length === 179);
+check("fiber es tool description 171", metaDesc(fs.readFileSync(fileFor("/tools/fiber-loss/", "es"), "utf8")).length === 171);
 
 const seenRoutes = new Set();
 for (const page of data.pages) {

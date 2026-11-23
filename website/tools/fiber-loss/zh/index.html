@@ -6,14 +6,14 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="#176ff2" name="theme-color"/>
 <title>光纤链路损耗计算器 | Fiber Loss Calculator | NetEngineerLab</title>
-<meta content="专业光纤链路损耗、光功率预算、PON链路裕量及故障诊断工具，支持分光器、熔接点、连接器、工程余量和接收光功率分析。" name="description"/>
+<meta content="每公里光纤损耗是衰减系数（dB/km）乘以长度。本计算器再把熔接、连接器和分光加进去。0.35 和 0.25 dB/km 是规划输入，不是光缆实测。" name="description"/>
 <link href="../css/style.css?v=5b8a5672ecc0" rel="stylesheet"/>
 <meta content="../" name="app-base"/>
 <meta content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" name="robots"/>
 <meta content="website" property="og:type"/>
 <meta content="NetEngineerLab" property="og:site_name"/>
 <meta content="光纤链路损耗计算器 | Fiber Loss Calculator | NetEngineerLab" property="og:title"/>
-<meta content="专业光纤链路损耗、光功率预算、PON链路裕量及故障诊断工具，支持分光器、熔接点、连接器、工程余量和接收光功率分析。" property="og:description"/>
+<meta content="每公里光纤损耗是衰减系数（dB/km）乘以长度。本计算器再把熔接、连接器和分光加进去。0.35 和 0.25 dB/km 是规划输入，不是光缆实测。" property="og:description"/>
 <meta content="https://netengineerlab.com/tools/fiber-loss/zh/" property="og:url"/>
 <meta content="https://netengineerlab.com/tools/fiber-loss/images/og-fiber-loss.png" property="og:image"/>
 <meta content="1200" property="og:image:width"/>
@@ -38,7 +38,7 @@
 <link rel="stylesheet" href="/assets/css/fb-v3.css?v=031fae951adb">
 <link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=64bd0d9f6bcb">
 <script defer="" src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
-<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"光纤链路损耗计算器 | Fiber Loss Calculator | NetEngineerLab","url":"https://netengineerlab.com/tools/fiber-loss/zh/","description":"专业光纤链路损耗、光功率预算、PON链路裕量及故障诊断工具，支持分光器、熔接点、连接器、工程余量和接收光功率分析。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"光纤链路损耗计算器 | Fiber Loss Calculator | NetEngineerLab","url":"https://netengineerlab.com/tools/fiber-loss/zh/","description":"每公里光纤损耗是衰减系数（dB/km）乘以长度。本计算器再把熔接、连接器和分光加进去。0.35 和 0.25 dB/km 是规划输入，不是光缆实测。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
 <meta name="nel-route" content="tools/fiber-loss/">
@@ -247,7 +247,7 @@
 <div class="section-heading"><div><p class="eyebrow">标准依据</p></div></div>
 <p>上述公式与默认值所依据的权威文件。</p>
 <ul class="nel-standards-list"><li><a href="https://www.itu.int/rec/T-REC-G.652/en" rel="noopener">ITU-T G.652</a> — 单模光纤衰减；本工具默认 0.35 / 0.30 / 0.20 dB/km 为低于 G.652 上限的典型成缆值。 <small>[已核对]</small></li><li><a href="https://www.itu.int/rec/T-REC-G.984.2/en" rel="noopener">ITU-T G.984.2 (08/2019)</a> — GPON 物理层：B+ 等级 13–28 dB 见附件 A 表 A.2；C+ 等级 17–32 dB（最长 60 km）见附录 V 表 V.3——属参考性附录，不是规范性等级。OLT 灵敏度 −28 dBm（B+）/ −32 dBm（C+）。 <small>[已核对]</small></li><li><strong>ITU-T G.671</strong> <small>(链接见参考资料部分)</small> — 无源光器件（含分光器）传输特性。 <small>[已核对]</small></li><li><a href="https://standards.ieee.org/ieee/802.3/10422/" rel="noopener">IEEE 802.3 Clause 52 (10GBASE-LR)</a> — 表 52-12 平均发射功率最小 −8.2 dBm（按表注仅为参考值）；表 52-13 平均接收功率最小 −14.4 dBm；表 52-14 功率预算 9.4 dB、通道插损 6.2 dB、代价分配 3.2 dB。 <small>[已核对]</small></li></ul>
-</section><section aria-labelledby="references-title" class="content-section nel-tool-supporting-section"><h2 id="references-title">光纤损耗标准与测量参考</h2>
+</section><section id="nel-db-per-km"><h2>每公里损耗不是整条链路</h2><p>光纤衰减是系数 α 乘以长度，α 的单位是 dB/km。ITU-T G.652.D 规定光缆系数上限：1310 nm 为 0.40 dB/km，1550 nm 为 0.30 dB/km。这些上限不是某段实测。本计算器的 0.35 dB/km 和 0.25 dB/km 默认值是低于这些上限的规划输入。</p><p>示例，不是实测：12 km 按 0.30 dB/km 得到 3.60 dB 光纤项。两对 0.50 dB 连接器和三个 0.10 dB 熔接使路径达到 4.90 dB。4.90 除以 12 等于 0.408 dB/km，这不是光纤系数。步骤见<a href="../../../zh/guides/fiber-loss-per-kilometer/">每公里光纤损耗</a>。</p></section><section aria-labelledby="references-title" class="content-section nel-tool-supporting-section"><h2 id="references-title">光纤损耗标准与测量参考</h2>
 <div class="section-heading"><div><p class="eyebrow">工程参考资料</p></div></div>
 <ul>
 <li><a href="https://www.itu.int/rec/T-REC-G.652-202408-I/en">ITU-T G.652：单模光纤与光缆特性</a></li>

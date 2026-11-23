@@ -19,13 +19,13 @@
 
 Fabric、容量预测和 SFP 只作为交换机说明里的支持链接，不另计主优化族。
 
-本分支已经纳入的新独立文章是 1 篇：`/guides/stp-path-cost-explained/`，英/中/西是同一篇。交换机 PR77 的新独立文章数是 0，只补既有页面的三语和专题正文。
+本分支已经纳入的新独立文章是 3 篇：`/guides/stp-path-cost-explained/`、`/guides/fiber-loss-per-kilometer/`、`/guides/onu-rx-power-troubleshooting/`。每篇的英/中/西都只算一篇。交换机 PR77 的新独立文章数是 0。
 
-全批已知新文仍是 2 篇：已纳入的 STP，以及尚未纳入的 DNS（`/guides/dns-ttl-explained/`，PR81）。上限是 5。光纤损耗和 ONU 收光在 PR78 的公开 diff 里仍是两篇新文，但后续报告说去重后只升级旧页。这个冲突未解决，所以这两篇不计入已集成新文，PR78 也不当作完成。PUE 在本次清点时没有可集成的开放 PR。
+全批已占名额是 4：光纤每公里损耗、ONU 收光排障、DNS、STP。PUE 至多再占 1 个名额，上限是 5。DNS 仍未纳入本树。PR78 的“不再新开”只表示不再加第三篇；去重是把每公里系数和既有总预算分开，把故障定位和既有一次余量判定分开。旧 head `47624acb` 没有被拿来代替 `37e3316d`。
 
 ## 六个专题
 
-- PON 光学：英/中专题已指向分光器、光功率预算和现有说明。西语专题原先没有西语分光器和光功率预算工具，本次只在专题底部补这两条已有西语工具，并保留 ONU 告警和园区光纤两篇西语说明。没有西语分光说明，因为那一页在 PR75，尚未纳入。
+- PON 光学：已纳入 PR75 `919f004e` 和 PR78 `37e3316d` 的三语正文。专题说明理想分光和规划插入损耗、12 km 光纤项，以及一次 ONU 读数为什么还不是定位到的故障。西语分光说明现在存在。西语每公里说明仍指向英文总预算指南，因为没有西语总预算页。
 - 摄像机带宽与 PoE：英/中说明补了规划器、PoE 功率、90 米电压和 16/24 摄像机两篇实例，并返回本专题。西语支柱说明仍在 PR76，未纳入。
 - 交换机超售：PR77 最终 head 的专题、五族正文和三语路径已纳入预览。专题不是第 6 个主优化族。
 - 制冷容量：负荷说明补了制冷计算器、风量规划器、N+1 和温升风量说明，并返回制冷专题。没有把月度 PUE 改挂到这个专题。
@@ -81,6 +81,17 @@ STP、DNS、PUE 都没有现存专题。没有把 STP 塞进交换机专题，�
 
 本地已通过：`content-associations-test`、`stp-path-cost-article-test`、`switch-oversubscription-seo-test`（含 375/1024），以及 `npm run build:i18n`。没有跑完整 `gate:release`，所以本分支的生产门禁也不能记为通过。
 
+## 光纤与 ONU 核对
+
+合入的是 PR78 head `37e3316db494d8306d5f9283512384a53b03efc6`。它的历史包含 PR75 head `919f004e9fd910c518c2707895c2c4b2e55e689c`，不是旧的 `47624acb`。
+
+- 12 km × 0.30 dB/km = 3.60 dB。两对连接器 × 0.50 dB 加三个熔接点 × 0.10 dB = 1.30 dB。路径是 3.60 + 1.00 + 0.30 = 4.90 dB。4.90 / 12 = 0.408 dB/km，正文写明这不是光纤系数。0 dBm 发射减去 4.90 dB 是 −4.90 dBm。
+- G.652.D 的引用是 ITU-T G.652 第 8 章表 2：1310 nm 0.40 dB/km，1550 nm 0.30 dB/km，并且只属于这个类别的上限。正文没有写 2016，也没有把其他版本或其他光缆类别混进这一个数字。公开入口是 `https://www.itu.int/rec/T-REC-G.652/en`。本审计没有另取付费原文。
+- 1:32 规划路径仍是 17.0 + 2.5 + 1.2 + 0.6 = 21.3 dB，+3 − 21.3 = −18.3 dBm。1:8 × 1:8 的 25.8 dB 路径与它分开。
+- ONU 门限在没有设备型号时是 UNKNOWN。下行 ONU 收光和上行 OLT 收光不是同一次读数。正文写明两个方向的波长和数据表窗口不同，并指向 G.984.2 与 G.9807.1，但没有抄录波长表；世代不明时波长也是 UNKNOWN。
+- 触发 180 字限制的是工具搜索描述，不是这两篇新文的长描述。分光器英文 173，ONU 工具英文 173，光纤工具英文 179，西语光纤工具 171。`pon-scenarios-test` 已通过。新文英文描述仍是 193 和 195，西语新文描述是 209 和 206；这次 180 限制测的是工具页。两个新 head 的生产门禁都还不能记为通过。
+- PR78 该 head 的固定预览是 https://d9997d07.netengineerlab.pages.dev。分支别名是 https://cursor-fiber-onu-content-7f8.netengineerlab.pages.dev。
+
 ## 依赖与冲突
 
 已纳入预览、门禁仍未通过：
@@ -88,13 +99,16 @@ STP、DNS、PUE 都没有现存专题。没有把 STP 塞进交换机专题，�
 - PR77，head `0916d1aff24118c37b7ff146997f729c1d7787e1`，预览 `https://7eeb3fab.netengineerlab.pages.dev`。CI `45170839941` 对应该 head，本次读取时状态是 `in_progress`，结论为空。旧失败 head 已被这个 head 取代。
 - PR80，head `38bd048bc727b15ac1b4f15b1ea1e189867ccedd`，预览 `https://cursor-stp-path-cost-explain.netengineerlab.pages.dev`。CI `45170062592` 本次读取时同样是 `in_progress`。
 
+已纳入预览、门禁仍未通过，另有：
+
+- PR75，head `919f004e9fd910c518c2707895c2c4b2e55e689c`。旧的 191/208 字描述失败已经被这个 head 取代。CI `45174261780` 本次读取仍是 `in_progress`。
+- PR78，head `37e3316db494d8306d5f9283512384a53b03efc6`，预览 https://d9997d07.netengineerlab.pages.dev。CI `45174407141` 本次读取仍是 `in_progress`。
+
 未纳入，不能当成完成：
 
-- PR75，head `99ba8635dc2053d747d561643e7048734a60b740`
 - PR76，head `366c3a9dfab551a8aaf09634b70d5296fefccea6`
-- PR78，head `f172c4e30ea44588063c08353f6bd7741e5f08f9`。公开 diff 仍新增光纤每公里损耗和 ONU 收光排障两篇；口头报告改为只升级旧页。以未验收的 PR 为准，先记冲突。
-- PR81，head `871ca7b5b01c42f5c6176a87ccf02d50da0dcd41`。只读，不注入。
-- PUE：没有可集成 PR。
+- PR81，head `871ca7b5b01c42f5c6176a87ccf02d50da0dcd41`。只读，不注入。它占 DNS 这一个名额。
+- PUE：没有可集成 PR，至多再占 1 个名额。
 - PR72：排除。
 
 指南目录补了原先缺失的入口：西语超售比、N-1、LACP、10G/25G 四张卡片，以及中文 10G/25G 卡片。JSON-LD 同步补上这几条，并补上三语索引里已经有卡片、却没进 ItemList 的 STP 说明。这只是目录，不是新文章。

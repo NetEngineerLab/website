@@ -3,10 +3,10 @@
   "reviewed": "2026-11-23",
   "dependencies": [
     {"id": "PR72", "status": "excluded", "reason": "Not authorized for this integration."},
-    {"id": "PR75", "head": "99ba8635dc2053d747d561643e7048734a60b740", "status": "open-unaccepted"},
+    {"id": "PR75", "head": "919f004e9fd910c518c2707895c2c4b2e55e689c", "status": "integrated-preview", "gate": "not-pass"},
     {"id": "PR76", "head": "366c3a9dfab551a8aaf09634b70d5296fefccea6", "status": "open-unaccepted"},
     {"id": "PR77", "head": "0916d1aff24118c37b7ff146997f729c1d7787e1", "status": "integrated-preview", "ci": "45170839941", "gate": "not-pass", "preview": "https://7eeb3fab.netengineerlab.pages.dev"},
-    {"id": "PR78", "head": "f172c4e30ea44588063c08353f6bd7741e5f08f9", "status": "open-unaccepted"},
+    {"id": "PR78", "head": "37e3316db494d8306d5f9283512384a53b03efc6", "status": "integrated-preview", "gate": "not-pass", "preview": "https://d9997d07.netengineerlab.pages.dev"},
     {"id": "PR80", "head": "38bd048bc727b15ac1b4f15b1ea1e189867ccedd", "status": "integrated-preview", "ci": "45170062592", "gate": "not-pass"},
     {"id": "PR81", "head": "871ca7b5b01c42f5c6176a87ccf02d50da0dcd41", "status": "read-not-accepted"},
     {"id": "PUE", "status": "no-open-pr-at-audit"}
@@ -17,6 +17,12 @@
       "locale": "es",
       "href": "../../../guides/48-port-switch-oversubscription/",
       "reason": "PR77 Spanish calculator still points at the English 48-port guide. No Spanish page exists, so the association block does not repeat it."
+    },
+    {
+      "route": "/guides/fiber-loss-per-kilometer/",
+      "locale": "es",
+      "href": "../../../guides/fiber-link-budget-guide/",
+      "reason": "The Spanish coefficient article points at the English total-budget guide. No Spanish page exists for that guide."
     }
   ],
   "pages": [
@@ -238,9 +244,75 @@
       ]
     },
     {
+      "id": "fiber-article",
+      "tier": "integrated-new",
+      "status": "active",
+      "mode": "verify",
+      "kind": "article",
+      "route": "/guides/fiber-loss-per-kilometer/",
+      "locales": ["en", "zh"],
+      "links": [
+        {"kind": "tool", "route": "/tools/fiber-loss/", "locales": ["en", "zh", "es"]},
+        {"kind": "tool", "route": "/tools/optical-power-budget/", "locales": ["en", "zh", "es"]},
+        {"kind": "article", "route": "/guides/fiber-link-budget-guide/", "locales": ["en", "zh"]},
+        {"kind": "article", "route": "/guides/pon-splitter-loss-guide/", "locales": ["en", "zh"]},
+        {"kind": "topic", "role": "return", "route": "/topics/pon-optical/", "locales": ["en", "zh"]}
+      ]
+    },
+    {
+      "id": "fiber-article-es",
+      "tier": "integrated-new",
+      "status": "active",
+      "mode": "verify",
+      "kind": "article",
+      "route": "/guides/fiber-loss-per-kilometer/",
+      "locales": ["es"],
+      "links": [
+        {"kind": "tool", "route": "/tools/fiber-loss/", "locales": ["es"]},
+        {"kind": "tool", "route": "/tools/optical-power-budget/", "locales": ["es"]},
+        {"kind": "article", "route": "/guides/pon-splitter-loss-guide/", "locales": ["es"]},
+        {"kind": "topic", "role": "return", "route": "/topics/pon-optical/", "locales": ["es"]}
+      ],
+      "exceptions": [
+        {"rule": "articleMinArticles", "locales": ["es"], "reason": "The Spanish coefficient page already points at the English total-budget guide. No Spanish fiber-link-budget page exists, and the ONU troubleshooting article is a different fault-location question, so it is not added only to fill the count."}
+      ]
+    },
+    {
+      "id": "onu-article",
+      "tier": "integrated-new",
+      "status": "active",
+      "mode": "verify",
+      "kind": "article",
+      "route": "/guides/onu-rx-power-troubleshooting/",
+      "locales": ["en"],
+      "links": [
+        {"kind": "tool", "route": "/tools/onu-rx-power/", "locales": ["en"]},
+        {"kind": "tool", "route": "/tools/optical-power-budget/", "locales": ["en"]},
+        {"kind": "article", "route": "/guides/fiber-loss-per-kilometer/", "locales": ["en"]},
+        {"kind": "article", "route": "/guides/onu-receive-level-warning-margin/", "locales": ["en"]},
+        {"kind": "topic", "role": "return", "route": "/topics/pon-optical/", "locales": ["en"]}
+      ]
+    },
+    {
+      "id": "onu-article-zh-es",
+      "tier": "integrated-new",
+      "status": "active",
+      "kind": "article",
+      "route": "/guides/onu-rx-power-troubleshooting/",
+      "locales": ["zh", "es"],
+      "links": [
+        {"kind": "tool", "route": "/tools/onu-rx-power/", "locales": ["zh", "es"], "anchors": {"zh": "用你输入的门限重算同一次收光", "es": "Repita la misma lectura con los umbrales que escriba"}},
+        {"kind": "tool", "route": "/tools/optical-power-budget/", "locales": ["zh", "es"], "anchors": {"zh": "把这条路径放进光功率预算", "es": "Pase esta ruta al presupuesto de potencia óptica"}},
+        {"kind": "article", "route": "/guides/fiber-loss-per-kilometer/", "locales": ["zh", "es"], "anchors": {"zh": "先把光纤系数和整段路径损耗分开", "es": "Separe primero el coeficiente de fibra de la pérdida del tramo"}},
+        {"kind": "article", "route": "/guides/onu-receive-level-warning-margin/", "locales": ["zh", "es"], "anchors": {"zh": "对照只比灵敏度高 1 dB 的一次余量判定", "es": "Contraste el aviso de un margen de 1 dB sobre la sensibilidad"}},
+        {"kind": "topic", "role": "return", "route": "/topics/pon-optical/", "locales": ["zh", "es"], "anchors": {"zh": "返回 PON 与光网络专题", "es": "Volver al tema de PON y óptica"}}
+      ]
+    },
+    {
       "id": "pon-topic-es",
       "tier": "supporting",
       "status": "active",
+      "mode": "verify",
       "kind": "topic",
       "route": "/topics/pon-optical/",
       "locales": ["es"],
