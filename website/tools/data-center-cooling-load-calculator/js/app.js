@@ -11,6 +11,15 @@ function nelInputError(ok){const l=(document.documentElement.lang||"en").toLower
   const $ = (id) => document.getElementById(id);
   const numberValue = (id) => Number($(id)?.value || 0);
   const optionalNumber = (id) => { const value = $(id)?.value; return value == null || String(value).trim() === "" ? undefined : Number(value); };
+  function localDryAir(altitudeM, dryBulbC) {
+    if (altitudeM == null && dryBulbC == null) return null;
+    const z = altitudeM == null ? 0 : altitudeM;
+    const t = dryBulbC == null ? 20 : dryBulbC;
+    if (!Number.isFinite(z) || !Number.isFinite(t) || z < -500 || z > 11000 || t < -20 || t > 50) return { ok: false };
+    const pressurePa = 101325 * Math.pow(1 - 2.25577e-5 * z, 5.2559);
+    const densityKgM3 = pressurePa / (287.058 * (t + 273.15));
+    return { ok: true, pressureKPa: pressurePa / 1000, densityKgM3, densityRatio: densityKgM3 / (101325 / (287.058 * 293.15)) };
+  }
   const format = (value, digits = 1) => Number(value).toLocaleString(undefined, { maximumFractionDigits: digits });
   const lang = (document.documentElement.lang || "").toLowerCase();
   const zh = lang.startsWith("zh");
@@ -135,8 +144,6 @@ function nelInputError(ok){const l=(document.documentElement.lang||"en").toLower
       latentLoadKW: numberValue("latentLoadKW"),
       relativeHumidityPct: numberValue("relativeHumidityPct"),
       frameMaxUnits: numberValue("frameMaxUnits"),
-      altitudeM: optionalNumber("altitudeM"),
-      dryBulbC: optionalNumber("dryBulbC"),
     };
   }
 
@@ -170,7 +177,11 @@ function nelInputError(ok){const l=(document.documentElement.lang||"en").toLower
   function run(event) {try{
     ensureScenarioFields();
     if (["itKW", "peakITKW"].includes(event?.target?.id)) updateAutomaticPlaceholders();
-    const result = window.NELCoolingSizingEngine.calculate(collect());nelCurrentValid=result.ok!==false;
+    const result = window.NELCoolingSizingEngine.calculate(collect());
+    const dryAir = localDryAir(optionalNumber("altitudeM"), optionalNumber("dryBulbC"));
+    if (dryAir && dryAir.ok === false) { nelCurrentValid=false; nelInputError(false); window.lastResult=null; for (const id of ["base","design","units","n1","util","btu","tons","air","density","localAir","ratio"]) if ($(id)) $(id).textContent="—"; return; }
+    if (dryAir) { result.densityKgM3=dryAir.densityKgM3; result.densityRatio=dryAir.densityRatio; result.localAirflowM3h=result.airflowM3h*(1.2/dryAir.densityKgM3); }
+    nelCurrentValid=result.ok!==false;
     if ($("result")) $("result").hidden = false;
     nelInputError(result.ok);
     if (!result.ok) {window.lastResult=null;for(const id of ["base","design","units","n1","util","btu","tons","air","density","localAir","ratio"])if($(id))$(id).textContent="—";if($("coolingRows"))$("coolingRows").replaceChildren();for(const id of ["coolJson","coolCsv"])if($(id))$(id).disabled=true;return;}window.lastResult=result;

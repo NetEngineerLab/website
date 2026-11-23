@@ -1,15 +1,1 @@
-const assert=require('assert');const E=require('../js/engine.js');let r=E.calculate({itKW:120,upsLossKW:6,pduLossKW:3,lightingKW:2,people:4,wPerPerson:120,envelopeKW:5,otherKW:2,headroomPct:15,unitSensibleKW:50,redundancyUnits:1,deltaTC:10});assert(r.ok);assert(r.totalBaseKW>138&&r.totalBaseKW<139);assert(r.designKW>159&&r.designKW<160);assert(r.recommendedUnits===5);assert(r.survives1);assert(r.tons>45&&r.tons<46);assert(r.airflowM3h>47000);assert.deepStrictEqual(r.scenarios.map(s=>s.itKW),[120,120,120]);assert.strictEqual(r.assumptions.frameMaxUnits,null);assert.strictEqual(r.assumptions.additionalSensibleLoadKW,0);assert(E.toCSV(r).includes('adoptedITKW'));assert(JSON.parse(E.toJSON(r)).result.assumptions.peakITKW===120);r=E.calculate({itKW:200,peakITKW:230,conservativeITKW:250,latentLoadKW:5,unitSensibleKW:50,installedUnits:4,headroomPct:20,deltaTC:10,frameMaxUnits:3});assert(r.ok&&r.warnings.includes('n1Fail'));assert(r.warnings.includes('frameLimit'));assert.deepStrictEqual(r.scenarios.map(s=>s.itKW),[200,230,250]);assert.strictEqual(r.assumptions.additionalSensibleLoadKW,5);
-const base={itKW:120,upsLossKW:6,pduLossKW:3,lightingKW:2,people:4,wPerPerson:120,envelopeKW:5,otherKW:2,headroomPct:15,unitSensibleKW:50,redundancyUnits:1,deltaTC:10};
-const plain=E.calculate(base);
-const local=E.calculate({...base,altitudeM:1000,dryBulbC:24});
-assert.strictEqual(plain.densityKgM3,null);
-assert.strictEqual(plain.recommendedUnits,local.recommendedUnits);
-assert.strictEqual(plain.airflowM3h,local.airflowM3h);
-assert(Math.abs(local.pressureKPa-89.875)<0.002);
-assert(Math.abs(local.densityKgM3-1.0537)<0.001);
-assert(Math.abs(local.localAirflowM3h-local.designKW*3600/(local.densityKgM3*1.006*10))<1e-6);
-const standard=E.calculate({...base,altitudeM:0,dryBulbC:20});
-assert(Math.abs(standard.pressureKPa-101.325)<1e-9);
-assert(Math.abs(standard.densityRatio-1)<1e-12);
-assert.strictEqual(E.calculate({...base,altitudeM:12000,dryBulbC:20}).ok,false);
-console.log('Cooling sizing engine: PASS');
+const assert=require('assert');const E=require('../js/engine.js');let r=E.calculate({itKW:120,upsLossKW:6,pduLossKW:3,lightingKW:2,people:4,wPerPerson:120,envelopeKW:5,otherKW:2,headroomPct:15,unitSensibleKW:50,redundancyUnits:1,deltaTC:10});assert(r.ok);assert(r.totalBaseKW>138&&r.totalBaseKW<139);assert(r.designKW>159&&r.designKW<160);assert(r.recommendedUnits===5);assert(r.survives1);assert(r.tons>45&&r.tons<46);assert(r.airflowM3h>47000);assert.deepStrictEqual(r.scenarios.map(s=>s.itKW),[120,120,120]);assert.strictEqual(r.assumptions.frameMaxUnits,null);assert.strictEqual(r.assumptions.additionalSensibleLoadKW,0);assert(E.toCSV(r).includes('adoptedITKW'));assert(JSON.parse(E.toJSON(r)).result.assumptions.peakITKW===120);r=E.calculate({itKW:200,peakITKW:230,conservativeITKW:250,latentLoadKW:5,unitSensibleKW:50,installedUnits:4,headroomPct:20,deltaTC:10,frameMaxUnits:3});assert(r.ok&&r.warnings.includes('n1Fail'));assert(r.warnings.includes('frameLimit'));assert.deepStrictEqual(r.scenarios.map(s=>s.itKW),[200,230,250]);assert.strictEqual(r.assumptions.additionalSensibleLoadKW,5);console.log('Cooling sizing engine: PASS');

@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-data-center-cooling-load-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-d5fa960be35f";
+const CACHE = "nel-data-center-cooling-load-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-dae948d83810";
 const CORE = [
   "./",
   "./index.html",
@@ -7,7 +7,7 @@ const CORE = [
   "./manifest.webmanifest",
   "./css/style.css?v=79b365fef5ec",
   "./js/engine.js?v=20260920-v2",
-  "./js/app.js?v=caa42da4d3ed",
+  "./js/app.js?v=bb70b1f31ec4",
   "./js/deep-workflow.js",
   "./zh/js/deep-workflow.js",
   "./js/pwa.js",
