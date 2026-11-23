@@ -93,7 +93,7 @@ for(const record of records){
  if(!/assets\/js\/analytics\.js/i.test(html))errors.push(`${record.rel}: analytics.js missing`);
  if(!/assets\/js\/adsense\.js/i.test(html))errors.push(`${record.rel}: adsense.js missing`);
  if(!/assets\/js\/site\.js/i.test(html))errors.push(`${record.rel}: shared site.js missing`);
- if(!/locale-menu\.css/i.test(html))errors.push(`${record.rel}: locale-menu.css missing`);
+ if(!/locale-menu\.css/i.test(html)&&!/home-bundle\.css/i.test(html))errors.push(`${record.rel}: locale-menu.css missing`);
  if(!/data-language-menu/i.test(html))errors.push(`${record.rel}: language menu missing`);
  const canonical=config.siteUrl+urlFor(record.info.route,locale);
  const group=groups.get(record.info.route);

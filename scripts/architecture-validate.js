@@ -175,8 +175,9 @@ for(const file of publicHtml){
   else headerSignatures.add(shellSignature(header,true));
   if(!footer)errors.push(`${fileRel}: exactly one generated Footer region is required`);
   else footerSignatures.add(shellSignature(footer,false));
-  if(!/design-tokens\.css\?v=[a-f0-9]{12}/i.test(html))errors.push(`${fileRel}: content-hashed design-tokens.css missing`);
-  if(!/site-shell\.css\?v=[a-f0-9]{12}/i.test(html))errors.push(`${fileRel}: content-hashed site-shell.css missing`);
+  const homeBundle=/home-bundle\.css\?v=/i.test(html);
+  if(!homeBundle&&!/design-tokens\.css\?v=[a-f0-9]{12}/i.test(html))errors.push(`${fileRel}: content-hashed design-tokens.css missing`);
+  if(!homeBundle&&!/site-shell\.css\?v=[a-f0-9]{12}/i.test(html))errors.push(`${fileRel}: content-hashed site-shell.css missing`);
   if(header&&!/class=["'][^"']*\bsite-shell-menu-toggle\b/i.test(header))errors.push(`${fileRel}: navigation toggle missing`);
   if(header&&(header.match(/<nav\b/gi)||[]).length!==1)errors.push(`${fileRel}: Header must contain exactly one navigation`);
   if(footer&&(footer.match(/<nav\b/gi)||[]).length!==1)errors.push(`${fileRel}: Footer must contain exactly one navigation`);

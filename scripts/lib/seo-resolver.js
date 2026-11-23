@@ -713,14 +713,14 @@ function renderLlmsTxt({ siteUrl, toolCatalog, routes, activeLocales }) {
     "",
     "> Free network engineering calculators, topic hubs and guides for fiber, PON, switching, data-center power and telecom planning. Published in English, Chinese (zh-CN) and Spanish where a translation exists.",
     "",
-    `Canonical site: ${siteUrl}/`,
-    `Chinese homepage: ${siteUrl}/zh/`,
-    `Spanish homepage: ${siteUrl}/es/`,
-    `Tools directory: ${siteUrl}/tools/`,
-    `Chinese tools directory: ${siteUrl}/tools/zh/`,
-    `Spanish tools directory: ${siteUrl}/tools/es/`,
-    `Topics: ${siteUrl}/topics/`,
-    `Sitemap: ${siteUrl}/sitemap.xml`,
+    `[Canonical site](${siteUrl}/)`,
+    `[Chinese homepage](${siteUrl}/zh/)`,
+    `[Spanish homepage](${siteUrl}/es/)`,
+    `[Tools directory](${siteUrl}/tools/)`,
+    `[Chinese tools directory](${siteUrl}/tools/zh/)`,
+    `[Spanish tools directory](${siteUrl}/tools/es/)`,
+    `[Topics](${siteUrl}/topics/)`,
+    `[Sitemap](${siteUrl}/sitemap.xml)`,
     "",
     "## Languages",
     "",
@@ -738,7 +738,7 @@ function renderLlmsTxt({ siteUrl, toolCatalog, routes, activeLocales }) {
       .filter(locale => locale.id === "en" || tool.translations?.[locale.catalogKey] || tool.translations?.[locale.id])
       .map(locale => locale.id)
       .join(", ");
-    lines.push(`- ${name} (${locales}): ${siteUrl}/tools/${tool.id}/`);
+    lines.push(`- [${name} (${locales})](${siteUrl}/tools/${tool.id}/)`);
   }
   lines.push("", "## Supplementary tools and workshops", "");
   lines.push("These pages can be indexed. They sit outside the production calculator count above. A language is listed only when that page is published.", "");
@@ -753,22 +753,22 @@ function renderLlmsTxt({ siteUrl, toolCatalog, routes, activeLocales }) {
     const base = path.join(__dirname, "..", "..", "website", "tools", id);
     const published = ["en", "zh", "es"].filter(locale => fs.existsSync(path.join(base, locale === "en" ? "index.html" : path.join(locale, "index.html"))));
     if (!published.includes("en")) throw new Error(`llms.txt supplemental page is missing: ${id}`);
-    lines.push(`- ${name} (${published.join(", ")}): ${siteUrl}/tools/${id}/ — ${role}`);
+    lines.push(`- [${name} (${published.join(", ")})](${siteUrl}/tools/${id}/) — ${role}`);
   }
   lines.push("", "## Calculator hubs", "");
-  lines.push(`- PON and fiber calculators: ${siteUrl}/tools/pon-fiber-calculators/`);
-  lines.push(`- Switching and bandwidth calculators: ${siteUrl}/tools/switching-bandwidth-calculators/`);
-  lines.push(`- Data center power and cooling calculators: ${siteUrl}/tools/datacenter-power-calculators/`);
+  lines.push(`- [PON and fiber calculators](${siteUrl}/tools/pon-fiber-calculators/)`);
+  lines.push(`- [Switching and bandwidth calculators](${siteUrl}/tools/switching-bandwidth-calculators/)`);
+  lines.push(`- [Data center power and cooling calculators](${siteUrl}/tools/datacenter-power-calculators/)`);
   lines.push("", "Calculator hubs list tools. Topic hubs explain the design and troubleshooting path. They link to each other and do not share a title.", "");
   lines.push("## Topics", "");
   for (const route of routes.filter(item => item.route.startsWith("topics/") && item.indexable !== false)) {
     const title = route.translations?.en?.title || route.route;
-    lines.push(`- ${title}: ${siteUrl}/${route.route}`);
+    lines.push(`- [${title}](${siteUrl}/${route.route})`);
   }
   lines.push("", "## Guides", "");
   for (const route of routes.filter(item => item.route.startsWith("guides/") && item.indexable !== false)) {
     const title = route.translations?.en?.title || route.route;
-    lines.push(`- ${title}: ${siteUrl}/${route.route}`);
+    lines.push(`- [${title}](${siteUrl}/${route.route})`);
   }
   lines.push("", "## Usage notes", "", "Calculations are engineering aids. Validate assumptions, vendor specifications, standards and field conditions before deployment.", "");
   return lines.join("\n");
