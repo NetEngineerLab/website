@@ -5,11 +5,11 @@
     {"id": "PR72", "status": "excluded", "reason": "Not authorized for this integration."},
     {"id": "PR75", "head": "919f004e9fd910c518c2707895c2c4b2e55e689c", "status": "integrated-preview", "gate": "not-pass"},
     {"id": "PR76", "head": "c24d0a41f204d3cb4cc3bb9a991762d39fbb37f6", "status": "integrated-preview", "gate": "not-pass"},
-    {"id": "PR77", "head": "0916d1aff24118c37b7ff146997f729c1d7787e1", "status": "integrated-preview", "ci": "45170839941", "gate": "not-pass", "preview": "https://7eeb3fab.netengineerlab.pages.dev"},
+    {"id": "PR77", "head": "ce742fca07543a7973223fdc291e556ca4f6fbda", "status": "integrated-preview", "ci": "45178304123", "gate": "not-pass", "preview": "https://7eeb3fab.netengineerlab.pages.dev", "note": "FAQ contract is six questions. The new source gate was still running and its Cloudflare deploy was not successful when this head was merged."},
     {"id": "PR78", "head": "37e3316db494d8306d5f9283512384a53b03efc6", "status": "integrated-preview", "gate": "not-pass", "preview": "https://d9997d07.netengineerlab.pages.dev"},
     {"id": "PR80", "head": "38bd048bc727b15ac1b4f15b1ea1e189867ccedd", "status": "source-accepted", "ci": "45170062592", "cloudflare": "b0f2daff", "sourceGate": "pass", "gate": "integration-not-pass"},
     {"id": "PR81", "head": "9e294d8da08df212bf79c9a930d36307f176ed5c", "status": "integrated-preview", "gate": "not-pass", "preview": "https://0cc32f65.netengineerlab.pages.dev"},
-    {"id": "PR83", "head": "d35211da09e6d32dfc6c126337704d2b21d18c3b", "status": "integrated-preview", "gate": "not-pass", "preview": "none-published"}
+    {"id": "PR83", "head": "726f959e8bcf2c568cc927013e657792ef51fa62", "status": "integrated-preview", "gate": "not-pass", "preview": "https://db1a1bae.netengineerlab.pages.dev"}
   ],
   "knownLanguageMismatches": [
     {
@@ -28,7 +28,7 @@
       "route": "/guides/data-center-pue-calculation/",
       "locale": "es",
       "href": "../../../topics/data-center-cooling-capacity/",
-      "reason": "The Spanish PUE guide points at the English cooling topic because the Spanish translation of that existing topic is not in this head."
+      "reason": "The Spanish PUE guide still names the English cooling topic beside the Chinese one. The return path is now the Spanish topic at ../../topics/data-center-cooling-capacity/."
     }
   ],
   "pages": [
@@ -354,11 +354,11 @@
       "links": [
         {"kind": "tool", "route": "/tools/pue-data-center-energy-efficiency/", "locales": ["es"], "anchors": {"es": "Repita la relación con sus propias lecturas de medidor"}},
         {"kind": "tool", "route": "/tools/data-center-cooling-load-calculator/", "locales": ["es"], "anchors": {"es": "Dimensione la carga sensible de refrigeración por separado"}},
-        {"kind": "article", "route": "/guides/monthly-energy-pue-not-redundancy/", "locales": ["es"], "anchors": {"es": "Vea por qué 120000/80000 kWh = 1.50 no demuestra redundancia"}}
+        {"kind": "article", "route": "/guides/monthly-energy-pue-not-redundancy/", "locales": ["es"], "anchors": {"es": "Vea por qué 120000/80000 kWh = 1.50 no demuestra redundancia"}},
+        {"kind": "topic", "role": "return", "route": "/topics/data-center-cooling-capacity/", "locales": ["es"], "anchors": {"es": "Volver al tema de capacidad de refrigeración"}}
       ],
       "exceptions": [
-        {"rule": "articleMinArticles", "locales": ["es"], "reason": "The Spanish cooling-load and heat-load guides do not exist. The page already points at the English copies, and a second Spanish article is not invented."},
-        {"rule": "articleTopic", "locales": ["es"], "reason": "No Spanish cooling-capacity topic exists yet. A later head is expected to translate the existing topic. This preview does not create that topic or a sixth article."}
+        {"rule": "articleMinArticles", "locales": ["es"], "reason": "The Spanish cooling-load and heat-load guides do not exist. The page already points at the English copies, and a second Spanish article is not invented."}
       ]
     },
     {

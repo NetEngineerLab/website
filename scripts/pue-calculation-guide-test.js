@@ -87,7 +87,38 @@ for (const locale of ['website/topics/data-center-cooling-capacity/index.html', 
 }
 check('topic density is airflow only', read('website/topics/data-center-cooling-capacity/index.html').includes('not a cooling-capacity derating') && read('website/zh/topics/data-center-cooling-capacity/index.html').includes('不是制冷容量降额'));
 check('guide returns to the cooling topic', read(`website/guides/${slug}/index.html`).includes('topics/data-center-cooling-capacity/') && read(`website/zh/guides/${slug}/index.html`).includes('topics/data-center-cooling-capacity/') && read(`website/es/guides/${slug}/index.html`).includes('topics/data-center-cooling-capacity/'));
-check('no spanish cooling topic', !require('fs').existsSync('website/es/topics/data-center-cooling-capacity/index.html'));
+const esTopic = read('website/es/topics/data-center-cooling-capacity/index.html');
+check('spanish cooling topic is the same hub', esTopic.includes('id="field-case"') && esTopic.includes('id="worked-cases"') && esTopic.includes('136.25') && esTopic.includes('38.74') && esTopic.includes('118.48') && esTopic.includes('id="intro"') && esTopic.includes('id="method"') && esTopic.includes('id="faq"'));
+check('spanish topic keeps the case anchor', esTopic.includes('id="field-case"') && esTopic.includes('150 kW') && esTopic.includes('120 kW'));
+for (const tool of [
+  'website/tools/pue-data-center-energy-efficiency/index.html',
+  'website/tools/pue-data-center-energy-efficiency/zh/index.html',
+  'website/tools/pue-data-center-energy-efficiency/es/index.html'
+]) {
+  const page = read(tool);
+  check(tool + ' formula example', page.includes('1.50') && page.includes('150000') && page.includes('100000') && page.includes('1.40') && page.includes('560') && page.includes('400') && page.includes('https://www.iso.org/standard/30134-2'));
+  check(tool + ' h1 kept', page.includes('tool-page-label'));
+}
+check('spanish guide returns to the spanish topic', read('website/es/guides/data-center-pue-calculation/index.html').includes('href="../../topics/data-center-cooling-capacity/"'));
+for (const page of [
+  `website/guides/${slug}/index.html`,
+  `website/zh/guides/${slug}/index.html`,
+  `website/es/guides/${slug}/index.html`
+]) {
+  const html = read(page);
+  check(page + ' total divided by IT is 1.50', html.includes('150000 ÷ 100000 = 1.50'));
+  check(page + ' does not invert the ratio', !html.includes('100000 ÷ 150000 = 1.50') && !html.includes('100000 / 150000 = 1.50'));
+}
+for (const page of [
+  'website/tools/pue-data-center-energy-efficiency/index.html',
+  'website/tools/pue-data-center-energy-efficiency/zh/index.html',
+  'website/tools/pue-data-center-energy-efficiency/es/index.html'
+]) {
+  const html = read(page);
+  check(page + ' names IT 100000 and total 150000 as 1.50', html.includes('100000') && html.includes('150000') && html.includes('1.50') && html.indexOf('100000') < html.indexOf('150000'));
+  check(page + ' does not invert the ratio', !html.includes('100000 ÷ 150000 = 1.50') && !html.includes('100000 / 150000 = 1.50'));
+  check(page + ' snapshot is 560 over 400', /560 kW total and 400 kW IT|总功率560 kW、IT 400 kW|560 kW totales y 400 kW de TI/.test(html) && html.includes('1.40'));
+}
 
 if (failed) { console.error(failed + ' failed'); process.exit(1); }
 console.log('PASS pue calculation guide');
