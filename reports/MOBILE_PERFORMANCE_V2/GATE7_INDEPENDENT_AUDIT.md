@@ -11,7 +11,7 @@ This review is a second pass over the diff and the lab evidence in this same cha
 5. Tools. No tool page, catalog entry or `llms.txt` destination was removed. Category coverage passed. Pass for inventory. Not a statement that all 47 calculators were clicked.
 6. Calculators. Subnet and optical-power-budget engine tests passed. Homepage search still resolves a catalog id to the tool URL. Pass for those paths.
 7. Cookie consent. Script unchanged. Decline still persists `false` and closes the dialog. Pass.
-8. Cache. Only versioned font filenames are immutable for a year. Unversioned `/assets/*` stay at one day. Homepage HTML still revalidates. The bundle query is `v=20261123-mpv2`. Pass, with the operational rule that a font file must be renamed when its bytes change.
+8. Cache. Only versioned font filenames are immutable for a year. Unversioned `/assets/*` stay at one day. Homepage HTML still revalidates. The bundle query is `v=20261123-mpv2b`. Fonts are served from `/fonts/`, outside the one-day `/assets/*` rule. Pass, with the operational rule that a font file must be renamed when its bytes change.
 9. SEO and links. Canonical and hreflang tags on the homepage were not edited. `llms.txt` links resolve locally. SEO lab score stayed 100. Pass.
 10. Security. No enforcing header was added. Report-only CSP, live HSTS with `includeSubDomains`, and the absence of COOP and Trusted Types are documented in GATE5. Pass for “do not set a header just to clear an audit”.
 

@@ -4,11 +4,11 @@ Branch `cursor/mobile-performance-v2-4364`. `main` was not rewritten. Nothing wa
 
 ## CSS and fonts
 
-- Added self-hosted Geist variable subsets `website/assets/fonts/geist-latin-v5.woff2` and `geist-latin-ext-v5.woff2` (SIL Open Font License, the Google Fonts files).
+- Added self-hosted Geist variable subsets `website/fonts/geist-latin-v5.woff2` and `geist-latin-ext-v5.woff2` (SIL Open Font License, the Google Fonts files). They sit outside `/assets/*` so the one-day asset rule does not also attach to them.
 - Added `website/assets/css/geist.css` with `font-weight: 400 700` and `font-display: swap`.
 - Added `website/assets/css/home-bundle.css`, the concatenation of design tokens, `site.css`, `site-shell.css`, `locale-menu.css`, `home-fresh.css` and `geist.css`.
 - Added `scripts/build-home-bundle.js`. `npm test` runs it with `--check`.
-- English, Chinese and Spanish homepages now load one stylesheet, `home-bundle.css?v=20261123-mpv2`, and preload the subset that covers that page (latin, or latin-ext on Spanish). Google Fonts preconnect and stylesheet links were removed from those three pages only.
+- English, Chinese and Spanish homepages now load one stylesheet, `home-bundle.css?v=20261123-mpv2b`, and preload the subset that covers that page (latin, or latin-ext on Spanish). Google Fonts preconnect and stylesheet links were removed from those three pages only.
 - Cookie and mobile-branding styles stay on the existing non-blocking preload.
 
 ## LCP image
@@ -21,7 +21,7 @@ The three homepage hero images now have `width="540"` `height="500"` `loading="e
 
 ## Cache
 
-`website/_headers` adds `/assets/fonts/*` → `Cache-Control: public, max-age=31536000, immutable`. The one-day `/assets/*` rule is unchanged. HTML caching is unchanged.
+`website/_headers` adds `/fonts/*` → `Cache-Control: public, max-age=31536000, immutable`. The first preview deploy put the files under `/assets/fonts/` and Pages concatenated that rule with the one-day `/assets/*` rule. The files now live at `/fonts/`. The one-day `/assets/*` rule is unchanged. HTML caching is unchanged.
 
 ## llms.txt
 

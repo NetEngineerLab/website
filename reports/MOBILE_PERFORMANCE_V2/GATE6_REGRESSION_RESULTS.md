@@ -15,7 +15,18 @@ Mobile FCP/LCP: 1052, 1052, 1056 ms. Desktop LCP: 564, 567, 563 ms. Desktop perf
 
 Compared with the production baseline (mobile FCP/LCP 1.56 s, accessibility 96, agentic 2/3), the lab page meets Performance ≥ 98, FCP ≤ 1.3 s, LCP ≤ 1.5 s, Speed Index ≤ 3 s, TBT ≤ 50 ms, CLS 0, accessibility 100, best practices 100, SEO 100, agentic browsing 3/3.
 
-These are lab simulations on localhost. They are not production PSI and they are not CrUX. Field Core Web Vitals remain UNKNOWN.
+These localhost runs are not CrUX. Field Core Web Vitals remain UNKNOWN.
+
+## Cloudflare Pages preview
+
+Branch preview `https://cursor-mobile-performance-v2.netengineerlab.pages.dev/` (commit `f114ad1`, before the font path move), Lighthouse 13.6, three runs, 2026-11-23 about 23:50 Asia/Shanghai. JSON: `lighthouse/preview/`.
+
+| | Performance | Accessibility | Best practices | SEO | Agentic browsing | FCP | LCP | Speed Index | TBT | CLS |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Mobile median | 100 | 100 | 100 | 69 | 100 | 0.94 s | 0.94 s | 0.94 s | 0 ms | 0 |
+| Desktop median | 100 | 100 | 100 | 69 | 100 | 0.30 s | 0.36 s | 0.35 s | 0 ms | 0 |
+
+SEO 69 is `is-crawlable` failing because the preview host sends `X-Robots-Tag: noindex`. That header is the existing Pages preview rule. Production `https://netengineerlab.com/` does not send it. Contrast and `llms.txt` passed on the preview. The font response on that deploy concatenated the one-day `/assets/*` cache with the year-long font rule; the follow-up move to `/fonts/` leaves a single `max-age=31536000, immutable`.
 
 Desktop LCP discovery passes (`fetchpriority=high`, discoverable, not lazy). Unsized images passes. Contrast passes. `llms-txt` passes. One homepage stylesheet remains render-blocking (`home-bundle.css`); the insight still estimates about 240 ms. That request is the CSS the first paint needs.
 

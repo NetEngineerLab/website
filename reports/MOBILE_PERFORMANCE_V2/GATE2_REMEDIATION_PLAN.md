@@ -6,7 +6,7 @@ This plan was written from the GATE0 and GATE1 evidence and then executed in GAT
 
 - Evidence: mobile render-blocking insight, FCP median 1.56 s, Google Fonts CSS plus five stylesheets.
 - Cause: cross-origin font CSS and six separate blocking requests. The rules themselves are needed.
-- Files: new `website/assets/css/geist.css`, `website/assets/css/home-bundle.css`, `scripts/build-home-bundle.js`, `website/index.html`, `website/zh/index.html`, `website/es/index.html`, `website/assets/fonts/geist-latin-v5.woff2`, `website/assets/fonts/geist-latin-ext-v5.woff2`.
+- Files: new `website/assets/css/geist.css`, `website/assets/css/home-bundle.css`, `scripts/build-home-bundle.js`, `website/index.html`, `website/zh/index.html`, `website/es/index.html`, `website/fonts/geist-latin-v5.woff2`, `website/fonts/geist-latin-ext-v5.woff2`.
 - Expected gain: remove the fonts.googleapis.com hop and collapse homepage CSS to one same-origin request.
 - Risk: bundle drift if a source CSS file changes and the bundle is not regenerated. `node scripts/build-home-bundle.js --check` is on `npm test`.
 - Rollback: restore the six `<link rel="stylesheet">` tags and the Google Fonts links.
@@ -33,9 +33,9 @@ No change. Evidence does not show a forced reflow. Consent, GA4 and AdSense beha
 ## P1. Cache
 
 - Evidence: `/assets/*` is one day. Many asset URLs have no content hash in the path.
-- Change: only `/assets/fonts/*` gets `public, max-age=31536000, immutable`, because those filenames include `v5`.
+- Change: only `/fonts/*` gets `public, max-age=31536000, immutable`, because those filenames include `v5` and the path is outside `/assets/*`.
 - HTML stays `max-age=0, must-revalidate` (already true in production `_headers` via Pages and was not loosened).
-- Risk: replacing a font file without renaming it would stick for a year. Rollback: delete the `/assets/fonts/*` block.
+- Risk: replacing a font file without renaming it would stick for a year. Rollback: delete the `/fonts/*` block.
 - Not done: year-long immutable on all of `/assets/*`.
 
 ## P1. tools-catalog.js

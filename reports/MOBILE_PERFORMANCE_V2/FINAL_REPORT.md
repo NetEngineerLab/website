@@ -29,9 +29,11 @@ Lighthouse 13.6.0, three-run median. PSI API returned 429, so this is the same e
 
 “After” is localhost with the new files. “Before” is production. The acceptance targets for the lab run are met. The live site still serves the before build until this branch is deployed by a person.
 
+The Cloudflare Pages branch preview confirmed the same result on the CDN: mobile performance 100, FCP/LCP 0.94 s, accessibility 100, agentic browsing 3/3. Preview SEO is 69 only because Pages sends `noindex` on `*.pages.dev`. Production does not. Details are in GATE6.
+
 ## Findings that keep this from a clean PASS
 
-- Production PageSpeed was not re-run after a deploy, because this change does not deploy.
+- The Pages preview was measured. Production `netengineerlab.com` was not, because this change does not deploy production.
 - Field Core Web Vitals are UNKNOWN.
 - `npm test` fails in `tool-detail-v3-contract-test.js` on the SFP/QSFP service worker precache. That file is not in this diff.
 - Not every calculator was exercised in a browser. Subnet and optical budget engines passed. Category coverage passed.
@@ -40,7 +42,7 @@ Lighthouse 13.6.0, three-run median. PSI API returned 429, so this is the same e
 
 ## Rollback
 
-Revert the branch. The homepages return to the Google Fonts tags and the six stylesheets. `website/_headers` loses only the `/assets/fonts/*` block. `llms.txt` can be restored from `main`. No Cloudflare purge rule was created. After deploy, HTML revalidates immediately (`max-age=0`). Font files are new URLs, so they do not collide with an old cache entry. The bundle URL is `home-bundle.css?v=20261123-mpv2`.
+Revert the branch. The homepages return to the Google Fonts tags and the six stylesheets. `website/_headers` loses only the `/fonts/*` block. `llms.txt` can be restored from `main`. No Cloudflare purge rule was created. After deploy, HTML revalidates immediately (`max-age=0`). Font files are new URLs, so they do not collide with an old cache entry. The bundle URL is `home-bundle.css?v=20261123-mpv2b`.
 
 ## Evidence
 
