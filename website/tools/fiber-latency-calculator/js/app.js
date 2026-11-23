@@ -236,10 +236,10 @@ function calculate(){
  try {
 
   const values = readInputs();
-  const result = window.NELFiberLatencyEngine.calculate(values);
-  window.__lastDomainResult=result;
   const fieldsValid = markInvalidFields(values);
-  if (!result.ok || !fieldsValid){
+  const result = fieldsValid ? window.NELFiberLatencyEngine.calculate(values) : {ok: false};
+  window.__lastDomainResult = result;
+  if (!result.ok){
     clearResults();
     setValidation(text.validation);
     return;

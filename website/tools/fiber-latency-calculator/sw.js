@@ -1,6 +1,6 @@
 "use strict";
 // t316: tool-isolated exact-version fallback; online documents/styles/scripts always refresh.
-const CACHE = "nel-fiber-latency-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-9531c2e46e4f";
+const CACHE = "nel-fiber-latency-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-7bc693a6f776";
 const CORE = [
   "./",
   "./index.html",
@@ -20,7 +20,7 @@ const CORE = [
   "../../assets/images/logo.svg",
   "./js/engine.js?v=11269b52819a",
   "./js/pwa.js?v=20261108-latency-bw7",
-  "./js/app.js?v=aeed54f7f8c3",
+  "./js/app.js?v=5fb25e9722d8",
   "../../assets/js/es-launch-runtime.js?v=829a7f1559b7",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",
