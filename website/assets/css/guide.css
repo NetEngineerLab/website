@@ -40,6 +40,18 @@
 .guide-hero h1{max-width:var(--nel-reading-max,760px);font-size:clamp(2rem,3.2vw,3rem);line-height:1.12;letter-spacing:-.035em;margin:.2em 0 .3em;color:var(--nel-color-text,#082f59)}
 .guide-lead{max-width:var(--nel-reading-max,760px);font-size:1.1rem;line-height:1.65;color:var(--nel-color-muted,#5d7691)}
 .guide-layout{grid-template-columns:minmax(0,1fr) var(--nel-sidebar-width,240px);gap:24px}
+/* Classic topics keep the directory on the right. A shell-wide cluster link
+   would run under that directory, so stop at the article column. */
+.topic-hub-page .guide-shell > .guide-layout + .hub-return{
+  width:calc(100% - var(--nel-sidebar-width, 240px) - 24px);
+  max-width:none;
+  margin-left:0;
+  margin-right:auto;
+  border-radius:16px;
+  box-sizing:border-box;
+  overflow-wrap:anywhere;
+}
+.topic-hub-page .guide-shell > .guide-layout + .hub-return a{white-space:normal;overflow-wrap:anywhere}
 .guide-article{border:1px solid var(--nel-color-border,#d7e3ef);border-radius:14px;padding:clamp(22px,3vw,34px);box-shadow:none}
 .guide-article p,.guide-article li{line-height:1.7}
 .guide-formula,.guide-example,.guide-callout,.guide-cta,.guide-toc,.guide-related-grid a{border-color:var(--nel-color-border,#d7e3ef);border-radius:12px;box-shadow:none}
@@ -49,7 +61,7 @@
 .guide-tool-link{max-width:1120px}
 .topic-tools{max-width:1120px}
 .guide-related-grid a{border:1px solid var(--nel-color-border,#d7e3ef);border-radius:12px;box-shadow:none}
-@media(max-width:800px){.guide-shell{width:calc(100% - (2 * var(--nel-content-gutter-mobile,14px)));padding-top:18px}.guide-breadcrumb{width:calc(100% - (2 * var(--nel-content-gutter-mobile,14px)))}.guide-layout{grid-template-columns:1fr;gap:16px}.guide-toc{position:static;order:-1}.guide-hero h1{font-size:clamp(1.9rem,7vw,2.4rem)}.guide-tool-link,.topic-tools{display:flex;flex-wrap:wrap;align-items:flex-start;gap:12px}.guide-tool-link a,.topic-tools a{width:100%}}
+@media(max-width:800px){.guide-shell{width:calc(100% - (2 * var(--nel-content-gutter-mobile,14px)));padding-top:18px}.guide-breadcrumb{width:calc(100% - (2 * var(--nel-content-gutter-mobile,14px)))}.guide-layout{grid-template-columns:1fr;gap:16px}.topic-hub-page .guide-shell > .guide-layout + .hub-return{width:100%}.guide-toc{position:static;order:-1}.guide-hero h1{font-size:clamp(1.9rem,7vw,2.4rem)}.guide-tool-link,.topic-tools{display:flex;flex-wrap:wrap;align-items:flex-start;gap:12px}.guide-tool-link a,.topic-tools a{width:100%}}
 @media(max-width:680px){.guide-shell{padding-bottom:40px}.guide-article{padding:20px 16px}.guide-related-grid{grid-template-columns:1fr}.guide-tool-link,.topic-tools{display:block;padding:16px}.guide-tool-link a,.topic-tools a{display:inline-flex;width:auto;margin-top:10px}}
 .guide-related-side ul{margin:0;padding:0;list-style:none}
 @media(max-width:820px){.guide-layout>.guide-related-side{order:1}}

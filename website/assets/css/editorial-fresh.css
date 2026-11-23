@@ -203,6 +203,18 @@ body.guide-fresh .guide-shell > .content-section{
 }
 body.guide-fresh .guide-shell > .content-section h2{margin:0 0 10px;color:#16140f;font-size:22px;font-weight:600}
 body.guide-fresh .guide-shell > .content-section p{margin:0}
+/* The cluster link is a sibling of the two-column layout, so a full-width
+   pill starts under the directory. Keep it in the article column: 240px
+   directory plus the 20px column gap, the same offset as the related card. */
+body.guide-fresh.topic-hub-page main.guide-shell > .hub-return{
+  width:auto;
+  max-width:none;
+  margin:16px 0 0 260px;
+  border-radius:16px;
+  box-sizing:border-box;
+  overflow-wrap:anywhere;
+}
+body.guide-fresh.topic-hub-page main.guide-shell > .hub-return a{white-space:normal;overflow-wrap:anywhere}
 
 body.topics-fresh,
 body.tools-fresh,
@@ -305,6 +317,7 @@ body.lab-fresh .stages [aria-current="step"]{background:#176ff2;color:#fff;borde
   body.guide-fresh .guide-article,
   body.guide-fresh main.guide-content > .guide-article{grid-column:1}
   body.guide-fresh .guide-shell > .content-section{margin-left:0!important}
+  body.guide-fresh.topic-hub-page main.guide-shell > .hub-return{width:100%;margin-left:0;margin-right:0}
   body.topics-fresh .topic-grid,
   body.guide-fresh .guide-related-grid,
   body.hub-fresh .monitoring-grid{grid-template-columns:minmax(0,1fr)}
