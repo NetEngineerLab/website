@@ -93,11 +93,14 @@ async function measureColumn(page) {
       const rect = element.getBoundingClientRect();
       return {left: Math.round(rect.left), right: Math.round(rect.right)};
     };
+    const previous = hub && hub.previousElementSibling;
     return {
       direct: Boolean(hub && hub.parentElement && hub.parentElement.classList.contains("guide-shell")),
+      column: Boolean(previous && previous.classList.contains("guide-layout")),
       hub: box(hub),
       article: box(article),
-      related: box(related)
+      related: box(related),
+      tools: box(document.querySelector("main .topic-tools"))
     };
   });
 }
@@ -131,12 +134,17 @@ async function main() {
         if (info.reading < readingFloor) failures.push(`${width} ${route} reading width ${info.reading} < ${readingFloor}`);
         if (info.broken.length) failures.push(`${width} ${route} title word split ${info.broken.join(", ")}`);
         const column = await measureColumn(page);
-        if (column.direct && column.hub && column.article) {
+        if (column.direct && column.hub && column.column && column.article) {
           if (Math.abs(column.hub.left - column.article.left) > 2 || Math.abs(column.hub.right - column.article.right) > 2) {
             failures.push(`${width} ${route} cluster link ${column.hub.left}-${column.hub.right} article ${column.article.left}-${column.article.right}`);
           }
           if (column.related && (Math.abs(column.hub.left - column.related.left) > 2 || Math.abs(column.hub.right - column.related.right) > 2)) {
             failures.push(`${width} ${route} cluster link ${column.hub.left}-${column.hub.right} related ${column.related.left}-${column.related.right}`);
+          }
+        }
+        if (column.direct && column.hub && !column.column && column.tools) {
+          if (Math.abs(column.hub.left - column.tools.left) > 2 || Math.abs(column.hub.right - column.tools.right) > 2) {
+            failures.push(`${width} ${route} cluster link ${column.hub.left}-${column.hub.right} tools ${column.tools.left}-${column.tools.right}`);
           }
         }
       }
