@@ -1,6 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>48口交换机上联在增长20%并发生N-1后还能否通过？ | NetEngineerLab</title><meta name="description" content="示例：48×1G在25%利用率下，今天的2×10G可以通过。增长20%后正常状态仍通过，N-1状态缺少6.4 Gbps。"><link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/guide.css?v=09f302fd8b51"><link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
-<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=475098aa29f5">
-<meta property="og:url" content="https://netengineerlab.com/zh/guides/switch-uplink-20-percent-growth-n-1/">
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>48口交换机上联在增长20%并发生N-1后还能否通过？ | NetEngineerLab</title><meta name="description" content="示例：48×1G在25%利用率下，今天的2×10G可以通过。增长20%后正常状态仍通过，N-1状态缺少6.4 Gbps。"><link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/guide.css?v=09f302fd8b51"><meta property="og:url" content="https://netengineerlab.com/zh/guides/switch-uplink-20-percent-growth-n-1/">
 <meta property="og:title" content="48口交换机上联在增长20%并发生N-1后还能否通过？ | NetEngineerLab">
 <meta property="og:description" content="示例：48×1G在25%利用率下，今天的2×10G可以通过。增长20%后正常状态仍通过，N-1状态缺少6.4 Gbps。">
 <meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
@@ -11,6 +9,9 @@
 <meta name="robots" content="index,follow,max-image-preview:large">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"增长20%并断掉一条上联后，2×10G还能通过吗？","name":"增长20%并断掉一条上联后，2×10G还能通过吗？","description":"示例：48×1G在25%利用率下，今天的2×10G可以通过。增长20%后正常状态仍通过，N-1状态缺少6.4 Gbps。","url":"https://netengineerlab.com/zh/guides/switch-uplink-20-percent-growth-n-1/","inLanguage":"zh-CN","mainEntityOfPage":"https://netengineerlab.com/zh/guides/switch-uplink-20-percent-growth-n-1/","author":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"增长20%并断掉一条上联后，2×10G还能通过吗？","item":"https://netengineerlab.com/zh/guides/switch-uplink-20-percent-growth-n-1/"}]}</script>
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=475098aa29f5">
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"48口交换机上联在增长20%并发生N-1后还能否通过？ | NetEngineerLab","url":"https://netengineerlab.com/zh/guides/switch-uplink-20-percent-growth-n-1/","description":"示例：48×1G在25%利用率下，今天的2×10G可以通过。增长20%后正常状态仍通过，N-1状态缺少6.4 Gbps。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
@@ -26,7 +27,6 @@
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../../assets/js/site.js?v=c957f6562d31"></script>
-<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
 </head><body>
 <!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
