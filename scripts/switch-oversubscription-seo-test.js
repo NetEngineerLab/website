@@ -133,6 +133,11 @@ for (const family of families) {
       check(file + ' registry title', record.translations[locale] && record.translations[locale].title === title, title);
       check(file + ' registry description', record.translations[locale] && record.translations[locale].description === description);
     }
+    const toc = (html.match(/<aside\b[^>]*\bguide-toc\b[^>]*>[\s\S]*?<\/aside>/i) || [])[0] || '';
+    const outsideToc = html.replace(toc, '');
+    for (const href of [...toc.matchAll(/href="([^"]+)"/g)].map(match => match[1]).filter(href => !href.startsWith('#'))) {
+      check(file + ' related link outside toc ' + href, outsideToc.includes(href));
+    }
     const prefix = locale === 'en' ? '' : locale + '/';
     const publicPath = family.route.startsWith('tools/')
       ? (locale === 'en' ? `/tools/switch-uplink-oversubscription-calculator/` : `/tools/switch-uplink-oversubscription-calculator/${locale}/`)
