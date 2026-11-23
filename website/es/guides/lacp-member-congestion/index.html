@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Congestión de un miembro LACP | NetEngineerLab</title>
+<meta name="description" content="Un flujo permanece en un miembro LACP. Un agregado 2×10G puede verse a medias mientras un miembro de 10G está lleno.">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="NetEngineerLab">
+<meta property="og:title" content="Congestión de un miembro LACP | NetEngineerLab">
+<meta property="og:description" content="Un flujo permanece en un miembro LACP. Un agregado 2×10G puede verse a medias mientras un miembro de 10G está lleno.">
+<meta property="og:url" content="https://netengineerlab.com/es/guides/lacp-member-congestion/">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Congestión de un miembro LACP | NetEngineerLab">
+<meta name="twitter:description" content="Un flujo permanece en un miembro LACP. Un agregado 2×10G puede verse a medias mientras un miembro de 10G está lleno.">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../../assets/css/site.css">
+<link rel="stylesheet" href="../../../assets/css/guide.css?v=ffc815a61c42">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Congestión de un miembro LACP","name":"Congestión de un miembro LACP","description":"Un flujo permanece en un miembro LACP. Un agregado 2×10G puede verse a medias mientras un miembro de 10G está lleno.","url":"https://netengineerlab.com/es/guides/lacp-member-congestion/","inLanguage":"es","mainEntityOfPage":"https://netengineerlab.com/es/guides/lacp-member-congestion/","author":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://netengineerlab.com/es/"},{"@type":"ListItem","position":2,"name":"Congestión de un miembro LACP","item":"https://netengineerlab.com/es/guides/lacp-member-congestion/"}]}</script>
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=475098aa29f5">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Congestión de un miembro LACP | NetEngineerLab","url":"https://netengineerlab.com/es/guides/lacp-member-congestion/","description":"Un flujo permanece en un miembro LACP. Un agregado 2×10G puede verse a medias mientras un miembro de 10G está lleno.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Un agregado al 70 % demuestra que cada miembro tiene margen?","acceptedAnswer":{"@type":"Answer","text":"No. El hash puede dejar un miembro lleno mientras el promedio del agregado sigue por debajo de su capacidad."}}]}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="es">
+<meta name="nel-route" content="guides/lacp-member-congestion/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/es/guides/lacp-member-congestion/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/lacp-member-congestion/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/lacp-member-congestion/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/es/guides/lacp-member-congestion/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/lacp-member-congestion/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=c957f6562d31"></script>
+</head>
+<body class="guide-page guide-fresh">
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Plataforma de inteligencia para ingeniería de redes</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Abrir navegación"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navegación principal">
+      <a href="../../">Inicio</a>
+      <a href="../../../tools/es/">Herramientas</a>
+      <a href="../" aria-current="page">Guías</a>
+      <a href="../../topics/">Temas</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Español"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Español</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/guides/lacp-member-congestion/" lang="en" hreflang="en"><span>English</span><small>Inglés</small></a><a class="language-option" role="menuitem" href="/zh/guides/lacp-member-congestion/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chino simplificado</small></a><a class="language-option" role="menuitem" href="/es/guides/lacp-member-congestion/" lang="es" hreflang="es" aria-current="page"><span>Español</span><small>Español</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<nav class="guide-breadcrumb" aria-label="Migas de pan"><a href="../../">Inicio</a><span aria-hidden="true">›</span><a href="../">Guías</a><span aria-hidden="true">›</span><span aria-current="page">Congestión de un miembro LACP</span></nav>
+<main class="guide-shell" id="main"><section class="guide-hero"><p class="eyebrow">LACP</p><h1>Congestión de un miembro LACP</h1><p class="guide-lead">Un miembro LACP puede congestionarse mientras el agregado todavía tiene capacidad, porque el hash deja un flujo en un solo miembro. La relación de sobresuscripción no describe ese miembro.</p></section><div class="guide-tool-link"><strong>Herramienta de capacidad agregada</strong><p>La calculadora no simula el hash ni las colas de cada miembro.</p><a href="../../../tools/switch-uplink-oversubscription-calculator/es/">Abrir la calculadora →</a></div><div class="guide-layout"><article class="guide-article"><h2 id="separate">Pertenencia y distribución son comprobaciones distintas</h2><p>IEEE 802.1AX describe la agregación para usar enlaces paralelos como un enlace lógico. Para limitar el reordenamiento, una conversación se coloca en un miembro. <a href="https://www.rfc-editor.org/rfc/rfc7424">RFC 7424</a> explica que el hash no está normalizado y que el resultado puede ser desigual. Ninguno de los dos documentos fija una relación universal de acceso, como 2:1 o 4:1.</p><p>Que el cable esté arriba no demuestra que el miembro reenvíe tráfico ordinario. Revise el conjunto operativo en ambos extremos y en cada dirección.</p><h2 id="example">Un agregado al 70 % puede ocultar un miembro lleno</h2><p>Ejemplo sintético, sostenido y de una dirección. Cuatro flujos ofrecen 6, 5, 2 y 1 Gbps. Hay dos miembros de 10 Gbps que reenvían:</p><table><thead><tr><th>Miembro</th><th>Flujos</th><th>Demanda</th><th>Demanda / tasa</th></tr></thead><tbody><tr><td>A</td><td>6 + 5 Gbps</td><td>11 Gbps</td><td>110 %</td></tr><tr><td>B</td><td>2 + 1 Gbps</td><td>3 Gbps</td><td>30 %</td></tr><tr><td>Agregado</td><td>Los cuatro</td><td>14 Gbps</td><td>70 % de 20 Gbps</td></tr></tbody></table><p>11 Gbps es demanda dirigida a A, no una afirmación de que la interfaz de 10 Gbps transmita al 110 %. El exceso persistente se acumula, se descarta o hace que la aplicación reduzca el ritmo. B está poco cargado, no necesariamente en cero. Contar el mismo número de flujos en cada miembro no equilibra 11 frente a 3 Gbps. Mover el flujo de 5 Gbps es una ilustración, no un comando garantizado del switch.</p><h2 id="single-flow">Hash, un flujo y un miembro</h2><p>Un solo flujo de 10 Gbps en un agregado 2×10G puede llenar el miembro A mientras B no lleva nada. El agregado usa entonces cerca de la mitad de 20 Gbps. Si ambos miembros reenvían, la relación de línea sigue dividiendo por 20 Gbps. Esa relación no describe el miembro lleno. La carga ofrecida, la dirección, las ráfagas, la tasa de paquetes, los búferes y el límite de reenvío siguen aparte. Una prueba de una sola conexión no demuestra cómo se reparte el tráfico de producción. Añadir miembros no sube la tasa de un flujo que permanece en un miembro.</p><h2 id="evidence">Qué medir</h2><ol><li>Anote qué miembros reenvían, la velocidad negociada y el compañero, en ambos extremos.</li><li>Mida cada dirección por separado: 8 × delta de bytes / delta de segundos. No sume las dos direcciones y las divida por la capacidad de una.</li><li>Relacione descartes, colas y síntomas en la misma ventana. Un promedio de cinco minutos puede ocultar una ráfaga.</li><li>Identifique los flujos grandes y los campos que usa el hash de esa plataforma. Un túnel puede ocultar los campos internos.</li><li>Compare una conexión con varias conexiones independientes. No dé por hecho que cambiar el hash lo arregla.</li></ol><h2 id="calculator">La comprobación agregada es otra cuenta</h2><p>Con 14 puertos de 1000 Mbps, utilización 100 %, concurrencia 100 %, margen 0, dos uplinks de 10000 Mbps y objetivo 80 %, la calculadora devuelve 14 Gbps de demanda, 20 Gbps de capacidad, 16 Gbps útiles al 80 %, utilización 70 % y relación mostrada 0.7:1. El 80 % es el objetivo de este ejemplo, no una norma. Esos 14 puertos son un proxy de demanda, no la topología de los cuatro flujos. La calculadora no asigna flujos a miembros.</p><p>Si queda un solo miembro de 10 Gbps, la misma demanda de 14 Gbps es 14 / 10 = 140 %. Al objetivo del 80 %, la capacidad útil es 8 Gbps y el margen es −6 Gbps. Eso es un escenario de capacidad, no una garantía de conmutación.</p><p>El único calculador aplicable aquí es el de uplink: estima la capacidad del agregado y no asigna flujos a miembros. Un calculador de transferencia, de óptica o de previsión no modela el hash, así que no se añade.</p><h2 id="faq">Preguntas</h2><details><summary>¿Un agregado al 70 % demuestra que cada miembro tiene margen?</summary><p>No. El hash puede dejar un miembro lleno mientras el promedio del agregado sigue por debajo de su capacidad.</p></details><section class="guide-cross-links"><h2>Seguir leyendo</h2><div class="guide-related-grid"><a href="../switch-oversubscription-ratio/"><strong>Relación de sobresuscripción</strong><br>El denominador es la tasa de uplink activa.</a><a href="../switch-oversubscription-n-1/"><strong>N-1 y N+1</strong><br>Perder un miembro quita solo su tasa.</a><a href="../10g-vs-25g-uplinks/"><strong>10G y 25G</strong><br>Una tasa mayor no equilibra el hash.</a><a href="../../../es/topics/switch-oversubscription/"><strong>Tema</strong><br>Volver a la secuencia.</a></div></section></article><aside class="guide-toc guide-related-side" aria-label="En esta página"><strong>En esta página</strong><a href="#separate">Agregación y hash</a><a href="#example">Ejemplo del 70 %</a><a href="#single-flow">Un flujo</a><a href="#evidence">Medición</a><a href="#calculator">Capacidad agregada</a></aside></div></main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Herramientas profesionales en línea para ingenieros de telecomunicaciones y redes.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navegación del pie de página">
+      <a href="../../about/">Acerca de</a><a href="../../contact/">Contacto</a><a href="../../privacy/">Privacidad</a><a href="../../terms/">Términos</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+</body></html>

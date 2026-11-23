@@ -1,0 +1,272 @@
+{
+  "schemaVersion": "1.0.0",
+  "reviewed": "2026-11-23",
+  "dependencies": [
+    {"id": "PR72", "status": "excluded", "reason": "Not authorized for this integration."},
+    {"id": "PR75", "head": "99ba8635dc2053d747d561643e7048734a60b740", "status": "open-unaccepted"},
+    {"id": "PR76", "head": "366c3a9dfab551a8aaf09634b70d5296fefccea6", "status": "open-unaccepted"},
+    {"id": "PR77", "head": "0916d1aff24118c37b7ff146997f729c1d7787e1", "status": "integrated-preview", "ci": "45170839941", "gate": "not-pass", "preview": "https://7eeb3fab.netengineerlab.pages.dev"},
+    {"id": "PR78", "head": "f172c4e30ea44588063c08353f6bd7741e5f08f9", "status": "open-unaccepted"},
+    {"id": "PR80", "head": "38bd048bc727b15ac1b4f15b1ea1e189867ccedd", "status": "integrated-preview", "ci": "45170062592", "gate": "not-pass"},
+    {"id": "PR81", "head": "871ca7b5b01c42f5c6176a87ccf02d50da0dcd41", "status": "read-not-accepted"},
+    {"id": "PUE", "status": "no-open-pr-at-audit"}
+  ],
+  "knownLanguageMismatches": [
+    {
+      "route": "/tools/switch-uplink-oversubscription-calculator/",
+      "locale": "es",
+      "href": "../../../guides/48-port-switch-oversubscription/",
+      "reason": "PR77 Spanish calculator still points at the English 48-port guide. No Spanish page exists, so the association block does not repeat it."
+    }
+  ],
+  "pages": [
+    {
+      "id": "switch-tool",
+      "tier": "primary",
+      "status": "active",
+      "mode": "verify",
+      "kind": "tool",
+      "route": "/tools/switch-uplink-oversubscription-calculator/",
+      "locales": ["en", "zh", "es"],
+      "links": [
+        {"kind": "article", "role": "guide", "route": "/guides/switch-oversubscription-ratio/", "locales": ["en", "zh", "es"]},
+        {"kind": "article", "role": "example", "route": "/guides/switch-oversubscription-n-1/", "locales": ["en", "zh", "es"]},
+        {"kind": "article", "role": "guide", "route": "/guides/lacp-member-congestion/", "locales": ["en", "zh", "es"]},
+        {"kind": "article", "role": "guide", "route": "/guides/10g-vs-25g-uplinks/", "locales": ["en", "zh", "es"]},
+        {"kind": "topic", "role": "return", "route": "/topics/switch-oversubscription/", "locales": ["en", "zh", "es"]}
+      ]
+    },
+    {
+      "id": "switch-ratio",
+      "tier": "primary",
+      "status": "active",
+      "mode": "verify",
+      "kind": "article",
+      "route": "/guides/switch-oversubscription-ratio/",
+      "locales": ["en", "zh", "es"],
+      "links": [
+        {"kind": "tool", "route": "/tools/switch-uplink-oversubscription-calculator/", "locales": ["en", "zh", "es"]},
+        {"kind": "tool", "route": "/tools/data-center-network-convergence-fabric-capacity-planner/", "locales": ["en", "zh", "es"]},
+        {"kind": "article", "route": "/guides/switch-oversubscription-n-1/", "locales": ["en", "zh", "es"]},
+        {"kind": "article", "route": "/guides/lacp-member-congestion/", "locales": ["en", "zh", "es"]},
+        {"kind": "topic", "role": "return", "route": "/topics/switch-oversubscription/", "locales": ["en", "zh", "es"]}
+      ]
+    },
+    {
+      "id": "switch-n1",
+      "tier": "primary",
+      "status": "active",
+      "mode": "verify",
+      "kind": "article",
+      "route": "/guides/switch-oversubscription-n-1/",
+      "locales": ["en", "zh", "es"],
+      "links": [
+        {"kind": "tool", "route": "/tools/switch-uplink-oversubscription-calculator/", "locales": ["en", "zh", "es"]},
+        {"kind": "tool", "route": "/tools/network-capacity-forecast-planner/", "locales": ["en", "zh"]},
+        {"kind": "article", "route": "/guides/switch-oversubscription-ratio/", "locales": ["en", "zh", "es"]},
+        {"kind": "article", "route": "/guides/lacp-member-congestion/", "locales": ["en", "zh", "es"]},
+        {"kind": "topic", "role": "return", "route": "/topics/switch-oversubscription/", "locales": ["en", "zh", "es"]}
+      ],
+      "exceptions": [
+        {"rule": "articleMinTools", "locales": ["es"], "reason": "Spanish N-1 only needs the uplink calculator. Forecast, fabric, SFP and bandwidth tools do not compute this failure and do not simulate LACP hashing."}
+      ],
+      "rejected": [
+        {"route": "/tools/network-capacity-forecast-planner/", "locales": ["es"]},
+        {"route": "/tools/sfp-qsfp-compatibility-calculator/", "locales": ["es"]},
+        {"route": "/tools/bandwidth-calculator/", "locales": ["es"]},
+        {"route": "/tools/data-center-network-convergence-fabric-capacity-planner/", "locales": ["es"]}
+      ]
+    },
+    {
+      "id": "switch-lacp",
+      "tier": "primary",
+      "status": "active",
+      "mode": "verify",
+      "kind": "article",
+      "route": "/guides/lacp-member-congestion/",
+      "locales": ["en", "zh", "es"],
+      "links": [
+        {"kind": "tool", "route": "/tools/switch-uplink-oversubscription-calculator/", "locales": ["en", "zh", "es"]},
+        {"kind": "tool", "route": "/tools/bandwidth-calculator/", "locales": ["en", "zh"]},
+        {"kind": "article", "route": "/guides/switch-oversubscription-ratio/", "locales": ["en", "zh", "es"]},
+        {"kind": "article", "route": "/guides/switch-oversubscription-n-1/", "locales": ["en", "zh", "es"]},
+        {"kind": "topic", "role": "return", "route": "/topics/switch-oversubscription/", "locales": ["en", "zh", "es"]}
+      ],
+      "exceptions": [
+        {"rule": "articleMinTools", "locales": ["es"], "reason": "Spanish LACP explains member hash, which the uplink calculator does not simulate. SFP, forecast and bandwidth tools stay off this Spanish page."}
+      ],
+      "rejected": [
+        {"route": "/tools/network-capacity-forecast-planner/", "locales": ["es"]},
+        {"route": "/tools/sfp-qsfp-compatibility-calculator/", "locales": ["es"]},
+        {"route": "/tools/bandwidth-calculator/", "locales": ["es"]},
+        {"route": "/tools/data-center-network-convergence-fabric-capacity-planner/", "locales": ["es"]}
+      ]
+    },
+    {
+      "id": "switch-10g",
+      "tier": "primary",
+      "status": "active",
+      "mode": "verify",
+      "kind": "article",
+      "route": "/guides/10g-vs-25g-uplinks/",
+      "locales": ["en", "zh", "es"],
+      "links": [
+        {"kind": "tool", "route": "/tools/switch-uplink-oversubscription-calculator/", "locales": ["en", "zh", "es"]},
+        {"kind": "tool", "route": "/tools/sfp-qsfp-compatibility-calculator/", "locales": ["en", "zh", "es"]},
+        {"kind": "article", "route": "/guides/switch-oversubscription-ratio/", "locales": ["en", "zh", "es"]},
+        {"kind": "article", "route": "/guides/switch-oversubscription-n-1/", "locales": ["en", "zh", "es"]},
+        {"kind": "topic", "role": "return", "route": "/topics/switch-oversubscription/", "locales": ["en", "zh", "es"]}
+      ]
+    },
+    {
+      "id": "pon-splitter-guide",
+      "tier": "primary",
+      "status": "active",
+      "kind": "article",
+      "route": "/guides/pon-splitter-loss-guide/",
+      "locales": ["en", "zh"],
+      "links": [
+        {"kind": "tool", "route": "/tools/pon-splitter-loss/", "locales": ["en", "zh"], "anchors": {"en": "Repeat the split on the splitter calculator", "zh": "用分光器计算器重算同一分光比"}},
+        {"kind": "tool", "route": "/tools/optical-power-budget/", "locales": ["en", "zh"], "anchors": {"en": "Carry that loss into the receive-power budget", "zh": "把这笔损耗放进接收光功率预算"}},
+        {"kind": "article", "route": "/guides/fiber-link-budget-guide/", "locales": ["en", "zh"], "anchors": {"en": "Add fiber, connectors and splices to the same path", "zh": "把光纤、连接器和熔接点加进同一条路径"}},
+        {"kind": "article", "route": "/guides/onu-receive-level-warning-margin/", "locales": ["en", "zh"], "anchors": {"en": "Judge a measured level that sits 1 dB above sensitivity", "zh": "判断只比灵敏度高 1 dB 的实测收光"}},
+        {"kind": "topic", "role": "return", "route": "/topics/pon-optical/", "locales": ["en", "zh"], "anchors": {"en": "Return to the PON and optical topic", "zh": "返回 PON 与光网络专题"}}
+      ]
+    },
+    {
+      "id": "fiber-budget",
+      "tier": "primary",
+      "status": "active",
+      "kind": "article",
+      "route": "/guides/fiber-link-budget-guide/",
+      "locales": ["en", "zh"],
+      "links": [
+        {"kind": "tool", "route": "/tools/fiber-loss/", "locales": ["en", "zh"], "anchors": {"en": "Enter this span in the fiber loss calculator", "zh": "把这段跨距输入光纤损耗计算器"}},
+        {"kind": "tool", "route": "/tools/optical-power-budget/", "locales": ["en", "zh"], "anchors": {"en": "Compare the span with the transceiver budget", "zh": "用光模块预算对照这段跨距"}},
+        {"kind": "article", "route": "/guides/pon-splitter-loss-guide/", "locales": ["en", "zh"], "anchors": {"en": "Include a splitter when the span is a PON ODN", "zh": "如果这段是 PON 的 ODN，再计入分光器"}},
+        {"kind": "article", "route": "/guides/campus-fiber-six-connector-pairs/", "locales": ["en", "zh"], "anchors": {"en": "Recount a campus span with six connector pairs", "zh": "重算带有六对连接器的园区跨距"}},
+        {"kind": "topic", "role": "return", "route": "/topics/pon-optical/", "locales": ["en", "zh"], "anchors": {"en": "Return to the PON and optical topic", "zh": "返回 PON 与光网络专题"}}
+      ]
+    },
+    {
+      "id": "camera-guide",
+      "tier": "primary",
+      "status": "active",
+      "kind": "article",
+      "route": "/guides/ip-camera-network-bandwidth-poe/",
+      "locales": ["en", "zh"],
+      "links": [
+        {"kind": "tool", "route": "/tools/ip-camera-network-planner/", "locales": ["en", "zh"], "anchors": {"en": "Size the camera uplink and PoE load together", "zh": "同时估算摄像机上联和 PoE 负荷"}},
+        {"kind": "tool", "route": "/tools/poe-power-budget-calculator/", "locales": ["en", "zh"], "anchors": {"en": "Check switch watts before adding another camera", "zh": "增加摄像机前先核对交换机功率"}},
+        {"kind": "article", "route": "/guides/poe-voltage-after-90m/", "locales": ["en", "zh"], "anchors": {"en": "Check the voltage left after 90 m of 26 AWG", "zh": "核对 26 AWG 走 90 米后还剩多少电压"}},
+        {"kind": "article", "route": "/guides/poe-switch-budget-16-versus-24-cameras/", "locales": ["en", "zh"], "anchors": {"en": "See whether a 370 W budget still feeds 24 cameras", "zh": "看 370 W 预算能不能再带 24 台摄像机"}},
+        {"kind": "topic", "role": "return", "route": "/topics/ip-camera-network-bandwidth-poe/", "locales": ["en", "zh"], "anchors": {"en": "Return to the camera bandwidth and PoE topic", "zh": "返回摄像机带宽与 PoE 专题"}}
+      ]
+    },
+    {
+      "id": "cooling-load",
+      "tier": "primary",
+      "status": "active",
+      "kind": "article",
+      "route": "/guides/data-center-cooling-load-calculation/",
+      "locales": ["en", "zh"],
+      "links": [
+        {"kind": "tool", "route": "/tools/data-center-cooling-load-calculator/", "locales": ["en", "zh"], "anchors": {"en": "Recalculate the sensible load with your own kilowatts", "zh": "用你的千瓦数重算显热负荷"}},
+        {"kind": "tool", "route": "/tools/data-center-airflow-containment-planner/", "locales": ["en", "zh"], "anchors": {"en": "Turn the same heat into an airflow check", "zh": "把同一热量换成风量校核"}},
+        {"kind": "article", "route": "/guides/data-center-cooling-n-plus-one/", "locales": ["en", "zh"], "anchors": {"en": "Test the unit count after one cooling unit fails", "zh": "一台制冷单元失效后再数剩余台数"}},
+        {"kind": "article", "route": "/guides/server-room-airflow-from-delta-t/", "locales": ["en", "zh"], "anchors": {"en": "Derive airflow from the room temperature rise", "zh": "用房间温升反推所需风量"}},
+        {"kind": "topic", "role": "return", "route": "/topics/data-center-cooling-capacity/", "locales": ["en", "zh"], "anchors": {"en": "Return to the cooling capacity topic", "zh": "返回制冷容量专题"}}
+      ]
+    },
+    {
+      "id": "stp-calculator",
+      "tier": "primary",
+      "status": "active",
+      "mode": "verify",
+      "kind": "tool",
+      "route": "/tools/stp-path-cost-calculator/",
+      "locales": ["en", "zh", "es"],
+      "links": [
+        {"kind": "article", "role": "guide", "route": "/guides/stp-path-cost-explained/", "locales": ["en", "zh", "es"]}
+      ],
+      "exceptions": [
+        {"rule": "toolExample", "locales": ["en", "zh", "es"], "reason": "The worked topology is inside the path-cost explainer already linked. A second example page would repeat the same 4,000 versus 20,000 case."},
+        {"rule": "toolTopic", "locales": ["en", "zh", "es"], "reason": "No STP topic exists. Switch oversubscription is a bandwidth-ratio question, so this calculator does not return there."}
+      ],
+      "rejected": [
+        {"route": "/topics/switch-oversubscription/", "locales": ["en", "zh", "es"]},
+        {"route": "/guides/lacp-member-congestion/", "locales": ["en", "zh", "es"]},
+        {"route": "/guides/10g-vs-25g-uplinks/", "locales": ["en", "zh", "es"]}
+      ]
+    },
+    {
+      "id": "stp-article",
+      "tier": "integrated-new",
+      "status": "active",
+      "mode": "verify",
+      "kind": "article",
+      "route": "/guides/stp-path-cost-explained/",
+      "locales": ["en", "zh", "es"],
+      "links": [
+        {"kind": "tool", "route": "/tools/stp-path-cost-calculator/", "locales": ["en", "zh", "es"]},
+        {"kind": "tool", "route": "/tools/ethernet-serialization-delay-calculator/", "locales": ["en", "zh", "es"]}
+      ],
+      "exceptions": [
+        {"rule": "articleMinArticles", "locales": ["en", "zh", "es"], "reason": "No second published article teaches STP long and short port cost. LACP and 10G/25G pages, including their new translations, answer uplink bandwidth and member hash, not root path cost."},
+        {"rule": "articleTopic", "locales": ["en", "zh", "es"], "reason": "There is no STP topic. The switch topic is not a home for path cost."}
+      ],
+      "rejected": [
+        {"route": "/topics/switch-oversubscription/", "locales": ["en", "zh", "es"]},
+        {"route": "/guides/lacp-member-congestion/", "locales": ["en", "zh", "es"]},
+        {"route": "/guides/10g-vs-25g-uplinks/", "locales": ["en", "zh", "es"]},
+        {"route": "/tools/ospf-cost-calculator/", "locales": ["en", "zh", "es"]}
+      ]
+    },
+    {
+      "id": "ethernet-tool",
+      "tier": "supporting",
+      "status": "active",
+      "kind": "tool",
+      "route": "/tools/ethernet-serialization-delay-calculator/",
+      "locales": ["en", "zh", "es"],
+      "links": [
+        {"kind": "article", "role": "guide", "route": "/guides/stp-path-cost-explained/", "locales": ["en", "zh", "es"], "anchors": {"en": "Read the path-cost tables before measuring hop delay", "zh": "先读路径开销表，再测每跳时延", "es": "Lea las tablas de coste antes de medir el retardo por salto"}}
+      ],
+      "exceptions": [
+        {"rule": "toolExample", "locales": ["en", "zh", "es"], "reason": "The only applicable worked handoff is the STP explainer already linked as the guide."},
+        {"rule": "toolTopic", "locales": ["en", "zh", "es"], "reason": "Serialization delay has no topic of its own, and the switch topic does not own this measurement."}
+      ]
+    },
+    {
+      "id": "pon-topic-es",
+      "tier": "supporting",
+      "status": "active",
+      "kind": "topic",
+      "route": "/topics/pon-optical/",
+      "locales": ["es"],
+      "links": [
+        {"kind": "tool", "route": "/tools/pon-splitter-loss/", "locales": ["es"], "anchors": {"es": "Calcule la pérdida de un divisor que ya está en español"}},
+        {"kind": "tool", "route": "/tools/optical-power-budget/", "locales": ["es"], "anchors": {"es": "Pase esa pérdida al presupuesto de potencia óptica"}},
+        {"kind": "article", "route": "/guides/onu-receive-level-warning-margin/", "locales": ["es"], "anchors": {"es": "Revise un nivel medido a 1 dB de la sensibilidad"}},
+        {"kind": "article", "route": "/guides/campus-fiber-six-connector-pairs/", "locales": ["es"], "anchors": {"es": "Cuente un vano de campus con seis pares de conectores"}}
+      ]
+    },
+    {
+      "id": "dns-article",
+      "tier": "pending-new",
+      "status": "pending",
+      "kind": "article",
+      "route": "/guides/dns-ttl-explained/",
+      "locales": ["en", "zh", "es"],
+      "dependency": "PR81 head 871ca7b5b01c42f5c6176a87ccf02d50da0dcd41 is not accepted and is not merged here.",
+      "links": [
+        {"kind": "tool", "route": "/tools/dns-ttl-propagation-calculator/", "locales": ["en", "zh", "es"]}
+      ],
+      "exceptions": [
+        {"rule": "articleMinTools", "locales": ["en", "zh", "es"], "reason": "The TTL calculator is the only tool that answers this question."},
+        {"rule": "articleMinArticles", "locales": ["en", "zh", "es"], "reason": "No second DNS engineering article is published."},
+        {"rule": "articleTopic", "locales": ["en", "zh", "es"], "reason": "No DNS topic exists. Do not create one and do not file this under another topic."}
+      ]
+    }
+  ]
+}

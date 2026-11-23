@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>10G与25G上联：何时升级 | NetEngineerLab</title>
+<meta name="description" content="比较10G、25G、40G和100G的标称上联速率与实测需求。标称比值不是拥塞。">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="NetEngineerLab">
+<meta property="og:title" content="10G与25G上联：何时升级 | NetEngineerLab">
+<meta property="og:description" content="比较10G、25G、40G和100G的标称上联速率与实测需求。标称比值不是拥塞。">
+<meta property="og:url" content="https://netengineerlab.com/zh/guides/10g-vs-25g-uplinks/">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="10G与25G上联：何时升级 | NetEngineerLab">
+<meta name="twitter:description" content="比较10G、25G、40G和100G的标称上联速率与实测需求。标称比值不是拥塞。">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../../assets/css/site.css">
+<link rel="stylesheet" href="../../../assets/css/guide.css?v=ffc815a61c42">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"10G 与 25G 上联：何时升级","name":"10G 与 25G 上联：何时升级","description":"比较10G、25G、40G和100G的标称上联速率与实测需求。标称比值不是拥塞。","url":"https://netengineerlab.com/zh/guides/10g-vs-25g-uplinks/","inLanguage":"zh-CN","mainEntityOfPage":"https://netengineerlab.com/zh/guides/10g-vs-25g-uplinks/","author":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"10G 与 25G 上联：何时升级","item":"https://netengineerlab.com/zh/guides/10g-vs-25g-uplinks/"}]}</script>
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=475098aa29f5">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"10G与25G上联：何时升级 | NetEngineerLab","url":"https://netengineerlab.com/zh/guides/10g-vs-25g-uplinks/","description":"比较10G、25G、40G和100G的标称上联速率与实测需求。标称比值不是拥塞。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"何时从 10G 升到 25G？","acceptedAnswer":{"@type":"Answer","text":"当实测和预测需求不再适合已核实的 10G 可用容量和你要求的预留，并且兼容的 25G 设计通过同样的检查时，再评估 25G。没有统一利用率门槛。"}},{"@type":"Question","name":"25G 是否提供 25 Gbps 应用吞吐？","acceptedAnswer":{"@type":"Answer","text":"25 Gbps 是标称线速。可用吞吐取决于两端、转发路径、包长、协议开销、队列和已测试配置。"}},{"@type":"Question","name":"两条 25G 能否承载一条 50 Gbps 的流？","acceptedAnswer":{"@type":"Answer","text":"不要这样假设。每方向标称合计是 50 Gbps，但一条流通常映射到一个成员。"}},{"@type":"Question","name":"4×10G 是否总比 2×25G 更便宜？","acceptedAnswer":{"@type":"Answer","text":"不是。比较具体设备的端口、板卡、模块、布线、电力、许可、支持和已核实的可用容量。"}}]}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="zh">
+<meta name="nel-route" content="guides/10g-vs-25g-uplinks/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/zh/guides/10g-vs-25g-uplinks/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/10g-vs-25g-uplinks/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/10g-vs-25g-uplinks/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/es/guides/10g-vs-25g-uplinks/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/10g-vs-25g-uplinks/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=c957f6562d31"></script>
+</head>
+<body class="guide-page guide-fresh">
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="打开导航菜单"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="主导航">
+      <a href="../../">首页</a>
+      <a href="../../../tools/zh/">工具中心</a>
+      <a href="../" aria-current="page">工程指南</a>
+      <a href="../../topics/">专题</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/guides/10g-vs-25g-uplinks/" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="/zh/guides/10g-vs-25g-uplinks/" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a><a class="language-option" role="menuitem" href="/es/guides/10g-vs-25g-uplinks/" lang="es" hreflang="es"><span>Español</span><small>西班牙语</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<nav class="guide-breadcrumb" aria-label="面包屑"><a href="../../">首页</a><span aria-hidden="true">›</span><a href="../">指南</a><span aria-hidden="true">›</span><span aria-current="page">10G与25G上联</span></nav>
+<main class="guide-shell" id="main"><section class="guide-hero"><p class="eyebrow">上联升级</p><h1>10G 与 25G 上联：何时升级</h1><p class="guide-lead">当实测和预测需求不再落进当前设计已经核实的容量和预留时，再评估更高的标称速率。10G、25G、40G 和 100G 要用同一套流量、兼容性和成本假设来比较。标称比值不是拥塞。</p></section><div class="guide-tool-link"><strong>相关计算器</strong><p>用同一组端口比较标称容量，再单独核对实测需求。</p><a href="../../../tools/switch-uplink-oversubscription-calculator/zh/">打开上联计算器 →</a></div><div class="guide-layout"><article class="guide-article"><h2 id="trigger">什么时候评估升级</h2><p>更高的线速值得评估，是因为同一方向、同一边界上的流量需求装不下当前设计，而不是因为某个通用比值。利用率上升只是调查信号，不是统一门槛。队列丢弃、时延、拥塞持续时间和业务目标可以让较低的平均值也无法接受；一次短突发本身也不自动要求换硬件。</p><p>把三件事分开：标称速率描述链路设计，可用容量来自已测试的平台和路径，应用性能要用真实业务验证。</p><h2 id="measure">先测忙时需求</h2><p>从每个正在转发的成员以及相关瓶颈采集分方向计数器。记录采样间隔、时间窗、日期和流量范围。例如可以选择代表运行期内的五分钟样本；那是测量计划，不是通用标准。</p><p>如果用所选忙时样本的第 95 百分位，就把它称为忙时 P95 需求。P95 不是最大值。丢弃、队列、时延和应用限制要单独保留。全双工链路上不要把入方向和出方向相加，再去和一个方向的容量比较。</p><p>对 LAG，同时看聚合和每个成员。哈希可以让一个成员很忙，而聚合平均值仍有余量。标称聚合不保证一条流能用完全部成员。</p><h2 id="forecast">预测与预留</h2><p><code>D未来 = D基线 × (1 + g) 的 t 次方</code></p><p>D基线是以 Gbps 计的实测需求，g 是写明的年增长率，t 是年数。这是规划情景，只有本地历史或已批准的预测支持它时，它才是预测。</p><p>把 r 定义为打算留出的已核实可用容量比例。约束是 <code>D未来 / C可用 ≤ 1 − r</code>，因此 <code>C需求 = D未来 / (1 − r)</code>。预留是明确选择，不是行业统一门槛。不要用未记录的效率系数去乘标称速率。</p><h2 id="compare">2×10G、4×10G 和 2×25G</h2><p>一个方向上的标称容量是正在转发的成员速率之和。</p><table><thead><tr><th>示例</th><th>每方向标称合计</th><th>必须核实的内容</th></tr></thead><tbody><tr><td>2×10G</td><td>20 Gbps</td><td>两条链路在所评估状态下都转发。</td></tr><tr><td>4×10G</td><td>40 Gbps</td><td>四个可用端口、成员数量、对端、哈希和许可。</td></tr><tr><td>2×25G</td><td>50 Gbps</td><td>两端的端口模式、光模块、介质、FEC 和软件。</td></tr></tbody></table><p>这些是算术线速，不是应用吞吐，也不保证某台交换机支持该拓扑。</p><h2 id="cases">三个带假设的容量案例</h2><p>下面的数字是说明性规划输入，不是标准、不是产品实测，也不是统一升级门槛。每个 C可用 都要用来自目标设备的证据替换。</p><table><thead><tr><th>案例</th><th>预测需求</th><th>预留</th><th>最低可用容量</th><th>假设的已核实可用容量</th></tr></thead><tbody><tr><td>A：保留 2×10G</td><td>12 Gbps</td><td>20%</td><td>12 ÷ 0.80 = 15 Gbps</td><td>假设测试过的 2×10G 平台为 18 Gbps</td></tr><tr><td>B：增加 10G 成员</td><td>27 Gbps</td><td>20%</td><td>27 ÷ 0.80 = 33.75 Gbps</td><td>假设测试过的 4×10G 平台为 36 Gbps</td></tr><tr><td>C：评估 2×25G</td><td>35 Gbps</td><td>20%</td><td>35 ÷ 0.80 = 43.75 Gbps</td><td>假设测试过的 2×25G 平台为 46 Gbps</td></tr></tbody></table><p>案例 A 只有在 18 Gbps 这个平台输入被证实时，才落在所述预留内；20 Gbps 标称合计本身不能证明。案例 B 同理，40 Gbps 标称合计不是证据。案例 C 中，4×10G 的 40 Gbps 标称容量低于 43.75 Gbps 的要求，而 2×25G 的假设可用容量只有在核实后才满足要求。50 Gbps 标称合计本身不能建立这个结果。</p><p>增长例子：9 Gbps 基线按假设的每年 12% 增长三年，是 <code>9 × 1.12³ ≈ 12.64 Gbps</code>。采购前用有记录的本地预测替换这个假设。</p><h2 id="compat">按具体型号核对兼容性</h2><p>不要凭笼位外形或笼统的 SFP28 标签批准 25G。核对两端的机箱、板卡、端口、软件、模块零件号、光纤、波长、FEC、速率设置、分支和聚合。兼容性检查工具可以筛速率、通道、光纤、波长和光预算输入，但不能代替厂商支持矩阵。</p><h2 id="cost">同一口径比较生命周期成本</h2><p><code>TCO = 一次性设备 + 模块 + 布线 + 迁移 + T ×（年电力 + 年制冷 + 年许可 + 年支持）</code></p><p>没有可比报价时，把成本留成变量，不要编造市场价格。没有通用的回收期门槛。</p><h2 id="speeds-40-100">40G 和 100G 放在同一套算术里</h2><p>一个方向的标称容量仍是正在转发的接口速率之和。48 × 1 Gbps 是 48 Gbps，精确线速比为 1×10G = 4.8:1，2×10G = 2.4:1，1×25G = 1.92:1，2×25G = 0.96:1，1×40G = 1.2:1，1×100G = 0.48:1。计算器四舍五入到一位小数，所以 1.92:1 显示为 1.9:1，0.96:1 显示为 1:1，0.48:1 显示为 0.5:1。48 × 10 Gbps 是 480 Gbps，4×100G 是 480 ÷ 400 = 1.2:1。全双工不会把这些数字加倍：每个接口速率在所比较的方向上只计一次。</p><p>这些行是算术。它们不是厂商升级规则，也不是实测拥塞。100G 标称上联仍可能拥塞，如果该方向的提供负载、突发、包速率或端口和硬件转发限制才是瓶颈。25G 聚合也可以在平均值看起来可接受时打满一个成员。到<a href="../switch-oversubscription-ratio/">超售比指南</a>复算比值，到<a href="../lacp-member-congestion/">LACP 成员拥塞</a>看单成员。</p><h2 id="failure">故障容量单独检查</h2><p>正常状态不能证明成员、路径或设备故障后仍满足需求。用<a href="../switch-oversubscription-n-1/">N-1 与 N+1 指南</a>单独计算剩余容量。本页不计算故障后容量。</p><h2 id="faq">常见问题</h2><h3>何时从 10G 升到 25G？</h3><p>当实测和预测需求不再适合已核实的 10G 可用容量和你要求的预留，并且兼容的 25G 设计通过同样的检查时，再评估 25G。没有统一利用率门槛。</p><h3>25G 是否提供 25 Gbps 应用吞吐？</h3><p>25 Gbps 是标称线速。可用吞吐取决于两端、转发路径、包长、协议开销、队列和已测试配置。</p><h3>两条 25G 能否承载一条 50 Gbps 的流？</h3><p>不要这样假设。每方向标称合计是 50 Gbps，但一条流通常映射到一个成员。</p><h3>4×10G 是否总比 2×25G 更便宜？</h3><p>不是。比较具体设备的端口、板卡、模块、布线、电力、许可、支持和已核实的可用容量。</p><p>标称速率还要落到具体光模块和交换机型号上。用<a href="../../../tools/sfp-qsfp-compatibility-calculator/zh/">SFP 与 QSFP 兼容性核对</a>检查型号，它不计算超售比。</p><p><a href="../../topics/switch-oversubscription/">返回交换机超售专题</a></p><section class="guide-cross-links"><h2>继续阅读</h2><div class="guide-related-grid"><a href="../switch-oversubscription-ratio/"><strong>如何计算超售比</strong><br>分母、1:1 到 8:1 和 48 口示例。</a><a href="../lacp-member-congestion/"><strong>LACP 成员拥塞</strong><br>哈希、单流和单个成员。</a><a href="../switch-oversubscription-n-1/"><strong>N-1 与 N+1</strong><br>失去一条链路的速率。</a><a href="../../topics/switch-oversubscription/"><strong>交换机超售专题</strong><br>返回专题导航。</a><a href="../../../tools/switch-uplink-oversubscription-calculator/zh/"><strong>上联计算器</strong><br>用你的端口复核标称容量。</a></div></section></article><aside class="guide-toc guide-related-side" aria-label="本文目录"><strong>本文目录</strong><a href="#trigger">何时评估</a><a href="#measure">测量</a><a href="#forecast">预测</a><a href="#compare">方案比较</a><a href="#cases">案例</a><a href="#speeds-40-100">40G 与 100G</a><a href="#failure">故障</a><a href="#faq">问题</a></aside></div></main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div>
+    <nav class="site-shell-footer-links" aria-label="页脚导航">
+      <a href="../../about/">关于</a><a href="../../contact/">联系</a><a href="../../privacy/">隐私政策</a><a href="../../terms/">使用条款</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+</body></html>
