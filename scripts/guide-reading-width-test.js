@@ -113,6 +113,49 @@ async function main() {
         if (info.broken.length) failures.push(`${width} ${route} title word split ${info.broken.join(", ")}`);
       }
     }
+    for (const width of [1024, 375]) {
+      await page.setViewportSize({width, height: 900});
+      for (const route of ["/guides/generator-fuel-runtime-planning/", "/zh/guides/generator-fuel-runtime-planning/"]) {
+        await page.goto(`http://127.0.0.1:${port}${route}`, {waitUntil: "domcontentloaded"});
+        const paint = await page.evaluate(() => {
+          const heading = document.getElementById("calculate");
+          const block = heading && heading.nextElementSibling;
+          const link = block && block.querySelector("a");
+          const blue = [];
+          const nodes = block ? [block, ...block.querySelectorAll("*")] : [];
+          for (const el of nodes) {
+            const style = getComputedStyle(el);
+            const image = style.backgroundImage;
+            const color = style.backgroundColor;
+            const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
+            const alpha = match && match[4] !== undefined ? Number(match[4]) : 1;
+            const saturated = match && alpha > 0.04 && Number(match[3]) > Number(match[1]) + 25 && Number(match[3]) > 80;
+            if ((image && image !== "none") || saturated) blue.push(`${el.tagName}.${el.className} ${color} ${image}`);
+          }
+          const linkStyle = link ? getComputedStyle(link) : null;
+          return {
+            missing: !block || !link,
+            blue,
+            display: linkStyle && linkStyle.display,
+            decoration: linkStyle && linkStyle.textDecorationLine,
+            h1: Math.round(document.querySelector("h1").getBoundingClientRect().width),
+            article: Math.round((document.querySelector("article") || document.querySelector("main")).getBoundingClientRect().width)
+          };
+        });
+        if (paint.missing) failures.push(`${width} ${route} calculator prompt missing`);
+        if (paint.blue.length) failures.push(`${width} ${route} blue background ${paint.blue.join(" | ")}`);
+        if (paint.display !== "inline") failures.push(`${width} ${route} calculator link display ${paint.display}`);
+        if (!paint.decoration || !paint.decoration.includes("underline")) failures.push(`${width} ${route} calculator link decoration ${paint.decoration}`);
+        if (width === 1024 && (paint.h1 < 480 || paint.article < 600)) failures.push(`${width} ${route} column regressed h1 ${paint.h1} article ${paint.article}`);
+      }
+    }
+    await page.setViewportSize({width: 1024, height: 900});
+    await page.goto(`http://127.0.0.1:${port}/guides/switch-oversubscription-ratio/`, {waitUntil: "domcontentloaded"});
+    const button = await page.evaluate(() => {
+      const link = document.querySelector(".guide-cta a");
+      return link ? getComputedStyle(link).backgroundColor : "";
+    });
+    if (button !== "rgb(23, 111, 242)") failures.push(`other guide buttons changed: ${button}`);
   } finally {
     await browser.close();
     await new Promise(resolve => server.close(resolve));

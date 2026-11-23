@@ -929,11 +929,6 @@ function enhanceGuideContent(html,info,locale){
   const nav=`<nav class="guide-breadcrumb" aria-label="${locale.id==="zh"?"面包屑":"Breadcrumb"}"><a href="${escapeHtml(home)}">${homeLabel}</a><span aria-hidden="true">›</span><a href="${escapeHtml(relativeUrl(urlForRoute(info.route,locale),urlForRoute("guides/",locale)))}">${guideLabel}</a><span aria-hidden="true">›</span><span aria-current="page">${escapeHtml(title)}</span></nav>`;
   html=html.replace(/<main\b[^>]*class=["'][^"']*\bguide-content\b[^>]*>/i,`${nav}\n$&`);
  }
- const toolAnchor=/<a\b[^>]*href=["'][^"']*generator-fuel-runtime-calculator[^"']*["'][^>]*>[\s\S]*?<\/a>/i.exec(html);
- if(toolAnchor){
-  const pStart=html.lastIndexOf("<p",toolAnchor.index),pEnd=html.indexOf("</p>",toolAnchor.index);
-  if(pStart>=0&&pEnd>=0){const openEnd=html.indexOf(">",pStart);const opening=html.slice(pStart,openEnd+1);if(!/\bclass=/.test(opening))html=html.slice(0,pStart)+opening.replace(/>$/,` class="guide-primary-cta">`)+html.slice(openEnd+1);else if(!/guide-primary-cta/.test(opening))html=html.slice(0,pStart)+opening.replace(/class=["']([^"']*)["']/,`class="$1 guide-primary-cta"`)+html.slice(openEnd+1);}
- }
  return html;
 }
 function build(){
