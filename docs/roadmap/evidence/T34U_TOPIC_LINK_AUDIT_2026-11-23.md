@@ -98,12 +98,12 @@ STP、DNS、PUE 都没有现存专题。没有把 STP 塞进交换机专题，�
 源 PR 与本树要分开记：
 
 - PR80，head `38bd048bc727b15ac1b4f15b1ea1e189867ccedd`。源 CI `45170062592` 已通过，Cloudflare `b0f2daff` 已通过，源 PR 验收完成。这不表示本集成树的门禁通过。
-- PR77，head `0916d1aff24118c37b7ff146997f729c1d7787e1`，源预览 `https://7eeb3fab.netengineerlab.pages.dev`。源门禁未记通过。
+- PR77，最终 head `ce742fca07543a7973223fdc291e556ca4f6fbda`。旧 head `0916d1af` 的 gate `45170839941` 因 FAQ 数量 5 对 6 失败，不能代替这个 head。新源 gate `45178304123` 合入时仍在跑，Cloudflare `baa715d7` 当时还不是成功。源预览仍是 `https://7eeb3fab.netengineerlab.pages.dev`，那是旧 head。
 - PR75，head `919f004e9fd910c518c2707895c2c4b2e55e689c`。源门禁未记通过。
 - PR78，head `37e3316db494d8306d5f9283512384a53b03efc6`，源预览 https://d9997d07.netengineerlab.pages.dev。源门禁未记通过。
 - PR76，当前 head `c24d0a41f204d3cb4cc3bb9a991762d39fbb37f6` 已纳入。旧 head `366c3a9d` 不再使用。源门禁未记通过。
 - PR81，当前 head `9e294d8da08df212bf79c9a930d36307f176ed5c` 已纳入。源预览 https://0cc32f65.netengineerlab.pages.dev 只覆盖该源分支。旧 head `871ca7b5` 不再使用。源门禁未记通过。
-- PR83，head `d35211da09e6d32dfc6c126337704d2b21d18c3b` 已纳入。没有公开 Pages 预览。PR 正文里的 `netengineerlab.com` 路径不是预览。源完整门禁当时仍在本地运行。西语制冷专题的后续 head 还没出现。
+- PR83，最终 head `726f959e8bcf2c568cc927013e657792ef51fa62` 已纳入。源固定预览是 https://db1a1bae.netengineerlab.pages.dev。旧 head `d35211da` 的本地 gate 不能当作这个 head 的证据。西语制冷专题是既有专题的全译。
 - PR72：排除。
 
 `a0bcfdef` 的集成预览是 https://f3e13ddd.netengineerlab.pages.dev。那个预览早于摄像机、DNS 和 PUE 的合入，不能拿来证明这三部分已经上线。新 head 推送后的 Cloudflare 预览要等部署评论，不能用生产域名代替。
@@ -122,7 +122,7 @@ STP、DNS、PUE 都没有现存专题。没有把 STP 塞进交换机专题，�
 | 交换机 | 英/中 | 概述、开始、任务、算例、场景、故障、资源、顺序、资产、边界 FAQ | 无 |
 | 交换机 | 西 | 问题、公式方向、已发布算例、计算器、指南、文章、延伸、FAQ、相关专题 | 西语专题比英/中短，没有另造资源表 |
 | 制冷 | 英/中 | 概述、问题、原理、任务、现场 136.25 kW / 38.74 tons、算例、方法、延伸、FAQ | 相关专题只保留已有相邻链接 |
-| 制冷 | 西 | 无页面 | 等待 PR83 后续 head 翻译既有专题。不是新专题，也不占第 6 篇 |
+| 制冷 | 西 | 概述、问题、原理、任务、现场 136.25 kW / 38.74 tons、算例、方法、FAQ、hreflang | 部分算例和主指南仍指向英文页，并标明英文。不是新专题，也不占第 6 篇 |
 | 通信电源 | 英/中 | 开始、计算、算例、场景、故障、资源、顺序、边界、任务、现场案例 | 只核对导航，不扩写。数据中心 UPS 不挂在这里 |
 | 通信电源 | 西 | 只有相关页链接 | 不新造西语正文 |
 | 监测 | 英/中 | 问题入口、方法比较、架构示例、各观测方法 | 只核对导航，不扩写 |
@@ -132,7 +132,7 @@ DNS 和 PUE 工具增强记为支持项，不计入 10 个主优化族。DNS 只
 
 ## 本树仍未完成
 
-- 没有跑完整 `gate:release`。本地内容测试通过不能记成生产门禁通过。
-- PR83 没有公开预览。西语制冷专题翻译 head 还没出现。
+- 旧集成 head `0923ef85` 的 gate `45177320761` 不能当作包含西语制冷专题和 FAQ 合同之后的通过。新 head 推送后要看它自己的 `verify-production-build`。
+- 源 PR 仍然不合 `main`，也没有发布授权。
 - 源 PR75、PR77、PR78、PR76、PR81、PR83 的门禁都还不能记为通过。只有 PR80 的源 CI 和源 Cloudflare 部署按已验收记录。
 - 集成预览要等本 head 的新部署。旧的 https://f3e13ddd.netengineerlab.pages.dev 不含这次合入的摄像机、DNS 和 PUE。
