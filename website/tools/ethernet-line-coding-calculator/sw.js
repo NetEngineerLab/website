@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-ethernet-line-coding-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-8101841252f8";
+const CACHE = "nel-ethernet-line-coding-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-131f90325c38";
 const CORE = [
   "./",
   "./index.html",

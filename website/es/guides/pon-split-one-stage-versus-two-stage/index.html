@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="es" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>¿Una o dos etapas para un reparto PON 1:64? | NetEngineerLab</title><meta name="description" content="Ejemplo: el mismo reparto de 64 vías en 8 km deja 0.30 dB con un divisor 1:64 y falla por 0.20 dB con dos etapas. La tabla no es una ficha de fabricante."><link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/guide.css?v=ffc815a61c42"><link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=475098aa29f5">
+<meta property="og:url" content="https://netengineerlab.com/es/guides/pon-split-one-stage-versus-two-stage/">
+<meta property="og:title" content="¿Una o dos etapas para un reparto PON 1:64? | NetEngineerLab">
+<meta property="og:description" content="Ejemplo: el mismo reparto de 64 vías en 8 km deja 0.30 dB con un divisor 1:64 y falla por 0.20 dB con dos etapas. La tabla no es una ficha de fabricante.">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="¿Una o dos etapas para un reparto PON 1:64? | NetEngineerLab">
+<meta name="twitter:description" content="Ejemplo: el mismo reparto de 64 vías en 8 km deja 0.30 dB con un divisor 1:64 y falla por 0.20 dB con dos etapas. La tabla no es una ficha de fabricante.">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"El mismo reparto 1:64: ¿una etapa deja más margen que dos?","name":"El mismo reparto 1:64: ¿una etapa deja más margen que dos?","description":"Ejemplo: el mismo reparto de 64 vías en 8 km deja 0.30 dB con un divisor 1:64 y falla por 0.20 dB con dos etapas. La tabla no es una ficha de fabricante.","url":"https://netengineerlab.com/es/guides/pon-split-one-stage-versus-two-stage/","inLanguage":"es","mainEntityOfPage":"https://netengineerlab.com/es/guides/pon-split-one-stage-versus-two-stage/","author":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://netengineerlab.com/es/"},{"@type":"ListItem","position":2,"name":"El mismo reparto 1:64: ¿una etapa deja más margen que dos?","item":"https://netengineerlab.com/es/guides/pon-split-one-stage-versus-two-stage/"}]}</script>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"¿Una o dos etapas para un reparto PON 1:64? | NetEngineerLab","url":"https://netengineerlab.com/es/guides/pon-split-one-stage-versus-two-stage/","description":"Ejemplo: el mismo reparto de 64 vías en 8 km deja 0.30 dB con un divisor 1:64 y falla por 0.20 dB con dos etapas. La tabla no es una ficha de fabricante.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="es">
+<meta name="nel-route" content="guides/pon-split-one-stage-versus-two-stage/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/es/guides/pon-split-one-stage-versus-two-stage/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/pon-split-one-stage-versus-two-stage/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/pon-split-one-stage-versus-two-stage/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/es/guides/pon-split-one-stage-versus-two-stage/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/pon-split-one-stage-versus-two-stage/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=c957f6562d31"></script>
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+</head><body>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Plataforma de inteligencia para ingeniería de redes</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Abrir navegación"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navegación principal">
+      <a href="../../">Inicio</a>
+      <a href="../../../tools/es/">Herramientas</a>
+      <a href="../" aria-current="page">Guías</a>
+      <a href="../../topics/">Temas</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Español"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Español</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/guides/pon-split-one-stage-versus-two-stage/" lang="en" hreflang="en"><span>English</span><small>Inglés</small></a><a class="language-option" role="menuitem" href="/zh/guides/pon-split-one-stage-versus-two-stage/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chino simplificado</small></a><a class="language-option" role="menuitem" href="/es/guides/pon-split-one-stage-versus-two-stage/" lang="es" hreflang="es" aria-current="page"><span>Español</span><small>Español</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<nav class="guide-breadcrumb" aria-label="Migas de pan"><a href="../../">Inicio</a><span aria-hidden="true">›</span><a href="../">Guías</a><span aria-hidden="true">›</span><span aria-current="page">El mismo reparto 1:64: ¿una etapa deja más margen que dos?</span></nav>
+<main class="guide-shell" id="main"><section class="guide-hero"><p class="eyebrow">EJEMPLO RESUELTO</p><h1>El mismo reparto 1:64: ¿una etapa deja más margen que dos?</h1><p class="guide-lead">Solo un ejemplo, no un certificado PLC de fabricante. En esta planta de 8 km la tabla de la calculadora asigna 20.5 dB a un divisor 1:64 y 21.0 dB tanto a 1:8 más 1:8 como a 1:16 más 1:4. Los tres planes sirven 64 ramas. Una etapa queda en aviso con 0.30 dB. Las dos de dos etapas fallan con -0.20 dB.</p><div class="guide-meta"><span>1:64</span><span>0.30 dB</span><span>-0.20 dB</span><span>Ejemplo</span></div></section>
+<div class="guide-tool-link"><strong>Calculadora relacionada</strong><p>Esta calculadora no tiene un enlace que rellene todos los datos de este ejemplo. Escriba los valores de abajo y compare el resultado.</p><a href="../../../tools/pon-splitter-loss/es/">Abrir la calculadora de divisores →</a></div>
+<div class="guide-layout"><article class="guide-article">
+<p>La guía del método ya recorre una cascada 1:8 por 1:8. Esta página pregunta otra cosa: con el mismo número de 64 vías, ¿una etapa deja más margen que dos en la misma planta de fibra?</p>
+<h2>Supuestos del ejemplo</h2>
+<ul><li>La misma planta en cada fila: 8 km, 0.35 dB/km, cuatro fusiones a 0.10 dB, cuatro pares de conectores a 0.50 dB, sin tercera etapa y sin otra pérdida pasiva.</li><li>Límites ópticos de ejemplo escritos en la hoja: transmisión 3 dBm, transmisión máxima 7 dBm, sensibilidad -27 dBm, sobrecarga -8 dBm, penalización óptica 1 dB, margen de ingeniería 3 dB, alcance de sistema 20 km. No son una tabla de clase citada.</li><li>Las pérdidas salen de la tabla de planificación de esta calculadora: 1:64 son 20.5 dB, 1:8 son 10.5 dB, 1:16 son 13.8 dB y 1:4 son 7.2 dB. La pérdida ideal de 64 vías es 18.06 dB. La tabla no es una ficha medida del fabricante.</li></ul>
+<h2>Pasos</h2>
+<ol><li>El número de usuarios es el mismo: 64, u 8 por 8, o 16 por 4. La fibra es 8 por 0.35, o sea 2.80 dB. Fusiones 0.40 dB. Conectores 2.00 dB.</li><li>Un divisor 1:64: pérdida 20.5 dB, exceso sobre 18.06 dB de 2.44 dB. Pérdida física 25.7 dB. Pérdida de diseño 28.7 dB.</li><li>La ventana introducida es 3 menos (−27) menos 1, igual a 29 dB. El presupuesto restante es 29 menos 28.7, igual a 0.30 dB. La potencia de recepción estimada es -22.7 dBm y el margen de sensibilidad es 4.30 dB. El estado es aviso porque 0.30 dB está por debajo de la banda de aviso de 3 dB de la calculadora.</li><li>1:8 más 1:8, y 1:16 más 1:4, suman 21.0 dB. El exceso es 2.94 dB. Pérdida física 26.2 dB. Pérdida de diseño 29.2 dB. Presupuesto restante -0.20 dB. Recepción -23.2 dBm. El estado es fallo.</li><li>La distancia óptica máxima es 8.86 km en una etapa y 7.43 km en cualquiera de las dos etapas. Ambas quedan por debajo del alcance de sistema de 20 km, así que el tope de alcance no es lo que hace fallar la hoja.</li></ol>
+<h2>Tabla de selección</h2>
+<table><thead><tr><th>Plan</th><th>Divisor dB</th><th>Física dB</th><th>Diseño dB</th><th>Resto dB</th><th>Estado</th></tr></thead><tbody><tr><td>1:64</td><td>20.5</td><td>25.7</td><td>28.7</td><td>0.30</td><td>aviso</td></tr><tr><td>1:8 + 1:8</td><td>21.0</td><td>26.2</td><td>29.2</td><td>-0.20</td><td>fallo</td></tr><tr><td>1:16 + 1:4</td><td>21.0</td><td>26.2</td><td>29.2</td><td>-0.20</td><td>fallo</td></tr></tbody></table>
+<h2>Límite</h2>
+<p>Un aviso no es un aprobado, y dos etapas no son más capacidad. Siguen siendo 64 ramas, repartidas en dos cajas, con los 0.5 dB extra que cobra esta tabla. Antes de aceptar una planta, sustituya 20.5 dB y 21.0 dB por la ficha de pérdida de inserción del fabricante. Este ejemplo no certifica una clase, un conector ni una ODN medida.</p>
+<p><a href="../../topics/pon-optical/">Volver al tema PON</a></p>
+</article><aside class="guide-toc guide-related-side" aria-label="Páginas relacionadas"><strong>Páginas relacionadas</strong><ul><li><a href="../../topics/pon-optical/">Redes PON y óptica</a></li><li><a href="../../../tools/pon-splitter-loss/es/">Calculadora de pérdidas de divisores PON</a></li><li><a href="../../../tools/optical-power-budget/es/">Calculadora de presupuesto de potencia óptica</a></li><li><a href="../../../tools/fiber-loss/es/">Calculadora de pérdidas de fibra</a></li></ul></aside></div></main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Herramientas profesionales en línea para ingenieros de telecomunicaciones y redes.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navegación del pie de página">
+      <a href="../../about/">Acerca de</a><a href="../../contact/">Contacto</a><a href="../../privacy/">Privacidad</a><a href="../../terms/">Términos</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+</body></html>

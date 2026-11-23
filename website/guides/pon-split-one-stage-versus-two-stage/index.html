@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>One-Stage or Two-Stage for a 1:64 PON Split? | NetEngineerLab</title><meta name="description" content="Example: the same 64-way split on an 8 km plant leaves 0.30 dB with one 1:64 splitter and fails by 0.20 dB with two stages. The table loss is not a vendor datasheet."><link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../assets/css/site.css"><link rel="stylesheet" href="../../assets/css/guide.css?v=ffc815a61c42"><link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../assets/css/site-shell.css?v=475098aa29f5">
+<meta property="og:url" content="https://netengineerlab.com/guides/pon-split-one-stage-versus-two-stage/">
+<meta property="og:title" content="One-Stage or Two-Stage for a 1:64 PON Split? | NetEngineerLab">
+<meta property="og:description" content="Example: the same 64-way split on an 8 km plant leaves 0.30 dB with one 1:64 splitter and fails by 0.20 dB with two stages. The table loss is not a vendor datasheet.">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="One-Stage or Two-Stage for a 1:64 PON Split? | NetEngineerLab">
+<meta name="twitter:description" content="Example: the same 64-way split on an 8 km plant leaves 0.30 dB with one 1:64 splitter and fails by 0.20 dB with two stages. The table loss is not a vendor datasheet.">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Same 64-Way Split: Does One Stage Leave More Margin Than Two?","name":"Same 64-Way Split: Does One Stage Leave More Margin Than Two?","description":"Example: the same 64-way split on an 8 km plant leaves 0.30 dB with one 1:64 splitter and fails by 0.20 dB with two stages. The table loss is not a vendor datasheet.","url":"https://netengineerlab.com/guides/pon-split-one-stage-versus-two-stage/","inLanguage":"en","mainEntityOfPage":"https://netengineerlab.com/guides/pon-split-one-stage-versus-two-stage/","author":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Same 64-Way Split: Does One Stage Leave More Margin Than Two?","item":"https://netengineerlab.com/guides/pon-split-one-stage-versus-two-stage/"}]}</script>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"One-Stage or Two-Stage for a 1:64 PON Split? | NetEngineerLab","url":"https://netengineerlab.com/guides/pon-split-one-stage-versus-two-stage/","description":"Example: the same 64-way split on an 8 km plant leaves 0.30 dB with one 1:64 splitter and fails by 0.20 dB with two stages. The table loss is not a vendor datasheet.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="en">
+<meta name="nel-route" content="guides/pon-split-one-stage-versus-two-stage/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/guides/pon-split-one-stage-versus-two-stage/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/pon-split-one-stage-versus-two-stage/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/pon-split-one-stage-versus-two-stage/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/es/guides/pon-split-one-stage-versus-two-stage/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/pon-split-one-stage-versus-two-stage/">
+<link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
+<script defer src="../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../assets/js/site.js?v=c957f6562d31"></script>
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+</head><body>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Network Engineering Intelligence Platform</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Open navigation"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Primary navigation">
+      <a href="../../">Home</a>
+      <a href="../../tools/">Tools</a>
+      <a href="../" aria-current="page">Guides</a>
+      <a href="../../topics/">Topics</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/guides/pon-split-one-stage-versus-two-stage/" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="/zh/guides/pon-split-one-stage-versus-two-stage/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a><a class="language-option" role="menuitem" href="/es/guides/pon-split-one-stage-versus-two-stage/" lang="es" hreflang="es"><span>Español</span><small>Spanish</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../../">Home</a><span aria-hidden="true">›</span><a href="../">Guides</a><span aria-hidden="true">›</span><span aria-current="page">Same 64-Way Split: Does One Stage Leave More Margin Than Two?</span></nav>
+<main class="guide-shell" id="main"><section class="guide-hero"><p class="eyebrow">WORKED EXAMPLE</p><h1>Same 64-Way Split: Does One Stage Leave More Margin Than Two?</h1><p class="guide-lead">Example only, not a vendor PLC certificate. On this 8 km plant the calculator table gives 20.5 dB for one 1:64 splitter and 21.0 dB for either 1:8 plus 1:8 or 1:16 plus 1:4. Both plans serve 64 branches. The one-stage sheet still warns at 0.30 dB remaining. Both two-stage sheets fail at -0.20 dB.</p><div class="guide-meta"><span>1:64</span><span>0.30 dB</span><span>-0.20 dB</span><span>Example</span></div></section>
+<div class="guide-tool-link"><strong>Related calculator</strong><p>This calculator has no URL preset that fills every input in this example. Type the values below and compare the result.</p><a href="../../tools/pon-splitter-loss/">Open the splitter calculator →</a></div>
+<div class="guide-layout"><article class="guide-article">
+<p>The splitter method guide already walks through one 1:8 × 1:8 cascade. This page asks a different question: for the same 64-way count, does one stage leave more margin than two stages on the same fiber plant?</p>
+<h2>Example assumptions</h2>
+<ul><li>Same plant for every row: 8 km, 0.35 dB/km, four fusion splices at 0.10 dB, four connector pairs at 0.50 dB, no third stage and no other passive loss.</li><li>Example optic limits typed into the sheet: transmit 3 dBm, maximum transmit 7 dBm, sensitivity -27 dBm, overload -8 dBm, optical penalty 1 dB, engineering margin 3 dB, system reach 20 km. These are not a quoted class table.</li><li>Splitter losses are this calculator's planning table: 1:64 is 20.5 dB, 1:8 is 10.5 dB, 1:16 is 13.8 dB and 1:4 is 7.2 dB. Ideal split loss for 64 ways is 18.06 dB. The table is not a measured vendor datasheet.</li></ul>
+<h2>Steps</h2>
+<ol><li>User count is the same: 64, or 8 × 8, or 16 × 4. Fiber is 8 × 0.35 = 2.80 dB. Splices are 0.40 dB. Connectors are 2.00 dB.</li><li>One 1:64 splitter: splitter loss 20.5 dB, excess over 18.06 dB is 2.44 dB. Physical loss 25.7 dB. Design loss 28.7 dB.</li><li>The entered window is 3 − (−27) − 1 = 29 dB. Remaining budget is 29 − 28.7 = 0.30 dB. Estimated receive power is -22.7 dBm and sensitivity margin is 4.30 dB. Status is warning because 0.30 dB is under the calculator's 3 dB warning band.</li><li>1:8 plus 1:8, and 1:16 plus 1:4, both sum to 21.0 dB. Excess is 2.94 dB. Physical loss 26.2 dB. Design loss 29.2 dB. Remaining budget is -0.20 dB. Receive power is -23.2 dBm. Status is failed.</li><li>Optical maximum distance is 8.86 km for the one-stage row and 7.43 km for either two-stage row. Both are below the 20 km system reach, so the reach cap is not what fails the sheet.</li></ol>
+<h2>Selection table</h2>
+<table><thead><tr><th>Plan</th><th>Splitter dB</th><th>Physical dB</th><th>Design dB</th><th>Remaining dB</th><th>Status</th></tr></thead><tbody><tr><td>1:64</td><td>20.5</td><td>25.7</td><td>28.7</td><td>0.30</td><td>warning</td></tr><tr><td>1:8 + 1:8</td><td>21.0</td><td>26.2</td><td>29.2</td><td>-0.20</td><td>failed</td></tr><tr><td>1:16 + 1:4</td><td>21.0</td><td>26.2</td><td>29.2</td><td>-0.20</td><td>failed</td></tr></tbody></table>
+<h2>Boundary</h2>
+<p>A warning is not a pass, and a two-stage layout is not more capacity. It is the same 64 branches placed in two boxes, with the extra 0.5 dB that this table charges. Replace 20.5 dB and 21.0 dB with the vendor insertion-loss datasheet before accepting a plant. This example does not certify a class, a connector, or a measured ODN.</p>
+<p><a href="../../topics/pon-optical/">Return to the PON and optical topic</a></p>
+</article><aside class="guide-toc guide-related-side" aria-label="Related articles"><strong>Related articles</strong><ul><li><a href="../pon-splitter-loss-guide/">PON Splitter Loss Calculation: Cascade Ratio, Insertion Loss and ODN Margin</a></li><li><a href="../fiber-link-budget-guide/">Fiber Link Budget Calculation: Loss, Margin and Maximum Distance</a></li><li><a href="../../topics/pon-optical/">PON Optical Network Design &amp; Troubleshooting</a></li></ul></aside></div></main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Footer navigation">
+      <a href="../../about/">About</a><a href="../../contact/">Contact</a><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+</body></html>
