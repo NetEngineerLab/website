@@ -441,16 +441,16 @@
       "priority": "0.8",
       "translations": {
         "en": {
-          "title": "PON & Fiber Calculators – Splitter Loss, Power Budget, Latency",
-          "description": "Plan PON and fiber links with splitter loss, fiber loss, optical power budget, distance, latency, OTDR and ODN resource calculators."
+          "title": "PON and Fiber Calculators: Splitter Loss, Power Budget and ONU Receive Power",
+          "description": "Start from 10 log10(N) ideal split loss, compare the planning insertion loss, then add fiber, connectors and splices before the power budget and ONU receive check."
         },
         "zh": {
-          "title": "PON 与光纤计算器 – 分光损耗、光功率预算与时延",
-          "description": "用分光损耗、光纤损耗、光功率预算、距离、时延、OTDR 和 ODN 资源计算器规划 PON 与光纤链路。"
+          "title": "PON与光纤计算器：分光损耗、光功率预算与ONU收光",
+          "description": "从10 log10(N)理想分光损耗和规划插入损耗出发，再加上光纤、连接器和熔接，然后校核光功率预算与ONU收光。"
         },
         "es": {
-          "title": "Calculadoras PON y de fibra – divisor, potencia y latencia",
-          "description": "Planifique enlaces PON y de fibra con pérdida de divisor, pérdida de fibra, presupuesto óptico, distancia, latencia, OTDR y recursos ODN."
+          "title": "Calculadoras PON y de fibra: divisor, presupuesto y recepción de la ONU",
+          "description": "Empiece por la pérdida ideal 10 log10(N), compare la inserción de planificación y sume fibra, conectores y empalmes antes del presupuesto y la recepción de la ONU."
         }
       }
     },
@@ -1387,16 +1387,16 @@
       "priority": "0.9",
       "translations": {
         "en": {
-          "title": "PON Optical Network Design & Troubleshooting Hub | NetEngineerLab",
-          "description": "Design PON links and isolate weak ONU receive power with splitter, fiber-loss and optical-budget checks, OTDR evidence and field retesting."
+          "title": "PON Optical Network Design and Troubleshooting Hub | NetEngineerLab",
+          "description": "Separate 10 log10(N) ideal split loss from planning insertion loss, then follow fiber, connector and splice loss into the power budget and ONU receive check."
         },
         "zh": {
           "title": "PON光网络设计与故障诊断专题 | NetEngineerLab",
-          "description": "串联PON分光、光纤损耗、光功率预算、ONU收光检查、OTDR定位和现场复测，支持设计校核与故障排查。"
+          "description": "区分10 log10(N)理想分光损耗和规划插入损耗，再把光纤、连接器和熔接损耗接到光功率预算与ONU收光检查。"
         },
         "es": {
           "title": "Diseño y diagnóstico de redes PON | NetEngineerLab",
-          "description": "Ejemplos en español del nivel medido de la ONU y de tres presupuestos de conectores. No son la misma pregunta."
+          "description": "Separe la pérdida ideal 10 log10(N) de la inserción de planificación, y siga la fibra, los conectores y los empalmes hasta el presupuesto y la recepción de la ONU."
         }
       },
       "longTailQuestions": {
@@ -2262,11 +2262,13 @@
       "publishedAt": "2026-10-16",
       "searchIntent": {
         "en": "calculate PON splitter insertion loss for one-stage and cascaded split ratios",
-        "zh": "计算PON一级和级联分光的插入损耗与ODN余量"
+        "zh": "计算PON一级和级联分光的插入损耗与ODN余量",
+        "es": "comparar la pérdida ideal 10 log10(N) con la inserción de planificación del divisor PON"
       },
       "primaryTopic": {
         "en": "PON splitter loss and ODN margin",
-        "zh": "PON分光损耗与ODN余量"
+        "zh": "PON分光损耗与ODN余量",
+        "es": "pérdida del divisor PON"
       },
       "breadcrumb": [
         "home"
@@ -2282,7 +2284,8 @@
       "owner": "NetEngineerLab Editorial",
       "reviewedAt": {
         "en": "2026-10-16",
-        "zh": "2026-10-16"
+        "zh": "2026-10-16",
+        "es": "2026-11-23"
       },
       "pageType": "guide",
       "status": "active",
@@ -2292,12 +2295,16 @@
       "priority": "0.7",
       "translations": {
         "en": {
-          "title": "PON Splitter Loss and Cascaded ODN Margin | NetEngineerLab",
-          "description": "Calculate one-stage or cascaded PON split ratios, splitter insertion loss and ODN margin before checking receive power and reach."
+          "title": "PON Splitter Loss: 1:2 to 1:64 Ideal and Insertion Loss | NetEngineerLab",
+          "description": "Compare 10 log10(N) ideal split loss with this site’s planning insertion loss for 1:2 through 1:64, then add fiber, connector and splice loss before checking ONU receive power."
         },
         "zh": {
-          "title": "PON分光损耗计算：级联分光比、插入损耗与ODN余量 | NetEngineerLab",
-          "description": "说明PON一级和级联分光的总分光比、插入损耗、ODN设计余量，并提供10 km可复算工程案例。"
+          "title": "PON分光损耗：1:2至1:64的理想分光与插入损耗 | NetEngineerLab",
+          "description": "对照10 log10(N)理想分光损耗和本站1:2至1:64的规划插入损耗，再加入光纤、连接器和熔接损耗，然后检查ONU收光。"
+        },
+        "es": {
+          "title": "Pérdida del divisor PON: ideal e inserción de 1:2 a 1:64 | NetEngineerLab",
+          "description": "Compare la pérdida ideal 10 log10(N) con la inserción de planificación de 1:2 a 1:64, y sume fibra, conectores y empalmes antes de revisar la recepción de la ONU."
         }
       },
       "longTailQuestions": {
@@ -2306,6 +2313,9 @@
         ],
         "zh": [
           "级联PON分光器会增加多少插入损耗？"
+        ],
+        "es": [
+          "¿Cuál es la diferencia entre 10 log10(N) y la pérdida de inserción?"
         ]
       },
       "sources": [

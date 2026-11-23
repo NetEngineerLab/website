@@ -2,14 +2,14 @@
 <html lang="en" dir="ltr" data-nel-locale="en" data-nel-route="topics/pon-optical/">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PON Optical Network Design &amp; Troubleshooting Hub | NetEngineerLab</title>
-<meta name="description" content="Design PON links and isolate weak ONU receive power with splitter, fiber-loss and optical-budget checks, OTDR evidence and field retesting.">
+<title>PON Optical Network Design and Troubleshooting Hub | NetEngineerLab</title>
+<meta name="description" content="Separate 10 log10(N) ideal split loss from planning insertion loss, then follow fiber, connector and splice loss into the power budget and ONU receive check.">
 <meta name="robots" content="index,follow">
 
 <link rel="stylesheet" href="../../assets/css/site.css"><link rel="stylesheet" href="../../assets/css/guide.css?v=ffc815a61c42"><script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"PON Optical Network Design & Troubleshooting Hub","url":"https://netengineerlab.com/topics/pon-optical/","description":"Design PON links and isolate weak ONU receive power with loss, budget and field evidence.","inLanguage":"en","hasPart":[{"@type":"WebPage","url":"https://netengineerlab.com/guides/pon-splitter-loss-guide"},{"@type":"WebApplication","url":"https://netengineerlab.com/tools/onu-rx-power/"},{"@type":"WebApplication","url":"https://netengineerlab.com/tools/otdr-event/"}]}</script>
 <meta property="og:url" content="https://netengineerlab.com/topics/pon-optical/">
-<meta property="og:title" content="PON Optical Network Design &amp; Troubleshooting Hub | NetEngineerLab">
-<meta property="og:description" content="Design PON links and isolate weak ONU receive power with splitter, fiber-loss and optical-budget checks, OTDR evidence and field retesting.">
+<meta property="og:title" content="PON Optical Network Design and Troubleshooting Hub | NetEngineerLab">
+<meta property="og:description" content="Separate 10 log10(N) ideal split loss from planning insertion loss, then follow fiber, connector and splice loss into the power budget and ONU receive check.">
 <meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="PON Optical Network Design &amp; Troubleshooting Hub | NetEngineerLab">
@@ -24,7 +24,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/css/editorial-fresh.css?v=20261109-edit7">
 <link rel="stylesheet" href="../../assets/css/topic-hub.css?v=5a0cf14d3558">
-<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"PON Optical Network Design & Troubleshooting Hub | NetEngineerLab","url":"https://netengineerlab.com/topics/pon-optical/","description":"Design PON links and isolate weak ONU receive power with splitter, fiber-loss and optical-budget checks, OTDR evidence and field retesting.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"PON Optical Network Design and Troubleshooting Hub | NetEngineerLab","url":"https://netengineerlab.com/topics/pon-optical/","description":"Separate 10 log10(N) ideal split loss from planning insertion loss, then follow fiber, connector and splice loss into the power budget and ONU receive check.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="en">
 <meta name="nel-route" content="topics/pon-optical/">
@@ -70,7 +70,7 @@
 <main id="main">
 <h1>PON Optical Network Design &amp; Troubleshooting</h1>
 <p>Plan passive optical distribution and diagnose field loss by connecting the design budget to measured ONU receive power and OTDR events. Use actual OLT/ONU specifications and field measurements for acceptance.</p>
-<h2>Start here</h2><p><a href="../../guides/pon-splitter-loss-guide/">PON splitter loss and ODN margin guide</a> explains the loss model and a worked 1:8 × 1:8 example. For general fiber loss and link budgets, continue with the <a href="../../guides/fiber-link-budget-guide/">fiber link budget guide</a>.</p>
+<section id="nel-split-ratio"><h2>1:2 to 1:64 split loss you can recalculate</h2><p>Ideal equal-split loss is 10 log10(N). That identity only says the input power is divided by N. It is not the insertion loss of a device and it is not an acceptance measurement. This site keeps a separate planning insertion loss for each ratio. Excess loss on this page means planning insertion loss minus 10 log10(N). Replace the planning value with the splitter datasheet before approving a design. ITU-T G.671 treats insertion loss as a specified branching-component parameter; it does not publish these planning numbers.</p><ul><li>1:2: ideal 3.010 dB, planning insertion 3.7 dB, excess 0.690 dB.</li><li>1:4: ideal 6.021 dB, planning insertion 7.2 dB, excess 1.179 dB.</li><li>1:8: ideal 9.031 dB, planning insertion 10.5 dB, excess 1.469 dB.</li><li>1:16: ideal 12.041 dB, planning insertion 13.8 dB, excess 1.759 dB.</li><li>1:32: ideal 15.051 dB, planning insertion 17.0 dB, excess 1.949 dB.</li><li>1:64: ideal 18.062 dB, planning insertion 20.5 dB, excess 2.438 dB.</li></ul><p>One 1:32 stage uses the planning insertion loss of 17.0 dB. At 10 km and 0.25 dB/km the fiber is 2.5 dB. Four connector pairs at 0.3 dB are 1.2 dB, and six splices at 0.1 dB are 0.6 dB. Physical loss is 17.0 + 2.5 + 1.2 + 0.6 = 21.3 dB. Estimated receive power at a +3 dBm minimum transmit power is +3 - 21.3 = -18.3 dBm. The 0.25 dB/km, 0.3 dB and 0.1 dB figures are editable planning assumptions already used by the calculator, not an ITU-T G.652 limit and not a field measurement. Unit count and optical class still come from the entered transmitter and ONU limits.</p><p>Continue with the same assumptions: <a href="../../tools/pon-splitter-loss/#nel-split-ratio">PON splitter loss calculator</a> · <a href="../../tools/optical-power-budget/">optical power budget calculator</a> · <a href="../../tools/onu-rx-power/">ONU receive-power check</a> · <a href="../../tools/pon-fiber-calculators/">PON and fiber calculators</a> · <a href="../../guides/pon-splitter-loss-guide/#nel-split-ratio">splitter loss guide</a>.</p></section><h2>Start here</h2><p><a href="../../guides/pon-splitter-loss-guide/">PON splitter loss and ODN margin guide</a> explains the loss model and a worked 1:8 × 1:8 example. For general fiber loss and link budgets, continue with the <a href="../../guides/fiber-link-budget-guide/">fiber link budget guide</a>.</p>
 
 <!-- NEL_WORKED_EXAMPLE_START -->
 <section class="nel-worked-example" id="worked-example" aria-labelledby="worked-example-title">
