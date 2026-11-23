@@ -1288,7 +1288,12 @@ body.nel-tool-v3 #calculator #history .history-list{display:grid;grid-template-c
 body.nel-tool-v3 #calculator #history .history-item{padding:16px 18px!important;border:1px solid var(--line,#d9e4f2)!important;border-radius:14px!important;background:#fff!important;}
 body.nel-tool-v3 #calculator #history .history-empty{padding:25px;border:1px dashed #b9cce3;border-radius:14px;text-align:center;color:#65768e}
 body.nel-tool-v3 #calculator #clearHistoryBtn{min-height:44px;padding:8px 14px;border:1px solid #c9d9eb;border-radius:10px;background:#fff;color:#1760cc;font:inherit}
-@media(max-width:600px){body.nel-tool-v3 #calculator .latency-presets .scenario-grid{grid-template-columns:minmax(0,1fr)}body.nel-tool-v3 #calculator .latency-summary{grid-template-columns:minmax(0,1fr)}body.nel-tool-v3 #calculator .latency-distance-table,body.nel-tool-v3 #calculator .latency-distance-table tbody{display:block}body.nel-tool-v3 #calculator .latency-distance-table tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;border-bottom:1px solid #d9e4f2;padding:10px}body.nel-tool-v3 #calculator .latency-distance-table tr:has(th){display:none}body.nel-tool-v3 #calculator .latency-distance-table td{display:flex;flex-direction:column;padding:6px;border:0}body.nel-tool-v3 #calculator .latency-distance-table td::before{content:attr(data-label);white-space:normal;font-size:15.5px;color:#65768e;margin-bottom:5px}}
+@media(max-width:960px){
+  body.nel-tool-v3 #calculator .latency-presets .scenario-grid{display:none!important}
+  body.nel-tool-v3 #calculator .latency-presets .presets-mobile{flex-wrap:wrap;margin:12px 0}
+  body.nel-tool-v3 #calculator .latency-presets .presets-mobile button{width:auto;min-height:44px;padding:6px 12px;text-align:center}
+}
+@media(max-width:600px){body.nel-tool-v3 #calculator .latency-summary{grid-template-columns:minmax(0,1fr)}body.nel-tool-v3 #calculator .latency-distance-table,body.nel-tool-v3 #calculator .latency-distance-table tbody{display:block}body.nel-tool-v3 #calculator .latency-distance-table tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;border-bottom:1px solid #d9e4f2;padding:10px}body.nel-tool-v3 #calculator .latency-distance-table tr:has(th){display:none}body.nel-tool-v3 #calculator .latency-distance-table td{display:flex;flex-direction:column;padding:6px;border:0}body.nel-tool-v3 #calculator .latency-distance-table td::before{content:attr(data-label);white-space:normal;font-size:15.5px;color:#65768e;margin-bottom:5px}}
 
 body.nel-tool-v3 #calculator .prose .faq details{background:#fff!important;border:1px solid var(--line,#d9e4f2)!important;border-radius:12px!important;padding:12px 14px!important;margin:0 0 12px!important}
 body.nel-tool-v3 #calculator .prose .faq summary{display:flex!important;justify-content:space-between;gap:16px;list-style:none!important;cursor:pointer;font-weight:600!important;font-size:16px!important;line-height:1.6!important}
@@ -1298,11 +1303,12 @@ body.nel-tool-v3 #calculator .prose .faq details[open]>summary::after{content:'â
 body.nel-tool-v3 #calculator .prose .faq details p{margin:8px 0 0!important;line-height:1.6!important}
 
 /* t311u: Fiber result actions only; accepted Bandwidth white/blue outlined action family. */
-body.nel-tool-v3 #calculator .result-panel .ro-acts{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important;padding:14px 0!important;background:transparent!important}
-body.nel-tool-v3 #calculator .result-panel .ro-acts>:is(#copyBtn,#saveBtn,#printBtn){display:flex!important;align-items:center!important;justify-content:center!important;height:44px!important;min-height:44px!important;min-width:0!important;max-width:100%!important;box-sizing:border-box!important;margin:0!important;padding:1px 10px!important;border:1px solid #c9d9eb!important;border-radius:10px!important;background:#fff!important;background-image:none!important;color:#1760cc!important;font-size:15.5px!important;font-weight:500!important;line-height:1.25!important;text-align:center!important;white-space:normal!important;box-shadow:none!important}
-body.nel-tool-v3 #calculator .result-panel .ro-acts>:is(#copyBtn,#saveBtn,#printBtn):hover{background:#eef6ff!important;border-color:#176ff2!important}
-body.nel-tool-v3 #calculator .result-panel .ro-acts>:is(#copyBtn,#saveBtn,#printBtn):focus-visible{outline:3px solid #92baff!important;outline-offset:2px!important}
-@media(max-width:1100px){body.nel-tool-v3 #calculator .result-panel .ro-acts{grid-template-columns:minmax(0,1fr)!important}}
+body.nel-tool-v3 #calculator .result-panel .ro-acts{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:10px!important;padding:14px 0!important;background:transparent!important}
+body.nel-tool-v3 #calculator .result-panel .ro-acts>button[data-ro-act]{display:flex!important;align-items:center!important;justify-content:center!important;height:44px!important;min-height:44px!important;min-width:0!important;max-width:100%!important;box-sizing:border-box!important;margin:0!important;padding:1px 10px!important;border:1px solid #c9d9eb!important;border-radius:10px!important;background:#fff!important;background-image:none!important;color:#1760cc!important;font-size:15.5px!important;font-weight:500!important;line-height:1.25!important;text-align:center!important;white-space:normal!important;box-shadow:none!important}
+body.nel-tool-v3 #calculator .result-panel .ro-acts>button[data-ro-act]:not(:disabled):hover{background:#eef6ff!important;border-color:#176ff2!important}
+body.nel-tool-v3 #calculator .result-panel .ro-acts>button[data-ro-act]:focus-visible{outline:3px solid #92baff!important;outline-offset:2px!important}
+body.nel-tool-v3 #calculator .result-panel .ro-acts>button[data-ro-act]:disabled{opacity:.55;cursor:not-allowed}
+@media(max-width:640px){body.nel-tool-v3 #calculator .result-panel .ro-acts{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 
 /* t313u: frame only the existing about/scope content; exact Bandwidth ref-card surface. */
 body.nel-tool-v3 #calculator .prose #about-scope > .fb-fold-body.about-card{padding:16px 18px!important;border:1px solid var(--line,#d9e4f2)!important;border-radius:14px!important;background:#fff!important;margin:0!important;min-width:0!important;box-sizing:border-box!important}

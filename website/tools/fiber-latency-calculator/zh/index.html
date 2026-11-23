@@ -21,7 +21,7 @@
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="光纤时延计算器｜每公里时延、单向与往返RTT" name="twitter:title"/>
 <meta content="计算单模光纤时延：单向约 4.9 µs/km，往返约 9.8 µs/km。可加入路由系数、设备与串行化时延，并对比真空、铜缆和微波。" name="twitter:description"/>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://netengineerlab.com/tools/fiber-latency-calculator/zh/#app","name":"光纤时延计算器","url":"https://netengineerlab.com/tools/fiber-latency-calculator/zh/","description":"根据距离、群折射率、路由系数、设备时延和串行化时延计算光纤单向与往返时延。","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Network Engineering Calculator","operatingSystem":"Any","browserRequirements":"Requires JavaScript and a modern web browser","softwareVersion":"1.0.0","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/fiber-latency-calculator/zh/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"NetEngineerLab","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"工具","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"光纤时延计算器","item":"https://netengineerlab.com/tools/fiber-latency-calculator/zh/"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://netengineerlab.com/tools/fiber-latency-calculator/zh/#app","name":"光纤时延计算器","url":"https://netengineerlab.com/tools/fiber-latency-calculator/zh/","description":"根据距离、群折射率、路由系数、设备时延和串行化时延计算光纤单向与往返时延。","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Network Engineering Calculator","operatingSystem":"Any","browserRequirements":"Requires JavaScript and a modern web browser","softwareVersion":"1.0.0","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/fiber-latency-calculator/zh/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"NetEngineerLab","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"工具","item":"https://netengineerlab.com/tools/zh/"},{"@type":"ListItem","position":3,"name":"光网络","item":"https://netengineerlab.com/zh/topics/pon-optical/"},{"@type":"ListItem","position":4,"name":"光纤时延计算器","item":"https://netengineerlab.com/tools/fiber-latency-calculator/zh/"}]}]}</script>
 <link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
 <meta content="https://netengineerlab.com/assets/images/og-netengineerlab.png" name="twitter:image"/>
 <link href="/assets/css/cookie-consent.css?v=2f2c8ab643e6" rel="stylesheet"/>
@@ -33,13 +33,13 @@ body.nel-opb-v3 .inp select{white-space:nowrap;overflow:hidden;text-overflow:ell
 body.nel-opb-v3 .inp input[type="number"]{-moz-appearance:textfield;appearance:textfield}
 body.nel-opb-v3 .inp input[type="number"]::-webkit-outer-spin-button,
 body.nel-opb-v3 .inp input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
-body.nel-opb-v3 .ro-acts{grid-template-columns:repeat(3,minmax(0,1fr))}
+body.nel-opb-v3 .ro-acts{grid-template-columns:repeat(4,minmax(0,1fr))}
 body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:center;min-width:0;min-height:44px;white-space:normal;line-height:1.3}
 </style>
 <link href="/assets/css/fb-v3.css?v=031fae951adb" rel="stylesheet"/>
 <link href="/assets/css/fb-v3-prod.css?v=64bd0d9f6bcb" rel="stylesheet"/>
 <script defer="" src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
-<link href="../css/style.css?v=7fe982d34755" rel="stylesheet"/>
+<link href="../css/style.css?v=e75ba5c32767" rel="stylesheet"/>
 <script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"光纤时延计算器｜每公里时延、单向与往返RTT","url":"https://netengineerlab.com/tools/fiber-latency-calculator/zh/","description":"计算单模光纤时延：单向约 4.9 µs/km，往返约 9.8 µs/km。可加入路由系数、设备与串行化时延，并对比真空、铜缆和微波。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
@@ -104,10 +104,11 @@ body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:
 <main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" data-nel-readout-roles="%7B%22secondary%22%3A%5B%22fiberLength%22%2C%22propagation%22%2C%22equipment%22%2C%22serialization%22%2C%22usPerKm%22%2C%22speed%22%2C%22fractionC%22%2C%22versusVacuum%22%5D%2C%22identifier%22%3A%5B%5D%2C%22annotation%22%3A%5B%22rtt%22%5D%7D" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv" id="calculator">
 <div class="tool-head">
 <div>
-<div class="crumbs"><a href="../../../zh/">首页</a>/<a href="../../zh/">工具</a>/<span>光纤时延</span></div>
+<div class="crumbs"><a href="../../../zh/">首页</a>/<a href="../../zh/">工具</a>/<a href="../../../zh/topics/pon-optical/">光网络</a>/<span>光纤时延</span></div>
 <p aria-level="1" class="tool-page-label" role="heading">光纤时延计算器</p>
 <p class="tool-lede">光在光纤中的速度大约只有真空中的三分之二，因此标准单模光纤每公里大约增加 4.9 µs 单向时延（往返约 9.8 µs）。估算城域、数据中心互联和长途链路的单向时间与往返时间（RTT），并可计入路由绕行、有源设备和报文串行化。</p>
 </div>
+<div class="acts"><button type="button" class="btn btn-ghost btn-sm" id="btn-share">分享输入</button></div>
 </div><div class="workspace"><section class="input-panel card nel-tool-input fb-panel"><div class="fb-panel">
 <div class="panel-h">
 <h2 class="panel-h">链路参数</h2>
@@ -136,7 +137,11 @@ body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:
 <button aria-pressed="true" class="scenario-card on" data-preset="1.468" type="button"><b>通用单模</b><span>n_g 1.468 · 约 4.9 µs/km</span></button><button aria-pressed="false" class="scenario-card" data-preset="1.4677" type="button"><b>G.652 @ 1310 nm</b><span>群折射率 1.4677</span></button><button aria-pressed="false" class="scenario-card" data-preset="1.4682" type="button"><b>G.652 @ 1550 nm</b><span>群折射率 1.4682</span></button><button aria-pressed="false" class="scenario-card" data-preset="1.003" type="button"><b>空芯光纤</b><span>群折射率 ≈ 1.003</span></button><button aria-pressed="false" class="scenario-card" data-preset="custom" type="button"><b>自定义</b><span>输入 1.0 到 1.6 的 n_g</span></button>
 </div>
 <p class="preset-desc" id="preset-desc">通用单模 n_g 为 1.468，大约每公里 4.9 µs。G.652 波长预设采用已公布的群折射率；自定义允许 1.0 到 1.6。</p>
-<input id="groupIndexPreset" type="hidden" value="1.468"/></section><div class="f"><label for="groupIndex">群折射率 n_g</label><div class="inp input-wrap"><input id="groupIndex" inputmode="decimal" max="1.6" min="1" readonly="" step="0.0001" type="number" value="1.468"/></div></div>
+<div class="presets presets-mobile" role="group" aria-label="群折射率快捷选项">
+<button type="button" class="on" data-preset="1.468" aria-pressed="true">单模 1.468</button><button type="button" class="" data-preset="1.4677" aria-pressed="false">1310 nm</button><button type="button" class="" data-preset="1.4682" aria-pressed="false">1550 nm</button><button type="button" class="" data-preset="1.003" aria-pressed="false">空芯光纤</button><button type="button" class="" data-preset="custom" aria-pressed="false">自定义</button>
+</div></section>
+<div class="f"><label for="groupIndexPreset">群折射率预设</label><div class="inp input-wrap sel"><select id="groupIndexPreset"><option value="1.468">通用单模 1.468</option><option value="1.4677">G.652 单模 @1310 nm 1.4677</option><option value="1.4682">G.652 单模 @1550 nm 1.4682</option><option value="1.003">空芯光纤 ≈1.003</option><option value="custom">自定义</option></select></div></div>
+<div class="f"><label for="groupIndex">群折射率 n_g</label><div class="inp input-wrap"><input id="groupIndex" inputmode="decimal" max="1.6" min="1" step="0.0001" type="number" value="1.468"/></div></div>
 </div>
 </div>
 <div class="fg">
@@ -176,9 +181,10 @@ body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:
 <p>不对称路径、排队和主机协议栈时延未计入。两个方向不同时，请用实测值补充。</p>
 </div>
 <div class="ro-acts">
-<button id="copyBtn" type="button">复制结果</button>
-<button id="saveBtn" type="button">保存记录</button>
-<button id="printBtn" type="button">打印 / 导出 PDF</button>
+<button type="button" id="copyBtn" data-ro-act="copy" disabled>复制</button>
+<button type="button" id="saveBtn" data-ro-act="save" disabled>保存</button>
+<button type="button" id="csvBtn" data-ro-act="csv" disabled>CSV</button>
+<button type="button" id="printBtn" data-ro-act="print">打印</button>
 </div>
 </div></section></div>
 <div class="below"><nav aria-label="本页导航" class="toc"><h4>本页导航</h4><a href="#about-scope">关于与适用范围</a><a href="#methodology">计算方法</a><a href="#faq">问答</a><a href="#history">最近计算</a><a href="#references">官方依据</a><a href="#content-review">内容复核</a><a href="#nel-tool-graph">工程工作流</a></nav><div class="prose"><details class="fb-fold blk" data-nel-v3-title-normalized="1" id="about-scope">
@@ -256,7 +262,7 @@ body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:
 <script defer="" src="../js/engine.js?v=11269b52819a"></script>
 <script defer="" src="../js/pwa.js?v=20261108-latency-bw7"></script>
 <script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script>
-<script defer="" src="../js/app.js?v=3f35e42f3efa"></script>
+<script defer="" src="../js/app.js?v=5fb25e9722d8"></script>
 <script defer="" src="../../../assets/js/tool-detail-v3.js?v=6f38212f00f3"></script>
 <script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
 <script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d"></script>
