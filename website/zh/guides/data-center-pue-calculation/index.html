@@ -1,0 +1,64 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>数据中心 PUE 计算：公式、测量与演算示例 | NetEngineerLab</title><meta name="description" content="如何计算PUE：在同一周期和同一边界内，用数据中心总能耗除以IT设备能耗。说明定义、公式、kW与kWh的差别，并给出标明为假设、不是测量的演算。"><link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/guide.css?v=ffc815a61c42"><meta property="og:url" content="https://netengineerlab.com/zh/guides/data-center-pue-calculation/">
+<meta property="og:title" content="数据中心 PUE 计算：公式、测量与演算示例 | NetEngineerLab">
+<meta property="og:description" content="如何计算PUE：在同一周期和同一边界内，用数据中心总能耗除以IT设备能耗。说明定义、公式、kW与kWh的差别，并给出标明为假设、不是测量的演算。">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="数据中心 PUE 计算：公式、测量与演算示例 | NetEngineerLab">
+<meta name="twitter:description" content="如何计算PUE：在同一周期和同一边界内，用数据中心总能耗除以IT设备能耗。说明定义、公式、kW与kWh的差别，并给出标明为假设、不是测量的演算。">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"数据中心 PUE 计算：公式、测量与演算示例","name":"数据中心 PUE 计算：公式、测量与演算示例","description":"如何计算PUE：在同一周期和同一边界内，用数据中心总能耗除以IT设备能耗。说明定义、公式、kW与kWh的差别，并给出标明为假设、不是测量的演算。","url":"https://netengineerlab.com/zh/guides/data-center-pue-calculation/","inLanguage":"zh-CN","mainEntityOfPage":"https://netengineerlab.com/zh/guides/data-center-pue-calculation/","author":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"数据中心 PUE 计算：公式、测量与演算示例","item":"https://netengineerlab.com/zh/guides/data-center-pue-calculation/"}]}</script>
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=475098aa29f5">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"数据中心 PUE 计算：公式、测量与演算示例 | NetEngineerLab","url":"https://netengineerlab.com/zh/guides/data-center-pue-calculation/","description":"如何计算PUE：在同一周期和同一边界内，用数据中心总能耗除以IT设备能耗。说明定义、公式、kW与kWh的差别，并给出标明为假设、不是测量的演算。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="zh">
+<meta name="nel-route" content="guides/data-center-pue-calculation/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/zh/guides/data-center-pue-calculation/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/data-center-pue-calculation/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/data-center-pue-calculation/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/es/guides/data-center-pue-calculation/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/data-center-pue-calculation/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=c957f6562d31"></script>
+</head><body>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="打开导航菜单"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="主导航">
+      <a href="../../">首页</a>
+      <a href="../../../tools/zh/">工具中心</a>
+      <a href="../" aria-current="page">工程指南</a>
+      <a href="../../topics/">专题</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/guides/data-center-pue-calculation/" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="/zh/guides/data-center-pue-calculation/" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a><a class="language-option" role="menuitem" href="/es/guides/data-center-pue-calculation/" lang="es" hreflang="es"><span>Español</span><small>西班牙语</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END --><nav class="guide-breadcrumb" aria-label="面包屑"><a href="../../">首页</a><span aria-hidden="true">›</span><a href="../">指南</a><span aria-hidden="true">›</span><span aria-current="page">数据中心 PUE 计算：公式、测量与演算示例</span></nav><main class="guide-shell" id="main"><section class="guide-hero"><p class="eyebrow">PUE 计算</p><h1>数据中心 PUE 计算：公式、测量与演算示例</h1><p class="guide-lead">如何计算 PUE：按 PUE 定义，用数据中心总能耗除以 IT 设备能耗。下面的数字是同一周期、同一边界下的假设，不是测量，也不是行业平均。</p><div class="guide-meta"><span>PUE 定义</span><span>公式</span><span>kWh 周期</span><span>示例</span></div></section><div class="guide-tool-link"><strong>数据中心 PUE 计算器</strong><p>计算器与下文使用同两种模式：周期能耗用 kWh，瞬时功率快照用 kW。请自行输入假设。本页数字不来自任何电表。</p><a href="../../../tools/pue-data-center-energy-efficiency/zh/">打开计算器 →</a></div><div class="guide-layout"><article class="guide-article"><h2 id="definition">PUE 定义</h2><p>这里采用的 PUE 定义是一个比值。分子是所选边界内的数据中心能耗，分母是同一边界内的 IT 设备能耗，两者使用同一周期。现行标准的公开目录页 <a href="https://www.iso.org/standard/30134-2">ISO/IEC 30134-2:2026</a> 说明：该标准规定如何测量、计算、报告和解释电能利用效率，并引入测量类别；2026 版补充了混合用途建筑、未计入能量和现场发电的指引。本页不引用付费正文中的条款。2016 版已经废止。</p><p>劳伦斯伯克利国家实验室托管的 <a href="https://datacenters.lbl.gov/sites/default/files/WP49%2DPUE%20A%20Comprehensive%20Examination%20of%20the%20Metric_v6.pdf">Green Grid WP#49</a> 给出同一公开比值：设施总能耗除以 IT 设备能耗。设施总能耗是专用于数据中心的能量，取自专用设施的公用事业电表，或混合用途建筑中属于数据中心的那一部分。IT 设备能耗是在计算空间内用于管理、处理、存储或转发数据的能量，包括 IT 设备以及用于监控或控制数据中心的附属设备。供配电、制冷系统用电和数据中心照明计入总能耗，不计入 IT 项。</p><h2 id="formula">PUE 计算公式</h2><p>PUE = E<sub>总</sub> ÷ E<sub>IT</sub></p><p>当制冷用电和其他配套负荷位于设施总能耗之内、IT 电表之外时，同一恒等式写成：</p><p>PUE = 1 + E<sub>制冷</sub> ÷ E<sub>IT</sub> + E<sub>其他</sub> ÷ E<sub>IT</sub></p><p>两项使用同一能量单位时，比值没有单位。比值更低，表示每单位 IT 能耗对应的配套能耗更少。它本身并不说明设施总能耗下降了。</p><h2 id="units">kW 与 kWh 不是同一个量</h2><p>千瓦是功率，表示某一时刻的速率。千瓦时是能量，是该速率对时间的积分。WP#49 第 4.10 节说明：PUE 可以用能量或功率计算；能量测量累积一段时间的流量，功率测量只是一个快照。同一节还说明，公开报告把 PUE 作为能量指标。若 400 kW 的负荷整整一小时保持不变，能量就是 400 kWh。这句话只说明单位关系，不是某个现场的读数。</p><p>用 kW 得到的瞬时比值，不等于用 kWh 得到的周期比值，除非功率在整个周期内保持不变。本页把两张表分开。</p><h2 id="boundary">计算边界</h2><p>相除之前先写清边界。设施总能耗包括所选边界划给数据中心的每一项能量，并排除同一块共用表上服务于其他用途的能量。IT 项在整个周期内只用一个测量位置。WP#49 公开描述了三个 IT 电表位置：UPS 输出、PDU 输出、IT 设备输入。移动电表会改变分母。ISO/IEC 30134-2:2026 在标准中引入测量类别。本页不把 2012 年的位置名称当成 2026 年的条款原文。</p><p>只有周期、设施边界和 IT 测量位置都相同，两个结果才能比较。把制冷用电留在分子之外，比值会下降，但制冷性能并没有改变。那是边界变了。目录中的 mPUE 用于混合用途建筑。下面的表假定设施总能耗已经只剩数据中心部分。它不算 mPUE，也不给现场发电计一笔抵扣。</p><h2 id="example">演算示例：假设，不是测量</h2><p>这些输入是为了能对照计算器复核算术。它们不是电表读数，不是调试验收记录，也不是公开发布的平均值。本表假定 IT 测量位置在 PDU 输出，周期为 30 天，每一行都在这一个边界内。</p><table><thead><tr><th>假设输入</th><th>能耗</th></tr></thead><tbody><tr><td>IT 设备能耗</td><td>100000 kWh</td></tr><tr><td>制冷用电</td><td>32000 kWh</td></tr><tr><td>IT 电表之外的 UPS 与电气损耗</td><td>10000 kWh</td></tr><tr><td>照明</td><td>3000 kWh</td></tr><tr><td>其余供配电能耗</td><td>3000 kWh</td></tr><tr><td>其他配套能耗</td><td>2000 kWh</td></tr></tbody></table><p>配套各行合计 50000 kWh。设施总能耗 = 100000 + 50000 = 150000 kWh。PUE = 150000 ÷ 100000 = 1.50。制冷 ÷ IT = 32000 ÷ 100000 = 0.32。其他配套能耗为 18000 kWh，所以 18000 ÷ 100000 = 0.18。于是 1 + 0.32 + 0.18 = 1.50。IT 占设施总能耗的 100000 ÷ 150000，保留两位小数是 66.67%。本表中制冷占配套能耗的 32000 ÷ 50000 = 0.64。</p><p>第二张表是另一个假设，不是把这个月再写一遍。某一时刻设施功率为 560 kW，IT 功率为 400 kW，配套功率为制冷 90 kW、UPS 40 kW、照明 10 kW、供配电 12 kW、其他 8 kW。配套功率合计 160 kW，400 + 160 = 560。瞬时比值是 560 ÷ 400 = 1.40。这个 1.40 不是 30 天 PUE 的 1.50。把 400 kW 乘以 720 小时得到 288000 kWh，前提是功率从不变化。本例不作这个前提。</p><p>在能耗模式下，计算器展示年度数字时，会把周期总量乘以 365 ÷ 周期天数。对这份假设的 30 天总量，150000 × 365 ÷ 30 = 1825000 kWh。该乘积是换算，不是测得的一年。若输入目标 PUE，计算器会用 IT 能耗乘以该目标，再与换算后的总量比较。差额只是你所输入目标的规划示意。本页不推荐目标值，也不给出节能比例。</p><h2 id="cooling">PUE 与制冷能耗</h2><p>制冷容量用移热的千瓦或冷吨表示，回答的是机组能否带走房间热量。这个问题属于<a href="../data-center-cooling-load-calculation/">数据中心制冷负荷计算：公式、实例与精密空调选型指南</a>、<a href="../server-room-heat-load-calculation/">服务器机房热负荷计算：应计入哪些热源？</a>和<a href="../../../tools/data-center-cooling-load-calculator/zh/">数据中心制冷负荷与精密空调容量计算器</a>。<a href="../../topics/data-center-cooling-capacity/">数据中心制冷负荷与精密空调容量专题</a>把这些容量校核放在一起。</p><p>PUE 使用的是制冷系统在同一周期内消耗的电能，而且只有当这些电能位于设施边界之内、IT 边界之外时才进入公式。铭牌冷吨不出现在公式里。在这份假设的月份中，改变比值的是 32000 kWh 这一行制冷用电，不是冷吨额定值。</p><p>制冷计算器可以用当地干空气密度修正风量估算。该修正改变的是给定温升下的体积流量。它不是制冷容量降额，也不是本 PUE 计算的输入。</p><h2 id="mistakes">常见误区</h2><ul><li>把 kW 快照当成周期 PUE。</li><li>比较周期、设施边界或 IT 电表位置不同的两个比值。</li><li>把制冷电表留在分子之外，并把更低的比值说成效率提高。</li><li>配套能耗不变、只因 IT 能耗升高而使比值下降时，把这当成设施能耗减少。</li><li>用 PUE 判断一台制冷或一台 UPS 退出后能否带载。那是另一个问题，见<a href="../monthly-energy-pue-not-redundancy/">电表算出的1.50 PUE到底说明了什么？</a></li><li>把目标 PUE 的差额写成已经测得的节能量。</li></ul><h2 id="direction">接下来核对什么</h2><p>比较之前固定一份书面边界和一个周期。写明制冷用电是否在该边界内。周期结果用 kWh，kW 读数标明是快照。同时看设施千瓦时和比值。制冷容量用制冷计算器确定。本页不给出行业平均 PUE，也不给出节能比例。</p><h2 id="sources">来源</h2><p>现行版本的公开目录：<a href="https://www.iso.org/standard/30134-2">ISO/IEC 30134-2:2026</a>。公开定义、公式讨论、能量与功率的区别以及 IT 电表位置：劳伦斯伯克利国家实验室托管的 <a href="https://datacenters.lbl.gov/sites/default/files/WP49%2DPUE%20A%20Comprehensive%20Examination%20of%20the%20Metric_v6.pdf">Green Grid WP#49，PUE: A Comprehensive Examination of the Metric</a>。2026-11-23 对照上述公开页面复核。标准正文不在这里转载。</p></article><aside class="guide-toc guide-related-side" aria-label="相关文章"><strong>相关文章</strong><ul><li><a href="../../../tools/pue-data-center-energy-efficiency/zh/">数据中心 PUE 与能效分析器</a></li><li><a href="../monthly-energy-pue-not-redundancy/">电表算出的1.50 PUE到底说明了什么？</a></li><li><a href="../data-center-cooling-load-calculation/">数据中心制冷负荷计算：公式、实例与精密空调选型指南</a></li><li><a href="../server-room-heat-load-calculation/">服务器机房热负荷计算：应计入哪些热源？</a></li><li><a href="../../topics/data-center-cooling-capacity/">数据中心制冷负荷与精密空调容量专题</a></li></ul></aside></div></main><!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div>
+    <nav class="site-shell-footer-links" aria-label="页脚导航">
+      <a href="../../about/">关于</a><a href="../../contact/">联系</a><a href="../../privacy/">隐私政策</a><a href="../../terms/">使用条款</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+</body></html>

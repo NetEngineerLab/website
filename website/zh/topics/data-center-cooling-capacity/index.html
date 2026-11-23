@@ -49,7 +49,7 @@
 <li><strong>热源清单。</strong>从<a href="../../guides/server-room-heat-load-calculation/">热源计入范围</a>开始。损耗只有在受控机房内放热时才计入。</li>
 <li><strong>设计负荷。</strong>从<a href="../../guides/data-center-cooling-load-calculation/">制冷负荷指南</a>开始。用下面的案例校核。</li>
 <li><strong>冷吨。</strong>从<a href="../../guides/how-many-tons-of-cooling-for-server-room/">冷吨换算</a>开始。冷吨 = 设计 kW ÷ 3.51685。</li>
-<li><strong>N+1。</strong>从<a href="../../guides/data-center-cooling-n-plus-one/">制冷 N+1</a>开始。正常状态通过不等于故障校核通过。</li>
+<li><strong>N+1。</strong>从<a href="../../guides/data-center-cooling-n-plus-one/">制冷 N+1</a>开始。正常状态通过不等于故障校核通过。</li><li><strong>PUE。</strong>冷吨不是PUE。<a href="../../guides/data-center-pue-calculation/">数据中心 PUE 计算：公式、测量与演算示例</a>用的是同一周期、同一边界的电能。制冷计算器里的干空气密度修正只改当地风量估算，不是制冷容量降额，也不是PUE的输入。</li>
 </ul>
 <h2 id="field-case">现场案例：100 kW IT，五台 30 kW</h2>
 <p>IT 100 kW，UPS 损耗 8 kW，PDU 损耗 4 kW，照明 2 kW，4 人按每人 120 W，围护 3 kW，其他显热 1 kW。基础显热为 118.48 kW。加 15% 余量后设计负荷为 136.25 kW，约 38.74 冷吨。五台 30 kW 显冷量合计 150 kW，正常状态可以覆盖。一台停机后剩 120 kW，低于 136.25 kW，N+1 不通过。用<a href="../../../tools/data-center-cooling-load-calculator/zh/">制冷计算器</a>校核，不要把铭牌冷吨当成设计负荷。</p>
