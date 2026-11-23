@@ -1,1 +1,63 @@
-<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>5 kW服务器小间需要多少冷吨，N+1怎么配？ | NetEngineerLab</title><meta name="description" content="示例：5 kW小间的设计显热为7.268 kW，约2.07冷吨。一台8 kW显冷量能覆盖正常状态；N+1需要第二台也能单独承担7.268 kW的机组。"><link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/guide.css"></head><body><nav class="guide-breadcrumb" aria-label="面包屑"><a href="../../">首页</a><span aria-hidden="true">›</span><a href="../">指南</a><span aria-hidden="true">›</span><span aria-current="page">5 kW服务器小间需要多少冷吨？</span></nav><main class="guide-shell" id="main"><section class="guide-hero"><p class="eyebrow">工程示例</p><h1>5 kW服务器小间需要多少冷吨？</h1><p class="guide-lead">这是工程示例，不是调查过的机房。5 kW IT加上本表中的小房间得热后，设计显热为7.268 kW，约2.07冷吨。一台8 kW显冷量覆盖正常运行。N+1需要第二台也能单独承担7.268 kW。</p><div class="guide-meta"><span>5 kW IT</span><span>2.07冷吨</span><span>N+1</span><span>示例</span></div></section><div class="guide-tool-link"><strong>配套计算器</strong><p>计算器没有可覆盖本例全部输入的网址预设。按下列数值手工输入后再对照结果。</p><a href="../../../tools/data-center-cooling-load-calculator/zh/">打开制冷负荷计算器 →</a></div><div class="guide-layout"><article class="guide-article"><p>制冷专题已经有 100 kW IT 机厅，热负荷指南有 120 kW 计算表。本例是单间小机房：看起来比 IT 铭牌更大的机组，仍可能配错 N+1。</p><h2>示例假设</h2><ul><li>IT 5 kW，UPS 损耗 0.4 kW，PDU 损耗 0.2 kW，照明 0.2 kW，1 人按 120 W，围护 0.3 kW，其他显热 0.1 kW。</li><li>余量 15%。单台显冷量 8 kW。送回风温差 10°C。没有额外潜热。</li></ul><h2>步骤</h2><ol><li>人员 = 0.12 kW。基础显热 = 6.32 kW。</li><li>设计负荷 = 6.32 × 1.15 = 7.268 kW。</li><li>冷吨 = 7.268 / 3.5168525 = 2.07 冷吨。这是显热冷吨，不是舒适性空调铭牌。</li><li>一台 8 kW：正常容量 8 kW，可以覆盖 7.268 kW。停机后剩余 0 kW，N+1 不通过。</li><li>两台 8 kW：正常容量 16 kW。一台停止后仍有 8 kW，可以覆盖 7.268 kW，这次 N+1 校核通过。引擎的运行台数是 1，建议台数是 2。</li></ol><h2>边界</h2><p>不要把小间算成“5 kW 不到 2 冷吨，所以一台 2 冷吨舒适性空调就够”。舒适性总冷量不是服务器房间工况下的显冷量。计算器不模拟气流短路，也不模拟机组在房间温度下达不到 8 kW 显冷量。这不是 100 kW 机厅案例。</p><p>来源：<a href="https://www.se.com/us/en/download/document/SPD_NRAN-5TE6HE_EN/">施耐德电气，数据中心总制冷需求计算</a>；<a href="https://www.ashrae.org/technical-resources/bookstore/datacom-series">ASHRAE Datacom 系列</a>。</p><p><a href="../../topics/data-center-cooling-capacity/">返回制冷专题</a></p></article></div></main></body></html>
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>5 kW服务器小间需要多少冷吨，N+1怎么配？ | NetEngineerLab</title><meta name="description" content="示例：5 kW小间的设计显热为7.268 kW，约2.07冷吨。一台8 kW显冷量能覆盖正常状态；N+1需要第二台也能单独承担7.268 kW的机组。"><link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/guide.css?v=09f302fd8b51"><link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=475098aa29f5">
+<meta property="og:url" content="https://netengineerlab.com/zh/guides/5kw-server-closet-cooling-n-plus-one/">
+<meta property="og:title" content="5 kW服务器小间需要多少冷吨，N+1怎么配？ | NetEngineerLab">
+<meta property="og:description" content="示例：5 kW小间的设计显热为7.268 kW，约2.07冷吨。一台8 kW显冷量能覆盖正常状态；N+1需要第二台也能单独承担7.268 kW的机组。">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="5 kW服务器小间需要多少冷吨，N+1怎么配？ | NetEngineerLab">
+<meta name="twitter:description" content="示例：5 kW小间的设计显热为7.268 kW，约2.07冷吨。一台8 kW显冷量能覆盖正常状态；N+1需要第二台也能单独承担7.268 kW的机组。">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"5 kW服务器小间需要多少冷吨？","name":"5 kW服务器小间需要多少冷吨？","description":"示例：5 kW小间的设计显热为7.268 kW，约2.07冷吨。一台8 kW显冷量能覆盖正常状态；N+1需要第二台也能单独承担7.268 kW的机组。","url":"https://netengineerlab.com/zh/guides/5kw-server-closet-cooling-n-plus-one/","inLanguage":"zh-CN","mainEntityOfPage":"https://netengineerlab.com/zh/guides/5kw-server-closet-cooling-n-plus-one/","author":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"5 kW服务器小间需要多少冷吨？","item":"https://netengineerlab.com/zh/guides/5kw-server-closet-cooling-n-plus-one/"}]}</script>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"5 kW服务器小间需要多少冷吨，N+1怎么配？ | NetEngineerLab","url":"https://netengineerlab.com/zh/guides/5kw-server-closet-cooling-n-plus-one/","description":"示例：5 kW小间的设计显热为7.268 kW，约2.07冷吨。一台8 kW显冷量能覆盖正常状态；N+1需要第二台也能单独承担7.268 kW的机组。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="zh">
+<meta name="nel-route" content="guides/5kw-server-closet-cooling-n-plus-one/">
+<meta name="nel-available-locales" content="en,zh">
+<link rel="canonical" href="https://netengineerlab.com/zh/guides/5kw-server-closet-cooling-n-plus-one/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/5kw-server-closet-cooling-n-plus-one/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/5kw-server-closet-cooling-n-plus-one/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/5kw-server-closet-cooling-n-plus-one/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=c957f6562d31"></script>
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+</head><body>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="打开导航菜单"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="主导航">
+      <a href="../../">首页</a>
+      <a href="../../../tools/zh/">工具中心</a>
+      <a href="../" aria-current="page">工程指南</a>
+      <a href="../../topics/">专题</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/guides/5kw-server-closet-cooling-n-plus-one/" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="/zh/guides/5kw-server-closet-cooling-n-plus-one/" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END --><nav class="guide-breadcrumb" aria-label="面包屑"><a href="../../">首页</a><span aria-hidden="true">›</span><a href="../">指南</a><span aria-hidden="true">›</span><span aria-current="page">5 kW服务器小间需要多少冷吨？</span></nav><main class="guide-shell" id="main"><section class="guide-hero"><p class="eyebrow">工程示例</p><h1>5 kW服务器小间需要多少冷吨？</h1><p class="guide-lead">这是工程示例，不是调查过的机房。5 kW IT加上本表中的小房间得热后，设计显热为7.268 kW，约2.07冷吨。一台8 kW显冷量覆盖正常运行。N+1需要第二台也能单独承担7.268 kW。</p><div class="guide-meta"><span>5 kW IT</span><span>2.07冷吨</span><span>N+1</span><span>示例</span></div></section><div class="guide-tool-link"><strong>配套计算器</strong><p>计算器没有可覆盖本例全部输入的网址预设。按下列数值手工输入后再对照结果。</p><a href="../../../tools/data-center-cooling-load-calculator/zh/">打开制冷负荷计算器 →</a></div><div class="guide-layout"><article class="guide-article"><p>制冷专题已经有 100 kW IT 机厅，热负荷指南有 120 kW 计算表。本例是单间小机房：看起来比 IT 铭牌更大的机组，仍可能配错 N+1。</p><h2>示例假设</h2><ul><li>IT 5 kW，UPS 损耗 0.4 kW，PDU 损耗 0.2 kW，照明 0.2 kW，1 人按 120 W，围护 0.3 kW，其他显热 0.1 kW。</li><li>余量 15%。单台显冷量 8 kW。送回风温差 10°C。没有额外潜热。</li></ul><h2>步骤</h2><ol><li>人员 = 0.12 kW。基础显热 = 6.32 kW。</li><li>设计负荷 = 6.32 × 1.15 = 7.268 kW。</li><li>冷吨 = 7.268 / 3.5168525 = 2.07 冷吨。这是显热冷吨，不是舒适性空调铭牌。</li><li>一台 8 kW：正常容量 8 kW，可以覆盖 7.268 kW。停机后剩余 0 kW，N+1 不通过。</li><li>两台 8 kW：正常容量 16 kW。一台停止后仍有 8 kW，可以覆盖 7.268 kW，这次 N+1 校核通过。引擎的运行台数是 1，建议台数是 2。</li></ol><h2>边界</h2><p>不要把小间算成“5 kW 不到 2 冷吨，所以一台 2 冷吨舒适性空调就够”。舒适性总冷量不是服务器房间工况下的显冷量。计算器不模拟气流短路，也不模拟机组在房间温度下达不到 8 kW 显冷量。这不是 100 kW 机厅案例。</p><p>来源：<a href="https://www.se.com/us/en/download/document/SPD_NRAN-5TE6HE_EN/">施耐德电气，数据中心总制冷需求计算</a>；<a href="https://www.ashrae.org/technical-resources/bookstore/datacom-series">ASHRAE Datacom 系列</a>。</p><p><a href="../../topics/data-center-cooling-capacity/">返回制冷专题</a></p></article></div></main><!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div>
+    <nav class="site-shell-footer-links" aria-label="页脚导航">
+      <a href="../../about/">关于</a><a href="../../contact/">联系</a><a href="../../privacy/">隐私政策</a><a href="../../terms/">使用条款</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+</body></html>

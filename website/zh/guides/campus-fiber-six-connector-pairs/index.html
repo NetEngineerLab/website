@@ -1,1 +1,63 @@
-<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>2公里园区光纤加上六对连接器后预算是否足够？ | NetEngineerLab</title><meta name="description" content="示例：2公里园区路径配六对0.75 dB连接器，设计损耗8.4 dB。14 dB预算可以通过，8 dB短距预算不能通过。"><link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/guide.css"></head><body><nav class="guide-breadcrumb" aria-label="面包屑"><a href="../../">首页</a><span aria-hidden="true">›</span><a href="../">指南</a><span aria-hidden="true">›</span><span aria-current="page">2公里园区光纤能承受多少对连接器？</span></nav><main class="guide-shell" id="main"><section class="guide-hero"><p class="eyebrow">工程示例</p><h1>2公里园区光纤能承受多少对连接器？</h1><p class="guide-lead">这是工程示例。2公里按0.35 dB/km只有0.7 dB光纤损耗。六对0.75 dB连接器、两个熔接点和3 dB余量使设计损耗达到8.4 dB。14 dB等级预算仍然通过。8 dB短距预算则差0.4 dB而不能通过。</p><div class="guide-meta"><span>2公里</span><span>六对连接器</span><span>园区光纤</span><span>示例</span></div></section><div class="guide-tool-link"><strong>配套计算器</strong><p>计算器没有可覆盖本例全部输入的网址预设。按下列数值手工输入后再对照结果。</p><a href="../../../tools/fiber-loss/zh/">打开光纤损耗计算器 →</a></div><div class="guide-layout"><article class="guide-article"><p>园区光纤经常失败在两栋楼和中间配线的连接器上，而不是失败在光缆衰减上。本例把这些连接器对数算进去。它不是 10 km 或 40 km 距离案例。</p><h2>示例假设</h2><ul><li>距离 2 km，衰减 0.35 dB/km，两个熔接点各 0.10 dB，六对连接器各 0.75 dB，工程余量 3 dB。没有分光器。</li><li>较长等级：发射 0 dBm，接收门限 -14 dBm，可用预算 14 dB。</li><li>同一光缆上的短距等级：发射 -3 dBm，接收门限 -11 dBm，可用预算 8 dB。</li></ul><h2>步骤</h2><ol><li>光纤 = 0.70 dB。熔接 = 0.20 dB。连接器 = 4.50 dB。物理损耗 = 5.40 dB。设计损耗 = 8.40 dB。</li><li>对照 14 dB，剩余预算 = 5.60 dB。估算接收功率 = -5.4 dBm。接收余量 = 8.6 dB。状态为健康。</li><li>对照 8 dB，剩余预算 = -0.4 dB。估算接收功率 = -8.4 dBm。接收余量 = 2.6 dB。设计损耗超过短距预算，状态为失败。</li></ol><h2>边界</h2><p>六对是两栋楼入口再加一处中间配线、每处一对的示例计数。真实 OTDR 或损耗测试应替换 0.75 dB 筛选值。不要因为光纤项只有 0.7 dB，就把 8 dB 光模块用到这条光缆上。分光级联放在 PON 分光指南，不放在本路径。</p><p>来源：<a href="https://www.itu.int/rec/T-REC-G.652/en">ITU-T G.652</a>；<a href="https://www.thefoa.org/tech/lossbudg.htm">光纤协会，损耗预算</a>。</p><p><a href="../../topics/pon-optical/">返回PON与光网络专题</a></p></article></div></main></body></html>
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>2公里园区光纤加上六对连接器后预算是否足够？ | NetEngineerLab</title><meta name="description" content="示例：2公里园区路径配六对0.75 dB连接器，设计损耗8.4 dB。14 dB预算可以通过，8 dB短距预算不能通过。"><link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/guide.css?v=09f302fd8b51"><link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=475098aa29f5">
+<meta property="og:url" content="https://netengineerlab.com/zh/guides/campus-fiber-six-connector-pairs/">
+<meta property="og:title" content="2公里园区光纤加上六对连接器后预算是否足够？ | NetEngineerLab">
+<meta property="og:description" content="示例：2公里园区路径配六对0.75 dB连接器，设计损耗8.4 dB。14 dB预算可以通过，8 dB短距预算不能通过。">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="2公里园区光纤加上六对连接器后预算是否足够？ | NetEngineerLab">
+<meta name="twitter:description" content="示例：2公里园区路径配六对0.75 dB连接器，设计损耗8.4 dB。14 dB预算可以通过，8 dB短距预算不能通过。">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"2公里园区光纤能承受多少对连接器？","name":"2公里园区光纤能承受多少对连接器？","description":"示例：2公里园区路径配六对0.75 dB连接器，设计损耗8.4 dB。14 dB预算可以通过，8 dB短距预算不能通过。","url":"https://netengineerlab.com/zh/guides/campus-fiber-six-connector-pairs/","inLanguage":"zh-CN","mainEntityOfPage":"https://netengineerlab.com/zh/guides/campus-fiber-six-connector-pairs/","author":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"2公里园区光纤能承受多少对连接器？","item":"https://netengineerlab.com/zh/guides/campus-fiber-six-connector-pairs/"}]}</script>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"2公里园区光纤加上六对连接器后预算是否足够？ | NetEngineerLab","url":"https://netengineerlab.com/zh/guides/campus-fiber-six-connector-pairs/","description":"示例：2公里园区路径配六对0.75 dB连接器，设计损耗8.4 dB。14 dB预算可以通过，8 dB短距预算不能通过。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="zh">
+<meta name="nel-route" content="guides/campus-fiber-six-connector-pairs/">
+<meta name="nel-available-locales" content="en,zh">
+<link rel="canonical" href="https://netengineerlab.com/zh/guides/campus-fiber-six-connector-pairs/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/campus-fiber-six-connector-pairs/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/campus-fiber-six-connector-pairs/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/campus-fiber-six-connector-pairs/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=c957f6562d31"></script>
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+</head><body>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="打开导航菜单"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="主导航">
+      <a href="../../">首页</a>
+      <a href="../../../tools/zh/">工具中心</a>
+      <a href="../" aria-current="page">工程指南</a>
+      <a href="../../topics/">专题</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/guides/campus-fiber-six-connector-pairs/" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="/zh/guides/campus-fiber-six-connector-pairs/" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END --><nav class="guide-breadcrumb" aria-label="面包屑"><a href="../../">首页</a><span aria-hidden="true">›</span><a href="../">指南</a><span aria-hidden="true">›</span><span aria-current="page">2公里园区光纤能承受多少对连接器？</span></nav><main class="guide-shell" id="main"><section class="guide-hero"><p class="eyebrow">工程示例</p><h1>2公里园区光纤能承受多少对连接器？</h1><p class="guide-lead">这是工程示例。2公里按0.35 dB/km只有0.7 dB光纤损耗。六对0.75 dB连接器、两个熔接点和3 dB余量使设计损耗达到8.4 dB。14 dB等级预算仍然通过。8 dB短距预算则差0.4 dB而不能通过。</p><div class="guide-meta"><span>2公里</span><span>六对连接器</span><span>园区光纤</span><span>示例</span></div></section><div class="guide-tool-link"><strong>配套计算器</strong><p>计算器没有可覆盖本例全部输入的网址预设。按下列数值手工输入后再对照结果。</p><a href="../../../tools/fiber-loss/zh/">打开光纤损耗计算器 →</a></div><div class="guide-layout"><article class="guide-article"><p>园区光纤经常失败在两栋楼和中间配线的连接器上，而不是失败在光缆衰减上。本例把这些连接器对数算进去。它不是 10 km 或 40 km 距离案例。</p><h2>示例假设</h2><ul><li>距离 2 km，衰减 0.35 dB/km，两个熔接点各 0.10 dB，六对连接器各 0.75 dB，工程余量 3 dB。没有分光器。</li><li>较长等级：发射 0 dBm，接收门限 -14 dBm，可用预算 14 dB。</li><li>同一光缆上的短距等级：发射 -3 dBm，接收门限 -11 dBm，可用预算 8 dB。</li></ul><h2>步骤</h2><ol><li>光纤 = 0.70 dB。熔接 = 0.20 dB。连接器 = 4.50 dB。物理损耗 = 5.40 dB。设计损耗 = 8.40 dB。</li><li>对照 14 dB，剩余预算 = 5.60 dB。估算接收功率 = -5.4 dBm。接收余量 = 8.6 dB。状态为健康。</li><li>对照 8 dB，剩余预算 = -0.4 dB。估算接收功率 = -8.4 dBm。接收余量 = 2.6 dB。设计损耗超过短距预算，状态为失败。</li></ol><h2>边界</h2><p>六对是两栋楼入口再加一处中间配线、每处一对的示例计数。真实 OTDR 或损耗测试应替换 0.75 dB 筛选值。不要因为光纤项只有 0.7 dB，就把 8 dB 光模块用到这条光缆上。分光级联放在 PON 分光指南，不放在本路径。</p><p>来源：<a href="https://www.itu.int/rec/T-REC-G.652/en">ITU-T G.652</a>；<a href="https://www.thefoa.org/tech/lossbudg.htm">光纤协会，损耗预算</a>。</p><p><a href="../../topics/pon-optical/">返回PON与光网络专题</a></p></article></div></main><!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div>
+    <nav class="site-shell-footer-links" aria-label="页脚导航">
+      <a href="../../about/">关于</a><a href="../../contact/">联系</a><a href="../../privacy/">隐私政策</a><a href="../../terms/">使用条款</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+</body></html>

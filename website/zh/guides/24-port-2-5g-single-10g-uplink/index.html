@@ -1,1 +1,63 @@
-<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>24口2.5G接入配单条10G上联：6:1校核 | NetEngineerLab</title><meta name="description" content="示例：24个2.5 Gbps多千兆口在20%利用率下向单条10G上联提供12 Gbps。6:1线速比不能满足80%目标。"><link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/guide.css"></head><body><nav class="guide-breadcrumb" aria-label="面包屑"><a href="../../">首页</a><span aria-hidden="true">›</span><a href="../">指南</a><span aria-hidden="true">›</span><span aria-current="page">一条10G上联能否承载24个2.5G接入口？</span></nav><main class="guide-shell" id="main"><section class="guide-hero"><p class="eyebrow">工程示例</p><h1>一条10G上联能否承载24个2.5G接入口？</h1><p class="guide-lead">这是工程示例。24个2.5 Gbps接入口的线速合计是60 Gbps。一条10 Gbps上联对应6:1。同时利用率取20%时，模型需求已经是12 Gbps，高于10 Gbps链路，也高于8 Gbps安全目标。</p><div class="guide-meta"><span>24×2.5G</span><span>单条10G</span><span>6:1</span><span>示例</span></div></section><div class="guide-tool-link"><strong>配套计算器</strong><p>计算器没有可覆盖本例全部输入的网址预设。按下列数值手工输入后再对照结果。</p><a href="../../../tools/switch-uplink-oversubscription-calculator/zh/">打开交换机上联计算器 →</a></div><div class="guide-layout"><article class="guide-article"><p>接入速率提高后，约束会移到上联。48×2.5G 的比值已经出现在 48 口指南里。本例是更小的单上联问题：24 个多千兆口和一条 10G 离开链路，对应 Wi-Fi 6/7 接入点协商到 2.5G 的常见形态。</p><h2>示例假设</h2><ul><li>接入：24 × 2.5 Gbps = 60 Gbps。</li><li>利用率 20%，并发 100%，开销 0%，目标 80%。</li><li>一条活动的 10 Gbps 上联。该链路失效后，模型中没有转发路径。</li></ul><h2>步骤</h2><ol><li>线速比 = 60 / 10 = 6:1。</li><li>需求 = 60 × 0.20 = 12 Gbps。</li><li>安全容量 = 10 × 0.80 = 8 Gbps。余量 = 8 − 12 = -4 Gbps。</li><li>引擎结果为不通过，并给出拥塞和单路径警告。要满足 80% 目标，这个需求需要 2 条万兆上联，而这两条本身还不是 N-1 设计。</li></ol><h2>边界</h2><p>不离开接入交换机的本地交换没有算进 12 Gbps。如果能说明一部分流量留在本机，应降低需求后重新计算。不要只保留 6:1 的标题而省掉忙时校核。</p><p>来源：<a href="https://www.duxbury.co.za/the-next-network-bottleneck-is-hiding-in-the-uplink/">Duxbury Networking，接入升到 2.5 Gbps 后的上联瓶颈</a>。该文给出 6:1 比值；12 Gbps 需求是本示例，不是他们的实测。</p><p><a href="../../topics/switch-oversubscription/">返回交换机超售比专题</a></p></article></div></main></body></html>
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>24口2.5G接入配单条10G上联：6:1校核 | NetEngineerLab</title><meta name="description" content="示例：24个2.5 Gbps多千兆口在20%利用率下向单条10G上联提供12 Gbps。6:1线速比不能满足80%目标。"><link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/guide.css?v=09f302fd8b51"><link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=475098aa29f5">
+<meta property="og:url" content="https://netengineerlab.com/zh/guides/24-port-2-5g-single-10g-uplink/">
+<meta property="og:title" content="24口2.5G接入配单条10G上联：6:1校核 | NetEngineerLab">
+<meta property="og:description" content="示例：24个2.5 Gbps多千兆口在20%利用率下向单条10G上联提供12 Gbps。6:1线速比不能满足80%目标。">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="24口2.5G接入配单条10G上联：6:1校核 | NetEngineerLab">
+<meta name="twitter:description" content="示例：24个2.5 Gbps多千兆口在20%利用率下向单条10G上联提供12 Gbps。6:1线速比不能满足80%目标。">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"一条10G上联能否承载24个2.5G接入口？","name":"一条10G上联能否承载24个2.5G接入口？","description":"示例：24个2.5 Gbps多千兆口在20%利用率下向单条10G上联提供12 Gbps。6:1线速比不能满足80%目标。","url":"https://netengineerlab.com/zh/guides/24-port-2-5g-single-10g-uplink/","inLanguage":"zh-CN","mainEntityOfPage":"https://netengineerlab.com/zh/guides/24-port-2-5g-single-10g-uplink/","author":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"一条10G上联能否承载24个2.5G接入口？","item":"https://netengineerlab.com/zh/guides/24-port-2-5g-single-10g-uplink/"}]}</script>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"24口2.5G接入配单条10G上联：6:1校核 | NetEngineerLab","url":"https://netengineerlab.com/zh/guides/24-port-2-5g-single-10g-uplink/","description":"示例：24个2.5 Gbps多千兆口在20%利用率下向单条10G上联提供12 Gbps。6:1线速比不能满足80%目标。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="zh">
+<meta name="nel-route" content="guides/24-port-2-5g-single-10g-uplink/">
+<meta name="nel-available-locales" content="en,zh">
+<link rel="canonical" href="https://netengineerlab.com/zh/guides/24-port-2-5g-single-10g-uplink/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/24-port-2-5g-single-10g-uplink/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/24-port-2-5g-single-10g-uplink/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/24-port-2-5g-single-10g-uplink/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=c957f6562d31"></script>
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+</head><body>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="打开导航菜单"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="主导航">
+      <a href="../../">首页</a>
+      <a href="../../../tools/zh/">工具中心</a>
+      <a href="../" aria-current="page">工程指南</a>
+      <a href="../../topics/">专题</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/guides/24-port-2-5g-single-10g-uplink/" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="/zh/guides/24-port-2-5g-single-10g-uplink/" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END --><nav class="guide-breadcrumb" aria-label="面包屑"><a href="../../">首页</a><span aria-hidden="true">›</span><a href="../">指南</a><span aria-hidden="true">›</span><span aria-current="page">一条10G上联能否承载24个2.5G接入口？</span></nav><main class="guide-shell" id="main"><section class="guide-hero"><p class="eyebrow">工程示例</p><h1>一条10G上联能否承载24个2.5G接入口？</h1><p class="guide-lead">这是工程示例。24个2.5 Gbps接入口的线速合计是60 Gbps。一条10 Gbps上联对应6:1。同时利用率取20%时，模型需求已经是12 Gbps，高于10 Gbps链路，也高于8 Gbps安全目标。</p><div class="guide-meta"><span>24×2.5G</span><span>单条10G</span><span>6:1</span><span>示例</span></div></section><div class="guide-tool-link"><strong>配套计算器</strong><p>计算器没有可覆盖本例全部输入的网址预设。按下列数值手工输入后再对照结果。</p><a href="../../../tools/switch-uplink-oversubscription-calculator/zh/">打开交换机上联计算器 →</a></div><div class="guide-layout"><article class="guide-article"><p>接入速率提高后，约束会移到上联。48×2.5G 的比值已经出现在 48 口指南里。本例是更小的单上联问题：24 个多千兆口和一条 10G 离开链路，对应 Wi-Fi 6/7 接入点协商到 2.5G 的常见形态。</p><h2>示例假设</h2><ul><li>接入：24 × 2.5 Gbps = 60 Gbps。</li><li>利用率 20%，并发 100%，开销 0%，目标 80%。</li><li>一条活动的 10 Gbps 上联。该链路失效后，模型中没有转发路径。</li></ul><h2>步骤</h2><ol><li>线速比 = 60 / 10 = 6:1。</li><li>需求 = 60 × 0.20 = 12 Gbps。</li><li>安全容量 = 10 × 0.80 = 8 Gbps。余量 = 8 − 12 = -4 Gbps。</li><li>引擎结果为不通过，并给出拥塞和单路径警告。要满足 80% 目标，这个需求需要 2 条万兆上联，而这两条本身还不是 N-1 设计。</li></ol><h2>边界</h2><p>不离开接入交换机的本地交换没有算进 12 Gbps。如果能说明一部分流量留在本机，应降低需求后重新计算。不要只保留 6:1 的标题而省掉忙时校核。</p><p>来源：<a href="https://www.duxbury.co.za/the-next-network-bottleneck-is-hiding-in-the-uplink/">Duxbury Networking，接入升到 2.5 Gbps 后的上联瓶颈</a>。该文给出 6:1 比值；12 Gbps 需求是本示例，不是他们的实测。</p><p><a href="../../topics/switch-oversubscription/">返回交换机超售比专题</a></p></article></div></main><!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div>
+    <nav class="site-shell-footer-links" aria-label="页脚导航">
+      <a href="../../about/">关于</a><a href="../../contact/">联系</a><a href="../../privacy/">隐私政策</a><a href="../../terms/">使用条款</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+</body></html>

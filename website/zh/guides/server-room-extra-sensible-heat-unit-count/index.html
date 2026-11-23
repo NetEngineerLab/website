@@ -1,1 +1,63 @@
-<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>服务器机房多出3 kW显热后，制冷容量怎么变？ | NetEngineerLab</title><meta name="description" content="示例：8 kW IT机房设计负荷为11.776 kW。再增加3 kW室内显热后升到15.226 kW，两台8 kW机组利用率从73.6%升到95.2%。"><link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/guide.css"></head><body><nav class="guide-breadcrumb" aria-label="面包屑"><a href="../../">首页</a><span aria-hidden="true">›</span><a href="../">指南</a><span aria-hidden="true">›</span><span aria-current="page">服务器机房增加3 kW显热后会发生什么？</span></nav><main class="guide-shell" id="main"><section class="guide-hero"><p class="eyebrow">工程示例</p><h1>服务器机房增加3 kW显热后会发生什么？</h1><p class="guide-lead">这是工程示例。基础热量表的设计负荷是11.776 kW，约3.35冷吨。若房间内还有设备放出3 kW热，设计负荷升到15.226 kW，约4.33冷吨，两台8 kW机组的利用率从73.6%升到95.2%。</p><div class="guide-meta"><span>额外显热</span><span>机组负荷率</span><span>8 kW IT</span><span>示例</span></div></section><div class="guide-tool-link"><strong>配套计算器</strong><p>计算器没有可覆盖本例全部输入的网址预设。按下列数值手工输入后再对照结果。</p><a href="../../../tools/data-center-cooling-load-calculator/zh/">打开制冷负荷计算器 →</a></div><div class="guide-layout"><article class="guide-article"><p>热量表如果漏掉放在房间内的变压器、小型 UPS 或除湿机的显热部分，就会低估设计负荷。本例不改变 IT 千瓦数，只增加这一项。</p><h2>示例假设</h2><ul><li>IT 8 kW，UPS 损耗 0.6 kW，PDU 损耗 0.3 kW，照明 0.4 kW，2 人按每人 120 W，围护 0.5 kW，其他 0.2 kW，余量 15%。</li><li>已装两台，每台显冷量 8 kW。第一次额外显热为 0。第二次额外显热为 3 kW。</li></ul><h2>步骤</h2><ol><li>没有额外项时，基础负荷 = 10.24 kW，设计负荷 = 11.776 kW，约 3.35 冷吨。两台合计 16 kW，利用率 73.6%。停一台后剩 8 kW，低于 11.776 kW，N+1 不通过。</li><li>增加 3 kW 显热后，基础负荷 = 13.24 kW，设计负荷 = 15.226 kW，约 4.33 冷吨。同样两台的利用率为 95.2%，引擎会标成高利用率。N+1 仍然不通过，而且正常状态已经接近已装容量。</li></ol><h2>边界</h2><p>这 3 kW 是释放在受控房间内的示例输入。排到室外的热不属于这一项。引擎不会把相对湿度换算成千瓦；湿度警告是另一项检查，不能代替这块显热。高利用率和 N+1 失败不是同一件事，增加 3 kW 之后两件都会出现。</p><p>来源：<a href="https://www.se.com/us/en/download/document/SPD_NRAN-5TE6HE_EN/">施耐德电气，计入房间内的每一项热源</a>。</p><p><a href="../../topics/data-center-cooling-capacity/">返回制冷专题</a></p></article></div></main></body></html>
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>服务器机房多出3 kW显热后，制冷容量怎么变？ | NetEngineerLab</title><meta name="description" content="示例：8 kW IT机房设计负荷为11.776 kW。再增加3 kW室内显热后升到15.226 kW，两台8 kW机组利用率从73.6%升到95.2%。"><link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/guide.css?v=09f302fd8b51"><link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=475098aa29f5">
+<meta property="og:url" content="https://netengineerlab.com/zh/guides/server-room-extra-sensible-heat-unit-count/">
+<meta property="og:title" content="服务器机房多出3 kW显热后，制冷容量怎么变？ | NetEngineerLab">
+<meta property="og:description" content="示例：8 kW IT机房设计负荷为11.776 kW。再增加3 kW室内显热后升到15.226 kW，两台8 kW机组利用率从73.6%升到95.2%。">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="服务器机房多出3 kW显热后，制冷容量怎么变？ | NetEngineerLab">
+<meta name="twitter:description" content="示例：8 kW IT机房设计负荷为11.776 kW。再增加3 kW室内显热后升到15.226 kW，两台8 kW机组利用率从73.6%升到95.2%。">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"服务器机房增加3 kW显热后会发生什么？","name":"服务器机房增加3 kW显热后会发生什么？","description":"示例：8 kW IT机房设计负荷为11.776 kW。再增加3 kW室内显热后升到15.226 kW，两台8 kW机组利用率从73.6%升到95.2%。","url":"https://netengineerlab.com/zh/guides/server-room-extra-sensible-heat-unit-count/","inLanguage":"zh-CN","mainEntityOfPage":"https://netengineerlab.com/zh/guides/server-room-extra-sensible-heat-unit-count/","author":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"服务器机房增加3 kW显热后会发生什么？","item":"https://netengineerlab.com/zh/guides/server-room-extra-sensible-heat-unit-count/"}]}</script>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"服务器机房多出3 kW显热后，制冷容量怎么变？ | NetEngineerLab","url":"https://netengineerlab.com/zh/guides/server-room-extra-sensible-heat-unit-count/","description":"示例：8 kW IT机房设计负荷为11.776 kW。再增加3 kW室内显热后升到15.226 kW，两台8 kW机组利用率从73.6%升到95.2%。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="zh">
+<meta name="nel-route" content="guides/server-room-extra-sensible-heat-unit-count/">
+<meta name="nel-available-locales" content="en,zh">
+<link rel="canonical" href="https://netengineerlab.com/zh/guides/server-room-extra-sensible-heat-unit-count/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/server-room-extra-sensible-heat-unit-count/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/server-room-extra-sensible-heat-unit-count/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/server-room-extra-sensible-heat-unit-count/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=c957f6562d31"></script>
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+</head><body>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="打开导航菜单"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="主导航">
+      <a href="../../">首页</a>
+      <a href="../../../tools/zh/">工具中心</a>
+      <a href="../" aria-current="page">工程指南</a>
+      <a href="../../topics/">专题</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/guides/server-room-extra-sensible-heat-unit-count/" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="/zh/guides/server-room-extra-sensible-heat-unit-count/" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END --><nav class="guide-breadcrumb" aria-label="面包屑"><a href="../../">首页</a><span aria-hidden="true">›</span><a href="../">指南</a><span aria-hidden="true">›</span><span aria-current="page">服务器机房增加3 kW显热后会发生什么？</span></nav><main class="guide-shell" id="main"><section class="guide-hero"><p class="eyebrow">工程示例</p><h1>服务器机房增加3 kW显热后会发生什么？</h1><p class="guide-lead">这是工程示例。基础热量表的设计负荷是11.776 kW，约3.35冷吨。若房间内还有设备放出3 kW热，设计负荷升到15.226 kW，约4.33冷吨，两台8 kW机组的利用率从73.6%升到95.2%。</p><div class="guide-meta"><span>额外显热</span><span>机组负荷率</span><span>8 kW IT</span><span>示例</span></div></section><div class="guide-tool-link"><strong>配套计算器</strong><p>计算器没有可覆盖本例全部输入的网址预设。按下列数值手工输入后再对照结果。</p><a href="../../../tools/data-center-cooling-load-calculator/zh/">打开制冷负荷计算器 →</a></div><div class="guide-layout"><article class="guide-article"><p>热量表如果漏掉放在房间内的变压器、小型 UPS 或除湿机的显热部分，就会低估设计负荷。本例不改变 IT 千瓦数，只增加这一项。</p><h2>示例假设</h2><ul><li>IT 8 kW，UPS 损耗 0.6 kW，PDU 损耗 0.3 kW，照明 0.4 kW，2 人按每人 120 W，围护 0.5 kW，其他 0.2 kW，余量 15%。</li><li>已装两台，每台显冷量 8 kW。第一次额外显热为 0。第二次额外显热为 3 kW。</li></ul><h2>步骤</h2><ol><li>没有额外项时，基础负荷 = 10.24 kW，设计负荷 = 11.776 kW，约 3.35 冷吨。两台合计 16 kW，利用率 73.6%。停一台后剩 8 kW，低于 11.776 kW，N+1 不通过。</li><li>增加 3 kW 显热后，基础负荷 = 13.24 kW，设计负荷 = 15.226 kW，约 4.33 冷吨。同样两台的利用率为 95.2%，引擎会标成高利用率。N+1 仍然不通过，而且正常状态已经接近已装容量。</li></ol><h2>边界</h2><p>这 3 kW 是释放在受控房间内的示例输入。排到室外的热不属于这一项。引擎不会把相对湿度换算成千瓦；湿度警告是另一项检查，不能代替这块显热。高利用率和 N+1 失败不是同一件事，增加 3 kW 之后两件都会出现。</p><p>来源：<a href="https://www.se.com/us/en/download/document/SPD_NRAN-5TE6HE_EN/">施耐德电气，计入房间内的每一项热源</a>。</p><p><a href="../../topics/data-center-cooling-capacity/">返回制冷专题</a></p></article></div></main><!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div>
+    <nav class="site-shell-footer-links" aria-label="页脚导航">
+      <a href="../../about/">关于</a><a href="../../contact/">联系</a><a href="../../privacy/">隐私政策</a><a href="../../terms/">使用条款</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+</body></html>
