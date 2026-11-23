@@ -7,8 +7,8 @@
     {"id": "PR76", "head": "c24d0a41f204d3cb4cc3bb9a991762d39fbb37f6", "status": "integrated-preview", "gate": "not-pass"},
     {"id": "PR77", "head": "0916d1aff24118c37b7ff146997f729c1d7787e1", "status": "integrated-preview", "ci": "45170839941", "gate": "not-pass", "preview": "https://7eeb3fab.netengineerlab.pages.dev"},
     {"id": "PR78", "head": "37e3316db494d8306d5f9283512384a53b03efc6", "status": "integrated-preview", "gate": "not-pass", "preview": "https://d9997d07.netengineerlab.pages.dev"},
-    {"id": "PR80", "head": "38bd048bc727b15ac1b4f15b1ea1e189867ccedd", "status": "integrated-preview", "ci": "45170062592", "gate": "not-pass"},
-    {"id": "PR81", "head": "871ca7b5b01c42f5c6176a87ccf02d50da0dcd41", "status": "read-not-accepted"},
+    {"id": "PR80", "head": "38bd048bc727b15ac1b4f15b1ea1e189867ccedd", "status": "source-accepted", "ci": "45170062592", "cloudflare": "b0f2daff", "sourceGate": "pass", "gate": "integration-not-pass"},
+    {"id": "PR81", "head": "9e294d8da08df212bf79c9a930d36307f176ed5c", "status": "integrated-preview", "gate": "not-pass", "preview": "https://0cc32f65.netengineerlab.pages.dev"},
     {"id": "PR83", "head": "d35211da09e6d32dfc6c126337704d2b21d18c3b", "status": "integrated-preview", "gate": "not-pass", "preview": "none-published"}
   ],
   "knownLanguageMismatches": [
@@ -363,14 +363,14 @@
     },
     {
       "id": "dns-article",
-      "tier": "pending-new",
-      "status": "pending",
+      "tier": "integrated-new",
+      "status": "active",
+      "mode": "verify",
       "kind": "article",
       "route": "/guides/dns-ttl-explained/",
       "locales": ["en", "zh", "es"],
-      "dependency": "PR81 head 871ca7b5b01c42f5c6176a87ccf02d50da0dcd41 is not accepted and is not merged here.",
       "links": [
-        {"kind": "tool", "route": "/tools/dns-ttl-propagation-calculator/", "locales": ["en", "zh", "es"]}
+        {"kind": "tool", "route": "/tools/dns-ttl-propagation-calculator/", "locales": ["en", "zh", "es"], "anchors": {"en": "Convert the same TTL in the calculator", "zh": "用计算器换算同一个 TTL", "es": "Convierta el mismo TTL en la calculadora"}}
       ],
       "exceptions": [
         {"rule": "articleMinTools", "locales": ["en", "zh", "es"], "reason": "The TTL calculator is the only tool that answers this question."},

@@ -74,8 +74,8 @@ const ratio = fs.readFileSync(fileFor("/guides/switch-oversubscription-ratio/", 
 check("burst 15 uses 39.7 and 6.05", ratio.includes("39.7%") && ratio.includes("6.05 Gbps") && ratio.includes("15%"));
 check("burst 0 stays 34.6 and 7.09", ratio.includes("34.6%") && ratio.includes("7.09 Gbps"));
 check("pr72 excluded", (data.dependencies || []).some(item => item.id === "PR72" && item.status === "excluded"));
-check("dns pending", data.pages.some(page => page.route === "/guides/dns-ttl-explained/" && page.status === "pending"));
-check("no dns file on this tree", !fs.existsSync(fileFor("/guides/dns-ttl-explained/", "en")));
+check("dns integrated", data.pages.some(page => page.route === "/guides/dns-ttl-explained/" && page.status === "active" && page.mode === "verify"));
+check("dns file on this tree", fs.existsSync(fileFor("/guides/dns-ttl-explained/", "en")));
 const newRoutes = data.pages.filter(page => page.tier === "integrated-new" || page.tier === "pending-new").map(page => page.route);
 check("fiber slot", newRoutes.includes("/guides/fiber-loss-per-kilometer/"));
 check("onu slot", newRoutes.includes("/guides/onu-rx-power-troubleshooting/"));
