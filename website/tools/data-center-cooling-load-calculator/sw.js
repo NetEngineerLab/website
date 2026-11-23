@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-data-center-cooling-load-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-254555c90e63";
+const CACHE = "nel-data-center-cooling-load-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-dae948d83810";
 const CORE = [
   "./",
   "./index.html",
@@ -7,7 +7,7 @@ const CORE = [
   "./manifest.webmanifest",
   "./css/style.css?v=79b365fef5ec",
   "./js/engine.js?v=20260920-v2",
-  "./js/app.js?v=0b0437ac43fb",
+  "./js/app.js?v=bb70b1f31ec4",
   "./js/deep-workflow.js",
   "./zh/js/deep-workflow.js",
   "./js/pwa.js",
@@ -21,6 +21,7 @@ const CORE = [
   "./js/locale-es.js",
   "./js/bw-page-adapter.js",
   "../../assets/js/es-launch-runtime.js?v=829a7f1559b7",
+  "./js/engine.js?v=a3cf5dd850c0",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
