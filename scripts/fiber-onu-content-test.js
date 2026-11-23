@@ -98,4 +98,33 @@ assert.equal(Number((3.6 + 1 + 0.3).toFixed(2)), 4.9);
 assert.equal(Number((4.9 / 12).toFixed(3)), 0.408);
 assert.equal(Number((0 - 4.9).toFixed(2)), -4.9);
 
+for (const file of [
+  "website/topics/pon-optical/index.html",
+  "website/zh/topics/pon-optical/index.html",
+  "website/es/topics/pon-optical/index.html"
+]) {
+  const html = fs.readFileSync(path.join(root, file), "utf8");
+  for (const id of ["topic-questions", "topic-method", "topic-guides", "topic-related", "nel-split-ratio"]) {
+    assert.ok(html.includes(`id="${id}"`), file + " missing " + id);
+  }
+  assert.ok(html.includes("3.60"), file + " missing fiber term");
+  assert.ok(html.includes("21.3"), file + " missing split path");
+  assert.ok(html.includes("UNKNOWN"), file + " missing unknown threshold");
+  assert.ok(html.includes("telecom-power-energy/"), file + " missing related topic");
+}
+
+for (const file of pages.map(item => item[0])) {
+  const html = fs.readFileSync(path.join(root, file), "utf8");
+  assert.equal((html.match(/data-nel-topic-home/g) || []).length, 1, file + " topic home");
+  assert.ok(html.includes("topics/pon-optical/"), file + " topic link");
+}
+
+for (const file of [
+  "website/tools/onu-rx-power/index.html",
+  "website/tools/onu-rx-power/zh/index.html",
+  "website/tools/onu-rx-power/es/index.html"
+]) {
+  assert.ok(fs.readFileSync(path.join(root, file), "utf8").includes("onu-receive-level-warning-margin/"), file + " warning case");
+}
+
 console.log("PASS fiber and ONU content 3.60 4.90 -4.90");
