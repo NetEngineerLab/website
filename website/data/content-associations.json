@@ -9,7 +9,7 @@
     {"id": "PR78", "head": "37e3316db494d8306d5f9283512384a53b03efc6", "status": "integrated-preview", "gate": "not-pass", "preview": "https://d9997d07.netengineerlab.pages.dev"},
     {"id": "PR80", "head": "38bd048bc727b15ac1b4f15b1ea1e189867ccedd", "status": "integrated-preview", "ci": "45170062592", "gate": "not-pass"},
     {"id": "PR81", "head": "871ca7b5b01c42f5c6176a87ccf02d50da0dcd41", "status": "read-not-accepted"},
-    {"id": "PUE", "status": "no-open-pr-at-audit"}
+    {"id": "PR83", "head": "d35211da09e6d32dfc6c126337704d2b21d18c3b", "status": "integrated-preview", "gate": "not-pass", "preview": "none-published"}
   ],
   "knownLanguageMismatches": [
     {
@@ -23,6 +23,12 @@
       "locale": "es",
       "href": "../../../guides/fiber-link-budget-guide/",
       "reason": "The Spanish coefficient article points at the English total-budget guide. No Spanish page exists for that guide."
+    },
+    {
+      "route": "/guides/data-center-pue-calculation/",
+      "locale": "es",
+      "href": "../../../topics/data-center-cooling-capacity/",
+      "reason": "The Spanish PUE guide points at the English cooling topic because the Spanish translation of that existing topic is not in this head."
     }
   ],
   "pages": [
@@ -321,6 +327,38 @@
         {"kind": "tool", "route": "/tools/optical-power-budget/", "locales": ["es"], "anchors": {"es": "Pase esa pérdida al presupuesto de potencia óptica"}},
         {"kind": "article", "route": "/guides/onu-receive-level-warning-margin/", "locales": ["es"], "anchors": {"es": "Revise un nivel medido a 1 dB de la sensibilidad"}},
         {"kind": "article", "route": "/guides/campus-fiber-six-connector-pairs/", "locales": ["es"], "anchors": {"es": "Cuente un vano de campus con seis pares de conectores"}}
+      ]
+    },
+    {
+      "id": "pue-article",
+      "tier": "integrated-new",
+      "status": "active",
+      "kind": "article",
+      "route": "/guides/data-center-pue-calculation/",
+      "locales": ["en", "zh"],
+      "links": [
+        {"kind": "tool", "route": "/tools/pue-data-center-energy-efficiency/", "locales": ["en", "zh"], "anchors": {"en": "Recalculate the ratio from your own meter readings", "zh": "用你自己的电表读数重算这个比值"}},
+        {"kind": "tool", "route": "/tools/data-center-cooling-load-calculator/", "locales": ["en", "zh"], "anchors": {"en": "Size the sensible cooling load as a separate check", "zh": "把显热制冷负荷单独核算"}},
+        {"kind": "article", "route": "/guides/monthly-energy-pue-not-redundancy/", "locales": ["en", "zh"], "anchors": {"en": "See why 120000/80000 kWh = 1.50 does not prove redundancy", "zh": "看 120000/80000 kWh = 1.50 为什么不能证明冗余"}},
+        {"kind": "article", "route": "/guides/data-center-cooling-load-calculation/", "locales": ["en", "zh"], "anchors": {"en": "Keep cooling kilowatts out of the PUE denominator", "zh": "不要把制冷千瓦写进 PUE 的分母"}},
+        {"kind": "topic", "role": "return", "route": "/topics/data-center-cooling-capacity/", "locales": ["en", "zh"], "anchors": {"en": "Return to the cooling capacity topic", "zh": "返回制冷容量专题"}}
+      ]
+    },
+    {
+      "id": "pue-article-es",
+      "tier": "integrated-new",
+      "status": "active",
+      "kind": "article",
+      "route": "/guides/data-center-pue-calculation/",
+      "locales": ["es"],
+      "links": [
+        {"kind": "tool", "route": "/tools/pue-data-center-energy-efficiency/", "locales": ["es"], "anchors": {"es": "Repita la relación con sus propias lecturas de medidor"}},
+        {"kind": "tool", "route": "/tools/data-center-cooling-load-calculator/", "locales": ["es"], "anchors": {"es": "Dimensione la carga sensible de refrigeración por separado"}},
+        {"kind": "article", "route": "/guides/monthly-energy-pue-not-redundancy/", "locales": ["es"], "anchors": {"es": "Vea por qué 120000/80000 kWh = 1.50 no demuestra redundancia"}}
+      ],
+      "exceptions": [
+        {"rule": "articleMinArticles", "locales": ["es"], "reason": "The Spanish cooling-load and heat-load guides do not exist. The page already points at the English copies, and a second Spanish article is not invented."},
+        {"rule": "articleTopic", "locales": ["es"], "reason": "No Spanish cooling-capacity topic exists yet. A later head is expected to translate the existing topic. This preview does not create that topic or a sixth article."}
       ]
     },
     {
