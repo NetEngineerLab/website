@@ -1,0 +1,382 @@
+{
+  "schemaVersion": "1.0.0",
+  "reviewed": "2026-11-23",
+  "dependencies": [
+    {"id": "PR72", "status": "excluded", "reason": "Not authorized for this integration."},
+    {"id": "PR75", "head": "919f004e9fd910c518c2707895c2c4b2e55e689c", "status": "integrated-preview", "gate": "not-pass"},
+    {"id": "PR76", "head": "c24d0a41f204d3cb4cc3bb9a991762d39fbb37f6", "status": "integrated-preview", "gate": "not-pass"},
+    {"id": "PR77", "head": "ebcf349f32b5b33b61fc3472e9f927d7f9934b7e", "status": "integrated-preview", "ci": "45185676043", "gate": "not-pass", "preview": "https://7eeb3fab.netengineerlab.pages.dev", "note": "Spanish topic menu points at #guides. Source gate 45185676043 was still running and Cloudflare b15485e4 was not successful when this head was merged."},
+    {"id": "PR78", "head": "37e3316db494d8306d5f9283512384a53b03efc6", "status": "integrated-preview", "gate": "not-pass", "preview": "https://d9997d07.netengineerlab.pages.dev"},
+    {"id": "PR80", "head": "38bd048bc727b15ac1b4f15b1ea1e189867ccedd", "status": "source-accepted", "ci": "45170062592", "cloudflare": "b0f2daff", "sourceGate": "pass", "gate": "integration-not-pass"},
+    {"id": "PR81", "head": "bea0a9c831ce23506bcfb49ca91e7ff6bba084a1", "status": "source-accepted", "ci": "45179074887", "sourceGate": "pass", "gate": "integration-not-pass", "preview": "https://aa9592c6.netengineerlab.pages.dev", "note": "DNS lastmod is already history. The browser contract now requires exactly six FAQ entries, including the 300-second conversion. Source CI and Cloudflare passed; that accepts the source PR only."},
+    {"id": "PR83", "head": "603b26b386fc3b9aafc5f0bbc11acf87738fe36e", "status": "integrated-preview", "gate": "not-pass", "preview": "https://db1a1bae.netengineerlab.pages.dev", "note": "Spanish topics directory JSON-LD closes the capacity object before the cooling entry. The source CI for this head was unfinished when it was merged."}
+  ],
+  "knownLanguageMismatches": [
+    {
+      "route": "/tools/switch-uplink-oversubscription-calculator/",
+      "locale": "es",
+      "href": "../../../guides/48-port-switch-oversubscription/",
+      "reason": "PR77 Spanish calculator still points at the English 48-port guide. No Spanish page exists, so the association block does not repeat it."
+    },
+    {
+      "route": "/guides/fiber-loss-per-kilometer/",
+      "locale": "es",
+      "href": "../../../guides/fiber-link-budget-guide/",
+      "reason": "The Spanish coefficient article points at the English total-budget guide. No Spanish page exists for that guide."
+    },
+    {
+      "route": "/guides/data-center-pue-calculation/",
+      "locale": "es",
+      "href": "../../../topics/data-center-cooling-capacity/",
+      "reason": "The Spanish PUE guide still names the English cooling topic beside the Chinese one. The return path is now the Spanish topic at ../../topics/data-center-cooling-capacity/."
+    }
+  ],
+  "pages": [
+    {
+      "id": "switch-tool",
+      "tier": "primary",
+      "status": "active",
+      "mode": "verify",
+      "kind": "tool",
+      "route": "/tools/switch-uplink-oversubscription-calculator/",
+      "locales": ["en", "zh", "es"],
+      "links": [
+        {"kind": "article", "role": "guide", "route": "/guides/switch-oversubscription-ratio/", "locales": ["en", "zh", "es"]},
+        {"kind": "article", "role": "example", "route": "/guides/switch-oversubscription-n-1/", "locales": ["en", "zh", "es"]},
+        {"kind": "article", "role": "guide", "route": "/guides/lacp-member-congestion/", "locales": ["en", "zh", "es"]},
+        {"kind": "article", "role": "guide", "route": "/guides/10g-vs-25g-uplinks/", "locales": ["en", "zh", "es"]},
+        {"kind": "topic", "role": "return", "route": "/topics/switch-oversubscription/", "locales": ["en", "zh", "es"]}
+      ]
+    },
+    {
+      "id": "switch-ratio",
+      "tier": "primary",
+      "status": "active",
+      "mode": "verify",
+      "kind": "article",
+      "route": "/guides/switch-oversubscription-ratio/",
+      "locales": ["en", "zh", "es"],
+      "links": [
+        {"kind": "tool", "route": "/tools/switch-uplink-oversubscription-calculator/", "locales": ["en", "zh", "es"]},
+        {"kind": "tool", "route": "/tools/data-center-network-convergence-fabric-capacity-planner/", "locales": ["en", "zh", "es"]},
+        {"kind": "article", "route": "/guides/switch-oversubscription-n-1/", "locales": ["en", "zh", "es"]},
+        {"kind": "article", "route": "/guides/lacp-member-congestion/", "locales": ["en", "zh", "es"]},
+        {"kind": "topic", "role": "return", "route": "/topics/switch-oversubscription/", "locales": ["en", "zh", "es"]}
+      ]
+    },
+    {
+      "id": "switch-n1",
+      "tier": "primary",
+      "status": "active",
+      "mode": "verify",
+      "kind": "article",
+      "route": "/guides/switch-oversubscription-n-1/",
+      "locales": ["en", "zh", "es"],
+      "links": [
+        {"kind": "tool", "route": "/tools/switch-uplink-oversubscription-calculator/", "locales": ["en", "zh", "es"]},
+        {"kind": "tool", "route": "/tools/network-capacity-forecast-planner/", "locales": ["en", "zh"]},
+        {"kind": "article", "route": "/guides/switch-oversubscription-ratio/", "locales": ["en", "zh", "es"]},
+        {"kind": "article", "route": "/guides/lacp-member-congestion/", "locales": ["en", "zh", "es"]},
+        {"kind": "topic", "role": "return", "route": "/topics/switch-oversubscription/", "locales": ["en", "zh", "es"]}
+      ],
+      "exceptions": [
+        {"rule": "articleMinTools", "locales": ["es"], "reason": "Spanish N-1 only needs the uplink calculator. Forecast, fabric, SFP and bandwidth tools do not compute this failure and do not simulate LACP hashing."}
+      ],
+      "rejected": [
+        {"route": "/tools/network-capacity-forecast-planner/", "locales": ["es"]},
+        {"route": "/tools/sfp-qsfp-compatibility-calculator/", "locales": ["es"]},
+        {"route": "/tools/bandwidth-calculator/", "locales": ["es"]},
+        {"route": "/tools/data-center-network-convergence-fabric-capacity-planner/", "locales": ["es"]}
+      ]
+    },
+    {
+      "id": "switch-lacp",
+      "tier": "primary",
+      "status": "active",
+      "mode": "verify",
+      "kind": "article",
+      "route": "/guides/lacp-member-congestion/",
+      "locales": ["en", "zh", "es"],
+      "links": [
+        {"kind": "tool", "route": "/tools/switch-uplink-oversubscription-calculator/", "locales": ["en", "zh", "es"]},
+        {"kind": "tool", "route": "/tools/bandwidth-calculator/", "locales": ["en", "zh"]},
+        {"kind": "article", "route": "/guides/switch-oversubscription-ratio/", "locales": ["en", "zh", "es"]},
+        {"kind": "article", "route": "/guides/switch-oversubscription-n-1/", "locales": ["en", "zh", "es"]},
+        {"kind": "topic", "role": "return", "route": "/topics/switch-oversubscription/", "locales": ["en", "zh", "es"]}
+      ],
+      "exceptions": [
+        {"rule": "articleMinTools", "locales": ["es"], "reason": "Spanish LACP explains member hash, which the uplink calculator does not simulate. SFP, forecast and bandwidth tools stay off this Spanish page."}
+      ],
+      "rejected": [
+        {"route": "/tools/network-capacity-forecast-planner/", "locales": ["es"]},
+        {"route": "/tools/sfp-qsfp-compatibility-calculator/", "locales": ["es"]},
+        {"route": "/tools/bandwidth-calculator/", "locales": ["es"]},
+        {"route": "/tools/data-center-network-convergence-fabric-capacity-planner/", "locales": ["es"]}
+      ]
+    },
+    {
+      "id": "switch-10g",
+      "tier": "primary",
+      "status": "active",
+      "mode": "verify",
+      "kind": "article",
+      "route": "/guides/10g-vs-25g-uplinks/",
+      "locales": ["en", "zh", "es"],
+      "links": [
+        {"kind": "tool", "route": "/tools/switch-uplink-oversubscription-calculator/", "locales": ["en", "zh", "es"]},
+        {"kind": "tool", "route": "/tools/sfp-qsfp-compatibility-calculator/", "locales": ["en", "zh", "es"]},
+        {"kind": "article", "route": "/guides/switch-oversubscription-ratio/", "locales": ["en", "zh", "es"]},
+        {"kind": "article", "route": "/guides/switch-oversubscription-n-1/", "locales": ["en", "zh", "es"]},
+        {"kind": "topic", "role": "return", "route": "/topics/switch-oversubscription/", "locales": ["en", "zh", "es"]}
+      ]
+    },
+    {
+      "id": "pon-splitter-guide",
+      "tier": "primary",
+      "status": "active",
+      "kind": "article",
+      "route": "/guides/pon-splitter-loss-guide/",
+      "locales": ["en", "zh"],
+      "links": [
+        {"kind": "tool", "route": "/tools/pon-splitter-loss/", "locales": ["en", "zh"], "anchors": {"en": "Repeat the split on the splitter calculator", "zh": "用分光器计算器重算同一分光比"}},
+        {"kind": "tool", "route": "/tools/optical-power-budget/", "locales": ["en", "zh"], "anchors": {"en": "Carry that loss into the receive-power budget", "zh": "把这笔损耗放进接收光功率预算"}},
+        {"kind": "article", "route": "/guides/fiber-link-budget-guide/", "locales": ["en", "zh"], "anchors": {"en": "Add fiber, connectors and splices to the same path", "zh": "把光纤、连接器和熔接点加进同一条路径"}},
+        {"kind": "article", "route": "/guides/onu-receive-level-warning-margin/", "locales": ["en", "zh"], "anchors": {"en": "Judge a measured level that sits 1 dB above sensitivity", "zh": "判断只比灵敏度高 1 dB 的实测收光"}},
+        {"kind": "topic", "role": "return", "route": "/topics/pon-optical/", "locales": ["en", "zh"], "anchors": {"en": "Return to the PON and optical topic", "zh": "返回 PON 与光网络专题"}}
+      ]
+    },
+    {
+      "id": "fiber-budget",
+      "tier": "primary",
+      "status": "active",
+      "kind": "article",
+      "route": "/guides/fiber-link-budget-guide/",
+      "locales": ["en", "zh"],
+      "links": [
+        {"kind": "tool", "route": "/tools/fiber-loss/", "locales": ["en", "zh"], "anchors": {"en": "Enter this span in the fiber loss calculator", "zh": "把这段跨距输入光纤损耗计算器"}},
+        {"kind": "tool", "route": "/tools/optical-power-budget/", "locales": ["en", "zh"], "anchors": {"en": "Compare the span with the transceiver budget", "zh": "用光模块预算对照这段跨距"}},
+        {"kind": "article", "route": "/guides/pon-splitter-loss-guide/", "locales": ["en", "zh"], "anchors": {"en": "Include a splitter when the span is a PON ODN", "zh": "如果这段是 PON 的 ODN，再计入分光器"}},
+        {"kind": "article", "route": "/guides/campus-fiber-six-connector-pairs/", "locales": ["en", "zh"], "anchors": {"en": "Recount a campus span with six connector pairs", "zh": "重算带有六对连接器的园区跨距"}},
+        {"kind": "topic", "role": "return", "route": "/topics/pon-optical/", "locales": ["en", "zh"], "anchors": {"en": "Return to the PON and optical topic", "zh": "返回 PON 与光网络专题"}}
+      ]
+    },
+    {
+      "id": "camera-guide",
+      "tier": "primary",
+      "status": "active",
+      "kind": "article",
+      "route": "/guides/ip-camera-network-bandwidth-poe/",
+      "locales": ["en", "zh", "es"],
+      "links": [
+        {"kind": "tool", "route": "/tools/ip-camera-network-planner/", "locales": ["en", "zh", "es"], "anchors": {"en": "Size the camera uplink and PoE load together", "zh": "同时估算摄像机上联和 PoE 负荷", "es": "Dimensione el enlace de subida y la carga PoE juntos"}},
+        {"kind": "tool", "route": "/tools/poe-power-budget-calculator/", "locales": ["en", "zh", "es"], "anchors": {"en": "Check switch watts before adding another camera", "zh": "增加摄像机前先核对交换机功率", "es": "Compruebe los vatios del switch antes de añadir otra cámara"}},
+        {"kind": "article", "route": "/guides/poe-voltage-after-90m/", "locales": ["en", "zh", "es"], "anchors": {"en": "Check the voltage left after 90 m of 26 AWG", "zh": "核对 26 AWG 走 90 米后还剩多少电压", "es": "Compruebe el voltaje que queda tras 90 m de 26 AWG"}},
+        {"kind": "article", "route": "/guides/poe-switch-budget-16-versus-24-cameras/", "locales": ["en", "zh", "es"], "anchors": {"en": "See whether a 370 W budget still feeds 24 cameras", "zh": "看 370 W 预算能不能再带 24 台摄像机", "es": "Vea si un presupuesto de 370 W sigue alimentando 24 cámaras"}},
+        {"kind": "topic", "role": "return", "route": "/topics/ip-camera-network-bandwidth-poe/", "locales": ["en", "zh", "es"], "anchors": {"en": "Return to the camera bandwidth and PoE topic", "zh": "返回摄像机带宽与 PoE 专题", "es": "Volver al tema de caudal y PoE de cámaras"}}
+      ]
+    },
+    {
+      "id": "cooling-load",
+      "tier": "primary",
+      "status": "active",
+      "kind": "article",
+      "route": "/guides/data-center-cooling-load-calculation/",
+      "locales": ["en", "zh"],
+      "links": [
+        {"kind": "tool", "route": "/tools/data-center-cooling-load-calculator/", "locales": ["en", "zh"], "anchors": {"en": "Recalculate the sensible load with your own kilowatts", "zh": "用你的千瓦数重算显热负荷"}},
+        {"kind": "tool", "route": "/tools/data-center-airflow-containment-planner/", "locales": ["en", "zh"], "anchors": {"en": "Turn the same heat into an airflow check", "zh": "把同一热量换成风量校核"}},
+        {"kind": "article", "route": "/guides/data-center-cooling-n-plus-one/", "locales": ["en", "zh"], "anchors": {"en": "Test the unit count after one cooling unit fails", "zh": "一台制冷单元失效后再数剩余台数"}},
+        {"kind": "article", "route": "/guides/server-room-airflow-from-delta-t/", "locales": ["en", "zh"], "anchors": {"en": "Derive airflow from the room temperature rise", "zh": "用房间温升反推所需风量"}},
+        {"kind": "topic", "role": "return", "route": "/topics/data-center-cooling-capacity/", "locales": ["en", "zh"], "anchors": {"en": "Return to the cooling capacity topic", "zh": "返回制冷容量专题"}}
+      ]
+    },
+    {
+      "id": "stp-calculator",
+      "tier": "primary",
+      "status": "active",
+      "mode": "verify",
+      "kind": "tool",
+      "route": "/tools/stp-path-cost-calculator/",
+      "locales": ["en", "zh", "es"],
+      "links": [
+        {"kind": "article", "role": "guide", "route": "/guides/stp-path-cost-explained/", "locales": ["en", "zh", "es"]}
+      ],
+      "exceptions": [
+        {"rule": "toolExample", "locales": ["en", "zh", "es"], "reason": "The worked topology is inside the path-cost explainer already linked. A second example page would repeat the same 4,000 versus 20,000 case."},
+        {"rule": "toolTopic", "locales": ["en", "zh", "es"], "reason": "No STP topic exists. Switch oversubscription is a bandwidth-ratio question, so this calculator does not return there."}
+      ],
+      "rejected": [
+        {"route": "/topics/switch-oversubscription/", "locales": ["en", "zh", "es"]},
+        {"route": "/guides/lacp-member-congestion/", "locales": ["en", "zh", "es"]},
+        {"route": "/guides/10g-vs-25g-uplinks/", "locales": ["en", "zh", "es"]}
+      ]
+    },
+    {
+      "id": "stp-article",
+      "tier": "integrated-new",
+      "status": "active",
+      "mode": "verify",
+      "kind": "article",
+      "route": "/guides/stp-path-cost-explained/",
+      "locales": ["en", "zh", "es"],
+      "links": [
+        {"kind": "tool", "route": "/tools/stp-path-cost-calculator/", "locales": ["en", "zh", "es"]},
+        {"kind": "tool", "route": "/tools/ethernet-serialization-delay-calculator/", "locales": ["en", "zh", "es"]}
+      ],
+      "exceptions": [
+        {"rule": "articleMinArticles", "locales": ["en", "zh", "es"], "reason": "No second published article teaches STP long and short port cost. LACP and 10G/25G pages, including their new translations, answer uplink bandwidth and member hash, not root path cost."},
+        {"rule": "articleTopic", "locales": ["en", "zh", "es"], "reason": "There is no STP topic. The switch topic is not a home for path cost."}
+      ],
+      "rejected": [
+        {"route": "/topics/switch-oversubscription/", "locales": ["en", "zh", "es"]},
+        {"route": "/guides/lacp-member-congestion/", "locales": ["en", "zh", "es"]},
+        {"route": "/guides/10g-vs-25g-uplinks/", "locales": ["en", "zh", "es"]},
+        {"route": "/tools/ospf-cost-calculator/", "locales": ["en", "zh", "es"]}
+      ]
+    },
+    {
+      "id": "ethernet-tool",
+      "tier": "supporting",
+      "status": "active",
+      "kind": "tool",
+      "route": "/tools/ethernet-serialization-delay-calculator/",
+      "locales": ["en", "zh", "es"],
+      "links": [
+        {"kind": "article", "role": "guide", "route": "/guides/stp-path-cost-explained/", "locales": ["en", "zh", "es"], "anchors": {"en": "Read the path-cost tables before measuring hop delay", "zh": "先读路径开销表，再测每跳时延", "es": "Lea las tablas de coste antes de medir el retardo por salto"}}
+      ],
+      "exceptions": [
+        {"rule": "toolExample", "locales": ["en", "zh", "es"], "reason": "The only applicable worked handoff is the STP explainer already linked as the guide."},
+        {"rule": "toolTopic", "locales": ["en", "zh", "es"], "reason": "Serialization delay has no topic of its own, and the switch topic does not own this measurement."}
+      ]
+    },
+    {
+      "id": "fiber-article",
+      "tier": "integrated-new",
+      "status": "active",
+      "mode": "verify",
+      "kind": "article",
+      "route": "/guides/fiber-loss-per-kilometer/",
+      "locales": ["en", "zh"],
+      "links": [
+        {"kind": "tool", "route": "/tools/fiber-loss/", "locales": ["en", "zh", "es"]},
+        {"kind": "tool", "route": "/tools/optical-power-budget/", "locales": ["en", "zh", "es"]},
+        {"kind": "article", "route": "/guides/fiber-link-budget-guide/", "locales": ["en", "zh"]},
+        {"kind": "article", "route": "/guides/pon-splitter-loss-guide/", "locales": ["en", "zh"]},
+        {"kind": "topic", "role": "return", "route": "/topics/pon-optical/", "locales": ["en", "zh"]}
+      ]
+    },
+    {
+      "id": "fiber-article-es",
+      "tier": "integrated-new",
+      "status": "active",
+      "mode": "verify",
+      "kind": "article",
+      "route": "/guides/fiber-loss-per-kilometer/",
+      "locales": ["es"],
+      "links": [
+        {"kind": "tool", "route": "/tools/fiber-loss/", "locales": ["es"]},
+        {"kind": "tool", "route": "/tools/optical-power-budget/", "locales": ["es"]},
+        {"kind": "article", "route": "/guides/pon-splitter-loss-guide/", "locales": ["es"]},
+        {"kind": "topic", "role": "return", "route": "/topics/pon-optical/", "locales": ["es"]}
+      ],
+      "exceptions": [
+        {"rule": "articleMinArticles", "locales": ["es"], "reason": "The Spanish coefficient page already points at the English total-budget guide. No Spanish fiber-link-budget page exists, and the ONU troubleshooting article is a different fault-location question, so it is not added only to fill the count."}
+      ]
+    },
+    {
+      "id": "onu-article",
+      "tier": "integrated-new",
+      "status": "active",
+      "mode": "verify",
+      "kind": "article",
+      "route": "/guides/onu-rx-power-troubleshooting/",
+      "locales": ["en"],
+      "links": [
+        {"kind": "tool", "route": "/tools/onu-rx-power/", "locales": ["en"]},
+        {"kind": "tool", "route": "/tools/optical-power-budget/", "locales": ["en"]},
+        {"kind": "article", "route": "/guides/fiber-loss-per-kilometer/", "locales": ["en"]},
+        {"kind": "article", "route": "/guides/onu-receive-level-warning-margin/", "locales": ["en"]},
+        {"kind": "topic", "role": "return", "route": "/topics/pon-optical/", "locales": ["en"]}
+      ]
+    },
+    {
+      "id": "onu-article-zh-es",
+      "tier": "integrated-new",
+      "status": "active",
+      "kind": "article",
+      "route": "/guides/onu-rx-power-troubleshooting/",
+      "locales": ["zh", "es"],
+      "links": [
+        {"kind": "tool", "route": "/tools/onu-rx-power/", "locales": ["zh", "es"], "anchors": {"zh": "用你输入的门限重算同一次收光", "es": "Repita la misma lectura con los umbrales que escriba"}},
+        {"kind": "tool", "route": "/tools/optical-power-budget/", "locales": ["zh", "es"], "anchors": {"zh": "把这条路径放进光功率预算", "es": "Pase esta ruta al presupuesto de potencia óptica"}},
+        {"kind": "article", "route": "/guides/fiber-loss-per-kilometer/", "locales": ["zh", "es"], "anchors": {"zh": "先把光纤系数和整段路径损耗分开", "es": "Separe primero el coeficiente de fibra de la pérdida del tramo"}},
+        {"kind": "article", "route": "/guides/onu-receive-level-warning-margin/", "locales": ["zh", "es"], "anchors": {"zh": "对照只比灵敏度高 1 dB 的一次余量判定", "es": "Contraste el aviso de un margen de 1 dB sobre la sensibilidad"}},
+        {"kind": "topic", "role": "return", "route": "/topics/pon-optical/", "locales": ["zh", "es"], "anchors": {"zh": "返回 PON 与光网络专题", "es": "Volver al tema de PON y óptica"}}
+      ]
+    },
+    {
+      "id": "pon-topic-es",
+      "tier": "supporting",
+      "status": "active",
+      "mode": "verify",
+      "kind": "topic",
+      "route": "/topics/pon-optical/",
+      "locales": ["es"],
+      "links": [
+        {"kind": "tool", "route": "/tools/pon-splitter-loss/", "locales": ["es"], "anchors": {"es": "Calcule la pérdida de un divisor que ya está en español"}},
+        {"kind": "tool", "route": "/tools/optical-power-budget/", "locales": ["es"], "anchors": {"es": "Pase esa pérdida al presupuesto de potencia óptica"}},
+        {"kind": "article", "route": "/guides/onu-receive-level-warning-margin/", "locales": ["es"], "anchors": {"es": "Revise un nivel medido a 1 dB de la sensibilidad"}},
+        {"kind": "article", "route": "/guides/campus-fiber-six-connector-pairs/", "locales": ["es"], "anchors": {"es": "Cuente un vano de campus con seis pares de conectores"}}
+      ]
+    },
+    {
+      "id": "pue-article",
+      "tier": "integrated-new",
+      "status": "active",
+      "kind": "article",
+      "route": "/guides/data-center-pue-calculation/",
+      "locales": ["en", "zh"],
+      "links": [
+        {"kind": "tool", "route": "/tools/pue-data-center-energy-efficiency/", "locales": ["en", "zh"], "anchors": {"en": "Recalculate the ratio from your own meter readings", "zh": "用你自己的电表读数重算这个比值"}},
+        {"kind": "tool", "route": "/tools/data-center-cooling-load-calculator/", "locales": ["en", "zh"], "anchors": {"en": "Size the sensible cooling load as a separate check", "zh": "把显热制冷负荷单独核算"}},
+        {"kind": "article", "route": "/guides/monthly-energy-pue-not-redundancy/", "locales": ["en", "zh"], "anchors": {"en": "See why 120000/80000 kWh = 1.50 does not prove redundancy", "zh": "看 120000/80000 kWh = 1.50 为什么不能证明冗余"}},
+        {"kind": "article", "route": "/guides/data-center-cooling-load-calculation/", "locales": ["en", "zh"], "anchors": {"en": "Keep cooling kilowatts out of the PUE denominator", "zh": "不要把制冷千瓦写进 PUE 的分母"}},
+        {"kind": "topic", "role": "return", "route": "/topics/data-center-cooling-capacity/", "locales": ["en", "zh"], "anchors": {"en": "Return to the cooling capacity topic", "zh": "返回制冷容量专题"}}
+      ]
+    },
+    {
+      "id": "pue-article-es",
+      "tier": "integrated-new",
+      "status": "active",
+      "kind": "article",
+      "route": "/guides/data-center-pue-calculation/",
+      "locales": ["es"],
+      "links": [
+        {"kind": "tool", "route": "/tools/pue-data-center-energy-efficiency/", "locales": ["es"], "anchors": {"es": "Repita la relación con sus propias lecturas de medidor"}},
+        {"kind": "tool", "route": "/tools/data-center-cooling-load-calculator/", "locales": ["es"], "anchors": {"es": "Dimensione la carga sensible de refrigeración por separado"}},
+        {"kind": "article", "route": "/guides/monthly-energy-pue-not-redundancy/", "locales": ["es"], "anchors": {"es": "Vea por qué 120000/80000 kWh = 1.50 no demuestra redundancia"}},
+        {"kind": "topic", "role": "return", "route": "/topics/data-center-cooling-capacity/", "locales": ["es"], "anchors": {"es": "Volver al tema de capacidad de refrigeración"}}
+      ],
+      "exceptions": [
+        {"rule": "articleMinArticles", "locales": ["es"], "reason": "The Spanish cooling-load and heat-load guides do not exist. The page already points at the English copies, and a second Spanish article is not invented."}
+      ]
+    },
+    {
+      "id": "dns-article",
+      "tier": "integrated-new",
+      "status": "active",
+      "mode": "verify",
+      "kind": "article",
+      "route": "/guides/dns-ttl-explained/",
+      "locales": ["en", "zh", "es"],
+      "links": [
+        {"kind": "tool", "route": "/tools/dns-ttl-propagation-calculator/", "locales": ["en", "zh", "es"], "anchors": {"en": "Convert the same TTL in the calculator", "zh": "用计算器换算同一个 TTL", "es": "Convierta el mismo TTL en la calculadora"}}
+      ],
+      "exceptions": [
+        {"rule": "articleMinTools", "locales": ["en", "zh", "es"], "reason": "The TTL calculator is the only tool that answers this question."},
+        {"rule": "articleMinArticles", "locales": ["en", "zh", "es"], "reason": "No second DNS engineering article is published."},
+        {"rule": "articleTopic", "locales": ["en", "zh", "es"], "reason": "No DNS topic exists. Do not create one and do not file this under another topic."}
+      ]
+    }
+  ]
+}

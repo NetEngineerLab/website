@@ -1,19 +1,19 @@
-<!doctype html><html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="topics/ip-camera-network-bandwidth-poe/"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>IP 摄像头网络带宽与 PoE 规划专题 | NetEngineerLab</title><meta name="description" content="围绕100、300、500台摄像头，学习带宽、PoE预算、NVR容量和N-1冗余规划。"><meta property="og:url" content="https://netengineerlab.com/zh/topics/ip-camera-network-bandwidth-poe/">
-<meta property="og:title" content="IP 摄像头网络带宽与 PoE 规划专题 | NetEngineerLab">
-<meta property="og:description" content="围绕100、300、500台摄像头，学习带宽、PoE预算、NVR容量和N-1冗余规划。">
+<!doctype html><html lang="zh-CN" dir="ltr" data-nel-locale="zh" data-nel-route="topics/ip-camera-network-bandwidth-poe/"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>摄像机网络带宽与 PoE 交换机功率预算 | NetEngineerLab</title><meta name="description" content="摄像机网络带宽是一条路径上同时存在的各路流之和（Mbit/s），再乘以写明的开销余量。PoE 交换机功率预算是另一项以瓦为单位的核对。"><meta property="og:url" content="https://netengineerlab.com/zh/topics/ip-camera-network-bandwidth-poe/">
+<meta property="og:title" content="摄像机网络带宽与 PoE 交换机功率预算 | NetEngineerLab">
+<meta property="og:description" content="摄像机网络带宽是一条路径上同时存在的各路流之和（Mbit/s），再乘以写明的开销余量。PoE 交换机功率预算是另一项以瓦为单位的核对。">
 <meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="IP 摄像头网络带宽与 PoE 规划专题 | NetEngineerLab">
-<meta name="twitter:description" content="围绕100、300、500台摄像头，学习带宽、PoE预算、NVR容量和N-1冗余规划。">
+<meta name="twitter:title" content="摄像机网络带宽与 PoE 交换机功率预算 | NetEngineerLab">
+<meta name="twitter:description" content="摄像机网络带宽是一条路径上同时存在的各路流之和（Mbit/s），再乘以写明的开销余量。PoE 交换机功率预算是另一项以瓦为单位的核对。">
 <meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"专题","item":"https://netengineerlab.com/zh/topics/"},{"@type":"ListItem","position":3,"name":"IP 摄像头网络带宽与 PoE 规划专题","item":"https://netengineerlab.com/zh/topics/ip-camera-network-bandwidth-poe/"}]}</script>
 
 <link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
 <link rel="stylesheet" href="../../../assets/css/site-pages-v2.css?v=20261105-v2">
-<link rel="stylesheet" href="../../../assets/css/editorial-fresh.css?v=20261109-edit7">
+<link rel="stylesheet" href="../../../assets/css/editorial-fresh.css?v=20261123-align2">
 <link rel="stylesheet" href="../../../assets/css/topic-hub.css?v=5a0cf14d3558">
-<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"IP 摄像头网络带宽与 PoE 规划专题 | NetEngineerLab","url":"https://netengineerlab.com/zh/topics/ip-camera-network-bandwidth-poe/","description":"围绕100、300、500台摄像头，学习带宽、PoE预算、NVR容量和N-1冗余规划。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"摄像机网络带宽与 PoE 交换机功率预算 | NetEngineerLab","url":"https://netengineerlab.com/zh/topics/ip-camera-network-bandwidth-poe/","description":"摄像机网络带宽是一条路径上同时存在的各路流之和（Mbit/s），再乘以写明的开销余量。PoE 交换机功率预算是另一项以瓦为单位的核对。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
 <meta name="nel-route" content="topics/ip-camera-network-bandwidth-poe/">
@@ -23,7 +23,7 @@
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/topics/ip-camera-network-bandwidth-poe/">
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/es/topics/ip-camera-network-bandwidth-poe/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/topics/ip-camera-network-bandwidth-poe/">
-<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么输入分辨率还要指定编码和帧率？","acceptedAnswer":{"@type":"Answer","text":"同一分辨率下，编码效率、帧率、场景运动和细节都会改变码率；计算器提供的是初步估值，应以摄像机峰值配置或实测值校准。"}},{"@type":"Question","name":"N-1 显示通过就代表系统没有单点故障吗？","acceptedAnswer":{"@type":"Answer","text":"不代表。页面只校核模型中的双上联带宽容量；交换机、堆叠控制面、电源、机房链路和NVR故障域需单独验证。"}}]}</script>
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"只看分辨率能否得到 IP 摄像机带宽？","acceptedAnswer":{"@type":"Answer","text":"不能。编码、帧率、场景运动和码率设置都会改变结果。每一路都应使用配置的或实测的平均码率。"}},{"@type":"Question","name":"PoE 功率预算计算器会给出摄像机网络带宽吗？","acceptedAnswer":{"@type":"Answer","text":"不会。PoE 功率预算计算器给出的是瓦、端口数和等级上限。摄像机网络带宽是同时存在的各路码率之和，单位是 Mbit/s。"}},{"@type":"Question","name":"从 H.264 换成 H.265 时可以减去一个固定百分比吗？","acceptedAnswer":{"@type":"Answer","text":"不可以。不要使用固定节省百分比。H.264 和 H.265 是不同标准，码率仍取决于场景和编码器设置。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../../assets/css/site-shell.css?v=475098aa29f5">
@@ -53,8 +53,92 @@
   </div>
 </header>
 <!-- NEL_HEADER_END -->
-<nav class="topic-hub-breadcrumb" aria-label="面包屑"><a href="../../">首页</a><span aria-hidden="true">›</span><a href="../">专题</a><span aria-hidden="true">›</span><span aria-current="page">IP 摄像头网络带宽与 PoE 规划专题</span></nav><main class="guide-shell" id="main"><section class="guide-hero"><p class="eyebrow">专题中心</p><h1>IP 摄像头网络带宽与 PoE 规划专题</h1><p class="guide-lead">面向 100、300、500 台规模，从视频码率开始，完成带宽、接入上联、PoE 供电、NVR 容量和单点故障校核。</p><div class="guide-meta"><span>视频带宽</span><span>PoE 预算</span><span>NVR 存储</span><span>N-1</span></div></section><section class="topic-tools" aria-label="专题工具"><div><span class="eyebrow">专题计算器</span><strong>摄像头网络规划计算器</strong><p>输入分辨率、编码、帧率、数量、PoE 功率和存储天数，联算带宽、上联、供电、容量及 N-1。</p></div><a href="../../../tools/ip-camera-network-planner/zh/">打开计算器 →</a></section><div class="guide-layout"><article class="guide-article"><h2>从这里开始</h2><p>先用统一的码率假设完成规模估算，再用设备数据表和现场拓扑替换默认值。</p><div class="guide-cta"><strong>直接计算 100 / 300 / 500 台方案</strong><p>快速比较带宽、每条上联速率、PoE预算和NVR原始/可用容量。</p><a href="../../../tools/ip-camera-network-planner/zh/">进入摄像头网络规划计算器 →</a></div><h2>建议学习路径</h2><ol><li>确定分辨率、编码、帧率和场景复杂度，核对单路峰值码率。</li><li>汇总摄像头流量，分配接入交换机并核验上联与汇聚容量。</li><li>按最大功率与线缆条件核算PoE总预算、端口数和电源冗余。</li><li>按连续录像码率与保留天数规划NVR容量，再核对故障切换。</li></ol><h2>核心工程校核</h2><div class="guide-related-grid"><a href="../../../tools/ip-camera-network-planner/zh/"><strong>带宽与上联</strong><br>区分平均码率、峰值和协议余量，检查每个故障后路径。</a><a href="../../../tools/poe-power-budget-calculator/zh/"><strong>PoE供电</strong><br>复核PSE预算、端口供电等级、设备峰值与线损假设。</a><a href="../../../tools/ip-camera-network-planner/zh/"><strong>NVR存储</strong><br>用连续录像口径估算原始容量，并为系统开销与增长预留空间。</a></div><h2>工程边界</h2><p>码率会随场景复杂度、I帧间隔、VBR设置、音频和厂商实现变化；存储还受录像策略、RAID、文件系统和保留策略影响。N-1结论假设双上联路径独立且单条链路能承载全部摄像头流量；堆叠、MLAG、供电回路及交换机本体故障仍需结合实际拓扑核验。计算器用于初步规划，不替代设备规格、实测流量和验收测试。</p><h2 id="faq">常见问题</h2><details><summary>为什么输入分辨率还要指定编码和帧率？</summary><p>同一分辨率下，编码效率、帧率、场景运动和细节都会改变码率；计算器提供的是初步估值，应以摄像机峰值配置或实测值校准。</p></details><details><summary>N-1 显示通过就代表系统没有单点故障吗？</summary><p>不代表。页面只校核模型中的双上联带宽容量；交换机、堆叠控制面、电源、机房链路和NVR故障域需单独验证。</p></details><h2>推荐使用顺序</h2><ol><li>用计算器比较目标规模并记录假设。</li><li>向摄像机厂商确认峰值码率、最大功率和录像模式。</li><li>按接入交换机分组完成上联、PoE和故障域设计。</li><li>验证NVR可用空间、RAID策略和故障切换实测。</li></ol></article><aside class="guide-toc" aria-label="专题目录"><strong>专题目录</strong><a href="#main">专题概览</a><a href="#faq">常见问题</a><a href="../../../tools/ip-camera-network-planner/zh/">规划计算器</a><a href="../../../tools/poe-power-budget-calculator/zh/">PoE预算工具</a></aside></div><p><a href="../../guides/poe-switch-budget-16-versus-24-cameras/">16台摄像机通过370 W预算，24台不能</a> · <a href="../../guides/poe-voltage-after-90m/">90米26 AWG低于42.5 V</a></p><section class="content-section" data-nel-editorial-links><h2>相关页面</h2><p><a href="../../guides/ip-camera-network-bandwidth-poe/">摄像头带宽、PoE 与 NVR 方法</a></p></section>
-</main><!-- NEL_FOOTER_START -->
+<nav class="topic-hub-breadcrumb" aria-label="面包屑"><a href="../../">首页</a><span aria-hidden="true">›</span><a href="../">专题</a><span aria-hidden="true">›</span><span aria-current="page">摄像机网络带宽与 PoE 交换机功率预算</span></nav>
+<main class="guide-shell" id="main">
+<section class="guide-hero">
+<p class="eyebrow">专题</p>
+<h1>摄像机网络带宽与 PoE 交换机功率预算</h1>
+<p class="guide-lead">摄像机网络带宽是一条路径上同时存在的各路流之和，单位 Mbit/s，再乘以写明的开销余量。PoE 交换机功率预算是另一项以瓦为单位的核对，不决定码率。</p>
+<div class="guide-meta"><span>Mbit/s</span><span>PoE 功率</span><span>上联</span><span>示例</span></div>
+</section>
+<section class="topic-tools" aria-label="专题工具"><div><span class="eyebrow">先分清问题</span><strong>问的是瓦、电压，还是码率？</strong><p>功率用瓦数计算器，线缆末端电压用压降计算器，吞吐量方法读指南。</p></div><a href="../../guides/ip-camera-network-bandwidth-poe/">阅读吞吐量方法 →</a></section>
+<div class="guide-layout">
+<article class="guide-article">
+<h2 id="overview">这个专题解决什么</h2>
+<p>本专题面向既给摄像机供电、又转发图像的接入交换机。它把三个答案分开：以 Mbit/s 计的码率、交换机瓦数、摄像机端电压。下面的数字是场景示例，不是统一的摄像机码率。</p>
+<h2 id="question">先问清是哪一个问题</h2>
+<ul>
+<li>一条路径上有多少数据？只加占用这条路径的流，再读吞吐量指南。</li>
+<li>交换机功率预算够不够这些摄像机？用 PoE 功率预算计算器。它给出瓦，不给出 Mbit/s。</li>
+<li>摄像机端电压是否仍高于你输入的下限？用压降计算器。功率通过并不能回答它。</li>
+</ul>
+<h2 id="principle">三个答案为什么分开</h2>
+<p>码率、瓦和电压不共用一条公式。第 1–7 节是方法：加什么、什么不要算两次、哪台计算器负责哪个单位。一个小节的结果不是另两个小节凭空得到的输入。</p>
+<h2 id="formula">1. 带宽公式</h2>
+<p>路径净荷（Mbit/s）= 同时占用该路径的各路流之和。每台贡献相同时，净荷 = 台数 × 这些单路码率之和。规划负荷 = 净荷 × 开销余量。本站演算用 × 1.15，用于编码码率之外的报头和短时峰值。它不是 IEEE 规定。已经包含报头的端口实测值不要再乘。</p>
+<h2 id="count">2. 数量乘以单路码率</h2>
+<p>示例一路 4.0 Mbit/s，不是规格书：100 台为 400 Mbit/s，× 1.15 后 460 Mbit/s；300 台为 1200 与 1380 Mbit/s；500 台为 2000 与 2300 Mbit/s。这是这些摄像机共用的那条路径，不会自动等于每一台上联。</p>
+<h2 id="codec">3. H.264 与 H.265</h2>
+<p>H.264（ITU-T H.264）和 H.265（ITU-T H.265）是不同标准。不要使用固定节省百分比。Axis 码率控制白皮书把可变码率和场景活动连在一起，没有给出适用于所有摄像机的百分比。站内规划器仍用百万像素乘以 0.075（H.264）、0.045（H.265）或 0.24（MJPEG），再乘以（帧率 ÷ 15）× 8。这些系数是内部占位，不能把 0.075 和 0.045 的差距当成节省百分比。这里不修改规划器。</p>
+<h2 id="streams">4. 主码流与子码流</h2>
+<p>只有已经开启并且占用该路径的流才相加。示例：主码流 4.0 Mbit/s 到上联之外的 NVR，子码流 0.5 Mbit/s 到上联之外的操作员电脑，两路单播且同时存在，上联上每台 4.5 Mbit/s。操作员电脑若在同一台接入交换机上，子码流不走上联。同一路主码流不要在汇聚层再加一次。</p>
+<h2 id="uplink">5. 交换机上联</h2>
+<p>接入上联按这台交换机上的摄像机计算。规划器自己的带宽是估算总量 × 1.20，再在 1、10、25、40、100 Gbit/s 中取至少为该总量两倍的最小链路。那不是本指南的 × 1.15，也不能证明两条链路独立。不要在规划器结果上再乘 1.15。</p>
+<h2 id="margin">6. 冗余和余量</h2>
+<p>带宽上的 N-1 是指存活路径带走转移过来的负荷。只有一条上联就没有存活路径。演算里开销之后的增长 × 1.20 是项目选择，不是标准。PoE 的功率余量不改变 Mbit/s。</p>
+<h2 id="poe">7. PoE 功率分开计算</h2>
+<p>PoE 功率预算计算器：源端功率 = 受电功率 ÷（1 − 线损比例），所需预算 = 源端功率 × 台数 ×（1 + 余量）。它还检查端口数和 12.95、25.5、51、71.3 W 的受电等级上限。规划器的功率行是台数 × 瓦数 × 1.25。这是两个模型。远端电压是压降计算器里的第三个模型。</p>
+<h2 id="example">8. 示例：16 台摄像机</h2>
+<p>示例。16 台，主码流 4.0 与子码流 0.5 都离开交换机：净荷 72.0 Mbit/s，× 1.15 = 82.8 Mbit/s，再 × 1.20 = 99.36 Mbit/s。子码流留在交换机上时：64.0，然后 73.6，然后 88.32 Mbit/s。只录主码流、十进制：每台 43.2 GB/天，16 台 691.2 GB/天，30 天 20.736 TB。同样 16 台、受电 12 W、线损 15%、余量 20%、802.3at：271.06 W。24 台：406.59 W。370 W 交换机功率上通过 16 台、不能通过 24 台。规划器把 1 Mbit/s 持续一天折成 0.0108 个十进制 TB，并把 20% 余量折进这行存储。90 米电压示例是另一组负载 25.5 W，26 AWG 为 37.87 V，23 AWG 为 43.51 V，对照输入的 42.5 V 下限。</p>
+<h2 id="calculators">9. 计算器以及它们各自回答的问题</h2>
+<div class="guide-related-grid">
+<a href="../../guides/ip-camera-network-bandwidth-poe/"><strong>吞吐量指南</strong><br>完整公式、单位、假设和 16 台演算。</a>
+<a href="../../../tools/poe-power-budget-calculator/zh/"><strong>PoE 功率预算计算器</strong><br>交换机瓦数、端口和等级上限。不是 Mbit/s。</a>
+<a href="../../../tools/poe-voltage-drop-calculator/zh/"><strong>PoE 压降计算器</strong><br>远端电压。功率通过并不能回答它。</a>
+<a href="../../../tools/ip-camera-network-planner/zh/"><strong>IP 摄像机网络规划器</strong><br>初算草图。做决定前替换编码系数。</a>
+</div>
+<h2 id="articles">可以复算的工程文章</h2>
+<p>每篇文章把同一组输入送进未改动的计算器，并记下结果。它们是示例，不是规格书。</p>
+<ul>
+<li><a href="../../guides/poe-switch-budget-16-versus-24-cameras/">16台摄像机通过370 W预算，24台不能</a>。12 W、线损 15%、余量 20%、802.3at：16 台需要 271.06 W，24 台需要 406.59 W。</li>
+<li><a href="../../guides/poe-voltage-after-90m/">90米26 AWG低于42.5 V</a>。另一组 25.5 W 负载：26 AWG 为 37.87 V，23 AWG 为 43.51 V。</li>
+</ul>
+<h2 id="guide">核心指南</h2>
+<p><a href="../../guides/ip-camera-network-bandwidth-poe/">吞吐量指南</a>集中写单位、路径规则和 16 台演算。问码率时从这里开始。指南再链回本专题，查看功率案例和电压案例。</p>
+<h2 id="related">相关专题</h2>
+<p>接入上联上的 Mbit/s 是交换机容量规划的输入。<a href="../switch-oversubscription/">交换机超售比与上联容量</a>讨论超售比、LAG 和 N-1。它不计算摄像机编码，也不计算 PoE 瓦数。</p>
+<p>PoE 瓦数是站点供电设计上的一项负荷。<a href="../telecom-power-energy/">通信电源与能源</a>讨论整流器、电池和续航。PoE 预算通过并不是电池续航结果。</p>
+<h2 id="mistakes">10. 常见错误</h2>
+<ul>
+<li>用分辨率名称或固定的 H.265 百分比当作带宽。</li>
+<li>把不走上联的子码流加进去，或漏掉确实走上联的子码流。</li>
+<li>同一路流算两次，或同时乘 1.15 和规划器的 1.20。</li>
+<li>把 PoE 功率通过当成码率或远端电压。</li>
+<li>只有一条上联时写成 N-1 通过。</li>
+</ul>
+<p>画面卡顿时测量一个端口，并列出每路流的去向。红外开启后重启时，检查功率和电压。</p>
+<h2 id="faq">常见问题</h2>
+<details><summary>只看分辨率能否得到 IP 摄像机带宽？</summary><p>不能。编码、帧率、场景运动和码率设置都会改变结果。每一路都应使用配置的或实测的平均码率。</p></details>
+<details><summary>PoE 功率预算计算器会给出摄像机网络带宽吗？</summary><p>不会。PoE 功率预算计算器给出的是瓦、端口数和等级上限。摄像机网络带宽是同时存在的各路码率之和，单位是 Mbit/s。</p></details>
+<details><summary>从 H.264 换成 H.265 时可以减去一个固定百分比吗？</summary><p>不可以。不要使用固定节省百分比。H.264 和 H.265 是不同标准，码率仍取决于场景和编码器设置。</p></details>
+<h2 id="further">延伸阅读</h2>
+<ul>
+<li><a href="https://www.itu.int/rec/T-REC-H.264">ITU-T H.264</a> 与 <a href="https://www.itu.int/rec/T-REC-H.265">ITU-T H.265</a></li>
+<li><a href="https://whitepapers.axis.com/download/wp_bitrate_control_for_ip_video_t10170456_2501.pdf">Axis：IP 视频码率控制</a></li>
+<li><a href="https://www.ieee802.org/3/">IEEE 802.3</a> 以及引用 IEEE Std 802.3-2012 表 33-18 的 <a href="https://www.iol.unh.edu/sites/default/files/testsuites/ethernet/CL33_PD/PD_Test_Suite_v2.2.pdf">UNH-IOL Clause 33 测试套件</a></li>
+</ul>
+</article>
+<aside class="guide-toc" aria-label="专题目录"><strong>专题目录</strong>
+<a href="#formula">公式</a>
+<a href="#codec">H.264 与 H.265</a>
+<a href="#example">16 台示例</a>
+<a href="#calculators">计算器</a>
+<a href="#faq">常见问题</a>
+<a href="../../guides/ip-camera-network-bandwidth-poe/">完整指南</a>
+</aside>
+</div>
+</main>
+<!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">
     <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div>

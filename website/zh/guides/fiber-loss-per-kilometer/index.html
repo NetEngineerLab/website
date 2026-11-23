@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>每公里光纤损耗：dB/km 公式与示例 | NetEngineerLab</title><meta name="description" content="每公里光纤损耗是衰减系数（dB/km）乘以长度。这一项不是整条链路。12 km 按 G.652.D 在 1550 nm 的 0.30 dB/km 上限，光纤项是 3.60 dB，还不包含连接器。"><link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/guide.css?v=6d83ae5e791f"><meta property="og:url" content="https://netengineerlab.com/zh/guides/fiber-loss-per-kilometer/">
+<meta property="og:title" content="每公里光纤损耗：dB/km 公式与示例 | NetEngineerLab">
+<meta property="og:description" content="每公里光纤损耗是衰减系数（dB/km）乘以长度。这一项不是整条链路。12 km 按 G.652.D 在 1550 nm 的 0.30 dB/km 上限，光纤项是 3.60 dB，还不包含连接器。">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="每公里光纤损耗：dB/km 公式与示例 | NetEngineerLab">
+<meta name="twitter:description" content="每公里光纤损耗是衰减系数（dB/km）乘以长度。这一项不是整条链路。12 km 按 G.652.D 在 1550 nm 的 0.30 dB/km 上限，光纤项是 3.60 dB，还不包含连接器。">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"每公里光纤损耗：dB/km 公式、计算与工程示例","name":"每公里光纤损耗：dB/km 公式、计算与工程示例","description":"每公里光纤损耗是衰减系数（dB/km）乘以长度。这一项不是整条链路。12 km 按 G.652.D 在 1550 nm 的 0.30 dB/km 上限，光纤项是 3.60 dB，还不包含连接器。","url":"https://netengineerlab.com/zh/guides/fiber-loss-per-kilometer/","inLanguage":"zh-CN","mainEntityOfPage":"https://netengineerlab.com/zh/guides/fiber-loss-per-kilometer/","author":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"每公里光纤损耗：dB/km 公式、计算与工程示例","item":"https://netengineerlab.com/zh/guides/fiber-loss-per-kilometer/"}]}</script>
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=475098aa29f5">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"每公里光纤损耗：dB/km 公式与示例 | NetEngineerLab","url":"https://netengineerlab.com/zh/guides/fiber-loss-per-kilometer/","description":"每公里光纤损耗是衰减系数（dB/km）乘以长度。这一项不是整条链路。12 km 按 G.652.D 在 1550 nm 的 0.30 dB/km 上限，光纤项是 3.60 dB，还不包含连接器。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="zh">
+<meta name="nel-route" content="guides/fiber-loss-per-kilometer/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/zh/guides/fiber-loss-per-kilometer/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/fiber-loss-per-kilometer/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/fiber-loss-per-kilometer/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/es/guides/fiber-loss-per-kilometer/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/fiber-loss-per-kilometer/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=c957f6562d31"></script>
+</head><body>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="打开导航菜单"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="主导航">
+      <a href="../../">首页</a>
+      <a href="../../../tools/zh/">工具中心</a>
+      <a href="../" aria-current="page">工程指南</a>
+      <a href="../../topics/">专题</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/guides/fiber-loss-per-kilometer/" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="/zh/guides/fiber-loss-per-kilometer/" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a><a class="language-option" role="menuitem" href="/es/guides/fiber-loss-per-kilometer/" lang="es" hreflang="es"><span>Español</span><small>西班牙语</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END --><nav class="guide-breadcrumb" aria-label="面包屑"><a href="../../">首页</a><span aria-hidden="true">›</span><a href="../">指南</a><span aria-hidden="true">›</span><span aria-current="page">每公里光纤损耗：dB/km 公式、计算与工程示例</span></nav><main class="guide-shell" id="main"><section class="guide-hero"><p class="eyebrow">光纤</p><h1>每公里光纤损耗：dB/km 公式、计算与工程示例</h1><p class="guide-lead">dB/km 系数乘以长度得到的是光纤项，单位是 dB。连接器、熔接和分光另计。光纤项不是总链路损耗，dB 损耗也不是 dBm 功率。</p></section><div class="guide-tool-link"><strong>配套计算器</strong><p>计算器把光纤项与连接器、熔接和分光相加。其中 0.35 dB/km 和 0.25 dB/km 是规划输入，不是本例，也不是光缆实测。</p><a href="../../../tools/fiber-loss/zh/">打开光纤损耗计算器</a></div><div class="guide-layout"><article class="guide-article">
+<h2 id="units">dB 与 dBm</h2>
+<p>dB 损耗是一个比值：以 dBm 表示的发送功率减去以 dBm 表示的接收功率。0 dBm 是 1 mW。功率变为二分之一时，损耗是 10 log10(2) = 3.010 dB。这 3.010 dB 可以出现在 0 dBm 发送上，也可以出现在 −20 dBm 发送上。比值本身不表示功率。</p>
+<h2 id="formula">每公里衰减</h2>
+<p>光纤沿长度只用一个系数时，A<sub>光纤</sub> = α × L。α 的单位是 dB/km，L 的单位是 km，所以 A<sub>光纤</sub> 的单位是 dB。这只是光纤项。</p>
+<p>现行文本是 ITU-T G.652（08/2024），2024 年 8 月 29 日批准。G.652（11/2016）已被替代。第 8 章表 2 只是 G.652.D 属性表。光缆衰减上限是 1310 nm 至 1625 nm 的 0.40 dB/km，以及 1530–1565 nm 的 0.30 dB/km，1550 nm 落在这个波段里，不是单独一格。注 1 不把这些上限用于短跳线、室内光缆和引入光缆。它们也不是 G.652.B 那一行：1310、1550、1625 nm 分别为 0.4、0.35、0.4 dB/km。这些数字是该类别的上限，不是某段实测，也不是典型值。公开文本：<a href="https://www.itu.int/rec/T-REC-G.652-202408-I/en">ITU-T G.652（08/2024）</a>。系列索引：<a href="https://www.itu.int/rec/T-REC-G.652/en">ITU-T G.652</a>。ITU-T G.650.1 是线性参数测试方法建议，衰减测试包括在内。本页不抄录其中的测试步骤。公开文本：<a href="https://www.itu.int/rec/T-REC-G.650.1/en">ITU-T G.650.1</a>。</p>
+<p>本站光纤损耗计算器仍提供 1310 nm 0.35 dB/km 和 1550 nm 0.25 dB/km 的规划默认值。两者都低于上面的 G.652.D 上限。它们是该计算器已经使用的规划输入，不是实测，也不是标准上限。</p>
+<p>不能把 G.652.D 的上限抄到一根未标明类别的 G.657 光缆上。弯曲损耗不在这个系数里。光缆类别未知时，系数是 UNKNOWN。本站另一页的 300 米 OM4 示例把 3.0 dB/km 用作该示例的假设。本页不把 3.0 dB/km 当成 OM4 上限。成缆多模的上限在打开光缆规格书之前是 UNKNOWN。</p>
+<h2 id="example">可复算示例：1550 nm 上限下的 12 km</h2>
+<p>类别 G.652.D，1550 nm，α = 0.30 dB/km，L = 12 km。光纤项 = 0.30 × 12 = 3.60 dB。同样 12 km 若用 1310 nm 上限 0.40 dB/km，则是 0.40 × 12 = 4.80 dB。长度没变，波长变了。</p>
+<p>3.60 dB 的光纤项不是链路。再加上两对连接器，每对 0.50 dB，合计 1.00 dB；三个熔接点，每个 0.10 dB，合计 0.30 dB。这些连接器和熔接数值是本例假设，不是连接器标准，也不是 OTDR 实测事件。物理路径损耗 = 3.60 + 1.00 + 0.30 = 4.90 dB。</p>
+<p>把整条路径除以长度得到 4.90 / 12 = 0.408 dB/km。这个混合值不是光纤系数。它把连接器和熔接折进了每公里数值。</p>
+<p>假设发送功率为 0 dBm，估算接收功率是 0 − 4.90 = −4.90 dBm。4.90 dB 是损耗比，−4.90 dBm 是功率。这个发送功率是假设，不是某个光模块等级。这 4.90 dB 不含工程余量。</p>
+<p>包含余量和收发器窗口的总链路预算仍在<a href="../fiber-link-budget-guide/">光纤链路预算指南</a>。那一页的 10 km 案例使用 0.35 dB/km 和 3 dB 余量，是另一次计算。分光损耗在<a href="../pon-splitter-loss-guide/">PON 分光指南</a>。把完成的路径与发送、接收窗口比较时，使用<a href="../../../tools/optical-power-budget/zh/">光功率预算计算器</a>。</p>
+<h2 id="mistakes">测量误区</h2>
+<ul>
+<li>把端到端损耗除以长度，当成系数 α。</li>
+<li>把 1550 nm 的系数用到 1310 nm 或 1490 nm 路径上。</li>
+<li>把脏连接器或过小的弯曲叫成光纤衰减。</li>
+<li>把 G.652.D 上限当成这段光纤将会测到的损耗。</li>
+<li>把计算器的 0.25 dB/km 默认值当成光缆规格。</li>
+</ul>
+<p>光纤项落在某个范围里，并不能单独说明接收机落在自己的规格书窗口里。那一步属于光功率预算。</p>
+<p data-nel-topic-home>本文属于<a href="../../topics/pon-optical/">PON 光网络专题</a>。把 3.60 dB 光纤项和 4.90 dB 路径分开之后，<a href="../../topics/pon-optical/#topic-method">返回专题里的方法</a>。</p></article><aside class="guide-toc guide-related-side" aria-label="相关文章"><strong>相关文章</strong><ul><li><a href="../../../tools/fiber-loss/zh/">光纤损耗计算器</a></li><li><a href="../../../tools/optical-power-budget/zh/">光功率预算计算器</a></li><li><a href="../fiber-link-budget-guide/">光纤链路预算指南</a></li><li><a href="../../topics/pon-optical/">PON 光网络专题</a></li><li><a href="../onu-rx-power-troubleshooting/">ONU收光故障排查</a></li></ul></aside></div></main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div>
+    <nav class="site-shell-footer-links" aria-label="页脚导航">
+      <a href="../../about/">关于</a><a href="../../contact/">联系</a><a href="../../privacy/">隐私政策</a><a href="../../terms/">使用条款</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+</body></html>

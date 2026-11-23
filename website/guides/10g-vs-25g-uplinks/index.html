@@ -4,19 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>10G vs 25G Switch Uplinks: Upgrade Decision | NetEngineerLab</title>
-  <meta name="description" content="Decide whether a 10G to 25G switch uplink upgrade is justified using measured busy-hour demand, growth, reserve, compatibility and lifecycle cost.">
+  <meta name="description" content="Compare 10G, 25G, 40G and 100G nominal uplink rates with measured demand. A nominal ratio is not usable throughput or congestion.">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="NetEngineerLab">
   <meta property="og:title" content="10G vs 25G Switch Uplinks: Upgrade Decision | NetEngineerLab">
-  <meta property="og:description" content="Decide whether a 10G to 25G switch uplink upgrade is justified using measured busy-hour demand, growth, reserve, compatibility and lifecycle cost.">
+  <meta property="og:description" content="Compare 10G, 25G, 40G and 100G nominal uplink rates with measured demand. A nominal ratio is not usable throughput or congestion.">
   <meta property="og:url" content="https://netengineerlab.com/guides/10g-vs-25g-uplinks/">
   <meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
   <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../../assets/css/site.css">
-  <link rel="stylesheet" href="../../assets/css/guide.css?v=ffc815a61c42">
+  <link rel="stylesheet" href="../../assets/css/guide.css?v=6d83ae5e791f">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -26,7 +26,7 @@
         "@id": "https://netengineerlab.com/guides/10g-vs-25g-uplinks/#webpage",
         "url": "https://netengineerlab.com/guides/10g-vs-25g-uplinks/",
         "name": "10G vs 25G Switch Uplinks: When Should You Upgrade?",
-        "description": "Decide whether a 10G to 25G switch uplink upgrade is justified using measured busy-hour demand, growth, reserve, compatibility and lifecycle cost.",
+        "description": "Compare 10G, 25G, 40G and 100G nominal uplink rates with measured demand. A nominal ratio is not usable throughput or congestion.",
         "inLanguage": "en",
         "isPartOf": { "@type": "WebSite", "name": "NetEngineerLab", "url": "https://netengineerlab.com/" }
       },
@@ -34,7 +34,7 @@
         "@type": "Article",
         "@id": "https://netengineerlab.com/guides/10g-vs-25g-uplinks/#article",
         "headline": "10G vs 25G Switch Uplinks: When Should You Upgrade?",
-        "description": "Decide whether a 10G to 25G switch uplink upgrade is justified using measured busy-hour demand, growth, reserve, compatibility and lifecycle cost.",
+        "description": "Compare 10G, 25G, 40G and 100G nominal uplink rates with measured demand. A nominal ratio is not usable throughput or congestion.",
         "url": "https://netengineerlab.com/guides/10g-vs-25g-uplinks/",
         "inLanguage": "en",
         "mainEntityOfPage": { "@id": "https://netengineerlab.com/guides/10g-vs-25g-uplinks/#webpage" },
@@ -58,21 +58,23 @@
   </script>
   
   <meta name="twitter:title" content="10G vs 25G Switch Uplinks: Upgrade Decision | NetEngineerLab">
-<meta name="twitter:description" content="Decide whether a 10G to 25G switch uplink upgrade is justified using measured busy-hour demand, growth, reserve, compatibility and lifecycle cost.">
+<meta name="twitter:description" content="Compare 10G, 25G, 40G and 100G nominal uplink rates with measured demand. A nominal ratio is not usable throughput or congestion.">
 
 <link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
 <link rel="stylesheet" href="../../assets/css/site-pages-v2.css?v=20261105-v2">
-<link rel="stylesheet" href="../../assets/css/editorial-fresh.css?v=20261109-edit7">
+<link rel="stylesheet" href="../../assets/css/editorial-fresh.css?v=20261123-align2">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../assets/css/site-shell.css?v=475098aa29f5">
-<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"10G vs 25G Switch Uplinks: Upgrade Decision | NetEngineerLab","url":"https://netengineerlab.com/guides/10g-vs-25g-uplinks/","description":"Decide whether a 10G to 25G switch uplink upgrade is justified using measured busy-hour demand, growth, reserve, compatibility and lifecycle cost.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"10G vs 25G Switch Uplinks: Upgrade Decision | NetEngineerLab","url":"https://netengineerlab.com/guides/10g-vs-25g-uplinks/","description":"Compare 10G, 25G, 40G and 100G nominal uplink rates with measured demand. A nominal ratio is not usable throughput or congestion.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"When should I upgrade a 10G uplink to 25G?","acceptedAnswer":{"@type":"Answer","text":"Evaluate 25G when measured and forecast demand no longer fits verified 10G usable capacity with the reserve your service requires, and a compatible 25G design passes the same checks. There is no universal utilization threshold."}},{"@type":"Question","name":"Does a 25G uplink provide 25 Gbps of application throughput?","acceptedAnswer":{"@type":"Answer","text":"25 Gbps is the nominal line rate. Actual usable throughput depends on the endpoints, forwarding path, packet mix, protocol overhead, queues, and tested configuration."}},{"@type":"Question","name":"Can two 25G LAG members carry one 50 Gbps flow?","acceptedAnswer":{"@type":"Answer","text":"Do not assume so. The nominal aggregate is 50 Gbps per direction, but a flow commonly maps to one member. Confirm the platform's distribution method and test representative flows."}},{"@type":"Question","name":"Is 4×10G always a cheaper alternative to 2×25G?","acceptedAnswer":{"@type":"Answer","text":"No. Compare the ports, line cards, modules, cabling, power, licenses, support, migration, and validated usable capacity for the exact equipment. The lower nominal port rate does not determine total lifecycle cost."}},{"@type":"Question","name":"Can the compatibility checker approve a vendor-specific optic?","acceptedAnswer":{"@type":"Answer","text":"No. It can screen selected physical and optical inputs, but exact host support, coding, firmware, FEC, breakout, and part-number approval must come from the equipment documentation."}},{"@type":"Question","name":"Does a 25G uplink carry 2.5 times the real traffic of a 10G uplink?","acceptedAnswer":{"@type":"Answer","text":"25 Gbps is a nominal line rate. Usable application throughput depends on the platform, forwarding path, protocol overhead, traffic mix, queues, and the tested link configuration."}},{"@type":"Question","name":"Can an SFP28 port use an SFP+ module?","acceptedAnswer":{"@type":"Answer","text":"Only when the exact host port, software, module, configured rate, and peer are documented to support that combination. A matching cage alone does not prove compatibility."}}]}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="en">
 <meta name="nel-route" content="guides/10g-vs-25g-uplinks/">
-<meta name="nel-available-locales" content="en">
+<meta name="nel-available-locales" content="en,zh,es">
 <link rel="canonical" href="https://netengineerlab.com/guides/10g-vs-25g-uplinks/">
 <link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/10g-vs-25g-uplinks/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/10g-vs-25g-uplinks/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/es/guides/10g-vs-25g-uplinks/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/10g-vs-25g-uplinks/">
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <script defer src="../../data/locales.js?v=909e05076a50"></script>
@@ -97,7 +99,7 @@
       <a href="../../topics/">Topics</a>
     </nav>
     <div class="site-shell-actions">
-      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/guides/10g-vs-25g-uplinks/" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/guides/10g-vs-25g-uplinks/" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="/zh/guides/10g-vs-25g-uplinks/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a><a class="language-option" role="menuitem" href="/es/guides/10g-vs-25g-uplinks/" lang="es" hreflang="es"><span>Español</span><small>Spanish</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
       <div class="site-shell-context-action"></div>
     </div>
   </div>
@@ -227,6 +229,11 @@
           <details><summary>Can the compatibility checker approve a vendor-specific optic?</summary><p>No. It can screen selected physical and optical inputs, but exact host support, coding, firmware, FEC, breakout, and part-number approval must come from the equipment documentation.</p></details><details><summary>Does a 25G uplink carry 2.5 times the real traffic of a 10G uplink?</summary><p>25 Gbps is a nominal line rate. Usable application throughput depends on the platform, forwarding path, protocol overhead, traffic mix, queues, and the tested link configuration.</p></details><details><summary>Can an SFP28 port use an SFP+ module?</summary><p>Only when the exact host port, software, module, configured rate, and peer are documented to support that combination. A matching cage alone does not prove compatibility.</p></details>
         </section>
 
+        <section id="speeds-40-100">
+          <h2>Where 40G and 100G sit in the same arithmetic</h2>
+          <p>For one direction, nominal capacity is still the sum of the interface rates that forward. On 48 × 1 Gbps access, which is 48 Gbps, the exact line-rate ratios are 1×10G = 4.8:1, 2×10G = 2.4:1, 1×25G = 1.92:1, 2×25G = 0.96:1, 1×40G = 1.2:1 and 1×100G = 0.48:1. The calculator rounds to one decimal, so 1.92:1 displays as 1.9:1, 0.96:1 displays as 1:1, and 0.48:1 displays as 0.5:1. On 48 × 10 Gbps access, which is 480 Gbps, 4×100G is 480 ÷ 400 = 1.2:1. Full duplex does not double these numbers: each interface rate is counted once in the direction being compared.</p>
+          <p>These rows are arithmetic. They are not a vendor upgrade rule, and they are not measured congestion. A 100G nominal uplink can still congest if the offered load in that direction, the burst, the packet rate, or the port and hardware forwarding limit is the bottleneck. A 25G LAG can also congest one member while the bundle average looks acceptable. Recompute the ratio in the <a href="../switch-oversubscription-ratio/">oversubscription ratio guide</a> and the member case in <a href="../lacp-member-congestion/">LACP member congestion</a>.</p>
+        </section>
         <section class="content-section" id="related-resources">
           <h2>Related engineering resources</h2>
           <ul>
@@ -234,11 +241,13 @@
             <li><a href="../../tools/sfp-qsfp-compatibility-calculator/">SFP &amp; QSFP Compatibility Checker</a></li>
             <li><a href="../../guides/48-port-switch-2x10g-enough/">Candidate 1: Is 2×10G enough for a 48-port Gigabit switch?</a></li>
             <li><a href="../../guides/switch-oversubscription-n-1/">Candidate 2: N-1 uplink capacity and failure planning</a></li>
+            <li><a href="../switch-oversubscription-ratio/">How to calculate the oversubscription ratio</a></li>
+            <li><a href="../lacp-member-congestion/">LACP member congestion</a></li>
             <li><a href="../../topics/switch-oversubscription/">Switch Oversubscription &amp; Uplink Capacity Topic Hub</a></li>
           </ul>
         </section>
       </article>
-      <aside class="guide-toc" aria-label="On this page">
+      <aside class="guide-toc guide-related-side" aria-label="On this page">
         <strong>On this page</strong>
         <a href="#upgrade-trigger">Upgrade trigger</a>
         <a href="#measure-demand">Measure demand</a>
@@ -248,6 +257,7 @@
         <a href="#compatibility">Compatibility</a>
         <a href="#lifecycle-cost">Lifecycle cost</a>
         <a href="#upgrade-checklist">Decision checklist</a>
+        <a href="#speeds-40-100">40G and 100G</a>
         <a href="#faq">FAQ</a>
       </aside>
     </div>

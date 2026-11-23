@@ -1,0 +1,213 @@
+<!DOCTYPE html><html lang="es" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cómo evaluar el caudal de datos de una cámara IP PoE | NetEngineerLab</title><meta name="description" content="El ancho de banda es la suma de los flujos simultáneos de una ruta, en Mbit/s, por un margen de sobrecarga declarado. El presupuesto de potencia PoE del switch es un cálculo aparte, en vatios."><link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/guide.css?v=6d83ae5e791f"><meta property="og:url" content="https://netengineerlab.com/es/guides/ip-camera-network-bandwidth-poe/">
+<meta property="og:title" content="Cómo evaluar el caudal de datos de una cámara IP PoE | NetEngineerLab">
+<meta property="og:description" content="El ancho de banda es la suma de los flujos simultáneos de una ruta, en Mbit/s, por un margen de sobrecarga declarado. El presupuesto de potencia PoE del switch es un cálculo aparte, en vatios.">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cómo evaluar el caudal de datos de una cámara IP PoE | NetEngineerLab">
+<meta name="twitter:description" content="El ancho de banda es la suma de los flujos simultáneos de una ruta, en Mbit/s, por un margen de sobrecarga declarado. El presupuesto de potencia PoE del switch es un cálculo aparte, en vatios.">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Cómo evaluar el caudal de datos de una cámara IP PoE","name":"Cómo evaluar el caudal de datos de una cámara IP PoE","description":"El ancho de banda es la suma de los flujos simultáneos de una ruta, en Mbit/s, por un margen de sobrecarga declarado. El presupuesto de potencia PoE del switch es un cálculo aparte, en vatios.","url":"https://netengineerlab.com/es/guides/ip-camera-network-bandwidth-poe/","inLanguage":"es","mainEntityOfPage":"https://netengineerlab.com/es/guides/ip-camera-network-bandwidth-poe/","author":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://netengineerlab.com/es/"},{"@type":"ListItem","position":2,"name":"Cómo evaluar el caudal de datos de una cámara IP PoE","item":"https://netengineerlab.com/es/guides/ip-camera-network-bandwidth-poe/"}]}</script>
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=475098aa29f5">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Cómo evaluar el caudal de datos de una cámara IP PoE | NetEngineerLab","url":"https://netengineerlab.com/es/guides/ip-camera-network-bandwidth-poe/","description":"El ancho de banda es la suma de los flujos simultáneos de una ruta, en Mbit/s, por un margen de sobrecarga declarado. El presupuesto de potencia PoE del switch es un cálculo aparte, en vatios.","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/es/"}}</script>
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿La resolución por sí sola predice el ancho de banda de las cámaras IP?","acceptedAnswer":{"@type":"Answer","text":"No. El códec, la tasa de fotogramas, el movimiento de la escena y el ajuste de bitrate cambian el resultado. Use el bitrate medio configurado o medido de cada flujo."}},{"@type":"Question","name":"¿La calculadora de presupuesto de potencia PoE da el ancho de banda de la red de cámaras?","acceptedAnswer":{"@type":"Answer","text":"No. La calculadora de presupuesto de potencia PoE devuelve vatios, número de puertos y un límite de clase. El ancho de banda de las cámaras es una suma distinta de bitrates simultáneos, en Mbit/s."}},{"@type":"Question","name":"¿Puedo restar un porcentaje fijo al pasar de H.264 a H.265?","acceptedAnswer":{"@type":"Answer","text":"No. No aplique un porcentaje fijo de ahorro. H.264 y H.265 son normas distintas, y el bitrate sigue dependiendo de la escena y de los ajustes del codificador."}}]}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="es">
+<meta name="nel-route" content="guides/ip-camera-network-bandwidth-poe/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/es/guides/ip-camera-network-bandwidth-poe/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/ip-camera-network-bandwidth-poe/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/ip-camera-network-bandwidth-poe/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/es/guides/ip-camera-network-bandwidth-poe/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/ip-camera-network-bandwidth-poe/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=c957f6562d31"></script>
+</head><body class="guide-page guide-fresh">
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Plataforma de inteligencia para ingeniería de redes</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Abrir navegación"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navegación principal">
+      <a href="../../">Inicio</a>
+      <a href="../../../tools/es/">Herramientas</a>
+      <a href="../" aria-current="page">Guías</a>
+      <a href="../../topics/">Temas</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Español"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Español</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/guides/ip-camera-network-bandwidth-poe/" lang="en" hreflang="en"><span>English</span><small>Inglés</small></a><a class="language-option" role="menuitem" href="/zh/guides/ip-camera-network-bandwidth-poe/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chino simplificado</small></a><a class="language-option" role="menuitem" href="/es/guides/ip-camera-network-bandwidth-poe/" lang="es" hreflang="es" aria-current="page"><span>Español</span><small>Español</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END --><nav class="guide-breadcrumb" aria-label="Migas de pan"><a href="../../">Inicio</a> / <a href="../">Guías</a> / <span aria-current="page">Caudal de datos de una cámara IP PoE</span></nav>
+<main class="guide-shell" id="main">
+<section class="guide-hero">
+<p class="eyebrow">ANCHO DE BANDA DE CÁMARAS</p>
+<h1>Cómo evaluar el caudal de datos de una cámara IP PoE</h1>
+<p class="guide-lead">Sume solo los flujos que usan el mismo enlace al mismo tiempo. El ancho de banda de la red de cámaras, en Mbit/s, es esa suma por un margen de sobrecarga que hay que escribir. El presupuesto de potencia PoE del switch es otro cálculo, en vatios.</p>
+<div class="guide-meta"><span>Caudal en Mbit/s</span><span>Flujo principal y secundario</span><span>Vatios PoE</span><span>Ejemplo</span></div>
+</section>
+<div class="guide-tool-link"><strong>La calculadora de vatios no devuelve el bitrate</strong><p>La calculadora de presupuesto de potencia PoE comprueba vatios del switch, número de puertos y el límite de clase IEEE. No devuelve el ancho de banda de las cámaras.</p><a href="../../../tools/poe-power-budget-calculator/es/">Abrir la calculadora de presupuesto PoE →</a></div>
+<div class="guide-layout">
+<article class="guide-article">
+<p>El ancho de banda para cámaras IP es el vídeo codificado que realmente atraviesa el enlace que se está dimensionando, más un margen declarado para cabeceras y picos cortos. La potencia PoE no fija ese número. Las cifras de abajo son un ejemplo de escenario. No son el bitrate universal de una cámara.</p>
+
+<h2 id="formula">1. Fórmula de ancho de banda</h2>
+<p>Para una ruta, en megabits por segundo:</p>
+<div class="guide-formula"><strong>Carga útil de la ruta (Mbit/s) = suma de los flujos simultáneos de esa ruta</strong><br><strong>Si cada cámara aporta los mismos flujos: carga = número de cámaras × (suma de esas tasas por cámara)</strong><br><strong>Carga de planificación = carga útil × margen de sobrecarga</strong></div>
+<p>Unidades: cada tasa es el bitrate medio codificado en Mbit/s (megabits por segundo, decimal). El número de cámaras es el de cámaras cuyos flujos usan esa ruta en la misma hora punta. El margen de sobrecarga no tiene unidad. El caso de esta guía usa 1.15. Es una hipótesis de planificación para cabeceras y picos cortos. No es un requisito de IEEE 802.3.</p>
+<p>Si el bitrate que introduce ya se midió en el puerto del switch, puede incluir las cabeceras Ethernet, IP, UDP y RTP. No lo multiplique otra vez por 1.15. Si el número es el ajuste de vídeo codificado de la cámara, las cabeceras siguen fuera y el plan necesita un margen aparte.</p>
+<p>Separe la media de grabación y el pico corto. El almacenamiento sigue la media de los flujos que se graban. El enlace ascendente también tiene que aguantar el pico de hora punta que usted fije.</p>
+
+<h2 id="count">2. Cantidad por la tasa de un flujo</h2>
+<p>Use cantidad × tasa solo cuando cada cámara añade esa tasa a la misma ruta. El total del sitio no es el enlace ascendente de un switch de acceso, salvo que todas las cámaras terminen en ese switch.</p>
+<table>
+<thead><tr><th>Cámaras en esa ruta</th><th>Tasa de ejemplo</th><th>Carga útil</th><th>Tras × 1.15</th></tr></thead>
+<tbody>
+<tr><td>100</td><td>un flujo de 4.0 Mbit/s</td><td>400 Mbit/s</td><td>460 Mbit/s</td></tr>
+<tr><td>300</td><td>un flujo de 4.0 Mbit/s</td><td>1200 Mbit/s</td><td>1380 Mbit/s</td></tr>
+<tr><td>500</td><td>un flujo de 4.0 Mbit/s</td><td>2000 Mbit/s</td><td>2300 Mbit/s</td></tr>
+</tbody>
+</table>
+<p>La columna de 4.0 Mbit/s es una entrada de ejemplo para poder revisar la aritmética. No es el bitrate de todas las cámaras IP. Sustitúyala por el perfil que va a ejecutar o por una media medida.</p>
+
+<h2 id="codec">3. Diferencia entre H.264 y H.265</h2>
+<p>H.264 y H.265 son normas de codificación de vídeo distintas. La UIT-T H.264 especifica la codificación de vídeo avanzada. La UIT-T H.265 especifica la codificación de vídeo de alta eficiencia. Un códec posterior puede usar menos bits para una imagen parecida en algunas escenas. La diferencia no es un porcentaje fijo de ahorro.</p>
+<p>No aplique un porcentaje fijo de ahorro al cambiar de códec. El movimiento de la escena, la longitud del GOP, el control de bitrate y el perfil del fabricante mueven el resultado. El libro blanco de Axis sobre control de bitrate dice que un flujo de bitrate variable crece cuando la escena se complica, y no publica un porcentaje válido para todas las cámaras. Introduzca el bitrate medio del perfil que realmente va a grabar y a ver.</p>
+<p>El planificador de red de cámaras IP de este sitio sigue estimando los Mbit/s por cámara como megapíxeles × un coeficiente de códec × (fotogramas por segundo ÷ 15) × 8. Los coeficientes de esa página son 0.075 para H.264, 0.045 para H.265 y 0.24 para MJPEG. Son un modelo interno de primer paso. No son una cámara medida, y la distancia entre 0.075 y 0.045 no debe reutilizarse como porcentaje de ahorro de H.265. Antes de decidir, sustituya la estimación por el bitrate configurado o medido. Esta guía no modifica ese planificador.</p>
+
+<h2 id="streams">4. Flujo principal, flujo secundario y tasa real</h2>
+<p>Muchas cámaras publican un flujo principal para grabar y un flujo secundario para la vista en vivo. Sume un flujo solo si está activo y usa la ruta que está dimensionando, al mismo tiempo que los demás.</p>
+<ul>
+<li>Ejemplo de flujo principal, grabado en un NVR aguas arriba del switch de acceso: media de 4.0 Mbit/s, unicast.</li>
+<li>Ejemplo de flujo secundario, visto en un PC de operador que también está aguas arriba del mismo switch: media de 0.5 Mbit/s, unicast, simultáneo con el principal.</li>
+<li>Por cámara en ese enlace: 4.0 + 0.5 = 4,5 Mbit/s. Sigue siendo un ejemplo, no una ficha técnica.</li>
+</ul>
+<p>Si el PC del operador está en el mismo switch de acceso, el flujo secundario no usa el enlace ascendente. La carga útil es entonces el número de cámaras × 4.0 Mbit/s. No sume el flujo secundario en ese caso.</p>
+<p>No cuente dos veces el mismo flujo principal. El enlace de acceso lo lleva una vez. Un enlace de agregación lleva la suma de los enlaces de acceso que lo alimentan, es decir, esos mismos flujos una vez, no otra vez encima.</p>
+<p>El almacenamiento de grabación usa los flujos que el grabador guarda. En este ejemplo es el flujo principal de 4.0 Mbit/s, no el secundario de 0.5 Mbit/s, salvo que también grabe el secundario. Las cabeceras de red no entran en esa línea de almacenamiento, salvo que el grabador las almacene.</p>
+
+<h2 id="uplink">5. Enlace ascendente del switch</h2>
+<p>Dimensione cada enlace de acceso con las cámaras de ese switch, no con todo el sitio. Carga de planificación = carga útil × margen de sobrecarga. El margen de este caso es × 1.15. El margen de crecimiento es un segundo factor. El caso usa × 1.20 después de la sobrecarga. Escríbalos los dos para no aplicarlos dos veces a un número que ya los incluye.</p>
+<p>El planificador de red de cámaras IP aplica su propio × 1.20 al total codificado estimado y etiqueta el resultado como ancho de banda con un 20 % de margen de protocolo. Después busca el enlace más pequeño del conjunto 1, 10, 25, 40 o 100 Gbit/s cuya capacidad sea al menos el doble de ese total, y muestra la capacidad restante como los Mbit/s de ese enlace menos el total. Es un esquema de doble enlace dentro del planificador. No demuestra que los dos enlaces sean independientes, y no usa el factor 1.15 de esta guía. No multiplique otra vez por 1.15 un resultado del planificador.</p>
+
+<h2 id="margin">6. Redundancia y margen</h2>
+<p>N-1 significa que un componente nombrado puede fallar y el servicio sigue cumpliendo el objetivo escrito. En el enlace, la ruta que sobrevive tiene que llevar la carga que se desplaza hacia ella. Un solo enlace no tiene ruta superviviente. Dos enlaces de 1 Gbit/s cumplen una comprobación N-1 de ancho de banda solo cuando cualquiera de los dos puede llevar solo la carga de planificación, y solo en ancho de banda. El control de la pila, las fuentes de alimentación y el NVR son dominios de fallo distintos.</p>
+<p>Mantenga los márgenes separados:</p>
+<ul>
+<li>Margen de protocolo y de pico en datos: × 1.15 en el ejemplo de esta guía, o el × 1.20 del planificador sobre su propia estimación. No los dos sobre el mismo número.</li>
+<li>Margen de crecimiento en datos: × 1.20 en el caso, aplicado después de la sobrecarga. Es una elección de proyecto, no una norma.</li>
+<li>El margen de vatios PoE, más abajo, es un porcentaje sobre vatios. No cambia los Mbit/s.</li>
+</ul>
+
+<h2 id="poe">7. La potencia PoE no es el ancho de banda</h2>
+<p>IEEE 802.3 define cómo un puerto de equipo de alimentación entrega corriente continua a un dispositivo alimentado. No define el bitrate de vídeo de la cámara. Un switch puede aprobar el presupuesto de vatios y fallar la tensión remota, o aprobar la tensión y congestionar el enlace.</p>
+<p>La calculadora de presupuesto de potencia PoE, que esta página no modifica, usa:</p>
+<div class="guide-formula"><strong>Vatios en origen por dispositivo = vatios del PD ÷ (1 − fracción de pérdida del cable)</strong><br><strong>Presupuesto requerido del switch = vatios en origen × cantidad × (1 + fracción de reserva)</strong></div>
+<p>La fracción de pérdida y la de reserva son los porcentajes introducidos, divididos por 100. La calculadora también exige que la cantidad no supere los puertos PoE y que los vatios del PD no superen el límite de clase codificado: 12.95 W (802.3af), 25.5 W (802.3at), 51 W (802.3bt tipo 3) o 71.3 W (802.3bt tipo 4). Esos son vatios en el dispositivo alimentado. Las potencias PSE correspondientes en la misma calculadora son 15.4 W, 30 W, 60 W y 90 W. Los resúmenes públicos de IEEE 802.3 enumeran los mismos pares. El porcentaje de pérdida es una entrada de planificación, no una simulación completa del canal.</p>
+<p>El planificador de cámaras usa otra línea de vatios: cantidad × vatios introducidos × 1.25. Ese único factor del 25 % no es lo mismo que introducir por separado la pérdida y la reserva. No mezcle los dos resultados.</p>
+<p>La tensión remota es un tercer modelo, en la calculadora de caída de tensión PoE. Parte de la resistencia del conductor del AWG elegido a 20 °C, la escala con 0.00393 por cada °C de diferencia respecto de 20 °C, forma la resistencia de bucle como dos conductores × longitud ÷ pares, suma la resistencia de contacto introducida y resuelve la corriente para la potencia de carga y la eficiencia de entrega. Un presupuesto de vatios aprobado no responde esa tensión.</p>
+
+<h2 id="example">8. Ejemplo: 16 cámaras en un switch de acceso</h2>
+<p>Ejemplo, no una ficha de cámara. Dieciséis cámaras fijas. Cada una envía un flujo principal unicast de 4.0 Mbit/s a un NVR aguas arriba de este switch, y un flujo secundario unicast de 0.5 Mbit/s a un PC de operador que también está aguas arriba. Los dos flujos son simultáneos. No hay audio. No hay otro tráfico en el enlace.</p>
+<ol>
+<li>Carga útil = 16 × (4.0 + 0.5) = 72.0 Mbit/s.</li>
+<li>Margen de sobrecarga × 1.15, hipótesis de esta guía: 72.0 × 1.15 = 82.8 Mbit/s.</li>
+<li>Crecimiento × 1.20 después, también hipótesis: 82.8 × 1.20 = 99.36 Mbit/s.</li>
+<li>Un enlace de 1 Gbit/s es nominalmente 1000 Mbit/s, así que la aritmética cabe en estado normal. N-1 no: no hay segundo enlace. Dos enlaces independientes de 1 Gbit/s tendrían que llevar cada uno 99.36 Mbit/s si uno falla. Esa comprobación es solo de ancho de banda.</li>
+</ol>
+<p>Si el PC del operador está en este mismo switch, quite el flujo secundario del enlace: 16 × 4.0 = 64.0 Mbit/s, luego 64.0 × 1.15 = 73.6 Mbit/s, luego 73.6 × 1.20 = 88.32 Mbit/s. No informe 99.36 Mbit/s para esa ruta.</p>
+<p>Almacenamiento solo del flujo principal grabado, unidades decimales (1000, no 1024): gigabytes diarios por cámara = 4.0 × 86.400 ÷ 8 ÷ 1.000 = 43.2 GB/día. Dieciséis cámaras: 691.2 GB/día. Treinta días: 20.736 GB = 20.736 TB. Esta línea no incluye el flujo de 0.5 Mbit/s, el RAID ni el margen de red × 1.15. Cien cámaras con ese único flujo de 4.0 Mbit/s, sin grabar el secundario, son 4.32 TB/día y 129.6 TB en 30 días.</p>
+<p>La potencia de las mismas dieciséis cámaras sigue separada del bitrate. En la calculadora de presupuesto PoE introduzca 12 W en el dispositivo, 15 % de pérdida de cable, 20 % de reserva y 802.3at: vatios en origen = 12 ÷ 0.85 = 14.1176 W; presupuesto = 14.1176 × 16 × 1.20 = 271.06 W. Las mismas entradas para 24 cámaras exigen 406.59 W. Un switch de 370 W aprueba 16 cámaras y no aprueba 24 en vatios. Ninguno de los dos resultados cambia los 72.0 Mbit/s.</p>
+<p>La tensión es otro conjunto de entradas, no esta cámara de 12 W. El ejemplo publicado de 90 m en la calculadora de caída usa 25.5 W, fuente de 48 V, 90 m, dos pares, 45 °C, 0.3 ohm de contacto, 90 % de eficiencia de entrega y un suelo introducido de 42.5 V. Con esas entradas la calculadora devuelve 37.87 V en el extremo con 26 AWG (caída de 10.13 V, por debajo del suelo) y 43.51 V con 23 AWG (caída de 4.49 V, por encima del suelo). El conjunto de pruebas de dispositivos alimentados de la cláusula 33 de UNH-IOL, al citar la tabla 33-18 de IEEE Std 802.3-2012, describe un rango de entrada de tipo 2 de 42.5 V a 57 V y un rango de tipo 1 de 37 V a 57 V. El suelo de 42.5 V de ese ejemplo es el límite inferior de tipo 2 usado como comprobación introducida. No es una certificación medida de un cable, y un dispositivo de tipo 1 puede usar un suelo más bajo.</p>
+<p>Contraste con el planificador, valores por defecto de esa página, no este ejemplo de 16 cámaras: 2 megapíxeles, coeficiente H.265 de 0.045, 15 fotogramas por segundo, 100 cámaras, 15 W, 30 días. Por cámara = 2 × 0.045 × (15 ÷ 15) × 8 = 0.72 Mbit/s. Total tras el × 1.20 del planificador = 86.4 Mbit/s. Línea de vatios = 100 × 15 × 1.25 = 1875 W. Almacenamiento bruto = 86.4 × 30 × 0.0108 = 27.9936 TB, mostrado como 27.99 TB. La línea etiquetada como usable es esa cifra ÷ 0.85. Un terabyte decimal por día a 1 Mbit/s es 0.0108 TB, porque 1 Mbit/s × 86.400 s ÷ 8 bit/byte = 1,08 × 10 elevado a 10 bytes. El planificador mete su margen de red del 20 % dentro de esa cifra en terabytes. No trate 0.72 Mbit/s como el ejemplo de 4.0 Mbit/s de arriba.</p>
+
+<h2 id="calculators">9. Qué calculadora responde cada pregunta</h2>
+<div class="guide-related-grid">
+<a href="../../../tools/poe-power-budget-calculator/es/"><strong>Calculadora de presupuesto de potencia PoE</strong><br>Vatios del switch, puertos y límite de clase del PD. No devuelve Mbit/s.</a>
+<a href="../../../tools/poe-voltage-drop-calculator/es/"><strong>Calculadora de caída de tensión PoE</strong><br>Tensión remota tras una longitud y una carga dadas. Un presupuesto de vatios aprobado no la responde.</a>
+<a href="../../../tools/ip-camera-network-planner/es/"><strong>Planificador de red de cámaras IP</strong><br>Borrador de bitrate, enlace, vatios y almacenamiento. Sustituya sus coeficientes de códec antes de decidir.</a>
+<a href="../../topics/ip-camera-network-bandwidth-poe/"><strong>Tema de ancho de banda y PoE</strong><br>El mismo método, con los dos casos de vatios y de tensión.</a>
+</div>
+<p>Casos ya publicados con las calculadoras congeladas: <a href="../poe-switch-budget-16-versus-24-cameras/">Un presupuesto PoE de 370 W alimenta 16 cámaras. ¿Alimenta 24?</a> <a href="../poe-voltage-after-90m/">Tras 90 m, ¿el 26 AWG deja la cámara por debajo de 42.5 V?</a></p>
+
+<h2 id="mistakes">10. Errores frecuentes y qué comprobar</h2>
+<ul>
+<li>Usar la etiqueta de resolución como bitrate. Lea el perfil o mida el puerto.</li>
+<li>Restar un porcentaje fijo para pasar de H.264 a H.265. Introduzca la tasa que va a ejecutar.</li>
+<li>Sumar un flujo secundario que se queda en el switch de acceso, u omitir uno que sale por el enlace.</li>
+<li>Contar el mismo flujo en el enlace de acceso y otra vez como tráfico extra en la agregación.</li>
+<li>Aplicar × 1.15 a una medida de puerto que ya incluye cabeceras, o aplicar 1.15 y el 1.20 del planificador.</li>
+<li>Usar el pico para un disco de 30 días, o la media nocturna para el enlace de hora punta, sin decir cuál.</li>
+<li>Tomar un aprobado de vatios PoE como prueba de la tensión remota, o como los Mbit/s de la cámara.</li>
+<li>Decir que N-1 está aprobado cuando el switch solo tiene un enlace ascendente.</li>
+</ul>
+<p>Si la imagen se detiene o el enlace está ocupado, mida la media y el pico de una cámara en su puerto y anote qué flujos están activos y adónde van. Compare esa suma con el contador del enlace. Si las cámaras se reinician al encender el infrarrojo, compruebe los vatios del dispositivo y la tensión en el extremo, no el bitrate.</p>
+
+<h2 id="limits">Límites</h2>
+<p>Esto es un método de planificación. No es una certificación de cable, una prueba de conformidad de códec ni un sustituto de la ficha de la cámara. El multicast bien podado no añade una copia por espectador; el unicast sí. Confirme cuál despliega. RAID, sobrecarga del sistema de archivos y la pregrabación son almacenamiento extra, no incluido en la línea de 20.736 TB.</p>
+
+<h2 id="faq">Preguntas frecuentes</h2>
+<details><summary>¿La resolución por sí sola predice el ancho de banda de las cámaras IP?</summary><p>No. El códec, la tasa de fotogramas, el movimiento de la escena y el ajuste de bitrate cambian el resultado. Use el bitrate medio configurado o medido de cada flujo.</p></details>
+<details><summary>¿La calculadora de presupuesto de potencia PoE da el ancho de banda de la red de cámaras?</summary><p>No. La calculadora de presupuesto de potencia PoE devuelve vatios, número de puertos y un límite de clase. El ancho de banda de las cámaras es una suma distinta de bitrates simultáneos, en Mbit/s.</p></details>
+<details><summary>¿Puedo restar un porcentaje fijo al pasar de H.264 a H.265?</summary><p>No. No aplique un porcentaje fijo de ahorro. H.264 y H.265 son normas distintas, y el bitrate sigue dependiendo de la escena y de los ajustes del codificador.</p></details>
+
+<h2 id="sources">Fuentes</h2>
+<ul>
+<li><a href="https://www.itu.int/rec/T-REC-H.264">UIT-T H.264, codificación de vídeo avanzada</a></li>
+<li><a href="https://www.itu.int/rec/T-REC-H.265">UIT-T H.265, codificación de vídeo de alta eficiencia</a></li>
+<li><a href="https://whitepapers.axis.com/download/wp_bitrate_control_for_ip_video_t10170456_2501.pdf">Libro blanco de Axis, control de bitrate para vídeo IP (ABR, VBR y MBR)</a></li>
+<li><a href="https://www.ieee802.org/3/">Grupo de trabajo Ethernet IEEE 802.3</a></li>
+<li><a href="https://www.iol.unh.edu/sites/default/files/testsuites/ethernet/CL33_PD/PD_Test_Suite_v2.2.pdf">Conjunto de pruebas PD de la cláusula 33 de UNH-IOL, que cita la tabla 33-18 de IEEE Std 802.3-2012 para la tensión de entrada de tipo 1 y tipo 2</a></li>
+</ul>
+<section class="guide-cross-links"><h2>Seguir planificando</h2>
+<div class="guide-related-grid">
+<a href="../../../tools/poe-power-budget-calculator/es/"><strong>Calculadora de presupuesto PoE</strong><br>Vatios, puertos y límites de clase del switch.</a>
+<a href="../../../tools/poe-voltage-drop-calculator/es/"><strong>Calculadora de caída de tensión PoE</strong><br>Tensión en el extremo para un cable y una carga dados.</a>
+<a href="../../topics/ip-camera-network-bandwidth-poe/"><strong>Tema de cámaras y PoE</strong><br>Entrada al método y a los casos resueltos.</a>
+</div>
+</section>
+</article>
+<aside class="guide-toc" aria-label="En esta página"><strong>En esta página</strong>
+<a href="#formula">Fórmula de ancho de banda</a>
+<a href="#count">Cantidad por tasa</a>
+<a href="#codec">H.264 y H.265</a>
+<a href="#streams">Flujos principal y secundario</a>
+<a href="#uplink">Enlace del switch</a>
+<a href="#margin">Redundancia y margen</a>
+<a href="#poe">Vatios PoE</a>
+<a href="#example">Ejemplo de 16 cámaras</a>
+<a href="#calculators">Calculadoras</a>
+<a href="#mistakes">Errores</a>
+<a href="#faq">Preguntas</a>
+</aside>
+</div>
+<!-- NEL_CONTENT_ASSOCIATIONS_START -->
+<nav class="nel-content-associations" data-association-id="camera-guide" aria-label="Enlaces de ingeniería revisados"><h2>Enlaces de ingeniería revisados</h2><ul><li><a href="../../../tools/ip-camera-network-planner/es/">Dimensione el enlace de subida y la carga PoE juntos</a></li><li><a href="../../../tools/poe-power-budget-calculator/es/">Compruebe los vatios del switch antes de añadir otra cámara</a></li><li><a href="../poe-voltage-after-90m/">Compruebe el voltaje que queda tras 90 m de 26 AWG</a></li><li><a href="../poe-switch-budget-16-versus-24-cameras/">Vea si un presupuesto de 370 W sigue alimentando 24 cámaras</a></li><li><a href="../../topics/ip-camera-network-bandwidth-poe/">Volver al tema de caudal y PoE de cámaras</a></li></ul></nav>
+<!-- NEL_CONTENT_ASSOCIATIONS_END -->
+</main>
+
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Herramientas profesionales en línea para ingenieros de telecomunicaciones y redes.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navegación del pie de página">
+      <a href="../../about/">Acerca de</a><a href="../../contact/">Contacto</a><a href="../../privacy/">Privacidad</a><a href="../../terms/">Términos</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+</body></html>

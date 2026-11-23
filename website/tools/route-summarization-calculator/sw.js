@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-route-summarization-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-8a2a96ff3150";
+const CACHE = "nel-route-summarization-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-f92bfc53c8b9";
 const CORE = [
   "./",
   "./index.html",
@@ -15,6 +15,7 @@ const CORE = [
   "../../assets/images/logo.svg",
   "./js/engine.js?v=5e6e4f9c4c83",
   "../../assets/js/es-launch-runtime.js?v=829a7f1559b7",
+  "../../assets/js/es-launch-runtime.js?v=e0fea69289b0",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
