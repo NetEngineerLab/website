@@ -78,6 +78,16 @@ check('old monthly source corrected', registry.routes.find(route => route.route 
 check('field case untouched', read('website/topics/data-center-cooling-capacity/index.html').includes('136.25') && read('website/topics/data-center-cooling-capacity/index.html').includes('id="field-case"'));
 check('monthly example untouched', read('website/guides/monthly-energy-pue-not-redundancy/index.html').includes('120000') && read('website/guides/monthly-energy-pue-not-redundancy/index.html').includes('1.417'));
 check('density not called a capacity derate', read(`website/guides/${slug}/index.html`).includes('does not derate cooling capacity'));
+for (const locale of ['website/topics/data-center-cooling-capacity/index.html', 'website/zh/topics/data-center-cooling-capacity/index.html']) {
+  const topic = read(locale);
+  for (const id of ['intro', 'user-questions', 'principle', 'task-routes', 'field-case', 'worked-cases', 'method', 'faq', 'further']) {
+    check(locale + ' #' + id, topic.includes('id="' + id + '"'));
+  }
+  check(locale + ' keeps hall numbers', topic.includes('136.25') && topic.includes('38.74') && topic.includes('data-center-capacity'));
+}
+check('topic density is airflow only', read('website/topics/data-center-cooling-capacity/index.html').includes('not a cooling-capacity derating') && read('website/zh/topics/data-center-cooling-capacity/index.html').includes('不是制冷容量降额'));
+check('guide returns to the cooling topic', read(`website/guides/${slug}/index.html`).includes('topics/data-center-cooling-capacity/') && read(`website/zh/guides/${slug}/index.html`).includes('topics/data-center-cooling-capacity/') && read(`website/es/guides/${slug}/index.html`).includes('topics/data-center-cooling-capacity/'));
+check('no spanish cooling topic', !require('fs').existsSync('website/es/topics/data-center-cooling-capacity/index.html'));
 
 if (failed) { console.error(failed + ' failed'); process.exit(1); }
 console.log('PASS pue calculation guide');
