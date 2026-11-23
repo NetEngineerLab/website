@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-copper-propagation-delay-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-5b24d1c16ae0";
+const CACHE = "nel-copper-propagation-delay-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-d0e4b3faedc8";
 const CORE = [
   "./",
   "./index.html",

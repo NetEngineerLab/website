@@ -1,0 +1,64 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>机柜是断路器先满，还是制冷先满？ | NetEngineerLab</title><meta name="description" content="示例：十台500 W设备按80%利用率，在16 A断路器上是18.31 A，达到断路器的114.4%。这些热量对应的制冷功率是1432.15 W。"><link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/guide.css?v=ffc815a61c42"><meta property="og:url" content="https://netengineerlab.com/zh/guides/rack-breaker-before-cooling/">
+<meta property="og:title" content="机柜是断路器先满，还是制冷先满？ | NetEngineerLab">
+<meta property="og:description" content="示例：十台500 W设备按80%利用率，在16 A断路器上是18.31 A，达到断路器的114.4%。这些热量对应的制冷功率是1432.15 W。">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="机柜是断路器先满，还是制冷先满？ | NetEngineerLab">
+<meta name="twitter:description" content="示例：十台500 W设备按80%利用率，在16 A断路器上是18.31 A，达到断路器的114.4%。这些热量对应的制冷功率是1432.15 W。">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"4 kW时机柜的16 A断路器会不会先于制冷失败？","name":"4 kW时机柜的16 A断路器会不会先于制冷失败？","description":"示例：十台500 W设备按80%利用率，在16 A断路器上是18.31 A，达到断路器的114.4%。这些热量对应的制冷功率是1432.15 W。","url":"https://netengineerlab.com/zh/guides/rack-breaker-before-cooling/","inLanguage":"zh-CN","mainEntityOfPage":"https://netengineerlab.com/zh/guides/rack-breaker-before-cooling/","author":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"4 kW时机柜的16 A断路器会不会先于制冷失败？","item":"https://netengineerlab.com/zh/guides/rack-breaker-before-cooling/"}]}</script>
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=475098aa29f5">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"机柜是断路器先满，还是制冷先满？ | NetEngineerLab","url":"https://netengineerlab.com/zh/guides/rack-breaker-before-cooling/","description":"示例：十台500 W设备按80%利用率，在16 A断路器上是18.31 A，达到断路器的114.4%。这些热量对应的制冷功率是1432.15 W。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="zh">
+<meta name="nel-route" content="guides/rack-breaker-before-cooling/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/zh/guides/rack-breaker-before-cooling/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/rack-breaker-before-cooling/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/rack-breaker-before-cooling/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/es/guides/rack-breaker-before-cooling/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/rack-breaker-before-cooling/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=c957f6562d31"></script>
+</head><body>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="打开导航菜单"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="主导航">
+      <a href="../../">首页</a>
+      <a href="../../../tools/zh/">工具中心</a>
+      <a href="../" aria-current="page">工程指南</a>
+      <a href="../../topics/">专题</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/guides/rack-breaker-before-cooling/" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="/zh/guides/rack-breaker-before-cooling/" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a><a class="language-option" role="menuitem" href="/es/guides/rack-breaker-before-cooling/" lang="es" hreflang="es"><span>Español</span><small>西班牙语</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END --><nav class="guide-breadcrumb" aria-label="面包屑"><a href="../../">首页</a><span aria-hidden="true">›</span><a href="../">指南</a><span aria-hidden="true">›</span><span aria-current="page">4 kW时机柜的16 A断路器会不会先于制冷失败？</span></nav><main class="guide-shell" id="main"><section class="guide-hero"><p class="eyebrow">工程示例</p><h1>4 kW时机柜的16 A断路器会不会先于制冷失败？</h1><p class="guide-lead">这是工程示例，不是机柜验收。十台500 W设备按80%利用率是4000 W。230 V单相、16 A断路器上的电流是18.31 A，为断路器的114.4%。这些热量对应的制冷功率是1432.15 W，约1.222冷吨。</p><div class="guide-meta"><span>4 kW</span><span>114.4%</span><span>1.222冷吨</span><span>示例</span></div></section><div class="guide-tool-link"><strong>配套计算器</strong><p>计算器没有可覆盖本例全部输入的网址预设。按下列数值手工输入后再对照结果。</p><a href="../../../tools/network-rack-power-cooling-calculator/zh/">打开计算器 →</a></div><div class="guide-layout"><article class="guide-article"><p>制冷专题已经把房间热量换成冷吨。本例问的是一个机柜里谁先到限：输入的断路器，还是制冷功率。</p><h2>示例假设</h2><ul><li>十台设备，铭牌各500 W。利用率80%。没有增长，也没有额外冗余。功率因数0.95。230 V，单相，16 A断路器。</li><li>UPS效率0.95。PDU效率0.98。潜热份额为0。制冷COP为3。单路供电，不是双路。</li></ul><h2>步骤</h2><ol><li>实际功率 = 10 × 500 × 0.80 = 4000 W。视在功率 = 4000 / 0.95 = 4210.53 VA。</li><li>电流 = 4210.53 / 230 = 18.31 A。这是16 A的114.4%，计算器把电气校核标为不通过。</li><li>机柜发热 = 4000 / (0.95 × 0.98) = 4296.46 W。制冷输入 = 4296.46 / 3 = 1432.15 W，即1.222冷吨。</li></ol><h2>边界</h2><p>80%警告线属于这个计算器。本例不通过，是因为18.31 A已经高于输入的16 A断路器，不是因为套用了某一条电气规范。冷吨不是房间的N+1设计。ASHRAE Datacom只作为热环境参考，不为本机柜出证。</p><p>公开来源：<a href="https://www.ashrae.org/technical-resources/bookstore/datacom-series">https://www.ashrae.org/technical-resources/bookstore/datacom-series</a>。</p><p><a href="../../topics/data-center-capacity/">返回数据中心容量专题</a></p></article><aside class="guide-toc guide-related-side" aria-label="相关文章"><strong>相关文章</strong><ul><li><a href="../ups-battery-minutes-versus-n-plus-one/">电池还能撑21.25分钟，两台UPS模块退出一台还够吗？</a></li><li><a href="../monthly-energy-pue-not-redundancy/">电表算出的1.50 PUE到底说明了什么？</a></li><li><a href="../data-center-cooling-load-calculation/">数据中心制冷负荷计算：公式、实例与精密空调选型指南</a></li><li><a href="../../topics/data-center-capacity/">数据中心整体容量规划</a></li></ul></aside></div></main><!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div>
+    <nav class="site-shell-footer-links" aria-label="页脚导航">
+      <a href="../../about/">关于</a><a href="../../contact/">联系</a><a href="../../privacy/">隐私政策</a><a href="../../terms/">使用条款</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+</body></html>

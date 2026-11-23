@@ -1,6 +1,6 @@
 "use strict";
 // t316: tool-isolated exact-version fallback; online documents/styles/scripts always refresh.
-const CACHE = "nel-pmd-budget-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-49ef03fe803e";
+const CACHE = "nel-pmd-budget-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-3dcfd75db878";
 const CORE = [
   "./",
   "./index.html",

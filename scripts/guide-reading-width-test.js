@@ -12,7 +12,7 @@ const widths = [320, 375, 768, 1024, 1280];
 
 function pages() {
   const routes = [];
-  for (const locale of ["", "zh/"]) {
+  for (const locale of ["", "zh/", "es/"]) {
     for (const section of ["guides", "topics"]) {
       const dir = path.join(siteRoot, locale, section);
       if (!fs.existsSync(dir)) continue;
