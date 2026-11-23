@@ -102,7 +102,7 @@ STP、DNS、PUE 都没有现存专题。没有把 STP 塞进交换机专题，�
 - PR75，head `919f004e9fd910c518c2707895c2c4b2e55e689c`。源门禁未记通过。
 - PR78，head `37e3316db494d8306d5f9283512384a53b03efc6`，源预览 https://d9997d07.netengineerlab.pages.dev。源门禁未记通过。
 - PR76，当前 head `c24d0a41f204d3cb4cc3bb9a991762d39fbb37f6` 已纳入。旧 head `366c3a9d` 不再使用。源门禁未记通过。
-- PR81，当前 head `9e294d8da08df212bf79c9a930d36307f176ed5c` 已纳入。源预览 https://0cc32f65.netengineerlab.pages.dev 只覆盖该源分支。旧 head `871ca7b5` 不再使用。源门禁未记通过。
+- PR81，最终 head `bea0a9c831ce23506bcfb49ca91e7ff6bba084a1`。源 CI `45179074887` 和源 Cloudflare 已通过，固定预览是 https://aa9592c6.netengineerlab.pages.dev。这只验收源 PR。DNS 的 lastmod 在集成树里已经是 history。浏览器合同从 5 改为精确 6，对应「300 秒是多少分钟」。旧 run `45171384367` 不能当作这个 head 的结果。
 - PR83，head `603b26b386fc3b9aafc5f0bbc11acf87738fe36e` 已纳入。它只补上西语专题目录 JSON-LD 的闭合。源固定预览仍是上一头的 https://db1a1bae.netengineerlab.pages.dev。`726f959e` 的生产门禁失败不能当作这个 head 的结果。
 - PR72：排除。
 
@@ -134,5 +134,5 @@ DNS 和 PUE 工具增强记为支持项，不计入 10 个主优化族。DNS 只
 
 - 旧集成 head `0923ef85` 的 gate `45177320761` 不能当作包含西语制冷专题和 FAQ 合同之后的通过。新 head 推送后要看它自己的 `verify-production-build`。
 - 源 PR 仍然不合 `main`，也没有发布授权。
-- 源 PR75、PR77、PR78、PR76、PR81、PR83 的门禁都还不能记为通过。只有 PR80 的源 CI 和源 Cloudflare 部署按已验收记录。
+- 源 PR75、PR77、PR78、PR76、PR83 的门禁都还不能记为通过。PR80 和 PR81 的源 CI 与源 Cloudflare 按已验收记录，集成门禁仍要看最后这个 head 自己的运行。
 - 集成预览要等本 head 的新部署。旧的 https://f3e13ddd.netengineerlab.pages.dev 不含这次合入的摄像机、DNS 和 PUE。
