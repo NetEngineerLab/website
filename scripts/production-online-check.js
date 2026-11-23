@@ -6,6 +6,7 @@ const path=require("path");
 const{stableFileHash,stableHash}=require("./stable-text-hash");
 const{rulesRuntimeAssets}=require("./rules-runtime-assets");
 const{expectedSitemapPathnames}=require("./lib/expected-sitemap");
+const{HOME_STYLESHEET,homepageStyleErrors,linkedStylesheets}=require("./lib/home-style-contract");
 
 const root=path.resolve(__dirname,"..");
 const websiteRoot=path.join(root,"website");
@@ -23,7 +24,6 @@ const managedAssets=[
   "data/tools-catalog.js",
   "assets/css/design-tokens.css",
   "assets/css/site-shell.css",
-  "assets/css/home-mobile-layout.css",
   "assets/css/tool-design-system.css",
   "assets/css/locale-menu.css",
   "assets/js/analytics.js",
@@ -39,7 +39,6 @@ const homeReadinessAssets=[
   "data/tools-catalog.js",
   "assets/css/design-tokens.css",
   "assets/css/site-shell.css",
-  "assets/css/home-mobile-layout.css",
   "assets/css/locale-menu.css",
   "assets/js/analytics.js",
   "assets/js/adsense.js",
@@ -175,21 +174,85 @@ async function mapLimit(items,limit,worker){
   return output;
 }
 function parseCatalog(source){
-  const match=source.match(/window\.NEL_TOOLS\s*=\s*(\[[\s\S]*\])\s*;?\s*$/);
-  if(!match)throw new Error("Unable to parse window.NEL_TOOLS");
-  return JSON.parse(match[1]);
+  const text=String(source||"");
+  const start=text.search(/window\.NEL_TOOLS\s*=\s*\[/);
+  if(start<0)throw new Error("Unable to parse window.NEL_TOOLS");
+  const arrayStart=text.indexOf("[",start);
+  let depth=0;
+  let inString=false;
+  let escaped=false;
+  for(let index=arrayStart;index<text.length;index++){
+    const character=text[index];
+    if(inString){
+      if(escaped)escaped=false;
+      else if(character==="\\")escaped=true;
+      else if(character==="\"")inString=false;
+      continue;
+    }
+    if(character==="\"")inString=true;
+    else if(character==="[")depth++;
+    else if(character==="]"){
+      depth--;
+      if(depth===0){
+        const tools=JSON.parse(text.slice(arrayStart,index+1));
+        if(!Array.isArray(tools))throw new Error("NEL_TOOLS is not an array");
+        return tools;
+      }
+    }
+  }
+  throw new Error("Unable to parse window.NEL_TOOLS");
 }
 
+function localeHomePath(locale){return locale.folder?`/${locale.folder}/`:"/"}
+async function loadStylesheet(url,cache){
+  if(cache.has(url))return cache.get(url);
+  const result=await requestAbsolute(url);
+  const item={status:result.response.status,text:result.text,actualHash:fullHash(Buffer.from(result.text)).slice(0,12)};
+  cache.set(url,item);
+  return item;
+}
+async function auditHomepageStyles(pages){
+  const errors=[];
+  const expectedHash=contentHash(path.join(websiteRoot,HOME_STYLESHEET));
+  const cache=new Map();
+  for(const page of pages){
+    const pathname=new URL(page.url).pathname;
+    if(page.response.status!==200){errors.push(`${pathname}: HTTP ${page.response.status}`);continue}
+    const pageUrl=`${base}${pathname}`;
+    const link=linkedStylesheets(page.text,pageUrl).find(item=>item.pathname===HOME_STYLESHEET);
+    let css=null;
+    if(link){
+      try{css={...await loadStylesheet(link.abs,cache),expectedHash}}
+      catch(error){errors.push(`${pathname}: ${HOME_STYLESHEET} ${error.message||String(error)}`);continue}
+    }
+    errors.push(...homepageStyleErrors({pathname,html:page.text,pageUrl,css}));
+  }
+  return errors;
+}
 async function readinessCheck(attempt){
   const errors=[];
   let home;
   let toolsDirectory;
+  let homePages=[];
   const requestProbe=pathname=>requestPath(probePath(pathname,attempt));
-  try{[home,toolsDirectory]=await Promise.all([requestProbe("/"),requestProbe("/tools/zh/")])}
+  const homePaths=activeLocales.map(localeHomePath);
+  try{
+    const results=await Promise.all([...homePaths.map(requestProbe),requestProbe("/tools/zh/")]);
+    homePages=results.slice(0,homePaths.length);
+    home=homePages[0];
+    toolsDirectory=results[homePaths.length];
+  }
   catch(error){return{ready:false,errors:[error.message||String(error)]}}
-  if(home.response.status!==200)errors.push(`/: HTTP ${home.response.status}`);
+  for(const page of homePages){
+    const pathname=new URL(page.url).pathname;
+    if(page.response.status!==200)errors.push(`${pathname}: HTTP ${page.response.status}`);
+    else errors.push(...requiredAssetsMatch(page.text,`${base}${pathname}`,homeReadinessAssets));
+  }
   if(toolsDirectory.response.status!==200)errors.push(`/tools/zh/: HTTP ${toolsDirectory.response.status}`);
-  if(home.response.status===200)errors.push(...requiredAssetsMatch(home.text,`${base}/`,homeReadinessAssets));
+  if(homePages.every(page=>page.response.status===200)){
+    try{errors.push(...await auditHomepageStyles(homePages))}
+    catch(error){errors.push(error.message||String(error))}
+  }
   if(toolsDirectory.response.status===200){
     errors.push(...requiredAssetsMatch(toolsDirectory.text,`${base}/tools/zh/`,["data/tools-catalog.js","assets/js/site.js"]));
     if(!assetOrderOk(toolsDirectory.text,`${base}/tools/zh/`))errors.push("/tools/zh/: tools catalog is not before site runtime");
@@ -264,7 +327,7 @@ async function readinessCheck(attempt){
     }
   }
 
-  return{ready:errors.length===0,errors,home,toolsDirectory,sitemapResponse,sitemapUrls,pageResults,remoteAssets,tools,serviceWorkers};
+  return{ready:errors.length===0,errors,home,toolsDirectory,sitemapResponse,sitemapUrls,pageResults,remoteAssets,tools,serviceWorkers,homepageStyleChecked:true};
 }
 
 function createCheckContext(){
@@ -288,6 +351,7 @@ async function runFullCheck(readiness,readyAttempt){
   record("production HTTPS or local test",baseUrl.protocol==="https:"||localMode,base);
   record("deployment matches checked-out asset hashes",readiness.ready,`attempt ${readyAttempt}/${attempts}`);
   record("home HTTP 200",home.response.status===200,String(home.response.status));
+  record("homepage stylesheet loads and applies",readiness.homepageStyleChecked===true,`${activeLocales.map(locale=>locale.id).join(",")} ${HOME_STYLESHEET}`);
   record("home canonical",hasCanonical(home.text,`${expectedOrigin}/`),expectedOrigin);
   record("security header nosniff",headerIncludes(home.response,"x-content-type-options","nosniff"));
   record("security header frame",headerIncludes(home.response,"x-frame-options","sameorigin"));
@@ -486,4 +550,4 @@ if(require.main===module)main().catch(error=>{
   process.exit(1);
 });
 
-module.exports={hasServiceWorkerRevalidation};
+module.exports={hasServiceWorkerRevalidation,parseCatalog};
