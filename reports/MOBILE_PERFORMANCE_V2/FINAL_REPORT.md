@@ -35,7 +35,7 @@ The Cloudflare Pages branch preview confirmed the same result on the CDN: mobile
 
 - The Pages preview was measured. Production `netengineerlab.com` was not, because this change does not deploy production.
 - Field Core Web Vitals are UNKNOWN.
-- `npm test` fails in `tool-detail-v3-contract-test.js` on the SFP/QSFP service worker precache. That file is not in this diff.
+- The production build now stays clean. `build:i18n` refreshes the site-shell hash on generated pages and service workers, keeps the three homepages on `home-bundle.css`, and writes `llms.txt` with Markdown links. A second build leaves the worktree unchanged. The tool-detail V3 contract, including the SFP/QSFP precache, passes on that tree.
 - Not every calculator was exercised in a browser. Subnet and optical budget engines passed. Category coverage passed.
 - `/assets/*` remains a one-day cache. Only the new font files are immutable for a year.
 - HSTS `includeSubDomains` is already live. Preload was not added. CSP stays report-only.
