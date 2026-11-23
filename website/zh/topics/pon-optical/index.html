@@ -67,6 +67,10 @@
 <h1>PON光网络设计与故障诊断</h1>
 <p>把无源光分配设计与现场ONU接收功率、OTDR事件及复测结果关联起来。设计验收必须使用实际OLT/ONU规格和现场测量值。</p>
 <h2>从这里开始</h2><p><a href="../../guides/pon-splitter-loss-guide/">PON分光损耗与ODN余量指南</a>说明分光级联损耗模型和可复算案例；通用链路预算可继续阅读<a href="../../guides/fiber-link-budget-guide/">光纤链路预算指南</a>。</p>
+<section id="budget-reach">
+<h2>预算与距离</h2>
+<p>点对点光纤的损耗、余量和最大距离放在<a href="../../guides/fiber-link-budget-guide/">光纤链路预算指南</a>。其中有两组可复算案例：10 km 设计损耗 7.9 dB，对应 14 dB 等级预算；40 km 设计损耗 12.8 dB，对应 30 dB 等级预算。12 dB 的短距预算不能通过 40 km 路径。分光级联损耗留在<a href="../../guides/pon-splitter-loss-guide/">PON 分光指南</a>，不放进这两组案例。</p>
+</section>
 <h2>按任务选择路径</h2><ul>
 <li><strong>设计新PON链路：</strong>拆分光纤及器件损耗，选择分光级联，比较收发窗口并校核距离。</li>
 <li><strong>排查ONU收光偏低：</strong>记录ONU RX，使用校准的光功率计在正确参考点复核，利用OTDR定位异常事件，对照设计预算，修复后复测并记录前后结果。</li>

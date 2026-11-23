@@ -82,6 +82,18 @@
 <p><strong>边界：</strong>未计入 LAG 哈希不均、微突发和交换网内部超售。不能替代实测计数或厂商 QoS 限制。请与<a href="../../guides/switch-oversubscription-n-1/">N-1 指南</a>和计算器交叉核对。</p>
 </section>
 <!-- NEL_WORKED_EXAMPLE_END -->
+<section id="task-routes">
+<h2>任务分流</h2>
+<p>每项交换任务都有起点和单独校核。本专题负责接入交换机上联超售比、LAG 和 N-1。本页不判定为 Authority，该分级等待独立验收记录。</p>
+<ul>
+<li><strong>超售比。</strong>从<a href="../../guides/switch-oversubscription-ratio/">超售比公式指南</a>开始。校核 48 × 1 Gbps ÷ 20 Gbps = 2.4:1。</li>
+<li><strong>48 口方案。</strong>从<a href="../../guides/48-port-switch-oversubscription/">48 口实例</a>开始。用同一接入池比较 2×10G、4×10G 和 2×25G。</li>
+<li><strong>忙时需求。</strong>从<a href="../../guides/48-port-switch-2x10g-enough/">2×10G 是否够用</a>开始。已公布的 13 Gbps 需求在正常状态余量为 20 − 13 = +7 Gbps。</li>
+<li><strong>N-1。</strong>从<a href="../../guides/switch-oversubscription-n-1/">N-1 故障指南</a>开始。一条 10G 成员退出后剩 10 Gbps，10 − 13 = −3 Gbps。不能只凭正常状态通过方案。</li>
+<li><strong>LAG 不均。</strong>从<a href="../../guides/lacp-member-congestion/">LACP 成员拥塞</a>开始。总余量不能证明每条成员链路都空闲。</li>
+</ul>
+<p>把 48 口案例重新输入<a href="../../../tools/switch-uplink-oversubscription-calculator/zh/">上联计算器</a>。上面每份指南都返回本专题。</p>
+</section>
 <h2>故障与冗余</h2><p>不能只看正常状态。具备冗余要求的网络还应该检查一条上联故障后的剩余容量、忙时业务需求和增长余量。</p><a href="../../guides/switch-oversubscription-n-1/"><strong>N-1故障下交换机超售比怎么计算？</strong><br>计算故障后的剩余容量、余量和升级方案。</a><h2>GitHub工程资源</h2><p>GitHub版本用于工程速查，不复制网站全文。</p><div class="guide-related-grid"><a  href="../../guides/switch-oversubscription-ratio/"><strong>GitHub：交换机超售比工程速查</strong><br>汇总公式、设计规则和计算案例。</a><a  href="../../guides/48-port-switch-oversubscription/"><strong>GitHub：48口交换机案例</strong><br>对比48口接入交换机的常见上联方案。</a><a  href="../../guides/48-port-switch-2x10g-enough/"><strong>GitHub：2×10G容量判断</strong><br>快速判断两条10G上联是否满足需求。</a><a  href="../../guides/switch-oversubscription-n-1/"><strong>GitHub：N-1超售比校核</strong><br>汇总故障状态公式、余量校核和升级触发条件。</a></div><h2>推荐学习顺序</h2><ol><li>先阅读完整超售比指南。</li><li>再看48口交换机实例。</li><li>用计算器代入自己的参数。</li><li>重新计算N-1故障状态。</li><li>比较2×10G、4×10G、2×25G等现实升级方案。</li></ol><h2>当前专题资源</h2><table><thead><tr><th>资源</th><th>用途</th><th>状态</th></tr></thead><tbody><tr><td>主指南</td><td>完整概念与工程流程</td><td>已完成</td></tr><tr><td>48口案例</td><td>典型实例</td><td>已完成</td></tr><tr><td>在线计算器</td><td>交互式容量规划</td><td>已完成</td></tr><tr><td>GitHub工程速查</td><td>Markdown技术资料</td><td>项目文件已完成</td></tr><tr><td>GitHub 48口案例</td><td>Markdown案例</td><td>项目文件已完成</td></tr><tr><td>2×10G问题页</td><td>长尾搜索入口</td><td>已完成</td></tr><tr><td>LACP成员拥塞指南</td><td>成员级流量诊断与N-1算例</td><td>已完成</td></tr><tr><td>N-1问题页</td><td>故障容量分析</td><td>已完成</td></tr></tbody></table></article><aside class="guide-toc" aria-label="专题目录"><strong>专题内容</strong><a href="../../guides/switch-oversubscription-ratio/">主指南</a><a href="../../guides/48-port-switch-oversubscription/">48口案例</a><a href="../../../tools/switch-uplink-oversubscription-calculator/zh/">计算器</a></aside></div><h2>工程边界与常见问题</h2><p>结果取决于忙时流量、链路方向、LAG 哈希、故障拓扑和设备限制。采购前须结合遥测和设计评审复核。</p><details><summary>超售比能单独证明容量足够吗？</summary><p>不能。还需检查实测利用率、流量分布和 N-1 故障后的存活容量。</p></details><h2>相关专题</h2><ul><li><a href="../telecom-power-energy/">通信电源与能源规划</a></li><li><a href="../data-center-cooling-capacity/">数据中心制冷负荷与容量</a></li></ul><p class="hub-return" data-nel-cluster-link><a href="../../../tools/switching-bandwidth-calculators/zh/">超售比、带宽、子网、VLAN 和织物容量计算器清单见交换与带宽计算器入口。</a></p>
 </main><!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
