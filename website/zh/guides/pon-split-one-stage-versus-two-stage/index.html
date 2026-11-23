@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>同样1:64，一级分光和两级分光哪个余量更大？ | NetEngineerLab</title><meta name="description" content="示例：同一条8公里光路，一级1:64还剩0.30 dB，两级方案少0.20 dB并失败。表中损耗不是厂商曲线。"><link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/guide.css?v=ffc815a61c42"><meta property="og:url" content="https://netengineerlab.com/zh/guides/pon-split-one-stage-versus-two-stage/">
+<meta property="og:title" content="同样1:64，一级分光和两级分光哪个余量更大？ | NetEngineerLab">
+<meta property="og:description" content="示例：同一条8公里光路，一级1:64还剩0.30 dB，两级方案少0.20 dB并失败。表中损耗不是厂商曲线。">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="同样1:64，一级分光和两级分光哪个余量更大？ | NetEngineerLab">
+<meta name="twitter:description" content="示例：同一条8公里光路，一级1:64还剩0.30 dB，两级方案少0.20 dB并失败。表中损耗不是厂商曲线。">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"同样是1:64，一级分光比两级多留下多少余量？","name":"同样是1:64，一级分光比两级多留下多少余量？","description":"示例：同一条8公里光路，一级1:64还剩0.30 dB，两级方案少0.20 dB并失败。表中损耗不是厂商曲线。","url":"https://netengineerlab.com/zh/guides/pon-split-one-stage-versus-two-stage/","inLanguage":"zh-CN","mainEntityOfPage":"https://netengineerlab.com/zh/guides/pon-split-one-stage-versus-two-stage/","author":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://netengineerlab.com/zh/"},{"@type":"ListItem","position":2,"name":"同样是1:64，一级分光比两级多留下多少余量？","item":"https://netengineerlab.com/zh/guides/pon-split-one-stage-versus-two-stage/"}]}</script>
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=475098aa29f5">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"同样1:64，一级分光和两级分光哪个余量更大？ | NetEngineerLab","url":"https://netengineerlab.com/zh/guides/pon-split-one-stage-versus-two-stage/","description":"示例：同一条8公里光路，一级1:64还剩0.30 dB，两级方案少0.20 dB并失败。表中损耗不是厂商曲线。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/zh/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="zh">
+<meta name="nel-route" content="guides/pon-split-one-stage-versus-two-stage/">
+<meta name="nel-available-locales" content="en,zh,es">
+<link rel="canonical" href="https://netengineerlab.com/zh/guides/pon-split-one-stage-versus-two-stage/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/pon-split-one-stage-versus-two-stage/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/pon-split-one-stage-versus-two-stage/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/es/guides/pon-split-one-stage-versus-two-stage/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/pon-split-one-stage-versus-two-stage/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=c957f6562d31"></script>
+</head><body>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>网络工程师智能工具平台</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="打开导航菜单"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="主导航">
+      <a href="../../">首页</a>
+      <a href="../../../tools/zh/">工具中心</a>
+      <a href="../" aria-current="page">工程指南</a>
+      <a href="../../topics/">专题</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/guides/pon-split-one-stage-versus-two-stage/" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="/zh/guides/pon-split-one-stage-versus-two-stage/" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a><a class="language-option" role="menuitem" href="/es/guides/pon-split-one-stage-versus-two-stage/" lang="es" hreflang="es"><span>Español</span><small>西班牙语</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<nav class="guide-breadcrumb" aria-label="面包屑"><a href="../../">首页</a><span aria-hidden="true">›</span><a href="../">指南</a><span aria-hidden="true">›</span><span aria-current="page">同样是1:64，一级分光比两级多留下多少余量？</span></nav>
+<main class="guide-shell" id="main"><section class="guide-hero"><p class="eyebrow">工程示例</p><h1>同样是1:64，一级分光比两级多留下多少余量？</h1><p class="guide-lead">只是示例，不是厂商 PLC 证书。这条8公里光路里，计算器的规划表给一级1:64记20.5 dB，给1:8加1:8或1:16加1:4记21.0 dB。三种方案都是64路。一级仍在警告，余量0.30 dB。两种两级都失败，余量-0.20 dB。</p><div class="guide-meta"><span>1:64</span><span>0.30 dB</span><span>-0.20 dB</span><span>示例</span></div></section>
+<div class="guide-tool-link"><strong>配套计算器</strong><p>这个计算器没有能填满本例全部输入的网址预设。按下列数值手工输入后再对照结果。</p><a href="../../../tools/pon-splitter-loss/zh/">打开分光计算器 →</a></div>
+<div class="guide-layout"><article class="guide-article">
+<p>分光方法指南已经算过一组1:8乘1:8。本页问的是另一件事：用户规模同为64路时，同一条光路上一级是否比两级留下更多余量。</p>
+<h2>示例假设</h2>
+<ul><li>每一行用同一条光路：8公里，0.35 dB/km，4个熔接点各0.10 dB，4对连接器各0.50 dB，没有第三级，也没有其他无源损耗。</li><li>写进表格的光模块限值只是示例：发送3 dBm，最大发送7 dBm，灵敏度-27 dBm，过载-8 dBm，光代价1 dB，工程余量3 dB，系统距离20公里。这不是摘来的等级表。</li><li>分光损耗用的是本计算器的规划表：1:64为20.5 dB，1:8为10.5 dB，1:16为13.8 dB，1:4为7.2 dB。64路的理想分光损耗是18.06 dB。这张表不是测过的厂商数据。</li></ul>
+<h2>步骤</h2>
+<ol><li>用户数相同：64，或8乘8，或16乘4。光纤是8乘0.35，等于2.80 dB。熔接0.40 dB。连接器2.00 dB。</li><li>一只1:64：分光损耗20.5 dB，比18.06 dB多出的超额损耗是2.44 dB。物理损耗25.7 dB。设计损耗28.7 dB。</li><li>输入窗口是3减（-27）再减1，等于29 dB。剩余预算是29减28.7，等于0.30 dB。估算收光-22.7 dBm，灵敏度余量4.30 dB。因为0.30 dB低于计算器的3 dB警告带，状态是警告。</li><li>1:8加1:8，以及1:16加1:4，损耗都是21.0 dB。超额损耗2.94 dB。物理损耗26.2 dB。设计损耗29.2 dB。剩余预算-0.20 dB。收光-23.2 dBm。状态是失败。</li><li>光学最大距离一级是8.86公里，两种两级都是7.43公里。它们都低于20公里的系统距离，所以失败不是被系统距离卡住的。</li></ol>
+<h2>选择表</h2>
+<table><thead><tr><th>方案</th><th>分光 dB</th><th>物理 dB</th><th>设计 dB</th><th>剩余 dB</th><th>状态</th></tr></thead><tbody><tr><td>1:64</td><td>20.5</td><td>25.7</td><td>28.7</td><td>0.30</td><td>警告</td></tr><tr><td>1:8 + 1:8</td><td>21.0</td><td>26.2</td><td>29.2</td><td>-0.20</td><td>失败</td></tr><tr><td>1:16 + 1:4</td><td>21.0</td><td>26.2</td><td>29.2</td><td>-0.20</td><td>失败</td></tr></tbody></table>
+<h2>边界</h2>
+<p>警告不是通过，两级也不是更多容量。它还是64路，只是分在两只分光器里，并按这张表多付0.5 dB。接受工程前，要用厂商插入损耗数据替换20.5 dB和21.0 dB。本例不证明某个等级、某只连接器或一条实测 ODN。</p>
+<p><a href="../../topics/pon-optical/">返回 PON 光网络专题</a></p>
+</article><aside class="guide-toc guide-related-side" aria-label="相关文章"><strong>相关文章</strong><ul><li><a href="../pon-splitter-loss-guide/">PON分光损耗计算：级联分光比、插入损耗与ODN余量</a></li><li><a href="../fiber-link-budget-guide/">光纤链路预算计算：损耗、余量与最大距离</a></li><li><a href="../../topics/pon-optical/">PON光网络设计与故障诊断</a></li></ul></aside></div></main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>面向通信与网络工程师的专业在线工具平台。</p></div>
+    <nav class="site-shell-footer-links" aria-label="页脚导航">
+      <a href="../../about/">关于</a><a href="../../contact/">联系</a><a href="../../privacy/">隐私政策</a><a href="../../terms/">使用条款</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+</body></html>

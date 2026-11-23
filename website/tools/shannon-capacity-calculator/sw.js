@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-shannon-capacity-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-4248e6091ca4";
+const CACHE = "nel-shannon-capacity-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-f9ea47257ed2";
 const CORE = [
   "./",
   "./index.html",
