@@ -1,4 +1,4 @@
-"use strict";const CACHE = "nel-onu-rx-power-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-ec381963ba90";
+"use strict";const CACHE = "nel-onu-rx-power-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-6f070cb7f566";
 const CORE = [
   "./index.html",
   "./",
@@ -56,7 +56,8 @@ const CORE = [
   "./manifest-zh.webmanifest",
   "./es/",
   "./es/index.html",
-  "./manifest-es.webmanifest"
+  "./manifest-es.webmanifest",
+  "../../assets/js/es-launch-runtime.js?v=e0fea69289b0"
 ];self.addEventListener("install", (event) => {  event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)));  self.skipWaiting();});self.addEventListener("activate", (event) => {  event.waitUntil(caches.keys().then((keys) => Promise.all(    keys.filter((key) => key.startsWith("nel-onu-rx-power-") && key !== CACHE).map((key) => caches.delete(key))  )));  self.clients.claim();});self.addEventListener("fetch", (event) => {  const request = event.request;  const url = new URL(request.url);  if (request.method !== "GET" || url.origin !== location.origin) return;  if (request.mode === "navigate") {    event.respondWith(fetch(request).then((response) => {      const copy = response.clone();      caches.open(CACHE).then((cache) => cache.put(request, copy));      return response;    }).catch(() => nelScopedCacheMatch(request, { ignoreSearch: true }).then(      (cached) => cached || nelScopedCacheMatch("./offline.html")    )));    return;  }  event.respondWith(nelScopedCacheMatch(request, { ignoreSearch: true }).then((cached) => cached || fetch(request).then((response) => {    if (response.ok) {      const copy = response.clone();      caches.open(CACHE).then((cache) => cache.put(request, copy));    }    return response;  })));});
 /* NEL_SCOPED_CACHE_START */
 // A different tool may retain another version of a shared asset. Never search

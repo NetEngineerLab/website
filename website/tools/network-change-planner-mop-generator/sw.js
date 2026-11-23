@@ -1,4 +1,4 @@
-"use strict";const CACHE = "nel-network-change-planner-mop-generator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-0d899bdd4011";
+"use strict";const CACHE = "nel-network-change-planner-mop-generator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-1976800be6ff";
 const CORE = [
   "./",
   "./index.html",
@@ -45,7 +45,8 @@ const CORE = [
   "./manifest-zh.webmanifest",
   "./es/",
   "./es/index.html",
-  "./manifest-es.webmanifest"
+  "./manifest-es.webmanifest",
+  "../../assets/js/es-launch-runtime.js?v=e0fea69289b0"
 ];self.addEventListener("install",event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)));self.skipWaiting()});self.addEventListener("activate",event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith("nel-network-change-planner-mop-generator-")&&k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim()});self.addEventListener("fetch",event=>{const request=event.request,url=new URL(request.url);if(request.method!=="GET"||url.origin!==location.origin)return;if(request.mode==="navigate"){event.respondWith(fetch(request).catch(()=>nelScopedCacheMatch(request,{ignoreSearch:true}).then(x=>x||nelScopedCacheMatch("./offline.html"))));return}event.respondWith(nelScopedCacheMatch(request,{ignoreSearch:true}).then(x=>x||fetch(request)))});
 /* NEL_SCOPED_CACHE_START */
 // A different tool may retain another version of a shared asset. Never search

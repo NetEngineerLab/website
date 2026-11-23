@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-engineering-report-batch-export-center-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-fa7f05baae3a";
+const CACHE = "nel-engineering-report-batch-export-center-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-b8bcb88cf324";
 const CORE = [
   "./index.html",
   "./",
@@ -49,7 +49,8 @@ const CORE = [
   "./es/",
   "./es/index.html",
   "./manifest-es.webmanifest",
-  "./css/style.css?v=20261108-erc-bw1"
+  "./css/style.css?v=20261108-erc-bw1",
+  "../../assets/js/es-launch-runtime.js?v=e0fea69289b0"
 ];
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)));

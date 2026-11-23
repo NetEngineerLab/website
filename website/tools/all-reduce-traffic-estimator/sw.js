@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-all-reduce-traffic-estimator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-c05ec43116dc";
+const CACHE = "nel-all-reduce-traffic-estimator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-3a66e9265d5d";
 const CORE = [
   "./index.html",
   "./",
@@ -47,7 +47,8 @@ const CORE = [
   "./manifest-zh.webmanifest",
   "./es/",
   "./es/index.html",
-  "./manifest-es.webmanifest"
+  "./manifest-es.webmanifest",
+  "../../assets/js/es-launch-runtime.js?v=e0fea69289b0"
 ];
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)));

@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-acl-generator-validator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-7823c7cf1d58";
+const CACHE = "nel-acl-generator-validator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-e1efc2d9c9e2-d4aecc349651";
 const CORE = [
   "./index.html",
   "./",
@@ -64,7 +64,8 @@ const CORE = [
   "./manifest-zh.webmanifest",
   "./es/",
   "./es/index.html",
-  "./manifest-es.webmanifest"
+  "./manifest-es.webmanifest",
+  "../../assets/js/es-launch-runtime.js?v=e0fea69289b0"
 ];
 self.addEventListener("install",event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)));self.skipWaiting()});
 self.addEventListener("activate",event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith("nel-acl-generator-validator-")&&key!==CACHE).map(key=>caches.delete(key)))));self.clients.claim()});
