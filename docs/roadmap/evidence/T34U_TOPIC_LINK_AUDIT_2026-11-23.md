@@ -28,8 +28,8 @@ PR78 的“不再新开”只表示不再加第三篇光纤或 ONU 文；去重�
 - PON 光学：已纳入 PR75 `919f004e` 和 PR78 `37e3316d` 的三语正文。专题说明理想分光和规划插入损耗、12 km 光纤项，以及一次 ONU 读数为什么还不是定位到的故障。西语分光说明现在存在。西语每公里说明仍指向英文总预算指南，因为没有西语总预算页。
 - 摄像机带宽与 PoE：已纳入 PR76 当前 head `c24d0a41f204d3cb4cc3bb9a991762d39fbb37f6`。英/中/西说明都有规划器、PoE 功率、90 米电压和 16/24 摄像机实例，并返回本专题。这不是第 6 篇新文。
 - 交换机超售：PR77 最终 head 的专题、五族正文和三语路径已纳入预览。专题不是第 6 个主优化族。
-- 制冷容量：已纳入 PR83 最终 head `726f959e8bcf2c568cc927013e657792ef51fa62`。英/中/西都是既有专题，西语是全译，不是第 6 篇。`#field-case` 仍是 136.25 kW / 38.74 tons，`#worked-cases` 保留。PUE 示例是总电能 150000 ÷ IT 100000 = 1.50，快照是 560 / 400 = 1.40。
-- 交换机计算器 FAQ：英/中/西页面和 JSON-LD 都是 6 条，第 6 条是超售比不等于已测拥塞。PR77 最终 head `ce742fca07543a7973223fdc291e556ca4f6fbda` 只把浏览器合同从 5 改成精确的 6，没有删问题，也没有放宽成至少。旧 gate `45170839941` 的 8 项失败不能当作这个 head 的结果。
+- 制冷容量：已纳入 PR83 head `603b26b386fc3b9aafc5f0bbc11acf87738fe36e`。英/中/西都是既有专题，西语是全译，不是第 6 篇。`#field-case` 仍是 136.25 kW / 38.74 tons，`#worked-cases` 保留。PUE 示例是总电能 150000 ÷ IT 100000 = 1.50，快照是 560 / 400 = 1.40。西语专题目录 JSON-LD 里制冷是容量的同级条目，不再嵌在容量对象里。
+- 交换机计算器 FAQ：英/中/西页面和 JSON-LD 都是 6 条，第 6 条是超售比不等于已测拥塞。浏览器合同仍是精确的 6。西语专题目录指向 `#guides`，章节标题是「Guías principales」。`ce742fca` 的 gate `45178304123` 不能当作这个目录修复的结果。
 - 通信电源：只做既有导航核对。专题已经指向整流器、油机续航和整流器说明，并明确不收数据中心 UPS。没有扩写正文。
 - 网络监测：只做既有导航核对。专题已经指向带宽分析、容量预测和 LACP 诊断说明。没有新造专题，也没有把未上线工具写成页面。
 
@@ -98,12 +98,12 @@ STP、DNS、PUE 都没有现存专题。没有把 STP 塞进交换机专题，�
 源 PR 与本树要分开记：
 
 - PR80，head `38bd048bc727b15ac1b4f15b1ea1e189867ccedd`。源 CI `45170062592` 已通过，Cloudflare `b0f2daff` 已通过，源 PR 验收完成。这不表示本集成树的门禁通过。
-- PR77，最终 head `ce742fca07543a7973223fdc291e556ca4f6fbda`。旧 head `0916d1af` 的 gate `45170839941` 因 FAQ 数量 5 对 6 失败，不能代替这个 head。新源 gate `45178304123` 合入时仍在跑，Cloudflare `baa715d7` 当时还不是成功。源预览仍是 `https://7eeb3fab.netengineerlab.pages.dev`，那是旧 head。
+- PR77，head `ebcf349f32b5b33b61fc3472e9f927d7f9934b7e`。FAQ 合同仍是精确 6 条。西语目录锚点改为 `#guides`。源 gate `45185676043` 合入时仍在跑，Cloudflare `b15485e4` 当时还不是成功。旧 gate `45178304123` 和 `45170839941` 都不能代替这个 head。
 - PR75，head `919f004e9fd910c518c2707895c2c4b2e55e689c`。源门禁未记通过。
 - PR78，head `37e3316db494d8306d5f9283512384a53b03efc6`，源预览 https://d9997d07.netengineerlab.pages.dev。源门禁未记通过。
 - PR76，当前 head `c24d0a41f204d3cb4cc3bb9a991762d39fbb37f6` 已纳入。旧 head `366c3a9d` 不再使用。源门禁未记通过。
 - PR81，当前 head `9e294d8da08df212bf79c9a930d36307f176ed5c` 已纳入。源预览 https://0cc32f65.netengineerlab.pages.dev 只覆盖该源分支。旧 head `871ca7b5` 不再使用。源门禁未记通过。
-- PR83，最终 head `726f959e8bcf2c568cc927013e657792ef51fa62` 已纳入。源固定预览是 https://db1a1bae.netengineerlab.pages.dev。旧 head `d35211da` 的本地 gate 不能当作这个 head 的证据。西语制冷专题是既有专题的全译。
+- PR83，head `603b26b386fc3b9aafc5f0bbc11acf87738fe36e` 已纳入。它只补上西语专题目录 JSON-LD 的闭合。源固定预览仍是上一头的 https://db1a1bae.netengineerlab.pages.dev。`726f959e` 的生产门禁失败不能当作这个 head 的结果。
 - PR72：排除。
 
 `a0bcfdef` 的集成预览是 https://f3e13ddd.netengineerlab.pages.dev。那个预览早于摄像机、DNS 和 PUE 的合入，不能拿来证明这三部分已经上线。新 head 推送后的 Cloudflare 预览要等部署评论，不能用生产域名代替。
