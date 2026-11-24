@@ -1,6 +1,6 @@
 "use strict";
 // t316: tool-isolated exact-version fallback; online documents/styles/scripts always refresh.
-const CACHE = "nel-fiber-latency-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-465c6141abd9-bd744317b52a";
+const CACHE = "nel-fiber-latency-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-465c6141abd9-6bff5ff798fb";
 const CORE = [
   "./",
   "./index.html",
