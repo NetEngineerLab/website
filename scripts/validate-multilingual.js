@@ -100,7 +100,8 @@ for(const record of records){
  const menuCount=(html.match(/\bdata-language-menu\b/gi)||[]).length;
  if(menuCount!==1)errors.push(`${record.rel}: expected one language menu, found ${menuCount}`);
  const menu=html.match(/<!-- NEL_LANGUAGE_MENU_START -->([\s\S]*?)<!-- NEL_LANGUAGE_MENU_END -->/i)?.[1]||"";
- for(const alt of active.filter(x=>group.has(x.id))){
+ const publishedHere=x=>group.has(x.id)&&(x.status==="active"||(x.status==="pilot"&&(x.pilotRoutes||[]).includes(record.info.route)));
+ for(const alt of config.locales.filter(publishedHere)){
   const tag=(menu.match(/<a\b[^>]*>/gi)||[]).find(value=>new RegExp(`hreflang=["']${alt.hreflang.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}["']`,"i").test(value));
   const href=tag?.match(/href=["']([^"']+)["']/i)?.[1];
   const expected=config.siteUrl+urlFor(record.info.route,alt);
@@ -111,7 +112,7 @@ for(const record of records){
   if(!/name=["']robots["'][^>]*content=["']noindex,follow["']/i.test(html)&&!/content=["']noindex,follow["'][^>]*name=["']robots["']/i.test(html))errors.push(`${record.rel}: 404 must be noindex`);
  }else{
   if(linkHref(html,"canonical")!==canonical)errors.push(`${record.rel}: canonical mismatch`);
-  for(const alt of active.filter(x=>group.has(x.id))){
+  for(const alt of config.locales.filter(publishedHere)){
    const expected=config.siteUrl+urlFor(record.info.route,alt);
    if(linkHref(html,"alternate",alt.hreflang)!==expected)errors.push(`${record.rel}: hreflang ${alt.hreflang} mismatch`);
   }
@@ -120,7 +121,8 @@ for(const record of records){
    if(linkHref(html,"alternate","x-default")!==expected)errors.push(`${record.rel}: x-default mismatch`);
   }
  }
- if(locale.status!=="active"&&!/name=["']robots["'][^>]*content=["']noindex,follow["']/i.test(html)&&!/content=["']noindex,follow["'][^>]*name=["']robots["']/i.test(html))errors.push(`${record.rel}: planned locale must be noindex`);
+ const publishedPilot=locale.status==="pilot"&&(locale.pilotRoutes||[]).includes(record.info.route);
+ if(locale.status!=="active"&&!publishedPilot&&!/name=["']robots["'][^>]*content=["']noindex,follow["']/i.test(html)&&!/content=["']noindex,follow["'][^>]*name=["']robots["']/i.test(html))errors.push(`${record.rel}: planned locale must be noindex`);
 }
 const sitemap=fs.readFileSync(path.join(site,"sitemap.xml"),"utf8");
 const locs=[...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1]);

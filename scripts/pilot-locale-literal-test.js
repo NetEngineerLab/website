@@ -86,6 +86,29 @@ assert.match(read("website/tools/bandwidth-calculator/index.html"), /data_bits �
 assert.match(read("website/tools/bandwidth-calculator/zh/index.html"), /有效业务速率 = 物理速率 × 业务载荷效率 × 允许利用率/, "Chinese bandwidth equation");
 assert.match(read("website/tools/bandwidth-calculator/es/index.html"), /bits_de_datos ÷ \(caudal_enlace × eficiencia × utilización\)/, "Spanish bandwidth equation");
 
+const unpublishedShells = ["", "tools/", "guides/", "topics/", "about/", "contact/", "privacy/", "terms/"];
+for (const locale of ["id", "pt-br"]) {
+  for (const route of unpublishedShells) {
+    const rel = route === "" ? `website/${locale}/index.html` : route === "tools/" ? `website/tools/${locale}/index.html` : `website/${locale}/${route}index.html`;
+    assert.equal(fs.existsSync(path.join(root, rel)), false, `${rel} stays unpublished`);
+  }
+}
+for (const [tool, locale] of [["subnet-calculator", "id"], ["subnet-calculator", "pt-br"], ["bandwidth-calculator", "id"], ["bandwidth-calculator", "pt-br"]]) {
+  const html = read(`website/tools/${tool}/${locale}/index.html`);
+  const pageUrl = `https://netengineerlab.com/tools/${tool}/${locale}/index.html`;
+  for (const href of html.match(/href="([^"]+)"/g).map(item => item.slice(6, -1))) {
+    if (/^(https?:|mailto:|#|\?)/.test(href)) continue;
+    const pathName = new URL(href, pageUrl).pathname;
+    assert.doesNotMatch(pathName, /^\/(id|pt-br)\/|^\/tools\/(id|pt-br)\/|^\/guides\/(id|pt-br)\/|^\/topics\/(id|pt-br)\//, `${tool}/${locale} must not link to an unpublished shell: ${pathName}`);
+  }
+  const menu = html.match(/<!-- NEL_LANGUAGE_MENU_START -->([\s\S]*?)<!-- NEL_LANGUAGE_MENU_END -->/)[1];
+  assert.match(menu, new RegExp(`href="/tools/${tool}/id/"[^>]*hreflang="id"`));
+  assert.match(menu, new RegExp(`href="/tools/${tool}/pt-br/"[^>]*hreflang="pt-BR"`));
+}
+const linker = fs.readFileSync(path.join(root, "scripts/build-multilingual.js"), "utf8").match(/function linkedLocale\(route,locale\)\{[\s\S]*?\n\}/)[0];
+assert.match(linker, /localePageExists\(route,locale\)\?locale:defaultLocale/);
+assert.doesNotMatch(linker, /publishesRoute/);
+
 const reference = {};
 const loaded = {
   "office-vlan-26": ["192.168.10.128/26", "192.168.10.129", "192.168.10.190", "62"],

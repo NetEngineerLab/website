@@ -55,7 +55,10 @@ function localePageExists(route,locale){
  return candidates.some(item=>fs.existsSync(path.join(siteRoot,...item.split("/"))));
 }
 function linkedLocale(route,locale){
- return publishesRoute(locale,route)&&localePageExists(route,locale)?locale:defaultLocale;
+ // Follow a real same-language page whenever it is on disk. Pilot scope still
+ // decides sitemap and hreflang; a missing home or directory must not be
+ // invented, and it must not be addressed until that page exists.
+ return localePageExists(route,locale)?locale:defaultLocale;
 }
 const activeTools=toolCatalog.filter(item=>item.status==="active");
 const configuredRoutes=new Set(sitemapConfig.routes.map(item=>item.route));
@@ -1053,6 +1056,8 @@ function build(){
   const canonical=localeConfig.siteUrl+urlForRoute(record.info.route,locale);
   const indexable=record.info.route!=="404.html"&&publishesRoute(locale,record.info.route);
   if(!indexable)return html;
+  const publishedHome=localeConfig.siteUrl+urlForRoute("",linkedLocale("",locale));
+  html=html.replace(/("isPartOf":\{"@type":"WebSite","name":"NetEngineerLab","url":")https:\/\/netengineerlab\.com\/(?:id|pt-br)\/("\})/g,`$1${publishedHome}$2`);
   html=ensureOpenGraphMeta(html,canonical);
   html=ensureTwitter(html,`${localeConfig.siteUrl}/assets/images/og-netengineerlab.png`);
   html=ensureRobots(html,{indexable:true});
@@ -1066,7 +1071,7 @@ function build(){
     canonical,
     localeId:locale.id,
     homeUrl:localeConfig.siteUrl+urlForRoute("",linkedLocale("",locale)),
-    toolsUrl:localeConfig.siteUrl+urlForRoute("tools/",locale),
+    toolsUrl:localeConfig.siteUrl+urlForRoute("tools/",linkedLocale("tools/",locale)),
     name,
     description,
     calculatorHub:/-calculators\/$/.test(record.info.route),
