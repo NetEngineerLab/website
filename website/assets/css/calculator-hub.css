@@ -18,3 +18,42 @@ body{min-width:320px;font-family:var(--nel-font-family,Inter,ui-sans-serif,syste
 .hub-faq summary{cursor:pointer;font-weight:700}
 .hub-faq p{margin:10px 0 0;line-height:1.6;color:#24344d}
 @media(max-width:720px){.calculator-hub{padding:20px 16px 48px}.hub-card-grid{grid-template-columns:1fr}}
+
+/* The cluster note lives in the prose column with the FAQ and related cards.
+   The shared .hub-return rule is a full-width capsule (border-radius: 999px).
+   On these hubs that capsule is wider than the column, so the first line runs
+   past the rounded end. A 16px corner matches the cards and keeps wrapped
+   lines inside the border at desktop, 1024px and 375px. */
+body.nel-tool-v3 #hub .prose > .hub-return{
+  width:100%;
+  max-width:none;
+  margin:0 0 16px;
+  padding:14px 18px;
+  border-radius:16px;
+  box-sizing:border-box;
+  min-width:0;
+  white-space:normal;
+  overflow-wrap:break-word;
+}
+body.nel-tool-v3 #hub .prose > .hub-return a{
+  white-space:normal;
+  overflow-wrap:break-word;
+}
+/* Extra related links stay in the same column as the FAQ card and the note.
+   A body-level content section is centered on the whole workbench, so its
+   heading starts to the left of that column. */
+body.nel-tool-v3 #hub .prose > section.content-section[data-nel-editorial-links]{
+  width:100%;
+  max-width:100%;
+  margin:0 0 8px;
+  padding:0;
+  box-sizing:border-box;
+  min-width:0;
+}
+body.nel-tool-v3 #hub .prose > section.content-section[data-nel-editorial-links] h2,
+body.nel-tool-v3 #hub .prose > section.content-section[data-nel-editorial-links] p,
+body.nel-tool-v3 #hub .prose > section.content-section[data-nel-editorial-links] a{
+  white-space:normal;
+  overflow-wrap:break-word;
+  max-width:100%;
+}

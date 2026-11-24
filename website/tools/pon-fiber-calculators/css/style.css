@@ -81,9 +81,20 @@ body.nel-tool-v3 #hub > .below > .toc a.on{
   body.nel-tool-v3 #hub .prose > section.panel{padding:18px}
 }
 
-/* The closing FAQ and topic note belong in the right column, with the same card border. */
+/* The closing topic note belongs in the prose column. Shared hub CSS keeps
+   the text inside a 16px rounded box that lines up with the FAQ cards. */
 body.nel-tool-v3 #hub .prose > .hub-return{
   width:100%;
   max-width:none;
   margin:0 0 16px;
+  padding:14px 18px;
+  border-radius:16px;
+  box-sizing:border-box;
+  min-width:0;
+  white-space:normal;
+  overflow-wrap:break-word;
+}
+body.nel-tool-v3 #hub .prose > .hub-return a{
+  white-space:normal;
+  overflow-wrap:break-word;
 }
