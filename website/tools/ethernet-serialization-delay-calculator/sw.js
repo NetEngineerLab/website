@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-ethernet-serialization-delay-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-94e01684dcc3-bfb316b71780";
+const CACHE = "nel-ethernet-serialization-delay-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-94e01684dcc3-29ab14bc865d";
 const CORE = [
   "./index.html",
   "./",
@@ -16,6 +16,7 @@ const CORE = [
   "./js/engine.js?v=290f80636505",
   "../../assets/js/id-launch-runtime.js?v=3bc487934804",
   "../../assets/js/pt-br-launch-runtime.js?v=9ae15bbd4462",
+  "../../assets/css/pilot-locale-toc.css?v=20261124toc",
   "../../data/locales.js?v=ebbce1fad9e4",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
@@ -51,8 +52,7 @@ const CORE = [
   "./manifest-id.webmanifest",
   "./pt-br/",
   "./pt-br/index.html",
-  "./manifest-pt-br.webmanifest",
-  "../../assets/css/pilot-locale-toc.css?v=20261124toc"
+  "./manifest-pt-br.webmanifest"
 ];
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)));

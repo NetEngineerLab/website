@@ -1,6 +1,6 @@
 "use strict";
 // t316: tool-isolated exact-version fallback; online documents/styles/scripts always refresh.
-const CACHE = "nel-chromatic-dispersion-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-94e01684dcc3-6298fb4f2e4e";
+const CACHE = "nel-chromatic-dispersion-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-94e01684dcc3-5d03a6c69c76";
 const CORE = [
   "./",
   "./index.html",
@@ -38,6 +38,7 @@ const CORE = [
   "../../assets/js/es-launch-runtime.js?v=e0fea69289b0",
   "../../assets/js/id-launch-runtime.js?v=3bc487934804",
   "../../assets/js/pt-br-launch-runtime.js?v=9ae15bbd4462",
+  "../../assets/css/pilot-locale-toc.css?v=20261124toc",
   "../../data/locales.js?v=ebbce1fad9e4",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
@@ -73,8 +74,7 @@ const CORE = [
   "./manifest-id.webmanifest",
   "./pt-br/",
   "./pt-br/index.html",
-  "./manifest-pt-br.webmanifest",
-  "../../assets/css/pilot-locale-toc.css?v=20261124toc"
+  "./manifest-pt-br.webmanifest"
 ];
 self.addEventListener("install", event => {
  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(CORE).then(() => self.skipWaiting())));
