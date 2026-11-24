@@ -1,6 +1,6 @@
 "use strict";
 // t316: tool-isolated exact-version fallback; online documents/styles/scripts always refresh.
-const CACHE = "nel-pmd-budget-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-4077d6be2c85-3d46f81e30cd";
+const CACHE = "nel-pmd-budget-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-4077d6be2c85-ec1e79139e8d";
 const CORE = [
   "./",
   "./index.html",
@@ -36,6 +36,7 @@ const CORE = [
   "./js/pwa.js?v=20261108-pmd-bw5",
   "./js/app.js?v=e53bab0cf63e",
   "../../assets/js/es-launch-runtime.js?v=829a7f1559b7",
+  "../../assets/js/es-launch-runtime.js?v=e0fea69289b0",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",

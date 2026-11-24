@@ -151,7 +151,7 @@ const contentContracts={
     ]
   },
   "dns-ttl-propagation-calculator":{
-    faqCount:5,
+    faqCount:6,
     references:[
       "https://www.rfc-editor.org/rfc/rfc1035.html",
       "https://www.rfc-editor.org/rfc/rfc2308.html",
@@ -160,7 +160,7 @@ const contentContracts={
     ]
   },
   "switch-uplink-oversubscription-calculator":{
-    faqCount:5,
+    faqCount:6,
     references:[
       "https://standards.ieee.org/ieee/802.1AX/6768/",
       "https://datatracker.ietf.org/doc/rfc7424/",

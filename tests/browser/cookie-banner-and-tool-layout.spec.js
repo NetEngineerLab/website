@@ -62,6 +62,16 @@ async function hubReturnAlignment(page) {
     const hub = document.querySelector(".hub-return");
     if (!hub) return {error: "missing hub-return"};
     const hubBox = hub.getBoundingClientRect();
+    const next = hub.nextElementSibling;
+    if (next && next.classList.contains("content-section")) {
+      const cardBox = next.getBoundingClientRect();
+      return {
+        left: Math.abs(hubBox.left - cardBox.left),
+        right: Math.abs(hubBox.right - cardBox.right),
+        gap: cardBox.top - hubBox.bottom,
+        toolPage: document.body.classList.contains("nel-tool-detail-page")
+      };
+    }
     const selectors = [
       "body > .content-section",
       // Fieldbook pages keep the supporting sections inside .below, beside the TOC.
@@ -78,8 +88,8 @@ async function hubReturnAlignment(page) {
     const card = cards[0];
     if (!card) return {error: "missing neighbouring card"};
     const cardBox = card.getBoundingClientRect();
-    const next = hub.nextElementSibling;
-    const gap = next ? next.getBoundingClientRect().top - hubBox.bottom : null;
+    const following = hub.nextElementSibling;
+    const gap = following ? following.getBoundingClientRect().top - hubBox.bottom : null;
     return {
       left: Math.abs(hubBox.left - cardBox.left),
       right: Math.abs(hubBox.right - cardBox.right),

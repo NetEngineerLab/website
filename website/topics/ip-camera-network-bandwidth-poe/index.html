@@ -1,19 +1,19 @@
-<!doctype html><html lang="en" dir="ltr" data-nel-locale="en" data-nel-route="topics/ip-camera-network-bandwidth-poe/"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>IP Camera Network Bandwidth &amp; PoE Planning Hub | NetEngineerLab</title><meta name="description" content="Plan camera bandwidth, PoE budget, switch uplinks, NVR storage and N-1 resilience."><meta property="og:url" content="https://netengineerlab.com/topics/ip-camera-network-bandwidth-poe/">
-<meta property="og:title" content="IP Camera Network Bandwidth &amp; PoE Planning Hub | NetEngineerLab">
-<meta property="og:description" content="Plan camera bandwidth, PoE budget, switch uplinks, NVR storage and N-1 resilience.">
+<!doctype html><html lang="en" dir="ltr" data-nel-locale="en" data-nel-route="topics/ip-camera-network-bandwidth-poe/"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Camera Network Bandwidth and PoE Switch Power Budget | NetEngineerLab</title><meta name="description" content="Camera network bandwidth is concurrent streams on one path, in Mbit/s, times a stated overhead allowance. The PoE switch power budget is a separate watt check."><meta property="og:url" content="https://netengineerlab.com/topics/ip-camera-network-bandwidth-poe/">
+<meta property="og:title" content="Camera Network Bandwidth and PoE Switch Power Budget | NetEngineerLab">
+<meta property="og:description" content="Camera network bandwidth is concurrent streams on one path, in Mbit/s, times a stated overhead allowance. The PoE switch power budget is a separate watt check.">
 <meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="IP Camera Network Bandwidth &amp; PoE Planning Hub | NetEngineerLab">
-<meta name="twitter:description" content="Plan camera bandwidth, PoE budget, switch uplinks, NVR storage and N-1 resilience.">
+<meta name="twitter:title" content="Camera Network Bandwidth and PoE Switch Power Budget | NetEngineerLab">
+<meta name="twitter:description" content="Camera network bandwidth is concurrent streams on one path, in Mbit/s, times a stated overhead allowance. The PoE switch power budget is a separate watt check.">
 <meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
 <meta name="robots" content="index,follow,max-image-preview:large">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Topics","item":"https://netengineerlab.com/topics/"},{"@type":"ListItem","position":3,"name":"IP Camera Network Bandwidth & PoE Planning","item":"https://netengineerlab.com/topics/ip-camera-network-bandwidth-poe/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://netengineerlab.com/"},{"@type":"ListItem","position":2,"name":"Topics","item":"https://netengineerlab.com/topics/"},{"@type":"ListItem","position":3,"name":"Camera Network Bandwidth and PoE Switch Power Budget | NetEngineerLab","item":"https://netengineerlab.com/topics/ip-camera-network-bandwidth-poe/"}]}</script>
 
 <link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
 <link rel="stylesheet" href="../../assets/css/site-pages-v2.css?v=20261105-v2">
-<link rel="stylesheet" href="../../assets/css/editorial-fresh.css?v=20261109-edit7">
+<link rel="stylesheet" href="../../assets/css/editorial-fresh.css?v=20261123-align2">
 <link rel="stylesheet" href="../../assets/css/topic-hub.css?v=5a0cf14d3558">
-<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"IP Camera Network Bandwidth & PoE Planning Hub | NetEngineerLab","url":"https://netengineerlab.com/topics/ip-camera-network-bandwidth-poe/","description":"Plan camera bandwidth, PoE budget, switch uplinks, NVR storage and N-1 resilience.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Camera Network Bandwidth and PoE Switch Power Budget | NetEngineerLab","url":"https://netengineerlab.com/topics/ip-camera-network-bandwidth-poe/","description":"Camera network bandwidth is concurrent streams on one path, in Mbit/s, times a stated overhead allowance. The PoE switch power budget is a separate watt check.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/"}}</script>
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="en">
 <meta name="nel-route" content="topics/ip-camera-network-bandwidth-poe/">
@@ -23,7 +23,7 @@
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/topics/ip-camera-network-bandwidth-poe/">
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/es/topics/ip-camera-network-bandwidth-poe/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/topics/ip-camera-network-bandwidth-poe/">
-<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why do resolution, codec and frame rate all matter?","acceptedAnswer":{"@type":"Answer","text":"Codec efficiency, frame rate, scene motion and image detail change bitrate. Use the estimate for early planning and calibrate with vendor peak settings or measured traffic."}},{"@type":"Question","name":"Does an N-1 pass mean there are no single points of failure?","acceptedAnswer":{"@type":"Answer","text":"No. The calculator checks modeled dual-uplink bandwidth capacity only. Switches, stack control planes, power feeds, intermediate links and NVR failure domains need separate review."}}]}</script>
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can resolution alone predict bandwidth for IP cameras?","acceptedAnswer":{"@type":"Answer","text":"No. Codec, frame rate, scene motion and the bitrate setting change the result. Use the configured or measured average bitrate for each stream."}},{"@type":"Question","name":"Does a PoE power budget calculator give camera network bandwidth?","acceptedAnswer":{"@type":"Answer","text":"No. The PoE power budget calculator returns watts, port count and a class limit. Camera network bandwidth is a separate sum of concurrent stream bitrates in Mbit/s."}},{"@type":"Question","name":"Can I subtract a fixed percentage when moving from H.264 to H.265?","acceptedAnswer":{"@type":"Answer","text":"No. Do not apply a fixed savings percentage. H.264 and H.265 are different standards, and the bitrate still depends on the scene and the encoder settings."}}]}</script>
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../assets/css/site-shell.css?v=f427e2f1607b">
@@ -53,8 +53,92 @@
   </div>
 </header>
 <!-- NEL_HEADER_END -->
-<nav class="topic-hub-breadcrumb" aria-label="Breadcrumb"><a href="../../">Home</a><span aria-hidden="true">›</span><a href="../">Topics</a><span aria-hidden="true">›</span><span aria-current="page">IP Camera Network Bandwidth &amp; PoE Planning</span></nav><main class="guide-shell" id="main"><section class="guide-hero"><p class="eyebrow">TOPIC HUB</p><h1>IP Camera Network Bandwidth &amp; PoE Planning</h1><p class="guide-lead">Plan 100, 300 and 500 camera deployments from video bitrates through access uplinks, PoE, NVR storage and single-failure capacity checks.</p><div class="guide-meta"><span>Video Bandwidth</span><span>PoE Budget</span><span>NVR Storage</span><span>N-1</span></div></section><section class="topic-tools" aria-label="Topic tool"><div><span class="eyebrow">PLANNING CALCULATOR</span><strong>IP Camera Network Planner</strong><p>Enter resolution, codec, frame rate, camera count, PoE power and retention days.</p></div><a href="../../tools/ip-camera-network-planner/">Open calculator →</a></section><div class="guide-layout"><article class="guide-article"><h2>Start here</h2><p>Establish a consistent bitrate model, then replace its assumptions with camera data sheets and measured traffic.</p><div class="guide-cta"><strong>Compare 100 / 300 / 500 camera scenarios</strong><p>Review bandwidth, per-link uplinks, PoE budget and raw/usable NVR capacity.</p><a href="../../tools/ip-camera-network-planner/">Open the camera network planner →</a></div><h2>Recommended engineering path</h2><ol><li>Set resolution, codec, frame rate and scene complexity; verify peak bitrate.</li><li>Aggregate camera traffic and validate access and aggregation uplinks.</li><li>Size PoE power, ports and power resilience using maximum device draw.</li><li>Size NVR capacity for retention and verify failure behavior.</li></ol><h2>Engineering boundaries</h2><p>Bitrate varies with scene complexity, GOP, VBR configuration, audio and vendor implementation. Storage also depends on recording policy, RAID, filesystem and retention behavior. N-1 assumes independent dual uplink paths and that either surviving link can carry all camera traffic; validate stack/MLAG, power and switch failure domains separately. This calculator is for preliminary planning and does not replace device specifications or measured acceptance tests.</p><h2 id="faq">Frequently asked questions</h2><details><summary>Why do resolution, codec and frame rate all matter?</summary><p>Codec efficiency, frame rate, scene motion and image detail change bitrate. Use the estimate for early planning and calibrate with vendor peak settings or measured traffic.</p></details><details><summary>Does an N-1 pass mean there are no single points of failure?</summary><p>No. The calculator checks modeled dual-uplink bandwidth capacity only. Switches, stack control planes, power feeds, intermediate links and NVR failure domains need separate review.</p></details></article><aside class="guide-toc" aria-label="Topic contents"><strong>Topic contents</strong><a href="#main">Overview</a><a href="#faq">FAQ</a><a href="../../tools/ip-camera-network-planner/">Planning calculator</a></aside></div><p><a href="../../guides/poe-switch-budget-16-versus-24-cameras/">16 cameras pass a 370 W budget; 24 do not</a> · <a href="../../guides/poe-voltage-after-90m/">90 m of 26 AWG falls below 42.5 V</a></p><section class="content-section" data-nel-editorial-links><h2>Related pages</h2><p><a href="../../guides/ip-camera-network-bandwidth-poe/">Camera bandwidth, PoE and NVR method</a></p></section>
-</main><!-- NEL_FOOTER_START -->
+<nav class="topic-hub-breadcrumb" aria-label="Breadcrumb"><a href="../../">Home</a><span aria-hidden="true">›</span><a href="../">Topics</a><span aria-hidden="true">›</span><span aria-current="page">Camera network bandwidth and PoE switch power budget</span></nav>
+<main class="guide-shell" id="main">
+<section class="guide-hero">
+<p class="eyebrow">TOPIC HUB</p>
+<h1>Camera network bandwidth and PoE switch power budget</h1>
+<p class="guide-lead">Camera network bandwidth is the sum of concurrent streams on one path, in Mbit/s, times a stated overhead allowance. The PoE switch power budget is a separate watt check and does not set the bitrate.</p>
+<div class="guide-meta"><span>Mbit/s</span><span>PoE watts</span><span>Uplink</span><span>Example</span></div>
+</section>
+<section class="topic-tools" aria-label="Topic tools"><div><span class="eyebrow">START WITH THE QUESTION</span><strong>Watts, voltage, or bitrate?</strong><p>Open the watt calculator for switch power, the voltage calculator for the far end of the cable, and the guide for the throughput method.</p></div><a href="../../guides/ip-camera-network-bandwidth-poe/">Read the throughput method →</a></section>
+<div class="guide-layout">
+<article class="guide-article">
+<h2 id="overview">What this topic is for</h2>
+<p>This hub is for an access switch that both powers cameras and carries their video. It keeps three answers apart: bitrate in Mbit/s, switch watts, and voltage at the camera. The figures below are scenario examples, not a universal camera bitrate.</p>
+<h2 id="question">Which question you are asking</h2>
+<ul>
+<li>How much data is on one path? Count only the streams that use that path, then read the throughput guide.</li>
+<li>Does the switch power budget cover those cameras? Use the PoE power budget calculator. It returns watts, not Mbit/s.</li>
+<li>Is the voltage at the camera still above the floor you entered? Use the voltage-drop calculator. A watt pass does not answer it.</li>
+</ul>
+<h2 id="principle">Why the three answers stay separate</h2>
+<p>Bitrate, watts and voltage do not share a formula. Sections 1–7 are the method: what to add, what not to count twice, and which calculator owns which unit. A result from one section is not an input the others invent.</p>
+<h2 id="formula">1. Bandwidth formula</h2>
+<p>Path payload (Mbit/s) = the sum of streams that use that path at the same time. If every camera contributes the same streams, payload = count × the sum of those per-camera rates. Planning load = payload × an overhead allowance. This site’s worked allowance is × 1.15. It covers headers and short bursts when the input is an encoded bitrate. It is not an IEEE requirement. Do not apply it again to a switch-port measurement that already includes headers.</p>
+<h2 id="count">2. Count times one rate</h2>
+<p>One example stream of 4.0 Mbit/s, not a datasheet value: 100 cameras give 400 Mbit/s and 460 Mbit/s after × 1.15; 300 cameras give 1200 and 1380 Mbit/s; 500 cameras give 2000 and 2300 Mbit/s. That is the path those cameras share, not automatically every access uplink.</p>
+<h2 id="codec">3. H.264 and H.265</h2>
+<p>H.264 (ITU-T H.264) and H.265 (ITU-T H.265) are different standards. Do not apply a fixed savings percentage. Axis’s bitrate-control white paper ties variable bitrate to scene activity and does not give one percent for every camera. The on-site planner still multiplies megapixels by 0.075 (H.264), 0.045 (H.265) or 0.24 (MJPEG), then by (frames per second ÷ 15) × 8. Those coefficients are an internal placeholder. Do not reuse the gap between 0.075 and 0.045 as a savings percent. The planner is not modified here.</p>
+<h2 id="streams">4. Main and sub streams</h2>
+<p>Add a stream only when it is enabled and it uses the path. Example, not a datasheet: main 4.0 Mbit/s to an upstream NVR and sub 0.5 Mbit/s to an upstream operator PC, both unicast and concurrent, is 4.5 Mbit/s per camera on the uplink. If the operator PC is on the same access switch, the sub stream is not on the uplink. Do not count the same main stream again on the aggregation link.</p>
+<h2 id="uplink">5. Switch uplink</h2>
+<p>Size the access uplink for the cameras on that switch. The planner’s own line is its estimated total × 1.20, then the smallest of 1, 10, 25, 40 or 100 Gbit/s that is at least twice that total. That sketch is not this guide’s × 1.15, and it does not prove the two links are independent. Do not stack 1.15 on a planner result.</p>
+<h2 id="margin">6. Redundancy and margin</h2>
+<p>N-1 for bandwidth means the surviving path carries the load that moves onto it. One uplink has no surviving path. Growth × 1.20 in the worked case is a project choice applied after overhead, not a standard. PoE watt headroom does not change Mbit/s.</p>
+<h2 id="poe">7. PoE power is separate</h2>
+<p>The PoE power budget calculator uses source watts = PD watts ÷ (1 − cable-loss fraction), then required budget = source watts × count × (1 + headroom). It also checks port count and the class PD limits 12.95, 25.5, 51 and 71.3 W. The planner’s watt line is count × watts × 1.25. Those are different models. Remote voltage is a third model in the voltage-drop calculator.</p>
+<h2 id="example">8. Example: 16 cameras</h2>
+<p>Example. Sixteen cameras, main 4.0 and sub 0.5 both leaving the switch: payload 72.0 Mbit/s, × 1.15 = 82.8 Mbit/s, × 1.20 growth = 99.36 Mbit/s. If the sub stream stays on the switch: 64.0, then 73.6, then 88.32 Mbit/s. Recorded main stream only, decimal units: 43.2 GB/day each, 691.2 GB/day for 16, 20.736 TB in 30 days. Same 16 cameras at 12 W, 15% loss, 20% headroom, 802.3at: 271.06 W. Twenty-four cameras: 406.59 W. A 370 W switch passes 16 and fails 24 on watts. The planner converts 1 Mbit/s for one day into 0.0108 decimal TB and folds its 20% allowance into that storage line. The 90 m voltage example is a different load, 25.5 W, and returns 37.87 V on 26 AWG and 43.51 V on 23 AWG against an entered 42.5 V floor.</p>
+<h2 id="calculators">9. Calculators, with the question they answer</h2>
+<div class="guide-related-grid">
+<a href="../../guides/ip-camera-network-bandwidth-poe/"><strong>Throughput guide</strong><br>Full formula, units, assumptions and the 16-camera arithmetic.</a>
+<a href="../../tools/poe-power-budget-calculator/"><strong>PoE power budget calculator</strong><br>Switch watts, ports and class limit. Not Mbit/s.</a>
+<a href="../../tools/poe-voltage-drop-calculator/"><strong>PoE voltage drop calculator</strong><br>Far-end voltage. A watt pass does not answer it.</a>
+<a href="../../tools/ip-camera-network-planner/"><strong>IP Camera Network Planner</strong><br>First-pass sketch. Replace the codec coefficients before a decision.</a>
+</div>
+<h2 id="articles">Worked articles you can rerun</h2>
+<p>Each article types the same inputs into the frozen calculator and records the result. They are examples, not datasheets.</p>
+<ul>
+<li><a href="../../guides/poe-switch-budget-16-versus-24-cameras/">16 cameras pass a 370 W budget; 24 do not</a>. At 12 W, 15% cable loss, 20% headroom and 802.3at, 16 cameras need 271.06 W and 24 need 406.59 W.</li>
+<li><a href="../../guides/poe-voltage-after-90m/">90 m of 26 AWG falls below 42.5 V</a>. A different 25.5 W load returns 37.87 V on 26 AWG and 43.51 V on 23 AWG.</li>
+</ul>
+<h2 id="guide">Core guide</h2>
+<p>The <a href="../../guides/ip-camera-network-bandwidth-poe/">throughput guide</a> holds the units, the path rule and the 16-camera arithmetic. Start there for bitrate. That guide links back here for the watt case and the voltage case.</p>
+<h2 id="related">Related topics</h2>
+<p>The Mbit/s on an access uplink is an input to fabric sizing. The <a href="../switch-oversubscription/">switch oversubscription and uplink topic</a> covers ratio, LAG and N-1. It does not calculate a camera codec or a PoE watt budget.</p>
+<p>PoE watts are a load on the site power design. The <a href="../telecom-power-energy/">telecom power and energy topic</a> covers rectifiers, batteries and runtime. A passing PoE budget is not a battery-runtime result.</p>
+<h2 id="mistakes">10. Common mistakes</h2>
+<ul>
+<li>Reading bandwidth from the resolution label, or from a fixed H.265 percent.</li>
+<li>Adding a sub stream that does not use the uplink, or dropping one that does.</li>
+<li>Counting one stream twice, or applying both 1.15 and the planner’s 1.20.</li>
+<li>Treating a PoE watt pass as bitrate or as far-end voltage.</li>
+<li>Calling N-1 passed on a switch with one uplink.</li>
+</ul>
+<p>If the picture stalls, measure one port and list each stream’s destination. If cameras reboot when infrared starts, check watts and voltage.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<details><summary>Can resolution alone predict bandwidth for IP cameras?</summary><p>No. Codec, frame rate, scene motion and the bitrate setting change the result. Use the configured or measured average bitrate for each stream.</p></details>
+<details><summary>Does a PoE power budget calculator give camera network bandwidth?</summary><p>No. The PoE power budget calculator returns watts, port count and a class limit. Camera network bandwidth is a separate sum of concurrent stream bitrates in Mbit/s.</p></details>
+<details><summary>Can I subtract a fixed percentage when moving from H.264 to H.265?</summary><p>No. Do not apply a fixed savings percentage. H.264 and H.265 are different standards, and the bitrate still depends on the scene and the encoder settings.</p></details>
+<h2 id="further">Further reading</h2>
+<ul>
+<li><a href="https://www.itu.int/rec/T-REC-H.264">ITU-T H.264</a> and <a href="https://www.itu.int/rec/T-REC-H.265">ITU-T H.265</a></li>
+<li><a href="https://whitepapers.axis.com/download/wp_bitrate_control_for_ip_video_t10170456_2501.pdf">Axis, Bitrate control for IP video</a></li>
+<li><a href="https://www.ieee802.org/3/">IEEE 802.3</a> and the <a href="https://www.iol.unh.edu/sites/default/files/testsuites/ethernet/CL33_PD/PD_Test_Suite_v2.2.pdf">UNH-IOL Clause 33 PD suite</a> citing IEEE Std 802.3-2012 Table 33-18</li>
+</ul>
+</article>
+<aside class="guide-toc" aria-label="Topic contents"><strong>Topic contents</strong>
+<a href="#formula">Formula</a>
+<a href="#codec">H.264 and H.265</a>
+<a href="#example">16-camera example</a>
+<a href="#calculators">Calculators</a>
+<a href="#faq">FAQ</a>
+<a href="../../guides/ip-camera-network-bandwidth-poe/">Full guide</a>
+</aside>
+</div>
+</main>
+<!-- NEL_FOOTER_START -->
 <footer class="site-shell-footer">
   <div class="site-shell-footer-inner">
     <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Professional online tools for telecom and network engineers.</p></div>

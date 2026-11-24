@@ -1,6 +1,6 @@
 "use strict";
 // t316: tool-isolated exact-version fallback; online documents/styles/scripts always refresh.
-const CACHE = "nel-sfp-qsfp-compatibility-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-4077d6be2c85-b805dd9a3767";
+const CACHE = "nel-sfp-qsfp-compatibility-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-4077d6be2c85-ea4c8079162b";
 const CORE = [
   "./",
   "./index.html",
@@ -46,6 +46,7 @@ const CORE = [
   "./js/app.js?v=970bd5ed0286",
   "./js/pwa.js?v=20261108-sfp-bw6",
   "../../assets/js/es-launch-runtime.js?v=829a7f1559b7",
+  "../../assets/js/es-launch-runtime.js?v=e0fea69289b0",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",

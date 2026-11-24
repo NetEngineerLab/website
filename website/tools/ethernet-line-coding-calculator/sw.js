@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-ethernet-line-coding-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-4077d6be2c85-e1d75e744714";
+const CACHE = "nel-ethernet-line-coding-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-4077d6be2c85-f9a10efc4bfc";
 const CORE = [
   "./",
   "./index.html",
@@ -15,6 +15,7 @@ const CORE = [
   "../../assets/css/mobile-branding.css?v=345784b6b020",
   "../../assets/images/logo.svg",
   "../../assets/js/es-launch-runtime.js?v=829a7f1559b7",
+  "../../assets/js/es-launch-runtime.js?v=e0fea69289b0",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",

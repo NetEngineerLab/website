@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-data-center-cooling-load-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-4077d6be2c85-d6103e6144a4";
+const CACHE = "nel-data-center-cooling-load-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-4077d6be2c85-bdedd864e502";
 const CORE = [
   "./",
   "./index.html",
@@ -22,6 +22,7 @@ const CORE = [
   "./js/bw-page-adapter.js",
   "../../assets/js/es-launch-runtime.js?v=829a7f1559b7",
   "./js/engine.js?v=a3cf5dd850c0",
+  "../../assets/js/es-launch-runtime.js?v=e0fea69289b0",
   "../../data/locales.js?v=909e05076a50",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
