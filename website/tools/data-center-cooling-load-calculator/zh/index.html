@@ -18,20 +18,18 @@
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
 <meta name="nel-route" content="tools/data-center-cooling-load-calculator/">
-<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
+<meta name="nel-available-locales" content="en,zh,es">
 <link rel="canonical" href="https://netengineerlab.com/tools/data-center-cooling-load-calculator/zh/">
 <link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/data-center-cooling-load-calculator/">
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/data-center-cooling-load-calculator/zh/">
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/data-center-cooling-load-calculator/es/">
-<link rel="alternate" hreflang="id" href="https://netengineerlab.com/tools/data-center-cooling-load-calculator/id/">
-<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/tools/data-center-cooling-load-calculator/pt-br/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/data-center-cooling-load-calculator/">
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么 IT 功耗可以近似看作 IT 发热量？","acceptedAnswer":{"@type":"Answer","text":"IT设备消耗的电能最终几乎都会在受控空间内转化为热，因此 IT kW 可作为显热负荷的一阶工程输入。"}},{"@type":"Question","name":"UPS和PDU损耗是否要计入？","acceptedAnswer":{"@type":"Answer","text":"如果这些损耗释放在机房受控空间内，就应该计入；如果热量在房间外排散，则不要重复计算。"}},{"@type":"Question","name":"制冷 N+1 如何计算？","acceptedAnswer":{"@type":"Answer","text":"先按设计显热负荷计算实际需要运行的空调台数，再增加1台冗余，并核验任意1台退出后的剩余容量。"}},{"@type":"Question","name":"是否包含湿度和潜热负荷？","acceptedAnswer":{"@type":"Answer","text":"本V1主要计算显热。加湿、除湿、渗透风等潜热负荷需要进一步进行湿空气过程设计。"}},{"@type":"Question","name":"能否替代精密空调厂家选型？","acceptedAnswer":{"@type":"Answer","text":"不能。最终应使用厂家在实际回风/送风条件、海拔、风量、冗余策略和现场气流组织下的显冷量进行选型。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
 <link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
-<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
+<script defer src="../../../data/locales.js?v=d31aaedf75a0"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
@@ -53,7 +51,7 @@
       <a href="../../../zh/topics/">专题</a>
     </nav>
     <div class="site-shell-actions">
-      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/data-center-cooling-load-calculator/" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="/tools/data-center-cooling-load-calculator/zh/" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a><a class="language-option" role="menuitem" href="/tools/data-center-cooling-load-calculator/es/" lang="es" hreflang="es"><span>Español</span><small>西班牙语</small></a><a class="language-option" role="menuitem" href="/tools/data-center-cooling-load-calculator/id/" lang="id" hreflang="id"><span>Bahasa Indonesia</span><small>印尼语</small></a><a class="language-option" role="menuitem" href="/tools/data-center-cooling-load-calculator/pt-br/" lang="pt-BR" hreflang="pt-BR"><span>Português do Brasil</span><small>巴西葡萄牙语</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/data-center-cooling-load-calculator/" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="/tools/data-center-cooling-load-calculator/zh/" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a><a class="language-option" role="menuitem" href="/tools/data-center-cooling-load-calculator/es/" lang="es" hreflang="es"><span>Español</span><small>西班牙语</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
       <div class="site-shell-context-action"><a href="#calculator">开始计算</a></div>
     </div>
   </div>

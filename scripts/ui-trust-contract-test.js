@@ -17,7 +17,7 @@ function read(rel) {
 }
 
 const banned = [/MIB\/OID/i, /fault cases/i, /故障案例/, /casos de fallo/i];
-for (const rel of ["website/about/index.html", "website/zh/about/index.html", "website/es/about/index.html", "website/id/about/index.html", "website/pt-br/about/index.html"]) {
+for (const rel of ["website/about/index.html", "website/zh/about/index.html", "website/es/about/index.html"]) {
   const html = read(rel);
   assert.match(html, /"@type"\s*:\s*"AboutPage"/, `${rel}: AboutPage JSON-LD`);
   assert.match(html, /rel="canonical"/, `${rel}: canonical`);
@@ -30,7 +30,7 @@ for (const rel of ["website/about/index.html", "website/zh/about/index.html", "w
 }
 
 
-for (const [rel, locale] of [["website/tools/index.html","en"],["website/tools/zh/index.html","zh"],["website/tools/es/index.html","es"],["website/tools/id/index.html","id"],["website/tools/pt-br/index.html","ptBR"]]) {
+for (const [rel, locale] of [["website/tools/index.html","en"],["website/tools/zh/index.html","zh"],["website/tools/es/index.html","es"]]) {
   const html = read(rel);
   assert.match(html, /data-tool-count/, `${rel}: tools directory count marker`);
   const found = [...html.matchAll(/<(?:strong|span|b)\b[^>]*\bdata-tool-count\b[^>]*>\s*(\d+)\s*</gi)].map(m => m[1]);
@@ -43,13 +43,9 @@ const countPages = [
   ["website/index.html", "en"],
   ["website/zh/index.html", "zh"],
   ["website/es/index.html", "es"],
-  ["website/id/index.html", "id"],
-  ["website/pt-br/index.html", "ptBR"],
   ["website/about/index.html", "en"],
   ["website/zh/about/index.html", "zh"],
   ["website/es/about/index.html", "es"],
-  ["website/id/about/index.html", "id"],
-  ["website/pt-br/about/index.html", "ptBR"],
   ["website/terms/index.html", "en"],
   ["website/zh/terms/index.html", "zh"]
 ];
@@ -74,9 +70,7 @@ for (const slug of hubs) {
   for (const rel of [
     `website/tools/${slug}/index.html`,
     `website/tools/${slug}/zh/index.html`,
-    `website/tools/${slug}/es/index.html`,
-    `website/tools/${slug}/id/index.html`,
-    `website/tools/${slug}/pt-br/index.html`
+    `website/tools/${slug}/es/index.html`
   ]) {
     const html = read(rel);
     assert.match(html, /assets\/css\/site\.css/, `${rel}: site stylesheet`);

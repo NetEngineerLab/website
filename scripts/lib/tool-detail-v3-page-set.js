@@ -22,6 +22,8 @@ function loadPageSet(options = {}) {
   const sitemapXml = options.sitemapXml || fs.readFileSync(path.join(site, "sitemap.xml"), "utf8");
   const fileExists = options.fileExists || (rel => fs.existsSync(path.join(root, rel)));
   const locales = localeDoc.locales.filter(locale => locale.status === "active");
+  const pilots = localeDoc.locales.filter(locale => locale.status === "pilot");
+  const localesFor = slug => [...locales, ...pilots.filter(locale => (locale.pilotRoutes || []).includes("tools/" + slug + "/"))];
   const active = registry.filter(tool => tool.status === "active");
   const seen = new Set();
   for (const tool of active) {
@@ -40,7 +42,7 @@ function loadPageSet(options = {}) {
     }
     pages.push({ slug, locale: locale.id, url, file: rel, supplemental: supplementalPage });
   }
-  for (const tool of active) for (const locale of locales) add(tool.id, locale, false);
+  for (const tool of active) for (const locale of localesFor(tool.id)) add(tool.id, locale, false);
   for (const slug of supplemental) for (const locale of locales) add(slug, locale, true);
   const urls = pages.map(page => page.url);
   if (new Set(urls).size !== urls.length) throw new Error("duplicate-page-url");
@@ -56,7 +58,7 @@ function loadPageSet(options = {}) {
     const folder = match[2] || "";
     if (!folder && localeFolders.has(slug)) continue;
     if (hubSlugs.has(slug)) continue;
-    if (folder && !localeFolders.has(folder)) throw new Error("sitemap-extra: " + loc);
+    if (folder && !localeFolders.has(folder) && !pilots.some(locale => locale.folder === folder && (locale.pilotRoutes || []).includes("tools/" + slug + "/"))) throw new Error("sitemap-extra: " + loc);
     if (seenLoc.has(loc)) throw new Error("duplicate-sitemap-loc: " + loc);
     seenLoc.add(loc);
     toolLocs.push(loc);

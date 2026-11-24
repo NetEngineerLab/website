@@ -19,20 +19,18 @@
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
 <meta name="nel-route" content="tools/telecom-rectifier-dc-power-sizing/">
-<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
+<meta name="nel-available-locales" content="en,zh,es">
 <link rel="canonical" href="https://netengineerlab.com/tools/telecom-rectifier-dc-power-sizing/zh/">
 <link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/telecom-rectifier-dc-power-sizing/">
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/telecom-rectifier-dc-power-sizing/zh/">
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/telecom-rectifier-dc-power-sizing/es/">
-<link rel="alternate" hreflang="id" href="https://netengineerlab.com/tools/telecom-rectifier-dc-power-sizing/id/">
-<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/tools/telecom-rectifier-dc-power-sizing/pt-br/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/telecom-rectifier-dc-power-sizing/">
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么整流容量要计入电池回充电流？","acceptedAnswer":{"@type":"Answer","text":"市电恢复后，开关电源既要承担在线通信负载，又可能需要给蓄电池回充，因此回充阶段往往是直流系统的高负荷场景。"}},{"@type":"Question","name":"N+1和N+2冗余如何计算？","acceptedAnswer":{"@type":"Answer","text":"工具先根据通信负载、电池回充和工程余量向上取整得到工作模块数，再按策略增加1块或2块冗余模块。"}},{"@type":"Question","name":"掉一块模块校验是什么意思？","acceptedAnswer":{"@type":"Answer","text":"把设计所需电流与少一块整流模块后的剩余容量比较，用于判断单模块故障时是否仍能满足目标负载。"}},{"@type":"Question","name":"能直接用这个结果选择交流空开吗？","acceptedAnswer":{"@type":"Answer","text":"不能。交流输入估算只作为上游规划输入，最终保护器件还要核对厂家数据、导线载流量、短路电流、分断能力及当地电气规范。"}},{"@type":"Question","name":"这个工具能替代厂家开关电源设计吗？","acceptedAnswer":{"@type":"Answer","text":"不能。最终应核对控制器与机框容量、模块降额、电池回充策略、环境温度、布线接地以及具体厂家的冗余要求。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
 <link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
-<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
+<script defer src="../../../data/locales.js?v=d31aaedf75a0"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
@@ -54,7 +52,7 @@
       <a href="../../../zh/topics/">专题</a>
     </nav>
     <div class="site-shell-actions">
-      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/telecom-rectifier-dc-power-sizing/" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="/tools/telecom-rectifier-dc-power-sizing/zh/" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a><a class="language-option" role="menuitem" href="/tools/telecom-rectifier-dc-power-sizing/es/" lang="es" hreflang="es"><span>Español</span><small>西班牙语</small></a><a class="language-option" role="menuitem" href="/tools/telecom-rectifier-dc-power-sizing/id/" lang="id" hreflang="id"><span>Bahasa Indonesia</span><small>印尼语</small></a><a class="language-option" role="menuitem" href="/tools/telecom-rectifier-dc-power-sizing/pt-br/" lang="pt-BR" hreflang="pt-BR"><span>Português do Brasil</span><small>巴西葡萄牙语</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/telecom-rectifier-dc-power-sizing/" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="/tools/telecom-rectifier-dc-power-sizing/zh/" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a><a class="language-option" role="menuitem" href="/tools/telecom-rectifier-dc-power-sizing/es/" lang="es" hreflang="es"><span>Español</span><small>西班牙语</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
       <div class="site-shell-context-action"><a href="#calculator">开始计算</a></div>
     </div>
   </div>

@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-data-center-network-convergence-fabric-capacity-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-ff5180a4daf2-be57543904b7";
+const CACHE = "nel-data-center-network-convergence-fabric-capacity-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-468b89bdd0f7-75865ebb5fa5";
 const CORE = [
   "./",
   "./index.html",
@@ -13,22 +13,13 @@ const CORE = [
   "../../assets/images/logo.svg",
   "./js/defaults.js",
   "./js/deep-workflow.js?v=20261108-fabric-bw1",
-  "../../assets/js/es-launch-runtime.js?v=26766a85d049",
+  "../../assets/js/es-launch-runtime.js?v=e0fea69289b0",
   "./js/engine.js?v=ed8d5c064edc",
-  "../../assets/js/es-launch-runtime.js?v=c7c562a25b80",
-  "../../assets/js/es-launch-runtime.js?v=b69809c86108",
-  "../../assets/js/es-launch-runtime.js?v=3f188aa72208",
   "./js/locale-es.js",
   "./js/bw-page-adapter.js",
-  "../../assets/js/es-launch-runtime.js?v=829a7f1559b7",
-  "../../assets/js/es-launch-runtime.js?v=e0fea69289b0",
-  "../../assets/js/id-launch-runtime.js?v=b48f2804bf23",
-  "../../assets/js/pt-br-launch-runtime.js?v=c5ef6ab315f2",
-  "../../assets/js/id-launch-runtime.js?v=5c5c0a77817b",
-  "../../assets/js/pt-br-launch-runtime.js?v=1ad25de31c7f",
-  "../../assets/js/id-launch-runtime.js?v=2141d735b95b",
-  "../../assets/js/pt-br-launch-runtime.js?v=00893649b07d",
-  "../../data/locales.js?v=cc78cf7363f3",
+  "../../assets/js/id-launch-runtime.js?v=3461d0601eeb",
+  "../../assets/js/pt-br-launch-runtime.js?v=1223d823e2c6",
+  "../../data/locales.js?v=d31aaedf75a0",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",
@@ -57,15 +48,7 @@ const CORE = [
   "./manifest-zh.webmanifest",
   "./es/",
   "./es/index.html",
-  "./manifest-es.webmanifest",
-  "./id/",
-  "./id/index.html",
-  "./manifest-id.webmanifest",
-  "./pt-br/",
-  "./pt-br/index.html",
-  "./manifest-pt-br.webmanifest",
-  "../../assets/js/id-launch-runtime.js?v=3461d0601eeb",
-  "../../assets/js/pt-br-launch-runtime.js?v=1223d823e2c6"
+  "./manifest-es.webmanifest"
 ];self.addEventListener("install",e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)));self.skipWaiting()});self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith("nel-data-center-network-convergence-fabric-capacity-planner-")&&k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim()});self.addEventListener("fetch",e=>{if(e.request.method!=="GET")return;e.respondWith(nelScopedCacheMatch(e.request,{ignoreSearch:true}).then(c=>c||fetch(e.request).catch(()=>nelScopedCacheMatch("./offline.html"))))});
 /* NEL_SCOPED_CACHE_START */
 // A different tool may retain another version of a shared asset. Never search

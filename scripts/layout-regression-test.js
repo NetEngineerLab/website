@@ -69,7 +69,7 @@ assert(!/querySelector\("\.nel-cookie-reject"\)\.focus\(\)/.test(consentSource),
 const buildSource = fs.readFileSync(path.join(root, "scripts/build-multilingual.js"), "utf8");
 assert(buildSource.includes("repairPageLayout"), "multilingual build must apply layout repairs");
 
-const toolPages = ["", "zh/", "es/", "id/", "pt-br/"].flatMap(locale => [
+const toolPages = ["", "zh/", "es/"].flatMap(locale => [
   `tools/generator-fuel-runtime-calculator/${locale}index.html`,
   `tools/telecom-ac-dc-breaker-sizing/${locale}index.html`
 ]);

@@ -38,6 +38,25 @@ if(!defaultLocale)throw new Error("Default locale is missing from locales.json")
 const folderMap=new Map(localeConfig.locales.filter(item=>item.folder).map(item=>[item.folder,item]));
 const localeMap=new Map(localeConfig.locales.map(item=>[item.id,item]));
 const activeLocales=localeConfig.locales.filter(item=>item.status==="active");
+const pilotLocales=localeConfig.locales.filter(item=>item.status==="pilot");
+function publishesRoute(locale,route){
+ if(locale.status==="active")return true;
+ if(locale.status==="pilot")return (locale.pilotRoutes||[]).includes(route);
+ return false;
+}
+function publishedLocalesFor(route,group){
+ return [...activeLocales,...pilotLocales].filter(locale=>publishesRoute(locale,route)&&group.has(locale.id));
+}
+function localePageExists(route,locale){
+ const rel=fileForRoute(route,locale);
+ const candidates=[rel];
+ if(rel.endsWith("/"))candidates.push(`${rel}index.html`);
+ else if(!rel.endsWith(".html"))candidates.push(`${rel}/index.html`);
+ return candidates.some(item=>fs.existsSync(path.join(siteRoot,...item.split("/"))));
+}
+function linkedLocale(route,locale){
+ return publishesRoute(locale,route)&&localePageExists(route,locale)?locale:defaultLocale;
+}
 const activeTools=toolCatalog.filter(item=>item.status==="active");
 const configuredRoutes=new Set(sitemapConfig.routes.map(item=>item.route));
 const rootDirectoryRoutes=new Set(["about/","contact/","privacy/","terms/"]);
@@ -355,7 +374,7 @@ function setHtmlAttributes(html,locale,route){
  });
 }
 function setRobots(html,locale,route){
- const planned=locale.status!=="active";
+ const planned=!publishesRoute(locale,route);
  if(route==="404.html"){
   if(/<meta\b[^>]*\bname\s*=\s*["']robots["'][^>]*>/i.test(html))return html.replace(/<meta\b[^>]*\bname\s*=\s*["']robots["'][^>]*>/i,'<meta name="robots" content="noindex,follow">');
   return html.replace(/<\/head>/i,'<meta name="robots" content="noindex,follow">\n</head>');
@@ -405,7 +424,7 @@ function updateJsonLd(html,locale,canonical){
     for(const key of ["url","item"]){
      if(typeof node[key]==="string"&&node[key].startsWith(localeConfig.siteUrl))node[key]=localizeSiteUrl(node[key],locale);
     }
-    if(node["@type"]==="Organization"&&node.name==="NetEngineerLab")node.url=localeConfig.siteUrl+urlForRoute("",locale);
+    if(node["@type"]==="Organization"&&node.name==="NetEngineerLab")node.url=localeConfig.siteUrl+urlForRoute("",linkedLocale("",locale));
     Object.values(node).forEach(visit);
    };
    visit(data);
@@ -448,7 +467,7 @@ function ensureWebPageSchema(html,canonical,locale){
   url:canonical,
   description,
   inLanguage:locale.htmlLang,
-  isPartOf:{"@type":"WebSite",name:"NetEngineerLab",url:localeConfig.siteUrl+urlForRoute("",locale)}
+  isPartOf:{"@type":"WebSite",name:"NetEngineerLab",url:localeConfig.siteUrl+urlForRoute("",linkedLocale("",locale))}
  };
  // The tagged WebPage schema is generated state. Always replace it from the
  // current title/description/canonical instead of accepting a stale primary
@@ -532,7 +551,7 @@ function ensureTopicBreadcrumb(html,info,locale){
 }
 function menuMarkup(currentInfo,group){
  const currentLocale=localeMap.get(currentInfo.localeId);
- const available=activeLocales.filter(locale=>group.has(locale.id));
+ const available=publishedLocalesFor(currentInfo.route,group);
  const languageNames={
   en:{en:"English",zh:"Chinese",es:"Spanish",id:"Indonesian","pt-BR":"Brazilian Portuguese"},
   zh:{en:"英语",zh:"简体中文",es:"西班牙语",id:"印尼语","pt-BR":"巴西葡萄牙语"},
@@ -573,7 +592,7 @@ function injectSiteShell(html,currentRel,currentInfo){
  html=versionExistingAsset(html,"assets/css/site-shell.css");
  const locale=localeMap.get(currentInfo.localeId);
  const currentUrl=urlForRoute(currentInfo.route,locale);
- const href=route=>escapeHtml(relativeUrl(currentUrl,urlForRoute(route,locale)));
+ const href=route=>escapeHtml(relativeUrl(currentUrl,urlForRoute(route,linkedLocale(route,locale))));
  const current=route=>currentInfo.route===route?' aria-current="page"':"";
  if(currentInfo.kind==="tool"&&!/<main\b[^>]*\bid=["'][^"']+["']/i.test(html))html=html.replace(/<main\b/i,'<main id="calculator"');
  const mainId=(html.match(/<main\b[^>]*\bid=["']([^"']+)["']/i)||[])[1]||"calculator";
@@ -583,8 +602,8 @@ function injectSiteShell(html,currentRel,currentInfo){
  const tokens={
   HOME_HREF:href(""),
   TOOLS_HREF:href("tools/"),
-  GUIDES_HREF:escapeHtml(relativeUrl(currentUrl,urlForRoute("guides/",fs.existsSync(path.join(siteRoot,...fileForRoute("guides/",locale).split("/")))?locale:defaultLocale))),
-  TOPICS_HREF:escapeHtml(relativeUrl(currentUrl,urlForRoute("topics/",fs.existsSync(path.join(siteRoot,...fileForRoute("topics/",locale).split("/")))?locale:defaultLocale))),
+  GUIDES_HREF:href("guides/"),
+  TOPICS_HREF:href("topics/"),
   GUIDES_CURRENT:currentInfo.route.startsWith("guides/")?' aria-current="page"':"",
   TOPICS_CURRENT:currentInfo.route.startsWith("topics/")?' aria-current="page"':"",
   ABOUT_HREF:href("about/"),
@@ -616,12 +635,12 @@ function injectToolReturnNavigation(html,currentRel,currentInfo){
  if(currentInfo.kind!=="tool")return html;
  const locale=localeMap.get(currentInfo.localeId);
  const currentUrl=urlForRoute(currentInfo.route,locale);
- const toolsHref=escapeHtml(relativeUrl(currentUrl,urlForRoute("tools/",locale)));
+ const toolsHref=escapeHtml(relativeUrl(currentUrl,urlForRoute("tools/",linkedLocale("tools/",locale))));
  const tool=toolCatalog.find(item=>item.id===currentInfo.toolSlug);
  const copy=tool?toolCopy(tool,locale):{};
  const toolName=escapeHtml(copy.name||currentInfo.toolSlug);
  if(/calculator-hub-breadcrumb/i.test(html))return html;
- const homeHref=escapeHtml(relativeUrl(currentUrl,urlForRoute("",locale)));
+ const homeHref=escapeHtml(relativeUrl(currentUrl,urlForRoute("",linkedLocale("",locale))));
  const homeLabel=shellCopy(locale,{en:"Home",zh:"首页",es:"Inicio",id:"Beranda","pt-BR":"Início"});
  const toolsLabel=shellCopy(locale,{en:"Tools",zh:"工具",es:"Herramientas",id:"Alat","pt-BR":"Ferramentas"});
  // Keep a page's existing breadcrumb name. The default stays "Breadcrumb";
@@ -718,7 +737,7 @@ function generateManifests(groups){
     for(const sharedAsset of sharedRuntimeAssets){
      assets.push(`${sharedAsset.cachePath}?v=${assetVersion(sharedAsset.sitePath)}`);
     }
-    for(const locale of activeLocales.filter(item=>item.id!==defaultLocale.id)){
+    for(const locale of [...activeLocales,...pilotLocales].filter(item=>item.id!==defaultLocale.id&&publishesRoute(item,`tools/${tool.id}/`))){
      if(groups.get(`tools/${tool.id}/`)?.has(locale.id)){
       // Navigation requests use the canonical directory URL. Cache that key
       // at install time as well as index.html; an initial offline reload must
@@ -735,11 +754,19 @@ function generateManifests(groups){
     // Append exact URLs only after the legacy CSS/app normalization above.
     // engine.js?v=1.9.7 and other HTML queries are distinct offline requests.
     const {toolPagePrecacheAssets}=require('./lib/tool-page-precache-assets');
-    for(const locale of activeLocales){
+    for(const locale of [...activeLocales,...pilotLocales].filter(item=>publishesRoute(item,`tools/${tool.id}/`))){
      if(!groups.get(`tools/${tool.id}/`)?.has(locale.id))continue;
      const pageFile=path.join(toolRoot,locale.id===defaultLocale.id?'':locale.folder,'index.html');
      assets.push(...toolPagePrecacheAssets(fs.readFileSync(pageFile,'utf8'),pageFile,toolRoot,siteRoot));
     }
+    assets=assets.map(item=>{
+     const match=item.match(/^(.*)\?v=([a-f0-9]{12})$/);
+     if(!match)return item;
+     const clean=match[1];
+     const file=clean.startsWith("./")?path.join(toolRoot,...clean.slice(2).split("/")):path.resolve(toolRoot,...clean.split("/"));
+     if(!fs.existsSync(file)||!fs.statSync(file).isFile())return item;
+     return `${clean}?v=${assetVersion(posix(path.relative(siteRoot,file)))}`;
+    });
     assets=[...new Set(assets)];
     const {isolateServiceWorkerCache,isolationVersion}=require('./lib/service-worker-cache-isolation');
     const cacheName=`nel-${tool.id}-locale-v${localeConfig.version}-${isolationVersion}-${sharedRuntimeVersion()}-${toolCacheVersion(toolRoot,assets)}`;
@@ -798,8 +825,7 @@ function generateSitemap(groups){
   seen.add(record.route);
   const group=groups.get(record.route);
   if(!group)continue;
-  for(const locale of activeLocales){
-   if(!group.has(locale.id))continue;
+  for(const locale of publishedLocalesFor(record.route,group)){
    let pageRel=fileForRoute(record.route,locale);
    if(pageRel.endsWith("/"))pageRel+=`index.html`;
    else if(!pageRel.endsWith(".html"))pageRel=`${pageRel}/index.html`;
@@ -807,8 +833,7 @@ function generateSitemap(groups){
    lines.push("  <url>");
    lines.push(`    <loc>${localeConfig.siteUrl}${urlForRoute(record.route,locale)}</loc>`);
    lines.push(`    <lastmod>${gitLastmod(pageFile)}</lastmod>`);
-   for(const alternate of activeLocales){
-    if(!group.has(alternate.id))continue;
+   for(const alternate of publishedLocalesFor(record.route,group)){
     lines.push(`    <xhtml:link rel="alternate" hreflang="${alternate.hreflang}" href="${localeConfig.siteUrl}${urlForRoute(record.route,alternate)}"/>`);
    }
    if(group.has(defaultLocale.id))lines.push(`    <xhtml:link rel="alternate" hreflang="x-default" href="${localeConfig.siteUrl}${urlForRoute(record.route,defaultLocale)}"/>`);
@@ -1000,14 +1025,12 @@ function build(){
  for(const record of indexableSitemapRecords()){
   const group=groups.get(record.route);
   if(!group)continue;
-  for(const locale of activeLocales){
-   if(group.has(locale.id))sitemapUrls.add(localeConfig.siteUrl+urlForRoute(record.route,locale));
-  }
+  for(const locale of publishedLocalesFor(record.route,group))sitemapUrls.add(localeConfig.siteUrl+urlForRoute(record.route,locale));
  }
  function pageExists(route,locale){return Boolean(groups.get(route)?.has(locale.id));}
  function finishSeo(html,record,locale){
   const canonical=localeConfig.siteUrl+urlForRoute(record.info.route,locale);
-  const indexable=record.info.route!=="404.html"&&locale.status==="active";
+  const indexable=record.info.route!=="404.html"&&publishesRoute(locale,record.info.route);
   if(!indexable)return html;
   html=ensureOpenGraphMeta(html,canonical);
   html=ensureTwitter(html,`${localeConfig.siteUrl}/assets/images/og-netengineerlab.png`);
@@ -1021,7 +1044,7 @@ function build(){
    html=ensureToolSchemas(html,{
     canonical,
     localeId:locale.id,
-    homeUrl:localeConfig.siteUrl+urlForRoute("",locale),
+    homeUrl:localeConfig.siteUrl+urlForRoute("",linkedLocale("",locale)),
     toolsUrl:localeConfig.siteUrl+urlForRoute("tools/",locale),
     name,
     description,
@@ -1033,7 +1056,7 @@ function build(){
    html=ensureToolSchemas(html,{
     canonical,
     localeId:locale.id,
-    homeUrl:localeConfig.siteUrl+urlForRoute("",locale),
+    homeUrl:localeConfig.siteUrl+urlForRoute("",linkedLocale("",locale)),
     toolsUrl:localeConfig.siteUrl+urlForRoute("topics/",locale),
     middleLabel:shellCopy(locale,{en:"Topics",zh:"专题",es:"Temas",id:"Topik","pt-BR":"Tópicos"}),
     name,
@@ -1044,7 +1067,7 @@ function build(){
   }
   if(record.info.kind==="guide"||record.info.shellOnly){
    if(sitemapUrls.has(canonical)){
-    html=ensureGuideSchemas(html,{canonical,localeId:locale.id,homeUrl:localeConfig.siteUrl+urlForRoute("",locale),name,description,inLanguage:locale.htmlLang,siteUrl:localeConfig.siteUrl});
+    html=ensureGuideSchemas(html,{canonical,localeId:locale.id,homeUrl:localeConfig.siteUrl+urlForRoute("",linkedLocale("",locale)),name,description,inLanguage:locale.htmlLang,siteUrl:localeConfig.siteUrl});
    }
    html=ensureWebPageSchema(html,canonical,locale);
   }
@@ -1083,7 +1106,7 @@ function build(){
    shell=removeHeadLinks(shell);
    shell=removeNelMeta(shell);
    const canonical=localeConfig.siteUrl+urlForRoute(record.info.route,locale);
-   const available=activeLocales.filter(item=>group.has(item.id));
+   const available=publishedLocalesFor(record.info.route,group);
    const seo=[
     `<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V${localeConfig.version}">`,
     `<meta name="nel-locale" content="${escapeHtml(locale.id)}">`,
@@ -1131,7 +1154,7 @@ function build(){
   html=setHtmlAttributes(html,locale,record.info.route);
   html=setRobots(html,locale,record.info.route);
   const canonical=localeConfig.siteUrl+urlForRoute(record.info.route,locale);
-  const available=activeLocales.filter(item=>group.has(item.id));
+  const available=publishedLocalesFor(record.info.route,group);
   const seo=[
    `<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V${localeConfig.version}">`,
    `<meta name="nel-locale" content="${escapeHtml(locale.id)}">`,

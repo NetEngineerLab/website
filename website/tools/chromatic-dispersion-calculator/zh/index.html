@@ -33,20 +33,18 @@
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
 <meta name="nel-route" content="tools/chromatic-dispersion-calculator/">
-<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
+<meta name="nel-available-locales" content="en,zh,es">
 <link rel="canonical" href="https://netengineerlab.com/tools/chromatic-dispersion-calculator/zh/">
 <link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/chromatic-dispersion-calculator/">
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/chromatic-dispersion-calculator/zh/">
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/chromatic-dispersion-calculator/es/">
-<link rel="alternate" hreflang="id" href="https://netengineerlab.com/tools/chromatic-dispersion-calculator/id/">
-<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/tools/chromatic-dispersion-calculator/pt-br/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/chromatic-dispersion-calculator/">
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"G.652 光纤在 1550 nm 的色散是多少？","acceptedAnswer":{"@type":"Answer","text":"约 17 ps/(nm·km)。按 ITU-T G.652 模型取 λ0 = 1310 nm、S0 = 0.092，得到 17.46 ps/(nm·km)；实际光缆多在 16.5–18 之间。"}},{"@type":"Question","name":"如何计算累积色散？","acceptedAnswer":{"@type":"Answer","text":"色散系数乘以长度：CD = D × L。80 km × 17.46 ps/(nm·km) ≈ 1,397 ps/nm，再减去 DCM 或 FBG 补偿量即为残余色散。"}},{"@type":"Question","name":"10G 光模块的色散容限一般是多少？","acceptedAnswer":{"@type":"Answer","text":"取决于模块。直调 10G 模块常见约 800 ps/nm，10G ER/ZR 类常见约 1,600 ps/nm，请以规格书为准。"}},{"@type":"Question","name":"1310 nm 需要考虑色散吗？","acceptedAnswer":{"@type":"Answer","text":"影响很小。1310 nm 接近 G.652 光纤的零色散波长，D 接近 0。"}},{"@type":"Question","name":"相干光模块需要色散补偿吗？","acceptedAnswer":{"@type":"Answer","text":"通常不需要。相干接收机在 DSP 中电域补偿色散，可容忍数万 ps/nm。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
 <link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
-<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
+<script defer src="../../../data/locales.js?v=d31aaedf75a0"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
@@ -72,7 +70,7 @@
       <a href="../../../zh/topics/">专题</a>
     </nav>
     <div class="site-shell-actions">
-      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/chromatic-dispersion-calculator/" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="/tools/chromatic-dispersion-calculator/zh/" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a><a class="language-option" role="menuitem" href="/tools/chromatic-dispersion-calculator/es/" lang="es" hreflang="es"><span>Español</span><small>西班牙语</small></a><a class="language-option" role="menuitem" href="/tools/chromatic-dispersion-calculator/id/" lang="id" hreflang="id"><span>Bahasa Indonesia</span><small>印尼语</small></a><a class="language-option" role="menuitem" href="/tools/chromatic-dispersion-calculator/pt-br/" lang="pt-BR" hreflang="pt-BR"><span>Português do Brasil</span><small>巴西葡萄牙语</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/chromatic-dispersion-calculator/" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="/tools/chromatic-dispersion-calculator/zh/" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a><a class="language-option" role="menuitem" href="/tools/chromatic-dispersion-calculator/es/" lang="es" hreflang="es"><span>Español</span><small>西班牙语</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
       <div class="site-shell-context-action"><a href="#calculator">开始计算</a></div>
     </div>
   </div>

@@ -214,7 +214,11 @@ function buildPageRegistry({localeConfig,sitemapConfig,tools,schema,toolContent,
   invariant(activeLocales.length>0,"at least one active locale is required");
   const localeIds=new Set();const localeFolders=new Set();const catalogKeys=new Set();const htmlLangs=new Set();const hreflangs=new Set();
   for(const locale of configuredLocales){
-    invariant(locale.status==="active"||locale.status==="planned",`${locale.id||"locale"}: invalid locale status`);
+    invariant(locale.status==="active"||locale.status==="planned"||locale.status==="pilot",`${locale.id||"locale"}: invalid locale status`);
+    if(locale.status==="pilot"){
+      invariant(Array.isArray(locale.pilotRoutes)&&locale.pilotRoutes.length>0,`${locale.id}: pilot locale requires pilotRoutes`);
+      for(const route of locale.pilotRoutes)invariant(typeof route==="string"&&route.endsWith("/"),`${locale.id}: pilot route must be a directory route`);
+    }
     invariant(nonEmptyString(locale.id)&&/^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/.test(locale.id),"locale id is invalid");
     const localeIdKey=locale.id.toLowerCase();invariant(!localeIds.has(localeIdKey),`duplicate locale id: ${locale.id}`);localeIds.add(localeIdKey);
     invariant(typeof locale.folder==="string"&&/^(?:|[a-z0-9]+(?:-[a-z0-9]+)*)$/.test(locale.folder),`invalid locale folder: ${locale.id}`);
@@ -263,8 +267,10 @@ function buildPageRegistry({localeConfig,sitemapConfig,tools,schema,toolContent,
     while(redirects.has(target)){invariant(!seen.has(target),`withdrawal redirect cycle detected at ${target}`);seen.add(target);target=redirects.get(target)}
   }
   const pages=[];
+  const pilotLocales=configuredLocales.filter(locale=>locale.status==="pilot");
   for(const family of families){
-    const localized=activeLocales.filter(locale=>{
+    const localized=[...activeLocales,...pilotLocales].filter(locale=>{
+      if(locale.status==="pilot"&&!(locale.pilotRoutes||[]).includes(family.route))return false;
       const key=locale.catalogKey||locale.id;
       return Boolean(family.translations[key]||family.translations[locale.id]);
     }).map(locale=>{
@@ -272,10 +278,12 @@ function buildPageRegistry({localeConfig,sitemapConfig,tools,schema,toolContent,
       const copy=family.translations[key]||family.translations[locale.id];
       invariant(copy,`${family.id}: active locale translation missing: ${locale.id}`);
       validateTranslation(copy,`${family.id}/${locale.id}`);
+      if(locale.status!=="pilot"){
       invariant(nonEmptyString(family.searchIntent[key]||family.searchIntent[locale.id]),`${family.id}: active locale searchIntent missing: ${locale.id}`);
       invariant(nonEmptyString(family.primaryTopic[key]||family.primaryTopic[locale.id]),`${family.id}: active locale primaryTopic missing: ${locale.id}`);
       validateStringArray(family.longTailQuestions[key]||family.longTailQuestions[locale.id],`${family.id}: active locale longTailQuestions missing: ${locale.id}`,{min:1});
       invariant(Object.hasOwn(family.reviewedAt,key)||Object.hasOwn(family.reviewedAt,locale.id),`${family.id}: active locale reviewedAt missing: ${locale.id}`);
+      }
       const pathname=localizedRoute(family,locale,localeConfig);
       const url=new URL(pathname,siteUrl);
       invariant(url.pathname===pathname&&url.search===""&&url.hash==="",`${family.id}/${locale.id}: pathname and URL normalization differ`);

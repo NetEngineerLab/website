@@ -446,7 +446,7 @@ function resolvePrecacheTarget(clean, toolRoot, siteRoot) {
 function activeLocaleDirectories() {
   try {
     const locales = JSON.parse(fs.readFileSync(path.join(__dirname, "../website/data/locales.json"), "utf8")).locales || [];
-    return locales.filter(locale => locale && locale.status === "active" && locale.folder).map(locale => `./${locale.folder}/`);
+    return locales.filter(locale => locale && (locale.status === "active" || locale.status === "pilot") && locale.folder).map(locale => `./${locale.folder}/`);
   } catch {
     return ["./zh/", "./es/"];
   }

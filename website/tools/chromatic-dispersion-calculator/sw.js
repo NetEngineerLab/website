@@ -1,6 +1,6 @@
 "use strict";
 // t316: tool-isolated exact-version fallback; online documents/styles/scripts always refresh.
-const CACHE = "nel-chromatic-dispersion-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-ff5180a4daf2-172e4ed63e1c";
+const CACHE = "nel-chromatic-dispersion-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-468b89bdd0f7-8b9146fa05a3";
 const CORE = [
   "./",
   "./index.html",
@@ -35,15 +35,10 @@ const CORE = [
   "./js/engine.js?v=72ef42125dcb",
   "./js/pwa.js?v=20261108-cd-bw5",
   "./js/app.js?v=22498116e23a",
-  "../../assets/js/es-launch-runtime.js?v=829a7f1559b7",
   "../../assets/js/es-launch-runtime.js?v=e0fea69289b0",
-  "../../assets/js/id-launch-runtime.js?v=b48f2804bf23",
-  "../../assets/js/pt-br-launch-runtime.js?v=c5ef6ab315f2",
-  "../../assets/js/id-launch-runtime.js?v=5c5c0a77817b",
-  "../../assets/js/pt-br-launch-runtime.js?v=1ad25de31c7f",
-  "../../assets/js/id-launch-runtime.js?v=2141d735b95b",
-  "../../assets/js/pt-br-launch-runtime.js?v=00893649b07d",
-  "../../data/locales.js?v=cc78cf7363f3",
+  "../../assets/js/id-launch-runtime.js?v=3461d0601eeb",
+  "../../assets/js/pt-br-launch-runtime.js?v=1223d823e2c6",
+  "../../data/locales.js?v=d31aaedf75a0",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",
@@ -72,15 +67,7 @@ const CORE = [
   "./manifest-zh.webmanifest",
   "./es/",
   "./es/index.html",
-  "./manifest-es.webmanifest",
-  "./id/",
-  "./id/index.html",
-  "./manifest-id.webmanifest",
-  "./pt-br/",
-  "./pt-br/index.html",
-  "./manifest-pt-br.webmanifest",
-  "../../assets/js/id-launch-runtime.js?v=3461d0601eeb",
-  "../../assets/js/pt-br-launch-runtime.js?v=1223d823e2c6"
+  "./manifest-es.webmanifest"
 ];
 self.addEventListener("install", event => {
  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(CORE).then(() => self.skipWaiting())));

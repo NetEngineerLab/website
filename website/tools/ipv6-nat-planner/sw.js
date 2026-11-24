@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-ipv6-nat-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-ff5180a4daf2-9e1ed66a4c5d";
+const CACHE = "nel-ipv6-nat-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-468b89bdd0f7-9a2734dbd0a4";
 const CORE = [
   "./index.html",
   "./",
@@ -20,20 +20,11 @@ const CORE = [
   "../../assets/css/tool-layout.css?v=c4aecb2c24ab",
   "../../assets/images/logo.svg",
   "./js/pwa.js",
-  "../../assets/js/es-launch-runtime.js?v=26766a85d049",
-  "./js/engine.js?v=a2a2a58d2ff3",
-  "../../assets/js/es-launch-runtime.js?v=c7c562a25b80",
-  "../../assets/js/es-launch-runtime.js?v=b69809c86108",
-  "../../assets/js/es-launch-runtime.js?v=3f188aa72208",
-  "../../assets/js/es-launch-runtime.js?v=829a7f1559b7",
   "../../assets/js/es-launch-runtime.js?v=e0fea69289b0",
-  "../../assets/js/id-launch-runtime.js?v=b48f2804bf23",
-  "../../assets/js/pt-br-launch-runtime.js?v=c5ef6ab315f2",
-  "../../assets/js/id-launch-runtime.js?v=5c5c0a77817b",
-  "../../assets/js/pt-br-launch-runtime.js?v=1ad25de31c7f",
-  "../../assets/js/id-launch-runtime.js?v=2141d735b95b",
-  "../../assets/js/pt-br-launch-runtime.js?v=00893649b07d",
-  "../../data/locales.js?v=cc78cf7363f3",
+  "./js/engine.js?v=a2a2a58d2ff3",
+  "../../assets/js/id-launch-runtime.js?v=3461d0601eeb",
+  "../../assets/js/pt-br-launch-runtime.js?v=1223d823e2c6",
+  "../../data/locales.js?v=d31aaedf75a0",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",
@@ -62,15 +53,7 @@ const CORE = [
   "./manifest-zh.webmanifest",
   "./es/",
   "./es/index.html",
-  "./manifest-es.webmanifest",
-  "./id/",
-  "./id/index.html",
-  "./manifest-id.webmanifest",
-  "./pt-br/",
-  "./pt-br/index.html",
-  "./manifest-pt-br.webmanifest",
-  "../../assets/js/id-launch-runtime.js?v=3461d0601eeb",
-  "../../assets/js/pt-br-launch-runtime.js?v=1223d823e2c6"
+  "./manifest-es.webmanifest"
 ];
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)));

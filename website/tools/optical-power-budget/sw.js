@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-optical-power-budget-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-ff5180a4daf2-f53aa0931d3e";
+const CACHE = "nel-optical-power-budget-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-468b89bdd0f7-6a165b40f647";
 const CORE = [
   "./index.html",
   "./",
@@ -9,7 +9,7 @@ const CORE = [
   "./js/app.js?v=1fa80f0b6cda",
   "./js/engine.js",
   "./images/logo.svg",
-  "../../assets/css/mobile-branding.css?v=3caac1b0483a",
+  "../../assets/css/mobile-branding.css?v=345784b6b020",
   "../../data/seo-config.js",
   "../../assets/js/seo-engine.js?v=15ac96553c44",
   "../../assets/icons/favicon.svg?v=1.9.5-06",
@@ -17,28 +17,19 @@ const CORE = [
   "../../favicon.ico?v=1.9.5-06",
   "../../assets/icons/apple-touch-icon.png?v=1.9.5-06",
   "./css/fb.css?v=2a31994efa84",
-  "./css/fb-v3.css?v=718e11ad9233",
-  "./css/fb-v3-prod.css?v=0e51668c3f12",
+  "./css/fb-v3.css?v=52fefac6ca20",
+  "./css/fb-v3-prod.css?v=b98ad8d877b3",
   "../../assets/css/tool-layout.css?v=c4aecb2c24ab",
   "../../assets/images/logo.svg",
   "./js/engine.js?v=5e03675c092d",
   "./js/pwa.js",
   "../../data/optical-standards.js",
   "./js/app-v3.js?v=20261107-opb-bw4",
-  "../../assets/js/es-launch-runtime.js?v=26766a85d049",
-  "../../assets/js/es-launch-runtime.js?v=c7c562a25b80",
-  "../../assets/js/es-launch-runtime.js?v=b69809c86108",
-  "../../assets/js/es-launch-runtime.js?v=3f188aa72208",
-  "./css/fb-v3.css?v=718e11ad9233-bw1f",
-  "../../assets/js/es-launch-runtime.js?v=829a7f1559b7",
   "../../assets/js/es-launch-runtime.js?v=e0fea69289b0",
-  "../../assets/js/id-launch-runtime.js?v=b48f2804bf23",
-  "../../assets/js/pt-br-launch-runtime.js?v=c5ef6ab315f2",
-  "../../assets/js/id-launch-runtime.js?v=5c5c0a77817b",
-  "../../assets/js/pt-br-launch-runtime.js?v=1ad25de31c7f",
-  "../../assets/js/id-launch-runtime.js?v=2141d735b95b",
-  "../../assets/js/pt-br-launch-runtime.js?v=00893649b07d",
-  "../../data/locales.js?v=cc78cf7363f3",
+  "./css/fb-v3.css?v=718e11ad9233-bw1f",
+  "../../assets/js/id-launch-runtime.js?v=3461d0601eeb",
+  "../../assets/js/pt-br-launch-runtime.js?v=1223d823e2c6",
+  "../../data/locales.js?v=d31aaedf75a0",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",
@@ -67,15 +58,7 @@ const CORE = [
   "./manifest-zh.webmanifest",
   "./es/",
   "./es/index.html",
-  "./manifest-es.webmanifest",
-  "./id/",
-  "./id/index.html",
-  "./manifest-id.webmanifest",
-  "./pt-br/",
-  "./pt-br/index.html",
-  "./manifest-pt-br.webmanifest",
-  "../../assets/js/id-launch-runtime.js?v=3461d0601eeb",
-  "../../assets/js/pt-br-launch-runtime.js?v=1223d823e2c6"
+  "./manifest-es.webmanifest"
 ];
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)));

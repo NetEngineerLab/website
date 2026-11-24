@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-subnet-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-ff5180a4daf2-06a2a45c4ee1";
+const CACHE = "nel-subnet-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-468b89bdd0f7-a7392120d84d";
 const CORE = [
   "./index.html",
   "./",
@@ -8,7 +8,7 @@ const CORE = [
   "./data/ip-reference.js",
   "./css/style.css?v=1c2507f8f263",
   "./js/engine.js",
-  "./js/app.js?v=191cf541992a",
+  "./js/app.js?v=647a8bc4c228",
   "./images/logo.svg",
   "../../assets/css/mobile-branding.css?v=345784b6b020",
   "../../data/seo-config.js",
@@ -22,20 +22,11 @@ const CORE = [
   "./js/engine.js?v=1.9.9-04",
   "./js/pwa.js",
   "./js/scenarios.js",
-  "../../assets/js/es-launch-runtime.js?v=26766a85d049",
-  "./js/engine.js?v=ca43290d9d63",
-  "../../assets/js/es-launch-runtime.js?v=c7c562a25b80",
-  "../../assets/js/es-launch-runtime.js?v=b69809c86108",
-  "../../assets/js/es-launch-runtime.js?v=3f188aa72208",
-  "../../assets/js/es-launch-runtime.js?v=829a7f1559b7",
   "../../assets/js/es-launch-runtime.js?v=e0fea69289b0",
-  "../../assets/js/id-launch-runtime.js?v=b48f2804bf23",
-  "../../assets/js/pt-br-launch-runtime.js?v=c5ef6ab315f2",
-  "../../assets/js/id-launch-runtime.js?v=5c5c0a77817b",
-  "../../assets/js/pt-br-launch-runtime.js?v=1ad25de31c7f",
-  "../../assets/js/id-launch-runtime.js?v=2141d735b95b",
-  "../../assets/js/pt-br-launch-runtime.js?v=00893649b07d",
-  "../../data/locales.js?v=cc78cf7363f3",
+  "./js/engine.js?v=ca43290d9d63",
+  "../../assets/js/id-launch-runtime.js?v=3461d0601eeb",
+  "../../assets/js/pt-br-launch-runtime.js?v=1223d823e2c6",
+  "../../data/locales.js?v=d31aaedf75a0",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",
@@ -70,9 +61,7 @@ const CORE = [
   "./manifest-id.webmanifest",
   "./pt-br/",
   "./pt-br/index.html",
-  "./manifest-pt-br.webmanifest",
-  "../../assets/js/id-launch-runtime.js?v=3461d0601eeb",
-  "../../assets/js/pt-br-launch-runtime.js?v=1223d823e2c6"
+  "./manifest-pt-br.webmanifest"
 ];
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)));
