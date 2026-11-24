@@ -75,6 +75,12 @@ for (const slug of hubs) {
     const html = read(rel);
     assert.match(html, /assets\/css\/site\.css/, `${rel}: site stylesheet`);
     assert.match(html, /calculator-hub\.css/, `${rel}: hub stylesheet`);
+    const mainEnd = html.indexOf("</main>");
+    const main = mainEnd === -1 ? "" : html.slice(0, mainEnd);
+    const proseAt = main.indexOf('<div class="prose">');
+    const noteAt = main.indexOf('class="hub-return"');
+    assert.ok(proseAt !== -1 && noteAt > proseAt, `${rel}: cluster note must sit in the prose column`);
+    assert.equal(html.indexOf('class="hub-return"', mainEnd), -1, `${rel}: cluster note must not repeat after </main>`);
   }
 }
 assert.match(read("website/assets/css/calculator-hub.css"), /font-family:\s*var\(--nel-font-family/, "hub stylesheet sets the site font");

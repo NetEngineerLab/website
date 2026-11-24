@@ -648,7 +648,21 @@ function ensureClusterLinks(html, { route, locale, urlForRoute, relativeUrl, pag
   }
   if (!links.length) return html;
   const block = `<p class="hub-return" data-nel-cluster-link>${links.join(" ")}</p>\n`;
-  return insertInContent(html, block);
+  return insertCalculatorHubProse(html, block) || insertInContent(html, block);
+}
+
+/* Calculator hubs are a TOC plus a prose column. A body-level capsule is wider
+   than the FAQ and related cards, so the note belongs at the end of .prose. */
+function insertCalculatorHubProse(html, block) {
+  const mainOpen = html.match(/<main\b[^>]*\bid=["']hub["'][^>]*>/i);
+  if (!mainOpen) return null;
+  const afterMain = html.slice(mainOpen.index);
+  const proseOpen = afterMain.match(/<div\b[^>]*\bclass=["'][^"']*\bprose\b[^"']*["'][^>]*>/i);
+  if (!proseOpen) return null;
+  const innerStart = mainOpen.index + proseOpen.index + proseOpen[0].length;
+  const bounds = elementBounds(html, "div", innerStart);
+  if (!bounds) return null;
+  return html.slice(0, bounds.innerEnd) + block + html.slice(bounds.innerEnd);
 }
 
 const EDITORIAL_LINKS = [
