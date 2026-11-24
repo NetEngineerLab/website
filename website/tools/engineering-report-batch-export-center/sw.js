@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-engineering-report-batch-export-center-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-5e88f090d1d4-982fd9f889b5";
+const CACHE = "nel-engineering-report-batch-export-center-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-5e88f090d1d4-8827f80ca4c2";
 const CORE = [
   "./index.html",
   "./",

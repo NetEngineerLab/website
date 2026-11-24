@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-mm1-queue-delay-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-5e88f090d1d4-b8f393a5cb67";
+const CACHE = "nel-mm1-queue-delay-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-5e88f090d1d4-bd28f8b1ad76";
 const CORE = [
   "./",
   "./index.html",

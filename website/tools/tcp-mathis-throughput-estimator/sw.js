@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-tcp-mathis-throughput-estimator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-5e88f090d1d4-4cdc1b087944";
+const CACHE = "nel-tcp-mathis-throughput-estimator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-5e88f090d1d4-050e019352b2";
 const CORE = [
   "./",
   "./index.html",
