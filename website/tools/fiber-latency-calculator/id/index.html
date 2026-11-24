@@ -21,7 +21,7 @@
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="Kalkulator latensi serat – µs per km, satu arah dan RTT" name="twitter:title"/>
 <meta content="Hitung latensi satu arah dan RTT dari jarak, indeks grup, tundaan perangkat, dan serialisasi." name="twitter:description"/>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://netengineerlab.com/tools/fiber-latency-calculator/#app","name":"Kalkulator latensi serat","url":"https://netengineerlab.com/tools/fiber-latency-calculator/id/","description":"Calculate one-way and round-trip latency over optical fiber from distance, group index, route factor, equipment and serialization delay.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Network Engineering Calculator","operatingSystem":"Any","browserRequirements":"Requires JavaScript and a modern web browser","softwareVersion":"1.0.0","inLanguage":"id","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/id/"}},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/fiber-latency-calculator/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"NetEngineerLab","item":"https://netengineerlab.com/id/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://netengineerlab.com/tools/id/"},{"@type":"ListItem","position":3,"name":"Kalkulator latensi serat","item":"https://netengineerlab.com/tools/fiber-latency-calculator/id/"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://netengineerlab.com/tools/fiber-latency-calculator/#app","name":"Kalkulator latensi serat","url":"https://netengineerlab.com/tools/fiber-latency-calculator/id/","description":"Hitung latensi satu arah dan RTT dari jarak, indeks grup, tundaan perangkat, dan serialisasi.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Kalkulator rekayasa jaringan","operatingSystem":"Any","browserRequirements":"Memerlukan JavaScript dan peramban modern","softwareVersion":"1.0.0","inLanguage":"id","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/id/"}},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/fiber-latency-calculator/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"NetEngineerLab","item":"https://netengineerlab.com/id/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://netengineerlab.com/tools/id/"},{"@type":"ListItem","position":3,"name":"Kalkulator latensi serat","item":"https://netengineerlab.com/tools/fiber-latency-calculator/id/"}]}]}</script>
 <link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
 <meta content="https://netengineerlab.com/assets/images/og-netengineerlab.png" name="twitter:image"/>
 <link href="/assets/css/cookie-consent.css?v=2f2c8ab643e6" rel="stylesheet"/>
@@ -70,8 +70,8 @@ body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:
 <link rel="manifest" href="../manifest-id.webmanifest">
 </head>
 <body class="nel-tool-detail-page has-mbar v3 nel-tool-v3" data-nel-offline-worker="1" data-nel-template="tool-detail-v1.3.1" data-nel-v3-migrated="1" data-nel-visual="network-change-planner-reference">
-<a class="skip-link" href="#calculator">Skip to calculator</a>
-<noscript><div class="noscript">JavaScript is required to run this calculator.</div></noscript>
+<a class="skip-link" href="#calculator">Lewati ke kalkulator</a>
+<noscript><div class="noscript">Kalkulator ini memerlukan JavaScript.</div></noscript>
 <!-- NEL_HEADER_START -->
 <header class="site-header site-shell-header" data-nav-open="false">
   <div class="site-shell-header-inner">
@@ -106,7 +106,7 @@ body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:
 <p class="eyebrow">ALAT SERAT OPTIK</p>
 <h1>Kalkulator latensi serat</h1>
 <p>Cahaya di serat optik berjalan kira-kira dua pertiga kecepatannya di vakum, jadi setiap kilometer serat single-mode menambah sekitar 4,9 µs tundaan satu arah (sekitar 9,8 µs pulang-pergi). Pakai kalkulator latensi serat ini untuk menaksir waktu satu arah dan RTT pada tautan metro, DCI, dan jarak jauh, termasuk belokan rute, perangkat aktif, dan serialisasi paket.</p>
-<div class="hero-tags"><span>One-way &amp; RTT</span><span>4.9 µs per km</span><span>Route factor</span><span>Serialization</span></div></div></section>
+<div class="hero-tags"><span>One-way &amp; RTT</span><span>4.9 µs per km</span><span>Route factor</span><span>Serialisasi</span></div></div></section>
 <main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" data-nel-readout-roles="%7B%22secondary%22%3A%5B%22fiberLength%22%2C%22propagation%22%2C%22equipment%22%2C%22serialization%22%2C%22usPerKm%22%2C%22speed%22%2C%22fractionC%22%2C%22versusVacuum%22%5D%2C%22identifier%22%3A%5B%5D%2C%22annotation%22%3A%5B%22rtt%22%5D%7D" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv" id="calculator">
 <div class="tool-head">
 <div>
@@ -121,24 +121,24 @@ body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:
 <div class="fs">
 <p class="form-error" hidden="" id="validationMessage" role="alert"></p>
 <div class="fg">
-<p class="fs-t">Project</p>
+<p class="fs-t">Proyek</p>
 <div class="fields">
 <div class="f f-wide"><label for="projectName">Nama proyek</label><div class="inp input-wrap"><input autocomplete="off" id="projectName" type="text" value="Tautan serat DCI"/></div></div>
 </div>
 </div>
 <div class="fg">
-<p class="fs-t">Route and fiber</p>
+<p class="fs-t">Rute dan serat</p>
 <p class="fg-note">Pakai panjang terukur atau OTDR jika ada. Faktor rute mengubah jarak garis lurus menjadi panjang serat.</p>
 <div class="fields">
 <div class="f"><label for="distance">Jarak rute</label><div class="inp input-wrap"><input id="distance" inputmode="decimal" min="0" step="0.001" type="number" value="100"/></div></div>
 <div class="f"><label for="distanceUnit">Satuan jarak</label><div class="inp input-wrap sel"><select aria-label="Satuan jarak" id="distanceUnit"><option value="km">km</option><option value="mi">mi</option><option value="m">m</option></select></div></div>
 <div class="f"><label for="routeFactor">Faktor rute (jalur serat ÷ garis lurus)</label><div class="inp input-wrap"><input id="routeFactor" inputmode="decimal" min="1" step="0.01" type="number" value="1.0"/></div><small>Rute darat sering lebih panjang daripada garis lurus. Pakai panjang terukur atau OTDR jika sudah ada.</small></div>
-<section aria-label="Group index presets" class="scenario-section latency-presets">
+<section aria-label="Prasetel indeks grup" class="scenario-section latency-presets">
 <div class="scenario-head">
-<p class="fs-t">Group index presets</p>
+<p class="fs-t">Prasetel indeks grup</p>
 <p class="scenario-hint">Pilih prasetel serat untuk mengisi n_g. Ubah indeks grup untuk beralih ke kustom.</p>
 </div>
-<div aria-label="Group index presets" class="scenario-grid" role="group">
+<div aria-label="Prasetel indeks grup" class="scenario-grid" role="group">
 <button aria-pressed="true" class="scenario-card on" data-preset="1.468" type="button"><b>Single-mode umum</b><span>n_g 1.468 · sekitar 4,9 µs/km</span></button><button aria-pressed="false" class="scenario-card" data-preset="1.4677" type="button"><b>G.652 @ 1310 nm</b><span>Indeks grup 1,4677</span></button><button aria-pressed="false" class="scenario-card" data-preset="1.4682" type="button"><b>G.652 @ 1550 nm</b><span>Indeks grup 1,4682</span></button><button aria-pressed="false" class="scenario-card" data-preset="1.003" type="button"><b>Inti berongga</b><span>Indeks grup ≈ 1,003</span></button><button aria-pressed="false" class="scenario-card" data-preset="custom" type="button"><b>Kustom</b><span>Ketik n_g dari 1,0 sampai 1,6</span></button>
 </div>
 <p class="preset-desc" id="preset-desc">Single-mode umum memakai n_g 1,468, sekitar 4,9 µs/km. Prasetel panjang gelombang G.652 mengikuti indeks grup yang diterbitkan. Kustom menerima 1,0 sampai 1,6.</p>
@@ -152,7 +152,7 @@ body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:
 <div class="f"><label for="equipmentDelay">Tundaan per perangkat</label><div class="inp input-wrap"><input id="equipmentDelay" inputmode="decimal" min="0" step="0.01" type="number" value="0"/><u>µs</u></div><small>Lihat lembar data. Transponder dan switch berkisar dari di bawah 1 µs sampai puluhan µs.</small></div>
 <div class="f"><label for="packetSize">Ukuran paket untuk serialisasi</label><div class="inp input-wrap"><input id="packetSize" inputmode="numeric" min="0" step="1" type="number" value="1500"/><u>B</u></div><small>Isi 0 untuk mengabaikan serialisasi.</small></div>
 <div class="f"><label for="linkRate">Laju saluran</label><div class="inp input-wrap"><input id="linkRate" inputmode="decimal" min="0.001" step="0.001" type="number" value="10"/><u>Gbps</u></div></div>
-<div class="f"><label for="serializationHops">Hop store-and-forward</label><div class="inp input-wrap"><input id="serializationHops" inputmode="numeric" min="0" step="1" type="number" value="1"/></div></div>
+<div class="f"><label for="serializationHops">Jumlah hop store-and-forward</label><div class="inp input-wrap"><input id="serializationHops" inputmode="numeric" min="0" step="1" type="number" value="1"/></div></div>
 </div>
 </div>
 </div>
@@ -167,18 +167,18 @@ body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:
 <div class="big"><span id="oneWay">—</span></div>
 </div>
 <div class="ro-main"><div class="lbl">RTT</div><div class="big"><span id="rtt">—</span></div></div></div>
-<div class="grp"><h3>Path breakdown</h3>
-<div class="row"><span>Fiber length</span><b id="fiberLength">—</b></div>
-<div class="row"><span>Propagation</span><b id="propagation">—</b></div>
-<div class="row"><span>Equipment</span><b id="equipment">—</b></div>
-<div class="row"><span>Serialization</span><b id="serialization">—</b></div>
-<div class="row"><span>Propagation per km</span><b id="usPerKm">—</b></div>
-<div class="row"><span>Speed in fiber</span><b id="speed">—</b></div>
-<div class="row"><span>Fraction of c</span><b id="fractionC">—</b></div>
-<div class="row"><span>Delay vs vacuum</span><b id="versusVacuum">—</b></div>
+<div class="grp"><h3>Rincian jalur</h3>
+<div class="row"><span>Panjang serat</span><b id="fiberLength">—</b></div>
+<div class="row"><span>Propagasi</span><b id="propagation">—</b></div>
+<div class="row"><span>Perangkat</span><b id="equipment">—</b></div>
+<div class="row"><span>Serialisasi</span><b id="serialization">—</b></div>
+<div class="row"><span>Propagasi per km</span><b id="usPerKm">—</b></div>
+<div class="row"><span>Kecepatan di serat</span><b id="speed">—</b></div>
+<div class="row"><span>Fraksi c</span><b id="fractionC">—</b></div>
+<div class="row"><span>Tundaan dibanding vakum</span><b id="versusVacuum">—</b></div>
 </div>
-<div class="grp"><h3>Propagation comparison</h3>
-<table class="t"><thead><tr><th>Medium</th><th>Delay</th></tr></thead><tbody id="comparisonBody"></tbody></table>
+<div class="grp"><h3>Perbandingan propagasi</h3>
+<table class="t"><thead><tr><th>Media</th><th>Tundaan</th></tr></thead><tbody id="comparisonBody"></tbody></table>
 <p>Jalur yang tidak simetris, antrean, dan tundaan stack host tidak dihitung. Tambahkan dari pengukuran jika kedua arah berbeda.</p>
 </div>
 <div class="ro-acts">
@@ -187,26 +187,26 @@ body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:
 <button id="printBtn" type="button">Cetak / Ekspor PDF</button>
 </div>
 </div></section></div>
-<div class="below"><nav aria-label="On this page" class="toc"><h4>Di halaman ini</h4><a href="#about-scope">Tentang dan cakupan</a><a href="#methodology">Cara perhitungannya</a><a href="#faq">FAQ</a><a href="#history">Perhitungan terbaru</a><a href="#references">Referensi resmi</a><a href="#content-review">Tinjauan konten</a><a href="#nel-tool-graph">Alur kerja</a></nav><div class="prose"><details class="fb-fold blk" data-nel-v3-title-normalized="1" id="about-scope">
+<div class="below"><nav aria-label="Di halaman ini" class="toc"><h4>Di halaman ini</h4><a href="#about-scope">Tentang dan cakupan</a><a href="#methodology">Cara perhitungannya</a><a href="#faq">FAQ</a><a href="#history">Perhitungan terbaru</a><a href="#references">Referensi resmi</a><a href="#content-review">Tinjauan konten</a><a href="#nel-tool-graph">Alur kerja</a></nav><div class="prose"><details class="fb-fold blk" data-nel-v3-title-normalized="1" id="about-scope">
 <summary class="fb-fold-sum"><span class="fb-fold-title">Tentang dan cakupan</span></summary>
 <div class="fb-fold-body about-card about-card-inline">
-<p>Kalkulator perencanaan gratis untuk insinyur telekomunikasi dan jaringan. Semuanya berjalan di peramban: masukkan jarak rute, indeks grup, tundaan perangkat, dan serialisasi untuk menaksir latensi satu arah dan waktu pulang-pergi. Application category: engineering utility / optical and transport planning. No account required.</p>
+<p>Kalkulator perencanaan gratis untuk insinyur telekomunikasi dan jaringan. Semuanya berjalan di peramban: masukkan jarak rute, indeks grup, tundaan perangkat, dan serialisasi untuk menaksir latensi satu arah dan waktu pulang-pergi. Kategori aplikasi: utilitas rekayasa untuk perencanaan optik dan transport. Tidak perlu akun.</p>
 <p>Pakai untuk taksiran tundaan metro, DCI, dan jarak jauh. Hasilnya alat perencanaan, bukan pengganti panjang serat terukur, lembar data tundaan vendor, atau ping langsung yang mencakup antrean dan tundaan host.</p>
 <div class="about-meta">
-<span>Type · Engineering calculator</span>
-<span>Runs · Client-side</span>
-<span>Locales · EN / 中文 / ES</span>
+<span>Jenis · Kalkulator rekayasa</span>
+<span>Berjalan · Di peramban</span>
+<span>Bahasa · Indonesia</span>
 <span>Canonical · /tools/fiber-latency-calculator/</span>
 </div>
 </div>
 </details><details class="fb-fold blk" data-nel-v3-title-normalized="1" id="methodology">
-<summary class="fb-fold-sum"><span class="fb-fold-title">Latency per distance (n_g = 1.468, propagation only)</span></summary>
+<summary class="fb-fold-sum"><span class="fb-fold-title">Latensi menurut jarak (n_g = 1,468, hanya propagasi)</span></summary>
 <div class="fb-fold-body">
 <div class="eq">fiber length = route distance × route factor<br/>propagation = fiber length × n_g ÷ c<br/>one-way = propagation + equipment + serialization<br/>RTT = 2 × one-way</div>
 <div class="method-defs">
-<article><h3>How to use</h3><ol><li>Masukkan jarak rute dalam km atau mil, atau panjang serat terukur (lalu biarkan faktor rute 1,0).</li><li>Isi faktor rute jika yang diketahui hanya jarak garis lurus.</li><li>Pilih indeks grup serat. 1,468 adalah bawaan yang masuk akal untuk single-mode standar.</li><li>Jika perlu, tambahkan perangkat aktif dan tundaan per perangkat dari lembar data.</li><li>Jika perlu, isi ukuran paket dan laju saluran untuk memasukkan tundaan serialisasi.</li><li>Baca latensi satu arah, RTT, dan perbandingan dengan vakum, gelombang mikro, serta tembaga.</li></ol></article>
-<article><h3>Propagation delay</h3><p>Tundaan propagasi = panjang serat × indeks grup ÷ c. Dengan c = 299.792,458 km/s dan n_g = 1,468, cahaya menempuh sekitar 204.000 km/s di kaca, yaitu 4,897 µs per km. Indeks grup, bukan indeks bias fase, yang mengatur seberapa cepat pulsa data berjalan. Pada serat G.652 nilainya sekitar 1,4677 pada 1310 nm dan 1,4682 pada 1550 nm, jadi pilihan panjang gelombang mengubah latensi kurang dari 0,05%. Rute sungguhan jarang lurus. Duct mengikuti jalan dan rel, jadi jalur serat biasanya lebih panjang daripada jarak di peta.</p></article>
-<article><h3>Perangkat dan serialisasi</h3><p>Serialization delay is the time to clock a frame onto the wire (bits ÷ line rate) and is added at each store-and-forward hop. 1500 bytes is 1.2 µs at 10 Gbps, 12 µs at 1 Gbps and 0.12 µs at 100 Gbps. Queuing and processing delays depend on load and are not modelled.</p></article>
+<article><h3>Cara memakai</h3><ol><li>Masukkan jarak rute dalam km atau mil, atau panjang serat terukur (lalu biarkan faktor rute 1,0).</li><li>Isi faktor rute jika yang diketahui hanya jarak garis lurus.</li><li>Pilih indeks grup serat. 1,468 adalah bawaan yang masuk akal untuk single-mode standar.</li><li>Jika perlu, tambahkan perangkat aktif dan tundaan per perangkat dari lembar data.</li><li>Jika perlu, isi ukuran paket dan laju saluran untuk memasukkan tundaan serialisasi.</li><li>Baca latensi satu arah, RTT, dan perbandingan dengan vakum, gelombang mikro, serta tembaga.</li></ol></article>
+<article><h3>Tundaan propagasi</h3><p>Tundaan propagasi = panjang serat × indeks grup ÷ c. Dengan c = 299.792,458 km/s dan n_g = 1,468, cahaya menempuh sekitar 204.000 km/s di kaca, yaitu 4,897 µs per km. Indeks grup, bukan indeks bias fase, yang mengatur seberapa cepat pulsa data berjalan. Pada serat G.652 nilainya sekitar 1,4677 pada 1310 nm dan 1,4682 pada 1550 nm, jadi pilihan panjang gelombang mengubah latensi kurang dari 0,05%. Rute sungguhan jarang lurus. Duktus mengikuti jalan dan rel, jadi jalur serat biasanya lebih panjang daripada jarak di peta.</p></article>
+<article><h3>Perangkat dan serialisasi</h3><p>Tundaan serialisasi adalah waktu untuk mengirim frame ke kawat (bit ÷ laju saluran) dan ditambahkan pada tiap hop store-and-forward. 1500 byte adalah 1,2 µs pada 10 Gbps, 12 µs pada 1 Gbps, dan 0,12 µs pada 100 Gbps. Tundaan antrean dan pemrosesan bergantung pada beban dan tidak dimodelkan.</p></article>
 </div>
 <table class="t latency-distance-table">
 <tr><th>Distance</th><th>One-way</th><th>RTT</th><th>Vacuum one-way</th></tr>
@@ -216,7 +216,7 @@ body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:
 <tr><td data-label="Distance">1,000 km</td><td data-label="One-way">4.897 ms</td><td data-label="RTT">9.793 ms</td><td data-label="Vacuum one-way">3.336 ms</td></tr>
 <tr><td data-label="Distance">5,000 km</td><td data-label="One-way">24.484 ms</td><td data-label="RTT">48.967 ms</td><td data-label="Vacuum one-way">16.678 ms</td></tr>
 </table>
-<article class="latency-worked-example"><h3>Kasus hitung: DCI 80 km dan 1.000 km × 1,3</h3><p>80 km, n_g 1.468, factor 1.0, 2 devices × 5 µs and 1500 bytes at 10 Gbps × 1 hop: propagation 391.74 µs, equipment 10 µs, serialization 1.2 µs, one-way 402.94 µs, RTT 805.88 µs. A 1,000 km city pair with route factor 1.3 is 1,300 km of fiber: 6.366 ms one-way and 12.731 ms RTT from propagation alone. Straight-line vacuum over 1,000 km would be 3.336 ms one-way. Rule of thumb: a 1 ms RTT budget is about 102 km of fiber (1000 µs ÷ 9.793 µs/km).</p></article>
+<article class="latency-worked-example"><h3>Kasus hitung: DCI 80 km dan 1.000 km × 1,3</h3><p>80 km, n_g 1,468, faktor 1,0, 2 perangkat × 5 µs dan 1500 byte pada 10 Gbps × 1 hop: propagasi 391,74 µs, perangkat 10 µs, serialisasi 1,2 µs, satu arah 402,94 µs, RTT 805,88 µs. Sepasang kota berjarak 1.000 km dengan faktor rute 1,3 menjadi 1.300 km serat: 6,366 ms satu arah dan 12,731 ms RTT hanya dari propagasi. Vakum pada garis lurus 1.000 km adalah 3,336 ms satu arah. Patokan: anggaran RTT 1 ms kira-kira 102 km serat (1000 µs ÷ 9,793 µs/km).</p></article>
 </div>
 </details><div class="blk faq" data-nel-v3-title-normalized="1" id="faq"><h2>Pertanyaan</h2>
 <span class="eyebrow">FAQ</span>
@@ -229,23 +229,23 @@ body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:
 <div class="ref-card">
 <p>Lembar data serat, termasuk indeks grup efektif Corning SMF-28 1,4677 pada 1310 nm dan 1,4682 pada 1550 nm, menggantikan prasetel umum 1,468 jika kabelnya diketahui. Ethernet tembaga tetap dibatasi 100 m meskipun tundaan per kilometernya tampak mirip. Terakhir ditinjau: 2026-10-18.</p>
 <div class="std-row">
-<a class="std-chip" href="https://www.itu.int/rec/T-REC-G.652/en" rel="noopener noreferrer" target="_blank">ITU-T G.652: characteristics of a single-mode optical fibre and cable</a><a class="std-chip" href="https://physics.nist.gov/cgi-bin/cuu/Value?c" rel="noopener noreferrer" target="_blank">CODATA / NIST speed of light in vacuum</a><a class="std-chip" href="https://www.bipm.org/en/si-base-units/second" rel="noopener noreferrer" target="_blank">SI second and the defined speed of light used for c</a>
+<a class="std-chip" href="https://www.itu.int/rec/T-REC-G.652/en" rel="noopener noreferrer" target="_blank">ITU-T G.652: karakteristik serat dan kabel optik single-mode</a><a class="std-chip" href="https://physics.nist.gov/cgi-bin/cuu/Value?c" rel="noopener noreferrer" target="_blank">CODATA / NIST speed of light in vacuum</a><a class="std-chip" href="https://www.bipm.org/en/si-base-units/second" rel="noopener noreferrer" target="_blank">Detik SI dan kecepatan cahaya yang dipakai untuk c</a>
 </div>
 </div>
 </div>
-</section></div></section><section class="blk" data-nel-v3-title-normalized="1" id="content-review"><h2>Tinjauan konten · formula basis &amp; limits</h2><div class="fb-fold-body"><section class="blk">
+</section></div></section><section class="blk" data-nel-v3-title-normalized="1" id="content-review"><h2>Tinjauan konten · dasar rumus dan batas</h2><div class="fb-fold-body"><section class="blk">
 <div class="fb-fold-body">
 <div class="review-grid">
-<div class="review-card"><h3>Reviewed</h3><p>2026-10-18. Editorial note already published on this page for the standards and reference section.</p></div>
-<div class="review-card"><h3>Formula basis</h3><p>Fiber length = route distance × route factor. Propagation = fiber length × group index ÷ c, with c = 299,792.458 km/s. One-way latency adds equipment delay and store-and-forward serialization. RTT is twice the one-way total on a symmetric path. The distance table uses n_g = 1.468 and propagation only.</p></div>
-<div class="review-card"><h3>Applicability limits</h3><p>Taksiran perencanaan untuk tundaan serat metro, DCI, dan jarak jauh. Jalur tidak simetris, antrean, dan tundaan stack host tidak dihitung. Bukan pengganti panjang OTDR, lembar data tundaan vendor, atau RTT terukur.</p></div>
+<div class="review-card"><h3>Ditinjau</h3><p>2026-10-18. Catatan editorial ini sudah ada di halaman untuk bagian standar dan referensi.</p></div>
+<div class="review-card"><h3>Dasar rumus</h3><p>Panjang serat = jarak rute × faktor rute. Propagasi = panjang serat × indeks grup ÷ c, dengan c = 299.792,458 km/s. Latensi satu arah menambah tundaan perangkat dan serialisasi store-and-forward. RTT adalah dua kali total satu arah pada jalur simetris. Tabel jarak memakai n_g = 1,468 dan hanya propagasi.</p></div>
+<div class="review-card"><h3>Batas pemakaian</h3><p>Taksiran perencanaan untuk tundaan serat metro, DCI, dan jarak jauh. Jalur tidak simetris, antrean, dan tundaan stack host tidak dihitung. Bukan pengganti panjang OTDR, lembar data tundaan vendor, atau RTT terukur.</p></div>
 </div>
 </div>
 </section></div></section><!-- NEL_TOOL_GRAPH_START -->
 <section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="fiber-latency-calculator" data-primary-workflow="fiber-latency-planning">
 <div class="section-heading"><div><p class="eyebrow">ALUR KERJA</p><h2 id="nel-tool-graph-title">Lanjutkan alur kerja</h2></div></div>
-<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Alur saat ini</span><strong>Alur perencanaan latensi serat</strong><p>Pastikan panjang rute dan asumsi rugi, lalu taksir tundaan satu arah dan waktu pulang-pergi.</p></div><div class="nel-workflow-step"><strong>Step 2 of 2</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="2" aria-valuenow="2" aria-valuetext="Step 2 of 2" aria-label="Step 2 of 2"><span style="width:100%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/fiber-loss/"><span class="nel-tool-graph-label">Sebelumnya</span><strong>Fiber Loss Calculator</strong><span class="nel-tool-graph-description">Calculate fiber, splice, connector, splitter and engineering losses for an optical link.</span></a><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Berikutnya</span><strong>Workflow complete</strong></div></div>
-<h3 class="nel-tool-graph-subtitle">Alat terkait</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/fiber-loss/"><strong>Fiber Loss Calculator</strong><span class="nel-tool-graph-description">Calculate fiber, splice, connector, splitter and engineering losses for an optical link.</span></a><a class="nel-tool-graph-card" href="/tools/optical-power-budget/"><strong>Optical Power Budget Calculator</strong><span class="nel-tool-graph-description">Verify an optical link using transmit power, receiver sensitivity, optical penalty and ODN loss.</span></a><a class="nel-tool-graph-card" href="/tools/otdr-event/"><strong>OTDR Event Analyzer</strong><span class="nel-tool-graph-description">Analyze multiple events and dual wavelengths to identify splices, connectors, bends, breaks, ghosts and dead-zone effects.</span></a><a class="nel-tool-graph-card" href="../../bandwidth-calculator/id/"><strong>Bandwidth &amp; Transfer Time Calculator</strong><span class="nel-tool-graph-description">Hitung waktu transfer berkas, laju tautan yang dibutuhkan, kapasitas pengguna bersamaan, dan volume data pada laju berkelanjutan.</span></a></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Alur saat ini</span><strong>Alur perencanaan latensi serat</strong><p>Pastikan panjang rute dan asumsi rugi, lalu taksir tundaan satu arah dan waktu pulang-pergi.</p></div><div class="nel-workflow-step"><strong>Langkah 2 dari 2</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="2" aria-valuenow="2" aria-valuetext="Langkah 2 dari 2" aria-label="Langkah 2 dari 2"><span style="width:100%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="/tools/fiber-loss/"><span class="nel-tool-graph-label">Sebelumnya</span><strong>Fiber Loss Calculator (English)</strong><span class="nel-tool-graph-description">Calculate fiber, splice, connector, splitter and engineering losses for an optical link.</span></a><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Berikutnya</span><strong>Alur selesai</strong></div></div>
+<h3 class="nel-tool-graph-subtitle">Alat terkait</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/fiber-loss/"><strong>Fiber Loss Calculator (English)</strong><span class="nel-tool-graph-description">Calculate fiber, splice, connector, splitter and engineering losses for an optical link.</span></a><a class="nel-tool-graph-card" href="/tools/optical-power-budget/"><strong>Optical Power Budget Calculator (English)</strong><span class="nel-tool-graph-description">Verify an optical link using transmit power, receiver sensitivity, optical penalty and ODN loss.</span></a><a class="nel-tool-graph-card" href="/tools/otdr-event/"><strong>OTDR Event Analyzer (English)</strong><span class="nel-tool-graph-description">Analyze multiple events and dual wavelengths to identify splices, connectors, bends, breaks, ghosts and dead-zone effects.</span></a><a class="nel-tool-graph-card" href="../../bandwidth-calculator/id/"><strong>Kalkulator bandwidth dan waktu transfer</strong><span class="nel-tool-graph-description">Hitung waktu transfer berkas, laju tautan yang dibutuhkan, kapasitas pengguna bersamaan, dan volume data.</span></a></div>
 </section>
 <!-- NEL_TOOL_GRAPH_END --></div></div></main>
 <!-- NEL_FOOTER_START -->
@@ -262,9 +262,9 @@ body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:
 <script defer="" src="../js/engine.js?v=11269b52819a"></script>
 <script defer="" src="../js/pwa.js?v=20261108-latency-bw7"></script>
 <script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script>
-<script defer="" src="../js/app.js?v=af51ce81088b"></script>
+<script defer="" src="../js/app.js?v=eef850a0fac7"></script>
 <script defer="" src="../../../assets/js/tool-detail-v3.js?v=6f38212f00f3"></script>
 <script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
-<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=9b54bbd00689"></script>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=502db0b62a7e"></script>
 </body>
 </html>

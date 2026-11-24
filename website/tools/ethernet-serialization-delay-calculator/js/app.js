@@ -225,7 +225,7 @@ const CONFIG = {
    "notes": {},
    "toolName": "Kalkulator tundaan serialisasi Ethernet",
    "status": {"healthy": "✓ Di dalam batas", "warning": "! Mendekati batas", "failed": "✕ Melebihi batas"},
-   "outputLabels": [["perHop","Serialisasi per hop"],["totalDelay","Total di semua hop"],["wireTime","Waktu di kawat dengan preamble + IFG"],["wireBytes","Byte di kawat per frame"],["frameRate","Laju frame maksimum"],["l2Throughput","Throughput L2 pada line rate"],["efficiency","Efisiensi L2"]]
+   "outputLabels": [["perHop","Serialisasi per hop"],["totalDelay","Total di semua hop"],["wireTime","Waktu di kawat dengan preamble + IFG"],["wireBytes","Byte di kawat per frame"],["frameRate","Laju frame maksimum"],["l2Throughput","Throughput L2 pada laju saluran"],["efficiency","Efisiensi L2"]]
   },
   "pt": {
    "validation": "Confira os campos marcados: eles devem ser números dentro da faixa permitida.",

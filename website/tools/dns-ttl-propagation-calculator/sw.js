@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-dns-ttl-propagation-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-5e88f090d1d4-9e878741e6d2";
+const CACHE = "nel-dns-ttl-propagation-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-8cc98631958a-8d826ce8ec66";
 const CORE = [
   "./index.html",
   "./",
@@ -32,7 +32,7 @@ const CORE = [
   "../../assets/js/adsense.js?v=f075c80ccc75",
   "../../assets/js/site.js?v=3feb9dda55e8",
   "../../assets/js/tool-integration.js?v=05f7934f4687",
-  "../../assets/js/tool-shell-v1.9.9-04.js?v=9b54bbd00689",
+  "../../assets/js/tool-shell-v1.9.9-04.js?v=502db0b62a7e",
   "../../assets/css/cookie-consent.css?v=2f2c8ab643e6",
   "../../assets/js/cookie-consent.js?v=a60243da0fb7",
   "../../assets/js/rules-engine/normalize.js?v=9e2cb44bca10",

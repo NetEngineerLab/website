@@ -42,6 +42,34 @@
         print: "Imprimir / PDF", history: "Historial de cálculos", clear: "Borrar historial",
         empty: "No hay resultados guardados", saved: "Resultado guardado", exported: "CSV exportado",
         footer: "Herramientas profesionales para ingeniería de redes y telecomunicaciones."
+      } : id ? {
+        skip: "Lewati ke kalkulator",
+        start: "Mulai menghitung",
+        calculate: "Hitung",
+        reset: "Atur ulang",
+        save: "Simpan hasil",
+        export: "Ekspor CSV",
+        print: "Cetak / PDF",
+        history: "Riwayat perhitungan",
+        clear: "Hapus riwayat",
+        empty: "Belum ada hasil tersimpan",
+        saved: "Hasil disimpan",
+        exported: "CSV diekspor",
+        footer: "Alat daring profesional untuk insinyur telekomunikasi dan jaringan."
+      } : pt ? {
+        skip: "Ir para a calculadora",
+        start: "Começar a calcular",
+        calculate: "Calcular",
+        reset: "Redefinir",
+        save: "Salvar resultado",
+        export: "Exportar CSV",
+        print: "Imprimir / PDF",
+        history: "Histórico de cálculos",
+        clear: "Apagar histórico",
+        empty: "Nenhum resultado salvo",
+        saved: "Resultado salvo",
+        exported: "CSV exportado",
+        footer: "Ferramentas online profissionais para engenheiros de telecom e redes."
       } : {
         skip: "Skip to calculator",
         start: "Start calculating",

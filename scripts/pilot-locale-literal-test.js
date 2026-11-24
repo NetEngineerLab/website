@@ -138,6 +138,88 @@ assert.equal(initial.mask, "255.255.255.0");
 assert.equal(String(initial.usableHosts), "254");
 assert.equal(initial.broadcast, "192.168.10.255");
 
+const newTools = [
+  "fiber-latency-calculator",
+  "ethernet-serialization-delay-calculator",
+  "stp-path-cost-calculator",
+  "chromatic-dispersion-calculator",
+  "copper-propagation-delay-calculator"
+];
+const visibleEnglish = [
+  "Maximum frame rate",
+  "Residual CD",
+  "Margin to tolerance",
+  "Skip to calculator",
+  "JavaScript is required",
+  "On this page",
+  "Delay snapshot",
+  "Path snapshot",
+  "How to use",
+  "Worked examples",
+  "Workflow complete",
+  "Workflow start",
+  "Step 1 of ",
+  "Step 2 of ",
+  "Reviewed engineering links",
+  "L2 throughput at line rate",
+  "Enter a whole number",
+  "One-way length unit",
+  "Pick a line rate"
+];
+for (const tool of newTools) {
+  for (const locale of ["id", "pt-br"]) {
+    const rel = `website/tools/${tool}/${locale}/index.html`;
+    const html = read(rel);
+    for (const phrase of visibleEnglish) assert.doesNotMatch(html, new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")), `${rel} still shows ${phrase}`);
+    const cards = [...html.matchAll(/<a class="nel-tool-graph-card" href="([^"]+)"[^>]*>[\s\S]*?<strong>([^<]*)<\/strong>/g)];
+    for (const [, href, name] of cards) {
+      const localized = /\/(?:id|pt-br)\//.test(href);
+      if (localized) assert.doesNotMatch(name, /\(English\)/, `${rel} localized card marked English: ${name}`);
+      else assert.match(name, /\(English\)$/, `${rel} untranslated tool must stay explicit English: ${href}`);
+    }
+  }
+}
+assert.match(read("website/tools/ethernet-serialization-delay-calculator/id/index.html"), /Laju frame maksimum/);
+assert.match(read("website/tools/ethernet-serialization-delay-calculator/pt-br/index.html"), /Taxa máxima de quadros/);
+assert.match(read("website/tools/chromatic-dispersion-calculator/id/index.html"), />CD sisa</);
+assert.match(read("website/tools/chromatic-dispersion-calculator/pt-br/index.html"), />CD residual</);
+assert.match(read("website/tools/ethernet-serialization-delay-calculator/js/app.js"), /\["frameRate","Laju frame maksimum"\]/);
+assert.match(read("website/tools/ethernet-serialization-delay-calculator/js/app.js"), /\["frameRate","Taxa máxima de quadros"\]/);
+assert.match(read("website/tools/chromatic-dispersion-calculator/js/app.js"), /\["residualCd","CD sisa"\]/);
+assert.match(read("website/tools/chromatic-dispersion-calculator/js/app.js"), /\["residualCd","CD residual"\]/);
+assert.match(read("website/tools/fiber-latency-calculator/id/index.html"), /<span>Propagasi<\/span><b id="propagation">/);
+assert.match(read("website/tools/fiber-latency-calculator/pt-br/index.html"), /<span>Propagação<\/span><b id="propagation">/);
+assert.match(read("website/tools/fiber-latency-calculator/js/app.js"), /oneWay: "Latensi satu arah"/);
+assert.match(read("website/tools/fiber-latency-calculator/js/app.js"), /oneWay: "Latência de ida"/);
+assert.match(read("website/assets/js/tool-shell-v1.9.9-04.js"), /Lewati ke kalkulator/);
+assert.match(read("website/assets/js/tool-shell-v1.9.9-04.js"), /Ir para a calculadora/);
+
+const fiber = require("../website/tools/fiber-latency-calculator/js/engine.js");
+const fiberBase = {
+  distanceUnit: "km", routeFactor: 1, groupIndex: 1.468, equipmentCount: 0, equipmentDelay: 0,
+  packetSize: 1500, linkRate: 10, serializationHops: 1
+};
+const fiber80 = fiber.calculate({...fiberBase, distance: 80});
+const fiber100 = fiber.calculate({...fiberBase, distance: 100});
+assert.equal(fiber80.oneWayText, "392.94 µs");
+assert.equal(fiber80.propagationText, "391.74 µs");
+assert.equal(fiber100.oneWayText, "490.87 µs");
+assert.equal(fiber100.propagationText, "489.67 µs");
+assert.ok(Math.abs(fiber80.oneWayUs - (fiber80.propagationUs + fiber80.serializationUs)) < 1e-9);
+assert.notEqual(fiber80.oneWayText, fiber100.propagationText, "80 km one-way must not be compared with the 100 km propagation line");
+for (const [locale, marker] of [["", "Maximum frame rate"], ["es", "Tasa máxima de tramas"], ["zh", "最大帧速率"]]) {
+  const rel = locale
+    ? `website/tools/ethernet-serialization-delay-calculator/${locale}/index.html`
+    : "website/tools/ethernet-serialization-delay-calculator/index.html";
+  assert.match(read(rel), new RegExp(marker), `${rel} existing language`);
+}
+for (const [locale, marker] of [["", "Residual CD"], ["es", "CD residual"], ["zh", "残余色散"]]) {
+  const rel = locale
+    ? `website/tools/chromatic-dispersion-calculator/${locale}/index.html`
+    : "website/tools/chromatic-dispersion-calculator/index.html";
+  assert.match(read(rel), new RegExp(marker), `${rel} existing language`);
+}
+
 const draftRoot = path.join(root, "drafts/locale-rollout");
 const draftHits = [];
 function walk(dir) {
