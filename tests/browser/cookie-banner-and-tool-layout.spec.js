@@ -62,6 +62,19 @@ async function hubReturnAlignment(page) {
     const hub = document.querySelector(".hub-return");
     if (!hub) return {error: "missing hub-return"};
     const hubBox = hub.getBoundingClientRect();
+    const prose = hub.closest("#hub .prose");
+    if (prose) {
+      const card = prose.querySelector("#related") || prose.querySelector(".blk.panel");
+      if (!card) return {error: "missing neighbouring card"};
+      const cardBox = card.getBoundingClientRect();
+      const following = hub.nextElementSibling;
+      return {
+        left: Math.abs(hubBox.left - cardBox.left),
+        right: Math.abs(hubBox.right - cardBox.right),
+        gap: following ? following.getBoundingClientRect().top - hubBox.bottom : null,
+        toolPage: document.body.classList.contains("nel-tool-detail-page")
+      };
+    }
     const next = hub.nextElementSibling;
     if (next && next.classList.contains("content-section")) {
       const cardBox = next.getBoundingClientRect();
@@ -109,7 +122,7 @@ for (const width of [1280, 390]) {
       expect(alignment.error, url).toBeUndefined();
       expect(alignment.left, `${url} left`).toBeLessThanOrEqual(1);
       expect(alignment.right, `${url} right`).toBeLessThanOrEqual(1);
-      if (alignment.toolPage) expect(alignment.gap, `${url} gap below hub return`).toBeGreaterThanOrEqual(20);
+      if (alignment.toolPage && alignment.gap != null) expect(alignment.gap, `${url} gap below hub return`).toBeGreaterThanOrEqual(20);
     }
   });
 }
