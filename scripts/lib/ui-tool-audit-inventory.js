@@ -9,9 +9,10 @@ const complexTools = new Set([
   'network-risk-hidden-hazard-assessment-generator',
   'odf-odn-resource-planner'
 ]);
-const localeCount = tool => ['en', 'zh', 'es'].filter(locale => {
+const localeCount = tool => ['en', 'zh', 'es', 'id', 'pt-br'].filter(locale => {
   const rel = locale === 'en' ? 'index.html' : `${locale}/index.html`;
-  return tool.translations?.[locale] && require('fs').existsSync(require('path').join(__dirname, '..', '..', 'website', 'tools', tool.id, rel));
+  const catalogKey = locale === 'pt-br' ? 'ptBR' : locale;
+  return tool.translations?.[catalogKey] && require('fs').existsSync(require('path').join(__dirname, '..', '..', 'website', 'tools', tool.id, rel));
 }).length;
 const supplemental = require('./supplemental-tool-slugs');
 const auditableTools = activeTools.filter(tool => !supplemental.has(tool.id) && localeCount(tool) > 0);
