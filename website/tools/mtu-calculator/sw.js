@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-mtu-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-468b89bdd0f7-45275322e50c";
+const CACHE = "nel-mtu-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-fe8b1e273b49-99c123ac81e2";
 const CORE = [
   "./index.html",
   "./",
@@ -25,8 +25,8 @@ const CORE = [
   "../../assets/js/es-launch-runtime.js?v=e0fea69289b0",
   "./js/engine.js?v=20261106-mtu2",
   "./js/engine.js?v=dcf176ac2167",
-  "../../assets/js/id-launch-runtime.js?v=3461d0601eeb",
-  "../../assets/js/pt-br-launch-runtime.js?v=1223d823e2c6",
+  "../../assets/js/id-launch-runtime.js?v=3bc487934804",
+  "../../assets/js/pt-br-launch-runtime.js?v=9ae15bbd4462",
   "../../data/locales.js?v=d31aaedf75a0",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
@@ -42,7 +42,7 @@ const CORE = [
   "../../assets/js/adsense.js?v=f075c80ccc75",
   "../../assets/js/site.js?v=3feb9dda55e8",
   "../../assets/js/tool-integration.js?v=05f7934f4687",
-  "../../assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d",
+  "../../assets/js/tool-shell-v1.9.9-04.js?v=9b54bbd00689",
   "../../assets/css/cookie-consent.css?v=2f2c8ab643e6",
   "../../assets/js/cookie-consent.js?v=a60243da0fb7",
   "../../assets/js/rules-engine/normalize.js?v=9e2cb44bca10",

@@ -46,7 +46,7 @@
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
-<script defer src="../../../assets/js/id-launch-runtime.js?v=3461d0601eeb"></script>
+<script defer src="../../../assets/js/id-launch-runtime.js?v=3bc487934804"></script>
 <link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
 <link rel="manifest" href="../manifest-id.webmanifest">
 </head><body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1" data-nel-offline-worker="1">
@@ -73,7 +73,7 @@
 </header>
 <!-- NEL_HEADER_END -->
 <!-- NEL_TOOL_RETURN_START -->
-<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+<nav class="breadcrumbs tool-return-nav" aria-label="Jejak navigasi">
   <a href="../../../">Beranda</a>
   <span aria-hidden="true">/</span>
   <a class="tool-return-link" href="../../">Alat</a>
@@ -83,10 +83,10 @@
 <!-- NEL_TOOL_RETURN_END -->
 <section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner"><p class="eyebrow">ALAT PERENCANAAN KAPASITAS JARINGAN</p><p class="hero-title">Kalkulator Bandwidth dan Waktu Transfer</p><p>Perkirakan waktu transfer, hitung bandwidth yang diperlukan, ukur kapasitas pengguna bersamaan, dan ubah laju berkelanjutan menjadi volume data.</p><div class="hero-tags"><span>bps / Mbps / Gbps</span><span>GB / GiB / TB</span><span>Konkurensi</span><span>Efisiensi</span></div></div></section>
 
-<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator" data-nel-readout-roles="%7B%22secondary%22%3A%5B%22transferPerRate%22%2C%22transferAggregateRate%22%2C%22transferSerialization%22%2C%22transferSetup%22%2C%22transferTotalData%22%2C%22transferEfficiencyResult%22%2C%22transferOverheadResult%22%2C%22transferConcurrencyResult%22%5D%2C%22identifier%22%3A%5B%5D%2C%22annotation%22%3A%5B%5D%7D" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv"><div class="tool-head"><nav class="crumbs" aria-label="Breadcrumb">
-  <a href="../../">Beranda</a>
+<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator" data-nel-readout-roles="%7B%22secondary%22%3A%5B%22transferPerRate%22%2C%22transferAggregateRate%22%2C%22transferSerialization%22%2C%22transferSetup%22%2C%22transferTotalData%22%2C%22transferEfficiencyResult%22%2C%22transferOverheadResult%22%2C%22transferConcurrencyResult%22%5D%2C%22identifier%22%3A%5B%5D%2C%22annotation%22%3A%5B%5D%7D" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv"><div class="tool-head"><nav class="crumbs" aria-label="Jejak navigasi">
+  <a href="../../../">Beranda</a>
   <span aria-hidden="true">/</span>
-  <a class="tool-return-link" href="./">Alat</a>
+  <a class="tool-return-link" href="../../">Alat</a>
   <span aria-hidden="true">/</span>
   <span aria-current="page">Kalkulator bandwidth dan waktu transfer</span>
 </nav><h1 class="tool-page-label">Kalkulator Bandwidth dan Waktu Transfer</h1><p class="tool-lede">Perkirakan waktu transfer, hitung bandwidth yang diperlukan, ukur kapasitas pengguna bersamaan, dan ubah laju berkelanjutan menjadi volume data.</p></div><div class="mode-tabs tabs"><button class="active" data-mode="transfer">Waktu transfer</button><button data-mode="required">Bandwidth yang diperlukan</button><button data-mode="concurrency">Pengguna bersamaan</button><button data-mode="volume">Volume data</button></div>
@@ -130,7 +130,7 @@
 </div></div>
 <p class="validation" id="validation"></p>
 <div class="input-actions"><button class="primary btn btn-primary" id="calculateBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> Hitung</button><button class="secondary btn btn-ghost" id="resetBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M20 11a8 8 0 1 0-2.3 5.7"></path><path d="M20 4v7h-7"></path></svg> Atur ulang</button></div>
-<div class="formula-block"><div class="formula-card"><h3>Perhitungan inti</h3><code>Payload rate = physical rate × payload efficiency × allowed utilization. Transfer time = file bits ÷ payload rate + setup delay.</code></div><div class="formula-note"><p><strong>Bits vs bytes.</strong> Tingkat sambungan dalam bit per detik; ukuran berkas dikonversi ke bit (× 8) sebelum waktu.</p><p><strong>Efisiensi.</strong> Efisiensi payload mencakup protokol / header sehingga tidak setiap bit fisik membawa data pengguna.</p><p><strong>Utilisasi.</strong> Batas utilisasi menentukan seberapa penuh tautan dipakai dalam perencanaan, dengan cadangan untuk lonjakan.</p><p><strong>Penundaan pengaturan.</strong> RTT setup × RTT menambahkan waktu koneksi di atas waktu transfer.</p></div></div>
+<div class="formula-block"><div class="formula-card"><h3>Perhitungan inti</h3><code>Laju muatan = laju fisik × efisiensi muatan × utilisasi yang diizinkan. Waktu transfer = bit berkas ÷ laju muatan + penundaan pembentukan.</code></div><div class="formula-note"><p><strong>Bit dan byte.</strong> Tingkat sambungan dalam bit per detik; ukuran berkas dikonversi ke bit (× 8) sebelum waktu.</p><p><strong>Efisiensi.</strong> Efisiensi payload mencakup protokol / header sehingga tidak setiap bit fisik membawa data pengguna.</p><p><strong>Utilisasi.</strong> Batas utilisasi menentukan seberapa penuh tautan dipakai dalam perencanaan, dengan cadangan untuk lonjakan.</p><p><strong>Penundaan pengaturan.</strong> RTT setup × RTT menambahkan waktu koneksi di atas waktu transfer.</p></div></div>
 </section>
 <section class="result-panel card nel-tool-result" id="result" aria-live="polite">
 <div class="section-title ro-h"><span class="section-icon">NET</span><div><h2 class="ro-h">Hasil perencanaan Bandwidth</h2><p>Laju payload setelah efisiensi dan utilisasi yang diatur.</p></div></div>
@@ -222,12 +222,12 @@
 <details class="fb-fold blk" id="methodology" data-nel-v3-title-normalized="1">
 <summary class="fb-fold-sum"><span class="fb-fold-title">Bagaimana itu dihitung &amp; rumus</span></summary>
 <div class="fb-fold-body">
-<div class="eq">waktu serialisasi = data _ bits GNU (link _ rate × efisiensi × utilisasi)<br>
-setup delay = RTT × setup _ round _ trip<br>
-transfer waktu = serialisasi waktu + setup penundaan<br>
-rate yang dibutuhkan = data _ bits meragukan efisiensi imprefisisasi<br>
-max users &gt; _ payload _ rate GNU (per _ user _ rate × burst _ factor)</div>
-<p>Tingkat jaringan memakai bit per detik; ukuran berkas memakai bytes (Beristirahat SI desimal atau IEC). Efisiensi adalah muatan pecahan setelah protokol overhead; utilisasi tutup berapa banyak link fisik beban kerja dapat mengkonsumsi. Pekerjaan yang sekarang diasumsikan untuk berbagi muatan yang tersedia rate sama kecuali penjadwalan Anda berbeda.</p>
+<div class="eq">waktu serialisasi = bit_data ÷ (laju_tautan × efisiensi × utilisasi)<br>
+penundaan pembentukan = RTT × putaran_setup<br>
+waktu transfer = waktu serialisasi + penundaan pembentukan<br>
+laju yang dibutuhkan = bit_data ÷ waktu ÷ efisiensi ÷ utilisasi<br>
+pengguna maksimum ≈ laju_muatan_tersedia ÷ (laju_per_pengguna × faktor_lonjakan)</div>
+<p>Laju jaringan memakai bit per detik; ukuran berkas memakai byte (SI desimal atau biner IEC). Efisiensi adalah bagian muatan setelah overhead protokol; utilisasi membatasi berapa banyak tautan fisik yang boleh dipakai beban kerja. Pekerjaan bersamaan dianggap berbagi laju muatan yang tersedia secara merata, kecuali penjadwal Anda berbeda.</p>
 <div class="method-defs">
 <article><h3>Bit dan bytes</h3><p>Kecepatan sambungan diekspresikan dalam bit per detik, sedangkan ukuran berkas biasanya dinyatakan dalam bytes. Satu byte sama dengan delapan bit. Pertahankan MB (megabyte) berbeda dari Mb (megabit).</p></article>
 <article><h3>Efisiensi dan utilisasi</h3><p>Efisiensi protokol mewakili muatan fraksi. Utilisasi membatasi berbagi kapasitas sambungan fisik yang diperbolehkan untuk beban kerja sehingga hasilnya tetap berada di dalam target ruang depan direkayasa.</p></article>
@@ -258,7 +258,7 @@ max users &gt; _ payload _ rate GNU (per _ user _ rate × burst _ factor)</div>
 <h2>Perhitungan baru-baru ini</h2>
 <div class="fb-fold-body">
 <div class="history-toolbar history-head">
-<div><p class="eyebrow">PROYEK RECORDS</p></div>
+<div><p class="eyebrow">CATATAN PROYEK</p></div>
 <button class="text-button btn btn-ghost btn-sm" id="clearHistoryBtn" type="button">Hapus riwayat</button>
 </div>
 <div class="history-list" id="historyList" role="list"></div>
@@ -307,4 +307,4 @@ max users &gt; _ payload _ rate GNU (per _ user _ rate × burst _ factor)</div>
 <!-- NEL_FOOTER_END -->
 <script defer="" src="../data/bandwidth-units.js"></script><script defer="" src="../js/engine.js?v=e4a8ce1d09da"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=3657274c431e"></script>
 <script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
-<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d"></script></body></html>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=9b54bbd00689"></script></body></html>

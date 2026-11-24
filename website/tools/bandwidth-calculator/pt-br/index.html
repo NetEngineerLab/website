@@ -46,7 +46,7 @@
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
 <script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
-<script defer src="../../../assets/js/pt-br-launch-runtime.js?v=1223d823e2c6"></script>
+<script defer src="../../../assets/js/pt-br-launch-runtime.js?v=9ae15bbd4462"></script>
 <link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
 <link rel="manifest" href="../manifest-pt-br.webmanifest">
 </head><body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1" data-nel-offline-worker="1">
@@ -73,7 +73,7 @@
 </header>
 <!-- NEL_HEADER_END -->
 <!-- NEL_TOOL_RETURN_START -->
-<nav class="breadcrumbs tool-return-nav" aria-label="Trigo de pão">
+<nav class="breadcrumbs tool-return-nav" aria-label="Trilha de navegação">
   <a href="../../../">Início</a>
   <span aria-hidden="true">/</span>
   <a class="tool-return-link" href="../../">Ferramentas</a>
@@ -83,10 +83,10 @@
 <!-- NEL_TOOL_RETURN_END -->
 <section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner"><p class="eyebrow">FERRAMENTA DE PLANEJAMENTO DE CAPACIDADE DE REDE</p><p class="hero-title">Calculadora de Largura de Banda e Tempo de Transferência</p><p>Estimar o tempo de transferência, calcular a largura de banda necessária, dimensione a capacidade de usuários simultâneos e converta taxas sustentadas em volume de dados.</p><div class="hero-tags"><span>bps / Mbps / Gbps</span><span>GB / GiB / TB</span><span>Simultaneidade</span><span>Eficiência</span></div></div></section>
 
-<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator" data-nel-readout-roles="%7B%22secondary%22%3A%5B%22transferPerRate%22%2C%22transferAggregateRate%22%2C%22transferSerialization%22%2C%22transferSetup%22%2C%22transferTotalData%22%2C%22transferEfficiencyResult%22%2C%22transferOverheadResult%22%2C%22transferConcurrencyResult%22%5D%2C%22identifier%22%3A%5B%5D%2C%22annotation%22%3A%5B%5D%7D" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv"><div class="tool-head"><nav class="crumbs" aria-label="Trigo de pão">
-  <a href="../../">Início</a>
+<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator" data-nel-readout-roles="%7B%22secondary%22%3A%5B%22transferPerRate%22%2C%22transferAggregateRate%22%2C%22transferSerialization%22%2C%22transferSetup%22%2C%22transferTotalData%22%2C%22transferEfficiencyResult%22%2C%22transferOverheadResult%22%2C%22transferConcurrencyResult%22%5D%2C%22identifier%22%3A%5B%5D%2C%22annotation%22%3A%5B%5D%7D" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv"><div class="tool-head"><nav class="crumbs" aria-label="Trilha de navegação">
+  <a href="../../../">Início</a>
   <span aria-hidden="true">/</span>
-  <a class="tool-return-link" href="./">Ferramentas</a>
+  <a class="tool-return-link" href="../../">Ferramentas</a>
   <span aria-hidden="true">/</span>
   <span aria-current="page">Calculadora de largura de banda e tempo de transferência</span>
 </nav><h1 class="tool-page-label">Calculadora de Largura de Banda e Tempo de Transferência</h1><p class="tool-lede">Estimar o tempo de transferência, calcular a largura de banda necessária, dimensione a capacidade de usuários simultâneos e converta taxas sustentadas em volume de dados.</p></div><div class="mode-tabs tabs"><button class="active" data-mode="transfer">Tempo de transferência</button><button data-mode="required">Largura de banda necessária</button><button data-mode="concurrency">Usuários simultâneos</button><button data-mode="volume">Volume de dados</button></div>
@@ -130,7 +130,7 @@
 </div></div>
 <p class="validation" id="validation"></p>
 <div class="input-actions"><button class="primary btn btn-primary" id="calculateBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> Calcular</button><button class="secondary btn btn-ghost" id="resetBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M20 11a8 8 0 1 0-2.3 5.7"></path><path d="M20 4v7h-7"></path></svg> Redefinir</button></div>
-<div class="formula-block"><div class="formula-card"><h3>Cálculo do núcleo</h3><code>Payload rate = physical rate × payload efficiency × allowed utilization. Transfer time = file bits ÷ payload rate + setup delay.</code></div><div class="formula-note"><p><strong>Bits vs bytes.</strong> As taxas de ligação estão em bits por segundo; os tamanhos de arquivos são convertidos em bits (×8) antes do tempo.</p><p><strong>Eficiência.</strong> A eficiência da carga útil cobre o protocolo/headers, então nem todos os bits físicos carregam dados do usuário.</p><p><strong>Utilização.</strong> A utilização permitida limita o quanto o enlace pode ser ocupado no planejamento, com folga para picos.</p><p><strong>Atraso de configuração.</strong> RTTs de setup × RTT somam o tempo de conexão ao tempo de transferência.</p></div></div>
+<div class="formula-block"><div class="formula-card"><h3>Cálculo do núcleo</h3><code>Taxa útil = taxa física × eficiência de carga útil × utilização permitida. Tempo de transferência = bits do arquivo ÷ taxa útil + atraso de estabelecimento.</code></div><div class="formula-note"><p><strong>Bits e bytes.</strong> As taxas de ligação estão em bits por segundo; os tamanhos de arquivos são convertidos em bits (×8) antes do tempo.</p><p><strong>Eficiência.</strong> A eficiência da carga útil cobre o protocolo/headers, então nem todos os bits físicos carregam dados do usuário.</p><p><strong>Utilização.</strong> A utilização permitida limita o quanto o enlace pode ser ocupado no planejamento, com folga para picos.</p><p><strong>Atraso de configuração.</strong> RTTs de setup × RTT somam o tempo de conexão ao tempo de transferência.</p></div></div>
 </section>
 <section class="result-panel card nel-tool-result" id="result" aria-live="polite">
 <div class="section-title ro-h"><span class="section-icon">NET</span><div><h2 class="ro-h">Resultado do planeamento da largura de banda</h2><p>Desempenho da carga útil após a eficiência e utilização configuradas.</p></div></div>
@@ -222,12 +222,12 @@
 <details class="fb-fold blk" id="methodology" data-nel-v3-title-normalized="1">
 <summary class="fb-fold-sum"><span class="fb-fold-title">Como é calculado · métodos &amp; laboratórios</span></summary>
 <div class="fb-fold-body">
-<div class="eq">tempo de serialização = data bits (link rate × eficiência × utilização)<br>
-atraso de configuração = RTT × setup round trips<br>
-tempo de transferência = tempo de serialização + atraso de configuração<br>
-taxa exigida = data bits . tempo . eficiência . utilização<br>
-máximo de usuários (por user rate × burst factor)</div>
-<p>As taxas de rede usam bits por segundo; os tamanhos de arquivos usam bytes (decimal SI ou binário IEC). A eficiência é a fração de carga útil após a sobrecarga do protocolo; a utilização de tampas quanto da ligação física a carga de trabalho pode consumir. Empregos simultâneos são assumidos para compartilhar taxa de carga disponível igualmente, a menos que seu agendador difere.</p>
+<div class="eq">tempo de serialização = bits_de_dados ÷ (taxa_do_enlace × eficiência × utilização)<br>
+atraso de estabelecimento = RTT × viagens_de_setup<br>
+tempo de transferência = tempo de serialização + atraso de estabelecimento<br>
+taxa exigida = bits_de_dados ÷ tempo ÷ eficiência ÷ utilização<br>
+usuários máximos ≈ taxa_útil_disponível ÷ (taxa_por_usuário × fator_de_pico)</div>
+<p>As taxas de rede usam bits por segundo; os tamanhos de arquivo usam bytes (SI decimal ou binário IEC). A eficiência é a fração de carga útil depois da sobrecarga de protocolo; a utilização limita quanto do enlace físico a carga pode consumir. Trabalhos simultâneos dividem igualmente a taxa de carga útil disponível, salvo quando o escalonador for diferente.</p>
 <div class="method-defs">
 <article><h3>Bits e bytes</h3><p>A velocidade da ligação é expressa em bits por segundo, enquanto o tamanho do arquivo é normalmente expresso em bytes. Um byte é igual a oito bits. Manter o MB (megabytes) distinto do Mb (megabits).</p></article>
 <article><h3>Eficiência e utilização</h3><p>A eficiência do protocolo é a fração de payload. A utilização limita a parte da capacidade física reservada à carga, para o resultado ficar dentro da meta de planejamento.</p></article>
@@ -307,4 +307,4 @@ máximo de usuários (por user rate × burst factor)</div>
 <!-- NEL_FOOTER_END -->
 <script defer="" src="../data/bandwidth-units.js"></script><script defer="" src="../js/engine.js?v=e4a8ce1d09da"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=3657274c431e"></script>
 <script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
-<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d"></script></body></html>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=9b54bbd00689"></script></body></html>

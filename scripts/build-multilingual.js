@@ -658,6 +658,27 @@ function injectToolReturnNavigation(html,currentRel,currentInfo){
  if(headerEnd.test(html))return html.replace(headerEnd,match=>`${match}\n${nav}`);
  return html.replace(/<\/header>/i,match=>`${match}\n${nav}`);
 }
+function repairToolHeadCrumbs(html,currentInfo){
+ // The in-page crumbs were copied from the English tool page, so a locale
+ // directory resolves Home to /tools/ and Tools to the calculator itself.
+ // Point them at the same destinations as the header return navigation.
+ if(!currentInfo||currentInfo.kind!=="tool")return html;
+ const locale=localeMap.get(currentInfo.localeId);
+ const currentUrl=urlForRoute(currentInfo.route,locale);
+ const homeHref=relativeUrl(currentUrl,urlForRoute("",linkedLocale("",locale)));
+ const toolsHref=relativeUrl(currentUrl,urlForRoute("tools/",linkedLocale("tools/",locale)));
+ return html.replace(/<nav\b[^>]*\bclass\s*=\s*["'][^"']*\bcrumbs\b[^"']*["'][^>]*>[\s\S]*?<\/nav>/gi,nav=>{
+  const links=[...nav.matchAll(/<a\b/gi)];
+  // A single Tools link is already the tools directory. Only the Home/Tools pair is repaired.
+  if(links.length<2)return nav;
+  let index=0;
+  return nav.replace(/<a\b([^>]*?)\bhref\s*=\s*(["'])[^"']*\2/gi,(whole,before,quote)=>{
+   const href=index===0?homeHref:index===1?toolsHref:null;
+   index+=1;
+   return href==null?whole:`<a${before}href=${quote}${href}${quote}`;
+  });
+ });
+}
 function supplementalLocaleManifestWillBeWritten(toolSlug,locale,groups){
  if(!supplementalSlugs.has(toolSlug)||locale.id===defaultLocale.id)return false;
  const route=`tools/${toolSlug}/`;
@@ -1141,6 +1162,7 @@ function build(){
   html=rewriteInternalAnchors(html,record.rel,record.info,groups);
   html=injectSiteShell(html,record.rel,record.info);
   html=injectToolReturnNavigation(html,record.rel,record.info);
+  html=repairToolHeadCrumbs(html,record.info);
   html=replaceLanguageMenu(html,menuMarkup(record.info,group));
   if(record.info.route.startsWith("topics/"))html=ensureTopicBreadcrumb(html,record.info,locale);
   if(record.info.kind==="home"||record.info.kind==="toolsDirectory")html=prerenderToolGrid(html,record.info,locale);

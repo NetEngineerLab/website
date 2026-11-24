@@ -517,13 +517,13 @@ function historyHumanText(p,original){
  return result!==original?result:null;
 }
 function translateTextNode(n){
- const p=n.parentElement;if(!p||p.closest('script,style,code,pre')||localeValueOwner(p))return;
+ const p=n.parentElement;if(!p||p.closest('script,style,code,pre,sup,.eq,[data-scenario-expected],[data-nel-technical]')||localeValueOwner(p))return;
  const original=n.nodeValue,t=original.trim();
  const ui=p.closest('label,option,h1,h2,h3,h4,button');
  let value=historyHumanText(p,original)??(ui&&Object.prototype.hasOwnProperty.call(uiLexicon,t)?original.replace(t,uiLexicon[t]):tr(original));
  if(value!==original){const option=p.closest('option');if(option&&!option.hasAttribute('value'))option.setAttribute('value',option.value);n.nodeValue=value;}
 }
-function walk(root){const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);const nodes=[];while(w.nextNode())nodes.push(w.currentNode);for(const n of nodes)translateTextNode(n);for(const el of root.querySelectorAll?.('[aria-label],[title],[placeholder]')||[]){if(el.closest('script,style,code,pre,[data-nel-locale-value]'))continue;for(const a of ['aria-label','title','placeholder'])if(el.hasAttribute(a)){const old=el.getAttribute(a),t=old.trim();const v=Object.prototype.hasOwnProperty.call(uiLexicon,t)?old.replace(t,uiLexicon[t]):tr(old);if(v!==old)el.setAttribute(a,v);}}}
+function walk(root){const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);const nodes=[];while(w.nextNode())nodes.push(w.currentNode);for(const n of nodes)translateTextNode(n);for(const el of root.querySelectorAll?.('[aria-label],[title],[placeholder]')||[]){if(el.closest('script,style,code,pre,sup,[data-scenario-expected],[data-nel-technical],[data-nel-locale-value]'))continue;for(const a of ['aria-label','title','placeholder'])if(el.hasAttribute(a)){const old=el.getAttribute(a),t=old.trim();const v=Object.prototype.hasOwnProperty.call(uiLexicon,t)?old.replace(t,uiLexicon[t]):tr(old);if(v!==old)el.setAttribute(a,v);}}}
 const obs=new MutationObserver(ms=>{for(const m of ms){for(const n of m.addedNodes){if(n.nodeType===Node.TEXT_NODE)translateTextNode(n);else if(n.nodeType===Node.ELEMENT_NODE)walk(n);}if(m.type==='characterData')translateTextNode(m.target);}});
 function start(){document.documentElement.lang='pt-BR';walk(document.body);obs.observe(document.body,{childList:true,subtree:true,characterData:true});}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();

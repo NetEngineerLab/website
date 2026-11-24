@@ -7,6 +7,8 @@
   const slug = toolIndex >= 0 ? parts[toolIndex + 1] : "";
   const zh = document.documentElement.lang.toLowerCase().startsWith("zh");
   const es = document.documentElement.lang.toLowerCase().startsWith("es");
+  const id = document.documentElement.lang.toLowerCase() === "id" || document.documentElement.lang.toLowerCase().startsWith("id-");
+  const pt = document.documentElement.lang.toLowerCase().startsWith("pt");
   const enhancedTools = new Set([
     "wireless-link-budget-calculator",
     "poe-voltage-drop-calculator",
@@ -443,7 +445,7 @@
         (main.querySelector(".nel-tool-input, .input-panel, .input-card, .config-panel") || main).appendChild(controllerNote);
       }
       if (controllerNote) {
-        controllerNote.textContent = zh ? "请检查输入值及允许范围。" : es ? "Revise los valores y los intervalos permitidos." : "Check the input values and allowed ranges.";
+        controllerNote.textContent = zh ? "请检查输入值及允许范围。" : es ? "Revise los valores y los intervalos permitidos." : id ? "Periksa nilai dan rentang yang diizinkan." : pt ? "Verifique os valores e os intervalos permitidos." : "Check the input values and allowed ranges.";
         if (nativeInvalidControls.size) controllerNote.textContent += " " + [...nativeInvalidControls].map(labelFor).join(", ");
         controllerNote.hidden = valid || (!nativeInvalid && domainMessage);
       }
