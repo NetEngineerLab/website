@@ -17,7 +17,12 @@ const tools = [
   "tcp-mathis-throughput-estimator",
   "mm1-queue-delay-calculator",
   "ethernet-line-coding-calculator",
-  "dc-feeder-voltage-drop-calculator"
+  "dc-feeder-voltage-drop-calculator",
+  "itu-dwdm-grid-calculator",
+  "edfa-ase-osnr-estimator",
+  "path-availability-calculator",
+  "fiber-loss",
+  "pmd-budget-calculator"
 ];
 const sheet = fs.readFileSync(path.join(root, "website/assets/css/pilot-locale-toc.css"), "utf8");
 assert.match(sheet, /html:is\(:lang\(id\), :lang\(pt-BR\)\)/);

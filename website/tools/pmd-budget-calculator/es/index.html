@@ -33,18 +33,20 @@
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="es">
 <meta name="nel-route" content="tools/pmd-budget-calculator/">
-<meta name="nel-available-locales" content="en,zh,es">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
 <link rel="canonical" href="https://netengineerlab.com/tools/pmd-budget-calculator/es/">
 <link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/pmd-budget-calculator/">
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/pmd-budget-calculator/zh/">
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/pmd-budget-calculator/es/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/tools/pmd-budget-calculator/id/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/tools/pmd-budget-calculator/pt-br/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/pmd-budget-calculator/">
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cómo se calcula la PMD de un enlace?","acceptedAnswer":{"@type":"Answer","text":"DGD medio = coeficiente PMD × √longitud. 0,20 ps/√km en 80 km son 0,2 × 8,94 = 1,79 ps. El DGD de componentes se suma en cuadratura."}},{"@type":"Question","name":"¿Cuál es el límite de PMD para 10G?","acceptedAnswer":{"@type":"Answer","text":"Con la regla del 10 % del periodo, 10,3125 GBd admite unos 9,7 ps de DGD medio. Una fibra antigua de 0,5 ps/√km lo alcanza en unos 376 km."}},{"@type":"Question","name":"¿Por qué la PMD crece con la raíz de la longitud?","acceptedAnswer":{"@type":"Answer","text":"La birrefringencia cambia al azar a lo largo de la fibra, así que el retardo se acumula como un paseo aleatorio, proporcional a √L."}},{"@type":"Question","name":"¿Qué diferencia hay entre PMD y DGD?","acceptedAnswer":{"@type":"Answer","text":"El DGD es el retardo instantáneo entre los dos modos. La PMD es su valor medio en longitud de onda y tiempo; el coeficiente es ese medio por √km."}},{"@type":"Question","name":"¿Importa la PMD en 100G o 400G coherente?","acceptedAnswer":{"@type":"Answer","text":"Mucho menos. Los DSP coherentes compensan decenas de ps de DGD, por lo que una fibra que limita 10G NRZ puede seguir llevando canales coherentes."}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
 <link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
-<script defer src="../../../data/locales.js?v=ebbce1fad9e4"></script>
+<script defer src="../../../data/locales.js?v=70e1f68c8589"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
@@ -71,7 +73,7 @@
       <a href="../../../es/topics/">Temas</a>
     </nav>
     <div class="site-shell-actions">
-      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Español"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Español</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/pmd-budget-calculator/" lang="en" hreflang="en"><span>English</span><small>Inglés</small></a><a class="language-option" role="menuitem" href="/tools/pmd-budget-calculator/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chino simplificado</small></a><a class="language-option" role="menuitem" href="/tools/pmd-budget-calculator/es/" lang="es" hreflang="es" aria-current="page"><span>Español</span><small>Español</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Español"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Español</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/pmd-budget-calculator/" lang="en" hreflang="en"><span>English</span><small>Inglés</small></a><a class="language-option" role="menuitem" href="/tools/pmd-budget-calculator/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chino simplificado</small></a><a class="language-option" role="menuitem" href="/tools/pmd-budget-calculator/es/" lang="es" hreflang="es" aria-current="page"><span>Español</span><small>Español</small></a><a class="language-option" role="menuitem" href="/tools/pmd-budget-calculator/id/" lang="id" hreflang="id"><span>Bahasa Indonesia</span><small>Indonesio</small></a><a class="language-option" role="menuitem" href="/tools/pmd-budget-calculator/pt-br/" lang="pt-BR" hreflang="pt-BR"><span>Português do Brasil</span><small>Portugués de Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
       <div class="site-shell-context-action"><a href="#calculator">Empezar a calcular</a></div>
     </div>
   </div>
@@ -144,7 +146,7 @@
 <script defer="" src="../js/engine.js?v=6bee3dc55db8"></script>
 <script defer="" src="../js/pwa.js?v=20261108-pmd-bw5"></script>
 <script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script>
-<script defer="" src="../js/app.js?v=e53bab0cf63e"></script>
+<script defer="" src="../js/app.js?v=7c79d69f256c"></script>
 <script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
 <script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=502db0b62a7e"></script>
 <script defer="" src="../../../assets/js/tool-detail-v3.js?v=6f38212f00f3"></script>

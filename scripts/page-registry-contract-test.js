@@ -155,12 +155,15 @@ assert.strictEqual(plannedRegistry.families.find(family=>family.id===plannedTool
 assert(plannedRegistry.pages.filter(page=>page.familyId===plannedTools[0].id).every(page=>!page.sitemapEligible&&page.robots==="noindex,follow"));
 
 const retiredTools=clone(base.tools);
+const retiredTargetId="bandwidth-calculator";
 retiredTools[0].status="retired";
-retiredTools[0].withdrawal={strategy:"redirect",targetFamilyId:retiredTools[1].id};
+retiredTools[0].withdrawal={strategy:"redirect",targetFamilyId:retiredTargetId};
 const retiredRegistry=buildPageRegistry(loadRegistryInputs({toolsOverride:retiredTools}));
 const retiredPages=retiredRegistry.pages.filter(page=>page.familyId===retiredTools[0].id);
-assert.strictEqual(retiredPages.find(page=>page.locale==="en").withdrawal.target,`https://netengineerlab.com/tools/${retiredTools[1].id}/`);
-assert.strictEqual(retiredPages.find(page=>page.locale==="zh").withdrawal.target,`https://netengineerlab.com/tools/${retiredTools[1].id}/zh/`);
+assert.strictEqual(retiredPages.find(page=>page.locale==="en").withdrawal.target,`https://netengineerlab.com/tools/${retiredTargetId}/`);
+assert.strictEqual(retiredPages.find(page=>page.locale==="zh").withdrawal.target,`https://netengineerlab.com/tools/${retiredTargetId}/zh/`);
+assert.strictEqual(retiredPages.find(page=>page.locale==="id").withdrawal.target,`https://netengineerlab.com/tools/${retiredTargetId}/id/`);
+assert.strictEqual(retiredPages.find(page=>page.locale==="pt-BR").withdrawal.target,`https://netengineerlab.com/tools/${retiredTargetId}/pt-br/`);
 assert(retiredPages.every(page=>!page.sitemapEligible&&page.robots==="noindex,follow"));
 
 console.log(`Page Registry contract tests: PASS (${registry.families.length} families; ${registry.pages.length} localized pages; sitemap exact).`);
