@@ -7,7 +7,7 @@ const path = require("path");
 const root = path.resolve(__dirname, "..");
 const site = path.join(root, "website");
 const drafts = path.join(root, "drafts", "locale-rollout", "website");
-const pilots = new Set(["bandwidth-calculator", "subnet-calculator", "fiber-latency-calculator", "ethernet-serialization-delay-calculator", "stp-path-cost-calculator", "chromatic-dispersion-calculator", "copper-propagation-delay-calculator"]);
+const pilots = new Set(["bandwidth-calculator", "subnet-calculator", "fiber-latency-calculator", "ethernet-serialization-delay-calculator", "stp-path-cost-calculator", "chromatic-dispersion-calculator", "copper-propagation-delay-calculator", "shannon-capacity-calculator", "tcp-mathis-throughput-estimator", "mm1-queue-delay-calculator", "ethernet-line-coding-calculator", "dc-feeder-voltage-drop-calculator"]);
 const locales = new Set(["id", "pt-br"]);
 
 assert.ok(fs.existsSync(path.join(drafts, "id", "index.html")), "Indonesian home draft must stay outside website/");
@@ -39,7 +39,7 @@ for (const file of walk(site)) {
   assert.ok(allowedShell.has(shell) || pilots.has(tool), `unpublished locale file is still in the publish directory: ${path.relative(root, file)}`);
   published.push(path.relative(root, file));
 }
-assert.equal(published.filter(file => file.endsWith(`${path.sep}index.html`) || file.endsWith("/index.html")).length, 26);
+assert.equal(published.filter(file => file.endsWith(`${path.sep}index.html`) || file.endsWith("/index.html")).length, 36);
 
 const sitemap = fs.readFileSync(path.join(site, "sitemap.xml"), "utf8");
 for (const url of [
@@ -56,7 +56,17 @@ for (const url of [
   "https://netengineerlab.com/tools/chromatic-dispersion-calculator/id/",
   "https://netengineerlab.com/tools/chromatic-dispersion-calculator/pt-br/",
   "https://netengineerlab.com/tools/copper-propagation-delay-calculator/id/",
-  "https://netengineerlab.com/tools/copper-propagation-delay-calculator/pt-br/"
+  "https://netengineerlab.com/tools/copper-propagation-delay-calculator/pt-br/",
+  "https://netengineerlab.com/tools/shannon-capacity-calculator/id/",
+  "https://netengineerlab.com/tools/shannon-capacity-calculator/pt-br/",
+  "https://netengineerlab.com/tools/tcp-mathis-throughput-estimator/id/",
+  "https://netengineerlab.com/tools/tcp-mathis-throughput-estimator/pt-br/",
+  "https://netengineerlab.com/tools/mm1-queue-delay-calculator/id/",
+  "https://netengineerlab.com/tools/mm1-queue-delay-calculator/pt-br/",
+  "https://netengineerlab.com/tools/ethernet-line-coding-calculator/id/",
+  "https://netengineerlab.com/tools/ethernet-line-coding-calculator/pt-br/",
+  "https://netengineerlab.com/tools/dc-feeder-voltage-drop-calculator/id/",
+  "https://netengineerlab.com/tools/dc-feeder-voltage-drop-calculator/pt-br/"
 ]) assert.ok(sitemap.includes(`<loc>${url}</loc>`), url);
 for (const url of [
   "https://netengineerlab.com/id/",

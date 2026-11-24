@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-poe-voltage-drop-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-8cc98631958a-a5654b51fb5b";
+const CACHE = "nel-poe-voltage-drop-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-94e01684dcc3-8b4040741a69";
 const CORE = [
   "./index.html",
   "./",
@@ -18,7 +18,7 @@ const CORE = [
   "./js/engine.js?v=849342bf8ebe",
   "../../assets/js/id-launch-runtime.js?v=3bc487934804",
   "../../assets/js/pt-br-launch-runtime.js?v=9ae15bbd4462",
-  "../../data/locales.js?v=7a08f57c71ce",
+  "../../data/locales.js?v=ebbce1fad9e4",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",

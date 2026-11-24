@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id" dir="ltr" data-nel-locale="id" data-nel-route="tools/shannon-capacity-calculator/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="app-base" content="../">
+<title>Kalkulator kapasitas AWGN Shannon</title>
+<meta name="description" content="Hitung batas kapasitas kanal AWGN C = B log2(1+S/N) dari lebar pita dan SNR.">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<link rel="icon" href="/assets/icons/favicon.svg?v=1.9.5-06" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="/assets/css/mobile-branding.css?v=345784b6b020">
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif:ital@1&amp;display=swap">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=031fae951adb">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=64bd0d9f6bcb">
+<link rel="stylesheet" href="../css/style.css?v=3e625a824a21">
+<script defer src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
+<meta name="theme-color" content="#176ff2">
+<meta property="og:url" content="https://netengineerlab.com/tools/shannon-capacity-calculator/id/">
+<meta property="og:title" content="Kalkulator kapasitas AWGN Shannon">
+<meta property="og:description" content="Hitung batas kapasitas kanal AWGN C = B log2(1+S/N) dari lebar pita dan SNR.">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kalkulator kapasitas AWGN Shannon">
+<meta name="twitter:description" content="Hitung batas kapasitas kanal AWGN C = B log2(1+S/N) dari lebar pita dan SNR.">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://netengineerlab.com/id/"},{"@type":"ListItem","position":2,"name":"Alat","item":"https://netengineerlab.com/tools/id/"},{"@type":"ListItem","position":3,"name":"Kalkulator kapasitas AWGN Shannon","item":"https://netengineerlab.com/tools/shannon-capacity-calculator/id/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Kalkulator kapasitas AWGN Shannon","url":"https://netengineerlab.com/tools/shannon-capacity-calculator/id/","description":"Hitung batas kapasitas kanal AWGN C = B log2(1+S/N) dari lebar pita dan SNR.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","inLanguage":"id","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
+
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Kalkulator kapasitas AWGN Shannon","url":"https://netengineerlab.com/tools/shannon-capacity-calculator/id/","description":"Hitung batas kapasitas kanal AWGN C = B log2(1+S/N) dari lebar pita dan SNR.","inLanguage":"id","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/id/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="id">
+<meta name="nel-route" content="tools/shannon-capacity-calculator/">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
+<link rel="canonical" href="https://netengineerlab.com/tools/shannon-capacity-calculator/id/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/shannon-capacity-calculator/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/shannon-capacity-calculator/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/shannon-capacity-calculator/es/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/tools/shannon-capacity-calculator/id/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/tools/shannon-capacity-calculator/pt-br/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/shannon-capacity-calculator/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
+<script defer src="../../../data/locales.js?v=ebbce1fad9e4"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
+<script defer src="../../../assets/js/id-launch-runtime.js?v=3bc487934804"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
+<link rel="manifest" href="../manifest-id.webmanifest">
+</head>
+<body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1" data-nel-offline-worker="1">
+<a class="skip" href="#calculator">Lewati ke kalkulator</a>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../id/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Platform kecerdasan untuk rekayasa jaringan</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Buka navigasi"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navigasi utama">
+      <a href="../../../id/">Beranda</a>
+      <a href="../../id/" aria-current="page">Alat</a>
+      <a href="../../../guides/">Panduan</a>
+      <a href="../../../topics/">Topik</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Bahasa: Bahasa Indonesia"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Bahasa Indonesia</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/shannon-capacity-calculator/" lang="en" hreflang="en"><span>English</span><small>Inggris</small></a><a class="language-option" role="menuitem" href="/tools/shannon-capacity-calculator/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Tionghoa Sederhana</small></a><a class="language-option" role="menuitem" href="/tools/shannon-capacity-calculator/es/" lang="es" hreflang="es"><span>Español</span><small>Spanyol</small></a><a class="language-option" role="menuitem" href="/tools/shannon-capacity-calculator/id/" lang="id" hreflang="id" aria-current="page"><span>Bahasa Indonesia</span><small>Bahasa Indonesia</small></a><a class="language-option" role="menuitem" href="/tools/shannon-capacity-calculator/pt-br/" lang="pt-BR" hreflang="pt-BR"><span>Português do Brasil</span><small>Portugis Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">Mulai menghitung</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Jejak">
+  <a href="../../../id/">Beranda</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../../id/">Alat</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">Kalkulator kapasitas AWGN Shannon</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END -->
+<section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner"><p class="eyebrow">KAPASITAS KANAL</p><p class="hero-title">Kalkulator kapasitas AWGN Shannon</p><p>Hitung batas kapasitas kanal AWGN C = B log2(1+S/N) dari lebar pita dan SNR.</p><div class="hero-tags"><span>Lebar pita</span><span>SNR</span><span>log2</span><span>AWGN</span></div></div></section>
+<main id="calculator" class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" data-engine="NEL_Shannon" data-primary="capacityMbps" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv">
+<div class="tool-head">
+<nav class="crumbs" aria-label="Jejak"><a href="../../../id/">Beranda</a> <span aria-hidden="true">/</span> <a href="../../id/">Alat</a> <span aria-hidden="true">/</span> <span aria-current="page">Kalkulator kapasitas AWGN Shannon</span></nav>
+<h1 class="tool-page-label">Kalkulator kapasitas AWGN Shannon</h1>
+<p class="tool-lede">Hitung batas kapasitas kanal AWGN C = B log2(1+S/N) dari lebar pita dan SNR.</p>
+</div>
+<div class="workspace">
+<section class="input-panel card nel-tool-input fb-panel">
+<h2 class="panel-h">Masukan</h2>
+<p class="hint">Hasil mengikuti masukan. Masukan yang tidak valid menjelaskan alasannya dan menghapus angka sebelumnya.</p>
+<div class="fields"><div class="field f"><label for="bandwidth">Lebar pita acuan</label><div class="inp input-wrap"><input id="bandwidth" data-field="bandwidth" data-example="20" type="number" inputmode="decimal" value="20" step="any" data-probe="1" data-probe-edit="40" data-probe-invalid="0"><select id="bandwidthUnit" data-field="bandwidthUnit" aria-label="Satuan lebar pita acuan"><option value="MHz" selected>MHz</option><option value="Hz">Hz</option><option value="kHz">kHz</option><option value="GHz">GHz</option></select></div></div><div class="field f"><label for="snr">Sinyal terhadap derau</label><div class="inp input-wrap"><input id="snr" data-field="snr" data-example="100" type="number" inputmode="decimal" value="20" step="any"></div></div><div class="field f"><label for="snrUnit">Satuan SNR</label><div class="inp input-wrap sel"><select id="snrUnit" data-field="snrUnit" data-example="linear"><option value="dB" selected>dB</option><option value="linear">Linier</option></select></div></div></div>
+<p id="validation" class="validation" role="alert"></p>
+<div class="input-actions"><button id="calculateBtn" class="btn btn-primary" type="button">Hitung</button><button id="exampleBtn" class="btn btn-ghost" type="button">Muat contoh</button><button id="resetBtn" class="btn btn-ghost" type="button">Atur ulang</button></div>
+<div class="formula-card"><h3>Rumus</h3><code>C = B × log2(1 + S/N).</code><p>Ini perkiraan teknik untuk perencanaan. Ini bukan pengukuran laboratorium dan tidak menjamin kinerja peralatan.</p></div>
+</section>
+<section class="result-panel card nel-tool-result readout" id="result" aria-live="polite">
+<h2 class="ro-h">Hasil</h2>
+<p id="statusLine" class="hint"></p>
+<div class="metric-grid"><article class="metric"><span class="lbl" id="lbl-capacityMbps">Batas kapasitas AWGN</span><span class="val" id="out-capacityMbps" data-out="capacityMbps"><span class="num">—</span><span class="unit">Mbps</span></span></article><article class="metric"><span class="lbl" id="lbl-capacityBps">Batas kapasitas AWGN</span><span class="val" id="out-capacityBps" data-out="capacityBps"><span class="num">—</span><span class="unit">bit/s</span></span></article><article class="metric"><span class="lbl" id="lbl-snrLinear">SNR linier</span><span class="val" id="out-snrLinear" data-out="snrLinear"><span class="num">—</span></span></article><article class="metric"><span class="lbl" id="lbl-spectral">Efisiensi spektral</span><span class="val" id="out-spectral" data-out="spectral"><span class="num">—</span><span class="unit">bit/s/Hz</span></span></article></div>
+
+<div class="result-actions ro-acts"><button id="copyBtn" type="button">Salin hasil</button><button id="csvBtn" type="button">Ekspor CSV</button></div>
+</section>
+</div>
+<div class="below">
+<nav class="toc" aria-label="Di halaman ini"><h4>Di halaman ini</h4><a href="#about-scope">Tentang dan cakupan</a><a href="#methodology">Cara perhitungan</a><a href="#faq">Pertanyaan</a><a href="#references">Referensi</a><a href="#nel-tool-graph">Alur kerja</a></nav>
+<div class="prose">
+<details class="fb-fold blk" id="about-scope" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span class="fb-fold-title">Tentang dan cakupan</span></summary><div class="fb-fold-body"><p>Ini batas kapasitas AWGN. Modem, tabel MCS Wi-Fi, atau transponder optik bisa jauh di bawahnya. SNR boleh dimasukkan dalam desibel atau sebagai rasio daya linier.</p><p>Ini perkiraan teknik untuk perencanaan. Ini bukan pengukuran laboratorium dan tidak menjamin kinerja peralatan.</p><p class="about-meta">Ditinjau: 2026-11-19</p></div></details>
+<details class="fb-fold blk" id="methodology" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span class="fb-fold-title">Cara perhitungan</span></summary><div class="fb-fold-body"><p class="eq">C = B × log2(1 + S/N).</p><p>Rumus AWGN Shannon adalah C = B log2(1 + S/N). B adalah lebar pita dalam hertz dan S/N adalah rasio daya linier. SNR x desibel menjadi 10^(x/10). Contoh yang bisa dicek: B = 20 MHz dan SNR = 20 dB, maka S/N = 100 dan C = 20000000 × log2(101). Hasilnya batas atas untuk derau Gaussian putih aditif pada lebar pita dan SNR yang dimasukkan. Ini bukan anggaran tautan, dan tidak mencakup fading, struktur interferensi, atau overhead protokol.</p></div></details>
+<div class="blk faq" id="faq"><h2>Pertanyaan</h2><h3>Apakah log2(101) bagian dari contoh 20 dB?</h3><p>Ya. 20 dB adalah rasio linier 100, dan argumen logaritmanya 1+100.</p><h3>Bisakah SNR 0 dB?</h3><p>Ya. Rasio liniernya 1 dan kapasitasnya B × 1 bit/s/Hz.</p><h3>Apakah pita yang lebih lebar selalu membantu?</h3><p>Hanya dalam rumus ini, dan hanya jika SNR yang dimasukkan masih berlaku untuk pita yang lebih lebar itu.</p><h3>Apakah ini throughput Wi-Fi?</h3><p>Bukan. Ini batas AWGN.</p></div>
+<section class="blk" id="references"><h2>Referensi</h2><ul class="rel"><li><a href="https://ieeexplore.ieee.org/document/6773024">Shannon, A Mathematical Theory of Communication</a></li><li><a href="https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf">Cetak ulang Shannon 1948</a></li><li><a href="https://www.nist.gov/pml/owm/metric-si">Panduan desibel dan rasio NIST</a></li></ul></section>
+<!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="shannon-capacity-calculator" data-primary-workflow="line-rate-and-capacity">
+<div class="section-heading"><div><p class="eyebrow">ALUR KERJA</p><h2 id="nel-tool-graph-title">Lanjutkan alur kerja</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Alur saat ini</span><strong>Laju saluran, tundaan tembaga, dan batas kapasitas</strong><p>Perbesar laju muatan dengan kode saluran yang diterbitkan, taksir tundaan tembaga, lalu bandingkan dengan batas kapasitas AWGN.</p></div><div class="nel-workflow-step"><strong>Langkah 3 dari 3</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="3" aria-valuetext="Langkah 3 dari 3" aria-label="Langkah 3 dari 3"><span style="width:100%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="../../copper-propagation-delay-calculator/id/"><span class="nel-tool-graph-label">Sebelumnya</span><strong>Kalkulator tundaan propagasi tembaga</strong><span class="nel-tool-graph-description">Hitung tundaan propagasi satu arah dari panjang kabel dan faktor kecepatan yang Anda masukkan.</span></a><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Berikutnya</span><strong>Alur selesai</strong></div></div>
+<h3 class="nel-tool-graph-subtitle">Alat terkait</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="/tools/wireless-link-budget-calculator/"><strong>Wireless Link Budget Calculator (English)</strong><span class="nel-tool-graph-description">Calculate EIRP, FSPL, received signal, fade margin and Fresnel-zone clearance.</span></a><a class="nel-tool-graph-card" href="../../bandwidth-calculator/id/"><strong>Kalkulator bandwidth dan waktu transfer</strong><span class="nel-tool-graph-description">Hitung waktu transfer berkas, laju tautan yang dibutuhkan, kapasitas pengguna bersamaan, dan volume data.</span></a><a class="nel-tool-graph-card" href="../../ethernet-line-coding-calculator/id/"><strong>Kalkulator overhead kode saluran Ethernet</strong><span class="nel-tool-graph-description">Naikkan laju bit muatan dengan rasio kata kode 8b/10b, 64b/66b, dan RS-FEC yang diterbitkan.</span></a></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
+</div>
+</div>
+</main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Alat daring profesional untuk insinyur telekomunikasi dan jaringan.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navigasi kaki halaman">
+      <a href="../../../id/about/">Tentang</a><a href="../../../id/contact/">Kontak</a><a href="../../../id/privacy/">Privasi</a><a href="../../../id/terms/">Ketentuan</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script type="application/json" id="nel-copy">{"calculate":"Hitung","example":"Muat contoh","reset":"Atur ulang","copy":"Salin hasil","csv":"Ekspor CSV","invalid":"Periksa batas yang ditandai. Hasil sebelumnya telah dihapus.","ready":"Hasil diperbarui dari masukan saat ini.","inputs":"Masukan","results":"Hasil","formula":"Rumus","toc":"Di halaman ini","about":"Tentang dan cakupan","method":"Cara perhitungan","faq":"Pertanyaan","refs":"Referensi","flow":"Alur kerja","reviewed":"Ditinjau: 2026-11-19","approx":"Ini perkiraan teknik untuk perencanaan. Ini bukan pengukuran laboratorium dan tidak menjamin kinerja peralatan.","start":"Mulai menghitung","home":"Beranda","tools":"Alat","errors":{"empty":"Masukkan nilai.","invalid-number":"Masukkan bilangan desimal berhingga.","non-finite":"Nilai harus berhingga.","not-integer":"Masukkan bilangan bulat.","bad-unit":"Pilih satuan yang didukung.","overflow":"Perhitungan meluap. Gunakan masukan yang lebih kecil.","anchor-range":"Jaga jangkar antara 100 dan 400 THz.","spacing-range":"Spasi harus lebih dari 0 dan paling tinggi 10000 GHz.","channel-range":"Jaga indeks kanal antara -100000 dan 100000.","frequency-range":"Frekuensi optik hasil berada di luar 0 sampai 1000 THz.","power-range":"Daya kanal harus dari -80 sampai 40 dBm.","gain-range":"Penguatan harus lebih dari 0 dB dan paling tinggi 50 dB.","nf-range":"Angka derau harus dari 0 sampai 40 dB untuk model ini.","bandwidth-range":"Lebar pita di luar rentang yang diterima.","span-range":"Jumlah span harus bilangan bulat dari 1 sampai 10000.","bad-code":"Pilih kode saluran.","payload-range":"Laju muatan harus lebih dari 0 dan paling tinggi 100000 Gbps.","mss-range":"MSS harus bilangan bulat dari 1 sampai 65535 byte.","rtt-range":"RTT harus lebih dari 0 dan paling tinggi 100 s.","loss-range":"Probabilitas kehilangan harus lebih dari 0 dan kurang dari 1.","link-range":"Laju tautan harus lebih dari 0.","arrival-range":"Laju kedatangan harus lebih dari 0.","service-range":"Laju layanan harus lebih dari 0.","unstable":"Laju layanan harus lebih besar daripada laju kedatangan.","bad-kind":"Pilih blok atau MTBF.","availability-range":"Ketersediaan harus lebih dari 0 dan paling tinggi 1.","mtbf-range":"MTBF harus lebih dari 0.","mttr-range":"MTTR harus lebih dari 0.","bad-mode":"Pilih seri atau paralel.","block-count":"Masukkan 1 sampai 20 nilai ketersediaan.","voltage-range":"Tegangan harus lebih dari 0 dan paling tinggi 2000 V.","current-range":"Arus harus dari 0 sampai 100000 A.","length-range":"Panjang di luar rentang yang diterima.","area-range":"Luas konduktor harus lebih dari 0.","temperature-range":"Suhu harus menjaga resistivitas positif dan tetap dari -50 sampai 200 °C.","alpha-range":"Alpha harus dari 0 sampai 0.02 per °C.","conductor-count":"Jumlah jalur konduktor harus 1 atau 2.","rho-range":"Resistivitas harus lebih dari 0.","conduit-range":"Diameter jalur harus lebih dari 0.","group-count":"Masukkan 1 sampai 4 kelompok kabel.","diameter-range":"Diameter kabel harus lebih dari 0.","count-range":"Jumlah kabel harus bilangan bulat dari 1 sampai 100000.","limit-range":"Batas isi harus lebih dari 0 dan paling tinggi 100 persen.","vf-range":"Faktor kecepatan harus lebih dari 0 dan paling tinggi 1.","snr-range":"SNR di luar rentang yang diterima."}}</script>
+<link rel="stylesheet" href="../css/style.css?v=3e625a824a21">
+<script src="../js/engine.js?v=29dcf7737188"></script>
+<script src="../js/app.js?v=99fb796113bb"></script>
+<script src="../js/pwa.js"></script>
+<script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
+<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=502db0b62a7e"></script>
+</body>
+</html>

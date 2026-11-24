@@ -1,12 +1,12 @@
 "use strict";
-const CACHE = "nel-tcp-mathis-throughput-estimator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-8cc98631958a-910b32cff82d";
+const CACHE = "nel-tcp-mathis-throughput-estimator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-94e01684dcc3-fe764219eb13";
 const CORE = [
   "./",
   "./index.html",
   "./offline.html",
   "./manifest.webmanifest",
   "./css/style.css?v=3e625a824a21",
-  "./js/app.js?v=13190eae6437",
+  "./js/app.js?v=99fb796113bb",
   "./js/engine.js",
   "./js/engine.js?v=155f7dca1b0f",
   "./js/pwa.js",
@@ -17,7 +17,7 @@ const CORE = [
   "../../assets/js/es-launch-runtime.js?v=e0fea69289b0",
   "../../assets/js/id-launch-runtime.js?v=3bc487934804",
   "../../assets/js/pt-br-launch-runtime.js?v=9ae15bbd4462",
-  "../../data/locales.js?v=7a08f57c71ce",
+  "../../data/locales.js?v=ebbce1fad9e4",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",
@@ -46,7 +46,13 @@ const CORE = [
   "./manifest-zh.webmanifest",
   "./es/",
   "./es/index.html",
-  "./manifest-es.webmanifest"
+  "./manifest-es.webmanifest",
+  "./id/",
+  "./id/index.html",
+  "./manifest-id.webmanifest",
+  "./pt-br/",
+  "./pt-br/index.html",
+  "./manifest-pt-br.webmanifest"
 ];
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)));

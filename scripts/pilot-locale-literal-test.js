@@ -230,4 +230,74 @@ function walk(dir) {
   }
 }
 if (fs.existsSync(draftRoot)) walk(draftRoot);
+
+const nextTools = [
+  "shannon-capacity-calculator",
+  "tcp-mathis-throughput-estimator",
+  "mm1-queue-delay-calculator",
+  "ethernet-line-coding-calculator",
+  "dc-feeder-voltage-drop-calculator"
+];
+const residue = [
+  "Load example", "How it is calculated", "Enter a value.", "Engineering workflow",
+  "Related tools", "Copy result", "About and applicability", "Skip to calculator",
+  "Content reviewed:", "This is an engineering approximation", "Workflow complete",
+  "Workflow start", "Current workflow", "On this page", "Check the highlighted"
+];
+const kept = {
+  "shannon-capacity-calculator": ["C = B log2(1+S/N)", "log2(101)", "AWGN", "SNR"],
+  "tcp-mathis-throughput-estimator": ["MSS", "RTT", "RFC 6349", "√p"],
+  "mm1-queue-delay-calculator": ["M/M/1", "ρ = λ/μ"],
+  "ethernet-line-coding-calculator": ["8b/10b", "64b/66b", "10.3125"],
+  "dc-feeder-voltage-drop-calculator": ["IEC 60028", "1/58"]
+};
+for (const tool of nextTools) {
+  for (const locale of ["id", "pt-br"]) {
+    const rel = `website/tools/${tool}/${locale}/index.html`;
+    const html = read(rel);
+    for (const phrase of residue) assert.ok(!html.includes(phrase), `${rel} still contains ${phrase}`);
+    assert.match(html, locale === "id" ? /Jejak/ : /Trilha/, `${rel} breadcrumb label`);
+    for (const literal of kept[tool]) assert.ok(html.includes(literal), `${rel} lost technical literal ${literal}`);
+    for (const key of [...html.matchAll(/\bid="out-([^"]+)"/g)].map(match => match[1])) {
+      assert.ok(html.includes(`id="lbl-${key}"`), `${rel} missing visible label for ${key}`);
+    }
+    assert.doesNotMatch(html, /value="(?:per detik|per menit|persen|porcentagem|Linier|Linear)"/, `${rel} translated an option value`);
+    for (const card of html.matchAll(/<a class="nel-tool-graph-card" href="(\/tools\/[^"]+)">([\s\S]*?)<\/a>/g)) {
+      assert.match(card[2], /\(English\)/, `${rel} unpublished ${card[1]} is not marked English`);
+    }
+    assert.match(read(`website/tools/${tool}/js/app.js`), /localizedCopy/, `${tool} clipboard labels`);
+    assert.doesNotMatch(read(`website/tools/${tool}/js/engine.js`), /Masukkan|Informe um valor|Langkah|Etapa/, `${tool} engine locale text`);
+  }
+  assert.match(read(`website/tools/${tool}/index.html`), /Load example/, `${tool} English page`);
+  assert.match(read(`website/tools/${tool}/es/index.html`), /lang="es"/, `${tool} Spanish page`);
+  assert.match(read(`website/tools/${tool}/zh/index.html`), /lang="zh-CN"/, `${tool} Chinese page`);
+}
+const shannon = require("../website/tools/shannon-capacity-calculator/js/engine.js");
+const shannonCase = shannon.calculate({ bandwidth: { value: 20, unit: "MHz" }, snr: 20, snrUnit: "dB" });
+assert.equal(shannonCase.display.snrLinear, "100");
+assert.ok(Math.abs(shannonCase.values.capacityBps - (20e6 * Math.log2(101))) < 1e-6);
+assert.equal(shannon.calculate({ bandwidth: { value: 0, unit: "MHz" }, snr: 20, snrUnit: "dB" }).error, "bandwidth-range");
+const mathis = require("../website/tools/tcp-mathis-throughput-estimator/js/engine.js");
+const mathisCase = mathis.calculate({ mss: 1460, rtt: { value: 40, unit: "ms" }, loss: { value: 0.01, unit: "percent" }, link: { value: "", unit: "Mbps" } });
+assert.equal(mathisCase.display.throughputMbps, "29.2");
+assert.equal(mathis.calculate({ mss: 1460, rtt: { value: 0, unit: "ms" }, loss: { value: 0.01, unit: "percent" } }).error, "rtt-range");
+const mm1 = require("../website/tools/mm1-queue-delay-calculator/js/engine.js");
+const mm1Case = mm1.calculate({ arrival: { value: 800, unit: "per_s" }, service: { value: 1000, unit: "per_s" } });
+assert.equal(mm1Case.display.utilization, "0.8");
+assert.equal(mm1Case.display.sojournMs, "5");
+assert.equal(mm1.calculate({ arrival: { value: 1000, unit: "per_s" }, service: { value: 800, unit: "per_s" } }).error, "unstable");
+const line = require("../website/tools/ethernet-line-coding-calculator/js/engine.js");
+assert.equal(line.calculate({ payload: { value: 10, unit: "Gbps" }, code: "64b66b" }).display.lineGbps, "10.3125");
+assert.equal(line.calculate({ payload: { value: 0, unit: "Gbps" }, code: "64b66b" }).error, "payload-range");
+const feeder = require("../website/tools/dc-feeder-voltage-drop-calculator/js/engine.js");
+const feederCase = feeder.calculate({ voltage: 48, current: 1, length: { value: 58, unit: "m" }, area: { value: 1, unit: "mm2" }, temperature: 20, alpha: 0.00393, conductors: 1, rho20: 1 / 58 });
+assert.equal(feederCase.display.resistanceOhm, "1");
+assert.equal(feederCase.display.dropV, "1");
+assert.equal(feeder.calculate({ voltage: 48, current: 0, length: { value: 58, unit: "m" }, area: { value: 1, unit: "mm2" }, temperature: 20, alpha: 0.00393, conductors: 1, rho20: 1 / 58 }).display.dropV, "0");
+assert.equal(feeder.calculate({ voltage: 48, current: -1, length: { value: 58, unit: "m" }, area: { value: 1, unit: "mm2" }, temperature: 20, alpha: 0.00393, conductors: 1, rho20: 1 / 58 }).error, "current-range");
+assert.match(read("website/tools/copper-propagation-delay-calculator/id/index.html"), /ethernet-line-coding-calculator\/id\//);
+assert.match(read("website/tools/copper-propagation-delay-calculator/pt-br/index.html"), /ethernet-line-coding-calculator\/pt-br\//);
+assert.match(read("website/tools/ethernet-serialization-delay-calculator/es/index.html"), /Tasa máxima de tramas/);
+assert.match(read("website/tools/chromatic-dispersion-calculator/zh/index.html"), /残余色散/);
+
 console.log(`Pilot locale literal PASS. Unpublished drafts with the same damage markers: ${draftHits.length}. They stay outside website/.`);

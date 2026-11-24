@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-wifi-coverage-capacity-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-8cc98631958a-648405e7b9bc";
+const CACHE = "nel-wifi-coverage-capacity-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-94e01684dcc3-b9989ed67b5e";
 const CORE = [
   "./index.html",
   "./",
@@ -24,7 +24,7 @@ const CORE = [
   "./js/engine.js?v=bcf7b3c10036",
   "../../assets/js/id-launch-runtime.js?v=3bc487934804",
   "../../assets/js/pt-br-launch-runtime.js?v=9ae15bbd4462",
-  "../../data/locales.js?v=7a08f57c71ce",
+  "../../data/locales.js?v=ebbce1fad9e4",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",

@@ -77,7 +77,12 @@
     run();
   });
   document.getElementById("copyBtn").addEventListener("click", async () => {
-    const lines = [...document.querySelectorAll("[data-out]")].map((node) => node.id.replace(/^out-/, "") + ": " + node.innerText.replace(/\s+/g, " ").trim());
+    const localizedCopy = document.documentElement.lang === "id" || document.documentElement.lang === "pt-BR";
+    const lines = [...document.querySelectorAll("[data-out]")].map((node) => {
+      const key = node.id.replace(/^out-/, "");
+      const label = localizedCopy ? ((document.getElementById("lbl-" + key) || {}).innerText || key) : key;
+      return label + ": " + node.innerText.replace(/\s+/g, " ").trim();
+    });
     const payload = lines.join("\n");
     try { await navigator.clipboard.writeText(payload); } catch (error) {
       const area = document.createElement("textarea"); area.value = payload; document.body.appendChild(area); area.select(); document.execCommand("copy"); area.remove();
