@@ -9,7 +9,9 @@ const complexTools = new Set([
   'network-risk-hidden-hazard-assessment-generator',
   'odf-odn-resource-planner'
 ]);
-const localeCount = tool => ['en', 'zh', 'es', 'id', 'pt-br'].filter(locale => {
+const detailLocales = ['en', 'zh', 'es', 'id', 'pt-br'];
+const detailPageRels = detailLocales.map(locale => locale === 'en' ? 'index.html' : `${locale}/index.html`);
+const localeCount = tool => detailLocales.filter(locale => {
   const rel = locale === 'en' ? 'index.html' : `${locale}/index.html`;
   const catalogKey = locale === 'pt-br' ? 'ptBR' : locale;
   return tool.translations?.[catalogKey] && require('fs').existsSync(require('path').join(__dirname, '..', '..', 'website', 'tools', tool.id, rel));
@@ -34,5 +36,6 @@ module.exports = {
   ordinaryPageCount,
   complexTools,
   auditableIds,
+  detailPageRels,
   skip
 };

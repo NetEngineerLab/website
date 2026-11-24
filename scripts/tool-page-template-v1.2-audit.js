@@ -5,7 +5,9 @@ const root = path.join(__dirname, '..', 'website', 'tools');
 const hubSlugs = new Set(JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'website', 'data', 'sitemap-routes.json'), 'utf8')).routes.filter((record) => record.pageType === 'hub').map((record) => String(record.route || '').split('/')[1]).filter(Boolean));
 // Published planners that stay outside the Tool Registry and the canonical tool template.
 const supplementalSlugs = require('./lib/supplemental-tool-slugs');
-const ignored = new Set(['es', 'zh', ...hubSlugs, ...supplementalSlugs]);
+const inventory = require('./lib/ui-tool-audit-inventory');
+const localeFolders = new Set(JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'website', 'data', 'locales.json'), 'utf8')).locales.map((locale) => locale.folder).filter(Boolean));
+const ignored = new Set([...localeFolders, ...hubSlugs, ...supplementalSlugs]);
 const toolDirs = fs.readdirSync(root, { withFileTypes: true })
   .filter((e) => e.isDirectory() && !ignored.has(e.name))
   .map((e) => e.name)
@@ -13,7 +15,7 @@ const toolDirs = fs.readdirSync(root, { withFileTypes: true })
 
 const pages = [];
 for (const tool of toolDirs) {
-  for (const rel of ['index.html', path.join('zh','index.html'), path.join('es','index.html')]) {
+  for (const rel of inventory.detailPageRels) {
     const file = path.join(root, tool, rel);
     if (fs.existsSync(file)) pages.push({tool, rel, file});
   }

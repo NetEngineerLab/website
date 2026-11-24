@@ -6,12 +6,14 @@ const TOOLS = path.join(WEB, 'tools');
 const errors = [];
 const toolPages = [];
 const supplemental=require('./lib/supplemental-tool-slugs');
+const inventory=require('./lib/ui-tool-audit-inventory');
+const localeFolders = new Set(JSON.parse(fs.readFileSync(path.join(WEB,'data/locales.json'),'utf8')).locales.map(locale => locale.folder).filter(Boolean));
 const toolDirs = fs.readdirSync(TOOLS).filter(name => {
-  const d=path.join(TOOLS,name); return !['zh','es'].includes(name) && !supplemental.has(name) && fs.statSync(d).isDirectory();
+  const d=path.join(TOOLS,name); return !localeFolders.has(name) && !supplemental.has(name) && fs.statSync(d).isDirectory();
 });
 for (const name of toolDirs) {
   const dir=path.join(TOOLS,name);
-  for (const rel of ['index.html','zh/index.html','es/index.html']) {
+  for (const rel of inventory.detailPageRels) {
     const f=path.join(dir,rel); if(fs.existsSync(f)) toolPages.push(f);
   }
 }

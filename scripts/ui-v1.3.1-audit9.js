@@ -23,11 +23,13 @@ function decodeEntities(value){
 // 1) Tool Detail inventory + structural/runtime checks.
 const hubSlugs=new Set(JSON.parse(fs.readFileSync(path.join(WEB,'data/sitemap-routes.json'),'utf8')).routes.filter(record=>record.pageType==='hub').map(record=>String(record.route||'').split('/')[1]).filter(Boolean));
 const supplemental=require('./lib/supplemental-tool-slugs');
-const toolDirs=fs.readdirSync(TOOLS).filter(name=>!['zh','es'].includes(name)&&!hubSlugs.has(name)&&!supplemental.has(name)&&fs.statSync(path.join(TOOLS,name)).isDirectory());
+const inventory=require('./lib/ui-tool-audit-inventory');
+const localeFolders=new Set(JSON.parse(fs.readFileSync(path.join(WEB,'data/locales.json'),'utf8')).locales.map(locale=>locale.folder).filter(Boolean));
+const toolDirs=fs.readdirSync(TOOLS).filter(name=>!localeFolders.has(name)&&!hubSlugs.has(name)&&!supplemental.has(name)&&fs.statSync(path.join(TOOLS,name)).isDirectory());
 const toolPages=[];
 for(const name of toolDirs){
   const dir=path.join(TOOLS,name);
-  for(const r of ['index.html','zh/index.html','es/index.html']){const f=path.join(dir,r);if(fs.existsSync(f))toolPages.push(f);}
+  for(const r of inventory.detailPageRels){const f=path.join(dir,r);if(fs.existsSync(f))toolPages.push(f);}
 }
 for(const f of toolPages){
   const s=read(f);

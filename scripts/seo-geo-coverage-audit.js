@@ -70,11 +70,11 @@ const intentByTool=Object.freeze({
   "shannon-capacity-calculator":"calculation",
 });
 const intentLabels=Object.freeze({
-  calculation:{en:"calculation",zh:"计算",es:"cálculo",id:"perhitungan","pt-BR":"cálculo"},
-  validation:{en:"validation",zh:"验证",es:"validación",id:"validasi","pt-BR":"validação"},
-  planning:{en:"planning",zh:"规划",es:"planificación",id:"perencanaan","pt-BR":"planejamento"},
-  diagnosis:{en:"diagnosis",zh:"故障诊断",es:"diagnóstico",id:"diagnosis","pt-BR":"diagnóstico"},
-  sizing:{en:"sizing and selection",zh:"选型",es:"dimensionamiento y selección",id:"pemilihan kapasitas","pt-BR":"dimensionamento e seleção"}
+  calculation:{en:"calculation",zh:"计算",es:"cálculo"},
+  validation:{en:"validation",zh:"验证",es:"validación"},
+  planning:{en:"planning",zh:"规划",es:"planificación"},
+  diagnosis:{en:"diagnosis",zh:"故障诊断",es:"diagnóstico"},
+  sizing:{en:"sizing and selection",zh:"选型",es:"dimensionamiento y selección"}
 });
 
 const read=file=>fs.readFileSync(file,"utf8");
