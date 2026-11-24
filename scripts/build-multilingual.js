@@ -1263,6 +1263,10 @@ function build(){
   // seo-engine.js is served from /assets/* with a one-day edge cache, so give
   // it a content hash like every other shared asset.
   after=versionExistingAsset(after,"assets/js/seo-engine.js");
+  // Legacy HTML is still public, so its shared-asset query hashes have to
+  // follow the same content digest as the current pages.
+  for(const asset of sharedRuntimeAssets)after=versionExistingAsset(after,asset.sitePath);
+  after=versionExistingAsset(after,"data/tools-catalog.js");
   if(after!==before){
    writeFileWithRetry(file,after,"utf8");
    layoutRepairs++;
