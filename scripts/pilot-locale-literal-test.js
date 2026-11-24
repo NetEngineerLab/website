@@ -91,7 +91,10 @@ assert.match(read("website/tools/bandwidth-calculator/es/index.html"), /bits_de_
 for (const locale of ["id", "pt-br"]) {
   assert.equal(fs.existsSync(path.join(root, "website", locale, "index.html")), true, `${locale} home`);
   assert.equal(fs.existsSync(path.join(root, "website", "tools", locale, "index.html")), true, `${locale} tools directory`);
-  for (const route of ["guides/", "topics/", "about/", "contact/", "privacy/", "terms/"]) {
+  for (const route of ["about/", "contact/", "privacy/", "terms/"]) {
+    assert.equal(fs.existsSync(path.join(root, "website", locale, route, "index.html")), true, `${locale} ${route}`);
+  }
+  for (const route of ["guides/", "topics/"]) {
     assert.equal(fs.existsSync(path.join(root, "website", locale, route, "index.html")), false, `${locale} ${route} stays unpublished`);
   }
 }
@@ -101,8 +104,11 @@ for (const [tool, locale] of [["subnet-calculator", "id"], ["subnet-calculator",
   for (const href of html.match(/href="([^"]+)"/g).map(item => item.slice(6, -1))) {
     if (/^(https?:|mailto:|#|\?)/.test(href)) continue;
     const pathName = new URL(href, pageUrl).pathname;
-    assert.doesNotMatch(pathName, /^\/guides\/(id|pt-br)\/|^\/topics\/(id|pt-br)\/|^\/(id|pt-br)\/(about|contact|privacy|terms|guides|topics)\//, `${tool}/${locale} must not link to an unpublished shell: ${pathName}`);
+    assert.doesNotMatch(pathName, /^\/guides\/(id|pt-br)\/|^\/topics\/(id|pt-br)\/|^\/(id|pt-br)\/(guides|topics)\//, `${tool}/${locale} must not link to an unpublished shell: ${pathName}`);
   }
+  const footer = html.match(/<nav\b[^>]*\bsite-shell-footer-links\b[^>]*>[\s\S]*?<\/nav>/i)[0];
+  const footerHrefs = [...footer.matchAll(/\bhref\s*=\s*["']([^"']+)["']/g)].map(match => resolveHref(pageUrl, match[1]));
+  assert.deepEqual(footerHrefs, [`/${locale}/about/`, `/${locale}/contact/`, `/${locale}/privacy/`, `/${locale}/terms/`], `${tool}/${locale} footer`);
   const menu = html.match(/<!-- NEL_LANGUAGE_MENU_START -->([\s\S]*?)<!-- NEL_LANGUAGE_MENU_END -->/)[1];
   assert.match(menu, new RegExp(`href="/tools/${tool}/id/"[^>]*hreflang="id"`));
   assert.match(menu, new RegExp(`href="/tools/${tool}/pt-br/"[^>]*hreflang="pt-BR"`));
