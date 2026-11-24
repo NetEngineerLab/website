@@ -56,7 +56,7 @@ function loadPageSet(options = {}) {
     if (!match) continue;
     const slug = match[1];
     const folder = match[2] || "";
-    if (!folder && localeFolders.has(slug)) continue;
+    if (!folder && (localeFolders.has(slug) || pilots.some(locale => locale.folder === slug))) continue;
     if (hubSlugs.has(slug)) continue;
     if (folder && !localeFolders.has(folder) && !pilots.some(locale => locale.folder === folder && (locale.pilotRoutes || []).includes("tools/" + slug + "/"))) throw new Error("sitemap-extra: " + loc);
     if (seenLoc.has(loc)) throw new Error("duplicate-sitemap-loc: " + loc);

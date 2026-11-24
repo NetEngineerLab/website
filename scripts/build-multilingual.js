@@ -150,7 +150,12 @@ function renderToolCards(currentInfo,locale,mode){
  }).join("");
 }
 function localizedActiveTools(locale){
- return activeTools.filter(tool=>locale.id===defaultLocale.id||Boolean(tool.translations?.[locale.catalogKey]||tool.translations?.[locale.id]));
+ return activeTools.filter(tool=>{
+  if(locale.id===defaultLocale.id)return true;
+  if(!tool.translations?.[locale.catalogKey]&&!tool.translations?.[locale.id])return false;
+  if(locale.status==="pilot")return localePageExists(`tools/${tool.id}/`,locale);
+  return true;
+ });
 }
 function updateToolCountMarkers(html,locale){
  const count=localizedActiveTools(locale).length;

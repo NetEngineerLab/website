@@ -217,7 +217,7 @@ function buildPageRegistry({localeConfig,sitemapConfig,tools,schema,toolContent,
     invariant(locale.status==="active"||locale.status==="planned"||locale.status==="pilot",`${locale.id||"locale"}: invalid locale status`);
     if(locale.status==="pilot"){
       invariant(Array.isArray(locale.pilotRoutes)&&locale.pilotRoutes.length>0,`${locale.id}: pilot locale requires pilotRoutes`);
-      for(const route of locale.pilotRoutes)invariant(typeof route==="string"&&route.endsWith("/"),`${locale.id}: pilot route must be a directory route`);
+      for(const route of locale.pilotRoutes)invariant(route===""||(typeof route==="string"&&route.endsWith("/")),`${locale.id}: pilot route must be the home route or a directory route`);
     }
     invariant(nonEmptyString(locale.id)&&/^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/.test(locale.id),"locale id is invalid");
     const localeIdKey=locale.id.toLowerCase();invariant(!localeIds.has(localeIdKey),`duplicate locale id: ${locale.id}`);localeIds.add(localeIdKey);

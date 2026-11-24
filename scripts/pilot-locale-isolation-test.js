@@ -29,11 +29,13 @@ for (const file of walk(site)) {
   const localeIndex = rel.findIndex(part => locales.has(part));
   const manifest = /^manifest-(id|pt-br)\.webmanifest$/.test(path.basename(file));
   if (localeIndex === -1 && !manifest) continue;
+  const shell = rel.join("/");
+  const allowedShell = new Set(["id/index.html", "pt-br/index.html", "tools/id/index.html", "tools/pt-br/index.html"]);
   const tool = rel[0] === "tools" ? rel[1] : "";
-  assert.ok(pilots.has(tool), `unpublished locale file is still in the publish directory: ${path.relative(root, file)}`);
+  assert.ok(allowedShell.has(shell) || pilots.has(tool), `unpublished locale file is still in the publish directory: ${path.relative(root, file)}`);
   published.push(path.relative(root, file));
 }
-assert.equal(published.filter(file => file.endsWith(`${path.sep}index.html`) || file.endsWith("/index.html")).length, 4);
+assert.equal(published.filter(file => file.endsWith(`${path.sep}index.html`) || file.endsWith("/index.html")).length, 8);
 
 const sitemap = fs.readFileSync(path.join(site, "sitemap.xml"), "utf8");
 for (const url of [
@@ -42,7 +44,13 @@ for (const url of [
   "https://netengineerlab.com/tools/subnet-calculator/id/",
   "https://netengineerlab.com/tools/subnet-calculator/pt-br/"
 ]) assert.ok(sitemap.includes(`<loc>${url}</loc>`), url);
-for (const blocked of ["https://netengineerlab.com/id/", "https://netengineerlab.com/pt-br/", "https://netengineerlab.com/tools/id/", "https://netengineerlab.com/tools/fiber-loss/id/"]) {
+for (const url of [
+  "https://netengineerlab.com/id/",
+  "https://netengineerlab.com/pt-br/",
+  "https://netengineerlab.com/tools/id/",
+  "https://netengineerlab.com/tools/pt-br/"
+]) assert.ok(sitemap.includes(`<loc>${url}</loc>`), url);
+for (const blocked of ["https://netengineerlab.com/guides/id/", "https://netengineerlab.com/topics/id/", "https://netengineerlab.com/tools/fiber-loss/id/"]) {
   assert.ok(!sitemap.includes(`<loc>${blocked}</loc>`), blocked);
 }
 

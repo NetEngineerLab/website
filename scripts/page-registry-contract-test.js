@@ -94,7 +94,14 @@ for(const page of registry.pages.filter(page=>page.pageType==="directory")){
   const itemList=JSON.parse(block);
   const locale=base.localeConfig.locales.find(item=>item.id===page.locale);
   const localeKey=(locale&&locale.catalogKey)||page.locale;
-  const activeTools=base.tools.filter(tool=>tool.status==="active"&&(page.locale===base.localeConfig.defaultLocale||Boolean(tool.translations&&((tool.translations[localeKey])||(tool.translations[page.locale])))));
+  const activeTools=base.tools.filter(tool=>{
+    if(tool.status!=="active")return false;
+    if(page.locale===base.localeConfig.defaultLocale)return true;
+    const translated=Boolean(tool.translations&&((tool.translations[localeKey])||(tool.translations[page.locale])));
+    if(!translated)return false;
+    if(locale&&locale.status==="pilot")return fs.existsSync(path.join(root,"website","tools",tool.id,locale.folder,"index.html"));
+    return true;
+  });
   assert.strictEqual(itemList.numberOfItems,activeTools.length,`${page.pathname}: ItemList count must equal localized active tools`);
   assert.strictEqual(itemList.itemListElement.length,activeTools.length,`${page.pathname}: ItemList entries must equal localized active tools`);
   if(activeTools.some(tool=>tool.id==="acl-generator-validator"))assert(itemList.itemListElement.some(item=>item.url.includes("/tools/acl-generator-validator/")),`${page.pathname}: ACL tool missing from ItemList`);

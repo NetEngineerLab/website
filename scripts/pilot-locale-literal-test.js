@@ -37,12 +37,14 @@ for (const [tool, locale, homeLabel, toolsLabel] of pilots) {
   const pageUrl = `https://netengineerlab.com/tools/${tool}/${locale}/index.html`;
   const crumbs = crumbHrefs(html);
   assert.equal(crumbs[0].text, homeLabel, `${rel} home label`);
-  assert.equal(resolveHref(pageUrl, crumbs[0].href), "/", `${rel} home href`);
+  const homePath = `/${locale}/`;
+  const toolsPath = `/tools/${locale}/`;
+  assert.equal(resolveHref(pageUrl, crumbs[0].href), homePath, `${rel} home href`);
   assert.equal(crumbs[1].text, toolsLabel, `${rel} tools label`);
-  assert.equal(resolveHref(pageUrl, crumbs[1].href), "/tools/", `${rel} tools href`);
+  assert.equal(resolveHref(pageUrl, crumbs[1].href), toolsPath, `${rel} tools href`);
   const header = html.match(/<nav\b[^>]*\btool-return-nav\b[^>]*>[\s\S]*?<\/nav>/i)[0];
   const headerHrefs = [...header.matchAll(/\bhref\s*=\s*["']([^"']+)["']/g)].map(match => resolveHref(pageUrl, match[1]));
-  assert.deepEqual(headerHrefs.slice(0, 2), ["/", "/tools/"], `${rel} header return nav`);
+  assert.deepEqual(headerHrefs.slice(0, 2), [homePath, toolsPath], `${rel} header return nav`);
   assert.doesNotMatch(html, damage, `${rel} technical literal damage`);
 }
 
@@ -86,11 +88,11 @@ assert.match(read("website/tools/bandwidth-calculator/index.html"), /data_bits �
 assert.match(read("website/tools/bandwidth-calculator/zh/index.html"), /有效业务速率 = 物理速率 × 业务载荷效率 × 允许利用率/, "Chinese bandwidth equation");
 assert.match(read("website/tools/bandwidth-calculator/es/index.html"), /bits_de_datos ÷ \(caudal_enlace × eficiencia × utilización\)/, "Spanish bandwidth equation");
 
-const unpublishedShells = ["", "tools/", "guides/", "topics/", "about/", "contact/", "privacy/", "terms/"];
 for (const locale of ["id", "pt-br"]) {
-  for (const route of unpublishedShells) {
-    const rel = route === "" ? `website/${locale}/index.html` : route === "tools/" ? `website/tools/${locale}/index.html` : `website/${locale}/${route}index.html`;
-    assert.equal(fs.existsSync(path.join(root, rel)), false, `${rel} stays unpublished`);
+  assert.equal(fs.existsSync(path.join(root, "website", locale, "index.html")), true, `${locale} home`);
+  assert.equal(fs.existsSync(path.join(root, "website", "tools", locale, "index.html")), true, `${locale} tools directory`);
+  for (const route of ["guides/", "topics/", "about/", "contact/", "privacy/", "terms/"]) {
+    assert.equal(fs.existsSync(path.join(root, "website", locale, route, "index.html")), false, `${locale} ${route} stays unpublished`);
   }
 }
 for (const [tool, locale] of [["subnet-calculator", "id"], ["subnet-calculator", "pt-br"], ["bandwidth-calculator", "id"], ["bandwidth-calculator", "pt-br"]]) {
@@ -99,7 +101,7 @@ for (const [tool, locale] of [["subnet-calculator", "id"], ["subnet-calculator",
   for (const href of html.match(/href="([^"]+)"/g).map(item => item.slice(6, -1))) {
     if (/^(https?:|mailto:|#|\?)/.test(href)) continue;
     const pathName = new URL(href, pageUrl).pathname;
-    assert.doesNotMatch(pathName, /^\/(id|pt-br)\/|^\/tools\/(id|pt-br)\/|^\/guides\/(id|pt-br)\/|^\/topics\/(id|pt-br)\//, `${tool}/${locale} must not link to an unpublished shell: ${pathName}`);
+    assert.doesNotMatch(pathName, /^\/guides\/(id|pt-br)\/|^\/topics\/(id|pt-br)\/|^\/(id|pt-br)\/(about|contact|privacy|terms|guides|topics)\//, `${tool}/${locale} must not link to an unpublished shell: ${pathName}`);
   }
   const menu = html.match(/<!-- NEL_LANGUAGE_MENU_START -->([\s\S]*?)<!-- NEL_LANGUAGE_MENU_END -->/)[1];
   assert.match(menu, new RegExp(`href="/tools/${tool}/id/"[^>]*hreflang="id"`));
