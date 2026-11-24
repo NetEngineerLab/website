@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-shannon-capacity-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-94e01684dcc3-62e909c33a72";
+const CACHE = "nel-shannon-capacity-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-94e01684dcc3-0808cc85e401";
 const CORE = [
   "./",
   "./index.html",
@@ -52,7 +52,8 @@ const CORE = [
   "./manifest-id.webmanifest",
   "./pt-br/",
   "./pt-br/index.html",
-  "./manifest-pt-br.webmanifest"
+  "./manifest-pt-br.webmanifest",
+  "../../assets/css/pilot-locale-toc.css?v=20261124toc"
 ];
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)));

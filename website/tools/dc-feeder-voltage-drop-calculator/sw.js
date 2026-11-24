@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-dc-feeder-voltage-drop-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-94e01684dcc3-c52a3dc6a00f";
+const CACHE = "nel-dc-feeder-voltage-drop-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-94e01684dcc3-f40d9e7d3a3e";
 const CORE = [
   "./",
   "./index.html",
@@ -52,7 +52,8 @@ const CORE = [
   "./manifest-id.webmanifest",
   "./pt-br/",
   "./pt-br/index.html",
-  "./manifest-pt-br.webmanifest"
+  "./manifest-pt-br.webmanifest",
+  "../../assets/css/pilot-locale-toc.css?v=20261124toc"
 ];
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)));
