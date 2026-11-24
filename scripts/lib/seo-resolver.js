@@ -718,7 +718,7 @@ function ensureEditorialLinks(html, { route, locale, urlForRoute, relativeUrl, p
   if (!items.length) return html;
   const heading = locale.id === "zh" ? "相关页面" : locale.id === "es" ? "Páginas relacionadas" : "Related pages";
   const block = `<section class="content-section" data-nel-editorial-links><h2>${heading}</h2><p>${items.join(" · ")}</p></section>\n`;
-  return insertInContent(html, block);
+  return insertCalculatorHubProse(html, block) || insertInContent(html, block);
 }
 
 function renderLlmsTxt({ siteUrl, toolCatalog, routes, activeLocales }) {

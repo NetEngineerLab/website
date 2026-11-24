@@ -39,3 +39,21 @@ body.nel-tool-v3 #hub .prose > .hub-return a{
   white-space:normal;
   overflow-wrap:break-word;
 }
+/* Extra related links stay in the same column as the FAQ card and the note.
+   A body-level content section is centered on the whole workbench, so its
+   heading starts to the left of that column. */
+body.nel-tool-v3 #hub .prose > section.content-section[data-nel-editorial-links]{
+  width:100%;
+  max-width:100%;
+  margin:0 0 8px;
+  padding:0;
+  box-sizing:border-box;
+  min-width:0;
+}
+body.nel-tool-v3 #hub .prose > section.content-section[data-nel-editorial-links] h2,
+body.nel-tool-v3 #hub .prose > section.content-section[data-nel-editorial-links] p,
+body.nel-tool-v3 #hub .prose > section.content-section[data-nel-editorial-links] a{
+  white-space:normal;
+  overflow-wrap:break-word;
+  max-width:100%;
+}

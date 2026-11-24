@@ -81,6 +81,11 @@ for (const slug of hubs) {
     const noteAt = main.indexOf('class="hub-return"');
     assert.ok(proseAt !== -1 && noteAt > proseAt, `${rel}: cluster note must sit in the prose column`);
     assert.equal(html.indexOf('class="hub-return"', mainEnd), -1, `${rel}: cluster note must not repeat after </main>`);
+    if (html.includes("data-nel-editorial-links")) {
+      const editorial = main.indexOf("data-nel-editorial-links");
+      assert.ok(editorial > noteAt, `${rel}: editorial related links must follow the cluster note in the prose column`);
+      assert.equal(html.indexOf("data-nel-editorial-links", mainEnd), -1, `${rel}: editorial related links must not sit after </main>`);
+    }
   }
 }
 assert.match(read("website/assets/css/calculator-hub.css"), /font-family:\s*var\(--nel-font-family/, "hub stylesheet sets the site font");
