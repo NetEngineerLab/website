@@ -25,22 +25,24 @@
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="en">
 <meta name="nel-route" content="tools/otdr-event/">
-<meta name="nel-available-locales" content="en,zh,es">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
 <link rel="canonical" href="https://netengineerlab.com/tools/otdr-event/">
 <link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/otdr-event/">
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/otdr-event/zh/">
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/otdr-event/es/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/tools/otdr-event/id/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/tools/otdr-event/pt-br/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/otdr-event/">
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Are OTDR event thresholds universal?","acceptedAnswer":{"@type":"Answer","text":"No. Thresholds vary by operator, vendor, link type, wavelength, pulse width and acceptance rules. This tool keeps them editable."}},{"@type":"Question","name":"Why compare 1310 nm and 1550 nm?","acceptedAnswer":{"@type":"Answer","text":"Bending loss often increases more at longer wavelengths. A wavelength difference can support bend diagnosis, but it is not a standalone conclusion."}},{"@type":"Question","name":"What is a ghost event?","acceptedAnswer":{"@type":"Answer","text":"A ghost can appear at a multiple of the distance to a strong reflector and may show little real insertion loss. Change pulse width and range to verify it."}},{"@type":"Question","name":"Can this tool parse SOR files?","acceptedAnswer":{"@type":"Answer","text":"Version 1.0 analyzes event-table data and CSV imports. Direct SOR parsing is reserved for a later version."}},{"@type":"Question","name":"Why can nearby events be unreliable?","acceptedAnswer":{"@type":"Answer","text":"Events inside the event or attenuation dead zone can overlap, making reflectance or loss difficult to separate."}},{"@type":"Question","name":"Should results replace field judgment?","acceptedAnswer":{"@type":"Answer","text":"No. Use the original trace, bidirectional tests, route records, power measurements and field inspection."}}]}</script>
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
 <link rel="stylesheet" href="../../assets/css/site-shell.css?v=f427e2f1607b">
-<script defer src="../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../data/locales.js?v=cc78cf7363f3"></script>
 <script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../assets/js/site.js?v=c957f6562d31"></script>
+<script defer src="../../assets/js/site.js?v=3feb9dda55e8"></script>
 <link rel="stylesheet" href="../../assets/css/tool-layout.css?v=c4aecb2c24ab">
 <link rel="manifest" href="manifest.webmanifest">
 </head><body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-offline-worker="1" data-nel-template="tool-detail-v1.3.1" data-nel-v3-migrated="1" data-nel-visual="network-change-planner-reference">
@@ -60,7 +62,7 @@
       <a href="../../topics/">Topics</a>
     </nav>
     <div class="site-shell-actions">
-      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/otdr-event/" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="/tools/otdr-event/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a><a class="language-option" role="menuitem" href="/tools/otdr-event/es/" lang="es" hreflang="es"><span>Español</span><small>Spanish</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/otdr-event/" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="/tools/otdr-event/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a><a class="language-option" role="menuitem" href="/tools/otdr-event/es/" lang="es" hreflang="es"><span>Español</span><small>Spanish</small></a><a class="language-option" role="menuitem" href="/tools/otdr-event/id/" lang="id" hreflang="id"><span>Bahasa Indonesia</span><small>Indonesian</small></a><a class="language-option" role="menuitem" href="/tools/otdr-event/pt-br/" lang="pt-BR" hreflang="pt-BR"><span>Português do Brasil</span><small>Brazilian Portuguese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
       <div class="site-shell-context-action"><a href="#analyzer">Start calculating</a></div>
     </div>
   </div>
@@ -164,6 +166,6 @@
 </footer>
 <!-- NEL_FOOTER_END -->
 <script defer="" src="data/otdr-event-rules.js"></script><script defer="" src="js/engine.js?v=0f998b9b15d9"></script><script defer="" src="js/pwa.js"></script><script defer="" src="../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="js/app.js?v=2c91dc019cad"></script>
-<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+<script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
 <script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d"></script><script defer="" src="../../assets/js/tool-detail-v3.js?v=6f38212f00f3"></script>
 </body></html>

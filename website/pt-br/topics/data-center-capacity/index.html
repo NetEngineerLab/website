@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR" dir="ltr" data-nel-locale="pt-BR" data-nel-route="topics/data-center-capacity/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Planejamento de Capacidade de Data Center | NetEngineerLab</title>
+<meta name="description" content="Compare carga de TI, espaço de rack, redundância de energia, uplinks de rede e limites de resfriamento antes de uma expansão, e encontre o primeiro gargalo compartilhado.">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NetEngineerLab">
+<meta property="og:title" content="Planejamento de Capacidade de Data Center | NetEngineerLab">
+<meta property="og:description" content="Compare carga de TI, espaço de rack, redundância de energia, uplinks de rede e limites de resfriamento antes de uma expansão, e encontre o primeiro gargalo compartilhado.">
+<meta property="og:url" content="https://netengineerlab.com/pt-br/topics/data-center-capacity/">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../../assets/css/site.css">
+<link rel="stylesheet" href="../../../assets/css/guide.css?v=6d83ae5e791f">
+
+<meta name="twitter:title" content="Planejamento de Capacidade de Data Center | NetEngineerLab">
+<meta name="twitter:description" content="Compare carga de TI, espaço de rack, redundância de energia, uplinks de rede e limites de resfriamento antes de uma expansão, e encontre o primeiro gargalo compartilhado.">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://netengineerlab.com/pt-br/"},{"@type":"ListItem","position":2,"name":"Tópicos","item":"https://netengineerlab.com/pt-br/topics/"},{"@type":"ListItem","position":3,"name":"Planejamento de Capacidade do Data Center","item":"https://netengineerlab.com/pt-br/topics/data-center-capacity/"}]}</script>
+
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="../../../assets/css/site-pages-v2.css?v=20261105-v2">
+<link rel="stylesheet" href="../../../assets/css/editorial-fresh.css?v=20261123-align2">
+<link rel="stylesheet" href="../../../assets/css/topic-hub.css?v=5a0cf14d3558">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Planejamento de Capacidade de Data Center | NetEngineerLab","url":"https://netengineerlab.com/pt-br/topics/data-center-capacity/","description":"Compare carga de TI, espaço de rack, redundância de energia, uplinks de rede e limites de resfriamento antes de uma expansão, e encontre o primeiro gargalo compartilhado.","inLanguage":"pt-BR","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/pt-br/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="pt-BR">
+<meta name="nel-route" content="topics/data-center-capacity/">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
+<link rel="canonical" href="https://netengineerlab.com/pt-br/topics/data-center-capacity/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/topics/data-center-capacity/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/topics/data-center-capacity/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/es/topics/data-center-capacity/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/id/topics/data-center-capacity/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/pt-br/topics/data-center-capacity/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/topics/data-center-capacity/">
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Como posso encontrar o gargalo em um plano de capacidade de data center?","acceptedAnswer":{"@type":"Answer","text":"Verificar espaço, potência, rede e resfriamento contra o mesmo limite de carga e tempo, incluindo o caso de falha. A carga compartilhada que os quatro aindaras podem carregar é o limite do plano."}},{"@type":"Question","name":"Refrigeração livre significa que posso adicionar servidores?","acceptedAnswer":{"@type":"Answer","text":"Somente se a energia, espaço rack e uplinks podem levar a mesma adição. Um excedente de um sistema não move o limite estabelecido por outro."}}]}</script>
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
+<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
+</head>
+<body class="guide-page topic-hub-page guide-fresh">
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Plataforma de inteligência para engenharia de redes</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Abrir navegação"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navegação principal">
+      <a href="../../">Início</a>
+      <a href="../../../tools/pt-br/">Ferramentas</a>
+      <a href="../../guides/">Guias</a>
+      <a href="../" aria-current="page">Tópicos</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Português do Brasil"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Português do Brasil</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/topics/data-center-capacity/" lang="en" hreflang="en"><span>English</span><small>Inglês</small></a><a class="language-option" role="menuitem" href="/zh/topics/data-center-capacity/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinês simplificado</small></a><a class="language-option" role="menuitem" href="/es/topics/data-center-capacity/" lang="es" hreflang="es"><span>Español</span><small>Espanhol</small></a><a class="language-option" role="menuitem" href="/id/topics/data-center-capacity/" lang="id" hreflang="id"><span>Bahasa Indonesia</span><small>Indonésio</small></a><a class="language-option" role="menuitem" href="/pt-br/topics/data-center-capacity/" lang="pt-BR" hreflang="pt-BR" aria-current="page"><span>Português do Brasil</span><small>Português do Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<nav class="topic-hub-breadcrumb" aria-label="Trilha de navegação"><a href="../../">Início</a><span aria-hidden="true">›</span><a href="../">Tópicos</a><span aria-hidden="true">›</span><span aria-current="page">Planejamento de Capacidade do Data Center</span></nav>
+<main class="guide-shell" id="main">
+<section class="guide-hero">
+  <p class="eyebrow">PLANEAMENTO DO CENTRO DE DADOS</p>
+  <h1>Planejamento de Capacidade do Data Center</h1>
+  <p class="guide-lead">Coloque carga de TI, espaço de rack, energia, uplinks de rede e calor em uma visão de capacidade antes de adicionar equipamentos. Este centro encontra o gargalo entre sistemas. Carga de refrigeração, seleção de ar de precisão e verificações N+1 ficar na <a href="../data-center-cooling-capacity/">tópico de capacidade de resfriamento de data center</a>.</p>
+  <div class="guide-meta"><span>Carregamento ao TI</span><span>Espaço</span><span>Potência</span><span>Rede</span><span>Refrigeração</span></div>
+</section>
+<section class="topic-tools" aria-label="Ferramentas relacionadas">
+  <div><span class="eyebrow">TOOL RELATIVO</span><strong>Potência de rack e arrefecimento</strong><p>Transforme uma lista de equipamentos rack em energia, corrente e calor.</p></div>
+  <a href="../../../tools/network-rack-power-cooling-calculator/pt-br/">Ferramenta aberta →</a>
+</section>
+<div class="guide-layout">
+<article class="guide-article">
+  <h2>Que plano de capacidade tem para verificar em conjunto</h2>
+  <p><strong>Carregar.</strong> Separar a potência da placa instalada, medir carga de horas ocupadas, adições comprometidas e a suposição de crescimento. Não trate uma placa de identificação como uma procura medida.</p>
+  <p><strong>Racks e espaço.</strong> Contar racks utilizáveis, densidade de energia por rack, carregamento de piso, folga de serviço e espaço corredor. Área de piso sobressalente não significa que a linha alvo tem um lugar para instalar.</p>
+  <p><strong>Poder e redundância.</strong> Verificar a capacidade disponível em estado normal e depois de um caminho ou um módulo ser removido. Grave feeds A/B, UPS, distribuição e qualquer alimentador upstream que ambos os caminhos compartilhem.</p>
+  <p><strong>Ligações de rede.</strong> Verifique o tecido e uplinks com tráfego de horas ocupadas e uma previsão de crescimento. A soma das taxas portuárias não substitui a procura concorrente e um agregado não garante a taxa unhas.</p>
+  <p><strong>Restrição de.</strong> Entregue o calor de TI e perda elétrica ao tópico de resfriamento. Uma tonelagem de arrefecimento nominal não prova por si só a temperatura de entrada do rack.</p>
+  <h2>Como nomear o gargalo</h2>
+  <ol>
+    <li>Defina o limite: sala ou linha, racks, unidade de energia, intervalo de projeto e alvo de disponibilidade.</li>
+    <li>Escreva o caso atual e o caso de crescimento. Marque cada número como medido, projeto ou suposição.</li>
+    <li>Calcular espaço, energia, rede e arrefecimento remanescentes, incluindo o estado de falha.</li>
+    <li>Limite de cada Expresso como a mesma carga planejada e registro que o sistema atinge seu limite primeiro.</li>
+    <li>Tamanho da expansão para esse gargalo, em seguida, verificar novamente os sistemas ao lado dele.</li>
+  </ol>
+  <p>A capacidade global não émassa das notações em diferentes unidades. É a maior carga que gorduras ainda satisfaz cada restrição.</p>
+  <h2>Exemplo trabalhado: o poder é curto após o crescimento</h2>
+  <p>Este é um exemplo de planejamento, não um teste de site ou um resultado de aquisição. Vinte racks são planejados em 8 kW cada, então o plano de TI atual é 160 kW. O crescimento é de 20%. Dois caminhos de potência independentes podem fornecer 120 kW.</p>
+  <p>O caso de crescimento é 160 kW × 1,20 = 192 kW. Se ambos os caminhos compartilham a carga, cada um carrega cerca de 96 kW, que está sob sua classificação 120 kW. Isso Technologies ainda deixa comutação, equilíbrio e qualquer alimentador a montante compartilhado para verificar.</p>
+  <p>Depois que um caminho é removido, 120 kW permanece. A diferença é 192 - 120 = 72 kW. Se a regra é que um caminho sobrevivente deve carregar toda a carga cultivada, a redundância de energia é o gargalo. Confirme esse caminho antes de adicionar racks ou servidores. Refrigeração ainda precisa de sua própria verificação da carga de calor correspondente e capacidade sensível N+1.</p>
+  <p>O exemplo não modela fator de potência, eficiência UPS, desvalorizando, inrush, um alimentador que ambos os caminhos compartilham, tráfego de rede ou o ambiente térmico. Um projeto real deve verificar novamente com curvas de equipamentos e medições de campo.</p>
+  <h2>Continuar com uma verificação especializada</h2>
+  <div class="guide-related-grid">
+    <a href="../data-center-cooling-capacity/"><strong>Carga de refrigeração e N+1</strong><br>Capacidade sensível, fluxo de ar e redundância.</a>
+    <a href="../../guides/data-center-cooling-load-calculation/"><strong>Guia de carga de arrefecimento</strong><br>Fontes de calor, a fórmula e um exemplo de sala trabalhada.</a>
+    <a href="../../../tools/data-center-cooling-load-calculator/pt-br/"><strong>Calculador de carga de arrefecimento</strong><br>TI e calor ambiente, contagem de unidades e N+1.</a>
+    <a href="../../../tools/network-capacity-forecast-planner/pt-br/"><strong>Previsão da capacidade da rede</strong><br>Crescimento de horas ocupadas e um gatilho de expansão.</a>
+    <a href="../../../tools/data-center-network-convergence-fabric-capacity-planner/pt-br/"><strong>Planeador de capacidade do tecido</strong><br>Largura de banda de folhas e ECMP.</a>
+    <a href="../../../tools/data-center-architecture-decision-workshop/pt-br/"><strong>Oficina.</strong><br>Compare os candidatos antes de uma verificação de capacidade separada.</a>
+    <a href="../switch-oversubscription/"><strong>Mudar de subscrição</strong><br>Taxa de ligação ascendente, LAG e N-1.</a>
+    <a href="../../guides/ups-battery-minutes-versus-n-plus-one/"><strong>UPS minutos versus N+1</strong><br>21.25 minutos de bateria não faz dois módulos redundante.</a><a href="../../guides/rack-breaker-before-cooling/"><strong>Disjuntor de rack antes de esfriar</strong><br>4 kW atinge 114,4% de um disjuntor 16 A.</a><a href="../../guides/monthly-energy-pue-not-redundancy/"><strong>PUE 1. 50 Mensal</strong><br>Uma relação de energia não é um teste de falha.</a><a href="../../../tools/pue-data-center-energy-efficiency/pt-br/"><strong>Calculadora PUE</strong><br>Carga informática contra energia da instalação.</a>
+  </div>
+  <h2 id="architecture-decision-workshop">Arquitetura de rede dentro do plano de capacidade</h2>
+  <p>A capacidade de infraestrutura inclui racks, espaço, energia e dependências de rede. Escolha uma arquitetura a partir de requisitos explícitos, prontidão da equipe e trade-offs operacionais, em seguida, verifique a capacidadeequipamento separadamente. Uma pontuação de preferência não certifica capacidade de hardware ou redundância.</p>
+  <h2>Limite da engenharia</h2>
+  <p>Use esta página para analisar um plano. Não é um projeto certificado, uma aprovação de construção ou uma aceitação do local. A protecção da distribuição, a carga estrutural, o fluxo de ar, a desclassificação dos equipamentos e a topologia da redundância devem ser confirmadas por um engenheiro qualificado em relação à norma aplicável e ao local.</p>
+  <h2>FAQ</h2>
+  <details>
+    <summary>Como posso encontrar o gargalo em um plano de capacidade de data center?</summary>
+    <p>Verificar espaço, potência, rede e resfriamento contra o mesmo limite de carga e tempo, incluindo o caso de falha. A carga compartilhada que os quatro aindaras podem carregar é o limite do plano.</p>
+  </details>
+  <details>
+    <summary>Refrigeração livre significa que posso adicionar servidores?</summary>
+    <p>Somente se a energia, espaço rack e uplinks podem levar a mesma adição. Um excedente de um sistema não move o limite estabelecido por outro.</p>
+  </details>
+</article>
+<aside class="guide-toc" aria-label="Nesta página">
+  <strong>Conteúdo dos tópicos</strong>
+  <a href="#main">Visão geral</a>
+  <a href="../data-center-cooling-capacity/">Tópico de resfriamento</a>
+  <a href="../../../tools/network-rack-power-cooling-calculator/pt-br/">Calculadora Rack</a>
+  <a href="#architecture-decision-workshop">Arquitetura</a>
+</aside>
+</div>
+<p class="hub-return" data-nel-cluster-link><a href="../../../tools/datacenter-power-calculators/pt-br/">A lista de calculadoras correspondentes — PoE, rack power, UPS, gerador, retificador e PUE — é o centro de dados power and refrigerating calculators hub, separado deste tópico de planejamento.</a></p>
+<section class="content-section" data-nel-editorial-links><h2>Páginas relacionadas</h2><p><a href="../../../tools/engineering-report-batch-export-center/pt-br/">Exportação do relatório de engenharia em lote</a></p></section>
+</main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Ferramentas profissionais online para engenheiros de telecomunicações e redes.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navegação do rodapé">
+      <a href="../../about/">Sobre</a><a href="../../contact/">Contato</a><a href="../../privacy/">Privacidade</a><a href="../../terms/">Termos</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
+</body>
+</html>

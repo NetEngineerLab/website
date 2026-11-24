@@ -23,10 +23,11 @@ const ten = [
 ];
 
 const live = loadPageSet();
-assert.equal(live.preserved, 3);
-assert.equal(live.migrated, live.pages.length - 3);
+const activeFolders = JSON.parse(fs.readFileSync(path.join(root, "website/data/locales.json"), "utf8")).locales.filter(locale => locale.status === "active").map(locale => locale.folder ? locale.folder + "/" : "");
+assert.equal(live.preserved, activeFolders.length);
+assert.equal(live.migrated, live.pages.length - activeFolders.length);
 const urls = new Set(live.pages.map(page => page.url));
-for (const id of ten) for (const folder of ["", "zh/", "es/"]) {
+for (const id of ten) for (const folder of activeFolders) {
   assert(urls.has("https://netengineerlab.com/tools/" + id + "/" + folder), id + " " + folder);
 }
 assert(!urls.has("https://netengineerlab.com/tools/oob-network-design-planner/es/"));
@@ -53,5 +54,5 @@ expectThrow(() => loadPageSet({
 }), "duplicate-registry");
 
 const directory = loadPageSet();
-assert(!directory.pages.some(page => page.url === "https://netengineerlab.com/tools/zh/" || page.url === "https://netengineerlab.com/tools/es/"));
+assert(!directory.pages.some(page => page.url === "https://netengineerlab.com/tools/zh/" || page.url === "https://netengineerlab.com/tools/es/" || page.url === "https://netengineerlab.com/tools/id/" || page.url === "https://netengineerlab.com/tools/pt-br/"));
 console.log("Tool-detail V3 page-set negative regression PASS");

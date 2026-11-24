@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR" dir="ltr" data-nel-locale="pt-BR" data-nel-route="tools/pmd-budget-calculator/">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#176ff2" name="theme-color"/>
+<title>Calculadora de orçamento PMD – DGD média noticiário, ps/</title>
+<meta content="Estimar a dispersão do modo de polarização: DGD média do coeficiente e comprimento da DPM, em comparação com o período de símbolo." name="description"/>
+<meta content="../" name="app-base"/>
+<meta content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" name="robots"/>
+<meta content="website" property="og:type"/>
+<meta content="NetEngineerLab" property="og:site_name"/>
+<meta content="Calculadora de orçamento PMD – DGD média noticiário, ps/" property="og:title"/>
+<meta content="Estimar a dispersão do modo de polarização: DGD média do coeficiente e comprimento da DPM, em comparação com o período de símbolo." property="og:description"/>
+<meta content="https://netengineerlab.com/tools/pmd-budget-calculator/pt-br/" property="og:url"/>
+<meta content="https://netengineerlab.com/assets/images/og-netengineerlab.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Calculadora de orçamento PMD – DGD média noticiário, ps/" name="twitter:title"/>
+<meta content="Estimar a dispersão do modo de polarização: DGD média do coeficiente e comprimento da DPM, em comparação com o período de símbolo." name="twitter:description"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://netengineerlab.com/tools/pmd-budget-calculator/#app","name":"Calculadora de Orçamento PMD","url":"https://netengineerlab.com/tools/pmd-budget-calculator/pt-br/","description":"Calcular fibra e ligar a DGD média a partir do coeficiente PMD, compará-la com a tolerância símbolo-período e encontrar o comprimento limitado por PMD.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Network Engineering Calculator","operatingSystem":"Any","browserRequirements":"Requires JavaScript and a modern web browser","softwareVersion":"1.0.0","inLanguage":"pt-BR","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/pt-br/"}},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/pmd-budget-calculator/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"NetEngineerLab","item":"https://netengineerlab.com/pt-br/"},{"@type":"ListItem","position":2,"name":"Ferramentas","item":"https://netengineerlab.com/tools/pt-br/"},{"@type":"ListItem","position":3,"name":"Calculadora de Orçamento PMD","item":"https://netengineerlab.com/tools/pmd-budget-calculator/pt-br/"}]}]}</script>
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
+<meta content="https://netengineerlab.com/assets/images/og-netengineerlab.png" name="twitter:image"/>
+<link href="/assets/css/cookie-consent.css?v=2f2c8ab643e6" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif:ital@1&amp;display=swap" rel="stylesheet"/>
+<link href="/assets/css/fb-v3.css?v=031fae951adb" rel="stylesheet"/>
+<link href="/assets/css/fb-v3-prod.css?v=64bd0d9f6bcb" rel="stylesheet"/>
+<script defer="" src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
+<link href="../css/style.css?v=cd40dc3205ef" rel="stylesheet"/>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Calculadora de orçamento PMD – DGD média noticiário, ps/","url":"https://netengineerlab.com/tools/pmd-budget-calculator/pt-br/","description":"Estimar a dispersão do modo de polarização: DGD média do coeficiente e comprimento da DPM, em comparação com o período de símbolo.","inLanguage":"pt-BR","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/pt-br/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="pt-BR">
+<meta name="nel-route" content="tools/pmd-budget-calculator/">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
+<link rel="canonical" href="https://netengineerlab.com/tools/pmd-budget-calculator/pt-br/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/pmd-budget-calculator/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/pmd-budget-calculator/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/pmd-budget-calculator/es/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/tools/pmd-budget-calculator/id/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/tools/pmd-budget-calculator/pt-br/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/pmd-budget-calculator/">
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Como faço para calcular PMD para um link de fibra?","acceptedAnswer":{"@type":"Answer","text":"DGD média = coeficiente PMD × comprimento. 0,20 ps/√km sobre 80PRES é 0,2 × 8,94 = 1,79 ps. Adicionar componente DGD em quadratura."}},{"@type":"Question","name":"Qual é o limite PMD para o 10G?","acceptedAnswer":{"@type":"Answer","text":"Com a regra comum de 10% do período bit, 10,3125 GBd permite cerca de 9,7 ps média DGD. Fibra mais velha com 0,5 ps / km atinge que em cerca de 376 km."}},{"@type":"Question","name":"Por que o PMD cresce com a raiz quadrada do comprimento?","acceptedAnswer":{"@type":"Answer","text":"A birefringência muda aleatoriamente ao longo da fibra, de modo que o atraso se acumula como uma caminhada aleatória, que escala com √L."}},{"@type":"Question","name":"Qual é a diferença entre PMD e DGD?","acceptedAnswer":{"@type":"Answer","text":"DGD é o atraso instantâneo entre os dois modos de polarização. O PMD é o seu valor médio sobre o comprimento de onda e o tempo, e o coeficiente é a média por km."}},{"@type":"Question","name":"O PMD importa para 100G coerente ou 400G?","acceptedAnswer":{"@type":"Answer","text":"Muito menos. DSPs coerentes compensam dezenas de ps da DGD, então a fibra legada que limita 10G NRZ ainda pode transportar canais coerentes."}}]}</script>
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
+<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
+<script defer src="../../../assets/js/pt-br-launch-runtime.js?v=1223d823e2c6"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
+<link rel="manifest" href="../manifest-pt-br.webmanifest">
+</head>
+<body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-offline-worker="1" data-nel-template="tool-detail-v1.3.1" data-nel-v3-migrated="1" data-nel-visual="network-change-planner-reference">
+<a class="skip-link" href="#calculator">Saltar para a calculadora</a>
+<noscript><div class="noscript">JavaScript is required to run this calculator.</div></noscript>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../pt-br/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Plataforma de inteligência para engenharia de redes</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Abrir navegação"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navegação principal">
+      <a href="../../../pt-br/">Início</a>
+      <a href="../../pt-br/" aria-current="page">Ferramentas</a>
+      <a href="../../../pt-br/guides/">Guias</a>
+      <a href="../../../pt-br/topics/">Tópicos</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Português do Brasil"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Português do Brasil</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/pmd-budget-calculator/" lang="en" hreflang="en"><span>English</span><small>Inglês</small></a><a class="language-option" role="menuitem" href="/tools/pmd-budget-calculator/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinês simplificado</small></a><a class="language-option" role="menuitem" href="/tools/pmd-budget-calculator/es/" lang="es" hreflang="es"><span>Español</span><small>Espanhol</small></a><a class="language-option" role="menuitem" href="/tools/pmd-budget-calculator/id/" lang="id" hreflang="id"><span>Bahasa Indonesia</span><small>Indonésio</small></a><a class="language-option" role="menuitem" href="/tools/pmd-budget-calculator/pt-br/" lang="pt-BR" hreflang="pt-BR" aria-current="page"><span>Português do Brasil</span><small>Português do Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">Começar a calcular</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Trigo de pão">
+  <a href="../../../pt-br/">Início</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../../pt-br/">Ferramentas</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">Calculadora de Orçamento PMD</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END -->
+<section aria-hidden="true" class="hero nel-tool-hero"><div class="hero-inner">
+<p class="eyebrow">TOOL DE ENGENHARIA ÓPTICA</p>
+<h1>Calculadora de Orçamento PMD</h1>
+<p>A dispersão do modo de polarização (PMD) faz com que os dois modos de polarização de um pulso cheguem em tempos ligeiramente diferentes. Ao contrário da dispersão cromática, cresce com a raiz quadrada do comprimento: uma ligação G.652.D projetada a 0,20 ps/?km atinge cerca de 1,8 ps média DGD mais de 80 km. Use esta calculadora de orçamento PMD para adicionar fibra e componente DGD, compará-la com sua tolerância de bit-período e encontrar o comprimento limitado por PMD.</p>
+<div class="hero-tags"><span>DGD média</span><span>ps/</span><span>Soma das parcelas</span><span>Comprimento limitado por PMD</span></div></div></section>
+<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" data-nel-readout-roles="%7B%22secondary%22%3A%5B%22fiberDgd%22%2C%22symbolPeriod%22%2C%22allowedDgd%22%2C%22maxDgd%22%2C%22maxLength%22%2C%22usedPct%22%5D%2C%22identifier%22%3A%5B%5D%2C%22annotation%22%3A%5B%5D%7D" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv" id="calculator">
+<div class="tool-head"><div class="crumbs"><a href="../../pt-br/">Início</a>/<span>Calculadora de Orçamento PMD</span></div><p aria-level="1" class="tool-page-label" role="heading">Calculadora de Orçamento PMD</p><p class="tool-lede">A dispersão do modo de polarização (PMD) faz com que os dois modos de polarização de um pulso cheguem em tempos ligeiramente diferentes. Ao contrário da dispersão cromática, cresce com a raiz quadrada do comprimento: uma ligação G.652.D projetada a 0,20 ps/?km atinge cerca de 1,8 ps média DGD mais de 80 km. Use esta calculadora de orçamento PMD para adicionar fibra e componente DGD, compará-la com sua tolerância de bit-período e encontrar o comprimento limitado por PMD.</p></div><div class="workspace"><section class="input-panel card nel-tool-input fb-panel"><div class="fb-panel"><div class="panel-h"><h2 class="panel-h">Ligação e sinal</h2></div><p class="fg-note">Digite o coeficiente e comprimento PMD de fibra, quaisquer componentes com seu próprio PMD, e a taxa de símbolo de sinal.</p><div class="fs"><div class="fg"><p class="fs-t">Fibra</p><div class="fields"><div class="f f-wide field"><label for="projectName">Nome do projeto</label><div class="inp input-wrap no-unit"><textarea id="projectName" rows="2">10G long-haul span</textarea></div></div><div class="f field"><label for="pmdCoef">Coeficiente PMD de fibra</label><div class="inp input-wrap"><input id="pmdCoef" max="5" min="0" step="0.01" type="number" value="0.2"/><u>ps/</u></div><small>G.652.D valor de projeto da ligação PMDQ ≤ 0,20 ps/√km.</small></div><div class="f field"><label for="lengthKm">Comprimento da fibra</label><div class="inp input-wrap"><input id="lengthKm" min="0.001" step="0.001" type="number" value="80"/><u>km</u></div></div></div></div><div class="fg"><p class="fs-t">Componentes</p><div class="fields"><div class="f field"><label for="componentCount">Componentes com PMD (amplificadores, DCMs, ROADMs)</label><div class="inp input-wrap no-unit"><input id="componentCount" min="0" step="1" type="number" value="4"/></div></div><div class="f field"><label for="componentPmd">DGD média por componente</label><div class="inp input-wrap"><input id="componentPmd" min="0" step="0.01" type="number" value="0.1"/><u>ps</u></div><small>Da folha de dados do componente.</small></div></div></div><div class="fg"><p class="fs-t">Sinal</p><div class="fields"><div class="f field"><label for="symbolRate">Taxa de símbolos</label><div class="inp input-wrap"><input id="symbolRate" min="0.001" step="0.0001" type="number" value="10.3125"/><u>GBd</u></div><small>10GBASE-R é 10.3125 GBd.</small></div><div class="f field"><label for="tolerancePct">DGD média permitida (% do período de símbolo)</label><div class="inp input-wrap"><input id="tolerancePct" max="100" min="0.1" step="0.1" type="number" value="10"/><u>%</u></div><small>10% é a regra comum de projeto NRZ (cerca de 1 penalidade dB).</small></div><div class="f field"><label for="maxRatio">Razão DGD máxima/média</label><div class="inp input-wrap"><input id="maxRatio" max="10" min="1" step="0.1" type="number" value="3"/><u>×</u></div><small>3.0 probabilidade de 4×10−5 para uma distribuição Maxwelliana.</small></div></div></div></div><div class="panel-f">
+<div class="input-actions"><button class="btn btn-primary" id="calculateBtn" type="button">Calcular</button><button class="btn btn-ghost" id="resetBtn" type="button">Redefinir</button></div>
+</div><p class="validation-message" id="validationMessage" role="alert"></p></div></section><section aria-live="polite" class="result-panel card nel-tool-result readout"><div class="readout"><div class="ro-h"><span>Resultado do cálculo</span></div><p class="fg-note">DGD média = ?((PMD × ?L)2 + n × componente2). O status falha acima da DGD permitida e avisa acima de 80% dela.</p>
+<div class="summary-card ro-l1" id="summaryCard"><div class="ro-main"><p class="lbl">Ligação DGD média</p><strong class="big"><span data-nel-readout-number="1" id="meanDgd">—</span></strong></div><div class="ro-main"><p class="lbl">Margem permitida DGD</p><strong class="big"><span data-nel-readout-number="1" id="dgdMargin">—</span></strong></div><div class="health-badge" id="healthBadge">—</div></div>
+<div class="metric-grid">
+<article class="metric-card"><div><small>Fibra média DGD</small><strong id="fiberDgd">—</strong></div></article>
+<article class="metric-card"><div><small>Período de símbolos</small><strong id="symbolPeriod">—</strong></div></article>
+<article class="metric-card"><div><small>DGD média permitida</small><strong id="allowedDgd">—</strong></div></article>
+<article class="metric-card"><div><small>Desenho máximo DGD</small><strong id="maxDgd">—</strong></div></article>
+<article class="metric-card"><div><small>Comprimento limitado por PMD</small><strong id="maxLength">—</strong></div></article>
+<article class="metric-card"><div><small>Orçamento utilizado</small><strong id="usedPct">—</strong></div></article>
+</div>
+<p class="hint">O PMD é estatístico e muda com a temperatura e manuseio. Os receptores coerentes compensam a DGD no DSP; usam a sua folha de dados de tolerância DGD em vez da regra NRZ.</p>
+<div class="ro-acts">
+<button id="copyBtn" type="button">Copiar resultado</button>
+<button id="saveBtn" type="button">Gravar o registo</button>
+<button id="printBtn" type="button">Imprimir / Exportar PDF</button>
+</div>
+</div></section></div>
+<div class="below"><nav aria-label="Nesta página" class="toc"><h4>Nesta página</h4><a href="#about-scope">Sobre &amp; aplicabilidade</a><a href="#methodology">Como é calculado</a><a href="#component-check">Verificação de componentes</a><a href="#faq">FAQ</a><a href="#history">Cálculos recentes</a><a href="#references">Referências oficiais</a><a href="#nel-tool-graph">Fluxo de trabalho de engenharia</a></nav><div class="prose"><details class="fb-fold blk" data-nel-v3-title-normalized="1" id="about-scope"><summary class="fb-fold-sum"><span class="fb-fold-title">Limites</span></summary><div class="fb-fold-body"><section class="content-section nel-tool-supporting-section" id="limits"><div class="section-heading"><div><p class="eyebrow">Limites</p></div></div><article><p>Comprimento limitado por PMD = (permitido2 − componente 2 / PMD2. O DGD instantâneo segue uma distribuição Maxwelliana, então uma razão max-para-média de cerca de 3 é usada para um projeto máximo. O limiar de alerta de 80% é a regra de rastreio desta ferramenta.</p></article></section></div></details><details class="fb-fold blk" data-nel-v3-title-normalized="1" id="methodology"><summary class="fb-fold-sum"><span class="fb-fold-title">Metodologia e notas de engenharia</span></summary><div class="fb-fold-body"><div class="eq">DGD = √(PMD2 × L + N × DGD comp2); T = 1000 / R; DGD allow = T × p / 100</div><section class="content-section methodology nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">METODOLOGIA</p></div></div>
+<div class="method-defs"><article><h3>Como utilizar</h3><ol><li>Insira o coeficiente PMD (valor de design do link PMDQ do cabo) e o comprimento da fibra.</li><li>Adicionar a contagem e média DGD de amplificadores, DCMs e outros componentes.</li><li>Introduza a taxa de símbolo e a média permitida da DGD em percentagem do período de símbolo.</li><li>Leia a média da DGD, margem e o comprimento limitado da PMD.</li></ol></article><article><h3>Fórmula DGD</h3><p>Fibra média DGD = coeficiente PMD × ?L (ps), porque o PMD acumula-se como uma caminhada aleatória. Seções independentes adicionam em quadratura: total = ?(fibra2 + componente ?2). O período de símbolo é de 1000 / taxa de símbolo em GBd (ps); a média permitida DGD é esse período × a porcentagem escolhida.</p></article></div>
+</section></div></details><details class="fb-fold blk" data-nel-v3-title-normalized="1" id="component-check"><summary class="fb-fold-sum"><span class="fb-fold-title">Exemplos trabalhados</span></summary><div class="fb-fold-body"><section class="content-section nel-tool-supporting-section" id="examples"><div class="section-heading"><div><p class="eyebrow">Exemplos trabalhados</p></div></div><div class="example-box"><h3>Caso trabalhado: 80 km a 10.3125 GBd</h3><p>0,20 ps/√km × √80 = 1,789 ps. Quatro componentes de 0,1 ps somam 0,04 ps2: média DGD 1.800 ps. O período de símbolo é 96,97 ps, portanto a margem de 10% é 9,70 ps e a margem é 7.897 ps (18,6% usada). Projete no máximo 5.40 ps. O comprimento limitado por PMD é de cerca de 2.350 km.</p></div></section></div></details><div class="blk faq" data-nel-v3-title-normalized="1" id="faq"><h2 id="faq-title">Perguntas mais frequentes</h2><section aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">FAQ</p></div></div>
+<details><summary>Como faço para calcular PMD para um link de fibra?</summary><p>DGD média = coeficiente PMD × comprimento. 0,20 ps/√km sobre 80PRES é 0,2 × 8,94 = 1,79 ps. Adicionar componente DGD em quadratura.</p></details><details><summary>Qual é o limite PMD para o 10G?</summary><p>Com a regra comum de 10% do período bit, 10,3125 GBd permite cerca de 9,7 ps média DGD. Fibra mais velha com 0,5 ps / km atinge que em cerca de 376 km.</p></details><details><summary>Por que o PMD cresce com a raiz quadrada do comprimento?</summary><p>A birefringência muda aleatoriamente ao longo da fibra, de modo que o atraso se acumula como uma caminhada aleatória, que escala com √L.</p></details><details><summary>Qual é a diferença entre PMD e DGD?</summary><p>DGD é o atraso instantâneo entre os dois modos de polarização. O PMD é o seu valor médio sobre o comprimento de onda e o tempo, e o coeficiente é a média por km.</p></details><details><summary>O PMD importa para 100G coerente ou 400G?</summary><p>Muito menos. DSPs coerentes compensam dezenas de ps da DGD, então a fibra legada que limita 10G NRZ ainda pode transportar canais coerentes.</p></details>
+</section></div><section class="blk" data-nel-v3-title-normalized="1" id="history"><h2>Cálculos recentes</h2><div class="fb-fold-body"><section class="content-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">REGISTO DOS PROJECTOS</p></div>
+<button class="text-button btn btn-ghost btn-sm" id="clearHistoryBtn" type="button">Limpar o histórico</button></div>
+<div class="history-list" id="historyList"></div>
+</section></div></section><section class="blk" data-nel-v3-title-normalized="1" id="references"><h2 id="references-title">l Normas e referências</h2><div class="fb-fold-body"><div class="ref-card"><section aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">REFERÊNCIAS DE EN78</p></div></div>
+<ul><li><a class="std-chip" href="https://www.itu.int/rec/T-REC-G.652/en" rel="noopener">ITU-T G.652 (08/2024): §7.2 e Tabela 1/Tabela 2: valor máximo de projeto da ligação PMDQ 0,20 ps/ğkm para G.652.B/D (M = 20 cabos, Q = 0,01%)</a></li><li><a class="std-chip" href="https://www.itu.int/rec/T-REC-G.650.2/en" rel="noopener">ITU-T G.650.2 (08/2015): definições e métodos de ensaio para atributos estatísticos e não lineares, incluindo PMD</a></li><li><a class="std-chip" href="https://webstore.iec.ch/en/publication/5103" rel="noopener">IEC TR 61282-3 Ed. 2.0 (2006-10): cálculo da ligação PMD – concatenação raiz-soma-quadrado da fibra e componente DGD (cláusula 2)</a></li></ul>
+<p>A regra NRZ de 10% de bits e a razão máx/média de cerca de 3 são convenções de engenharia amplamente utilizadas; confirmam a tolerância do receptor DGD na ficha de dados do transceptor. español Última revisão: 2026-10-20.</p>
+</section></div></div></section><!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="pmd-budget-calculator" data-primary-workflow="optical-dispersion-planning">
+<div class="section-heading"><div><p class="eyebrow">FLUXO DE TRABALHO DE ENGENHARIA</p><h2 id="nel-tool-graph-title">Continuar o fluxo de trabalho de engenharia</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Fluxo de trabalho atual</span><strong>Fluxo de trabalho de planejamento de dispersão óptica</strong><p>Confirmar prostitutiono comprimento e perda de span, em seguida, verificar a dispersão cromática e PMD contra os limites de transceptor.</p></div><div class="nel-workflow-step"><strong>Passo 3 de 3</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="3" aria-valuetext="Passo 3 de 3" aria-label="Passo 3 de 3"><span style="width:100%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="../../chromatic-dispersion-calculator/pt-br/"><span class="nel-tool-graph-label">Voltar</span><strong>Calculadora de dispersão cromática</strong><span class="nel-tool-graph-description">Calcular o coeficiente de dispersão G.652, a dispersão cromática acumulada e residualTRE e o comprimento do link limitado por CD.</span></a><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Avançar</span><strong>Fluxo de trabalho concluído</strong></div></div>
+<h3 class="nel-tool-graph-subtitle">Ferramentas relacionadas</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="../../chromatic-dispersion-calculator/pt-br/"><strong>Calculadora de dispersão cromática</strong><span class="nel-tool-graph-description">Calcular o coeficiente de dispersão G.652, a dispersão cromática acumulada e residualTRE e o comprimento do link limitado por CD.</span></a><a class="nel-tool-graph-card" href="../../fiber-loss/pt-br/"><strong>Calculadora de perda de fibra</strong><span class="nel-tool-graph-description">- Não.</span></a><a class="nel-tool-graph-card" href="../../optical-power-budget/pt-br/"><strong>Calculadora de orçamento de potência óptica</strong><span class="nel-tool-graph-description">Verifique uma ligação óptica usando a potência de transmissão, a sensibilidade do receptor, a penalidade óptica e a perda do ODN.</span></a><a class="nel-tool-graph-card" href="../../otdr-event/pt-br/"><strong>Analisador de eventos OTDR</strong><span class="nel-tool-graph-description">Analise múltiplos eventos e comprimentos de onda duplos para identificar splices, conectores, curvas, quebras, fantasmas e efeitos de zona morta.</span></a></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END --></div></div></main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Ferramentas profissionais online para engenheiros de telecomunicações e redes.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navegação do rodapé">
+      <a href="../../../pt-br/about/">Sobre</a><a href="../../../pt-br/contact/">Contato</a><a href="../../../pt-br/privacy/">Privacidade</a><a href="../../../pt-br/terms/">Termos</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script defer="" src="../js/engine.js?v=6bee3dc55db8"></script>
+<script defer="" src="../js/pwa.js?v=20261108-pmd-bw5"></script>
+<script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script>
+<script defer="" src="../js/app.js?v=e53bab0cf63e"></script>
+<script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d"></script>
+<script defer="" src="../../../assets/js/tool-detail-v3.js?v=6f38212f00f3"></script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="id" dir="ltr" data-nel-locale="id" data-nel-route="topics/pon-optical/">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PON Optical Network Design dan Troubleshooting Hub | NetEngineerLab</title>
+<meta name="description" content="Pisahkan 10 log10 (N) kehilangan yang ideal dari perencanaan kerugian penyisipan, kemudian ikuti serat, konSilahkan dan splice kerugian ke dalam anggaran daya dan ONU menerima cek.">
+<meta name="robots" content="index,follow">
+
+<link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/guide.css?v=6d83ae5e791f"><script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"PON Desain Jaringan Optik & Masalah Hoooting Hub","url":"https://netengineerlab.com/id/topics/pon-optical/","description":"Desain link PON dan mengisolasi lemah ONU menerima kekuatan dengan kehilangan, anggaran dan bukti lapangan.","inLanguage":"id","hasPart":[{"@type":"WebPage","url":"https://netengineerlab.com/id/guides/pon-splitter-loss-guide"},{"@type":"WebApplication","url":"https://netengineerlab.com/tools/onu-rx-power/id/"},{"@type":"WebApplication","url":"https://netengineerlab.com/tools/otdr-event/id/"}]}</script>
+<meta property="og:url" content="https://netengineerlab.com/id/topics/pon-optical/">
+<meta property="og:title" content="PON Optical Network Design dan Troubleshooting Hub | NetEngineerLab">
+<meta property="og:description" content="Pisahkan 10 log10 (N) kehilangan yang ideal dari perencanaan kerugian penyisipan, kemudian ikuti serat, konSilahkan dan splice kerugian ke dalam anggaran daya dan ONU menerima cek.">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PON Optical Network Design &amp; Troublesjooting Hub | NetEngineerLab">
+<meta name="twitter:description" content="Desain link PON dan mengisolasi lemah ONU menerima kekuatan dengan splitter, fiber-rugi dan optimasi pemeriksaan anggaran, OTDR bukti dan lapangan pengujian ulang.">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://netengineerlab.com/id/"},{"@type":"ListItem","position":2,"name":"Topik","item":"https://netengineerlab.com/id/topics/"},{"@type":"ListItem","position":3,"name":"PON Optical Network Design & Troublesshooting","item":"https://netengineerlab.com/id/topics/pon-optical/"}]}</script>
+
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="../../../assets/css/content-design-system-v1.css?v=20261105-c1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/css/editorial-fresh.css?v=20261123-align2">
+<link rel="stylesheet" href="../../../assets/css/topic-hub.css?v=5a0cf14d3558">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"PON Optical Network Design dan Troubleshooting Hub | NetEngineerLab","url":"https://netengineerlab.com/id/topics/pon-optical/","description":"Pisahkan 10 log10 (N) kehilangan yang ideal dari perencanaan kerugian penyisipan, kemudian ikuti serat, konSilahkan dan splice kerugian ke dalam anggaran daya dan ONU menerima cek.","inLanguage":"id","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/id/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="id">
+<meta name="nel-route" content="topics/pon-optical/">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
+<link rel="canonical" href="https://netengineerlab.com/id/topics/pon-optical/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/topics/pon-optical/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/topics/pon-optical/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/es/topics/pon-optical/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/id/topics/pon-optical/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/pt-br/topics/pon-optical/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/topics/pon-optical/">
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Apakah sebuah ONU RX membaca menemukan kesalahan?","acceptedAnswer":{"@type":"Answer","text":"Tidak. Ini menunjukkan kondisi menerima di ONU. Konfirmasi dengan meteran listrik dikalibrasi, dibandingkan dengan anggaran, dan gunakan bukti OTDR dan catatan rute untuk mempersempit lokasi kesalahan."}},{"@type":"Question","name":"Bisakah OTDR mengganti meteran listrik optik?","acceptedAnswer":{"@type":"Answer","text":"Tidak. OTDR memperkirakan kerugian terdistribusi dan kerugian Tenggorokan dari sinyal tes tercermin; suatu akhir dari pengukuran daya memverifikasi tingkat optik yang diterima di bawah penjumlahan pengukuran."}},{"@type":"Question","name":"Apakah GPON dan XGS-PON dapat ditukar?","acceptedAnswer":{"@type":"Answer","text":"Tidak. Gunakan teknologi yang digunakan, kelas optik, panjang gelombang dan OLT / ONU datmensheet. Kalkulator membutuhkan masukan eksplisit daripada memasok seperangkat XGS-PON universal."}}]}</script>
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
+<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
+</head>
+<body class="topic-hub-page nel-content-v1 hub-fresh">
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Platform kecerdasan untuk rekayasa jaringan</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Buka navigasi"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navigasi utama">
+      <a href="../../">Beranda</a>
+      <a href="../../../tools/id/">Alat</a>
+      <a href="../../guides/">Panduan</a>
+      <a href="../" aria-current="page">Topik</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Bahasa: Bahasa Indonesia"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Bahasa Indonesia</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/topics/pon-optical/" lang="en" hreflang="en"><span>English</span><small>Inggris</small></a><a class="language-option" role="menuitem" href="/zh/topics/pon-optical/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Tionghoa Sederhana</small></a><a class="language-option" role="menuitem" href="/es/topics/pon-optical/" lang="es" hreflang="es"><span>Español</span><small>Spanyol</small></a><a class="language-option" role="menuitem" href="/id/topics/pon-optical/" lang="id" hreflang="id" aria-current="page"><span>Bahasa Indonesia</span><small>Bahasa Indonesia</small></a><a class="language-option" role="menuitem" href="/pt-br/topics/pon-optical/" lang="pt-BR" hreflang="pt-BR"><span>Português do Brasil</span><small>Portugis Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<nav class="topic-hub-breadcrumb" aria-label="Jejak navigasi"><a href="../../">Beranda</a><span aria-hidden="true">›</span><a href="../">Topik</a><span aria-hidden="true">›</span><span aria-current="page">PON Optical Network Design &amp; Troublesshooting</span></nav>
+<main id="main">
+<h1>PON Optical Network Design &amp; Troublesshooting</h1>
+<p>Rencana distribusi optik pasif dan kehilangan diagnosa bidang dengan menghubungkan anggaran desain untuk mengukur ONU menerima kekuatan dan peristiwa OTDR. Gunakan OLT / ONU spesifikasi dan pengukuran lapangan untuk penerimaan.</p>
+<section id="nel-split-ratio"><h2>1: 2 sampai 1: 64 kehilangan split Anda dapat menghitung ulang</h2><p>Ideal sama - rugi split adalah 10 log10 (N). Identitas itu hanya mengatakan daya masukan dibagi N. Ini bukan kerugian penyisipan perangkat dan bukan pengukuran penerimaan. Situs ini terus memisahkan perencanaan kerugian penyisipan untuk setiap rasio. Kehilangan cukup pada halaman ini berarti kerugian penyisipan perencanaan minus 10 log10 (N). Ganti nilai perencanaan dengan lembar data splitter sebelum menyetujui desain. ITU-T G.671 memperlakukan kerugian penyisipan sebagai parameter branching- komponen tertentu; ini tidak mempublikasikan nomor perencanaan ini.</p><ul><li>1: 2: ideal 3.010 dB, perencanaan penyisipan 3.7 dB, kelebihan 0.690 dB.</li><li>1: 4: ideal 6.021 dB, perencanaan penyisipan 7.2 dB, kelebihan 1,179 dB.</li><li>1: 8: ideal 9.031 dB, perencanaan penyisipan 10,5 dB, kelebihan 1.469 dB.</li><li>1: 16: ideal 12.041 dB, perencanaan penyisipan 13.8 dB, lebih dari 1.759 dB.</li><li>1: 32: ideal 15.051 dB, perencanaan penyisipan 17.0 dB, lebih dari 1.949 dB.</li><li>1: 64: ideal 18.062 dB, perencanaan penyisipan 20.5 dB, kelebihan 2.438 dB.</li></ul><p>Satu 1: 32 tahap menggunakan perencanaan kerugian penyisipan 17.0 dB. Pada 10 km dan 0.25 dB/km serat adalah 2,5 dB. Empat pasangan konektor pada 0.3 dB adalah 1.2 dB, dan enam splitces pada 0.1 dB adalah 0.6 dB. Kehilangan fisik adalah 17.0 + 2,5 + 1,2 + 0.2 = 21,3 dB. Perkiraan menerima daya pada minus dBm + 3 - 21.3 = -18.3 dBm. 0.25 dB/km, 0.3 dB dan 0.1 dB angka yang dapat diedit asumsi perencanaan telah digunakan oleh kalkulator, bukan sebuah ITU-T G.652 limit dan bukan pengukuran lapangan. Unit menghitung dan kelas optik masih datang dari pemancar masuk dan batas ONU.</p><p>Lanjutkan dengan asumsi yang sama: <a href="../../../tools/pon-splitter-loss/id/#nel-split-ratio">Kalkulator kehilangan PON</a> · <a href="../../../tools/optical-power-budget/id/">kalkulator anggaran daya optik</a> · <a href="../../../tools/onu-rx-power/id/">ONU menerima cek daya</a> · <a href="../../../tools/pon-fiber-calculators/id/">Kalkulator serat dan PON</a> · <a href="../../guides/pon-splitter-loss-guide/#nel-split-ratio">Pemisahan panduan kehilangan</a>.</p></section><h2>Mulai dari sini</h2><p><a href="../../guides/pon-splitter-loss-guide/">PON kehilangan splitter dan panduan margin ODN</a> Menjelaskan model yang hilang dan sebuah karya 1: 8 x 1: Baik. contoh. Untuk umum rugi serat dan anggaran link, melanjutkan dengan <a href="../../guides/fiber-link-budget-guide/">panduan serat link anggaran</a>.</p>
+
+<!-- NEL_WORKED_EXAMPLE_START -->
+<section class="nel-worked-example" id="worked-example" aria-labelledby="worked-example-title">
+<h2 id="worked-example-title">Contoh yang berhasil: GPON C + ODN dengan 1: 8 × 1: 8</h2>
+<p>Masukkan kembali nilai-nilai ini <a href="../../../tools/optical-power-budget/id/">kalkulator anggaran daya optik</a>. Angka selaras dengan catatan baku GPON C +.</p>
+<h3>Masukan dan asumsi</h3>
+<table>
+<thead><tr><th>Masukan</th><th>Nilai</th><th>Asumsi</th></tr></thead>
+<tbody>
+<tr><td>OLT min / max Tx</td><td>+ 3 / + 7 dBm</td><td>Nilai perencanaan kelas GPON C +</td></tr>
+<tr><td>ONU sensitivitas / kelebihan beban</td><td>dBm</td><td>Downstream menerima jendela</td></tr>
+<tr><td>Penalti path optik</td><td>1 dB</td><td>Istilah anggaran, bukan kerugian tanaman fisik</td></tr>
+<tr><td>Serat</td><td>10 km @ 0.30 dB/km (1490 nm)</td><td>3 serat dB</td></tr>
+<tr><td>Pecah</td><td>1:8 + 1:8</td><td>~ 21.0 dB kehilangan splitter</td></tr>
+<tr><td>Koneksi / penyambungan</td><td>4 x 0.3 dB / 6 x 0.1 dB</td><td>1,2 dB + 0.6 dB</td></tr>
+<tr><td>Marjin rekayasa</td><td>3 dB</td><td>Ageing, suhu, pemeliharaan</td></tr>
+</tbody>
+</table>
+<h3>Formula dan unit</h3>
+<div class="nel-worked-formula">
+<p><strong>Anggaran ODN standar (dB)</strong> = P<sub>Tx, min</sub> MONP<sub>sensitivitas</sub> KoreopP</p>
+<p><strong>Kehilangan ODN Fisik (dB)</strong> = fiber + splitter + connector + splice (+ lainnya)</p>
+<p><strong>Desain kerugian ODN (dB)</strong> = kerugian fisik + margin rekayasa</p>
+<p><strong>Sisa (dB)</strong> = Anggaran standar kerugian desain korn</p>
+</div>
+<h3>Perhitungan</h3>
+<table>
+<thead><tr><th>Tendang!</th><th>Kalkulasi</th><th>Hasil</th></tr></thead>
+<tbody>
+<tr><td>Anggaran standar</td><td>+3 − (−30) − 1</td><td class="nel-worked-result">32.0 dB</td></tr>
+<tr><td>Kehilangan fisik</td><td>3.0 + 21.0 + 1.2 + 0.6</td><td class="nel-worked-result">25.8 dB</td></tr>
+<tr><td>Mendesain kerugian</td><td>25.8 + 3.0</td><td class="nel-worked-result">28.8 dB</td></tr>
+<tr><td>Sisa</td><td>32.0 − 28.8</td><td class="nel-worked-result">3.2 dB (~ 90% dari anggaran)</td></tr>
+<tr><td>RX @ min Tx</td><td>+3 − 25.8</td><td class="nel-worked-result">22.8 dBm (7.2 dB di atas sensitivitas)</td></tr>
+</tbody>
+</table>
+<h3>4.</h3>
+<p class="nel-worked-result">Cascade cocok dengan 32 dB C + kelas perencanaan dengan 3.2 dB tersisa; tanaman yang sama berada di atas 28 dB B + kelas. Konfirmasi data kelas Tx / Rx, panjang gelombang dan kelas ODN sebelum penerimaan.</p>
+<p><strong>Batas:</strong> preset adalah kelas referensi, bukan jaminan untuk setiap pasangan OLT / ONU. Bukan pengganti untuk daya-meter atau penerimaan OTDR. Lanjutkan dengan <a href="../../../tools/pon-splitter-loss/id/">kehilangan splitter</a>, <a href="../../../tools/onu-rx-power/id/">Diagnosa ONU RX</a> dan <a href="../../../tools/otdr-event/id/">Acara OTDR</a> Alat.</p>
+</section>
+<!-- NEL_WORKED_EXAMPLE_END -->
+<section id="budget-reach">
+<h2>Anggaran dan jangkauan</h2>
+<p>Kehilangan, margin Mengaguma jarak maksimum untuk titik -to- titik serat tetap pada <a href="../../guides/fiber-link-budget-guide/">panduan serat link anggaran</a>Ini sekarang membawa dua kasus yang dapat dihitung ulang: 10 km pada 7.9 dB desain kerugian dengan 14 anggaran kelas dB, dan 40 km di 12.8 dB kerugian dengan anggaran kelas dB. AnggEhm jangkauan dB 12 kali tidak melewati jalur 40 km. Splaster cascade kerugian tetap pada <a href="../../guides/pon-splitter-loss-guide/">PON panduan splitter</a>, tidak dalam dua kasus.</p><p>Koefisien perhatian, dalam dB/km, dihitung secara terpisah di <a href="../../guides/fiber-loss-per-kilometer/">rugi serat per kilometer</a>Sebuah bacaan rendah atau bergerak ONU dilacak dalam <a href="../../guides/onu-rx-power-troubleshooting/">ONU menerima - daya memecahkan</a>Baik halaman menggantikan perbandingan splitter di atas.</p>
+</section>
+<section id="worked-cases"><h2>Contoh anggaran lebih banyak</h2><p>10 km dan 40 km kasus tetap di atas. Ketiga contoh ini mencakup anggaran kecil -pusat data, 300 m multimode berjalan dan jalur kampus 2 km dengan banyak konektor.</p><ul><li><a href="../../guides/data-center-fiber-6db-connector-budget/">Apakah 6 dB Data Center Budget Survive Empat Konektor Pairs?</a></li><li><a href="../../guides/om4-300m-multimode-link-budget/">Apakah sebuah Run Pass OM4 300 m Setelah Two Extra Patch Panel?</a></li><li><a href="../../guides/campus-fiber-six-connector-pairs/">How Many Conektor Pairs Can a 2 km Campus Fiber Link Carry?</a></li></ul></section><h2>Pilih suatu tugas</h2>
+<ul>
+<li><strong>Desain link PON baru:</strong> memperkirakan serat dan kehilangan komponen, pilih tahap split, bandingkan batas menerima, dan verifikasi mencapai.</li>
+<li><strong>Menyelidiki lemah ONU cahaya:</strong> catatan ONU RX, periksa dengan tenaga terkalibrasi meter pada titik referensi yang tepat, cari kejadian abnormal dengan OTDR, bandingkan dengan anggaran desain, kemudian ulangi pengukuran setelah perbaikan.</li>
+<li><strong>Rencana ODN:</strong> mendamaikan port ODF, serat kurang / distribusi dan alokasi splitter sebelum ekspansi.</li>
+</ul>
+<h2>Perkakas dan perhitungan</h2>
+<ul>
+<li><a href="../../../tools/pon-splitter-loss/id/">Kalkulator kehilangan PON</a> Rasio terbagi, cascade dan esKhurity kerugian.</li>
+<li><a href="../../../tools/fiber-loss/id/">Kallator kehilangan fiber</a> Attenuation, connector, splice dan passive- kerugian.</li>
+<li><a href="../../../tools/optical-power-budget/id/">Kalkulator anggaran daya optik</a> Pemancar, sensitivitas, kelebihan beban, hilangnya jalur dan perbandingan margin.</li>
+<li><a href="../../../tools/pon-distance/id/">Kalkulator jarak maksimum PON</a> Estimasi jangkauan terhadap dimasukan kerugian dan batas sistem.</li>
+<li><a href="../../../tools/odf-odn-resource-planner/id/">ODF / ODN Perencana sumber daya</a> Jalur port dan alokasi serat untuk perencanaan.</li>
+</ul>
+<h2>Path isolasi fault</h2>
+<ol>
+<li>Menangkap ONU- dilaporkan menerima tingkat, timestamp, panjang gelombang / konteks / kondisi alarm; bandingkan dengan jangkauan penerima ONU spesifik.</li>
+<li>Validasi pembacaan dengan meter listrik optik yang dikalibrasi pada titik yang tepat. Bersihkan dan periksa konektor sebelum mengganggu pabrik.</li>
+<li>Ketika kerugian dikonfirmasi, gunakan OTDR dari titik tes yang cocok dan panjang gelombang dengan serat peluncuran / menerima seperti yang diperlukan. Jarak peristiwa korelasi ke catatan rute; jejak OTDR saja tidak mengidentifikasi setiap penyebab akar.</li>
+<li>Reconcile diukur end- to-end kerugian dengan splitter, serat, konektor, splitces dan margin desain dalam anggaran. Perbaiki segmen yang teridentifikasi, lalu ulangi kekuasaan dan kehilangan cek dan rekam sebelum / setelah hasil.</li>
+</ol>
+<ul>
+<li><a href="../../../tools/onu-rx-power/id/">Diagnosa daya RX ONU</a> Classified diukur menerima kekuatan terhadap batas masuk.</li>
+<li><a href="../../../tools/otdr-event/id/">OTDR event analyzer</a> Kehilangan peristiwa, refleksi dan pengamatan jarak jauh.</li>
+</ul>
+
+<h2>Batas standar dan teknik</h2>
+<p>Spesifikasi fisik GPON media berada dalam <a href="https://www.itu.int/rec/T-REC-G.984.2/en" rel="external">ITU-T G.984.2</a>; XGS-PON spesifikasi fisik media berada di <a href="https://www.itu.int/rec/T-REC-G.9807.1/en" rel="external">ITU-T G.9807.1</a>Rentang kelas optik dan jendela penerima tergantung pada Akhiri edisi, kelas, optik dan peralatan yang dikerahkan. Pusat ini tidak meresepkan pemancar universal, sensitivitas, overload atau nilai splitter. Jangan transfer GPON B + / C + batas ke XGS-PON.</p>
+<h2>FAQ</h2>
+<details><summary>Apakah sebuah ONU RX membaca menemukan kesalahan?</summary><p>Tidak. Ini menunjukkan kondisi menerima di ONU. Konfirmasi dengan meteran listrik dikalibrasi, dibandingkan dengan anggaran, dan gunakan bukti OTDR dan catatan rute untuk mempersempit lokasi kesalahan.</p></details>
+<details><summary>Bisakah OTDR mengganti meteran listrik optik?</summary><p>Tidak. OTDR memperkirakan kerugian terdistribusi dan kerugian Tenggorokan dari sinyal tes tercermin; suatu akhir dari pengukuran daya memverifikasi tingkat optik yang diterima di bawah penjumlahan pengukuran.</p></details>
+<details><summary>Apakah GPON dan XGS-PON dapat ditukar?</summary><p>Tidak. Gunakan teknologi yang digunakan, kelas optik, panjang gelombang dan OLT / ONU datmensheet. Kalkulator membutuhkan masukan eksplisit daripada memasok seperangkat XGS-PON universal.</p></details>
+<section id="topic-questions"><h2>Pertanyaan topik ini menjawab</h2><p>Tiga pertanyaan datang bersama-sama, dan mereka tidak satu pengukuran. Kehilangan berganda menanyakan seberapa besar 10 log10 (N), dan seberapa besar kerugian penyisipan perencanaan adalah: 17.0 dB untuk satu: 32 tahap di halaman ini, bukan yang ideal 15.051 dB. Kerugian fiber per kilometer meminta Gib× L: 12 km di G.652. D maksimum 0.30 dB/km pada 1550 nm adalah 3,60 dB serat, sebelum konektor. Sebuah bacaan ONU meminta level hilir di ONU. Ini bukan tingkat penerima OLT, bukan laser ONU, dan bukan salah lokasi. Jika model ONU tidak diidentifikasi, ambang batas tak dikenal.</p></section>
+<section id="topic-method"><h2>Metode</h2><p>Kehilangan fisik menambahkan serat istilah × L, penyisipan kehilangan, pasangan penghubung dan splitces. Perkiraan menerima daya mengurangi kerugian fisik dari daya transmisi minimum. Marjin teknik adalah cadangan desain, bukan bagian dari jalur sekarang. Jalur 1: 32 di bagian di atas adalah 21.3 dB fisik dan Kimber18.3 dBm dari + 3 dBm. 1: 8 x 1: 8 contoh di bawah ini adalah tanaman yang berbeda: 25.8 dB fisik dan Kimber22.8 dBm. Jauhkan mereka terpisah.</p></section>
+<section id="topic-guides"><h2>Panduan inti dan artikel spesifik</h2><p>The <a href="../../guides/pon-splitter-loss-guide/">Pemisahan panduan kehilangan</a> adalah catatan utama untuk kehilangan split ideal versus perencanaan kerugian penyisipan. The <a href="../../guides/fiber-link-budget-guide/">panduan serat link anggaran</a> adalah catatan inti untuk margin dan jangkauan pada titik-to- jalur. The <a href="../../guides/fiber-loss-per-kilometer/">artikel per kilometer</a> Isolasi koefisien dan menunjukkan mengapa 4,90 dB lebih dari 12 km tidak 0.30 dB/km. The <a href="../../guides/onu-rx-power-troubleshooting/">Artikel intruksi</a> Memisahkan ONU menerima kekuatan, OLT menerima kekuatan dan laser ONU. The <a href="../../guides/onu-receive-level-warning-margin/">Artikel warning- margin</a> mengklasifikasikan satu dimasukkan membaca dan tidak menemukan kesalahan. Pusat data, OM4 dan artikel kampus di bawah ini adalah kasus anggaran koneksi. Mereka tidak termasuk pembagian PON.</p></section>
+<section id="topic-related"><h2>Topik terkait</h2><p>Kontinuitas kekuatan situs milik <a href="../telecom-power-energy/">daya telekomunikasi dan energi</a>Topik itu tidak mengatur ambang batas penerimaan optik. Kapasitas pendingin dan perubahan oversubscription menggambarkan tanaman lain, sehingga perhitungan optik ini tidak menghubungkan mereka.</p></section>
+<h2>Sumber daya topik saat ini</h2><ul>
+<li><a href="../../guides/pon-splitter-loss-guide/">PON kehilangan splitter dan panduan margin ODN</a> (Bahasa Inggris)</li><li><a href="../../guides/pon-splitter-loss-guide/">PON: ODN</a> (中文)</li><li><a href="../../guides/fiber-link-budget-guide/">Panduan anggaran link fiber</a></li>
+<li><a href="../../../tools/pon-splitter-loss/id/">PON kehilangan splitter</a> · <a href="../../../tools/fiber-loss/id/">Kehilangan fiber</a> · <a href="../../../tools/optical-power-budget/id/">Anggaran optik</a> · <a href="../../../tools/pon-distance/id/">Jarak PON</a> · <a href="../../../tools/onu-rx-power/id/">ONU RX</a> · <a href="../../../tools/otdr-event/id/">OTDR</a> · <a href="../../../tools/odf-odn-resource-planner/id/">ODF / ODN sumber daya</a></li>
+
+</ul>
+<p>Domain terkait: <a href="../telecom-power-energy/">daya telekomunikasi dan energi</a> mendukung kontinuitas daya situs; itu tidak menggantikan budget optikali- lapisan atau isolasi kesalahan.</p>
+<p>Tingkat penerimaan terukur, terpisah dari contoh sambungan anggaran: <a href="../../guides/onu-receive-level-warning-margin/">1 dB di atas sensitivitas adalah peringatan ketika margin peringatan adalah 3 dB</a>.</p><p class="hub-return" data-nel-cluster-link><a href="../../../tools/pon-fiber-calculators/id/">Untuk menjalankan penyatuan, anggaran daya, jarak, latensi dan kalkulator OTDR sebagai satu set, buka pusat kalkulator PON dan serat kalkulator.</a></p>
+</main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Alat daring profesional untuk insinyur telekomunikasi dan jaringan.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navigasi kaki halaman">
+      <a href="../../about/">Tentang</a><a href="../../contact/">Kontak</a><a href="../../privacy/">Privasi</a><a href="../../terms/">Ketentuan</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
+</body></html>
+
+

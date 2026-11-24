@@ -17,22 +17,24 @@
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="es">
 <meta name="nel-route" content="tools/telecom-solar-battery-sizing-calculator/">
-<meta name="nel-available-locales" content="en,zh,es">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
 <link rel="canonical" href="https://netengineerlab.com/tools/telecom-solar-battery-sizing-calculator/es/">
 <link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/telecom-solar-battery-sizing-calculator/">
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/telecom-solar-battery-sizing-calculator/zh/">
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/telecom-solar-battery-sizing-calculator/es/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/tools/telecom-solar-battery-sizing-calculator/id/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/tools/telecom-solar-battery-sizing-calculator/pt-br/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/telecom-solar-battery-sizing-calculator/">
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cómo se estima la capacidad FV requerida?","acceptedAnswer":{"@type":"Answer","text":"La calculadora divide la energía diaria del sitio, incluido el margen de diseño, por las horas de sol pico y el factor combinado de reducción FV."}},{"@type":"Question","name":"¿Cómo deben elegirse las horas de sol pico?","acceptedAnswer":{"@type":"Answer","text":"Use datos mensuales o anuales del recurso solar específicos de la ubicación. En sitios de telecomunicaciones críticos, compruebe la temporada de menor recurso solar y no se apoye solo en la media anual."}},{"@type":"Question","name":"¿Cómo se reflejan los días nublados en el dimensionamiento de la batería?","acceptedAnswer":{"@type":"Answer","text":"Los días nublados configurados añaden 24 horas de carga media del sitio por día al requisito base de autonomía de respaldo, antes de las correcciones de DOD y de eficiencia de batería."}},{"@type":"Question","name":"¿Puedo reutilizar un banco de baterías de -48 V existente?","acceptedAnswer":{"@type":"Answer","text":"Introduzca su capacidad útil o de placa de forma coherente con las hipótesis de diseño. La herramienta informa el déficit de capacidad restante, pero las curvas de descarga del fabricante siguen gobernando la aprobación final."}},{"@type":"Question","name":"¿Sustituye esto al diseño eléctrico FV detallado?","acceptedAnswer":{"@type":"Answer","text":"No. El diseño detallado aún debe verificar la tensión de la cadena de módulos, los límites del controlador, la temperatura, la protección, la pérdida de cable, las curvas de descarga de la batería y la redundancia del sitio."}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
 <link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
-<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../../assets/js/site.js?v=c957f6562d31"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
 <script defer src="../../../assets/js/es-launch-runtime.js?v=e0fea69289b0"></script>
 <link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
 <link rel="manifest" href="../manifest-es.webmanifest">
@@ -51,7 +53,7 @@
       <a href="../../../es/topics/">Temas</a>
     </nav>
     <div class="site-shell-actions">
-      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Español"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Español</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/telecom-solar-battery-sizing-calculator/" lang="en" hreflang="en"><span>English</span><small>Inglés</small></a><a class="language-option" role="menuitem" href="/tools/telecom-solar-battery-sizing-calculator/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chino simplificado</small></a><a class="language-option" role="menuitem" href="/tools/telecom-solar-battery-sizing-calculator/es/" lang="es" hreflang="es" aria-current="page"><span>Español</span><small>Español</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Español"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Español</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/telecom-solar-battery-sizing-calculator/" lang="en" hreflang="en"><span>English</span><small>Inglés</small></a><a class="language-option" role="menuitem" href="/tools/telecom-solar-battery-sizing-calculator/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chino simplificado</small></a><a class="language-option" role="menuitem" href="/tools/telecom-solar-battery-sizing-calculator/es/" lang="es" hreflang="es" aria-current="page"><span>Español</span><small>Español</small></a><a class="language-option" role="menuitem" href="/tools/telecom-solar-battery-sizing-calculator/id/" lang="id" hreflang="id"><span>Bahasa Indonesia</span><small>Indonesio</small></a><a class="language-option" role="menuitem" href="/tools/telecom-solar-battery-sizing-calculator/pt-br/" lang="pt-BR" hreflang="pt-BR"><span>Português do Brasil</span><small>Portugués de Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
       <div class="site-shell-context-action"><a href="#calculator">Empezar a calcular</a></div>
     </div>
   </div>
@@ -85,5 +87,5 @@
     <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
   </div>
 </footer>
-<!-- NEL_FOOTER_END --><script src="../js/engine.js?v=0a575bec2bc5"></script><script src="../js/app.js?v=4ab1948274ab"></script><script src="../js/deep-workflow.js?v=20261107-solar-bw3"></script><script src="../js/pwa.js"></script><script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+<!-- NEL_FOOTER_END --><script src="../js/engine.js?v=0a575bec2bc5"></script><script src="../js/app.js?v=4ab1948274ab"></script><script src="../js/deep-workflow.js?v=20261107-solar-bw3"></script><script src="../js/pwa.js"></script><script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
 <script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d"></script></body></html>

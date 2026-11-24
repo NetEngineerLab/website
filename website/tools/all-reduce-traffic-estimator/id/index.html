@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<html lang="id" dir="ltr" data-nel-locale="id" data-nel-route="tools/all-reduce-traffic-estimator/">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#176ff2" name="theme-color"/>
+<title>Semua-Mengurangi Estimator Lalu Lintas | Ring Bytes, Waktu dan Bandwidth</title>
+<meta content="Perkiraan cincin all- mengurangi lalu lintas: byte masing-masing GPU mengirimkan, waktu kain, dan algoritma bandwidth versus bus bandwidth." name="description"/>
+<meta content="../" name="app-base"/>
+<meta content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" name="robots"/>
+<meta content="website" property="og:type"/>
+<meta content="NetEngineerLab" property="og:site_name"/>
+<meta content="Semua-Mengurangi Estimator Lalu Lintas | Ring Bytes, Waktu dan Bandwidth" property="og:title"/>
+<meta content="Perkiraan cincin all- mengurangi lalu lintas: byte masing-masing GPU mengirimkan, waktu kain, dan algoritma bandwidth versus bus bandwidth." property="og:description"/>
+<meta content="https://netengineerlab.com/tools/all-reduce-traffic-estimator/id/" property="og:url"/>
+<meta content="https://netengineerlab.com/assets/images/og-netengineerlab.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Semua-Mengurangi Estimator Lalu Lintas | Ring Bytes, Waktu dan Bandwidth" name="twitter:title"/>
+<meta content="Perkiraan cincin all- mengurangi lalu lintas: byte masing-masing GPU mengirimkan, waktu kain, dan algoritma bandwidth versus bus bandwidth." name="twitter:description"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://netengineerlab.com/tools/all-reduce-traffic-estimator/#app","name":"Semua-Kurangi Estimator Lalu Lintas","url":"https://netengineerlab.com/tools/all-reduce-traffic-estimator/id/","description":"Perkiraan per- GPU dan lalu lintas kain, langkah waktu dan bandwidth bus untuk cincin all- mengurangi gradien model.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Network Engineering Calculator","operatingSystem":"Any","browserRequirements":"Requires JavaScript and a modern web browser","softwareVersion":"1.0.0","inLanguage":"id","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/id/"}},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/all-reduce-traffic-estimator/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"NetEngineerLab","item":"https://netengineerlab.com/id/"},{"@type":"ListItem","position":2,"name":"Alat","item":"https://netengineerlab.com/tools/id/"},{"@type":"ListItem","position":3,"name":"Semua-Kurangi Estimator Lalu Lintas","item":"https://netengineerlab.com/tools/all-reduce-traffic-estimator/id/"}]}]}</script>
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
+<meta content="https://netengineerlab.com/assets/images/og-netengineerlab.png" name="twitter:image"/>
+<link href="/assets/css/cookie-consent.css?v=2f2c8ab643e6" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif:ital@1&amp;display=swap" rel="stylesheet"/>
+<link href="/assets/css/fb-v3.css?v=031fae951adb" rel="stylesheet"/>
+<link href="/assets/css/fb-v3-prod.css?v=64bd0d9f6bcb" rel="stylesheet"/>
+<script defer="" src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
+<link href="../css/style.css?v=e555d018ba04" rel="stylesheet"/>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Semua-Mengurangi Estimator Lalu Lintas | Ring Bytes, Waktu dan Bandwidth","url":"https://netengineerlab.com/tools/all-reduce-traffic-estimator/id/","description":"Perkiraan cincin all- mengurangi lalu lintas: byte masing-masing GPU mengirimkan, waktu kain, dan algoritma bandwidth versus bus bandwidth.","inLanguage":"id","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/id/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="id">
+<meta name="nel-route" content="tools/all-reduce-traffic-estimator/">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
+<link rel="canonical" href="https://netengineerlab.com/tools/all-reduce-traffic-estimator/id/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/all-reduce-traffic-estimator/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/all-reduce-traffic-estimator/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/all-reduce-traffic-estimator/es/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/tools/all-reduce-traffic-estimator/id/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/tools/all-reduce-traffic-estimator/pt-br/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/all-reduce-traffic-estimator/">
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Berapa banyak data yang berdering semua-mengurangi kirim per GPU?","acceptedAnswer":{"@type":"Answer","text":"2 (N = 1) / N dikali buffer. Untuk 8 GPU yaitu 1.75 × S; karena N tumbuh mendekati 2 × S"}},{"@type":"Question","name":"Apa itu bandwidth bus di NCCL?","acceptedAnswer":{"@type":"Answer","text":"busBW = algBW × 2 (N person 1) / N untuk semua- kurangi. Ini normalisasi untuk jumlah GPU sehingga dapat dibandingkan dengan kecepatan link perangkat keras."}},{"@type":"Question","name":"Berapa lama gradien dibutuhkan?","acceptedAnswer":{"@type":"Answer","text":"Sekitar 2 (N _ 1) / N × S pluglink bandwidth ditambah 2 (N _ 1) × per-step latency. 14 GB lebih dari 8 GPU pada 50 GB / s mengambil sekitar 0.49 s."}},{"@type":"Question","name":"Apakah menambahkan GPU meningkatkan lalu lintas per- GPU?","acceptedAnswer":{"@type":"Answer","text":"Hanya sedikit: Faktor berjalan dari 1,5 pada 4 GPU ke 1.75 pada 8 dan 1.98 di 128. Istilah latensi tumbuh linear dengan N."}},{"@type":"Question","name":"Apakah cincin satu-satunya algoritme mengurangi?","acceptedAnswer":{"@type":"Answer","text":"Tidak. Pohon, pohon biner ganda, hierarkis dan jaringan in- (SHARP) algoritma mengurangi latensi dalam skala; cincin adalah dasar bandwid- optimal digunakan di sini."}}]}</script>
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
+<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
+<script defer src="../../../assets/js/id-launch-runtime.js?v=3461d0601eeb"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
+<link rel="manifest" href="../manifest-id.webmanifest">
+</head>
+<body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-offline-worker="1" data-nel-template="tool-detail-v1.3.1" data-nel-v3-migrated="1" data-nel-visual="network-change-planner-reference">
+<a class="skip-link" href="#calculator">Lewati ke kalkulator</a>
+<noscript><div class="noscript">JavaScript is required to run this calculator.</div></noscript>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../id/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Platform kecerdasan untuk rekayasa jaringan</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Buka navigasi"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navigasi utama">
+      <a href="../../../id/">Beranda</a>
+      <a href="../../id/" aria-current="page">Alat</a>
+      <a href="../../../id/guides/">Panduan</a>
+      <a href="../../../id/topics/">Topik</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Bahasa: Bahasa Indonesia"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Bahasa Indonesia</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/all-reduce-traffic-estimator/" lang="en" hreflang="en"><span>English</span><small>Inggris</small></a><a class="language-option" role="menuitem" href="/tools/all-reduce-traffic-estimator/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Tionghoa Sederhana</small></a><a class="language-option" role="menuitem" href="/tools/all-reduce-traffic-estimator/es/" lang="es" hreflang="es"><span>Español</span><small>Spanyol</small></a><a class="language-option" role="menuitem" href="/tools/all-reduce-traffic-estimator/id/" lang="id" hreflang="id" aria-current="page"><span>Bahasa Indonesia</span><small>Bahasa Indonesia</small></a><a class="language-option" role="menuitem" href="/tools/all-reduce-traffic-estimator/pt-br/" lang="pt-BR" hreflang="pt-BR"><span>Português do Brasil</span><small>Portugis Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">Mulai menghitung</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a href="../../../id/">Beranda</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../../id/">Alat</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">Semua-Kurangi Estimator Lalu Lintas</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END -->
+<section aria-hidden="true" class="hero nel-tool-hero"><div class="hero-inner">
+<p class="eyebrow">AI NETWORKING TOOL</p>
+<h1>Semua-Kurangi Estimator Lalu Lintas</h1>
+<p>Pelatihan data-paralel menyelaraMematikan gradien dengan semua mengurangi setiap langkah. Dalam algoritma cincin optimal bandwidth-optimal masing-masing GPU mengirim dan menerima 2 (N cover1) / N dikali buffer gradien, jadi 8 GPU mengganti 7 miliar gradien FP16 (14 GB) setiap langkah 24.5 GB per langkah. Ini semua mengurangi estimator lalu lintas yang mengubah ukuran model, jumlah GPU dan kecepatan NIC menjadi lalu lintas GPU, total lalu lintas kain, waktu langkah, algoritma bandwidth dan bandth bus gaya NCCL-.</p>
+<div class="hero-tags"><span>Ring al- kurangi</span><span>2 (N = 1) / N</span><span>bubBW</span><span>Langkah waktu</span></div></div></section>
+<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" data-nel-readout-roles="%7B%22secondary%22%3A%5B%22bufferSize%22%2C%22busFactor%22%2C%22fabricTraffic%22%2C%22bwTime%22%2C%22latTime%22%2C%22algBw%22%2C%22busBw%22%5D%2C%22identifier%22%3A%5B%5D%2C%22annotation%22%3A%5B%5D%7D" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv" id="calculator"><div class="tool-head"><nav aria-label="Breadcrumb" class="crumbs">
+<a href="../../id/">Beranda</a>
+<span aria-hidden="true">/</span>
+<a class="tool-return-link" href="./">Alat</a>
+<span aria-hidden="true">/</span>
+<span aria-current="page">Semua-Kurangi Estimator Lalu Lintas</span>
+</nav><p aria-level="1" class="tool-page-label" role="heading">Semua-Kurangi Estimator Lalu Lintas</p><p class="tool-lede">Pelatihan data-paralel menyelaraMematikan gradien dengan semua mengurangi setiap langkah. Dalam algoritma cincin optimal bandwidth-optimal masing-masing GPU mengirim dan menerima 2 (N cover1) / N dikali buffer gradien, jadi 8 GPU mengganti 7 miliar gradien FP16 (14 GB) setiap langkah 24.5 GB per langkah. Ini semua mengurangi estimator lalu lintas yang mengubah ukuran model, jumlah GPU dan kecepatan NIC menjadi lalu lintas GPU, total lalu lintas kain, waktu langkah, algoritma bandwidth dan bandth bus gaya NCCL-.</p></div>
+<div class="workspace"><section class="input-panel card nel-tool-input fb-panel">
+<div class="section-title panel-h"><span class="section-icon">☷</span><div>
+<h2 class="panel-h">Pekerjaan dan kain</h2>
+<p>Masukkan jumlah GPU dalam ring, ukuran gradien dan bandwidth jaringan per- GPU.</p>
+</div></div>
+<div class="form-grid fields">
+<div class="field f"><label for="projectName">Nama projek</label><div class="input-wrap no-unit inp"><input id="projectName" type="text" value="7B data-parallel job"/></div></div>
+<div class="field f"><label for="ranks">GPU in the ring (N)</label><div class="input-wrap no-unit inp"><input id="ranks" min="2" step="1" type="number" value="8"/></div></div>
+<div class="field f"><label for="paramsBillion">Elemen gradien (miliaran)</label><div class="input-wrap inp"><input id="paramsBillion" min="0.001" step="0.001" type="number" value="7"/><span>×10⁹</span></div><p class="hint">Biasanya jumlah parameter yang terlatih.</p></div>
+<div class="field f"><label for="bytesPerParam">Gradien tipe data</label><div class="input-wrap no-unit inp sel"><select id="bytesPerParam"><option value="4">FP32 (4 bytes) fs-type</option><option selected="" value="2">FP16 / BF16 (2 bytes)</option><option value="1">FP8 (1 byte) fs-type</option></select></div></div>
+<div class="field f"><label for="linkGbps">Bandwidth jaringan per- GPU</label><div class="input-wrap inp"><input id="linkGbps" min="0.001" step="1" type="number" value="400"/><span>Gbps</span></div><p class="hint">Tingkat garis NIC per GPU, satu arah.</p></div>
+<div class="field f"><label for="efficiencyPct">Efisiensi link dicapai</label><div class="input-wrap inp"><input id="efficiencyPct" max="100" min="1" step="1" type="number" value="80"/><span>%</span></div><p class="hint">Protokol overhead dan kemacetan; ukuran dengan nccl- tes.</p></div>
+<div class="field f"><label for="latencyUs">Per- langkah latensi memungkinkan</label><div class="input-wrap inp"><input id="latencyUs" min="0" step="0.1" type="number" value="5"/><span>Az</span></div><p class="hint">Ring all-reduce takes 2 (N person 1) steps.</p></div>
+</div>
+<div class="actions input-actions">
+<button class="primary-action btn btn-primary" id="calculateBtn" type="button">Hitung</button>
+<button class="secondary-action btn btn-ghost" id="resetBtn" type="button">Atur ulang</button>
+</div>
+<p class="validation-message" id="validationMessage" role="alert"></p>
+</section><section aria-live="polite" class="result-panel card nel-tool-result readout">
+<div class="section-title ro-h"><span class="section-icon">▥</span><div>
+<h2 class="ro-h">Hasil perhitungan</h2>
+<p>Per- GPU bytes = 2 (N sopen1) / N × S. Time = 2 (N rep1)</p>
+</div></div>
+<div class="summary-card ro-l1" id="summaryCard"><div class="ro-main"><p class="lbl">Data yang dikirim per GPU</p><strong class="big"><span data-nel-readout-number="1" id="perRank">—</span></strong></div><div class="ro-main"><p class="lbl">Perkiraan semua-mengurangi waktu</p><strong class="big"><span data-nel-readout-number="1" id="totalTime">—</span></strong></div></div>
+<div class="metric-grid">
+<article class="metric"><small>Gradien buffer S</small><strong id="bufferSize">—</strong></article>
+<article class="metric"><small>Nomor 2 (N = 1) / N</small><strong id="busFactor">—</strong></article>
+<article class="metric"><small>Total lalu lintas kain</small><strong id="fabricTraffic">—</strong></article>
+<article class="metric"><small>Istilah Bandwidth</small><strong id="bwTime">—</strong></article>
+<article class="metric"><small>Istilah latensi</small><strong id="latTime">—</strong></article>
+<article class="metric"><small>Lebar bandwidth Algoritma S / t</small><strong id="algBw">—</strong></article>
+<article class="metric"><small>Bandwidth bus (NCCL)</small><strong id="busBw">—</strong></article>
+</div>
+<p class="hint">Asumsi satu cincin datar, tidak ada kompute / komunikasi tumpang tindih dan tidak ada pengurangan jaringan in-. Pohon, hirarkis dan SHARP algoritma mengubah istilah latensi dan pola lalu lintas.</p>
+<div class="result-actions ro-acts">
+<button id="copyBtn" type="button">Hasil salinan</button>
+<button id="saveBtn" type="button">Simpan catatan</button>
+<button id="printBtn" type="button">Cetak / Ekspor PDF</button>
+</div>
+</section></div>
+<div class="below"><nav aria-label="Pada halaman ini" class="toc"><h4>Pada halaman ini</h4><a href="#methodology">Bagaimana itu dihitung</a><a href="#faq">FAQ</a><a href="#history">Perhitungan baru-baru ini</a><a href="#references">Referensi resmi</a><a href="#nel-tool-graph">Aliran kerja rekayasa</a></nav><div class="prose"><details class="fb-fold blk bw-standard-card" data-nel-v3-title-normalized="1" id="methodology"><summary class="fb-fold-sum"><span class="fb-fold-title">Metode dan catatan rekayasa</span></summary><div class="fb-fold-body"><section class="content-section methodology nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">METHODOLOGY</p></div></div>
+<div class="eq">Per- GPU bytes = 2 (N ember1) / N × S<br/>Waktu = 2 (N = 1)</div><div class="method-defs">
+<article><h3>Cara menggunakan</h3><ol><li>Masukkan jumlah GPU di atas ring.</li><li>Masukkan jumlah elemen gradien, biasanya parameter yang dapat dilatih, dan tipe data.</li><li>Masukkan per- GPU NIC bandwidth, efisiensi yang dicapai dan perstep latensi.</li><li>Baca per- GPU dan total lalu lintas, langkah waktu dan bandwidth bus.</li></ol></article><article><h3>Ring al- kurangi</h3><p>Sebuah cincin semua-mengurangi adalah pengurangan - tersebar diikuti oleh semua-berkumpul. Setiap mengambil N Suruh 1 langkah di mana setiap peringkat mengirimkan S / N bytes, jadi setiap peringkat mengirimkan 2 (N rep1) / N × S dan menerima jumlah yang sama. Total traffic strink is N × 2 (Gawat!</p></article><article><h3>Waktu dan lebar bandwidth</h3><p>Waktu = 2 (N = 1) (N = 2 (N = 1) Bandwidth Algoritma = S Dalltime; bandwidth bus NCCL = algoritma bandwidth × 2 (N 1x1) / N, yang sebanding dengan kecepatan link.</p></article>
+</div>
+<div class="example-box"><h3>Kasus berhasil: 8 GPU, 7Nggak FTugas 16, 400 Gbps</h3><p>S = 7 x 10 = 2 B = 14 GB. Nomor 2 x 7 / 8 = 1,75, jadi masing-masing GPU mengirimkan 24.5 GB dan kainnya membawa 196 GB. Pada 400 Gbps (50 GB / s) dan 100% efisiensi bandwidth adalah 490 m; pada 80% itu adalah 612.5 ms, ditambah 14 × 5 byte = 70 Musik latensi. Bandwidth bus kemudian tetap hanya di bawah tingkat link efektif dari 40 GB / s.</p></div>
+</section></div></details><div class="blk faq bw-standard-card" data-nel-v3-title-normalized="1" id="faq"><h2 id="faq-title">Pertanyaan yang sering ditanyakan</h2><section aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">FAQ</p></div></div>
+<details><summary>Berapa banyak data yang berdering semua-mengurangi kirim per GPU?</summary><p>2 (N = 1) / N dikali buffer. Untuk 8 GPU yaitu 1.75 × S; karena N tumbuh mendekati 2 × S</p></details><details><summary>Apa itu bandwidth bus di NCCL?</summary><p>busBW = algBW × 2 (N person 1) / N untuk semua- kurangi. Ini normalisasi untuk jumlah GPU sehingga dapat dibandingkan dengan kecepatan link perangkat keras.</p></details><details><summary>Berapa lama gradien dibutuhkan?</summary><p>Sekitar 2 (N _ 1) / N × S pluglink bandwidth ditambah 2 (N _ 1) × per-step latency. 14 GB lebih dari 8 GPU pada 50 GB / s mengambil sekitar 0.49 s.</p></details><details><summary>Apakah menambahkan GPU meningkatkan lalu lintas per- GPU?</summary><p>Hanya sedikit: Faktor berjalan dari 1,5 pada 4 GPU ke 1.75 pada 8 dan 1.98 di 128. Istilah latensi tumbuh linear dengan N.</p></details><details><summary>Apakah cincin satu-satunya algoritme mengurangi?</summary><p>Tidak. Pohon, pohon biner ganda, hierarkis dan jaringan in- (SHARP) algoritma mengurangi latensi dalam skala; cincin adalah dasar bandwid- optimal digunakan di sini.</p></details>
+</section></div><section class="blk" data-nel-v3-title-normalized="1" id="history"><h2>Perhitungan baru-baru ini</h2><div class="fb-fold-body"><section class="content-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">PROYEK RECORDS</p></div>
+<button class="text-button btn btn-ghost btn-sm" id="clearHistoryBtn" type="button">Hapus riwayat</button></div>
+<div class="history-list" id="historyList"></div>
+</section></div></section><section class="blk bw-standard-card ref-card" data-nel-v3-title-normalized="1" id="references"><h2 id="references-title">Standar dan referensi</h2><div class="fb-fold-body"><section aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">MESIN MESIN REFERENCES</p></div></div>
+<ul><li><a class="std-chip" href="https://github.com/NVIDIA/nccl-tests/blob/master/doc/PERFORMANCE.md#bus-bandwidth" rel="noopener">NVIDIA nccl-test PerFORMANCEMD - "Bus bandwidth": busBW = algBW × 2 (n Met1) / n untuk semua -kurangi</a></li><li><a class="std-chip" href="https://doi.org/10.1016/j.jpdc.2008.09.002" rel="noopener">Patarasuk &amp; Yuan, J. Paralel Distrib. Comput. 69 (2), 2009: bandwidth optimal semua - mengurangi algoritma untuk cluster of workstations</a></li><li><a class="std-chip" href="https://doi.org/10.1177/1094342005051521" rel="noopener">Thakur, Rabenseifner &amp; Gropp, IJHPCA 19 (1), 2005: optimasi operasi komunikasi kolektif di MPICH</a></li></ul>
+<p>Efisiensi dan per- langkah latensi adalah asumsi pengguna; kalibrasi mereka dengan ncc- tes pada struktur target sebelum keputusan kapasitas. Terakhir ditinjau: 2026-10-20.</p>
+</section></div></section><!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="all-reduce-traffic-estimator" data-primary-workflow="ai-training-fabric-planning">
+<div class="section-heading"><div><p class="eyebrow">MESIN KERJA</p><h2 id="nel-tool-graph-title">Lanjutkan proses rekayasa</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Aliran kerja saat ini</span><strong>AAI Training Fabric Planning Workflow</strong><p>Perkiraan gradien semua-mengurangi lalu lintas, kemudian ukuran struktur tulang belakang kiri yang membawanya.</p></div><div class="nel-workflow-step"><strong>Langkah 1 dari 2</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="2" aria-valuenow="1" aria-valuetext="Langkah 1 dari 2" aria-label="Langkah 1 dari 2"><span style="width:50%"></span></div></div></div><div class="nel-tool-graph-nav"><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Sebelumnya</span><strong>Awal aliran kerja</strong></div><a class="nel-tool-graph-card" href="../../data-center-network-convergence-fabric-capacity-planner/id/"><span class="nel-tool-graph-label">Berikutnya</span><strong>Konvergensi Jaringan Pusat Data &amp; Pembuat Kapasitas Fabric</strong><span class="nel-tool-graph-description">Rencana Leaf-Spine dan 3 tingkat pusat data konvergensi, timur / barat / selatan permintaan, keDimukaan Spin N-1, batas dan pertumbuhan.</span></a></div>
+<h3 class="nel-tool-graph-subtitle">Perkakas terkait</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="../../data-center-network-convergence-fabric-capacity-planner/id/"><strong>Konvergensi Jaringan Pusat Data &amp; Pembuat Kapasitas Fabric</strong><span class="nel-tool-graph-description">Rencana Leaf-Spine dan 3 tingkat pusat data konvergensi, timur / barat / selatan permintaan, keDimukaan Spin N-1, batas dan pertumbuhan.</span></a><a class="nel-tool-graph-card" href="../../switch-uplink-oversubscription-calculator/id/"><strong>Tukar Kalkulator Uplink Bandwidth &amp; Oversubscription</strong><span class="nel-tool-graph-description">Ukuran beralih uplinks dari port akses, utilisasi, konkuendansi dan redundansi.</span></a><a class="nel-tool-graph-card" href="../../bandwidth-calculator/id/"><strong>Kalkulator bandwidth dan waktu transfer</strong><span class="nel-tool-graph-description">Hitung waktu transfer berkas, laju link yang diperlukan, Kapasitas tukar-pengguna dan volume data yang berkelanjutan.</span></a><a class="nel-tool-graph-card" href="../../network-capacity-forecast-planner/id/"><strong>Penampakan Pendiri Kapasitas Jaringan</strong><span class="nel-tool-graph-description">Pertumbuhan permintaan jaringan cetak, waktu ekspansi dan target kapasitas dari pemanfaatan yang diukur.</span></a></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END --></div></div></main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Alat daring profesional untuk insinyur telekomunikasi dan jaringan.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navigasi kaki halaman">
+      <a href="../../../id/about/">Tentang</a><a href="../../../id/contact/">Kontak</a><a href="../../../id/privacy/">Privasi</a><a href="../../../id/terms/">Ketentuan</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script defer="" src="../js/engine.js?v=4115c2d1a1bf"></script>
+<script defer="" src="../js/pwa.js"></script>
+<script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script>
+<script defer="" src="../js/app.js?v=f9e653a8a69b"></script>
+<script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d"></script>
+</body>
+</html>

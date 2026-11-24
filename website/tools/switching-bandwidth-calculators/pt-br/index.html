@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR" dir="ltr" data-nel-locale="pt-BR" data-nel-route="tools/switching-bandwidth-calculators/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculadoras de largura de banda e interruptor – Oversubscription, Subnet, VLSM</title>
+<meta name="description" content="Planeje links uplinks, oversubscription, largura de banda, capacidade de subnet, VLSM e crescimento de tecidolen com calculadoras de rede práticas.">
+<meta property="og:title" content="Calculadoras de largura de banda e interruptor – Oversubscription, Subnet, VLSM">
+<meta property="og:description" content="Planeje links uplinks, oversubscription, largura de banda, capacidade de subnet, VLSM e crescimento de tecidolen com calculadoras de rede práticas.">
+<meta property="og:url" content="https://netengineerlab.com/tools/switching-bandwidth-calculators/pt-br/">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="../../../assets/css/calculator-hub.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://netengineerlab.com/tools/switching-bandwidth-calculators/#collection","name":"Calculadoras de largura de banda e interruptor – Oversubscription, Subnet, VLSM","url":"https://netengineerlab.com/tools/switching-bandwidth-calculators/pt-br/","description":"Planeje links uplinks, oversubscription, largura de banda, capacidade de subnet, VLSM e crescimento de tecidolen com calculadoras de rede práticas.","inLanguage":"pt-BR","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/pt-br/"}},{"@type":"ItemList","@id":"https://netengineerlab.com/tools/switching-bandwidth-calculators/#calculators","name":"Calculadoras neste cubo","numberOfItems":8,"itemListElement":[{"@type":"ListItem","position":1,"name":"Calculadora de largura de banda e tempo de transferência","url":"https://netengineerlab.com/tools/bandwidth-calculator/pt-br/"},{"@type":"ListItem","position":2,"name":"Analisador de Largura de Banda de Aplicação","url":"https://netengineerlab.com/tools/application-bandwidth-analyzer/pt-br/"},{"@type":"ListItem","position":3,"name":"Alternar a Largura de Banda e Sobre- Subscrição","url":"https://netengineerlab.com/tools/switch-uplink-oversubscription-calculator/pt-br/"},{"@type":"ListItem","position":4,"name":"Calculadora de sub-rede IP","url":"https://netengineerlab.com/tools/subnet-calculator/pt-br/"},{"@type":"ListItem","position":5,"name":"VLAN Planner de Capacidade de Subnet & IP","url":"https://netengineerlab.com/tools/vlan-ip-capacity-planner/pt-br/"},{"@type":"ListItem","position":6,"name":"Calculadora MTU & MSS","url":"https://netengineerlab.com/tools/mtu-calculator/pt-br/"},{"@type":"ListItem","position":7,"name":"Planeador de previsão da capacidade da rede","url":"https://netengineerlab.com/tools/network-capacity-forecast-planner/pt-br/"},{"@type":"ListItem","position":8,"name":"Data Center Convergence de rede e planejamento de capacidade de tecido","url":"https://netengineerlab.com/tools/data-center-network-convergence-fabric-capacity-planner/pt-br/"}]},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/switching-bandwidth-calculators/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://netengineerlab.com/pt-br/"},{"@type":"ListItem","position":2,"name":"Ferramentas","item":"https://netengineerlab.com/tools/pt-br/"},{"@type":"ListItem","position":3,"name":"Comutar as Calculadoras de Largura de Banda","item":"https://netengineerlab.com/tools/switching-bandwidth-calculators/pt-br/"}]}]}</script>
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Calculadoras de largura de banda e interruptor – Oversubscription, Subnet, VLSM">
+<meta name="twitter:description" content="Planeje links uplinks, oversubscription, largura de banda, capacidade de subnet, VLSM e crescimento de tecidolen com calculadoras de rede práticas.">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="robots" content="index,follow,max-image-preview:large">
+
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=031fae951adb">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=64bd0d9f6bcb">
+<link rel="stylesheet" href="../css/style.css?v=c489585e98d2">
+
+<link rel="stylesheet" href="../../../assets/css/site.css?v=e139c2a424b2">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Calculadoras de largura de banda e interruptor – Oversubscription, Subnet, VLSM","url":"https://netengineerlab.com/tools/switching-bandwidth-calculators/pt-br/","description":"Planeje links uplinks, oversubscription, largura de banda, capacidade de subnet, VLSM e crescimento de tecidolen com calculadoras de rede práticas.","inLanguage":"pt-BR","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/pt-br/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="pt-BR">
+<meta name="nel-route" content="tools/switching-bandwidth-calculators/">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
+<link rel="canonical" href="https://netengineerlab.com/tools/switching-bandwidth-calculators/pt-br/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/switching-bandwidth-calculators/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/switching-bandwidth-calculators/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/switching-bandwidth-calculators/es/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/tools/switching-bandwidth-calculators/id/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/tools/switching-bandwidth-calculators/pt-br/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/switching-bandwidth-calculators/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
+<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
+</head>
+<body class="nel-tool-detail-page nel-tool-v3 v3">
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../pt-br/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Plataforma de inteligência para engenharia de redes</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Abrir navegação"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navegação principal">
+      <a href="../../../pt-br/">Início</a>
+      <a href="../../pt-br/" aria-current="page">Ferramentas</a>
+      <a href="../../../pt-br/guides/">Guias</a>
+      <a href="../../../pt-br/topics/">Tópicos</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Português do Brasil"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Português do Brasil</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/switching-bandwidth-calculators/" lang="en" hreflang="en"><span>English</span><small>Inglês</small></a><a class="language-option" role="menuitem" href="/tools/switching-bandwidth-calculators/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinês simplificado</small></a><a class="language-option" role="menuitem" href="/tools/switching-bandwidth-calculators/es/" lang="es" hreflang="es"><span>Español</span><small>Espanhol</small></a><a class="language-option" role="menuitem" href="/tools/switching-bandwidth-calculators/id/" lang="id" hreflang="id"><span>Bahasa Indonesia</span><small>Indonésio</small></a><a class="language-option" role="menuitem" href="/tools/switching-bandwidth-calculators/pt-br/" lang="pt-BR" hreflang="pt-BR" aria-current="page"><span>Português do Brasil</span><small>Português do Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Trigo de pão"><a href="../../pt-br/">Início</a><span aria-hidden="true">/</span><a href="./">Ferramentas</a><span aria-hidden="true">/</span><span aria-current="page">Comutar as Calculadoras de Largura de Banda</span></nav>
+<main class="tool-shell nel-tool-main" id="hub">
+<div class="tool-head"><nav class="crumbs" aria-label="Trigo de pão"><a href="../../pt-br/">Início</a><span aria-hidden="true">/</span><a href="./">Ferramentas</a><span aria-hidden="true">/</span><span aria-current="page">Comutar as Calculadoras de Largura de Banda</span></nav><h1 class="tool-page-label">Comutar as Calculadoras de Largura de Banda</h1><p class="tool-lede">O planejamento de switch e largura de banda falha quando a matemática uplink 162, espaço de endereço e tamanho do quadro são verificados por diferentes pessoas com diferentes planilhas. Este hub alinha as calculadoras de comutação, largura de banda, sub- rede e capacidade que já existem NetEngineerLab. Comece com o tráfego que você pode defender: taxas de aplicação ou uma estimativa de tempo de transferência, não um número redondo copiadoRound de um site anterior. Transforme essa carga em um plano de acesso-porta e uplink, incluindo concorrência, utilização e o que resta quando um uplink falha. Só então cortar o plano de endereço. Uma calculadora de sub- rede define os limites, eemon VLAN O planejador de capacidade verifica se cada VLAN ainda tem hosts deixados após reservas. MTU pertence à mesma passagem, porque uma moldura que não se encaixa no caminho parece um problema de capacidade na produção. A previsão vem após o projeto atual ser explícito, então o crescimento é aplicado a uma linha de base conhecida. O planejamento de tecido fecha a sequência quando o switch de acesso é um nível de uma rede maior.</p></div>
+<div class="below">
+<nav class="toc" aria-label="Nesta página"><h4>Nesta página</h4>
+<a href="#tools">Calculadoras neste cubo</a>
+<a href="#workflow">Planeamento do fluxo de trabalho</a>
+<a href="#faq">Perguntas mais frequentes</a>
+<a href="#related">Páginas relacionadas</a>
+</nav>
+<div class="prose">
+<section class="blk panel" id="tools"><h2>Calculadoras neste cubo</h2>
+<div class="hub-card-grid"><a class="hub-tool-card" href="../../bandwidth-calculator/pt-br/"><strong>Calculadora de largura de banda e tempo de transferência</strong><span>Calcule o tempo de transferência do arquivo, taxa de ligação necessária, capacidade de usuário concorrente e volume de dados da taxa sustentada.</span></a><a class="hub-tool-card" href="../../application-bandwidth-analyzer/pt-br/"><strong>Analisador de Largura de Banda de Aplicação</strong><span>Analise largura de banda por aplicação, utilização de links e headroom a partir de tarifas fornecidas.</span></a><a class="hub-tool-card" href="../../switch-uplink-oversubscription-calculator/pt-br/"><strong>Alternar a Largura de Banda e Sobre- Subscrição</strong><span>Tamanho alternar uplinks de portas de acesso, utilização, concorrência e redundância.</span></a><a class="hub-tool-card" href="../../subnet-calculator/pt-br/"><strong>Calculadora de sub-rede IP</strong><span>Calcular IPv4, IPv6, CIDR, máscaras, faixas de transmissão e capacidade de host, com planejamento VLSM.</span></a><a class="hub-tool-card" href="../../vlan-ip-capacity-planner/pt-br/"><strong>VLAN Planner de Capacidade de Subnet &amp; IP</strong><span>Contagem do plano VLAN, prefixo IPv4, capacidade de endereço e sede de crescimento.</span></a><a class="hub-tool-card" href="../../mtu-calculator/pt-br/"><strong>Calculadora MTU &amp; MSS</strong><span>Calcular eficaz MTU, TCP MSS e risco de fragmentação para PPPoE, GRE, VXLAN, MPLS, IPsec e WireGuard.</span></a><a class="hub-tool-card" href="../../network-capacity-forecast-planner/pt-br/"><strong>Planeador de previsão da capacidade da rede</strong><span>Previsão do crescimento da demanda da rede, tempo de expansão e metas de capacidade a partir da utilização medida.</span></a><a class="hub-tool-card" href="../../data-center-network-convergence-fabric-capacity-planner/pt-br/"><strong>Data Center Convergence de rede e planejamento de capacidade de tecido</strong><span>Plano de convergência de data center Leaf-Spine e três níveis, demanda leste-oeste/norte-sul, resiliência da coluna N-1, gargalos e crescimento.</span></a></div>
+</section>
+<section class="blk panel" id="workflow"><h2>Planeamento do fluxo de trabalho</h2>
+<p>Siga esta ordem para um design de acesso ou agregação.</p>
+<ol class="hub-workflow"><li><a href="../../bandwidth-calculator/pt-br/">Calculadora de largura de banda e tempo de transferência</a></li><li><a href="../../application-bandwidth-analyzer/pt-br/">Analisador de Largura de Banda de Aplicação</a></li><li><a href="../../switch-uplink-oversubscription-calculator/pt-br/">Alternar a Largura de Banda e Sobre- Subscrição</a></li><li><a href="../../subnet-calculator/pt-br/">Calculadora de sub-rede IP</a></li><li><a href="../../vlan-ip-capacity-planner/pt-br/">VLAN Planner de Capacidade de Subnet &amp; IP</a></li><li><a href="../../mtu-calculator/pt-br/">Calculadora MTU &amp; MSS</a></li><li><a href="../../network-capacity-forecast-planner/pt-br/">Planeador de previsão da capacidade da rede</a></li><li><a href="../../data-center-network-convergence-fabric-capacity-planner/pt-br/">Data Center Convergence de rede e planejamento de capacidade de tecido</a></li></ol>
+</section>
+<section class="blk" id="faq"><h2>Perguntas mais frequentes</h2>
+<div class="hub-faq"><details class="fb-fold"><summary class="fb-fold-sum"><span class="fb-fold-title">Deve sobre-assinatura ou largura de banda vir em primeiro lugar?</span></summary><div class="fb-fold-body"><p>Estimar a carga oferecida primeiro, em seguida, testar se os uplinks propostos levá-lo com a concorrência e caso de falha que você está disposto a assinar.</p></div></details><details class="fb-fold"><summary class="fb-fold-sum"><span class="fb-fold-title">O planejador VLAN é uma ferramenta VLSM?</span></summary><div class="fb-fold-body"><p>Ele planeja a capacidade de host utilizável por VLAN a partir de um prefixo e reservas. Use a calculadora da subrede primeiro quando ainda precisar desenhar os limites do prefixo.</p></div></details><details class="fb-fold"><summary class="fb-fold-sum"><span class="fb-fold-title">Por que MTU está em um hub de largura de banda?</span></summary><div class="fb-fold-body"><p>Uma moldura que não se encaixa no caminho é derrubada ou fragmentada. Isso aparece como uma falha de rendimento mesmo quando a aritmética uplink estava correta.</p></div></details><details class="fb-fold"><summary class="fb-fold-sum"><span class="fb-fold-title">Quando é que abro o planejador de capacidade de tecido?</span></summary><div class="fb-fold-body"><p>Quando a questão se move de um acesso, muda para como níveis de folha, coluna ou agregação convergem sob os mesmos pressupostos de tráfego e falha.</p></div></details></div>
+</section>
+<section class="blk panel" id="related">
+<h2>Páginas relacionadas</h2><p><a href="../../../pt-br/guides/10g-vs-25g-uplinks/">10G versus guia de ligação ascendente 25G</a> · <a href="../../../pt-br/guides/lacp-member-congestion/">Porquê um? LACP membro está congestionado</a></p>
+</section>
+</div>
+</div>
+</main>
+
+<p class="hub-return" data-nel-cluster-link><a href="../../../pt-br/topics/switch-oversubscription/">Este hub é a lista de calculadoras para uplink, largura de banda e matemática de endereçamento. Exemplos trabalhados, o comportamento LAG e o método N-1 vivem no tópico sobre-assinatura do switch.</a></p>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Ferramentas profissionais online para engenheiros de telecomunicações e redes.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navegação do rodapé">
+      <a href="../../../pt-br/about/">Sobre</a><a href="../../../pt-br/contact/">Contato</a><a href="../../../pt-br/privacy/">Privacidade</a><a href="../../../pt-br/terms/">Termos</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
+</body>
+</html>

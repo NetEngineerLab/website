@@ -86,7 +86,7 @@ assert.throws(()=>M.migrate(duplicateFixture.replace(duplicate,duplicate.replace
 // The build replaces complete footer/header marker spans. A main relocated
 // inside a footer marker would be deleted on the second build (the regression).
 let pages=0;
-for(const slug of M.slugs)for(const locale of ['en','zh','es']){
+for(const slug of M.slugs)for(const locale of JSON.parse(fs.readFileSync(path.resolve(__dirname,'../website/data/locales.json'),'utf8')).locales.filter(item=>item.status==='active').map(item=>item.folder||'en')){
  const file=path.resolve(__dirname,'../website/tools',slug,locale==='en'?'':locale,'index.html');if(!fs.existsSync(file))continue;
  const html=fs.readFileSync(file,'utf8'),main=D.all(D.parse(html),n=>n.tag==='main')[0];assert(main,slug+'/'+locale+' main');
  const rebuilt=html.replace(/<!-- NEL_FOOTER_START -->[\s\S]*?<!-- NEL_FOOTER_END -->/i,'<!-- NEL_FOOTER_START --><footer>rebuilt footer</footer><!-- NEL_FOOTER_END -->');
@@ -96,12 +96,12 @@ console.log('Tool-detail V3 build regressions PASS: '+pages+' main elements surv
 
 // Registration must follow the authored script's tool root in every locale.
 const pwaVm=require('node:vm');
-for(const slug of ['odf-odn-resource-planner','network-risk-hidden-hazard-assessment-generator'])for(const locale of ['en','zh','es']){
+for(const slug of ['odf-odn-resource-planner','network-risk-hidden-hazard-assessment-generator'])for(const locale of JSON.parse(fs.readFileSync(path.resolve(__dirname,'../website/data/locales.json'),'utf8')).locales.filter(item=>item.status==='active').map(item=>item.folder||'en')){
  const page=path.resolve(__dirname,'../website/tools',slug,locale==='en'?'':locale,'index.html');
  const dom=D.parse(fs.readFileSync(page,'utf8'));const script=D.all(dom,n=>n.tag==='script'&&/(?:^|\/)js\/pwa\.js(?:[?#]|$)/.test(D.attr(n,'src')))[0];assert(script,slug+'/'+locale+' authored PWA script');
  const canonical='https://example.test/tools/'+slug+'/'+(locale==='en'?'':locale+'/');
  const loads=[],registered=[],on=(type,callback)=>{if(type==='load')loads.push(callback)};
- const sandbox={URL,location:{protocol:'https:',href:canonical},document:{currentScript:{src:new URL(D.attr(script,'src'),canonical).href},documentElement:{lang:locale==='zh'?'zh-CN':locale}},navigator:{serviceWorker:{register:url=>{registered.push(new URL(url,canonical).href);return Promise.resolve({});}}},window:{addEventListener:on},addEventListener:on};
+ const sandbox={URL,location:{protocol:'https:',href:canonical},document:{currentScript:{src:new URL(D.attr(script,'src'),canonical).href},documentElement:{lang:locale==='zh'?'zh-CN':locale==='pt-br'?'pt-BR':locale}},navigator:{serviceWorker:{register:url=>{registered.push(new URL(url,canonical).href);return Promise.resolve({});}}},window:{addEventListener:on},addEventListener:on};
  pwaVm.runInNewContext(fs.readFileSync(path.resolve(__dirname,'../website/tools',slug,'js/pwa.js'),'utf8'),sandbox);for(const load of loads)load();
  assert.deepEqual(registered,['https://example.test/tools/'+slug+'/sw.js'],slug+'/'+locale+' must register its existing tool-root worker, never a locale child404');
 }

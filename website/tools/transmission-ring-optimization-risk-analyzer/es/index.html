@@ -19,22 +19,24 @@
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="es">
 <meta name="nel-route" content="tools/transmission-ring-optimization-risk-analyzer/">
-<meta name="nel-available-locales" content="en,zh,es">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
 <link rel="canonical" href="https://netengineerlab.com/tools/transmission-ring-optimization-risk-analyzer/es/">
 <link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/transmission-ring-optimization-risk-analyzer/">
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/transmission-ring-optimization-risk-analyzer/zh/">
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/transmission-ring-optimization-risk-analyzer/es/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/tools/transmission-ring-optimization-risk-analyzer/id/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/tools/transmission-ring-optimization-risk-analyzer/pt-br/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/transmission-ring-optimization-risk-analyzer/">
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Simula todos los fallos de un solo enlace?","acceptedAnswer":{"@type":"Answer","text":"Sí. Para un anillo de N tramos, el motor evalúa N escenarios de fallo individuales e informa la utilización máxima del enlace superviviente."}},{"@type":"Question","name":"¿Cómo se gestionan las rutas con igual número de saltos?","acceptedAnswer":{"@type":"Answer","text":"Las rutas de igual número de saltos se reparten por igual en estado normal. Tras el fallo de un tramo, el tráfico usa el camino conectado restante."}},{"@type":"Question","name":"¿Puede sustituir a una simulación del controlador OTN/PTN?","acceptedAnswer":{"@type":"Answer","text":"No. Es un modelo de planificación independiente del proveedor. La protección propia de la tecnología, el anclaje de servicios y la restauración deben comprobarse en la plataforma desplegada."}},{"@type":"Question","name":"¿Qué significa la puntuación de riesgo?","acceptedAnswer":{"@type":"Answer","text":"Combina la utilización en estado de fallo por encima del umbral de planificación, el número de escenarios N-1 que incumplen, la congestión en estado normal y el tamaño del anillo."}},{"@type":"Question","name":"¿Qué optimiza el resultado antes/después?","acceptedAnswer":{"@type":"Answer","text":"Amplía el peor tramo cuello de botella superviviente según el factor elegido y vuelve a ejecutar la matriz N-1 para mostrar la reducción potencial de la utilización pico."}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
 <link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
-<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../../assets/js/site.js?v=c957f6562d31"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
 <script defer src="../../../assets/js/es-launch-runtime.js?v=e0fea69289b0"></script>
 <link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
 <link rel="manifest" href="../manifest-es.webmanifest">
@@ -53,7 +55,7 @@
       <a href="../../../es/topics/">Temas</a>
     </nav>
     <div class="site-shell-actions">
-      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Español"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Español</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/transmission-ring-optimization-risk-analyzer/" lang="en" hreflang="en"><span>English</span><small>Inglés</small></a><a class="language-option" role="menuitem" href="/tools/transmission-ring-optimization-risk-analyzer/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chino simplificado</small></a><a class="language-option" role="menuitem" href="/tools/transmission-ring-optimization-risk-analyzer/es/" lang="es" hreflang="es" aria-current="page"><span>Español</span><small>Español</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Español"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Español</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/transmission-ring-optimization-risk-analyzer/" lang="en" hreflang="en"><span>English</span><small>Inglés</small></a><a class="language-option" role="menuitem" href="/tools/transmission-ring-optimization-risk-analyzer/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chino simplificado</small></a><a class="language-option" role="menuitem" href="/tools/transmission-ring-optimization-risk-analyzer/es/" lang="es" hreflang="es" aria-current="page"><span>Español</span><small>Español</small></a><a class="language-option" role="menuitem" href="/tools/transmission-ring-optimization-risk-analyzer/id/" lang="id" hreflang="id"><span>Bahasa Indonesia</span><small>Indonesio</small></a><a class="language-option" role="menuitem" href="/tools/transmission-ring-optimization-risk-analyzer/pt-br/" lang="pt-BR" hreflang="pt-BR"><span>Português do Brasil</span><small>Portugués de Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
       <div class="site-shell-context-action"><a href="#calculator">Empezar a calcular</a></div>
     </div>
   </div>
@@ -93,7 +95,7 @@
     <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
   </div>
 </footer>
-<!-- NEL_FOOTER_END --><script src="../js/engine.js?v=405fe170fc5e"></script><script src="../js/app.js?v=16c4f1f93efc"></script><script src="../js/pwa.js"></script><script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+<!-- NEL_FOOTER_END --><script src="../js/engine.js?v=405fe170fc5e"></script><script src="../js/app.js?v=16c4f1f93efc"></script><script src="../js/pwa.js"></script><script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
 <script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d"></script></body></html>
 
 

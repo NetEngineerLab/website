@@ -26,22 +26,24 @@
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="es">
 <meta name="nel-route" content="tools/subnet-calculator/">
-<meta name="nel-available-locales" content="en,zh,es">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
 <link rel="canonical" href="https://netengineerlab.com/tools/subnet-calculator/es/">
 <link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/subnet-calculator/">
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/subnet-calculator/zh/">
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/subnet-calculator/es/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/tools/subnet-calculator/id/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/tools/subnet-calculator/pt-br/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/subnet-calculator/">
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Qué significa /24?","acceptedAnswer":{"@type":"Answer","text":"Indica que 24 bits pertenecen al prefijo de red. En IPv4 quedan 8 bits para direcciones dentro de la subred. Un /24 tiene 256 direcciones en total y, normalmente, 254 direcciones de host utilizables."}},{"@type":"Question","name":"¿La capacidad útil siempre es total menos dos?","acceptedAnswer":{"@type":"Answer","text":"En subredes IPv4 multiacceso convencionales se reservan red y broadcast; existen excepciones como /31 para enlaces punto a punto. RFC 3021 permite utilizar ambas direcciones en un enlace punto a punto /31, sin reservar direcciones de red y broadcast."}},{"@type":"Question","name":"¿Qué hace VLSM?","acceptedAnswer":{"@type":"Answer","text":"Permite asignar prefijos de diferentes tamaños según la demanda de cada segmento, reduciendo desperdicio."}},{"@type":"Question","name":"¿Puede sustituir a un plan IPAM?","acceptedAnswer":{"@type":"Answer","text":"No. Ayuda a calcular y asignar bloques, pero la gobernanza de direcciones, reservas y documentación debe mantenerse en IPAM."}},{"@type":"Question","name":"¿Qué es una máscara wildcard?","acceptedAnswer":{"@type":"Answer","text":"Es la inversión bit a bit de la máscara de subred y se utiliza habitualmente en ACL y en la configuración de enrutamiento."}},{"@type":"Question","name":"¿VLSM reserva automáticamente las direcciones de gateway?","acceptedAnswer":{"@type":"Answer","text":"Cada fila tiene un campo editable de reserva. Úselo para gateways, direcciones de redundancia, infraestructura o crecimiento."}},{"@type":"Question","name":"¿Se pueden contar exactamente las direcciones IPv6?","acceptedAnswer":{"@type":"Answer","text":"Sí. La calculadora utiliza aritmética BigInt y muestra el número completo de direcciones en formato decimal."}},{"@type":"Question","name":"¿Conviene usar un dominio de broadcast grande solo porque hay direcciones suficientes?","acceptedAnswer":{"@type":"Answer","text":"No. Considere los dominios de fallo, el tráfico de broadcast, las zonas de seguridad, la sumarización de rutas y los límites operativos."}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
 <link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
-<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../../assets/js/site.js?v=c957f6562d31"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
 <script defer src="../../../assets/js/es-launch-runtime.js?v=e0fea69289b0"></script>
 <link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
 <link rel="manifest" href="../manifest-es.webmanifest">
@@ -62,7 +64,7 @@
       <a href="../../../es/topics/">Temas</a>
     </nav>
     <div class="site-shell-actions">
-      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Español"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Español</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/subnet-calculator/" lang="en" hreflang="en"><span>English</span><small>Inglés</small></a><a class="language-option" role="menuitem" href="/tools/subnet-calculator/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chino simplificado</small></a><a class="language-option" role="menuitem" href="/tools/subnet-calculator/es/" lang="es" hreflang="es" aria-current="page"><span>Español</span><small>Español</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Español"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Español</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/subnet-calculator/" lang="en" hreflang="en"><span>English</span><small>Inglés</small></a><a class="language-option" role="menuitem" href="/tools/subnet-calculator/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chino simplificado</small></a><a class="language-option" role="menuitem" href="/tools/subnet-calculator/es/" lang="es" hreflang="es" aria-current="page"><span>Español</span><small>Español</small></a><a class="language-option" role="menuitem" href="/tools/subnet-calculator/id/" lang="id" hreflang="id"><span>Bahasa Indonesia</span><small>Indonesio</small></a><a class="language-option" role="menuitem" href="/tools/subnet-calculator/pt-br/" lang="pt-BR" hreflang="pt-BR"><span>Português do Brasil</span><small>Portugués de Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
       <div class="site-shell-context-action"><a href="#calculator">Empezar a calcular</a></div>
     </div>
   </div>
@@ -195,5 +197,5 @@
 </footer>
 <!-- NEL_FOOTER_END -->
 <script defer="" src="../data/ip-reference.js"></script><script defer="" src="../js/engine.js?v=ca43290d9d63"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=191cf541992a"></script><script defer="" src="../js/scenarios.js"></script>
-<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+<script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
 <script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d"></script></body></html>

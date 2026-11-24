@@ -18,22 +18,24 @@
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
 <meta name="nel-route" content="tools/data-center-airflow-containment-planner/">
-<meta name="nel-available-locales" content="en,zh,es">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
 <link rel="canonical" href="https://netengineerlab.com/tools/data-center-airflow-containment-planner/zh/">
 <link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/data-center-airflow-containment-planner/">
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/data-center-airflow-containment-planner/zh/">
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/data-center-airflow-containment-planner/es/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/tools/data-center-airflow-containment-planner/id/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/tools/data-center-airflow-containment-planner/pt-br/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/data-center-airflow-containment-planner/">
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么不能只按制冷量选CRAH/CRAC？","acceptedAnswer":{"@type":"Answer","text":"数据中心可能先受到风量而不是显冷量限制。即使总kW够，如果送风量不足或旁路/回流严重，机柜入口仍可能出现热点。"}},{"@type":"Question","name":"旁路风和热风回流有什么区别？","acceptedAnswer":{"@type":"Answer","text":"旁路风是冷空气没有经过IT设备就回到回风侧；热风回流是服务器排出的热空气重新进入机柜进风侧。两者都会降低气流组织质量，但机理不同。"}},{"@type":"Question","name":"冷热通道封闭是否一定能降低总风量？","acceptedAnswer":{"@type":"Answer","text":"封闭本身不会改变IT发热量，但良好封闭通常能减少旁路和回流，使送风更有效，从而减少为补偿混风而需要的额外风量。"}},{"@type":"Question","name":"这个工具能代替CFD吗？","acceptedAnswer":{"@type":"Answer","text":"不能。它是一级工程筛查和容量规划工具。高密度机柜、复杂架空地板、不同送风方式和局部障碍仍应通过现场测量、厂家软件或CFD复核。"}},{"@type":"Question","name":"N+1检查同时考虑什么？","acceptedAnswer":{"@type":"Answer","text":"工具同时检查一台制冷单元退出后的剩余风量和剩余显冷量，任一不足都会判定N+1不满足。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
 <link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
-<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../../assets/js/site.js?v=c957f6562d31"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
 <link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head><body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-offline-worker="1" data-nel-template="tool-detail-v1.3.1" data-nel-v3-migrated="1" data-nel-visual="network-change-planner-reference"><!-- NEL_HEADER_START -->
@@ -51,7 +53,7 @@
       <a href="../../../zh/topics/">专题</a>
     </nav>
     <div class="site-shell-actions">
-      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/data-center-airflow-containment-planner/" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="/tools/data-center-airflow-containment-planner/zh/" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a><a class="language-option" role="menuitem" href="/tools/data-center-airflow-containment-planner/es/" lang="es" hreflang="es"><span>Español</span><small>西班牙语</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/data-center-airflow-containment-planner/" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="/tools/data-center-airflow-containment-planner/zh/" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a><a class="language-option" role="menuitem" href="/tools/data-center-airflow-containment-planner/es/" lang="es" hreflang="es"><span>Español</span><small>西班牙语</small></a><a class="language-option" role="menuitem" href="/tools/data-center-airflow-containment-planner/id/" lang="id" hreflang="id"><span>Bahasa Indonesia</span><small>印尼语</small></a><a class="language-option" role="menuitem" href="/tools/data-center-airflow-containment-planner/pt-br/" lang="pt-BR" hreflang="pt-BR"><span>Português do Brasil</span><small>巴西葡萄牙语</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
       <div class="site-shell-context-action"><a href="#calculator">开始计算</a></div>
     </div>
   </div>
@@ -93,5 +95,5 @@
     <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
   </div>
 </footer>
-<!-- NEL_FOOTER_END --><script src="../js/engine.js?v=548527c69b59"></script><script src="../js/app.js?v=4ad562e8d507"></script><script src="../js/pwa.js"></script><script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+<!-- NEL_FOOTER_END --><script src="../js/engine.js?v=548527c69b59"></script><script src="../js/app.js?v=4ad562e8d507"></script><script src="../js/pwa.js"></script><script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
 <script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d"></script></body></html>

@@ -48,7 +48,7 @@ async function exercise(source,slug,scenario){
  const file=path.resolve(__dirname,'../website/tools',tool.id,'sw.js');if(!fs.existsSync(file))continue;
  const source=fs.readFileSync(file,'utf8');assert.equal(isolateServiceWorkerCache(source),source,tool.id+' generated cache isolation is missing or non-idempotent');
  const assets=parsePrecacheAssets(source),toolRoot=path.dirname(file),siteRoot=path.resolve(__dirname,'../website');
- for(const locale of ['', 'zh', 'es']){const pageFile=path.join(toolRoot,locale,'index.html');if(!fs.existsSync(pageFile))continue;for(const asset of toolPagePrecacheAssets(fs.readFileSync(pageFile,'utf8'),pageFile,toolRoot,siteRoot))assert(assets.includes(asset),tool.id+'/'+locale+' exact HTML resource must be precached: '+asset);}
+ for(const locale of ['', 'zh', 'es', 'id', 'pt-br']){const pageFile=path.join(toolRoot,locale,'index.html');if(!fs.existsSync(pageFile))continue;for(const asset of toolPagePrecacheAssets(fs.readFileSync(pageFile,'utf8'),pageFile,toolRoot,siteRoot))assert(assets.includes(asset),tool.id+'/'+locale+' exact HTML resource must be precached: '+asset);}
  for(const scenario of ['foreign-collision','old-query','offline','navigation']){await exercise(source,tool.id,scenario);checks++;}workers++;
  }assert.equal(workers,registry.length,'every active registry tool must ship an isolated service worker');console.log(`Service Worker cache isolation PASS: ${workers} actual workers, ${checks} behaviors; own-cache resources, exact fingerprints, offline navigation, foreign data retained.`);
 })().catch(error=>{console.error(error);process.exitCode=1});

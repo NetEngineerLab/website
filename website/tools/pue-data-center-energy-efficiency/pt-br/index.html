@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR" dir="ltr" data-nel-locale="pt-BR" data-nel-route="tools/pue-data-center-energy-efficiency/"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="../" name="app-base"/><title>PUE e Data Center Analisador de Eficiência Energética | Fórmula e Limite</title><meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="PUE e Data Center Analisador de Eficiência Energética | Fórmula e Limite" property="og:title"/><meta content="Calcular PUE como energia total do data-center dividida pela energia do equipamento de TI para o mesmo período e o mesmo limite. Um instantâneo kW e um período kWh são entradas diferentes. Suposições etiquetadas nesta página não são medidas." property="og:description"/><meta content="https://netengineerlab.com/tools/pue-data-center-energy-efficiency/pt-br/" property="og:url"/><meta content="https://netengineerlab.com/tools/pue-data-center-energy-efficiency/images/og-pue-data-center-energy-efficiency.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://netengineerlab.com/tools/pue-data-center-energy-efficiency/images/og-pue-data-center-energy-efficiency.png" name="twitter:image"/><meta content="Calcular PUE como energia total do data-center dividida pela energia do equipamento de TI para o mesmo período e o mesmo limite. Um instantâneo kW e um período kWh são entradas diferentes. Suposições etiquetadas nesta página não são medidas." name="description"/><meta content="index,follow,max-image-preview:large" name="robots"/><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Analisador de eficiência energética PUE & Data Center","description":"Analise o data-center PUE, despesas não-IT, custo anual de energia, economia alvo-PUE, WUE/CUE e tendências mensais.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"url":"https://netengineerlab.com/tools/pue-data-center-energy-efficiency/pt-br/"}</script>
+
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
+
+<meta name="twitter:title" content="PUE e Data Center Analisador de Eficiência Energética | Fórmula e Limite">
+<meta name="twitter:description" content="Calcular PUE como energia total do data-center dividida pela energia do equipamento de TI para o mesmo período e o mesmo limite. Um instantâneo kW e um período kWh são entradas diferentes. Suposições etiquetadas nesta página não são medidas.">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://netengineerlab.com/pt-br/"},{"@type":"ListItem","position":2,"name":"Ferramentas","item":"https://netengineerlab.com/tools/pt-br/"},{"@type":"ListItem","position":3,"name":"Analisador de eficiência energética PUE e Data Center","item":"https://netengineerlab.com/tools/pue-data-center-energy-efficiency/pt-br/"}]}</script>
+
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=031fae951adb">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=64bd0d9f6bcb">
+<script defer="" src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script><meta name="theme-color" content="#176ff2">
+<link rel="stylesheet" href="../css/style.css?v=8041bc8927f4"/>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"PUE e Data Center Analisador de Eficiência Energética | Fórmula e Limite","url":"https://netengineerlab.com/tools/pue-data-center-energy-efficiency/pt-br/","description":"Calcular PUE como energia total do data-center dividida pela energia do equipamento de TI para o mesmo período e o mesmo limite. Um instantâneo kW e um período kWh são entradas diferentes. Suposições etiquetadas nesta página não são medidas.","inLanguage":"pt-BR","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/pt-br/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="pt-BR">
+<meta name="nel-route" content="tools/pue-data-center-energy-efficiency/">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
+<link rel="canonical" href="https://netengineerlab.com/tools/pue-data-center-energy-efficiency/pt-br/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/pue-data-center-energy-efficiency/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/pue-data-center-energy-efficiency/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/pue-data-center-energy-efficiency/es/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/tools/pue-data-center-energy-efficiency/id/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/tools/pue-data-center-energy-efficiency/pt-br/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/pue-data-center-energy-efficiency/">
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Qual o limite do metro PUE usar?","acceptedAnswer":{"@type":"Answer","text":"Mantenha um limite total de instalação consistente e um limite de TI consistente para o mesmo período, e documento alterações de limite antes da comparação entre períodos."}},{"@type":"Question","name":"Pode a potência instantânea calcular PUE?","acceptedAnswer":{"@type":"Answer","text":"- Não."}},{"@type":"Question","name":"Por que pode PUE cair quando a carga de TI sobe?","acceptedAnswer":{"@type":"Answer","text":"Se a sobrecarga fixa da instalação muda pouco enquanto a carga equipas de TI útil sobe, a sobrecarga não-IT está espalhada por mais energia de TI e PUE pode melhorar."}},{"@type":"Question","name":"O que o WUE adiciona além do PUE?","acceptedAnswer":{"@type":"Answer","text":"WUE rastreia o uso de água operacional por unidade de energia de TI para que os projetos de eficiência possam ser verificados quanto aos efeitos colaterais da água."}},{"@type":"Question","name":"Um PUE mais baixo é sempre melhor?","acceptedAnswer":{"@type":"Answer","text":"A sobrecarga de instalação inferior geralmente é útil, mas a confiabilidade, o clima, redundância, utilização de TI e limites de metros ainda importam."}}]}</script>
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
+<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
+<script defer src="../../../assets/js/pt-br-launch-runtime.js?v=1223d823e2c6"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
+<link rel="manifest" href="../manifest-pt-br.webmanifest">
+</head><body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1" data-nel-offline-worker="1"><!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../pt-br/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Plataforma de inteligência para engenharia de redes</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Abrir navegação"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navegação principal">
+      <a href="../../../pt-br/">Início</a>
+      <a href="../../pt-br/" aria-current="page">Ferramentas</a>
+      <a href="../../../pt-br/guides/">Guias</a>
+      <a href="../../../pt-br/topics/">Tópicos</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Português do Brasil"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Português do Brasil</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/pue-data-center-energy-efficiency/" lang="en" hreflang="en"><span>English</span><small>Inglês</small></a><a class="language-option" role="menuitem" href="/tools/pue-data-center-energy-efficiency/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinês simplificado</small></a><a class="language-option" role="menuitem" href="/tools/pue-data-center-energy-efficiency/es/" lang="es" hreflang="es"><span>Español</span><small>Espanhol</small></a><a class="language-option" role="menuitem" href="/tools/pue-data-center-energy-efficiency/id/" lang="id" hreflang="id"><span>Bahasa Indonesia</span><small>Indonésio</small></a><a class="language-option" role="menuitem" href="/tools/pue-data-center-energy-efficiency/pt-br/" lang="pt-BR" hreflang="pt-BR" aria-current="page"><span>Português do Brasil</span><small>Português do Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">Começar a calcular</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END --><!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Trigo de pão">
+  <a href="../../../pt-br/">Início</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../../pt-br/">Ferramentas</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">Analisador de eficiência energética PUE &amp; Data Center</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END --><section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner"><p class="eyebrow">TOOL DE EFICIÊNCIA DA ENERGIA DO CENTRO DE DADOS</p><p class="hero-title">Analisador de eficiência energética PUE e Data Center</p><p>PUE = energia total do data-center □ Energia do equipamento de TI, por um período e um limite. Digite um período kWh ou um instantâneo kW. A diferença alvo-PUE é a diferença do alvo que você digita. Não é uma poupança medida.</p><div class="hero-tags"><span>PUE</span><span>Carregamento ao TI</span><span>Energia da instalação</span><span>Eficiência basal</span></div></div></section><main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator" data-nel-readout-roles="%7B%22secondary%22%3A%5B%22pue%22%2C%22itShare%22%2C%22nonIT%22%2C%22overhead%22%2C%22annualTotal%22%2C%22annualIT%22%2C%22annualNonIT%22%2C%22annualCost%22%2C%22saveEnergy%22%2C%22saveCost%22%2C%22whatIf%22%2C%22gap%22%2C%22wue%22%2C%22cue%22%5D%2C%22identifier%22%3A%5B%5D%2C%22annotation%22%3A%5B%5D%7D" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv"><div class="tool-head"><nav class="crumbs" aria-label="Trigo de pão">
+  <a href="../../pt-br/">Início</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="./">Ferramentas</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">Analisador de eficiência energética PUE &amp; Data Center</span>
+</nav><h1 class="tool-page-label">Analisador de eficiência energética PUE e Data Center</h1><p class="tool-lede">PUE = energia total do data-center □ Energia do equipamento de TI, por um período e um limite. Digite um período kWh ou um instantâneo kW. A diferença alvo-PUE é a diferença do alvo que você digita. Não é uma poupança medida.</p></div><div class="workspace"><section class="input-panel card nel-tool-input fb-panel"><div class="section-title nel-generated-section-title panel-h" data-nel-generated="v1.2.2"><span class="section-icon">☷</span><div><h2 class="panel-h">Inputs de engenharia</h2><p>Defina os pressupostos de engenharia e parâmetros de projeto.</p></div></div><div class="panel"><h2>1. Principais entradas</h2><div class="fields"><div class="field f"><label>Modo de cálculo</label><div class="inp input-wrap sel"><select id="mode" aria-label="Modo de cálculo"><option value="power">Potência instantânea</option><option value="energy">Energia3,7</option></select></div></div><div class="field f" hidden="" id="periodField"><label>Período dias</label><div class="inp input-wrap"><input id="periodDays" min="1" type="number" value="30"/ aria-label="Período dias"></div></div><div class="field f"><label>Potência total da instalação / energia</label><div class="input"><input id="total" min="0" type="number" value="500"/ aria-label="kW"><span data-unit="">kW</span></div></div><div class="field f"><label>Potência/energia do equipamento de TI</label><div class="input"><input id="it" min="0" type="number" value="350"/ aria-label="kW"><span data-unit="">kW</span></div></div><div class="field f"><label>Tarifa de electricidade</label><div class="input"><input id="tariff" step="0.01" type="number" value="0.12"/ aria-label="moeda/kWh"><span>moeda/kWh</span></div></div><div class="field f"><label>Alvo PUE</label><div class="inp input-wrap"><input id="targetPUE" min="1" step="0.01" type="number" value="1.45"/ aria-label="Alvo PUE"></div></div></div></div><div class="panel"><h2>2. Discriminação não-IT</h2><p class="note">Os valores dos componentes usam a mesma unidade que a entrada do núcleo. Deixe itens desconhecidos em 0; o analisador mostra a sobrecarga não alocada.</p><div class="fields"><div class="field f"><label>Refrigeração</label><div class="input"><input id="cooling" min="0" type="number" value="80"/ aria-label="kW"><span data-unit="">kW</span></div></div><div class="field f"><label>Perda de UPS</label><div class="input"><input id="ups" min="0" type="number" value="25"/ aria-label="kW"><span data-unit="">kW</span></div></div><div class="field f"><label>- O que foi?</label><div class="input"><input id="lighting" min="0" type="number" value="5"/ aria-label="kW"><span data-unit="">kW</span></div></div><div class="field f"><label>Perda de distribuição</label><div class="input"><input id="distribution" min="0" type="number" value="15"/ aria-label="kW"><span data-unit="">kW</span></div></div><div class="field f"><label>- O quê?</label><div class="input"><input id="other" min="0" type="number" value="25"/ aria-label="kW"><span data-unit="">kW</span></div></div></div></div><div class="panel"><h2>3. What-if &amp; métricas ambientais</h2><div class="fields"><div class="field f"><label>Crescimento da carga de TI</label><div class="input"><input id="itGrowthPct" type="number" value="20"/ aria-label="%"><span>%</span></div></div><div class="field f"><label>Utilização anual da água (facultativo)</label><div class="input"><input id="annualWaterL" type="number" value="0"/ aria-label="L"><span>L</span></div></div><div class="field f"><label>Emissões anuais de CO2 (facultativo)</label><div class="input"><input id="annualCO2kg" type="number" value="0"/ aria-label="kgCO2"><span>kgCO2</span></div></div><div class="field full f"><label>PUE mensal, separado por vírgulas (opcional)</label><div class="inp input-wrap"><input id="monthlyPUE" value="1.58,1.55,1.52,1.49,1.47,1.45,1.46,1.48,1.50,1.52,1.54,1.56"/ aria-label="PUE mensal, separado por vírgulas (opcional)"></div></div></div><div class="input-actions nel-pue-actions"><button class="btn btn-primary" id="calculate" type="button">Recalcular</button><button class="btn btn-ghost" id="reset" type="button">Redefinir</button></div></div></section><section class="result-panel card nel-tool-result readout" aria-live="polite"><div class="section-title nel-generated-section-title ro-h" data-nel-generated="v1.2.2"><span class="section-icon">▥</span><div><h2 class="ro-h">Resultados da engenharia</h2><p>Revisão da capacidade calculada, limites e verificações de projeto.</p></div></div><div class="error" hidden="" id="error"></div><section id="result"><div class="panel"><h2 class="ro-h">Resultado da análise</h2><div class="summary"><article class="metric"><small>PUE</small><strong id="pue">—</strong><span class="badge" id="status"></span></article><article class="metric"><small>Partilha de TI</small><strong id="itShare">—</strong></article><article class="metric"><small>Não-IT</small><strong id="nonIT">—</strong></article></div><div class="kv"><span>Despesas</span><b id="overhead">—</b></div><div class="kv"><span>Energia total anual</span><b id="annualTotal">—</b></div><div class="kv"><span>Energia TI anual</span><b id="annualIT">—</b></div><div class="kv"><span>Energia anual não TI</span><b id="annualNonIT">—</b></div><div class="kv"><span>Custo anual da electricidade</span><b id="annualCost">—</b></div></div><div class="panel"><h2 class="ro-h">Optimização alvo-PUE</h2><div class="kv"><span>Potencial poupança anual de energia</span><b id="saveEnergy">—</b></div><div class="kv"><span>Potencial economia de custos anual</span><b id="saveCost">—</b></div><div class="kv"><span>PUE após o crescimento da TI (superfície fixa)</span><b id="whatIf">—</b></div></div><div class="panel"><h2 class="ro-h">Composição não TI</h2><div id="bars"></div><div class="kv"><span>Overhead não atribuído</span><b id="gap">—</b></div></div><div class="panel"><h2 class="ro-h">WUE / CUE</h2><div class="kv"><span>WUE</span><b id="wue">—</b></div><div class="kv"><span>CUE</span><b id="cue">—</b></div></div><div class="panel"><h2 class="ro-h">Tendência mensal do PUE</h2><div class="trend" id="trend"></div><ul id="warnings"></ul></div></section></section><!-- NEL_DEEP_CONTENT_START --><!-- NEL_DEEP_CONTENT_END --></div><!-- /workspace -->
+<div class="below">
+<nav class="toc" aria-label="Nesta página"><h4>Nesta página</h4>
+<a href="#about-scope">Sobre &amp; aplicabilidade</a>
+<a href="#methodology">Como é calculado</a>
+<a href="#nelDeepWorkflow">Cenários profundos</a>
+<a href="#faq">FAQ</a>
+<a href="#history">Cálculos recentes</a>
+<a href="#references">Referências oficiais</a>
+<a href="#nel-tool-graph">Fluxo de trabalho de engenharia</a>
+</nav>
+<div class="prose">
+<details class="fb-fold blk" id="about-scope" data-nel-v3-title-normalized="1">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Sobre &amp; aplicabilidade</span></summary>
+<div class="fb-fold-body about-card about-card-inline">
+<p>Calculadora de planejamento gratuita para engenheiros de data center e instalações. Funciona inteiramente no navegador: transformar energia instantânea ou período em PUE, despesas gerais não-IT, custo anual, objectivoPUE poupança, e opcional WUE/CUE. Categoria de aplicação: utilidade de engenharia / eficiência energética. Nenhuma conta necessária.</p>
+<p>Use para avaliações de energia de instalação, TI vs splits de sobrecarga, e planejamento alvo-PUE. Os resultados são ajudas de planeamento — não são substitutos de limites medidos, relatórios de encomenda ou normas energéticas empresariais.</p>
+<div class="about-meta">
+<span>Tipo · Calculadora de engenharia</span>
+<span>Executa · O lado do cliente</span>
+<span>Locais · PT / 中文 / ES</span>
+<span>Canonical · /tools/pue-data-centro-eficiência energética/</span>
+</div>
+</div>
+</details>
+<details class="fb-fold blk" id="methodology" data-nel-v3-title-normalized="1">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Como é calculado · métodos &amp; laboratórios</span></summary>
+<div class="fb-fold-body">
+<div class="eq">PUE = energia total do equipamento de TI (mesmo período)<br>
+Não-IT despesas gerais = total − IT<br>
+Energia da instalação-alvo : IT × alvo PUE<br>
+Poupança de planeamento</div>
+<p>Mantenha os limites das instalações e dos contadores de TI idênticos ao longo do intervalo de comunicação. As cores do estado são avaliadas em relação ao seu alvo inserido PUENão é uma mesa universal. WUE/CUE Aparecer apenas quando são fornecidas água ou carbono anuais.</p>
+<div class="method-defs">
+<article><h3>Definição do PUE</h3><p>PUE é a energia total do data-center dividida pela energia do equipamento Partnership. Ambos os termos usam o mesmo período e o mesmo limite. Uma suposição de 100000 kWh IT e 150000 kWh total durante 30 dias é um PUE de 1,50. Essa folha é uma suposição, não uma leitura de metro. Um instantâneo de potência separado de 560 kW total e 400 kW IT é um PUE de 1,40, e não é a mesma medição que a folha de 30 dias. O catálogo público para o padrão atual é <a href="https://www.iso.org/standard/30134-2">ISO/IEC 30134-2:2026</a>. Valores mais próximos de 1 significam sobrecarga de instalação inferior em relação à TI.</p></article>
+<article><h3>Desagregação global</h3><p>Refrigeração, UPS, iluminação, distribuição e outras cargas explicam a distância do alvo PUE e alimentam as barras de composição.</p></article>
+<article><h3>Impacto dos custos</h3><p>A tarifa converte a energia em custo operacional estimado. A leitura de economia alvo-PUE é a diferença do alvo que você digita. Não se trata de uma poupança medida e não se afirma uma percentagem de poupança.</p></article>
+<article><h3>coordenadas</h3><p>Não misture um período parcial com um total de TI de período completo, e não compare sites cujos metros param em pontos diferentes, a menos que a alteração de limite seja anotada. Um quilowatt é uma taxa. Um quilowatt-hora é energia com o tempo. 400 kW por uma hora é 400 kWh apenas como uma identidade de unidade. Escalar 150000 kWh por 365/30 é anualização calculadora, não um ano medido. As toneladas de arrefecimento não são uma entrada para esta proporção. A eletricidade de refrigeração só conta quando está dentro da instalação total e fora do medidor de TI.</p></article>
+<article><h3>WUE / CUE</h3><p>Entradas anuais opcionais de água e carbono produzem WUE e CUE ao lado de PUE para a mesma base de energia de TI.</p></article>
+</div>
+<p><a href="../../../pt-br/guides/data-center-pue-calculation/">Data Center PUE Cálculo: Fórmula, medição e exemplos trabalhados</a> afirma a definição PUE, a fórmula de cálculo PUE, como calcular PUE, e a diferença entre um instantâneo kW e um período kWh. Esta página é a calculadora de data center PUE.</p><p>Os resultados são estimativas de planeamento. Validar etiquetas de contadores, modos de redundância e pressupostos climáticos antes das decisões de capital.</p>
+</div>
+</details>
+<section id="nelDeepWorkflow" class="content-section nel-tool-supporting-section"></section>
+<div class="blk faq" id="faq">
+<span class="eyebrow">FAQ</span>
+<h2>Perguntas mais frequentes</h2>
+<details><summary>Qual o limite do metro PUE usar?</summary>
+<p>Mantenha um limite total de instalação consistente e um limite de TI consistente para o mesmo período, e documento alterações de limite antes da comparação entre períodos.</p></details>
+<details><summary>Pode a potência instantânea calcular PUE?</summary>
+<p>- Não.</p></details>
+<details><summary>Por que pode PUE cair quando a carga de TI sobe?</summary>
+<p>Se a sobrecarga fixa da instalação muda pouco enquanto a carga equipas de TI útil sobe, a sobrecarga não-IT está espalhada por mais energia de TI e PUE pode melhorar.</p></details>
+<details><summary>O que o WUE adiciona além do PUE?</summary>
+<p>WUE rastreia o uso de água operacional por unidade de energia de TI para que os projetos de eficiência possam ser verificados quanto aos efeitos colaterais da água.</p></details>
+<details><summary>Um PUE mais baixo é sempre melhor?</summary>
+<p>A sobrecarga de instalação inferior geralmente é útil, mas a confiabilidade, o clima, redundância, utilização de TI e limites de metros ainda importam.</p></details>
+</div>
+<section class="blk" id="history" data-nel-v3-title-normalized="1">
+<h2>Cálculos recentes</h2>
+<div class="fb-fold-body">
+<div class="history-toolbar history-head">
+<div><p class="eyebrow">Registo de sessão</p></div>
+<button class="text-button btn btn-ghost btn-sm" id="clearHistoryBtn" type="button">Limpar o registo</button>
+</div>
+<div class="history-list" id="historyList" role="list"><p class="note">Os cálculos desta sessão do navegador aparecem aqui quando disponíveis.</p></div>
+</div>
+</section>
+<section class="blk" id="references" data-nel-v3-title-normalized="1">
+<h2>Referências oficiais · normas e fronteiras</h2>
+<div class="fb-fold-body">
+<div class="ref-card">
+<p>PUE deve usar facilidade e limites de energia de TI correspondentes ao mesmo intervalo. A economia Target-PUE está planejando valores antes das mudanças de tarifas e operações. As predefinições não substituem os dados de medição ou comissionamento.</p>
+<p><b>Data de revisão: 2026-09-10. Fontes oficiais:</b></p>
+<div class="std-row">
+<a class="std-chip" href="https://www.iso.org/standard/30134-2" rel="noopener noreferrer" target="_blank">ISO/IEC 30134-2</a>
+<a class="std-chip" href="https://www.energy.gov/sites/default/files/2024-07/best-practice-guide-data-center-design_0.pdf" rel="noopener noreferrer" target="_blank">Guia de Design de Data Center EUA DOE</a>
+<a class="std-chip" href="https://www.thegreengrid.org/system/files/store/WUE_v1.pdf" rel="noopener noreferrer" target="_blank">A Grelha Verde WUE</a>
+</div>
+</div>
+</div>
+</section>
+<p class="hub-return">Parte da <a href="../../datacenter-power-calculators/pt-br/">calculadoras de potência e refrigeração do centro de dados</a> hub.</p><!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="pue-data-center-energy-efficiency" data-primary-workflow="telecom-power-energy">
+<div class="section-heading"><div><p class="eyebrow">FLUXO DE TRABALHO DE ENGENHARIA</p><h2 id="nel-tool-graph-title">Continuar o fluxo de trabalho de engenharia</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Fluxo de trabalho atual</span><strong>Fluxo de Trabalho de Energia e Energia Telecom</strong><p>Mova-se da carga local através da distribuição AC/DC, dimensionamento de retificadores e diagnósticos operacionais, backup de bateria, combustível gerador, geração solar e eficiência de instalação como uma sequência de engenharia de energia.</p></div><div class="nel-workflow-step"><strong>Passo 8 de 8</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="8" aria-valuenow="8" aria-valuetext="Passo 8 de 8" aria-label="Passo 8 de 8"><span style="width:100%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="../../telecom-solar-battery-sizing-calculator/pt-br/"><span class="nel-tool-graph-label">Voltar</span><strong>Calculadora de dimensionamento de energia solar e bateria de Telecom</strong><span class="nel-tool-graph-description">Tamanho PV solar de telecomunicações, autonomia da bateria, balanço energético, economia e emissões para locais de rede híbrida ou fora da rede.</span></a><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Avançar</span><strong>Fluxo de trabalho concluído</strong></div></div>
+<h3 class="nel-tool-graph-subtitle">Ferramentas relacionadas</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="../../network-rack-power-cooling-calculator/pt-br/"><strong>Calculadora de energia e resfriamento de rack de rede</strong><span class="nel-tool-graph-description">Calcular a potência do rack, corrente, carga de refrigeração, energia e arredores.</span></a><a class="nel-tool-graph-card" href="../../48v-battery-runtime/pt-br/"><strong>-48V Calculadora de bateria de Telecom Runtime</strong><span class="nel-tool-graph-description">Calcule o tempo de execução da bateria DC de telecomunicações, Ah necessário, cordas paralelas e aumento constante da corrente de energia.</span></a><a class="nel-tool-graph-card" href="../../telecom-solar-battery-sizing-calculator/pt-br/"><strong>Calculadora de dimensionamento de energia solar e bateria de Telecom</strong><span class="nel-tool-graph-description">Tamanho PV solar de telecomunicações, autonomia da bateria, balanço energético, economia e emissões para locais de rede híbrida ou fora da rede.</span></a></div><div class="nel-workflow-memberships"><span class="nel-workflow-memberships-label">Também utilizado em</span><span class="nel-workflow-chip">Data Center Critical Power &amp; Cooling Workflow</span></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
+</div>
+</div>
+
+</main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Ferramentas profissionais online para engenheiros de telecomunicações e redes.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navegação do rodapé">
+      <a href="../../../pt-br/about/">Sobre</a><a href="../../../pt-br/contact/">Contato</a><a href="../../../pt-br/privacy/">Privacidade</a><a href="../../../pt-br/terms/">Termos</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END --><script src="../js/engine.js?v=bb55f104d257"></script><script src="../js/app.js?v=e7b7ef373bb4"></script><script src="../js/pwa.js"></script><script src="../js/deep-workflow.js?v=20261106-bw4g"></script><script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
+<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d"></script></body></html>

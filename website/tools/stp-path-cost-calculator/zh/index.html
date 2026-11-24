@@ -34,22 +34,24 @@
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="zh">
 <meta name="nel-route" content="tools/stp-path-cost-calculator/">
-<meta name="nel-available-locales" content="en,zh,es">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
 <link rel="canonical" href="https://netengineerlab.com/tools/stp-path-cost-calculator/zh/">
 <link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/stp-path-cost-calculator/">
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/stp-path-cost-calculator/zh/">
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/stp-path-cost-calculator/es/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/tools/stp-path-cost-calculator/id/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/tools/stp-path-cost-calculator/pt-br/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/stp-path-cost-calculator/">
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"STP 路径开销如何计算？","acceptedAnswer":{"@type":"Answer","text":"根路径开销是从本交换机到根桥沿途端口开销之和。长开销方法下每个端口开销 = 20,000,000,000 ÷ 链路速率（kb/s）。"}},{"@type":"Question","name":"10G 链路的 STP 开销是多少？","acceptedAnswer":{"@type":"Answer","text":"长开销（802.1D-2004/802.1Q）为 2,000，传统短开销为 2。"}},{"@type":"Question","name":"100G 的 STP 开销是多少？","acceptedAnswer":{"@type":"Answer","text":"长开销为 200。802.1D-1998 短开销表只到 10 Gbps，100G 没有标准短开销值。"}},{"@type":"Question","name":"IEEE 为什么改用长开销？","acceptedAnswer":{"@type":"Answer","text":"16 位短开销无法区分 10 Gbps 以上的链路，容易出现开销相同。32 位长开销可扩展到 10 Tb/s。"}},{"@type":"Question","name":"两条路径开销相同时怎么办？","acceptedAnswer":{"@type":"Answer","text":"STP 依次比较发送方网桥 ID 和发送方端口 ID，取较小者。"}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
 <link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
-<script defer src="../../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
 <script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../../assets/js/site.js?v=c957f6562d31"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
 <link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
 <link rel="manifest" href="../manifest-zh.webmanifest">
 </head>
@@ -71,7 +73,7 @@
       <a href="../../../zh/topics/">专题</a>
     </nav>
     <div class="site-shell-actions">
-      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/stp-path-cost-calculator/" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="/tools/stp-path-cost-calculator/zh/" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a><a class="language-option" role="menuitem" href="/tools/stp-path-cost-calculator/es/" lang="es" hreflang="es"><span>Español</span><small>西班牙语</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="语言: 简体中文"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">简体中文</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/stp-path-cost-calculator/" lang="en" hreflang="en"><span>English</span><small>英语</small></a><a class="language-option" role="menuitem" href="/tools/stp-path-cost-calculator/zh/" lang="zh-CN" hreflang="zh-CN" aria-current="page"><span>简体中文</span><small>简体中文</small></a><a class="language-option" role="menuitem" href="/tools/stp-path-cost-calculator/es/" lang="es" hreflang="es"><span>Español</span><small>西班牙语</small></a><a class="language-option" role="menuitem" href="/tools/stp-path-cost-calculator/id/" lang="id" hreflang="id"><span>Bahasa Indonesia</span><small>印尼语</small></a><a class="language-option" role="menuitem" href="/tools/stp-path-cost-calculator/pt-br/" lang="pt-BR" hreflang="pt-BR"><span>Português do Brasil</span><small>巴西葡萄牙语</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
       <div class="site-shell-context-action"><a href="#calculator">开始计算</a></div>
     </div>
   </div>
@@ -181,7 +183,7 @@
 <script defer src="../js/pwa.js"></script>
 <script defer src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script>
 <script defer src="../js/app.js?v=ec22acda2339"></script>
-<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+<script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
 <script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d"></script>
 </body>
 </html>

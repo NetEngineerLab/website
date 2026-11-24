@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="id" dir="ltr" data-nel-locale="id" data-nel-route="guides/24-port-switch-single-10g-uplink/"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>24- Port Switch Dengan Satu 10G Uplink: 2.4: 1 atau 24: 1? | NetEngineerLab</title><meta name="description" content="Contoh: a 24 x 1G access switch at 30% bucy- hour utilisasi melewati satu 10G uplink dan gagal pada uplink 1G. Rasio line- rate, permintaan dan batas tunggal-path."><link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/guide.css?v=6d83ae5e791f"><meta property="og:url" content="https://netengineerlab.com/id/guides/24-port-switch-single-10g-uplink/">
+<meta property="og:title" content="24- Port Switch Dengan Satu 10G Uplink: 2.4: 1 atau 24: 1? | NetEngineerLab">
+<meta property="og:description" content="Contoh: a 24 x 1G access switch at 30% bucy- hour utilisasi melewati satu 10G uplink dan gagal pada uplink 1G. Rasio line- rate, permintaan dan batas tunggal-path.">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="24- Port Switch Dengan Satu 10G Uplink: 2.4: 1 atau 24: 1? | NetEngineerLab">
+<meta name="twitter:description" content="Contoh: a 24 x 1G access switch at 30% bucy- hour utilisasi melewati satu 10G uplink dan gagal pada uplink 1G. Rasio line- rate, permintaan dan batas tunggal-path.">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Apakah satu 10G uplink Cukup untuk 24- Port Gigabit Switch?","name":"Apakah satu 10G uplink Cukup untuk 24- Port Gigabit Switch?","description":"Contoh: a 24 x 1G access switch at 30% bucy- hour utilisasi melewati satu 10G uplink dan gagal pada uplink 1G. Rasio line- rate, permintaan dan batas tunggal-path.","url":"https://netengineerlab.com/id/guides/24-port-switch-single-10g-uplink/","inLanguage":"id","mainEntityOfPage":"https://netengineerlab.com/guides/24-port-switch-single-10g-uplink/","author":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/id/"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/id/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://netengineerlab.com/id/"},{"@type":"ListItem","position":2,"name":"Apakah satu 10G uplink Cukup untuk 24- Port Gigabit Switch?","item":"https://netengineerlab.com/id/guides/24-port-switch-single-10g-uplink/"}]}</script>
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"24- Port Switch Dengan Satu 10G Uplink: 2.4: 1 atau 24: 1? | NetEngineerLab","url":"https://netengineerlab.com/id/guides/24-port-switch-single-10g-uplink/","description":"Contoh: a 24 x 1G access switch at 30% bucy- hour utilisasi melewati satu 10G uplink dan gagal pada uplink 1G. Rasio line- rate, permintaan dan batas tunggal-path.","inLanguage":"id","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/id/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="id">
+<meta name="nel-route" content="guides/24-port-switch-single-10g-uplink/">
+<meta name="nel-available-locales" content="en,zh,id,pt-BR">
+<link rel="canonical" href="https://netengineerlab.com/id/guides/24-port-switch-single-10g-uplink/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/24-port-switch-single-10g-uplink/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/24-port-switch-single-10g-uplink/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/id/guides/24-port-switch-single-10g-uplink/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/pt-br/guides/24-port-switch-single-10g-uplink/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/24-port-switch-single-10g-uplink/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
+</head><body>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Platform kecerdasan untuk rekayasa jaringan</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Buka navigasi"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navigasi utama">
+      <a href="../../">Beranda</a>
+      <a href="../../../tools/id/">Alat</a>
+      <a href="../" aria-current="page">Panduan</a>
+      <a href="../../topics/">Topik</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Bahasa: Bahasa Indonesia"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Bahasa Indonesia</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/guides/24-port-switch-single-10g-uplink/" lang="en" hreflang="en"><span>English</span><small>Inggris</small></a><a class="language-option" role="menuitem" href="/zh/guides/24-port-switch-single-10g-uplink/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Tionghoa Sederhana</small></a><a class="language-option" role="menuitem" href="/id/guides/24-port-switch-single-10g-uplink/" lang="id" hreflang="id" aria-current="page"><span>Bahasa Indonesia</span><small>Bahasa Indonesia</small></a><a class="language-option" role="menuitem" href="/pt-br/guides/24-port-switch-single-10g-uplink/" lang="pt-BR" hreflang="pt-BR"><span>Português do Brasil</span><small>Portugis Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END --><nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../../">Beranda</a><span aria-hidden="true">›</span><a href="../">Panduan</a><span aria-hidden="true">›</span><span aria-current="page">Apakah satu 10G uplink Cukup untuk 24- Port Gigabit Switch?</span></nav><main class="guide-shell" id="main"><section class="guide-hero"><p class="eyebrow">Bekerja example</p><h1>Apakah satu 10G uplink Cukup untuk 24- Port Gigabit Switch?</h1><p class="guide-lead">Contoh saja, bukan ukuran jaringan pelanggan. A 24 x 1G switch with one uplink is a 2.4: 1 line- rate design on 10G and Sahawan 24: 1 on 1G. Pada 30% penggunaan secara bersamaan upGa 10G masih melewati target perencanaan 80 Bahawa; 1G upBidik tidak.</p><div class="guide-meta"><span>24 × 1G</span><span>Uplink tunggal</span><span>Penggunaan 30%</span><span>Contoh</span></div></section><div class="guide-tool-link"><strong>Kalkulator terkait</strong><p>Kalkulator ini tidak memiliki preset URL yang mengisi setiap masukan dalam contoh ini. Ketikkan nilai di bawah ini dan bandingkan hasilnya.</p><a href="../../../tools/switch-uplink-oversubscription-calculator/id/">Buka penghitung uplink</a></div><div class="guide-layout"><article class="guide-article"><p>Pertanyaan ini adalah bentuk 24- port dari masalah uplink- tenggorokan: setiap akses port saham satu meninggalkan link. Ini bukan 48 × 1G dengan 2 × 10G kasus sudah di situs ini.</p><h2>Contoh asumsi</h2><ul><li>Akses: 24 port × 1 Gbps. Tingkat garis yang ditawarkan = 24 Gbps.</li><li>Model bisnis-jam: 30% utilisasi, 100% pelabuhan di kolam permintaan, 0% overhead ekstra.</li><li>Target perencanaan: pertahankan permintaan di dalam 80% dari laju Pelakunya.</li><li>Bandingkan satu 10 Gbps uplink dengan satu 1 Gbps uplink. Tidak ada path kedua yang dimodelkan.</li></ul><h2>Langkah</h2><ol><li>Demand = 24 × 1 Gbps × 0.30 = 7.2 Gbps.</li><li>10G uplink: kapasitas 10 Gbps, kapasitas aman 8.0 Gbps, cadangan 8.0 volver7.2 = 0.8 Gbps. Batas rasio 24 / 10 = 2.4: 1. Status lulus.</li><li>1G uplink: kapasitas 1 Gbps, kapasitas aman 0.8 Gbps, cadangan 0.8 mex7.2 = -6.4 Gbps. Laju-rate rasio 24 / 1 = 24: 1. Permintaan yang sama membutuhkan 9 gigabit uplink pada target ini. Status gagal.</li></ol><h2>Apa hasil tidak dan tidak mengatakan</h2><p>Satu 10G uplink dapat membawa ini 7.2 Gbps contoh. Hal ini masih merupakan satu path yang meneruskan: sebuah cut atau optic kegagalan menghapus seluruh 10 Gbps. Jangan perlakukan hasil lulus sebagai persetujuan N-1. A 1G uplink, atau 10G port yang dinegosiasikan ke 1G, gagal permintaan yang sama. LAG hashing di luar contoh ini karena hanya ada satu anggota.</p><h2>Batas dan sumber</h2><p>Unit adalah Gbps tingkat garis, bukan aplikasi goodput. Angka 30% adalah contoh masukan, bukan surMungkinkah sebuah survey? Diskusi publik tentang 24- port 1G-versus- 10G tenggorokan adalah di vendor dan catatan desain; halaman ini menghitung ulang pertanyaan dengan mesin situs daripada menyalin klaim lalu lintas mereka.</p><p>Sumber: <a href="https://www.cisco.com/c/en/us/products/collateral/switches/catalyst-9000/nb-09-25ge-100ge-wp-cte-en.html">Cisco, 25GE dan 100Tiba kampus oversubscription</a>.</p><p><a href="../../topics/switch-oversubscription/">Kembali ke topik ganti nama terlalu banyak</a></p></article></div></main><!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Alat daring profesional untuk insinyur telekomunikasi dan jaringan.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navigasi kaki halaman">
+      <a href="../../about/">Tentang</a><a href="../../contact/">Kontak</a><a href="../../privacy/">Privasi</a><a href="../../terms/">Ketentuan</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
+</body></html>

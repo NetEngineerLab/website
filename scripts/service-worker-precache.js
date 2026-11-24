@@ -443,9 +443,18 @@ function resolvePrecacheTarget(clean, toolRoot, siteRoot) {
   return path.resolve(root, ...parts);
 }
 
+function activeLocaleDirectories() {
+  try {
+    const locales = JSON.parse(fs.readFileSync(path.join(__dirname, "../website/data/locales.json"), "utf8")).locales || [];
+    return locales.filter(locale => locale && locale.status === "active" && locale.folder).map(locale => `./${locale.folder}/`);
+  } catch {
+    return ["./zh/", "./es/"];
+  }
+}
+
 function precachePathIssues(assets, toolRoot, siteRoot) {
   const issues = [];
-  const allowedDirectories = new Set(["./", "./zh/", "./es/"]);
+  const allowedDirectories = new Set(["./", ...activeLocaleDirectories()]);
   const realSiteRoot = fs.realpathSync(siteRoot);
   for (const asset of assets) {
     const clean = String(asset).split(/[?#]/)[0];

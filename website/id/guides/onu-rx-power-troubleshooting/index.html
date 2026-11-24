@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang="id" dir="ltr" data-nel-locale="id" data-nel-route="guides/onu-rx-power-troubleshooting/"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ONU RX Power Troublesting dan Fault Diagnosis | NetEngineerLab</title><meta name="description" content="ONU menerima Jadikan level hilir di ONU. OLT menerima daya adalah tingkat hulu dari ONU laser. Mereka berbeda pembacaan. Sebuah model peralatan tanpa nama memiliki ambang tak dikenal."><link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/guide.css?v=6d83ae5e791f"><meta property="og:url" content="https://netengineerlab.com/id/guides/onu-rx-power-troubleshooting/">
+<meta property="og:title" content="ONU RX Power Troublesting dan Fault Diagnosis | NetEngineerLab">
+<meta property="og:description" content="ONU menerima Jadikan level hilir di ONU. OLT menerima daya adalah tingkat hulu dari ONU laser. Mereka berbeda pembacaan. Sebuah model peralatan tanpa nama memiliki ambang tak dikenal.">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ONU RX Power Troublesting dan Fault Diagnosis | NetEngineerLab">
+<meta name="twitter:description" content="ONU menerima Jadikan level hilir di ONU. OLT menerima daya adalah tingkat hulu dari ONU laser. Mereka berbeda pembacaan. Sebuah model peralatan tanpa nama memiliki ambang tak dikenal.">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"ONU RX Power Troubleshooting: Pembacaan Daya Optik dan Diagnosis Fault","name":"ONU RX Power Troubleshooting: Pembacaan Daya Optik dan Diagnosis Fault","description":"ONU menerima Jadikan level hilir di ONU. OLT menerima daya adalah tingkat hulu dari ONU laser. Mereka berbeda pembacaan. Sebuah model peralatan tanpa nama memiliki ambang tak dikenal.","url":"https://netengineerlab.com/id/guides/onu-rx-power-troubleshooting/","inLanguage":"id","mainEntityOfPage":"https://netengineerlab.com/guides/onu-rx-power-troubleshooting/","author":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/id/"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/id/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://netengineerlab.com/id/"},{"@type":"ListItem","position":2,"name":"ONU RX Power Troubleshooting: Pembacaan Daya Optik dan Diagnosis Fault","item":"https://netengineerlab.com/id/guides/onu-rx-power-troubleshooting/"}]}</script>
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"ONU RX Power Troublesting dan Fault Diagnosis | NetEngineerLab","url":"https://netengineerlab.com/id/guides/onu-rx-power-troubleshooting/","description":"ONU menerima Jadikan level hilir di ONU. OLT menerima daya adalah tingkat hulu dari ONU laser. Mereka berbeda pembacaan. Sebuah model peralatan tanpa nama memiliki ambang tak dikenal.","inLanguage":"id","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/id/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="id">
+<meta name="nel-route" content="guides/onu-rx-power-troubleshooting/">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
+<link rel="canonical" href="https://netengineerlab.com/id/guides/onu-rx-power-troubleshooting/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/onu-rx-power-troubleshooting/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/onu-rx-power-troubleshooting/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/es/guides/onu-rx-power-troubleshooting/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/id/guides/onu-rx-power-troubleshooting/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/pt-br/guides/onu-rx-power-troubleshooting/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/onu-rx-power-troubleshooting/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
+</head><body>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Platform kecerdasan untuk rekayasa jaringan</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Buka navigasi"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navigasi utama">
+      <a href="../../">Beranda</a>
+      <a href="../../../tools/id/">Alat</a>
+      <a href="../" aria-current="page">Panduan</a>
+      <a href="../../topics/">Topik</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Bahasa: Bahasa Indonesia"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Bahasa Indonesia</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/guides/onu-rx-power-troubleshooting/" lang="en" hreflang="en"><span>English</span><small>Inggris</small></a><a class="language-option" role="menuitem" href="/zh/guides/onu-rx-power-troubleshooting/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Tionghoa Sederhana</small></a><a class="language-option" role="menuitem" href="/es/guides/onu-rx-power-troubleshooting/" lang="es" hreflang="es"><span>Español</span><small>Spanyol</small></a><a class="language-option" role="menuitem" href="/id/guides/onu-rx-power-troubleshooting/" lang="id" hreflang="id" aria-current="page"><span>Bahasa Indonesia</span><small>Bahasa Indonesia</small></a><a class="language-option" role="menuitem" href="/pt-br/guides/onu-rx-power-troubleshooting/" lang="pt-BR" hreflang="pt-BR"><span>Português do Brasil</span><small>Portugis Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END --><nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../../">Beranda</a><span aria-hidden="true">›</span><a href="../">Panduan</a><span aria-hidden="true">›</span><span aria-current="page">ONU RX Power Troubleshooting: Pembacaan Daya Optik dan Diagnosis Fault</span></nav><main class="guide-shell" id="main"><section class="guide-hero"><p class="eyebrow">PON OPTIKAL</p><h1>ONU RX Power Troubleshooting: Pembacaan Daya Optik dan Diagnosis Fault</h1><p class="guide-lead">Sebuah penerimaan optik-kekuatan membaca nama satu arah, satu panjang gelombang dan satu instrumen. ONU menerima daya tidak OLT menerima kekuasaan, dan laser ONU adalah pemancar hulu, bukan hilir membaca.</p></section><div class="guide-tool-link"><strong>Kalkulator terkait</strong><p>Kalkulator membandingkan bacaan yang diukur dengan batas yang Anda ketik dan dengan model yang hilang. ONU universal tidak memasok ambang batas. Jika data tidak ada di tangan, meninggalkan batas UNKNOWN.</p><a href="../../../tools/onu-rx-power/id/">Buka ONU penerima-daya kalkulator</a></div><div class="guide-layout"><article class="guide-article">
+<h2 id="reading">Apa artinya membaca</h2>
+<p>Daya menerima optik adalah tingkat daya dalam dBm pada satu titik dalam satu arah. Kehilangan dB adalah perbedaan antara dua tingkat kekuatan. Satu dBm membaca tidak Beruntung rugi serat, kerugian splitter atau kehilangan konektor. Mereka harus dibangun dari jalan, atau diukur sebagai peristiwa.</p>
+<h2 id="directions">ONU menerima, OLT menerima dan ONU laser</h2>
+<p>Downstream, transmisi OLT dan ONU menerima. Tingkat itu adalah ONU RX kekuatan, atau optik menerima kekuatan di ONU. Upstream, transmisi ONU dan OLT menerima. Tingkat itu adalah OLT RX daya. Cek laser ONU adalah pemancar hulu ini, terlihat di penerima OLT atau pada meter di panjang gelombang hulu. Ini bukan ONU yang menerima bacaan.</p>
+<p>Kedua arah menggunakan panjang gelombang yang berbeda dan jendela yang berbeda. ITU-T G.Kematian Nomor 2 GPON panjang gelombang range; ITU-T G.9807.1 nama yang XGS-PON ranes. Halaman ini tidak menyalin kedua tabel. Baca kisaran dari rekomendasi dan dari lembar data modul. Jika generasi PON tidak diidentifikasi, panjang gelombang tak dikenal. Teks publik: <a href="https://www.itu.int/rec/T-REC-G.984.2/en">ITU-T G.984.2</a> dan <a href="https://www.itu.int/rec/T-REC-G.9807.1/en">ITU-T G.9807.1</a>.</p>
+<p>Tidak ada gerbang universal ONU menerima pada halaman ini. GPON, XGS-PON, kelas vendor dan model spesifik tidak berbagi satu pass band. Jika model tidak diidentifikasi, sensitivitas dan overload adalah UNKNOWN. Jangan diisi mereka dari meja kelas ingat.</p>
+<h2 id="measure">Bagaimana cara membaca</h2>
+<p>Gunakan meter daya optik yang dikalibrasi pada panjang gelombang Masuk ke arah itu, pada konektor yang bersih, pada saat yang Anda katakan untuk mengukur. Angka dalam layar manajemen adalah bacaan manajemen. Ini menjadi pengukuran yang dikalibrasi hanya ketika vendor menyatakan bahwa nilai perangkat lunak ini adalah daya kalibrasi dan menyatakan ketidakpastian. Jika pernyataan yang hilang, tetap label "membaca manajemen" dan jangan memperlakukannya sebagai hasil meter.</p>
+<h2 id="loss">Kehilangan dan membaca bergerak</h2>
+<p>Jika daya yang diukur lebih rendah daripada daya model tapak memprediksi, perbedaannya adalah kerugian yang tidak dapat dijelaskan. Model harus mendaftar panjang serat dan koefisien, splitter, konektor dan splitces. Sebuah angka end-to-end tunggal tidak dapat nama item yang dipindahkan. Koefisien serat dipisahkan <a href="../fiber-loss-per-kilometer/">rugi serat per kilometer</a>Kehilangan perencanaan Splitter dipisahkan di <a href="../pon-splitter-loss-guide/">PON panduan splitter</a>.</p>
+<p>fort: Sebuah membaca yang bergerak sementara rute tidak tersentuh titik pertama di tempat duduk konektor, ujung kotor wajah atau tikungan intermittent. Pembacaan yang tetap rendah poin pada kerugian stabil dalam model. Itu petunjuk yang berbeda. Baik petunjuk nama bagian yang gagal sampai jalan dibuka dengan meter dan, di mana tanaman memungkinkan itu, sebuah OTDR.</p>
+<h2 id="sequence">Urutan lokasi fault</h2>
+<ol>
+<li>Tulis arah dan panjang gelombang. Jika arah tidak diketahui, berhenti. Diagnosisnya tidak diketahui.</li>
+<li>Tulis sensitivitas dan kelebihan beban dari lembar data model itu. Jika lembar data tidak di tangan, batas lulus / gagal adalah TIDAK DIKENAL.</li>
+<li>Tekan dengan meter yang dikalibrasi pada panjang gelombang itu, atau label nomor manajemen sebagai tidak terkalibrasi.</li>
+<li>Bandingkan tingkat yang diukur dengan jendela lembar data. Sebuah contoh terpisah di situs ini mengklasifikasi seseorang yang dimasukkan membaca terhadap batas yang masuk. Batas itu tidak digunakan kembali di sini. Contoh adalah <a href="../onu-receive-level-warning-margin/">panduan warning- margin</a>.</li>
+<li>Jika tingkat rendah atau tidak dapat dijelaskan, bagi kerugian menjadi serat, splitter, konektor dan splitces. Kemudian membandingkan jumlah dengan <a href="../../../tools/optical-power-budget/id/">anggaran daya optik</a>Jangan menetapkan seluruh perbedaan ke ONU.</li>
+<li>Jika arah hulu adalah salah satu yang gagal, periksa laser ONU di hulu panjang gelombang dan OLT menerima port. Jangan menyesuaikan hilir ONU menerima nomor untuk menjelaskannya.</li>
+</ol>
+<p>Urutan ini tidak menyatakan kisaran sehat numerik. Sebuah bacaan hilir yang lewat tidak membuktikan pembacaan hulu. Mungkinkah?</p>
+<p data-nel-topic-home>Artikel ini milik <a href="../../topics/pon-optical/">Topik optik PON</a>. <a href="../../topics/pon-optical/#topic-questions">Kembali ke pertanyaan topik</a> setelah arah dan ambang tak dikenal dicatat.</p></article><aside class="guide-toc guide-related-side" aria-label="Artikel terkait"><strong>Artikel terkait</strong><ul><li><a href="../../../tools/onu-rx-power/id/">ONU menerima - kalkulator daya</a></li><li><a href="../../../tools/optical-power-budget/id/">Kalkulator anggaran daya optik</a></li><li><a href="../fiber-loss-per-kilometer/">Kehilangan fiber per kilometer</a></li><li><a href="../onu-receive-level-warning-margin/">Contoh warning- margin</a></li><li><a href="../../topics/pon-optical/">Topik optik PON</a></li></ul></aside></div></main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Alat daring profesional untuk insinyur telekomunikasi dan jaringan.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navigasi kaki halaman">
+      <a href="../../about/">Tentang</a><a href="../../contact/">Kontak</a><a href="../../privacy/">Privasi</a><a href="../../terms/">Ketentuan</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
+</body></html>

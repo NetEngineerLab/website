@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR" dir="ltr" data-nel-locale="pt-BR" data-nel-route="tools/optical-power-budget/"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="../" name="app-base"/><title>Calculadora de orçamento de potência óptica: Fibra, Separador e ONU Recebem Energia</title><meta content="Adicione perda de fibra, conector, splice e divisor, então subtraia essa perda física da potência de transmissão e compare o resultado com a janela de sensibilidade e sobrecarga ONU." name="description"/><meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/><meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="Calculadora de orçamento de potência óptica: Fibra, Separador e ONU Recebem Energia" property="og:title"/><meta content="Adicione perda de fibra, conector, splice e divisor, então subtraia essa perda física da potência de transmissão e compare o resultado com a janela de sensibilidade e sobrecarga ONU." property="og:description"/><meta content="https://netengineerlab.com/tools/optical-power-budget/pt-br/" property="og:url"/><meta content="https://netengineerlab.com/tools/optical-power-budget/images/og-optical-power-budget.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Calculadora de orçamento de potência óptica","url":"https://netengineerlab.com/tools/optical-power-budget/pt-br/","description":"Orçamento de ligação óptica profissional, receber potência e calculadora de distância máxima.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Optical Engineering Calculator","operatingSystem":"Any","softwareVersion":"1.0.3","inLanguage":"pt-BR","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/pt-br/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"NetEngineerLab","item":"https://netengineerlab.com/pt-br/"},{"@type":"ListItem","position":2,"name":"Ferramentas","item":"https://netengineerlab.com/tools/pt-br/"},{"@type":"ListItem","position":3,"name":"Calculadora de orçamento de potência óptica","item":"https://netengineerlab.com/tools/optical-power-budget/pt-br/"}]}]}</script>
+<meta content="NetEngineerLab" name="author"/>
+<link href="/assets/css/cookie-consent.css?v=2f2c8ab643e6" rel="stylesheet"/>
+<link href="/assets/css/mobile-branding.css?v=3caac1b0483a" rel="stylesheet"/>
+<script defer="" src="/data/seo-config.js"></script>
+<script defer="" src="/assets/js/seo-engine.js?v=15ac96553c44"></script>
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
+<meta content="Calculadora de orçamento de potência óptica  |  NetEngineerLab" name="twitter:title"/>
+<meta content="Verifique a potência de transmissão, sensibilidade do receptor, perda do divisor e margem de engenharia, em seguida, leia receber potência e distância máxima." name="twitter:description"/>
+<meta content="https://netengineerlab.com/tools/optical-power-budget/images/og-optical-power-budget.png" name="twitter:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif:ital@1&amp;display=swap" rel="stylesheet"/>
+<link href="../css/fb.css?v=2a31994efa84" rel="stylesheet"/>
+<link href="../css/fb-v3.css?v=718e11ad9233-bw1f" rel="stylesheet"/>
+<link href="../css/fb-v3-prod.css?v=0e51668c3f12" rel="stylesheet"/>
+<link href="../css/style.css?v=c128d02623c2" rel="stylesheet"/>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Calculadora de orçamento de potência óptica: Fibra, Separador e ONU Recebem Energia","url":"https://netengineerlab.com/tools/optical-power-budget/pt-br/","description":"Adicione perda de fibra, conector, splice e divisor, então subtraia essa perda física da potência de transmissão e compare o resultado com a janela de sensibilidade e sobrecarga ONU.","inLanguage":"pt-BR","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/pt-br/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="pt-BR">
+<meta name="nel-route" content="tools/optical-power-budget/">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
+<link rel="canonical" href="https://netengineerlab.com/tools/optical-power-budget/pt-br/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/optical-power-budget/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/optical-power-budget/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/optical-power-budget/es/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/tools/optical-power-budget/id/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/tools/optical-power-budget/pt-br/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/optical-power-budget/">
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Avançado · terceiro divisor & outra perda passiva","acceptedAnswer":{"@type":"Answer","text":"Opcional terceiro divisor e perda passiva extra para plantas ODN complexas."}},{"@type":"Question","name":"Por que o padrão muda para GPON C+ quando 1:8 × 1:8 é retido?","acceptedAnswer":{"@type":"Answer","text":"Uma cascata 1:8 × 1:8 contribui com cerca de 21 dB de perda de divisor. Com 10 km de fibra, conectores e emendas, a perda física do ODN é de 25.8 dB; adicionar o 3 dB margem de engenharia dá uma perda ODN projeto de 28.8 dB. Isso está acima do limite de 28 dB B+, mas dentro do orçamento 32 dB C+ (33 dB transmit-to-sensitive window menos 1 dB ótico caminho penal), deixando 3.2 dB."}},{"@type":"Question","name":"Como um orçamento de energia difere do perda de fibra?","acceptedAnswer":{"@type":"Answer","text":"As perdas de fibra medem as perdas de rota e componentes. Com um espaço de espaço, pode--se que, a este, a este de que, de que de que que de que de que que de que de que de que de que de que de que de que de que de que de que de que de que de que de que de de que de que de que de que de que de que de que de que de que de que de de de de de de de de de de de de de de que de de de de de de de de de de de de de de de que de que de de de que de de de de que de que de de de que de de de de de de de de de de de de de que de de de de de de de de de de de de de de CEE de de que de que de de que de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de que de DIREITO de de de de de que de de de de de de de de"}},{"@type":"Question","name":"Porquê usar a potência mínima de transmissão?","acceptedAnswer":{"@type":"Answer","text":"Os projetos são verificados nas piores condições para evitar um resultado otimista causado pela variação do equipamento, envelhecimento e temperatura."}},{"@type":"Question","name":"O poder de recebimento superior é sempre melhor?","acceptedAnswer":{"@type":"Answer","text":"Não. Valid A baixa potência pode cair abaixo da sensibilidade, enquanto a potência excessiva pode exceder o limite de sobrecarga. Receber energia deve permanecer dentro da janela permitida."}},{"@type":"Question","name":"Por que margem de engenharia não é deduzido do poder de recepção?","acceptedAnswer":{"@type":"Answer","text":"A margem de engenharia é uma reserva de design, não uma perda física atual. É usado para verificação de orçamento enquanto receber energia usa perda física."}},{"@type":"Question","name":"Por que a distância máxima é apenas uma estimativa?","acceptedAnswer":{"@type":"Answer","text":"A distância real também depende do tipo de cabo, temperatura, qualidade de splice, parâmetros de rota e equipamento."}},{"@type":"Question","name":"Este resultado pode ser usado para a aceitação final?","acceptedAnswer":{"@type":"Answer","text":"A ferramenta suporta planejamento e solução de problemas. A aceitação final deve usar o medidor de potência e medições OTDR, especificações e padrões empresariais."}}]}</script>
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
+<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
+<script defer src="../../../assets/js/pt-br-launch-runtime.js?v=1223d823e2c6"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
+<link rel="manifest" href="../manifest-pt-br.webmanifest">
+</head>
+<body class="nel-tool-detail-page nel-opb-v3 has-mbar v3 nel-tool-v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference">
+<a class="skip-link" href="#calculator">Saltar para a calculadora</a><noscript><div class="noscript">JavaScript is required.</div></noscript>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../pt-br/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Plataforma de inteligência para engenharia de redes</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Abrir navegação"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navegação principal">
+      <a href="../../../pt-br/">Início</a>
+      <a href="../../pt-br/" aria-current="page">Ferramentas</a>
+      <a href="../../../pt-br/guides/">Guias</a>
+      <a href="../../../pt-br/topics/">Tópicos</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Português do Brasil"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Português do Brasil</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/optical-power-budget/" lang="en" hreflang="en"><span>English</span><small>Inglês</small></a><a class="language-option" role="menuitem" href="/tools/optical-power-budget/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinês simplificado</small></a><a class="language-option" role="menuitem" href="/tools/optical-power-budget/es/" lang="es" hreflang="es"><span>Español</span><small>Espanhol</small></a><a class="language-option" role="menuitem" href="/tools/optical-power-budget/id/" lang="id" hreflang="id"><span>Bahasa Indonesia</span><small>Indonésio</small></a><a class="language-option" role="menuitem" href="/tools/optical-power-budget/pt-br/" lang="pt-BR" hreflang="pt-BR" aria-current="page"><span>Português do Brasil</span><small>Português do Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">Começar a calcular</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Trigo de pão">
+  <a href="../../../pt-br/">Início</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../../pt-br/">Ferramentas</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">Calculadora de orçamento de potência óptica</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END -->
+<section aria-hidden="true" class="hero nel-tool-hero"><div class="hero-inner"><p class="eyebrow">TOOL DE ENGENHARIA ÓPTICA</p><h1>Calculadora de orçamento de potência óptica</h1><p>Verificar orçamento de potência ópticas da potência de transmissão, sensibilidade do receptor e perdas passivas, calculando então a potência de recepção, margem de engenharia e distância máxima.</p><div class="hero-tags"><span>Verificação orçamental</span><span>Distância máxima</span><span>Divisores multiestágios</span><span>Diagnóstico de engenharia</span></div></div></section>
+<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator">
+<div class="tool-head">
+<div>
+<div class="crumbs"><a href="../../pt-br/">Início</a>/<a href="./">Ferramentas</a>/<a href="../../../pt-br/topics/pon-optical/">Óptico</a>/<span>Orçamento de Potência Óptica</span></div>
+<p aria-level="1" class="tool-page-label" role="heading">Calculadora de orçamento de potência óptica</p>
+<p class="tool-lede">Verificar orçamento de potência ópticas da potência de transmissão, sensibilidade do receptor e perdas ODN – em seguida, ler receber potência, margem restante e distância máxima.</p>
+</div>
+<div class="acts">
+<button class="btn btn-ghost btn-sm" id="btn-share" type="button">Entradas de partilha</button>
+</div>
+</div><div class="workspace"><section class="input-panel card nel-tool-input"><div class="fb-panel">
+<div class="panel-h">
+<h2>Equipamentos e parâmetros de ligação</h2>
+<div aria-label="Modo de cálculo" class="tabs" role="tablist">
+<button aria-selected="true" class="on" data-mode="verify" id="mode-verify" role="tab" type="button">Verificação orçamental da ligação</button>
+<button aria-selected="false" data-mode="distance" id="mode-distance" role="tab" type="button">Estimativa máxima da distância</button>
+</div>
+</div>
+<div class="fs">
+<p class="mode-help" id="mode-help">Verificar se uma ligação existente cumpre o orçamento de energia do equipamento.</p>
+<p class="form-error" hidden="" id="validation"></p>
+<div class="fg">
+<p class="fs-t">Projeto</p>
+<div class="fields">
+<div class="f f-wide"><label for="projectName">Nome do projeto</label><div class="inp input-wrap sel"><textarea aria-label="Nome do projeto" autocomplete="off" id="projectName" rows="2">GPON C+ 1:64 Optical Budget</textarea></div><small>Salvo com Compartilhar / Salvar / CSV para seus registros</small></div>
+</div>
+</div>
+<div class="fg">
+<p class="fs-t">Janela de potência do equipamento</p>
+<p class="fg-note">- O que é para fazer? As predefinições preenchem- nas do perfil de padrões seleccionado; mudam qualquer valor para mudar para Personalizado.</p>
+<div class="fields">
+<div class="f"><label for="txPower">Potência mínima de transmissão</label><div class="inp input-wrap"><input aria-label="Potência mínima de transmissão" id="txPower" inputmode="decimal" value="3"/><u>dBm</u></div><small>Pior caso Tx da folha de dados OLT</small></div>
+<div class="f"><label for="txMaxPower">Potência máxima de transmissão</label><div class="inp input-wrap"><input aria-label="Potência máxima de transmissão" id="txMaxPower" inputmode="decimal" value="7"/><u>dBm</u></div><small>Limite de sobrecarga de potência máxima</small></div>
+<div class="f"><label for="rxSensitivity">Sensibilidade do receptor</label><div class="inp input-wrap"><input aria-label="Sensibilidade do receptor" id="rxSensitivity" inputmode="decimal" value="-30"/><u>dBm</u></div><small>Sinal mais fraco que o ONU pode decodificar</small></div>
+<div class="f"><label for="rxOverload">Limiar de sobrecarga do receptor</label><div class="inp input-wrap"><input aria-label="Sobrecarga do receptor" id="rxOverload" inputmode="decimal" value="-8"/><u>dBm</u></div><small>Sinal mais forte antes da saturação saturação</small></div>
+<div class="f"><label for="opticalPenalty">Pena de trajectória óptica</label><div class="inp input-wrap"><input aria-label="Pena de trajectória óptica" id="opticalPenalty" inputmode="decimal" value="1"/><u>dB</u></div><small>Referência C+ a jusante: 1,0 dB; B+: 0,5 dB</small></div>
+<div class="f"><label for="engineeringMargin">Margem de engenharia</label><div class="inp input-wrap"><input aria-label="Margem de engenharia" id="engineeringMargin" inputmode="decimal" value="3"/><u>dB</u></div><small>Reserva para envelhecimento, reparações, temperatura</small></div>
+</div>
+</div>
+<div class="fg">
+<p class="fs-t">Fibras e componentes passivos</p>
+<p class="fg-note">Localização do ODN editável. O comprimento de onda atualiza a atenuação típica de fibra; sobreponha a atenuação se sua planta de cabo difere.</p>
+<div class="fields">
+<div class="f"><label for="distance">Distância da fibra</label><div class="inp input-wrap"><input aria-label="Distância da fibra" id="distance" inputmode="decimal" value="10"/><u>km</u></div></div>
+<div class="f"><label for="wavelength">Comprimento de onda</label><div class="inp input-wrap sel"><select aria-label="Comprimento de onda" id="wavelength"><option value="1310">1310 nm PrestaShop</option><option selected="" value="1490">1490 nm</option><option value="1550">15 15 15 15 15 15 15 15 encosto 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 a 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 na 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 Depósito com Teor Teor Teor Teor Teor Teor Teor Teor Teor Teor Teor Teor Teor Teor Teor Teor Teor Teor Teor Teor Teor Teor Teor Teor com com com com com com com com com com com com</option><option value="1625">1625 nm</option></select></div></div>
+<div class="f"><label for="attenuation">Atenuação da fibra</label><div class="inp input-wrap"><input aria-label="Atenuação da fibra" id="attenuation" inputmode="decimal" value="0.30"/><u>dB/km</u></div><small>Típico G.652 a 1490 nm; use sua especificação</small></div>
+<div class="f"><label for="spliceCount">Número de emendas</label><div class="inp input-wrap"><input aria-label="Número de emendas" id="spliceCount" inputmode="numeric" value="6"/><u>pcs</u></div></div>
+<div class="f"><label for="spliceLoss">Perda por emenda</label><div class="inp input-wrap"><input aria-label="Perda por emenda" id="spliceLoss" inputmode="decimal" value="0.10"/><u>dB</u></div><small>Emenda de fusão</small></div>
+<div class="f"><label for="connectorCount">Número de conectores</label><div class="inp input-wrap"><input aria-label="Número de conectores" id="connectorCount" inputmode="numeric" value="4"/><u>pcs</u></div><small>Count mated pares</small></div>
+<div class="f"><label for="connectorLoss">Perda por conector</label><div class="inp input-wrap"><input aria-label="Perda por conector" id="connectorLoss" inputmode="decimal" value="0.30"/><u>dB</u></div></div>
+<div class="f"><label for="splitter1">Divisor primário</label><div class="inp input-wrap sel"><select aria-label="Divisor primário" id="splitter1"><option value="0">Nenhum (0 dB)</option><option value="3.5">1:2 (3,5 dB)</option><option value="7.0">1:4 (7,0 dB) boxe</option><option selected="" value="10.5">1:8 (10, 5 dB)</option><option value="13.8">1:16 (13, 8 dB)</option><option value="17.0">1:32 (17,0 dB)</option><option value="20.5">1:64 (20, 5 dB)</option></select></div></div>
+<div class="f"><label for="splitter2">Divisor secundário</label><div class="inp input-wrap sel"><select aria-label="Divisor secundário" id="splitter2"><option value="0">Nenhum (0 dB)</option><option value="3.5">1:2 (3,5 dB)</option><option value="7.0">1:4 (7,0 dB) boxe</option><option selected="" value="10.5">1:8 (10, 5 dB)</option><option value="13.8">1:16 (13, 8 dB)</option><option value="17.0">1:32 (17,0 dB)</option><option value="20.5">1:64 (20, 5 dB)</option></select></div></div>
+</div>
+</div>
+<details class="adv">
+<summary>Avançado · terceiro divisor &amp; outra perda passiva</summary>
+<p class="adv-note">Opcional terceiro divisor e perda passiva extra para plantas ODN complexas.</p>
+<div class="fields">
+<div class="f"><label for="splitter3">Terceiro separadorMAR</label><div class="inp input-wrap sel"><select aria-label="Terceiro separadorMAR" id="splitter3"><option selected="" value="0">Nenhum (0 dB)</option><option value="3.5">1:2 (3,5 dB)</option><option value="7.0">1:4 (7,0 dB) boxe</option><option value="10.5">1:8 (10, 5 dB)</option><option value="13.8">1:16 (13, 8 dB)</option><option value="17.0">1:32 (17,0 dB)</option><option value="20.5">1:64 (20, 5 dB)</option></select></div></div>
+<div class="f"><label for="otherLoss">Outros prejuízos passivos</label><div class="inp input-wrap"><input aria-label="Outros prejuízos passivos" id="otherLoss" inputmode="decimal" value="0"/><u>dB</u></div><small>WDM, atenuadores, painéis de patches</small></div>
+</div>
+</details>
+</div>
+<div class="panel-f">
+<div class="input-actions"><button class="btn btn-primary" id="calculateBtn" type="button">Calcular o orçamento de energia</button><button class="btn btn-ghost" id="resetBtn" type="button">Redefinir</button></div>
+</div>
+</div></section><section aria-live="polite" class="result-panel card nel-tool-result" id="result"><div class="readout">
+<div class="ro-h">Análise orçamental <span class="status st-pass" data-status="" id="healthBadge">Aprovado</span><a class="how how-ro" href="#methodology">Como calculado</a></div>
+<!-- L1: status + tightest margin -->
+<div class="ro-l1">
+<div class="reason" id="ro-reason"><b>Todos os três controlos ≥ 3 dB.</b> O mais apertado é o orçamento de classe a 3,20 dB.</div>
+<div class="ro-main">
+<div class="lbl" id="ro-main-lbl">Margem mais apertada · Restante vs orçamento de classe</div>
+<div class="big" id="ro-main-big">3.20<small>dB</small></div>
+<div class="eqn" id="ro-main-eqn">= classe 32.00 - design 28.80 · permanecer 3.20 · sens 7.20 · sobrecarga 10.80</div>
+<div class="meter"><div class="bar"><i id="ro-meter-bar" style="width:90%"></i></div>
+<div class="scale"><span id="ro-meter-left">Orçamento utilizado 90%</span><span id="ro-meter-right">28.80 / 32.00 dB</span></div></div>
+</div>
+</div>
+<!-- L2: key engineering results -->
+<div class="grp ro-l2"><h3>Resultados-chave</h3>
+<div class="row"><span>Potência de recepção estimada</span><b id="ro-rx">−22.80<small>dBm</small></b><div class="eqn" id="ro-rx-eqn">= Tx min 3,00 − físico 25,80</div></div>
+<div class="row"><span>Receber janela de energia</span><b><span id="estimatedRx">-22.80 … -18.80</span> </b><div class="eqn" id="ro-rx-window-eqn">= Tx min...max − físico (min  −22,80 · máx −18,80)</div></div>
+<div class="row"><span>Perda física de ODN</span><b id="physicalLoss">25.80<small>dB</small></b><div class="eqn" id="ro-physical-eqn">fibra + splices + conectores + divisores + outros</div></div>
+<div class="row"><span>Perda total de projecto</span><b id="ro-design">28.80<small>dB</small></b><div class="eqn" id="ro-design-eqn">= 25,80 + margem 3,00 (a pena é retirada do orçamento)</div></div>
+</div>
+<!-- L3: auxiliary -->
+<div class="grp ro-l3"><h3>Janela do receptor</h3>
+<div class="row"><span>Margem acima da sensibilidade</span><b id="ro-sensM">7.20<small>dB</small></b><div class="eqn" id="ro-sensM-eqn">= Rx -22,80 - sensibilidade -30,00</div></div>
+<div class="row"><span>Margem abaixo da sobrecarga</span><b id="ro-overM">10.80<small>dB</small></b><div class="eqn" id="ro-overM-eqn">= sobrecarga −8,00 − (Tx max 7,00 − físico)</div></div>
+</div>
+<div class="checks"><h3>Controlos de estatuto</h3>
+<div class="ck"><i></i><span>Orçamento,</span><b id="remainingBudget">3.20</b></div>
+<div class="ck"><i></i><span>Margem de sensibilidade do receptor</span><b id="ro-ck-sens">7.20 dB</b></div>
+<div class="ck"><i></i><span>Margem de sobrecarga</span><b id="ro-ck-over">10.80 dB</b></div>
+<p>Pass: ≥ 3 dB · Margem: qualquer 0 ≤ x &lt; 3 dB · Falha: qualquer &lt; 0 dB</p>
+</div>
+<div class="wf">
+<div class="r" id="wf-fiber"><span>Fibra 10.00 km × 0.30</span><i style="width:14%"></i><em>3.00 dB</em></div>
+<div class="r" id="wf-split"><span>Divisores</span><i style="width:100%"></i><em>21,00 dB</em></div>
+<div class="r" id="wf-conn"><span>Conectores 4 × 0,30</span><i style="width:6%"></i><em>1.20 dB</em></div>
+<div class="r" id="wf-splice"><span>Chapas 6 × 0,10</span><i style="width:3%"></i><em>0, 60 dB</em></div>
+</div>
+<div class="ro-acts">
+<button data-ro-act="copy" id="copyBtn" type="button">Copiar</button>
+<button data-ro-act="save" id="saveBtn" type="button">Salvar</button>
+<button data-ro-act="csv" id="csvBtn" type="button">CSV</button>
+<button data-ro-act="print" id="printBtn" type="button">Imprimir</button>
+</div>
+</div></section></div>
+<div class="mbar"><div><div class="ml">Margem mais apertada</div><b id="mbar-val">3.20 dB</b></div><span class="status st-pass" data-status="">Aprovado</span><a href="#result" style="margin-left:auto;color:inherit;font-style:normal;text-decoration:none">Detalhes ↓</a></div>
+<aside aria-label="ADVERSÃO" class="ad-slot" data-ad-key="afterCalculator" hidden=""><div class="ad-label">ADVERSÃO</div><div class="ad-body"></div></aside>
+<div class="below">
+<nav class="toc">
+<h4>Nesta página</h4>
+<a href="#about-scope">Sobre &amp; aplicabilidade</a>
+<a href="#methodology">Como é calculado</a>
+<a href="#status-rules">Regras de status</a>
+<a href="#component-check">Verificação de componentes</a>
+<a href="#faq">FAQ</a>
+<a href="#history">Cálculos recentes</a>
+<a href="#references">Referências oficiais</a>
+<a href="#content-review">Revisão do conteúdo</a>
+<a href="#pon-toolkit">Kit de ferramentas PON</a>
+<a href="#nel-tool-graph">Fluxo de trabalho de engenharia</a>
+</nav>
+<div class="prose">
+<details class="fb-fold blk" id="about-scope">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Sobre &amp; aplicabilidade</span></summary>
+<div class="fb-fold-body about-card about-card-inline">
+<p>Calculadora de planejamento gratuita para engenheiros de telecomunicações e rede. Funciona inteiramente no navegador: digite janelas de OLT/ONU e perdas ODN para estimar o orçamento da classe restante, receber energia, margem de sensibilidade, margem de sobrecarga e alcance máximo. Categoria de aplicação: engenharia utilitário / design de ligação óptica. Nenhuma conta necessária.</p>
+<p>Utilização para GPON/EPON ODN planeamento, verificação da janela de recepção e resolução de problemas. Os resultados são ajudas de planeamento — não são substitutos dos valores das fichas de dados, do medidor de potência ou OTDR aceitação, ou normas empresariais.</p>
+<div class="about-meta">
+<span>Tipo · Calculadora de engenharia</span>
+<span>Executa · O lado do cliente</span>
+<span>Locais · PT / 中文 / ES</span>
+<span>Canónico · /tools/orçamento de potência óptica/</span>
+</div>
+</div>
+</details>
+<section id="nel-split-ratio"><h2>1:2 a 1:64 perda dividida você pode recalcular</h2><p>Perda igual-dividida ideal é 10 log10(N). Essa identidade só diz que o poder de entrada Oficiais é dividido por N. Não é a perda de inserção de um dispositivo e não é uma medida de aceitação. Este site mantém uma perda de inserção de planejamento Oficiais para cada relação. Perda excessiva nesta página significa planejar perda de inserção menos 10 log10(N). Substitua o valor de planejamento pela planilha de dados do divisor antes de aprovar um projeto. ITU-T G.671 trata a perda de inserção como um parâmetro específico de componente de ramificação; não publica esses números de planejamento.</p><ul><li>1:2: ideal 3,010 dB, planejamento da inserção 3,7 dB, excesso 0,690 dB.</li><li>1:4: ideal 6.021 dB, inserção de planejamento 7.2 dB, excesso 1.179 dB.</li><li>1:8: ideal 9.031 dB, inserção de planejamento 10.5 dB, excesso 1.469 dB.</li><li>1:16: ideal 12.041 dB, inserção de planejamento 13.8 dB, excesso 1.759 dB.</li><li>1:32: ideal 15.051 dB Costa, inserção de planejamento 17.0 dB, excesso 1.949 dB.</li><li>1:64: ideal 18.062 dB, inserção de planejamento 20,5 dB, excesso 2.438 dB.</li></ul><p>Uma etapa 1:32 utiliza o planejamento perda de inserção de 17.0 dB. A 10 km e 0,25 dB/km a fibra é 2.5 dB. Quatro pares de conectores a 0,3 dB são 1.2 dB, e seis splices em 0,1 dB são 0, 66 dBPerda física é 17,0 + 2,5 + 1,2 + 0,6 = 21,3 dB. Estimativa da potência de recepção em +3 dBm potência mínima de transmissão é +3 - 21.3 = -18.3 dBm. O 0.25 dB/km, 0.3 dB e 0,1 dB as figuras são suposições de planejamento editáveis já utilizadas pela calculadora, não ITU-T Limite G.652 e não uma medição de campo. Contagem de unidades e classe óptica ainda vêm do transmissor e ONU limites.</p><p>Continuar com os mesmos pressupostos: <a href="../../pon-splitter-loss/pt-br/#nel-split-ratio">Calculadora de perda do separador PON</a> · <a href="../../onu-rx-power/pt-br/">Verificação de potência de recepção ONU</a> · <a href="../../pon-fiber-calculators/pt-br/">Calculadoras PON e de fibra</a> · <a href="../../../pt-br/guides/pon-splitter-loss-guide/#nel-split-ratio">Guia de perda do separador</a> · <a href="../../../pt-br/topics/pon-optical/">Tópico óptico PON</a>.</p><p>O termo fibra dentro deste orçamento é o coeficiente de atenuação no comprimento do dB/km. Esse coeficiente não é toda a ligação. O cálculo de 12 km, 3.60 dB de fibra antes dos conectores, está em <a href="../../../pt-br/guides/fiber-loss-per-kilometer/">perda de fibra por quilómetro</a>.</p></section><details class="fb-fold blk" id="methodology">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Como é calculado · métodos &amp; laboratórios</span></summary>
+<div class="fb-fold-body">
+<div class="eq">orçamento da classe = Txmin − Rxsensibilidade − path penalty<br/>
+perda física = fibra + splices + conectores + divisores + outros<br/>
+perda de projeto = perda física + margem de engenharia<br/>
+restante = orçamento de classe − perda de projeto<br/>
+Rx = Tx min − perda física</div>
+<p>Pena de caminho óptico e margem de engenharia são termos de orçamento, não apresentar perdas de componente físico, então receber energia usa apenas perda física. Distinguing orçamento de classe teórica, perda física ODN e margem de engenharia é necessário para correta Passpackage / Marginal / Falha interpretação.</p>
+<div class="method-defs">
+<article><h3>Orçamento ODN padrão</h3><p>Potência mínima de transmissão menos sensibilidade do receptor menos penalização óptica. GPON B+ permite até 28 dB ODN perda, enquanto C+ permite até 32 dB (ITU-T G.984.2 intervalos de classe usados como referências de planejamento).</p></article>
+<article><h3>Perda física de ODN</h3><p>Perda de fibra + perda de splice + perda de conector + perda de divisor multi-estágio + outra perda passiva (WDM, atenuadores, painéis de patch).</p></article>
+<article><h3>Perda total do projeto ODN</h3><p>Perda física de ODN + margem de engenharia. A margem abrange envelhecimento, temperatura, conexões de manutenção e variação de medição.</p></article>
+<article><h3>Potência de recepção estimada</h3><p>Potência mínima de transmissão menos perda física de ODN. Pena de caminho óptico e margem de engenharia são termos de orçamento, não apresentam perdas de componentes físicos.</p></article>
+<article><h3>Exemplos de normas por-- que</h3><p>GPON Referência C+ a jusante: +3 dBm potência mínima de transmissão, −30 dBm ONU sensibilidade, - 8 dBm sobrecarga e 1 dB penalização do caminho óptico; 10 km a 1490 nm, primário 1:8 mais secundário 1:8, 6 splices, 4 conectores e 3 dB margem de engenharia.</p></article>
+</div>
+<p>ITU-T define classes ópticas do sistema e ODN Intervalos de perdas. Para XGS-PON (ITU-T G.9807.1), entrar potência de transmissão, sensibilidade do receptor, limiar de sobrecarga e penalização óptica do equipamento implantado; esta ferramenta não tem predefinição XGS e não deve inferir valores XGS de GPON B+/C+. Suposições de splice, conector e atenuação de fibra ainda devem ser ajustadas às regras da empresa, especificações de componentes e dados de campo.</p>
+</div>
+</details>
+<details class="fb-fold blk" id="status-rules">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Regras de status · Passar / Marginal / Falha</span></summary>
+<div class="fb-fold-body">
+<p>O veredicto toma o mais apertado de três verificações: orçamento de classe restante, margem acima da sensibilidade do receptor, e margem abaixo da balancete (usando potência máxima de transmissão).</p>
+<div class="legend">
+<div class="lg-p"><b>Aprovado</b>Todos os três ≥ 3 dB</div>
+<div class="lg-m"><b>Marginal</b>Qualquer verificação 0 ≤ x &lt; 3 dB</div>
+<div class="lg-f"><b>Falha</b>Qualquer verificação abaixo de 0 dB</div>
+</div>
+<p>O 3 dB Pass / Limite marginal é o limite de planejamento desta ferramenta, não um mandato universal de normas.</p>
+</div>
+</details>
+<details class="fb-fold blk" id="component-check">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Verificação do componente · discriminação da perda padrão</span></summary>
+<div class="fb-fold-body">
+<p>Perda física de ODN = atenuação de fibra × comprimento + perda de divisor + perda de conector + perda de vassoura + outra perda passiva. Para o caso padrão: 3,0 dB fibra + 21,0 dB divisores + 1,2 dB conectores + 0,6 dB splices = 25,8 dB perda física ODN, eo 3 dB margem de engenharia traz perda de design para 28,8 dB. O 1 UnitsdB path penality não é adicionado à perda; é deduzido do orçamento: +3 dBm - (−30 dBm) - 1 dB = 32 dB padrão ODN orçamento, deixando 3,2 dB restante (90% do orçamento usado). A potência mínima de transmissão +3 dBm, portanto, prediz -22,8 dBm receber potência, 7,2 dB acima da sensibilidade; na potência máxima de transmissão +7 dBm o receptor permanece 10,8 dB abaixo do limite de sobrecarga −8 dBm. O margem de engenharia não é deduzido do poder de recepção.</p>
+<p>As etiquetas GPON B+ (28 dB) e C+ (32 dB) são classes de referência do perfil de padrões selecionado, não uma garantia para cada par OLT/ONU. Confirme a sensibilidade real do transmissor, receptor, sobrecarga, comprimento de onda e classe ODN na ficha de dados do equipamento. Continuar a <a href="../../fiber-loss/pt-br/">perda de fibra</a> para contabilidade de rota ou <a href="../../../pt-br/topics/pon-optical/">PON e cubo de tópico óptico</a> para o fluxo de trabalho de projeto.</p>
+<table class="t">
+<tr><th>Item</th><th>Caso padrão</th><th>jurisdição</th></tr>
+<tr><td>Fibra</td><td>10 km a 1490 nm</td><td class="n">3, 0 dB</td></tr>
+<tr><td>Divisores</td><td>1:8 + 1:8</td><td class="n">21,0 dB</td></tr>
+<tr><td>Cone balcão</td><td>4 pares</td><td class="n">1.2 dB</td></tr>
+<tr><td>Especiarias</td><td>6 emendas de fusão</td><td class="n">0, 6 dB</td></tr>
+<tr><td><b>Perda física de ODN</b></td><td></td><td class="n"><b>25. 8 dB</b></td></tr>
+</table>
+</div>
+</details>
+<div class="blk faq" id="faq">
+<span class="eyebrow">FAQ</span>
+<h2>Perguntas mais frequentes</h2>
+<details><summary>Por que o padrão muda para GPON C+ quando 1:8 × 1:8 é retido?</summary>
+<p>Uma cascata 1:8 × 1:8 contribui com cerca de 21 dB de perda de divisor. Com 10 km de fibra, conectores e emendas, a perda física do ODN é de 25.8 dB; adicionar o 3 dB margem de engenharia dá uma perda ODN projeto de 28.8 dB. Isso está acima do limite de 28 dB B+, mas dentro do orçamento 32 dB C+ (33 dB transmit-to-sensitive window menos 1 dB ótico caminho penal), deixando 3.2 dB.</p></details>
+<details><summary>Como um orçamento de energia difere do perda de fibra?</summary>
+<p>As perdas de fibra medem as perdas de rota e componentes. Com um espaço de espaço, pode--se que, a este, a este de que, de que de que que de que de que que de que de que de que de que de que de que de que de que de que de que de que de que de que de que de de que de que de que de que de que de que de que de que de que de que de de de de de de de de de de de de de de que de de de de de de de de de de de de de de de que de que de de de que de de de de que de que de de de que de de de de de de de de de de de de de que de de de de de de de de de de de de de de CEE de de que de que de de que de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de de que de DIREITO de de de de de que de de de de de de de de</p></details>
+<details><summary>Porquê usar a potência mínima de transmissão?</summary>
+<p>Os projetos são verificados nas piores condições para evitar um resultado otimista causado pela variação do equipamento, envelhecimento e temperatura.</p></details>
+<details><summary>O poder de recebimento superior é sempre melhor?</summary>
+<p>Não. Valid A baixa potência pode cair abaixo da sensibilidade, enquanto a potência excessiva pode exceder o limite de sobrecarga. Receber energia deve permanecer dentro da janela permitida.</p></details>
+<details><summary>Por que margem de engenharia não é deduzido do poder de recepção?</summary>
+<p>A margem de engenharia é uma reserva de design, não uma perda física atual. É usado para verificação de orçamento enquanto receber energia usa perda física.</p></details>
+<details><summary>Por que a distância máxima é apenas uma estimativa?</summary>
+<p>A distância real também depende do tipo de cabo, temperatura, qualidade de splice, parâmetros de rota e equipamento.</p></details>
+<details><summary>Este resultado pode ser usado para a aceitação final?</summary>
+<p>A ferramenta suporta planejamento e solução de problemas. A aceitação final deve usar o medidor de potência e medições OTDR, especificações e padrões empresariais.</p></details>
+</div>
+<section class="blk" id="history">
+<p class="eyebrow">Registos de projectos</p>
+<h2>Cálculos recentes</h2>
+<div class="fb-fold-body">
+<div class="history-toolbar">
+<p class="history-hint">Gravado localmente neste navegador (até 12). Não carregado.</p>
+<button class="btn btn-ghost btn-sm" id="btn-clear-history" type="button">Limpar o histórico</button>
+</div>
+<div class="history-list" id="history-list" role="list"></div>
+</div>
+</section>
+<section class="blk" id="references">
+<h2>Referências oficiais · estandartes &amp; janela de potência</h2>
+<div class="fb-fold-body">
+<div class="ref-card">
+<p>A potência mínima de transmissão é utilizada para verificação da sensibilidade e do orçamento de perda. A potência máxima de transmissão é verificada separadamente contra a sobrecarga do receptor; usando apenas o valor mínimo pode esconder um risco de sobrecarga de ligação curta. Predefinições são referências de planejamento, não substitutos para o OLT/ONU exato ou planilha de dados do transceptor. O 3 dB Pass / Limite marginal é o limiar de planejamento desta ferramenta, não um mandato universal de normas.</p>
+<p><b>Revisão:</b> 2026-08-31. Fontes oficiais:</p>
+<div class="std-row">
+<a class="std-chip" href="https://www.itu.int/rec/T-REC-G.984.2/en" rel="noopener noreferrer" target="_blank">ITU-T G.984.2 GPON PMD</a>
+<a class="std-chip" href="https://www.itu.int/rec/T-REC-G.652-202408-I/en" rel="noopener noreferrer" target="_blank">Fibra ITU-T G.652</a>
+<a class="std-chip" href="https://webstore.iec.ch/en/publication/77134" rel="noopener noreferrer" target="_blank">IEC 61280-4-2:2024</a>
+</div>
+</div>
+</div>
+</section>
+<section class="blk" id="content-review">
+<h2>Revisão de conteúdo · base de fórmula &amp; limites</h2>
+<div class="fb-fold-body">
+<div class="review-grid">
+<div class="review-card"><h3>Revisado</h3><p>2026-10-25 (bloco de revisão estruturada). Nota editorial anterior nesta página: 2026-08-31.</p></div>
+<div class="review-card"><h3>Base de fórmula</h3><p>Orçamento ODN padrão = mínimo Tx − sensibilidade do receptor − penalidade do caminho óptico. Perda física ODN = fibra + splicengel + conector + divisor + outra perda passiva. Perda de projeto = perda física + margem de engenharia. Estima-se que a potência de recepção utiliza apenas perda física. Os limites de classe GPON B+/C+ seguem as gamas de Hydroplaining ITU-T G.984.2 citadas nesta página.</p></div>
+<div class="review-card"><h3>Limites de aplicabilidade</h3><p>Planeamento e solução de problemas para orçamentos de ligação óptica / PON. Predefinições são classes de referência, não uma garantia para cada par OLT/ONU. Não é um substituto para o medidor de potência ou aceitação OTDR, valores de planilha de dados ou padrões empresariais. Sem predefinição XGS-PON; digite valores de equipamento para projetos G.9807.1.</p></div>
+<div class="review-card"><h3>Actualizar o registo</h3><ul>
+<li>2026-08-31 — Revisão editorial das notas de janela elétrica e referências oficiais.</li>
+<li>2026-10-25 — Adicionado metadados estruturados de revisão de conteúdo (data de revisão, base de fórmula, limites, log).</li>
+<li>2026-10-27 — layout da calculadora: hierarquia de resultados mais clara; Save, Share and CSV export; mobile mantem parâmetros e resultados abertos com seções de suporte colapsadas por padrão.</li>
+</ul></div>
+</div>
+</div>
+</section>
+<aside aria-label="ADVERSÃO" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">ADVERSÃO</div><div class="ad-body"></div></aside>
+<!-- NEL_PON_LINKS_START -->
+<section aria-labelledby="pon-toolkit-title" class="content-section nel-tool-supporting-section" id="pon-toolkit">
+<div class="section-heading"><div><p class="eyebrow">PON PLANEAMENTO</p><h2 id="pon-toolkit-title">PON e ferramentas de fibra relacionadas</h2></div></div>
+<div class="opb-toolkit-card">
+<p>Trabalhe através de um projeto PON em ordem: razão de divisão, distância, receber energia, em seguida, o orçamento total da ligação.</p>
+<ul class="nel-pon-toolkit"><li><a href="../../pon-splitter-loss/pt-br/">PON Perda de divisor – dB por razão de divisão e cascata engrenagens</a></li><li><a href="../../pon-distance/pt-br/">PON distância máxima – orçamento óptico vs. 20 km de alcance</a></li><li><a href="../../onu-rx-power/pt-br/">ONU receber energia – o dBm leitura é normal?</a></li><li><a href="../../fiber-loss/pt-br/">Perda de fibra – atenuação, splices e conectores</a></li><li><a href="../../pon-fiber-calculators/pt-br/">Todas as calculadoras PON e fibra</a></li></ul>
+<h3>Guias</h3>
+<ul class="nel-pon-guides"><li><a href="../../../pt-br/guides/pon-splitter-loss-guide/">Guia de perda do divisor PON</a></li><li><a href="../../../pt-br/guides/fiber-link-budget-guide/">Guia de orçamento da ligação de fibra</a></li><li><a href="../../../pt-br/topics/pon-optical/">PON e hub tópico óptico</a></li></ul>
+</div>
+</section>
+<!-- NEL_PON_LINKS_END -->
+<p class="hub-return">Parte da <a href="../../pon-fiber-calculators/pt-br/">Calculadoras PON &amp; fibra</a> hub.</p>
+<!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="optical-power-budget" data-primary-workflow="optical-link-design">
+<div class="section-heading"><div><p class="eyebrow">FLUXO DE TRABALHO DE ENGENHARIA</p><h2 id="nel-tool-graph-title">Continuar o fluxo de trabalho de engenharia</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Fluxo de trabalho atual</span><strong>Fluxo de trabalho de design de ligação óptica</strong><p>Crie um link óptico a partir de pressupostos de perda física através de planejamento dividido, orçamento de energia e verificação de alcance máximo.</p></div><div class="nel-workflow-step"><strong>Passo 3 de 5</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="3" aria-valuetext="Passo 3 de 5" aria-label="Passo 3 de 5"><span style="width:60%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="../../pon-splitter-loss/pt-br/"><span class="nel-tool-graph-label">Voltar</span><strong>Calculadora de perda de divisor PON</strong><span class="nel-tool-graph-description">Planeje a divisão em múltiplos estágios e calcule a relação total, a perda de inserção e o alcance efetivo.</span></a><a class="nel-tool-graph-card" href="../../pon-distance/pt-br/"><span class="nel-tool-graph-label">Avançar</span><strong>Calculadora de Distância Máxima PON</strong><span class="nel-tool-graph-description">Calcule o alcance do orçamento óptico, alcance do sistema eficaz e margem de ligação planejada.</span></a></div>
+<h3 class="nel-tool-graph-subtitle">Ferramentas relacionadas</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="../../fiber-loss/pt-br/"><strong>Calculadora de perda de fibra</strong><span class="nel-tool-graph-description">- Não.</span></a><a class="nel-tool-graph-card" href="../../pon-distance/pt-br/"><strong>Calculadora de Distância Máxima PON</strong><span class="nel-tool-graph-description">Calcule o alcance do orçamento óptico, alcance do sistema eficaz e margem de ligação planejada.</span></a><a class="nel-tool-graph-card" href="../../onu-rx-power/pt-br/"><strong>Diagnóstico de Potência ONU RX</strong><span class="nel-tool-graph-description">Diagnose normal, fraca luz, sobrecarga ou possíveis condições de ausência de sinal da potência medida.</span></a><a class="nel-tool-graph-card" href="../../fiber-latency-calculator/pt-br/"><strong>Calculadora de Latência de Fibra</strong><span class="nel-tool-graph-description">Calcule a latência de fibra de ida e volta da distância, índice de grupo, equipamentos e atraso de serialização.</span></a></div><div class="nel-workflow-memberships"><span class="nel-workflow-memberships-label">Também utilizado em</span><span class="nel-workflow-chip">Fluxo de trabalho de isolamento óptico de falhas</span></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
+<section aria-label="Cenários de engenharia" class="scenario-section">
+<div class="scenario-head">
+<p class="fs-t" style="margin:0">Cenários de engenharia</p>
+<p class="scenario-hint">Escolha um perfil padrão para preencher equipamentos e padrões ODN. Editar qualquer campo para mudar para Personalizado.</p>
+</div>
+<div aria-label="Cartões de cenários" class="scenario-grid" role="listbox">
+<button aria-pressed="true" class="scenario-card on" data-preset="gpon-c" role="option" type="button"><b>GPON C+ (32 dB)</b><span>Tx min +3 dBm · sensibilidade −30 dBm · sobrecarga −8 dBm · penalização do caminho 1 dB</span></button>
+<button aria-pressed="false" class="scenario-card" data-preset="gpon-b" role="option" type="button"><b>GPON B+ (28 dB)</b><span>28 dB Classe ODN · confirme a ficha de dados OLT/ONU antes da assinatura do projeto</span></button>
+<button aria-pressed="false" class="scenario-card" data-preset="epon" role="option" type="button"><b>EPON</b><span>Janela de planejamento EPON · edite qualquer valor para seu par OLT/ONU</span></button>
+<button aria-pressed="false" class="scenario-card" data-preset="datacenter" role="option" type="button"><b>Centro de dados</b><span>Demonstração de curto alcance · 1310 nm · sem divisores</span></button>
+<button aria-pressed="false" class="scenario-card" data-preset="custom" role="option" type="button"><b>Personalizado</b><span>Mantenha os números atuais · todos os campos permanecem editáveis</span></button>
+</div>
+<div aria-label="Chips de cenários (compacto)" class="presets presets-mobile" role="listbox">
+<button aria-pressed="true" class="on" data-preset="gpon-c" type="button">GPON C+</button>
+<button aria-pressed="false" data-preset="gpon-b" type="button">GPON B+</button>
+<button aria-pressed="false" data-preset="epon" type="button">EPON</button>
+<button aria-pressed="false" data-preset="datacenter" type="button">Centro de dados</button>
+<button aria-pressed="false" data-preset="custom" type="button">Personalizado</button>
+</div>
+<p class="preset-desc" id="preset-desc">Referência GPON C+: Tx min <b>+3 dBm</b>, sensibilidade <b>−30 dBm</b>, sobrecarga <b>- 8 dBm</b>, pena de passagem <b>1 dB</b>, orçamento de classe <b>32 dB</b>Confirmar contra a folha de dados.</p>
+</section></div>
+</div></main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Ferramentas profissionais online para engenheiros de telecomunicações e redes.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navegação do rodapé">
+      <a href="../../../pt-br/about/">Sobre</a><a href="../../../pt-br/contact/">Contato</a><a href="../../../pt-br/privacy/">Privacidade</a><a href="../../../pt-br/terms/">Termos</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END --><script defer="" src="../js/engine.js?v=5e03675c092d"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../data/optical-standards.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app-v3.js?v=20261107-opb-bw4"></script><script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d"></script></body></html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html lang="id" dir="ltr" data-nel-locale="id" data-nel-route="tools/pue-data-center-energy-efficiency/"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="../" name="app-base"/><title>PUE dan Analisa Efisiensi Energi Pusat Data | Formula dan Batas</title><meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="PUE dan Analisa Efisiensi Energi Pusat Data | Formula dan Batas" property="og:title"/><meta content="Hitung PUE sebagai total energi pusat data yang dibagi oleh IT peralatan energi untuk periode yang sama dan batas yang sama. A kW snapshot dan kWh periode yang berbeda input. Asumsi labelled pada halaman ini bukan pengukuran." property="og:description"/><meta content="https://netengineerlab.com/tools/pue-data-center-energy-efficiency/id/" property="og:url"/><meta content="https://netengineerlab.com/tools/pue-data-center-energy-efficiency/images/og-pue-data-center-energy-efficiency.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="https://netengineerlab.com/tools/pue-data-center-energy-efficiency/images/og-pue-data-center-energy-efficiency.png" name="twitter:image"/><meta content="Hitung PUE sebagai total energi pusat data yang dibagi oleh IT peralatan energi untuk periode yang sama dan batas yang sama. A kW snapshot dan kWh periode yang berbeda input. Asumsi labelled pada halaman ini bukan pengukuran." name="description"/><meta content="index,follow,max-image-preview:large" name="robots"/><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Penganalisa Efisiensi Energi PUE & Data Center","description":"Analisa data-pusat PUE, bukan overhead IT, biaya energi tahunan, target - PUE tabungan, WUE / CUE dan tren bulanan.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"url":"https://netengineerlab.com/tools/pue-data-center-energy-efficiency/id/"}</script>
+
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
+
+<meta name="twitter:title" content="PUE dan Analisa Efisiensi Energi Pusat Data | Formula dan Batas">
+<meta name="twitter:description" content="Hitung PUE sebagai total energi pusat data yang dibagi oleh IT peralatan energi untuk periode yang sama dan batas yang sama. A kW snapshot dan kWh periode yang berbeda input. Asumsi labelled pada halaman ini bukan pengukuran.">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://netengineerlab.com/id/"},{"@type":"ListItem","position":2,"name":"Alat","item":"https://netengineerlab.com/tools/id/"},{"@type":"ListItem","position":3,"name":"PUE dan Analisa Efisiensi Energi Pusat Data","item":"https://netengineerlab.com/tools/pue-data-center-energy-efficiency/id/"}]}</script>
+
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=031fae951adb">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=64bd0d9f6bcb">
+<script defer="" src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script><meta name="theme-color" content="#176ff2">
+<link rel="stylesheet" href="../css/style.css?v=8041bc8927f4"/>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"PUE dan Analisa Efisiensi Energi Pusat Data | Formula dan Batas","url":"https://netengineerlab.com/tools/pue-data-center-energy-efficiency/id/","description":"Hitung PUE sebagai total energi pusat data yang dibagi oleh IT peralatan energi untuk periode yang sama dan batas yang sama. A kW snapshot dan kWh periode yang berbeda input. Asumsi labelled pada halaman ini bukan pengukuran.","inLanguage":"id","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/id/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="id">
+<meta name="nel-route" content="tools/pue-data-center-energy-efficiency/">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
+<link rel="canonical" href="https://netengineerlab.com/tools/pue-data-center-energy-efficiency/id/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/pue-data-center-energy-efficiency/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/pue-data-center-energy-efficiency/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/pue-data-center-energy-efficiency/es/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/tools/pue-data-center-energy-efficiency/id/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/tools/pue-data-center-energy-efficiency/pt-br/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/pue-data-center-energy-efficiency/">
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Batas apa yang harus digunakan PUE?","acceptedAnswer":{"@type":"Answer","text":"Pertahankan batas yang konsisten - total dan batas IT yang konsisten untuk periode yang sama, dan batas dokumen berubah sebelum perbandingan lintas-periode."}},{"@type":"Question","name":"Bisakah kekuatan seketika menghitung PUE?","acceptedAnswer":{"@type":"Answer","text":"Ya untuk snapshot operasi; kecenderungan formal dan perbandingan tahunan harus lebih memilih energi terintegrasi daripada periode perwakilan."}},{"@type":"Question","name":"Mengapa PUE jatuh ketika IT beban naik?","acceptedAnswer":{"@type":"Answer","text":"Jika fasilitas tetap di atas kepala akan sedikit berubah sementara IT berguna naik, tidak-overhead IT menyebar lebih banyak energi IT dan PUE dapat meningkatkan."}},{"@type":"Question","name":"Apa yang WUE tambahkan di luar PUE?","acceptedAnswer":{"@type":"Answer","text":"WUE melacak penggunaan air operasional per unit energi IT sehingga proyek efisiensi dapat diperiksa untuk efek samping air."}},{"@type":"Question","name":"Apakah PUE yang lebih rendah selalu lebih baik?","acceptedAnswer":{"@type":"Answer","text":"Bagian atas fasilitas bawah biasanya membantu, tapi keandalan, iklim, redundansi, pemanfaatan IT dan batas meter masih penting."}}]}</script>
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
+<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
+<script defer src="../../../assets/js/id-launch-runtime.js?v=3461d0601eeb"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
+<link rel="manifest" href="../manifest-id.webmanifest">
+</head><body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1" data-nel-offline-worker="1"><!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../id/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Platform kecerdasan untuk rekayasa jaringan</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Buka navigasi"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navigasi utama">
+      <a href="../../../id/">Beranda</a>
+      <a href="../../id/" aria-current="page">Alat</a>
+      <a href="../../../id/guides/">Panduan</a>
+      <a href="../../../id/topics/">Topik</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Bahasa: Bahasa Indonesia"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Bahasa Indonesia</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/pue-data-center-energy-efficiency/" lang="en" hreflang="en"><span>English</span><small>Inggris</small></a><a class="language-option" role="menuitem" href="/tools/pue-data-center-energy-efficiency/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Tionghoa Sederhana</small></a><a class="language-option" role="menuitem" href="/tools/pue-data-center-energy-efficiency/es/" lang="es" hreflang="es"><span>Español</span><small>Spanyol</small></a><a class="language-option" role="menuitem" href="/tools/pue-data-center-energy-efficiency/id/" lang="id" hreflang="id" aria-current="page"><span>Bahasa Indonesia</span><small>Bahasa Indonesia</small></a><a class="language-option" role="menuitem" href="/tools/pue-data-center-energy-efficiency/pt-br/" lang="pt-BR" hreflang="pt-BR"><span>Português do Brasil</span><small>Portugis Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">Mulai menghitung</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END --><!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a href="../../../id/">Beranda</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../../id/">Alat</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">Penganalisa Efisiensi Energi PUE &amp; Data Center</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END --><section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner"><p class="eyebrow">TOOL EFFICIENSI DATA ENTER</p><p class="hero-title">PUE dan Analisa Efisiensi Energi Pusat Data</p><p>PUE = total data-pusat energi Atlit peralatan energi, untuk satu periode Pecundang dan satu batas. Masukkan sebuah periode kWh atau sebuah kW snapshot. Target - PUE gap adalah perbedaan dari target yang Anda ketik. Ini bukan tabungan yang diukur.</p><div class="hero-tags"><span>PUE</span><span>IT load</span><span>Energi fasilitas</span><span>Dasar efisiensi</span></div></div></section><main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator" data-nel-readout-roles="%7B%22secondary%22%3A%5B%22pue%22%2C%22itShare%22%2C%22nonIT%22%2C%22overhead%22%2C%22annualTotal%22%2C%22annualIT%22%2C%22annualNonIT%22%2C%22annualCost%22%2C%22saveEnergy%22%2C%22saveCost%22%2C%22whatIf%22%2C%22gap%22%2C%22wue%22%2C%22cue%22%5D%2C%22identifier%22%3A%5B%5D%2C%22annotation%22%3A%5B%5D%7D" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv"><div class="tool-head"><nav class="crumbs" aria-label="Breadcrumb">
+  <a href="../../id/">Beranda</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="./">Alat</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">Penganalisa Efisiensi Energi PUE &amp; Data Center</span>
+</nav><h1 class="tool-page-label">PUE dan Analisa Efisiensi Energi Pusat Data</h1><p class="tool-lede">PUE = total data-pusat energi Atlit peralatan energi, untuk satu periode Pecundang dan satu batas. Masukkan sebuah periode kWh atau sebuah kW snapshot. Target - PUE gap adalah perbedaan dari target yang Anda ketik. Ini bukan tabungan yang diukur.</p></div><div class="workspace"><section class="input-panel card nel-tool-input fb-panel"><div class="section-title nel-generated-section-title panel-h" data-nel-generated="v1.2.2"><span class="section-icon">☷</span><div><h2 class="panel-h">Input teknis</h2><p>Set asumsi rekayasa dan parameter desain.</p></div></div><div class="panel"><h2>Masukan inti</h2><div class="fields"><div class="field f"><label>Mode perhitungan</label><div class="inp input-wrap sel"><select id="mode" aria-label="Mode perhitungan"><option value="power">Daya instan</option><option value="energy">Energi periode</option></select></div></div><div class="field f" hidden="" id="periodField"><label>Periode hari</label><div class="inp input-wrap"><input id="periodDays" min="1" type="number" value="30"/ aria-label="Periode hari"></div></div><div class="field f"><label>Total kekuatan fasilitas / energi</label><div class="input"><input id="total" min="0" type="number" value="500"/ aria-label="kW"><span data-unit="">kW</span></div></div><div class="field f"><label>IT peralatan daya / energi</label><div class="input"><input id="it" min="0" type="number" value="350"/ aria-label="kW"><span data-unit="">kW</span></div></div><div class="field f"><label>Listrik tariff</label><div class="input"><input id="tariff" step="0.01" type="number" value="0.12"/ aria-label="mata uang / kWh"><span>mata uang / kWh</span></div></div><div class="field f"><label>Target PUE</label><div class="inp input-wrap"><input id="targetPUE" min="1" step="0.01" type="number" value="1.45"/ aria-label="Target PUE"></div></div></div></div><div class="panel"><h2>2.</h2><p class="note">Nilai komponen menggunakan unit yang sama dengan masukan inti. Tinggalkan item tidak dikenal di 0; penganalisa menunjukkan overhead yang tidak dialokasikan.</p><div class="fields"><div class="field f"><label>Memasak</label><div class="input"><input id="cooling" min="0" type="number" value="80"/ aria-label="kW"><span data-unit="">kW</span></div></div><div class="field f"><label>UPS rugi</label><div class="input"><input id="ups" min="0" type="number" value="25"/ aria-label="kW"><span data-unit="">kW</span></div></div><div class="field f"><label>Pencahayaannya</label><div class="input"><input id="lighting" min="0" type="number" value="5"/ aria-label="kW"><span data-unit="">kW</span></div></div><div class="field f"><label>Kehilangan distribusi</label><div class="input"><input id="distribution" min="0" type="number" value="15"/ aria-label="kW"><span data-unit="">kW</span></div></div><div class="field f"><label>Lainnya</label><div class="input"><input id="other" min="0" type="number" value="25"/ aria-label="kW"><span data-unit="">kW</span></div></div></div></div><div class="panel"><h2>3.</h2><div class="fields"><div class="field f"><label>IT memuat pertumbuhan</label><div class="input"><input id="itGrowthPct" type="number" value="20"/ aria-label="%"><span>%</span></div></div><div class="field f"><label>Penggunaan air tahunan (opsional)</label><div class="input"><input id="annualWaterL" type="number" value="0"/ aria-label="L"><span>L</span></div></div><div class="field f"><label>Annual CO IVBagiku (opsional)</label><div class="input"><input id="annualCO2kg" type="number" value="0"/ aria-label="kgCO dsb"><span>kgCO dsb</span></div></div><div class="field full f"><label>PUE Monthly (opsional)</label><div class="inp input-wrap"><input id="monthlyPUE" value="1.58,1.55,1.52,1.49,1.47,1.45,1.46,1.48,1.50,1.52,1.54,1.56"/ aria-label="PUE Monthly (opsional)"></div></div></div><div class="input-actions nel-pue-actions"><button class="btn btn-primary" id="calculate" type="button">Menghitung Ulang</button><button class="btn btn-ghost" id="reset" type="button">Atur ulang</button></div></div></section><section class="result-panel card nel-tool-result readout" aria-live="polite"><div class="section-title nel-generated-section-title ro-h" data-nel-generated="v1.2.2"><span class="section-icon">▥</span><div><h2 class="ro-h">Hasil rekayasa</h2><p>Review menghitung kapasitas, batas dan pemeriksaan desain.</p></div></div><div class="error" hidden="" id="error"></div><section id="result"><div class="panel"><h2 class="ro-h">Hasil analisa</h2><div class="summary"><article class="metric"><small>PUE</small><strong id="pue">—</strong><span class="badge" id="status"></span></article><article class="metric"><small>jauhilah</small><strong id="itShare">—</strong></article><article class="metric"><small>Non- IT overhead</small><strong id="nonIT">—</strong></article></div><div class="kv"><span>Fasilitas overhead / IT</span><b id="overhead">—</b></div><div class="kv"><span>Total energi tahunan</span><b id="annualTotal">—</b></div><div class="kv"><span>Energi IT Tahunan</span><b id="annualIT">—</b></div><div class="kv"><span>Annual non-IT energy</span><b id="annualNonIT">—</b></div><div class="kv"><span>Biaya listrik tahunan</span><b id="annualCost">—</b></div></div><div class="panel"><h2 class="ro-h">Target - PUE optimasi</h2><div class="kv"><span>Potensi menghemat energi tahunan</span><b id="saveEnergy">—</b></div><div class="kv"><span>Potensi biaya tahunan tabungan</span><b id="saveCost">—</b></div><div class="kv"><span>PUE setelah pertumbuhan IT (tetap di atas kepala)</span><b id="whatIf">—</b></div></div><div class="panel"><h2 class="ro-h">Komposisi None-IT</h2><div id="bars"></div><div class="kv"><span>Unallocated overhead</span><b id="gap">—</b></div></div><div class="panel"><h2 class="ro-h">WUE / CUE</h2><div class="kv"><span>WUE</span><b id="wue">—</b></div><div class="kv"><span>CUE</span><b id="cue">—</b></div></div><div class="panel"><h2 class="ro-h">tren PUE Monthly</h2><div class="trend" id="trend"></div><ul id="warnings"></ul></div></section></section><!-- NEL_DEEP_CONTENT_START --><!-- NEL_DEEP_CONTENT_END --></div><!-- /workspace -->
+<div class="below">
+<nav class="toc" aria-label="Pada halaman ini"><h4>Pada halaman ini</h4>
+<a href="#about-scope">Tentang &amp; tersedia</a>
+<a href="#methodology">Bagaimana itu dihitung</a>
+<a href="#nelDeepWorkflow">Skenario dalam</a>
+<a href="#faq">FAQ</a>
+<a href="#history">Perhitungan baru-baru ini</a>
+<a href="#references">Referensi resmi</a>
+<a href="#nel-tool-graph">Aliran kerja rekayasa</a>
+</nav>
+<div class="prose">
+<details class="fb-fold blk" id="about-scope" data-nel-v3-title-normalized="1">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Tentang &amp; tersedia</span></summary>
+<div class="fb-fold-body about-card about-card-inline">
+<p>Kalkulator perencanaan gratis untuk pusat data dan insinyur fasilitas. Berjalan sepenuhnya di browser: gilirannya seketika kekuatan atau Pulanglah ke PUE, non-IT overhead, biaya tahunan, target - PUE tabungan, dan opsional WUE / CUE. Kategori aplikasi: rekayasa utilitas / efisiensi energi. Tak Rakyat butuhkan.</p>
+<p>Gunakan untuk review energi fasilitas, IT vs overhead split, dan target - PUE perencanaan. Hasil adalah alat perencanaan - bukan pengganti untuk batas-batas medis, mengumpulkan laporan atau standar energi perusahaan.</p>
+<div class="about-meta">
+<span>Tipe kalkulator</span>
+<span>Berjalan</span>
+<span>Locales</span>
+<span>Canonical tools / pue- data- center- energi- efisiensi /</span>
+</div>
+</div>
+</details>
+<details class="fb-fold blk" id="methodology" data-nel-v3-title-normalized="1">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Bagaimana itu dihitung &amp; rumus</span></summary>
+<div class="fb-fold-body">
+<div class="eq">PUE Woods.<br>
+None-IT overhead = total atroIT<br>
+Target energi fasilitas: x target PUE<br>
+Perencanaan penyelamatan Diukur total fasilitas energi</div>
+<p>Menjaga fasilitas dan batas-batas IT meter identik di seluruh interval pelaporan. Warna status dievaluasi terhadap target termasukmu PUE, bukan tabel liga universal. WUE / CUE muncul hanya ketika air atau karbon tahunan dimasukkan.</p>
+<div class="method-defs">
+<article><h3>definisi PUE</h3><p>PUE adalah total data-pusat energi dibagi oleh IT peralatan energi. Kedua istilah menggunakan periode dan batas yang sama. Sebuah asumsi sebesar 100.000 kWh IT dan total 1500.000 kWh lebih dari 30 hari adalah PUE dari 1.50. Lembaran itu adalah asumsi, bukan membaca meteran. Sebuah snapshot daya terpisah dari 560 kW total dan 400 kW IT adalah PUE dari 1.40, dan itu bukan pengukuran yang sama dengan 30- lembar hari Kembali ke atas Katalog publik untuk standar saat ini adalah <a href="https://www.iso.org/standard/30134-2">ISO / IEC 30134-2: 2026</a>Nilai lebih dekat dengan 1 berarti fasilitas lebih rendah overhead relatif terhadap IT.</p></article>
+<article><h3>Overhead breakdown</h3><p>Pendingin, UPS, pencahayaan, distribusi dan beban lainnya menjelaskan jarak dari target PUE dan memberi makan batang komposisi.</p></article>
+<article><h3>Dampak biaya</h3><p>Tariff mengubah energi overhead ke diperkirakan biaya operasi. Target -PUE pembacaan tabungan adalah perbedaan dari target yang Anda masukkan. Hal ini tidak mengukur tabungan dan menyatakan tidak ada persentase tabungan.</p></article>
+<article><h3>Batas</h3><p>Jangan mencampur periode parsial dengan total IT periode penuh, dan tidak membandingkan situs yang meter berhenti pada titik yang berbeda kecuali perubahan batas ditulis. Sebuah kilowatt adalah tingkat. Satu kilowatt-jam adalah energi dari waktu ke waktu. 400 kW selama satu jam adalah 400 kWh hanya sebagai identitas unit. Skala 1500.000 kWh oleh 365 / 30 adalah pembatalan kalkulator, bukan tahun yang diukur. Pendingin ton bukan masukan untuk rasio ini. Pendingin listrik hanya menghitung ketika berada di dalam fasilitas total dan di luar meter IT.</p></article>
+<article><h3>WUE / CUE</h3><p>Air dan karbon opsional menghasilkan WUE dan CUE bersama PUE untuk basis energi IT yang sama.</p></article>
+</div>
+<p><a href="../../../id/guides/data-center-pue-calculation/">Kalkulasi Data Center PUE: Formula, Pengukuran dan Contoh Kerja</a> Menyatakan definisi PUE, rumus perhitungan PUE, bagaimana menghitung PUE, dan perbedaan antara snapshot kW dan periode kWh. Halaman ini adalah pusat data kalkulator PUE.</p><p>Hasil adalah perencanaan perkiraan. Validate tag meter, mode redundansi dan asumsi iklim sebelum keputusan modal.</p>
+</div>
+</details>
+<section id="nelDeepWorkflow" class="content-section nel-tool-supporting-section"></section>
+<div class="blk faq" id="faq">
+<span class="eyebrow">FAQ</span>
+<h2>Pertanyaan yang sering ditanyakan</h2>
+<details><summary>Batas apa yang harus digunakan PUE?</summary>
+<p>Pertahankan batas yang konsisten - total dan batas IT yang konsisten untuk periode yang sama, dan batas dokumen berubah sebelum perbandingan lintas-periode.</p></details>
+<details><summary>Bisakah kekuatan seketika menghitung PUE?</summary>
+<p>Ya untuk snapshot operasi; kecenderungan formal dan perbandingan tahunan harus lebih memilih energi terintegrasi daripada periode perwakilan.</p></details>
+<details><summary>Mengapa PUE jatuh ketika IT beban naik?</summary>
+<p>Jika fasilitas tetap di atas kepala akan sedikit berubah sementara IT berguna naik, tidak-overhead IT menyebar lebih banyak energi IT dan PUE dapat meningkatkan.</p></details>
+<details><summary>Apa yang WUE tambahkan di luar PUE?</summary>
+<p>WUE melacak penggunaan air operasional per unit energi IT sehingga proyek efisiensi dapat diperiksa untuk efek samping air.</p></details>
+<details><summary>Apakah PUE yang lebih rendah selalu lebih baik?</summary>
+<p>Bagian atas fasilitas bawah biasanya membantu, tapi keandalan, iklim, redundansi, pemanfaatan IT dan batas meter masih penting.</p></details>
+</div>
+<section class="blk" id="history" data-nel-v3-title-normalized="1">
+<h2>Perhitungan baru-baru ini</h2>
+<div class="fb-fold-body">
+<div class="history-toolbar history-head">
+<div><p class="eyebrow">Log sesi</p></div>
+<button class="text-button btn btn-ghost btn-sm" id="clearHistoryBtn" type="button">Hapus log</button>
+</div>
+<div class="history-list" id="historyList" role="list"><p class="note">Perhitungan dari sesi peramban ini muncul di sini ketika tersedia.</p></div>
+</div>
+</section>
+<section class="blk" id="references" data-nel-v3-title-normalized="1">
+<h2>Armenicial reference</h2>
+<div class="fb-fold-body">
+<div class="ref-card">
+<p>PUE harus menggunakan fasilitas yang cocok dan perbatasan energi IT selama interval yang sama. Target - PUE tabungan merencanakan tokoh sebelum tariff dan operasi perubahan. Presets tidak menggantikan lokasi metering atau komisaris data.</p>
+<p><b>Tanggal Ulasan: 2026-09-10. Sumber resmi:</b></p>
+<div class="std-row">
+<a class="std-chip" href="https://www.iso.org/standard/30134-2" rel="noopener noreferrer" target="_blank">ISO / IEC 30134-2</a>
+<a class="std-chip" href="https://www.energy.gov/sites/default/files/2024-07/best-practice-guide-data-center-design_0.pdf" rel="noopener noreferrer" target="_blank">Pandu Desain Data Pusat DOE AS</a>
+<a class="std-chip" href="https://www.thegreengrid.org/system/files/store/WUE_v1.pdf" rel="noopener noreferrer" target="_blank">The Green Grid WUE</a>
+</div>
+</div>
+</div>
+</section>
+<p class="hub-return">Bagian dari <a href="../../datacenter-power-calculators/id/">daya pusat data dan kalkulator pendinginan</a> hub.</p><!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="pue-data-center-energy-efficiency" data-primary-workflow="telecom-power-energy">
+<div class="section-heading"><div><p class="eyebrow">MESIN KERJA</p><h2 id="nel-tool-graph-title">Lanjutkan proses rekayasa</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Aliran kerja saat ini</span><strong>Workflow Daya &amp; Energi Telekom</strong><p>Pindah dari situs melalui distribusi AC / DC, ukuran refiser dan diagnostik operasi, baterai cadangan, bahan bakar generator, generasi surya dan efisiensi fasilitas sebagai satu urutan rekayasa energi.</p></div><div class="nel-workflow-step"><strong>Langkah 8 dari 8</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="8" aria-valuenow="8" aria-valuetext="Langkah 8 dari 8" aria-label="Langkah 8 dari 8"><span style="width:100%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="../../telecom-solar-battery-sizing-calculator/id/"><span class="nel-tool-graph-label">Sebelumnya</span><strong>Daya Solar Telekom &amp; Baterai Kalkulator Sizing</strong><span class="nel-tool-graph-description">Ukuran telekom solar PV, otonomi baterai, keseimbangan energi, ekonomi dan emisi untuk grid-hibrida atau off- situs grid. Perlu kita tahu apa yang harus kita lakukan.</span></a><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Berikutnya</span><strong>Kerjaan selesai</strong></div></div>
+<h3 class="nel-tool-graph-subtitle">Perkakas terkait</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="../../network-rack-power-cooling-calculator/id/"><strong>Percuma: Kalkulator Pendingin Daya Jaringan</strong><span class="nel-tool-graph-description">Hitung kekuatan rak, saat ini, beban pendingin, energi dan biaya.</span></a><a class="nel-tool-graph-card" href="../../48v-battery-runtime/id/"><strong>-48V Telecom Baterai Runtime Kalkulator</strong><span class="nel-tool-graph-description">Hitung telekom DC baterai waktu berjalan, dibutuhkan Ah, string paralel dan konstant-daya saat ini meningkat.</span></a><a class="nel-tool-graph-card" href="../../telecom-solar-battery-sizing-calculator/id/"><strong>Daya Solar Telekom &amp; Baterai Kalkulator Sizing</strong><span class="nel-tool-graph-description">Ukuran telekom solar PV, otonomi baterai, keseimbangan energi, ekonomi dan emisi untuk grid-hibrida atau off- situs grid. Perlu kita tahu apa yang harus kita lakukan.</span></a></div><div class="nel-workflow-memberships"><span class="nel-workflow-memberships-label">Juga digunakan di</span><span class="nel-workflow-chip">Pusat Data Critical Power &amp; Cooling Workflow</span></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
+</div>
+</div>
+
+</main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Alat daring profesional untuk insinyur telekomunikasi dan jaringan.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navigasi kaki halaman">
+      <a href="../../../id/about/">Tentang</a><a href="../../../id/contact/">Kontak</a><a href="../../../id/privacy/">Privasi</a><a href="../../../id/terms/">Ketentuan</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END --><script src="../js/engine.js?v=bb55f104d257"></script><script src="../js/app.js?v=e7b7ef373bb4"></script><script src="../js/pwa.js"></script><script src="../js/deep-workflow.js?v=20261106-bw4g"></script><script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
+<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d"></script></body></html>

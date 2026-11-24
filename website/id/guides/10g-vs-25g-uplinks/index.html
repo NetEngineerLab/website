@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id" dir="ltr" data-nel-locale="id" data-nel-route="guides/10g-vs-25g-uplinks/">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>10G vs 25G Switch Uplinks: Upgrade Decision | NetEngineerLab</title>
+  <meta name="description" content="Bandingkan 10G, 25G, 40G dan 100G nominal uplink dengan permintaan Seimbang. Rasio nominal tidak dapat digunakan lewat atau kemacetan.">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="NetEngineerLab">
+  <meta property="og:title" content="10G vs 25G Switch Uplinks: Upgrade Decision | NetEngineerLab">
+  <meta property="og:description" content="Bandingkan 10G, 25G, 40G dan 100G nominal uplink dengan permintaan Seimbang. Rasio nominal tidak dapat digunakan lewat atau kemacetan.">
+  <meta property="og:url" content="https://netengineerlab.com/id/guides/10g-vs-25g-uplinks/">
+  <meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+  <link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../../assets/css/site.css">
+  <link rel="stylesheet" href="../../../assets/css/guide.css?v=6d83ae5e791f">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://netengineerlab.com/guides/10g-vs-25g-uplinks/#webpage","url":"https://netengineerlab.com/id/guides/10g-vs-25g-uplinks","name":"10G vs 25G Switch Uplinks:","description":"Bandingkan 10G, 25G, 40G dan 100G nominal uplink dengan permintaan Seimbang. Rasio nominal tidak dapat digunakan lewat atau kemacetan.","inLanguage":"id","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/id/"}},{"@type":"Article","@id":"https://netengineerlab.com/guides/10g-vs-25g-uplinks/#article","headline":"10G vs 25G Switch Uplinks:","description":"Bandingkan 10G, 25G, 40G dan 100G nominal uplink dengan permintaan Seimbang. Rasio nominal tidak dapat digunakan lewat atau kemacetan.","url":"https://netengineerlab.com/id/guides/10g-vs-25g-uplinks","inLanguage":"id","mainEntityOfPage":{"@id":"https://netengineerlab.com/guides/10g-vs-25g-uplinks/#webpage"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/id/","logo":{"@type":"ImageObject","url":"https://netengineerlab.com/id/assets/images/logo.svg"}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://netengineerlab.com/id/"},{"@type":"ListItem","position":2,"name":"Topik","item":"https://netengineerlab.com/id/topics/switch-oversubscription/"},{"@type":"ListItem","position":3,"name":"10G vs 25G Switch Uplinks","item":"https://netengineerlab.com/id/guides/10g-vs-25g-uplinks/"}]}]}</script>
+  
+  <meta name="twitter:title" content="10G vs 25G Switch Uplinks: Upgrade Decision | NetEngineerLab">
+<meta name="twitter:description" content="Bandingkan 10G, 25G, 40G dan 100G nominal uplink dengan permintaan Seimbang. Rasio nominal tidak dapat digunakan lewat atau kemacetan.">
+
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="../../../assets/css/site-pages-v2.css?v=20261105-v2">
+<link rel="stylesheet" href="../../../assets/css/editorial-fresh.css?v=20261123-align2">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"10G vs 25G Switch Uplinks: Upgrade Decision | NetEngineerLab","url":"https://netengineerlab.com/id/guides/10g-vs-25g-uplinks/","description":"Bandingkan 10G, 25G, 40G dan 100G nominal uplink dengan permintaan Seimbang. Rasio nominal tidak dapat digunakan lewat atau kemacetan.","inLanguage":"id","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/id/"}}</script>
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Kapan aku harus meng-upgrade 10G uplink ke 25G? shallow","acceptedAnswer":{"@type":"Answer","text":"Evaluasi 25G ketika permintaan terukur dan perkiraan tidak lagi cocok dengan kapasitas yang digunakan 10G dengan layanan cadangan yang Anda butuhkan, dan desain 25G yang kompatibel melewati pemeriksaan yang sama. Tidak ada batas utilisasi universal."}},{"@type":"Question","name":"Apakah 25G Tunjukkan uplink 25 Gbps aplikasi melalui?","acceptedAnswer":{"@type":"Answer","text":"25 Gbps adalah tingkat garis nominal. Secara aktual dapat digunakan melalui tergantung pada titik akhir, jalur penerusan, paket campuran, protokol overhead, antrian, dan konfigurasi diuji."}},{"@type":"Question","name":"Bisakah dua anggota 25G LAG membawa satu aliran Gbps 50?","acceptedAnswer":{"@type":"Answer","text":"Jangan berasumsi begitu. Penyerangan nominal adalah 50 Gbps per arah, tapi aliran biasanya memetakan ke satu anggota. Konfirmasikan metode distribusi platform dan tes perwakilan mengalir."}},{"@type":"Question","name":"Apakah 4 × 10G selalu alternatif yang lebih murah untuk 2 × 25G?","acceptedAnswer":{"@type":"Answer","text":"Tidak. Bandingkan port, kartu baris, modul, kabel, daya, lisensi, dukungan, migrasi, dan validasi kapasitas yang dapat digunakan untuk peralatan yang tepat. Tingkat port nominal bawah tidak menentukan total biaya lifecycle."}},{"@type":"Question","name":"Dapatkah checker kompatibilitas menyetujui vendor- spesifik optik?","acceptedAnswer":{"@type":"Answer","text":"Tidak. Ia dapat menampilkan masukan fisik dan optik, tapi dukungan host yang tepat, coding, firmware, FEC, breakout, dan persetujuan nomor-partai harus berasal dari dokumentasi peralatan."}},{"@type":"Question","name":"Apakah 25G uplink membawa 2,5 kali lalu lintas nyata dari sebuah uplink 10G?","acceptedAnswer":{"@type":"Answer","text":"25 Gbps adalah tingkat garis nominal. Aplikasi yang dapat digunakan tergantung pada platform, jalur penerusan, overhead protokol, campuran lalu lintas, antrian, dan konfigurasi link diuji."}},{"@type":"Question","name":"Dapatkah sebuah port SFP28 menggunakan modul SFP+?","acceptedAnswer":{"@type":"Answer","text":"Hanya ketika host port yang tepat, perangkat lunak, modul, tingkat konfigurasi, dan peer didokumentasikan untuk mendukung kombinasi tersebut. Kandang yang cocok saja tidak membuktikan kecocokan."}}]}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="id">
+<meta name="nel-route" content="guides/10g-vs-25g-uplinks/">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
+<link rel="canonical" href="https://netengineerlab.com/id/guides/10g-vs-25g-uplinks/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/10g-vs-25g-uplinks/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/10g-vs-25g-uplinks/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/es/guides/10g-vs-25g-uplinks/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/id/guides/10g-vs-25g-uplinks/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/pt-br/guides/10g-vs-25g-uplinks/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/10g-vs-25g-uplinks/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
+</head>
+<body class="guide-page guide-fresh">
+  <!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Platform kecerdasan untuk rekayasa jaringan</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Buka navigasi"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navigasi utama">
+      <a href="../../">Beranda</a>
+      <a href="../../../tools/id/">Alat</a>
+      <a href="../" aria-current="page">Panduan</a>
+      <a href="../../topics/">Topik</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Bahasa: Bahasa Indonesia"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Bahasa Indonesia</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/guides/10g-vs-25g-uplinks/" lang="en" hreflang="en"><span>English</span><small>Inggris</small></a><a class="language-option" role="menuitem" href="/zh/guides/10g-vs-25g-uplinks/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Tionghoa Sederhana</small></a><a class="language-option" role="menuitem" href="/es/guides/10g-vs-25g-uplinks/" lang="es" hreflang="es"><span>Español</span><small>Spanyol</small></a><a class="language-option" role="menuitem" href="/id/guides/10g-vs-25g-uplinks/" lang="id" hreflang="id" aria-current="page"><span>Bahasa Indonesia</span><small>Bahasa Indonesia</small></a><a class="language-option" role="menuitem" href="/pt-br/guides/10g-vs-25g-uplinks/" lang="pt-BR" hreflang="pt-BR"><span>Português do Brasil</span><small>Portugis Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+  <nav class="guide-breadcrumb" aria-label="Breadcrumb">
+    <a href="../../">Beranda</a> / <a href="../../topics/switch-oversubscription/">Ganti Berlebihan</a> / <span aria-current="page">10G vs 25G Switch Uplinks</span>
+  </nav>
+  <main class="guide-shell" id="main">
+    <section class="guide-hero">
+      <p class="eyebrow">PLANNING UPLIK</p>
+      <h1>10G vs 25G Switch Uplinks:</h1>
+      <p class="guide-lead">Upgrade ketika diukur dan permintaan ramalan tidak lagi cocok dengan kapasitas dan cadangan desain saat ini. Bandingkan pilihan 10G dan 25G terhadap lalu lintas yang sama, kompatibilitas, dan asumsi biaya hidup.</p>
+      <div class="guide-meta"><span>10GBE vs 25GbE</span><span>Permintaan bisnis-jam</span><span>Perencanaan Kapasitas</span><span>Kompabilitas platform</span></div>
+    </section>
+
+    <div class="guide-layout">
+      <article class="guide-article">
+        <section id="upgrade-trigger">
+          <h2>Kapan 10G uplink membutuhkan upgrade?</h2>
+          <p>Tingkat garis yang lebih tinggi layak dievaluasi ketika kebutuhan lalu lintas, bukan rasio generik, mengatakan desain saat ini kehabisan ruang. Bandingkan permintaan dalam arah yang sama dan pada batas jaringan yang sama dengan uplink. Periksa pengukuran perwakilan-jam-jam, diperkirakan pertumbuhan, cadangan yang Anda berniat untuk menyimpan, dan kapasitas yang dapat digunakan terbukti untuk platform target.</p>
+          <p>Grafik utilisasi yang meningkat adalah sinyal untuk menyelidiki, bukan ambang peningkatan universal. Antrian menurun, latensi, durasi kemacetan, kelas lalu lintas, dan tujuan penerapan dapat membuat utilisasi rata-rata yang lebih rendah tidak dapat diterima; ledakan singkat saja mungkin tidak membenarkan perubahan perangkat keras. Gunakan lihar-Kami lokal tujuan dan telemetri untuk memutuskan.</p>
+          <p>Jauhkan pertanyaan terpisah: tingkat nominal menggambarkan desain link, kapasitas dapat diukur menggambarkan platform yang diuji dan jalur lalu lintas, dan kinerja aplikasi harus divalidasi dengan beban kerja yang sebenarnya.</p>
+        </section>
+
+        <section id="measure-demand">
+          <h2>Measure bus-jam permintaan sebelum membandingkan kecepatan</h2>
+          <p>Kumpulkan antar muka per- arah counter dari setiap anggota uplink aktif dan kumpulan relevan atau bottleneck. Rekam interval sampling, jendela waktu, tanggal, teropong lalu lintas, dan apakah data termasuk wakil periode sibuk, acara yang direncanakan, backup, dan puncak musiman. Sebagai contoh, sebuah tim dapat memilih lima menit sampel lebih dari 30 hari periode operasi perwakilan; itu adalah sebuah rencana pengukuran, bukan standar universal.</p>
+          <p>Jika Anda meringkas yang dipilih bury- jam sampel dengan 99%, menyebutnya <strong>busy- hour permintaan P95</strong>P95 bukan puncak maksimum. Jauhkan pendek-hidup maxima, penghitung drop, kedalaman antrian, latensi, dan peralatan-spesifik batas sebagai bukti terpisah. Jangan tambahkan masuk dan keluar bersama pada link duplex penuh; bandingkan setiap arah dengan kapasitas yang sesuai.</p>
+          <p>Untuk LAG, kumpulkan baik kumpulan dan penghitung anggota. Distribusi berbasis Hash dapat meninggalkan satu anggota sibuk sementara bundel memiliki ruang kepala bersama. Sebuah kumpulan nominal tidak menjanjikan bahwa aliran tunggal dapat menggunakan seluruh bunDiturunkan.</p>
+        </section>
+
+        <section id="forecast">
+          <h2>Memramalkan persyaratan dan mengatur cadangan kapasitas</h2>
+          <p>Gunakan asumsi pertumbuhan transparan dan cakrawala perencanaan yang dinyatakan:</p>
+          <p><code>D<sub>future</sub> = D<sub>baseline</sub> × (1 + g)<sup>t</sup></code></p>
+          <p>Ini, <code>D<sub>baseline</sub></code> adalah permintaan yang diukur di Gbps, <code>g</code> adalah secara eksplisit menyatakan tingkat pertumbuhan tahunan path <code>t</code> adalah jumlah tahun. Model tumbuh- pertumbuhan ini adalah skenario perencanaan, bukan prediksi kecuali masukan didukung oleh sejarah lokal atau perkiraan yang disetujui.</p>
+          <p>Tentukan <code>r</code> sebagai fraksi yang diverifikasi kapasitas dapat sengaja disimpan dalam cadangan. Batas utilisasi yang direncanakan adalah:</p>
+          <p><code>D<sub>future</sub> / C<sub>usable</sub> ≤ 1 − r</code></p>
+          <p>Oleh karena itu:</p>
+          <p><code>C<sub>required</sub> = D<sub>future</sub> / (1 − r)</code></p>
+          <p>Untuk setiap pilihan, laporkan pemanfaatan masa depan <code>D<sub>future</sub> / C<sub>usable</sub></code> dan sisa ruang kepala <code>C<sub>usable</sub> − D<sub>future</sub></code>Sebuah cadangan adalah pilihan perencanaan eksplisit; bukan batas industri universal.</p>
+        </section>
+
+        <section id="compare-designs">
+          <h2>Bandingkan 2 × 10G, 4 × 10G, dan 2 × desain 25G</h2>
+          <p>Untuk satu arah lalu lintas, kapasitas anggota nominal adalah jumlah dari laju sambungan yang diteruskan:</p>
+          <p><code>C<sub>nominal</sub> = Σ(active forwarding member rates)</code></p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Desain contoh</th><th>Noominal agregat, per arah</th><th>Apa yang harus diverifikasi</th></tr></thead>
+              <tbody>
+                <tr><td>2 × 10G</td><td>20 Gbps</td><td>Kedua tautan ke depan dalam keadaan dievaluasi; platform dan LAG mendukung konfigurasi yang dimaksudkan.</td></tr>
+                <tr><td>4 × 10G</td><td>40 Gbps</td><td>Empat port yang dapat digunakan, jumlah anggota yang didukung, kapasitas rekan, hashing perilaku, dan lisensi yang diperlukan.</td></tr>
+                <tr><td>2 × 25G</td><td>50 Gbps</td><td>Kedua titik akhir mendukung mode port 25G yang tepat, optik, media, FEC, dan kombinasi perangkat lunak.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Ini adalah total tingkat aritmatika, tidak diukur aplikasi melalui put atau jaminan bahwa switch tertentu mendukung topologi. Determine <code>C<sub>usable</sub></code> dari tes atau kapasitas dokumentasi untuk model yang tepat, kartu baris, perangkat lunak, jalur penerusan, dan profil lalu lintas. Akun untuk protokol overhead, platform batas, antrian, dan distribusi LAG di mana mereka menerapkan. Jangan menggunakan kapasitas yang dapat digunakan dengan mengalikan tingkat nominal dengan faktor efisiensi yang tidak terdokumentasi.</p>
+          <p>Sebuah LAG dapat mengumpulkan kapasitas anggota melintasi aliran, tetapi aliran dapat ditugaskan ke satu anggota dengan hash platform. Verifikasi anggota loading dan test perwakilan lalu lintas. Jika 4 × 10G membutuhkan port tambahan, optik, cabling, kekuasaan, atau kartu baris baru, termasuk ketergantungan tersebut dalam perbandingan.</p>
+        </section>
+
+        <section id="worked-cases">
+          <h2>Tiga kasus kapasitas dengan asumsi eksplisit</h2>
+          <p>Semua nilai di bawah ini adalah masukan perencanaan ilustratif, bukan standar, mengukur hasil produk, atau batas peningkatan universal. Masing-masing diasumsikan <code>C<sub>usable</sub></code> nilai akan membutuhkan bukti dari peralatan target yang sebenarnya sebelum keputusan desain.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Case</th><th>Permintaan forecast</th><th>Cadangan</th><th>Kapasitas minimal yang dapat dipakai</th><th>Kapasitas dapat diverifikasi Illustratif</th><th>UtiBudation / Headroom</th></tr></thead>
+              <tbody>
+                <tr><td>A: pertahankan pilihan 2 x 10G</td><td>12 Gbps</td><td>20%</td><td>12 0.80 = 15 Gbps</td><td>18 Gbps untuk diasumsikan diuji 2 × 10G platform</td><td>12 = 66.7%; 18 September 12 = 6 Gbps</td></tr>
+                <tr><td>B: pertimbangkan menambahkan anggota 10G</td><td>27 Gbps</td><td>20%</td><td>27 0.80 = 33,75 Gbps</td><td>36 Gbps untuk diasumsikan diuji 4 × 10G platform</td><td>27: 36 = 75%; 36 September 27 = 9 Gbps</td></tr>
+                <tr><td>C: evaluasi sebuah pilihan 2 × 25G</td><td>35 Gbps</td><td>20%</td><td>35 = 43.75 Gbps</td><td>46 Gbps untuk diasumsikan diuji 2 × 25G platform</td><td>35 = 11 Gbps</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Kasus A adalah numerik dalam cadangan hanya jika platform -spesifik 18 Gbps usable-kapasitas masukan divalidasi; 20 Gbps total nominal saja tidak membuktikan itu. Kasus B membutuhkan 4 ×10G topologi dan diasumsikan 36 Gbps Kapasitas yang dapat dipakai untuk didukung dan dites; a 40 Gbps total nominal tidak cukup bukti dengan sendirinya. In Case C, 4 ×10G hanya 40 Gbps kapasitas nominal, di bawah 43.75 Gbps commanded, while the hypothetical 2 ×25G Usable-kapasitas hasil akan bertemu jika diverifikasi. 50 Gbps total nominal saja tidak menetapkan hasil itu.</p>
+          <p>Sebagai contoh pertumbuhan, baseline Gbps 9 kali tumbuh di diasumsikan 12% per tahun selama tiga tahun memberikan <code>9 × 1.12<sup>3</sup> ≈ 12.64 Gbps</code>. Ganti tingkat diasumsikan dan cakrawala dengan didokumentasikan ramalan cuaca sebelum pengadaan.</p>
+        </section>
+
+        <section id="compatibility">
+          <h2>Periksa kompatibilitas perangkat dan optik dengan model yang tepat</h2>
+          <p>Jangan menyetujui desain 25G dari bentuk kandang atau label SFP28 generik. Periksa pengidentifikasi produk dan versi perangkat lunak yang tepat di kedua ujungnya terhadap dokumentasi produsen dan dukungan matriks.</p>
+          <ul>
+            <li><strong>Switch dan kartu baris:</strong> chassis tepat, line- card, port, dan versi perangkat lunak; modes kecepatan yang -Jadi didukung, grup port, lisensi, dan batas seterusnya.</li>
+            <li><strong>Kedua titik akhir:</strong> modul nomor bagian, kebijakan pengkodean host, laju yang didukung, dan kompatibilitas perangkat peer-.</li>
+            <li><strong>medium optik atau tembaga:</strong> standar modul, tipe serat, konektor, panjang gelombang, jangkauan, anggaran link, dan kualitas jalur terpasang.</li>
+            <li><strong>Pengaturan lapisan fisik:</strong> Mode FEC, pengkodean, negosiasi kecepatan atau konfigurasi fixed-rate, dan pengaturan yang cocok pada setiap titik akhir.</li>
+            <li><strong>Breakout dan agregation:</strong> peta breakout yang didukung, penempatan jalur, pembatasan grup port-, jumlah anggota LAG, hashing, dan perilaku tunggal-flow.</li>
+            <li><strong>Operasional cocok:</strong> daya dan anggaran pendingin, jangkauan suhu yang didukung, pemantauan, ketersediaan cadangan, dan prosedur pemeliharaan.</li>
+          </ul>
+          <p>The <a href="../../../tools/sfp-qsfp-compatibility-calculator/id/">SFP &amp; QSFP Pemeriksa Kompatibilitas</a> dapat membantu laju layar, jalur, serat, panjang gelombang, dan masukan optimasi anggaran. Ini tidak query setiap vendor modul database atau membuktikan host coding, firmware, FEC, breakout, atau platform support. Konfirmasi nomor bagian yang tepat dengan dokumentasi perangkat.</p>
+        </section>
+
+        <section id="lifecycle-cost">
+          <h2>Bandingkan biaya hidup pada dasar yang sama</h2>
+          <p>Atur satu periode evaluasi <code>T</code> dalam setahun, satu mata uang, dan batas biaya yang sama untuk setiap alternatif. Perlakukan peralatan, modul, cabling, dan migrasi sebagai biaya satu kali dalam mata uang itu; mengekspresikan kekuatan, pendinginan, lisensi, dan dukungan sebagai biaya tahunan berulang dalam mata uang yang sama. Perbandingan sederhana yang tidak diketahui adalah:</p>
+          <p><code>TCO(T years) = one-time equipment + modules + cabling + migration + T × (annual power + annual cooling + annual licenses + annual support)</code></p>
+          <p>Termasuk switch atau line- card perubahan, port yang baru diperlukan, optik, serat kerja, daya dan pendinginan, lisensi perangkat lunak, dukungan, tenaga kerja rekayasa, outage atau biaya migrasi, dan spares. Mengkonversi penggunaan energi dan tarif menjadi biaya tahunan sebelum menerapkan rumus. Jika menggunakan nilai saat ini, diskon semua biaya berulang dengan tingkat yang sama dinyatakan dan waktu. Biaya peralatan tenggelam terpisah dari pengeluaran baru dan menunjukkan apa yang masih dapat digunakan di bawah setiap pilihan.</p>
+          <p>Dimana tidak ada tanda kutip saat ini yang sebanding, menyimpan biaya sebagai variabel seperti <code>K<sub>switch</sub></code>, <code>K<sub>optic</sub></code>, dan <code>K<sub>migration</sub></code>; jangan menciptakan harga pasar. Perbandingan lokal yang berguna adalah biaya lifecycle bertahap dibagi dengan kapasitas yang dapat divalidasi incremental, menyediakan kedua pilihan memenuhi permintaan, cadangan, kompatibilitas, dan persyaratan layanan yang sama. Tidak ada pengembalian universal atau pemotongan ROI.</p>
+        </section>
+
+        <section id="n-minus-one-note">
+          <h2>Jaga kapasitas kegagalan sebagai pemeriksaan terpisah</h2>
+          <p>Kapasitas normal negara tidak membuktikan desain akan memenuhi permintaan setelah anggota, path, atau perangkat gagal. Evaluasi skenario kegagalan yang terpisah dengan <a href="../../guides/switch-oversubscription-n-1/">N-1 uplink panduan kapasitas</a>; perbandingan upgrade ini tidak menghitung kapasitas bertahan hidup.</p>
+        </section>
+
+        <section id="upgrade-checklist">
+          <h2>Upgrade keputusan checklist</h2>
+          <ol>
+            <li>Tentukan batas lalu lintas dan bandingkan setiap arah secara terpisah.</li>
+            <li>Tanggal pengukuran rekaman, interval sampling, statistik bus-jam, lingkup lalu lintas, tetes, antrian, dan tujuan aplikasi.</li>
+            <li>Permintaan dasar dokumen, bukti pertumbuhan, cakrawala perkiraan, definisi cadangan, dan kemampuan yang diperlukan.</li>
+            <li>Tahan platform - spesifik AS bukti kapasitas untuk setiap kandidat topologi; menjaga tingkat nominal terpisah.</li>
+            <li>Verifikasi port, modul, media, FEC, perangkat lunak, breakout, dan dukungan peer dari dokumentasi peralatan.</li>
+            <li>Bandingkan alternatif dengan periode lifecycle yang sama, mata uang, dan batas biaya.</li>
+            <li>Periksa anggota LAG memuat dan batas arus tunggal, kemudian tinjauan terpisah diperlukan kasus kegagalan.</li>
+            <li>Rekam pilihan yang dipilih, asumsi yang belum terselesaikan, langkah penerimaan, dan rencana rollback.</li>
+          </ol>
+        </section>
+
+        <section id="faq">
+          <h2>Pertanyaan yang sering ditanyakan</h2>
+          <details><summary>Kapan aku harus meng-upgrade 10G uplink ke 25G? shallow</summary><p>Evaluasi 25G ketika permintaan terukur dan perkiraan tidak lagi cocok dengan kapasitas yang digunakan 10G dengan layanan cadangan yang Anda butuhkan, dan desain 25G yang kompatibel melewati pemeriksaan yang sama. Tidak ada batas utilisasi universal.</p></details>
+          <details><summary>Apakah 25G Tunjukkan uplink 25 Gbps aplikasi melalui?</summary><p>25 Gbps adalah tingkat garis nominal. Secara aktual dapat digunakan melalui tergantung pada titik akhir, jalur penerusan, paket campuran, protokol overhead, antrian, dan konfigurasi diuji.</p></details>
+          <details><summary>Bisakah dua anggota 25G LAG membawa satu aliran Gbps 50?</summary><p>Jangan berasumsi begitu. Penyerangan nominal adalah 50 Gbps per arah, tapi aliran biasanya memetakan ke satu anggota. Konfirmasikan metode distribusi platform dan tes perwakilan mengalir.</p></details>
+          <details><summary>Apakah 4 × 10G selalu alternatif yang lebih murah untuk 2 × 25G?</summary><p>Tidak. Bandingkan port, kartu baris, modul, kabel, daya, lisensi, dukungan, migrasi, dan validasi kapasitas yang dapat digunakan untuk peralatan yang tepat. Tingkat port nominal bawah tidak menentukan total biaya lifecycle.</p></details>
+          <details><summary>Dapatkah checker kompatibilitas menyetujui vendor- spesifik optik?</summary><p>Tidak. Ia dapat menampilkan masukan fisik dan optik, tapi dukungan host yang tepat, coding, firmware, FEC, breakout, dan persetujuan nomor-partai harus berasal dari dokumentasi peralatan.</p></details><details><summary>Apakah 25G uplink membawa 2,5 kali lalu lintas nyata dari sebuah uplink 10G?</summary><p>25 Gbps adalah tingkat garis nominal. Aplikasi yang dapat digunakan tergantung pada platform, jalur penerusan, overhead protokol, campuran lalu lintas, antrian, dan konfigurasi link diuji.</p></details><details><summary>Dapatkah sebuah port SFP28 menggunakan modul SFP+?</summary><p>Hanya ketika host port yang tepat, perangkat lunak, modul, tingkat konfigurasi, dan peer didokumentasikan untuk mendukung kombinasi tersebut. Kandang yang cocok saja tidak membuktikan kecocokan.</p></details>
+        </section>
+
+        <section id="speeds-40-100">
+          <h2>Dimana 40G dan 100G duduk dalam aritmatika yang sama</h2>
+          <p>Untuk satu arah, kapasitas nominal masih merupakan Melihat laju antarmuka yang maju. Pada 48 × 1 Gbps Akses, yaitu 48 Gbps, rasio baris- rate adalah 1 ×10G = 4.8:1, 2×10G = 2.4:1, 1×25G = 1.92:1, 2×25G = 0.96:1, 1×40G = 1.2: 1 dan 1 ×100G = 0.48: 1 Kalkulator putaran ke satu desimal, jadi 1.92: 1 ditampilkan sebagai 1.9: 1, 0.96: 1 tampilkan sebagai 1: 1, dan 0.48: 1 display sebagai 0.5: 1. Gbps Akses, yang 480 Gbps, 4×100G adalah 480 £400 = 1,2: 1. Duplex penuh tidak menggandakan angka-angka ini: setiap tingkat antarmuka dihitung sekali dalam arah yang dibandingkan.</p>
+          <p>baris ini adalah aritmatika. Mereka bukan aturan upgrade vendor, dan mereka tidak diukur kemacetan. A 100G nominal uplink masih dapat menelan jika ditawarkan beban di arah itu, ledakan, tingkat paket, atau port dan hardware forwarding batas adalah batas botol. A 25G LAG juga dapat membatasi satu anggota sedangkan rata-rata bundel terlihat dapat diterima. Rekomendasikan rasio dalam <a href="../switch-oversubscription-ratio/">panduan rasio oversubscription</a> dan kasus anggota di <a href="../lacp-member-congestion/">Konsumsi anggota LACP</a>.</p>
+        </section>
+        <section class="content-section" id="related-resources">
+          <h2>Sumber daya rekayasa terkait</h2>
+          <ul>
+            <li><a href="../../../tools/switch-uplink-oversubscription-calculator/id/">Tukar Kalkulator Uplink Bandwidth &amp; Oversubscription</a></li>
+            <li><a href="../../../tools/sfp-qsfp-compatibility-calculator/id/">SFP &amp; QSFP Pemeriksa Kompatibilitas</a></li>
+            <li><a href="../../guides/48-port-switch-2x10g-enough/">Kandidat 1: Apakah 2 × 10G cukup untuk sebuah Malahan gigabit 48- port?</a></li>
+            <li><a href="../../guides/switch-oversubscription-n-1/">Kandidat 2: N-1 uplink kapasitas dan perencanaan kegagalan</a></li>
+            <li><a href="../switch-oversubscription-ratio/">Bagaimana menghitung rasio oversubscription</a></li>
+            <li><a href="../lacp-member-congestion/">Konsumsi anggota LACP</a></li>
+            <li><a href="../../topics/switch-oversubscription/">Ganti Berlebihan &amp; Uplink Kapasitas Topik Hub</a></li>
+          </ul>
+        </section>
+      </article>
+      <aside class="guide-toc guide-related-side" aria-label="Pada halaman ini">
+        <strong>Pada halaman ini</strong>
+        <a href="#upgrade-trigger">Pemicu upgrade</a>
+        <a href="#measure-demand">Mengukur permintaan</a>
+        <a href="#forecast">Ambang dan cadangan</a>
+        <a href="#compare-designs">Desain gabungan</a>
+        <a href="#worked-cases">Bekerja kasus</a>
+        <a href="#compatibility">Kompatibilitas</a>
+        <a href="#lifecycle-cost">Biaya hidup</a>
+        <a href="#upgrade-checklist">Daftar cek keputusan</a>
+        <a href="#speeds-40-100">40G dan 100G</a>
+        <a href="#faq">FAQ</a>
+      </aside>
+    </div>
+  </main>
+  <!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Alat daring profesional untuk insinyur telekomunikasi dan jaringan.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navigasi kaki halaman">
+      <a href="../../about/">Tentang</a><a href="../../contact/">Kontak</a><a href="../../privacy/">Privasi</a><a href="../../terms/">Ketentuan</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+  <script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
+</body>
+</html>

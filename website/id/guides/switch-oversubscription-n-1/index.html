@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="id" dir="ltr" data-nel-locale="id" data-nel-route="guides/switch-oversubscription-n-1/"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ganti Uplink N-1 dan N+1 Kapasitas | NetEngineerLab</title><meta name="description" content="Kehilangan satu link yang meneruskan hanya menghilangkan tingkat dari link tersebut. Tiga anggota 10G aktif pada 48 × 1G mulai dari 1.6: 1 sampai 2.4: 1. Rasio bukan kemacetan.">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+
+<meta property="og:type" content="article"><meta property="og:site_name" content="NetEngineerLab">
+<meta property="og:title" content="Ganti Uplink N-1 dan N+1 Kapasitas | NetEngineerLab"><meta property="og:description" content="Kehilangan satu link yang meneruskan hanya menghilangkan tingkat dari link tersebut. Tiga anggota 10G aktif pada 48 × 1G mulai dari 1.6: 1 sampai 2.4: 1. Rasio bukan kemacetan."s rate. Three active 10G members on 48×1G go from 1.6:1 to 2.4:1. The ratio is not congestion.">
+<meta property="og:url" content="https://netengineerlab.com/id/guides/switch-oversubscription-n-1/"><meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../../assets/css/site.css">
+<link rel="stylesheet" href="../../../assets/css/guide.css?v=6d83ae5e791f">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://netengineerlab.com/guides/switch-oversubscription-n-1/#webpage","name":"Bagaimana Kalkulasikan Pindah Kapasitas Uplink Di Bawah Kegagalan N-1","description":"Kehilangan satu link yang meneruskan hanya menghilangkan tingkat dari link tersebut. Tiga anggota 10G aktif pada 48 × 1G mulai dari 1.6: 1 sampai 2.4: 1. Rasio bukan kemacetan.","url":"https://netengineerlab.com/id/guides/switch-oversubscription-n-1","inLanguage":"id","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/id/"}},{"@type":"Article","@id":"https://netengineerlab.com/guides/switch-oversubscription-n-1/#article","headline":"Bagaimana Kalkulasikan Pindah Kapasitas Uplink Di Bawah Kegagalan N-1","description":"Kehilangan satu link yang meneruskan hanya menghilangkan tingkat dari link tersebut. Tiga anggota 10G aktif pada 48 × 1G mulai dari 1.6: 1 sampai 2.4: 1. Rasio bukan kemacetan.","url":"https://netengineerlab.com/id/guides/switch-oversubscription-n-1","inLanguage":"id","mainEntityOfPage":{"@id":"https://netengineerlab.com/guides/switch-oversubscription-n-1/#webpage"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/id/","logo":{"@type":"ImageObject","url":"https://netengineerlab.com/id/assets/images/logo.svg"}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://netengineerlab.com/id/"},{"@type":"ListItem","position":2,"name":"Bagaimana Kalkulasikan Pindah Kapasitas Uplink Di Bawah Kegagalan N-1","item":"https://netengineerlab.com/id/guides/switch-oversubscription-n-1/"}]}]}</script>
+
+<meta name="twitter:title" content="Ganti Uplink N-1 dan N+1 Kapasitas | NetEngineerLab">
+<meta name="twitter:description" content="Kehilangan satu link yang meneruskan hanya menghilangkan tingkat dari link tersebut. Tiga anggota 10G aktif pada 48 × 1G mulai dari 1.6: 1 sampai 2.4: 1. Rasio bukan kemacetan.">
+
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="../../../assets/css/site-pages-v2.css?v=20261105-v2">
+<link rel="stylesheet" href="../../../assets/css/editorial-fresh.css?v=20261123-align2">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Ganti Uplink N-1 dan N+1 Kapasitas | NetEngineerLab","url":"https://netengineerlab.com/id/guides/switch-oversubscription-n-1/","description":"Kehilangan satu link yang meneruskan hanya menghilangkan tingkat dari link tersebut. Tiga anggota 10G aktif pada 48 × 1G mulai dari 1.6: 1 sampai 2.4: 1. Rasio bukan kemacetan.","inLanguage":"id","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/id/"}}</script>
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Mengapa jaringan melewati pemeriksaan normal tapi gagal N-1?","acceptedAnswer":{"@type":"Answer","text":"Karena permintaan lalu lintas yang sama harus dilakukan dengan kapasitas kurang sisa setelah kegagalan."}},{"@type":"Question","name":"Apakah N-1 selalu berarti satu link fisik?","acceptedAnswer":{"@type":"Answer","text":"Tidak. Ini berarti salah satu komponen yang diperlukan tidak tersedia. Komponen yang tepat tergantung pada arsitektur dan kebutuhan ketahanan."}},{"@type":"Question","name":"Haruskah saya merancang N-1 untuk 100% dari bandwidth akses teoritis?","acceptedAnswer":{"@type":"Answer","text":"Belum tentu. Gunakan layanan obyektif dan realistis bus-jam permintaan, tetapi menjaga rasio teoritis maksimum terlihat untuk konteks."}},{"@type":"Question","name":"Apakah 4,8: 1 N-1 secara otomatis tidak dapat diterima?","acceptedAnswer":{"@type":"Answer","text":"Tidak. Rasio hanya satu indikator. Bandingkan dengan permintaan aktual, sensitivitas aplikasi dan tingkat layanan yang diperlukan selama kegagalan."}}]}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="id">
+<meta name="nel-route" content="guides/switch-oversubscription-n-1/">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
+<link rel="canonical" href="https://netengineerlab.com/id/guides/switch-oversubscription-n-1/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/switch-oversubscription-n-1/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/switch-oversubscription-n-1/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/es/guides/switch-oversubscription-n-1/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/id/guides/switch-oversubscription-n-1/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/pt-br/guides/switch-oversubscription-n-1/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/switch-oversubscription-n-1/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
+</head><body class="guide-page guide-fresh"><!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Platform kecerdasan untuk rekayasa jaringan</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Buka navigasi"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navigasi utama">
+      <a href="../../">Beranda</a>
+      <a href="../../../tools/id/">Alat</a>
+      <a href="../" aria-current="page">Panduan</a>
+      <a href="../../topics/">Topik</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Bahasa: Bahasa Indonesia"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Bahasa Indonesia</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/guides/switch-oversubscription-n-1/" lang="en" hreflang="en"><span>English</span><small>Inggris</small></a><a class="language-option" role="menuitem" href="/zh/guides/switch-oversubscription-n-1/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Tionghoa Sederhana</small></a><a class="language-option" role="menuitem" href="/es/guides/switch-oversubscription-n-1/" lang="es" hreflang="es"><span>Español</span><small>Spanyol</small></a><a class="language-option" role="menuitem" href="/id/guides/switch-oversubscription-n-1/" lang="id" hreflang="id" aria-current="page"><span>Bahasa Indonesia</span><small>Bahasa Indonesia</small></a><a class="language-option" role="menuitem" href="/pt-br/guides/switch-oversubscription-n-1/" lang="pt-BR" hreflang="pt-BR"><span>Português do Brasil</span><small>Portugis Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../../">Beranda</a> / <a href="../">Panduan</a> / <span aria-current="page">N-1 Overlangganan</span></nav>
+<main class="guide-shell" id="main">
+<section class="guide-hero">
+<p class="eyebrow">KEGAGALAN KAPAL GUIDE</p>
+<h1>Bagaimana Kalkulasikan Pindah Kapasitas Uplink Di Bawah Kegagalan N-1</h1>
+<p class="guide-lead">Sebuah desain switch tidak boleh disetujui hanya dalam keadaan normal. Analisis N-1 bertanya apakah kapasitas uplink yang bertahan masih dapat membawa lalu lintas yang diharapkan setelah satu komponen yang diperlukan gagal.</p>
+<div class="guide-meta"><span>N-1</span><span>Kapasitas Kegagalan</span><span>Timpa</span><span>Headroom</span></div>
+</section>
+
+<div class="guide-tool-link"><strong>Alat rekayasa terkait</strong><p>Pindah dari artikel ke cek kapasitas nyata dengan kalkulator NetEngineerLab. Menyedihkan.</p><a href="../../../tools/switch-uplink-oversubscription-calculator/id/">Buka penghitung uplink</a></div><div class="guide-layout"><article class="guide-article">
+
+<h2 id="quick-answer">Jawab Cepat</h2>
+<p>Mulailah dengan formula normal:</p>
+<div class="guide-formula"><strong>Rasio Rasio Oversubscription = Total Pengunduhan Kapasitas Total Kapasitas Uplink</strong></div>
+<p>Untuk keseimbangan tingkat uplink, kapasitas normal <strong>C<sub>normal</sub> = N × R</strong>; setelah satu anggota gagal, <strong>C<sub>N-1</sub> = (N = 1) × R</strong>Hitung setiap rasio garis-rate sebagai kapasitas akses lajur struuplink, dan hitung ruang atas sebagai permintaan kapasitas bertahan - jam.</p>
+<div class="guide-example">
+<p>48 × 1G access = <strong>48 Gbps</strong></p>
+<p>Uplink normal: 2 × 10G = <strong>20 Gbps</strong> → <strong>2.4:1</strong></p>
+<p>N-1 uplink: 1 × 10G = <strong>10 Gbps</strong> → <strong>4.8:1</strong></p>
+</div>
+
+<div class="guide-cta"><strong>Kapasitas normal model dan N-1</strong><p>Gunakan kalkulator NetEngineerLab dengan jumlah port anda yang sebenarnya dan desain uplink.</p><a href="../../../tools/switch-uplink-oversubscription-calculator/id/">Buka Kalkulator luvant</a></div>
+
+<h2 id="what-n1">Apa artinya N-1?</h2>
+<p>N-1 berarti jaringan dievaluasi dengan satu acara kegagalan yang ditentukan. Sebutkan domain kegagalan sebelum menghitung kapasitas: satu kabel / optik / anggota, satu kartu baris, satu upstream switch, atau satu jalur lengkap adalah skenario berbeda. Sebuah kegagalan anggota tunggal menghapus laju anggota; kegagalan perangkat menghapus setiap link dan meneruskan sumber daya yang melekat pada perangkat itu.</p>
+<p>Tujuannya bukan untuk berasumsi bahwa setiap kegagalan harus mempertahankan kinerja penuh. Tujuannya adalah untuk memahami kapasitas bertahan hidup dan memutuskan apakah hasilnya memenuhi kebutuhan bisnis.</p>
+
+<h2 id="normal-vs-failure">Normal vs N-1 Oversubscription</h2>
+<table>
+<thead><tr><th>Keadaan</th><th>Downlink Kapasitas</th><th>Kapasitas Uplink</th><th>Rasio</th></tr></thead>
+<tbody>
+<tr><td>Normal</td><td>48 Gbps</td><td>20 Gbps</td><td>2.4:1</td></tr>
+<tr><td>N-1</td><td>48 Gbps</td><td>10 Gbps</td><td>4.8:1</td></tr>
+</tbody></table>
+<p>Gunakan aksesor- sisi yang sama pembilang di kedua negara bagian; hanya menghitung link yang dapat meneruskan lalu lintas dalam keadaan model. Rasio line- rate bukan sebuah ramalan lalu lintas dan tidak menjanjikan aliran-permanen melalui put.</p>
+<h2 id="n-plus-one">N+1 dan tingkat dari satu link hilang</h2>
+<p>N+1 berarti set penerusan memiliki satu link lebih dari minimum set yang Anda gunakan untuk load. Ini adalah pilihan penyediaan eksplisit, bukan aturan universal. Pada 48 × 1 akses Gbps, tiga anggota Gbps aktif adalah 30 Gbps. Rasio yang tepat adalah 48 = <strong>1.6:1</strong>, dan kalkulator menampilkan 1.6: 1. Jika satu anggota berhenti meneruskan, kapasitas dihapus adalah 10 Gbps dan sisanya adalah 20 Gbps, atau <strong>2.4:1</strong>, hanya sementara dua lainnya masih maju.</p>
+<p>Sebuah link siaga yang tidak maju tidak dalam denominator normal. Jangan menghitungnya sebagai sudah aktif dan kemudian kurangi lagi. Satu aliran masih tetap pada satu anggota di bawah distribusi LACP konvensional, sehingga tiga 10 anggota Gbps tidak memberikan satu aliran 30 Gbps. Duplex penuh tidak mengubah 10 Gbps yang hilang menjadi 20 Gbps: laju antarmuka dihitung sekali, dalam arah yang dibawah ulasan. Ditawarkan beban, semburan, laju paket dan batas perangkat keras masih memutuskan apakah yang bertahan link menelan. Lanjutkan <a href="../lacp-member-congestion/">Konsumsi anggota LACP</a>, <a href="../switch-oversubscription-ratio/">panduan rasio</a> dan <a href="../10g-vs-25g-uplinks/">10G versus 25G uplinks</a>.</p>
+
+<h2 id="traffic">Tiga Contoh Kerja Jam-Kerja</h2>
+<p>Sebagai contoh, permintaan adalah masukan perencanaan eksplisit. Ruang utama sama dengan daya tahan hidup dikurangi permintaan; hasil negatif adalah kekurangan model. Contoh-contoh ini adalah ilustrasi aritmatika, bukan standar pemanfaatan industri.</p>
+<h3>Contoh 1: 2 × 10G melayani 48 × 1G akses</h3>
+<p>Rasio teori hanya langkah pertama. Bandingkan uplink yang masih hidup dengan lalu lintas bus yang diharapkan.</p>
+<div class="guide-example">
+<p>Asumsi perencanaan: 40 dari 48 port akses aktif pada jam sibuk model; 40 × 1 Gbps × 30% utilisasi = <strong>Dua belas permintaan Gbps model</strong>.</p>
+<p>Kapasitas normal = <strong>20 Gbps</strong> Headroom: <strong>8 Gbps</strong></p>
+<p>Kapasitas N-1 = <strong>10 Gbps</strong> Headroom: <strong>-2 Gbps</strong></p>
+</div>
+<p>Hasil: normal headroom adalah 8 Gbps; setelah satu anggota gagal, 10 Gbps selamat adalah 2 Gbps di bawah permintaan model. Desain ini tidak memenuhi tidak-kemacetan 12 Gbps Kegagalan-tujuan negara.</p>
+<h3>Contoh 2: 2 × 25G dengan persyaratan 20 Gbps-jam</h3>
+<div class="guide-example"><p>Kapasitas normal = 2 x 25 = <strong>50 Gbps</strong>; rasio = 48 = <strong>0.96:1</strong>.</p><p>Satu anggota gagal: 1 x 25 = <strong>25 Gbps</strong>; rasio N-1 = 48 = 25 = <strong>1.92:1</strong>.</p><p>Headroom negara bagian = 25 September 20 = <strong>5 Gbps</strong>.</p></div>
+<p>Ini bertemu dengan 20 model Gbps yang dinyatakan sebelum memilih secara terpisah cadangan teknik, meledak tunjangan atau peralatan bottleneck.</p>
+<h3>Contoh 3: 4 × 10G dengan pertumbuhan dan 25% cadangan kapasitas</h3>
+<div class="guide-example"><p>Permintaan perencanaan terukur = 20 Gbps; pertumbuhan prediksi = 20%; permintaan N-1 masa depan D = 20 x 1,20 = <strong>24 Gbps</strong>.</p><p>Setelah satu anggota gagal, bertahan dari kapasitas nominal = 3 x 10 = <strong>30 Gbps</strong>; rasio N-1 untuk 48 × 1G akses = 48 £30 = <strong>1.6:1</strong>.</p><p>Untuk cadangan kapasitas r = 0.25, membutuhkan D / C consider 1 = 0.75, di mana C adalah kapasitas hidup yang dapat digunakan. Kapasitas yang diperlukan C ffid D / 0.Dafter = 24 / 0.75 = <strong>32 Gbps</strong>.</p><p>Bahkan jika kapasitas yang dapat digunakan mencapai 30 langit-langit nominal Gbps, utilisasi 24 / 30 = <strong>80%</strong>, hanya meninggalkan <strong>Cadangan kapasitas 20%</strong>; permintaan minus kapasitas adalah <strong>6 Gbps</strong>, tapi kekurangan terhadap persyaratan desain Gbps 32 <strong>2 Gbps</strong>.</p></div>
+<p>Pertumbuhan 20% dan 25% cadangan kapasitas adalah masukan skenario, bukan standar yang ditentukan. Sebuah perkiraan terpisah tentang pemanfaatan yang diukur adalah <a href="../../../tools/network-capacity-forecast-planner/id/">ramalan kapasitas jaringan</a>Ini tidak menggantikan rasio N-1. <a href="../../topics/switch-oversubscription/">Kembali ke topik ganti nama terlalu banyak</a>Desain ini gagal memilih 25% persyaratan cadangan bahkan pada kapasitas nominal. Verifikasi kapasitas aktual yang dapat digunakan pada platform yang bertahan; lebih rendah efektif melalui put tidak dapat meningkatkan hasil ini. Cadangan Kapasitas adalah sebagian kecil kapasitas, bukan persentase ditambahkan ke permintaan.</p>
+
+<h2 id="good-design">Apa yang membuat N-1 Berhasil Diterima?</h2>
+<p>Tidak ada rasio universal. Sebuah keadaan gagal yang dapat diterima tergantung pada:</p>
+<ul>
+<li>berapa banyak lalu lintas bus-jam harus berlanjut selama kegagalan;</li>
+<li>Apakah kemacetan sementara dapat diterima;</li>
+<li>Sensitivitas latensi dan packet- kehilangan;</li>
+<li>seberapa cepat path yang gagal dapat dikembalikan;</li>
+<li>Berapa banyak pertumbuhan lalu lintas yang diharapkan;</li>
+<li>Apakah jaringan dirancang untuk degradasi anggun atau kelanjutan layanan penuh.</li>
+</ul>
+
+<h2 id="lag">N-1 dengan LAG</h2>
+<p>Jika semua anggota maju dan membawa tingkat nominal yang sama, angka bersama-sama adalah jumlah anggota yang selamat. Dua anggota 10 Gbps LAG karena itu memiliki 10 Gbps setelah satu anggota gagal; anggota keempat 10 Gbps LAG memiliki 30 Gbps setelah satu anggota gagal. Ini mengasumsikan perangkat peer, kontrol pesawat, anggota yang tersisa dan jalur hulu tetap tersedia.</p>
+<p>Kapasitas LAG dibagikan melalui aliran sesuai dengan hash platform. Satu aliran umumnya terbatas pada satu tingkat anggota, dan distribusi hash baru mungkin meninggalkan beberapa anggota sibuk dari yang lain. Validate hashing, convergence, buffer, dan diukur utilisasi pada perangkat yang sebenarnya; jangan perlakukan tingkat garis kumpulan sebagai jaminan aplikasi melalui put.</p>
+<table>
+<thead><tr><th>Mendesain</th><th>Kapasitas Normal</th><th>Kapasitas N-1</th><th>48 × 1G N-1 Rasio</th></tr></thead>
+<tbody>
+<tr><td>2 × 10G</td><td>20 Gbps</td><td>10 Gbps</td><td>4.8:1</td></tr>
+<tr><td>4 × 10G</td><td>40 Gbps</td><td>30 Gbps</td><td>1.6:1</td></tr>
+<tr><td>2 × 25G</td><td>50 Gbps</td><td>25 Gbps</td><td>1.92:1</td></tr>
+</tbody></table>
+
+<h2 id="growth">Bisnis-Jam Permintaan dan Kegagalan Risiko</h2>
+<p>Misalkan saat ini bus-jam permintaan adalah 10 Gbps dan lalu lintas diharapkan tumbuh dengan 30%.</p>
+<div class="guide-example">
+<p>Permintaan masa depan = 10 x 1.30 = <strong>13 Gbps</strong></p>
+<p>Kapasitas normal 2 x 10G = 20 Gbps <strong>7 Gbps headroom</strong></p>
+<p>2 × 10G N-1 kapasitas = 10 Gbps <strong>3 defisit Gbps</strong></p>
+</div>
+<p>Sebuah desain dapat lulus pemeriksaan normal hari ini dan masih gagal persyaratan N-1 masa depan.</p>
+
+<h2 id="upgrade">Kombinasi Opsi Upgrade N-1</h2>
+<table>
+<thead><tr><th>Mendesain</th><th>Normal</th><th>N-1</th><th>Gunakan Kasus</th></tr></thead>
+<tbody>
+<tr><td>2 × 10G</td><td>20 Gbps</td><td>10 Gbps</td><td>Permintaan akses sedang</td></tr>
+<tr><td>4 × 10G</td><td>40 Gbps</td><td>30 Gbps</td><td>Lebih granular redundansi</td></tr>
+<tr><td>2 × 25G</td><td>50 Gbps</td><td>25 Gbps</td><td>Desain dual-uplink kapasitas tertinggi</td></tr>
+</tbody></table>
+
+<h2 id="design-recommendations">Insinyur Desain Rekomendasi</h2>
+<ul><li>Definisikan satu peristiwa kegagalan pada suatu waktu dan peta setiap link, perangkat dan jalur Apalagi yang dapat dihapus.</li><li>... tidak membuktikan redundansi independen.</li><li>Gunakan ukuran bus - jam persentiles dan tujuan layanan aplikasi; dokumen meledak dan pertumbuhan asumsi secara terpisah.</li><li>Setelah perhitungan kapasitas berlalu, validasi survighing-path efektif melalui menempatkan, latensi, kerugian paket, distribusi lalu lintas dan konvergensi failover terhadap tujuan layanan yang diperlukan.</li><li>Periksa ruang depan setelah kegagalan model, kemudian uji korelasi lalu lintas, per- anggota beban dan perangkat meneruskan batas.</li><li>Jika permintaan melebihi kapasitas survivor, mengharapkan antrian, tetes atau dikurangi melalui failover atau perbaikan; memutuskan apakah degradasi Bohong memenuhi tujuan layanan.</li><li>Meningkatkan tingkat link atau jumlah anggota hanya setelah memeriksa keragaman perangkat, daya, optik, dukungan LAG dan tingkat device-level domain berikutnya.</li></ul>
+<h2 id="workflow">N-1 Capacity Planning Workflow</h2>
+<ol>
+<li>Hitung kapasitas downlink yang terpasang.</li>
+<li>Measure aktif bus-jam lalu lintas.</li>
+<li>Hitung kapasitas normal negara uplink.</li>
+<li>Hapus satu komponen kegagalan yang diperlukan.</li>
+<li>Verifikasi apakah peristiwa itu dapat juga menghapus link melalui perangkat berresiko yang berbagi, sumber daya, rute kabel atau jalur transportasi.</li>
+<li>Hitung kapasitas uplink yang bertahan.</li>
+<li>Menghitung ulang oversubscription.</li>
+<li>Untukmenyamakapasitasbertahan denganSok-jam.</li>
+<li>Validasi through put, latency, paket kehilangan, distribusi lalu lintas dan konvergensi terhadap kegagalan layanan negara Simbol.</li>
+<li>Tambahkan pertumbuhan masa depan.</li>
+<li>Putuskan apakah kemacetan selama kegagalan dapat diterima.</li>
+<li>Bandingkan opsi peningkatan bila keadaan gagal tidak cukup.</li>
+</ol>
+
+<h2 id="faq">Pertanyaan Yang Sering Muncul</h2>
+<h3>Mengapa jaringan melewati pemeriksaan normal tapi gagal N-1?</h3><p>Karena permintaan lalu lintas yang sama harus dilakukan dengan kapasitas kurang sisa setelah kegagalan.</p>
+<h3>Apakah N-1 selalu berarti satu link fisik?</h3><p>Tidak. Ini berarti salah satu komponen yang diperlukan tidak tersedia. Komponen yang tepat tergantung pada arsitektur dan kebutuhan ketahanan.</p>
+<h3>Haruskah saya merancang N-1 untuk 100% dari bandwidth akses teoritis?</h3><p>Belum tentu. Gunakan layanan obyektif dan realistis bus-jam permintaan, tetapi menjaga rasio teoritis maksimum terlihat untuk konteks.</p>
+<h3>Apakah 4,8: 1 N-1 secara otomatis tidak dapat diterima?</h3><p>Tidak. Rasio hanya satu indikator. Bandingkan dengan permintaan aktual, sensitivitas aplikasi dan tingkat layanan yang diperlukan selama kegagalan.</p>
+
+<section class="guide-related"><h2>Lanjutkan Topik</h2><div class="guide-related-grid">
+<a href="../../topics/switch-oversubscription/"><strong>Ganti Topik Hub Overlangganan</strong><br>Lihat struktur topiknya.</a>
+<a href="../switch-oversubscription-ratio/"><strong>Panduan Overlangganan Utama</strong><br>Formula, utilisasi dan desain fundamental.</a>
+<a href="../48-port-switch-oversubscription/"><strong>48- Port Kerja Contoh</strong><br>Bandingkan opsi uplink praktis.</a>
+<a href="../48-port-switch-2x10g-enough/"><strong>Apakah 2 x 10G Cukup?</strong><br>Fokus pada 48-port 2 × 10G keputusan desain.</a>
+<a href="../lacp-member-congestion/"><strong>Konsumsi anggota LACP</strong><br>Seorang anggota yang hilang dan aliran hashed adalah batas yang berbeda.</a>
+<a href="../10g-vs-25g-uplinks/"><strong>10G dan 25G uplinks</strong><br>Bandingkan tingkat nominal tanpa memperlakukan mereka sebagai kemacetan.</a>
+</div></section>
+
+<section class="guide-cross-links"><h2>Lanjutkan membaca</h2><div class="guide-related-grid"><a href="../switch-oversubscription-ratio/"><strong>Tukar rasio oversubscription</strong><br>Tinjau formula utama dan rencana kapasitas.</a><a href="./"><strong>Pemeriksaan kegagalan N-1</strong><br>Verifikasi kapasitas bertahan hidup setelah kegagalan.</a><a href="../../topics/switch-oversubscription/"><strong>Ganti topik hub oversubscription</strong><br>Menelusuri topik lengkap.</a></div></section></article>
+<aside class="guide-toc guide-related-side" aria-label="Pada halaman ini"><strong>Pada halaman ini</strong>
+<a href="#quick-answer">Jawaban cepat</a><a href="#what-n1">Apa itu N-1?</a><a href="#normal-vs-failure">Normal vs N-1</a><a href="#n-plus-one">N+1 satu-link kerugian</a><a href="#traffic">Permintaan lalu lintas</a><a href="#lag">LAG</a><a href="#growth">Pertumbuhan</a><a href="#workflow">Aliran Kerja</a><a href="#faq">FAQ</a>
+</aside></div><section class="content-section faq-section" data-nel-faq="visible"><h2>Tanya jawab</h2><div class="faq-grid"><details><summary>Mengapa jaringan melewati pemeriksaan normal tapi gagal N-1?</summary><p>Karena permintaan lalu lintas yang sama harus dilakukan dengan kapasitas kurang sisa setelah kegagalan.</p></details><details><summary>Apakah N-1 selalu berarti satu link fisik?</summary><p>Tidak. Ini berarti salah satu komponen yang diperlukan tidak tersedia. Komponen yang tepat tergantung pada arsitektur dan kebutuhan ketahanan.</p></details><details><summary>Haruskah saya merancang N-1 untuk 100% dari bandwidth akses teoritis?</summary><p>Belum tentu. Gunakan layanan obyektif dan realistis bus-jam permintaan, tetapi menjaga rasio teoritis maksimum terlihat untuk konteks.</p></details><details><summary>Apakah 4,8: 1 N-1 secara otomatis tidak dapat diterima?</summary><p>Tidak. Rasio hanya satu indikator. Bandingkan dengan permintaan aktual, sensitivitas aplikasi dan tingkat layanan yang diperlukan selama kegagalan.</p></details></div></section>
+</main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Alat daring profesional untuk insinyur telekomunikasi dan jaringan.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navigasi kaki halaman">
+      <a href="../../about/">Tentang</a><a href="../../contact/">Kontak</a><a href="../../privacy/">Privasi</a><a href="../../terms/">Ketentuan</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END --><script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script></body></html>
+
+
+
+

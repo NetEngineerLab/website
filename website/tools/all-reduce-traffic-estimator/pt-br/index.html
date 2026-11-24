@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR" dir="ltr" data-nel-locale="pt-BR" data-nel-route="tools/all-reduce-traffic-estimator/">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#176ff2" name="theme-color"/>
+<title>Estimador de tráfego | Anel Bytes, Tempo e Largura de Banda</title>
+<meta content="Estimativa de tráfego all-reduce: bytes cada GPU envia, tempo de tecido e largura de banda do algoritmo versus largura de banda do barramento." name="description"/>
+<meta content="../" name="app-base"/>
+<meta content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" name="robots"/>
+<meta content="website" property="og:type"/>
+<meta content="NetEngineerLab" property="og:site_name"/>
+<meta content="Estimador de tráfego | Anel Bytes, Tempo e Largura de Banda" property="og:title"/>
+<meta content="Estimativa de tráfego all-reduce: bytes cada GPU envia, tempo de tecido e largura de banda do algoritmo versus largura de banda do barramento." property="og:description"/>
+<meta content="https://netengineerlab.com/tools/all-reduce-traffic-estimator/pt-br/" property="og:url"/>
+<meta content="https://netengineerlab.com/assets/images/og-netengineerlab.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Estimador de tráfego | Anel Bytes, Tempo e Largura de Banda" name="twitter:title"/>
+<meta content="Estimativa de tráfego all-reduce: bytes cada GPU envia, tempo de tecido e largura de banda do algoritmo versus largura de banda do barramento." name="twitter:description"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://netengineerlab.com/tools/all-reduce-traffic-estimator/#app","name":"Estimador de tráfego de redução total","url":"https://netengineerlab.com/tools/all-reduce-traffic-estimator/pt-br/","description":"Estimativa de tráfego por GPU e tecido, tempo de passo e largura de banda do ônibus para um anel tudo-redução de gradientes modelo.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Network Engineering Calculator","operatingSystem":"Any","browserRequirements":"Requires JavaScript and a modern web browser","softwareVersion":"1.0.0","inLanguage":"pt-BR","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/pt-br/"}},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/all-reduce-traffic-estimator/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"NetEngineerLab","item":"https://netengineerlab.com/pt-br/"},{"@type":"ListItem","position":2,"name":"Ferramentas","item":"https://netengineerlab.com/tools/pt-br/"},{"@type":"ListItem","position":3,"name":"Estimador de tráfego de redução total","item":"https://netengineerlab.com/tools/all-reduce-traffic-estimator/pt-br/"}]}]}</script>
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
+<meta content="https://netengineerlab.com/assets/images/og-netengineerlab.png" name="twitter:image"/>
+<link href="/assets/css/cookie-consent.css?v=2f2c8ab643e6" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif:ital@1&amp;display=swap" rel="stylesheet"/>
+<link href="/assets/css/fb-v3.css?v=031fae951adb" rel="stylesheet"/>
+<link href="/assets/css/fb-v3-prod.css?v=64bd0d9f6bcb" rel="stylesheet"/>
+<script defer="" src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
+<link href="../css/style.css?v=e555d018ba04" rel="stylesheet"/>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Estimador de tráfego | Anel Bytes, Tempo e Largura de Banda","url":"https://netengineerlab.com/tools/all-reduce-traffic-estimator/pt-br/","description":"Estimativa de tráfego all-reduce: bytes cada GPU envia, tempo de tecido e largura de banda do algoritmo versus largura de banda do barramento.","inLanguage":"pt-BR","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/pt-br/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="pt-BR">
+<meta name="nel-route" content="tools/all-reduce-traffic-estimator/">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
+<link rel="canonical" href="https://netengineerlab.com/tools/all-reduce-traffic-estimator/pt-br/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/all-reduce-traffic-estimator/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/all-reduce-traffic-estimator/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/all-reduce-traffic-estimator/es/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/tools/all-reduce-traffic-estimator/id/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/tools/all-reduce-traffic-estimator/pt-br/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/all-reduce-traffic-estimator/">
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Quantos dados tocam all-reduce enviar por GPU?","acceptedAnswer":{"@type":"Answer","text":"2-N-1)/N vezes o tampão. Para 8 GPUs de 1,75 × S; à medida que N cresce, aproxima-se de 2 × S."}},{"@type":"Question","name":"O que é largura de banda de ônibus em NCCL?","acceptedAnswer":{"@type":"Answer","text":"busBW = algBW × 2N−1)/N para todos os efeitos. Ele normaliza para o número de GPUs para que possa ser comparado com a velocidade do link de hardware."}},{"@type":"Question","name":"Quanto tempo demora o gradiente?","acceptedAnswer":{"@type":"Answer","text":"Aproximadamente 2 (N−1)/N × S □ largura de banda da ligação mais 2 (N−1) × latência por etapa. 14 GB mais de 8 GPUs a 50 GB/s leva cerca de 0,49 s."}},{"@type":"Question","name":"A adição de GPUs aumenta o tráfego por GPU?","acceptedAnswer":{"@type":"Answer","text":"Apenas ligeiramente: o fator vai de 1,5 em 4 GPUs para 1,75 em 8 e 1,98 em 128. O termo latência cresce linearmente com N."}},{"@type":"Question","name":"O anel é o único algoritmo de redução?","acceptedAnswer":{"@type":"Answer","text":"Não. Árvore, árvore binária dupla, algoritmos hierárquicos e em rede (SHARP) reduzem a latência em escala; anel é a linha de base ideal de largura de banda usada aqui."}}]}</script>
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
+<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
+<script defer src="../../../assets/js/pt-br-launch-runtime.js?v=1223d823e2c6"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
+<link rel="manifest" href="../manifest-pt-br.webmanifest">
+</head>
+<body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-offline-worker="1" data-nel-template="tool-detail-v1.3.1" data-nel-v3-migrated="1" data-nel-visual="network-change-planner-reference">
+<a class="skip-link" href="#calculator">Saltar para a calculadora</a>
+<noscript><div class="noscript">JavaScript is required to run this calculator.</div></noscript>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../pt-br/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Plataforma de inteligência para engenharia de redes</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Abrir navegação"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navegação principal">
+      <a href="../../../pt-br/">Início</a>
+      <a href="../../pt-br/" aria-current="page">Ferramentas</a>
+      <a href="../../../pt-br/guides/">Guias</a>
+      <a href="../../../pt-br/topics/">Tópicos</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Português do Brasil"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Português do Brasil</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/all-reduce-traffic-estimator/" lang="en" hreflang="en"><span>English</span><small>Inglês</small></a><a class="language-option" role="menuitem" href="/tools/all-reduce-traffic-estimator/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinês simplificado</small></a><a class="language-option" role="menuitem" href="/tools/all-reduce-traffic-estimator/es/" lang="es" hreflang="es"><span>Español</span><small>Espanhol</small></a><a class="language-option" role="menuitem" href="/tools/all-reduce-traffic-estimator/id/" lang="id" hreflang="id"><span>Bahasa Indonesia</span><small>Indonésio</small></a><a class="language-option" role="menuitem" href="/tools/all-reduce-traffic-estimator/pt-br/" lang="pt-BR" hreflang="pt-BR" aria-current="page"><span>Português do Brasil</span><small>Português do Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">Começar a calcular</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Trigo de pão">
+  <a href="../../../pt-br/">Início</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../../pt-br/">Ferramentas</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">Estimador de tráfego de redução total</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END -->
+<section aria-hidden="true" class="hero nel-tool-hero"><div class="hero-inner">
+<p class="eyebrow">AI REDE TOOL</p>
+<h1>Estimador de tráfego de redução total</h1>
+<p>O treinamento paralelo de dados sincroniza os gradientes com um all-reduce a cada passo. No algoritmo de anel otimizado de largura de banda, cada GPU envia e recebe 2-N−1)/N vezes o buffer gradiente, então 8 GPUs trocam 7 bilhões de gradientes FP16 (14 GB) cada movimento 24,5 GB por passo. Este estimador de tráfego all-reduce transforma tamanho do modelo, contagem de GPU e velocidade NIC em tráfego por GPU, tráfego total de tecido, tempo de passo, largura de banda do algoritmo e largura de banda de barramento NCCL-estilo.</p>
+<div class="hero-tags"><span>Anel de redução total</span><span>2-N-1)/N</span><span>busBW</span><span>Tempo do passo</span></div></div></section>
+<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" data-nel-readout-roles="%7B%22secondary%22%3A%5B%22bufferSize%22%2C%22busFactor%22%2C%22fabricTraffic%22%2C%22bwTime%22%2C%22latTime%22%2C%22algBw%22%2C%22busBw%22%5D%2C%22identifier%22%3A%5B%5D%2C%22annotation%22%3A%5B%5D%7D" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv" id="calculator"><div class="tool-head"><nav aria-label="Trigo de pão" class="crumbs">
+<a href="../../pt-br/">Início</a>
+<span aria-hidden="true">/</span>
+<a class="tool-return-link" href="./">Ferramentas</a>
+<span aria-hidden="true">/</span>
+<span aria-current="page">Estimador de tráfego de redução total</span>
+</nav><p aria-level="1" class="tool-page-label" role="heading">Estimador de tráfego de redução total</p><p class="tool-lede">O treinamento paralelo de dados sincroniza os gradientes com um all-reduce a cada passo. No algoritmo de anel otimizado de largura de banda, cada GPU envia e recebe 2-N−1)/N vezes o buffer gradiente, então 8 GPUs trocam 7 bilhões de gradientes FP16 (14 GB) cada movimento 24,5 GB por passo. Este estimador de tráfego all-reduce transforma tamanho do modelo, contagem de GPU e velocidade NIC em tráfego por GPU, tráfego total de tecido, tempo de passo, largura de banda do algoritmo e largura de banda de barramento NCCL-estilo.</p></div>
+<div class="workspace"><section class="input-panel card nel-tool-input fb-panel">
+<div class="section-title panel-h"><span class="section-icon">☷</span><div>
+<h2 class="panel-h">Trabalho e tecido</h2>
+<p>Digite o número de GPUs no anel, o tamanho do gradiente e a largura de banda de rede por GPU.</p>
+</div></div>
+<div class="form-grid fields">
+<div class="field f"><label for="projectName">Nome do projeto</label><div class="input-wrap no-unit inp"><input id="projectName" type="text" value="7B data-parallel job"/></div></div>
+<div class="field f"><label for="ranks">GPUs no anel (N)cate)</label><div class="input-wrap no-unit inp"><input id="ranks" min="2" step="1" type="number" value="8"/></div></div>
+<div class="field f"><label for="paramsBillion">Elementos graduais (biliões)</label><div class="input-wrap inp"><input id="paramsBillion" min="0.001" step="0.001" type="number" value="7"/><span>×10⁹</span></div><p class="hint">Normalmente a contagem de parâmetros treináveis.</p></div>
+<div class="field f"><label for="bytesPerParam">Tipo de dados de gradiente</label><div class="input-wrap no-unit inp sel"><select id="bytesPerParam"><option value="4">FP32 (4 bytes)</option><option selected="" value="2">FP16 / BF16 (2 bytes)</option><option value="1">FP8 (1 byte)</option></select></div></div>
+<div class="field f"><label for="linkGbps">Largura de banda de rede por GPU</label><div class="input-wrap inp"><input id="linkGbps" min="0.001" step="1" type="number" value="400"/><span>Gbps</span></div><p class="hint">NIC taxa de linha por GPU, uma direção.</p></div>
+<div class="field f"><label for="efficiencyPct">Eficiência de ligação possível</label><div class="input-wrap inp"><input id="efficiencyPct" max="100" min="1" step="1" type="number" value="80"/><span>%</span></div><p class="hint">Protocolo de sobrecarga e congestionamento; medida com testes NCCL.</p></div>
+<div class="field f"><label for="latencyUs">Latência por passo α</label><div class="input-wrap inp"><input id="latencyUs" min="0" step="0.1" type="number" value="5"/><span>μs</span></div><p class="hint">Anel all-reduce toma 2 N-1) passos.</p></div>
+</div>
+<div class="actions input-actions">
+<button class="primary-action btn btn-primary" id="calculateBtn" type="button">Calcular</button>
+<button class="secondary-action btn btn-ghost" id="resetBtn" type="button">Redefinir</button>
+</div>
+<p class="validation-message" id="validationMessage" role="alert"></p>
+</section><section aria-live="polite" class="result-panel card nel-tool-result readout">
+<div class="section-title ro-h"><span class="section-icon">▥</span><div>
+<h2 class="ro-h">Resultado do cálculo</h2>
+<p>Por-GPU bytes = 2-N−1)/N × S. Tempo = 2-N−1)·α + por-GPU □ largura de banda efetiva.</p>
+</div></div>
+<div class="summary-card ro-l1" id="summaryCard"><div class="ro-main"><p class="lbl">Dados enviados por GPU</p><strong class="big"><span data-nel-readout-number="1" id="perRank">—</span></strong></div><div class="ro-main"><p class="lbl">Tempo estimado de redução total</p><strong class="big"><span data-nel-readout-number="1" id="totalTime">—</span></strong></div></div>
+<div class="metric-grid">
+<article class="metric"><small>Tampão de gradiente S</small><strong id="bufferSize">—</strong></article>
+<article class="metric"><small>Fator de anel 2N−1)/N</small><strong id="busFactor">—</strong></article>
+<article class="metric"><small>Tráfego total de tecidos</small><strong id="fabricTraffic">—</strong></article>
+<article class="metric"><small>Largura de banda</small><strong id="bwTime">—</strong></article>
+<article class="metric"><small>Termo de latência</small><strong id="latTime">—</strong></article>
+<article class="metric"><small>Largura de banda do algoritmo S/t</small><strong id="algBw">—</strong></article>
+<article class="metric"><small>Largura de banda do autocarro (NCCL)</small><strong id="busBw">—</strong></article>
+</div>
+<p class="hint">Assume um anel plano, sem sobreposição de computação/comunicação e sem redução na rede. Algoritmos de árvore, hierárquicos e SHARP alteram o termo de latência e o padrão de tráfego.</p>
+<div class="result-actions ro-acts">
+<button id="copyBtn" type="button">Copiar resultado</button>
+<button id="saveBtn" type="button">Gravar o registo</button>
+<button id="printBtn" type="button">Imprimir / Exportar PDF</button>
+</div>
+</section></div>
+<div class="below"><nav aria-label="Nesta página" class="toc"><h4>Nesta página</h4><a href="#methodology">Como é calculado</a><a href="#faq">FAQ</a><a href="#history">Cálculos recentes</a><a href="#references">Referências oficiais</a><a href="#nel-tool-graph">Fluxo de trabalho de engenharia</a></nav><div class="prose"><details class="fb-fold blk bw-standard-card" data-nel-v3-title-normalized="1" id="methodology"><summary class="fb-fold-sum"><span class="fb-fold-title">Metodologia e notas de engenharia</span></summary><div class="fb-fold-body"><section class="content-section methodology nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">METODOLOGIA</p></div></div>
+<div class="eq">bytes por GPU = 2-N−1)/N × S<br/>Tempo = 2 (N−1)·α + bytes por GPU □ largura de banda efetiva</div><div class="method-defs">
+<article><h3>Como utilizar</h3><ol><li>Digite o número de GPUs (ranques) no anel.</li><li>Digite a contagem de elementos gradientes, geralmente os parâmetros treináveis e o tipo de dados.</li><li>Insira a largura de banda por GPU NIC, uma eficiência alcançável e a latência por passo.</li><li>Leia por GPU e tráfego total, tempo de passo e largura de banda do ônibus.</li></ol></article><article><h3>Anel de redução total</h3><p>Um anel all-reduce é um redutor-scatter seguido por um todo-ajuntamento. Cada um toma N−1 passos em que cada rank envia bytes S/N, então cada rank envia 2N−1)/N × S e recebe a mesma quantidade. O tráfego total de tecido é N × 2N−1)/N × S = 2N−1) × S. Isto é ideal para largura de banda (Patarasuk &amp; Yuan, 2009).</p></article><article><h3>Tempo e largura de banda</h3><p>Tempo (N-1)·α + (N-1)/N × S (B), onde B é a largura de banda por GPU × eficiência em bytes/s. Largura de banda do algoritmo = tempo S; largura de banda do barramento NCCL = largura de banda do algoritmo × 2N−1)/N, que é comparável à velocidade de ligação.</p></article>
+</div>
+<div class="example-box"><h3>Caso trabalhado: 8 GPUs, 7B FP16, 400 Gbps</h3><p>S = 7 × 109 × 2 B = 14 GB. Ring factor 2 × 7 / 8 = 1,75, então cada GPU envia 24,5 GB e o tecido carrega 196 GB. A 400 Gbps (50 GB/s) e 100% de eficiência o termo de largura de banda é 490 ms; a 80% é 612,5 ms, mais 14 × 5 μs = 70 μs de latência. A largura de banda do ônibus fica então abaixo da taxa de ligação efetiva de 40 GB/s.</p></div>
+</section></div></details><div class="blk faq bw-standard-card" data-nel-v3-title-normalized="1" id="faq"><h2 id="faq-title">Perguntas mais frequentes</h2><section aria-labelledby="faq-title" class="content-section faq-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">FAQ</p></div></div>
+<details><summary>Quantos dados tocam all-reduce enviar por GPU?</summary><p>2-N-1)/N vezes o tampão. Para 8 GPUs de 1,75 × S; à medida que N cresce, aproxima-se de 2 × S.</p></details><details><summary>O que é largura de banda de ônibus em NCCL?</summary><p>busBW = algBW × 2N−1)/N para todos os efeitos. Ele normaliza para o número de GPUs para que possa ser comparado com a velocidade do link de hardware.</p></details><details><summary>Quanto tempo demora o gradiente?</summary><p>Aproximadamente 2 (N−1)/N × S □ largura de banda da ligação mais 2 (N−1) × latência por etapa. 14 GB mais de 8 GPUs a 50 GB/s leva cerca de 0,49 s.</p></details><details><summary>A adição de GPUs aumenta o tráfego por GPU?</summary><p>Apenas ligeiramente: o fator vai de 1,5 em 4 GPUs para 1,75 em 8 e 1,98 em 128. O termo latência cresce linearmente com N.</p></details><details><summary>O anel é o único algoritmo de redução?</summary><p>Não. Árvore, árvore binária dupla, algoritmos hierárquicos e em rede (SHARP) reduzem a latência em escala; anel é a linha de base ideal de largura de banda usada aqui.</p></details>
+</section></div><section class="blk" data-nel-v3-title-normalized="1" id="history"><h2>Cálculos recentes</h2><div class="fb-fold-body"><section class="content-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">REGISTO DOS PROJECTOS</p></div>
+<button class="text-button btn btn-ghost btn-sm" id="clearHistoryBtn" type="button">Limpar o histórico</button></div>
+<div class="history-list" id="historyList"></div>
+</section></div></section><section class="blk bw-standard-card ref-card" data-nel-v3-title-normalized="1" id="references"><h2 id="references-title">l Normas e referências</h2><div class="fb-fold-body"><section aria-labelledby="references-title" class="content-section nel-tool-supporting-section">
+<div class="section-heading"><div><p class="eyebrow">REFERÊNCIAS DE EN78</p></div></div>
+<ul><li><a class="std-chip" href="https://github.com/NVIDIA/nccl-tests/blob/master/doc/PERFORMANCE.md#bus-bandwidth" rel="noopener">NVIDIA nccl-tests PERFORMANCE.md – “Largura de banda Bus”: busBW = algBW × 2 (n–1)/n para todos os efeitos</a></li><li><a class="std-chip" href="https://doi.org/10.1016/j.jpdc.2008.09.002" rel="noopener">Patarasuk &amp; Yuan, J. Parallel Distrib. Comput. 69(2), 2009: algoritmos de redução de largura de banda ideal para clusters de estações de trabalho</a></li><li><a class="std-chip" href="https://doi.org/10.1177/1094342005051521" rel="noopener">Thakuck, Rabenseifner &amp; Gropp, IJHPCA 19(1), 2005:79: otimização de operações de comunicação coletiva em MPICH</a></li></ul>
+<p>A eficiência e a latência por etapa são suposições do usuário; calibra-as com testes nccl no tecido alvo antes das decisões de capacidade. Última revisão: 2026-10-20.</p>
+</section></div></section><!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="all-reduce-traffic-estimator" data-primary-workflow="ai-training-fabric-planning">
+<div class="section-heading"><div><p class="eyebrow">FLUXO DE TRABALHO DE ENGENHARIA</p><h2 id="nel-tool-graph-title">Continuar o fluxo de trabalho de engenharia</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Fluxo de trabalho atual</span><strong>Fluxo de trabalho de planejamento de tecido de treinamento de IA</strong><p>Estimativa gradiente tudo-reduzir tráfego, em seguida, dimensionar o tecido folha-espinho que o carrega.</p></div><div class="nel-workflow-step"><strong>Passo 1 de 2</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="2" aria-valuenow="1" aria-valuetext="Passo 1 de 2" aria-label="Passo 1 de 2"><span style="width:50%"></span></div></div></div><div class="nel-tool-graph-nav"><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Voltar</span><strong>Início do fluxo de trabalho</strong></div><a class="nel-tool-graph-card" href="../../data-center-network-convergence-fabric-capacity-planner/pt-br/"><span class="nel-tool-graph-label">Avançar</span><strong>Data Center Convergence de rede e planejamento de capacidade de tecido</strong><span class="nel-tool-graph-description">Plano de convergência de data center Leaf-Spine e três níveis, demanda leste-oeste/norte-sul, resiliência da coluna N-1, gargalos e crescimento.</span></a></div>
+<h3 class="nel-tool-graph-subtitle">Ferramentas relacionadas</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="../../data-center-network-convergence-fabric-capacity-planner/pt-br/"><strong>Data Center Convergence de rede e planejamento de capacidade de tecido</strong><span class="nel-tool-graph-description">Plano de convergência de data center Leaf-Spine e três níveis, demanda leste-oeste/norte-sul, resiliência da coluna N-1, gargalos e crescimento.</span></a><a class="nel-tool-graph-card" href="../../switch-uplink-oversubscription-calculator/pt-br/"><strong>Alternar a Largura de Banda e Sobre- Subscrição</strong><span class="nel-tool-graph-description">Tamanho alternar uplinks de portas de acesso, utilização, concorrência e redundância.</span></a><a class="nel-tool-graph-card" href="../../bandwidth-calculator/pt-br/"><strong>Calculadora de largura de banda e tempo de transferência</strong><span class="nel-tool-graph-description">Calcule o tempo de transferência do arquivo, taxa de ligação necessária, capacidade de usuário concorrente e volume de dados da taxa sustentada.</span></a><a class="nel-tool-graph-card" href="../../network-capacity-forecast-planner/pt-br/"><strong>Planeador de previsão da capacidade da rede</strong><span class="nel-tool-graph-description">Previsão do crescimento da demanda da rede, tempo de expansão e metas de capacidade a partir da utilização medida.</span></a></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END --></div></div></main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Ferramentas profissionais online para engenheiros de telecomunicações e redes.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navegação do rodapé">
+      <a href="../../../pt-br/about/">Sobre</a><a href="../../../pt-br/contact/">Contato</a><a href="../../../pt-br/privacy/">Privacidade</a><a href="../../../pt-br/terms/">Termos</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script defer="" src="../js/engine.js?v=4115c2d1a1bf"></script>
+<script defer="" src="../js/pwa.js"></script>
+<script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script>
+<script defer="" src="../js/app.js?v=f9e653a8a69b"></script>
+<script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d"></script>
+</body>
+</html>

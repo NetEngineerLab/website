@@ -25,10 +25,16 @@ function show(){
  const locale=(document.documentElement.dataset.nelLocale||document.documentElement.lang||"").toLowerCase();
  const isZh=locale.startsWith("zh");
  const isEs=locale.startsWith("es");
+ const isId=locale==="id"||locale.startsWith("id-");
+ const isPt=locale.startsWith("pt");
  const copy=isZh
   ?{title:"Cookie",body:"可选分析只在你同意后启用，可随时撤回。",reject:"拒绝",accept:"接受",privacy:"隐私政策",legal:"ePrivacy 5(3) / GDPR 7"}
   :isEs
   ?{title:"Cookies",body:"Las analíticas opcionales solo se activan si usted las acepta.",reject:"Rechazar",accept:"Aceptar",privacy:"Privacidad",legal:"ePrivacy 5(3) / RGPD 7"}
+  :isId
+  ?{title:"Cookie",body:"Analitik opsional hanya berjalan setelah Anda setuju, dan dapat ditarik kapan saja.",reject:"Tolak",accept:"Terima",privacy:"Privasi",legal:"ePrivacy 5(3) / GDPR 7"}
+  :isPt
+  ?{title:"Cookies",body:"A análise opcional só começa depois que você aceita e pode ser retirada a qualquer momento.",reject:"Recusar",accept:"Aceitar",privacy:"Privacidade",legal:"ePrivacy 5(3) / GDPR 7"}
   :{title:"Cookies",body:"Optional analytics starts only after you agree.",reject:"Decline",accept:"Accept",privacy:"Privacy",legal:"ePrivacy 5(3) / GDPR 7"};
  const e=document.createElement("div");
  e.className="nel-cookie-banner";
@@ -36,7 +42,7 @@ function show(){
  e.setAttribute("aria-modal","true");
  e.setAttribute("aria-labelledby","nel-cookie-title");
  e.setAttribute("aria-describedby","nel-cookie-description");
- const privacyHref=isZh?"/zh/privacy/":isEs?"/es/privacy/":"/privacy/";
+ const privacyHref=isZh?"/zh/privacy/":isEs?"/es/privacy/":isId?"/id/privacy/":isPt?"/pt-br/privacy/":"/privacy/";
  e.innerHTML=`<h3 id="nel-cookie-title">${copy.title}</h3><p id="nel-cookie-description">${copy.body}</p> <p class="nel-cookie-legal"><a href="${privacyHref}">${copy.privacy}</a> · ${copy.legal}</p><div class="nel-cookie-actions"><button class="nel-cookie-reject" type="button">${copy.reject}</button><button class="nel-cookie-accept" type="button">${copy.accept}</button></div>`;
  document.body.appendChild(e);
  lastFocus=document.activeElement;

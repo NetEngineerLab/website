@@ -42,22 +42,24 @@
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="en">
 <meta name="nel-route" content="tools/fiber-loss/">
-<meta name="nel-available-locales" content="en,zh,es">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
 <link rel="canonical" href="https://netengineerlab.com/tools/fiber-loss/">
 <link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/fiber-loss/">
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/fiber-loss/zh/">
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/fiber-loss/es/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/tools/fiber-loss/id/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/tools/fiber-loss/pt-br/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/fiber-loss/">
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the difference between physical loss and design loss?","acceptedAnswer":{"@type":"Answer","text":"Physical loss includes actual fiber and component losses. Design loss also includes engineering margin for ageing, temperature, maintenance connections and measurement variation."}},{"@type":"Question","name":"How should I choose 1310, 1490 or 1550 nm?","acceptedAnswer":{"@type":"Answer","text":"Select the actual service wavelength and direction. Common PON upstream uses 1310 nm, while downstream may use 1490 or 1550 nm. Follow the system specification."}},{"@type":"Question","name":"Why can splitter loss be adjusted?","acceptedAnswer":{"@type":"Answer","text":"The page uses typical nominal values. Actual loss varies by vendor, packaging and wavelength, so final designs should use specification or measured values."}},{"@type":"Question","name":"How much remaining budget is considered safe?","acceptedAnswer":{"@type":"Answer","text":"A minimum 3 dB engineering margin is commonly recommended. Smaller margins are more sensitive to contamination, bending, ageing and temperature changes."}},{"@type":"Question","name":"Why can receive power pass while the budget shows caution?","acceptedAnswer":{"@type":"Answer","text":"Receive threshold and design budget are separate checks. High transmit power may keep receive power acceptable while long-term design margin remains limited."}},{"@type":"Question","name":"Can this result be used for final acceptance?","acceptedAnswer":{"@type":"Answer","text":"This calculator supports planning, review and troubleshooting. Final acceptance should combine power meter and OTDR measurements, equipment specifications and enterprise standards."}}]}</script>
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
 <link rel="stylesheet" href="../../assets/css/site-shell.css?v=f427e2f1607b">
-<script defer src="../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../data/locales.js?v=cc78cf7363f3"></script>
 <script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../assets/js/site.js?v=c957f6562d31"></script>
+<script defer src="../../assets/js/site.js?v=3feb9dda55e8"></script>
 <link rel="stylesheet" href="../../assets/css/tool-layout.css?v=c4aecb2c24ab">
 <link rel="manifest" href="manifest.webmanifest">
 </head>
@@ -80,7 +82,7 @@
       <a href="../../topics/">Topics</a>
     </nav>
     <div class="site-shell-actions">
-      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/fiber-loss/" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="/tools/fiber-loss/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a><a class="language-option" role="menuitem" href="/tools/fiber-loss/es/" lang="es" hreflang="es"><span>Español</span><small>Spanish</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/fiber-loss/" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="/tools/fiber-loss/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a><a class="language-option" role="menuitem" href="/tools/fiber-loss/es/" lang="es" hreflang="es"><span>Español</span><small>Spanish</small></a><a class="language-option" role="menuitem" href="/tools/fiber-loss/id/" lang="id" hreflang="id"><span>Bahasa Indonesia</span><small>Indonesian</small></a><a class="language-option" role="menuitem" href="/tools/fiber-loss/pt-br/" lang="pt-BR" hreflang="pt-BR"><span>Português do Brasil</span><small>Brazilian Portuguese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
       <div class="site-shell-context-action"><a href="#calculator">Start calculating</a></div>
     </div>
   </div>
@@ -271,7 +273,7 @@
 <!-- NEL_FOOTER_END -->
 <script defer="" src="js/engine.js?v=817a8e83f755"></script><script defer="" src="js/pwa.js"></script>
 <script defer="" src="../../data/optical-standards.js"></script><script defer="" src="../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="js/app.js?v=f00ac1bb727e"></script><script defer src="js/scenarios.js"></script>
-<script defer src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
+<script defer src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
 <script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d"></script><script defer src="../../assets/js/tool-detail-v3.js?v=6f38212f00f3"></script>
 </body>
 </html>

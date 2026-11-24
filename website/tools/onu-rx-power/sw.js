@@ -1,4 +1,4 @@
-"use strict";const CACHE = "nel-onu-rx-power-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-4077d6be2c85-ae67dcafffcb";
+"use strict";const CACHE = "nel-onu-rx-power-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-ff5180a4daf2-a3e26787ee9d";
 const CORE = [
   "./index.html",
   "./",
@@ -28,7 +28,13 @@ const CORE = [
   "../../assets/js/es-launch-runtime.js?v=3f188aa72208",
   "../../assets/js/es-launch-runtime.js?v=829a7f1559b7",
   "../../assets/js/es-launch-runtime.js?v=e0fea69289b0",
-  "../../data/locales.js?v=909e05076a50",
+  "../../assets/js/id-launch-runtime.js?v=b48f2804bf23",
+  "../../assets/js/pt-br-launch-runtime.js?v=c5ef6ab315f2",
+  "../../assets/js/id-launch-runtime.js?v=5c5c0a77817b",
+  "../../assets/js/pt-br-launch-runtime.js?v=1ad25de31c7f",
+  "../../assets/js/id-launch-runtime.js?v=2141d735b95b",
+  "../../assets/js/pt-br-launch-runtime.js?v=00893649b07d",
+  "../../data/locales.js?v=cc78cf7363f3",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",
@@ -41,11 +47,11 @@ const CORE = [
   "../../assets/js/tool-detail-v3.js?v=6f38212f00f3",
   "../../assets/js/analytics.js?v=1156b7864023",
   "../../assets/js/adsense.js?v=f075c80ccc75",
-  "../../assets/js/site.js?v=c957f6562d31",
+  "../../assets/js/site.js?v=3feb9dda55e8",
   "../../assets/js/tool-integration.js?v=05f7934f4687",
   "../../assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d",
   "../../assets/css/cookie-consent.css?v=2f2c8ab643e6",
-  "../../assets/js/cookie-consent.js?v=5e6d1af21a6a",
+  "../../assets/js/cookie-consent.js?v=a60243da0fb7",
   "../../assets/js/rules-engine/normalize.js?v=9e2cb44bca10",
   "../../assets/js/rules-engine/evidence.js?v=275bb87b037a",
   "../../assets/js/rules-engine/evaluate.js?v=fdd7e0e551ef",
@@ -57,7 +63,15 @@ const CORE = [
   "./manifest-zh.webmanifest",
   "./es/",
   "./es/index.html",
-  "./manifest-es.webmanifest"
+  "./manifest-es.webmanifest",
+  "./id/",
+  "./id/index.html",
+  "./manifest-id.webmanifest",
+  "./pt-br/",
+  "./pt-br/index.html",
+  "./manifest-pt-br.webmanifest",
+  "../../assets/js/id-launch-runtime.js?v=3461d0601eeb",
+  "../../assets/js/pt-br-launch-runtime.js?v=1223d823e2c6"
 ];self.addEventListener("install", (event) => {  event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)));  self.skipWaiting();});self.addEventListener("activate", (event) => {  event.waitUntil(caches.keys().then((keys) => Promise.all(    keys.filter((key) => key.startsWith("nel-onu-rx-power-") && key !== CACHE).map((key) => caches.delete(key))  )));  self.clients.claim();});self.addEventListener("fetch", (event) => {  const request = event.request;  const url = new URL(request.url);  if (request.method !== "GET" || url.origin !== location.origin) return;  if (request.mode === "navigate") {    event.respondWith(fetch(request).then((response) => {      const copy = response.clone();      caches.open(CACHE).then((cache) => cache.put(request, copy));      return response;    }).catch(() => nelScopedCacheMatch(request, { ignoreSearch: true }).then(      (cached) => cached || nelScopedCacheMatch("./offline.html")    )));    return;  }  event.respondWith(nelScopedCacheMatch(request, { ignoreSearch: true }).then((cached) => cached || fetch(request).then((response) => {    if (response.ok) {      const copy = response.clone();      caches.open(CACHE).then((cache) => cache.put(request, copy));    }    return response;  })));});
 /* NEL_SCOPED_CACHE_START */
 // A different tool may retain another version of a shared asset. Never search

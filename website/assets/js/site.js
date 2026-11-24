@@ -50,7 +50,9 @@ function initNetEngineerLabSite(){
  const moreCopy=({
   en:{more:"Show more",remaining:"{shown} of {total} · {n} more"},
   zh:{more:"更多",remaining:"已显示 {shown}/{total} · 还有 {n} 个"},
-  es:{more:"Ver más",remaining:"{shown} de {total} · {n} más"}
+  es:{more:"Ver más",remaining:"{shown} de {total} · {n} más"},
+  id:{more:"Tampilkan lebih banyak",remaining:"{shown} dari {total} · {n} lagi"},
+  "pt-BR":{more:"Mostrar mais",remaining:"{shown} de {total} · mais {n}"}
  })[locale?.id]||{more:"Show more",remaining:"{shown} of {total} · {n} more"};
  function ensureToolsShowMore(){
   if(!isToolsDirectory)return null;
@@ -207,7 +209,7 @@ function mountMobileResultJump(){
  if(!result||!calculator)return;
  if(!result.id)result.id="nel-result";
  const lang=(document.documentElement.lang||page.dataset.nelLocale||"").toLowerCase();
- const copy=lang.startsWith("zh")?["去计算","查看结果"]:lang.startsWith("es")?["Ir al cálculo","Ver resultado"]:["Calculator","See result"];
+ const copy=lang.startsWith("zh")?["去计算","查看结果"]:lang.startsWith("es")?["Ir al cálculo","Ver resultado"]:lang.startsWith("id")?["Kalkulator","Lihat hasil"]:lang.startsWith("pt")?["Calculadora","Ver resultado"]:["Calculator","See result"];
  const bar=document.createElement("nav");
  bar.className="nel-result-jump";
  bar.setAttribute("aria-label",copy[1]);

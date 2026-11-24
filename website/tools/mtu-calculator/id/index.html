@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html lang="id" dir="ltr" data-nel-locale="id" data-nel-route="tools/mtu-calculator/"><head>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#176ff2" name="theme-color"/><meta content="../" name="app-base"/>
+<title>MTU &amp; MSS Kalkulator | NetEngineerLab sher</title><meta content="MTU profesional dan TCP MSS kalkulator untuk PPPoE, VLAN, GRE, VXLAN, MPLS, IPSEC dan WireGuard ensumlation." name="description"/><meta content="index,follow,max-image-preview:large,max-snippet:-1" name="robots"/>
+<meta content="website" property="og:type"/><meta content="NetEngineerLab" property="og:site_name"/><meta content="MTU &amp; MSS Kalkulator | NetEngineerLab sher" property="og:title"/><meta content="MTU profesional dan TCP MSS kalkulator untuk PPPoE, VLAN, GRE, VXLAN, MPLS, IPSEC dan WireGuard ensumlation." property="og:description"/><meta content="https://netengineerlab.com/tools/mtu-calculator/id/" property="og:url"/><meta content="https://netengineerlab.com/tools/mtu-calculator/images/og-mtu-mss-calculator.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/>
+<link href="../css/style.css?v=41f1b12ebf44" rel="stylesheet"/><link href="../css/deep-workflow.css?v=6f91804b47b7" rel="stylesheet"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Kalkulator MTU & MSS","url":"https://netengineerlab.com/tools/mtu-calculator/id/","description":"MTU profesional dan TCP MSS kalkulator untuk PPPoE, VLAN, GRE, VXLAN, MPLS, IPSEC dan WireGuard ensumlation.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Network Engineering Calculator","operatingSystem":"Any","softwareVersion":"1.0.0","inLanguage":"id","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/id/"}}</script>
+<script data-nel-launch-schema="breadcrumb" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://netengineerlab.com/id/"},{"@type":"ListItem","position":2,"name":"Alat","item":"https://netengineerlab.com/tools/id/"},{"@type":"ListItem","position":3,"name":"Kalkulator MTU & MSS","item":"https://netengineerlab.com/tools/mtu-calculator/id/"}]}</script><meta content="NetEngineerLab" name="author"/>
+<link href="/assets/css/cookie-consent.css?v=2f2c8ab643e6" rel="stylesheet"/>
+<link href="/assets/css/mobile-branding.css?v=345784b6b020" rel="stylesheet"/>
+<script defer="" src="/data/seo-config.js"></script>
+<script defer="" src="/assets/js/seo-engine.js?v=15ac96553c44"></script>
+
+<link href="/assets/icons/favicon.svg?v=1.9.5-06" rel="icon" type="image/svg+xml"/><link href="/assets/icons/favicon-32x32.png?v=1.9.5-06" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon.ico?v=1.9.5-06" rel="shortcut icon"/><link href="/assets/icons/apple-touch-icon.png?v=1.9.5-06" rel="apple-touch-icon" sizes="180x180"/><link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
+
+<meta name="twitter:title" content="MTU &amp; MSS Kalkulator | NetEngineerLab sher">
+<meta name="twitter:description" content="MTU profesional dan TCP MSS kalkulator untuk PPPoE, VLAN, GRE, VXLAN, MPLS, IPSEC dan WireGuard ensumlation.">
+<meta name="twitter:image" content="https://netengineerlab.com/tools/mtu-calculator/images/og-mtu-mss-calculator.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=031fae951adb">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=64bd0d9f6bcb">
+<script defer="" src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"MTU & MSS Kalkulator | NetEngineerLab sher","url":"https://netengineerlab.com/tools/mtu-calculator/id/","description":"MTU profesional dan TCP MSS kalkulator untuk PPPoE, VLAN, GRE, VXLAN, MPLS, IPSEC dan WireGuard ensumlation.","inLanguage":"id","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/id/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="id">
+<meta name="nel-route" content="tools/mtu-calculator/">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
+<link rel="canonical" href="https://netengineerlab.com/tools/mtu-calculator/id/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/mtu-calculator/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/mtu-calculator/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/mtu-calculator/es/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/tools/mtu-calculator/id/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/tools/mtu-calculator/pt-br/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/mtu-calculator/">
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Mengapa PPPoE MTU biasanya 1492?","acceptedAnswer":{"@type":"Answer","text":"Sebuah 1500- byte muatan Ethernet dikurangi 8 byte dari PPPoE dan protokol PPP overhead daun 1492 bytes."}},{"@type":"Question","name":"Haruskah VLAN selalu mengurangi IP MTU dengan 4 bytes?","acceptedAnswer":{"@type":"Answer","text":"Tidak. Paling mampu perangkat Ethernet mendukung frame tag sedikit lebih besar sambil menjaga IP MTU di 1500. infect Gunakan mode ketat hanya ketika batas fisik frame tidak memperluas."}},{"@type":"Question","name":"Mengapa nilai IPSEC diperkirakan?","acceptedAnswer":{"@type":"Answer","text":"overhead ESP tergantung pada luar IP, NAT- T, IV, tag integritas dan padding variabel. Verifikasi isi cipher sebenarnya dan implementasi vendor."}},{"@type":"Question","name":"Apa TCP MSS yang benar untuk IPv6 MTU 1500?","acceptedAnswer":{"@type":"Answer","text":"Dengan header tetap saja, 1500 - 40- byte IPv6 header - 20- byte TCP header = 1440 bytes."}},{"@type":"Question","name":"Bisakah ping membuktikan jalur lengkap MTU?","acceptedAnswer":{"@type":"Answer","text":"Ini berguna tapi tidak meyakinkan. Kelembaban ICMP, ECMP, terowongan dan routing asimetris dapat mempengaruhi hasilnya. Gabungkan dengan PMTUD, menangkap dan penghitung perangkat."}},{"@type":"Question","name":"Apa IPv6 MTU di bawah 1280 berarti?","acceptedAnswer":{"@type":"Answer","text":"IPv6 mendefinisikan 1280 bytes sebagai link minimum MTU. Desain di bawah ini yang memerlukan pecahan lapisan-rendah / menyesuaikan kembali atau adaptasi dan harus ditinjau."}}]}</script>
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
+<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
+<script defer src="../../../assets/js/id-launch-runtime.js?v=3461d0601eeb"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
+<link rel="manifest" href="../manifest-id.webmanifest">
+</head><body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1" data-nel-offline-worker="1">
+<a class="skip" href="#calculator">Lewati ke kalkulator</a><noscript><div class="noscript">JavaScript is required.</div></noscript>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../id/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Platform kecerdasan untuk rekayasa jaringan</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Buka navigasi"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navigasi utama">
+      <a href="../../../id/">Beranda</a>
+      <a href="../../id/" aria-current="page">Alat</a>
+      <a href="../../../id/guides/">Panduan</a>
+      <a href="../../../id/topics/">Topik</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Bahasa: Bahasa Indonesia"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Bahasa Indonesia</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/mtu-calculator/" lang="en" hreflang="en"><span>English</span><small>Inggris</small></a><a class="language-option" role="menuitem" href="/tools/mtu-calculator/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Tionghoa Sederhana</small></a><a class="language-option" role="menuitem" href="/tools/mtu-calculator/es/" lang="es" hreflang="es"><span>Español</span><small>Spanyol</small></a><a class="language-option" role="menuitem" href="/tools/mtu-calculator/id/" lang="id" hreflang="id" aria-current="page"><span>Bahasa Indonesia</span><small>Bahasa Indonesia</small></a><a class="language-option" role="menuitem" href="/tools/mtu-calculator/pt-br/" lang="pt-BR" hreflang="pt-BR"><span>Português do Brasil</span><small>Portugis Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">Mulai menghitung</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a href="../../../id/">Beranda</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../../id/">Alat</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">Kalkulator MTU &amp; MSS</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END -->
+<section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner"><p class="eyebrow">NETworks PACKET ENGINEERING TOOL</p><p class="hero-title">Kalkulator MTU &amp; MSS</p><p>Bangun sebuah tumpukan encapsulasi, hitung secara efektif bagian dalam MTU, TCP MSS, muatan UDP dan ukuran tes ping, kemudian identifikasi fragmentasi dan risiko frame- ukuran.</p><div class="hero-tags"><span>PPPoE</span><span>GRE / VXLAN</span><span>IPsec / WireGuard</span><span>MPLS</span></div></div></section>
+<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator" data-nel-readout-roles="%7B%22secondary%22%3A%5B%22totalOverhead%22%2C%22actualTcpPayload%22%2C%22udpPayload%22%2C%22outerPacketLimit%22%2C%22overheadPercent%22%2C%22icmpPayload%22%2C%22requiredUnderlay%22%2C%22headroom%22%2C%22fragmentationBytes%22%2C%22currentFrame%22%2C%22requiredFrame%22%2C%22ipHeader%22%2C%22tcpHeader%22%2C%22recommendedMss%22%5D%2C%22identifier%22%3A%5B%5D%2C%22annotation%22%3A%5B%5D%7D" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv"><div class="tool-head"><nav class="crumbs" aria-label="Breadcrumb">
+  <a href="../../id/">Beranda</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="./">Alat</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">Kalkulator MTU &amp; MSS</span>
+</nav><h1 class="tool-page-label">Kalkulator MTU &amp; MSS</h1><p class="tool-lede">Bangun sebuah tumpukan encapsulasi, hitung secara efektif bagian dalam MTU, TCP MSS, muatan UDP dan ukuran tes ping, kemudian identifikasi fragmentasi dan risiko frame- ukuran.</p></div>
+<div class="workspace">
+<section class="input-panel card nel-tool-input fb-panel">
+<div class="section-title panel-h"><span class="section-icon">MT</span><div><h2 class="panel-h">Parameter sambungan dan encapsulasi</h2><p>Pilih suatu pre😀 preset, kemudian sunting setiap nilai byte ketika dibutuhkan.</p></div></div>
+<div class="notice">Nilai byte encapsulasi dapat disunting. Konfirmasi IPsec, VPN, dan perilaku bingkai perangkat keras terhadap platform yang sebenarnya.</div>
+<div class="preset-row"><label for="preset">Skenario preset</label><select id="preset"><option value="plain">Terowongan Ethernet Standar / tidak ada</option><option value="pppoe">PPPoE IPv4</option><option value="gre4">GRE over IPv4</option><option value="gre4key">Kunci GRE di atas IPv4</option><option value="vxlan4">VXLAN atas IPv4</option><option value="vxlan6">VXLAN atas IPv6</option><option value="esp4natt">IPSET ESP NAT- T atas IPv4</option><option value="wireguard4">WireGuard atas IPv4</option><option value="wireguard6">WireGuard atas IPv6</option><option value="mpls2">Dua label MPLS</option><option value="custom">Gubahan</option></select></div>
+<div class="form-grid fields">
+<div class="field full f"><label for="projectName">Nama projek</label><div class="input-wrap no-unit inp"><input id="projectName" value="MTU and MSS Design"/></div></div>
+<div class="subheading">Underlay dan target</div>
+<div class="field f"><label for="underlayMtu">Dasar dibawah MTU</label><div class="input-wrap inp"><input id="underlayMtu" min="0" step="1" type="number" value="1500"/><span>byte</span></div></div>
+<div class="field f"><label for="desiredInnerMtu">Target dalam MTU</label><div class="input-wrap inp"><input id="desiredInnerMtu" min="0" step="1" type="number" value="1500"/><span>byte</span></div></div>
+<div class="field f"><label for="outerVlanTags">Tag VLAN luar</label><div class="input-wrap inp"><input id="outerVlanTags" max="4" min="0" step="1" type="number" value="0"/><span>tag</span></div></div>
+<div class="field f"><label for="vlanMode">penanganan frame VLAN</label><div class="input-wrap no-unit inp sel"><select id="vlanMode"><option value="expand">Ekspansi frame Tagged didukung</option><option value="strict">Batas fixed- frame strict; kurangi tag</option></select></div></div>
+<div class="subheading">Header protokol dalam</div>
+<div class="field f"><label for="innerIp">Versi IP dalam</label><div class="input-wrap no-unit inp sel"><select id="innerIp"><option value="ipv4">IPv4</option><option value="ipv6">IPv6</option></select></div></div>
+<div class="field f"><label for="ipExtraBytes">Opsi IP / ekstensi header</label><div class="input-wrap inp"><input id="ipExtraBytes" min="0" step="1" type="number" value="0"/><span>byte</span></div></div>
+<div class="field f"><label for="tcpOptionsBytes">Opsi TCP</label><div class="input-wrap inp"><input id="tcpOptionsBytes" min="0" step="1" type="number" value="0"/><span>byte</span></div></div>
+</div>
+<div class="layer-editor"><div class="layer-head"><h3>Encapsulasi stack</h3><button id="addLayerBtn" type="button" class="btn btn-ghost"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 5v14M5 12h14"></path></svg> layers-action</button></div><div class="table-scroll"><table class="layer-table"><thead><tr><th>Lapis</th><th>Bytes</th><th>Cacah</th><th>Total</th><th></th></tr></thead><tbody id="layerBody"></tbody></table></div></div>
+<div class="input-actions"><button class="primary btn btn-primary" id="calculateBtn" type="button">Hitung</button><button class="secondary btn btn-ghost" id="resetBtn" type="button">Atur ulang</button></div><div class="formula-block"><div class="formula-card"><h3>Perhitungan inti</h3><code>Effective inner MTU = Underlay MTU − Σ(encapsulation overhead). TCP MSS ≈ Effective MTU − IP header − TCP header (− options). Fragmentation risk when Desired inner MTU > Effective MTU.</code></div><div class="formula-note"><p><strong>Tumpukan kepala.</strong> Sum VLAN, terowongan, dan header L3 / L4 yang duduk di luar paket dalam.</p><p><strong>MTU efektif.</strong> Apa yang tersisa dari paket IP setelah MTU membayar setiap byte luar.</p><p><strong>MSS.</strong> Iklan MSS sehingga muatan TCP cocok tanpa perpecahan IP di jalur olok-olok ini.</p><p><strong>Fragmentasi.</strong> Jika yang diinginkan MTU melebihi nilai efektif, menyusut MSS atau meningkatkan MTU underlay.</p></div></div>
+</section>
+<section aria-live="polite" class="result-panel card nel-tool-result readout">
+<div class="section-title ro-h"><span class="section-icon">MSS</span><div><h2 class="ro-h">MTU, MSS dan hasil fragmentasi</h2><p>Ukuran paket dalam efektif setelah semua dikonfigurasi di atas kepala.</p></div></div>
+<div class="summary-card healthy ro-l1" id="summaryCard"><div class="ro-main"><p class="lbl">MTU</p><strong class="big"><span id="effectiveMtu" data-nel-readout-number="1">1500</span><small>byte</small></strong></div><span class="status-badge healthy" id="statusBadge">—</span></div>
+<div class="metric-grid">
+<article class="metric"><small>Total overhead</small><strong><span id="totalOverhead">0</span> B</strong></article>
+<article class="metric"><small>Direkomendasikan TCP MSS</small><strong><span id="recommendedMss">1460</span> B</strong></article>
+<article class="metric"><small>Data TCP sebenarnya dengan opsi</small><strong><span id="actualTcpPayload">1460</span> B</strong></article>
+<article class="metric"><small>Muatan UDP maksimum</small><strong><span id="udpPayload">1472</span> B</strong></article>
+</div>
+<div class="bar-card"><div class="bar-head"><span>MTU</span><strong><span id="outerPacketLimit">1500</span> Batas luar B</strong></div><div class="bar-track"><div class="bar-fill" id="mtuBar" style="width:100%"></div></div></div>
+<div class="bar-card"><div class="bar-head"><span>Persentase overhead</span><strong><span id="overheadPercent">0.00</span>%</strong></div><div class="bar-track"><div class="bar-fill overhead" id="overheadBar" style="width:0%"></div></div></div>
+<div class="stack-wrap"><h3>Path encapsulasi</h3><div class="stack-diagram" id="stackDiagram"></div></div>
+<div class="result-grid">
+<article class="result-box"><span>Data gema ICMP</span><strong><span id="icmpPayload">1472</span> B</strong></article>
+<article class="result-box"><span>Perlu basis MTU</span><strong><span id="requiredUnderlay">1500</span> B</strong></article>
+<article class="result-box"><span>Headroom Target</span><strong><span id="headroom">0</span> B</strong></article>
+<article class="result-box"><span>bytes excection / fragmentasi</span><strong><span id="fragmentationBytes">0</span> B</strong></article>
+<article class="result-box"><span>Frame kawat maksimum saat ini</span><strong><span id="currentFrame">1518</span> B</strong></article>
+<article class="result-box"><span>Perlu bingkai kawat</span><strong><span id="requiredFrame">1518</span> B</strong></article>
+<article class="result-box"><span>Tajuk IP yang dikonfigurasi</span><strong><span id="ipHeader">20</span> B</strong></article>
+<article class="result-box"><span>Header TCP yang dikonfigurasi</span><strong><span id="tcpHeader">20</span> B</strong></article>
+</div>
+<div class="command-box"><h3>Perintah tes Ping / PMTU</h3><div class="command-line"><b>Jendela</b><code id="windowsPing"></code></div><div class="command-line"><b>Linux</b><code id="linuxPing"></code></div></div>
+<div class="breakdown"><h3>MTU rusak</h3><table><tbody id="breakdownBody"></tbody></table></div>
+<div class="warning-box"><h3>Penilaian Teknik</h3><ul id="warningList"></ul></div>
+<aside class="result-fill" id="resultFill" aria-label="MTU snapshot"><div class="result-fill-card"><h3>MTU snapshot</h3><p class="result-fill-lead">Bagaimana MTU underlay, overhead dan efektif ukuran dalam berhubungan untuk tumpukan encapsulasi.</p><div class="util-breakdown"><div class="util-seg payload"><span>MTU</span><strong id="fillMtu">—</strong></div><div class="util-seg overhead"><span>Total overhead</span><strong id="fillOverhead">—</strong></div><div class="util-seg headroom"><span>Disarankan MSS</span><strong id="fillMss">—</strong></div></div><ul class="fill-tips"><li>Match MSS menjepit di kedua ujung terowongan dan tepi WAN.</li><li>Akun untuk setiap VLAN tag dan header terowongan sebenarnya hadir di kawat.</li><li>Validasi dengan ping DF bit / PMTUD sebelum memotong atas lalu lintas produksi.</li></ul></div></aside><div class="result-actions ro-acts"><button id="copyBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h8v8H8z"></path></svg> Hasil salinan</button><button id="saveBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 5v14M5 12h14"></path></svg> Simpan catatan</button><button id="csvBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg> Ekspor CSV</button><button id="printBtn" type="button"><svg aria-hidden="true" class="action-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M6 9V3h12v6"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v7H6z"></path></svg> Cetak / PDF</button></div>
+</section>
+</div>
+<div class="below"><nav class="toc" aria-label="Pada halaman ini"><h4>Pada halaman ini</h4><a href="#methodology">Bagaimana itu dihitung</a><a href="#faq">FAQ</a><a href="#history">Perhitungan baru-baru ini</a><a href="#nel-tool-graph">Aliran kerja rekayasa</a></nav><div class="prose"><details class="fb-fold blk" id="methodology" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span class="fb-fold-title">Metode</span></summary><div class="fb-fold-body"><section class="content-section nel-tool-supporting-section"><p class="eyebrow">METHODOLOGY</p><div class="method-grid"><article><h3>TCP MSS</h3><p>RFC 6691 merekomendasikan pengurangan hanya IP tetap dan header TCP ketika mengiklankan MSS. Alat secara terpisah menghitung data yang sebenarnya setelah opsi yang dikonfigurasi.</p></article><article><h3>PPPoE</h3><p>RFC 2516 menggunakan 6 bytes untuk header PPPoE dan 2 bytes untuk field protokol PPP, menghasilkan akrab 1492-byte MTU pada sebuah muatan EtherNaikkan 1500- byte.</p></article><article><h3>VLAN dan MPLS</h3><p>A VLAN tag adalah 4 bytes pada kawat. Setiap entri label MPLS adalah 4 bytes. VLAN biasanya tidak mengurangi IP MTU terkonfigurasi ketika ekspansi frame tag-frame didukung.</p></article><article><h3>Terowongan dan keamanan</h3><p>GRE, VXLAN, IPsec dan WireGuard overhead tergantung pada versi IP luar dan bidang opsional. IPsec padding adalah variabel, sehingga preset adalah perkiraan editable.</p></article></div>
+<div class="sources"><strong>Referensi primer:</strong>
+<a href="https://www.rfc-editor.org/rfc/rfc2516" rel="noopener">RFC 2516</a> ·
+<a href="https://www.rfc-editor.org/rfc/rfc6691" rel="noopener">RFC 6691</a> ·
+<a href="https://www.rfc-editor.org/rfc/rfc2784" rel="noopener">RFC 2784</a> ·
+<a href="https://www.rfc-editor.org/rfc/rfc2890" rel="noopener">RFC 2890</a> ·
+<a href="https://www.rfc-editor.org/rfc/rfc7348" rel="noopener">RFC 7348</a> ·
+<a href="https://www.rfc-editor.org/rfc/rfc3032" rel="noopener">RFC 3032</a> ·
+<a href="https://www.rfc-editor.org/rfc/rfc4303" rel="noopener">RFC 4303</a> ·
+<a href="https://www.rfc-editor.org/rfc/rfc8200" rel="noopener">RFC 8200</a> ·
+<a href="https://www.rfc-editor.org/rfc/rfc8201" rel="noopener">RFC 8201</a> ·
+<a href="https://www.wireguard.com/protocol/" rel="noopener">Wire Guard Protocol</a>
+</div></section></div></details><div class="blk faq" id="faq" data-nel-v3-title-normalized="1"><h2>Pertanyaan yang sering ditanyakan</h2><p class="eyebrow">FAQ</p><details><summary>Mengapa PPPoE MTU biasanya 1492?</summary><p>Sebuah 1500- byte muatan Ethernet dikurangi 8 byte dari PPPoE dan protokol PPP overhead daun 1492 bytes.</p></details><details><summary>Haruskah VLAN selalu mengurangi IP MTU dengan 4 bytes?</summary><p>Tidak. Paling mampu perangkat Ethernet mendukung frame tag sedikit lebih besar sambil menjaga IP MTU di 1500. infect Gunakan mode ketat hanya ketika batas fisik frame tidak memperluas.</p></details><details><summary>Mengapa nilai IPSEC diperkirakan?</summary><p>overhead ESP tergantung pada luar IP, NAT- T, IV, tag integritas dan padding variabel. Verifikasi isi cipher sebenarnya dan implementasi vendor.</p></details><details><summary>Apa TCP MSS yang benar untuk IPv6 MTU 1500?</summary><p>Dengan header tetap saja, 1500 - 40- byte IPv6 header - 20- byte TCP header = 1440 bytes.</p></details><details><summary>Bisakah ping membuktikan jalur lengkap MTU?</summary><p>Ini berguna tapi tidak meyakinkan. Kelembaban ICMP, ECMP, terowongan dan routing asimetris dapat mempengaruhi hasilnya. Gabungkan dengan PMTUD, menangkap dan penghitung perangkat.</p></details><details><summary>Apa IPv6 MTU di bawah 1280 berarti?</summary><p>IPv6 mendefinisikan 1280 bytes sebagai link minimum MTU. Desain di bawah ini yang memerlukan pecahan lapisan-rendah / menyesuaikan kembali atau adaptasi dan harus ditinjau.</p></details></div><section class="blk" id="history" data-nel-v3-title-normalized="1"><h2>Riwayat</h2><div class="fb-fold-body"><section class="content-section nel-tool-supporting-section"><div class="history-head"><div><p class="eyebrow">PROYEK RECORDS</p></div><button class="text-button btn btn-ghost btn-sm" id="clearHistoryBtn">Hapus riwayat</button></div><div class="history-list" id="historyList"></div></section></div></section><p class="hub-return">Bagian dari <a href="../../switching-bandwidth-calculators/id/">penjumlahan dan kalkulator bandwidth</a> hub.</p><!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="mtu-calculator" data-primary-workflow="enterprise-lan-ip-planning">
+<div class="section-heading"><div><p class="eyebrow">MESIN KERJA</p><h2 id="nel-tool-graph-title">Lanjutkan proses rekayasa</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Aliran kerja saat ini</span><strong>Enterprise LAN &amp; IP Planning Workflow</strong><p>Pengalamatan rencana, kapasitas VLAN, ukuran paket, uplinks, optik, kebijakan akses dan perilaku DNS sebagai satu urutan desain LAN.</p></div><div class="nel-workflow-step"><strong>Langkah 4 dari 12</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="12" aria-valuenow="4" aria-valuetext="Langkah 4 dari 12" aria-label="Langkah 4 dari 12"><span style="width:33%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="../../vlan-ip-capacity-planner/id/"><span class="nel-tool-graph-label">Sebelumnya</span><strong>VLAN &amp; IP Subnet Kapasitas Planner</strong><span class="nel-tool-graph-description">Rencana VLAN dihitung, awalan IPv4, kapasitas alamat dan ruang kepala pertumbuhan.</span></a><a class="nel-tool-graph-card" href="../../bandwidth-calculator/id/"><span class="nel-tool-graph-label">Berikutnya</span><strong>Kalkulator bandwidth dan waktu transfer</strong><span class="nel-tool-graph-description">Hitung waktu transfer berkas, laju link yang diperlukan, Kapasitas tukar-pengguna dan volume data yang berkelanjutan.</span></a></div>
+<h3 class="nel-tool-graph-subtitle">Perkakas terkait</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="../../bandwidth-calculator/id/"><strong>Kalkulator bandwidth dan waktu transfer</strong><span class="nel-tool-graph-description">Hitung waktu transfer berkas, laju link yang diperlukan, Kapasitas tukar-pengguna dan volume data yang berkelanjutan.</span></a><a class="nel-tool-graph-card" href="../../ipv6-nat-planner/id/"><strong>Kalkulator Perencanaan IPv6 &amp; NKuulangi</strong><span class="nel-tool-graph-description">Rencana IPv6 prefix, kapasitas NAT44, deterministik CGNAT blok, NAT64 dan DNS64 pengalamatan.</span></a><a class="nel-tool-graph-card" href="../../acl-generator-validator/id/"><strong>Multi- Vendor ACL Generator &amp; Validator</strong><span class="nel-tool-graph-description">Hasilkan, konversi dan validasi IPv4 ACL untuk Cisco IOS, Huawei VRP, H3C Comware dan Juniper Junos.</span></a></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END --></div></div></main>
+<aside aria-label="Penyesuaian" class="ad-slot" data-ad-key="afterCalculator" hidden=""><div class="ad-label">ADVERTISEMENT</div><div class="ad-body"></div></aside>
+
+
+
+<aside aria-label="Penyesuaian" class="ad-slot" data-ad-key="afterMethodology" hidden=""><div class="ad-label">ADVERTISEMENT</div><div class="ad-body"></div></aside>
+
+
+
+
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Alat daring profesional untuk insinyur telekomunikasi dan jaringan.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navigasi kaki halaman">
+      <a href="../../../id/about/">Tentang</a><a href="../../../id/contact/">Kontak</a><a href="../../../id/privacy/">Privasi</a><a href="../../../id/terms/">Ketentuan</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script defer="" src="../data/mtu-overhead-library.js"></script><script defer="" src="../js/engine.js?v=dcf176ac2167"></script><script defer="" src="../js/pwa.js"></script><script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script><script defer="" src="../js/app.js?v=2816d5da6ca2"></script><script defer="" src="../js/deep-workflow.js?v=20261106-bw1f"></script>
+<script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d"></script></body></html>

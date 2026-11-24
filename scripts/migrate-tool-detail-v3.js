@@ -9,7 +9,9 @@ const root=path.resolve(__dirname,'..');
 function write(file,html){for(let attempt=0;;attempt++)try{fs.writeFileSync(file,html);return;}catch(error){if(attempt>=8)throw error;Atomics.wait(new Int32Array(new SharedArrayBuffer(4)),0,0,40);}}
 const preserved=new Set(['optical-power-budget']);
 const slugs=[...new Set([...require('../src/registry/tool-registry.json').filter(t=>t.status==='active').map(t=>t.id),...require('./lib/supplemental-tool-slugs')])];
-const labels={en:['On this page','Engineering workflow','About & applicability','How it’s calculated','Status rules','Component check','FAQ','Recent calculations','Official references','Content review','PON toolkit'],zh:['本页导航','工程工作流','关于与适用范围','计算方法','状态规则','分项核对','问答','最近计算','官方依据','内容复核','PON 工具组'],es:['En esta página','Flujo de ingeniería','Acerca de y aplicabilidad','Cómo se calcula','Reglas de estado','Comprobación de componentes','Preguntas frecuentes','Cálculos recientes','Referencias oficiales','Revisión de contenido','Kit PON']};
+const labels={en:['On this page','Engineering workflow','About & applicability','How it’s calculated','Status rules','Component check','FAQ','Recent calculations','Official references','Content review','PON toolkit'],zh:['本页导航','工程工作流','关于与适用范围','计算方法','状态规则','分项核对','问答','最近计算','官方依据','内容复核','PON 工具组'],es:['En esta página','Flujo de ingeniería','Acerca de y aplicabilidad','Cómo se calcula','Reglas de estado','Comprobación de componentes','Preguntas frecuentes','Cálculos recientes','Referencias oficiales','Revisión de contenido','Kit PON'],id:['Di halaman ini','Alur kerja rekayasa','Tentang dan penerapan','Cara perhitungannya','Aturan status','Pemeriksaan komponen','Tanya jawab','Perhitungan terbaru','Referensi resmi','Tinjauan konten','Perangkat PON'],'pt-br':['Nesta página','Fluxo de engenharia','Sobre e aplicabilidade','Como é calculado','Regras de status','Verificação de componentes','Perguntas frequentes','Cálculos recentes','Referências oficiais','Revisão de conteúdo','Kit PON']};
+function localeCopyKey(locale){return locale==='pt-br'?'ptBR':locale}
+function localeRouteKey(locale){return locale==='zh'?'zh-CN':locale==='pt-br'?'pt-BR':locale}
 const anchors=['about-scope','methodology','status-rules','component-check','faq','history','references','content-review','pon-toolkit','nel-tool-graph'];
 const foldAnchors=new Set(anchors.slice(0,4));
 function normalizeBreadcrumbs(dom){
@@ -155,18 +157,18 @@ function normalizeSupporting(dom,locale){
 }
 function semantic(title,id){
  if(anchors.includes(id))return id;
- if(/faq|questions|asked|preguntas|问答|常见|問題/.test(title.toLowerCase()))return 'faq';
- if(/\breview\b|\brevisi[oó]n\b|复核|审核|审阅/.test(title.toLowerCase()))return 'content-review';
- if(/reference|sources|standards|referencias|fuentes|normas|依据|参考|标准|来源|权威资料/.test(title.toLowerCase()))return 'references';
- if(/status|reglas|状态|判定|健康/.test(title.toLowerCase()))return 'status-rules';
- if(/component|breakdown|desglose|componentes|分项|分解/.test(title.toLowerCase()))return 'component-check';
- if(/method|calculat|formula|how |built|estimate|c[oó]mo\b|c[aá]lculo|m[eé]todo|计算|公式|方法|如何|使用说明|估算.*建立/.test(title.toLowerCase()))return 'methodology';
- if(/about|scope|applicab|limits|acerca|l[ií]mites|适用|范围|边界|限制/.test(title.toLowerCase()))return 'about-scope';
+ if(/faq|questions|asked|preguntas|问答|常见|問題|pertanyaan|tanya|perguntas|d[uú]vidas/.test(title.toLowerCase()))return 'faq';
+ if(/\breview\b|\brevisi[oó]n\b|复核|审核|审阅|tinjauan|revis[aã]o/.test(title.toLowerCase()))return 'content-review';
+ if(/reference|sources|standards|referencias|fuentes|normas|依据|参考|标准|来源|权威资料|referensi|sumber|standar|refer[eê]ncias|fontes/.test(title.toLowerCase()))return 'references';
+ if(/status|reglas|状态|判定|健康|aturan|regras/.test(title.toLowerCase()))return 'status-rules';
+ if(/component|breakdown|desglose|componentes|分项|分解|komponen|rincian|detalhamento/.test(title.toLowerCase()))return 'component-check';
+ if(/method|calculat|formula|how |built|estimate|c[oó]mo\b|c[aá]lculo|m[eé]todo|计算|公式|方法|如何|使用说明|估算.*建立|metode|perhitungan|rumus|cara |f[oó]rmula|como /.test(title.toLowerCase()))return 'methodology';
+ if(/about|scope|applicab|limits|acerca|l[ií]mites|适用|范围|边界|限制|tentang|cakupan|batas|sobre|escopo|limites/.test(title.toLowerCase()))return 'about-scope';
  if(id==='review')return 'content-review';if(['examples','scenarios'].includes(id))return 'component-check';if(id==='limits')return 'about-scope';return '';
 }
 function graphFor(slug,locale,strings,dom){
  const graph=require('../website/data/tool-graph.json'),node=graph.tools[slug];const section=D.el('section',{class:'content-section nel-tool-graph',id:'nel-tool-graph','aria-labelledby':'nel-tool-graph-title','data-tool-id':slug},[D.el('h2',{id:'nel-tool-graph-title'},[strings[1]])]);
- if(node){D.set(section,'data-primary-workflow',node.primaryWorkflow||'');const flow=graph.workflows[node.primaryWorkflow]?.translations?.[locale];if(flow)section.children.push(D.el('p',{},[flow.name]),D.el('p',{},[flow.description]));const ids=[...new Set([node.previous,node.next,...node.related].filter(Boolean))];const cards=D.el('div',{class:'nel-tool-graph-related'});for(const id of ids){const t=graph.tools[id];if(t)cards.children.push(D.el('a',{class:'nel-tool-graph-card',href:t.routes[locale==='zh'?'zh-CN':locale]},[D.el('strong',{},[t.translations[locale]?.name||id]),D.el('span',{class:'nel-tool-graph-description'},[t.translations[locale]?.description||''])]));}section.children.push(cards);
+ if(node){D.set(section,'data-primary-workflow',node.primaryWorkflow||'');const flow=graph.workflows[node.primaryWorkflow]?.translations?.[localeCopyKey(locale)]||graph.workflows[node.primaryWorkflow]?.translations?.[locale];if(flow)section.children.push(D.el('p',{},[flow.name]),D.el('p',{},[flow.description]));const ids=[...new Set([node.previous,node.next,...node.related].filter(Boolean))];const cards=D.el('div',{class:'nel-tool-graph-related'});for(const id of ids){const t=graph.tools[id];if(t)cards.children.push(D.el('a',{class:'nel-tool-graph-card',href:t.routes[localeRouteKey(locale)]||t.routes[locale]||t.routes.en},[D.el('strong',{},[t.translations[localeCopyKey(locale)]?.name||t.translations[locale]?.name||id]),D.el('span',{class:'nel-tool-graph-description'},[t.translations[localeCopyKey(locale)]?.description||t.translations[locale]?.description||''])]));}section.children.push(cards);
  }else{const links=D.all(dom,n=>n.tag==='a'&&D.attr(n,'href')&&!D.attr(n,'href').startsWith('#')).filter(n=>!D.has(n,'language-option'));const unique=new Set();for(const a of links){const href=D.attr(a,'href');let url;try{url=new URL(href,'https://netengineerlab.com/tools/'+slug+'/'+(locale==='en'?'':locale+'/'));}catch{continue;}const target=url.pathname.match(/^\/tools\/([^/]+)\//)?.[1];if(!target||target===slug||!slugs.includes(target)||unique.has(target))continue;unique.add(target);section.children.push(D.el('a',{class:'nel-tool-graph-card',href},[...a.children]));if(unique.size===4)break;}
   // These two planners have no pre-existing cross-tool links. Preserve their
   // own domain guide/topic or cited engineering source as the next resource.
@@ -272,5 +274,5 @@ function migrate(html,slug,locale){
  if(require('./lib/supplemental-tool-slugs').has(slug)&&main.children.some(n=>typeof n!=='string'&&D.has(n,'nel-tool-result')))D.add(main,'nel-tool-grid','nel-tool-primary-grid');
  D.set(body,'data-nel-v3-migrated','1');normalizeBreadcrumbs(dom);normalizeDocs(dom);normalizePanels(dom,slug);normalizeSupporting(dom,locale);const output=D.render(dom);sameInvariant(before,signature(D.parse(output)));return output;
 }
-function run(){require('./lib/tool-v3-styles').generate();let changed=0,pages=0;for(const slug of slugs)for(const locale of ['en','zh','es']){const file=path.join(root,'website/tools',slug,locale==='en'?'':locale,'index.html');if(!fs.existsSync(file)){if(require('./lib/supplemental-tool-slugs').has(slug))continue;throw Error('Missing locale '+file);}pages++;const html=fs.readFileSync(file,'utf8'),next=migrate(html,slug,locale);if(next!==html){write(file,next);changed++;}}console.log(JSON.stringify({tools:slugs.length,pages,changed,preserved:[...preserved]}));}
+function run(){require('./lib/tool-v3-styles').generate();let changed=0,pages=0;for(const slug of slugs)for(const locale of ['en','zh','es','id','pt-br']){const file=path.join(root,'website/tools',slug,locale==='en'?'':locale,'index.html');if(!fs.existsSync(file)){if(require('./lib/supplemental-tool-slugs').has(slug))continue;throw Error('Missing locale '+file);}pages++;const html=fs.readFileSync(file,'utf8'),next=migrate(html,slug,locale);if(next!==html){write(file,next);changed++;}}console.log(JSON.stringify({tools:slugs.length,pages,changed,preserved:[...preserved]}));}
 module.exports={migrate,run,slugs,preserved,anchors,foldAnchors,signature};if(require.main===module)run();

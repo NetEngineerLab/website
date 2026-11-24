@@ -90,6 +90,7 @@ function walk(dir){
 function escapeHtml(value){
  return String(value??"").replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[char]));
 }
+function shellCopy(locale,pack){return pack[locale.id]??pack.en}
 function decodeEntities(value){
  return String(value??"").replace(/&amp;/g,"&").replace(/&quot;/g,'"').replace(/&#0?39;|&apos;/g,"'").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/\s+/g," ").trim();
 }
@@ -138,14 +139,14 @@ function dedupeContinueWorkflow(html){
  return html.replace(/<section\b(?![^>]*\bid=["']nel-tool-graph["'])[^>]*>[\s\S]*?<\/section>/gi,section=>{
   const heading=section.match(/<h2\b[^>]*>([\s\S]*?)<\/h2>/i);
   const text=heading?heading[1].replace(/<[^>]+>/g,""):"";
-  if(/Continue the .+ workflow/i.test(text)||/继续.+工作流/.test(text)||/Continuar el flujo/i.test(text))return "";
+  if(/Continue the .+ workflow/i.test(text)||/继续.+工作流/.test(text)||/Continuar el flujo/i.test(text)||/Lanjutkan alur/i.test(text)||/Continuar o fluxo/i.test(text))return "";
   return section;
  });
 }
 function ensureProgressRole(html){
- return html.replace(/(<strong>\s*([^<]*?(?:Paso|Step|步骤)\s+\d+\s+(?:de|of|\/)\s+\d+[^<]*)\s*<\/strong>\s*)?<div\b([^>]*\bclass=["'][^"']*\bnel-workflow-progress\b[^"']*["'][^>]*)>/gi,(whole,strongBlock,labelText,attrs)=>{
+ return html.replace(/(<strong>\s*([^<]*?(?:Paso|Step|步骤|Langkah|Etapa|Passo)\s+\d+\s+(?:de|of|\/|dari)\s+\d+[^<]*)\s*<\/strong>\s*)?<div\b([^>]*\bclass=["'][^"']*\bnel-workflow-progress\b[^"']*["'][^>]*)>/gi,(whole,strongBlock,labelText,attrs)=>{
   const label=(labelText||"").replace(/\s+/g," ").trim();
-  const step=label.match(/(\d+)\s+(?:de|of|\/)\s+(\d+)/i);
+   const step=label.match(/(\d+)\s+(?:de|of|\/|dari)\s+(\d+)/i);
   let next=attrs;
   if(label&&step){
    next=next
@@ -183,7 +184,7 @@ function prerenderToolGrid(html,currentInfo,locale){
  if(currentInfo.kind==="home"){
   // The Spanish directory now carries every category filter, so Spanish
   // category cards open /tools/es/?category=… rather than the English list.
-  if(locale.id==="es")html=html.replace(/(<a\b[^>]*data-category-link="([^"]+)"[^>]*href=")[^"]+("[^>]*><strong>)([^<]+)(<\/strong>)/g,(whole,before,category,after,title,close)=>before+"../tools/es/?category="+category+after+title.replace(/(?: \(English\))+/g,"")+close);
+  if(locale.folder&&locale.id!=="zh")html=html.replace(/(<a\b[^>]*data-category-link="([^"]+)"[^>]*href=")[^"]+("[^>]*><strong>)([^<]+)(<\/strong>)/g,(whole,before,category,after,title,close)=>before+`../tools/${locale.folder}/?category=`+category+after+title.replace(/(?: \(English\))+/g,"")+close);
   const counts=activeTools.reduce((map,tool)=>{map[tool.category]=(map[tool.category]||0)+1;return map},{});
   html=html.replace(/<(b|span)\b([^>]*\bdata-category-count\s*=\s*["']([^"']+)["'][^>]*)>[\s\S]*?<\/\1>/gi,(whole,tag,attrs,category)=>`<${tag}${attrs}>${counts[category]||0}</${tag}>`);
  }
@@ -211,7 +212,7 @@ function ensureToolDirectoryItemList(html,locale){
  const schema={
   "@context":"https://schema.org",
   "@type":"ItemList",
-  name:locale.id===defaultLocale.id?"NetEngineerLab tool directory":locale.id==="es"?"Directorio de herramientas de NetEngineerLab":"NetEngineerLab工具目录",
+  name:shellCopy(locale,{en:"NetEngineerLab tool directory",zh:"NetEngineerLab工具目录",es:"Directorio de herramientas de NetEngineerLab",id:"Direktori alat NetEngineerLab","pt-BR":"Diretório de ferramentas da NetEngineerLab"}),
   numberOfItems:tools.length,
   itemListElement:tools.map((tool,index)=>({
    "@type":"ListItem",
@@ -519,10 +520,10 @@ function addBodyClass(html,className){
 function ensureTopicBreadcrumb(html,info,locale){
  const homeHref=escapeHtml(relativeUrl(urlForRoute(info.route,locale),urlForRoute("",locale)));
  const topicsHref=escapeHtml(relativeUrl(urlForRoute(info.route,locale),urlForRoute("topics/",locale)));
- const homeLabel=locale.id==="zh"?"首页":locale.id==="es"?"Inicio":"Home";
- const topicsLabel=locale.id==="zh"?"专题":locale.id==="es"?"Temas":"Topics";
+ const homeLabel=shellCopy(locale,{en:"Home",zh:"首页",es:"Inicio",id:"Beranda","pt-BR":"Início"});
+ const topicsLabel=shellCopy(locale,{en:"Topics",zh:"专题",es:"Temas",id:"Topik","pt-BR":"Tópicos"});
  const title=decodeEntities(html.match(/<main\b[^>]*>[\s\S]*?<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1]?.replace(/<[^>]+>/g,""))||topicsLabel;
- const ariaLabel=locale.id==="zh"?"面包屑":locale.id==="es"?"Migas de pan":"Breadcrumb";
+ const ariaLabel=shellCopy(locale,{en:"Breadcrumb",zh:"面包屑",es:"Migas de pan",id:"Jejak navigasi","pt-BR":"Trilha de navegação"});
  const nav=`<nav class="topic-hub-breadcrumb" aria-label="${ariaLabel}"><a href="${homeHref}">${homeLabel}</a><span aria-hidden="true">›</span><a href="${topicsHref}">${topicsLabel}</a><span aria-hidden="true">›</span><span aria-current="page">${escapeHtml(title)}</span></nav>`;
  const existing=/<nav\b[^>]*class=["'][^"']*\b(?:guide-)?breadcrumb\b[^"']*["'][^>]*>[\s\S]*?<\/nav>/i;
  if(existing.test(html))return html.replace(existing,nav);
@@ -533,9 +534,11 @@ function menuMarkup(currentInfo,group){
  const currentLocale=localeMap.get(currentInfo.localeId);
  const available=activeLocales.filter(locale=>group.has(locale.id));
  const languageNames={
-  en:{en:"English",zh:"Chinese",es:"Spanish"},
-  zh:{en:"英语",zh:"简体中文",es:"西班牙语"},
-  es:{en:"Inglés",zh:"Chino simplificado",es:"Español"}
+  en:{en:"English",zh:"Chinese",es:"Spanish",id:"Indonesian","pt-BR":"Brazilian Portuguese"},
+  zh:{en:"英语",zh:"简体中文",es:"西班牙语",id:"印尼语","pt-BR":"巴西葡萄牙语"},
+  es:{en:"Inglés",zh:"Chino simplificado",es:"Español",id:"Indonesio","pt-BR":"Portugués de Brasil"},
+  id:{en:"Inggris",zh:"Tionghoa Sederhana",es:"Spanyol",id:"Bahasa Indonesia","pt-BR":"Portugis Brasil"},
+  "pt-BR":{en:"Inglês",zh:"Chinês simplificado",es:"Espanhol",id:"Indonésio","pt-BR":"Português do Brasil"}
  };
  // Root-relative absolute paths: relative hrefs like ../zh/ were mis-resolved by
  // some crawlers into doubled locales (/tools/.../es/zh/, /zh/es/).
@@ -575,7 +578,7 @@ function injectSiteShell(html,currentRel,currentInfo){
  if(currentInfo.kind==="tool"&&!/<main\b[^>]*\bid=["'][^"']+["']/i.test(html))html=html.replace(/<main\b/i,'<main id="calculator"');
  const mainId=(html.match(/<main\b[^>]*\bid=["']([^"']+)["']/i)||[])[1]||"calculator";
  const contextAction=currentInfo.kind==="tool"
-  ?`<a href="#${escapeHtml(mainId)}">${locale.id===defaultLocale.id?"Start calculating":locale.id==="es"?"Empezar a calcular":"开始计算"}</a>`
+  ?`<a href="#${escapeHtml(mainId)}">${escapeHtml(shellCopy(locale,{en:"Start calculating",zh:"开始计算",es:"Empezar a calcular",id:"Mulai menghitung","pt-BR":"Começar a calcular"}))}</a>`
   :"";
  const tokens={
   HOME_HREF:href(""),
@@ -619,8 +622,8 @@ function injectToolReturnNavigation(html,currentRel,currentInfo){
  const toolName=escapeHtml(copy.name||currentInfo.toolSlug);
  if(/calculator-hub-breadcrumb/i.test(html))return html;
  const homeHref=escapeHtml(relativeUrl(currentUrl,urlForRoute("",locale)));
- const homeLabel=locale.id==="zh"?"首页":locale.id==="es"?"Inicio":"Home";
- const toolsLabel=locale.id==="zh"?"工具":locale.id==="es"?"Herramientas":"Tools";
+ const homeLabel=shellCopy(locale,{en:"Home",zh:"首页",es:"Inicio",id:"Beranda","pt-BR":"Início"});
+ const toolsLabel=shellCopy(locale,{en:"Tools",zh:"工具",es:"Herramientas",id:"Alat","pt-BR":"Ferramentas"});
  // Keep a page's existing breadcrumb name. The default stays "Breadcrumb";
  // localized names (for example 面包屑 / Ruta de navegación) are authored in
  // the page and must survive every rebuild.
@@ -830,6 +833,43 @@ function siteFileExists(urlPath){
  if(fs.existsSync(target)&&fs.statSync(target).isFile())return true;
  return fs.existsSync(path.join(target,"index.html"));
 }
+function englishSibling(rel){
+ const parts=rel.split("/");
+ if(folderMap.has(parts[0]))return parts.slice(1).join("/");
+ const index=parts.findIndex(part=>folderMap.has(part));
+ if(index<0)return "";
+ return [...parts.slice(0,index),...parts.slice(index+1)].join("/");
+}
+function repairLocaleCopyUrls(html,currentRel,englishRel,locale){
+ const currentDir=path.posix.dirname(currentRel);
+ const defaultDir=path.posix.dirname(englishRel);
+ if(currentDir===defaultDir)return html;
+ const currentUrl=`/${path.posix.dirname(currentRel)}/`;
+ return html.replace(/<[^>]+>/g,tag=>tag.replace(/(\b(?:href|src)\s*=\s*)(["'])([^"']+)\2/gi,(whole,prefix,quote,href)=>{
+  if(!href||/^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i.test(href)||href.startsWith("/"))return whole;
+  const split=href.match(/^([^?#]*)([?#].*)?$/);
+  const pathPart=split?split[1]:href;
+  const suffix=split&&split[2]?split[2]:"";
+  if(!pathPart)return whole;
+  const currentTarget=path.posix.normalize(path.posix.join(currentDir,pathPart));
+  if(siteFileExists(pathPart.endsWith("/")?`${currentTarget}/`:currentTarget))return whole;
+  const fallbackTarget=path.posix.normalize(path.posix.join(defaultDir,pathPart));
+  const fallbackPath=pathPart.endsWith("/")?`${fallbackTarget}/`:fallbackTarget;
+  if(!siteFileExists(fallbackPath))return whole;
+  const pageRel=pathPart.endsWith("/")||!path.posix.basename(fallbackTarget).includes(".")?path.posix.join(fallbackTarget,"index.html"):fallbackTarget;
+  const targetInfo=identifyPage(pageRel);
+  if(targetInfo){
+   const localizedFile=fileForRoute(targetInfo.route,locale);
+   const destLocale=fs.existsSync(path.join(siteRoot,...localizedFile.split("/")))?locale:defaultLocale;
+   return `${prefix}${quote}${relativeUrl(currentUrl,urlForRoute(targetInfo.route,destLocale))}${suffix}${quote}`;
+  }
+  let rel=path.posix.relative(currentDir,fallbackTarget);
+  if(!rel)rel=".";
+  if(pathPart.endsWith("/")&&!rel.endsWith("/"))rel+="/";
+  if(!rel.startsWith(".")&&!rel.startsWith("/"))rel=`./${rel}`;
+  return `${prefix}${quote}${rel}${suffix}${quote}`;
+ }));
+}
 function repairMisnestedRelativeUrls(html,currentRel,currentInfo){
  // Locale copies such as /tools/<slug>/es/ were rolled out from the English
  // page without adding a ../ for the extra directory. Repair only URLs that
@@ -838,7 +878,7 @@ function repairMisnestedRelativeUrls(html,currentRel,currentInfo){
  if(!currentInfo||currentInfo.localeId===defaultLocale.id)return html;
  const defaultRel=fileForRoute(currentInfo.route,defaultLocale);
  const currentDir=path.posix.dirname(currentRel);
- const defaultDir=path.posix.dirname(defaultRel);
+ const defaultDir=defaultRel.endsWith("/")?defaultRel.slice(0,-1):path.posix.dirname(defaultRel);
  if(currentDir===defaultDir)return html;
  const locale=localeMap.get(currentInfo.localeId);
  const currentUrl=urlForRoute(currentInfo.route,locale);
@@ -995,7 +1035,7 @@ function build(){
     localeId:locale.id,
     homeUrl:localeConfig.siteUrl+urlForRoute("",locale),
     toolsUrl:localeConfig.siteUrl+urlForRoute("topics/",locale),
-    middleLabel:locale.id==="zh"?"专题":locale.id==="es"?"Temas":"Topics",
+    middleLabel:shellCopy(locale,{en:"Topics",zh:"专题",es:"Temas",id:"Topik","pt-BR":"Tópicos"}),
     name,
     description,
     calculatorHub:true,
@@ -1032,7 +1072,7 @@ function build(){
    html=enhanceGuideContent(html,record.info,locale);
    let shell=replaceLanguageMenu(injectSiteShell(html,record.rel,record.info),menuMarkup(record.info,group));
    const header=/<!-- NEL_HEADER_START -->[\s\S]*?<!-- NEL_HEADER_END -->/;
-   const guideLabel=locale.id==="zh"?"指南":"Guides";
+   const guideLabel=shellCopy(locale,{en:"Guides",zh:"指南",es:"Guías",id:"Panduan","pt-BR":"Guias"});
    const guideHref=relativeUrl(urlForRoute(record.info.route,locale),urlForRoute("guides/",locale));
    const breadcrumb=shell.match(/<nav\b[^>]*class=["'][^"']*\bguide-breadcrumb\b[^"']*["'][^>]*>[\s\S]*?<\/nav>/i);
    if(breadcrumb){
@@ -1054,6 +1094,11 @@ function build(){
    seo.push(...available.map(item=>`<link rel="alternate" hreflang="${escapeHtml(item.hreflang)}" href="${escapeHtml(localeConfig.siteUrl+urlForRoute(record.info.route,item))}">`));
    if(group.has(defaultLocale.id))seo.push(`<link rel="alternate" hreflang="x-default" href="${escapeHtml(localeConfig.siteUrl+urlForRoute(record.info.route,defaultLocale))}">`);
    shell=shell.replace(/<\/head>/i,seo.join("\n")+"\n</head>");
+   const htmlTag=shell.match(/<html\b[^>]*>/i)?.[0]||"";
+   if(!new RegExp(`\\blang\\s*=\\s*["']${locale.htmlLang.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}["']`,"i").test(htmlTag)){
+    shell=setHtmlAttributes(shell,locale,record.info.route);
+    shell=updateJsonLd(shell,locale,canonical);
+   }
    shell=ensureAsset(shell,record.rel,"assets/css/locale-menu.css","css");
    shell=ensureAsset(shell,record.rel,"data/locales.js","js");
    shell=ensureAsset(shell,record.rel,"data/site-config.js","js");
@@ -1120,7 +1165,8 @@ function build(){
   html=ensureAsset(html,record.rel,"assets/js/site.js","js");
   // Shared calculator scripts render English copy on Spanish pages; the
   // Spanish runtime translates that copy, so every es tool page needs it.
-  if(record.info.kind==="tool"&&record.info.localeId==="es")html=ensureAsset(html,record.rel,"assets/js/es-launch-runtime.js","js");
+  const launchRuntime={es:"assets/js/es-launch-runtime.js",id:"assets/js/id-launch-runtime.js","pt-BR":"assets/js/pt-br-launch-runtime.js"};
+  if(record.info.kind==="tool"&&launchRuntime[record.info.localeId])html=ensureAsset(html,record.rel,launchRuntime[record.info.localeId],"js");
   html=versionExistingAsset(html,"assets/css/home-mobile-layout.css");
   html=versionExistingAsset(html,"assets/css/home-v2.css");
   html=versionExistingAsset(html,"assets/css/guide.css");
@@ -1152,7 +1198,11 @@ function build(){
   const rel=posix(path.relative(siteRoot,file));
   if(rel==="design"||rel.startsWith("design/"))continue;
   const before=fs.readFileSync(file,"utf8");
-  let after=repairPageLayout(before,rel,{cookieCssHref,cookieJsSrc});
+  const sibling=englishSibling(rel);
+  const localeFolder=rel.split("/").find(part=>folderMap.has(part));
+  let after=before;
+  if(!identifyPage(rel)&&sibling&&localeFolder&&fs.existsSync(path.join(siteRoot,sibling)))after=repairLocaleCopyUrls(after,rel,sibling,folderMap.get(localeFolder));
+  after=repairPageLayout(after,rel,{cookieCssHref,cookieJsSrc});
   after=versionExistingAsset(after,"assets/css/cookie-consent.css");
   after=versionExistingAsset(after,"assets/js/cookie-consent.js");
   // seo-engine.js is served from /assets/* with a one-day edge cache, so give
