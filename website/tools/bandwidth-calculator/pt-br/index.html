@@ -36,7 +36,7 @@
 <link rel="alternate" hreflang="id" href="https://netengineerlab.com/tools/bandwidth-calculator/id/">
 <link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/tools/bandwidth-calculator/pt-br/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/bandwidth-calculator/">
-<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Por que 100 Mbps não transfere 100 MB por segundo?","acceptedAnswer":{"@type":"Answer","text":"100 Mbps é igual a 12,5 MB/s antes das perdas de protocolo e utilização."}},{"@type":"Question","name":"O tamanho do arquivo deve usar GB ou GiB?","acceptedAnswer":{"@type":"Answer","text":"Use GB para valores de armazenamento decimais e GiB quando a fonte reporta unidades binárias IEC."}},{"@type":"Question","name":"Que eficiência deve ser usada?","acceptedAnswer":{"@type":"Answer","text":"Use o rendimento medido da aplicação quando disponível; caso contrário, comece com uma margem predefinida e retenha."}},{"@type":"Question","name":"A RTT importa para grandes transferências?","acceptedAnswer":{"@type":"Answer","text":"A ferramenta adiciona atraso de configuração, enquanto o verdadeiro TCP também pode ser limitado pelo crescimento da janela e recuperação vagas."}},{"@type":"Question","name":"Como é calculada a contagem máxima de usuários?","acceptedAnswer":{"@type":"Answer","text":"A largura de banda de carga disponível é dividida pela taxa de bits projetada por usuário após o fator de ruptura."}},{"@type":"Question","name":"Isto pode substituir um modelo de engenharia de tráfego?","acceptedAnswer":{"@type":"Answer","text":"Não. A fila, QoS, retransmissões, distribuição de tráfego e comportamento de pico-hora ainda precisam ser validadas."}}]}</script>
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Por que 100 Mbps não transfere 100 MB a cada segundo?","acceptedAnswer":{"@type":"Answer","text":"100 Mbps equivalem a 12,5 MB/s antes do overhead de protocolo e do limite de utilização."}},{"@type":"Question","name":"O tamanho do arquivo deve estar em GB ou GiB?","acceptedAnswer":{"@type":"Answer","text":"Use GB para valores decimais e GiB quando a fonte informa unidades binárias IEC."}},{"@type":"Question","name":"Qual eficiência usar?","acceptedAnswer":{"@type":"Answer","text":"Use o throughput medido da aplicação quando existir. Sem medição, comece por um preset e mantenha margem."}},{"@type":"Question","name":"O RTT importa em transferências grandes?","acceptedAnswer":{"@type":"Answer","text":"A ferramenta soma o atraso de estabelecimento. O TCP real também pode ficar limitado pelo crescimento da janela e pela recuperação."}},{"@type":"Question","name":"Como o número máximo de usuários é calculado?","acceptedAnswer":{"@type":"Answer","text":"A largura de banda útil disponível é dividida pela taxa por usuário já ajustada pelo fator de rajada."}},{"@type":"Question","name":"Isto substitui um modelo de engenharia de tráfego?","acceptedAnswer":{"@type":"Answer","text":"Não. Fila, QoS, retransmissões, distribuição do tráfego e o comportamento na hora de pico ainda precisam ser conferidos."}}]}</script>
 <link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
@@ -81,7 +81,7 @@
   <span aria-current="page">Calculadora de largura de banda e tempo de transferência</span>
 </nav>
 <!-- NEL_TOOL_RETURN_END -->
-<section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner"><p class="eyebrow">FERRAMENTA DE PLANEJAMENTO DE CAPACIDADE DE REDE</p><p class="hero-title">Calculadora de Largura de Banda e Tempo de Transferência</p><p>Estimar o tempo de transferência, calcular a largura de banda necessária, dimensione a capacidade de usuários simultâneos e converta taxas sustentadas em volume de dados.</p><div class="hero-tags"><span>bps / Mbps / Gbps</span><span>GB / GiB / TB</span><span>Simultaneidade</span><span>Eficiência</span></div></div></section>
+<section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner"><p class="eyebrow">FERRAMENTA DE PLANEJAMENTO DE CAPACIDADE DE REDE</p><p class="hero-title">Calculadora de Largura de Banda e Tempo de Transferência</p><p>Estime o tempo de transferência, calcule a largura de banda necessária, dimensione a capacidade de usuários simultâneos e converta uma taxa sustentada em volume de dados.</p><div class="hero-tags"><span>bps / Mbps / Gbps</span><span>GB / GiB / TB</span><span>Simultaneidade</span><span>Eficiência</span></div></div></section>
 
 <main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" id="calculator" data-nel-readout-roles="%7B%22secondary%22%3A%5B%22transferPerRate%22%2C%22transferAggregateRate%22%2C%22transferSerialization%22%2C%22transferSetup%22%2C%22transferTotalData%22%2C%22transferEfficiencyResult%22%2C%22transferOverheadResult%22%2C%22transferConcurrencyResult%22%5D%2C%22identifier%22%3A%5B%5D%2C%22annotation%22%3A%5B%5D%7D" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv"><div class="tool-head"><nav class="crumbs" aria-label="Trilha de navegação">
   <a href="../../../pt-br/">Início</a>
@@ -89,7 +89,7 @@
   <a class="tool-return-link" href="../../pt-br/">Ferramentas</a>
   <span aria-hidden="true">/</span>
   <span aria-current="page">Calculadora de largura de banda e tempo de transferência</span>
-</nav><h1 class="tool-page-label">Calculadora de Largura de Banda e Tempo de Transferência</h1><p class="tool-lede">Estimar o tempo de transferência, calcular a largura de banda necessária, dimensione a capacidade de usuários simultâneos e converta taxas sustentadas em volume de dados.</p></div><div class="mode-tabs tabs"><button class="active" data-mode="transfer">Tempo de transferência</button><button data-mode="required">Largura de banda necessária</button><button data-mode="concurrency">Usuários simultâneos</button><button data-mode="volume">Volume de dados</button></div>
+</nav><h1 class="tool-page-label">Calculadora de Largura de Banda e Tempo de Transferência</h1><p class="tool-lede">Estime o tempo de transferência, calcule a largura de banda necessária, dimensione a capacidade de usuários simultâneos e converta uma taxa sustentada em volume de dados.</p></div><div class="mode-tabs tabs"><button class="active" data-mode="transfer">Tempo de transferência</button><button data-mode="required">Largura de banda necessária</button><button data-mode="concurrency">Usuários simultâneos</button><button data-mode="volume">Volume de dados</button></div>
 <div class="workspace">
 <section class="input-panel card nel-tool-input fb-panel">
 <div class="section-title panel-h"><span class="section-icon">BW</span><div><h2 class="panel-h">Parâmetros de tráfego e ligação</h2><p>Escolha um modo e edite pressupostos de eficiência, utilização e latência.</p></div></div>
@@ -241,18 +241,18 @@ usuários máximos ≈ taxa_útil_disponível ÷ (taxa_por_usuário × fator_de_
 <div class="blk faq" id="faq">
 <span class="eyebrow">FAQ</span>
 <h2>Perguntas mais frequentes</h2>
-<details><summary>Por que 100 Mbps não transfere 100 MB por segundo?</summary>
-<p>100 Mbps é igual a 12,5 MB/s antes das perdas de protocolo e utilização.</p></details>
-<details><summary>O tamanho do arquivo deve usar GB ou GiB?</summary>
-<p>Use GB para valores de armazenamento decimais e GiB quando a fonte reporta unidades binárias IEC.</p></details>
-<details><summary>Que eficiência deve ser usada?</summary>
-<p>Use o rendimento medido da aplicação quando disponível; caso contrário, comece com uma margem predefinida e retenha.</p></details>
-<details><summary>A RTT importa para grandes transferências?</summary>
-<p>A ferramenta adiciona atraso de configuração, enquanto o verdadeiro TCP também pode ser limitado pelo crescimento da janela e recuperação vagas.</p></details>
-<details><summary>Como é calculada a contagem máxima de usuários?</summary>
-<p>A largura de banda de carga disponível é dividida pela taxa de bits projetada por usuário após o fator de ruptura.</p></details>
-<details><summary>Isto pode substituir um modelo de engenharia de tráfego?</summary>
-<p>Não. A fila, QoS, retransmissões, distribuição de tráfego e comportamento de pico-hora ainda precisam ser validadas.</p></details>
+<details><summary>Por que 100 Mbps não transfere 100 MB a cada segundo?</summary>
+<p>100 Mbps equivalem a 12,5 MB/s antes do overhead de protocolo e do limite de utilização.</p></details>
+<details><summary>O tamanho do arquivo deve estar em GB ou GiB?</summary>
+<p>Use GB para valores decimais e GiB quando a fonte informa unidades binárias IEC.</p></details>
+<details><summary>Qual eficiência usar?</summary>
+<p>Use o throughput medido da aplicação quando existir. Sem medição, comece por um preset e mantenha margem.</p></details>
+<details><summary>O RTT importa em transferências grandes?</summary>
+<p>A ferramenta soma o atraso de estabelecimento. O TCP real também pode ficar limitado pelo crescimento da janela e pela recuperação.</p></details>
+<details><summary>Como o número máximo de usuários é calculado?</summary>
+<p>A largura de banda útil disponível é dividida pela taxa por usuário já ajustada pelo fator de rajada.</p></details>
+<details><summary>Isto substitui um modelo de engenharia de tráfego?</summary>
+<p>Não. Fila, QoS, retransmissões, distribuição do tráfego e o comportamento na hora de pico ainda precisam ser conferidos.</p></details>
 </div>
 <section class="blk" id="history" data-nel-v3-title-normalized="1">
 <h2>Cálculos recentes</h2>
@@ -268,8 +268,8 @@ usuários máximos ≈ taxa_útil_disponível ÷ (taxa_por_usuário × fator_de_
 <h2>Referências oficiais · normas e unidades</h2>
 <div class="fb-fold-body">
 <div class="ref-card">
-<p>Unidades de bits e byte devem permanecer explícitas para que a matemática de tempo de transferência não confunda megabits com megabytes. O goodput de Revistas Mantidas é geralmente menor que a taxa de porta nominal após a sobrecarga do protocolo, atraso, perda e limites de janela. As predefinições são ajudas de planejamento, não um substituto para a transferência de caminho medido.</p>
-<p><b>Avaliado: 2026-11-05. Fontes oficiais:</b></p>
+<p>Bits e bytes precisam ficar explícitos para o cálculo do tempo não trocar megabit por megabyte. O goodput sustentado da aplicação costuma ficar abaixo da taxa nominal da porta, depois do overhead de protocolo, do atraso, da perda e do limite de janela. Um preset ajuda o planejamento e não substitui o throughput medido do caminho.</p>
+<p><b>Revisado: 2026-11-05. Fontes oficiais:</b></p>
 <div class="std-row">
 <a class="std-chip" href="https://www.bipm.org/en/publications/si-brochure" rel="noopener noreferrer" target="_blank">Brochura SI</a>
 <a class="std-chip" href="https://www.nist.gov/pml/owm/si-units-information" rel="noopener noreferrer" target="_blank">Unidades NIST SI</a>

@@ -9,11 +9,11 @@ const toolsRoot=path.resolve(__dirname,"../../website/tools");
 const pages=[];
 for(const slug of fs.readdirSync(toolsRoot).sort()){
  const dir=path.join(toolsRoot,slug);
- if(!fs.existsSync(path.join(dir,"index.html"))||slug==="zh"||slug==="es")continue;
+ if(!fs.existsSync(path.join(dir,"index.html"))||["zh","es","id","pt-br"].includes(slug))continue;
  const html=fs.readFileSync(path.join(dir,"index.html"),"utf8");
  if(!/<main\b/i.test(html))continue;
  pages.push(`/tools/${slug}/`);
- for(const locale of ["zh","es"])if(fs.existsSync(path.join(dir,locale,"index.html")))pages.push(`/tools/${slug}/${locale}/`);
+ for(const locale of ["zh","es","id","pt-br"])if(fs.existsSync(path.join(dir,locale,"index.html")))pages.push(`/tools/${slug}/${locale}/`);
 }
 
 test.describe("locale tool pages load cleanly",()=>{
@@ -40,7 +40,7 @@ test.describe("locale tool pages load cleanly",()=>{
    expect(errors,`uncaught errors on ${url}`).toEqual([]);
    expect(failed,`failed same-origin requests on ${url}`).toEqual([]);
    expect(text,`NaN or object output on ${url}`).not.toMatch(/\bNaN\b|\[object [A-Za-z]+\]/);
-   const expected=url.includes("/zh/")?"zh":url.includes("/es/")?"es":"en";
+   const expected=url.includes("/zh/")?"zh":url.includes("/es/")?"es":url.includes("/pt-br/")?"pt":url.includes("/id/")?"id":"en";
    expect((await page.evaluate(()=>document.documentElement.lang)).toLowerCase().startsWith(expected),`html lang on ${url}`).toBe(true);
   });
  }
