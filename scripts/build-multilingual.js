@@ -725,7 +725,7 @@ function generateManifests(groups){
   if(!fs.existsSync(toolRoot)||!fs.existsSync(baseManifestPath))continue;
   let template={};
   try{template=JSON.parse(fs.readFileSync(baseManifestPath,"utf8"))}catch{}
-  for(const locale of activeLocales){
+  for(const locale of [...activeLocales,...pilotLocales]){
    const route=`tools/${tool.id}/`;
    if(!groups.get(route)?.has(locale.id))continue;
    const translation=tool.translations?.[locale.catalogKey]||tool.translations?.[locale.id]||tool.translations?.[localeConfig.fallbackLocale]||{};

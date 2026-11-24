@@ -1,6 +1,6 @@
 const $ = (id) => document.getElementById(id);
 const locale = (document.documentElement.dataset.nelLocale || document.documentElement.lang || "en").toLowerCase();
-const currentLang = locale.startsWith("zh") ? "zh" : locale.startsWith("es") ? "es" : "en";
+const currentLang = locale.startsWith("zh") ? "zh" : locale.startsWith("es") ? "es" : locale.startsWith("pt") ? "pt" : locale === "id" ? "id" : "en";
 
 const copy = {
   en: {
@@ -56,6 +56,42 @@ const copy = {
     propagation: "Propagación",
     equipment: "Equipos",
     serialization: "Serialización"
+  },
+  id: {
+    validation: "Periksa masukan. Jarak harus lebih dari 0, faktor rute minimal 1, indeks grup dari 1,0 sampai 1,6, dan laju saluran lebih dari 0.",
+    copied: "Hasil disalin",
+    saved: "Rekaman disimpan",
+    noHistory: "Belum ada perhitungan tersimpan. Hitung, lalu klik “Simpan rekaman”.",
+    confirmClear: "Hapus semua riwayat yang tersimpan?",
+    fiber: "Serat",
+    vacuum: "Vakum / laser ruang bebas",
+    microwave: "Gelombang mikro / radio di udara",
+    hollow: "Serat inti berongga",
+    copper: "Tembaga pasangan terpilin",
+    project: "Proyek",
+    oneWay: "Satu arah",
+    rtt: "RTT",
+    propagation: "Propagasi",
+    equipment: "Perangkat",
+    serialization: "Serialisasi"
+  },
+  pt: {
+    validation: "Confira os dados. A distância deve ser maior que 0, o fator de rota no mínimo 1, o índice de grupo entre 1,0 e 1,6, e a taxa da linha maior que 0.",
+    copied: "Resultado copiado",
+    saved: "Registro salvo",
+    noHistory: "Ainda não há cálculos salvos. Calcule e clique em “Salvar registro”.",
+    confirmClear: "Apagar todo o histórico salvo?",
+    fiber: "Fibra",
+    vacuum: "Vácuo / laser no espaço livre",
+    microwave: "Micro-ondas / rádio no ar",
+    hollow: "Fibra de núcleo oco",
+    copper: "Par trançado de cobre",
+    project: "Projeto",
+    oneWay: "Ida",
+    rtt: "RTT",
+    propagation: "Propagação",
+    equipment: "Equipamentos",
+    serialization: "Serialização"
   }
 };
 
@@ -193,7 +229,7 @@ function calculate(){
   setText("equipment", result.equipmentText);
   setText("serialization", result.serializationText);
   setText("usPerKm", `${result.usPerKm.toFixed(4)} µs/km`);
-  setText("speed", `${Math.round(result.speedKmS).toLocaleString(currentLang === "zh" ? "zh-CN" : currentLang === "es" ? "es" : "en-US")} km/s`);
+  setText("speed", `${Math.round(result.speedKmS).toLocaleString(currentLang === "zh" ? "zh-CN" : currentLang === "es" ? "es" : currentLang === "pt" ? "pt-BR" : currentLang === "id" ? "id" : "en-US")} km/s`);
   setText("fractionC", `${result.fractionOfC.toFixed(3)} c`);
   setText("versusVacuum", `${result.percentVsVacuum.toFixed(1)}%`);
   setMbar(result.oneWayText, result.rttText);
@@ -209,7 +245,7 @@ function calculate(){
 }
 
 function resetForm(){
-  $("projectName").value = currentLang === "zh" ? "DCI 光纤链路" : currentLang === "es" ? "Enlace de fibra DCI" : "DCI Fiber Link";
+  $("projectName").value = currentLang === "zh" ? "DCI 光纤链路" : currentLang === "es" ? "Enlace de fibra DCI" : currentLang === "pt" ? "Enlace de fibra DCI" : currentLang === "id" ? "Tautan serat DCI" : "DCI Fiber Link";
   $("distance").value = 100;
   $("distanceUnit").value = "km";
   $("routeFactor").value = "1.0";
@@ -228,7 +264,7 @@ function buildResultText(){
   const r = lastResult;
   if (!r) return text.validation;
   return [
-    "NetEngineerLab - Fiber Latency Calculator",
+    "NetEngineerLab - " + (currentLang === "id" ? "Kalkulator latensi serat" : currentLang === "pt" ? "Calculadora de latência de fibra" : "Fiber Latency Calculator"),
     `${text.project}: ${r.projectName}`,
     `${text.oneWay}: ${r.oneWayText}`,
     `${text.rtt}: ${r.rttText}`,
@@ -294,7 +330,7 @@ function renderHistory(){
     container.innerHTML = `<div class="history-empty">${text.noHistory}</div>`;
     return;
   }
-  const localeName = currentLang === "zh" ? "zh-CN" : currentLang === "es" ? "es" : "en-US";
+  const localeName = currentLang === "zh" ? "zh-CN" : currentLang === "es" ? "es" : currentLang === "pt" ? "pt-BR" : currentLang === "id" ? "id" : "en-US";
   container.innerHTML = history.slice(0, 6).map((item) => {
     const date = new Date(item.timestamp);
     return `<article class="history-item">

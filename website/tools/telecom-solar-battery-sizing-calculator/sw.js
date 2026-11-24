@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-telecom-solar-battery-sizing-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-eb14afbbd9f9-246b0e6b2147";
+const CACHE = "nel-telecom-solar-battery-sizing-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-5e88f090d1d4-7565d540516f";
 const CORE = [
   "./",
   "./index.html",
@@ -18,7 +18,7 @@ const CORE = [
   "./js/deep-workflow.js?v=20261107-solar-bw3",
   "../../assets/js/id-launch-runtime.js?v=3bc487934804",
   "../../assets/js/pt-br-launch-runtime.js?v=9ae15bbd4462",
-  "../../data/locales.js?v=7112ce22747f",
+  "../../data/locales.js?v=7a08f57c71ce",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",

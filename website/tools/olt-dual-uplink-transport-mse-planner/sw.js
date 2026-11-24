@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-olt-dual-uplink-transport-mse-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-eb14afbbd9f9-4208fca31656";
+const CACHE = "nel-olt-dual-uplink-transport-mse-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-5e88f090d1d4-ddf268716380";
 const CORE = [
   "./",
   "./index.html",
@@ -15,7 +15,7 @@ const CORE = [
   "./js/engine.js?v=70d64a424ee6",
   "../../assets/js/id-launch-runtime.js?v=3bc487934804",
   "../../assets/js/pt-br-launch-runtime.js?v=9ae15bbd4462",
-  "../../data/locales.js?v=7112ce22747f",
+  "../../data/locales.js?v=7a08f57c71ce",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",

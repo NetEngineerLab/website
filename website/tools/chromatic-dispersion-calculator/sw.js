@@ -1,6 +1,6 @@
 "use strict";
 // t316: tool-isolated exact-version fallback; online documents/styles/scripts always refresh.
-const CACHE = "nel-chromatic-dispersion-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-eb14afbbd9f9-cc57ff08a3df";
+const CACHE = "nel-chromatic-dispersion-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-5e88f090d1d4-5c5042ad2fbd";
 const CORE = [
   "./",
   "./index.html",
@@ -34,11 +34,11 @@ const CORE = [
   "../../assets/images/logo.svg",
   "./js/engine.js?v=72ef42125dcb",
   "./js/pwa.js?v=20261108-cd-bw5",
-  "./js/app.js?v=22498116e23a",
+  "./js/app.js?v=8cb67b803b70",
   "../../assets/js/es-launch-runtime.js?v=e0fea69289b0",
   "../../assets/js/id-launch-runtime.js?v=3bc487934804",
   "../../assets/js/pt-br-launch-runtime.js?v=9ae15bbd4462",
-  "../../data/locales.js?v=7112ce22747f",
+  "../../data/locales.js?v=7a08f57c71ce",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",
@@ -67,7 +67,13 @@ const CORE = [
   "./manifest-zh.webmanifest",
   "./es/",
   "./es/index.html",
-  "./manifest-es.webmanifest"
+  "./manifest-es.webmanifest",
+  "./id/",
+  "./id/index.html",
+  "./manifest-id.webmanifest",
+  "./pt-br/",
+  "./pt-br/index.html",
+  "./manifest-pt-br.webmanifest"
 ];
 self.addEventListener("install", event => {
  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(CORE).then(() => self.skipWaiting())));
