@@ -34,7 +34,7 @@ for(const file of htmlFiles){
   if(!has(html,/<meta\b(?=[^>]*name=["']viewport["'])(?=[^>]*content=["'][^"']*width=device-width)[^>]*>/i))issues.push(issue("error",r,"VIEWPORT","Missing responsive viewport meta."));
   if(!has(html,/class=["'][^"']*site-shell-header\b/i))issues.push(issue("error",r,"HEADER","Shared site-shell header missing."));
   if(!has(html,/class=["'][^"']*site-shell-footer\b/i))issues.push(issue("error",r,"FOOTER","Shared site-shell footer missing."));
-  if(!has(html,/site-shell\.css\?v=/i))issues.push(issue("error",r,"SHELL_CSS","Versioned shared site-shell.css missing."));
+  if(!has(html,/site-shell\.css\?v=/i)&&!has(html,/home-bundle\.css\?v=/i))issues.push(issue("error",r,"SHELL_CSS","Versioned shared site-shell.css missing."));
  }
  const hubSlugs=new Set(JSON.parse(fs.readFileSync(path.join(site,"data/sitemap-routes.json"),"utf8")).routes.filter(record=>record.pageType==="hub").map(record=>String(record.route||"").split("/")[1]).filter(Boolean));
  const toolMatch=r.match(/^website\/tools\/([^/]+)\/(?:([^/]+)\/)?index\.html$/);

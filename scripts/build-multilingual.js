@@ -558,9 +558,14 @@ function renderShellTemplate(kind,locale,tokens){
  if(unresolved.length)throw new Error(`${posix(path.relative(packageRoot,file))}: unresolved tokens ${unresolved.join(", ")}`);
  return template;
 }
+function usesHomeBundle(html){
+ return /home-bundle\.css/i.test(html);
+}
 function injectSiteShell(html,currentRel,currentInfo){
+ if(!usesHomeBundle(html)){
  html=ensureAsset(html,currentRel,"assets/css/design-tokens.css","css");
  html=ensureAsset(html,currentRel,"assets/css/site-shell.css","css");
+ }
  html=versionExistingAsset(html,"assets/css/design-tokens.css");
  html=versionExistingAsset(html,"assets/css/site-shell.css");
  const locale=localeMap.get(currentInfo.localeId);
@@ -1098,13 +1103,15 @@ function build(){
   html=html.replace(/<\/head>/i,seo.join("\n")+"\n</head>");
   html=updateJsonLd(html,locale,canonical);
   html=finishSeo(html,record,locale);
-  html=ensureAsset(html,record.rel,"assets/css/locale-menu.css","css");
-  html=ensureAsset(html,record.rel,"assets/css/design-tokens.css","css");
+  if(!usesHomeBundle(html)){
+   html=ensureAsset(html,record.rel,"assets/css/locale-menu.css","css");
+   html=ensureAsset(html,record.rel,"assets/css/design-tokens.css","css");
+  }
   // Every Tool Detail page must use the shared tool design system. Place it
   // after tool-local CSS but before site-shell.css, so tool geometry is
   // normalized while the shared Header/Footer shell keeps final precedence.
   if(record.info.kind==="tool")html=ensureAsset(html,record.rel,"assets/css/tool-design-system.css","css");
-  html=ensureAsset(html,record.rel,"assets/css/site-shell.css","css");
+  if(!usesHomeBundle(html))html=ensureAsset(html,record.rel,"assets/css/site-shell.css","css");
   html=ensureAsset(html,record.rel,"data/locales.js","js");
   html=ensureAsset(html,record.rel,"data/site-config.js","js");
   html=ensureAsset(html,record.rel,"assets/js/analytics.js","js");

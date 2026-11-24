@@ -198,8 +198,9 @@ function auditSiteShell(){
     const header=shellRegion(html,"HEADER"),footer=shellRegion(html,"FOOTER");
     if(!header)issues.push(`${rel}: Header markers`);else headerSignatures.add(shellSignature(header,true));
     if(!footer)issues.push(`${rel}: Footer markers`);else footerSignatures.add(shellSignature(footer,false));
-    if(!/design-tokens\.css\?v=[a-f0-9]{12}/i.test(html))issues.push(`${rel}: design tokens`);
-    if(!/site-shell\.css\?v=[a-f0-9]{12}/i.test(html))issues.push(`${rel}: site shell`);
+    const homeBundle=/home-bundle\.css\?v=/i.test(html);
+    if(!homeBundle&&!/design-tokens\.css\?v=[a-f0-9]{12}/i.test(html))issues.push(`${rel}: design tokens`);
+    if(!homeBundle&&!/site-shell\.css\?v=[a-f0-9]{12}/i.test(html))issues.push(`${rel}: site shell`);
   }
   if(headerSignatures.size!==1)issues.push(`Header signatures: ${headerSignatures.size}`);
   if(footerSignatures.size!==1)issues.push(`Footer signatures: ${footerSignatures.size}`);
