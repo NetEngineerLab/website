@@ -1,4 +1,4 @@
-"use strict";const CACHE = "nel-pue-data-center-energy-efficiency-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-465c6141abd9-15f4897ac66c";
+"use strict";const CACHE = "nel-pue-data-center-energy-efficiency-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-652b883a71cf-e7227a312305";
 const CORE = [
   "./",
   "./index.html",
@@ -16,9 +16,9 @@ const CORE = [
   "./js/engine.js?v=bb55f104d257",
   "./js/deep-workflow.js?v=20261106-bw4g",
   "./zh/js/deep-workflow.js?v=20261106-bw4g",
-  "../../assets/js/id-launch-runtime.js?v=3bc487934804",
-  "../../assets/js/pt-br-launch-runtime.js?v=9ae15bbd4462",
-  "../../data/locales.js?v=70e1f68c8589",
+  "../../assets/js/id-launch-runtime.js?v=d2b74cbf2983",
+  "../../assets/js/pt-br-launch-runtime.js?v=45226abdb119",
+  "../../data/locales.js?v=9db7058d6b10",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",

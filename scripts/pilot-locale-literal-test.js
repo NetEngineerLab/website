@@ -343,4 +343,45 @@ assert.match(read("website/tools/pmd-budget-calculator/index.html"), /10G long-h
 assert.match(read("website/tools/fiber-loss/es/index.html"), /lang="es"/);
 assert.match(read("website/tools/pmd-budget-calculator/zh/index.html"), /lang="zh-CN"/);
 
+const batch2Tools = [
+  "pon-splitter-loss",
+  "pon-distance",
+  "poe-power-budget-calculator",
+  "poe-voltage-drop-calculator",
+  "pathway-fill-calculator"
+];
+const batch2Kept = {
+  "pon-splitter-loss": ["G.984.2", "10 log10", "1:64"],
+  "pon-distance": ["G.984.2", "dB/km", "1:8"],
+  "poe-power-budget-calculator": ["802.3bt", "454.74", "15.4"],
+  "poe-voltage-drop-calculator": ["37.87", "43.51", "0.393"],
+  "pathway-fill-calculator": ["25.4", "10000", "D²"]
+};
+for (const tool of batch2Tools) {
+  for (const locale of ["id", "pt-br"]) {
+    const rel = `website/tools/${tool}/${locale}/index.html`;
+    const html = read(rel);
+    for (const phrase of residue) assert.ok(!html.includes(phrase), `${rel} still contains ${phrase}`);
+    assert.match(html, locale === "id" ? /Jejak/ : /Trilha/, `${rel} breadcrumb label`);
+    assert.match(html, /pilot-locale-toc\.css/, `${rel} locale directory style`);
+    for (const literal of batch2Kept[tool]) assert.ok(html.includes(literal), `${rel} lost technical literal ${literal}`);
+    for (const card of html.matchAll(/<a class="nel-tool-graph-card" href="(\/tools\/[^"]+)">([\s\S]*?)<\/a>/g)) {
+      if (card[1].includes(`/${locale}/`)) assert.doesNotMatch(card[2], /\(English\)/, `${rel} locale ${card[1]} marked English`);
+      else assert.match(card[2], /\(English\)/, `${rel} unpublished ${card[1]} is not marked English`);
+    }
+    assert.doesNotMatch(read(`website/tools/${tool}/js/engine.js`), /Masukkan|Informe um valor|Langkah|Etapa/, `${tool} engine locale text`);
+  }
+  assert.match(read(`website/tools/${tool}/index.html`), /lang="en"/, `${tool} English page`);
+  assert.match(read(`website/tools/${tool}/es/index.html`), /lang="es"/, `${tool} Spanish page`);
+  assert.match(read(`website/tools/${tool}/zh/index.html`), /lang="zh-CN"/, `${tool} Chinese page`);
+  assert.doesNotMatch(read(`website/tools/${tool}/index.html`), /pilot-locale-toc\.css/, `${tool} English page linked the locale directory style`);
+}
+assert.match(read("website/tools/pon-splitter-loss/js/app.js"), /Kaskade splitter masih/);
+assert.match(read("website/tools/pon-distance/js/app.js"), /Jarak rencana berada/);
+assert.match(read("website/tools/poe-power-budget-calculator/js/app.js"), /Kapasitas cukup/);
+assert.match(read("website/tools/poe-voltage-drop-calculator/js/app.js"), /Tegangan ujung jauh di bawah minimum/);
+assert.match(read("website/tools/pathway-fill-calculator/js/app.js"), /useLabel/);
+assert.match(read("website/tools/pon-splitter-loss/index.html"), /GPON C\+ 1:64 Splitter Design/);
+assert.match(read("website/tools/pon-distance/index.html"), /PON Maximum Distance Design/);
+
 console.log(`Pilot locale literal PASS. Unpublished drafts with the same damage markers: ${draftHits.length}. They stay outside website/.`);

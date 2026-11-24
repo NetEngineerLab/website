@@ -22,7 +22,12 @@ const tools = [
   "edfa-ase-osnr-estimator",
   "path-availability-calculator",
   "fiber-loss",
-  "pmd-budget-calculator"
+  "pmd-budget-calculator",
+  "pon-splitter-loss",
+  "pon-distance",
+  "poe-power-budget-calculator",
+  "poe-voltage-drop-calculator",
+  "pathway-fill-calculator"
 ];
 const sheet = fs.readFileSync(path.join(root, "website/assets/css/pilot-locale-toc.css"), "utf8");
 assert.match(sheet, /html:is\(:lang\(id\), :lang\(pt-BR\)\)/);

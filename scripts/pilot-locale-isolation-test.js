@@ -7,7 +7,7 @@ const path = require("path");
 const root = path.resolve(__dirname, "..");
 const site = path.join(root, "website");
 const drafts = path.join(root, "drafts", "locale-rollout", "website");
-const pilots = new Set(["bandwidth-calculator", "subnet-calculator", "fiber-latency-calculator", "ethernet-serialization-delay-calculator", "stp-path-cost-calculator", "chromatic-dispersion-calculator", "copper-propagation-delay-calculator", "shannon-capacity-calculator", "tcp-mathis-throughput-estimator", "mm1-queue-delay-calculator", "ethernet-line-coding-calculator", "dc-feeder-voltage-drop-calculator", "itu-dwdm-grid-calculator", "edfa-ase-osnr-estimator", "path-availability-calculator", "fiber-loss", "pmd-budget-calculator"]);
+const pilots = new Set(["bandwidth-calculator", "subnet-calculator", "fiber-latency-calculator", "ethernet-serialization-delay-calculator", "stp-path-cost-calculator", "chromatic-dispersion-calculator", "copper-propagation-delay-calculator", "shannon-capacity-calculator", "tcp-mathis-throughput-estimator", "mm1-queue-delay-calculator", "ethernet-line-coding-calculator", "dc-feeder-voltage-drop-calculator", "itu-dwdm-grid-calculator", "edfa-ase-osnr-estimator", "path-availability-calculator", "fiber-loss", "pmd-budget-calculator", "pon-splitter-loss", "pon-distance", "poe-power-budget-calculator", "poe-voltage-drop-calculator", "pathway-fill-calculator"]);
 const locales = new Set(["id", "pt-br"]);
 
 assert.ok(fs.existsSync(path.join(drafts, "id", "index.html")), "Indonesian home draft must stay outside website/");
@@ -39,7 +39,7 @@ for (const file of walk(site)) {
   assert.ok(allowedShell.has(shell) || pilots.has(tool), `unpublished locale file is still in the publish directory: ${path.relative(root, file)}`);
   published.push(path.relative(root, file));
 }
-assert.equal(published.filter(file => file.endsWith(`${path.sep}index.html`) || file.endsWith("/index.html")).length, 46);
+assert.equal(published.filter(file => file.endsWith(`${path.sep}index.html`) || file.endsWith("/index.html")).length, 56);
 
 const sitemap = fs.readFileSync(path.join(site, "sitemap.xml"), "utf8");
 for (const url of [
@@ -76,7 +76,17 @@ for (const url of [
   "https://netengineerlab.com/tools/fiber-loss/id/",
   "https://netengineerlab.com/tools/fiber-loss/pt-br/",
   "https://netengineerlab.com/tools/pmd-budget-calculator/id/",
-  "https://netengineerlab.com/tools/pmd-budget-calculator/pt-br/"
+  "https://netengineerlab.com/tools/pmd-budget-calculator/pt-br/",
+  "https://netengineerlab.com/tools/pon-splitter-loss/id/",
+  "https://netengineerlab.com/tools/pon-splitter-loss/pt-br/",
+  "https://netengineerlab.com/tools/pon-distance/id/",
+  "https://netengineerlab.com/tools/pon-distance/pt-br/",
+  "https://netengineerlab.com/tools/poe-power-budget-calculator/id/",
+  "https://netengineerlab.com/tools/poe-power-budget-calculator/pt-br/",
+  "https://netengineerlab.com/tools/poe-voltage-drop-calculator/id/",
+  "https://netengineerlab.com/tools/poe-voltage-drop-calculator/pt-br/",
+  "https://netengineerlab.com/tools/pathway-fill-calculator/id/",
+  "https://netengineerlab.com/tools/pathway-fill-calculator/pt-br/"
 ]) assert.ok(sitemap.includes(`<loc>${url}</loc>`), url);
 for (const url of [
   "https://netengineerlab.com/id/",
@@ -92,7 +102,7 @@ for (const url of [
   "https://netengineerlab.com/pt-br/privacy/",
   "https://netengineerlab.com/pt-br/terms/"
 ]) assert.ok(sitemap.includes(`<loc>${url}</loc>`), url);
-for (const blocked of ["https://netengineerlab.com/guides/id/", "https://netengineerlab.com/topics/id/", "https://netengineerlab.com/tools/pon-splitter-loss/id/"]) {
+for (const blocked of ["https://netengineerlab.com/guides/id/", "https://netengineerlab.com/topics/id/", "https://netengineerlab.com/tools/optical-power-budget/id/"]) {
   assert.ok(!sitemap.includes(`<loc>${blocked}</loc>`), blocked);
 }
 

@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-pon-splitter-loss-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-465c6141abd9-d976835b9f25";
+const CACHE = "nel-pon-splitter-loss-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-652b883a71cf-ae54fa6e8d7d";
 const CORE = [
   "./index.html",
   "./",
@@ -8,7 +8,7 @@ const CORE = [
   "./css/style.css?v=11c254af5ac2",
   "../../assets/css/tool-layout.css?v=c4aecb2c24ab",
   "../../assets/css/fieldbook.css?v=a3bb21511014",
-  "./js/app.js?v=09d568edbbd8",
+  "./js/app.js?v=320c2709245f",
   "./js/engine.js",
   "./images/logo.svg",
   "../../assets/css/mobile-branding.css?v=345784b6b020",
@@ -24,9 +24,10 @@ const CORE = [
   "./js/scenarios.js",
   "../../assets/js/es-launch-runtime.js?v=e0fea69289b0",
   "./js/engine.js?v=c33958d704ae",
-  "../../assets/js/id-launch-runtime.js?v=3bc487934804",
-  "../../assets/js/pt-br-launch-runtime.js?v=9ae15bbd4462",
-  "../../data/locales.js?v=70e1f68c8589",
+  "../../assets/js/id-launch-runtime.js?v=d2b74cbf2983",
+  "../../assets/js/pt-br-launch-runtime.js?v=45226abdb119",
+  "../../assets/css/pilot-locale-toc.css?v=20261124toc",
+  "../../data/locales.js?v=9db7058d6b10",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",
@@ -55,7 +56,13 @@ const CORE = [
   "./manifest-zh.webmanifest",
   "./es/",
   "./es/index.html",
-  "./manifest-es.webmanifest"
+  "./manifest-es.webmanifest",
+  "./id/",
+  "./id/index.html",
+  "./manifest-id.webmanifest",
+  "./pt-br/",
+  "./pt-br/index.html",
+  "./manifest-pt-br.webmanifest"
 ];
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)));
