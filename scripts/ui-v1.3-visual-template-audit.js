@@ -6,7 +6,7 @@ const errors=[];const warnings=[];const pages=[];const tools=[];
 function read(p){return fs.readFileSync(p,'utf8')}
 for(const name of fs.readdirSync(toolsRoot)){
   const dir=path.join(toolsRoot,name);if(!fs.existsSync(dir)||!fs.statSync(dir).isDirectory()||inventory.skip(name))continue;
-  const candidates=[path.join(dir,'index.html'),path.join(dir,'zh','index.html'),path.join(dir,'es','index.html')];
+  const candidates=inventory.detailPageRels.map(rel=>path.join(dir,rel));
   let toolPages=0;
   for(const f of candidates){if(!fs.existsSync(f))continue;const s=read(f);if(!s.includes('nel-tool-detail-page'))continue;pages.push(f);toolPages++;
     const rel=path.relative(root,f).replaceAll('\\','/');

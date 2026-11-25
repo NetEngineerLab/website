@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id" dir="ltr" data-nel-locale="id" data-nel-route="tools/tcp-mathis-throughput-estimator/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="app-base" content="../">
+<title>TCP Mathis Sepanjang Estimator</title>
+<meta name="description" content="Perkiraan kehilangan Mathis berbasis TCP langit-langit dan bandwid- menunda produk dari MSS, RTT dan kehilangan probabilitas.">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<link rel="icon" href="/assets/icons/favicon.svg?v=1.9.5-06" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="/assets/css/mobile-branding.css?v=345784b6b020">
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif:ital@1&amp;display=swap">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=031fae951adb">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=64bd0d9f6bcb">
+<link rel="stylesheet" href="../css/style.css?v=3e625a824a21">
+<script defer src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
+<meta name="theme-color" content="#176ff2">
+<meta property="og:url" content="https://netengineerlab.com/tools/tcp-mathis-throughput-estimator/id/">
+<meta property="og:title" content="TCP Mathis Sepanjang Estimator">
+<meta property="og:description" content="Perkiraan kehilangan Mathis berbasis TCP langit-langit dan bandwid- menunda produk dari MSS, RTT dan kehilangan probabilitas.">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TCP Mathis Sepanjang Estimator">
+<meta name="twitter:description" content="Perkiraan kehilangan Mathis berbasis TCP langit-langit dan bandwid- menunda produk dari MSS, RTT dan kehilangan probabilitas.">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://netengineerlab.com/id/"},{"@type":"ListItem","position":2,"name":"Alat","item":"https://netengineerlab.com/tools/id/"},{"@type":"ListItem","position":3,"name":"TCP Mathis Sepanjang Estimator","item":"https://netengineerlab.com/tools/tcp-mathis-throughput-estimator/id/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"TCP Mathis Sepanjang Estimator","url":"https://netengineerlab.com/tools/tcp-mathis-throughput-estimator/id/","description":"Perkiraan kehilangan Mathis berbasis TCP langit-langit dan bandwid- menunda produk dari MSS, RTT dan kehilangan probabilitas.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","inLanguage":"id","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
+
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"TCP Mathis Sepanjang Estimator","url":"https://netengineerlab.com/tools/tcp-mathis-throughput-estimator/id/","description":"Perkiraan kehilangan Mathis berbasis TCP langit-langit dan bandwid- menunda produk dari MSS, RTT dan kehilangan probabilitas.","inLanguage":"id","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/id/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="id">
+<meta name="nel-route" content="tools/tcp-mathis-throughput-estimator/">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
+<link rel="canonical" href="https://netengineerlab.com/tools/tcp-mathis-throughput-estimator/id/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/tcp-mathis-throughput-estimator/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/tcp-mathis-throughput-estimator/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/tcp-mathis-throughput-estimator/es/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/tools/tcp-mathis-throughput-estimator/id/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/tools/tcp-mathis-throughput-estimator/pt-br/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/tcp-mathis-throughput-estimator/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
+<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
+<script defer src="../../../assets/js/id-launch-runtime.js?v=3461d0601eeb"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
+<link rel="manifest" href="../manifest-id.webmanifest">
+</head>
+<body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1" data-nel-offline-worker="1">
+<a class="skip" href="#calculator">Lewati ke kalkulator</a>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../id/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Platform kecerdasan untuk rekayasa jaringan</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Buka navigasi"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navigasi utama">
+      <a href="../../../id/">Beranda</a>
+      <a href="../../id/" aria-current="page">Alat</a>
+      <a href="../../../id/guides/">Panduan</a>
+      <a href="../../../id/topics/">Topik</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Bahasa: Bahasa Indonesia"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Bahasa Indonesia</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/tcp-mathis-throughput-estimator/" lang="en" hreflang="en"><span>English</span><small>Inggris</small></a><a class="language-option" role="menuitem" href="/tools/tcp-mathis-throughput-estimator/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Tionghoa Sederhana</small></a><a class="language-option" role="menuitem" href="/tools/tcp-mathis-throughput-estimator/es/" lang="es" hreflang="es"><span>Español</span><small>Spanyol</small></a><a class="language-option" role="menuitem" href="/tools/tcp-mathis-throughput-estimator/id/" lang="id" hreflang="id" aria-current="page"><span>Bahasa Indonesia</span><small>Bahasa Indonesia</small></a><a class="language-option" role="menuitem" href="/tools/tcp-mathis-throughput-estimator/pt-br/" lang="pt-BR" hreflang="pt-BR"><span>Português do Brasil</span><small>Portugis Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">Mulai menghitung</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a href="../../../id/">Beranda</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../../id/">Alat</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">TCP Mathis Sepanjang Estimator</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END -->
+<section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner"><p class="eyebrow">TCP LOSS MODEL</p><p class="hero-title">TCP Mathis Sepanjang Estimator</p><p>Perkiraan kehilangan Mathis berbasis TCP langit-langit dan bandwid- menunda produk dari MSS, RTT dan kehilangan probabilitas.</p><div class="hero-tags"><span>MSS</span><span>RTT</span><span>Kehilangan</span><span>Jeda produk</span></div></div></section>
+<main id="calculator" class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" data-engine="NEL_Mathis" data-primary="throughputMbps" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv">
+<div class="tool-head">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../id/">Beranda</a> <span aria-hidden="true">/</span> <a href="./">Alat</a> <span aria-hidden="true">/</span> <span aria-current="page">TCP Mathis Sepanjang Estimator</span></nav>
+<h1 class="tool-page-label">TCP Mathis Sepanjang Estimator</h1>
+<p class="tool-lede">Perkiraan kehilangan Mathis berbasis TCP langit-langit dan bandwid- menunda produk dari MSS, RTT dan kehilangan probabilitas.</p>
+</div>
+<div class="workspace">
+<section class="input-panel card nel-tool-input fb-panel">
+<h2 class="panel-h">Masukan</h2>
+<p class="hint">Hasilnya mengikuti masukan. Sebuah masukan tidak valid menjelaskan mengapa dan membersihkan nomor sebelumnya.</p>
+<div class="fields"><div class="field f"><label for="mss">TCP MSS</label><div class="inp input-wrap"><input id="mss" data-field="mss" data-example="1460" type="number" inputmode="decimal" value="1460" step="any"></div></div><div class="field f"><label for="rtt">Round- waktu perjalanan</label><div class="inp input-wrap"><input id="rtt" data-field="rtt" data-example="20" type="number" inputmode="decimal" value="40" step="any" data-probe="1" data-probe-edit="80" data-probe-invalid="0"><select id="rttUnit" data-field="rttUnit" aria-label="Round- unit waktu perjalanan"><option value="ms" selected>ms</option><option value="us">kita</option><option value="s">s</option></select></div></div><div class="field f"><label for="loss">Kehilangan paket</label><div class="inp input-wrap"><input id="loss" data-field="loss" data-example="0.0001" type="number" inputmode="decimal" value="0.01" step="any"><select id="lossUnit" data-field="lossUnit" aria-label="Unit kehilangan paket"><option value="percent" selected>persen</option><option value="probability">probabilitas</option></select></div></div><div class="field f"><label for="link">Laju taut opsional bagi BDP</label><div class="inp input-wrap"><input id="link" data-field="link" data-example="10000" type="number" inputmode="decimal" value="1000" step="any"><select id="linkUnit" data-field="linkUnit" aria-label="Laju sambungan opsional bagi unit BDP"><option value="Mbps" selected>Mbps</option><option value="Gbps">Gbps</option><option value="Kbps">Kbps</option></select></div></div></div>
+<p id="validation" class="validation" role="alert"></p>
+<div class="input-actions"><button id="calculateBtn" class="btn btn-primary" type="button">Hitung</button><button id="exampleBtn" class="btn btn-ghost" type="button">Muat contoh</button><button id="resetBtn" class="btn btn-ghost" type="button">Atur ulang</button></div>
+<div class="formula-card"><h3>Formula</h3><code>Rate &lt; (MSS × 8) / (RTT × √p). BDP bytes = link bit rate × RTT / 8.</code><p>Ini adalah pendekatan teknik untuk perencanaan. Ini bukan pengukuran laboratorium dan tidak menjamin kinerja peralatan.</p></div>
+</section>
+<section class="result-panel card nel-tool-result readout" id="result" aria-live="polite">
+<h2 class="ro-h">Hasil</h2>
+<p id="statusLine" class="hint"></p>
+<div class="metric-grid"><article class="metric"><span class="lbl" id="lbl-throughputMbps">Mathis melaluilangit-langit</span><span class="val" id="out-throughputMbps" data-out="throughputMbps"><span class="num">—</span><span class="unit">Mbps</span></span></article><article class="metric"><span class="lbl" id="lbl-throughputBps">Mathis melaluilangit-langit</span><span class="val" id="out-throughputBps" data-out="throughputBps"><span class="num">—</span><span class="unit">bit / s</span></span></article><article class="metric"><span class="lbl" id="lbl-bdpBytes">Produk ban-delay</span><span class="val" id="out-bdpBytes" data-out="bdpBytes"><span class="num">—</span><span class="unit">B</span></span></article><article class="metric"><span class="lbl" id="lbl-bdpPackets">BDP dalam paket MSS</span><span class="val" id="out-bdpPackets" data-out="bdpPackets"><span class="num">—</span><span class="unit">before</span></span></article></div>
+
+<div class="result-actions ro-acts"><button id="copyBtn" type="button">Hasil salinan</button><button id="csvBtn" type="button">Ekspor CSV</button></div>
+</section>
+</div>
+<div class="below">
+<nav class="toc" aria-label="Pada halaman ini"><h4>Pada halaman ini</h4><a href="#about-scope">Tentang dan peralatan</a><a href="#methodology">Bagaimana hal itu diketahui</a><a href="#faq">FAQ</a><a href="#references">Referensi</a><a href="#nel-tool-graph">Aliran kerja rekayasa</a></nav>
+<div class="prose">
+<details class="fb-fold blk" id="about-scope" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span class="fb-fold-title">Tentang dan peralatan</span></summary><div class="fb-fold-body"><p>Langit-langit Mathis adalah model yang melebihi batas untuk kehilangan berbasis kemacetan TCP, bukan uji tembus. Piranti opsional-delay product menunjukkan berapa banyak byte mengisi pipa pada tingkat link yang Anda masukkan.</p><p>Ini adalah pendekatan teknik untuk perencanaan. Ini bukan pengukuran laboratorium dan tidak menjamin kinerja peralatan.</p><p class="about-meta">Isi ditinjau: 2026- 11-19</p></div></details>
+<details class="fb-fold blk" id="methodology" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span class="fb-fold-title">Bagaimana hal itu diketahui</span></summary><div class="fb-fold-body"><p class="eq">Rate &lt; (MSS × 8) / (RTT × GlP). BDP bytes = link bit rate × RTT / 8.</p><p>Mathis, Semke, Mahdavi dan Ott menggambarkan tingkat makroskopik dari kemacetan TCP karena menghindari sekitar satu MSS per RTT dikali 1 / ACP, dimana p adalah probabilitas kerugian. Halaman ini menggunakan Rate = (MSS bytes × 8) / (RTT seconds × 2.p) dan label itu langit-langit. Sebuah kasus yang berhasil adalah MSS 1460 bytes, RTT 40 ms dan p = 0.0001: ripp = 0.01 dan ratingnya 29.2 Mbps. BDP berikut RFC 6349 's bandwidth-delay produk setelah Anda memasok tingkat link. Tertunda, kubik, mondar-mandir dan batas aplikasi tidak dalam rumus.</p></div></details>
+<div class="blk faq" id="faq"><h2>FAQ</h2><h3>Apakah kerugian yang lebih rendah selalu meningkatkan hasil?</h3><p>Dalam model ini, ya, karena langit-langit terbagi oleh Gibp.</p><h3>Apakah BDP diperlukan?</h3><p>Tidak. Biarkan tingkat link kosong dan BDP tetap kosong.</p><h3>Mengapa 1 persen kerugian dimasukkan sebagai 0.01 dengan unit persen?</h3><p>Satuan persen dibagi 100 sebelum akar kuadrat. Probabilitas 0.0001 sama dengan 0.01 persen.</p><h3>Dapatkah ukuran ini sirkuit WAN saja?</h3><p>Tidak. Ini adalah salah satu kerugian berdasarkan terikat.</p></div>
+<section class="blk" id="references"><h2>Referensi</h2><ul class="rel"><li><a href="https://dl.acm.org/doi/10.1145/263932.264023">Mathis et al., ACM CCR 1997</a></li><li><a href="https://www.rfc-editor.org/rfc/rfc6349">RFC 6349 kerangka kerja untuk TCP melalui put</a></li><li><a href="https://www.rfc-editor.org/rfc/rfc879">RFC 879 TCP ukuran Berisik</a></li></ul></section>
+<!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="tcp-mathis-throughput-estimator" data-primary-workflow="loss-and-queue-models">
+<div class="section-heading"><div><p class="eyebrow">MESIN KERJA</p><h2 id="nel-tool-graph-title">Lanjutkan proses rekayasa</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Aliran kerja saat ini</span><strong>Kehilangan berbasis TCP dan jeda antrian</strong><p>Perkiraan kehilangan berbasis TCP langit-langit, kemudian waktu tinggal satu M / M / 1 cripple.</p></div><div class="nel-workflow-step"><strong>Langkah 1 dari 2</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="2" aria-valuenow="1" aria-valuetext="Langkah 1 dari 2" aria-label="Langkah 1 dari 2"><span style="width:50%"></span></div></div></div><div class="nel-tool-graph-nav"><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Sebelumnya</span><strong>Awal aliran kerja</strong></div><a class="nel-tool-graph-card" href="../../mm1-queue-delay-calculator/id/"><span class="nel-tool-graph-label">Berikutnya</span><strong>Kalkulator M / M / 1 Delay</strong><span class="nel-tool-graph-description">Menghitung utilisasi, menunggu waktu dan waktu tinggal untuk satu M / M / 1 antrian dari kedatangan dan layanan.</span></a></div>
+<h3 class="nel-tool-graph-subtitle">Perkakas terkait</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="../../bandwidth-calculator/id/"><strong>Kalkulator bandwidth dan waktu transfer</strong><span class="nel-tool-graph-description">Hitung waktu transfer berkas, laju link yang diperlukan, Kapasitas tukar-pengguna dan volume data yang berkelanjutan.</span></a><a class="nel-tool-graph-card" href="../../ethernet-serialization-delay-calculator/id/"><strong>Kalkulator Delay Serialisasi Ethernet</strong><span class="nel-tool-graph-description">Hitung per-hop dan multi- hop penundaan serialisasi, waktu kawat, maksimum frame rate dan efisiensi L2 untuk link Ethernet.</span></a><a class="nel-tool-graph-card" href="../../fiber-latency-calculator/id/"><strong>Kalkulator Serat Latensi</strong><span class="nel-tool-graph-description">Hitung satu - cara dan putaran-perjalanan serat latensi dari jarak, indeks kelompok, peralatan dan penundaan serialisasi.</span></a></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
+</div>
+</div>
+</main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Alat daring profesional untuk insinyur telekomunikasi dan jaringan.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navigasi kaki halaman">
+      <a href="../../../id/about/">Tentang</a><a href="../../../id/contact/">Kontak</a><a href="../../../id/privacy/">Privasi</a><a href="../../../id/terms/">Ketentuan</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script type="application/json" id="nel-copy">{"calculate":"Calculate","example":"Load example","reset":"Reset","copy":"Copy result","csv":"Export CSV","invalid":"Check the highlighted limit. The previous result has been cleared.","ready":"Result updated from the current inputs.","inputs":"Inputs","results":"Result","formula":"Formula","toc":"On this page","about":"About and applicability","method":"How it is calculated","faq":"FAQ","refs":"References","flow":"Engineering workflow","reviewed":"Content reviewed: 2026-11-19","approx":"This is an engineering approximation for planning. It is not a laboratory measurement and it does not guarantee equipment performance.","start":"Start calculating","home":"Home","tools":"Tools","errors":{"empty":"Enter a value.","invalid-number":"Enter a finite decimal number.","non-finite":"The value must be finite.","not-integer":"Enter a whole number.","bad-unit":"Choose a supported unit.","overflow":"The calculation overflowed. Use a smaller input.","anchor-range":"Keep the anchor between 100 and 400 THz.","spacing-range":"Spacing must be greater than 0 and at most 10000 GHz.","channel-range":"Keep the channel index between -100000 and 100000.","frequency-range":"The resulting optical frequency is outside 0 to 1000 THz.","power-range":"Channel power must be from -80 to 40 dBm.","gain-range":"Gain must be greater than 0 dB and at most 50 dB.","nf-range":"Noise figure must be from 0 to 40 dB for this model.","bandwidth-range":"Bandwidth is outside the accepted range.","span-range":"Span count must be a whole number from 1 to 10000.","bad-code":"Choose a line code.","payload-range":"Payload rate must be greater than 0 and at most 100000 Gbps.","mss-range":"MSS must be a whole number from 1 to 65535 bytes.","rtt-range":"RTT must be greater than 0 and at most 100 s.","loss-range":"Loss probability must be greater than 0 and less than 1.","link-range":"Link rate must be greater than 0.","arrival-range":"Arrival rate must be greater than 0.","service-range":"Service rate must be greater than 0.","unstable":"Service rate must be greater than arrival rate.","bad-kind":"Choose blocks or MTBF.","availability-range":"Availability must be greater than 0 and at most 1.","mtbf-range":"MTBF must be greater than 0.","mttr-range":"MTTR must be greater than 0.","bad-mode":"Choose series or parallel.","block-count":"Enter 1 to 20 availability values.","voltage-range":"Voltage must be greater than 0 and at most 2000 V.","current-range":"Current must be from 0 to 100000 A.","length-range":"Length is outside the accepted range.","area-range":"Conductor area must be greater than 0.","temperature-range":"Temperature must keep resistivity positive and stay from -50 to 200 °C.","alpha-range":"Alpha must be from 0 to 0.02 per °C.","conductor-count":"Conductor count must be 1 or 2.","rho-range":"Resistivity must be greater than 0.","conduit-range":"Pathway diameter must be greater than 0.","group-count":"Enter 1 to 4 cable groups.","diameter-range":"Cable diameter must be greater than 0.","count-range":"Cable count must be a whole number from 1 to 100000.","limit-range":"The fill limit must be greater than 0 and at most 100 percent.","vf-range":"Velocity factor must be greater than 0 and at most 1.","snr-range":"SNR is outside the accepted range."}}</script>
+<link rel="stylesheet" href="../css/style.css?v=3e625a824a21">
+<script src="../js/engine.js?v=155f7dca1b0f"></script>
+<script src="../js/app.js?v=13190eae6437"></script>
+<script src="../js/pwa.js"></script>
+<script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
+<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d"></script>
+</body>
+</html>

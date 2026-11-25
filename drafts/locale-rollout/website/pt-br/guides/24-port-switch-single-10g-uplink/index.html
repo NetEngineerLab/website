@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="pt-BR" dir="ltr" data-nel-locale="pt-BR" data-nel-route="guides/24-port-switch-single-10g-uplink/"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Comutador de 24 portas com uma ligação ascendente 10G: 2.4:1 ou 24:1? | NetEngineerLab</title><meta name="description" content="Exemplo: um switch de acesso 24×1G a 30% de uso de horas ocupadas passa em um uplink 10G e falha em um uplink 1G. Razão linear, procura e limite de via única."><link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/guide.css?v=6d83ae5e791f"><meta property="og:url" content="https://netengineerlab.com/pt-br/guides/24-port-switch-single-10g-uplink/">
+<meta property="og:title" content="Comutador de 24 portas com uma ligação ascendente 10G: 2.4:1 ou 24:1? | NetEngineerLab">
+<meta property="og:description" content="Exemplo: um switch de acesso 24×1G a 30% de uso de horas ocupadas passa em um uplink 10G e falha em um uplink 1G. Razão linear, procura e limite de via única.">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Comutador de 24 portas com uma ligação ascendente 10G: 2.4:1 ou 24:1? | NetEngineerLab">
+<meta name="twitter:description" content="Exemplo: um switch de acesso 24×1G a 30% de uso de horas ocupadas passa em um uplink 10G e falha em um uplink 1G. Razão linear, procura e limite de via única.">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"O One 10G Uplink é suficiente para um interruptor Gigabit de 24 portas?","name":"O One 10G Uplink é suficiente para um interruptor Gigabit de 24 portas?","description":"Exemplo: um switch de acesso 24×1G a 30% de uso de horas ocupadas passa em um uplink 10G e falha em um uplink 1G. Razão linear, procura e limite de via única.","url":"https://netengineerlab.com/pt-br/guides/24-port-switch-single-10g-uplink/","inLanguage":"pt-BR","mainEntityOfPage":"https://netengineerlab.com/guides/24-port-switch-single-10g-uplink/","author":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/pt-br/"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/pt-br/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://netengineerlab.com/pt-br/"},{"@type":"ListItem","position":2,"name":"O One 10G Uplink é suficiente para um interruptor Gigabit de 24 portas?","item":"https://netengineerlab.com/pt-br/guides/24-port-switch-single-10g-uplink/"}]}</script>
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Comutador de 24 portas com uma ligação ascendente 10G: 2.4:1 ou 24:1? | NetEngineerLab","url":"https://netengineerlab.com/pt-br/guides/24-port-switch-single-10g-uplink/","description":"Exemplo: um switch de acesso 24×1G a 30% de uso de horas ocupadas passa em um uplink 10G e falha em um uplink 1G. Razão linear, procura e limite de via única.","inLanguage":"pt-BR","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/pt-br/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="pt-BR">
+<meta name="nel-route" content="guides/24-port-switch-single-10g-uplink/">
+<meta name="nel-available-locales" content="en,zh,id,pt-BR">
+<link rel="canonical" href="https://netengineerlab.com/pt-br/guides/24-port-switch-single-10g-uplink/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/24-port-switch-single-10g-uplink/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/24-port-switch-single-10g-uplink/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/id/guides/24-port-switch-single-10g-uplink/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/pt-br/guides/24-port-switch-single-10g-uplink/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/24-port-switch-single-10g-uplink/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
+</head><body>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Plataforma de inteligência para engenharia de redes</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Abrir navegação"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navegação principal">
+      <a href="../../">Início</a>
+      <a href="../../../tools/pt-br/">Ferramentas</a>
+      <a href="../" aria-current="page">Guias</a>
+      <a href="../../topics/">Tópicos</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Português do Brasil"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Português do Brasil</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/guides/24-port-switch-single-10g-uplink/" lang="en" hreflang="en"><span>English</span><small>Inglês</small></a><a class="language-option" role="menuitem" href="/zh/guides/24-port-switch-single-10g-uplink/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinês simplificado</small></a><a class="language-option" role="menuitem" href="/id/guides/24-port-switch-single-10g-uplink/" lang="id" hreflang="id"><span>Bahasa Indonesia</span><small>Indonésio</small></a><a class="language-option" role="menuitem" href="/pt-br/guides/24-port-switch-single-10g-uplink/" lang="pt-BR" hreflang="pt-BR" aria-current="page"><span>Português do Brasil</span><small>Português do Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END --><nav class="guide-breadcrumb" aria-label="Trigo de pão"><a href="../../">Início</a><span aria-hidden="true">›</span><a href="../">Guias</a><span aria-hidden="true">›</span><span aria-current="page">O One 10G Uplink é suficiente para um interruptor Gigabit de 24 portas?</span></nav><main class="guide-shell" id="main"><section class="guide-hero"><p class="eyebrow">EXEMPLO TRABALHADO</p><h1>O One 10G Uplink é suficiente para um interruptor Gigabit de 24 portas?</h1><p class="guide-lead">Exemplo apenas, não uma rede de clientes medidos. Um switch 24×1G com um uplink é um projeto de linha 2.4:1 em 10G e um projeto 24 cadeiras em 1G. Com 30% de utilização simultânea, o uplink 10G ainda passa por uma meta de planejamento de 80%; o uplink 1G não.</p><div class="guide-meta"><span>24×1G</span><span>Ligação ascendente única</span><span>Utilização de 30%</span><span>Exemplo</span></div></section><div class="guide-tool-link"><strong>Calculadora relacionada</strong><p>Esta calculadora não tem nenhuma predefinição URL que preencha cada entrada neste exemplo. Digite os valores abaixo e compare o resultado.</p><a href="../../../tools/switch-uplink-oversubscription-calculator/pt-br/">Abra a calculadora switch uplink →</a></div><div class="guide-layout"><article class="guide-article"><p>Esta pergunta é a forma de 24 portas do problema uplink-throat: cada porta de acesso compartilha um link deixando. Não é o 48×1G com 2×10G caso já neste site.</p><h2>Suposições de exemplo</h2><ul><li>Acesso: 24 portas × 1 Gbps. Taxa de linha oferecida = 24 Gbps.</li><li>Modelo ocupadoVideo-hora: utilização de 30%, 100% dos portos no pool de demanda, 0% de sobrecarga extra.</li><li>Objetivo de planejamento: manter a demanda dentro de 80% da taxa de linha uplink.</li><li>Comparar um 10 Gbps uplink com um 1 Gbps Uplink. Nenhum segundo caminho é modelado.</li></ul><h2>Passos</h2><ol><li>Demanda = 24 × 1 Gbps × 0,30 = 7,2 Gbps.</li><li>10G uplink: capacidade 10 Gbps, capacidade segura 8.0 Zdeus Gbps, reposição 8.0 − 7.2 = 0,8 Gbps. Taxa de linha 24 / 10 = 2.4:1. Status passe.</li><li>1G uplink: capacidade 1 Gbps, capacidade segura 0,8 Gbps, reposição 0,8 - 7,2 = -6,4 Gbps. Taxa de linha 24 / 1 = 24:1. A mesma procura precisa de 9 ligações ascendentes de um gigabit neste alvo. A situação falhou.</li></ol><h2>O que o resultado faz e não diz</h2><p>Um uplink 10G pode levar este exemplo 7.2 Gbps. Ainda é um único caminho de encaminhamento: um corte ou falha óptica remove todo o 10 Gbps. Não trate o resultado da passagem como aprovação N-1. Um uplink 1G, ou uma porta 10G que negocia para 1G, falha a mesma demanda. LAG hashing está fora deste exemplo porque há apenas um membro.</p><h2>Limites e fontes</h2><p>Unidades são Gbps de taxa de linha, não aplicação goodput. O valor de 30% é um exemplo, não um inquérito. A discussão pública da garganta de 24 portas 1G-versus-10G está em notas de vendedor e design; esta página recalcula essa questão com o motor do site em vez de copiar suas reivindicações de tráfego.</p><p>Fontes: <a href="https://www.cisco.com/c/en/us/products/collateral/switches/catalyst-9000/nb-09-25ge-100ge-wp-cte-en.html">Subscrição Cisco, 25GE e 100GE campus</a>.</p><p><a href="../../topics/switch-oversubscription/">Voltar ao tópico de sobrepasse de subscrição</a></p></article></div></main><!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Ferramentas profissionais online para engenheiros de telecomunicações e redes.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navegação do rodapé">
+      <a href="../../about/">Sobre</a><a href="../../contact/">Contato</a><a href="../../privacy/">Privacidade</a><a href="../../terms/">Termos</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
+</body></html>

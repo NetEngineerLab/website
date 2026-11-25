@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR" dir="ltr" data-nel-locale="pt-BR" data-nel-route="tools/fiber-latency-calculator/">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#176ff2" name="theme-color"/>
+<title>Calculadora de latência de fibra – μs por km, One-Way &amp; RTT</title>
+<meta content="Estimar a latência da fibra em cerca de 4,9 μs/km de uma maneira, então adicionar fator de rota, atraso do equipamento e atraso de serialização." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif:ital@1&amp;display=swap" rel="stylesheet"/>
+<meta content="../" name="app-base"/>
+<meta content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" name="robots"/>
+<meta content="website" property="og:type"/>
+<meta content="NetEngineerLab" property="og:site_name"/>
+<meta content="Calculadora de latência de fibra – μs por km, One-Way &amp; RTT" property="og:title"/>
+<meta content="Estimar a latência da fibra em cerca de 4,9 μs/km de uma maneira, então adicionar fator de rota, atraso do equipamento e atraso de serialização." property="og:description"/>
+<meta content="https://netengineerlab.com/tools/fiber-latency-calculator/pt-br/" property="og:url"/>
+<meta content="https://netengineerlab.com/assets/images/og-netengineerlab.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Calculadora de latência de fibra – μs por km, One-Way &amp; RTT" name="twitter:title"/>
+<meta content="Estimar a latência da fibra em cerca de 4,9 μs/km de uma maneira, então adicionar fator de rota, atraso do equipamento e atraso de serialização." name="twitter:description"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://netengineerlab.com/tools/fiber-latency-calculator/#app","name":"Calculadora de Latência de Fibra","url":"https://netengineerlab.com/tools/fiber-latency-calculator/pt-br/","description":"Calcular latência de uma via e ida e volta sobre fibra óptica a distância, índice de grupo, fator de rota, equipamento e atraso de serialização.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Network Engineering Calculator","operatingSystem":"Any","browserRequirements":"Requires JavaScript and a modern web browser","softwareVersion":"1.0.0","inLanguage":"pt-BR","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/pt-br/"}},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/fiber-latency-calculator/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"NetEngineerLab","item":"https://netengineerlab.com/pt-br/"},{"@type":"ListItem","position":2,"name":"Ferramentas","item":"https://netengineerlab.com/tools/pt-br/"},{"@type":"ListItem","position":3,"name":"Calculadora de Latência de Fibra","item":"https://netengineerlab.com/tools/fiber-latency-calculator/pt-br/"}]}]}</script>
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
+<meta content="https://netengineerlab.com/assets/images/og-netengineerlab.png" name="twitter:image"/>
+<link href="/assets/css/cookie-consent.css?v=2f2c8ab643e6" rel="stylesheet"/>
+<style>
+/* Shared OPB .fields stacks each label above its control, so a wrapped label
+   drops that input. Subgrid keeps every control in a band on one row.
+   Shared .ro-acts is four columns; this tool has Copy, Save, and Print. */
+body.nel-opb-v3 .fields{row-gap:0}
+body.nel-opb-v3 .fields>.f{display:grid;grid-template-rows:subgrid;grid-row:span 3;margin-bottom:14px}
+body.nel-opb-v3 .inp{height:40px;min-height:40px;max-height:40px;overflow:hidden}
+body.nel-opb-v3 .inp select{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.nel-opb-v3 .inp input[type="number"]{-moz-appearance:textfield;appearance:textfield}
+body.nel-opb-v3 .inp input[type="number"]::-webkit-outer-spin-button,
+body.nel-opb-v3 .inp input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+body.nel-opb-v3 .ro-acts{grid-template-columns:repeat(3,minmax(0,1fr))}
+body.nel-opb-v3 .ro-acts button{display:flex;align-items:center;justify-content:center;min-width:0;min-height:44px;white-space:normal;line-height:1.3}
+</style>
+<link href="/assets/css/fb-v3.css?v=031fae951adb" rel="stylesheet"/>
+<link href="/assets/css/fb-v3-prod.css?v=64bd0d9f6bcb" rel="stylesheet"/>
+<script defer="" src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
+<link href="../css/style.css?v=7fe982d34755" rel="stylesheet"/>
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Calculadora de latência de fibra – μs por km, One-Way & RTT","url":"https://netengineerlab.com/tools/fiber-latency-calculator/pt-br/","description":"Estimar a latência da fibra em cerca de 4,9 μs/km de uma maneira, então adicionar fator de rota, atraso do equipamento e atraso de serialização.","inLanguage":"pt-BR","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/pt-br/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="pt-BR">
+<meta name="nel-route" content="tools/fiber-latency-calculator/">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
+<link rel="canonical" href="https://netengineerlab.com/tools/fiber-latency-calculator/pt-br/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/fiber-latency-calculator/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/fiber-latency-calculator/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/fiber-latency-calculator/es/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/tools/fiber-latency-calculator/id/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/tools/fiber-latency-calculator/pt-br/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/fiber-latency-calculator/">
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Qual é a latência da fibra por km?","acceptedAnswer":{"@type":"Answer","text":"Cerca de 4,9 μs one-way por km em fibra de modo único padrão (índice de grupo cerca de 1,468), ou cerca de 9,8 μs ida e volta - cerca de 5 ms por 1.000 km one-way."}},{"@type":"Question","name":"Como faço para calcular RTT sobre fibra?","acceptedAnswer":{"@type":"Answer","text":"O RTT prestadores de serviços é de cerca de 2 × comprimento de fibra × 4,9 μs/km, além de equipamentos e atraso de serialização em cada direção. 100 km de fibra dá cerca de 0,98 ms RTT de propagação sozinho."}},{"@type":"Question","name":"Por que meu ping medido é maior que a calculadora?","acceptedAnswer":{"@type":"Answer","text":"Ping inclui desvios de roteamento, processamento de equipamentos, fila e atraso do host, e rotas de fibra são muitas vezes mais longas do que a distância em linha reta. Use o comprimento de fibra medido ou um fator de rota."}},{"@type":"Question","name":"O micro-ondas é mais rápido que a fibra?","acceptedAnswer":{"@type":"Answer","text":"Para propagação, sim. O rádio através do ar viaja a quase velocidade da luz no vácuo (cerca de 3,34 μs/km), cerca de 32% menos atraso do que a fibra de vidro."}},{"@type":"Question","name":"O comprimento de onda muda a latência das fibras?","acceptedAnswer":{"@type":"Answer","text":"Apenas marginalmente. O índice do grupo de fibras G.652 em 1310 nm e 1550 nm difere em torno de 0,0005, o que está abaixo de 0,05% do atraso."}},{"@type":"Question","name":"O cobre é mais rápido que a fibra?","acceptedAnswer":{"@type":"Answer","text":"Não significativamente. O cobre emparelhado se propaga a cerca de 0,65–0,70 c (cerca de 4,8–5,1 μs/km), semelhante à fibra, mas a Ethernet em cobre é limitada a 100 m."}}]}</script>
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
+<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
+<script defer src="../../../assets/js/pt-br-launch-runtime.js?v=1223d823e2c6"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
+<link rel="manifest" href="../manifest-pt-br.webmanifest">
+</head>
+<body class="nel-tool-detail-page has-mbar v3 nel-tool-v3" data-nel-offline-worker="1" data-nel-template="tool-detail-v1.3.1" data-nel-v3-migrated="1" data-nel-visual="network-change-planner-reference">
+<a class="skip-link" href="#calculator">Saltar para a calculadora</a>
+<noscript><div class="noscript">JavaScript is required to run this calculator.</div></noscript>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../pt-br/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Plataforma de inteligência para engenharia de redes</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Abrir navegação"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navegação principal">
+      <a href="../../../pt-br/">Início</a>
+      <a href="../../pt-br/" aria-current="page">Ferramentas</a>
+      <a href="../../../pt-br/guides/">Guias</a>
+      <a href="../../../pt-br/topics/">Tópicos</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Português do Brasil"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Português do Brasil</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/fiber-latency-calculator/" lang="en" hreflang="en"><span>English</span><small>Inglês</small></a><a class="language-option" role="menuitem" href="/tools/fiber-latency-calculator/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinês simplificado</small></a><a class="language-option" role="menuitem" href="/tools/fiber-latency-calculator/es/" lang="es" hreflang="es"><span>Español</span><small>Espanhol</small></a><a class="language-option" role="menuitem" href="/tools/fiber-latency-calculator/id/" lang="id" hreflang="id"><span>Bahasa Indonesia</span><small>Indonésio</small></a><a class="language-option" role="menuitem" href="/tools/fiber-latency-calculator/pt-br/" lang="pt-BR" hreflang="pt-BR" aria-current="page"><span>Português do Brasil</span><small>Português do Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">Começar a calcular</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Trigo de pão">
+  <a href="../../../pt-br/">Início</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../../pt-br/">Ferramentas</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">Calculadora de Latência de Fibra</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END -->
+<section aria-hidden="true" class="hero nel-tool-hero"><div class="hero-inner">
+<p class="eyebrow">TOOL DE ENGENHARIA ÓPTICA</p>
+<h1>Calculadora de Latência de Fibra</h1>
+<p>A luz em fibra óptica viaja a aproximadamente dois terços de sua velocidade no vácuo, de modo que cada quilômetro de fibra monomodal adiciona cerca de 4,9 μs de atraso unidirecional (cerca de 9,8 μs de ida e volta). Use esta calculadora de latência de fibra para estimar o tempo de ida e volta (RTT) para ligações de metro, ICD e longo curso, incluindo desvios de rota, equipamentos ativos e serialização de pacotes.</p>
+<div class="hero-tags"><span>&amp; RTT unidirecional</span><span>4,9 μs por km</span><span>Fator de rota</span><span>Serialização</span></div></div></section>
+<main class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" data-nel-readout-roles="%7B%22secondary%22%3A%5B%22fiberLength%22%2C%22propagation%22%2C%22equipment%22%2C%22serialization%22%2C%22usPerKm%22%2C%22speed%22%2C%22fractionC%22%2C%22versusVacuum%22%5D%2C%22identifier%22%3A%5B%5D%2C%22annotation%22%3A%5B%22rtt%22%5D%7D" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv" id="calculator">
+<div class="tool-head">
+<div>
+<div class="crumbs"><a href="../../pt-br/">Início</a>/<a href="./">Ferramentas</a>/<span>- Sim.</span></div>
+<p aria-level="1" class="tool-page-label" role="heading">Calculadora de Latência de Fibra</p>
+<p class="tool-lede">A luz em fibra óptica viaja a aproximadamente dois terços de sua velocidade no vácuo, de modo que cada quilômetro de fibra monomodal adiciona55 μs de atraso unidirecional (cerca de 9,8 μs de ida e volta). Estimativa do tempo de uma e de uma e de uma e de uma e de uma e de uma e de uma e de uma e de uma e de uma e de uma e de uma e de uma e de uma e de uma e de uma e de uma e de uma e de uma e uma e de uma.</p>
+</div>
+</div><div class="workspace"><section class="input-panel card nel-tool-input fb-panel"><div class="fb-panel">
+<div class="panel-h">
+<h2 class="panel-h">Parâmetros da ligação</h2>
+</div>
+<div class="fs">
+<p class="form-error" hidden="" id="validationMessage" role="alert"></p>
+<div class="fg">
+<p class="fs-t">Projeto</p>
+<div class="fields">
+<div class="f f-wide"><label for="projectName">Nome do projeto</label><div class="inp input-wrap"><input autocomplete="off" id="projectName" type="text" value="DCI Fiber Link"/></div></div>
+</div>
+</div>
+<div class="fg">
+<p class="fs-t">Rota e fibra</p>
+<p class="fg-note">Use o comprimento medido ou OTDR quando o tiver. O fator de rota estende uma distância reta em comprimento de fibra.</p>
+<div class="fields">
+<div class="f"><label for="distance">Distância da rota</label><div class="inp input-wrap"><input id="distance" inputmode="decimal" min="0" step="0.001" type="number" value="100"/></div></div>
+<div class="f"><label for="distanceUnit">Unidade de distância</label><div class="inp input-wrap sel"><select aria-label="Unidade de distância" id="distanceUnit"><option value="km">km</option><option value="mi">mi</option><option value="m">m</option></select></div></div>
+<div class="f"><label for="routeFactor">Fator de rota (caminho de fibra (linha reta)</label><div class="inp input-wrap"><input id="routeFactor" inputmode="decimal" min="1" step="0.01" type="number" value="1.0"/></div><small>As rotas terrestres são frequentemente mais longas do que a distância em linha reta; use o comprimento medido/OTDR quando conhecido.</small></div>
+<section aria-label="Predefinições do índice do grupo" class="scenario-section latency-presets">
+<div class="scenario-head">
+<p class="fs-t">Predefinições do índice do grupo</p>
+<p class="scenario-hint">Escolha uma predefinição de fibra para preencher n g. Edite o índice de grupo para mudar para Personalizado.</p>
+</div>
+<div aria-label="Predefinições do índice do grupo" class="scenario-grid" role="group">
+<button aria-pressed="true" class="scenario-card on" data-preset="1.468" type="button"><b>Modo único genérico</b><span>n g 1.468 · cerca de 4,9 μs/km</span></button><button aria-pressed="false" class="scenario-card" data-preset="1.4677" type="button"><b>G.652 @ 1310 nm</b><span>Índice do grupo 1,4677</span></button><button aria-pressed="false" class="scenario-card" data-preset="1.4682" type="button"><b>G.652 @ 1550 nm</b><span>Índice do grupo 1.4682</span></button><button aria-pressed="false" class="scenario-card" data-preset="1.003" type="button"><b>Oco</b><span>Índice de grupo □ 1,003</span></button><button aria-pressed="false" class="scenario-card" data-preset="custom" type="button"><b>Personalizado</b><span>Tipo n g, de 1. 0 a 1.6</span></button>
+</div>
+<p class="preset-desc" id="preset-desc">Um modo genérico usa n g 1.468, cerca de 4,9 μs/km. As predefinições de comprimento de onda G.652 seguem os valores de índice de grupo publicados; Custom aceita 1.0 a 1.6.</p>
+<input id="groupIndexPreset" type="hidden" value="1.468"/></section><div class="f"><label for="groupIndex">Índice do grupo n g</label><div class="inp input-wrap"><input id="groupIndex" inputmode="decimal" max="1.6" min="1" readonly="" step="0.0001" type="number" value="1.468"/></div></div>
+</div>
+</div>
+<div class="fg">
+<p class="fs-t">Equipamento e serialização</p>
+<div class="fields">
+<div class="f"><label for="equipmentCount">Dispositivo 260.</label><div class="inp input-wrap"><input id="equipmentCount" inputmode="numeric" min="0" step="1" type="number" value="0"/></div></div>
+<div class="f"><label for="equipmentDelay">Atraso por dispositivo</label><div class="inp input-wrap"><input id="equipmentDelay" inputmode="decimal" min="0" step="0.01" type="number" value="0"/><u>μs</u></div><small>Folha de dados do fornecedor; os transponders e interruptores variam de sub-μs a dezenas de μs.</small></div>
+<div class="f"><label for="packetSize">Tamanho 2005.</label><div class="inp input-wrap"><input id="packetSize" inputmode="numeric" min="0" step="1" type="number" value="1500"/><u>B</u></div><small>Definir 0 para ignorar a serialização.</small></div>
+<div class="f"><label for="linkRate">Taxa de linha</label><div class="inp input-wrap"><input id="linkRate" inputmode="decimal" min="0.001" step="0.001" type="number" value="10"/><u>Gbps</u></div></div>
+<div class="f"><label for="serializationHops">lúpulo para a frente e para a loja</label><div class="inp input-wrap"><input id="serializationHops" inputmode="numeric" min="0" step="1" type="number" value="1"/></div></div>
+</div>
+</div>
+</div>
+<div class="panel-f">
+<div class="input-actions"><button class="btn btn-primary" id="calculateBtn" type="button">Calcular a latência</button><button class="btn btn-ghost" id="resetBtn" type="button">Redefinir</button></div>
+</div>
+</div></section><section aria-live="polite" class="result-panel card nel-tool-result readout" id="result"><div class="readout">
+<div class="ro-h"><span>Resultado da latência</span><a class="how how-ro" href="#methodology">Como calculado</a></div><div class="latency-summary"><div><div class="ml">Latência unidirecional</div><b id="mbar-val">—</b></div><div><div class="ml">RTT de ida e volta</div><span id="mbar-rtt">RTT —</span></div><a href="#result">Detalhes ↓</a></div>
+<div class="ro-l1" id="summaryCard">
+<div class="ro-main">
+<div class="lbl">Latência unidirecional</div>
+<div class="big"><span id="oneWay">—</span></div>
+</div>
+<div class="ro-main"><div class="lbl">RTT</div><div class="big"><span id="rtt">—</span></div></div></div>
+<div class="grp"><h3>Desagregação da localização</h3>
+<div class="row"><span>Comprimento da fibra</span><b id="fiberLength">—</b></div>
+<div class="row"><span>Propagação</span><b id="propagation">—</b></div>
+<div class="row"><span>Equipamento</span><b id="equipment">—</b></div>
+<div class="row"><span>Serialização</span><b id="serialization">—</b></div>
+<div class="row"><span>Propagação por km</span><b id="usPerKm">—</b></div>
+<div class="row"><span>Velocidade em fibra</span><b id="speed">—</b></div>
+<div class="row"><span>Fracção de c</span><b id="fractionC">—</b></div>
+<div class="row"><span>Atraso vs vácuo</span><b id="versusVacuum">—</b></div>
+</div>
+<div class="grp"><h3>Comparação da propagação</h3>
+<table class="t"><thead><tr><th>Médio</th><th>Atraso</th></tr></thead><tbody id="comparisonBody"></tbody></table>
+<p>Caminhos assimétricos, fila e atraso host-stack não estão incluídos. Adicione-os da medição quando as duas direções diferem.</p>
+</div>
+<div class="ro-acts">
+<button id="copyBtn" type="button">Copiar resultado</button>
+<button id="saveBtn" type="button">Gravar o registo</button>
+<button id="printBtn" type="button">Imprimir / Exportar PDF</button>
+</div>
+</div></section></div>
+<div class="below"><nav aria-label="Nesta página" class="toc"><h4>Nesta página</h4><a href="#about-scope">Sobre &amp; aplicabilidade</a><a href="#methodology">Como é calculado</a><a href="#faq">FAQ</a><a href="#history">Cálculos recentes</a><a href="#references">Referências oficiais</a><a href="#content-review">Revisão do conteúdo</a><a href="#nel-tool-graph">Fluxo de trabalho de engenharia</a></nav><div class="prose"><details class="fb-fold blk" data-nel-v3-title-normalized="1" id="about-scope">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Sobre &amp; aplicabilidade</span></summary>
+<div class="fb-fold-body about-card about-card-inline">
+<p>Calculadora de planejamento gratuita para engenheiros de telecomunicações e rede. Funciona inteiramente no navegador: digite distância de rota, índice de grupo, atraso do equipamento e serialização para estimar latência de uma via e tempo de ida e volta. Categoria de aplicação: engenharia utilitário / óptico e planejamento de transporte. Nenhuma conta necessária.</p>
+<p>Uso para metro, DCI e estimativas de atraso de longo curso. Os resultados sãosua ajuda de planejamento — não um substituto para o comprimento de fibra medido, folhas de dados de atraso do fornecedor, ou um ping ao vivo que inclui fila e atraso do host.</p>
+<div class="about-meta">
+<span>Tipo · Calculadora de engenharia</span>
+<span>Executa · O lado do cliente</span>
+<span>Locais · PT / 中文 / ES</span>
+<span>Canonical · /tools/fiber-latency-calculador/</span>
+</div>
+</div>
+</details><details class="fb-fold blk" data-nel-v3-title-normalized="1" id="methodology">
+<summary class="fb-fold-sum"><span class="fb-fold-title">Latência por distância (n g = 1,468, apenas propagação)</span></summary>
+<div class="fb-fold-body">
+<div class="eq">comprimento da fibra = distância da rota × fator de rota<br/>propagation = fibra x comprimento<br/>One-way = propagação + serialização<br/>RTT = 2 × uma via</div>
+<div class="method-defs">
+<article><h3>Como utilizar</h3><ol><li>Introduza a distância da rota em km ou milhas, ou o comprimento de fibra medido (então mantenha o fator de rota 1.0).</li><li>Defina um fator de rota se você apenas souber a distânciaentes.</li><li>Escolha o índice de grupo de fibra (1.468 é um bom padrão para fibra de modo único padrão).</li><li>Opcionalmente, adicione dispositivos ativos e seu atraso por dispositivo de planilhas de dados.</li><li>Opcionalmente definir o tamanho do pacote e taxa de linha para incluir atraso de serialização.</li><li>Leia latência de sentido único, RTT e a comparação com vácuo, microondas e cobre.</li></ol></article>
+<article><h3>Atraso na propagação</h3><p>Atraso de propagação = comprimento de fibra × índice de grupo .c. Com c = 299,792,458 km/s e n g = 1,468, a luz cobre cerca de 204.000 km/s em vidro, ou seja, 4.897 μs por km. O índice de grupo (não o índice de refração de fase) regula o quão rápido os pulsos de dados viajam; para a polietileno G.652 é de cerca de 1,4677 a 1310 nm e 1,4682 a 1550 nm, Pacifico muda a latência em menos de 0,05%. As rotas reais raramente são retas; os dutos seguem estradas e trilhos, portantoTelecomunicações geralmente são mais longas do que a distância do mapa.</p></article>
+<article><h3>Equipamento e serialização</h3><p>Atraso de serialização é o tempo para cronometrar um frame no fio (bits taxa de linha) e é adicionado em cada hop loja-e-forward. Exterior 1500 bytes são de 1,2 μs a 10 Gbps guias, 12 μs a 1 Gbps e 0,12 μs a 100 Gbps. Os atrasos na fila e processamento dependem da carga e não são modelados.</p></article>
+</div>
+<table class="t latency-distance-table">
+<tr><th>Distância</th><th>Só de ida</th><th>RTT</th><th>Vacuum unidirecional</th></tr>
+<tr><td data-label="Distance">1 km</td><td data-label="One-way">4,90 μs</td><td data-label="RTT">9,79 μs</td><td data-label="Vacuum one-way">3,34 μs</td></tr>
+<tr><td data-label="Distance">10 km</td><td data-label="One-way">48,97 μs</td><td data-label="RTT">97,93 μs</td><td data-label="Vacuum one-way">33,36 μs</td></tr>
+<tr><td data-label="Distance">100 km</td><td data-label="One-way">489,67 μs</td><td data-label="RTT">979,34 μs</td><td data-label="Vacuum one-way">333,56 μs</td></tr>
+<tr><td data-label="Distance">1000 km</td><td data-label="One-way">4. 897 ms</td><td data-label="RTT">9.793 ms</td><td data-label="Vacuum one-way">3.336 ms</td></tr>
+<tr><td data-label="Distance">5.000 km</td><td data-label="One-way">24.484 ms</td><td data-label="RTT">48,967 ms</td><td data-label="Vacuum one-way">16.678 ms</td></tr>
+</table>
+<article class="latency-worked-example"><h3>Caso trabalhado: 80 km ICD e 1.000 km × 1,3</h3><p>80 km, n g 1.468, fator 1,0, 2 dispositivos × 5bastantes e 1500 bytes a 10 Gbps × 1 hop: propagação 391,74 μs, equipamentos 10 μs, serialização 1,2 μs, 402,94 μs unidirecionais, RTT 805,88 μs. Um par de 1.000 km de cidade com fator de rota 1,3 é 1.300 km de fibra: 6,366 ms de uma via e 12,731 ms de RTT de propagação isolada. O vácuo em linha reta sobre 1.000 km seria 3.336 ms one-way. Regra do polegar: um orçamento RTT de 1 ms é de cerca de 102 km de fibra (1000 μs 9.793 μs/km).</p></article>
+</div>
+</details><div class="blk faq" data-nel-v3-title-normalized="1" id="faq"><h2>Perguntas mais frequentes</h2>
+<span class="eyebrow">FAQ</span>
+<details><summary>Qual é a latência da fibra por km?</summary><p>Cerca de 4,9 μs one-way por km em fibra de modo único padrão (índice de grupo cerca de 1,468), ou cerca de 9,8 μs ida e volta - cerca de 5 ms por 1.000 km one-way.</p></details><details><summary>Como faço para calcular RTT sobre fibra?</summary><p>O RTT prestadores de serviços é de cerca de 2 × comprimento de fibra × 4,9 μs/km, além de equipamentos e atraso de serialização em cada direção. 100 km de fibra dá cerca de 0,98 ms RTT de propagação sozinho.</p></details><details><summary>Por que meu ping medido é maior que a calculadora?</summary><p>Ping inclui desvios de roteamento, processamento de equipamentos, fila e atraso do host, e rotas de fibra são muitas vezes mais longas do que a distância em linha reta. Use o comprimento de fibra medido ou um fator de rota.</p></details><details><summary>O micro-ondas é mais rápido que a fibra?</summary><p>Para propagação, sim. O rádio através do ar viaja a quase velocidade da luz no vácuo (cerca de 3,34 μs/km), cerca de 32% menos atraso do que a fibra de vidro.</p></details><details><summary>O comprimento de onda muda a latência das fibras?</summary><p>Apenas marginalmente. O índice do grupo de fibras G.652 em 1310 nm e 1550 nm difere em torno de 0,0005, o que está abaixo de 0,05% do atraso.</p></details><details><summary>O cobre é mais rápido que a fibra?</summary><p>Não significativamente. O cobre emparelhado se propaga a cerca de 0,65–0,70 c (cerca de 4,8–5,1 μs/km), semelhante à fibra, mas a Ethernet em cobre é limitada a 100 m.</p></details>
+</div><section class="blk" data-nel-v3-title-normalized="1" id="history"><h2>Cálculos recentes</h2><div class="fb-fold-body"><div class="history-toolbar"><p class="eyebrow">Registos de projectos</p>
+<p class="history-hint">Gravado localmente neste navegador (até 12). Não carregado.</p>
+<button class="btn btn-ghost btn-sm" id="clearHistoryBtn" type="button">Limpar o histórico</button>
+</div><div class="history-list" id="historyList" role="list"></div></div></section><section class="blk" data-nel-v3-title-normalized="1" id="references"><h2>l Normas e referências</h2><div class="fb-fold-body"><section class="blk">
+<div class="fb-fold-body">
+<div class="ref-card">
+<p>As folhas de dados de fibra do fornecedor, incluindo o índice efetivo do grupo Corning SMF-28 1,4677 a 1310 nm e 1,4682 a 1550 nm, devem sobrepor-se ao predefinido genérico 1.468 quando o cabo for conhecido. A Ethernet de cobre permanece limitada a 100 m mesmo quando seu atraso por quilômetro parece semelhante. Última revisão: 2026-10-18.</p>
+<div class="std-row">
+<a class="std-chip" href="https://www.itu.int/rec/T-REC-G.652/en" rel="noopener noreferrer" target="_blank">ITU-T G.65 mais com com mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais Ordem mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais33/ mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais</a><a class="std-chip" href="https://physics.nist.gov/cgi-bin/cuu/Value?c" rel="noopener noreferrer" target="_blank">CODATA / NIST velocidade da luz no vácuo</a><a class="std-chip" href="https://www.bipm.org/en/si-base-units/second" rel="noopener noreferrer" target="_blank">SI segundo e a velocidade definida da luz utilizada para c</a>
+</div>
+</div>
+</div>
+</section></div></section><section class="blk" data-nel-v3-title-normalized="1" id="content-review"><h2>Revisão de conteúdo · base de fórmula &amp; limites</h2><div class="fb-fold-body"><section class="blk">
+<div class="fb-fold-body">
+<div class="review-grid">
+<div class="review-card"><h3>Revisado</h3><p>2026-10-18. Nota editorial já publicada nesta página para as normas e seção de referência.</p></div>
+<div class="review-card"><h3>Base de fórmula</h3><p>Comprimento da fibra = distância da rota × fator de rota. Propagação = comprimento de fibra × índice do grupo .c, com c = 299,792,458 km/s. A latência unidirecional adiciona atraso do equipamento e serialização de armazenamento e avanço. RTT é o dobro do total unidirecional em um caminho simétrico.ula. A tabela de distância usa n g = 1.468 e apenas propagação.</p></div>
+<div class="review-card"><h3>Limites de aplicabilidade</h3><p>Estimativa de planejamento para atraso metro, DCI e fibra de longo curso. Caminhos assimétricos, fila e atraso host-stack não estão incluídos. Não é um substituto para OTDR comprimento, folhas de dados de atraso do fornecedor, ou RTT medido.</p></div>
+</div>
+</div>
+</section></div></section><!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="fiber-latency-calculator" data-primary-workflow="fiber-latency-planning">
+<div class="section-heading"><div><p class="eyebrow">FLUXO DE TRABALHO DE ENGENHARIA</p><h2 id="nel-tool-graph-title">Continuar o fluxo de trabalho de engenharia</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Fluxo de trabalho atual</span><strong>Fluxo de trabalho de planejamento de latência de fibra</strong><p>Confirmar a duração da rota e os pressupostos de perda, em seguida, estimar o atraso de ida e volta.</p></div><div class="nel-workflow-step"><strong>Passo 2 de 2</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="2" aria-valuenow="2" aria-valuetext="Passo 2 de 2" aria-label="Passo 2 de 2"><span style="width:100%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="../../fiber-loss/pt-br/"><span class="nel-tool-graph-label">Voltar</span><strong>Calculadora de perda de fibra</strong><span class="nel-tool-graph-description">- Não.</span></a><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Avançar</span><strong>Fluxo de trabalho concluído</strong></div></div>
+<h3 class="nel-tool-graph-subtitle">Ferramentas relacionadas</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="../../fiber-loss/pt-br/"><strong>Calculadora de perda de fibra</strong><span class="nel-tool-graph-description">- Não.</span></a><a class="nel-tool-graph-card" href="../../optical-power-budget/pt-br/"><strong>Calculadora de orçamento de potência óptica</strong><span class="nel-tool-graph-description">Verifique uma ligação óptica usando a potência de transmissão, a sensibilidade do receptor, a penalidade óptica e a perda do ODN.</span></a><a class="nel-tool-graph-card" href="../../otdr-event/pt-br/"><strong>Analisador de eventos OTDR</strong><span class="nel-tool-graph-description">Analise múltiplos eventos e comprimentos de onda duplos para identificar splices, conectores, curvas, quebras, fantasmas e efeitos de zona morta.</span></a><a class="nel-tool-graph-card" href="../../bandwidth-calculator/pt-br/"><strong>Calculadora de largura de banda e tempo de transferência</strong><span class="nel-tool-graph-description">Calcule o tempo de transferência do arquivo, taxa de ligação necessária, capacidade de usuário concorrente e volume de dados da taxa sustentada.</span></a></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END --></div></div></main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Ferramentas profissionais online para engenheiros de telecomunicações e redes.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navegação do rodapé">
+      <a href="../../../pt-br/about/">Sobre</a><a href="../../../pt-br/contact/">Contato</a><a href="../../../pt-br/privacy/">Privacidade</a><a href="../../../pt-br/terms/">Termos</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script defer="" src="../js/engine.js?v=11269b52819a"></script>
+<script defer="" src="../js/pwa.js?v=20261108-latency-bw7"></script>
+<script defer="" src="../../../assets/js/tool-integration.js?v=05f7934f4687"></script>
+<script defer="" src="../js/app.js?v=3f35e42f3efa"></script>
+<script defer="" src="../../../assets/js/tool-detail-v3.js?v=6f38212f00f3"></script>
+<script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d"></script>
+</body>
+</html>

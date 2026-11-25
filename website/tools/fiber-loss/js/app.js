@@ -115,6 +115,26 @@ const translations = {
     saved:"Registro guardado",
     noHistory:"Aún no hay cálculos guardados. Calcule y pulse “Guardar registro”.",
     confirmClear:"¿Borrar todo el historial guardado?"
+  },
+  id: {
+    healthy:"✓ Sehat", warning:"⚠ Hati-hati", failed:"✕ Gagal",
+    diagnosisHealthy:"Anggaran optik cukup dan daya terima tetap di atas ambang.",
+    diagnosisWarning:"Tautan dapat dipakai, tetapi margin rekayasanya terbatas. Tinjau tingkat splitter, jumlah konektor, dan jatah penuaan.",
+    diagnosisFailed:"Anggaran terlampaui atau daya terima di bawah ambang. Periksa kaskade splitter, kotoran konektor, rugi tekukan, mutu sambungan, dan jarak.",
+    validation:"Periksa masukan. Jarak, jumlah, dan rugi harus berupa angka yang valid dan tidak negatif.",
+    copied:"Hasil disalin", saved:"Catatan disimpan",
+    noHistory:"Belum ada perhitungan tersimpan. Hitung, lalu klik “Simpan catatan”.",
+    confirmClear:"Hapus semua riwayat yang tersimpan?"
+  },
+  "pt-BR": {
+    healthy:"✓ Saudável", warning:"⚠ Atenção", failed:"✕ Reprovado",
+    diagnosisHealthy:"O orçamento óptico é suficiente e a potência recebida permanece acima do limiar.",
+    diagnosisWarning:"O enlace pode ser usado, mas a margem de engenharia é limitada. Revise os estágios do divisor, a quantidade de conectores e a folga de envelhecimento.",
+    diagnosisFailed:"O orçamento foi ultrapassado ou a potência recebida está abaixo do limiar. Verifique a cascata de divisores, a contaminação dos conectores, a perda por curvatura, a qualidade das emendas e a distância.",
+    validation:"Confira as entradas. Distâncias, quantidades e perdas precisam ser números válidos e não negativos.",
+    copied:"Resultado copiado", saved:"Registro salvo",
+    noHistory:"Ainda não há cálculos salvos. Calcule e clique em “Salvar registro”.",
+    confirmClear:"Apagar todo o histórico salvo?"
   }
 };
 
@@ -122,13 +142,17 @@ function pageLocale(){
   const raw = (document.documentElement.getAttribute("data-nel-locale") || document.documentElement.lang || "en").toLowerCase();
   if (raw.startsWith("zh")) return "zh";
   if (raw.startsWith("es")) return "es";
+  if (raw === "id") return "id";
+  if (raw.startsWith("pt")) return "pt-BR";
   return "en";
 }
 
 const runtimeLabels = {
   zh: { project:"工程", physical:"物理链路损耗", design:"总设计损耗", remaining:"剩余预算", rx:"预计接收光功率", margin:"接收门限余量", status:"状态", date:"zh-CN", designShort:"总设计损耗", remainingShort:"剩余预算" },
   es: { project:"Proyecto", physical:"Pérdida física", design:"Pérdida de diseño", remaining:"Presupuesto restante", rx:"Potencia recibida estimada", margin:"Margen del receptor", status:"Estado", date:"es", designShort:"Pérdida de diseño", remainingShort:"Restante" },
-  en: { project:"Project", physical:"Physical loss", design:"Design loss", remaining:"Budget remaining", rx:"Estimated receive power", margin:"Receiver margin", status:"Status", date:"en-US", designShort:"Design loss", remainingShort:"Remaining" }
+  en: { project:"Project", physical:"Physical loss", design:"Design loss", remaining:"Budget remaining", rx:"Estimated receive power", margin:"Receiver margin", status:"Status", date:"en-US", designShort:"Design loss", remainingShort:"Remaining" },
+  id: { project:"Proyek", physical:"Rugi fisik", design:"Rugi desain", remaining:"Sisa anggaran", rx:"Perkiraan daya terima", margin:"Margin penerima", status:"Status", date:"id", designShort:"Rugi desain", remainingShort:"Sisa" },
+  "pt-BR": { project:"Projeto", physical:"Perda física", design:"Perda de projeto", remaining:"Orçamento restante", rx:"Potência recebida estimada", margin:"Margem do receptor", status:"Estado", date:"pt-BR", designShort:"Perda de projeto", remainingShort:"Restante" }
 };
 
 let currentLang = pageLocale();
@@ -302,7 +326,8 @@ function calculate(){
 
 function resetForm(){
   $("preset").value = "custom";
-  $("projectName").value = "FTTH Optical Link";
+  const localeName = pageLocale();
+  $("projectName").value = localeName === "id" ? "Tautan optik FTTH" : localeName === "pt-BR" ? "Enlace óptico FTTH" : "FTTH Optical Link";
   $("distance").value = 20;
   $("wavelength").value = 1550;
   updateAttenuation();
@@ -326,7 +351,7 @@ function buildResultText(){
   if (!r) return translations[currentLang].validation;
   const label = runtimeLabels[currentLang] || runtimeLabels.en;
   return [
-    "NetEngineerLab - Fiber Loss Calculator",
+    currentLang === "id" ? "NetEngineerLab - Kalkulator rugi serat" : currentLang === "pt-BR" ? "NetEngineerLab - Calculadora de perda de fibra" : "NetEngineerLab - Fiber Loss Calculator",
     `${label.project}: ${r.projectName}`,
     `${label.physical}: ${r.physicalLoss.toFixed(2)} dB`,
     `${label.design}: ${r.designLoss.toFixed(2)} dB`,
@@ -413,8 +438,9 @@ function clearHistory(){
 
 function setLanguage(lang){
   const locale = pageLocale();
-  currentLang = locale === "es" ? "es" : (lang === "zh" ? "zh" : "en");
-  if (locale !== "es") {
+  if (locale === "zh" || locale === "es" || locale === "id" || locale === "pt-BR") currentLang = locale;
+  else currentLang = lang === "zh" ? "zh" : "en";
+  if (locale !== "es" && locale !== "id" && locale !== "pt-BR") {
     document.documentElement.lang = currentLang === "zh" ? "zh-CN" : "en";
   }
   const legacyLangToggle = $("langToggle");

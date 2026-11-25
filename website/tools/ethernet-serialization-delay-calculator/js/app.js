@@ -6,7 +6,9 @@ const CONFIG = {
  "projectDefault": {
   "en": "Access to core path",
   "zh": "接入到核心路径",
-  "es": "Ruta de acceso a núcleo"
+  "es": "Ruta de acceso a núcleo",
+  "id": "Jalur akses ke inti",
+  "pt": "Caminho do acesso ao núcleo"
  },
  "inputs": [
   {
@@ -209,12 +211,42 @@ const CONFIG = {
      "Eficiencia L2"
     ]
    ]
+  },
+  "id": {
+   "validation": "Periksa bidang yang ditandai: isinya harus angka dalam rentang yang diizinkan.",
+   "validationField": "Periksa {fields}: masukkan angka dalam rentang yang diizinkan.",
+   "listSeparator": ", ",
+   "copied": "Hasil disalin",
+   "saved": "Rekaman disimpan",
+   "noHistory": "Belum ada perhitungan tersimpan. Hitung, lalu klik “Simpan rekaman”.",
+   "confirmClear": "Hapus semua riwayat yang tersimpan?",
+   "project": "Proyek",
+   "fieldLabels": {"frameBytes": "Ukuran frame (termasuk FCS)", "ratePreset": "Laju bawaan", "rateGbps": "Laju saluran", "hops": "Hop store-and-forward"},
+   "notes": {},
+   "toolName": "Kalkulator tundaan serialisasi Ethernet",
+   "status": {"healthy": "✓ Di dalam batas", "warning": "! Mendekati batas", "failed": "✕ Melebihi batas"},
+   "outputLabels": [["perHop","Serialisasi per hop"],["totalDelay","Total di semua hop"],["wireTime","Waktu di kawat dengan preamble + IFG"],["wireBytes","Byte di kawat per frame"],["frameRate","Laju frame maksimum"],["l2Throughput","Throughput L2 pada laju saluran"],["efficiency","Efisiensi L2"]]
+  },
+  "pt": {
+   "validation": "Confira os campos marcados: eles devem ser números dentro da faixa permitida.",
+   "validationField": "Confira {fields}: informe um número dentro da faixa permitida.",
+   "listSeparator": ", ",
+   "copied": "Resultado copiado",
+   "saved": "Registro salvo",
+   "noHistory": "Ainda não há cálculos salvos. Calcule e clique em “Salvar registro”.",
+   "confirmClear": "Apagar todo o histórico salvo?",
+   "project": "Projeto",
+   "fieldLabels": {"frameBytes": "Tamanho do quadro (com FCS)", "ratePreset": "Taxa predefinida", "rateGbps": "Taxa da linha", "hops": "Saltos store-and-forward"},
+   "notes": {},
+   "toolName": "Calculadora de atraso de serialização Ethernet",
+   "status": {"healthy": "✓ Dentro do limite", "warning": "! Perto do limite", "failed": "✕ Acima do limite"},
+   "outputLabels": [["perHop","Serialização por salto"],["totalDelay","Total em todos os saltos"],["wireTime","Tempo no fio com preâmbulo + IFG"],["wireBytes","Bytes no fio por quadro"],["frameRate","Taxa máxima de quadros"],["l2Throughput","Vazão L2 na taxa de linha"],["efficiency","Eficiência L2"]]
   }
  }
 };
 const $ = (id) => document.getElementById(id);
 const locale = (document.documentElement.dataset.nelLocale || document.documentElement.lang || "en").toLowerCase();
-const currentLang = locale.startsWith("zh") ? "zh" : locale.startsWith("es") ? "es" : "en";
+const currentLang = locale.startsWith("zh") ? "zh" : locale.startsWith("es") ? "es" : locale.startsWith("pt") ? "pt" : locale === "id" ? "id" : "en";
 const text = CONFIG.text[currentLang];
 const engine = window[CONFIG.engineGlobal];
 let lastResult = null;
@@ -409,7 +441,7 @@ function renderHistory(){
     container.innerHTML = `<div class="history-empty">${text.noHistory}</div>`;
     return;
   }
-  const localeName = currentLang === "zh" ? "zh-CN" : currentLang === "es" ? "es" : "en-US";
+  const localeName = currentLang === "zh" ? "zh-CN" : currentLang === "es" ? "es" : currentLang === "pt" ? "pt-BR" : currentLang === "id" ? "id" : "en-US";
   const [firstId, firstLabel] = text.outputLabels[0];
   const [secondId, secondLabel] = text.outputLabels[1];
   container.innerHTML = history.slice(0, 6).map((item) => `<article class="history-item">

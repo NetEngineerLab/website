@@ -16,7 +16,7 @@ const path = require("path");
 
 const root = path.resolve(__dirname, "..");
 const toolsRoot = path.join(root, "website", "tools");
-const LOCALES = ["zh", "es"];
+const LOCALES = ["zh", "es", "id", "pt-br"];
 const SAFE_TOKEN = /^[A-Za-z_][A-Za-z0-9_:.-]*$/;
 const REFERENCE_ATTRS = ["for", "aria-labelledby", "aria-controls", "aria-describedby", "list", "form"];
 

@@ -1,5 +1,6 @@
 const $=id=>document.getElementById(id);
-const LANG=document.documentElement.lang.toLowerCase().startsWith("zh")?"zh":"en";
+const LANG=(()=>{const l=document.documentElement.lang.toLowerCase();if(l.startsWith("zh"))return"zh";if(l==="id"||l.startsWith("id-"))return"id";if(l==="pt-br"||l.startsWith("pt"))return"pt-BR";return"en";})();
+function clip(zhText,enText,idText,ptText){return LANG==="zh"?zhText:LANG==="id"?idText:LANG==="pt-BR"?ptText:enText}
 const T={
  zh:{
   healthy:"✓ 健康",warning:"⚠ 风险",failed:"✕ 超限",
@@ -16,6 +17,22 @@ const T={
   good:"The splitter cascade remains within the current standard ODN budget, and the receive window for minimum/maximum transmit power meets the design margin.",
   warn:"The link remains usable, but budget, sensitivity or overload margin is limited. Verify measured splitter loss, connector count and engineering reserve.",
   bad:"The splitter cascade or other passive losses exceed the budget, or estimated receive power falls outside the receiver window."
+ },
+ id:{
+  healthy:"✓ Sehat",warning:"⚠ Perlu ditinjau",failed:"✕ Gagal",
+  invalid:"Periksa masukan. Jumlah harus bilangan bulat nonnegatif; atenuasi harus positif; jangkauan minimal 0,1 km; rugi splitter harus dari daftar yang didukung; Tx maksimum tidak boleh di bawah minimum; ambang beban lebih harus di atas sensitivitas.",
+  copied:"Hasil disalin",saved:"Catatan disimpan",csv:"CSV diekspor",empty:"Belum ada catatan tersimpan.",confirm:"Hapus semua catatan tersimpan?",
+  good:"Kaskade splitter masih di dalam anggaran ODN standar saat ini, dan jendela terima untuk daya kirim minimum/maksimum memenuhi margin desain.",
+  warn:"Tautan masih dapat dipakai, tetapi anggaran, margin sensitivitas, atau margin beban lebih terbatas. Periksa rugi splitter terukur, jumlah konektor, dan cadangan rekayasa.",
+  bad:"Kaskade splitter atau rugi pasif lain melampaui anggaran, atau daya terima yang ditaksir berada di luar jendela penerima."
+ },
+ "pt-BR":{
+  healthy:"✓ Saudável",warning:"⚠ Revisar",failed:"✕ Reprovado",
+  invalid:"Confira as entradas. As quantidades devem ser inteiros não negativos; a atenuação deve ser positiva; o alcance deve ter pelo menos 0,1 km; a perda do splitter deve estar na lista suportada; o Tx máximo não pode ficar abaixo do mínimo; a sobrecarga deve ficar acima da sensibilidade.",
+  copied:"Resultado copiado",saved:"Registro salvo",csv:"CSV exportado",empty:"Ainda não há registros salvos.",confirm:"Apagar todos os registros salvos?",
+  good:"A cascata do splitter permanece dentro do orçamento ODN padrão atual, e a janela de recepção para a potência mínima/máxima atende à margem de projeto.",
+  warn:"O enlace ainda pode ser usado, mas o orçamento, a margem de sensibilidade ou a de sobrecarga está limitado. Confira a perda medida do splitter, a quantidade de conectores e a reserva.",
+  bad:"A cascata do splitter ou outras perdas passivas excedem o orçamento, ou a potência de recepção estimada fica fora da janela do receptor."
  }
 };
 const splitterPresets={
@@ -67,7 +84,7 @@ function invalidate(){
  $("ratioResult").textContent="—";
  ["splitterLossResult","remaining","rxPower","maxDistance","standardBudget","opticalMaxDistance","idealLoss","excessLoss","physicalLoss","designLoss","sensMargin","overMargin","fiberLoss","spliceTotal","connectorTotal","otherResult","opticalPenaltyResult","marginResult"].forEach(id=>$(id).textContent="—");
  ["stage1Ratio","stage2Ratio","stage3Ratio","stage1Loss","stage2Loss","stage3Loss"].forEach(id=>$(id).textContent="—");
- $("summaryCard").className="summary-card";$("healthBadge").textContent=LANG==="zh"?"输入无效":"Invalid input";
+ $("summaryCard").className="summary-card";$("healthBadge").textContent=clip("输入无效","Invalid input","Masukan tidak valid","Entrada inválida");
  $("diagnosis").className="diagnosis diagnosis-box";$("diagnosisText").textContent=T[LANG].invalid;
  ["copyBtn","saveBtn","csvBtn"].forEach(id=>$(id).disabled=true);
 }
@@ -75,7 +92,7 @@ function calculate(){
  try {
 
  const v={
-  project:readValue("projectName").trim()||"Untitled",
+  project:readValue("projectName").trim()||clip("Untitled","Untitled","Tanpa judul","Sem título"),
   distance:num("distance"),attenuation:num("attenuation"),
   spliceCount:num("spliceCount"),spliceLoss:num("spliceLoss"),
   connectorCount:num("connectorCount"),connectorLoss:num("connectorLoss"),
@@ -117,7 +134,7 @@ function calculate(){
 }
 function reset(){
  writeValue("preset","8x8");writeValue("systemProfile","gpon-c");
- writeValue("projectName","GPON C+ 1:64 Splitter Design");
+ writeValue("projectName",clip("GPON C+ 1:64 Splitter Design","GPON C+ 1:64 Splitter Design","Desain splitter GPON C+ 1:64","Projeto de splitter GPON C+ 1:64"));
  writeValue("distance",10);writeValue("wavelength","1490");setAttenuation();
  writeValue("spliceCount",6);writeValue("spliceLoss",.10);writeValue("connectorCount",4);writeValue("connectorLoss",.30);
  writeValue("splitter1","10.5");writeValue("splitter2","10.5");writeValue("splitter3","0");
@@ -130,16 +147,16 @@ function report(){
  if(!last)calculate();if(!last)return null;const r=last;
  return[
   "NetEngineerLab - PON Splitter Loss Calculator",
-  `${LANG==="zh"?"工程":"Project"}: ${r.project}`,
-  `${LANG==="zh"?"总分光比":"Total split ratio"}: 1:${r.totalRatio}`,
-  `${LANG==="zh"?"分光器总损耗":"Splitter loss"}: ${r.splitterLoss.toFixed(2)} dB`,
-  `${LANG==="zh"?"标准ODN预算":"Standard ODN budget"}: ${r.standardBudget.toFixed(2)} dB`,
-  `${LANG==="zh"?"物理ODN损耗":"Physical ODN loss"}: ${r.physicalLoss.toFixed(2)} dB`,
-  `${LANG==="zh"?"设计ODN损耗":"Design ODN loss"}: ${r.designLoss.toFixed(2)} dB`,
-  `${LANG==="zh"?"剩余预算":"Remaining budget"}: ${r.remaining.toFixed(2)} dB`,
-  `${LANG==="zh"?"预计接收功率范围":"Estimated RX range"}: ${r.rx.toFixed(2)} to ${r.rxMax.toFixed(2)} dBm`,
-  `${LANG==="zh"?"有效最大距离":"Effective max distance"}: ${r.effectiveMax.toFixed(2)} km`,
-  `${LANG==="zh"?"状态":"Status"}: ${T[LANG][r.status]}`
+  `${clip("工程","Project","Proyek","Projeto")}: ${r.project}`,
+  `${clip("总分光比","Total split ratio","Rasio split total","Razão total de split")}: 1:${r.totalRatio}`,
+  `${clip("分光器总损耗","Splitter loss","Rugi splitter","Perda do splitter")}: ${r.splitterLoss.toFixed(2)} dB`,
+  `${clip("标准ODN预算","Standard ODN budget","Anggaran ODN standar","Orçamento ODN padrão")}: ${r.standardBudget.toFixed(2)} dB`,
+  `${clip("物理ODN损耗","Physical ODN loss","Rugi ODN fisik","Perda física da ODN")}: ${r.physicalLoss.toFixed(2)} dB`,
+  `${clip("设计ODN损耗","Design ODN loss","Rugi ODN desain","Perda de projeto da ODN")}: ${r.designLoss.toFixed(2)} dB`,
+  `${clip("剩余预算","Remaining budget","Sisa anggaran","Orçamento restante")}: ${r.remaining.toFixed(2)} dB`,
+  `${clip("预计接收功率范围","Estimated RX range","Rentang RX perkiraan","Faixa de RX estimada")}: ${r.rx.toFixed(2)} ${clip("to","to","sampai","a")} ${r.rxMax.toFixed(2)} dBm`,
+  `${clip("有效最大距离","Effective max distance","Jarak maksimum efektif","Distância máxima efetiva")}: ${r.effectiveMax.toFixed(2)} km`,
+  `${clip("状态","Status","Status","Status")}: ${T[LANG][r.status]}`
  ].join("\n");
 }
 function temp(btn,msg){const old=btn.innerHTML;btn.textContent=msg;setTimeout(()=>btn.innerHTML=old,1400)}
@@ -158,7 +175,7 @@ function save(){
 function renderHistory(){
  const history=getHistory(),container=$("historyList");
  if(!history.length){container.innerHTML=`<div class="history-empty">${T[LANG].empty}</div>`;return}
- container.innerHTML=history.slice(0,6).map(r=>`<article class="history-item"><h3>${escapeHtml(r.project)}</h3><p>${new Date(r.timestamp).toLocaleString(LANG==="zh"?"zh-CN":"en-US")}</p><p>${LANG==="zh"?"总分光比":"Ratio"}: <strong>1:${r.totalRatio}</strong></p><p>${LANG==="zh"?"剩余预算":"Remaining"}: ${r.remaining.toFixed(2)} dB</p><p>${T[LANG][r.status]}</p></article>`).join("");
+ container.innerHTML=history.slice(0,6).map(r=>`<article class="history-item"><h3>${escapeHtml(r.project)}</h3><p>${new Date(r.timestamp).toLocaleString(clip("zh-CN","en-US","id-ID","pt-BR"))}</p><p>${clip("总分光比","Ratio","Rasio","Razão")}: <strong>1:${r.totalRatio}</strong></p><p>${clip("剩余预算","Remaining","Sisa","Restante")}: ${r.remaining.toFixed(2)} dB</p><p>${T[LANG][r.status]}</p></article>`).join("");
 }
 function escapeHtml(value){return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
 function clearHistory(){if(confirm(T[LANG].confirm)){localStorage.removeItem("ponSplitterHistory");renderHistory()}}

@@ -7,7 +7,9 @@
   const lang0 = (document.documentElement.lang || 'en').toLowerCase();
   const zh = lang0.startsWith('zh');
   const es = lang0.startsWith('es');
-  const loc = zh ? 'zh-CN' : es ? 'es-ES' : 'en-US';
+  const id = lang0 === 'id' || lang0.startsWith('id-');
+  const pt = lang0 === 'pt-br' || lang0.startsWith('pt');
+  const loc = zh ? 'zh-CN' : es ? 'es-ES' : id ? 'id-ID' : pt ? 'pt-BR' : 'en-US';
   const T = zh ? {
     title: '深度场景与工程输出',
     intro: '基于当前输入重算基线、增长与保守场景。等比例抬升总能耗与 IT 时 PUE 可保持不变，比较表如实呈现，不会伪造差异。',
@@ -28,6 +30,26 @@
     invalid: 'Entradas no válidas; no se calculó el escenario',
     pue: 'PUE', annual: 'Energía anual total', save: 'Ahorro objetivo',
     noteSame: 'PUE idéntico en los tres escenarios: al escalar total e IT en la misma proporción, la razón no cambia.'
+  } : id ? {
+    title: 'Skenario mendalam dan keluaran rekayasa',
+    intro: 'Hitung ulang basis, pertumbuhan, dan skenario konservatif dari masukan saat ini. Jika energi total dan IT naik dengan proporsi yang sama, PUE dapat tetap sama. Tabel menampilkan hasil itu apa adanya.',
+    compare: 'Bandingkan skenario', print: 'Cetak laporan rekayasa', report: 'Ekspor laporan rekayasa',
+    scenario: 'Skenario', inputs: 'Ringkasan masukan', conclusion: 'Kesimpulan hitungan',
+    baseline: 'Basis saat ini', growth: 'Pertumbuhan +10%', conserv: 'Konservatif +20%',
+    updated: 'Perbandingan skenario diperbarui.', printed: 'Pratinjau cetak dibuka.', exported: 'Unduhan laporan rekayasa dimulai.',
+    invalid: 'Masukan tidak valid, skenario tidak dihitung',
+    pue: 'PUE', annual: 'Energi fasilitas tahunan', save: 'Penghematan target',
+    noteSame: 'PUE sama di ketiga skenario: menaikkan total dan IT dengan proporsi yang sama tidak mengubah rasio.'
+  } : pt ? {
+    title: 'Cenários profundos e saídas de engenharia',
+    intro: 'Recalcule a base, o crescimento e o cenário conservador a partir das entradas atuais. Se a energia total e a de TI crescem na mesma proporção, o PUE pode permanecer igual. A tabela mostra isso como está.',
+    compare: 'Comparar cenários', print: 'Imprimir relatório de engenharia', report: 'Exportar relatório de engenharia',
+    scenario: 'Cenário', inputs: 'Resumo das entradas', conclusion: 'Conclusão calculada',
+    baseline: 'Base atual', growth: 'Crescimento +10%', conserv: 'Conservador +20%',
+    updated: 'A comparação de cenários foi atualizada.', printed: 'A pré-visualização de impressão foi aberta.', exported: 'O download do relatório de engenharia começou.',
+    invalid: 'Entradas inválidas; o cenário não foi calculado',
+    pue: 'PUE', annual: 'Energia anual da instalação', save: 'Economia da meta',
+    noteSame: 'O PUE é igual nos três cenários: escalar o total e a TI na mesma proporção não muda a razão.'
   } : {
     title: 'Deep scenarios & engineering outputs',
     intro: 'Recalculate baseline, growth and conservative scenarios from the current inputs. When total and IT energy scale proportionally, PUE can stay the same — the table shows that honestly.',

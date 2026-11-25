@@ -16,7 +16,9 @@ const registry=loadPageRegistry();
 const activeLocales=base.localeConfig.locales.filter(locale=>locale.status==="active");
 const expectedFamilies=base.sitemapConfig.routes.length+base.tools.length;
 function familyLocaleCount(family){
-  return activeLocales.filter(locale=>{
+  return base.localeConfig.locales.filter(locale=>{
+    if(locale.status!=="active"&&locale.status!=="pilot")return false;
+    if(locale.status==="pilot"&&!(locale.pilotRoutes||[]).includes(family.route))return false;
     const key=locale.catalogKey||locale.id;
     return Boolean(family.translations&&((family.translations[key])||(family.translations[locale.id])));
   }).length;
@@ -46,7 +48,7 @@ const supplementalSitemapUrls=[
   "tools/data-center-architecture-decision-workshop/",
   "tools/network-asset-lifecycle-tracker/",
   "tools/oob-network-design-planner/"
-].flatMap(route=>["", "zh/", "es/"].filter(locale=>fs.existsSync(path.join(root,"website",route,locale,"index.html"))).map(locale=>`https://netengineerlab.com/${route}${locale}`));
+].flatMap(route=>["", "zh/", "es/", "id/", "pt-br/"].filter(locale=>fs.existsSync(path.join(root,"website",route,locale,"index.html"))).map(locale=>`https://netengineerlab.com/${route}${locale}`));
 const expected=[...registry.pages.filter(page=>page.sitemapEligible).map(page=>page.url),...supplementalSitemapUrls].sort();
 assert.deepStrictEqual(actual,expected,"Page Registry eligible URLs must equal sitemap.xml exactly");
 
@@ -92,7 +94,14 @@ for(const page of registry.pages.filter(page=>page.pageType==="directory")){
   const itemList=JSON.parse(block);
   const locale=base.localeConfig.locales.find(item=>item.id===page.locale);
   const localeKey=(locale&&locale.catalogKey)||page.locale;
-  const activeTools=base.tools.filter(tool=>tool.status==="active"&&(page.locale===base.localeConfig.defaultLocale||Boolean(tool.translations&&((tool.translations[localeKey])||(tool.translations[page.locale])))));
+  const activeTools=base.tools.filter(tool=>{
+    if(tool.status!=="active")return false;
+    if(page.locale===base.localeConfig.defaultLocale)return true;
+    const translated=Boolean(tool.translations&&((tool.translations[localeKey])||(tool.translations[page.locale])));
+    if(!translated)return false;
+    if(locale&&locale.status==="pilot")return fs.existsSync(path.join(root,"website","tools",tool.id,locale.folder,"index.html"));
+    return true;
+  });
   assert.strictEqual(itemList.numberOfItems,activeTools.length,`${page.pathname}: ItemList count must equal localized active tools`);
   assert.strictEqual(itemList.itemListElement.length,activeTools.length,`${page.pathname}: ItemList entries must equal localized active tools`);
   if(activeTools.some(tool=>tool.id==="acl-generator-validator"))assert(itemList.itemListElement.some(item=>item.url.includes("/tools/acl-generator-validator/")),`${page.pathname}: ACL tool missing from ItemList`);
@@ -146,12 +155,15 @@ assert.strictEqual(plannedRegistry.families.find(family=>family.id===plannedTool
 assert(plannedRegistry.pages.filter(page=>page.familyId===plannedTools[0].id).every(page=>!page.sitemapEligible&&page.robots==="noindex,follow"));
 
 const retiredTools=clone(base.tools);
+const retiredTargetId="bandwidth-calculator";
 retiredTools[0].status="retired";
-retiredTools[0].withdrawal={strategy:"redirect",targetFamilyId:retiredTools[1].id};
+retiredTools[0].withdrawal={strategy:"redirect",targetFamilyId:retiredTargetId};
 const retiredRegistry=buildPageRegistry(loadRegistryInputs({toolsOverride:retiredTools}));
 const retiredPages=retiredRegistry.pages.filter(page=>page.familyId===retiredTools[0].id);
-assert.strictEqual(retiredPages.find(page=>page.locale==="en").withdrawal.target,`https://netengineerlab.com/tools/${retiredTools[1].id}/`);
-assert.strictEqual(retiredPages.find(page=>page.locale==="zh").withdrawal.target,`https://netengineerlab.com/tools/${retiredTools[1].id}/zh/`);
+assert.strictEqual(retiredPages.find(page=>page.locale==="en").withdrawal.target,`https://netengineerlab.com/tools/${retiredTargetId}/`);
+assert.strictEqual(retiredPages.find(page=>page.locale==="zh").withdrawal.target,`https://netengineerlab.com/tools/${retiredTargetId}/zh/`);
+assert.strictEqual(retiredPages.find(page=>page.locale==="id").withdrawal.target,`https://netengineerlab.com/tools/${retiredTargetId}/id/`);
+assert.strictEqual(retiredPages.find(page=>page.locale==="pt-BR").withdrawal.target,`https://netengineerlab.com/tools/${retiredTargetId}/pt-br/`);
 assert(retiredPages.every(page=>!page.sitemapEligible&&page.robots==="noindex,follow"));
 
 console.log(`Page Registry contract tests: PASS (${registry.families.length} families; ${registry.pages.length} localized pages; sitemap exact).`);

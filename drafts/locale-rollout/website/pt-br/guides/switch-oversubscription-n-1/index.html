@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="pt-BR" dir="ltr" data-nel-locale="pt-BR" data-nel-route="guides/switch-oversubscription-n-1/"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mudar de ligação N-1 e N+1 Capacidade | NetEngineerLab</title><meta name="description" content="Perder um link de encaminhamento remove apenas a taxa desse link. Três membros 10G ativos em 48×1G vão de 1.6:1 para 2.4:1. A relação não é o congestionamento.">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+
+<meta property="og:type" content="article"><meta property="og:site_name" content="NetEngineerLab">
+<meta property="og:title" content="Mudar de ligação N-1 e N+1 Capacidade | NetEngineerLab"><meta property="og:description" content="Perder um link de encaminhamento remove apenas a taxa desse link. Três membros 10G ativos em 48×1G vão de 1.6:1 para 2.4:1. A relação não é o congestionamento."s rate. Three active 10G members on 48×1G go from 1.6:1 to 2.4:1. The ratio is not congestion.">
+<meta property="og:url" content="https://netengineerlab.com/pt-br/guides/switch-oversubscription-n-1/"><meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../../assets/css/site.css">
+<link rel="stylesheet" href="../../../assets/css/guide.css?v=6d83ae5e791f">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://netengineerlab.com/guides/switch-oversubscription-n-1/#webpage","name":"Como calcular a capacidade do switch uplink sob falha N-1","description":"Perder um link de encaminhamento remove apenas a taxa desse link. Três membros 10G ativos em 48×1G vão de 1.6:1 para 2.4:1. A relação não é o congestionamento.","url":"https://netengineerlab.com/pt-br/guides/switch-oversubscription-n-1","inLanguage":"pt-BR","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/pt-br/"}},{"@type":"Article","@id":"https://netengineerlab.com/guides/switch-oversubscription-n-1/#article","headline":"Como calcular a capacidade do switch uplink sob falha N-1","description":"Perder um link de encaminhamento remove apenas a taxa desse link. Três membros 10G ativos em 48×1G vão de 1.6:1 para 2.4:1. A relação não é o congestionamento.","url":"https://netengineerlab.com/pt-br/guides/switch-oversubscription-n-1","inLanguage":"pt-BR","mainEntityOfPage":{"@id":"https://netengineerlab.com/guides/switch-oversubscription-n-1/#webpage"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/pt-br/","logo":{"@type":"ImageObject","url":"https://netengineerlab.com/pt-br/assets/images/logo.svg"}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://netengineerlab.com/pt-br/"},{"@type":"ListItem","position":2,"name":"Como calcular a capacidade do switch uplink sob falha N-1","item":"https://netengineerlab.com/pt-br/guides/switch-oversubscription-n-1/"}]}]}</script>
+
+<meta name="twitter:title" content="Mudar de ligação N-1 e N+1 Capacidade | NetEngineerLab">
+<meta name="twitter:description" content="Perder um link de encaminhamento remove apenas a taxa desse link. Três membros 10G ativos em 48×1G vão de 1.6:1 para 2.4:1. A relação não é o congestionamento.">
+
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="../../../assets/css/site-pages-v2.css?v=20261105-v2">
+<link rel="stylesheet" href="../../../assets/css/editorial-fresh.css?v=20261123-align2">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Mudar de ligação N-1 e N+1 Capacidade | NetEngineerLab","url":"https://netengineerlab.com/pt-br/guides/switch-oversubscription-n-1/","description":"Perder um link de encaminhamento remove apenas a taxa desse link. Três membros 10G ativos em 48×1G vão de 1.6:1 para 2.4:1. A relação não é o congestionamento.","inLanguage":"pt-BR","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/pt-br/"}}</script>
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Por que uma rededina passa por verificações de estado normal, mas falha o N-1?","acceptedAnswer":{"@type":"Answer","text":"Porque a mesma procura de Compromissos de Tráfego deve ser suportada por uma menor capacidade remanescente após uma falha."}},{"@type":"Question","name":"N-1 significa sempre um link físico?","acceptedAnswer":{"@type":"Answer","text":"Não. Significa que um componente necessário não está disponível. O componente exato depende da necessidade de arquitetura e resiliência."}},{"@type":"Question","name":"Devo projetar N-1 para 100% da largura de banda de acesso teórico?","acceptedAnswer":{"@type":"Answer","text":"Não necessariamente. Use a demanda de horas de ocupado objetiva e realista do serviço, mas mantenha a relação teórica máxima visível para o contexto."}},{"@type":"Question","name":"4.8:1 N-1 é automaticamente inaceitável?","acceptedAnswer":{"@type":"Answer","text":"Não. A relação é apenas um indicador. Compare com a demanda real, a sensibilidade da aplicação e o nível de serviço necessário durante a falha."}}]}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="pt-BR">
+<meta name="nel-route" content="guides/switch-oversubscription-n-1/">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
+<link rel="canonical" href="https://netengineerlab.com/pt-br/guides/switch-oversubscription-n-1/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/switch-oversubscription-n-1/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/switch-oversubscription-n-1/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/es/guides/switch-oversubscription-n-1/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/id/guides/switch-oversubscription-n-1/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/pt-br/guides/switch-oversubscription-n-1/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/switch-oversubscription-n-1/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
+</head><body class="guide-page guide-fresh"><!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Plataforma de inteligência para engenharia de redes</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Abrir navegação"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navegação principal">
+      <a href="../../">Início</a>
+      <a href="../../../tools/pt-br/">Ferramentas</a>
+      <a href="../" aria-current="page">Guias</a>
+      <a href="../../topics/">Tópicos</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Português do Brasil"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Português do Brasil</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/guides/switch-oversubscription-n-1/" lang="en" hreflang="en"><span>English</span><small>Inglês</small></a><a class="language-option" role="menuitem" href="/zh/guides/switch-oversubscription-n-1/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinês simplificado</small></a><a class="language-option" role="menuitem" href="/es/guides/switch-oversubscription-n-1/" lang="es" hreflang="es"><span>Español</span><small>Espanhol</small></a><a class="language-option" role="menuitem" href="/id/guides/switch-oversubscription-n-1/" lang="id" hreflang="id"><span>Bahasa Indonesia</span><small>Indonésio</small></a><a class="language-option" role="menuitem" href="/pt-br/guides/switch-oversubscription-n-1/" lang="pt-BR" hreflang="pt-BR" aria-current="page"><span>Português do Brasil</span><small>Português do Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<nav class="guide-breadcrumb" aria-label="Trigo de pão"><a href="../../">Início</a> / <a href="../">Guias</a> / <span aria-current="page">Subscrição N-1</span></nav>
+<main class="guide-shell" id="main">
+<section class="guide-hero">
+<p class="eyebrow">GUIA DE CAPACIDADE DE FALHA</p>
+<h1>Como calcular a capacidade do switch uplink sob falha N-1</h1>
+<p class="guide-lead">Um desenho de interruptor não deve ser aprovado apenas no seu estado normal. A análise N-1 pergunta se a capacidade de uplink sobrevivente ainda pode transportar tráfego esperado depois de um componente necessário falhar.</p>
+<div class="guide-meta"><span>N-1</span><span>Capacidade de falha</span><span>Subscrição excessiva</span><span>Sede</span></div>
+</section>
+
+<div class="guide-tool-link"><strong>Ferramenta de engenharia relacionada</strong><p>Passe do artigo para uma verificação de capacidade real com a calculadora NetEngineerLab.</p><a href="../../../tools/switch-uplink-oversubscription-calculator/pt-br/">Abra a calculadora switch uplink →</a></div><div class="guide-layout"><article class="guide-article">
+
+<h2 id="quick-answer">Resposta Rápida</h2>
+<p>Comece com a fórmula do estado normal:</p>
+<div class="guide-formula"><strong>Razão de sobre-assinatura = Capacidade total de ligação descendente □ Capacidade total de ligação ascendente</strong></div>
+<p>Para uplinks de taxa igual, a capacidade normal é <strong>C<sub>normal</sub> = N × R</strong>; após um membro falhar, <strong>C<sub>N-1</sub> = (N − 1) × R</strong>. Calcule cada taxa de linha como taxa de linha de acesso capacidade uplink e calcular headroomîío como capacidade de sobrevivência - demanda de horas ocupadas.</p>
+<div class="guide-example">
+<p>48 × 1G acesso = <strong>48 Gbps</strong></p>
+<p>Ligação ascendente normal: 2 × 10G = <strong>20 Gbps</strong> → <strong>2.4:1</strong></p>
+<p>Ligação ascendente N-1: 1 × 10G = <strong>10 Gbps</strong> → <strong>4.8:1</strong></p>
+</div>
+
+<div class="guide-cta"><strong>Modelo normal e capacidade N-1</strong><p>Use a calculadora NetEngineerLab com sua contagem real de portas e design uplink.</p><a href="../../../tools/switch-uplink-oversubscription-calculator/pt-br/">Abra a calculadora →</a></div>
+
+<h2 id="what-n1">O que significa N-1?</h2>
+<p>N-1 significa que a rede é avaliada com um evento de falha especificado. Indicar o domínio de falha antes da capacidade de contagem: um cabo/óptico/membrança, uma placa de linha, um interruptor a montante ou um caminho completo são cenários diferentes. Uma falha de um único membro remove essa taxa de membro; uma falha de dispositivo remove cada link e recurso de encaminhamento anexado a esse dispositivo.</p>
+<p>O objetivo não é assumir que cada falha deve preservar o desempenho completo. O objetivo é compreender a capacidade de sobrevivência e decidir se esse resultado cumpre o requisito de negócio.</p>
+
+<h2 id="normal-vs-failure">Subscrição normal vs. N-1</h2>
+<table>
+<thead><tr><th>Estado</th><th>Capacidade de ligação descendente</th><th>Capacidade de ligação ascendente</th><th>Razão</th></tr></thead>
+<tbody>
+<tr><td>Normal</td><td>48 Gbps</td><td>20 Gbps</td><td>2.4:1</td></tr>
+<tr><td>N-1</td><td>48 Gbps</td><td>10 Gbps</td><td>4.8:1</td></tr>
+</tbody></table>
+<p>Use o mesmo numerador do lado de acesso em ambos os estados; apenas conte links que podem encaminhar tráfego no estado modelado. O rácio linha-taxa não é uma previsão de tráfego e não promete por fluxo de rendimento.</p>
+<h2 id="n-plus-one">N+1 e a taxa de uma ligação perdida</h2>
+<p>N+1 significa que o conjunto de encaminhamento tem mais um link do que o conjunto mínimo que você está usando para a carga. É uma escolha explícita de provisionamento, nãoCONTRIBUIÇÃO. Em 48 × 1 acesso Gbps, três membros ativos 10 Gbps são 30 Gbps. A proporção exacta é de 48 <strong>1.6:1</strong>, e a calculadora exibe 1.6:1. Se um membro parar de reencaminhar, a capacidade removida é 10 Gbps e o restante é 20 Gbps, ou <strong>2.4:1</strong>Só enquanto os outros dois ainda avançam.</p>
+<p>Um link de espera que não avança não está no denominador normal. Não conte como já ativo e subtraia novamente. Um fluxo ainda permanece em um membro sob convencional LACP distribuição, então três 10 Gbps os membros não dão um fluxo 30 Gbps. Duplex completo não gira o perdido 10 Gbps em 20 Gbps: a taxa de interface é contada uma vez, na direção em análise. CargaWorks, rajadas, taxa de pacotes e limites de hardware ainda decidem se os links sobreviventes congestionam. Continuar em <a href="../lacp-member-congestion/">LACP congestionamento dos membros</a>, <a href="../switch-oversubscription-ratio/">guia de proporção</a> e <a href="../10g-vs-25g-uplinks/">10G versus ligações ascendentes 25G</a>.</p>
+
+<h2 id="traffic">Três exemplos de horas ocupadas trabalhadas</h2>
+<p>Para cada exemplo, a demanda é uma entrada explícita de planejamentochain. Headroom é igual a capacidade de sobrevivência menos demanda; um resultado negativo é uma falha modelada. Esses exemplos são ilustrações aritméticas, não padrões de utilização dachain indústria.</p>
+<h3>Exemplo 1: 2×10G servindo acesso 48×1G</h3>
+<p>A relação teórica é apenas o primeiro passo. Compare o uplink sobrevivente com o tráfego esperado de horas ocupadas.</p>
+<div class="guide-example">
+<p>Assunção de planeamento: 40 das 48 portas de acesso estão activas na hora de ocupação modelada; 40 × 1 Gbps × Utilização de 30% = <strong>12 Gbps procura modelada</strong>.</p>
+<p>Capacidade normal = <strong>20 Gbps</strong> → headroom = <strong>8 Gbps</strong></p>
+<p>Capacidade N-1 = <strong>10 Gbps</strong> → headroom = <strong>- 2 Gbps</strong></p>
+</div>
+<p>Resultado: headroom normal é 8 Gbps; depois de um membro falhar, o sobrevivente 10 Gbps é 2 Gbps abaixo da demanda modelada. Este projeto não atende a um objetivo de estado de falha sem congestionamento 12 Gbps.</p>
+<h3>Exemplo 2: 2×25G com uma necessidade de 20 Gbps ocupado-hora</h3>
+<div class="guide-example"><p>Capacidade normal = 2 × 25 = <strong>50 Gbps</strong>; razão = 48 □ 50 = <strong>0.96:1</strong>.</p><p>Falha de um membro: 1 × 25 = <strong>25 Gbps</strong>; razão N-1 = 48 <strong>1.92:1</strong>.</p><p>Casa de banho em estado de avaria = 25 − 20 = <strong>5 Gbps</strong>.</p></div>
+<p>Isso atende ao modelo de 20 Gbps indicado antes de qualquer reserva de engenharia selecionada separadamente, subsídio de ruptura ou gargalo do equipamento.</p>
+<h3>Exemplo 3: 4×10G com crescimento e uma reserva de capacidade de 25%</h3>
+<div class="guide-example"><p>Demanda de planejamento medido = 20 Gbps; crescimento previsto = 20%; futura demanda N-1 D = 20 × 1,20 = <strong>24 Gbps</strong>.</p><p>Após uma falha de um membro, sobreviver à capacidade nominal = 3 × 10 = <strong>30 Gbps</strong>; razão N-1 para 48×1G de acesso = 48 <strong>1.6:1</strong>.</p><p>Para reserva de capacidade r = 0,25, exigir D / C ≤ 1 - r = 0,75, onde C é a capacidade utilizável sobrevivente. Capacidade útil necessária C ≥ D / 0,75 = 24 / 0,75 = <strong>32 Gbps</strong>.</p><p>Mesmo que a capacidade utilizável atinja o teto nominal de 30 Gbps, a utilização é 24 / 30 = <strong>80%</strong>, deixando apenas <strong>20% reserva de capacidade</strong>; capacidade menos procura é <strong>6 Gbps</strong>, mas o déficit contra o 32 Gbps exigência de design é <strong>2 Gbps</strong>.</p></div>
+<p>O crescimento de 20% e a reserva de capacidade de 25% são insumos de cenário, padrões não prescritos. Uma previsão separada da utilização medida é a <a href="../../../tools/network-capacity-forecast-planner/pt-br/">previsão da capacidade da biocombustíveis</a>. Não substitui a relação N-1. <a href="../../topics/switch-oversubscription/">Voltar ao tópico de sobrepasse de subscrição</a>Este desenho falha a reserva de 25% selecionada, mesmo na capacidade nominal. Verificar a capacidade útil real na plataforma sobrevivente; menor rendimento efetivo não pode melhorar este resultado. A reserva de capacidade é uma fração de capacidade, não uma porcentagem adicionada à demanda.</p>
+
+<h2 id="good-design">O que torna um resultado N-1 aceitável?</h2>
+<p>Não existe uma relação universal. Um estado de falha aceitável depende:</p>
+<ul>
+<li>Quanto tráfego de horas de trabalho deve continuar durante a falha;</li>
+<li>Se o congestionamento temporário é aceitável;</li>
+<li>latência e sensibilidade à perda de pacotes;</li>
+<li>quão rapidamente o caminho falhado pode ser restaurado;</li>
+<li>Quanto se espera de crescimento do tráfego;</li>
+<li>Se a rede é concebida para uma degradação graciosa ou para uma continuidade completa do serviço.</li>
+</ul>
+
+<h2 id="lag">N-1 com LAG</h2>
+<p>Se todos os membros avançam e carregam taxas nominais iguais, a taxa de linha agregada sobrevivente é a soma dos membros sobreviventes. Um 10 de dois membros Gbps LAG portanto tem 10 Gbps após falha de um membro; quatro membros 10 Gbps LAG tem 30 Gbps após falha de um membro. Isso assume que o dispositivo de pares, o plano de controle, os membros restantes e o caminho upstream permanecem disponíveis.</p>
+<p>A capacidade do LAG é compartilhada entre fluxos de acordo com o hash da plataforma. Um fluxo é geralmente limitado a uma taxa de membro, e uma nova distribuição de hash pode deixar alguns membros mais ocupados do que outros. Validar hash gordas, convergências, buffers e utilização medida nos dispositivos reais; não tratar taxa de linha agregada como taxa garantida de aplicação.</p>
+<table>
+<thead><tr><th>Desenho</th><th>Capacidade Normal</th><th>Capacidade N-1</th><th>48×1G N-1 maçãs Razão</th></tr></thead>
+<tbody>
+<tr><td>2×10G</td><td>20 Gbps</td><td>10 Gbps</td><td>4.8:1</td></tr>
+<tr><td>4×10G</td><td>40 Gbps</td><td>30 Gbps</td><td>1.6:1</td></tr>
+<tr><td>2×25G</td><td>50 Gbps</td><td>25 Gbps</td><td>1.92:1</td></tr>
+</tbody></table>
+
+<h2 id="growth">Demanda ocupada-hora e risco de falha</h2>
+<p>Suponha que a demanda atual de horas ocupadas é 10 Gbps e o tráfego deve crescer em 30%.</p>
+<div class="guide-example">
+<p>Procura futura = 10 × 1,30 = <strong>13 Gbps</strong></p>
+<p>2×10G capacidade normal = 20 Gbps → <strong>7 Sala de comando Gbps</strong></p>
+<p>2×10G Capacidade N-1 = 10 Gbps → <strong>3 Défice do Gbps</strong></p>
+</div>
+<p>Um design pode, portanto, passar a verificação de estado normal - e ainda falhar futuro N-1 requisitos.</p>
+
+<h2 id="upgrade">Comparar as Opções de Atualização do N-1</h2>
+<table>
+<thead><tr><th>Desenho</th><th>Normal</th><th>N-1</th><th>Caso de Uso</th></tr></thead>
+<tbody>
+<tr><td>2×10G</td><td>20 Gbps</td><td>10 Gbps</td><td>Necessidade de acesso moderada</td></tr>
+<tr><td>4×10G</td><td>40 Gbps</td><td>30 Gbps</td><td>Mais redundância granular</td></tr>
+<tr><td>2×25G</td><td>50 Gbps</td><td>25 Gbps</td><td>Design de ligação dupla de maior capacidade</td></tr>
+</tbody></table>
+
+<h2 id="design-recommendations">Recomendações de Design de Engenharia</h2>
+<ul><li>Defina um evento de falha de cada vez e mapeie cada link, dispositivo e caminho compartilhado que ele pode remover.</li><li>Verifique se os links compartilham um dispositivo, fonte de energia, rota do cabo, caminho de transporte ou outro domínio crítico de falha; um evento pode interromper vários links, então a contagem de links sozinho não prova redundância independente.</li><li>Usar percentis de horas ocupadas medidos e objetivos de serviço de aplicação; documenta2/95 e pressupostos de crescimento separadamente.</li><li>Após o cálculo da capacidade passar, valide a taxa de Assyria-path efetiva, latência, perda de pacotes, distribuição de tráfego e convergência de failover em relação aos objetivos de serviço necessários.</li><li>Verifique o headroom após a falha modelada, em seguida, teste o tráfego correlacionado, a carga por membro e os limites de encaminhamento do dispositivo.</li><li>Se a procura não for boa, decida se a degradação graciosa cumpre o objetivo de serviço.</li><li>Aumente a taxa de ligação ou a contagem de membros somente após verificar a diversidade do dispositivo, potência, óptica, suporte LAG e o próximo domínio de falha de nível de dispositivo.</li></ul>
+<h2 id="workflow">Fluxo de trabalho de planejamento de capacidade N-1</h2>
+<ol>
+<li>Calcular a capacidade instalada do downlink.</li>
+<li>Medir o tráfego ativo de horas ocupadas.</li>
+<li>Calcular a capacidade de ligação ascendente do estado normal.</li>
+<li>Remova um componente de falha necessário.</li>
+<li>Verifique se esse evento também pode remover links através de um dispositivo de risco compartilhado, fonte de energia, rota do cabo ou caminho de transporte.</li>
+<li>Calcular a capacidade de sobrevivência da ligação ascendente.</li>
+<li>Recalcular a subscrição.</li>
+<li>Compare capacidade de sobrevivência com demanda de horas ocupadas.</li>
+<li>Validar rendimento, latência, perda de pacotes, distribuição de tráfego e convergência contra o objetivo de serviço de estado de falha.</li>
+<li>Adicione crescimento futuro.</li>
+<li>Decida se o congestionamento durante o insucesso é aceitável.</li>
+<li>Compare as opções de atualização se o estado de falha for insuficiente.</li>
+</ol>
+
+<h2 id="faq">Perguntas Frequentes</h2>
+<h3>Por que uma rededina passa por verificações de estado normal, mas falha o N-1?</h3><p>Porque a mesma procura de Compromissos de Tráfego deve ser suportada por uma menor capacidade remanescente após uma falha.</p>
+<h3>N-1 significa sempre um link físico?</h3><p>Não. Significa que um componente necessário não está disponível. O componente exato depende da necessidade de arquitetura e resiliência.</p>
+<h3>Devo projetar N-1 para 100% da largura de banda de acesso teórico?</h3><p>Não necessariamente. Use a demanda de horas de ocupado objetiva e realista do serviço, mas mantenha a relação teórica máxima visível para o contexto.</p>
+<h3>4.8:1 N-1 é automaticamente inaceitável?</h3><p>Não. A relação é apenas um indicador. Compare com a demanda real, a sensibilidade da aplicação e o nível de serviço necessário durante a falha.</p>
+
+<section class="guide-related"><h2>Continuar o Tópico</h2><div class="guide-related-grid">
+<a href="../../topics/switch-oversubscription/"><strong>Alternar o Hub de Tópico de Sobre- Subscrição</strong><br>Veja a estrutura completa do tópico.</a>
+<a href="../switch-oversubscription-ratio/"><strong>Guia Principal de Subscrição</strong><br>Fórmula, utilização e design fundamentais.</a>
+<a href="../48-port-switch-oversubscription/"><strong>Exemplo de trabalho de 48 portas</strong><br>Compare as opções práticas de uplink.</a>
+<a href="../48-port-switch-2x10g-enough/"><strong>2×10G é suficiente?</strong><br>Foco no 48-porto 2×10G Decisão de concepção.</a>
+<a href="../lacp-member-congestion/"><strong>LACP congestionamento dos membros</strong><br>Um membro perdido e um fluxo de hashed são limites diferentes.</a>
+<a href="../10g-vs-25g-uplinks/"><strong>Ligações ascendentes 10G e 25G</strong><br>Compare taxas nominais sem tratá-las como congestionamento.</a>
+</div></section>
+
+<section class="guide-cross-links"><h2>Continuar a ler</h2><div class="guide-related-grid"><a href="../switch-oversubscription-ratio/"><strong>Mudar a razão de sobre- subscrição</strong><br>Reveja a fórmula principal e o plano de capacidade.</a><a href="./"><strong>Verificação de falha do N-1</strong><br>Verificar a capacidade de sobrevivência após um fracasso.</a><a href="../../topics/switch-oversubscription/"><strong>Alternar o hub de tópicos de oversubscription</strong><br>Navegue pelo conjunto de tópicos completo.</a></div></section></article>
+<aside class="guide-toc guide-related-side" aria-label="Nesta página"><strong>Nesta página</strong>
+<a href="#quick-answer">Resposta rápida</a><a href="#what-n1">O que é o N-1?</a><a href="#normal-vs-failure">Normal vs N-1</a><a href="#n-plus-one">Perda de uma ligação N+1</a><a href="#traffic">Exigência de tráfego</a><a href="#lag">LAG</a><a href="#growth">Crescimento</a><a href="#workflow">Fluxo de trabalho</a><a href="#faq">FAQ</a>
+</aside></div><section class="content-section faq-section" data-nel-faq="visible"><h2>Perguntas frequentes</h2><div class="faq-grid"><details><summary>Por que uma rededina passa por verificações de estado normal, mas falha o N-1?</summary><p>Porque a mesma procura de Compromissos de Tráfego deve ser suportada por uma menor capacidade remanescente após uma falha.</p></details><details><summary>N-1 significa sempre um link físico?</summary><p>Não. Significa que um componente necessário não está disponível. O componente exato depende da necessidade de arquitetura e resiliência.</p></details><details><summary>Devo projetar N-1 para 100% da largura de banda de acesso teórico?</summary><p>Não necessariamente. Use a demanda de horas de ocupado objetiva e realista do serviço, mas mantenha a relação teórica máxima visível para o contexto.</p></details><details><summary>4.8:1 N-1 é automaticamente inaceitável?</summary><p>Não. A relação é apenas um indicador. Compare com a demanda real, a sensibilidade da aplicação e o nível de serviço necessário durante a falha.</p></details></div></section>
+</main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Ferramentas profissionais online para engenheiros de telecomunicações e redes.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navegação do rodapé">
+      <a href="../../about/">Sobre</a><a href="../../contact/">Contato</a><a href="../../privacy/">Privacidade</a><a href="../../terms/">Termos</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END --><script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script></body></html>
+
+
+
+

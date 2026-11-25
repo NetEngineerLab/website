@@ -1,5 +1,5 @@
 const $=id=>document.getElementById(id);
-const LANG=document.documentElement.lang.toLowerCase().startsWith("zh")?"zh":(document.documentElement.lang.toLowerCase().startsWith("es")?"es":"en");
+const LANG=(function(){const lang=(document.documentElement.lang||"en").toLowerCase();if(lang.startsWith("zh"))return"zh";if(lang.startsWith("es"))return"es";if(lang==="id"||lang.startsWith("id-"))return"id";if(lang.startsWith("pt"))return"pt-BR";return"en";})();
 const LIB=window.NEL_BANDWIDTH_UNITS;
 const ENGINE=window.BandwidthEngine;
 let activeMode="transfer";
@@ -10,6 +10,7 @@ const T={
   copied:"结果已复制",saved:"记录已保存",csv:"CSV已导出",empty:"暂无保存记录。",
   clearHistory:"确定清空全部历史记录吗？",healthy:"配置可用",warning:"需要复核",invalid:"参数无效",
   day:"天",hour:"小时",minute:"分钟",second:"秒",
+  checkInput:"请检查输入参数和单位。",
   pass:"容量满足目标",fail:"容量不足",
   transfer:"传输时间",required:"所需带宽",concurrency:"并发容量",volume:"数据量"
  },
@@ -17,17 +18,20 @@ const T={
   copied:"Result copied",saved:"Record saved",csv:"CSV exported",empty:"No saved records.",
   clearHistory:"Clear all saved history?",healthy:"Configuration passes",warning:"Review required",invalid:"Invalid input",
   day:"days",hour:"hours",minute:"minutes",second:"seconds",
+  checkInput:"Check the input values and units.",
   pass:"Capacity meets target",fail:"Capacity is insufficient",
   transfer:"Transfer time",required:"Required bandwidth",concurrency:"Concurrent capacity",volume:"Data volume"
  }
 };
-T.es={copied:"Resultado copiado",saved:"Registro guardado",csv:"CSV exportado",empty:"No hay registros guardados.",clearHistory:"¿Borrar todo el historial guardado?",healthy:"Configuración válida",warning:"Revisar",invalid:"Parámetro no válido",day:"días",hour:"horas",minute:"minutos",second:"segundos",pass:"La capacidad cumple el objetivo",fail:"La capacidad es insuficiente",transfer:"Tiempo de transferencia",required:"Ancho de banda necesario",concurrency:"Capacidad concurrente",volume:"Volumen de datos"};
-const DEFAULT_PROJECT=LANG==="es"?"Sin título":"Untitled"; function esc(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+T.es={copied:"Resultado copiado",saved:"Registro guardado",csv:"CSV exportado",empty:"No hay registros guardados.",clearHistory:"¿Borrar todo el historial guardado?",healthy:"Configuración válida",warning:"Revisar",invalid:"Parámetro no válido",day:"días",hour:"horas",minute:"minutos",second:"segundos",checkInput:"Compruebe los valores y las unidades introducidas.",pass:"La capacidad cumple el objetivo",fail:"La capacidad es insuficiente",transfer:"Tiempo de transferencia",required:"Ancho de banda necesario",concurrency:"Capacidad concurrente",volume:"Volumen de datos"};
+T.id={copied:"Hasil disalin",saved:"Catatan disimpan",csv:"CSV diekspor",empty:"Belum ada catatan tersimpan.",clearHistory:"Hapus semua riwayat tersimpan?",healthy:"Konfigurasi memenuhi syarat",warning:"Perlu ditinjau",invalid:"Parameter tidak valid",day:"hari",hour:"jam",minute:"menit",second:"detik",checkInput:"Periksa nilai dan satuan yang dimasukkan.",pass:"Kapasitas memenuhi target",fail:"Kapasitas tidak cukup",transfer:"Waktu transfer",required:"Bandwidth yang diperlukan",concurrency:"Kapasitas pengguna bersamaan",volume:"Volume data"};
+T["pt-BR"]={copied:"Resultado copiado",saved:"Registro salvo",csv:"CSV exportado",empty:"Nenhum registro salvo.",clearHistory:"Limpar todo o histórico salvo?",healthy:"Configuração atende",warning:"Revisão necessária",invalid:"Parâmetro inválido",day:"dias",hour:"horas",minute:"minutos",second:"segundos",checkInput:"Verifique os valores e as unidades informados.",pass:"A capacidade atende à meta",fail:"A capacidade é insuficiente",transfer:"Tempo de transferência",required:"Largura de banda necessária",concurrency:"Capacidade simultânea",volume:"Volume de dados"};
+const DEFAULT_PROJECT={zh:"未命名",es:"Sin título",id:"Tanpa judul","pt-BR":"Sem título"}[LANG]||"Untitled"; function esc(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
 function n(id){return Number.parseFloat($(id).value)}
 function temp(button,message){const old=button.innerHTML;button.textContent=message;setTimeout(()=>button.innerHTML=old,1300)}
 function formatNumber(value,digits=2){
  if(!Number.isFinite(Number(value)))return"∞";
- return Number(value).toLocaleString(LANG==="zh"?"zh-CN":(LANG==="es"?"es-ES":"en-US"),{maximumFractionDigits:digits});
+ return Number(value).toLocaleString(LANG==="zh"?"zh-CN":(LANG==="es"?"es-ES":(LANG==="id"?"id-ID":(LANG==="pt-BR"?"pt-BR":"en-US"))),{maximumFractionDigits:digits});
 }
 function bestRate(bps){
  const abs=Math.abs(bps);
@@ -199,7 +203,7 @@ function calculate(){
   $("validation").textContent="";
   if(typeof window.nelTrack==="function")window.nelTrack("bandwidth_calculate",{mode:activeMode,status:last.result.status});
  }catch(error){last=null;
-  $("validation").textContent=LANG==="zh"?"请检查输入参数和单位。":(LANG==="es"?"Compruebe los valores y las unidades introducidas.":"Check the input values and units.");
+  $("validation").textContent=T[LANG].checkInput;
   renderStatus("invalid");
  }
 
@@ -207,7 +211,7 @@ function calculate(){
 }
 function resetAll(){
  $("preset").value="ethernet";
- $("projectName").value="Bandwidth Planning";
+ $("projectName").value=LANG==="id"?"Perencanaan bandwidth":(LANG==="pt-BR"?"Planejamento de banda":"Bandwidth Planning");
  $("transferFileSize").value=10;$("transferFileUnit").value="GB";$("transferLinkRate").value=100;$("transferRateUnit").value="Mbps";$("transferConcurrent").value=1;
  $("requiredFileSize").value=50;$("requiredFileUnit").value="GB";$("requiredTime").value=1;$("requiredTimeUnit").value="hour";$("requiredConcurrent").value=1;
  $("capacityLinkRate").value=1;$("capacityRateUnit").value="Gbps";$("capacityPerUserRate").value=5;$("capacityPerUserUnit").value="Mbps";$("capacityBurst").value=120;$("capacityTargetUsers").value=100;
@@ -217,12 +221,13 @@ function resetAll(){
 function reportText(){
  if(!last)return"";
  const project=$("projectName").value.trim()||DEFAULT_PROJECT;
- const lines=["NetEngineerLab - Bandwidth & Transfer Time Calculator",`${LANG==="zh"?"工程":(LANG==="es"?"Proyecto":"Project")}: ${project}`,`${LANG==="zh"?"模式":(LANG==="es"?"Modo":"Mode")}: ${T[LANG][last.mode]}`];
+ const label=(en,zh,es,id,pt)=>LANG==="zh"?zh:(LANG==="es"?es:(LANG==="id"?id:(LANG==="pt-BR"?pt:en)));
+ const lines=["NetEngineerLab - "+(LANG==="id"?"Kalkulator bandwidth dan waktu transfer":(LANG==="pt-BR"?"Calculadora de largura de banda e tempo de transferência":"Bandwidth & Transfer Time Calculator")),`${label("Project","工程","Proyecto","Proyek","Projeto")}: ${project}`,`${label("Mode","模式","Modo","Mode","Modo")}: ${T[LANG][last.mode]}`];
  const r=last.result;
- if(last.mode==="transfer")lines.push(`${LANG==="es"?"Tiempo de transferencia":"Transfer time"}: ${humanTime(r.time)}`,`${LANG==="es"?"Velocidad de carga por transferencia":"Per-transfer payload rate"}: ${bestRate(r.perTransferBps)}`,`${LANG==="es"?"Velocidad de carga agregada":"Aggregate payload rate"}: ${bestRate(r.payloadAggregateBps)}`,`${LANG==="es"?"Datos totales":"Total data"}: ${bestSize(r.totalTransferredBytes)}`);
- if(last.mode==="required")lines.push(`${LANG==="es"?"Velocidad de enlace requerida":"Required link rate"}: ${bestRate(r.requiredLinkBps)}`,`${LANG==="es"?"Velocidad de carga requerida":"Required payload rate"}: ${bestRate(r.requiredPayloadBps)}`,`${LANG==="es"?"Tiempo de datos":"Data time"}: ${formatNumber(r.dataSeconds,3)} s`);
- if(last.mode==="concurrency")lines.push(`${LANG==="es"?"Usuarios máximos":"Maximum users"}: ${r.maxUsers}`,`${LANG==="es"?"Velocidad de carga disponible":"Available payload rate"}: ${bestRate(r.availablePayloadBps)}`,`${LANG==="es"?"Margen":"Headroom"}: ${bestRate(r.headroomBps)}`);
- if(last.mode==="volume")lines.push(`${LANG==="es"?"Carga transferida":"Transferred payload"}: ${bestSize(r.totalBytes)}`,`${LANG==="es"?"Velocidad de carga":"Payload rate"}: ${bestRate(r.payloadBps)}`,`${LANG==="es"?"Volumen de 30 días":"30-day volume"}: ${bestSize(r.monthly30Bytes)}`);
+ if(last.mode==="transfer")lines.push(`${label("Transfer time","Transfer time","Tiempo de transferencia","Waktu transfer","Tempo de transferência")}: ${humanTime(r.time)}`,`${label("Per-transfer payload rate","Per-transfer payload rate","Velocidad de carga por transferencia","Laju payload per transfer","Taxa de payload por transferência")}: ${bestRate(r.perTransferBps)}`,`${label("Aggregate payload rate","Aggregate payload rate","Velocidad de carga agregada","Laju payload agregat","Taxa de payload agregada")}: ${bestRate(r.payloadAggregateBps)}`,`${label("Total data","Total data","Datos totales","Total data","Total de dados")}: ${bestSize(r.totalTransferredBytes)}`);
+ if(last.mode==="required")lines.push(`${label("Required link rate","Required link rate","Velocidad de enlace requerida","Laju tautan yang diperlukan","Taxa de enlace necessária")}: ${bestRate(r.requiredLinkBps)}`,`${label("Required payload rate","Required payload rate","Velocidad de carga requerida","Laju payload yang diperlukan","Taxa de payload necessária")}: ${bestRate(r.requiredPayloadBps)}`,`${label("Data time","Data time","Tiempo de datos","Waktu data","Tempo de dados")}: ${formatNumber(r.dataSeconds,3)} s`);
+ if(last.mode==="concurrency")lines.push(`${label("Maximum users","Maximum users","Usuarios máximos","Pengguna maksimum","Usuários máximos")}: ${r.maxUsers}`,`${label("Available payload rate","Available payload rate","Velocidad de carga disponible","Laju payload tersedia","Taxa de payload disponível")}: ${bestRate(r.availablePayloadBps)}`,`${label("Headroom","Headroom","Margen","Cadangan","Folga")}: ${bestRate(r.headroomBps)}`);
+ if(last.mode==="volume")lines.push(`${label("Transferred payload","Transferred payload","Carga transferida","Payload yang ditransfer","Payload transferido")}: ${bestSize(r.totalBytes)}`,`${label("Payload rate","Payload rate","Velocidad de carga","Laju payload","Taxa de payload")}: ${bestRate(r.payloadBps)}`,`${label("30-day volume","30-day volume","Volumen de 30 días","Volume 30 hari","Volume de 30 dias")}: ${bestSize(r.monthly30Bytes)}`);
  return lines.join("\n");
 }
 async function copyResult(){
@@ -247,7 +252,7 @@ function saveHistory(){
 }
 function renderHistory(){
  const history=getHistory();
- $("historyList").innerHTML=history.length?history.slice(0,6).map(item=>`<article class="history-card"><strong>${esc(item.project)}</strong><span>${new Date(item.time).toLocaleString(LANG==="zh"?"zh-CN":(LANG==="es"?"es-ES":"en-US"))} · ${esc(T[LANG][item.mode])}</span><p>${esc(item.summary)}</p></article>`).join(""):`<div class="history-empty">${T[LANG].empty}</div>`;
+ $("historyList").innerHTML=history.length?history.slice(0,6).map(item=>`<article class="history-card"><strong>${esc(item.project)}</strong><span>${new Date(item.time).toLocaleString(LANG==="zh"?"zh-CN":(LANG==="es"?"es-ES":(LANG==="id"?"id-ID":(LANG==="pt-BR"?"pt-BR":"en-US"))))} · ${esc(T[LANG][item.mode])}</span><p>${esc(item.summary)}</p></article>`).join(""):`<div class="history-empty">${T[LANG].empty}</div>`;
 }
 function clearHistory(){
  if(!confirm(T[LANG].clearHistory))return;

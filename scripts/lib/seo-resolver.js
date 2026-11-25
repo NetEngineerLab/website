@@ -12,7 +12,9 @@ const JSONLD_SCRIPT = /<script\b([^>]*\btype\s*=\s*["']application\/ld\+json["']
 const LABELS = {
   en: { home: "Home", tools: "Tools", topics: "Topics", faq: "Frequently asked questions" },
   zh: { home: "首页", tools: "工具", topics: "专题", faq: "常见问题" },
-  es: { home: "Inicio", tools: "Herramientas", topics: "Temas", faq: "Preguntas frecuentes" }
+  es: { home: "Inicio", tools: "Herramientas", topics: "Temas", faq: "Preguntas frecuentes", related: "Páginas relacionadas" },
+  id: { home: "Beranda", tools: "Alat", topics: "Topik", faq: "Tanya jawab", related: "Halaman terkait" },
+  "pt-BR": { home: "Início", tools: "Ferramentas", topics: "Tópicos", faq: "Perguntas frequentes", related: "Páginas relacionadas" }
 };
 
 const GUIDE_MARKDOWN = {
@@ -565,12 +567,12 @@ const CLUSTER_LINKS = [
     calculators: "tools/pon-fiber-calculators/",
     topics: ["topics/pon-optical/"],
     calc: {
-      en: "These calculators are the measurement checklist. For design method, loss budgets and field troubleshooting, continue in the PON optical topic.",
+      en: "These calculators are the measurement checklist. For design method, loss budgets and field troubleshooting, continue in the PON optical topic.", id: "Kalkulator ini adalah daftar pengukuran. Untuk metode desain, anggaran kerugian dan lapangan merosot, lanjutkan dalam topik stalPON optik.", "pt-BR": "Estas calculadoras são a lista de verificação de medição. Para o método de projeto, orçamentos de perda e solução de problemas de campo, continue no tópico óptico PON.",
       zh: "本页是计算器清单。设计方法、损耗预算和现场排障请继续阅读 PON 光网络专题。",
       es: "Esta página es la lista de calculadoras. El método de diseño, el presupuesto de pérdidas y el diagnóstico de campo están en el tema de PON óptico."
     },
     topic: {
-      en: "To run the splitter, power-budget, distance, latency and OTDR calculators as a set, open the PON and fiber calculators hub.",
+      en: "To run the splitter, power-budget, distance, latency and OTDR calculators as a set, open the PON and fiber calculators hub.", id: "Untuk menjalankan penyatuan, anggaran daya, jarak, latensi dan kalkulator OTDR sebagai satu set, buka pusat kalkulator PON dan serat kalkulator.", "pt-BR": "Para executar o divisor, poder-orçamento, distância, latência e calculadoras OTDR como um conjunto, abra o PON e calculadoras de fibra hub.",
       zh: "若要成套使用分光、光功率预算、距离、时延和 OTDR 计算器，请打开 PON 与光纤计算器入口。",
       es: "Para usar juntas las calculadoras de divisor, presupuesto, distancia, latencia y OTDR, abra el hub de calculadoras PON y de fibra."
     }
@@ -579,12 +581,12 @@ const CLUSTER_LINKS = [
     calculators: "tools/switching-bandwidth-calculators/",
     topics: ["topics/switch-oversubscription/"],
     calc: {
-      en: "This hub is the calculator list for uplink, bandwidth and addressing math. Worked examples, LAG behavior and N-1 method live in the switch oversubscription topic.",
+      en: "This hub is the calculator list for uplink, bandwidth and addressing math. Worked examples, LAG behavior and N-1 method live in the switch oversubscription topic.", id: "Pusat ini adalah daftar kalkulator untuk uplink, bandwidth dan pengalamatan matematika. Bekerja sebagai contoh, perilaku LAG dan metode N-1 hidup dalam topik switch oversubscription.", "pt-BR": "Este hub é a lista de calculadoras para uplink, largura de banda e matemática de endereçamento. Exemplos trabalhados, o comportamento LAG e o método N-1 vivem no tópico sobre-assinatura do switch.",
       zh: "本页汇总上联、带宽和编址计算。案例、LAG 行为与 N-1 方法在交换机超售比专题。",
       es: "Este hub lista las calculadoras de uplink, ancho de banda y direccionamiento. Los ejemplos, LAG y el método N-1 están en el tema de sobresuscripción."
     },
     topic: {
-      en: "For the calculator checklist — oversubscription, bandwidth, subnet, VLAN and fabric capacity — open the switching and bandwidth calculators hub.",
+      en: "For the calculator checklist — oversubscription, bandwidth, subnet, VLAN and fabric capacity — open the switching and bandwidth calculators hub.", id: "Untuk checklist kalkulator - oversubscription, bandwidth, subnet, VLAN dan kapasitas kain - membuka switch dan bandwidth kalkulator Menekan pusat.", "pt-BR": "Para a lista de verificação da calculadora — sobre-assinatura, largura de banda, sub-rede, capacidade VLAN e tecido — abra o hub de calculadoras de comutação e largura de banda.",
       zh: "超售比、带宽、子网、VLAN 和织物容量计算器清单见交换与带宽计算器入口。",
       es: "La lista de calculadoras de sobresuscripción, ancho de banda, subred, VLAN y fabric está en el hub de conmutación y ancho de banda."
     }
@@ -593,18 +595,18 @@ const CLUSTER_LINKS = [
     calculators: "tools/datacenter-power-calculators/",
     topics: ["topics/data-center-capacity/", "topics/data-center-cooling-capacity/"],
     calc: {
-      en: "This page lists the power and cooling calculators. Capacity tradeoffs across IT load, space and uplinks are in the data center capacity topic; cooling formulas and N+1 checks are in the cooling capacity topic.",
+      en: "This page lists the power and cooling calculators. Capacity tradeoffs across IT load, space and uplinks are in the data center capacity topic; cooling formulas and N+1 checks are in the cooling capacity topic.", id: "Halaman ini daftar daya dan kalkulator pendingin. Tra平Kapasitas di seluruh beban IT, ruang dan uplinks berada dalam topik kapasitas pusat data; formula pendingin dan pemeriksaan N+1 berada dalam topik pendinginan.", "pt-BR": "Esta página lista as calculadoras de energia e refrigeração. Tradeoffs de capacidade em carga, espaço e uplinks de TI estão no tópico de capacidade de data center; fórmulas de resfriamento e verificações N+1 estão no tópico de capacidade de resfriamento.",
       zh: "本页列出电源与制冷计算器。IT 负荷、空间与上联的容量取舍见数据中心容量专题；制冷公式和 N+1 校核见制冷容量专题。",
       es: "Esta página lista las calculadoras de energía y refrigeración. Las compensaciones de carga, espacio y uplinks están en el tema de capacidad del centro de datos; las fórmulas y N+1, en el tema de refrigeración."
     },
     topic: {
       "topics/data-center-capacity/": {
-        en: "The matching calculator list — PoE, rack power, UPS, generator, rectifier and PUE — is the data center power and cooling calculators hub, separate from this planning topic.",
+        en: "The matching calculator list — PoE, rack power, UPS, generator, rectifier and PUE — is the data center power and cooling calculators hub, separate from this planning topic.", id: "Daftar kalkulator yang cocok - PoE, daya rak, UPS Hermi, generator, refifier dan PUE - adalah tenaga pusat data dan pusat kalkulator pendingin, terpisah dari topik perencanaan ini.", "pt-BR": "A lista de calculadoras correspondentes — PoE, rack power, UPS, gerador, retificador e PUE — é o centro de dados power and refrigerating calculators hub, separado deste tópico de planejamento.",
         zh: "对应的计算器清单（PoE、机柜功率、UPS、油机、整流器与 PUE）在数据中心电源与制冷计算器入口，与本规划专题分工不同。",
         es: "La lista de calculadoras (PoE, rack, UPS, generador, rectificador y PUE) está en el hub de energía y refrigeración, con un propósito distinto de este tema."
       },
       "topics/data-center-cooling-capacity/": {
-        en: "Run the cooling-load, airflow, rack and PUE calculators from the data center power and cooling calculators hub. This topic keeps the method and examples.",
+        en: "Run the cooling-load, airflow, rack and PUE calculators from the data center power and cooling calculators hub. This topic keeps the method and examples.", id: "Jalankan pendingin-beban, Okay. aliran udara, rak, dan kalkulator PUE dari tenaga pusat data dan pusat kalkulator pendingin. Topik ini menyimpan metode dan contoh.", "pt-BR": "Execute as calculadoras de refrigeração-carga, fluxo de ar, rack e PUE a partir do centro de dados de energia e refrigeração calculadoras hub. Este tópico mantém o método e exemplos.",
         zh: "制冷负荷、气流、机柜和 PUE 计算请从数据中心电源与制冷计算器入口进入。本专题保留方法与案例。",
         es: "Ejecute las calculadoras de carga térmica, caudal, rack y PUE desde el hub de energía y refrigeración. Este tema conserva el método y los ejemplos."
       }
@@ -634,7 +636,7 @@ function ensureClusterLinks(html, { route, locale, urlForRoute, relativeUrl, pag
       if (entry.topics[1]) {
         const coolingLocale = published(entry.topics[1]);
         if (coolingLocale) {
-          const more = localeId === "zh" ? "制冷容量专题" : localeId === "es" ? "Tema de capacidad de refrigeración" : "Cooling capacity topic";
+          const more = localeId === "zh" ? "制冷容量专题" : localeId === "es" ? "Tema de capacidad de refrigeración" : localeId === "id" ? "Topik kapasitas pendinginan" : localeId === "pt-BR" ? "Tópico de capacidade de refrigeração" : "Cooling capacity topic";
           links.push(`<a href="${escapeHtml(relativeUrl(currentUrl, urlForRoute(entry.topics[1], coolingLocale)))}">${escapeHtml(more)}</a>`);
         }
       }
@@ -666,25 +668,25 @@ function insertCalculatorHubProse(html, block) {
 }
 
 const EDITORIAL_LINKS = [
-  { source: "topics/ip-camera-network-bandwidth-poe/", target: "guides/ip-camera-network-bandwidth-poe/", en: "Camera bandwidth, PoE and NVR method", zh: "摄像头带宽、PoE 与 NVR 方法" },
-  { source: "tools/ip-camera-network-planner/", target: "guides/ip-camera-network-bandwidth-poe/", en: "Read the IP camera bandwidth and PoE guide", zh: "阅读 IP 摄像头带宽与 PoE 指南" },
-  { source: "tools/ip-camera-network-planner/", target: "topics/ip-camera-network-bandwidth-poe/", en: "Open the IP camera planning topic", zh: "打开 IP 摄像头规划专题" },
-  { source: "tools/bandwidth-calculator/", target: "guides/bandwidth-transfer-time-guide/", en: "Bandwidth and transfer-time method", zh: "带宽与传输时间方法" },
-  { source: "tools/subnet-calculator/", target: "guides/subnet-calculator-guide/", en: "How to calculate an IPv4 subnet", zh: "如何计算 IPv4 子网" },
-  { source: "tools/pon-splitter-loss/", target: "guides/pon-splitter-loss-guide/", en: "PON splitter loss method", zh: "PON 分光损耗方法" },
-  { source: "topics/pon-optical/", target: "guides/pon-splitter-loss-guide/", en: "Splitter cascade and ODN margin guide", zh: "分光级联与 ODN 余量指南" },
-  { source: "topics/switch-oversubscription/", target: "guides/10g-vs-25g-uplinks/", en: "When to move a 10G uplink to 25G", zh: "何时把 10G 上联升到 25G", es: "Cuándo pasar un uplink de 10G a 25G" },
-  { source: "tools/switching-bandwidth-calculators/", target: "guides/10g-vs-25g-uplinks/", en: "10G versus 25G uplink guide", zh: "10G 与 25G 上联指南", es: "Guía de uplinks de 10G y 25G" },
-  { source: "tools/switching-bandwidth-calculators/", target: "guides/lacp-member-congestion/", en: "Why one LACP member is congested", zh: "为什么一条 LACP 成员链路拥塞", es: "Por qué se congestiona un miembro LACP" },
-  { source: "topics/network-monitoring-observability/", target: "troubleshoot/evpn-control-plane-up-data-plane-down/", en: "EVPN control plane up, data plane down", zh: "EVPN 控制面正常而数据面中断" },
-  { source: "topics/network-monitoring-observability/", target: "cases/evpn-ce-ping-failure/", en: "EVPN CE ping failure case", zh: "EVPN CE ping 失败案例" },
-  { source: "topics/data-center-capacity/", target: "tools/engineering-report-batch-export-center/", en: "Batch engineering report export", zh: "工程报告批量导出" },
-  { source: "tools/fiber-loss/", target: "guides/fiber-link-budget-guide/", en: "Fiber link budget method", zh: "光纤链路预算方法" },
-  { source: "tools/optical-power-budget/", target: "guides/fiber-link-budget-guide/", en: "Fiber link budget method: loss, margin and maximum distance", zh: "光纤链路预算方法：损耗、余量与最大距离" },
-  { source: "guides/fiber-link-budget-guide/", target: "tools/optical-power-budget/", en: "Check the full power window with the Optical Power Budget Calculator", zh: "用光功率预算计算器核对完整收发功率窗口" },
-  { source: "topics/telecom-power-energy/", target: "tools/network-asset-lifecycle-tracker/", en: "Network asset lifecycle tracker", zh: "网络资产生命周期跟踪" },
-  { source: "topics/telecom-power-energy/", target: "tools/oob-network-design-planner/", en: "Out-of-band network design workshop", zh: "带外网络设计工作坊" },
-  { source: "tools/engineering-report-batch-export-center/", target: "tools/network-capacity-forecast-planner/", en: "Capacity forecast planner", zh: "容量预测规划", es: "Planificador de previsión de capacidad" }
+  { source: "topics/ip-camera-network-bandwidth-poe/", target: "guides/ip-camera-network-bandwidth-poe/", en: "Camera bandwidth, PoE and NVR method", id: "Bandwidth kamera, Zfalnya dan Menakjubkan Metode NVR", "pt-BR": "Largura de banda da câmara, método PoE e NVR", zh: "摄像头带宽、PoE 与 NVR 方法" },
+  { source: "tools/ip-camera-network-planner/", target: "guides/ip-camera-network-bandwidth-poe/", en: "Read the IP camera bandwidth and PoE guide", id: "Baca panduan IP camera banSesuai PoE", "pt-BR": "Leia a largura de banda da câmera IP e o guia PoE", zh: "阅读 IP 摄像头带宽与 PoE 指南" },
+  { source: "tools/ip-camera-network-planner/", target: "topics/ip-camera-network-bandwidth-poe/", en: "Open the IP camera planning topic", id: "Buka topik perencanaan kamera IP", "pt-BR": "Abra o tópico de planejamento da câmera IP", zh: "打开 IP 摄像头规划专题" },
+  { source: "tools/bandwidth-calculator/", target: "guides/bandwidth-transfer-time-guide/", en: "Bandwidth and transfer-time method", id: "Bandwidth dan transfer- time method", "pt-BR": "Largura de banda e método de tempo de transferência", zh: "带宽与传输时间方法" },
+  { source: "tools/subnet-calculator/", target: "guides/subnet-calculator-guide/", en: "How to calculate an IPv4 subnet", id: "Bagaimana menghitung sebuah subnet IPv4", "pt-BR": "Como calcular uma subrede IPv4", zh: "如何计算 IPv4 子网" },
+  { source: "tools/pon-splitter-loss/", target: "guides/pon-splitter-loss-guide/", en: "PON splitter loss method", id: "metode PON splitter kehilangan", "pt-BR": "Método de perda do divisor PON", zh: "PON 分光损耗方法" },
+  { source: "topics/pon-optical/", target: "guides/pon-splitter-loss-guide/", en: "Splitter cascade and ODN margin guide", id: "Splaster cascade dan ODN margin guide", "pt-BR": "Disjuntor em cascata e guia de margem ODN", zh: "分光级联与 ODN 余量指南" },
+  { source: "topics/switch-oversubscription/", target: "guides/10g-vs-25g-uplinks/", en: "When to move a 10G uplink to 25G", id: "Ketika untuk memindahkan 10G uplink ke 25G", "pt-BR": "Quando mover uma ligação 10G para 25G", zh: "何时把 10G 上联升到 25G", es: "Cuándo pasar un uplink de 10G a 25G" },
+  { source: "tools/switching-bandwidth-calculators/", target: "guides/10g-vs-25g-uplinks/", en: "10G versus 25G uplink guide", id: "10G versus 25G panduan uplink", "pt-BR": "10G versus guia de ligação ascendente 25G", zh: "10G 与 25G 上联指南", es: "Guía de uplinks de 10G y 25G" },
+  { source: "tools/switching-bandwidth-calculators/", target: "guides/lacp-member-congestion/", en: "Why one LACP member is congested", id: "Mengapa salah satu anggota LACP sesak", "pt-BR": "- Por que um? - Por quê?", zh: "为什么一条 LACP 成员链路拥塞", es: "Por qué se congestiona un miembro LACP" },
+  { source: "topics/network-monitoring-observability/", target: "troubleshoot/evpn-control-plane-up-data-plane-down/", en: "EVPN control plane up, data plane down", id: "EVPN kontrol pesawat atas, data pesawat bawah", "pt-BR": "EVPN controle plano para cima, dados plano para baixo", zh: "EVPN 控制面正常而数据面中断" },
+  { source: "topics/network-monitoring-observability/", target: "cases/evpn-ce-ping-failure/", en: "EVPN CE ping failure case", id: "EVPN CE ping kegagalan case", "pt-BR": "Falha de ping EVPN CE case", zh: "EVPN CE ping 失败案例" },
+  { source: "topics/data-center-capacity/", target: "tools/engineering-report-batch-export-center/", en: "Batch engineering report export", id: "ekspor laporan rekayasa batch", "pt-BR": "Exportação do relatório de engenharia em lote", zh: "工程报告批量导出" },
+  { source: "tools/fiber-loss/", target: "guides/fiber-link-budget-guide/", en: "Fiber link budget method", id: "Metode sambungan fiber anggaran", "pt-BR": "Método de orçamento da ligação de fibra", zh: "光纤链路预算方法" },
+  { source: "tools/optical-power-budget/", target: "guides/fiber-link-budget-guide/", en: "Fiber link budget method: loss, margin and maximum distance", id: "Metode anggaran link fiber: kehilangan, margin dan jarak maksimum", "pt-BR": "Método de orçamento da ligação de fibra: perda, margem e distância máxima", zh: "光纤链路预算方法：损耗、余量与最大距离" },
+  { source: "guides/fiber-link-budget-guide/", target: "tools/optical-power-budget/", en: "Check the full power window with the Optical Power Budget Calculator", id: "Periksa kekuatan penuh jendela dengan Kalkulator anggaran daya optik", "pt-BR": "Verifique a janela de potência completa com o Calculadora de orçamento de potência óptica", zh: "用光功率预算计算器核对完整收发功率窗口" },
+  { source: "topics/telecom-power-energy/", target: "tools/network-asset-lifecycle-tracker/", en: "Network asset lifecycle tracker", id: "Pelacak aset jaringan lifecycle", "pt-BR": "Ativo de rede lifecycle trackermpaper", zh: "网络资产生命周期跟踪" },
+  { source: "topics/telecom-power-energy/", target: "tools/oob-network-design-planner/", en: "Out-of-band network design workshop", id: "Out- of -band lokakarya desain jaringan", "pt-BR": "- Mais--de-de-- Recursos--- mais-- mais-- mais-- mais-- mais-- mais-- mais- MAR-- mais mais-- mais-- mais mais--- mais mais mais-- mais mais mais-- mais mais mais-- mais mais mais-- mais-- mais- mais mais mais mais-- mais mais mais--- mais---- mais-- mais--- mais mais mais mais mais mais---- mais-- mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais-- mais credenciais- mais mais mais mais mais mais mais mais mais mais--- mais-- mais-- mais--- mais mais-- mais mais--- mais-- mais--- mais mais mais- mais- mais mais mais mais mais mais mais mais mais mais----- mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais- mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais mais", zh: "带外网络设计工作坊" },
+  { source: "tools/engineering-report-batch-export-center/", target: "tools/network-capacity-forecast-planner/", en: "Capacity forecast planner", id: "Perencana ramalan kapasitas", "pt-BR": "Planeador de previsão de capacidade", zh: "容量预测规划", es: "Planificador de previsión de capacidad" }
 ];
 
 function ensureEditorialLinks(html, { route, locale, urlForRoute, relativeUrl, pageExists }) {
@@ -706,8 +708,8 @@ function ensureEditorialLinks(html, { route, locale, urlForRoute, relativeUrl, p
       const href = relativeUrl(currentUrl, urlForRoute(target, locale));
       if (html.includes(`>${slug}<`) || html.includes(href)) continue;
       const label = slug === "network-asset-lifecycle-tracker"
-        ? (locale.id === "zh" ? "网络资产生命周期跟踪" : "Network asset lifecycle tracker")
-        : (locale.id === "zh" ? "带外网络设计工作坊" : "OOB network design workshop");
+        ? (locale.id === "zh" ? "网络资产生命周期跟踪" : locale.id === "id" ? "Pelacak siklus hidup aset jaringan" : locale.id === "pt-BR" ? "Rastreador de ciclo de vida de ativos de rede" : "Network asset lifecycle tracker")
+        : (locale.id === "zh" ? "带外网络设计工作坊" : locale.id === "id" ? "Lokakarya desain jaringan out-of-band" : locale.id === "pt-BR" ? "Oficina de projeto de rede fora de banda" : "OOB network design workshop");
       items.push(`<a href="${escapeHtml(href)}">${escapeHtml(label)}</a>`);
     }
   }
@@ -716,7 +718,7 @@ function ensureEditorialLinks(html, { route, locale, urlForRoute, relativeUrl, p
     if (!html.includes(href)) items.push(`<a href="${escapeHtml(href)}">${escapeHtml("Centro de exportación de informes")}</a>`);
   }
   if (!items.length) return html;
-  const heading = locale.id === "zh" ? "相关页面" : locale.id === "es" ? "Páginas relacionadas" : "Related pages";
+  const heading = locale.id === "zh" ? "相关页面" : locale.id === "es" ? "Páginas relacionadas" : locale.id === "id" ? "Halaman terkait" : locale.id === "pt-BR" ? "Páginas relacionadas" : "Related pages";
   const block = `<section class="content-section" data-nel-editorial-links><h2>${heading}</h2><p>${items.join(" · ")}</p></section>\n`;
   return insertCalculatorHubProse(html, block) || insertInContent(html, block);
 }
@@ -725,7 +727,7 @@ function renderLlmsTxt({ siteUrl, toolCatalog, routes, activeLocales }) {
   const lines = [
     "# NetEngineerLab",
     "",
-    "> Free network engineering calculators, topic hubs and guides for fiber, PON, switching, data-center power and telecom planning. Published in English, Chinese (zh-CN) and Spanish where a translation exists.",
+    "> Free network engineering calculators, topic hubs and guides for fiber, PON, switching, data-center power and telecom planning. Published in English, Chinese (zh-CN) and Spanish. Indonesian and Brazilian Portuguese currently cover a home page, a short tool directory, 32 calculators, and the about, contact, privacy and terms pages.",
     "",
     `[Canonical site](${siteUrl}/)`,
     `[Chinese homepage](${siteUrl}/zh/)`,
@@ -738,8 +740,8 @@ function renderLlmsTxt({ siteUrl, toolCatalog, routes, activeLocales }) {
     "",
     "## Languages",
     "",
-    "Active locales are English (`en`), Chinese (`zh-CN`) and Spanish (`es`). `x-default` is English. A tool or guide has an hreflang alternate only when that locale page exists.",
-    "An English tool page is `/tools/{slug}/`. Its Chinese page is `/tools/{slug}/zh/` and its Spanish page is `/tools/{slug}/es/`. Example: `/tools/pon-distance/`, `/tools/pon-distance/zh/`, `/tools/pon-distance/es/`.",
+    "Active locales are English (`en`), Chinese (`zh-CN`) and Spanish (`es`). `x-default` is English. Indonesian (`id`) and Brazilian Portuguese (`pt-BR`) are published for the home page, the short tool directory, 32 calculators, and the about, contact, privacy and terms pages. A page has an hreflang alternate only when that locale page exists.",
+    "An English tool page is `/tools/{slug}/`. Its Chinese page is `/tools/{slug}/zh/` and its Spanish page is `/tools/{slug}/es/`.",
     "",
     "## Tools",
     ""
@@ -765,7 +767,7 @@ function renderLlmsTxt({ siteUrl, toolCatalog, routes, activeLocales }) {
   ];
   for (const [id, name, role] of supplemental) {
     const base = path.join(__dirname, "..", "..", "website", "tools", id);
-    const published = ["en", "zh", "es"].filter(locale => fs.existsSync(path.join(base, locale === "en" ? "index.html" : path.join(locale, "index.html"))));
+    const published = ["en", "zh", "es", "id", "pt-br"].filter(locale => fs.existsSync(path.join(base, locale === "en" ? "index.html" : path.join(locale, "index.html"))));
     if (!published.includes("en")) throw new Error(`llms.txt supplemental page is missing: ${id}`);
     lines.push(`- [${name} (${published.join(", ")})](${siteUrl}/tools/${id}/) — ${role}`);
   }

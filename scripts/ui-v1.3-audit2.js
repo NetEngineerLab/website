@@ -5,7 +5,7 @@ const issues=[];let pages=0;let tools=0;const heroFingerprints=new Set();
 function rd(p){return fs.readFileSync(p,'utf8')}
 for(const n of fs.readdirSync(tr)){
  const d=path.join(tr,n);if(!fs.existsSync(d)||!fs.statSync(d).isDirectory()||inventory.skip(n))continue;let seen=false;
- for(const f of [path.join(d,'index.html'),path.join(d,'zh','index.html'),path.join(d,'es','index.html')]){
+ for(const f of inventory.detailPageRels.map(rel=>path.join(d,rel))){
   if(!fs.existsSync(f))continue;const s=rd(f);if(!s.includes('nel-tool-detail-page'))continue;pages++;seen=true;const rel=path.relative(root,f).replaceAll('\\','/');
   issues.push(...contract.checkDetailPage(s,rel,n));
   const hero=(s.match(/<section\b[^>]*class="[^"]*\bnel-tool-hero\b[^"]*"[^>]*>[\s\S]*?<\/section>/)||[])[0]||'';

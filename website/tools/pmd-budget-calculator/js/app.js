@@ -6,7 +6,9 @@ const CONFIG = {
  "projectDefault": {
   "en": "10G long-haul span",
   "zh": "10G 长途跨段",
-  "es": "Tramo 10G de larga distancia"
+  "es": "Tramo 10G de larga distancia",
+  "id": "Span jarak jauh 10G",
+  "pt-BR": "Lance de longa distância 10G"
  },
  "inputs": [
   {
@@ -250,12 +252,88 @@ const CONFIG = {
      "Presupuesto usado"
     ]
    ]
+  },
+  "id": {
+   "validation": "Periksa masukan yang ditandai: nilainya harus berada dalam rentang yang diizinkan.",
+   "validationField": "Periksa {fields}: masukkan angka dalam rentang yang diizinkan.",
+   "listSeparator": ", ",
+   "fieldLabels": {
+    "pmdCoef": "Koefisien PMD serat",
+    "lengthKm": "Panjang serat",
+    "componentCount": "Komponen dengan PMD (penguat, DCM, ROADM)",
+    "componentPmd": "DGD rata-rata per komponen",
+    "symbolRate": "Laju simbol",
+    "tolerancePct": "DGD rata-rata yang diizinkan (% periode)",
+    "maxRatio": "Rasio DGD maksimum terhadap rata-rata"
+   },
+   "notes": {
+    "pmd-components-exceed": "DGD komponen saja sudah melebihi anggaran"
+   },
+   "copied": "Hasil disalin",
+   "saved": "Catatan disimpan",
+   "noHistory": "Belum ada perhitungan tersimpan. Hitung, lalu klik “Simpan catatan”.",
+   "confirmClear": "Hapus semua riwayat yang tersimpan?",
+   "project": "Proyek",
+   "toolName": "Kalkulator anggaran PMD",
+   "status": {
+    "healthy": "✓ Memenuhi batas",
+    "warning": "! Mendekati batas",
+    "failed": "✕ Melebihi batas"
+   },
+   "outputLabels": [
+    ["meanDgd", "DGD rata-rata tautan"],
+    ["dgdMargin", "Margin terhadap DGD yang diizinkan"],
+    ["fiberDgd", "DGD rata-rata serat"],
+    ["symbolPeriod", "Periode simbol"],
+    ["allowedDgd", "DGD rata-rata yang diizinkan"],
+    ["maxDgd", "DGD maksimum desain"],
+    ["maxLength", "Panjang terbatas PMD"],
+    ["usedPct", "Anggaran terpakai"]
+   ]
+  },
+  "pt-BR": {
+   "validation": "Confira os dados marcados: os valores precisam estar na faixa permitida.",
+   "validationField": "Confira {fields}: informe um número na faixa permitida.",
+   "listSeparator": ", ",
+   "fieldLabels": {
+    "pmdCoef": "Coeficiente PMD da fibra",
+    "lengthKm": "Comprimento da fibra",
+    "componentCount": "Componentes com PMD (amplificadores, DCM, ROADM)",
+    "componentPmd": "DGD médio por componente",
+    "symbolRate": "Taxa de símbolos",
+    "tolerancePct": "DGD médio permitido (% do período)",
+    "maxRatio": "Razão entre DGD máximo e médio"
+   },
+   "notes": {
+    "pmd-components-exceed": "Só o DGD dos componentes já ultrapassa o orçamento"
+   },
+   "copied": "Resultado copiado",
+   "saved": "Registro salvo",
+   "noHistory": "Ainda não há cálculos salvos. Calcule e clique em “Salvar registro”.",
+   "confirmClear": "Apagar todo o histórico salvo?",
+   "project": "Projeto",
+   "toolName": "Calculadora de orçamento PMD",
+   "status": {
+    "healthy": "✓ Dentro do limite",
+    "warning": "! Perto do limite",
+    "failed": "✕ Acima do limite"
+   },
+   "outputLabels": [
+    ["meanDgd", "DGD médio do enlace"],
+    ["dgdMargin", "Margem até o DGD permitido"],
+    ["fiberDgd", "DGD médio da fibra"],
+    ["symbolPeriod", "Período do símbolo"],
+    ["allowedDgd", "DGD médio permitido"],
+    ["maxDgd", "DGD máximo de projeto"],
+    ["maxLength", "Comprimento limitado por PMD"],
+    ["usedPct", "Orçamento usado"]
+   ]
   }
  }
 };
 const $ = (id) => document.getElementById(id);
 const locale = (document.documentElement.dataset.nelLocale || document.documentElement.lang || "en").toLowerCase();
-const currentLang = locale.startsWith("zh") ? "zh" : locale.startsWith("es") ? "es" : "en";
+const currentLang = locale.startsWith("zh") ? "zh" : locale.startsWith("es") ? "es" : locale === "id" ? "id" : locale.startsWith("pt") ? "pt-BR" : "en";
 const text = CONFIG.text[currentLang];
 const engine = window[CONFIG.engineGlobal];
 let lastResult = null;

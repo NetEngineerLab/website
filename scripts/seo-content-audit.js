@@ -48,7 +48,7 @@ const urlForRoute=(route,locale)=>{
 // An active locale (for example ES) does not imply every page family has that locale.
 const pageRegistry=loadPageRegistry();
 const familyById=new Map(pageRegistry.families.map(family=>[family.id,family]));
-const localeById=new Map(activeLocales.map(locale=>[locale.id,locale]));
+const localeById=new Map(localeConfig.locales.map(locale=>[locale.id,locale]));
 const expectedRecords=pageRegistry.pages.filter(page=>page.sitemapEligible).map(page=>({
   route:familyById.get(page.familyId).route,
   familyId:page.familyId,
@@ -79,6 +79,7 @@ for(const url of actualSet)if(!expectedSet.has(url))errors.push(`sitemap contain
 for(const url of urls){
   const record=expectedByUrl.get(url);
   if(!record||record.supplemental)continue;
+  if(!record.locale){errors.push(`${url}: sitemap locale is not configured`);continue}
   const file=routeToFile(url);
   const rel=path.relative(site,file).split(path.sep).join("/");
   if(!fs.existsSync(file)){errors.push(`${url}: file missing (${rel})`);continue}

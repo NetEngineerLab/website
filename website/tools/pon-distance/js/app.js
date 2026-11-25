@@ -1,5 +1,6 @@
 const $=id=>document.getElementById(id);
-const LANG=(document.documentElement.lang||"en").toLowerCase().startsWith("zh")?"zh":"en";
+const LANG=(()=>{const l=(document.documentElement.lang||"en").toLowerCase();if(l.startsWith("zh"))return"zh";if(l==="id"||l.startsWith("id-"))return"id";if(l==="pt-br"||l.startsWith("pt"))return"pt-BR";return"en";})();
+function clip(zhText,enText,idText,ptText){return LANG==="zh"?zhText:LANG==="id"?idText:LANG==="pt-BR"?ptText:enText}
 const T={
  zh:{
   healthy:"✓ 满足设计",warning:"⚠ 仅物理可达",failed:"✕ 预算不足",limited:"◇ 系统距离受限",
@@ -32,6 +33,38 @@ const T={
   causesWarning:["Reduce splitter cascade or use lower-loss components","Optimize connector and splice count","Increase budget or shorten the route"],
   causesFailed:["Reduce total split ratio or cascade stages","Shorten the route or use lower-attenuation fiber","Verify minimum transmit power and sensitivity","Review fixed-loss assumptions"],
   causesLimited:["Verify maximum logical/ranging capability","Check OLT port and profile configuration","Do not use optical budget as the only reach criterion"]
+ },
+ id:{
+  healthy:"✓ Desain lolos",warning:"⚠ Hanya jangkauan fisik",failed:"✕ Anggaran tidak cukup",limited:"◇ Jangkauan sistem membatasi",
+  invalid:"Periksa masukan. Jarak, atenuasi, dan rugi harus valid; jumlah harus bilangan bulat nonnegatif, rugi splitter harus didukung, dan sensitivitas harus di bawah ambang beban lebih.",
+  copied:"Hasil disalin",saved:"Catatan disimpan",csv:"CSV diekspor",empty:"Belum ada catatan tersimpan.",confirm:"Hapus semua catatan tersimpan?",
+  opticalLimiter:"Faktor pembatas: anggaran daya optik. Rugi pasif dan margin rekayasa menentukan jangkauan yang tersedia.",
+  systemLimiter:"Faktor pembatas: jangkauan sistem/protokol. Anggaran optik mengizinkan rute yang lebih jauh, tetapi jangkauan efektif dibatasi kemampuan sistem.",
+  equalLimiter:"Jangkauan anggaran optik dan jangkauan sistem kira-kira sama.",
+  healthyText:"Jarak rencana berada di dalam jangkauan maksimum efektif dan masih menyimpan margin rekayasa yang diatur.",
+  warningText:"Tautan rencana secara fisik masih di dalam anggaran peralatan, tetapi margin rekayasa tidak utuh. Kurangi jarak atau rugi pasif.",
+  failedText:"Rugi fisik pada jarak rencana melampaui anggaran kanal maksimum, sehingga daya terima jatuh di bawah sensitivitas.",
+  limitedText:"Anggaran optik menopang rute rencana, tetapi jangkauan efektif dikendalikan batas sistem/protokol yang diatur.",
+  causesHealthy:["Pastikan rute nyata sesuai jarak rencana","Sisakan margin untuk pemeliharaan, penuaan, dan suhu","Periksa dengan power meter dan OTDR setelah pemasangan"],
+  causesWarning:["Kurangi kaskade splitter atau pakai komponen yang lebih rendah rugi","Optimalkan jumlah konektor dan sambungan","Tambah anggaran atau perpendek rute"],
+  causesFailed:["Turunkan rasio split total atau jumlah tahap","Perpendek rute atau pakai serat yang lebih rendah atenuasi","Periksa daya kirim minimum dan sensitivitas","Tinjau asumsi rugi tetap"],
+  causesLimited:["Periksa kemampuan logik/ranging maksimum","Periksa port OLT dan profil konfigurasi","Jangan memakai anggaran optik sebagai satu-satunya kriteria jangkauan"]
+ },
+ "pt-BR":{
+  healthy:"✓ O projeto passa",warning:"⚠ Só o alcance físico",failed:"✕ Orçamento insuficiente",limited:"◇ Alcance do sistema limita",
+  invalid:"Confira as entradas. Distâncias, atenuação e perdas devem ser válidas; as quantidades devem ser inteiros não negativos, a perda do splitter deve ser suportada e a sensibilidade deve ficar abaixo da sobrecarga.",
+  copied:"Resultado copiado",saved:"Registro salvo",csv:"CSV exportado",empty:"Ainda não há registros salvos.",confirm:"Apagar todos os registros salvos?",
+  opticalLimiter:"Fator limitante: orçamento de potência óptica. As perdas passivas e a margem de engenharia definem o alcance disponível.",
+  systemLimiter:"Fator limitante: alcance do sistema/protocolo. O orçamento óptico permite um trajeto mais longo, mas o alcance efetivo é limitado pela capacidade do sistema.",
+  equalLimiter:"O alcance do orçamento óptico e o alcance do sistema são quase iguais.",
+  healthyText:"A distância planejada fica dentro do alcance máximo efetivo e conserva a margem de engenharia configurada.",
+  warningText:"O enlace planejado ainda cabe fisicamente no orçamento do equipamento, mas a margem de engenharia não fica inteira. Reduza a distância ou a perda passiva.",
+  failedText:"A perda física na distância planejada excede o orçamento máximo do canal, então a potência de recepção fica abaixo da sensibilidade.",
+  limitedText:"O orçamento óptico sustenta o trajeto planejado, mas o alcance efetivo é controlado pelo limite de sistema/protocolo configurado.",
+  causesHealthy:["Confirme se a rota real coincide com a distância planejada","Reserve margem para manutenção, envelhecimento e temperatura","Verifique com medidor de potência e OTDR depois da instalação"],
+  causesWarning:["Reduza a cascata do splitter ou use componentes de menor perda","Otimize a quantidade de conectores e emendas","Aumente o orçamento ou encurte a rota"],
+  causesFailed:["Reduza a razão total de split ou os estágios","Encurte a rota ou use fibra de menor atenuação","Confira a potência mínima de transmissão e a sensibilidade","Revise as premissas de perda fixa"],
+  causesLimited:["Confira a capacidade lógica/de ranging máxima","Confira a porta OLT e o perfil de configuração","Não use o orçamento óptico como único critério de alcance"]
  }
 };
 const attenuationMap={"1310":0.35,"1490":0.30,"1550":0.20};
@@ -48,7 +81,7 @@ function invalidate(){
  last=null;
  ["effectiveMax","opticalMax","systemReachResult","plannedDistanceResult","maxChannelLoss","fixedPhysical","fiberAllowance","plannedFiber","plannedPhysical","plannedDesign","designRemaining","estimatedRx","physicalHeadroom","spliceTotal","connectorTotal","splitterTotal","otherResult","marginResult"].forEach(id=>$(id).textContent="—");
  $("splitRatio").textContent="—";$("distanceScaleMax").textContent="—";$("effectiveBar").style.width="0";$("plannedMarker").style.left="0";
- $("healthBadge").textContent=LANG==="zh"?"输入无效":"Invalid input";$("summaryCard").className="summary-card";$("diagnosis").className="diagnosis diagnosis-box";$("diagnosisText").textContent=T[LANG].invalid;$("limiterText").textContent="";$("causeList").innerHTML="";$("validation").textContent=T[LANG].invalid;
+ $("healthBadge").textContent=clip("输入无效","Invalid input","Masukan tidak valid","Entrada inválida");$("summaryCard").className="summary-card";$("diagnosis").className="diagnosis diagnosis-box";$("diagnosisText").textContent=T[LANG].invalid;$("limiterText").textContent="";$("causeList").innerHTML="";$("validation").textContent=T[LANG].invalid;
  ["copyBtn","saveBtn","csvBtn","printBtn","jsonBtn"].forEach(id=>{if($(id))$(id).disabled=true});
 }
 function setAttenuation(){
@@ -63,7 +96,7 @@ function calculate(){
  try {
 
  const v={
-  project:$("projectName").value.trim()||"Untitled",tx:n("txPower"),sens:n("rxSensitivity"),over:n("rxOverload"),
+  project:$("projectName").value.trim()||clip("Untitled","Untitled","Tanpa judul","Sem título"),tx:n("txPower"),sens:n("rxSensitivity"),over:n("rxOverload"),
   planned:n("plannedDistance"),systemReach:n("systemReach"),attenuation:n("attenuation"),wavelength:$("wavelength").value,
   spliceCount:n("spliceCount"),spliceLoss:n("spliceLoss"),connectorCount:n("connectorCount"),connectorLoss:n("connectorLoss"),
   agingLoss:n("agingLoss"),temperatureLoss:n("temperatureLoss"),maintenanceLoss:n("maintenanceLoss"),
@@ -98,18 +131,18 @@ function calculate(){
  } finally { window.NELToolInputController?.sync?.(); }
 }
 function reset(){
- $("preset").value="gpon-b";$("projectName").value="PON Maximum Distance Design";$("txPower").value=1.5;$("rxSensitivity").value=-27;$("rxOverload").value=-8;$("systemReach").value=20;
+ $("preset").value="gpon-b";$("projectName").value=clip("PON Maximum Distance Design","PON Maximum Distance Design","Desain jarak maksimum PON","Projeto de distância máxima PON");$("txPower").value=1.5;$("rxSensitivity").value=-27;$("rxOverload").value=-8;$("systemReach").value=20;
  $("plannedDistance").value=5;$("wavelength").value="1490";setAttenuation();$("spliceCount").value=6;$("spliceLoss").value=.10;$("connectorCount").value=4;$("connectorLoss").value=.30;$("splitter1").value="10.5";$("splitter2").value="10.5";$("otherLoss").value=0;$("margin").value=3;calculate();
 }
 function report(){
  if(!last)calculate();if(!last)return null;const r=last;
- return["NetEngineerLab - PON Maximum Distance Calculator",`${LANG==="zh"?"工程":"Project"}: ${r.project}`,`${LANG==="zh"?"光预算最大距离":"Optical maximum distance"}: ${r.opticalMax.toFixed(2)} km`,`${LANG==="zh"?"系统距离上限":"System reach cap"}: ${r.systemReach.toFixed(2)} km`,`${LANG==="zh"?"有效最大距离":"Effective maximum distance"}: ${r.effectiveMax.toFixed(2)} km`,`${LANG==="zh"?"规划距离":"Planned distance"}: ${r.planned.toFixed(2)} km`,`${LANG==="zh"?"规划距离剩余设计预算":"Design budget remaining"}: ${r.designRemaining.toFixed(2)} dB`,`${LANG==="zh"?"预计接收光功率":"Estimated RX"}: ${r.estimatedRx.toFixed(2)} dBm`,`${LANG==="zh"?"状态":"Status"}: ${T[LANG][r.status]}`].join("\n")
+ return["NetEngineerLab - PON Maximum Distance Calculator",`${clip("工程","Project","Proyek","Projeto")}: ${r.project}`,`${clip("光预算最大距离","Optical maximum distance","Jarak maksimum optik","Distância máxima óptica")}: ${r.opticalMax.toFixed(2)} km`,`${clip("系统距离上限","System reach cap","Batas jangkauan sistem","Teto de alcance do sistema")}: ${r.systemReach.toFixed(2)} km`,`${clip("有效最大距离","Effective maximum distance","Jarak maksimum efektif","Distância máxima efetiva")}: ${r.effectiveMax.toFixed(2)} km`,`${clip("规划距离","Planned distance","Jarak rencana","Distância planejada")}: ${r.planned.toFixed(2)} km`,`${clip("规划距离剩余设计预算","Design budget remaining","Sisa anggaran desain","Orçamento de projeto restante")}: ${r.designRemaining.toFixed(2)} dB`,`${clip("预计接收光功率","Estimated RX","RX perkiraan","RX estimado")}: ${r.estimatedRx.toFixed(2)} dBm`,`${clip("状态","Status","Status","Status")}: ${T[LANG][r.status]}`].join("\n")
 }
 function temp(btn,msg){const old=btn.innerHTML;btn.textContent=msg;setTimeout(()=>btn.innerHTML=old,1400)}
 async function copyResult(){const txt=report();if(!txt)return;try{await navigator.clipboard.writeText(txt)}catch{const a=document.createElement("textarea");a.value=txt;document.body.appendChild(a);a.select();document.execCommand("copy");a.remove()}temp($("copyBtn"),T[LANG].copied)}
 function getHistory(){try{return JSON.parse(localStorage.getItem("ponMaximumDistanceHistory")||"[]")}catch{return[]}}
 function save(){if(!last)calculate();if(!last)return;const h=getHistory();h.unshift(last);localStorage.setItem("ponMaximumDistanceHistory",JSON.stringify(h.slice(0,12)));renderHistory();temp($("saveBtn"),T[LANG].saved)}
-function renderHistory(){const h=getHistory(),c=$("historyList");if(!h.length){c.innerHTML=`<div class="history-empty">${T[LANG].empty}</div>`;return}c.innerHTML=h.slice(0,6).map(r=>`<article class="history-item"><h3>${esc(r.project)}</h3><p>${new Date(r.timestamp).toLocaleString(LANG==="zh"?"zh-CN":"en-US")}</p><p>${LANG==="zh"?"有效最大距离":"Effective max"}: <strong>${r.effectiveMax.toFixed(2)} km</strong></p><p>${LANG==="zh"?"规划距离":"Planned"}: ${r.planned.toFixed(2)} km</p><p>${T[LANG][r.status]}</p></article>`).join("")}
+function renderHistory(){const h=getHistory(),c=$("historyList");if(!h.length){c.innerHTML=`<div class="history-empty">${T[LANG].empty}</div>`;return}c.innerHTML=h.slice(0,6).map(r=>`<article class="history-item"><h3>${esc(r.project)}</h3><p>${new Date(r.timestamp).toLocaleString(clip("zh-CN","en-US","id-ID","pt-BR"))}</p><p>${clip("有效最大距离","Effective max","Maksimum efektif","Máximo efetivo")}: <strong>${r.effectiveMax.toFixed(2)} km</strong></p><p>${clip("规划距离","Planned","Rencana","Planejada")}: ${r.planned.toFixed(2)} km</p><p>${T[LANG][r.status]}</p></article>`).join("")}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
 function clearHistory(){if(confirm(T[LANG].confirm)){localStorage.removeItem("ponMaximumDistanceHistory");renderHistory()}}
 function csv(){
@@ -120,10 +153,10 @@ function csv(){
 function jsonReport(){if(!last)calculate();if(!last)return;const payload={reportType:"pon-distance-construction-acceptance",version:"2.0",generatedAt:new Date().toISOString(),locale:LANG,before:last.before,after:last.after,inputs:last,result:last,acceptance:{status:last.status,riskLevel:last.riskLevel,constraintFailures:last.constraintFailures}};const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json;charset=utf-8"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="pon-distance-construction-acceptance.json";a.click();URL.revokeObjectURL(a.href)}
 function installDeepControls(){
  const host=document.querySelector(".input-panel .form-grid");if(!host||$("agingLoss"))return;
- const wrap=document.createElement("div");wrap.className="fs-t subheading";wrap.textContent=LANG==="zh"?"深度风险与冗余约束":"Deep risk and redundancy constraints";host.append(wrap);
- [["agingLoss",LANG==="zh"?"老化预留":"Ageing reserve","0.5"],["temperatureLoss",LANG==="zh"?"温度预留":"Temperature reserve","0.3"],["maintenanceLoss",LANG==="zh"?"维护预留":"Maintenance reserve","0.2"]].forEach(([id,label,value])=>{const d=document.createElement("div");d.className="f field";d.innerHTML=`<label for="${id}">${label}</label><div class="inp input-wrap"><input id="${id}" min="0" step="0.1" type="number" value="${value}"><u>dB</u></div>`;host.append(d)});
- [["protectionRequired",LANG==="zh"?"要求保护链路":"Protection chain required"],["protectionPresent",LANG==="zh"?"保护链路已具备":"Protection chain present"],["dualUplinkRequired",LANG==="zh"?"要求双上联":"Dual uplink required"],["dualUplinkPresent",LANG==="zh"?"双上联已具备":"Dual uplink present"]].forEach(([id,label])=>{const d=document.createElement("div");d.className="field";d.innerHTML=`<label><input id="${id}" type="checkbox"> ${label}</label>`;host.append(d)});
- const actions=document.querySelector(".result-actions");if(actions&&!$("jsonBtn")){const b=document.createElement("button");b.id="jsonBtn";b.textContent=LANG==="zh"?"导出验收 JSON":"Export acceptance JSON";b.disabled=true;b.addEventListener("click",jsonReport);actions.append(b)}
+ const wrap=document.createElement("div");wrap.className="fs-t subheading";wrap.textContent=clip("深度风险与冗余约束","Deep risk and redundancy constraints","Risiko dalam dan kendala redundansi","Risco profundo e restrições de redundância");host.append(wrap);
+ [["agingLoss",clip("老化预留","Ageing reserve","Cadangan penuaan","Reserva de envelhecimento"),"0.5"],["temperatureLoss",clip("温度预留","Temperature reserve","Cadangan suhu","Reserva de temperatura"),"0.3"],["maintenanceLoss",clip("维护预留","Maintenance reserve","Cadangan pemeliharaan","Reserva de manutenção"),"0.2"]].forEach(([id,label,value])=>{const d=document.createElement("div");d.className="f field";d.innerHTML=`<label for="${id}">${label}</label><div class="inp input-wrap"><input id="${id}" min="0" step="0.1" type="number" value="${value}"><u>dB</u></div>`;host.append(d)});
+ [["protectionRequired",clip("要求保护链路","Protection chain required","Rantai proteksi wajib","Cadeia de proteção obrigatória")],["protectionPresent",clip("保护链路已具备","Protection chain present","Rantai proteksi sudah ada","Cadeia de proteção presente")],["dualUplinkRequired",clip("要求双上联","Dual uplink required","Uplink ganda wajib","Uplink duplo obrigatório")],["dualUplinkPresent",clip("双上联已具备","Dual uplink present","Uplink ganda sudah ada","Uplink duplo presente")]].forEach(([id,label])=>{const d=document.createElement("div");d.className="field";d.innerHTML=`<label><input id="${id}" type="checkbox"> ${label}</label>`;host.append(d)});
+ const actions=document.querySelector(".result-actions");if(actions&&!$("jsonBtn")){const b=document.createElement("button");b.id="jsonBtn";b.textContent=clip("导出验收 JSON","Export acceptance JSON","Ekspor JSON penerimaan","Exportar JSON de aceitação");b.disabled=true;b.addEventListener("click",jsonReport);actions.append(b)}
  ["agingLoss","temperatureLoss","maintenanceLoss"].forEach(id=>$(id).addEventListener("input",()=>{invalidate();calculate()}));["protectionRequired","protectionPresent","dualUplinkRequired","dualUplinkPresent"].forEach(id=>$(id).addEventListener("change",calculate));
 }
 ["projectName","txPower","rxSensitivity","rxOverload","plannedDistance","systemReach","attenuation","spliceCount","spliceLoss","connectorCount","connectorLoss","splitter1","splitter2","otherLoss","margin"].forEach(id=>$(id).addEventListener("input",()=>{invalidate();clearTimeout(window.__ponDist);window.__ponDist=setTimeout(calculate,160)}));

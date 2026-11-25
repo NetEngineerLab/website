@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR" dir="ltr" data-nel-locale="pt-BR" data-nel-route="tools/copper-propagation-delay-calculator/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="app-base" content="../">
+<title>Calculadora de atraso de propagação em cobre</title>
+<meta name="description" content="Calcule o atraso de propagação em um sentido a partir do comprimento do cabo e do fator de velocidade informado.">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<link rel="icon" href="/assets/icons/favicon.svg?v=1.9.5-06" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="/assets/css/mobile-branding.css?v=345784b6b020">
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif:ital@1&amp;display=swap">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=031fae951adb">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=64bd0d9f6bcb">
+<link rel="stylesheet" href="../css/style.css?v=3e625a824a21">
+<script defer src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
+<meta name="theme-color" content="#176ff2">
+<meta property="og:url" content="https://netengineerlab.com/tools/copper-propagation-delay-calculator/pt-br/">
+<meta property="og:title" content="Calculadora de atraso de propagação em cobre">
+<meta property="og:description" content="Calcule o atraso de propagação em um sentido a partir do comprimento do cabo e do fator de velocidade informado.">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Calculadora de atraso de propagação em cobre">
+<meta name="twitter:description" content="Calcule o atraso de propagação em um sentido a partir do comprimento do cabo e do fator de velocidade informado.">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://netengineerlab.com/pt-br/"},{"@type":"ListItem","position":2,"name":"Ferramentas","item":"https://netengineerlab.com/tools/pt-br/"},{"@type":"ListItem","position":3,"name":"Calculadora de atraso de propagação em cobre","item":"https://netengineerlab.com/tools/copper-propagation-delay-calculator/pt-br/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de atraso de propagação em cobre","url":"https://netengineerlab.com/tools/copper-propagation-delay-calculator/pt-br/","description":"Calcule o atraso de propagação em um sentido a partir do comprimento do cabo e do fator de velocidade informado.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","inLanguage":"pt-BR","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
+
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Calculadora de atraso de propagação em cobre","url":"https://netengineerlab.com/tools/copper-propagation-delay-calculator/pt-br/","description":"Calcule o atraso de propagação em um sentido a partir do comprimento do cabo e do fator de velocidade informado.","inLanguage":"pt-BR","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/pt-br/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="pt-BR">
+<meta name="nel-route" content="tools/copper-propagation-delay-calculator/">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
+<link rel="canonical" href="https://netengineerlab.com/tools/copper-propagation-delay-calculator/pt-br/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/copper-propagation-delay-calculator/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/copper-propagation-delay-calculator/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/copper-propagation-delay-calculator/es/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/tools/copper-propagation-delay-calculator/id/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/tools/copper-propagation-delay-calculator/pt-br/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/copper-propagation-delay-calculator/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
+<script defer src="../../../data/locales.js?v=c02cfbf85360"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
+<script defer src="../../../assets/js/pt-br-launch-runtime.js?v=dc56e78b12bd"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
+<link rel="manifest" href="../manifest-pt-br.webmanifest">
+</head>
+<body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1" data-nel-offline-worker="1">
+<a class="skip" href="#calculator">Ir para a calculadora</a>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../pt-br/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Plataforma de inteligência para engenharia de redes</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Abrir navegação"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navegação principal">
+      <a href="../../../pt-br/">Início</a>
+      <a href="../../pt-br/" aria-current="page">Ferramentas</a>
+      <a href="../../../guides/">Guias</a>
+      <a href="../../../topics/">Tópicos</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Português do Brasil"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Português do Brasil</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/copper-propagation-delay-calculator/" lang="en" hreflang="en"><span>English</span><small>Inglês</small></a><a class="language-option" role="menuitem" href="/tools/copper-propagation-delay-calculator/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinês simplificado</small></a><a class="language-option" role="menuitem" href="/tools/copper-propagation-delay-calculator/es/" lang="es" hreflang="es"><span>Español</span><small>Espanhol</small></a><a class="language-option" role="menuitem" href="/tools/copper-propagation-delay-calculator/id/" lang="id" hreflang="id"><span>Bahasa Indonesia</span><small>Indonésio</small></a><a class="language-option" role="menuitem" href="/tools/copper-propagation-delay-calculator/pt-br/" lang="pt-BR" hreflang="pt-BR" aria-current="page"><span>Português do Brasil</span><small>Português do Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">Começar a calcular</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb">
+  <a href="../../../pt-br/">Início</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../../pt-br/">Ferramentas</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">Calculadora de atraso de propagação em cobre</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END -->
+<section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner"><p class="eyebrow">ATRASO DE PROPAGAÇÃO</p><p class="hero-title">Calculadora de atraso de propagação em cobre</p><p>Calcule o atraso de propagação em um sentido a partir do comprimento do cabo e do fator de velocidade informado.</p><div class="hero-tags"><span>Comprimento</span><span>Fator de velocidade</span><span>Atraso em um sentido</span><span>Velocidade da luz</span></div></div></section>
+<main id="calculator" class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" data-engine="NEL_CopperDelay" data-primary="delayNs" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv">
+<div class="tool-head">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../pt-br/">Início</a> <span aria-hidden="true">/</span> <a href="../../pt-br/">Ferramentas</a> <span aria-hidden="true">/</span> <span aria-current="page">Calculadora de atraso de propagação em cobre</span></nav>
+<h1 class="tool-page-label">Calculadora de atraso de propagação em cobre</h1>
+<p class="tool-lede">Calcule o atraso de propagação em um sentido a partir do comprimento do cabo e do fator de velocidade informado.</p>
+</div>
+<div class="workspace">
+<section class="input-panel card nel-tool-input fb-panel">
+<h2 class="panel-h">Entradas</h2>
+<p class="hint">O resultado segue as entradas. Uma entrada inválida explica o motivo e apaga os números anteriores.</p>
+<div class="fields"><div class="field f"><label for="length">Comprimento em um sentido</label><div class="inp input-wrap"><input id="length" data-field="length" data-example="50" type="number" inputmode="decimal" value="100" step="any" data-probe="1" data-probe-edit="250" data-probe-invalid="0"><select id="lengthUnit" data-field="lengthUnit" aria-label="Unidade do comprimento em um sentido"><option value="m" selected>m</option><option value="ft">ft</option></select></div></div><div class="field f"><label for="velocityFactor">Fator de velocidade</label><div class="inp input-wrap"><input id="velocityFactor" data-field="velocityFactor" data-example="0.65" type="number" inputmode="decimal" value="0.65" step="any"></div></div></div>
+<p id="validation" class="validation" role="alert"></p>
+<div class="input-actions"><button id="calculateBtn" class="btn btn-primary" type="button">Calcular</button><button id="exampleBtn" class="btn btn-ghost" type="button">Carregar exemplo</button><button id="resetBtn" class="btn btn-ghost" type="button">Redefinir</button></div>
+<div class="formula-card"><h3>Fórmula</h3><code>Delay = length / (velocity factor × c), com c = 299792458 m/s.</code><p>Isto é uma aproximação de engenharia para planejamento. Não é uma medição de laboratório e não garante o desempenho do equipamento.</p></div>
+</section>
+<section class="result-panel card nel-tool-result readout" id="result" aria-live="polite">
+<h2 class="ro-h">Resultado</h2>
+<p id="statusLine" class="hint"></p>
+<div class="metric-grid"><article class="metric"><span class="lbl" id="lbl-delayNs">Atraso em um sentido</span><span class="val" id="out-delayNs" data-out="delayNs"><span class="num">—</span><span class="unit">ns</span></span></article><article class="metric"><span class="lbl" id="lbl-delayUs">Atraso em um sentido</span><span class="val" id="out-delayUs" data-out="delayUs"><span class="num">—</span><span class="unit">µs</span></span></article><article class="metric"><span class="lbl" id="lbl-nsPerMeter">Atraso por metro</span><span class="val" id="out-nsPerMeter" data-out="nsPerMeter"><span class="num">—</span><span class="unit">ns/m</span></span></article><article class="metric"><span class="lbl" id="lbl-velocityMps">Velocidade de propagação</span><span class="val" id="out-velocityMps" data-out="velocityMps"><span class="num">—</span><span class="unit">m/s</span></span></article></div>
+
+<div class="result-actions ro-acts"><button id="copyBtn" type="button">Copiar resultado</button><button id="csvBtn" type="button">Exportar CSV</button></div>
+</section>
+</div>
+<div class="below">
+<nav class="toc" aria-label="Nesta página"><h4>Nesta página</h4><a href="#about-scope">Sobre e aplicabilidade</a><a href="#methodology">Como o cálculo é feito</a><a href="#faq">Perguntas</a><a href="#references">Referências</a><a href="#nel-tool-graph">Fluxo de trabalho</a></nav>
+<div class="prose">
+<details class="fb-fold blk" id="about-scope" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span class="fb-fold-title">Sobre e aplicabilidade</span></summary><div class="fb-fold-body"><p>Informe o fator de velocidade da descrição de cabo em que você confia. Esta página não guarda um catálogo de marcas. O atraso da fibra usa índice de grupo e fica em outra ferramenta.</p><p>Isto é uma aproximação de engenharia para planejamento. Não é uma medição de laboratório e não garante o desempenho do equipamento.</p><p class="about-meta">Conteúdo revisado: 2026-11-19</p></div></details>
+<details class="fb-fold blk" id="methodology" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span class="fb-fold-title">Como o cálculo é feito</span></summary><div class="fb-fold-body"><p class="eq">Delay = length / (velocity factor × c), com c = 299792458 m/s.</p><p>A velocidade de propagação é o fator de velocidade vezes a velocidade da luz do SI, 299792458 m/s. O atraso em um sentido é o comprimento dividido por essa velocidade. O pé é convertido pelo pé internacional, 0,3048 m. Um caso de conferência é 100 m com fator 1: atraso = 100 / 299792458 segundos. Em 0,65 a velocidade é 0,65 vez a da luz e o atraso fica maior pelo fator 1/0,65. O fator é uma entrada, não uma classificação.</p></div></details>
+<div class="blk faq" id="faq"><h2>Perguntas</h2><h3>Fator de velocidade 1 significa um cabo real?</h3><p>Isso é só a velocidade no vácuo. O cobre real é mais lento, então o fator fica abaixo de 1.</p><h3>O pé é exato?</h3><p>A página usa 0,3048 metro por pé internacional.</p><h3>Por que não usar 5 ns por metro?</h3><p>Isso esconderia o fator de velocidade. A página mantém c e o fator separados.</p><h3>Isto serve para cronometrar uma rota de fibra?</h3><p>Não. Use a calculadora de latência de fibra para o atraso de grupo óptico.</p></div>
+<section class="blk" id="references"><h2>Referências</h2><ul class="rel"><li><a href="https://www.bipm.org/en/si-base-units/metre">Velocidade da luz no SI</a></li><li><a href="https://physics.nist.gov/cgi-bin/cuu/Value?c">Velocidade da luz no NIST</a></li><li><a href="https://www.nist.gov/pml/owm/metric-si/si-units-length">Pé internacional</a></li></ul></section>
+<!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="copper-propagation-delay-calculator" data-primary-workflow="line-rate-and-capacity">
+<div class="section-heading"><div><p class="eyebrow">FLUXO DE TRABALHO</p><h2 id="nel-tool-graph-title">Continuar o fluxo de trabalho</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Fluxo atual</span><strong>Taxa da linha, atraso no cobre e limite de capacidade</strong><p>Expanda a taxa útil com um código de linha publicado, estime o atraso no cobre e compare com o limite de capacidade AWGN.</p></div><div class="nel-workflow-step"><strong>Etapa 2 de 3</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="2" aria-valuetext="Etapa 2 de 3" aria-label="Etapa 2 de 3"><span style="width:67%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="../../ethernet-line-coding-calculator/pt-br/"><span class="nel-tool-graph-label">Anterior</span><strong>Calculadora de overhead de codificação de linha Ethernet</strong><span class="nel-tool-graph-description">Expanda a taxa de bits útil pelas razões publicadas de 8b/10b, 64b/66b e RS-FEC.</span></a><a class="nel-tool-graph-card" href="../../shannon-capacity-calculator/pt-br/"><span class="nel-tool-graph-label">Próximo</span><strong>Calculadora de capacidade AWGN de Shannon</strong><span class="nel-tool-graph-description">Calcule o limite de capacidade do canal AWGN C = B log2(1+S/N) a partir da largura de banda e da SNR.</span></a></div>
+<h3 class="nel-tool-graph-subtitle">Ferramentas relacionadas</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="../../fiber-latency-calculator/pt-br/"><strong>Calculadora de latência de fibra</strong><span class="nel-tool-graph-description">Calcule a latência de ida e o RTT a partir da distância, do índice de grupo, do atraso dos equipamentos e da serialização.</span></a><a class="nel-tool-graph-card" href="../../ethernet-serialization-delay-calculator/pt-br/"><strong>Calculadora de atraso de serialização Ethernet</strong><span class="nel-tool-graph-description">Calcule o atraso de serialização por salto e o total, o tempo no fio, a taxa máxima de quadros e a eficiência L2.</span></a><a class="nel-tool-graph-card" href="../../poe-voltage-drop-calculator/pt-br/"><strong>Ethernet Cable PoE Voltage Drop Calculator</strong><span class="nel-tool-graph-description">Calculate PoE cable resistance, voltage drop, remote voltage, current and power loss.</span></a></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
+</div>
+</div>
+</main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Ferramentas profissionais online para engenheiros de telecomunicações e redes.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navegação do rodapé">
+      <a href="../../../pt-br/about/">Sobre</a><a href="../../../pt-br/contact/">Contato</a><a href="../../../pt-br/privacy/">Privacidade</a><a href="../../../pt-br/terms/">Termos</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script type="application/json" id="nel-copy">{"calculate":"Calcular","example":"Carregar exemplo","reset":"Redefinir","copy":"Copiar resultado","csv":"Exportar CSV","invalid":"Confira as entradas marcadas.","ready":"O resultado segue as entradas.","inputs":"Entradas","results":"Resultado","formula":"Fórmula","toc":"Nesta página","about":"Sobre e aplicabilidade","method":"Como o cálculo é feito","faq":"Perguntas","refs":"Referências","flow":"Fluxo de trabalho","reviewed":"Revisado","approx":"Aproximação","start":"Início","home":"Início","tools":"Ferramentas","errors":{"empty":"Preencha este campo.","invalid-number":"Informe um número.","non-finite":"Este número não é finito.","not-integer":"Informe um número inteiro.","bad-unit":"Esta unidade não é reconhecida.","overflow":"O resultado é grande demais para exibir.","anchor-range":"Keep the anchor between 100 and 400 THz.","spacing-range":"Spacing must be greater than 0 and at most 10000 GHz.","channel-range":"Keep the channel index between -100000 and 100000.","frequency-range":"The resulting optical frequency is outside 0 to 1000 THz.","power-range":"Channel power must be from -80 to 40 dBm.","gain-range":"Gain must be greater than 0 dB and at most 50 dB.","nf-range":"Noise figure must be from 0 to 40 dB for this model.","bandwidth-range":"Bandwidth is outside the accepted range.","span-range":"Span count must be a whole number from 1 to 10000.","bad-code":"Choose a line code.","payload-range":"Payload rate must be greater than 0 and at most 100000 Gbps.","mss-range":"MSS must be a whole number from 1 to 65535 bytes.","rtt-range":"RTT must be greater than 0 and at most 100 s.","loss-range":"Loss probability must be greater than 0 and less than 1.","link-range":"Link rate must be greater than 0.","arrival-range":"Arrival rate must be greater than 0.","service-range":"Service rate must be greater than 0.","unstable":"Service rate must be greater than arrival rate.","bad-kind":"Choose blocks or MTBF.","availability-range":"Availability must be greater than 0 and at most 1.","mtbf-range":"MTBF must be greater than 0.","mttr-range":"MTTR must be greater than 0.","bad-mode":"Choose series or parallel.","block-count":"Enter 1 to 20 availability values.","voltage-range":"Voltage must be greater than 0 and at most 2000 V.","current-range":"Current must be from 0 to 100000 A.","length-range":"O comprimento deve ser maior que 0 e não passar de 1e9 m.","area-range":"Conductor area must be greater than 0.","temperature-range":"Temperature must keep resistivity positive and stay from -50 to 200 °C.","alpha-range":"Alpha must be from 0 to 0.02 per °C.","conductor-count":"Conductor count must be 1 or 2.","rho-range":"Resistivity must be greater than 0.","conduit-range":"Pathway diameter must be greater than 0.","group-count":"Enter 1 to 4 cable groups.","diameter-range":"Cable diameter must be greater than 0.","count-range":"Cable count must be a whole number from 1 to 100000.","limit-range":"The fill limit must be greater than 0 and at most 100 percent.","vf-range":"O fator de velocidade deve ser maior que 0 e não passar de 1.","snr-range":"SNR is outside the accepted range."}}</script>
+<link rel="stylesheet" href="../css/style.css?v=3e625a824a21">
+<link rel="stylesheet" href="/assets/css/pilot-locale-toc.css?v=20261124toc">
+<script src="../js/engine.js?v=64c38814d6f3"></script>
+<script src="../js/app.js?v=99fb796113bb"></script>
+<script src="../js/pwa.js"></script>
+<script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
+<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=ee9b24f19870"></script>
+</body>
+</html>

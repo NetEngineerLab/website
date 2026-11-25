@@ -7,6 +7,8 @@
   const slug = toolIndex >= 0 ? parts[toolIndex + 1] : "";
   const zh = document.documentElement.lang.toLowerCase().startsWith("zh");
   const es = document.documentElement.lang.toLowerCase().startsWith("es");
+  const id = document.documentElement.lang.toLowerCase() === "id" || document.documentElement.lang.toLowerCase().startsWith("id-");
+  const pt = document.documentElement.lang.toLowerCase().startsWith("pt");
   const enhancedTools = new Set([
     "wireless-link-budget-calculator",
     "poe-voltage-drop-calculator",
@@ -40,6 +42,34 @@
         print: "Imprimir / PDF", history: "Historial de cálculos", clear: "Borrar historial",
         empty: "No hay resultados guardados", saved: "Resultado guardado", exported: "CSV exportado",
         footer: "Herramientas profesionales para ingeniería de redes y telecomunicaciones."
+      } : id ? {
+        skip: "Lewati ke kalkulator",
+        start: "Mulai menghitung",
+        calculate: "Hitung",
+        reset: "Atur ulang",
+        save: "Simpan hasil",
+        export: "Ekspor CSV",
+        print: "Cetak / PDF",
+        history: "Riwayat perhitungan",
+        clear: "Hapus riwayat",
+        empty: "Belum ada hasil tersimpan",
+        saved: "Hasil disimpan",
+        exported: "CSV diekspor",
+        footer: "Alat daring profesional untuk insinyur telekomunikasi dan jaringan."
+      } : pt ? {
+        skip: "Ir para a calculadora",
+        start: "Começar a calcular",
+        calculate: "Calcular",
+        reset: "Redefinir",
+        save: "Salvar resultado",
+        export: "Exportar CSV",
+        print: "Imprimir / PDF",
+        history: "Histórico de cálculos",
+        clear: "Apagar histórico",
+        empty: "Nenhum resultado salvo",
+        saved: "Resultado salvo",
+        exported: "CSV exportado",
+        footer: "Ferramentas online profissionais para engenheiros de telecom e redes."
       } : {
         skip: "Skip to calculator",
         start: "Start calculating",
@@ -369,7 +399,7 @@
           controllerNodes(scope.resultStatus).forEach(node => {
             node.classList.remove("st-pass", "st-marginal", "st-fail");
             node.classList.add("status", "st-fail");
-            if (!node.querySelector("[id]")) node.textContent = zh ? "输入无效" : es ? "Entrada no válida" : "Invalid input";
+            if (!node.querySelector("[id]")) node.textContent = zh ? "输入无效" : es ? "Entrada no válida" : id ? "Masukan tidak valid" : pt ? "Entrada inválida" : "Invalid input";
           });
         }
       }
@@ -443,7 +473,7 @@
         (main.querySelector(".nel-tool-input, .input-panel, .input-card, .config-panel") || main).appendChild(controllerNote);
       }
       if (controllerNote) {
-        controllerNote.textContent = zh ? "请检查输入值及允许范围。" : es ? "Revise los valores y los intervalos permitidos." : "Check the input values and allowed ranges.";
+        controllerNote.textContent = zh ? "请检查输入值及允许范围。" : es ? "Revise los valores y los intervalos permitidos." : id ? "Periksa nilai dan rentang yang diizinkan." : pt ? "Verifique os valores e os intervalos permitidos." : "Check the input values and allowed ranges.";
         if (nativeInvalidControls.size) controllerNote.textContent += " " + [...nativeInvalidControls].map(labelFor).join(", ");
         controllerNote.hidden = valid || (!nativeInvalid && domainMessage);
       }

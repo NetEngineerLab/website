@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id" dir="ltr" data-nel-locale="id" data-nel-route="tools/pon-fiber-calculators/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PON dan Kalkulator Fiber: Splitter Loss, Anggaran Daya Hasilnya dan Daya ONU Menerima Daya</title>
+<meta name="description" content="Mulai dari 10 log10 (N) kehilangan pembagian ideal, bandingkan kerugian penyisipan perencanaan, lalu tambahkan serat, konektor, dan penyatuan sebelum anggaran daya dan ONU menerima cek.">
+<meta property="og:title" content="PON dan Kalkulator Fiber: Splitter Loss, Anggaran Daya Hasilnya dan Daya ONU Menerima Daya">
+<meta property="og:description" content="Mulai dari 10 log10 (N) kehilangan pembagian ideal, bandingkan kerugian penyisipan perencanaan, lalu tambahkan serat, konektor, dan penyatuan sebelum anggaran daya dan ONU menerima cek.">
+<meta property="og:url" content="https://netengineerlab.com/tools/pon-fiber-calculators/id/">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="../../../assets/css/calculator-hub.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://netengineerlab.com/tools/pon-fiber-calculators/#collection","name":"Kalkulator PON & Fiber - Splatter Loss, Anggaran Daya, Latensi","url":"https://netengineerlab.com/tools/pon-fiber-calculators/id/","description":"Rencana PON dan serat link dengan kerugian splitter, rugi serat, anggaran daya optik, jarak, latensi, OTDR dan kalkulator sumber daya ODN.","inLanguage":"id","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/id/"}},{"@type":"ItemList","@id":"https://netengineerlab.com/tools/pon-fiber-calculators/#calculators","name":"Kalkulator di hub ini","numberOfItems":10,"itemListElement":[{"@type":"ListItem","position":1,"name":"Kalkulator Loss PON Splitter","url":"https://netengineerlab.com/tools/pon-splitter-loss/id/"},{"@type":"ListItem","position":2,"name":"Kalkulator rugi serat","url":"https://netengineerlab.com/tools/fiber-loss/id/"},{"@type":"ListItem","position":3,"name":"Kalkulator anggaran daya optik","url":"https://netengineerlab.com/tools/optical-power-budget/id/"},{"@type":"ListItem","position":4,"name":"Kalkulator Jarak Jarak Maksimum PON","url":"https://netengineerlab.com/tools/pon-distance/id/"},{"@type":"ListItem","position":5,"name":"Kalkulator Serat Latensi","url":"https://netengineerlab.com/tools/fiber-latency-calculator/id/"},{"@type":"ListItem","position":6,"name":"Diagnosa Power RX ONU","url":"https://netengineerlab.com/tools/onu-rx-power/id/"},{"@type":"ListItem","position":7,"name":"OTDR Event Analyzer","url":"https://netengineerlab.com/tools/otdr-event/id/"},{"@type":"ListItem","position":8,"name":"SFP & QSFP Pemeriksa Kompatibilitas","url":"https://netengineerlab.com/tools/sfp-qsfp-compatibility-calculator/id/"},{"@type":"ListItem","position":9,"name":"ODF / ODN Sumber Daya Fiber & Split Planner","url":"https://netengineerlab.com/tools/odf-odn-resource-planner/id/"},{"@type":"ListItem","position":10,"name":"OLT Dual- Kapasitas Uplink, Kanal Transport & MSE Port Planner","url":"https://netengineerlab.com/tools/olt-dual-uplink-transport-mse-planner/id/"}]},{"@type":"BreadcrumbList","@id":"https://netengineerlab.com/tools/pon-fiber-calculators/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://netengineerlab.com/id/"},{"@type":"ListItem","position":2,"name":"Alat","item":"https://netengineerlab.com/tools/id/"},{"@type":"ListItem","position":3,"name":"PON & Kalkulator Serat","item":"https://netengineerlab.com/tools/pon-fiber-calculators/id/"}]}]}</script>
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kalkulator PON &amp; Fiber - Splatter Loss, Anggaran Daya, Latensi">
+<meta name="twitter:description" content="Rencana PON dan serat link dengan kerugian splitter, rugi serat, anggaran daya optik, jarak, latensi, OTDR dan kalkulator sumber daya ODN.">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="robots" content="index,follow,max-image-preview:large">
+
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=031fae951adb">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=64bd0d9f6bcb">
+<link rel="stylesheet" href="../css/style.css?v=c489585e98d2">
+
+<link rel="stylesheet" href="../../../assets/css/site.css?v=e139c2a424b2">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"PON dan Kalkulator Fiber: Splitter Loss, Anggaran Daya Hasilnya dan Daya ONU Menerima Daya","url":"https://netengineerlab.com/tools/pon-fiber-calculators/id/","description":"Mulai dari 10 log10 (N) kehilangan pembagian ideal, bandingkan kerugian penyisipan perencanaan, lalu tambahkan serat, konektor, dan penyatuan sebelum anggaran daya dan ONU menerima cek.","inLanguage":"id","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/id/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="id">
+<meta name="nel-route" content="tools/pon-fiber-calculators/">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
+<link rel="canonical" href="https://netengineerlab.com/tools/pon-fiber-calculators/id/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/pon-fiber-calculators/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/pon-fiber-calculators/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/pon-fiber-calculators/es/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/tools/pon-fiber-calculators/id/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/tools/pon-fiber-calculators/pt-br/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/pon-fiber-calculators/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
+<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
+</head>
+<body class="nel-tool-detail-page nel-tool-v3 v3">
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../id/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Platform kecerdasan untuk rekayasa jaringan</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Buka navigasi"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navigasi utama">
+      <a href="../../../id/">Beranda</a>
+      <a href="../../id/" aria-current="page">Alat</a>
+      <a href="../../../id/guides/">Panduan</a>
+      <a href="../../../id/topics/">Topik</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Bahasa: Bahasa Indonesia"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Bahasa Indonesia</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/pon-fiber-calculators/" lang="en" hreflang="en"><span>English</span><small>Inggris</small></a><a class="language-option" role="menuitem" href="/tools/pon-fiber-calculators/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Tionghoa Sederhana</small></a><a class="language-option" role="menuitem" href="/tools/pon-fiber-calculators/es/" lang="es" hreflang="es"><span>Español</span><small>Spanyol</small></a><a class="language-option" role="menuitem" href="/tools/pon-fiber-calculators/id/" lang="id" hreflang="id" aria-current="page"><span>Bahasa Indonesia</span><small>Bahasa Indonesia</small></a><a class="language-option" role="menuitem" href="/tools/pon-fiber-calculators/pt-br/" lang="pt-BR" hreflang="pt-BR"><span>Português do Brasil</span><small>Portugis Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Breadcrumb"><a href="../../id/">Beranda</a><span aria-hidden="true">/</span><a href="./">Alat</a><span aria-hidden="true">/</span><span aria-current="page">PON &amp; Kalkulator Serat</span></nav>
+<main class="tool-shell nel-tool-main" id="hub">
+<div class="tool-head"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../id/">Beranda</a><span aria-hidden="true">/</span><a href="./">Alat</a><span aria-hidden="true">/</span><span aria-current="page">PON &amp; Kalkulator Serat</span></nav><h1 class="tool-page-label">PON &amp; Kalkulator Serat</h1><p class="tool-lede">PON atau desain serat metro adalah rantai keputusan yang hanya masuk akal bersama. Rasio Splitter menentukan lantai kerugian, rute kabel menetapkan perhatian dan penundaan, dan kelas transceiver memutuskan apakah sisa anggaran adalah nyata. Pusat ini mengumpulkan serat dan kalkulator PON yang sudah diterbitkan di NetEngineerLab sehingga Anda dapat berjalan rantai itu di satu tempat. Mulai dari split optik, tambahkan serat, splice dan kehilangan konektor, kemudian uji anggaran daya akhir ke ujung dan jarak kelas masih bisa mendukung. Ketika rute cukup lama untuk penyebaran untuk materi, perkiraan satu cara penundaan dan waktu Seharusnya perjalanan, termasuk faktor rute dan peralatan. Jika sebuah bidang membaca tampak lemah, membandingkannya dengan ONU penerima cek daya dan daftar acara OTDR sebelum anda mendesain ulang pembagiannya. Pilihan optik, ODF dan ODN sumber daya, dan duda OLT uplinks datang terakhir, setelah jumlah optik dapat menjadi daftar membangun. Setiap kalkulator menyimpan masukan dan batas sendiri. Gunakan halaman ini untuk memilih cek berikutnya.</p></div>
+<div class="below">
+<nav class="toc" aria-label="Pada halaman ini"><h4>Pada halaman ini</h4>
+<a href="#tools">Kalkulator di hub ini</a>
+<a href="#workflow">Perencanaan alur kerja</a>
+<a href="#faq">Pertanyaan yang sering ditanyakan</a>
+<a href="#related">Halaman terkait</a>
+</nav>
+<div class="prose">
+<section class="blk panel" id="tools"><h2>Kalkulator di hub ini</h2>
+<div class="hub-card-grid"><a class="hub-tool-card" href="../../pon-splitter-loss/id/"><strong>Kalkulator Loss PON Splitter</strong><span>Rencana multi- tahap pemisahan dan menghitung rasio total vow kerugian penyisipan dan jangkauan efektif.</span></a><a class="hub-tool-card" href="../../fiber-loss/id/"><strong>Kalkulator rugi serat</strong><span>Kalkulasikan serat, splice, connector, splitter dan rekayasa kerugian untuk link optik.</span></a><a class="hub-tool-card" href="../../optical-power-budget/id/"><strong>Kalkulator anggaran daya optik</strong><span>Verifikasi sambungan optik menggunakan daya pengiriman, sensitivitas penerima, penalti optik dan kerugian ODN.</span></a><a class="hub-tool-card" href="../../pon-distance/id/"><strong>Kalkulator Jarak Jarak Maksimum PON</strong><span>Kalkulasikan jangkauan anggaran, jangkauan sistem efektif dan marjin link direncanakan.</span></a><a class="hub-tool-card" href="../../fiber-latency-calculator/id/"><strong>Kalkulator Serat Latensi</strong><span>Hitung satu - cara dan putaran-perjalanan serat latensi dari jarak, indeks kelompok, peralatan dan penundaan serialisasi.</span></a><a class="hub-tool-card" href="../../onu-rx-power/id/"><strong>Diagnosa Power RX ONU</strong><span>Diagnosa normal, lemah - cahaya, overload atau mungkin kondisi sinyal dari diukur daya.</span></a><a class="hub-tool-card" href="../../otdr-event/id/"><strong>OTDR Event Analyzer</strong><span>Analisa beberapa peristiwa dan dua panjang gelombang untuk mengidentifikasi splitces, konektor, tikungan, istirahat, hantu dan efek zona mati.</span></a><a class="hub-tool-card" href="../../sfp-qsfp-compatibility-calculator/id/"><strong>SFP &amp; QSFP Pemeriksa Kompatibilitas</strong><span>Periksa kecepatan SFP, SFP28, QSFP dan QSFP28 kecepatan, jalur, serat, panjang gelombang dan anggaran link optik.</span></a><a class="hub-tool-card" href="../../odf-odn-resource-planner/id/"><strong>ODF / ODN Sumber Daya Fiber &amp; Split Planner</strong><span>Bandingkan denah ODF / ODN dan hitung port PON, splitters, fibre cores, kapasitas ODF, kesenjangan dan perencanaan BOM.</span></a><a class="hub-tool-card" href="../../olt-dual-uplink-transport-mse-planner/id/"><strong>OLT Dual- Kapasitas Uplink, Kanal Transport &amp; MSE Port Planner</strong><span>Menghitung pelabuhan OLT -uplink, saluran transportasi, port MSE dan kartu baris, kemudian verifikasi kapasitas tunggal-sisi dan keragaman jalur.</span></a></div>
+</section>
+<section class="blk panel" id="workflow"><h2>Perencanaan alur kerja</h2>
+<p>Jalankan alat-alat dalam urutan ini ketika Anda mengubah rute menjadi rencana optik.</p>
+<ol class="hub-workflow"><li><a href="../../pon-splitter-loss/id/">Kalkulator Loss PON Splitter</a></li><li><a href="../../fiber-loss/id/">Kalkulator rugi serat</a></li><li><a href="../../optical-power-budget/id/">Kalkulator anggaran daya optik</a></li><li><a href="../../pon-distance/id/">Kalkulator Jarak Jarak Maksimum PON</a></li><li><a href="../../fiber-latency-calculator/id/">Kalkulator Serat Latensi</a></li><li><a href="../../onu-rx-power/id/">Diagnosa Power RX ONU</a></li><li><a href="../../otdr-event/id/">OTDR Event Analyzer</a></li><li><a href="../../sfp-qsfp-compatibility-calculator/id/">SFP &amp; QSFP Pemeriksa Kompatibilitas</a></li><li><a href="../../odf-odn-resource-planner/id/">ODF / ODN Sumber Daya Fiber &amp; Split Planner</a></li><li><a href="../../olt-dual-uplink-transport-mse-planner/id/">OLT Dual- Kapasitas Uplink, Kanal Transport &amp; MSE Port Planner</a></li></ol>
+</section>
+<section id="nel-split-ratio"><h2>1: 2 sampai 1: 64 kehilangan split Anda dapat menghitung ulang</h2><p>Ideal sama - rugi split adalah 10 log10 (N). Identitas itu hanya mengatakan daya masukan dibagi N. Ini bukan kerugian penyisipan perangkat dan bukan pengukuran penerimaan. Situs ini terus memisahkan perencanaan kerugian penyisipan untuk setiap rasio. Kehilangan cukup pada halaman ini berarti kerugian penyisipan perencanaan minus 10 log10 (N). Ganti nilai perencanaan dengan lembar data splitter sebelum menyetujui desain. ITU-T G.671 memperlakukan kerugian penyisipan sebagai parameter branching- komponen tertentu; ini tidak mempublikasikan nomor perencanaan ini.</p><ul><li>1: 2: ideal 3.010 dB, perencanaan penyisipan 3.7 dB, kelebihan 0.690 dB.</li><li>1: 4: ideal 6.021 dB, perencanaan penyisipan 7.2 dB, kelebihan 1,179 dB.</li><li>1: 8: ideal 9.031 dB, perencanaan penyisipan 10,5 dB, kelebihan 1.469 dB.</li><li>1: 16: ideal 12.041 dB, perencanaan penyisipan 13.8 dB, lebih dari 1.759 dB.</li><li>1: 32: ideal 15.051 dB, perencanaan penyisipan 17.0 dB, lebih dari 1.949 dB.</li><li>1: 64: ideal 18.062 dB, perencanaan penyisipan 20.5 dB, kelebihan 2.438 dB.</li></ul><p>Satu 1: 32 tahap menggunakan perencanaan kerugian penyisipan 17.0 dB. Pada 10 km dan 0.25 dB/km serat adalah 2,5 dB. Empat pasangan konektor pada 0.3 dB adalah 1.2 dB, dan enam splitces pada 0.1 dB adalah 0.6 dB. Kehilangan fisik adalah 17.0 + 2,5 + 1,2 + 0.2 = 21,3 dB. Perkiraan menerima daya pada minus dBm + 3 - 21.3 = -18.3 dBm. 0.25 dB/km, 0.3 dB dan 0.1 dB angka yang dapat diedit asumsi perencanaan telah digunakan oleh kalkulator, bukan sebuah ITU-T G.652 limit dan bukan pengukuran lapangan. Unit menghitung dan kelas optik masih datang dari pemancar masuk dan batas ONU.</p><p>Lanjutkan dengan asumsi yang sama: <a href="../../pon-splitter-loss/id/#nel-split-ratio">Kalkulator kehilangan PON</a> · <a href="../../optical-power-budget/id/">kalkulator anggaran daya optik</a> · <a href="../../onu-rx-power/id/">ONU menerima cek daya</a> · <a href="../../../id/guides/pon-splitter-loss-guide/#nel-split-ratio">Pemisahan panduan kehilangan</a> · <a href="../../../id/topics/pon-optical/">Topik optik PON</a>.</p></section><section class="blk" id="faq"><h2>Pertanyaan yang sering ditanyakan</h2>
+<div class="hub-faq"><details class="fb-fold"><summary class="fb-fold-sum"><span class="fb-fold-title">Kalkulator mana yang harus kubuka dulu?</span></summary><div class="fb-fold-body"><p>Mulai dengan kehilangan splitter ketika rasio PON masih pilihan, atau dengan rugi serat ketika panjang rute dan rencana splice tidak diketahui. Anggaran tenaga datang setelah keduanya.</p></div></details><details class="fb-fold"><summary class="fb-fold-sum"><span class="fb-fold-title">Apakah serat latensi mengubah anggaran daya optik?</span></summary><div class="fb-fold-body"><p>Tidak. Latensi dan kehilangan adalah batas yang berbeda. Sebuah link dapat melewati anggaran listrik dan masih kehilangan target penundaan, sehingga menghitung baik ketika rute panjang.</p></div></details><details class="fb-fold"><summary class="fb-fold-sum"><span class="fb-fold-title">Kapan aku harus menggunakan OTDR bukannya kalkulator kerugian?</span></summary><div class="fb-fold-body"><p>Gunakan kalkulator yang hilang untuk memprediksi desain. Gunakan alat OTDR ketika Anda sudah memiliki jejak dan perlu menjelaskan sebuah splice, connector, bend atau break.</p></div></details><details class="fb-fold"><summary class="fb-fold-sum"><span class="fb-fold-title">Dimana ODF dan ODN sumber daya cocok?</span></summary><div class="fb-fold-body"><p>Setelah anggaran optik dan split dapat diterima. Perencana sumber daya mengubah desain menjadi port, trays dan perencanaan tagihan bahan.</p></div></details></div>
+</section>
+<section class="blk panel" id="related">
+<h2>Halaman terkait</h2>
+</section>
+</div>
+</div>
+</main>
+
+<p class="hub-return" data-nel-cluster-link><a href="../../../id/topics/pon-optical/">Kalkulator ini adalah daftar pengukuran. Untuk metode desain, anggaran kerugian dan lapangan merosot, lanjutkan dalam topik stalPON optik.</a></p>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Alat daring profesional untuk insinyur telekomunikasi dan jaringan.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navigasi kaki halaman">
+      <a href="../../../id/about/">Tentang</a><a href="../../../id/contact/">Kontak</a><a href="../../../id/privacy/">Privasi</a><a href="../../../id/terms/">Ketentuan</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
+</body>
+</html>

@@ -21,7 +21,7 @@ function walk(dir, ext, out=[]) {
 for (const tool of fs.readdirSync(toolsRoot)) {
   const dir=path.join(toolsRoot,tool);
   if (!fs.existsSync(dir) || !fs.statSync(dir).isDirectory() || inventory.skip(tool)) continue;
-  for (const r of ['index.html',path.join('zh','index.html'),path.join('es','index.html')]) {
+  for (const r of inventory.detailPageRels) {
     const f=path.join(dir,r); if (!fs.existsSync(f)) continue;
     const h=read(f); if (!h.includes('nel-tool-detail-page')) continue;
     pages++; tools.add(tool); const name=rel(f);

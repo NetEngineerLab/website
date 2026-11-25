@@ -6,7 +6,9 @@ const CONFIG = {
  "projectDefault": {
   "en": "Metro DWDM span",
   "zh": "城域 DWDM 跨段",
-  "es": "Tramo DWDM metropolitano"
+  "es": "Tramo DWDM metropolitano",
+  "id": "Span DWDM metro",
+  "pt": "Trecho DWDM metropolitano"
  },
  "inputs": [
   {
@@ -269,12 +271,42 @@ const CONFIG = {
      "Tolerancia usada"
     ]
    ]
+  },
+  "id": {
+   "validation": "Periksa bidang yang ditandai: isinya harus angka dalam rentang yang diizinkan.",
+   "validationField": "Periksa {fields}: masukkan angka dalam rentang yang diizinkan.",
+   "listSeparator": ", ",
+   "copied": "Hasil disalin",
+   "saved": "Rekaman disimpan",
+   "noHistory": "Belum ada perhitungan tersimpan. Hitung, lalu klik “Simpan rekaman”.",
+   "confirmClear": "Hapus semua riwayat yang tersimpan?",
+   "project": "Proyek",
+   "fieldLabels": {"mode": "Sumber koefisien", "wavelength": "Panjang gelombang λ", "lambda0": "Panjang gelombang dispersi nol λ0", "s0": "Kemiringan dispersi nol S0", "manualD": "Koefisien D dari lembar data", "lengthKm": "Panjang serat", "compensation": "Kompensasi (DCM/FBG)", "tolerance": "Toleransi CD penerima", "spectralWidth": "Lebar spektrum Δλ"},
+   "notes": {"cd-no-length": "Tidak ada panjang yang memenuhi: kompensasi melebihi toleransi"},
+   "toolName": "Kalkulator dispersi kromatik",
+   "status": {"healthy": "✓ Di dalam batas", "warning": "! Mendekati batas", "failed": "✕ Di luar toleransi"},
+   "outputLabels": [["residualCd","CD sisa"],["cdMargin","Margin sampai toleransi"],["dCoef","Koefisien D"],["fiberCd","CD terkumpul"],["maxLength","Rentang panjang dalam toleransi"],["broadening","Pelembaran |CD|·Δλ"],["usedPct","Toleransi terpakai"]]
+  },
+  "pt": {
+   "validation": "Confira os campos marcados: eles devem ser números dentro da faixa permitida.",
+   "validationField": "Confira {fields}: informe um número dentro da faixa permitida.",
+   "listSeparator": ", ",
+   "copied": "Resultado copiado",
+   "saved": "Registro salvo",
+   "noHistory": "Ainda não há cálculos salvos. Calcule e clique em “Salvar registro”.",
+   "confirmClear": "Apagar todo o histórico salvo?",
+   "project": "Projeto",
+   "fieldLabels": {"mode": "Origem do coeficiente", "wavelength": "Comprimento de onda λ", "lambda0": "Comprimento de onda de dispersão zero λ0", "s0": "Inclinação de dispersão zero S0", "manualD": "Coeficiente D da folha de dados", "lengthKm": "Comprimento da fibra", "compensation": "Compensação (DCM/FBG)", "tolerance": "Tolerância de CD do receptor", "spectralWidth": "Largura espectral Δλ"},
+   "notes": {"cd-no-length": "Nenhum comprimento atende: a compensação passa da tolerância"},
+   "toolName": "Calculadora de dispersão cromática",
+   "status": {"healthy": "✓ Dentro do limite", "warning": "! Perto do limite", "failed": "✕ Fora da tolerância"},
+   "outputLabels": [["residualCd","CD residual"],["cdMargin","Margem até a tolerância"],["dCoef","Coeficiente D"],["fiberCd","CD acumulada"],["maxLength","Faixa de comprimento dentro da tolerância"],["broadening","Alargamento |CD|·Δλ"],["usedPct","Tolerância usada"]]
   }
  }
 };
 const $ = (id) => document.getElementById(id);
 const locale = (document.documentElement.dataset.nelLocale || document.documentElement.lang || "en").toLowerCase();
-const currentLang = locale.startsWith("zh") ? "zh" : locale.startsWith("es") ? "es" : "en";
+const currentLang = locale.startsWith("zh") ? "zh" : locale.startsWith("es") ? "es" : locale.startsWith("pt") ? "pt" : locale === "id" ? "id" : "en";
 const text = CONFIG.text[currentLang];
 const engine = window[CONFIG.engineGlobal];
 let lastResult = null;
@@ -470,7 +502,7 @@ function renderHistory(){
     container.innerHTML = `<div class="history-empty">${text.noHistory}</div>`;
     return;
   }
-  const localeName = currentLang === "zh" ? "zh-CN" : currentLang === "es" ? "es" : "en-US";
+  const localeName = currentLang === "zh" ? "zh-CN" : currentLang === "es" ? "es" : currentLang === "pt" ? "pt-BR" : currentLang === "id" ? "id" : "en-US";
   const [firstId, firstLabel] = text.outputLabels[0];
   const [secondId, secondLabel] = text.outputLabels[1];
   container.innerHTML = history.slice(0, 6).map((item) => `<article class="history-item">

@@ -7,7 +7,9 @@
   version:"1.0.0",
   notice:{
    zh:"网络速率默认采用十进制SI单位（1 Mbps = 1,000,000 bit/s）；文件大小可选择十进制或IEC二进制单位。",
-   en:"Network rates default to decimal SI units (1 Mbps = 1,000,000 bit/s). File size can use decimal or IEC binary units."
+   en:"Network rates default to decimal SI units (1 Mbps = 1,000,000 bit/s). File size can use decimal or IEC binary units.",
+   id:"Laju jaringan memakai satuan desimal SI (1 Mbps = 1.000.000 bit/s). Ukuran berkas dapat memakai satuan desimal atau biner IEC.",
+   "pt-BR":"As taxas de rede usam unidades decimais SI (1 Mbps = 1.000.000 bit/s). O tamanho do arquivo pode usar unidades decimais ou binárias IEC."
   },
   rateUnits:{
    bps:{factor:1,zh:"bit/s",en:"bit/s"},
@@ -33,18 +35,18 @@
    PiB:{factor:1125899906842624,zh:"PiB",en:"PiB"}
   },
   timeUnits:{
-   second:{factor:1,zh:"秒",en:"seconds"},
-   minute:{factor:60,zh:"分钟",en:"minutes"},
-   hour:{factor:3600,zh:"小时",en:"hours"},
-   day:{factor:86400,zh:"天",en:"days"}
+   second:{factor:1,zh:"秒",en:"seconds",id:"detik","pt-BR":"segundos"},
+   minute:{factor:60,zh:"分钟",en:"minutes",id:"menit","pt-BR":"minutos"},
+   hour:{factor:3600,zh:"小时",en:"hours",id:"jam","pt-BR":"horas"},
+   day:{factor:86400,zh:"天",en:"days",id:"hari","pt-BR":"dias"}
   },
   presets:{
-   ideal:{zh:"理想链路",en:"Ideal link",efficiency:100,utilization:100,rttMs:0,setupRtts:0},
-   ethernet:{zh:"一般以太网业务",en:"General Ethernet traffic",efficiency:95,utilization:90,rttMs:1,setupRtts:1},
-   internet:{zh:"互联网文件传输",en:"Internet file transfer",efficiency:85,utilization:80,rttMs:30,setupRtts:2},
-   vpn:{zh:"VPN/加密隧道",en:"VPN / encrypted tunnel",efficiency:80,utilization:75,rttMs:50,setupRtts:2},
-   wan:{zh:"高时延广域网",en:"High-latency WAN",efficiency:75,utilization:70,rttMs:120,setupRtts:3},
-   backup:{zh:"备份窗口",en:"Backup window",efficiency:90,utilization:85,rttMs:5,setupRtts:1}
+   ideal:{zh:"理想链路",en:"Ideal link",id:"Tautan ideal","pt-BR":"Enlace ideal",efficiency:100,utilization:100,rttMs:0,setupRtts:0},
+   ethernet:{zh:"一般以太网业务",en:"General Ethernet traffic",id:"Trafik Ethernet umum","pt-BR":"Tráfego Ethernet geral",efficiency:95,utilization:90,rttMs:1,setupRtts:1},
+   internet:{zh:"互联网文件传输",en:"Internet file transfer",id:"Transfer berkas internet","pt-BR":"Transferência de arquivo na internet",efficiency:85,utilization:80,rttMs:30,setupRtts:2},
+   vpn:{zh:"VPN/加密隧道",en:"VPN / encrypted tunnel",id:"VPN / terowongan terenkripsi","pt-BR":"VPN / túnel criptografado",efficiency:80,utilization:75,rttMs:50,setupRtts:2},
+   wan:{zh:"高时延广域网",en:"High-latency WAN",id:"WAN latensi tinggi","pt-BR":"WAN de alta latência",efficiency:75,utilization:70,rttMs:120,setupRtts:3},
+   backup:{zh:"备份窗口",en:"Backup window",id:"Jendela cadangan","pt-BR":"Janela de backup",efficiency:90,utilization:85,rttMs:5,setupRtts:1}
   }
  };
 });

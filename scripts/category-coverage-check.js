@@ -6,11 +6,14 @@ const fs=require("fs"),path=require("path");
 const site=path.join(__dirname,"..","website");
 const catalog=JSON.parse(fs.readFileSync(path.join(site,"data","tools-catalog.json"),"utf8"));
 const errors=[];
-for(const locale of ["en","zh","es"]){
- const tools=catalog.filter(tool=>locale==="en"||tool.translations?.[locale]||(locale==="zh"&&tool.translations?.["zh-CN"]));
+const activeLocales=JSON.parse(fs.readFileSync(path.join(site,"data","locales.json"),"utf8")).locales.filter(item=>item.status==="active");
+for(const locale of activeLocales){
+ const key=locale.catalogKey||locale.id;
+ const folder=locale.folder||"";
+ const tools=catalog.filter(tool=>!folder||tool.translations?.[key]);
  const categories=[...new Set(tools.map(tool=>tool.category))];
  const counts=tools.reduce((map,tool)=>{map[tool.category]=(map[tool.category]||0)+1;return map},{});
- for(const [rel,attr] of [[locale==="en"?"index.html":`${locale}/index.html`,"data-category-link"],[locale==="en"?"tools/index.html":`tools/${locale}/index.html`,"data-filter"]]){
+ for(const [rel,attr] of [[folder?`${folder}/index.html`:"index.html","data-category-link"],[folder?`tools/${folder}/index.html`:"tools/index.html","data-filter"]]){
   const html=fs.readFileSync(path.join(site,rel),"utf8");
   const present=new Set([...html.matchAll(new RegExp(`\\b${attr}="([a-z-]+)"`,"g"))].map(match=>match[1]).filter(value=>value!=="all"));
   for(const category of categories)if(!present.has(category))errors.push(`${rel}: no ${attr} for catalog category "${category}"`);
@@ -22,4 +25,4 @@ for(const locale of ["en","zh","es"]){
  }
 }
 if(errors.length){console.error("Category coverage FAIL\n"+errors.join("\n"));process.exit(1)}
-console.log("Category coverage PASS (home + tool directory, en/zh/es)");
+console.log("Category coverage PASS (home + tool directory, "+activeLocales.map(locale=>locale.folder||"en").join("/")+")");

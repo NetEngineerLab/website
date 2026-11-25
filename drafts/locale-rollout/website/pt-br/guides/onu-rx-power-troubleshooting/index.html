@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang="pt-BR" dir="ltr" data-nel-locale="pt-BR" data-nel-route="guides/onu-rx-power-troubleshooting/"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ONU RX Resolução de problemas e diagnóstico de falhas | NetEngineerLab</title><meta name="description" content="ONU receber energia é o nível a jusante no ONU. OLT receber energia é o nível a montante do laser ONU. São leituras diferentes. Um modelo de equipamento sem nome tem um limiar UNKNOWN."><link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../../../assets/css/guide.css?v=6d83ae5e791f"><meta property="og:url" content="https://netengineerlab.com/pt-br/guides/onu-rx-power-troubleshooting/">
+<meta property="og:title" content="ONU RX Resolução de problemas e diagnóstico de falhas | NetEngineerLab">
+<meta property="og:description" content="ONU receber energia é o nível a jusante no ONU. OLT receber energia é o nível a montante do laser ONU. São leituras diferentes. Um modelo de equipamento sem nome tem um limiar UNKNOWN.">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ONU RX Resolução de problemas e diagnóstico de falhas | NetEngineerLab">
+<meta name="twitter:description" content="ONU receber energia é o nível a jusante no ONU. OLT receber energia é o nível a montante do laser ONU. São leituras diferentes. Um modelo de equipamento sem nome tem um limiar UNKNOWN.">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Resolução de problemas de energia ONU RX: leitura de energia óptica e diagnóstico de falhawritten","name":"Resolução de problemas de energia ONU RX: leitura de energia óptica e diagnóstico de falhawritten","description":"ONU receber energia é o nível a jusante no ONU. OLT receber energia é o nível a montante do laser ONU. São leituras diferentes. Um modelo de equipamento sem nome tem um limiar UNKNOWN.","url":"https://netengineerlab.com/pt-br/guides/onu-rx-power-troubleshooting/","inLanguage":"pt-BR","mainEntityOfPage":"https://netengineerlab.com/guides/onu-rx-power-troubleshooting/","author":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/pt-br/"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/pt-br/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://netengineerlab.com/pt-br/"},{"@type":"ListItem","position":2,"name":"Resolução de problemas de energia ONU RX: leitura de energia óptica e diagnóstico de falhawritten","item":"https://netengineerlab.com/pt-br/guides/onu-rx-power-troubleshooting/"}]}</script>
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"ONU RX Resolução de problemas e diagnóstico de falhas | NetEngineerLab","url":"https://netengineerlab.com/pt-br/guides/onu-rx-power-troubleshooting/","description":"ONU receber energia é o nível a jusante no ONU. OLT receber energia é o nível a montante do laser ONU. São leituras diferentes. Um modelo de equipamento sem nome tem um limiar UNKNOWN.","inLanguage":"pt-BR","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/pt-br/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="pt-BR">
+<meta name="nel-route" content="guides/onu-rx-power-troubleshooting/">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
+<link rel="canonical" href="https://netengineerlab.com/pt-br/guides/onu-rx-power-troubleshooting/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/onu-rx-power-troubleshooting/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/onu-rx-power-troubleshooting/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/es/guides/onu-rx-power-troubleshooting/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/id/guides/onu-rx-power-troubleshooting/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/pt-br/guides/onu-rx-power-troubleshooting/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/onu-rx-power-troubleshooting/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
+</head><body>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Plataforma de inteligência para engenharia de redes</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Abrir navegação"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navegação principal">
+      <a href="../../">Início</a>
+      <a href="../../../tools/pt-br/">Ferramentas</a>
+      <a href="../" aria-current="page">Guias</a>
+      <a href="../../topics/">Tópicos</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Português do Brasil"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Português do Brasil</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/guides/onu-rx-power-troubleshooting/" lang="en" hreflang="en"><span>English</span><small>Inglês</small></a><a class="language-option" role="menuitem" href="/zh/guides/onu-rx-power-troubleshooting/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinês simplificado</small></a><a class="language-option" role="menuitem" href="/es/guides/onu-rx-power-troubleshooting/" lang="es" hreflang="es"><span>Español</span><small>Espanhol</small></a><a class="language-option" role="menuitem" href="/id/guides/onu-rx-power-troubleshooting/" lang="id" hreflang="id"><span>Bahasa Indonesia</span><small>Indonésio</small></a><a class="language-option" role="menuitem" href="/pt-br/guides/onu-rx-power-troubleshooting/" lang="pt-BR" hreflang="pt-BR" aria-current="page"><span>Português do Brasil</span><small>Português do Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END --><nav class="guide-breadcrumb" aria-label="Trigo de pão"><a href="../../">Início</a><span aria-hidden="true">›</span><a href="../">Guias</a><span aria-hidden="true">›</span><span aria-current="page">Resolução de problemas de energia ONU RX: leitura de energia óptica e diagnóstico de falhawritten</span></nav><main class="guide-shell" id="main"><section class="guide-hero"><p class="eyebrow">PON OPTICAL</p><h1>Resolução de problemas de energia ONU RX: leitura de energia óptica e diagnóstico de falhawritten</h1><p class="guide-lead">Uma leitura óptica de potência de recepção designa uma direção, um comprimento de onda e um instrumento. ONU receber energia não é OLT receber energia, eo laser ONU é o transmissor metros acima, não a leitura a jusante.</p></section><div class="guide-tool-link"><strong>Calculadora relacionada</strong><p>A calculadora compara uma leitura medida com limites que você digita e com um modelo de perda. Não fornece um limiar universal ONU. Se a folha de dados não estiver na mão, deixe o limite UNKNOWN.</p><a href="../../../tools/onu-rx-power/pt-br/">Abra o ONU calculadora de poder de recepção</a></div><div class="guide-layout"><article class="guide-article">
+<h2 id="reading">O que significa a leitura</h2>
+<p>A potência de recepção óptica é um nível de potência em dBm em um ponto em uma direção. A perda em dB é a diferença entre dois níveis de potência. Uma única leitura dBm não contém o perda de fibra, a perda do divisor ou a perda do conector. Eles têm que ser construídos a partir do caminho, ou medidos como eventos.</p>
+<h2 id="directions">ONU receber, OLT receber eo laser ONU</h2>
+<p>A jusante, o OLT transmite e o ONU recebe. Esse nível é a potência ONU RX, ou a potência de recepção óptica no ONU. A montante, o ONU transmite e o OLT recebe. Esse nível é a potência OLT RX. A verificação a laser ONU é este transmissor a montante, visto no receptor OLT ou em um metro no comprimento de onda a montante. Não é o ONU receber leitura.</p>
+<p>As duas direções usam comprimentos de onda diferentes e janelas de planilha de dados diferentes. ITU-T G.984.2 nomeia as faixas de comprimento de onda GPON; ITU-T G.9807.1 nomeia as faixas XGS-PON. Esta página não copia nenhuma tabela. Leia o intervalo da recomendação e da planilha de dados do módulo. Se a geração PON não for identificada, o comprimento de onda é desconhecido. Textos públicos: <a href="https://www.itu.int/rec/T-REC-G.984.2/en">ITU-T G.984.2</a> e <a href="https://www.itu.int/rec/T-REC-G.9807.1/en">ITU-T G.9807.1</a>.</p>
+<p>Não existe nenhum limiar universal de recepção ONU nesta página. GPON, XGS-PON, uma classe de fornecedores e um modelo específico não compartilham uma faixa de passe. Se o modelo não for identificado, a sensibilidade e a sobrecarga são desconhecidas. Não os encha de uma mesa de aula lembrada.</p>
+<h2 id="measure">Como tomar a leitura</h2>
+<p>Use um medidor de potência óptica calibrado no comprimento de onda dessa direção, em um conector limpo, no ponto que você afirma medir. Um número em uma tela de gerenciamento é uma leitura de gerenciamento. Torna-se uma medida calibrada apenas quando o fornecedor afirma que este valor de software é uma potência calibrada e declara a incerteza. Se essa declaração não estiver disponível, mantenha o rótulo “management reading” e não o trate como resultado do medidor.</p>
+<h2 id="loss">Perda e uma leitura em movimento</h2>
+<p>Se a potência medida é menor do que a potência que o modelo de caminho prevê, a diferença é perda inexplicável. O modelo tem que listar comprimento de fibra e coeficiente, divisor, conectores e splices. Um único número de fim a fim não pode nomear qual item se moveu. O coeficiente de fibra é separado em <a href="../fiber-loss-per-kilometer/">perda de fibra por quilómetro</a>. A perda de planejamento do separador é separada no <a href="../pon-splitter-loss-guide/">Guia do divisor PON</a>.</p>
+<p>Uma leitura que se move enquanto a rota é intocada pontos primeiro no assento do conector, uma face de extremidade suja ou uma curva intermitente. Uma leitura que permanece em pontos baixos com uma perda estável no modelo. São pistas diferentes. Nenhuma pista nomeia a parte falhada até que o caminho seja aberto com um medidor e, onde a planta permite, um OTDR.</p>
+<h2 id="sequence">Sequência de localização da falha</h2>
+<ol>
+<li>Escreva a direcção e o comprimento de onda. Se a direcção for desconhecida, pare. O diagnóstico é desconhecido.</li>
+<li>Escreva a sensibilidade e sobrecarga da ficha de dados desse modelo. Se a folha de dados não estiver na mão, o limite de passagem/falha é desconhecido.</li>
+<li>Medir com um medidor calibrado nesse comprimento de onda, ou rotular o número de gerenciamento como não calibrado.</li>
+<li>Compare o nível medido com a janela da planilha de dados. Um exemplo separado neste site classifica uma leitura inserida contra limites inseridos. Esses limites não são reutilizados aqui. O exemplo é o <a href="../onu-receive-level-warning-margin/">Guia da margem de aviso</a>.</li>
+<li>Se o nível é baixo ou inexplicável, dividir a perda em fibra, divisor, conectores e splices. Em seguida, comparar a soma com o <a href="../../../tools/optical-power-budget/pt-br/">orçamento de potência óptica</a>. Não atribuir toda a diferença ao ONU.</li>
+<li>Se a direção upstream é a que falhou, verifique o laser ONU no comprimento de onda upstream e o OLT recebe porta. Não ajuste o número do ONU a jusante para explicá-lo.</li>
+</ol>
+<p>Esta sequência não declara um intervalo numérico saudável.ground Uma leitura a jusante não prova a leitura agroundstream.</p>
+<p data-nel-topic-home>Este artigo pertence ao <a href="../../topics/pon-optical/">Tópico óptico PON</a>. <a href="../../topics/pon-optical/#topic-questions">Voltar às questões do tópico</a> Após o registo da direcção e do limiar UNKNOWN.</p></article><aside class="guide-toc guide-related-side" aria-label="Artigos relacionados"><strong>Artigos relacionados</strong><ul><li><a href="../../../tools/onu-rx-power/pt-br/">Calculadora de potência de recepção ONU</a></li><li><a href="../../../tools/optical-power-budget/pt-br/">Calculadora de orçamento de energia óptica</a></li><li><a href="../fiber-loss-per-kilometer/">Perda de fibra por quilómetro</a></li><li><a href="../onu-receive-level-warning-margin/">Exemplo de margem de aviso</a></li><li><a href="../../topics/pon-optical/">Tópico óptico PON</a></li></ul></aside></div></main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Ferramentas profissionais online para engenheiros de telecomunicações e redes.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navegação do rodapé">
+      <a href="../../about/">Sobre</a><a href="../../contact/">Contato</a><a href="../../privacy/">Privacidade</a><a href="../../terms/">Termos</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
+</body></html>

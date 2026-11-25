@@ -8,6 +8,8 @@ window.NELToolInputController={calculate:function(){calculate();},managesValidat
  const locale=document.documentElement.lang.toLowerCase();
  const zh=locale.startsWith("zh");
  const es=locale.startsWith("es");
+ const id=locale==="id"||locale.startsWith("id-");
+ const pt=locale==="pt-br"||locale.startsWith("pt");
  const $=id=>document.getElementById(id);
  const E=window.PoeBudgetEngine;
  let last;
@@ -17,11 +19,17 @@ window.NELToolInputController={calculate:function(){calculate();},managesValidat
  }:es?{
   pass:"Capacidad disponible",warning:"Margen reducido",fail:"La configuración no cumple los requisitos",ports:"Puertos insuficientes",budget:"Presupuesto de potencia insuficiente",standard:"Estándar por puerto insuficiente",
   copied:"Copiado",csv:"Exportado",recommend:"Actualice a",unsupported:"Supera la potencia PD estándar de 802.3bt Tipo 4"
+ }:id?{
+  pass:"Kapasitas cukup",warning:"Cadangan kecil",fail:"Konfigurasi tidak memenuhi syarat",ports:"Port tidak cukup",budget:"Anggaran daya terlampaui",standard:"Standar per port tidak cukup",
+  copied:"Disalin",csv:"Diekspor",recommend:"Naikkan ke",unsupported:"Melampaui daya PD standar 802.3bt Tipe 4"
+ }:pt?{
+  pass:"Capacidade disponível",warning:"Reserva baixa",fail:"A configuração não atende",ports:"Portas insuficientes",budget:"Orçamento de potência excedido",standard:"O padrão por porta não basta",
+  copied:"Copiado",csv:"Exportado",recommend:"Suba para",unsupported:"Excede a potência PD padrão de 802.3bt Tipo 4"
  }:{
   pass:"Capacity available",warning:"Low headroom",fail:"Configuration does not meet requirements",ports:"Not enough ports",budget:"Power budget exceeded",standard:"Per-port standard is insufficient",
   copied:"Copied",csv:"Exported",recommend:"Upgrade to",unsupported:"Exceeds standard 802.3bt Type 4 PD power"
  };
- const fmt=(v,d=1)=>Number(v).toLocaleString(zh?"zh-CN":es?"es-ES":"en-US",{maximumFractionDigits:d});
+ const fmt=(v,d=1)=>Number(v).toLocaleString(zh?"zh-CN":es?"es-ES":id?"id-ID":pt?"pt-BR":"en-US",{maximumFractionDigits:d});
  function values(){return{
   switchBudget:$("switchBudget").value,switchPorts:$("switchPorts").value,deviceCount:$("deviceCount").value,
   deviceWatts:$("deviceWatts").value,cableLossPercent:$("cableLoss").value,headroomPercent:$("headroom").value,
@@ -43,7 +51,7 @@ window.NELToolInputController={calculate:function(){calculate();},managesValidat
   if(!last.portPass)issues.push(text.ports);
   if(!last.budgetPass)issues.push(text.budget);
   if(!last.standardPass)issues.push(last.recommended==="unsupported"?text.unsupported:`${text.standard} — ${text.recommend} ${E.STANDARDS[last.recommended].label}`);
-  $("advice").textContent=issues.join(" · ")||(zh?"配置满足端口、总功率和单端口供电等级要求。":"The design meets port-count, total-budget and per-port power requirements.");
+  $("advice").textContent=issues.join(" · ")||(zh?"配置满足端口、总功率和单端口供电等级要求。":id?"Desain memenuhi jumlah port, anggaran total, dan kelas daya per port.":pt?"O projeto atende à quantidade de portas, ao orçamento total e à classe de potência por porta.":"The design meets port-count, total-budget and per-port power requirements.");
   if(track&&typeof window.nelTrack==="function")window.nelTrack("poe_budget_calculate",{status:last.status,standard:last.inputStandard});
  }finally{window.NELToolInputController.sync?.();}}
  const presets={
@@ -61,11 +69,11 @@ window.NELToolInputController={calculate:function(){calculate();},managesValidat
   if(!last)calculate(false);
   return[
    "NetEngineerLab PoE Power Budget Calculator",
-   `${zh?"所需交换机预算":"Required switch budget"}: ${fmt(last.requiredBudget)} W`,
-   `${zh?"设备负载":"PD load"}: ${fmt(last.loadWatts)} W`,
-   `${zh?"预算利用率":"Budget utilization"}: ${fmt(last.utilization)}%`,
-   `${zh?"最多设备":"Maximum devices"}: ${last.maxDevices}`,
-   `${zh?"状态":"Status"}: ${text[last.status]}`
+   `${zh?"所需交换机预算":id?"Anggaran sakelar yang diperlukan":pt?"Orçamento necessário do switch":"Required switch budget"}: ${fmt(last.requiredBudget)} W`,
+   `${zh?"设备负载":id?"Beban PD":pt?"Carga dos PDs":"PD load"}: ${fmt(last.loadWatts)} W`,
+   `${zh?"预算利用率":id?"Pemakaian anggaran":pt?"Uso do orçamento":"Budget utilization"}: ${fmt(last.utilization)}%`,
+   `${zh?"最多设备":id?"Perangkat maksimum":pt?"Máximo de dispositivos":"Maximum devices"}: ${last.maxDevices}`,
+   `${zh?"状态":id?"Status":pt?"Status":"Status"}: ${text[last.status]}`
   ].join("\n");
  }
  async function copy(){try{await navigator.clipboard.writeText(report())}catch{const a=document.createElement("textarea");a.value=report();document.body.append(a);a.select();document.execCommand("copy");a.remove()}$("copy").textContent=text.copied}

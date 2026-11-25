@@ -9,7 +9,7 @@ function read(p){return fs.readFileSync(p,'utf8')}
 for(const name of fs.readdirSync(toolsRoot)){
   const dir=path.join(toolsRoot,name);
   if(!fs.existsSync(dir)||!fs.statSync(dir).isDirectory()||inventory.skip(name))continue;
-  for(const rel of ['index.html',path.join('zh','index.html'),path.join('es','index.html')]){
+  for(const rel of inventory.detailPageRels){
     const file=path.join(dir,rel); if(!fs.existsSync(file))continue;
     const html=read(file); if(!html.includes('nel-tool-detail-page'))continue;
     tools.add(name); const display=path.relative(root,file).replaceAll('\\','/');

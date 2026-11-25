@@ -33,22 +33,24 @@
 <meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
 <meta name="nel-locale" content="en">
 <meta name="nel-route" content="tools/chromatic-dispersion-calculator/">
-<meta name="nel-available-locales" content="en,zh,es">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
 <link rel="canonical" href="https://netengineerlab.com/tools/chromatic-dispersion-calculator/">
 <link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/chromatic-dispersion-calculator/">
 <link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/chromatic-dispersion-calculator/zh/">
 <link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/chromatic-dispersion-calculator/es/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/tools/chromatic-dispersion-calculator/id/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/tools/chromatic-dispersion-calculator/pt-br/">
 <link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/chromatic-dispersion-calculator/">
 <script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the chromatic dispersion of G.652 fiber at 1550 nm?","acceptedAnswer":{"@type":"Answer","text":"About 17 ps/(nm·km). The ITU-T G.652 model with λ0 = 1310 nm and S0 = 0.092 gives 17.46 ps/(nm·km); typical cables measure 16.5–18."}},{"@type":"Question","name":"How do I calculate total chromatic dispersion?","acceptedAnswer":{"@type":"Answer","text":"Multiply the coefficient by the length: CD = D × L. 80 km × 17.46 ps/(nm·km) ≈ 1,397 ps/nm. Subtract any DCM or FBG compensation to get the residual."}},{"@type":"Question","name":"What is a typical CD tolerance for 10G optics?","acceptedAnswer":{"@type":"Answer","text":"It depends on the module. Directly modulated 10G optics are often specified around 800 ps/nm, while 10G ER/ZR-class optics are often specified around 1,600 ps/nm. Always use the datasheet."}},{"@type":"Question","name":"Does chromatic dispersion matter at 1310 nm?","acceptedAnswer":{"@type":"Answer","text":"Very little. 1310 nm is close to the zero-dispersion wavelength of G.652 fiber, so D is near 0 there."}},{"@type":"Question","name":"Do coherent optics need dispersion compensation?","acceptedAnswer":{"@type":"Answer","text":"Usually not. Coherent receivers compensate CD electronically in the DSP and tolerate tens of thousands of ps/nm."}}]}</script>
 <link rel="stylesheet" href="../../assets/css/locale-menu.css?v=7804394246fb">
 <link rel="stylesheet" href="../../assets/css/design-tokens.css?v=10e842cd32cf">
 <link rel="stylesheet" href="../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
 <link rel="stylesheet" href="../../assets/css/site-shell.css?v=f427e2f1607b">
-<script defer src="../../data/locales.js?v=909e05076a50"></script>
+<script defer src="../../data/locales.js?v=c02cfbf85360"></script>
 <script defer src="../../data/site-config.js?v=b5072ad7fa47"></script>
 <script defer src="../../assets/js/analytics.js?v=1156b7864023"></script>
 <script defer src="../../assets/js/adsense.js?v=f075c80ccc75"></script>
-<script defer src="../../assets/js/site.js?v=c957f6562d31"></script>
+<script defer src="../../assets/js/site.js?v=3feb9dda55e8"></script>
 <link rel="stylesheet" href="../../assets/css/tool-layout.css?v=c4aecb2c24ab">
 <link rel="manifest" href="manifest.webmanifest">
 </head>
@@ -70,7 +72,7 @@
       <a href="../../topics/">Topics</a>
     </nav>
     <div class="site-shell-actions">
-      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/chromatic-dispersion-calculator/" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="/tools/chromatic-dispersion-calculator/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a><a class="language-option" role="menuitem" href="/tools/chromatic-dispersion-calculator/es/" lang="es" hreflang="es"><span>Español</span><small>Spanish</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">English</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/chromatic-dispersion-calculator/" lang="en" hreflang="en" aria-current="page"><span>English</span><small>English</small></a><a class="language-option" role="menuitem" href="/tools/chromatic-dispersion-calculator/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinese</small></a><a class="language-option" role="menuitem" href="/tools/chromatic-dispersion-calculator/es/" lang="es" hreflang="es"><span>Español</span><small>Spanish</small></a><a class="language-option" role="menuitem" href="/tools/chromatic-dispersion-calculator/id/" lang="id" hreflang="id"><span>Bahasa Indonesia</span><small>Indonesian</small></a><a class="language-option" role="menuitem" href="/tools/chromatic-dispersion-calculator/pt-br/" lang="pt-BR" hreflang="pt-BR"><span>Português do Brasil</span><small>Brazilian Portuguese</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
       <div class="site-shell-context-action"><a href="#calculator">Start calculating</a></div>
     </div>
   </div>
@@ -144,9 +146,9 @@
 <script defer="" src="js/engine.js?v=72ef42125dcb"></script>
 <script defer="" src="js/pwa.js?v=20261108-cd-bw5"></script>
 <script defer="" src="../../assets/js/tool-integration.js?v=05f7934f4687"></script>
-<script defer="" src="js/app.js?v=22498116e23a"></script>
-<script src="/assets/js/cookie-consent.js?v=5e6d1af21a6a"></script>
-<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=52d5b338a92d"></script>
+<script defer="" src="js/app.js?v=8cb67b803b70"></script>
+<script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
+<script defer="" src="/assets/js/tool-shell-v1.9.9-04.js?v=ee9b24f19870"></script>
 <script defer="" src="../../assets/js/tool-detail-v3.js?v=6f38212f00f3"></script>
 </body>
 </html>

@@ -4,11 +4,11 @@ window.NELToolInputController={calculate:function(){run();},managesValidation:tr
 
 
 
-function nelInputError(ok){const l=(document.documentElement.lang||"en").toLowerCase();const msg=l.startsWith("zh")?"请检查输入：数值不能为负，必填负载与容量必须大于 0。":l.startsWith("es")?"Revise las entradas: los valores no pueden ser negativos y las cargas y capacidades obligatorias deben ser mayores que cero.":"Check the inputs: values cannot be negative, and required loads and capacities must be greater than zero.";let el=document.getElementById("nelInputError");if(ok){if(el)el.hidden=true;return;}if(!el){el=document.createElement("p");el.id="nelInputError";el.className="nel-input-error";el.setAttribute("role","alert");el.style.cssText="color:#b42318;font-weight:700;background:#fdecec;border:1px solid #f4c7c3;border-radius:10px;padding:10px 12px;margin:10px 0";const anchor=document.getElementById("calculate");if(anchor&&anchor.parentNode)(anchor.closest(".input-actions")||anchor).parentNode.insertBefore(el,anchor.closest(".input-actions")||anchor);else(document.querySelector("main")||document.body).prepend(el);}el.textContent=msg;el.hidden=false;}
+function nelInputError(ok){const l=(document.documentElement.lang||"en").toLowerCase();const msg=l.startsWith("zh")?"请检查输入：数值不能为负，必填负载与容量必须大于 0。":l.startsWith("es")?"Revise las entradas: los valores no pueden ser negativos y las cargas y capacidades obligatorias deben ser mayores que cero.":l.startsWith("id")?"Periksa masukan: nilai tidak boleh negatif, dan beban serta kapasitas wajib harus lebih dari 0.":l.startsWith("pt")?"Confira as entradas: os valores não podem ser negativos, e as cargas e capacidades obrigatórias devem ser maiores que zero.":"Check the inputs: values cannot be negative, and required loads and capacities must be greater than zero.";let el=document.getElementById("nelInputError");if(ok){if(el)el.hidden=true;return;}if(!el){el=document.createElement("p");el.id="nelInputError";el.className="nel-input-error";el.setAttribute("role","alert");el.style.cssText="color:#b42318;font-weight:700;background:#fdecec;border:1px solid #f4c7c3;border-radius:10px;padding:10px 12px;margin:10px 0";const anchor=document.getElementById("calculate");if(anchor&&anchor.parentNode)(anchor.closest(".input-actions")||anchor).parentNode.insertBefore(el,anchor.closest(".input-actions")||anchor);else(document.querySelector("main")||document.body).prepend(el);}el.textContent=msg;el.hidden=false;}
 
-const $=id=>document.getElementById(id), n=id=>Number($(id)?.value||0), fmt=(v,d=1)=>Number(v).toLocaleString(undefined,{maximumFractionDigits:d});
+const $=id=>document.getElementById(id), n=id=>Number($(id)?.value||0), fmt=(v,d=1)=>Number(v).toLocaleString(lang==="id"?"id-ID":lang==="pt"?"pt-BR":undefined,{maximumFractionDigits:d});
 const htmlLang=(document.documentElement.lang||"").toLowerCase();
-const lang=htmlLang.startsWith("zh")?"zh":htmlLang.startsWith("es")?"es":"en";
+const lang=htmlLang.startsWith("zh")?"zh":htmlLang.startsWith("es")?"es":htmlLang.startsWith("id")?"id":htmlLang.startsWith("pt")?"pt":"en";
 const copy={
   en:{
     gates:"Engineering gates & scenarios",
@@ -48,6 +48,32 @@ const copy={
     csv:"Descargar hoja de verificación CSV",
     fallback:"Solo un candidato de planificación; verifique el conductor, la caída de tensión, la corriente de defecto y la selectividad.",
     levels:{info:"informativo",low:"bajo",medium:"medio",high:"alto",critical:"crítico"}
+  },
+  id:{
+    gates:"Gerbang rekayasa dan skenario",
+    risk:"Risiko",
+    pass:"LULUS",
+    fail:"GAGAL",
+    conductor:"konduktor",
+    drop:"jatuh tegangan",
+    before:"Arus desain sebelum / sesudah",
+    json:"Unduh laporan JSON",
+    csv:"Unduh lembar pemeriksaan CSV",
+    fallback:"Hanya kandidat perencanaan; periksa konduktor, jatuh tegangan, arus gangguan, dan selektivitas.",
+    levels:{info:"info",low:"rendah",medium:"sedang",high:"tinggi",critical:"kritis"}
+  },
+  pt:{
+    gates:"Verificações de engenharia e cenários",
+    risk:"Risco",
+    pass:"APROVADO",
+    fail:"REPROVADO",
+    conductor:"condutor",
+    drop:"queda de tensão",
+    before:"Corrente de projeto antes / depois",
+    json:"Baixar relatório JSON",
+    csv:"Baixar folha de verificação CSV",
+    fallback:"Apenas um candidato de planejamento; verifique o condutor, a queda de tensão, a corrente de falta e a seletividade.",
+    levels:{info:"informativo",low:"baixo",medium:"médio",high:"alto",critical:"crítico"}
   }
 }[lang];
 const riskText={
@@ -68,6 +94,24 @@ const riskText={
     CONTINUOUS_LOADING:"El interruptor supera el 80% de carga continua",
     DC_MARGIN:"La rama de CC tiene un margen limitado de corriente continua",
     MISSING_FAULT_DATA:"No se indicó la corriente de defecto ni el poder de corte"
+  },
+  id:{
+    CONDUCTOR_AMPACITY:"Ampasitas konduktor di bawah arus desain skenario konservatif",
+    VOLTAGE_DROP:"Perkiraan jatuh tegangan penyulang melebihi margin perencanaan",
+    INTERRUPTING_RATING:"Kemampuan pemutusan pemutus di bawah arus gangguan yang diperkirakan",
+    N1_CAPACITY:"Kapasitas catu N-1 tidak menanggung beban skenario konservatif",
+    CONTINUOUS_LOADING:"Pemutus melewati 80% beban kontinu",
+    DC_MARGIN:"Cabang DC kekurangan margin arus kontinu",
+    MISSING_FAULT_DATA:"Arus gangguan atau kemampuan pemutusan belum diisi"
+  },
+  pt:{
+    CONDUCTOR_AMPACITY:"A ampacidade do condutor fica abaixo da corrente de projeto do cenário conservador",
+    VOLTAGE_DROP:"A queda de tensão estimada do alimentador ultrapassa a margem de planejamento",
+    INTERRUPTING_RATING:"A capacidade de interrupção do disjuntor fica abaixo da corrente de falta prevista",
+    N1_CAPACITY:"A capacidade da alimentação N-1 não sustenta a carga do cenário conservador",
+    CONTINUOUS_LOADING:"O disjuntor passa de 80% da carga contínua",
+    DC_MARGIN:"O ramal CC tem margem limitada de corrente contínua",
+    MISSING_FAULT_DATA:"A corrente de falta ou a capacidade de interrupção não foi informada"
   }
 };
 function level(value){return copy.levels[value]||copy.levels.low;}
@@ -76,11 +120,11 @@ function download(name,text,type){const a=document.createElement("a");a.href=URL
 function riskLine(item){
   if(lang==="en")return `${level(item.severity)}: ${item.message}`;
   if(item.code==="VOLTAGE_DROP"&&item.severity==="medium"){
-    const text=lang==="zh"?"馈线估算压降高于 2%":"La caída de tensión estimada del alimentador supera el 2%";
+    const text=lang==="zh"?"馈线估算压降高于 2%":lang==="id"?"Perkiraan jatuh tegangan penyulang di atas 2%":lang==="pt"?"A queda de tensão estimada do alimentador passa de 2%":"La caída de tensión estimada del alimentador supera el 2%";
     return `${level(item.severity)}: ${text}`;
   }
   if(item.code==="VOLTAGE_DROP"&&item.severity==="high"){
-    const text=lang==="zh"?"馈线估算压降超过 3%":"La caída de tensión estimada del alimentador supera el 3%";
+    const text=lang==="zh"?"馈线估算压降超过 3%":lang==="id"?"Perkiraan jatuh tegangan penyulang di atas 3%":lang==="pt"?"A queda de tensão estimada do alimentador passa de 3%":"La caída de tensión estimada del alimentador supera el 3%";
     return `${level(item.severity)}: ${text}`;
   }
   const text=(riskText[lang]&&riskText[lang][item.code])||item.message;
@@ -113,4 +157,4 @@ $("calculate")?.addEventListener("click",run);document.getElementById("reset")?.
 run();
 })();
 
-(function(){const b=document.getElementById("calculate");if(!b)return;const label=b.innerHTML;let timer;b.addEventListener("click",()=>{clearTimeout(timer);b.setAttribute("aria-live","polite");b.textContent=document.documentElement.lang.startsWith("zh")?"已重新计算":document.documentElement.lang.startsWith("es")?"Recalculado":"Recalculated";timer=setTimeout(()=>b.innerHTML=label,1100);});})();
+(function(){const b=document.getElementById("calculate");if(!b)return;const label=b.innerHTML;let timer;b.addEventListener("click",()=>{clearTimeout(timer);b.setAttribute("aria-live","polite");b.textContent=document.documentElement.lang.startsWith("zh")?"已重新计算":document.documentElement.lang.startsWith("es")?"Recalculado":document.documentElement.lang.startsWith("id")?"Dihitung ulang":document.documentElement.lang.toLowerCase().startsWith("pt")?"Recalculado":"Recalculated";timer=setTimeout(()=>b.innerHTML=label,1100);});})();

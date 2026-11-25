@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR" dir="ltr" data-nel-locale="pt-BR" data-nel-route="tools/path-availability-calculator/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="app-base" content="../">
+<title>Calculadora de disponibilidade de caminho</title>
+<meta name="description" content="Combine disponibilidades independentes em série ou em paralelo, ou converta MTBF e MTTR em disponibilidade e tempo de indisponibilidade anual.">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<link rel="icon" href="/assets/icons/favicon.svg?v=1.9.5-06" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="/assets/css/mobile-branding.css?v=345784b6b020">
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif:ital@1&amp;display=swap">
+<link rel="stylesheet" href="/assets/css/fb-v3.css?v=031fae951adb">
+<link rel="stylesheet" href="/assets/css/fb-v3-prod.css?v=64bd0d9f6bcb">
+<link rel="stylesheet" href="../css/style.css?v=3e625a824a21">
+<script defer src="/assets/js/tool-v3-navigation.js?v=b8d825e0f678"></script>
+<meta name="theme-color" content="#176ff2">
+<meta property="og:url" content="https://netengineerlab.com/tools/path-availability-calculator/pt-br/">
+<meta property="og:title" content="Calculadora de disponibilidade de caminho">
+<meta property="og:description" content="Combine disponibilidades independentes em série ou em paralelo, ou converta MTBF e MTTR em disponibilidade e tempo de indisponibilidade anual.">
+<meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Calculadora de disponibilidade de caminho">
+<meta name="twitter:description" content="Combine disponibilidades independentes em série ou em paralelo, ou converta MTBF e MTTR em disponibilidade e tempo de indisponibilidade anual.">
+<meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://netengineerlab.com/pt-br/"},{"@type":"ListItem","position":2,"name":"Ferramentas","item":"https://netengineerlab.com/tools/pt-br/"},{"@type":"ListItem","position":3,"name":"Calculadora de disponibilidade de caminho","item":"https://netengineerlab.com/tools/path-availability-calculator/pt-br/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de disponibilidade de caminho","url":"https://netengineerlab.com/tools/path-availability-calculator/pt-br/","description":"Combine disponibilidades independentes em série ou em paralelo, ou converta MTBF e MTTR em disponibilidade e tempo de indisponibilidade anual.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","inLanguage":"pt-BR","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="stylesheet" href="/assets/css/tool-workflow.css?v=8c74b394ef2c" data-nel-workflow-style>
+
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"Calculadora de disponibilidade de caminho","url":"https://netengineerlab.com/tools/path-availability-calculator/pt-br/","description":"Combine disponibilidades independentes em série ou em paralelo, ou converta MTBF e MTTR em disponibilidade e tempo de indisponibilidade anual.","inLanguage":"pt-BR","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/pt-br/"}}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="pt-BR">
+<meta name="nel-route" content="tools/path-availability-calculator/">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
+<link rel="canonical" href="https://netengineerlab.com/tools/path-availability-calculator/pt-br/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/tools/path-availability-calculator/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/tools/path-availability-calculator/zh/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/tools/path-availability-calculator/es/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/tools/path-availability-calculator/id/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/tools/path-availability-calculator/pt-br/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/tools/path-availability-calculator/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/tool-design-system.css?v=fbfd8fc05bdc">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
+<script defer src="../../../data/locales.js?v=c02cfbf85360"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
+<script defer src="../../../assets/js/pt-br-launch-runtime.js?v=dc56e78b12bd"></script>
+<link rel="stylesheet" href="../../../assets/css/tool-layout.css?v=c4aecb2c24ab">
+<link rel="manifest" href="../manifest-pt-br.webmanifest">
+</head>
+<body class="nel-tool-detail-page nel-tool-v3 has-mbar v3" data-nel-template="tool-detail-v1.3.1" data-nel-visual="network-change-planner-reference" data-nel-v3-migrated="1" data-nel-offline-worker="1">
+<a class="skip" href="#calculator">Ir para a calculadora</a>
+<!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../../pt-br/">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Plataforma de inteligência para engenharia de redes</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Abrir navegação"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navegação principal">
+      <a href="../../../pt-br/">Início</a>
+      <a href="../../pt-br/" aria-current="page">Ferramentas</a>
+      <a href="../../../guides/">Guias</a>
+      <a href="../../../topics/">Tópicos</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Português do Brasil"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Português do Brasil</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/tools/path-availability-calculator/" lang="en" hreflang="en"><span>English</span><small>Inglês</small></a><a class="language-option" role="menuitem" href="/tools/path-availability-calculator/zh/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinês simplificado</small></a><a class="language-option" role="menuitem" href="/tools/path-availability-calculator/es/" lang="es" hreflang="es"><span>Español</span><small>Espanhol</small></a><a class="language-option" role="menuitem" href="/tools/path-availability-calculator/id/" lang="id" hreflang="id"><span>Bahasa Indonesia</span><small>Indonésio</small></a><a class="language-option" role="menuitem" href="/tools/path-availability-calculator/pt-br/" lang="pt-BR" hreflang="pt-BR" aria-current="page"><span>Português do Brasil</span><small>Português do Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"><a href="#calculator">Começar a calcular</a></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+<!-- NEL_TOOL_RETURN_START -->
+<nav class="breadcrumbs tool-return-nav" aria-label="Trilha">
+  <a href="../../../pt-br/">Início</a>
+  <span aria-hidden="true">/</span>
+  <a class="tool-return-link" href="../../pt-br/">Ferramentas</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">Calculadora de disponibilidade de caminho</span>
+</nav>
+<!-- NEL_TOOL_RETURN_END -->
+<section class="hero nel-tool-hero" aria-hidden="true"><div class="hero-inner"><p class="eyebrow">CONFIABILIDADE DO CAMINHO</p><p class="hero-title">Calculadora de disponibilidade de caminho</p><p>Combine disponibilidades independentes em série ou em paralelo, ou converta MTBF e MTTR em disponibilidade e tempo de indisponibilidade anual.</p><div class="hero-tags"><span>Série</span><span>Paralelo</span><span>MTBF</span><span>MTTR</span></div></div></section>
+<main id="calculator" class="tool-shell nel-tool-main nel-tool-grid nel-tool-primary-grid" data-engine="NEL_Availability" data-primary="availability" data-nel-readout-rows=".result-box%2C.metric-card%20%3E%20div%2C.metric%2C.kv">
+<div class="tool-head">
+<nav class="crumbs" aria-label="Trilha"><a href="../../../pt-br/">Início</a> <span aria-hidden="true">/</span> <a href="../../pt-br/">Ferramentas</a> <span aria-hidden="true">/</span> <span aria-current="page">Calculadora de disponibilidade de caminho</span></nav>
+<h1 class="tool-page-label">Calculadora de disponibilidade de caminho</h1>
+<p class="tool-lede">Combine disponibilidades independentes em série ou em paralelo, ou converta MTBF e MTTR em disponibilidade e tempo de indisponibilidade anual.</p>
+</div>
+<div class="workspace">
+<section class="input-panel card nel-tool-input fb-panel">
+<h2 class="panel-h">Entradas</h2>
+<p class="hint">O resultado segue as entradas. Uma entrada inválida explica o motivo e apaga os números anteriores.</p>
+<div class="fields"><div class="field f"><label for="kind">Cálculo</label><div class="inp input-wrap sel"><select id="kind" data-field="kind" data-example="blocks"><option value="mtbf" selected>MTBF / MTTR</option><option value="blocks">Blocos em série ou em paralelo</option></select></div></div><div class="field f"><label for="mode">Diagrama de blocos</label><div class="inp input-wrap sel"><select id="mode" data-field="mode" data-example="parallel"><option value="parallel" selected>Paralelo</option><option value="series">Série</option></select></div></div><div class="field f"><label for="blocks">Disponibilidade de cada bloco independente</label><div class="inp input-wrap"><input id="blocks" data-field="blocks" data-example="0.999, 0.999" type="text" inputmode="text" value="0.999, 0.999"></div></div><div class="field f"><label for="mtbfHours">MTBF</label><div class="inp input-wrap"><input id="mtbfHours" data-field="mtbfHours" data-example="43800" type="number" inputmode="decimal" value="8760" step="any"></div></div><div class="field f"><label for="mttrHours">MTTR</label><div class="inp input-wrap"><input id="mttrHours" data-field="mttrHours" data-example="2" type="number" inputmode="decimal" value="4" step="any" data-probe="1" data-probe-edit="8" data-probe-invalid="0"></div></div></div>
+<p id="validation" class="validation" role="alert"></p>
+<div class="input-actions"><button id="calculateBtn" class="btn btn-primary" type="button">Calcular</button><button id="exampleBtn" class="btn btn-ghost" type="button">Carregar exemplo</button><button id="resetBtn" class="btn btn-ghost" type="button">Redefinir</button></div>
+<div class="formula-card"><h3>Fórmula</h3><code>Série A = ∏ A_i. Paralelo A = 1 − ∏(1 − A_i). A = MTBF / (MTBF + MTTR).</code><p>Esta é uma aproximação de engenharia para planejamento. Não é uma medição de laboratório e não garante o desempenho do equipamento.</p></div>
+</section>
+<section class="result-panel card nel-tool-result readout" id="result" aria-live="polite">
+<h2 class="ro-h">Resultado</h2>
+<p id="statusLine" class="hint"></p>
+<div class="metric-grid"><article class="metric"><span class="lbl" id="lbl-availability">Disponibilidade</span><span class="val" id="out-availability" data-out="availability"><span class="num">—</span></span></article><article class="metric"><span class="lbl" id="lbl-unavailability">Indisponibilidade</span><span class="val" id="out-unavailability" data-out="unavailability"><span class="num">—</span></span></article><article class="metric"><span class="lbl" id="lbl-downMinutesPerYear">Indisponibilidade esperada em 365 dias</span><span class="val" id="out-downMinutesPerYear" data-out="downMinutesPerYear"><span class="num">—</span><span class="unit">min</span></span></article></div>
+
+<div class="result-actions ro-acts"><button id="copyBtn" type="button">Copiar resultado</button><button id="csvBtn" type="button">Exportar CSV</button></div>
+</section>
+</div>
+<div class="below">
+<nav class="toc" aria-label="Nesta página"><h4>Nesta página</h4><a href="#about-scope">Sobre e abrangência</a><a href="#methodology">Como o cálculo é feito</a><a href="#faq">Perguntas</a><a href="#references">Referências</a><a href="#nel-tool-graph">Fluxo de trabalho</a></nav>
+<div class="prose">
+<details class="fb-fold blk" id="about-scope" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span class="fb-fold-title">Sobre e abrangência</span></summary><div class="fb-fold-body"><p>Use isto para blocos independentes. Não modela alimentação compartilhada, software comum nem um calendário de manutenção. A indisponibilidade anual usa um ano de 365 dias.</p><p>Esta é uma aproximação de engenharia para planejamento. Não é uma medição de laboratório e não garante o desempenho do equipamento.</p><p class="about-meta">Revisado: 2026-11-19</p></div></details>
+<details class="fb-fold blk" id="methodology" data-nel-v3-title-normalized="1"><summary class="fb-fold-sum"><span class="fb-fold-title">Como o cálculo é feito</span></summary><div class="fb-fold-body"><p class="eq">Série A = ∏ A_i. Paralelo A = 1 − ∏(1 − A_i). A = MTBF / (MTBF + MTTR).</p><p>Se cada bloco falha de forma independente, a disponibilidade em série é o produto das disponibilidades. A disponibilidade em paralelo é um menos o produto das indisponibilidades. Dois caminhos de 0.999 em paralelo dão 1 − 0.001×0.001 = 0.999999. MTBF e MTTR na mesma unidade de tempo dão A = MTBF / (MTBF + MTTR). Os minutos de indisponibilidade esperados em 365 dias são (1−A)×525600. Informe as disponibilidades como frações de pouco acima de 0 até 1, um bloco por vírgula.</p></div></details>
+<div class="blk faq" id="faq"><h2>Perguntas</h2><h3>O paralelo sempre supera a série?</h3><p>Para os mesmos blocos independentes, a combinação em paralelo é maior.</p><h3>A disponibilidade pode ser exatamente 1?</h3><p>Sim. A indisponibilidade então é zero neste modelo.</p><h3>Por que zero é recusado?</h3><p>Um bloco zero precisa de um modelo de falha diferente de uma disponibilidade positiva.</p><h3>0.999999 é um SLA medido?</h3><p>Não. É a aritmética de dois blocos de 0.999.</p></div>
+<section class="blk" id="references"><h2>Referências</h2><ul class="rel"><li><a href="https://www.itl.nist.gov/div898/handbook/apr/apr.htm">NIST/SEMATECH e-Handbook of statistical methods</a></li><li><a href="https://www.electropedia.org/iev/iev.nsf/display?openform&amp;ievref=192-01-23">IEC Electropedia availability</a></li><li><a href="https://www.itl.nist.gov/div898/handbook/eda/section3/eda361.htm">Independent events</a></li></ul></section>
+<!-- NEL_TOOL_GRAPH_START -->
+<section class="content-section nel-tool-graph" id="nel-tool-graph" aria-labelledby="nel-tool-graph-title" data-tool-id="path-availability-calculator" data-primary-workflow="facility-power-pathway">
+<div class="section-heading"><div><p class="eyebrow">FLUXO DE ENGENHARIA</p><h2 id="nel-tool-graph-title">Continuar o fluxo de engenharia</h2></div></div>
+<div class="nel-workflow-context"><div><span class="nel-workflow-kicker">Fluxo atual</span><strong>Queda do alimentador, ocupação do caminho e disponibilidade</strong><p>Estime a queda do alimentador CC e a ocupação geométrica do caminho e depois combine disponibilidades de caminhos independentes.</p></div><div class="nel-workflow-step"><strong>Etapa 3 de 3</strong><div class="nel-workflow-progress" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="3" aria-valuetext="Etapa 3 de 3" aria-label="Etapa 3 de 3"><span style="width:100%"></span></div></div></div><div class="nel-tool-graph-nav"><a class="nel-tool-graph-card" href="../../pathway-fill-calculator/pt-br/"><span class="nel-tool-graph-label">Anterior</span><strong>Pathway Geometric Fill Calculator</strong><span class="nel-tool-graph-description">Compare the circle area of cable groups with the inner area of a round pathway.</span></a><div class="nel-tool-graph-card is-muted"><span class="nel-tool-graph-label">Próximo</span><strong>Fluxo concluído</strong></div></div>
+<h3 class="nel-tool-graph-subtitle">Ferramentas relacionadas</h3><div class="nel-tool-graph-related"><a class="nel-tool-graph-card" href="../../pue-data-center-energy-efficiency/pt-br/"><strong>Analisador de PUE e eficiência energética do data center</strong><span class="nel-tool-graph-description">Calcule o PUE como energia total dividida pela energia de TI no mesmo período e limite.</span></a><a class="nel-tool-graph-card" href="/tools/ups-capacity-battery-runtime-calculator/"><strong>UPS Capacity &amp; Battery Backup Runtime Calculator (English)</strong><span class="nel-tool-graph-description">Size UPS kW/kVA capacity, modular redundancy, battery autonomy, aging/temperature margin, recharge demand and bypass current.</span></a><a class="nel-tool-graph-card" href="/tools/network-capacity-forecast-planner/"><strong>Network Capacity Forecast Planner (English)</strong><span class="nel-tool-graph-description">Forecast network demand growth, expansion timing and capacity targets from measured utilization.</span></a></div>
+</section>
+<!-- NEL_TOOL_GRAPH_END -->
+</div>
+</div>
+</main>
+<!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Ferramentas profissionais online para engenheiros de telecomunicações e redes.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navegação do rodapé">
+      <a href="../../../pt-br/about/">Sobre</a><a href="../../../pt-br/contact/">Contato</a><a href="../../../pt-br/privacy/">Privacidade</a><a href="../../../pt-br/terms/">Termos</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+<script type="application/json" id="nel-copy">{"calculate":"Calcular","example":"Carregar exemplo","reset":"Redefinir","copy":"Copiar resultado","csv":"Exportar CSV","invalid":"Verifique o limite destacado. O resultado anterior foi apagado.","ready":"Resultado atualizado com as entradas atuais.","inputs":"Entradas","results":"Resultado","formula":"Fórmula","toc":"Nesta página","about":"Sobre e abrangência","method":"Como o cálculo é feito","faq":"Perguntas","refs":"Referências","flow":"Fluxo de trabalho","reviewed":"Revisado: 2026-11-19","approx":"Esta é uma aproximação de engenharia para planejamento. Não é uma medição de laboratório e não garante o desempenho do equipamento.","start":"Começar a calcular","home":"Início","tools":"Ferramentas","errors":{"empty":"Informe um valor.","invalid-number":"Informe um número decimal finito.","non-finite":"O valor precisa ser finito.","not-integer":"Informe um número inteiro.","bad-unit":"Escolha uma unidade suportada.","overflow":"O cálculo estourou. Use um valor menor.","anchor-range":"Mantenha a âncora entre 100 e 400 THz.","spacing-range":"O espaçamento deve ser maior que 0 e no máximo 10000 GHz.","channel-range":"Mantenha o índice do canal entre -100000 e 100000.","frequency-range":"A frequência óptica resultante está fora de 0 a 1000 THz.","power-range":"A potência do canal deve ficar de -80 a 40 dBm.","gain-range":"O ganho deve ser maior que 0 dB e no máximo 50 dB.","nf-range":"A figura de ruído deve ficar de 0 a 40 dB neste modelo.","bandwidth-range":"A largura de banda está fora da faixa aceita.","span-range":"A quantidade de spans deve ser um inteiro de 1 a 10000.","bad-code":"Escolha um código de linha.","payload-range":"A taxa útil deve ser maior que 0 e no máximo 100000 Gbps.","mss-range":"O MSS deve ser um inteiro de 1 a 65535 bytes.","rtt-range":"O RTT deve ser maior que 0 e no máximo 100 s.","loss-range":"A probabilidade de perda deve ser maior que 0 e menor que 1.","link-range":"A taxa do enlace deve ser maior que 0.","arrival-range":"A taxa de chegada deve ser maior que 0.","service-range":"A taxa de serviço deve ser maior que 0.","unstable":"A taxa de serviço deve ser maior que a taxa de chegada.","bad-kind":"Escolha blocos ou MTBF.","availability-range":"A disponibilidade deve ser maior que 0 e no máximo 1.","mtbf-range":"O MTBF deve ser maior que 0.","mttr-range":"O MTTR deve ser maior que 0.","bad-mode":"Escolha série ou paralelo.","block-count":"Informe de 1 a 20 valores de disponibilidade.","voltage-range":"A tensão deve ser maior que 0 e no máximo 2000 V.","current-range":"A corrente deve ficar de 0 a 100000 A.","length-range":"O comprimento está fora da faixa aceita.","area-range":"A seção do condutor deve ser maior que 0.","temperature-range":"A temperatura deve manter a resistividade positiva e ficar de -50 a 200 °C.","alpha-range":"Alpha deve ficar de 0 a 0.02 por °C.","conductor-count":"A quantidade de condutores deve ser 1 ou 2.","rho-range":"A resistividade deve ser maior que 0.","conduit-range":"O diâmetro do caminho deve ser maior que 0.","group-count":"Informe de 1 a 4 grupos de cabos.","diameter-range":"O diâmetro do cabo deve ser maior que 0.","count-range":"A quantidade de cabos deve ser um inteiro de 1 a 100000.","limit-range":"O limite de ocupação deve ser maior que 0 e no máximo 100 por cento.","vf-range":"O fator de velocidade deve ser maior que 0 e no máximo 1.","snr-range":"A SNR está fora da faixa aceita."}}</script>
+<link rel="stylesheet" href="../css/style.css?v=3e625a824a21">
+<link rel="stylesheet" href="/assets/css/pilot-locale-toc.css?v=20261124toc">
+<script src="../js/engine.js?v=3d01306951bf"></script>
+<script src="../js/app.js?v=99fb796113bb"></script>
+<script src="../js/pwa.js"></script>
+<script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
+<script defer src="/assets/js/tool-shell-v1.9.9-04.js?v=ee9b24f19870"></script>
+</body>
+</html>

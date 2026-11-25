@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR" dir="ltr" data-nel-locale="pt-BR" data-nel-route="guides/10g-vs-25g-uplinks/">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>10G vs 25G switch uplinks: atualização da decisão | NetEngineerLab</title>
+  <meta name="description" content="Compare taxas de uplink nominal 10G, 25G, 40G e 100G com a demanda medida. Uma relação nominal não é utilizável através de transferência ou congestionamento.">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="NetEngineerLab">
+  <meta property="og:title" content="10G vs 25G switch uplinks: atualização da decisão | NetEngineerLab">
+  <meta property="og:description" content="Compare taxas de uplink nominal 10G, 25G, 40G e 100G com a demanda medida. Uma relação nominal não é utilizável através de transferência ou congestionamento.">
+  <meta property="og:url" content="https://netengineerlab.com/pt-br/guides/10g-vs-25g-uplinks/">
+  <meta property="og:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://netengineerlab.com/assets/images/og-netengineerlab.png">
+  <link rel="icon" href="../../../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../../assets/css/site.css">
+  <link rel="stylesheet" href="../../../assets/css/guide.css?v=6d83ae5e791f">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://netengineerlab.com/guides/10g-vs-25g-uplinks/#webpage","url":"https://netengineerlab.com/pt-br/guides/10g-vs-25g-uplinks","name":"10G vs 25G Switch Uplinks: Quando você deve atualizar?","description":"Compare taxas de uplink nominal 10G, 25G, 40G e 100G com a demanda medida. Uma relação nominal não é utilizável através de transferência ou congestionamento.","inLanguage":"pt-BR","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/pt-br/"}},{"@type":"Article","@id":"https://netengineerlab.com/guides/10g-vs-25g-uplinks/#article","headline":"10G vs 25G Switch Uplinks: Quando você deve atualizar?","description":"Compare taxas de uplink nominal 10G, 25G, 40G e 100G com a demanda medida. Uma relação nominal não é utilizável através de transferência ou congestionamento.","url":"https://netengineerlab.com/pt-br/guides/10g-vs-25g-uplinks","inLanguage":"pt-BR","mainEntityOfPage":{"@id":"https://netengineerlab.com/guides/10g-vs-25g-uplinks/#webpage"},"publisher":{"@type":"Organization","name":"NetEngineerLab","url":"https://netengineerlab.com/pt-br/","logo":{"@type":"ImageObject","url":"https://netengineerlab.com/pt-br/assets/images/logo.svg"}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://netengineerlab.com/pt-br/"},{"@type":"ListItem","position":2,"name":"Tópicos","item":"https://netengineerlab.com/pt-br/topics/switch-oversubscription/"},{"@type":"ListItem","position":3,"name":"10G vs 25G Switch Uplinks","item":"https://netengineerlab.com/pt-br/guides/10g-vs-25g-uplinks/"}]}]}</script>
+  
+  <meta name="twitter:title" content="10G vs 25G switch uplinks: atualização da decisão | NetEngineerLab">
+<meta name="twitter:description" content="Compare taxas de uplink nominal 10G, 25G, 40G e 100G com a demanda medida. Uma relação nominal não é utilizável através de transferência ou congestionamento.">
+
+<link rel="stylesheet" href="/assets/css/cookie-consent.css?v=2f2c8ab643e6">
+<link rel="stylesheet" href="../../../assets/css/site-pages-v2.css?v=20261105-v2">
+<link rel="stylesheet" href="../../../assets/css/editorial-fresh.css?v=20261123-align2">
+<link rel="stylesheet" href="../../../assets/css/design-tokens.css?v=10e842cd32cf">
+<link rel="stylesheet" href="../../../assets/css/site-shell.css?v=f427e2f1607b">
+<script type="application/ld+json" data-nel-schema="webpage">{"@context":"https://schema.org","@type":"WebPage","name":"10G vs 25G switch uplinks: atualização da decisão | NetEngineerLab","url":"https://netengineerlab.com/pt-br/guides/10g-vs-25g-uplinks/","description":"Compare taxas de uplink nominal 10G, 25G, 40G e 100G com a demanda medida. Uma relação nominal não é utilizável através de transferência ou congestionamento.","inLanguage":"pt-BR","isPartOf":{"@type":"WebSite","name":"NetEngineerLab","url":"https://netengineerlab.com/pt-br/"}}</script>
+<script type="application/ld+json" data-nel-schema="faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Quando devo atualizar um uplink 10G para 25G?","acceptedAnswer":{"@type":"Answer","text":"Avaliar 25G quando a demanda medida e prevista já não se encaixa na capacidade utilizável verificada 10G com a reserva que seu serviço requer, e um design compatível 25G passa pelas mesmas verificações. Não existe um limiar universal de utilização."}},{"@type":"Question","name":"Um uplink 25G fornece 25 Gbps de rendimento da aplicação?","acceptedAnswer":{"@type":"Answer","text":"25 Gbps é a taxa nominal da linha. O real rendimento utilizável depende dos endpoints, caminho de encaminhamento, mix de pacotes, sobrecarga de protocolo, filas e configuração testada."}},{"@type":"Question","name":"Dois membros 25G LAG podem transportar um fluxo de 50 Gbps?","acceptedAnswer":{"@type":"Answer","text":"Não presuma isso. O agregado nominal é 50 Gbps por direção, mas um fluxo comumente mapeia para um membro. Confirme o método de distribuição da plataforma e os fluxos representativos de teste."}},{"@type":"Question","name":"4×10G é sempre uma alternativa mais barata para 2×25G?","acceptedAnswer":{"@type":"Answer","text":"Não. Compare as portas, placas de linha, módulos, cabeamento, potência, licenças, suporte, migração e capacidade utilizável validada para o equipamento exato. A taxa nominal mais baixa do porto não determina o custo total do ciclo de vida."}},{"@type":"Question","name":"O verificador de compatibilidade pode aprovar uma óptica específica do fornecedor?","acceptedAnswer":{"@type":"Answer","text":"Não. Ele pode monitorar entradas físicas e ópticas selecionadas, mas o suporte exato do host, codificação, firmware, FEC, breakout e aprovação de número de peça devem vir da documentação do equipamento."}},{"@type":"Question","name":"Um uplink 25G carrega 2,5 vezes o tráfego real de um uplink Z armazéns 10G?","acceptedAnswer":{"@type":"Answer","text":"25 Gbps é uma taxa de linha nominal. O rendimento de aplicação utilizável depende da plataforma, do caminho de encaminhamento, da sobrecarga do protocolo, da mistura de tráfego, das filas e da configuração de ligação testada."}},{"@type":"Question","name":"Pode uma porta SFP28 usar um módulo SFP+?","acceptedAnswer":{"@type":"Answer","text":"Somente quando a porta de host exata, software, módulo, taxa configurada e par são documentados para suportar essa combinação. Uma gaiola combinando sozinho não prova compatibilidade."}}]}</script>
+<meta name="nel-framework" content="NetEngineerLab Config-Driven Multilingual V1.9.9-04-p0-p1-correctness-consent-offline">
+<meta name="nel-locale" content="pt-BR">
+<meta name="nel-route" content="guides/10g-vs-25g-uplinks/">
+<meta name="nel-available-locales" content="en,zh,es,id,pt-BR">
+<link rel="canonical" href="https://netengineerlab.com/pt-br/guides/10g-vs-25g-uplinks/">
+<link rel="alternate" hreflang="en" href="https://netengineerlab.com/guides/10g-vs-25g-uplinks/">
+<link rel="alternate" hreflang="zh-CN" href="https://netengineerlab.com/zh/guides/10g-vs-25g-uplinks/">
+<link rel="alternate" hreflang="es" href="https://netengineerlab.com/es/guides/10g-vs-25g-uplinks/">
+<link rel="alternate" hreflang="id" href="https://netengineerlab.com/id/guides/10g-vs-25g-uplinks/">
+<link rel="alternate" hreflang="pt-BR" href="https://netengineerlab.com/pt-br/guides/10g-vs-25g-uplinks/">
+<link rel="alternate" hreflang="x-default" href="https://netengineerlab.com/guides/10g-vs-25g-uplinks/">
+<link rel="stylesheet" href="../../../assets/css/locale-menu.css?v=7804394246fb">
+<script defer src="../../../data/locales.js?v=cc78cf7363f3"></script>
+<script defer src="../../../data/site-config.js?v=b5072ad7fa47"></script>
+<script defer src="../../../assets/js/analytics.js?v=1156b7864023"></script>
+<script defer src="../../../assets/js/adsense.js?v=f075c80ccc75"></script>
+<script defer src="../../../assets/js/site.js?v=3feb9dda55e8"></script>
+</head>
+<body class="guide-page guide-fresh">
+  <!-- NEL_HEADER_START -->
+<header class="site-header site-shell-header" data-nav-open="false">
+  <div class="site-shell-header-inner">
+    <a class="site-shell-brand brand" href="../../">
+      <img src="../../../assets/images/logo.svg" alt="" width="42" height="42">
+      <span><strong>NetEngineerLab</strong><small>Plataforma de inteligência para engenharia de redes</small></span>
+    </a>
+    <button class="site-shell-menu-toggle" type="button" aria-controls="site-shell-nav" aria-expanded="false" aria-label="Abrir navegação"><span aria-hidden="true"></span></button>
+    <nav id="site-shell-nav" class="site-shell-nav nel-global-nav" aria-label="Navegação principal">
+      <a href="../../">Início</a>
+      <a href="../../../tools/pt-br/">Ferramentas</a>
+      <a href="../" aria-current="page">Guias</a>
+      <a href="../../topics/">Tópicos</a>
+    </nav>
+    <div class="site-shell-actions">
+      <!-- NEL_LANGUAGE_MENU_START --><div class="language-menu" data-language-menu data-open="false"><button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Idioma: Português do Brasil"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.7 15.7 0 0 0-1.4-3.4A8.1 8.1 0 0 1 18.9 8ZM12 4c.9 1.1 1.6 2.4 2 4h-4c.4-1.6 1.1-2.9 2-4ZM4.3 14a8.4 8.4 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3Zm.8 2h3.1a15.7 15.7 0 0 0 1.4 3.4A8.1 8.1 0 0 1 5.1 16Zm3.1-8H5.1a8.1 8.1 0 0 1 4.5-3.4A15.7 15.7 0 0 0 8.2 8ZM12 20c-.9-1.1-1.6-2.4-2-4h4c-.4 1.6-1.1 2.9-2 4Zm2.4-.6a15.7 15.7 0 0 0 1.4-3.4h3.1a8.1 8.1 0 0 1-4.5 3.4ZM16.3 14a14 14 0 0 0 0-4h3.4a8.4 8.4 0 0 1 0 4h-3.4ZM9.7 10h4.6a12 12 0 0 1 0 4H9.7a12 12 0 0 1 0-4Z"/></svg><span class="language-current">Português do Brasil</span><span class="language-caret" aria-hidden="true">▾</span></button><div class="language-options" role="menu" hidden><a class="language-option" role="menuitem" href="/guides/10g-vs-25g-uplinks/" lang="en" hreflang="en"><span>English</span><small>Inglês</small></a><a class="language-option" role="menuitem" href="/zh/guides/10g-vs-25g-uplinks/" lang="zh-CN" hreflang="zh-CN"><span>简体中文</span><small>Chinês simplificado</small></a><a class="language-option" role="menuitem" href="/es/guides/10g-vs-25g-uplinks/" lang="es" hreflang="es"><span>Español</span><small>Espanhol</small></a><a class="language-option" role="menuitem" href="/id/guides/10g-vs-25g-uplinks/" lang="id" hreflang="id"><span>Bahasa Indonesia</span><small>Indonésio</small></a><a class="language-option" role="menuitem" href="/pt-br/guides/10g-vs-25g-uplinks/" lang="pt-BR" hreflang="pt-BR" aria-current="page"><span>Português do Brasil</span><small>Português do Brasil</small></a></div></div><!-- NEL_LANGUAGE_MENU_END -->
+      <div class="site-shell-context-action"></div>
+    </div>
+  </div>
+</header>
+<!-- NEL_HEADER_END -->
+  <nav class="guide-breadcrumb" aria-label="Trigo de pão">
+    <a href="../../">Início</a> / <a href="../../topics/switch-oversubscription/">Mudar de Subscrição</a> / <span aria-current="page">10G vs 25G Switch Uplinks</span>
+  </nav>
+  <main class="guide-shell" id="main">
+    <section class="guide-hero">
+      <p class="eyebrow">PLANEAMENTO DE UPLINK</p>
+      <h1>10G vs 25G Switch Uplinks: Quando você deve atualizar?</h1>
+      <p class="guide-lead">Atualize quando a demanda medida e prevista deixar de se adequar à capacidade verificada e à reserva do projeto atual. Compare as opções 10G e 25G com as mesmas hipóteses de tráfego, compatibilidade e custo de vida.</p>
+      <div class="guide-meta"><span>10GbE vs 25GbE</span><span>Procura de horas ocupadas</span><span>Planeamento da capacidade</span><span>Compatibilidade com a plataforma</span></div>
+    </section>
+
+    <div class="guide-layout">
+      <article class="guide-article">
+        <section id="upgrade-trigger">
+          <h2>Quando é que um uplink 10G precisa de uma atualização?</h2>
+          <p>Uma maior taxa de linha vale a pena avaliar quando a exigência de tráfego, não uma relação genérica, diz que o presente projeto está ficando sem espaço. Compare a demanda na mesma direção e no mesmo limite de rede que o uplink. Verifique medições representativas de horas ocupadas, o crescimento projetado, a reserva que você pretende manter e a capacidade utilizável comprovada para a plataforma alvo.</p>
+          <p>Um gráfico de utilização crescente é um sinal para investigar, não um limiar de atualização universal. As quedas de fila, latência, duração do congestionamento, classe de tráfego e objetivos de aplicação podem tornar uma utilização média inferior inaceitável; uma explosão curta sozinha pode não justificar uma mudança de hardware. Use objetivos de serviço local e telemetria para decidir.</p>
+          <p>Mantenha as perguntas separadas: a taxa nominal descreve o design do link, a capacidade utilizável medida descreve uma plataforma testada e o caminho de tráfego, e o desempenho da aplicação deve ser validado com a carga de trabalho real.</p>
+        </section>
+
+        <section id="measure-demand">
+          <h2>Medir a procura de horas ocupadas antes de comparar velocidades</h2>
+          <p>Recolher contadores de interface por direção de cada membro ativo do uplink e o agregado relevante ou gargalo. Registre intervalo de amostragem, janela de tempo, datas, escopo de tráfego e se os dados incluem períodos de ocupado representativos, eventos planejados, backups e picos sazonais. Por exemplo, uma equipe pode escolher amostras de cinco minutos durante um período de operação representativo de 30 dias, ou seja, um plano de medição, não um padrão universal.</p>
+          <p>Se você resumir as amostras selecionadas de horas ocupadas com um percentil 95, chamá-lo de <strong>demanda P95 ocupado-hora</strong>. P95 não é o máximo ou pico. Mantenha maxima de curta duração, contadores drop, profundidade da fila, latência e limites específicos da aplicação como evidência separada. Não adicione entrada e saída juntos em um link full-duMAR; compare cada direção com sua capacidade correspondente.</p>
+          <p>Para um LAG, coletar contadores agregados e por membro. Hash-based distribuição pode deixar um membro ocupado enquanto o pacote tem headroom agregado. Um agregado nominal não promete que um único fluxo pode usar todo o pacote.</p>
+        </section>
+
+        <section id="forecast">
+          <h2>Prever o requisito e estabelecer uma reserva de capacidade</h2>
+          <p>Utilizar um pressuposto de crescimento transparente e um horizonte de planeamento declarado:</p>
+          <p><code>D<sub>future</sub> = D<sub>baseline</sub> × (1 + g)<sup>t</sup></code></p>
+          <p>Toma. <code>D<sub>baseline</sub></code> é a procura medida no Gbps, <code>g</code> é uma taxa de crescimento anual declarada explicitamente, e <code>t</code> é o número de anos. Este modelo de crescimento composto é um cenário de planejamento, não uma previsão a menos que os insumos sejam suportados por histórico local ou uma previsão aprovada.</p>
+          <p>Definir <code>r</code> como fração da capacidade utilizável verificada intencionalmente mantida em reserva. A restrição de utilização prevista é:</p>
+          <p><code>D<sub>future</sub> / C<sub>usable</sub> ≤ 1 − r</code></p>
+          <p>Por conseguinte:</p>
+          <p><code>C<sub>required</sub> = D<sub>future</sub> / (1 − r)</code></p>
+          <p>- em te é é                                      .                                                                                                                                                                                                                    <code>D<sub>future</sub> / C<sub>usable</sub></code> e a cabeceira restante <code>C<sub>usable</sub> − D<sub>future</sub></code>Uma reserva é uma escolha explícita de planeamento; não é um limiar da indústria universal.</p>
+        </section>
+
+        <section id="compare-designs">
+          <h2>Compare os projetos 2×10G, 4×10G e 2×25G</h2>
+          <p>Para uma direção de tráfego, a capacidade nominal de membro ativo é a soma das taxas de ligação de encaminhamento:</p>
+          <p><code>C<sub>nominal</sub> = Σ(active forwarding member rates)</code></p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Desenho do exemplo</th><th>Agregado nominal, por direcção</th><th>O que deve ser verificado</th></tr></thead>
+              <tbody>
+                <tr><td>2×10G</td><td>20 Gbps</td><td>Ambos os links para frentegr no estado avaliado; plataforma e LAG suportam a configuração pretendida.</td></tr>
+                <tr><td>4×10G</td><td>40 Gbps</td><td>Quatro portas utilizáveis, contagem de membros suportada, capacidade de pares, comportamento de hashing e quaisquer licenças necessárias.</td></tr>
+                <tr><td>2×25G</td><td>50 Gbps</td><td>Ambos os terminais suportam o modo de porta 25G exato, óptica, mídia, FEC e combinação de software.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Estes são totais de linha aritmética, não medição de rendimento de aplicação ou uma garantia de que um interruptor particular suporta a topologia. Determinar <code>C<sub>usable</sub></code> a partir de testes ou capacidade documentada para o modelo exatodescendant, cartão de linha, software, caminho de encaminhamento e perfil de tráfego. Conte com a sobrecarga do protocolo, limites de plataforma, filas e distribuição LAG onde eles se aplicam62. Não inferencie a capacidade utilizável multiplicando a taxa nominal por um fator de eficiência não documentado.</p>
+          <p>Um LAG pode agregar capacidade de membro entre fluxos, mas um fluxo pode ser atribuído a um membro pelo hash da plataforma. Verificar o carregamento do membro e testar o tráfego representativo. Se 4×10G precisar de portas adicionais, ópticas, cabeamento, potência ou uma nova placa de linha, inclua essas dependências na comparação.</p>
+        </section>
+
+        <section id="worked-cases">
+          <h2>Três casos de capacidade com pressupostos explícitos</h2>
+          <p>Todos os valores abaixo são entradas de planejamento ilustrativo, não padrões, resultados de produto medidos, ou limiares universais de atualização. Cada pressuposto <code>C<sub>usable</sub></code> O valor precisaria de provas do equipamento-alvo real antes de uma decisão de projecto.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Processo</th><th>Previsão da procura</th><th>Reserva</th><th>Capacidade mínima utilizável</th><th>Capacidade utilizável ilustrativa verificada</th><th>Utilização / headroom</th></tr></thead>
+              <tbody>
+                <tr><td>A: reter uma opção 2×10G</td><td>12 Gbps</td><td>20%</td><td>12 □ 0,80 = 15 Gbps</td><td>18 Gbps para a suposta plataforma testada 2×10G</td><td>18 = 66,7%; 18 − 12 = 6 Gbps</td></tr>
+                <tr><td>B: considere adicionar membros 10G</td><td>27 Gbps</td><td>20%</td><td>27 □ 0,80 = 33,75 Gbps</td><td>36 Gbps para a plataforma 4×10G testada</td><td>27 □ 36 = 75%; 36 − 27 = 9 Gbps</td></tr>
+                <tr><td>C: avaliar uma opção 2×25G</td><td>35 Gbps</td><td>20%</td><td>35 □ 0,80 = 43,75 Gbps</td><td>46 Gbps para a suposta plataforma testada 2×25G</td><td>35 □ 46 76, 1%; 46 − 35 = 11 Gbps</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>O caso A está numericamente dentro da reserva indicada apenas se a entrada de capacidade utilizável de 18 Gbps específica da plataforma for validada; o total nominal de 20 Gbps por si só não prova isso. O caso B requer a topologia 4×10G e sua capacidade de uso presumida goma 36 Gbps para ser suportada e testada; um total nominal de 40 Gbps não é evidência suficiente por si só. No caso C, 4×10G tem apenas 40 Gbps capacidade nominal, abaixo da exigência 43,75 Gbps, enquanto o resultado hipotético 2×25G capacidade utilizável iria cumpri-lo se verificado. O total nominal de 50 Gbps sozinho não estabelece esse resultado.</p>
+          <p>Para um exemplo de crescimento, uma linha de base de 9 Gbps a crescer a 12% por ano durante três anos dá <code>9 × 1.12<sup>3</sup> ≈ 12.64 Gbps</code>Substituir a taxa e o horizonte presumidos por uma previsão local documentada antes da aquisição.</p>
+        </section>
+
+        <section id="compatibility">
+          <h2>Verificar a compatibilidade óptica e dispositivo pelo modelo exato</h2>
+          <p>Não aprovar um projeto 25G de forma gaiola ou um rótulo genérico SFP28. Verifique os identificadores exatos do produto e versões de software em ambas as extremidades contra a documentação do fabricante e matrizes de suporte.</p>
+          <ul>
+            <li><strong>Cartão de mudança e de linha:</strong> exatamente chassis, linha-cartão, porta e versões de software; modos de velocidade suportados, grupos de portas, licenças e limites de encaminhamento.</li>
+            <li><strong>Ambos os parâmetros:</strong> números exatos da parte do módulo, política de codificação do host, taxa suportada, e compatibilidade do dispositivo peer.</li>
+            <li><strong>Meio óptico ou de cobre:</strong> módulo padrão, tipo de fibra, conector, comprimento de onda, alcance, link budget e qualidade do caminho instalado.</li>
+            <li><strong>Configuração da camada física:</strong> Modo FEC, codificação, negociação de velocidade ou configuração de taxa fixa e configurações correspondentes em cada ponto final.</li>
+            <li><strong>Breakout e agregação:</strong> mapa de fuga suportado, atribuição de faixa, restrições port-group, contagem de membros LAG, hashing e comportamento de fluxo único.</li>
+            <li><strong>Ajuste operacional:</strong> orçamento de energia e refrigeração, faixa de temperatura suportada, monitoramento, disponibilidade de reposição e procedimento de manutenção.</li>
+          </ul>
+          <p>A <a href="../../../tools/sfp-qsfp-compatibility-calculator/pt-br/">Verificador de Compatibilidade SFP &amp; QSFP</a> pode ajudar a taxa de tela, faixa, fibra, comprimento de onda e entradas de orçamento óptico. Ele não consulta todos os bancos de dados de módulos do fornecedor ou prova codificação vagões, firmware, FEC, breakout ou suporte à plataforma. Confirme os números exatos da peça com a documentação do dispositivo.</p>
+        </section>
+
+        <section id="lifecycle-cost">
+          <h2>Comparar o custo do ciclo de vida na mesma base</h2>
+          <p>Definir um período de avaliação <code>T</code> em anos, uma moeda, e o mesmo limite de custo para cada alternativa. Tratar equipamentos, módulos, cabeamento e migração como custos únicos nessa moeda; expressar energia, resfriamento, licenças e suporte como custos anuais recorrentes na mesma moeda. Uma comparação simples e incontestável é:</p>
+          <p><code>TCO(T years) = one-time equipment + modules + cabling + migration + T × (annual power + annual cooling + annual licenses + annual support)</code></p>
+          <p>Inclua mudanças de switch ou cartão de linha, portas recém-necessárias, ópticas, trabalho de fibra, energia e refrigeração, licenças de software, suporte, mão de obra de engenharia, custos de falta ou migração e sobressalentes. Converta o uso de energia e as tarifas em um custo anual antes de aplicar a fórmula. Se usar o valor presente, descarte todos os custos recorrentes com a mesma taxa e timing declarados. Separar os custos de equipamentos afundados de novos gastos e mostrar o que permanece utilizável sob cada opção.</p>
+          <p>Quando não existem citações atuais, comparáveis, manter custos como variáveis como <code>K<sub>switch</sub></code>, <code>K<sub>optic</sub></code>, e <code>K<sub>migration</sub></code>; não invente preços de mercado. Uma comparação local útil é o custo incremental do ciclo de vida dividido pela capacidade utilizável incremental validada, desde que ambas as opções atendam às mesmas exigências de demanda, reserva, compatibilidade e serviço. Não há retorno universal ou corte ROI.</p>
+        </section>
+
+        <section id="n-minus-one-note">
+          <h2>Manter a capacidade de falha como uma verificação separada</h2>
+          <p>A capacidade do estado normal não prova que um projeto atenderá à demanda após falha de um membro, caminho ou dispositivo. A cosméticos e produtos químicos <a href="../../guides/switch-oversubscription-n-1/">Guia de capacidade de ligação ascendente N-1</a>; esta comparação de atualização não calcula a capacidade CAP.</p>
+        </section>
+
+        <section id="upgrade-checklist">
+          <h2>Atualizar lista de verificação de decisão</h2>
+          <ol>
+            <li>Defina o limite de tráfego e compare cada direção separadamente.</li>
+            <li>Registre datas de medição, intervalo de amostragem, estatística de horas ocupadas, escopo de tráfego, quedas, filas e objetivos de aplicação.</li>
+            <li>Documentar a procura de base, a evidência de crescimento, o horizonte de previsão, a definição de reserva e a capacidade de utilização necessária.</li>
+            <li>Obter provas de capacidade utilizável específicas da plataforma para cada topologia do candidato; manter a taxa nominal separada.</li>
+            <li>Verifique a porta exata, módulo, mídia, FEC, software, fuga e suporte por pares da documentação do equipamento.</li>
+            <li>Compare alternativas com o mesmo período de ciclo de vida, moeda e limite de vitaminas.</li>
+            <li>Verifique o carregamento do membro LAG e os limites de fluxo único, em seguida, reveja separadamente os casos de falha necessários.</li>
+            <li>Registre a opção escolhida, suposições não resolvidas, medidas de aceitação e plano de retrocesso.</li>
+          </ol>
+        </section>
+
+        <section id="faq">
+          <h2>Perguntas mais frequentes</h2>
+          <details><summary>Quando devo atualizar um uplink 10G para 25G?</summary><p>Avaliar 25G quando a demanda medida e prevista já não se encaixa na capacidade utilizável verificada 10G com a reserva que seu serviço requer, e um design compatível 25G passa pelas mesmas verificações. Não existe um limiar universal de utilização.</p></details>
+          <details><summary>Um uplink 25G fornece 25 Gbps de rendimento da aplicação?</summary><p>25 Gbps é a taxa nominal da linha. O real rendimento utilizável depende dos endpoints, caminho de encaminhamento, mix de pacotes, sobrecarga de protocolo, filas e configuração testada.</p></details>
+          <details><summary>Dois membros 25G LAG podem transportar um fluxo de 50 Gbps?</summary><p>Não presuma isso. O agregado nominal é 50 Gbps por direção, mas um fluxo comumente mapeia para um membro. Confirme o método de distribuição da plataforma e os fluxos representativos de teste.</p></details>
+          <details><summary>4×10G é sempre uma alternativa mais barata para 2×25G?</summary><p>Não. Compare as portas, placas de linha, módulos, cabeamento, potência, licenças, suporte, migração e capacidade utilizável validada para o equipamento exato. A taxa nominal mais baixa do porto não determina o custo total do ciclo de vida.</p></details>
+          <details><summary>O verificador de compatibilidade pode aprovar uma óptica específica do fornecedor?</summary><p>Não. Ele pode monitorar entradas físicas e ópticas selecionadas, mas o suporte exato do host, codificação, firmware, FEC, breakout e aprovação de número de peça devem vir da documentação do equipamento.</p></details><details><summary>Um uplink 25G carrega 2,5 vezes o tráfego real de um uplink Z armazéns 10G?</summary><p>25 Gbps é uma taxa de linha nominal. O rendimento de aplicação utilizável depende da plataforma, do caminho de encaminhamento, da sobrecarga do protocolo, da mistura de tráfego, das filas e da configuração de ligação testada.</p></details><details><summary>Pode uma porta SFP28 usar um módulo SFP+?</summary><p>Somente quando a porta de host exata, software, módulo, taxa configurada e par são documentados para suportar essa combinação. Uma gaiola combinando sozinho não prova compatibilidade.</p></details>
+        </section>
+
+        <section id="speeds-40-100">
+          <h2>Onde 40G e 100G Colectânea</h2>
+          <p>Para uma direção, a capacidade nominal ainda élheira das taxas de interface que avançam. Em 48 × 1 acesso Gbps, que é 48 Gbps, as razões de taxa de linha exata são 1×10G = 4,8:1, 2×10G = 2,4:1, 1×25G = 1,92:1, 2×25G = 0,96:1, 1×40G = 1,2:1 e 1×100G = 0,48:1. A calculadora gira para um decimal, então 1,92:1 exibe como 1,9:1, 0,96:1 exibe como 1:1, e 0,48:1 exibe como 0,5:1. Em 48 × 10 acesso Gbps, que é 480 Gbps, 4×100G é 480ludir = 1,2:1. Duplex completo não dobra estes números: cada taxa de interface éiation contada uma vez na direção que está sendo FUNDADO.</p>
+          <p>Estas linhas são aritméticas. Eles não são uma regra de atualização de fornecedores, e eles não são medidos congestionamento. Um Leitura nominal 100G ainda pode congestionar se a carga oferecida nessa direção, a explosão, a taxa de pacotes, ou o limite de porta e encaminhamento de hardware for o gargalo. Um 25G LAG também pode congestionar um membro enquanto a média do pacote parece aceitável. Recomputar a relação na <a href="../switch-oversubscription-ratio/">Guia da relação de sobre- subscrição</a> e o caso do membro em <a href="../lacp-member-congestion/">LACP congestionamento dos membros</a>.</p>
+        </section>
+        <section class="content-section" id="related-resources">
+          <h2>Recursos de engenharia relacionados</h2>
+          <ul>
+            <li><a href="../../../tools/switch-uplink-oversubscription-calculator/pt-br/">Alternar a Largura de Banda e Sobre- Subscrição</a></li>
+            <li><a href="../../../tools/sfp-qsfp-compatibility-calculator/pt-br/">Verificador de Compatibilidade SFP &amp; QSFP</a></li>
+            <li><a href="../../guides/48-port-switch-2x10g-enough/">Candidato 1: 2×10G é suficiente para um interruptor Gigabit de 48 portas?</a></li>
+            <li><a href="../../guides/switch-oversubscription-n-1/">Candidato 2: N-1 uplink capacidade e planejamento de falhas</a></li>
+            <li><a href="../switch-oversubscription-ratio/">Como calcular a razão de sobreassinatura</a></li>
+            <li><a href="../lacp-member-congestion/">LACP congestionamento dos membros</a></li>
+            <li><a href="../../topics/switch-oversubscription/">Mudar a Subscrição &amp; Uplink Capacity Topic Hub</a></li>
+          </ul>
+        </section>
+      </article>
+      <aside class="guide-toc guide-related-side" aria-label="Nesta página">
+        <strong>Nesta página</strong>
+        <a href="#upgrade-trigger">Ativador de atualização</a>
+        <a href="#measure-demand">Medir a procura</a>
+        <a href="#forecast">Previsão e reserva</a>
+        <a href="#compare-designs">Comparar os desenhos</a>
+        <a href="#worked-cases">Casos trabalhados</a>
+        <a href="#compatibility">Compatibilidade</a>
+        <a href="#lifecycle-cost">Custo do ciclo de vida</a>
+        <a href="#upgrade-checklist">Lista de verificação da decisão</a>
+        <a href="#speeds-40-100">40G e 100G</a>
+        <a href="#faq">FAQ</a>
+      </aside>
+    </div>
+  </main>
+  <!-- NEL_FOOTER_START -->
+<footer class="site-shell-footer">
+  <div class="site-shell-footer-inner">
+    <div class="site-shell-footer-brand"><strong>NetEngineerLab</strong><p>Ferramentas profissionais online para engenheiros de telecomunicações e redes.</p></div>
+    <nav class="site-shell-footer-links" aria-label="Navegação do rodapé">
+      <a href="../../about/">Sobre</a><a href="../../contact/">Contato</a><a href="../../privacy/">Privacidade</a><a href="../../terms/">Termos</a>
+    </nav>
+    <p class="site-shell-copyright">© 2026 NetEngineerLab.com</p>
+  </div>
+</footer>
+<!-- NEL_FOOTER_END -->
+  <script src="/assets/js/cookie-consent.js?v=a60243da0fb7"></script>
+</body>
+</html>

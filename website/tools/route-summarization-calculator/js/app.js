@@ -1,6 +1,6 @@
 (function () {
   var lang = (document.documentElement.lang || 'en').toLowerCase();
-  var locale = lang.indexOf('zh') === 0 ? 'zh' : lang.indexOf('es') === 0 ? 'es' : 'en';
+  var locale = lang.indexOf('zh') === 0 ? 'zh' : lang.indexOf('es') === 0 ? 'es' : (lang === 'id' || lang.indexOf('id-') === 0) ? 'id' : (lang === 'pt-br' || lang.indexOf('pt') === 0) ? 'pt' : 'en';
   var copy = {
     zh: {
       empty: '没有可汇总的前缀', invalid: '输入无效',
@@ -66,12 +66,58 @@
         input_type_invalid: 'Entrada no válida',
         prefixes_type_invalid: 'La lista de prefijos no es válida'
       }
+    },
+    id: {
+      empty: 'Tidak ada prefiks untuk diringkas', invalid: 'Masukan tidak valid',
+      one: 'Diringkas menjadi 1 rute',
+      stayOne: 'Hasilnya tetap 1 rute',
+      many: 'Bukan satu rute. Diringkas menjadi {n} rute',
+      stay: 'Bukan satu rute. Masih {n} rute',
+      covered: 'Duplikat atau sudah tercakup',
+      rec: {
+        'Remove duplicate or already-covered prefixes before publishing a route summary.': 'Hapus prefiks yang duplikat atau sudah tercakup sebelum menayangkan ringkasan rute.',
+        'The listed prefixes can be advertised as a smaller set of aggregate routes.': 'Prefiks ini dapat ditayangkan sebagai himpunan rute agregat yang lebih kecil.',
+        'Verify the aggregate does not include unintended address space and confirm longer-prefix exceptions.': 'Pastikan agregat tidak mencakup ruang alamat yang tidak dimaksud, dan konfirmasi pengecualian prefiks yang lebih panjang.'
+      },
+      err: {
+        ipv4_address_invalid: 'Alamat IPv4 tidak valid',
+        ipv6_address_invalid: 'Alamat IPv6 tidak valid',
+        prefix_format_invalid: 'Tulis setiap prefiks sebagai alamat/panjang',
+        prefix_length_invalid: 'Panjang prefiks di luar keluarga alamat ini',
+        prefix_type_invalid: 'Setiap prefiks harus berupa teks',
+        min_prefix_invalid: 'Prefiks terpendek harus bilangan bulat dari 0 sampai 128',
+        input_type_invalid: 'Masukan tidak valid',
+        prefixes_type_invalid: 'Daftar prefiks tidak valid'
+      }
+    },
+    pt: {
+      empty: 'Não há prefixos para resumir', invalid: 'Entrada inválida',
+      one: 'Resumido em 1 rota',
+      stayOne: 'O resultado continua sendo 1 rota',
+      many: 'Não ficou uma rota só. Resumo em {n} rotas',
+      stay: 'Não ficou uma rota só. Continuam {n} rotas',
+      covered: 'Duplicado ou já coberto',
+      rec: {
+        'Remove duplicate or already-covered prefixes before publishing a route summary.': 'Remova prefixos duplicados ou já cobertos antes de publicar o resumo de rotas.',
+        'The listed prefixes can be advertised as a smaller set of aggregate routes.': 'Estes prefixos podem ser anunciados como um conjunto menor de rotas agregadas.',
+        'Verify the aggregate does not include unintended address space and confirm longer-prefix exceptions.': 'Confirme que o agregado não cobre espaço de endereço indesejado e confirme as exceções de prefixo mais longo.'
+      },
+      err: {
+        ipv4_address_invalid: 'Endereço IPv4 inválido',
+        ipv6_address_invalid: 'Endereço IPv6 inválido',
+        prefix_format_invalid: 'Escreva cada prefixo como endereço/comprimento',
+        prefix_length_invalid: 'O comprimento fica fora desta família de endereços',
+        prefix_type_invalid: 'Cada prefixo deve ser texto',
+        min_prefix_invalid: 'O prefixo mais curto deve ser um inteiro de 0 a 128',
+        input_type_invalid: 'Entrada inválida',
+        prefixes_type_invalid: 'A lista de prefixos é inválida'
+      }
     }
   }[locale];
 
   function textOf(code) {
     var m = /^prefix_(\d+)_(.+)$/.exec(code);
-    if (m) return (locale === 'zh' ? '第 ' + m[1] + ' 行：' : locale === 'es' ? 'Línea ' + m[1] + ': ' : 'Line ' + m[1] + ': ') + (copy.err[m[2]] || m[2]);
+    if (m) return (locale === 'zh' ? '第 ' + m[1] + ' 行：' : locale === 'es' ? 'Línea ' + m[1] + ': ' : locale === 'id' ? 'Baris ' + m[1] + ': ' : locale === 'pt' ? 'Linha ' + m[1] + ': ' : 'Line ' + m[1] + ': ') + (copy.err[m[2]] || m[2]);
     return copy.err[code] || code;
   }
 
@@ -112,6 +158,24 @@
   document.getElementById('run').addEventListener('click', run);
   document.getElementById('sample').addEventListener('click', function () {
     fill('10.0.0.0/24\n10.0.1.0/24\n10.0.0.0/25');
+  });
+  var copyButton = document.getElementById('copy');
+  if (copyButton) copyButton.addEventListener('click', function () {
+    var lines = [];
+    var status = document.getElementById('status');
+    if (status && status.textContent.trim()) lines.push(status.textContent.trim());
+    document.querySelectorAll('.metric').forEach(function (node) {
+      var name = node.querySelector('span');
+      var value = node.querySelector('b');
+      if (name && value) lines.push(name.textContent.trim() + ': ' + value.textContent.trim());
+    });
+    ['summaryList', 'redundantList'].forEach(function (id) {
+      var list = document.getElementById(id);
+      if (!list) return;
+      var items = Array.prototype.map.call(list.querySelectorAll('li'), function (item) { return item.textContent.trim(); }).filter(Boolean);
+      if (items.length) lines.push(items.join(', '));
+    });
+    if (navigator.clipboard) navigator.clipboard.writeText(lines.join('\n'));
   });
   fill('10.0.0.0/24\n10.0.1.0/24\n10.0.0.0/25');
 })();

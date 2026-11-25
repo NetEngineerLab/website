@@ -6,7 +6,9 @@ const CONFIG = {
  "projectDefault": {
   "en": "Distribution redundancy check",
   "zh": "汇聚层冗余检查",
-  "es": "Revisión de redundancia de distribución"
+  "es": "Revisión de redundancia de distribución",
+  "id": "Pemeriksaan redundansi distribusi",
+  "pt": "Revisão de redundância de distribuição"
  },
  "inputs": [
   {
@@ -206,12 +208,46 @@ const CONFIG = {
    "errors": {
     "short-undefined": "El método corto solo define 4, 10, 16, 100, 1000 y 10000 Mbps. Use el método largo para otras velocidades."
    }
+  },
+  "id": {
+   "validation": "Periksa bidang yang ditandai: isinya harus angka dalam rentang yang diizinkan.",
+   "validationField": "Periksa {fields}: masukkan angka dalam rentang yang diizinkan.",
+   "listSeparator": ", ",
+   "fieldLabels": {"method": "Metode biaya", "pathA": "Laju jalur A (Mbps, dipisah koma)", "pathB": "Laju jalur B (Mbps, dipisah koma)"},
+   "notes": {},
+   "copied": "Hasil disalin",
+   "saved": "Rekaman disimpan",
+   "noHistory": "Belum ada perhitungan tersimpan. Hitung, lalu klik “Simpan rekaman”.",
+   "confirmClear": "Hapus semua riwayat yang tersimpan?",
+   "project": "Proyek",
+   "toolName": "Kalkulator biaya jalur STP",
+   "status": {"healthy": "✓ Jalur terpilih", "warning": "! Biaya sama", "failed": "✕"},
+   "outputLabels": [["totalA","Biaya jalur akar A"],["totalB","Biaya jalur akar B"],["costsA","Biaya port A"],["costsB","Biaya port B"],["difference","Selisih biaya"],["winnerText","Jalur yang dipilih"]],
+   "winner": {"A": "Jalur A", "B": "Jalur B", "tie": "Seri: yang menentukan adalah ID bridge"},
+   "errors": {"short-undefined": "Metode short hanya menetapkan 4, 10, 16, 100, 1000, dan 10000 Mbps. Untuk laju lain, gunakan metode long."}
+  },
+  "pt": {
+   "validation": "Confira os campos marcados: eles devem ser números dentro da faixa permitida.",
+   "validationField": "Confira {fields}: informe um número dentro da faixa permitida.",
+   "listSeparator": ", ",
+   "fieldLabels": {"method": "Método de custo", "pathA": "Taxas da rota A (Mbps, separadas por vírgula)", "pathB": "Taxas da rota B (Mbps, separadas por vírgula)"},
+   "notes": {},
+   "copied": "Resultado copiado",
+   "saved": "Registro salvo",
+   "noHistory": "Ainda não há cálculos salvos. Calcule e clique em “Salvar registro”.",
+   "confirmClear": "Apagar todo o histórico salvo?",
+   "project": "Projeto",
+   "toolName": "Calculadora de custo de caminho STP",
+   "status": {"healthy": "✓ Caminho escolhido", "warning": "! Custo igual", "failed": "✕"},
+   "outputLabels": [["totalA","Custo do caminho raiz A"],["totalB","Custo do caminho raiz B"],["costsA","Custos de porta A"],["costsB","Custos de porta B"],["difference","Diferença de custo"],["winnerText","Caminho preferido"]],
+   "winner": {"A": "Rota A", "B": "Rota B", "tie": "Empate: decide o ID da bridge"},
+   "errors": {"short-undefined": "O método short só define 4, 10, 16, 100, 1000 e 10000 Mbps. Use o método long para as outras taxas."}
   }
  }
 };
 const $ = (id) => document.getElementById(id);
 const locale = (document.documentElement.dataset.nelLocale || document.documentElement.lang || "en").toLowerCase();
-const currentLang = locale.startsWith("zh") ? "zh" : locale.startsWith("es") ? "es" : "en";
+const currentLang = locale.startsWith("zh") ? "zh" : locale.startsWith("es") ? "es" : locale.startsWith("pt") ? "pt" : locale === "id" ? "id" : "en";
 const text = CONFIG.text[currentLang];
 const engine = window[CONFIG.engineGlobal];
 let lastResult = null;
@@ -406,7 +442,7 @@ function renderHistory(){
     container.innerHTML = `<div class="history-empty">${text.noHistory}</div>`;
     return;
   }
-  const localeName = currentLang === "zh" ? "zh-CN" : currentLang === "es" ? "es" : "en-US";
+  const localeName = currentLang === "zh" ? "zh-CN" : currentLang === "es" ? "es" : currentLang === "pt" ? "pt-BR" : currentLang === "id" ? "id" : "en-US";
   const [firstId, firstLabel] = text.outputLabels[0];
   const [secondId, secondLabel] = text.outputLabels[1];
   container.innerHTML = history.slice(0, 6).map((item) => `<article class="history-item">
