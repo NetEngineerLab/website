@@ -399,7 +399,7 @@
           controllerNodes(scope.resultStatus).forEach(node => {
             node.classList.remove("st-pass", "st-marginal", "st-fail");
             node.classList.add("status", "st-fail");
-            if (!node.querySelector("[id]")) node.textContent = zh ? "输入无效" : es ? "Entrada no válida" : "Invalid input";
+            if (!node.querySelector("[id]")) node.textContent = zh ? "输入无效" : es ? "Entrada no válida" : id ? "Masukan tidak valid" : pt ? "Entrada inválida" : "Invalid input";
           });
         }
       }

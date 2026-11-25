@@ -7,7 +7,7 @@ const path = require("path");
 const root = path.resolve(__dirname, "..");
 const site = path.join(root, "website");
 const drafts = path.join(root, "drafts", "locale-rollout", "website");
-const pilots = new Set(["bandwidth-calculator", "subnet-calculator", "fiber-latency-calculator", "ethernet-serialization-delay-calculator", "stp-path-cost-calculator", "chromatic-dispersion-calculator", "copper-propagation-delay-calculator", "shannon-capacity-calculator", "tcp-mathis-throughput-estimator", "mm1-queue-delay-calculator", "ethernet-line-coding-calculator", "dc-feeder-voltage-drop-calculator", "itu-dwdm-grid-calculator", "edfa-ase-osnr-estimator", "path-availability-calculator", "fiber-loss", "pmd-budget-calculator", "pon-splitter-loss", "pon-distance", "poe-power-budget-calculator", "poe-voltage-drop-calculator", "pathway-fill-calculator"]);
+const pilots = new Set(["bandwidth-calculator", "subnet-calculator", "fiber-latency-calculator", "ethernet-serialization-delay-calculator", "stp-path-cost-calculator", "chromatic-dispersion-calculator", "copper-propagation-delay-calculator", "shannon-capacity-calculator", "tcp-mathis-throughput-estimator", "mm1-queue-delay-calculator", "ethernet-line-coding-calculator", "dc-feeder-voltage-drop-calculator", "itu-dwdm-grid-calculator", "edfa-ase-osnr-estimator", "path-availability-calculator", "fiber-loss", "pmd-budget-calculator", "pon-splitter-loss", "pon-distance", "poe-power-budget-calculator", "poe-voltage-drop-calculator", "pathway-fill-calculator", "ospf-cost-calculator", "route-summarization-calculator", "wireless-link-budget-calculator", "pue-data-center-energy-efficiency", "dns-ttl-propagation-calculator"]);
 const locales = new Set(["id", "pt-br"]);
 
 assert.ok(fs.existsSync(path.join(drafts, "id", "index.html")), "Indonesian home draft must stay outside website/");
@@ -39,7 +39,7 @@ for (const file of walk(site)) {
   assert.ok(allowedShell.has(shell) || pilots.has(tool), `unpublished locale file is still in the publish directory: ${path.relative(root, file)}`);
   published.push(path.relative(root, file));
 }
-assert.equal(published.filter(file => file.endsWith(`${path.sep}index.html`) || file.endsWith("/index.html")).length, 56);
+assert.equal(published.filter(file => file.endsWith(`${path.sep}index.html`) || file.endsWith("/index.html")).length, 66);
 
 const sitemap = fs.readFileSync(path.join(site, "sitemap.xml"), "utf8");
 for (const url of [
@@ -86,7 +86,17 @@ for (const url of [
   "https://netengineerlab.com/tools/poe-voltage-drop-calculator/id/",
   "https://netengineerlab.com/tools/poe-voltage-drop-calculator/pt-br/",
   "https://netengineerlab.com/tools/pathway-fill-calculator/id/",
-  "https://netengineerlab.com/tools/pathway-fill-calculator/pt-br/"
+  "https://netengineerlab.com/tools/pathway-fill-calculator/pt-br/",
+  "https://netengineerlab.com/tools/ospf-cost-calculator/id/",
+  "https://netengineerlab.com/tools/ospf-cost-calculator/pt-br/",
+  "https://netengineerlab.com/tools/route-summarization-calculator/id/",
+  "https://netengineerlab.com/tools/route-summarization-calculator/pt-br/",
+  "https://netengineerlab.com/tools/wireless-link-budget-calculator/id/",
+  "https://netengineerlab.com/tools/wireless-link-budget-calculator/pt-br/",
+  "https://netengineerlab.com/tools/pue-data-center-energy-efficiency/id/",
+  "https://netengineerlab.com/tools/pue-data-center-energy-efficiency/pt-br/",
+  "https://netengineerlab.com/tools/dns-ttl-propagation-calculator/id/",
+  "https://netengineerlab.com/tools/dns-ttl-propagation-calculator/pt-br/"
 ]) assert.ok(sitemap.includes(`<loc>${url}</loc>`), url);
 for (const url of [
   "https://netengineerlab.com/id/",

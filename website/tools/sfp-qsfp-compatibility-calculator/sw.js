@@ -1,6 +1,6 @@
 "use strict";
 // t316: tool-isolated exact-version fallback; online documents/styles/scripts always refresh.
-const CACHE = "nel-sfp-qsfp-compatibility-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-652b883a71cf-0a45f2cb8ee2";
+const CACHE = "nel-sfp-qsfp-compatibility-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-2becfaf740c9-cd0c90d67fd5";
 const CORE = [
   "./",
   "./index.html",
@@ -46,9 +46,9 @@ const CORE = [
   "./js/app.js?v=970bd5ed0286",
   "./js/pwa.js?v=20261108-sfp-bw6",
   "../../assets/js/es-launch-runtime.js?v=e0fea69289b0",
-  "../../assets/js/id-launch-runtime.js?v=d2b74cbf2983",
-  "../../assets/js/pt-br-launch-runtime.js?v=45226abdb119",
-  "../../data/locales.js?v=9db7058d6b10",
+  "../../assets/js/id-launch-runtime.js?v=73b3b10f98fe",
+  "../../assets/js/pt-br-launch-runtime.js?v=09fcb716b026",
+  "../../data/locales.js?v=62a9c89b23e0",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",
@@ -63,7 +63,7 @@ const CORE = [
   "../../assets/js/adsense.js?v=f075c80ccc75",
   "../../assets/js/site.js?v=3feb9dda55e8",
   "../../assets/js/tool-integration.js?v=05f7934f4687",
-  "../../assets/js/tool-shell-v1.9.9-04.js?v=502db0b62a7e",
+  "../../assets/js/tool-shell-v1.9.9-04.js?v=ee9b24f19870",
   "../../assets/css/cookie-consent.css?v=2f2c8ab643e6",
   "../../assets/js/cookie-consent.js?v=a60243da0fb7",
   "../../assets/js/rules-engine/normalize.js?v=9e2cb44bca10",

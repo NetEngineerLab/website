@@ -713,7 +713,7 @@ function renderLlmsTxt({ siteUrl, toolCatalog, routes, activeLocales }) {
   const lines = [
     "# NetEngineerLab",
     "",
-    "> Free network engineering calculators, topic hubs and guides for fiber, PON, switching, data-center power and telecom planning. Published in English, Chinese (zh-CN) and Spanish. Indonesian and Brazilian Portuguese currently cover a home page, a tool directory, the bandwidth and subnet calculators, the fiber latency, Ethernet serialization, STP path cost, chromatic dispersion and copper propagation delay calculators, and the about, contact, privacy and terms pages.",
+    "> Free network engineering calculators, topic hubs and guides for fiber, PON, switching, data-center power and telecom planning. Published in English, Chinese (zh-CN) and Spanish. Indonesian and Brazilian Portuguese currently cover a home page, a short tool directory, 27 calculators, and the about, contact, privacy and terms pages.",
     "",
     `[Canonical site](${siteUrl}/)`,
     `[Chinese homepage](${siteUrl}/zh/)`,
@@ -726,7 +726,7 @@ function renderLlmsTxt({ siteUrl, toolCatalog, routes, activeLocales }) {
     "",
     "## Languages",
     "",
-    "Active locales are English (`en`), Chinese (`zh-CN`) and Spanish (`es`). `x-default` is English. Indonesian (`id`) and Brazilian Portuguese (`pt-BR`) are published for the home page, the tool directory, the bandwidth and subnet calculators, the fiber latency, Ethernet serialization, STP path cost, chromatic dispersion and copper propagation delay calculators, and the about, contact, privacy and terms pages. A page has an hreflang alternate only when that locale page exists.",
+    "Active locales are English (`en`), Chinese (`zh-CN`) and Spanish (`es`). `x-default` is English. Indonesian (`id`) and Brazilian Portuguese (`pt-BR`) are published for the home page, the short tool directory, 27 calculators, and the about, contact, privacy and terms pages. A page has an hreflang alternate only when that locale page exists.",
     "An English tool page is `/tools/{slug}/`. Its Chinese page is `/tools/{slug}/zh/` and its Spanish page is `/tools/{slug}/es/`.",
     "",
     "## Tools",

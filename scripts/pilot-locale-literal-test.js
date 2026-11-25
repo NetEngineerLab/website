@@ -263,7 +263,8 @@ for (const tool of nextTools) {
     }
     assert.doesNotMatch(html, /value="(?:per detik|per menit|persen|porcentagem|Linier|Linear)"/, `${rel} translated an option value`);
     for (const card of html.matchAll(/<a class="nel-tool-graph-card" href="(\/tools\/[^"]+)">([\s\S]*?)<\/a>/g)) {
-      assert.match(card[2], /\(English\)/, `${rel} unpublished ${card[1]} is not marked English`);
+      if (card[1].includes(`/${locale}/`)) assert.doesNotMatch(card[2], /\(English\)/, `${rel} locale ${card[1]} marked English`);
+      else assert.match(card[2], /\(English\)/, `${rel} unpublished ${card[1]} is not marked English`);
     }
     assert.match(read(`website/tools/${tool}/js/app.js`), /localizedCopy/, `${tool} clipboard labels`);
     assert.doesNotMatch(read(`website/tools/${tool}/js/engine.js`), /Masukkan|Informe um valor|Langkah|Etapa/, `${tool} engine locale text`);
@@ -383,5 +384,48 @@ assert.match(read("website/tools/poe-voltage-drop-calculator/js/app.js"), /Tegan
 assert.match(read("website/tools/pathway-fill-calculator/js/app.js"), /useLabel/);
 assert.match(read("website/tools/pon-splitter-loss/index.html"), /GPON C\+ 1:64 Splitter Design/);
 assert.match(read("website/tools/pon-distance/index.html"), /PON Maximum Distance Design/);
+
+const batch3Tools = [
+  "ospf-cost-calculator",
+  "route-summarization-calculator",
+  "wireless-link-budget-calculator",
+  "pue-data-center-energy-efficiency",
+  "dns-ttl-propagation-calculator"
+];
+const batch3Kept = {
+  "ospf-cost-calculator": ["65535", "ECMP", "ReferenceBw"],
+  "route-summarization-calculator": ["10.0.0.0/24", "10.0.0.0/23", "IPv6"],
+  "wireless-link-budget-calculator": ["92.45", "log<sub>10</sub>", "FSPL"],
+  "pue-data-center-energy-efficiency": ["ISO/IEC 30134-2", "1.50", "kWh"],
+  "dns-ttl-propagation-calculator": ["RFC 1035", "RFC 2308", "RFC 8767"]
+};
+for (const tool of batch3Tools) {
+  for (const locale of ["id", "pt-br"]) {
+    const rel = `website/tools/${tool}/${locale}/index.html`;
+    const html = read(rel);
+    for (const phrase of residue) assert.ok(!html.includes(phrase), `${rel} still contains ${phrase}`);
+    assert.match(html, locale === "id" ? /Jejak/ : /Trilha/, `${rel} breadcrumb label`);
+    assert.match(html, /pilot-locale-toc\.css/, `${rel} locale directory style`);
+    for (const literal of batch3Kept[tool]) assert.ok(html.includes(literal), `${rel} lost technical literal ${literal}`);
+    for (const card of html.matchAll(/<a class="nel-tool-graph-card" href="(\/tools\/[^"]+)">([\s\S]*?)<\/a>/g)) {
+      if (card[1].includes(`/${locale}/`)) assert.doesNotMatch(card[2], /\(English\)/, `${rel} locale ${card[1]} marked English`);
+      else assert.match(card[2], /\(English\)/, `${rel} unpublished ${card[1]} is not marked English`);
+    }
+    assert.doesNotMatch(read(`website/tools/${tool}/js/engine.js`), /Masukkan|Informe um valor|Langkah|Etapa/, `${tool} engine locale text`);
+  }
+  assert.match(read(`website/tools/${tool}/index.html`), /lang="en"/, `${tool} English page`);
+  assert.match(read(`website/tools/${tool}/es/index.html`), /lang="es"/, `${tool} Spanish page`);
+  assert.match(read(`website/tools/${tool}/zh/index.html`), /lang="zh-CN"/, `${tool} Chinese page`);
+  assert.doesNotMatch(read(`website/tools/${tool}/index.html`), /pilot-locale-toc\.css/, `${tool} English page linked the locale directory style`);
+}
+assert.match(read("website/tools/ospf-cost-calculator/js/app.js"), /Tidak ada peringatan/);
+assert.match(read("website/tools/route-summarization-calculator/js/app.js"), /Tidak ada prefiks untuk diringkas/);
+assert.match(read("website/tools/wireless-link-budget-calculator/js/app.js"), /Margin fading di bawah 10 dB/);
+assert.match(read("website/tools/pue-data-center-energy-efficiency/js/app.js"), /Sesuai atau di bawah target/);
+assert.match(read("website/tools/pue-data-center-energy-efficiency/js/deep-workflow.js"), /Skenario mendalam/);
+assert.match(read("website/tools/dns-ttl-propagation-calculator/js/app.js"), /TTL puncak\/sebelumnya/);
+assert.match(read("website/tools/stp-path-cost-calculator/id/index.html"), /ospf-cost-calculator\/id\//);
+assert.match(read("website/tools/shannon-capacity-calculator/pt-br/index.html"), /wireless-link-budget-calculator\/pt-br\//);
+assert.match(read("website/tools/path-availability-calculator/id/index.html"), /pue-data-center-energy-efficiency\/id\//);
 
 console.log(`Pilot locale literal PASS. Unpublished drafts with the same damage markers: ${draftHits.length}. They stay outside website/.`);

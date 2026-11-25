@@ -27,7 +27,12 @@ const tools = [
   "pon-distance",
   "poe-power-budget-calculator",
   "poe-voltage-drop-calculator",
-  "pathway-fill-calculator"
+  "pathway-fill-calculator",
+  "ospf-cost-calculator",
+  "route-summarization-calculator",
+  "wireless-link-budget-calculator",
+  "pue-data-center-energy-efficiency",
+  "dns-ttl-propagation-calculator"
 ];
 const sheet = fs.readFileSync(path.join(root, "website/assets/css/pilot-locale-toc.css"), "utf8");
 assert.match(sheet, /html:is\(:lang\(id\), :lang\(pt-BR\)\)/);

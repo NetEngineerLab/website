@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-wireless-link-budget-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-652b883a71cf-50615c134296";
+const CACHE = "nel-wireless-link-budget-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-2becfaf740c9-7bf8f1ad8c50";
 const CORE = [
   "./index.html",
   "./",
@@ -7,7 +7,7 @@ const CORE = [
   "./manifest.webmanifest",
   "./css/style.css?v=855e45b755e0",
   "./js/engine.js?v=20260919-v2",
-  "./js/app.js?v=ab5c851da38c",
+  "./js/app.js?v=8e6b56444bd4",
   "./images/logo.svg",
   "../../favicon.ico?v=1.9.6",
   "../../assets/css/tool-layout.css?v=c4aecb2c24ab",
@@ -16,9 +16,10 @@ const CORE = [
   "../../assets/js/es-launch-runtime.js?v=e0fea69289b0",
   "./js/engine.js?v=1.9.9-04",
   "./js/engine.js?v=35040fc47783",
-  "../../assets/js/id-launch-runtime.js?v=d2b74cbf2983",
-  "../../assets/js/pt-br-launch-runtime.js?v=45226abdb119",
-  "../../data/locales.js?v=9db7058d6b10",
+  "../../assets/js/id-launch-runtime.js?v=73b3b10f98fe",
+  "../../assets/js/pt-br-launch-runtime.js?v=09fcb716b026",
+  "../../assets/css/pilot-locale-toc.css?v=20261124toc",
+  "../../data/locales.js?v=62a9c89b23e0",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",
@@ -33,7 +34,7 @@ const CORE = [
   "../../assets/js/adsense.js?v=f075c80ccc75",
   "../../assets/js/site.js?v=3feb9dda55e8",
   "../../assets/js/tool-integration.js?v=05f7934f4687",
-  "../../assets/js/tool-shell-v1.9.9-04.js?v=502db0b62a7e",
+  "../../assets/js/tool-shell-v1.9.9-04.js?v=ee9b24f19870",
   "../../assets/css/cookie-consent.css?v=2f2c8ab643e6",
   "../../assets/js/cookie-consent.js?v=a60243da0fb7",
   "../../assets/js/rules-engine/normalize.js?v=9e2cb44bca10",
@@ -47,7 +48,13 @@ const CORE = [
   "./manifest-zh.webmanifest",
   "./es/",
   "./es/index.html",
-  "./manifest-es.webmanifest"
+  "./manifest-es.webmanifest",
+  "./id/",
+  "./id/index.html",
+  "./manifest-id.webmanifest",
+  "./pt-br/",
+  "./pt-br/index.html",
+  "./manifest-pt-br.webmanifest"
 ];
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)));
