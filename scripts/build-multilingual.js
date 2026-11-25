@@ -714,8 +714,20 @@ function updateManifestLink(html,currentRel,info,groups){
  const href=relativeFile(currentRel,manifestRel);
  return html.replace(/<\/head>/i,`<link rel="manifest" href="${href}">\n</head>`);
 }
+function localesRuntimeSource(){
+ // IP-camera pages reject the digit sequences 229 and 1247 anywhere in the HTML.
+ // The cache-buster is the first 12 hex characters of this file, so a locales
+ // edit can fail that gate without putting those metrics in the article.
+ const body=`window.NEL_I18N=${JSON.stringify(localeConfig)};\nwindow.NEL_LOCALES=window.NEL_I18N.locales;\n`;
+ const banned=["229","1247"];
+ for(let n=0;n<64;n++){
+  const source=n?`${body}/* ${n} */\n`:body;
+  if(banned.every(token=>!stableHash(source,12).includes(token)))return source;
+ }
+ throw new Error("locales.js cache token collides with reserved IP-camera metric tokens");
+}
 function generateRuntimeFiles(){
- writeFileWithRetry(path.join(dataDir,"locales.js"),`window.NEL_I18N=${JSON.stringify(localeConfig)};\nwindow.NEL_LOCALES=window.NEL_I18N.locales;\n`,"utf8");
+ writeFileWithRetry(path.join(dataDir,"locales.js"),localesRuntimeSource(),"utf8");
  writeFileWithRetry(path.join(dataDir,"tools-catalog.js"),`window.NEL_TOOLS=${JSON.stringify(toolCatalog)};\nwindow.dispatchEvent(new Event("nel:tools-ready"));\n`,"utf8");
 }
 function generateManifests(groups){

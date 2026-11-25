@@ -1,4 +1,4 @@
-"use strict";const CACHE = "nel-network-change-planner-mop-generator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-73320573ed2b-4cdb591b6362";
+"use strict";const CACHE = "nel-network-change-planner-mop-generator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-06344d20de94-43a2ee5aa036";
 const CORE = [
   "./",
   "./index.html",
@@ -14,7 +14,7 @@ const CORE = [
   "./js/engine.js?v=4e6cf6523b92",
   "../../assets/js/id-launch-runtime.js?v=a8ea8ba717cf",
   "../../assets/js/pt-br-launch-runtime.js?v=dc56e78b12bd",
-  "../../data/locales.js?v=d5d85e22914a",
+  "../../data/locales.js?v=c02cfbf85360",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",
