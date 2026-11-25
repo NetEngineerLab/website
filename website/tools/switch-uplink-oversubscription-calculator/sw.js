@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-switch-uplink-oversubscription-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-2becfaf740c9-da71d805c81c";
+const CACHE = "nel-switch-uplink-oversubscription-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-73320573ed2b-fb33778ae341";
 const CORE = [
   "./index.html",
   "./",
@@ -7,7 +7,7 @@ const CORE = [
   "./manifest.webmanifest",
   "./css/style.css?v=5822429305a6",
   "./js/engine.js",
-  "./js/app.js?v=f1002f3d2416",
+  "./js/app.js?v=0c85d767470f",
   "./images/logo.svg",
   "../../favicon.ico?v=1.9.9",
   "../../assets/css/tool-layout.css?v=c4aecb2c24ab",
@@ -16,9 +16,10 @@ const CORE = [
   "./js/pwa.js",
   "../../assets/js/es-launch-runtime.js?v=e0fea69289b0",
   "./js/engine.js?v=1f9256e50195",
-  "../../assets/js/id-launch-runtime.js?v=73b3b10f98fe",
-  "../../assets/js/pt-br-launch-runtime.js?v=09fcb716b026",
-  "../../data/locales.js?v=62a9c89b23e0",
+  "../../assets/js/id-launch-runtime.js?v=a8ea8ba717cf",
+  "../../assets/js/pt-br-launch-runtime.js?v=dc56e78b12bd",
+  "../../assets/css/pilot-locale-toc.css?v=20261124toc",
+  "../../data/locales.js?v=d5d85e22914a",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",
@@ -47,7 +48,13 @@ const CORE = [
   "./manifest-zh.webmanifest",
   "./es/",
   "./es/index.html",
-  "./manifest-es.webmanifest"
+  "./manifest-es.webmanifest",
+  "./id/",
+  "./id/index.html",
+  "./manifest-id.webmanifest",
+  "./pt-br/",
+  "./pt-br/index.html",
+  "./manifest-pt-br.webmanifest"
 ];
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(CORE)));

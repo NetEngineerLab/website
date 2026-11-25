@@ -428,4 +428,43 @@ assert.match(read("website/tools/stp-path-cost-calculator/id/index.html"), /ospf
 assert.match(read("website/tools/shannon-capacity-calculator/pt-br/index.html"), /wireless-link-budget-calculator\/pt-br\//);
 assert.match(read("website/tools/path-availability-calculator/id/index.html"), /pue-data-center-energy-efficiency\/id\//);
 
+
+const batch4Tools = [
+  "switch-uplink-oversubscription-calculator",
+  "vlan-ip-capacity-planner",
+  "telecom-ac-dc-breaker-sizing",
+  "data-center-cooling-load-calculator",
+  "sfp-qsfp-compatibility-calculator"
+];
+const batch4Kept = {
+  "switch-uplink-oversubscription-calculator": ["2.4:1", "IEEE 802.1AX", "RFC 7424"],
+  "vlan-ip-capacity-planner": ["IPv4", "VLAN", "RFC 1918"],
+  "telecom-ac-dc-breaker-sizing": ["I_design", "PF", "derating"],
+  "data-center-cooling-load-calculator": ["N+1", "BTU/h", "ASHRAE"],
+  "sfp-qsfp-compatibility-calculator": ["SFP28", "QSFP28", "dBm"]
+};
+for (const tool of batch4Tools) {
+  for (const locale of ["id", "pt-br"]) {
+    const rel = `website/tools/${tool}/${locale}/index.html`;
+    const html = read(rel);
+    for (const phrase of residue) assert.ok(!html.includes(phrase), `${rel} still contains ${phrase}`);
+    assert.match(html, locale === "id" ? /Jejak/ : /Trilha/, `${rel} breadcrumb label`);
+    assert.match(html, /pilot-locale-toc\.css/, `${rel} locale directory style`);
+    for (const literal of batch4Kept[tool]) assert.ok(html.includes(literal), `${rel} lost technical literal ${literal}`);
+    for (const card of html.matchAll(/<a class="nel-tool-graph-card" href="(\/tools\/[^"]+)">([\s\S]*?)<\/a>/g)) {
+      if (card[1].includes(`/${locale}/`)) assert.doesNotMatch(card[2], /\(English\)/, `${rel} locale ${card[1]} marked English`);
+      else assert.match(card[2], /\(English\)/, `${rel} unpublished ${card[1]} is not marked English`);
+    }
+    assert.doesNotMatch(read(`website/tools/${tool}/js/engine.js`), /Masukkan|Informe um valor|Langkah|Etapa/, `${tool} engine locale text`);
+  }
+  assert.match(read(`website/tools/${tool}/index.html`), /lang="en"/, `${tool} English page`);
+  assert.match(read(`website/tools/${tool}/es/index.html`), /lang="es"/, `${tool} Spanish page`);
+  assert.match(read(`website/tools/${tool}/zh/index.html`), /lang="zh-CN"/, `${tool} Chinese page`);
+  assert.doesNotMatch(read(`website/tools/${tool}/index.html`), /pilot-locale-toc\.css/, `${tool} English page linked the locale directory style`);
+}
+assert.match(read("website/tools/switch-uplink-oversubscription-calculator/js/app.js"), /Tidak ada peringatan utama/);
+assert.match(read("website/tools/vlan-ip-capacity-planner/js/app.js"), /Masukan tidak valid/);
+assert.match(read("website/tools/telecom-ac-dc-breaker-sizing/js/app.js"), /Gerbang rekayasa dan skenario/);
+assert.match(read("website/tools/data-center-cooling-load-calculator/js/app.js"), /Skenario rekayasa dan lingkungan/);
+assert.match(read("website/tools/sfp-qsfp-compatibility-calculator/js/app.js"), /Periksa dukungan host/);
 console.log(`Pilot locale literal PASS. Unpublished drafts with the same damage markers: ${draftHits.length}. They stay outside website/.`);

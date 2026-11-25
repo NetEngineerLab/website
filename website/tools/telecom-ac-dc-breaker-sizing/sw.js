@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-telecom-ac-dc-breaker-sizing-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-2becfaf740c9-ebc65b76259a";
+const CACHE = "nel-telecom-ac-dc-breaker-sizing-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-73320573ed2b-e1ec2e353fbf";
 const CORE = [
   "./",
   "./index.html",
@@ -7,16 +7,17 @@ const CORE = [
   "./manifest.webmanifest",
   "./css/style.css?v=5faf3cb1c8b3",
   "./js/engine.js?v=2.0.0",
-  "./js/app.js?v=408ca2018a0d",
+  "./js/app.js?v=70f353d43423",
   "./js/pwa.js",
   "../../assets/css/tool-layout.css?v=c4aecb2c24ab",
   "../../assets/images/logo.svg",
   "./js/engine.js",
   "../../assets/js/es-launch-runtime.js?v=e0fea69289b0",
   "./js/engine.js?v=add5a3be402a",
-  "../../assets/js/id-launch-runtime.js?v=73b3b10f98fe",
-  "../../assets/js/pt-br-launch-runtime.js?v=09fcb716b026",
-  "../../data/locales.js?v=62a9c89b23e0",
+  "../../assets/js/id-launch-runtime.js?v=a8ea8ba717cf",
+  "../../assets/js/pt-br-launch-runtime.js?v=dc56e78b12bd",
+  "../../assets/css/pilot-locale-toc.css?v=20261124toc",
+  "../../data/locales.js?v=d5d85e22914a",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",
@@ -45,7 +46,13 @@ const CORE = [
   "./manifest-zh.webmanifest",
   "./es/",
   "./es/index.html",
-  "./manifest-es.webmanifest"
+  "./manifest-es.webmanifest",
+  "./id/",
+  "./id/index.html",
+  "./manifest-id.webmanifest",
+  "./pt-br/",
+  "./pt-br/index.html",
+  "./manifest-pt-br.webmanifest"
 ];self.addEventListener("install",e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)));self.skipWaiting()});self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith("nel-telecom-ac-dc-breaker-sizing-")&&k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim()});self.addEventListener("fetch",e=>{if(e.request.method!=="GET")return;e.respondWith(nelScopedCacheMatch(e.request,{ignoreSearch:true}).then(c=>c||fetch(e.request)))});
 /* NEL_SCOPED_CACHE_START */
 // A different tool may retain another version of a shared asset. Never search

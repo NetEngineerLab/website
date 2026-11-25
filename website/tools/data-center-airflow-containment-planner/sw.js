@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-data-center-airflow-containment-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-2becfaf740c9-e6f00f1872f5";
+const CACHE = "nel-data-center-airflow-containment-planner-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-73320573ed2b-3c44adbfb53f";
 const CORE = [
   "./js/locale-es.js?v=20261108-t339-bw1",
   "./",
@@ -14,9 +14,9 @@ const CORE = [
   "../../assets/images/logo.svg",
   "../../assets/js/es-launch-runtime.js?v=e0fea69289b0",
   "./js/engine.js?v=548527c69b59",
-  "../../assets/js/id-launch-runtime.js?v=73b3b10f98fe",
-  "../../assets/js/pt-br-launch-runtime.js?v=09fcb716b026",
-  "../../data/locales.js?v=62a9c89b23e0",
+  "../../assets/js/id-launch-runtime.js?v=a8ea8ba717cf",
+  "../../assets/js/pt-br-launch-runtime.js?v=dc56e78b12bd",
+  "../../data/locales.js?v=d5d85e22914a",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",

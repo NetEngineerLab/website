@@ -32,7 +32,12 @@ const tools = [
   "route-summarization-calculator",
   "wireless-link-budget-calculator",
   "pue-data-center-energy-efficiency",
-  "dns-ttl-propagation-calculator"
+  "dns-ttl-propagation-calculator",
+  "switch-uplink-oversubscription-calculator",
+  "vlan-ip-capacity-planner",
+  "telecom-ac-dc-breaker-sizing",
+  "data-center-cooling-load-calculator",
+  "sfp-qsfp-compatibility-calculator"
 ];
 const sheet = fs.readFileSync(path.join(root, "website/assets/css/pilot-locale-toc.css"), "utf8");
 assert.match(sheet, /html:is\(:lang\(id\), :lang\(pt-BR\)\)/);

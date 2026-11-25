@@ -1012,9 +1012,14 @@ function gitLastmod(absPath){
   if(!lastmodCache[rel]||lastmodCache[rel].hash!==hash||lastmodCache[rel].date!==date||lastmodCache[rel].source!=="history"){lastmodCache[rel]={hash,date,source:"history"};lastmodCacheDirty=true;}
   return date;
  }
- if(lastmodCache[rel]&&lastmodCache[rel].hash===hash&&/^\d{4}-\d{2}-\d{2}$/.test(lastmodCache[rel].date))return lastmodCache[rel].date;
+ if(lastmodCache[rel]&&lastmodCache[rel].hash===hash&&/^\d{4}-\d{2}-\d{2}$/.test(lastmodCache[rel].date)){
+  // Record history before the content commit. A later CI checkout then sees
+  // the same hash and source, so it does not rewrite content-lastmod.json.
+  if(lastmodCache[rel].source!=="history"){lastmodCache[rel]={hash,date:lastmodCache[rel].date,source:"history"};lastmodCacheDirty=true;}
+  return lastmodCache[rel].date;
+ }
  const date=new Date().toISOString().slice(0,10);
- lastmodCache[rel]={hash,date,source:"edit"};
+ lastmodCache[rel]={hash,date,source:"history"};
  lastmodCacheDirty=true;
  return date;
 }

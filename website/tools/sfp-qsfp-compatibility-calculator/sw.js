@@ -1,6 +1,6 @@
 "use strict";
 // t316: tool-isolated exact-version fallback; online documents/styles/scripts always refresh.
-const CACHE = "nel-sfp-qsfp-compatibility-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-2becfaf740c9-cd0c90d67fd5";
+const CACHE = "nel-sfp-qsfp-compatibility-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-73320573ed2b-3ea65ffc4fc0";
 const CORE = [
   "./",
   "./index.html",
@@ -43,12 +43,13 @@ const CORE = [
   "../../assets/css/tool-layout.css?v=c4aecb2c24ab",
   "../../assets/images/logo.svg",
   "./js/engine.js?v=82df18048e64",
-  "./js/app.js?v=970bd5ed0286",
+  "./js/app.js?v=fc8a33fc2ba0",
   "./js/pwa.js?v=20261108-sfp-bw6",
   "../../assets/js/es-launch-runtime.js?v=e0fea69289b0",
-  "../../assets/js/id-launch-runtime.js?v=73b3b10f98fe",
-  "../../assets/js/pt-br-launch-runtime.js?v=09fcb716b026",
-  "../../data/locales.js?v=62a9c89b23e0",
+  "../../assets/js/id-launch-runtime.js?v=a8ea8ba717cf",
+  "../../assets/js/pt-br-launch-runtime.js?v=dc56e78b12bd",
+  "../../assets/css/pilot-locale-toc.css?v=20261124toc",
+  "../../data/locales.js?v=d5d85e22914a",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",
@@ -77,7 +78,13 @@ const CORE = [
   "./manifest-zh.webmanifest",
   "./es/",
   "./es/index.html",
-  "./manifest-es.webmanifest"
+  "./manifest-es.webmanifest",
+  "./id/",
+  "./id/index.html",
+  "./manifest-id.webmanifest",
+  "./pt-br/",
+  "./pt-br/index.html",
+  "./manifest-pt-br.webmanifest"
 ];
 self.addEventListener("install", event => {
  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(CORE).then(() => self.skipWaiting())));

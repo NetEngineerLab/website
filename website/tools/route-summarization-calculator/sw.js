@@ -1,5 +1,5 @@
 "use strict";
-const CACHE = "nel-route-summarization-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-2becfaf740c9-7a8a1eaa2daa";
+const CACHE = "nel-route-summarization-calculator-locale-v1.9.9-04-p0-p1-correctness-consent-offline-scoped-v2-73320573ed2b-4b7cbf887ea4";
 const CORE = [
   "./",
   "./index.html",
@@ -15,10 +15,10 @@ const CORE = [
   "../../assets/images/logo.svg",
   "./js/engine.js?v=5e6e4f9c4c83",
   "../../assets/js/es-launch-runtime.js?v=e0fea69289b0",
-  "../../assets/js/id-launch-runtime.js?v=73b3b10f98fe",
-  "../../assets/js/pt-br-launch-runtime.js?v=09fcb716b026",
+  "../../assets/js/id-launch-runtime.js?v=a8ea8ba717cf",
+  "../../assets/js/pt-br-launch-runtime.js?v=dc56e78b12bd",
   "../../assets/css/pilot-locale-toc.css?v=20261124toc",
-  "../../data/locales.js?v=62a9c89b23e0",
+  "../../data/locales.js?v=d5d85e22914a",
   "../../data/site-config.js?v=b5072ad7fa47",
   "../../assets/css/locale-menu.css?v=7804394246fb",
   "../../assets/css/design-tokens.css?v=10e842cd32cf",

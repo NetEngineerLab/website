@@ -5,7 +5,7 @@ window.NELToolInputController={calculate:function(){run();},managesValidation:tr
 
 
 
-function nelInputError(ok){const l=(document.documentElement.lang||"en").toLowerCase();const msg=l.startsWith("zh")?"请检查输入：数值不能为负，必填负载与容量必须大于 0。":l.startsWith("es")?"Revise las entradas: los valores no pueden ser negativos y las cargas y capacidades obligatorias deben ser mayores que cero.":"Check the inputs: values cannot be negative, and required loads and capacities must be greater than zero.";let el=document.getElementById("nelInputError");if(ok){if(el)el.hidden=true;return;}if(!el){el=document.createElement("p");el.id="nelInputError";el.className="nel-input-error";el.setAttribute("role","alert");el.style.cssText="color:#b42318;font-weight:700;background:#fdecec;border:1px solid #f4c7c3;border-radius:10px;padding:10px 12px;margin:10px 0";const anchor=document.getElementById("calculate");if(anchor&&anchor.parentNode)anchor.parentNode.insertBefore(el,anchor);else(document.querySelector("main")||document.body).prepend(el);}el.textContent=msg;el.hidden=false;}
+function nelInputError(ok){const l=(document.documentElement.lang||"en").toLowerCase();const msg=l.startsWith("zh")?"请检查输入：数值不能为负，必填负载与容量必须大于 0。":l.startsWith("es")?"Revise las entradas: los valores no pueden ser negativos y las cargas y capacidades obligatorias deben ser mayores que cero.":l.startsWith("id")?"Periksa masukan: nilai tidak boleh negatif, dan beban serta kapasitas wajib harus lebih dari 0.":l.startsWith("pt")?"Confira as entradas: os valores não podem ser negativos, e as cargas e capacidades obrigatórias devem ser maiores que zero.":"Check the inputs: values cannot be negative, and required loads and capacities must be greater than zero.";let el=document.getElementById("nelInputError");if(ok){if(el)el.hidden=true;return;}if(!el){el=document.createElement("p");el.id="nelInputError";el.className="nel-input-error";el.setAttribute("role","alert");el.style.cssText="color:#b42318;font-weight:700;background:#fdecec;border:1px solid #f4c7c3;border-radius:10px;padding:10px 12px;margin:10px 0";const anchor=document.getElementById("calculate");if(anchor&&anchor.parentNode)anchor.parentNode.insertBefore(el,anchor);else(document.querySelector("main")||document.body).prepend(el);}el.textContent=msg;el.hidden=false;}
 
 
   const $ = (id) => document.getElementById(id);
@@ -20,10 +20,12 @@ function nelInputError(ok){const l=(document.documentElement.lang||"en").toLower
     const densityKgM3 = pressurePa / (287.058 * (t + 273.15));
     return { ok: true, pressureKPa: pressurePa / 1000, densityKgM3, densityRatio: densityKgM3 / (101325 / (287.058 * 293.15)) };
   }
-  const format = (value, digits = 1) => Number(value).toLocaleString(undefined, { maximumFractionDigits: digits });
+  const format = (value, digits = 1) => Number(value).toLocaleString(idLang ? "id-ID" : ptLang ? "pt-BR" : undefined, { maximumFractionDigits: digits });
   const lang = (document.documentElement.lang || "").toLowerCase();
   const zh = lang.startsWith("zh");
   const es = lang.startsWith("es");
+  const idLang = lang.startsWith("id");
+  const ptLang = lang.startsWith("pt");
 
   const copy = zh
     ? {
@@ -63,6 +65,44 @@ function nelInputError(ok){const l=(document.documentElement.lang||"en").toLower
         frame: "Máximo de unidades permitido por el sitio",
         frameHint: "Opcional; en blanco no limita el número de unidades",
       }
+    : idLang
+    ? {
+        title: "Skenario rekayasa dan lingkungan",
+        intro: "Tambahkan beban puncak, kasus konservatif, dan batas lokasi. Biarkan bidang otomatis kosong untuk memakai beban IT saat ini.",
+        peak: "Beban IT puncak",
+        peakHint: "Kosong memakai beban IT saat ini",
+        conservative: "Beban IT kasus konservatif",
+        conservativeHint: "Kosong memakai beban IT puncak",
+        extra: "Beban sensibel tambahan skenario",
+        extraHint: "Opsional; kosongkan jika tidak ada beban sensibel tambahan",
+        humidity: "Kelembapan relatif",
+        humidityHint: "Dipakai untuk pemeriksaan risiko lingkungan",
+        altitude: "Ketinggian",
+        altitudeHint: "Kosong mempertahankan aliran 1.2 kg/m³. Nilai yang diisi memakai tekanan atmosfer standar dan gas ideal udara kering.",
+        dryBulb: "Suhu bola kering ruang",
+        dryBulbHint: "Kosong memakai 20°C jika ketinggian diisi. Ini suhu ruang, bukan laju penurunan udara luar.",
+        frame: "Jumlah unit pendingin maksimum yang diizinkan lokasi",
+        frameHint: "Opsional; kosong berarti tidak membatasi jumlah unit",
+      }
+    : ptLang
+    ? {
+        title: "Cenários de engenharia e ambiente",
+        intro: "Acrescente o pico, o caso conservador e os limites do local. Deixe os campos automáticos em branco para usar a carga de TI atual.",
+        peak: "Carga de TI de pico",
+        peakHint: "Em branco usa a carga de TI atual",
+        conservative: "Carga de TI do caso conservador",
+        conservativeHint: "Em branco usa a carga de TI de pico",
+        extra: "Carga sensível adicional do cenário",
+        extraHint: "Opcional; deixe em branco se não houver carga sensível extra",
+        humidity: "Umidade relativa",
+        humidityHint: "Usada na verificação de risco ambiental",
+        altitude: "Altitude",
+        altitudeHint: "Em branco, a vazão continua em 1.2 kg/m³. Um valor usa a pressão da atmosfera padrão e o gás ideal do ar seco.",
+        dryBulb: "Temperatura de bulbo seco da sala",
+        dryBulbHint: "Em branco usa 20°C quando a altitude é informada. É a temperatura da sala, não o gradiente externo.",
+        frame: "Máximo de unidades de resfriamento permitido pelo local",
+        frameHint: "Opcional; em branco não limita a quantidade de unidades",
+      }
     : {
         title: "Engineering scenarios & environment",
         intro: "Add peak, conservative-case and site limits. Leave automatic fields blank to use the current IT load.",
@@ -93,7 +133,7 @@ function nelInputError(ok){const l=(document.documentElement.lang||"en").toLower
     const current = Math.max(0, numberValue("itKW"));
     const peak = $("peakITKW");
     const conservative = $("conservativeITKW");
-    const auto = zh ? "自动" : es ? "Automático" : "Auto";
+    const auto = zh ? "自动" : es ? "Automático" : idLang ? "Otomatis" : ptLang ? "Automático" : "Auto";
     if (peak) peak.placeholder = `${auto}: ${format(current)} kW`;
     if (conservative) conservative.placeholder = `${auto}: ${format(numberValue("peakITKW") || current)} kW`;
   }
@@ -115,7 +155,7 @@ function nelInputError(ok){const l=(document.documentElement.lang||"en").toLower
         ${field(copy.humidity, copy.humidityHint, "relativeHumidityPct", "50", "%", 'min="0" max="100" step="1"')}
         ${field(copy.altitude, copy.altitudeHint, "altitudeM", "", "m", 'step="1"')}
         ${field(copy.dryBulb, copy.dryBulbHint, "dryBulbC", "", "°C", 'step="0.1"')}
-        ${field(copy.frame, copy.frameHint, "frameMaxUnits", "", "", 'min="0" step="1" placeholder="' + (zh ? "不限制" : es ? "Sin límite" : "No limit") + '"')}
+        ${field(copy.frame, copy.frameHint, "frameMaxUnits", "", "", 'min="0" step="1" placeholder="' + (zh ? "不限制" : es ? "Sin límite" : idLang ? "Tanpa batas" : ptLang ? "Sem limite" : "No limit") + '"')}
       </div>`;
 
     const inputPanel = document.querySelector(".nel-tool-input");
@@ -155,9 +195,11 @@ function nelInputError(ok){const l=(document.documentElement.lang||"en").toLower
     setTimeout(() => URL.revokeObjectURL(link.href), 1000);
   }
 
-  const riskLabel = (risk) => zh ? ({ low: "低", medium: "中", high: "高" }[risk] || risk) : es ? ({ low: "bajo", medium: "medio", high: "alto" }[risk] || risk) : risk;
+  const riskLabel = (risk) => zh ? ({ low: "低", medium: "中", high: "高" }[risk] || risk) : es ? ({ low: "bajo", medium: "medio", high: "alto" }[risk] || risk) : idLang ? ({ low: "rendah", medium: "sedang", high: "tinggi" }[risk] || risk) : ptLang ? ({ low: "baixo", medium: "médio", high: "alto" }[risk] || risk) : risk;
   const warningLabel = (warning) => {
     if (es) return ({ n1Fail: "capacidad insuficiente tras el fallo de una unidad", n2Fail: "capacidad insuficiente tras el fallo de dos unidades", highUtil: "utilización normal alta", lowUtil: "utilización normal baja", frameLimit: "supera el máximo de unidades del sitio", humidityRisk: "humedad relativa alta", atmosphere: "altitud o temperatura fuera del modelo" })[warning] || warning;
+    if (idLang) return ({ n1Fail: "kapasitas tidak cukup setelah satu unit gagal", n2Fail: "kapasitas tidak cukup setelah dua unit gagal", highUtil: "utilisasi normal tinggi", lowUtil: "utilisasi normal rendah", frameLimit: "melebihi jumlah unit maksimum di lokasi", humidityRisk: "kelembapan relatif tinggi", atmosphere: "ketinggian atau suhu di luar model" })[warning] || warning;
+    if (ptLang) return ({ n1Fail: "capacidade insuficiente após a falha de uma unidade", n2Fail: "capacidade insuficiente após a falha de duas unidades", highUtil: "utilização normal alta", lowUtil: "utilização normal baixa", frameLimit: "excede o máximo de unidades do local", humidityRisk: "umidade relativa alta", atmosphere: "altitude ou temperatura fora do modelo" })[warning] || warning;
     if (!zh) return warning;
     return ({
       n1Fail: "单台故障后容量不足",
@@ -170,6 +212,8 @@ function nelInputError(ok){const l=(document.documentElement.lang||"en").toLower
   };
   const scenarioLabel = (name) => {
     if (es) return ({ baseline: "Base", peak: "Pico", conservative: "Conservador" })[name] || name;
+    if (idLang) return ({ baseline: "Dasar", peak: "Puncak", conservative: "Konservatif" })[name] || name;
+    if (ptLang) return ({ baseline: "Base", peak: "Pico", conservative: "Conservador" })[name] || name;
     if (!zh) return name;
     return ({ baseline: "当前基线", peak: "峰值场景", conservative: "保守场景" })[name] || name;
   };
@@ -190,7 +234,7 @@ function nelInputError(ok){const l=(document.documentElement.lang||"en").toLower
       ["base", result.totalBaseKW, " kW"],
       ["design", result.designKW, " kW"],
       ["units", result.recommendedUnits, ""],
-      ["n1", zh ? (result.survives1 ? "通过" : "不通过") : es ? (result.survives1 ? "Cumple" : "No cumple") : (result.survives1 ? "PASS" : "FAIL"), ""],
+      ["n1", zh ? (result.survives1 ? "通过" : "不通过") : es ? (result.survives1 ? "Cumple" : "No cumple") : idLang ? (result.survives1 ? "LULUS" : "GAGAL") : ptLang ? (result.survives1 ? "APROVADO" : "REPROVADO") : (result.survives1 ? "PASS" : "FAIL"), ""],
       ["util", result.utilPct, "%"],
       ["btu", result.btuH, " BTU/h"],
       ["tons", result.tons, " RT"],
@@ -205,11 +249,15 @@ function nelInputError(ok){const l=(document.documentElement.lang||"en").toLower
     if ($("warn")) {
       const warnings = result.warnings.map(warningLabel);
       $("warn").className = result.risk === "low" ? "ok" : "warn";
-      const densityNote = result.densityKgM3 == null ? "" : (zh ? " 干空气密度只改当地风量，台数仍按输入的千瓦计算。" : es ? " La densidad del aire seco solo cambia el caudal local; el número de unidades sigue los kilovatios introducidos." : " Dry-air density changes only the local airflow. Unit count still follows the entered kilowatts.");
+      const densityNote = result.densityKgM3 == null ? "" : (zh ? " 干空气密度只改当地风量，台数仍按输入的千瓦计算。" : es ? " La densidad del aire seco solo cambia el caudal local; el número de unidades sigue los kilovatios introducidos." : idLang ? " Kepadatan udara kering hanya mengubah aliran udara setempat. Jumlah unit tetap mengikuti kilowatt yang dimasukkan." : ptLang ? " A densidade do ar seco só altera a vazão local. A quantidade de unidades continua seguindo os quilowatts informados." : " Dry-air density changes only the local airflow. Unit count still follows the entered kilowatts.");
       $("warn").textContent = (zh
         ? `风险等级：${riskLabel(result.risk)}${warnings.length ? ` · ${warnings.join("；")}` : " · 未发现附加风险"}`
         : es
         ? `Riesgo: ${riskLabel(result.risk)}${warnings.length ? ` · ${warnings.join(", ")}` : " · Sin avisos adicionales"}`
+        : idLang
+        ? `Risiko: ${riskLabel(result.risk)}${warnings.length ? ` · ${warnings.join(", ")}` : " · Tidak ada peringatan tambahan"}`
+        : ptLang
+        ? `Risco: ${riskLabel(result.risk)}${warnings.length ? ` · ${warnings.join(", ")}` : " · Nenhum aviso adicional"}`
         : `Risk: ${result.risk}${warnings.length ? ` · ${warnings.join(", ")}` : " · No additional warnings"}`) + densityNote;
     }
 
